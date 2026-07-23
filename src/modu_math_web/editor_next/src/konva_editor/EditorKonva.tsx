@@ -11,7 +11,7 @@ import {
   type TutorRendererOverlay,
 } from "../api/editorApi";
 import { problemJsonToLayoutPatches } from "../tldraw/converters/problemJsonToLayoutPatches";
-import type { EditorShape, EditorShapeDocument } from "../types/editorShape";
+import type { EditorShape, EditorShapeDocument, InputInteraction, InputStyle } from "../types/editorShape";
 import type { ProblemJson } from "../types/problem";
 import sampleProblem from "../samples/sample_problem.json";
 import { connectorArrowForPreset, connectorKindForPreset } from "./connectorGeometry";
@@ -184,6 +184,27 @@ export function EditorKonva() {
       addShape(createShapeFromPreset(preset, nextId(preset)));
     },
     [addShape, nextId],
+  );
+
+  const setAnswerSlotState = useCallback(
+    (shapeIds: string[], enabled: boolean) => {
+      const ids = new Set(shapeIds);
+      const targets = document.shapes.filter((shape) => ids.has(shape.id) && isAnswerSlotShape(shape));
+      if (!targets.length) return;
+      const startOrder = nextAnswerOrder(document.shapes);
+      updateShapes(
+        targets.map((shape, index) =>
+          enabled
+            ? ({
+                ...shape,
+                interaction: shape.interaction ?? defaultInteractionForShape(shape, startOrder + index),
+                input_style: shape.input_style ?? defaultInputStyle(),
+              } as EditorShape)
+            : ({ ...shape, interaction: undefined, input_style: undefined } as EditorShape),
+        ),
+      );
+    },
+    [document.shapes, updateShapes],
   );
 
   const addDrawnShape = useCallback(
@@ -678,6 +699,8 @@ export function EditorKonva() {
             drawingPreset={drawingPreset}
             onSelectShapes={setSelectedShapeIds}
             onChangeShapes={updateShapes}
+            onConvertShapesToAnswer={(ids) => setAnswerSlotState(ids, true)}
+            onRestoreShapesFromAnswer={(ids) => setAnswerSlotState(ids, false)}
             onDrawShape={addDrawnShape}
             onDrawingComplete={() => setDrawingPreset(null)}
             onTutorOverlaySelect={selectTutorOverlay}
@@ -861,6 +884,57 @@ function lenDslSuffix(): number {
 
 function cloneShape<T extends EditorShape>(shape: T): T {
   return JSON.parse(JSON.stringify(shape)) as T;
+}
+
+function isAnswerSlotShape(shape: EditorShape): boolean {
+  return shape.type === "rect" || shape.type === "circle" || shape.type === "path" || shape.type === "text";
+}
+
+function nextAnswerOrder(shapes: EditorShape[]): number {
+  const orders = shapes
+    .map((shape) => shape.interaction?.order)
+    .filter((order): order is number => typeof order === "number" && Number.isFinite(order));
+  return orders.length ? Math.max(...orders) + 1 : 0;
+}
+
+function defaultInteractionForShape(shape: EditorShape, order: number): InputInteraction {
+  if (shape.type === "circle" || shape.type === "path") {
+    return {
+      type: "select",
+      role: "choice",
+      value_type: "choice",
+      choice_value: shape.id,
+      include_in_submission: true,
+      order,
+      group_id: "shape_choice",
+      keyboard: "none",
+    };
+  }
+  return {
+    type: "input",
+    role: "answer",
+    value_type: "digit",
+    max_length: 1,
+    include_in_submission: true,
+    order,
+    group_id: "final_answer",
+    auto_advance: true,
+    keyboard: "number",
+  };
+}
+
+function defaultInputStyle(): InputStyle {
+  return {
+    font_size_mode: "auto",
+    font_size_adjust: 0,
+    min_font_size: 14,
+    max_font_size: 52,
+    font_weight: 700,
+    horizontal_align: "center",
+    vertical_align: "middle",
+    padding: 6,
+    text_color: "#222222",
+  };
 }
 
 function isDragDrawPreset(preset: ShapePreset): boolean {

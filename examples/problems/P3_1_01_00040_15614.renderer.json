@@ -1,0 +1,55 @@
+{
+  "problem_id": "P3_1_01_00040_15614",
+  "view_box": {
+    "width": 900.0,
+    "height": 210.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 24.0,
+        "y": 28.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 24,
+        "width": 852.0,
+        "height": 76.0,
+        "max_width": 852.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 24.0,
+        "data-box-y": 28.0,
+        "data-box-width": 852.0,
+        "data-box-height": 76.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "영진이는 가게에서 120원짜리 과자를 사고, 문구점에서 340원짜리 공책을 샀더니 420원이 남았습니다. 영진이가 처음에 가지고 있던 돈은 얼마입니까?"
+    },
+    {
+      "id": "slot.answer.blank",
+      "type": "rect",
+      "attributes": {
+        "x": 64.0,
+        "y": 60.0,
+        "width": 120.0,
+        "height": 32.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.answer",
+      "refs": {
+        "layout_slot_id": "slot.answer"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -13,7 +13,7 @@ def compile_problem_template_to_layout(problem: ProblemTemplate) -> dict[str, An
     """Compile declarative DSL template objects into a normalized layout contract."""
     _assert_unique_ids(problem)
 
-    slots = [_normalize_slot(slot) for slot in problem.slots]
+    slots = [_normalize_slot_with_interaction(slot) for slot in problem.slots]
     _normalize_graphpaper_bounds(slots)
     normalized_regions = _normalize_regions(problem.regions, slots)
     diagrams = [_normalize_diagram(diagram) for diagram in problem.diagrams]
@@ -446,9 +446,18 @@ def _normalize_diagram(diagram: DiagramTemplate) -> dict[str, Any]:
     return {
         "id": diagram.id,
         "objects": [_normalize_shape_object(obj) for obj in diagram.objects],
-        "label_slots": [_normalize_slot(slot) for slot in diagram.label_slots],
+        "label_slots": [_normalize_slot_with_interaction(slot) for slot in diagram.label_slots],
         "constraints": [_normalize_constraint(constraint) for constraint in diagram.constraints],
     }
+
+
+def _normalize_slot_with_interaction(slot: AuthoringSlot) -> dict[str, Any]:
+    normalized = _normalize_slot(slot)
+    if slot.interaction is not None:
+        normalized["content"]["interaction"] = dict(slot.interaction)
+    if slot.input_style is not None:
+        normalized["content"]["input_style"] = dict(slot.input_style)
+    return normalized
 
 
 def _normalize_shape_object(obj: ShapeObject) -> dict[str, Any]:

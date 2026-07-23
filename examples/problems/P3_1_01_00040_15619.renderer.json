@@ -1,0 +1,72 @@
+{
+  "problem_id": "P3_1_01_00040_15619",
+  "view_box": {
+    "width": 900.0,
+    "height": 150.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 20.0,
+        "y": 14.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 22,
+        "width": 860.0,
+        "height": 58.0,
+        "max_width": 860.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 20.0,
+        "data-box-y": 14.0,
+        "data-box-width": 860.0,
+        "data-box-height": 58.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.4
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "동수는 책읽기를 좋아합니다. 어제는 415쪽을 읽었고, 오늘은 432쪽을 읽었습니다. 동수가 어제와 오늘 읽은 책의 쪽수는 모두 몇 쪽입니까?"
+    },
+    {
+      "id": "slot.expression.blank",
+      "type": "rect",
+      "attributes": {
+        "x": 64.0,
+        "y": 48.0,
+        "width": 120.0,
+        "height": 32.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.expression",
+      "refs": {
+        "layout_slot_id": "slot.expression"
+      }
+    },
+    {
+      "id": "slot.answer.blank",
+      "type": "rect",
+      "attributes": {
+        "x": 64.0,
+        "y": 96.0,
+        "width": 120.0,
+        "height": 32.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.answer",
+      "refs": {
+        "layout_slot_id": "slot.answer"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

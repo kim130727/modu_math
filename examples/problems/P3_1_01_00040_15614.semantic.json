@@ -1,0 +1,124 @@
+{
+  "problem_id": "P3_1_01_00040_15614",
+  "problem_type": "numeric_answer_two_step_addition_money_word_problem",
+  "metadata": {
+    "title": "영진이가 처음 가지고 있던 돈",
+    "tags": [],
+    "question": "영진이는 가게에서 120원짜리 과자를 사고, 문구점에서 340원짜리 공책을 샀더니 420원이 남았습니다. 영진이가 처음에 가지고 있던 돈은 얼마입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "person.yeongjin",
+        "type": "person",
+        "label": "영진이"
+      },
+      {
+        "id": "place.store",
+        "type": "place",
+        "label": "가게"
+      },
+      {
+        "id": "place.stationery_store",
+        "type": "place",
+        "label": "문구점"
+      },
+      {
+        "id": "object.snack",
+        "type": "purchasable_object",
+        "label": "과자"
+      },
+      {
+        "id": "object.notebook",
+        "type": "purchasable_object",
+        "label": "공책"
+      },
+      {
+        "id": "quantity.snack_price",
+        "type": "money",
+        "label": "과자값",
+        "value": 120,
+        "unit": "원"
+      },
+      {
+        "id": "quantity.notebook_price",
+        "type": "money",
+        "label": "공책값",
+        "value": 340,
+        "unit": "원"
+      },
+      {
+        "id": "quantity.total_spent",
+        "type": "money",
+        "label": "물건을 사는 데 쓴 돈",
+        "value": 460,
+        "unit": "원"
+      },
+      {
+        "id": "quantity.remaining_money",
+        "type": "money",
+        "label": "남은 돈",
+        "value": 420,
+        "unit": "원"
+      },
+      {
+        "id": "quantity.initial_money",
+        "type": "money",
+        "label": "처음에 가지고 있던 돈",
+        "value": 880,
+        "unit": "원"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.snack_purchased_at_store",
+        "type": "purchased_at",
+        "from_id": "object.snack",
+        "to_id": "place.store",
+        "buyer": "person.yeongjin",
+        "price": "quantity.snack_price"
+      },
+      {
+        "id": "relation.notebook_purchased_at_stationery_store",
+        "type": "purchased_at",
+        "from_id": "object.notebook",
+        "to_id": "place.stationery_store",
+        "buyer": "person.yeongjin",
+        "price": "quantity.notebook_price"
+      },
+      {
+        "id": "relation.total_spent_sum",
+        "type": "part_part_whole",
+        "whole": "quantity.total_spent",
+        "parts": [
+          "quantity.snack_price",
+          "quantity.notebook_price"
+        ]
+      },
+      {
+        "id": "relation.initial_money_partition",
+        "type": "whole_part_relation",
+        "whole": "quantity.initial_money",
+        "parts": [
+          "quantity.total_spent",
+          "quantity.remaining_money"
+        ]
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "numeric",
+    "value": 880,
+    "unit": "원",
+    "target_ref": "quantity.initial_money",
+    "derived_from": "step.restore_initial_money"
+  }
+}

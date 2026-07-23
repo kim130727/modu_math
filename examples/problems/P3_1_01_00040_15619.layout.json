@@ -1,0 +1,69 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15619",
+  "title": "동수가 어제와 오늘 읽은 책의 총쪽수",
+  "canvas": {
+    "width": 900,
+    "height": 150,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.question",
+        "slot.expression",
+        "slot.answer"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "동수는 책읽기를 좋아합니다. 어제는 415쪽을 읽었고, 오늘은 432쪽을 읽었습니다. 동수가 어제와 오늘 읽은 책의 쪽수는 모두 몇 쪽입니까?",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 14.0,
+        "width": 860.0,
+        "height": 58.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "font_family": "Noto Sans KR",
+        "line_height": 1.4,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.expression",
+      "kind": "blank",
+      "prompt": "식",
+      "content": {
+        "placeholder": ""
+      }
+    },
+    {
+      "id": "slot.answer",
+      "kind": "blank",
+      "prompt": "답",
+      "content": {
+        "placeholder": "쪽"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "slot.expression",
+    "slot.answer"
+  ]
+}

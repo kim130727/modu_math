@@ -1,0 +1,103 @@
+{
+  "problem_id": "P3_1_01_00040_15620",
+  "problem_type": "numeric_answer_addition_word_problem",
+  "metadata": {
+    "title": "인호가 처음 가지고 있던 돈",
+    "tags": [],
+    "question": "인호가 340원짜리 연필을 사고 나니 540원이 남았습니다. 인호가 처음에 가지고 있던 돈은 얼마입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR",
+    "instruction": "사용한 돈과 남은 돈을 더하여 처음 가지고 있던 돈을 구합니다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "person.inho",
+        "type": "person",
+        "label": "인호"
+      },
+      {
+        "id": "object.pencil",
+        "type": "purchasable_object",
+        "label": "연필"
+      },
+      {
+        "id": "quantity.pencil_price",
+        "type": "quantity",
+        "label": "연필값",
+        "value": 340,
+        "unit": "원"
+      },
+      {
+        "id": "quantity.remaining_money",
+        "type": "quantity",
+        "label": "연필을 사고 남은 돈",
+        "value": 540,
+        "unit": "원"
+      },
+      {
+        "id": "quantity.initial_money",
+        "type": "unknown_quantity",
+        "label": "인호가 처음 가지고 있던 돈",
+        "unit": "원"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.inho_bought_pencil",
+        "type": "purchased",
+        "subject": "person.inho",
+        "object": "object.pencil",
+        "price_ref": "quantity.pencil_price"
+      },
+      {
+        "id": "relation.initial_money_is_sum",
+        "type": "sum_of",
+        "subject": "quantity.initial_money",
+        "objects": [
+          "quantity.pencil_price",
+          "quantity.remaining_money"
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "quantity.pencil_price",
+          "quantity.remaining_money"
+        ],
+        "target_ref": "quantity.initial_money",
+        "condition_refs": [
+          "relation.initial_money_is_sum"
+        ]
+      },
+      "plan": {
+        "method": "add_spent_and_remaining_money",
+        "description": "연필을 사는 데 쓴 돈과 사고 나서 남은 돈을 더합니다."
+      },
+      "execute": {
+        "expected_operations": [
+          "addition"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "inverse_subtraction"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "type": "numeric",
+    "value": 880,
+    "unit": "원",
+    "target_ref": "quantity.initial_money",
+    "derived_from": "step.add_spent_and_remaining"
+  }
+}

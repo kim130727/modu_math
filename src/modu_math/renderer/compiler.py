@@ -273,6 +273,7 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
             content = {}
         refs = RenderRefs(layout_slot_id=slot_id)
         transform = str(content["transform"]) if isinstance(content.get("transform"), str) and content.get("transform") else None
+        answer_kwargs = _answer_element_kwargs(content)
         if kind in {"text", "text_box"}:
             text = str(content.get("text", ""))
             tx = float(content["x"]) if isinstance(content.get("x"), int | float) else x
@@ -325,6 +326,7 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
                     attributes=attributes,
                     source_ref=slot_id,
                     refs=refs,
+                    **answer_kwargs,
                     text=text,
                 )
             )
@@ -470,6 +472,7 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
                     attributes=attributes,
                     source_ref=slot_id,
                     refs=refs,
+                    **answer_kwargs,
                 )
             )
             y = max(y, y_pos + rh + 16.0)
@@ -505,6 +508,7 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
                     attributes=attributes,
                     source_ref=slot_id,
                     refs=refs,
+                    **answer_kwargs,
                 )
             )
             y = max(y, max(y1, y2) + 16.0)
@@ -537,6 +541,7 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
                     attributes=attributes,
                     source_ref=slot_id,
                     refs=refs,
+                    **answer_kwargs,
                 )
             )
             y = max(y, cy + r + 16.0)
@@ -570,6 +575,7 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
                     attributes=attributes,
                     source_ref=slot_id,
                     refs=refs,
+                    **answer_kwargs,
                 )
             )
             continue
@@ -601,6 +607,7 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
                     attributes=attributes,
                     source_ref=slot_id,
                     refs=refs,
+                    **answer_kwargs,
                 )
             )
             y = max(y, y_pos + ih + 16.0)
@@ -636,10 +643,22 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
                     attributes=attributes,
                     source_ref=slot_id,
                     refs=refs,
+                    **answer_kwargs,
                 )
             )
 
     return elements, y
+
+
+def _answer_element_kwargs(content: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    kwargs: dict[str, dict[str, Any]] = {}
+    interaction = content.get("interaction")
+    input_style = content.get("input_style")
+    if isinstance(interaction, dict):
+        kwargs["interaction"] = dict(interaction)
+    if isinstance(input_style, dict):
+        kwargs["input_style"] = dict(input_style)
+    return kwargs
 
 
 def _resolve_slot_order(layout: dict[str, Any]) -> list[str]:

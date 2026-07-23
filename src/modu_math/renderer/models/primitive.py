@@ -19,13 +19,20 @@ class RenderElement:
     id: str
     type: str
     attributes: dict[str, Any] = field(default_factory=dict)
+    interaction: dict[str, Any] | None = None
+    input_style: dict[str, Any] | None = None
     
     def to_dict(self) -> dict[str, Any]:
-        return {
+        data: dict[str, Any] = {
             "id": self.id,
             "type": self.type,
             "attributes": self.attributes
         }
+        if self.interaction is not None:
+            data["interaction"] = self.interaction
+        if self.input_style is not None:
+            data["input_style"] = self.input_style
+        return data
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "RenderElement":
@@ -53,6 +60,8 @@ class RenderElement:
             id=str(data.get("id", "")),
             type=str(data.get("type", "")),
             attributes=dict(data.get("attributes", {})),
+            interaction=dict(data["interaction"]) if isinstance(data.get("interaction"), dict) else None,
+            input_style=dict(data["input_style"]) if isinstance(data.get("input_style"), dict) else None,
         )
 
 @dataclass
@@ -87,6 +96,8 @@ class RenderText(RenderElement):
             id=str(data.get("id", "")),
             type=str(data.get("type", "text")),
             attributes=dict(data.get("attributes", {})),
+            interaction=dict(data["interaction"]) if isinstance(data.get("interaction"), dict) else None,
+            input_style=dict(data["input_style"]) if isinstance(data.get("input_style"), dict) else None,
             text=str(data.get("text", "")),
         )
 
@@ -112,6 +123,8 @@ class RenderGroup(RenderElement):
             id=str(data.get("id", "")),
             type=str(data.get("type", "group")),
             attributes=dict(data.get("attributes", {})),
+            interaction=dict(data["interaction"]) if isinstance(data.get("interaction"), dict) else None,
+            input_style=dict(data["input_style"]) if isinstance(data.get("input_style"), dict) else None,
             elements=children,
         )
 

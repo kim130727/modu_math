@@ -1,0 +1,208 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_15612",
+  "problem_type": "multiple_choice_largest_sum_problem",
+  "inputs": {
+    "target_label": "합이 가장 큰 덧셈식의 보기 번호",
+    "unit": "",
+    "options": [
+      {
+        "number": 1,
+        "expression": "320 + 145"
+      },
+      {
+        "number": 2,
+        "expression": "300 + 200"
+      },
+      {
+        "number": 3,
+        "expression": "163 + 326"
+      },
+      {
+        "number": 4,
+        "expression": "236 + 362"
+      },
+      {
+        "number": 5,
+        "expression": "405 + 104"
+      }
+    ]
+  },
+  "given": [
+    {
+      "ref": "choice.option_1",
+      "value": "320 + 145"
+    },
+    {
+      "ref": "choice.option_2",
+      "value": "300 + 200"
+    },
+    {
+      "ref": "choice.option_3",
+      "value": "163 + 326"
+    },
+    {
+      "ref": "choice.option_4",
+      "value": "236 + 362"
+    },
+    {
+      "ref": "choice.option_5",
+      "value": "405 + 104"
+    }
+  ],
+  "target": {
+    "ref": "choice.option_4",
+    "type": "choice"
+  },
+  "understanding": {
+    "summary": "다섯 덧셈식의 합을 각각 구하고 그중 합이 가장 큰 식을 찾는 문제입니다.",
+    "facts": [
+      {
+        "ref": "choice.option_1",
+        "label": "첫 번째 덧셈식",
+        "value": "320 + 145",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "choice.option_2",
+        "label": "두 번째 덧셈식",
+        "value": "300 + 200",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "choice.option_3",
+        "label": "세 번째 덧셈식",
+        "value": "163 + 326",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "choice.option_4",
+        "label": "네 번째 덧셈식",
+        "value": "236 + 362",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "choice.option_5",
+        "label": "다섯 번째 덧셈식",
+        "value": "405 + 104",
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "choice.option_4",
+        "label": "합이 가장 큰 덧셈식의 보기 번호",
+        "unit": ""
+      }
+    ],
+    "relation": {
+      "type": "maximum_comparison",
+      "statement": "각 보기의 합을 계산해 가장 큰 합을 가진 보기를 선택합니다.",
+      "symbolic": "max(465, 500, 489, 598, 509) = 598",
+      "uses": [
+        "choice.option_1",
+        "choice.option_2",
+        "choice.option_3",
+        "choice.option_4",
+        "choice.option_5"
+      ],
+      "result": "choice.option_4"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "이 문제에서 찾아야 하는 것은 무엇인가요?",
+        "choices": [
+          "가장 작은 두 수",
+          "합이 가장 큰 덧셈식",
+          "첫 번째 덧셈식의 합"
+        ],
+        "answer_index": 1
+      },
+      {
+        "id": "understand.method",
+        "type": "multiple_choice",
+        "prompt": "합이 가장 큰 식을 정확하게 찾는 방법은 무엇인가요?",
+        "choices": [
+          "각 보기의 합을 계산하여 비교합니다.",
+          "가장 큰 수가 하나라도 있는 보기를 고릅니다.",
+          "두 수의 차가 가장 큰 보기를 고릅니다."
+        ],
+        "answer_index": 0
+      }
+    ]
+  },
+  "method": "다섯 덧셈식의 합을 각각 계산하고 결과를 비교합니다.",
+  "plan": [
+    "각 보기의 덧셈을 계산합니다.",
+    "계산한 다섯 합을 서로 비교합니다.",
+    "가장 큰 합을 가진 보기 번호를 선택합니다."
+  ],
+  "steps": [
+    {
+      "id": "step.calculate_option_1",
+      "expr": "320 + 145",
+      "value": 465,
+      "explanation": "①의 합은 465입니다."
+    },
+    {
+      "id": "step.calculate_option_2",
+      "expr": "300 + 200",
+      "value": 500,
+      "explanation": "②의 합은 500입니다."
+    },
+    {
+      "id": "step.calculate_option_3",
+      "expr": "163 + 326",
+      "value": 489,
+      "explanation": "③의 합은 489입니다."
+    },
+    {
+      "id": "step.calculate_option_4",
+      "expr": "236 + 362",
+      "value": 598,
+      "explanation": "④의 합은 598입니다."
+    },
+    {
+      "id": "step.calculate_option_5",
+      "expr": "405 + 104",
+      "value": 509,
+      "explanation": "⑤의 합은 509입니다."
+    },
+    {
+      "id": "step.select_largest_sum",
+      "expr": "max(465, 500, 489, 598, 509)",
+      "value": 4,
+      "explanation": "598이 가장 크므로 합이 가장 큰 식은 ④입니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.option_4_sum",
+      "expr": "236 + 362",
+      "expected": 598,
+      "actual": 598,
+      "pass": true
+    },
+    {
+      "id": "check.option_4_is_maximum",
+      "expr": "598 > 465 and 598 > 500 and 598 > 489 and 598 > 509",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": 4,
+    "unit": "",
+    "target_ref": "choice.option_4",
+    "derived_from": "step.select_largest_sum"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15614",
+  "title": "영진이가 처음 가지고 있던 돈",
+  "canvas": {
+    "width": 900,
+    "height": 210,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.question",
+        "slot.answer"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "영진이는 가게에서 120원짜리 과자를 사고, 문구점에서 340원짜리 공책을 샀더니 420원이 남았습니다. 영진이가 처음에 가지고 있던 돈은 얼마입니까?",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 28.0,
+        "width": 852.0,
+        "height": 76.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 24,
+        "font_family": "Noto Sans KR",
+        "line_height": 1.5,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.answer",
+      "kind": "blank",
+      "prompt": "답",
+      "content": {
+        "placeholder": "원"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "slot.answer"
+  ]
+}

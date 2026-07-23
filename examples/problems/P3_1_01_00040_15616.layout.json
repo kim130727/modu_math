@@ -1,0 +1,59 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15616",
+  "title": "두 사람이 넘은 줄넘기의 총횟수",
+  "canvas": {
+    "width": 900,
+    "height": 170,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.question",
+        "slot.answer"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "줄넘기를 하였습니다. 주영이는 123회, 영수는 342회를 넘었습니다. 두 사람이 넘은 줄넘기는 모두 몇 회입니까?",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 24.0,
+        "width": 852.0,
+        "height": 54.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 24,
+        "font_family": "Noto Sans KR",
+        "line_height": 1.45,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.answer",
+      "kind": "blank",
+      "prompt": "답",
+      "content": {
+        "placeholder": "회"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "slot.answer"
+  ]
+}

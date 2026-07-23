@@ -1,0 +1,155 @@
+{
+  "problem_id": "P3_1_01_00040_15623",
+  "problem_type": "numeric_answer_reverse_sequential_subtraction_word_problem",
+  "metadata": {
+    "title": "현석이가 어머니로부터 받은 용돈",
+    "tags": [],
+    "question": "현석이는 어머니로부터 용돈을 받아 310원어치 준비물을 사고, 420원짜리 빵을 사 먹었더니 130원이 남았습니다. 어머니로부터 받은 용돈은 얼마입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈과 뺄셈",
+    "language": "ko-KR",
+    "instruction": "두 번 사용한 돈과 남은 돈을 더하여 처음 받은 용돈을 구합니다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "person.hyeonseok",
+        "type": "person",
+        "label": "현석이"
+      },
+      {
+        "id": "person.mother",
+        "type": "person",
+        "label": "어머니"
+      },
+      {
+        "id": "object.supplies",
+        "type": "purchasable_object",
+        "label": "준비물"
+      },
+      {
+        "id": "object.bread",
+        "type": "purchasable_object",
+        "label": "빵"
+      },
+      {
+        "id": "quantity.supplies_cost",
+        "type": "quantity",
+        "label": "준비물을 사는 데 쓴 돈",
+        "value": 310,
+        "unit": "원"
+      },
+      {
+        "id": "quantity.bread_cost",
+        "type": "quantity",
+        "label": "빵을 사는 데 쓴 돈",
+        "value": 420,
+        "unit": "원"
+      },
+      {
+        "id": "quantity.remaining_money",
+        "type": "quantity",
+        "label": "준비물과 빵을 사고 남은 돈",
+        "value": 130,
+        "unit": "원"
+      },
+      {
+        "id": "quantity.total_spent",
+        "type": "derived_quantity",
+        "label": "현석이가 모두 사용한 돈",
+        "value": 730,
+        "unit": "원"
+      },
+      {
+        "id": "quantity.initial_allowance",
+        "type": "unknown_quantity",
+        "label": "어머니로부터 받은 용돈",
+        "unit": "원"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.mother_gave_allowance",
+        "type": "gave",
+        "subject": "person.mother",
+        "recipient": "person.hyeonseok",
+        "quantity_ref": "quantity.initial_allowance"
+      },
+      {
+        "id": "relation.hyeonseok_bought_supplies",
+        "type": "purchased",
+        "subject": "person.hyeonseok",
+        "object": "object.supplies",
+        "price_ref": "quantity.supplies_cost"
+      },
+      {
+        "id": "relation.hyeonseok_bought_bread",
+        "type": "purchased",
+        "subject": "person.hyeonseok",
+        "object": "object.bread",
+        "price_ref": "quantity.bread_cost"
+      },
+      {
+        "id": "relation.total_spent_is_sum",
+        "type": "sum_of",
+        "subject": "quantity.total_spent",
+        "objects": [
+          "quantity.supplies_cost",
+          "quantity.bread_cost"
+        ]
+      },
+      {
+        "id": "relation.initial_allowance_is_sum",
+        "type": "sum_of",
+        "subject": "quantity.initial_allowance",
+        "objects": [
+          "quantity.supplies_cost",
+          "quantity.bread_cost",
+          "quantity.remaining_money"
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "quantity.supplies_cost",
+          "quantity.bread_cost",
+          "quantity.remaining_money"
+        ],
+        "target_ref": "quantity.initial_allowance",
+        "condition_refs": [
+          "relation.total_spent_is_sum",
+          "relation.initial_allowance_is_sum"
+        ]
+      },
+      "plan": {
+        "method": "add_all_spent_and_remaining_money",
+        "description": "준비물값과 빵값을 더한 뒤 남은 돈을 더합니다."
+      },
+      "execute": {
+        "expected_operations": [
+          "addition",
+          "addition"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "forward_sequential_subtraction",
+          "reverse_addition"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "type": "numeric",
+    "value": 860,
+    "unit": "원",
+    "target_ref": "quantity.initial_allowance",
+    "derived_from": "step.find_initial_allowance"
+  }
+}

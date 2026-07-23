@@ -55,6 +55,8 @@ export interface RendererElement {
   attributes: Record<string, unknown>;
   source_ref?: string;
   text?: string;
+  interaction?: Record<string, unknown>;
+  input_style?: Record<string, unknown>;
 }
 
 export interface TutorRendererStep {
@@ -172,6 +174,20 @@ async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function answerElementProps(element: RendererElement): Record<string, unknown> {
+  return {
+    ...(isRecord(element.interaction) ? { interaction: element.interaction } : {}),
+    ...(isRecord(element.input_style) ? { input_style: element.input_style } : {}),
+  };
+}
+
+function answerContentProps(content: Record<string, unknown>): Record<string, unknown> {
+  return {
+    ...(isRecord(content.interaction) ? { interaction: content.interaction } : {}),
+    ...(isRecord(content.input_style) ? { input_style: content.input_style } : {}),
+  };
 }
 
 export function listProblems(): Promise<ProblemsListResponse> {
@@ -438,6 +454,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
             lineHeight: 1.2,
             sourceKind: "text",
             transform: stringValue(attrs.transform, ""),
+            ...answerElementProps(element),
           },
         },
       ];
@@ -467,6 +484,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
             lineHeight,
             sourceKind: "text_box",
             transform: stringValue(attrs.transform, ""),
+            ...answerElementProps(element),
           },
         },
       ];
@@ -487,6 +505,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
             strokeWidth: numberValue(attrs["stroke-width"], 1),
             strokeDasharray: stringValue(attrs["stroke-dasharray"], ""),
             transform: stringValue(attrs.transform, ""),
+            ...answerElementProps(element),
           },
         },
       ];
@@ -508,6 +527,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
             stroke: stringValue(attrs.stroke, "#111827"),
             strokeWidth: numberValue(attrs["stroke-width"], 1),
             transform: stringValue(attrs.transform, ""),
+            ...answerElementProps(element),
           },
         },
       ];
@@ -530,6 +550,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
             stroke: stringValue(attrs.stroke, "#111827"),
             strokeWidth: numberValue(attrs["stroke-width"], 1),
             transform: stringValue(attrs.transform, ""),
+            ...answerElementProps(element),
           },
         },
       ];
@@ -541,6 +562,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
         strokeWidth: numberValue(attrs["stroke-width"], 1),
         strokeDasharray: stringValue(attrs["stroke-dasharray"], ""),
         transform: stringValue(attrs.transform, ""),
+        ...answerElementProps(element),
       });
     }
     case "image": {
@@ -558,6 +580,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
           alt: sourceId(element),
           preserveAspectRatio: stringValue(attrs.preserveAspectRatio, stringValue(attrs.preserve_aspect_ratio, "xMidYMid meet")),
           transform: stringValue(attrs.transform, ""),
+          ...answerElementProps(element),
         },
       },
       ];
@@ -579,6 +602,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
             strokeWidth: numberValue(attrs["stroke-width"], 1),
             strokeDasharray: stringValue(attrs["stroke-dasharray"], ""),
             transform: stringValue(attrs.transform, ""),
+            ...answerElementProps(element),
           },
         },
       ];
@@ -615,6 +639,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             lineHeight: 1.2,
             sourceKind: "text",
             transform: stringValue(content.transform, ""),
+            ...answerContentProps(content),
           },
         },
       ];
@@ -643,6 +668,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             lineHeight,
             sourceKind: "text_box",
             transform: stringValue(content.transform, ""),
+            ...answerContentProps(content),
           },
         },
       ];
@@ -663,6 +689,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             strokeWidth: numberValue(content.stroke_width, 1),
             strokeDasharray: stringValue(content.stroke_dasharray, ""),
             transform: stringValue(content.transform, ""),
+            ...answerContentProps(content),
           },
         },
       ];
@@ -684,6 +711,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             stroke: stringValue(content.stroke, "#111827"),
             strokeWidth: numberValue(content.stroke_width, 1),
             transform: stringValue(content.transform, ""),
+            ...answerContentProps(content),
           },
         },
       ];
@@ -706,6 +734,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             stroke: stringValue(content.stroke, "#111827"),
             strokeWidth: numberValue(content.stroke_width, 1),
             transform: stringValue(content.transform, ""),
+            ...answerContentProps(content),
           },
         },
       ];
@@ -717,6 +746,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
         strokeWidth: numberValue(content.stroke_width, 1),
         strokeDasharray: stringValue(content.stroke_dasharray, ""),
         transform: stringValue(content.transform, ""),
+        ...answerContentProps(content),
       });
     }
     case "image":
@@ -732,6 +762,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             height: numberValue(content.height, 80),
             preserveAspectRatio: stringValue(content.preserve_aspect_ratio, "xMidYMid meet"),
             transform: stringValue(content.transform, ""),
+            ...answerContentProps(content),
           },
         },
       ];
@@ -751,6 +782,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             stroke: stringValue(content.stroke, "#111827"),
             strokeWidth: numberValue(content.stroke_width, 1),
             transform: stringValue(content.transform, ""),
+            ...answerContentProps(content),
           },
         },
       ];

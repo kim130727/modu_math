@@ -1,0 +1,229 @@
+{
+  "problem_id": "P3_1_01_00040_15618",
+  "view_box": {
+    "width": 900.0,
+    "height": 230.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.instruction.text",
+      "type": "text",
+      "attributes": {
+        "x": 24.0,
+        "y": 28.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.instruction",
+      "refs": {
+        "layout_slot_id": "slot.instruction"
+      },
+      "text": "다음 덧셈을 하시오."
+    },
+    {
+      "id": "slot.answer_1.blank",
+      "type": "rect",
+      "attributes": {
+        "x": 64.0,
+        "y": 60.0,
+        "width": 120.0,
+        "height": 32.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.answer_1",
+      "refs": {
+        "layout_slot_id": "slot.answer_1"
+      }
+    },
+    {
+      "id": "slot.answer_2.blank",
+      "type": "rect",
+      "attributes": {
+        "x": 64.0,
+        "y": 108.0,
+        "width": 120.0,
+        "height": 32.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.answer_2",
+      "refs": {
+        "layout_slot_id": "slot.answer_2"
+      }
+    },
+    {
+      "id": "slot.expression_1.line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 58.0,
+        "y1": 125.0,
+        "x2": 142.0,
+        "y2": 125.0,
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.expression_1.line",
+      "refs": {
+        "layout_slot_id": "slot.expression_1.line"
+      }
+    },
+    {
+      "id": "slot.expression_2.line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 218.0,
+        "y1": 125.0,
+        "x2": 302.0,
+        "y2": 125.0,
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.expression_2.line",
+      "refs": {
+        "layout_slot_id": "slot.expression_2.line"
+      }
+    },
+    {
+      "id": "slot.expression_1.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 26.0,
+        "y": 70.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.expression_1.label",
+      "refs": {
+        "layout_slot_id": "slot.expression_1.label"
+      },
+      "text": "(1)"
+    },
+    {
+      "id": "slot.expression_1.top.text",
+      "type": "text",
+      "attributes": {
+        "x": 135.0,
+        "y": 70.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24,
+        "max_width": 90.0,
+        "text-anchor": "end"
+      },
+      "source_ref": "slot.expression_1.top",
+      "refs": {
+        "layout_slot_id": "slot.expression_1.top"
+      },
+      "text": "375"
+    },
+    {
+      "id": "slot.expression_1.operator.text",
+      "type": "text",
+      "attributes": {
+        "x": 65.0,
+        "y": 108.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.expression_1.operator",
+      "refs": {
+        "layout_slot_id": "slot.expression_1.operator"
+      },
+      "text": "+"
+    },
+    {
+      "id": "slot.expression_1.bottom.text",
+      "type": "text",
+      "attributes": {
+        "x": 135.0,
+        "y": 108.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24,
+        "max_width": 90.0,
+        "text-anchor": "end"
+      },
+      "source_ref": "slot.expression_1.bottom",
+      "refs": {
+        "layout_slot_id": "slot.expression_1.bottom"
+      },
+      "text": "413"
+    },
+    {
+      "id": "slot.expression_2.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 185.0,
+        "y": 70.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.expression_2.label",
+      "refs": {
+        "layout_slot_id": "slot.expression_2.label"
+      },
+      "text": "(2)"
+    },
+    {
+      "id": "slot.expression_2.top.text",
+      "type": "text",
+      "attributes": {
+        "x": 295.0,
+        "y": 70.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24,
+        "max_width": 90.0,
+        "text-anchor": "end"
+      },
+      "source_ref": "slot.expression_2.top",
+      "refs": {
+        "layout_slot_id": "slot.expression_2.top"
+      },
+      "text": "607"
+    },
+    {
+      "id": "slot.expression_2.operator.text",
+      "type": "text",
+      "attributes": {
+        "x": 225.0,
+        "y": 108.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.expression_2.operator",
+      "refs": {
+        "layout_slot_id": "slot.expression_2.operator"
+      },
+      "text": "+"
+    },
+    {
+      "id": "slot.expression_2.bottom.text",
+      "type": "text",
+      "attributes": {
+        "x": 295.0,
+        "y": 108.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24,
+        "max_width": 90.0,
+        "text-anchor": "end"
+      },
+      "source_ref": "slot.expression_2.bottom",
+      "refs": {
+        "layout_slot_id": "slot.expression_2.bottom"
+      },
+      "text": "292"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -111,3 +111,57 @@ def test_compile_renderer_preserves_slot_transform() -> None:
 
     assert renderer["elements"][0]["attributes"]["transform"] == "rotate(30 50 20)"
 
+
+def test_compile_renderer_preserves_answer_slot_metadata_without_type_conversion() -> None:
+    layout = {
+        "problem_id": "answer_slot_example_0001",
+        "canvas": {"width": 200, "height": 120, "background": "#ffffff"},
+        "regions": [{"id": "region_answer", "role": "answer", "flow": "absolute", "slot_ids": ["answer.final"]}],
+        "slots": [
+            {
+                "id": "answer.final",
+                "kind": "rect",
+                "prompt": "",
+                "content": {
+                    "x": 10,
+                    "y": 20,
+                    "width": 80,
+                    "height": 40,
+                    "fill": "#ffffff",
+                    "stroke": "#111111",
+                    "interaction": {
+                        "type": "input",
+                        "role": "answer",
+                        "value_type": "integer",
+                        "max_length": 3,
+                        "include_in_submission": True,
+                        "order": 0,
+                        "group_id": "final_answer",
+                        "auto_advance": False,
+                        "keyboard": "number",
+                    },
+                    "input_style": {
+                        "font_size_mode": "auto",
+                        "font_size_adjust": 0,
+                        "min_font_size": 14,
+                        "max_font_size": 52,
+                        "font_weight": 700,
+                        "horizontal_align": "center",
+                        "vertical_align": "middle",
+                        "padding": 6,
+                        "text_color": "#222222",
+                    },
+                },
+            }
+        ],
+        "diagrams": [],
+    }
+
+    renderer = compile_renderer_json(layout)
+    validate_renderer_json(renderer)
+
+    element = renderer["elements"][0]
+    assert element["type"] == "rect"
+    assert element["interaction"]["type"] == "input"
+    assert element["input_style"]["font_size_mode"] == "auto"
+

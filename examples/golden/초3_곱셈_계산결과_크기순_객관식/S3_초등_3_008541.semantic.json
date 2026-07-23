@@ -1,13 +1,14 @@
 {
-  "problem_id": "S3_초등_3_008541",
-  "problem_type": "multiple_choice_ordering",
+  "problem_id": "three_circle_circumference_001",
+  "problem_type": "numeric_answer_circle_circumference",
   "metadata": {
     "title": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오",
     "tags": [],
-    "instruction": "보기에서 계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
-    "question": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
+    "instruction": "서로 이웃한 두 원의 중심 사이의 거리와 오른쪽 원의 반지름을 이용하여 세 원의 반지름을 구한 뒤 원주의 합을 구합니다.",
+    "question": "세 원의 원주의 합은 몇 cm입니까? (원주율: 3)",
     "required_layout_ids": [
-      "slot.box"
+      "slot.box",
+      "konva_1784850887765_rect_10764"
     ],
     "extraction_confidence": 1.0,
     "language": "ko"
@@ -15,54 +16,128 @@
   "domain": {
     "objects": [
       {
-        "id": "obj.a",
-        "type": "expression",
-        "label": "ㄱ",
-        "operation": "397 × 6"
+        "id": "obj.circle_left",
+        "type": "circle",
+        "label": "왼쪽 원",
+        "center_ref": "point.center_left",
+        "radius": 6,
+        "radius_unit": "cm"
       },
       {
-        "id": "obj.b",
-        "type": "expression",
-        "label": "ㄴ",
-        "operation": "549 × 4"
+        "id": "obj.circle_middle",
+        "type": "circle",
+        "label": "가운데 원",
+        "center_ref": "point.center_middle",
+        "radius": 8,
+        "radius_unit": "cm"
       },
       {
-        "id": "obj.c",
-        "type": "expression",
-        "label": "ㄷ",
-        "operation": "456 × 5"
+        "id": "obj.circle_right",
+        "type": "circle",
+        "label": "오른쪽 원",
+        "center_ref": "point.center_right",
+        "radius": 10,
+        "radius_unit": "cm"
       },
       {
-        "id": "obj.option2",
-        "type": "choice",
-        "label": "②",
-        "sequence": [
-          "ㄱ",
-          "ㄷ",
-          "ㄴ"
-        ]
+        "id": "point.center_left",
+        "type": "point",
+        "label": "왼쪽 원의 중심"
+      },
+      {
+        "id": "point.center_middle",
+        "type": "point",
+        "label": "가운데 원의 중심"
+      },
+      {
+        "id": "point.center_right",
+        "type": "point",
+        "label": "오른쪽 원의 중심"
+      },
+      {
+        "id": "measure.center_distance_left_middle",
+        "type": "length",
+        "label": "왼쪽 원과 가운데 원의 중심 사이 거리",
+        "value": 14,
+        "unit": "cm"
+      },
+      {
+        "id": "measure.center_distance_middle_right",
+        "type": "length",
+        "label": "가운데 원과 오른쪽 원의 중심 사이 거리",
+        "value": 18,
+        "unit": "cm"
+      },
+      {
+        "id": "measure.right_radius",
+        "type": "length",
+        "label": "오른쪽 원의 반지름",
+        "value": 10,
+        "unit": "cm"
+      },
+      {
+        "id": "const.pi",
+        "type": "constant",
+        "label": "원주율",
+        "value": 3
       }
     ],
     "relations": [
       {
-        "id": "rel.order",
-        "type": "descending_order",
-        "from_id": "obj.a",
-        "to_id": "obj.b"
+        "id": "rel.left_middle_tangent",
+        "type": "externally_tangent",
+        "from_id": "obj.circle_left",
+        "to_id": "obj.circle_middle"
+      },
+      {
+        "id": "rel.middle_right_tangent",
+        "type": "externally_tangent",
+        "from_id": "obj.circle_middle",
+        "to_id": "obj.circle_right"
+      },
+      {
+        "id": "rel.left_middle_center_distance",
+        "type": "center_distance_equals_radius_sum",
+        "from_id": "obj.circle_left",
+        "to_id": "obj.circle_middle",
+        "measure_ref": "measure.center_distance_left_middle",
+        "equation": "r_left + r_middle = 14"
+      },
+      {
+        "id": "rel.middle_right_center_distance",
+        "type": "center_distance_equals_radius_sum",
+        "from_id": "obj.circle_middle",
+        "to_id": "obj.circle_right",
+        "measure_ref": "measure.center_distance_middle_right",
+        "equation": "r_middle + r_right = 18"
+      },
+      {
+        "id": "rel.right_radius_given",
+        "type": "radius_measure",
+        "from_id": "obj.circle_right",
+        "to_id": "measure.right_radius",
+        "equation": "r_right = 10"
       }
     ],
     "confidence": 1.0
   },
   "answer": {
-    "blanks": [],
+    "blanks": [
+      {
+        "id": "slot.answer",
+        "type": "number",
+        "value": 144,
+        "unit": "cm"
+      }
+    ],
     "choices": [],
-    "answer_key": [],
+    "answer_key": "144cm",
     "confidence": 1.0,
     "target": {
-      "type": "choice_number",
-      "description": "계산 결과가 큰 것부터 차례대로 나열한 보기 번호"
+      "type": "total_circumference",
+      "description": "세 원의 원주의 합"
     },
-    "value": 2,
-    "unit": ""
+    "value": 144,
+    "unit": "cm"
   }
 }

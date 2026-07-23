@@ -1,0 +1,59 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15623",
+  "title": "현석이가 어머니로부터 받은 용돈",
+  "canvas": {
+    "width": 960,
+    "height": 150,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.question",
+        "slot.answer"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "현석이는 어머니로부터 용돈을 받아 310원어치 준비물을 사고, 420원짜리 빵을 사 먹었더니 130원이 남았습니다. 어머니로부터 받은 용돈은 얼마입니까?",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 24.0,
+        "width": 912.0,
+        "height": 52.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 24,
+        "font_family": "Noto Sans KR",
+        "line_height": 1.45,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.answer",
+      "kind": "blank",
+      "prompt": "답",
+      "content": {
+        "placeholder": "원"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "slot.answer"
+  ]
+}

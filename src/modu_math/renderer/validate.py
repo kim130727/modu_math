@@ -74,6 +74,12 @@ def _validate_element(element: dict[str, Any], path: str) -> None:
         for ref_key, ref_value in refs.items():
             if not isinstance(ref_value, str) or not ref_value.strip():
                 raise RendererValidationError(f"{path}.refs.{ref_key} must be a non-empty string")
+    if "interaction" in element and not isinstance(element["interaction"], dict):
+        raise RendererValidationError(f"{path}.interaction must be an object when present")
+    if "input_style" in element and not isinstance(element["input_style"], dict):
+        raise RendererValidationError(f"{path}.input_style must be an object when present")
+    if "input_style" in element and "interaction" not in element:
+        raise RendererValidationError(f"{path}.input_style requires interaction")
 
     element_type = element["type"]
     if element_type in {"text", "text_box", "formula"}:

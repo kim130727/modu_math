@@ -1,0 +1,90 @@
+{
+  "problem_id": "P3_1_01_00040_15613",
+  "problem_type": "numeric_answer_partitive_change_addition_word_problem",
+  "metadata": {
+    "title": "처음에 딴 배의 수",
+    "tags": [],
+    "question": "과수원에서 배를 따서 앞집에 113개를 주었더니 325개가 남았습니다. 처음에 딴 배는 모두 몇 개입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "place.orchard",
+        "type": "place",
+        "label": "과수원"
+      },
+      {
+        "id": "place.front_house",
+        "type": "place",
+        "label": "앞집"
+      },
+      {
+        "id": "object.pear",
+        "type": "countable_object",
+        "label": "배",
+        "unit": "개"
+      },
+      {
+        "id": "quantity.given_pears",
+        "type": "quantity",
+        "label": "앞집에 준 배의 수",
+        "value": 113,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.remaining_pears",
+        "type": "quantity",
+        "label": "남은 배의 수",
+        "value": 325,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.initial_pears",
+        "type": "quantity",
+        "label": "처음에 딴 배의 수",
+        "value": 438,
+        "unit": "개"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.pears_picked_at_orchard",
+        "type": "picked_at",
+        "from_id": "object.pear",
+        "to_id": "place.orchard",
+        "quantity": "quantity.initial_pears"
+      },
+      {
+        "id": "relation.pears_given_to_front_house",
+        "type": "transferred_to",
+        "from_id": "object.pear",
+        "to_id": "place.front_house",
+        "quantity": "quantity.given_pears"
+      },
+      {
+        "id": "relation.initial_split_into_given_and_remaining",
+        "type": "whole_part_relation",
+        "whole": "quantity.initial_pears",
+        "parts": [
+          "quantity.given_pears",
+          "quantity.remaining_pears"
+        ]
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "numeric",
+    "value": 438,
+    "unit": "개",
+    "target_ref": "quantity.initial_pears",
+    "derived_from": "step.restore_initial_count"
+  }
+}

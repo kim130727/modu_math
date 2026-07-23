@@ -1,0 +1,305 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15621",
+  "title": "자리값을 이용한 265와 432의 덧셈",
+  "canvas": {
+    "width": 765,
+    "height": 94,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.instruction"
+      ]
+    },
+    {
+      "id": "region.expression",
+      "role": "work",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.work_area",
+        "slot.line1.blank1_box",
+        "slot.line1.blank2_box",
+        "slot.line2.blank3_box",
+        "slot.line2.blank4_box",
+        "slot.line2.blank5_box",
+        "slot.line1.prefix",
+        "slot.line1.middle",
+        "slot.line1.suffix",
+        "slot.line2.prefix",
+        "slot.line2.plus",
+        "slot.line2.equals",
+        "slot.blank1",
+        "slot.blank2",
+        "slot.blank3",
+        "slot.blank4",
+        "slot.blank5"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text_box",
+      "prompt": "빈칸에 알맞은 수를 쓰라는 안내",
+      "content": {
+        "text": "빈칸에 알맞은 수를 써넣으시오.",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 2.0,
+        "width": 300.0,
+        "height": 20.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 14,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.work_area",
+      "kind": "rect",
+      "prompt": "자리값으로 덧셈하는 과정이 제시된 회색 영역",
+      "content": {
+        "x": 20.0,
+        "y": 24.0,
+        "width": 744.0,
+        "height": 69.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#eeeeee",
+        "semantic_role": "work_area"
+      }
+    },
+    {
+      "id": "slot.line1.prefix",
+      "kind": "text",
+      "prompt": "첫째 줄의 첫 번째 빈칸 앞 식",
+      "content": {
+        "text": "265+432=(200+400)+(",
+        "style_role": "body",
+        "x": 26.0,
+        "y": 48.0,
+        "font_size": 14,
+        "fill": "#333333",
+        "semantic_role": "expression"
+      }
+    },
+    {
+      "id": "slot.line1.blank1_box",
+      "kind": "rect",
+      "prompt": "265의 십의 자리 수를 쓰는 첫 번째 빈칸",
+      "content": {
+        "x": 174.0,
+        "y": 33.0,
+        "width": 34.0,
+        "height": 24.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#ffffff",
+        "semantic_role": "answer_blank"
+      }
+    },
+    {
+      "id": "slot.line1.middle",
+      "kind": "text",
+      "prompt": "첫 번째 빈칸과 두 번째 빈칸 사이 식",
+      "content": {
+        "text": "+30)+(5+",
+        "style_role": "body",
+        "x": 210.0,
+        "y": 48.0,
+        "font_size": 14,
+        "fill": "#333333",
+        "semantic_role": "expression"
+      }
+    },
+    {
+      "id": "slot.line1.blank2_box",
+      "kind": "rect",
+      "prompt": "432의 일의 자리 수를 쓰는 두 번째 빈칸",
+      "content": {
+        "x": 269.0,
+        "y": 33.0,
+        "width": 28.0,
+        "height": 24.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#ffffff",
+        "semantic_role": "answer_blank"
+      }
+    },
+    {
+      "id": "slot.line1.suffix",
+      "kind": "text",
+      "prompt": "첫째 줄의 닫는 괄호",
+      "content": {
+        "text": ")",
+        "style_role": "body",
+        "x": 299.0,
+        "y": 48.0,
+        "font_size": 14,
+        "fill": "#333333",
+        "semantic_role": "expression"
+      }
+    },
+    {
+      "id": "slot.line2.prefix",
+      "kind": "text",
+      "prompt": "둘째 줄의 첫 번째 빈칸 앞 식",
+      "content": {
+        "text": "=600+",
+        "style_role": "body",
+        "x": 72.0,
+        "y": 77.0,
+        "font_size": 14,
+        "fill": "#333333",
+        "semantic_role": "expression"
+      }
+    },
+    {
+      "id": "slot.line2.blank3_box",
+      "kind": "rect",
+      "prompt": "십의 자리끼리 더한 수를 쓰는 세 번째 빈칸",
+      "content": {
+        "x": 117.0,
+        "y": 62.0,
+        "width": 37.0,
+        "height": 24.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#ffffff",
+        "semantic_role": "answer_blank"
+      }
+    },
+    {
+      "id": "slot.line2.plus",
+      "kind": "text",
+      "prompt": "세 번째 빈칸과 네 번째 빈칸 사이의 덧셈 기호",
+      "content": {
+        "text": "+",
+        "style_role": "body",
+        "x": 156.0,
+        "y": 77.0,
+        "font_size": 14,
+        "fill": "#333333",
+        "semantic_role": "operator"
+      }
+    },
+    {
+      "id": "slot.line2.blank4_box",
+      "kind": "rect",
+      "prompt": "일의 자리끼리 더한 수를 쓰는 네 번째 빈칸",
+      "content": {
+        "x": 166.0,
+        "y": 62.0,
+        "width": 28.0,
+        "height": 24.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#ffffff",
+        "semantic_role": "answer_blank"
+      }
+    },
+    {
+      "id": "slot.line2.equals",
+      "kind": "text",
+      "prompt": "네 번째 빈칸과 마지막 빈칸 사이의 등호",
+      "content": {
+        "text": "=",
+        "style_role": "body",
+        "x": 196.0,
+        "y": 77.0,
+        "font_size": 14,
+        "fill": "#333333",
+        "semantic_role": "operator"
+      }
+    },
+    {
+      "id": "slot.line2.blank5_box",
+      "kind": "rect",
+      "prompt": "265와 432의 합을 쓰는 마지막 빈칸",
+      "content": {
+        "x": 205.0,
+        "y": 62.0,
+        "width": 42.0,
+        "height": 24.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#ffffff",
+        "semantic_role": "answer_blank"
+      }
+    },
+    {
+      "id": "slot.blank1",
+      "kind": "blank",
+      "prompt": "265를 200, 60, 5로 나눌 때 십의 자리 수",
+      "content": {
+        "placeholder": ""
+      }
+    },
+    {
+      "id": "slot.blank2",
+      "kind": "blank",
+      "prompt": "432를 400, 30, 2로 나눌 때 일의 자리 수",
+      "content": {
+        "placeholder": ""
+      }
+    },
+    {
+      "id": "slot.blank3",
+      "kind": "blank",
+      "prompt": "60과 30의 합",
+      "content": {
+        "placeholder": ""
+      }
+    },
+    {
+      "id": "slot.blank4",
+      "kind": "blank",
+      "prompt": "5와 2의 합",
+      "content": {
+        "placeholder": ""
+      }
+    },
+    {
+      "id": "slot.blank5",
+      "kind": "blank",
+      "prompt": "265와 432의 합",
+      "content": {
+        "placeholder": ""
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.instruction",
+    "region.expression",
+    "slot.work_area",
+    "slot.line1.blank1_box",
+    "slot.line1.blank2_box",
+    "slot.line2.blank3_box",
+    "slot.line2.blank4_box",
+    "slot.line2.blank5_box",
+    "slot.line1.prefix",
+    "slot.line1.middle",
+    "slot.line1.suffix",
+    "slot.line2.prefix",
+    "slot.line2.plus",
+    "slot.line2.equals",
+    "slot.blank1",
+    "slot.blank2",
+    "slot.blank3",
+    "slot.blank4",
+    "slot.blank5"
+  ]
+}

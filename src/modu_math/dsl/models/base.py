@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Literal
+from typing import Any, Literal
 
 ConstraintType = Literal[
     "align",
@@ -26,6 +26,8 @@ class SlotBase:
     id: str
     kind: str
     prompt: str | None = None
+    interaction: dict[str, Any] | None = None
+    input_style: dict[str, Any] | None = None
 
 
 @dataclass(frozen=True)

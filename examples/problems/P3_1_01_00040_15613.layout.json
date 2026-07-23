@@ -1,0 +1,59 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15613",
+  "title": "처음에 딴 배의 수",
+  "canvas": {
+    "width": 900,
+    "height": 210,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.question",
+        "slot.answer"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "과수원에서 배를 따서 앞집에 113개를 주었더니 325개가 남았습니다. 처음에 딴 배는 모두 몇 개입니까?",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 28.0,
+        "width": 852.0,
+        "height": 74.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 24,
+        "font_family": "Noto Sans KR",
+        "line_height": 1.5,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.answer",
+      "kind": "blank",
+      "prompt": "답",
+      "content": {
+        "placeholder": "개"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "slot.answer"
+  ]
+}

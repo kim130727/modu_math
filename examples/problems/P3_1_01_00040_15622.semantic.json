@@ -1,0 +1,133 @@
+{
+  "problem_id": "P3_1_01_00040_15622",
+  "problem_type": "numeric_answer_comparison_then_addition_word_problem",
+  "metadata": {
+    "title": "진우와 윤지가 주운 밤의 수",
+    "tags": [],
+    "question": "진우는 윤지와 함께 밤을 주웠습니다. 진우는 231개를 주웠고, 윤지는 진우보다 26개를 더 주웠습니다. 두 사람이 주운 밤은 모두 몇 개입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR",
+    "instruction": "윤지가 주운 밤의 수를 먼저 구한 뒤 두 사람이 주운 수를 더합니다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "person.jinwoo",
+        "type": "person",
+        "label": "진우"
+      },
+      {
+        "id": "person.yoonji",
+        "type": "person",
+        "label": "윤지"
+      },
+      {
+        "id": "object.chestnut",
+        "type": "countable_object",
+        "label": "밤",
+        "unit": "개"
+      },
+      {
+        "id": "quantity.jinwoo_chestnuts",
+        "type": "quantity",
+        "label": "진우가 주운 밤의 수",
+        "value": 231,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.more_chestnuts",
+        "type": "quantity_difference",
+        "label": "윤지가 진우보다 더 주운 밤의 수",
+        "value": 26,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.yoonji_chestnuts",
+        "type": "derived_quantity",
+        "label": "윤지가 주운 밤의 수",
+        "value": 257,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.total_chestnuts",
+        "type": "unknown_quantity",
+        "label": "두 사람이 주운 밤의 수",
+        "unit": "개"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.jinwoo_collected_chestnuts",
+        "type": "collected",
+        "subject": "person.jinwoo",
+        "object": "object.chestnut",
+        "quantity_ref": "quantity.jinwoo_chestnuts"
+      },
+      {
+        "id": "relation.yoonji_collected_chestnuts",
+        "type": "collected",
+        "subject": "person.yoonji",
+        "object": "object.chestnut",
+        "quantity_ref": "quantity.yoonji_chestnuts"
+      },
+      {
+        "id": "relation.yoonji_has_more",
+        "type": "additive_comparison",
+        "greater_ref": "quantity.yoonji_chestnuts",
+        "smaller_ref": "quantity.jinwoo_chestnuts",
+        "difference_ref": "quantity.more_chestnuts"
+      },
+      {
+        "id": "relation.total_is_sum",
+        "type": "sum_of",
+        "subject": "quantity.total_chestnuts",
+        "objects": [
+          "quantity.jinwoo_chestnuts",
+          "quantity.yoonji_chestnuts"
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "quantity.jinwoo_chestnuts",
+          "quantity.more_chestnuts"
+        ],
+        "target_ref": "quantity.total_chestnuts",
+        "condition_refs": [
+          "relation.yoonji_has_more",
+          "relation.total_is_sum"
+        ]
+      },
+      "plan": {
+        "method": "comparison_addition_then_total_addition",
+        "description": "윤지가 주운 수를 구하고, 그 수와 진우가 주운 수를 더합니다."
+      },
+      "execute": {
+        "expected_operations": [
+          "addition",
+          "addition"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "difference_check",
+          "recomposition"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "type": "numeric",
+    "value": 488,
+    "unit": "개",
+    "target_ref": "quantity.total_chestnuts",
+    "derived_from": "step.add_two_counts"
+  }
+}

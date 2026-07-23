@@ -1,0 +1,231 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_15629",
+  "problem_type": "vertical_addition_digit_fill_blank",
+  "inputs": {
+    "target_label": "세로셈의 두 빈칸에 들어갈 숫자",
+    "unit": "",
+    "quantities": {
+      "augend": 431,
+      "addend_hundreds_digit": 2,
+      "addend_ones_digit": 1,
+      "sum_tens_digit": 6,
+      "sum_ones_digit": 2
+    },
+    "conditions": [
+      "같은 자리의 숫자끼리 더합니다.",
+      "일의 자리 계산은 1+1=2입니다.",
+      "받아올림이 없는 덧셈입니다."
+    ]
+  },
+  "given": [
+    {
+      "ref": "number.augend",
+      "value": 431
+    },
+    {
+      "ref": "number.addend.visible_digits",
+      "value": {
+        "hundreds": 2,
+        "ones": 1
+      }
+    },
+    {
+      "ref": "number.sum.visible_digits",
+      "value": {
+        "tens": 6,
+        "ones": 2
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.all",
+    "type": "number_list"
+  },
+  "method": "일의 자리부터 같은 자리끼리 더하여 두 번째 수의 십의 자리와 합의 백의 자리 숫자를 구합니다.",
+  "understanding": {
+    "summary": "431과 2□1을 더한 결과가 □62일 때 두 빈칸의 숫자를 구하는 문제입니다.",
+    "facts": [
+      {
+        "ref": "number.augend",
+        "label": "첫 번째 수",
+        "value": 431,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "digit.addend.hundreds",
+        "label": "두 번째 수의 백의 자리 숫자",
+        "value": 2,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "digit.addend.ones",
+        "label": "두 번째 수의 일의 자리 숫자",
+        "value": 1,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "digit.sum.tens",
+        "label": "합의 십의 자리 숫자",
+        "value": 6,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "digit.sum.ones",
+        "label": "합의 일의 자리 숫자",
+        "value": 2,
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "digit.addend.tens",
+        "label": "두 번째 수의 십의 자리 숫자",
+        "unit": "",
+        "source": "unknown"
+      },
+      {
+        "ref": "digit.sum.hundreds",
+        "label": "합의 백의 자리 숫자",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "vertical_column_addition",
+      "statement": "같은 자리의 숫자끼리 더하면 431+231=662가 됩니다.",
+      "symbolic": "431 + 2□1 = □62",
+      "uses": [
+        "number.augend",
+        "number.addend.visible_digits",
+        "number.sum.visible_digits"
+      ],
+      "result": "answer.all"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.ones_column",
+        "type": "multiple_choice",
+        "prompt": "일의 자리 계산은 무엇인가요?",
+        "choices": [
+          "1+1=2",
+          "1+2=3",
+          "3+1=4"
+        ],
+        "answer_index": 0
+      },
+      {
+        "id": "understand.tens_column",
+        "type": "multiple_choice",
+        "prompt": "십의 자리에서 3에 어떤 숫자를 더해야 6이 되나요?",
+        "choices": [
+          "3",
+          "2",
+          "6"
+        ],
+        "answer_index": 0
+      }
+    ],
+    "student_restatement": {
+      "prompt": "어떤 방법으로 빈칸을 구해야 하나요?",
+      "template": "일의 자리부터 같은 자리의 숫자끼리 더하여 빈칸을 구합니다.",
+      "answer": "일의 자리부터 같은 자리의 숫자끼리 더하여 빈칸을 구합니다."
+    }
+  },
+  "plan": [
+    "일의 자리에서 1+1=2임을 확인합니다.",
+    "십의 자리에서 3+□=6을 만족하는 숫자를 구합니다.",
+    "백의 자리에서 4+2=□를 계산합니다.",
+    "완성된 세로셈 431+231=662를 확인합니다."
+  ],
+  "steps": [
+    {
+      "id": "step.ones_column",
+      "expr": "1 + 1",
+      "value": 2,
+      "explanation": "일의 자리의 합은 2이므로 받아올림이 없습니다."
+    },
+    {
+      "id": "step.solve_addend_tens",
+      "expr": "3 + □ = 6",
+      "value": 3,
+      "explanation": "십의 자리에서 3에 3을 더하면 6이므로 첫 번째 빈칸은 3입니다."
+    },
+    {
+      "id": "step.solve_sum_hundreds",
+      "expr": "4 + 2",
+      "value": 6,
+      "explanation": "백의 자리에서 4와 2를 더하면 6이므로 두 번째 빈칸은 6입니다."
+    },
+    {
+      "id": "step.complete_addition",
+      "expr": "431 + 231",
+      "value": 662,
+      "explanation": "빈칸을 채운 두 수를 더하면 662입니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.full_addition",
+      "expr": "431 + 231",
+      "expected": 662,
+      "actual": 662,
+      "pass": true
+    },
+    {
+      "id": "check.inverse_subtraction",
+      "expr": "662 - 431",
+      "expected": 231,
+      "actual": 231,
+      "pass": true
+    },
+    {
+      "id": "check.visible_result_digits",
+      "expr": "662의 십의 자리와 일의 자리",
+      "expected": 62,
+      "actual": 62,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "type": "multi_numeric",
+    "value": [
+      3,
+      6
+    ],
+    "unit": "",
+    "blanks": [
+      {
+        "id": "slot.blank1",
+        "type": "number",
+        "value": 3,
+        "unit": ""
+      },
+      {
+        "id": "slot.blank2",
+        "type": "number",
+        "value": 6,
+        "unit": ""
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.blank1",
+        "value": 3,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.blank2",
+        "value": 6,
+        "unit": ""
+      }
+    ],
+    "sentence": "빈칸에 위에서부터 3, 6을 씁니다."
+  }
+}

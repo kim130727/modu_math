@@ -1,0 +1,207 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15629",
+  "title": "431과 세 자리 수의 덧셈 빈칸 채우기",
+  "canvas": {
+    "width": 765,
+    "height": 98,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.instruction"
+      ]
+    },
+    {
+      "id": "region.vertical_addition",
+      "role": "work",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.second.blank_box",
+        "slot.result.blank_box",
+        "slot.rule",
+        "slot.first_number",
+        "slot.plus",
+        "slot.second.hundreds",
+        "slot.second.ones",
+        "slot.result.tens_ones",
+        "slot.blank1",
+        "slot.blank2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text_box",
+      "prompt": "빈칸에 알맞은 수를 쓰라는 안내",
+      "content": {
+        "text": "□ 안에 알맞은 수를 써넣으시오.",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 1.0,
+        "width": 290.0,
+        "height": 20.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 14,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.first_number",
+      "kind": "text",
+      "prompt": "첫 번째 수 431",
+      "content": {
+        "text": "431",
+        "style_role": "body",
+        "x": 58.0,
+        "y": 38.0,
+        "font_size": 15,
+        "fill": "#111111",
+        "semantic_role": "given_number"
+      }
+    },
+    {
+      "id": "slot.plus",
+      "kind": "text",
+      "prompt": "덧셈 기호",
+      "content": {
+        "text": "+",
+        "style_role": "body",
+        "x": 38.0,
+        "y": 61.0,
+        "font_size": 15,
+        "fill": "#111111",
+        "semantic_role": "operator"
+      }
+    },
+    {
+      "id": "slot.second.hundreds",
+      "kind": "text",
+      "prompt": "두 번째 수의 백의 자리 숫자 2",
+      "content": {
+        "text": "2",
+        "style_role": "body",
+        "x": 58.0,
+        "y": 61.0,
+        "font_size": 15,
+        "fill": "#111111",
+        "semantic_role": "given_digit"
+      }
+    },
+    {
+      "id": "slot.second.blank_box",
+      "kind": "rect",
+      "prompt": "두 번째 수의 십의 자리 숫자를 쓰는 첫 번째 빈칸",
+      "content": {
+        "x": 70.0,
+        "y": 46.0,
+        "width": 14.0,
+        "height": 19.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#ffffff",
+        "semantic_role": "answer_blank"
+      }
+    },
+    {
+      "id": "slot.second.ones",
+      "kind": "text",
+      "prompt": "두 번째 수의 일의 자리 숫자 1",
+      "content": {
+        "text": "1",
+        "style_role": "body",
+        "x": 87.0,
+        "y": 61.0,
+        "font_size": 15,
+        "fill": "#111111",
+        "semantic_role": "given_digit"
+      }
+    },
+    {
+      "id": "slot.rule",
+      "kind": "line",
+      "prompt": "덧셈 계산선",
+      "content": {
+        "x1": 31.0,
+        "y1": 69.0,
+        "x2": 99.0,
+        "y2": 69.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "semantic_role": "calculation_rule"
+      }
+    },
+    {
+      "id": "slot.result.blank_box",
+      "kind": "rect",
+      "prompt": "합의 백의 자리 숫자를 쓰는 두 번째 빈칸",
+      "content": {
+        "x": 56.0,
+        "y": 75.0,
+        "width": 14.0,
+        "height": 19.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#ffffff",
+        "semantic_role": "answer_blank"
+      }
+    },
+    {
+      "id": "slot.result.tens_ones",
+      "kind": "text",
+      "prompt": "합의 십의 자리와 일의 자리 숫자 62",
+      "content": {
+        "text": "62",
+        "style_role": "body",
+        "x": 73.0,
+        "y": 90.0,
+        "font_size": 15,
+        "fill": "#111111",
+        "semantic_role": "result_digits"
+      }
+    },
+    {
+      "id": "slot.blank1",
+      "kind": "blank",
+      "prompt": "두 번째 수의 십의 자리 숫자",
+      "content": {
+        "placeholder": ""
+      }
+    },
+    {
+      "id": "slot.blank2",
+      "kind": "blank",
+      "prompt": "합의 백의 자리 숫자",
+      "content": {
+        "placeholder": ""
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.instruction",
+    "region.vertical_addition",
+    "slot.second.blank_box",
+    "slot.result.blank_box",
+    "slot.rule",
+    "slot.first_number",
+    "slot.plus",
+    "slot.second.hundreds",
+    "slot.second.ones",
+    "slot.result.tens_ones",
+    "slot.blank1",
+    "slot.blank2"
+  ]
+}

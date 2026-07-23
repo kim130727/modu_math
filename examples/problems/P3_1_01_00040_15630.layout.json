@@ -1,0 +1,152 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15630",
+  "title": "차가 123인 두 수 찾기",
+  "canvas": {
+    "width": 619,
+    "height": 133,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice1",
+        "slot.choice2",
+        "slot.choice3",
+        "slot.choice4",
+        "slot.choice5",
+        "slot.answer"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "차가 123인 두 수를 고르는 질문",
+      "content": {
+        "text": "다음 두 수의 차가 123인 것은 어느 것입니까?",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 2.0,
+        "width": 430.0,
+        "height": 22.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 14,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111",
+        "semantic_role": "question"
+      }
+    },
+    {
+      "id": "slot.choice1",
+      "kind": "text",
+      "prompt": "첫 번째 선택지",
+      "content": {
+        "text": "① 647, 341",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 38.0,
+        "font_size": 14,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111",
+        "semantic_role": "choice"
+      }
+    },
+    {
+      "id": "slot.choice2",
+      "kind": "text",
+      "prompt": "두 번째 선택지",
+      "content": {
+        "text": "② 488, 227",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 60.0,
+        "font_size": 14,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111",
+        "semantic_role": "choice"
+      }
+    },
+    {
+      "id": "slot.choice3",
+      "kind": "text",
+      "prompt": "세 번째 선택지",
+      "content": {
+        "text": "③ 847, 740",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 82.0,
+        "font_size": 14,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111",
+        "semantic_role": "choice"
+      }
+    },
+    {
+      "id": "slot.choice4",
+      "kind": "text",
+      "prompt": "네 번째 선택지",
+      "content": {
+        "text": "④ 528, 405",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 104.0,
+        "font_size": 14,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111",
+        "semantic_role": "choice"
+      }
+    },
+    {
+      "id": "slot.choice5",
+      "kind": "text",
+      "prompt": "다섯 번째 선택지",
+      "content": {
+        "text": "⑤ 386, 223",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 126.0,
+        "font_size": 14,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111",
+        "semantic_role": "choice"
+      }
+    },
+    {
+      "id": "slot.answer",
+      "kind": "blank",
+      "prompt": "정답 번호",
+      "content": {
+        "placeholder": "번"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "region.choices",
+    "slot.choice1",
+    "slot.choice2",
+    "slot.choice3",
+    "slot.choice4",
+    "slot.choice5",
+    "slot.answer"
+  ]
+}

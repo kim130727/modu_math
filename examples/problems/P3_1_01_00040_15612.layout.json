@@ -1,0 +1,211 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15612",
+  "title": "합이 가장 큰 식 찾기",
+  "canvas": {
+    "width": 900,
+    "height": 220,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question",
+        "slot.answer"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice_1.number",
+        "slot.choice_1.expression",
+        "slot.choice_2.number",
+        "slot.choice_2.expression",
+        "slot.choice_3.number",
+        "slot.choice_3.expression",
+        "slot.choice_4.number",
+        "slot.choice_4.expression",
+        "slot.choice_5.number",
+        "slot.choice_5.expression"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다음 중 합이 가장 큰 것은 어느 것입니까?",
+        "style_role": "question",
+        "x": 24.0,
+        "y": 28.0,
+        "font_size": 22,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.choice_1.number",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "①",
+        "style_role": "choice_label",
+        "x": 26.0,
+        "y": 62.0,
+        "font_size": 22,
+        "fill": "#2F80C9"
+      }
+    },
+    {
+      "id": "slot.choice_1.expression",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "320+145",
+        "style_role": "choice",
+        "x": 55.0,
+        "y": 62.0,
+        "font_size": 22,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice_2.number",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "②",
+        "style_role": "choice_label",
+        "x": 26.0,
+        "y": 92.0,
+        "font_size": 22,
+        "fill": "#2F80C9"
+      }
+    },
+    {
+      "id": "slot.choice_2.expression",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "300+200",
+        "style_role": "choice",
+        "x": 55.0,
+        "y": 92.0,
+        "font_size": 22,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice_3.number",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③",
+        "style_role": "choice_label",
+        "x": 26.0,
+        "y": 122.0,
+        "font_size": 22,
+        "fill": "#2F80C9"
+      }
+    },
+    {
+      "id": "slot.choice_3.expression",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "163+326",
+        "style_role": "choice",
+        "x": 55.0,
+        "y": 122.0,
+        "font_size": 22,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice_4.number",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④",
+        "style_role": "choice_label",
+        "x": 26.0,
+        "y": 152.0,
+        "font_size": 22,
+        "fill": "#2F80C9"
+      }
+    },
+    {
+      "id": "slot.choice_4.expression",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "236+362",
+        "style_role": "choice",
+        "x": 55.0,
+        "y": 152.0,
+        "font_size": 22,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice_5.number",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤",
+        "style_role": "choice_label",
+        "x": 26.0,
+        "y": 182.0,
+        "font_size": 22,
+        "fill": "#2F80C9"
+      }
+    },
+    {
+      "id": "slot.choice_5.expression",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "405+104",
+        "style_role": "choice",
+        "x": 55.0,
+        "y": 182.0,
+        "font_size": 22,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.answer",
+      "kind": "blank",
+      "prompt": "답",
+      "content": {
+        "placeholder": "번"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "slot.answer",
+    "region.choices",
+    "slot.choice_1.number",
+    "slot.choice_1.expression",
+    "slot.choice_2.number",
+    "slot.choice_2.expression",
+    "slot.choice_3.number",
+    "slot.choice_3.expression",
+    "slot.choice_4.number",
+    "slot.choice_4.expression",
+    "slot.choice_5.number",
+    "slot.choice_5.expression"
+  ]
+}

@@ -1,4 +1,4 @@
-import type { EditorShape, EditorShapeDocument } from "../types/editorShape";
+import type { EditorShape, EditorShapeDocument, InputInteraction, InputStyle } from "../types/editorShape";
 import type { ProblemJson, ProblemObject } from "../types/problem";
 import { connectorToPathObject } from "./connectorGeometry";
 import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
@@ -28,6 +28,7 @@ export function editorDocumentToProblemJson(document: EditorShapeDocument, base:
 }
 
 function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
+  const answerProps = answerSlotProps(object.props);
   switch (object.type) {
     case "math_text": {
       const text = object.props.latex || object.props.text;
@@ -54,6 +55,7 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
           align: textAlign,
           lineHeight,
           sourceKind: object.props.sourceKind ?? "text",
+          ...answerProps,
           visible: true,
           },
           stringProp(object.props.transform),
@@ -74,6 +76,7 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
             stroke: object.props.stroke ?? "#111827",
             strokeWidth: object.props.strokeWidth ?? 1,
             strokeDasharray: object.props.strokeDasharray,
+            ...answerProps,
             visible: true,
             },
             stringProp(object.props.transform),
@@ -92,6 +95,7 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
             stroke: object.props.stroke ?? "#111827",
             strokeWidth: object.props.strokeWidth ?? 1,
             strokeDasharray: object.props.strokeDasharray,
+            ...answerProps,
             visible: true,
             },
             stringProp(object.props.transform),
@@ -121,6 +125,7 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
             height: object.props.height,
           }),
           adjustment: pointProp(object.props.adjustment),
+          ...answerProps,
           visible: true,
           },
           stringProp(object.props.transform),
@@ -138,6 +143,7 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
           width: object.props.width,
           height: object.props.height,
           preserveAspectRatio: object.props.preserveAspectRatio ?? "xMidYMid meet",
+          ...answerProps,
           visible: true,
           },
           stringProp(object.props.transform),
@@ -160,6 +166,7 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
             stroke: object.props.stroke ?? "#111827",
             strokeWidth: object.props.strokeWidth ?? 1,
             strokeDasharray: object.props.strokeDasharray,
+            ...answerProps,
             visible: true,
           },
         ];
@@ -180,6 +187,7 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
           strokeDasharray: object.props.strokeDasharray,
           shapePreset: stringProp(object.props.shapePreset),
           adjustment: pointProp(object.props.adjustment),
+          ...answerProps,
           visible: true,
           },
           stringProp(object.props.transform),
@@ -210,6 +218,26 @@ function pointProp(value: unknown): { x: number; y: number } | undefined {
     : undefined;
 }
 
+function answerSlotProps(props: Record<string, unknown>): { interaction?: InputInteraction; input_style?: InputStyle } {
+  const interaction = recordProp(props.interaction);
+  const inputStyle = recordProp(props.input_style);
+  return {
+    ...(interaction ? { interaction: interaction as unknown as InputInteraction } : {}),
+    ...(inputStyle ? { input_style: inputStyle as unknown as InputStyle } : {}),
+  };
+}
+
+function answerShapeProps(shape: EditorShape): { interaction?: InputInteraction; input_style?: InputStyle } {
+  return {
+    ...(shape.interaction ? { interaction: shape.interaction } : {}),
+    ...(shape.input_style ? { input_style: shape.input_style } : {}),
+  };
+}
+
+function recordProp(value: unknown): Record<string, unknown> | undefined {
+  return value && typeof value === "object" && !Array.isArray(value) ? (value as Record<string, unknown>) : undefined;
+}
+
 function applySvgRotateTransform<T extends EditorShape>(shape: T, transform: string | undefined): T {
   const rotate = parseSvgRotate(transform);
   if (!rotate) return shape;
@@ -238,6 +266,7 @@ function isSupportedProblemObject(object: ProblemObject): boolean {
 }
 
 function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
+  const answerProps = answerShapeProps(shape);
   switch (shape.type) {
     case "math":
       return [
@@ -256,6 +285,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             textAlign: "left",
             lineHeight: 1.25,
             sourceKind: "text_box",
+            ...answerProps,
             ...transformProps(shape),
           },
         },
@@ -278,6 +308,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             textAlign: shape.align ?? "left",
             lineHeight: shape.lineHeight ?? 1.25,
             sourceKind: shape.sourceKind ?? (shape.width ? "text_box" : "text"),
+            ...answerProps,
             ...transformProps(shape),
           },
         },
@@ -297,6 +328,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             stroke: shape.stroke ?? "#111827",
             strokeWidth: shape.strokeWidth ?? 1,
             strokeDasharray: shape.strokeDasharray,
+            ...answerProps,
             ...transformProps(shape),
           },
         },
@@ -316,6 +348,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             stroke: shape.stroke ?? "#111827",
             strokeWidth: shape.strokeWidth ?? 1,
             strokeDasharray: shape.strokeDasharray,
+            ...answerProps,
             ...transformProps(shape),
           },
         },
@@ -334,6 +367,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             stroke: shape.stroke ?? "#111827",
             strokeWidth: shape.strokeWidth ?? 1,
             strokeDasharray: shape.strokeDasharray,
+            ...answerProps,
             ...transformProps(shape),
           },
         },
@@ -362,6 +396,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             connectorControl: shape.control,
             connectorArrowStart: Boolean(shape.arrowStart),
             connectorArrowEnd: Boolean(shape.arrowEnd),
+            ...answerProps,
           },
         },
       ];
@@ -383,6 +418,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             strokeDasharray: shape.strokeDasharray,
             shapePreset: shape.shapePreset,
             adjustment: shape.adjustment,
+            ...answerProps,
             ...transformProps(shape),
           },
         },
@@ -399,6 +435,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             width: shape.width,
             height: shape.height,
             preserveAspectRatio: shape.preserveAspectRatio,
+            ...answerProps,
             ...transformProps(shape),
           },
         },

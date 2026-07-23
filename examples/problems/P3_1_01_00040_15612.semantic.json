@@ -1,0 +1,113 @@
+{
+  "problem_id": "P3_1_01_00040_15612",
+  "problem_type": "multiple_choice_largest_sum_problem",
+  "metadata": {
+    "title": "합이 가장 큰 식 찾기",
+    "tags": [],
+    "question": "다음 중 합이 가장 큰 것은 어느 것입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR",
+    "instruction": "각 덧셈식의 합을 구해 가장 큰 합을 고릅니다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "choice.option_1",
+        "type": "addition_choice",
+        "label": "① 320+145",
+        "left": 320,
+        "right": 145,
+        "sum": 465
+      },
+      {
+        "id": "choice.option_2",
+        "type": "addition_choice",
+        "label": "② 300+200",
+        "left": 300,
+        "right": 200,
+        "sum": 500
+      },
+      {
+        "id": "choice.option_3",
+        "type": "addition_choice",
+        "label": "③ 163+326",
+        "left": 163,
+        "right": 326,
+        "sum": 489
+      },
+      {
+        "id": "choice.option_4",
+        "type": "addition_choice",
+        "label": "④ 236+362",
+        "left": 236,
+        "right": 362,
+        "sum": 598
+      },
+      {
+        "id": "choice.option_5",
+        "type": "addition_choice",
+        "label": "⑤ 405+104",
+        "left": 405,
+        "right": 104,
+        "sum": 509
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.option_4_has_largest_sum",
+        "type": "maximum_of",
+        "subject": "choice.option_4",
+        "objects": [
+          "choice.option_1",
+          "choice.option_2",
+          "choice.option_3",
+          "choice.option_5"
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "choice.option_1",
+          "choice.option_2",
+          "choice.option_3",
+          "choice.option_4",
+          "choice.option_5"
+        ],
+        "target_ref": "choice.option_4",
+        "condition_refs": [
+          "relation.option_4_has_largest_sum"
+        ]
+      },
+      "plan": {
+        "method": "calculate_and_compare_sums",
+        "description": "각 보기의 합을 계산한 뒤 가장 큰 값을 찾습니다."
+      },
+      "execute": {
+        "expected_operations": [
+          "addition",
+          "comparison"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "recalculation",
+          "maximum_comparison"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "type": "choice",
+    "value": 4,
+    "unit": "",
+    "target_ref": "choice.option_4",
+    "derived_from": "step.select_largest_sum"
+  }
+}

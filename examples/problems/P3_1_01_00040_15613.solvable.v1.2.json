@@ -1,0 +1,154 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_15613",
+  "problem_type": "numeric_answer_partitive_change_addition_word_problem",
+  "inputs": {
+    "target_label": "처음에 딴 배의 수",
+    "unit": "개",
+    "quantities": {
+      "given_count": 113,
+      "remaining_count": 325
+    },
+    "conditions": [
+      "과수원에서 딴 배 중 113개를 앞집에 주었습니다.",
+      "앞집에 주고 나서 배가 325개 남았습니다.",
+      "처음에 딴 배의 수를 구합니다."
+    ]
+  },
+  "given": [
+    {
+      "ref": "quantity.given_pears",
+      "value": {
+        "count": 113,
+        "unit": "개",
+        "object": "object.pear",
+        "destination": "place.front_house"
+      }
+    },
+    {
+      "ref": "quantity.remaining_pears",
+      "value": {
+        "count": 325,
+        "unit": "개",
+        "object": "object.pear"
+      }
+    }
+  ],
+  "target": {
+    "ref": "quantity.initial_pears",
+    "type": "number"
+  },
+  "understanding": {
+    "summary": "처음에 딴 배 중 일부를 앞집에 주고 남은 수가 주어졌을 때, 처음의 전체 수를 구하는 문제입니다.",
+    "facts": [
+      {
+        "ref": "quantity.given_pears",
+        "label": "앞집에 준 배의 수",
+        "value": 113,
+        "unit": "개",
+        "source": "explicit"
+      },
+      {
+        "ref": "quantity.remaining_pears",
+        "label": "남은 배의 수",
+        "value": 325,
+        "unit": "개",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "quantity.initial_pears",
+        "label": "처음에 딴 배의 수",
+        "unit": "개",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "whole_part_addition",
+      "statement": "처음에 딴 배는 앞집에 준 배와 남은 배를 합한 수입니다.",
+      "symbolic": "처음에 딴 배 = 앞집에 준 배 + 남은 배",
+      "uses": [
+        "quantity.given_pears",
+        "quantity.remaining_pears"
+      ],
+      "result": "quantity.initial_pears"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "이 문제에서 구해야 하는 것은 무엇인가요?",
+        "choices": [
+          "앞집에 준 배의 수",
+          "남은 배의 수",
+          "처음에 딴 배의 수"
+        ],
+        "answer_index": 2
+      },
+      {
+        "id": "understand.relation",
+        "type": "multiple_choice",
+        "prompt": "처음에 딴 배의 수를 구하려면 어떻게 해야 하나요?",
+        "choices": [
+          "113과 325를 더합니다.",
+          "325에서 113을 뺍니다.",
+          "113에서 325를 뺍니다."
+        ],
+        "answer_index": 0
+      }
+    ],
+    "student_restatement": {
+      "prompt": "문제의 요지를 말해 볼까요?",
+      "template": "{given_count}개와 {remaining_count}개를 더해 {target_label}를 구합니다.",
+      "answer": "앞집에 준 113개와 남은 325개를 더해 처음에 딴 배의 수를 구합니다."
+    }
+  },
+  "method": "앞집에 준 배의 수와 남은 배의 수를 더하여 처음에 딴 배의 수를 구합니다.",
+  "plan": [
+    "앞집에 준 배의 수 113개를 확인합니다.",
+    "남은 배의 수 325개를 확인합니다.",
+    "준 수와 남은 수를 더하여 처음의 전체 수를 구합니다."
+  ],
+  "steps": [
+    {
+      "id": "step.restore_initial_count",
+      "goal": "처음에 딴 배의 수를 구합니다.",
+      "uses": [
+        "quantity.given_pears",
+        "quantity.remaining_pears"
+      ],
+      "relation_expr": "처음에 딴 배 = 앞집에 준 배 + 남은 배",
+      "expr": "113 + 325",
+      "value": {
+        "count": 438,
+        "unit": "개",
+        "ref": "quantity.initial_pears"
+      },
+      "explanation": "처음의 전체 수는 앞집에 준 113개와 남은 325개를 더하여 구합니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.subtract_given_count",
+      "expr": "438 - 113",
+      "expected": 325,
+      "actual": 325,
+      "pass": true
+    },
+    {
+      "id": "check.subtract_remaining_count",
+      "expr": "438 - 325",
+      "expected": 113,
+      "actual": 113,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "type": "numeric",
+    "value": 438,
+    "unit": "개",
+    "target_ref": "quantity.initial_pears",
+    "derived_from": "step.restore_initial_count"
+  }
+}

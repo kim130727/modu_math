@@ -53,6 +53,6 @@ def apply_layout_diff(nodes: list[LayoutNode], patches: list[dict[str, Any]]) ->
                 target_node.text = patch["text"]
                 
         elif op == "update_style":
-            for style_key in ["fill", "stroke", "stroke_width", "font_size", "font_family", "font_weight"]:
+            for style_key in ["fill", "stroke", "stroke_width", "font_size", "font_family", "font_weight", "interaction", "input_style"]:
                 if style_key in patch:
                     target_node.properties[style_key] = patch[style_key]

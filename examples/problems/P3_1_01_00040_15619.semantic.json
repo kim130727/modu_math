@@ -1,0 +1,90 @@
+{
+  "problem_id": "P3_1_01_00040_15619",
+  "problem_type": "numeric_answer_addition_word_problem",
+  "metadata": {
+    "title": "동수가 어제와 오늘 읽은 책의 총쪽수",
+    "tags": [],
+    "question": "동수는 책읽기를 좋아합니다. 어제는 415쪽을 읽었고, 오늘은 432쪽을 읽었습니다. 동수가 어제와 오늘 읽은 책의 쪽수는 모두 몇 쪽입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "person.dongsu",
+        "type": "person",
+        "label": "동수"
+      },
+      {
+        "id": "object.book",
+        "type": "book",
+        "label": "책",
+        "unit": "쪽"
+      },
+      {
+        "id": "quantity.pages_read_yesterday",
+        "type": "quantity",
+        "label": "동수가 어제 읽은 책의 쪽수",
+        "value": 415,
+        "unit": "쪽"
+      },
+      {
+        "id": "quantity.pages_read_today",
+        "type": "quantity",
+        "label": "동수가 오늘 읽은 책의 쪽수",
+        "value": 432,
+        "unit": "쪽"
+      },
+      {
+        "id": "quantity.total_pages_read",
+        "type": "quantity",
+        "label": "동수가 어제와 오늘 읽은 책의 총쪽수",
+        "value": 847,
+        "unit": "쪽"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.dongsu_read_yesterday",
+        "type": "read",
+        "from_id": "person.dongsu",
+        "to_id": "object.book",
+        "quantity": "quantity.pages_read_yesterday",
+        "time": "yesterday"
+      },
+      {
+        "id": "relation.dongsu_read_today",
+        "type": "read",
+        "from_id": "person.dongsu",
+        "to_id": "object.book",
+        "quantity": "quantity.pages_read_today",
+        "time": "today"
+      },
+      {
+        "id": "relation.yesterday_pages_part_of_total",
+        "type": "part_of_sum",
+        "from_id": "quantity.pages_read_yesterday",
+        "to_id": "quantity.total_pages_read"
+      },
+      {
+        "id": "relation.today_pages_part_of_total",
+        "type": "part_of_sum",
+        "from_id": "quantity.pages_read_today",
+        "to_id": "quantity.total_pages_read"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "numeric",
+    "value": 847,
+    "unit": "쪽",
+    "target_ref": "quantity.total_pages_read",
+    "derived_from": "step.add_pages_read"
+  }
+}

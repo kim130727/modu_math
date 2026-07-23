@@ -1,0 +1,139 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15624",
+  "title": "숫자 카드로 만든 가장 큰 수와 가장 작은 수의 합",
+  "canvas": {
+    "width": 960,
+    "height": 225,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.instruction",
+        "slot.question1",
+        "slot.question2",
+        "slot.question3",
+        "slot.answer1",
+        "slot.answer2",
+        "slot.answer3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "2, 4, 6의 숫자 카드를 한 번씩만 사용하여 세 자리 수를 만들려고 합니다. 만들 수 있는 가장 큰 수와 가장 작은 수의 합을 구하려고 할 때 물음에 답하시오.",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 12.0,
+        "width": 920.0,
+        "height": 48.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 18,
+        "font_family": "Noto Sans KR",
+        "line_height": 1.4,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.question1",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(1) 숫자 카드를 이용하여 만들 수 있는 가장 큰 세 자리 수를 쓰시오.",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 68.0,
+        "width": 920.0,
+        "height": 28.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 18,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.answer1",
+      "kind": "blank",
+      "prompt": "(1) 가장 큰 세 자리 수",
+      "content": {
+        "placeholder": ""
+      }
+    },
+    {
+      "id": "slot.question2",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(2) 숫자 카드를 이용하여 만들 수 있는 가장 작은 세 자리 수를 쓰시오.",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 105.0,
+        "width": 920.0,
+        "height": 28.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 18,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.answer2",
+      "kind": "blank",
+      "prompt": "(2) 가장 작은 세 자리 수",
+      "content": {
+        "placeholder": ""
+      }
+    },
+    {
+      "id": "slot.question3",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(3) 숫자 카드를 이용하여 만들 수 있는 가장 큰 세 자리 수와 가장 작은 세 자리 수의 합을 구하시오.",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 142.0,
+        "width": 920.0,
+        "height": 28.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 18,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.answer3",
+      "kind": "blank",
+      "prompt": "(3) 가장 큰 수와 가장 작은 수의 합",
+      "content": {
+        "placeholder": ""
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.instruction",
+    "slot.question1",
+    "slot.question2",
+    "slot.question3",
+    "slot.answer1",
+    "slot.answer2",
+    "slot.answer3"
+  ]
+}

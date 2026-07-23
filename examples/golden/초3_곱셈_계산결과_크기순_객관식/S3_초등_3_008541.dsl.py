@@ -21,8 +21,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=(
-                    "slot.q0",
+                slot_ids=("slot.q0",
                     "slot.q1",
                     "slot.box",
                     "slot.expr1",
@@ -31,13 +30,10 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.opt1",
                     "slot.opt2",
                     "slot.opt3",
-                    "slot.opt4",
-                    
-                ),
+                    "slot.opt4",'konva_1784850887765_rect_10764'),
             ),
         ),
-        slots=(
-            TextSlot(
+        slots=(TextSlot(
                 id="slot.q1",
                 prompt="",
                 text="계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
@@ -101,8 +97,14 @@ def build_problem_template() -> ProblemTemplate:
                 style_role="body",
                 x = 475, y = 245, font_size=28,
             ),
-            
-        ),
+            RectSlot(
+                id = 'konva_1784850887765_rect_10764',
+                prompt = '', x = 222.027, y = 302.089,
+                width = 119.5, height = 63.733,
+                fill = '#ffffff', stroke = '#111827',
+                stroke_width = 1.2,
+                interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'},
+                input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
         diagrams=(),
         groups=(),
         constraints=(),

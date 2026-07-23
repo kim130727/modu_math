@@ -44,6 +44,8 @@ class DrawElement:
     attributes: dict[str, Any] = field(default_factory=dict)
     source_ref: str | None = None
     refs: RenderRefs | None = None
+    interaction: dict[str, Any] | None = None
+    input_style: dict[str, Any] | None = None
     text: str | None = None
     elements: tuple["DrawElement", ...] = ()
 
@@ -59,6 +61,10 @@ class DrawElement:
             refs = self.refs.to_dict()
             if refs:
                 data["refs"] = refs
+        if self.interaction is not None:
+            data["interaction"] = self.interaction
+        if self.input_style is not None:
+            data["input_style"] = self.input_style
         if self.text is not None:
             data["text"] = self.text
         if self.elements:
@@ -81,4 +87,3 @@ class RendererDocument:
         }
         data["contract_version"] = self.contract_version
         return data
-

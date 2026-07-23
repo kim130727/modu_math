@@ -1,0 +1,229 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15618",
+  "title": "두 세 자리 수의 덧셈",
+  "canvas": {
+    "width": 900,
+    "height": 230,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.instruction",
+        "slot.answer_1",
+        "slot.answer_2"
+      ]
+    },
+    {
+      "id": "region.expressions",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.expression_1.line",
+        "slot.expression_2.line",
+        "slot.expression_1.label",
+        "slot.expression_1.top",
+        "slot.expression_1.operator",
+        "slot.expression_1.bottom",
+        "slot.expression_2.label",
+        "slot.expression_2.top",
+        "slot.expression_2.operator",
+        "slot.expression_2.bottom"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다음 덧셈을 하시오.",
+        "style_role": "question",
+        "x": 24.0,
+        "y": 28.0,
+        "font_size": 22,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.expression_1.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(1)",
+        "style_role": "label",
+        "x": 26.0,
+        "y": 70.0,
+        "font_size": 22,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.expression_1.top",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "375",
+        "style_role": "number",
+        "x": 135.0,
+        "y": 70.0,
+        "font_size": 24,
+        "max_width": 90.0,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.expression_1.operator",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "+",
+        "style_role": "operator",
+        "x": 65.0,
+        "y": 108.0,
+        "font_size": 24,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.expression_1.bottom",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "413",
+        "style_role": "number",
+        "x": 135.0,
+        "y": 108.0,
+        "font_size": 24,
+        "max_width": 90.0,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.expression_1.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 58.0,
+        "y1": 125.0,
+        "x2": 142.0,
+        "y2": 125.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.expression_2.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(2)",
+        "style_role": "label",
+        "x": 185.0,
+        "y": 70.0,
+        "font_size": 22,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.expression_2.top",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "607",
+        "style_role": "number",
+        "x": 295.0,
+        "y": 70.0,
+        "font_size": 24,
+        "max_width": 90.0,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.expression_2.operator",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "+",
+        "style_role": "operator",
+        "x": 225.0,
+        "y": 108.0,
+        "font_size": 24,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.expression_2.bottom",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "292",
+        "style_role": "number",
+        "x": 295.0,
+        "y": 108.0,
+        "font_size": 24,
+        "max_width": 90.0,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.expression_2.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 218.0,
+        "y1": 125.0,
+        "x2": 302.0,
+        "y2": 125.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.answer_1",
+      "kind": "blank",
+      "prompt": "(1)",
+      "content": {
+        "placeholder": ""
+      }
+    },
+    {
+      "id": "slot.answer_2",
+      "kind": "blank",
+      "prompt": "(2)",
+      "content": {
+        "placeholder": ""
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.instruction",
+    "slot.answer_1",
+    "slot.answer_2",
+    "region.expressions",
+    "slot.expression_1.line",
+    "slot.expression_2.line",
+    "slot.expression_1.label",
+    "slot.expression_1.top",
+    "slot.expression_1.operator",
+    "slot.expression_1.bottom",
+    "slot.expression_2.label",
+    "slot.expression_2.top",
+    "slot.expression_2.operator",
+    "slot.expression_2.bottom"
+  ]
+}

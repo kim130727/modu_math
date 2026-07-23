@@ -89,7 +89,7 @@ def _render_problem_template_source(
 
     lines.extend(_format_call_assignment("canvas", "Canvas", _canvas_kwargs(template.canvas), indent=1))
     lines.extend(_format_tuple_assignment("regions", [_region_kwargs(region) for region in template.regions], "Region", indent=1))
-    lines.extend(_format_tuple_assignment("slots", [_slot_kwargs(slot) for slot in template.slots], None, indent=1))
+    lines.extend(_format_tuple_assignment("slots", [_slot_kwargs_with_answer_metadata(slot) for slot in template.slots], None, indent=1))
     lines.extend(
         _format_tuple_assignment("diagrams", [_diagram_kwargs(diagram) for diagram in template.diagrams], None, indent=1)
     )
@@ -213,6 +213,19 @@ def _region_kwargs(region: Region) -> list[tuple[str, Any]]:
         ("flow", region.flow),
         ("slot_ids", tuple(region.slot_ids)),
     ]
+
+
+def _slot_kwargs_with_answer_metadata(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | LineSlot | CircleSlot | PolygonSlot | ImageSlot | PathSlot) -> list[tuple[str, Any]]:
+    kwargs = _slot_kwargs(slot)
+    ctor_index = next((index for index, (key, _) in enumerate(kwargs) if key == "__ctor__"), len(kwargs))
+    extras: list[tuple[str, Any]] = []
+    if slot.interaction is not None:
+        extras.append(("interaction", dict(slot.interaction)))
+    if slot.input_style is not None:
+        extras.append(("input_style", dict(slot.input_style)))
+    if extras:
+        kwargs[ctor_index:ctor_index] = extras
+    return kwargs
 
 
 def _slot_kwargs(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | LineSlot | CircleSlot | PolygonSlot | ImageSlot | PathSlot) -> list[tuple[str, Any]]:
@@ -939,6 +952,7 @@ def _slot_from_layout(
     prompt_raw = data.get("prompt")
     prompt = prompt_raw if isinstance(prompt_raw, str) else None
     content = _require_mapping(data.get("content"), f"slots[{index}].content")
+    answer_kwargs = _answer_metadata_kwargs(content)
 
     if kind == "text":
         return TextSlot(
@@ -954,6 +968,7 @@ def _slot_from_layout(
             anchor=_string(content.get("anchor"), None),
             fill=_string(content.get("fill"), None),
             semantic_role=_string(content.get("semantic_role"), None),
+            **answer_kwargs,
         )
     if kind == "text_box":
         return TextBoxSlot(
@@ -972,6 +987,7 @@ def _slot_from_layout(
             line_height=_number_or_none(content.get("line_height")),
             fill=_string(content.get("fill"), None),
             semantic_role=_string(content.get("semantic_role"), None),
+            **answer_kwargs,
         )
     if kind == "choice":
         choice_answer_key = _lookup_choice_answer_key(choice_answer_keys, slot_id)
@@ -1013,6 +1029,7 @@ def _slot_from_layout(
             ry=_number_or_none(content.get("ry")),
             fill=_string(content.get("fill"), None),
             semantic_role=_string(content.get("semantic_role"), None),
+            **answer_kwargs,
         )
     if kind == "line":
         return LineSlot(
@@ -1026,6 +1043,7 @@ def _slot_from_layout(
             stroke_width=_number_or_none(content.get("stroke_width")),
             stroke_dasharray=_string(content.get("stroke_dasharray"), None),
             semantic_role=_string(content.get("semantic_role"), None),
+            **answer_kwargs,
         )
     if kind == "circle":
         return CircleSlot(
@@ -1039,6 +1057,7 @@ def _slot_from_layout(
             stroke_dasharray=_string(content.get("stroke_dasharray"), None),
             fill=_string(content.get("fill"), None),
             semantic_role=_string(content.get("semantic_role"), None),
+            **answer_kwargs,
         )
     if kind == "polygon":
         points_raw = content.get("points")
@@ -1056,6 +1075,7 @@ def _slot_from_layout(
             stroke_dasharray=_string(content.get("stroke_dasharray"), None),
             fill=_string(content.get("fill"), None),
             semantic_role=_string(content.get("semantic_role"), None),
+            **answer_kwargs,
         )
     if kind == "image":
         return ImageSlot(
@@ -1069,6 +1089,7 @@ def _slot_from_layout(
             preserve_aspect_ratio=_string(content.get("preserve_aspect_ratio"), "xMidYMid meet"),
             transform=_string(content.get("transform"), None),
             semantic_role=_string(content.get("semantic_role"), None),
+            **answer_kwargs,
         )
     if kind == "path":
         return PathSlot(
@@ -1080,8 +1101,20 @@ def _slot_from_layout(
             stroke_dasharray=_string(content.get("stroke_dasharray"), None),
             fill=_string(content.get("fill"), None),
             semantic_role=_string(content.get("semantic_role"), None),
+            **answer_kwargs,
         )
     raise ValueError(f"Unsupported slot kind: {kind!r}")
+
+
+def _answer_metadata_kwargs(content: Mapping[str, Any]) -> dict[str, dict[str, Any] | None]:
+    kwargs: dict[str, dict[str, Any] | None] = {}
+    interaction = content.get("interaction")
+    input_style = content.get("input_style")
+    if isinstance(interaction, Mapping):
+        kwargs["interaction"] = dict(interaction)
+    if isinstance(input_style, Mapping):
+        kwargs["input_style"] = dict(input_style)
+    return kwargs
 
 
 def _group_from_layout(raw: Any, index: int) -> Group:

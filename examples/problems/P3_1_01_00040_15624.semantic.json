@@ -1,0 +1,198 @@
+{
+  "problem_id": "P3_1_01_00040_15624",
+  "problem_type": "number_card_extremes_and_sum_multi_answer",
+  "metadata": {
+    "title": "숫자 카드로 만든 가장 큰 수와 가장 작은 수의 합",
+    "tags": [
+      "grade-3",
+      "three-digit-number",
+      "number-cards",
+      "place-value",
+      "addition",
+      "multi-answer"
+    ],
+    "instruction": "숫자의 크기를 비교하여 카드를 백의 자리부터 배열하고, 만든 두 세 자리 수를 더합니다.",
+    "question": "2, 4, 6의 숫자 카드를 한 번씩 사용하여 만들 수 있는 가장 큰 세 자리 수, 가장 작은 세 자리 수, 두 수의 합을 구합니다.",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "card.digit_2",
+        "type": "digit_card",
+        "label": "숫자 카드 2",
+        "value": 2
+      },
+      {
+        "id": "card.digit_4",
+        "type": "digit_card",
+        "label": "숫자 카드 4",
+        "value": 4
+      },
+      {
+        "id": "card.digit_6",
+        "type": "digit_card",
+        "label": "숫자 카드 6",
+        "value": 6
+      },
+      {
+        "id": "number.largest",
+        "type": "derived_number",
+        "label": "만들 수 있는 가장 큰 세 자리 수",
+        "value": 642,
+        "unit": ""
+      },
+      {
+        "id": "number.smallest",
+        "type": "derived_number",
+        "label": "만들 수 있는 가장 작은 세 자리 수",
+        "value": 246,
+        "unit": ""
+      },
+      {
+        "id": "quantity.sum_largest_smallest",
+        "type": "derived_quantity",
+        "label": "가장 큰 세 자리 수와 가장 작은 세 자리 수의 합",
+        "value": 888,
+        "unit": ""
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.use_each_card_once",
+        "type": "permutation_constraint",
+        "card_ids": [
+          "card.digit_2",
+          "card.digit_4",
+          "card.digit_6"
+        ],
+        "usage_count_per_number": 1,
+        "digit_count": 3
+      },
+      {
+        "id": "relation.largest_descending_order",
+        "type": "descending_place_value_arrangement",
+        "subject": "number.largest",
+        "digit_order": [
+          6,
+          4,
+          2
+        ],
+        "equation": "6×100 + 4×10 + 2 = 642"
+      },
+      {
+        "id": "relation.smallest_ascending_order",
+        "type": "ascending_place_value_arrangement",
+        "subject": "number.smallest",
+        "digit_order": [
+          2,
+          4,
+          6
+        ],
+        "equation": "2×100 + 4×10 + 6 = 246"
+      },
+      {
+        "id": "relation.sum_extremes",
+        "type": "sum_of",
+        "subject": "quantity.sum_largest_smallest",
+        "objects": [
+          "number.largest",
+          "number.smallest"
+        ],
+        "equation": "642 + 246 = 888"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "card.digit_2",
+          "card.digit_4",
+          "card.digit_6"
+        ],
+        "target_ref": "answer.all",
+        "condition_refs": [
+          "relation.use_each_card_once",
+          "relation.largest_descending_order",
+          "relation.smallest_ascending_order",
+          "relation.sum_extremes"
+        ]
+      },
+      "plan": {
+        "method": "arrange_digits_by_place_value_then_add",
+        "description": "큰 수는 큰 숫자부터, 작은 수는 작은 숫자부터 높은 자리에 놓고 두 수를 더합니다."
+      },
+      "execute": {
+        "expected_operations": [
+          "descending_arrangement",
+          "ascending_arrangement",
+          "addition"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "digit_usage_check",
+          "place_value_extreme_check",
+          "inverse_subtraction"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "type": "multi_numeric",
+    "value": [
+      642,
+      246,
+      888
+    ],
+    "unit": "",
+    "blanks": [
+      {
+        "id": "slot.answer1",
+        "type": "number",
+        "value": 642,
+        "unit": "",
+        "target_ref": "number.largest"
+      },
+      {
+        "id": "slot.answer2",
+        "type": "number",
+        "value": 246,
+        "unit": "",
+        "target_ref": "number.smallest"
+      },
+      {
+        "id": "slot.answer3",
+        "type": "number",
+        "value": 888,
+        "unit": "",
+        "target_ref": "quantity.sum_largest_smallest"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.answer1",
+        "value": 642,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.answer2",
+        "value": 246,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.answer3",
+        "value": 888,
+        "unit": ""
+      }
+    ],
+    "sentence": "가장 큰 수는 642, 가장 작은 수는 246이고 두 수의 합은 888입니다."
+  }
+}

@@ -1,0 +1,280 @@
+{
+  "problem_id": "P3_1_01_00040_15726",
+  "problem_type": "base_ten_model_addition_multi_answer",
+  "metadata": {
+    "title": "수 모형으로 알아보는 262와 271의 합",
+    "tags": [
+      "grade-3",
+      "addition",
+      "three-digit-addition",
+      "base-ten-blocks",
+      "regrouping",
+      "multi-answer"
+    ],
+    "question": "262+271을 수 모형으로 알아보시오.",
+    "required_layout_ids": [
+      "slot.model262.container",
+      "slot.model262.hundred.1",
+      "slot.model262.hundred.2",
+      "slot.model262.ten.1",
+      "slot.model262.ten.2",
+      "slot.model262.ten.3",
+      "slot.model262.ten.4",
+      "slot.model262.ten.5",
+      "slot.model262.ten.6",
+      "slot.model262.one.1",
+      "slot.model262.one.2",
+      "slot.model271.container",
+      "slot.model271.hundred.1",
+      "slot.model271.hundred.2",
+      "slot.model271.ten.1",
+      "slot.model271.ten.2",
+      "slot.model271.ten.3",
+      "slot.model271.ten.4",
+      "slot.model271.ten.5",
+      "slot.model271.ten.6",
+      "slot.model271.ten.7",
+      "slot.model271.one.1"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR",
+    "instruction": "같은 종류의 수 모형끼리 더하고 십 모형 10개를 백 모형 1개로 바꿉니다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "number.first",
+        "type": "number",
+        "label": "첫 번째 수",
+        "value": 262
+      },
+      {
+        "id": "number.second",
+        "type": "number",
+        "label": "두 번째 수",
+        "value": 271
+      },
+      {
+        "id": "model.first",
+        "type": "base_ten_model",
+        "label": "262의 수 모형",
+        "hundreds": 2,
+        "tens": 6,
+        "ones": 2
+      },
+      {
+        "id": "model.second",
+        "type": "base_ten_model",
+        "label": "271의 수 모형",
+        "hundreds": 2,
+        "tens": 7,
+        "ones": 1
+      },
+      {
+        "id": "quantity.ones_sum",
+        "type": "quantity",
+        "label": "낱개 모형의 합",
+        "value": 3,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.tens_sum_before_regrouping",
+        "type": "quantity",
+        "label": "받아올림 전 십 모형의 합",
+        "value": 13,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.regrouped_hundreds",
+        "type": "quantity",
+        "label": "십 모형에서 바꾼 백 모형",
+        "value": 1,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.remaining_tens",
+        "type": "quantity",
+        "label": "받아올림 뒤 남은 십 모형",
+        "value": 3,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.direct_hundreds_sum",
+        "type": "quantity",
+        "label": "두 수의 백 모형끼리 더한 수",
+        "value": 4,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.final_hundreds",
+        "type": "quantity",
+        "label": "받아올림을 포함한 백 모형의 수",
+        "value": 5,
+        "unit": "개"
+      },
+      {
+        "id": "sum.total",
+        "type": "number",
+        "label": "262와 271의 합",
+        "value": 533
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.add_ones",
+        "type": "add_same_base_ten_units",
+        "from_ids": [
+          "model.first",
+          "model.second"
+        ],
+        "to_id": "quantity.ones_sum",
+        "equation": "2+1=3"
+      },
+      {
+        "id": "relation.add_and_regroup_tens",
+        "type": "base_ten_regrouping",
+        "from_ids": [
+          "model.first",
+          "model.second"
+        ],
+        "to_ids": [
+          "quantity.regrouped_hundreds",
+          "quantity.remaining_tens"
+        ],
+        "equation": "6+7=13=10+3"
+      },
+      {
+        "id": "relation.add_hundreds",
+        "type": "add_same_base_ten_units",
+        "from_ids": [
+          "model.first",
+          "model.second"
+        ],
+        "to_id": "quantity.direct_hundreds_sum",
+        "equation": "2+2=4"
+      },
+      {
+        "id": "relation.compose_total",
+        "type": "place_value_composition",
+        "from_ids": [
+          "quantity.ones_sum",
+          "quantity.remaining_tens",
+          "quantity.final_hundreds"
+        ],
+        "to_id": "sum.total",
+        "equation": "(4+1)×100+3×10+3=533"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "number.first",
+          "number.second",
+          "model.first",
+          "model.second"
+        ],
+        "target_ref": "answer.all",
+        "condition_refs": [
+          "relation.add_ones",
+          "relation.add_and_regroup_tens",
+          "relation.add_hundreds",
+          "relation.compose_total"
+        ]
+      },
+      "plan": {
+        "method": "add_base_ten_models_with_regrouping",
+        "description": "낱개, 십, 백 모형끼리 더하고 십 모형 10개를 백 모형 1개로 바꿉니다."
+      },
+      "execute": {
+        "expected_operations": [
+          "addition",
+          "regrouping",
+          "place_value_composition"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "model_recomposition",
+          "inverse_subtraction"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "type": "multi_numeric",
+    "value": [
+      3,
+      1,
+      3,
+      4,
+      533
+    ],
+    "unit": "",
+    "blanks": [
+      {
+        "id": "slot.answer.ones",
+        "type": "number",
+        "value": 3,
+        "unit": "개"
+      },
+      {
+        "id": "slot.answer.regrouped_hundreds",
+        "type": "number",
+        "value": 1,
+        "unit": "개"
+      },
+      {
+        "id": "slot.answer.regrouped_tens",
+        "type": "number",
+        "value": 3,
+        "unit": "개"
+      },
+      {
+        "id": "slot.answer.direct_hundreds",
+        "type": "number",
+        "value": 4,
+        "unit": "개"
+      },
+      {
+        "id": "slot.answer.total",
+        "type": "number",
+        "value": 533,
+        "unit": ""
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.answer.ones",
+        "value": 3,
+        "unit": "개"
+      },
+      {
+        "blank_id": "slot.answer.regrouped_hundreds",
+        "value": 1,
+        "unit": "개"
+      },
+      {
+        "blank_id": "slot.answer.regrouped_tens",
+        "value": 3,
+        "unit": "개"
+      },
+      {
+        "blank_id": "slot.answer.direct_hundreds",
+        "value": 4,
+        "unit": "개"
+      },
+      {
+        "blank_id": "slot.answer.total",
+        "value": 533,
+        "unit": ""
+      }
+    ],
+    "sentence": "(1) 3개, (2) 백 모형 1개와 십 모형 3개, (3) 4개, (4) 533입니다."
+  }
+}

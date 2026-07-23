@@ -1,0 +1,55 @@
+{
+  "problem_id": "P3_1_01_00040_15616",
+  "view_box": {
+    "width": 900.0,
+    "height": 170.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 24.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 24,
+        "width": 852.0,
+        "height": 54.0,
+        "max_width": 852.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 24.0,
+        "data-box-y": 24.0,
+        "data-box-width": 852.0,
+        "data-box-height": 54.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.45
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "줄넘기를 하였습니다. 주영이는 123회, 영수는 342회를 넘었습니다. 두 사람이 넘은 줄넘기는 모두 몇 회입니까?"
+    },
+    {
+      "id": "slot.answer.blank",
+      "type": "rect",
+      "attributes": {
+        "x": 64.0,
+        "y": 56.0,
+        "width": 120.0,
+        "height": 32.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.answer",
+      "refs": {
+        "layout_slot_id": "slot.answer"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

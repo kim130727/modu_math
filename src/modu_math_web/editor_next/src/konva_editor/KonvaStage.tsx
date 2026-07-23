@@ -20,6 +20,8 @@ interface KonvaStageProps {
   drawingPreset?: ShapePreset | null;
   onSelectShapes: (ids: string[]) => void;
   onChangeShapes: (shapes: EditorShape[]) => void;
+  onConvertShapesToAnswer?: (ids: string[]) => void;
+  onRestoreShapesFromAnswer?: (ids: string[]) => void;
   onDrawShape?: (preset: ShapePreset, start: CanvasPoint, end: CanvasPoint, points?: CanvasPoint[]) => void;
   onDrawingComplete?: () => void;
   onTutorOverlaySelect?: (overlayIndex: number | null) => void;
@@ -37,6 +39,8 @@ export function KonvaStage({
   drawingPreset = null,
   onSelectShapes,
   onChangeShapes,
+  onConvertShapesToAnswer,
+  onRestoreShapesFromAnswer,
   onDrawShape,
   onDrawingComplete,
   onTutorOverlaySelect,
@@ -166,7 +170,7 @@ export function KonvaStage({
   };
 
   const openShapeContextMenu = (shape: EditorShape, event: Konva.KonvaEventObject<MouseEvent>) => {
-    if (shape.type !== "line" && shape.type !== "connector") return;
+    if (!canOpenShapeContextMenu(shape)) return;
     event.evt.preventDefault();
     event.cancelBubble = true;
     if (!selectedIdSet.has(shape.id)) onSelectShapes([shape.id]);
@@ -182,6 +186,14 @@ export function KonvaStage({
     onChangeShapes([{ ...shape, strokeDasharray }]);
     setContextMenu(null);
   };
+
+  const contextMenuShape = contextMenu ? shapes.find((shape) => shape.id === contextMenu.shapeId) ?? null : null;
+  const contextMenuSelectionIds = contextMenuShape
+    ? selectedIdSet.has(contextMenuShape.id)
+      ? selectedShapeIds
+      : [contextMenuShape.id]
+    : [];
+  const contextAnswerTargets = shapes.filter((shape) => contextMenuSelectionIds.includes(shape.id) && isAnswerSlotShape(shape));
 
   const startShapeDrag = (shapeId: string) => {
     const ids = selectedIdSet.has(shapeId) ? selectedShapeIds : [shapeId];
@@ -387,6 +399,7 @@ export function KonvaStage({
               onContextMenu={(event) => openShapeContextMenu(shape, event)}
             />
           ))}
+          {renderedShapes.map((shape) => (shape.interaction ? <AnswerSlotOverlay key={`${shape.id}.answer-overlay`} shape={shape} /> : null))}
           <TutorOverlayLayer
             overlays={tutorOverlays}
             shapesById={shapesById}
@@ -515,6 +528,29 @@ export function KonvaStage({
       ) : null}
       {contextMenu ? (
         <div className="konva-context-menu" style={{ left: contextMenu.x, top: contextMenu.y }} onPointerDown={(event) => event.stopPropagation()}>
+          {contextAnswerTargets.length ? (
+            contextAnswerTargets.every((shape) => shape.interaction) ? (
+              <button
+                type="button"
+                onClick={() => {
+                  onRestoreShapesFromAnswer?.(contextAnswerTargets.map((shape) => shape.id));
+                  setContextMenu(null);
+                }}
+              >
+                일반 도형으로 되돌리기
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={() => {
+                  onConvertShapesToAnswer?.(contextAnswerTargets.map((shape) => shape.id));
+                  setContextMenu(null);
+                }}
+              >
+                AnswerSlot으로 변환
+              </button>
+            )
+          ) : null}
           <button type="button" onClick={() => setLineDash(contextMenu.shapeId, "8 7")}>
             점선으로 변경
           </button>
@@ -682,6 +718,69 @@ function TutorHighlight({ shape }: { shape: EditorShape }) {
   );
 }
 
+function AnswerSlotOverlay({ shape }: { shape: EditorShape }) {
+  const bounds = paddedRect(shapeBounds(shape), 5);
+  const interaction = shape.interaction;
+  const inputStyle = shape.input_style;
+  if (!interaction) return null;
+  const fontSize = calculateAnswerPreviewFontSize(shape);
+  const label = [
+    interaction.role ?? "answer",
+    interaction.value_type ?? "digit",
+    interaction.max_length ? `${interaction.max_length}자` : null,
+    inputStyle?.font_size_mode === "fixed" ? `${inputStyle.font_size ?? fontSize}px` : `${fontSize}px`,
+  ]
+    .filter(Boolean)
+    .join(" · ");
+  return (
+    <>
+      <Rect
+        x={bounds.x}
+        y={bounds.y}
+        width={bounds.width}
+        height={bounds.height}
+        stroke="#2563eb"
+        strokeWidth={1.2}
+        dash={[5, 4]}
+        fill="rgba(37, 99, 235, 0.05)"
+        listening={false}
+      />
+      <Text
+        x={bounds.x}
+        y={Math.max(0, bounds.y - 18)}
+        text={label}
+        fontSize={11}
+        fontFamily="Noto Sans KR, sans-serif"
+        fill="#1d4ed8"
+        listening={false}
+      />
+    </>
+  );
+}
+
+function calculateAnswerPreviewFontSize(shape: EditorShape): number {
+  const bounds = shapeBounds(shape);
+  const style = shape.input_style;
+  if (style?.font_size_mode === "fixed" && typeof style.font_size === "number") return Math.round(style.font_size);
+  const maxLength = Math.max(1, shape.interaction?.max_length ?? (shape.interaction?.value_type === "integer" ? 3 : 1));
+  const padding = style?.padding ?? 6;
+  const availableWidth = Math.max(1, bounds.width - padding * 2);
+  const availableHeight = Math.max(1, bounds.height - padding * 2);
+  const byHeight = availableHeight * 0.68;
+  const byWidth = availableWidth / maxLength / characterWidthRatio(shape.interaction?.value_type);
+  const adjusted = Math.min(byHeight, byWidth) + (style?.font_size_adjust ?? 0);
+  return Math.round(clamp(adjusted, style?.min_font_size ?? 14, style?.max_font_size ?? 52));
+}
+
+function characterWidthRatio(valueType: string | undefined): number {
+  if (valueType === "digit") return 0.58;
+  if (valueType === "integer") return 0.6;
+  if (valueType === "decimal") return 0.62;
+  if (valueType === "fraction") return 0.72;
+  if (valueType === "text") return 0.92;
+  return 0.7;
+}
+
 function compareRenderOrder(a: EditorShape, b: EditorShape): number {
   return renderPriority(a) - renderPriority(b);
 }
@@ -690,6 +789,14 @@ function renderPriority(shape: EditorShape): number {
   if (shape.type === "text" || shape.type === "math") return 2;
   if (shape.type === "line" || shape.type === "connector") return 1;
   return 0;
+}
+
+function canOpenShapeContextMenu(shape: EditorShape): boolean {
+  return shape.type === "line" || shape.type === "connector" || isAnswerSlotShape(shape);
+}
+
+function isAnswerSlotShape(shape: EditorShape): boolean {
+  return shape.type === "rect" || shape.type === "circle" || shape.type === "path" || shape.type === "text";
 }
 
 interface CanvasRect {

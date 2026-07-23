@@ -1,0 +1,85 @@
+{
+  "problem_id": "P3_1_01_00040_15615",
+  "problem_type": "numeric_answer_addition_word_problem",
+  "metadata": {
+    "title": "두 동화책의 전체 쪽수",
+    "tags": [],
+    "question": "동화책이 두 권 있습니다. 한 권은 230쪽이고 다른 한 권은 450쪽입니다. 두 동화책의 쪽수를 더하면 모두 몇 쪽입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "object.storybook_first",
+        "type": "book",
+        "label": "한 권의 동화책"
+      },
+      {
+        "id": "object.storybook_second",
+        "type": "book",
+        "label": "다른 한 권의 동화책"
+      },
+      {
+        "id": "quantity.first_book_pages",
+        "type": "quantity",
+        "label": "한 권의 동화책 쪽수",
+        "value": 230,
+        "unit": "쪽"
+      },
+      {
+        "id": "quantity.second_book_pages",
+        "type": "quantity",
+        "label": "다른 한 권의 동화책 쪽수",
+        "value": 450,
+        "unit": "쪽"
+      },
+      {
+        "id": "quantity.total_pages",
+        "type": "quantity",
+        "label": "두 동화책의 전체 쪽수",
+        "value": 680,
+        "unit": "쪽"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.first_book_has_pages",
+        "type": "has_quantity",
+        "from_id": "object.storybook_first",
+        "to_id": "quantity.first_book_pages"
+      },
+      {
+        "id": "relation.second_book_has_pages",
+        "type": "has_quantity",
+        "from_id": "object.storybook_second",
+        "to_id": "quantity.second_book_pages"
+      },
+      {
+        "id": "relation.first_pages_part_of_total",
+        "type": "part_of_sum",
+        "from_id": "quantity.first_book_pages",
+        "to_id": "quantity.total_pages"
+      },
+      {
+        "id": "relation.second_pages_part_of_total",
+        "type": "part_of_sum",
+        "from_id": "quantity.second_book_pages",
+        "to_id": "quantity.total_pages"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "numeric",
+    "value": 680,
+    "unit": "쪽",
+    "target_ref": "quantity.total_pages",
+    "derived_from": "step.add_page_counts"
+  }
+}

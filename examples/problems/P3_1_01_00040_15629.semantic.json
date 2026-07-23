@@ -1,0 +1,162 @@
+{
+  "problem_id": "P3_1_01_00040_15629",
+  "problem_type": "vertical_addition_digit_fill_blank",
+  "metadata": {
+    "title": "431과 세 자리 수의 덧셈 빈칸 채우기",
+    "tags": [
+      "grade-3",
+      "addition",
+      "three-digit-addition",
+      "vertical-calculation",
+      "fill-in-the-blank"
+    ],
+    "question": "□ 안에 알맞은 수를 써넣으시오.",
+    "required_layout_ids": [
+      "slot.second.blank_box",
+      "slot.rule",
+      "slot.result.blank_box"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR",
+    "instruction": "일의 자리부터 같은 자리끼리 더하여 빈칸의 숫자를 구합니다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "number.augend",
+        "type": "number",
+        "label": "첫 번째 수",
+        "value": 431
+      },
+      {
+        "id": "number.addend",
+        "type": "partially_hidden_number",
+        "label": "두 번째 수",
+        "value": 231
+      },
+      {
+        "id": "digit.addend.tens",
+        "type": "unknown_digit",
+        "label": "두 번째 수의 십의 자리 숫자",
+        "value": 3
+      },
+      {
+        "id": "number.sum",
+        "type": "partially_hidden_number",
+        "label": "두 수의 합",
+        "value": 662
+      },
+      {
+        "id": "digit.sum.hundreds",
+        "type": "unknown_digit",
+        "label": "합의 백의 자리 숫자",
+        "value": 6
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.vertical_addition",
+        "type": "addition",
+        "from_ids": [
+          "number.augend",
+          "number.addend"
+        ],
+        "to_id": "number.sum",
+        "equation": "431 + 231 = 662"
+      },
+      {
+        "id": "relation.tens_column",
+        "type": "digit_addition_without_carry",
+        "from_values": [
+          3,
+          3
+        ],
+        "to_value": 6,
+        "equation": "3 + 3 = 6"
+      },
+      {
+        "id": "relation.hundreds_column",
+        "type": "digit_addition_without_carry",
+        "from_values": [
+          4,
+          2
+        ],
+        "to_value": 6,
+        "equation": "4 + 2 = 6"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "number.augend",
+          "number.addend",
+          "number.sum"
+        ],
+        "target_ref": "answer.all",
+        "condition_refs": [
+          "relation.vertical_addition",
+          "relation.tens_column",
+          "relation.hundreds_column"
+        ]
+      },
+      "plan": {
+        "method": "column_addition",
+        "description": "일의 자리부터 같은 자리의 숫자끼리 더하여 빈칸을 구합니다."
+      },
+      "execute": {
+        "expected_operations": [
+          "ones_column_addition",
+          "tens_column_addition",
+          "hundreds_column_addition"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "full_addition_check",
+          "inverse_subtraction"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "type": "multi_numeric",
+    "value": [
+      3,
+      6
+    ],
+    "unit": "",
+    "blanks": [
+      {
+        "id": "slot.blank1",
+        "type": "number",
+        "value": 3,
+        "unit": ""
+      },
+      {
+        "id": "slot.blank2",
+        "type": "number",
+        "value": 6,
+        "unit": ""
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.blank1",
+        "value": 3,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.blank2",
+        "value": 6,
+        "unit": ""
+      }
+    ],
+    "sentence": "빈칸에 위에서부터 3, 6을 씁니다."
+  }
+}

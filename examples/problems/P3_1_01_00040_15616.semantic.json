@@ -1,0 +1,93 @@
+{
+  "problem_id": "P3_1_01_00040_15616",
+  "problem_type": "numeric_answer_addition_word_problem",
+  "metadata": {
+    "title": "두 사람이 넘은 줄넘기의 총횟수",
+    "tags": [],
+    "question": "줄넘기를 하였습니다. 주영이는 123회, 영수는 342회를 넘었습니다. 두 사람이 넘은 줄넘기는 모두 몇 회입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "person.juyeong",
+        "type": "person",
+        "label": "주영이"
+      },
+      {
+        "id": "person.yeongsu",
+        "type": "person",
+        "label": "영수"
+      },
+      {
+        "id": "activity.jump_rope",
+        "type": "physical_activity",
+        "label": "줄넘기",
+        "unit": "회"
+      },
+      {
+        "id": "quantity.juyeong_jumps",
+        "type": "quantity",
+        "label": "주영이가 넘은 줄넘기 횟수",
+        "value": 123,
+        "unit": "회"
+      },
+      {
+        "id": "quantity.yeongsu_jumps",
+        "type": "quantity",
+        "label": "영수가 넘은 줄넘기 횟수",
+        "value": 342,
+        "unit": "회"
+      },
+      {
+        "id": "quantity.total_jumps",
+        "type": "quantity",
+        "label": "두 사람이 넘은 줄넘기의 총횟수",
+        "value": 465,
+        "unit": "회"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.juyeong_did_jump_rope",
+        "type": "performed",
+        "from_id": "person.juyeong",
+        "to_id": "activity.jump_rope",
+        "quantity": "quantity.juyeong_jumps"
+      },
+      {
+        "id": "relation.yeongsu_did_jump_rope",
+        "type": "performed",
+        "from_id": "person.yeongsu",
+        "to_id": "activity.jump_rope",
+        "quantity": "quantity.yeongsu_jumps"
+      },
+      {
+        "id": "relation.juyeong_jumps_part_of_total",
+        "type": "part_of_sum",
+        "from_id": "quantity.juyeong_jumps",
+        "to_id": "quantity.total_jumps"
+      },
+      {
+        "id": "relation.yeongsu_jumps_part_of_total",
+        "type": "part_of_sum",
+        "from_id": "quantity.yeongsu_jumps",
+        "to_id": "quantity.total_jumps"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "numeric",
+    "value": 465,
+    "unit": "회",
+    "target_ref": "quantity.total_jumps",
+    "derived_from": "step.add_jump_counts"
+  }
+}

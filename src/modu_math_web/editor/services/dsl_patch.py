@@ -16,14 +16,14 @@ from .dsl_format import format_dsl_source
 from .problems import resolve_problem_paths
 
 SUPPORTED_SLOTS = {
-    "TextSlot": {"text", "x", "y", "font_size", "max_width", "font_family", "anchor", "fill", "style_role", "transform"},
-    "TextBoxSlot": {"text", "x", "y", "width", "height", "font_size", "font_family", "align", "valign", "line_height", "fill", "style_role", "transform"},
-    "CircleSlot": {"cx", "cy", "r", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform"},
+    "TextSlot": {"text", "x", "y", "font_size", "max_width", "font_family", "anchor", "fill", "style_role", "transform", "interaction", "input_style"},
+    "TextBoxSlot": {"text", "x", "y", "width", "height", "font_size", "font_family", "align", "valign", "line_height", "fill", "style_role", "transform", "interaction", "input_style"},
+    "CircleSlot": {"cx", "cy", "r", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform", "interaction", "input_style"},
     "LineSlot": {"x1", "y1", "x2", "y2", "stroke", "stroke_width", "stroke_dasharray", "transform"},
-    "RectSlot": {"x", "y", "width", "height", "stroke", "stroke_width", "stroke_dasharray", "rx", "ry", "fill", "transform"},
-    "PolygonSlot": {"points", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform"},
+    "RectSlot": {"x", "y", "width", "height", "stroke", "stroke_width", "stroke_dasharray", "rx", "ry", "fill", "transform", "interaction", "input_style"},
+    "PolygonSlot": {"points", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform", "interaction", "input_style"},
     "ImageSlot": {"href", "x", "y", "width", "height", "preserve_aspect_ratio", "transform"},
-    "PathSlot": {"d", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform"},
+    "PathSlot": {"d", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform", "interaction", "input_style"},
 }
 SLOT_KIND_TO_CTOR = {
     "text": "TextSlot",
@@ -172,6 +172,16 @@ def _arg_value_to_cst(value: Any) -> cst.BaseExpression:
         return cst.List([cst.Element(_arg_value_to_cst(v)) for v in value])
     if isinstance(value, tuple):
         return cst.Tuple([cst.Element(_arg_value_to_cst(v)) for v in value])
+    if isinstance(value, dict):
+        return cst.Dict(
+            [
+                cst.DictElement(
+                    key=_arg_value_to_cst(k),
+                    value=_arg_value_to_cst(v),
+                )
+                for k, v in value.items()
+            ]
+        )
     raise DslPatchError(f"unsupported value type: {type(value).__name__}")
 
 

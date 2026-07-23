@@ -1,0 +1,120 @@
+{
+  "problem_id": "P3_1_01_00040_15618",
+  "problem_type": "multi_numeric_vertical_addition_problem",
+  "metadata": {
+    "title": "두 세 자리 수의 덧셈",
+    "tags": [],
+    "question": "다음 덧셈을 하시오.",
+    "required_layout_ids": [
+      "slot.expression_1.line",
+      "slot.expression_2.line"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR",
+    "instruction": "각 세로셈의 같은 자리 수끼리 더합니다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "operation.addition_1",
+        "type": "vertical_addition",
+        "label": "(1) 375 + 413",
+        "addends": [
+          375,
+          413
+        ],
+        "sum": 788
+      },
+      {
+        "id": "operation.addition_2",
+        "type": "vertical_addition",
+        "label": "(2) 607 + 292",
+        "addends": [
+          607,
+          292
+        ],
+        "sum": 899
+      },
+      {
+        "id": "answer.addition_1",
+        "type": "quantity",
+        "label": "첫 번째 덧셈의 합",
+        "value": 788,
+        "unit": ""
+      },
+      {
+        "id": "answer.addition_2",
+        "type": "quantity",
+        "label": "두 번째 덧셈의 합",
+        "value": 899,
+        "unit": ""
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.addition_1_result",
+        "type": "result_of",
+        "from_id": "answer.addition_1",
+        "to_id": "operation.addition_1"
+      },
+      {
+        "id": "relation.addition_2_result",
+        "type": "result_of",
+        "from_id": "answer.addition_2",
+        "to_id": "operation.addition_2"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "operation.addition_1",
+          "operation.addition_2"
+        ],
+        "target_ref": "answer.all"
+      },
+      "plan": {
+        "method": "place_value_vertical_addition",
+        "description": "각 식에서 일의 자리, 십의 자리, 백의 자리 순서로 더합니다."
+      },
+      "execute": {
+        "expected_operations": [
+          "addition",
+          "addition"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "inverse_subtraction",
+          "estimation"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "type": "multi_numeric",
+    "value": [
+      788,
+      899
+    ],
+    "unit": "",
+    "values": [
+      {
+        "value": 788,
+        "unit": "",
+        "target_ref": "answer.addition_1",
+        "derived_from": "step.add_375_413"
+      },
+      {
+        "value": 899,
+        "unit": "",
+        "target_ref": "answer.addition_2",
+        "derived_from": "step.add_607_292"
+      }
+    ]
+  }
+}

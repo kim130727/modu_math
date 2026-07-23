@@ -96,22 +96,23 @@ def _extract_render_attributes(node: LayoutNode) -> dict[str, Any]:
 
 def _node_to_render_element(node: LayoutNode) -> RenderElement | None:
     attrs = _extract_render_attributes(node)
+    answer_kwargs = _extract_answer_slot_kwargs(node)
 
     if isinstance(node, ShapeNode):
         if node.shape_type == "rect":
-            return RenderRect(id=node.id, attributes=attrs)
+            return RenderRect(id=node.id, attributes=attrs, **answer_kwargs)
         if node.shape_type == "circle":
-            return RenderCircle(id=node.id, attributes=attrs)
+            return RenderCircle(id=node.id, attributes=attrs, **answer_kwargs)
         if node.shape_type == "line":
-            return RenderLine(id=node.id, attributes=attrs)
+            return RenderLine(id=node.id, attributes=attrs, **answer_kwargs)
         if node.shape_type == "polygon":
-            return RenderPolygon(id=node.id, attributes=attrs)
+            return RenderPolygon(id=node.id, attributes=attrs, **answer_kwargs)
         if node.shape_type == "path":
-            return RenderElement(id=node.id, type="path", attributes=attrs)
-        return RenderElement(id=node.id, type=node.shape_type, attributes=attrs)
+            return RenderElement(id=node.id, type="path", attributes=attrs, **answer_kwargs)
+        return RenderElement(id=node.id, type=node.shape_type, attributes=attrs, **answer_kwargs)
 
     if isinstance(node, TextNode):
-        return RenderText(id=node.id, attributes=attrs, text=node.text)
+        return RenderText(id=node.id, attributes=attrs, text=node.text, **answer_kwargs)
 
     if isinstance(node, LayoutGroup):
         children = sorted(node.children, key=lambda child: child.z_order)
@@ -123,6 +124,16 @@ def _node_to_render_element(node: LayoutNode) -> RenderElement | None:
         return RenderGroup(id=node.id, attributes=attrs, elements=group_elements)
 
     return None
+
+
+def _extract_answer_slot_kwargs(node: LayoutNode) -> dict[str, dict[str, Any]]:
+    props = node.properties if isinstance(node.properties, dict) else {}
+    result: dict[str, dict[str, Any]] = {}
+    if isinstance(props.get("interaction"), dict):
+        result["interaction"] = dict(props["interaction"])
+    if isinstance(props.get("input_style"), dict):
+        result["input_style"] = dict(props["input_style"])
+    return result
 
 def layout_to_renderer(problem_id: str, canvas: LayoutCanvas, nodes: list[LayoutNode]) -> RendererAST:
     """Converts the Layout layer into a pure Renderer AST."""

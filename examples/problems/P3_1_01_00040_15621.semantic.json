@@ -1,0 +1,243 @@
+{
+  "problem_id": "P3_1_01_00040_15621",
+  "problem_type": "place_value_addition_fill_blank",
+  "metadata": {
+    "title": "자리값을 이용한 265와 432의 덧셈",
+    "tags": [
+      "grade-3",
+      "addition",
+      "three-digit-addition",
+      "place-value",
+      "fill-in-the-blank"
+    ],
+    "question": "빈칸에 알맞은 수를 써넣으시오.",
+    "required_layout_ids": [
+      "slot.work_area",
+      "slot.line1.blank1_box",
+      "slot.line1.blank2_box",
+      "slot.line2.blank3_box",
+      "slot.line2.blank4_box",
+      "slot.line2.blank5_box"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR",
+    "instruction": "두 수를 백, 십, 일의 자리 수로 나누어 같은 자리끼리 더합니다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "number.first",
+        "type": "number",
+        "label": "첫 번째 수",
+        "value": 265
+      },
+      {
+        "id": "number.second",
+        "type": "number",
+        "label": "두 번째 수",
+        "value": 432
+      },
+      {
+        "id": "place.first.hundreds",
+        "type": "place_value",
+        "label": "265의 백의 자리 값",
+        "value": 200
+      },
+      {
+        "id": "place.first.tens",
+        "type": "place_value",
+        "label": "265의 십의 자리 값",
+        "value": 60
+      },
+      {
+        "id": "place.first.ones",
+        "type": "place_value",
+        "label": "265의 일의 자리 값",
+        "value": 5
+      },
+      {
+        "id": "place.second.hundreds",
+        "type": "place_value",
+        "label": "432의 백의 자리 값",
+        "value": 400
+      },
+      {
+        "id": "place.second.tens",
+        "type": "place_value",
+        "label": "432의 십의 자리 값",
+        "value": 30
+      },
+      {
+        "id": "place.second.ones",
+        "type": "place_value",
+        "label": "432의 일의 자리 값",
+        "value": 2
+      },
+      {
+        "id": "sum.hundreds",
+        "type": "partial_sum",
+        "label": "백의 자리 값의 합",
+        "value": 600
+      },
+      {
+        "id": "sum.tens",
+        "type": "partial_sum",
+        "label": "십의 자리 값의 합",
+        "value": 90
+      },
+      {
+        "id": "sum.ones",
+        "type": "partial_sum",
+        "label": "일의 자리 값의 합",
+        "value": 7
+      },
+      {
+        "id": "sum.total",
+        "type": "number",
+        "label": "265와 432의 합",
+        "value": 697
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.decompose_first",
+        "type": "place_value_decomposition",
+        "from_id": "number.first",
+        "to_ids": [
+          "place.first.hundreds",
+          "place.first.tens",
+          "place.first.ones"
+        ],
+        "equation": "265 = 200 + 60 + 5"
+      },
+      {
+        "id": "relation.decompose_second",
+        "type": "place_value_decomposition",
+        "from_id": "number.second",
+        "to_ids": [
+          "place.second.hundreds",
+          "place.second.tens",
+          "place.second.ones"
+        ],
+        "equation": "432 = 400 + 30 + 2"
+      },
+      {
+        "id": "relation.add_by_place",
+        "type": "place_value_addition",
+        "from_ids": [
+          "number.first",
+          "number.second"
+        ],
+        "to_id": "sum.total",
+        "equation": "(200+400)+(60+30)+(5+2)=600+90+7=697"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "number.first",
+          "number.second"
+        ],
+        "target_ref": "answer.all",
+        "condition_refs": [
+          "relation.decompose_first",
+          "relation.decompose_second",
+          "relation.add_by_place"
+        ]
+      },
+      "plan": {
+        "method": "place_value_decomposition",
+        "description": "두 수를 자리값으로 나눈 뒤 같은 자리끼리 더합니다."
+      },
+      "execute": {
+        "expected_operations": [
+          "decomposition",
+          "addition"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "recomposition_check",
+          "inverse_subtraction"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "type": "multi_numeric",
+    "value": [
+      60,
+      2,
+      90,
+      7,
+      697
+    ],
+    "unit": "",
+    "blanks": [
+      {
+        "id": "slot.blank1",
+        "type": "number",
+        "value": 60,
+        "unit": ""
+      },
+      {
+        "id": "slot.blank2",
+        "type": "number",
+        "value": 2,
+        "unit": ""
+      },
+      {
+        "id": "slot.blank3",
+        "type": "number",
+        "value": 90,
+        "unit": ""
+      },
+      {
+        "id": "slot.blank4",
+        "type": "number",
+        "value": 7,
+        "unit": ""
+      },
+      {
+        "id": "slot.blank5",
+        "type": "number",
+        "value": 697,
+        "unit": ""
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.blank1",
+        "value": 60,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.blank2",
+        "value": 2,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.blank3",
+        "value": 90,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.blank4",
+        "value": 7,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.blank5",
+        "value": 697,
+        "unit": ""
+      }
+    ],
+    "sentence": "빈칸에 차례대로 60, 2, 90, 7, 697을 씁니다."
+  }
+}

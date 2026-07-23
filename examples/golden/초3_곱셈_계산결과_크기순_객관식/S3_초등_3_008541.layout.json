@@ -15,6 +15,7 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.box",
+        "konva_1784850887765_rect_10764",
         "slot.q1",
         "slot.expr1",
         "slot.expr2",
@@ -136,6 +137,42 @@
         "y": 245.0,
         "font_size": 28
       }
+    },
+    {
+      "id": "konva_1784850887765_rect_10764",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 222.027,
+        "y": 302.089,
+        "width": 119.5,
+        "height": 63.733,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "digit",
+          "max_length": 1,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "auto_advance": true,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222"
+        }
+      }
     }
   ],
   "groups": [],
@@ -144,6 +181,7 @@
   "reading_order": [
     "region.stem",
     "slot.box",
+    "konva_1784850887765_rect_10764",
     "slot.q1",
     "slot.expr1",
     "slot.expr2",

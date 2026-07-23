@@ -1,0 +1,300 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_15621",
+  "problem_type": "place_value_addition_fill_blank",
+  "inputs": {
+    "target_label": "자리값 덧셈식의 다섯 빈칸에 들어갈 수",
+    "unit": "",
+    "quantities": {
+      "first_number": 265,
+      "second_number": 432
+    },
+    "conditions": [
+      "265를 200, 60, 5로 나눕니다.",
+      "432를 400, 30, 2로 나눕니다.",
+      "같은 자리의 값끼리 더합니다."
+    ]
+  },
+  "given": [
+    {
+      "ref": "number.first",
+      "value": 265
+    },
+    {
+      "ref": "number.second",
+      "value": 432
+    },
+    {
+      "ref": "place.first.hundreds",
+      "value": 200
+    },
+    {
+      "ref": "place.first.ones",
+      "value": 5
+    },
+    {
+      "ref": "place.second.hundreds",
+      "value": 400
+    },
+    {
+      "ref": "place.second.tens",
+      "value": 30
+    }
+  ],
+  "target": {
+    "ref": "answer.all",
+    "type": "number_list"
+  },
+  "method": "265와 432를 자리값으로 나누고 같은 자리끼리 더해 각 빈칸을 구합니다.",
+  "understanding": {
+    "summary": "265와 432를 백, 십, 일의 자리값으로 나누어 같은 자리끼리 더하는 문제입니다.",
+    "facts": [
+      {
+        "ref": "number.first",
+        "label": "첫 번째 수",
+        "value": 265,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "number.second",
+        "label": "두 번째 수",
+        "value": 432,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "place.first.hundreds",
+        "label": "265의 백의 자리 값",
+        "value": 200,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "place.first.ones",
+        "label": "265의 일의 자리 값",
+        "value": 5,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "place.second.hundreds",
+        "label": "432의 백의 자리 값",
+        "value": 400,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "place.second.tens",
+        "label": "432의 십의 자리 값",
+        "value": 30,
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "place.first.tens",
+        "label": "265의 십의 자리 값",
+        "unit": "",
+        "source": "unknown"
+      },
+      {
+        "ref": "place.second.ones",
+        "label": "432의 일의 자리 값",
+        "unit": "",
+        "source": "unknown"
+      },
+      {
+        "ref": "sum.tens",
+        "label": "십의 자리 값의 합",
+        "unit": "",
+        "source": "unknown"
+      },
+      {
+        "ref": "sum.ones",
+        "label": "일의 자리 값의 합",
+        "unit": "",
+        "source": "unknown"
+      },
+      {
+        "ref": "sum.total",
+        "label": "265와 432의 합",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "place_value_decomposition_addition",
+      "statement": "각 수를 백, 십, 일의 자리값으로 나눈 뒤 같은 자리끼리 더합니다.",
+      "symbolic": "(200+400)+(□+30)+(5+□)=600+□+□=□",
+      "uses": [
+        "number.first",
+        "number.second"
+      ],
+      "result": "answer.all"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.first_decomposition",
+        "type": "multiple_choice",
+        "prompt": "265를 자리값으로 바르게 나눈 것은 무엇인가요?",
+        "choices": [
+          "200+60+5",
+          "200+6+5",
+          "20+60+5"
+        ],
+        "answer_index": 0
+      },
+      {
+        "id": "understand.second_decomposition",
+        "type": "multiple_choice",
+        "prompt": "432를 자리값으로 바르게 나눈 것은 무엇인가요?",
+        "choices": [
+          "400+30+2",
+          "400+3+2",
+          "40+30+2"
+        ],
+        "answer_index": 0
+      }
+    ],
+    "student_restatement": {
+      "prompt": "어떤 방법으로 계산해야 하나요?",
+      "template": "{first_number}과 {second_number}을 자리값으로 나누고 같은 자리끼리 더합니다.",
+      "answer": "265와 432를 자리값으로 나누고 같은 자리끼리 더합니다."
+    }
+  },
+  "plan": [
+    "265를 200+60+5로 나타내어 첫 번째 빈칸을 구합니다.",
+    "432를 400+30+2로 나타내어 두 번째 빈칸을 구합니다.",
+    "같은 자리끼리 더해 600, 90, 7을 구합니다.",
+    "부분합 600, 90, 7을 더해 전체 합을 구합니다."
+  ],
+  "steps": [
+    {
+      "id": "step.decompose_first",
+      "expr": "265 = 200 + 60 + 5",
+      "value": 60,
+      "explanation": "265의 십의 자리 숫자는 6이므로 십의 자리 값은 60입니다."
+    },
+    {
+      "id": "step.decompose_second",
+      "expr": "432 = 400 + 30 + 2",
+      "value": 2,
+      "explanation": "432의 일의 자리 값은 2입니다."
+    },
+    {
+      "id": "step.add_tens",
+      "expr": "60 + 30",
+      "value": 90,
+      "explanation": "두 수의 십의 자리 값을 더하면 90입니다."
+    },
+    {
+      "id": "step.add_ones",
+      "expr": "5 + 2",
+      "value": 7,
+      "explanation": "두 수의 일의 자리 값을 더하면 7입니다."
+    },
+    {
+      "id": "step.add_partial_sums",
+      "expr": "600 + 90 + 7",
+      "value": 697,
+      "explanation": "백, 십, 일의 자리 부분합을 모두 더하면 697입니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.recompose_first",
+      "expr": "200 + 60 + 5",
+      "expected": 265,
+      "actual": 265,
+      "pass": true
+    },
+    {
+      "id": "check.recompose_second",
+      "expr": "400 + 30 + 2",
+      "expected": 432,
+      "actual": 432,
+      "pass": true
+    },
+    {
+      "id": "check.inverse_subtraction",
+      "expr": "697 - 432",
+      "expected": 265,
+      "actual": 265,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "type": "multi_numeric",
+    "value": [
+      60,
+      2,
+      90,
+      7,
+      697
+    ],
+    "unit": "",
+    "blanks": [
+      {
+        "id": "slot.blank1",
+        "type": "number",
+        "value": 60,
+        "unit": ""
+      },
+      {
+        "id": "slot.blank2",
+        "type": "number",
+        "value": 2,
+        "unit": ""
+      },
+      {
+        "id": "slot.blank3",
+        "type": "number",
+        "value": 90,
+        "unit": ""
+      },
+      {
+        "id": "slot.blank4",
+        "type": "number",
+        "value": 7,
+        "unit": ""
+      },
+      {
+        "id": "slot.blank5",
+        "type": "number",
+        "value": 697,
+        "unit": ""
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.blank1",
+        "value": 60,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.blank2",
+        "value": 2,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.blank3",
+        "value": 90,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.blank4",
+        "value": 7,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.blank5",
+        "value": 697,
+        "unit": ""
+      }
+    ],
+    "sentence": "빈칸에 차례대로 60, 2, 90, 7, 697을 씁니다."
+  }
+}

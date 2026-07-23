@@ -1,0 +1,582 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15726",
+  "title": "수 모형으로 알아보는 262와 271의 합",
+  "canvas": {
+    "width": 765,
+    "height": 193,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.instruction"
+      ]
+    },
+    {
+      "id": "region.models",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.model262.container",
+        "slot.model262.hundred.1",
+        "slot.model262.hundred.2",
+        "slot.model262.ten.1",
+        "slot.model262.ten.2",
+        "slot.model262.ten.3",
+        "slot.model262.ten.4",
+        "slot.model262.ten.5",
+        "slot.model262.ten.6",
+        "slot.model262.one.1",
+        "slot.model262.one.2",
+        "slot.model271.container",
+        "slot.model271.hundred.1",
+        "slot.model271.hundred.2",
+        "slot.model271.ten.1",
+        "slot.model271.ten.2",
+        "slot.model271.ten.3",
+        "slot.model271.ten.4",
+        "slot.model271.ten.5",
+        "slot.model271.ten.6",
+        "slot.model271.ten.7",
+        "slot.model271.one.1",
+        "slot.model262.label",
+        "slot.model271.label"
+      ]
+    },
+    {
+      "id": "region.questions",
+      "role": "work",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question1",
+        "slot.question2",
+        "slot.question3",
+        "slot.question4",
+        "slot.answer.ones",
+        "slot.answer.regrouped_hundreds",
+        "slot.answer.regrouped_tens",
+        "slot.answer.direct_hundreds",
+        "slot.answer.total"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text",
+      "prompt": "수 모형으로 덧셈을 알아보라는 안내",
+      "content": {
+        "text": "262+271을 수 모형으로 알아보시오.",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 14.0,
+        "font_size": 14,
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.model262.container",
+      "kind": "rect",
+      "prompt": "262의 수 모형을 묶는 영역",
+      "content": {
+        "x": 20.0,
+        "y": 24.0,
+        "width": 143.0,
+        "height": 62.0,
+        "stroke": "#e36b72",
+        "stroke_width": 1.0,
+        "fill": "#ffffff",
+        "semantic_role": "model_container"
+      }
+    },
+    {
+      "id": "slot.model262.hundred.1",
+      "kind": "rect",
+      "prompt": "백 모형",
+      "content": {
+        "x": 32.0,
+        "y": 37.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#557260",
+        "stroke_width": 1.0,
+        "fill": "#dcead5",
+        "semantic_role": "hundred_block"
+      }
+    },
+    {
+      "id": "slot.model262.hundred.2",
+      "kind": "rect",
+      "prompt": "백 모형",
+      "content": {
+        "x": 71.0,
+        "y": 37.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#557260",
+        "stroke_width": 1.0,
+        "fill": "#dcead5",
+        "semantic_role": "hundred_block"
+      }
+    },
+    {
+      "id": "slot.model262.ten.1",
+      "kind": "rect",
+      "prompt": "십 모형",
+      "content": {
+        "x": 112.0,
+        "y": 37.0,
+        "width": 5.0,
+        "height": 34.0,
+        "stroke": "#54758b",
+        "stroke_width": 1.0,
+        "fill": "#d7e8f2",
+        "semantic_role": "ten_rod"
+      }
+    },
+    {
+      "id": "slot.model262.ten.2",
+      "kind": "rect",
+      "prompt": "십 모형",
+      "content": {
+        "x": 120.0,
+        "y": 37.0,
+        "width": 5.0,
+        "height": 34.0,
+        "stroke": "#54758b",
+        "stroke_width": 1.0,
+        "fill": "#d7e8f2",
+        "semantic_role": "ten_rod"
+      }
+    },
+    {
+      "id": "slot.model262.ten.3",
+      "kind": "rect",
+      "prompt": "십 모형",
+      "content": {
+        "x": 128.0,
+        "y": 37.0,
+        "width": 5.0,
+        "height": 34.0,
+        "stroke": "#54758b",
+        "stroke_width": 1.0,
+        "fill": "#d7e8f2",
+        "semantic_role": "ten_rod"
+      }
+    },
+    {
+      "id": "slot.model262.ten.4",
+      "kind": "rect",
+      "prompt": "십 모형",
+      "content": {
+        "x": 136.0,
+        "y": 37.0,
+        "width": 5.0,
+        "height": 34.0,
+        "stroke": "#54758b",
+        "stroke_width": 1.0,
+        "fill": "#d7e8f2",
+        "semantic_role": "ten_rod"
+      }
+    },
+    {
+      "id": "slot.model262.ten.5",
+      "kind": "rect",
+      "prompt": "십 모형",
+      "content": {
+        "x": 144.0,
+        "y": 37.0,
+        "width": 5.0,
+        "height": 34.0,
+        "stroke": "#54758b",
+        "stroke_width": 1.0,
+        "fill": "#d7e8f2",
+        "semantic_role": "ten_rod"
+      }
+    },
+    {
+      "id": "slot.model262.ten.6",
+      "kind": "rect",
+      "prompt": "십 모형",
+      "content": {
+        "x": 152.0,
+        "y": 37.0,
+        "width": 5.0,
+        "height": 34.0,
+        "stroke": "#54758b",
+        "stroke_width": 1.0,
+        "fill": "#d7e8f2",
+        "semantic_role": "ten_rod"
+      }
+    },
+    {
+      "id": "slot.model262.one.1",
+      "kind": "rect",
+      "prompt": "낱개 모형",
+      "content": {
+        "x": 162.0,
+        "y": 61.0,
+        "width": 5.0,
+        "height": 5.0,
+        "stroke": "#9a5f63",
+        "stroke_width": 1.0,
+        "fill": "#f2d8d8",
+        "semantic_role": "one_block"
+      }
+    },
+    {
+      "id": "slot.model262.one.2",
+      "kind": "rect",
+      "prompt": "낱개 모형",
+      "content": {
+        "x": 162.0,
+        "y": 68.0,
+        "width": 5.0,
+        "height": 5.0,
+        "stroke": "#9a5f63",
+        "stroke_width": 1.0,
+        "fill": "#f2d8d8",
+        "semantic_role": "one_block"
+      }
+    },
+    {
+      "id": "slot.model262.label",
+      "kind": "text",
+      "prompt": "수 모형 아래의 수",
+      "content": {
+        "text": "262",
+        "style_role": "body",
+        "x": 96.0,
+        "y": 90.0,
+        "font_size": 12,
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "number_label"
+      }
+    },
+    {
+      "id": "slot.model271.container",
+      "kind": "rect",
+      "prompt": "271의 수 모형을 묶는 영역",
+      "content": {
+        "x": 188.0,
+        "y": 24.0,
+        "width": 141.0,
+        "height": 62.0,
+        "stroke": "#e36b72",
+        "stroke_width": 1.0,
+        "fill": "#ffffff",
+        "semantic_role": "model_container"
+      }
+    },
+    {
+      "id": "slot.model271.hundred.1",
+      "kind": "rect",
+      "prompt": "백 모형",
+      "content": {
+        "x": 190.0,
+        "y": 37.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#557260",
+        "stroke_width": 1.0,
+        "fill": "#dcead5",
+        "semantic_role": "hundred_block"
+      }
+    },
+    {
+      "id": "slot.model271.hundred.2",
+      "kind": "rect",
+      "prompt": "백 모형",
+      "content": {
+        "x": 229.0,
+        "y": 37.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#557260",
+        "stroke_width": 1.0,
+        "fill": "#dcead5",
+        "semantic_role": "hundred_block"
+      }
+    },
+    {
+      "id": "slot.model271.ten.1",
+      "kind": "rect",
+      "prompt": "십 모형",
+      "content": {
+        "x": 270.0,
+        "y": 37.0,
+        "width": 5.0,
+        "height": 34.0,
+        "stroke": "#54758b",
+        "stroke_width": 1.0,
+        "fill": "#d7e8f2",
+        "semantic_role": "ten_rod"
+      }
+    },
+    {
+      "id": "slot.model271.ten.2",
+      "kind": "rect",
+      "prompt": "십 모형",
+      "content": {
+        "x": 278.0,
+        "y": 37.0,
+        "width": 5.0,
+        "height": 34.0,
+        "stroke": "#54758b",
+        "stroke_width": 1.0,
+        "fill": "#d7e8f2",
+        "semantic_role": "ten_rod"
+      }
+    },
+    {
+      "id": "slot.model271.ten.3",
+      "kind": "rect",
+      "prompt": "십 모형",
+      "content": {
+        "x": 286.0,
+        "y": 37.0,
+        "width": 5.0,
+        "height": 34.0,
+        "stroke": "#54758b",
+        "stroke_width": 1.0,
+        "fill": "#d7e8f2",
+        "semantic_role": "ten_rod"
+      }
+    },
+    {
+      "id": "slot.model271.ten.4",
+      "kind": "rect",
+      "prompt": "십 모형",
+      "content": {
+        "x": 294.0,
+        "y": 37.0,
+        "width": 5.0,
+        "height": 34.0,
+        "stroke": "#54758b",
+        "stroke_width": 1.0,
+        "fill": "#d7e8f2",
+        "semantic_role": "ten_rod"
+      }
+    },
+    {
+      "id": "slot.model271.ten.5",
+      "kind": "rect",
+      "prompt": "십 모형",
+      "content": {
+        "x": 302.0,
+        "y": 37.0,
+        "width": 5.0,
+        "height": 34.0,
+        "stroke": "#54758b",
+        "stroke_width": 1.0,
+        "fill": "#d7e8f2",
+        "semantic_role": "ten_rod"
+      }
+    },
+    {
+      "id": "slot.model271.ten.6",
+      "kind": "rect",
+      "prompt": "십 모형",
+      "content": {
+        "x": 310.0,
+        "y": 37.0,
+        "width": 5.0,
+        "height": 34.0,
+        "stroke": "#54758b",
+        "stroke_width": 1.0,
+        "fill": "#d7e8f2",
+        "semantic_role": "ten_rod"
+      }
+    },
+    {
+      "id": "slot.model271.ten.7",
+      "kind": "rect",
+      "prompt": "십 모형",
+      "content": {
+        "x": 318.0,
+        "y": 37.0,
+        "width": 5.0,
+        "height": 34.0,
+        "stroke": "#54758b",
+        "stroke_width": 1.0,
+        "fill": "#d7e8f2",
+        "semantic_role": "ten_rod"
+      }
+    },
+    {
+      "id": "slot.model271.one.1",
+      "kind": "rect",
+      "prompt": "낱개 모형",
+      "content": {
+        "x": 328.0,
+        "y": 61.0,
+        "width": 5.0,
+        "height": 5.0,
+        "stroke": "#9a5f63",
+        "stroke_width": 1.0,
+        "fill": "#f2d8d8",
+        "semantic_role": "one_block"
+      }
+    },
+    {
+      "id": "slot.model271.label",
+      "kind": "text",
+      "prompt": "수 모형 아래의 수",
+      "content": {
+        "text": "271",
+        "style_role": "body",
+        "x": 254.0,
+        "y": 90.0,
+        "font_size": 12,
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "number_label"
+      }
+    },
+    {
+      "id": "slot.question1",
+      "kind": "text",
+      "prompt": "낱개 모형의 합을 묻는 첫 번째 질문",
+      "content": {
+        "text": "(1) 낱개 모형끼리 더하면 몇 개입니까?",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 119.0,
+        "font_size": 14,
+        "fill": "#222222",
+        "semantic_role": "subquestion"
+      }
+    },
+    {
+      "id": "slot.question2",
+      "kind": "text",
+      "prompt": "십 모형을 받아올림한 결과를 묻는 두 번째 질문",
+      "content": {
+        "text": "(2) 십 모형끼리 더한 것은 백 모형 몇 개와 십 모형 몇 개가 됩니까?",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 141.0,
+        "font_size": 14,
+        "fill": "#222222",
+        "semantic_role": "subquestion"
+      }
+    },
+    {
+      "id": "slot.question3",
+      "kind": "text",
+      "prompt": "백 모형의 직접 합을 묻는 세 번째 질문",
+      "content": {
+        "text": "(3) 백 모형끼리 더하면 몇 개입니까?",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 163.0,
+        "font_size": 14,
+        "fill": "#222222",
+        "semantic_role": "subquestion"
+      }
+    },
+    {
+      "id": "slot.question4",
+      "kind": "text",
+      "prompt": "최종 덧셈 결과를 묻는 네 번째 질문",
+      "content": {
+        "text": "(4) 262+271은 얼마입니까?",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 185.0,
+        "font_size": 14,
+        "fill": "#222222",
+        "semantic_role": "subquestion"
+      }
+    },
+    {
+      "id": "slot.answer.ones",
+      "kind": "blank",
+      "prompt": "(1) 낱개 모형끼리 더한 개수",
+      "content": {
+        "placeholder": "개"
+      }
+    },
+    {
+      "id": "slot.answer.regrouped_hundreds",
+      "kind": "blank",
+      "prompt": "(2) 십 모형 13개를 바꾼 백 모형의 개수",
+      "content": {
+        "placeholder": "개"
+      }
+    },
+    {
+      "id": "slot.answer.regrouped_tens",
+      "kind": "blank",
+      "prompt": "(2) 십 모형 13개를 바꾼 뒤 남는 십 모형의 개수",
+      "content": {
+        "placeholder": "개"
+      }
+    },
+    {
+      "id": "slot.answer.direct_hundreds",
+      "kind": "blank",
+      "prompt": "(3) 두 수의 백 모형끼리 더한 개수",
+      "content": {
+        "placeholder": "개"
+      }
+    },
+    {
+      "id": "slot.answer.total",
+      "kind": "blank",
+      "prompt": "(4) 262와 271의 합",
+      "content": {
+        "placeholder": ""
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.instruction",
+    "region.models",
+    "slot.model262.container",
+    "slot.model262.hundred.1",
+    "slot.model262.hundred.2",
+    "slot.model262.ten.1",
+    "slot.model262.ten.2",
+    "slot.model262.ten.3",
+    "slot.model262.ten.4",
+    "slot.model262.ten.5",
+    "slot.model262.ten.6",
+    "slot.model262.one.1",
+    "slot.model262.one.2",
+    "slot.model271.container",
+    "slot.model271.hundred.1",
+    "slot.model271.hundred.2",
+    "slot.model271.ten.1",
+    "slot.model271.ten.2",
+    "slot.model271.ten.3",
+    "slot.model271.ten.4",
+    "slot.model271.ten.5",
+    "slot.model271.ten.6",
+    "slot.model271.ten.7",
+    "slot.model271.one.1",
+    "slot.model262.label",
+    "slot.model271.label",
+    "region.questions",
+    "slot.question1",
+    "slot.question2",
+    "slot.question3",
+    "slot.question4",
+    "slot.answer.ones",
+    "slot.answer.regrouped_hundreds",
+    "slot.answer.regrouped_tens",
+    "slot.answer.direct_hundreds",
+    "slot.answer.total"
+  ]
+}

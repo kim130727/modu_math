@@ -1,0 +1,140 @@
+{
+  "problem_id": "P3_1_01_00040_15630",
+  "view_box": {
+    "width": 619.0,
+    "height": 133.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 20.0,
+        "y": 2.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR",
+        "font-size": 14,
+        "width": 430.0,
+        "height": 22.0,
+        "max_width": 430.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 20.0,
+        "data-box-y": 2.0,
+        "data-box-width": 430.0,
+        "data-box-height": 22.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-semantic-role": "question"
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "다음 두 수의 차가 123인 것은 어느 것입니까?"
+    },
+    {
+      "id": "slot.choice1.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 38.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR",
+        "font-size": 14,
+        "data-semantic-role": "choice"
+      },
+      "source_ref": "slot.choice1",
+      "refs": {
+        "layout_slot_id": "slot.choice1"
+      },
+      "text": "① 647, 341"
+    },
+    {
+      "id": "slot.choice2.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 60.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR",
+        "font-size": 14,
+        "data-semantic-role": "choice"
+      },
+      "source_ref": "slot.choice2",
+      "refs": {
+        "layout_slot_id": "slot.choice2"
+      },
+      "text": "② 488, 227"
+    },
+    {
+      "id": "slot.choice3.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 82.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR",
+        "font-size": 14,
+        "data-semantic-role": "choice"
+      },
+      "source_ref": "slot.choice3",
+      "refs": {
+        "layout_slot_id": "slot.choice3"
+      },
+      "text": "③ 847, 740"
+    },
+    {
+      "id": "slot.choice4.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 104.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR",
+        "font-size": 14,
+        "data-semantic-role": "choice"
+      },
+      "source_ref": "slot.choice4",
+      "refs": {
+        "layout_slot_id": "slot.choice4"
+      },
+      "text": "④ 528, 405"
+    },
+    {
+      "id": "slot.choice5.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 126.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR",
+        "font-size": 14,
+        "data-semantic-role": "choice"
+      },
+      "source_ref": "slot.choice5",
+      "refs": {
+        "layout_slot_id": "slot.choice5"
+      },
+      "text": "⑤ 386, 223"
+    },
+    {
+      "id": "slot.answer.blank",
+      "type": "rect",
+      "attributes": {
+        "x": 64.0,
+        "y": 158.0,
+        "width": 120.0,
+        "height": 32.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.answer",
+      "refs": {
+        "layout_slot_id": "slot.answer"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

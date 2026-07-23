@@ -1,0 +1,162 @@
+{
+  "problem_id": "P3_1_01_00040_15625",
+  "problem_type": "numeric_answer_three_addends_word_problem",
+  "metadata": {
+    "title": "재형이의 앨범에 있는 사진 수",
+    "tags": [],
+    "question": "재형이의 앨범에는 324장의 가족 사진과 133장의 친구 사진이 있습니다. 그리고 혼자 찍은 사진도 102장이 있습니다. 사진은 모두 몇 장입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR",
+    "instruction": "가족 사진, 친구 사진, 혼자 찍은 사진의 수를 모두 더합니다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "person.jaehyeong",
+        "type": "person",
+        "label": "재형이"
+      },
+      {
+        "id": "object.album",
+        "type": "container",
+        "label": "재형이의 앨범"
+      },
+      {
+        "id": "object.photo",
+        "type": "countable_object",
+        "label": "사진",
+        "unit": "장"
+      },
+      {
+        "id": "category.family_photo",
+        "type": "photo_category",
+        "label": "가족 사진"
+      },
+      {
+        "id": "category.friend_photo",
+        "type": "photo_category",
+        "label": "친구 사진"
+      },
+      {
+        "id": "category.single_photo",
+        "type": "photo_category",
+        "label": "혼자 찍은 사진"
+      },
+      {
+        "id": "quantity.family_photos",
+        "type": "quantity",
+        "label": "가족 사진 수",
+        "value": 324,
+        "unit": "장"
+      },
+      {
+        "id": "quantity.friend_photos",
+        "type": "quantity",
+        "label": "친구 사진 수",
+        "value": 133,
+        "unit": "장"
+      },
+      {
+        "id": "quantity.single_photos",
+        "type": "quantity",
+        "label": "혼자 찍은 사진 수",
+        "value": 102,
+        "unit": "장"
+      },
+      {
+        "id": "quantity.family_and_friend_photos",
+        "type": "derived_quantity",
+        "label": "가족 사진과 친구 사진의 합",
+        "value": 457,
+        "unit": "장"
+      },
+      {
+        "id": "quantity.total_photos",
+        "type": "unknown_quantity",
+        "label": "앨범에 있는 전체 사진 수",
+        "unit": "장"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.album_belongs_to_jaehyeong",
+        "type": "belongs_to",
+        "subject": "object.album",
+        "owner": "person.jaehyeong"
+      },
+      {
+        "id": "relation.album_contains_family_photos",
+        "type": "contains",
+        "container": "object.album",
+        "object": "category.family_photo",
+        "quantity_ref": "quantity.family_photos"
+      },
+      {
+        "id": "relation.album_contains_friend_photos",
+        "type": "contains",
+        "container": "object.album",
+        "object": "category.friend_photo",
+        "quantity_ref": "quantity.friend_photos"
+      },
+      {
+        "id": "relation.album_contains_single_photos",
+        "type": "contains",
+        "container": "object.album",
+        "object": "category.single_photo",
+        "quantity_ref": "quantity.single_photos"
+      },
+      {
+        "id": "relation.total_is_sum",
+        "type": "sum_of",
+        "subject": "quantity.total_photos",
+        "objects": [
+          "quantity.family_photos",
+          "quantity.friend_photos",
+          "quantity.single_photos"
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "quantity.family_photos",
+          "quantity.friend_photos",
+          "quantity.single_photos"
+        ],
+        "target_ref": "quantity.total_photos",
+        "condition_refs": [
+          "relation.total_is_sum"
+        ]
+      },
+      "plan": {
+        "method": "sequential_addition",
+        "description": "가족 사진과 친구 사진을 먼저 더한 뒤 혼자 찍은 사진을 더합니다."
+      },
+      "execute": {
+        "expected_operations": [
+          "addition",
+          "addition"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "inverse_subtraction",
+          "recomposition"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "type": "numeric",
+    "value": 559,
+    "unit": "장",
+    "target_ref": "quantity.total_photos",
+    "derived_from": "step.add_single_photos"
+  }
+}

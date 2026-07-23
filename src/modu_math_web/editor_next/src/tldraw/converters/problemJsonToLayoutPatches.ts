@@ -216,6 +216,7 @@ function mathTextFields(object: MathTextObject, includeBoxSize: boolean): Record
     fields.max_width = null;
   }
 
+  appendAnswerSlotFields(fields, object.props);
   return fields;
 }
 
@@ -230,6 +231,7 @@ function basicShapeFields(object: BasicShapeObject): Record<string, unknown> {
       stroke_width: round(object.props.strokeWidth ?? 1),
     };
     fields.stroke_dasharray = object.props.strokeDasharray || null;
+    appendAnswerSlotFields(fields, object.props);
     return fields;
   }
 
@@ -244,6 +246,7 @@ function basicShapeFields(object: BasicShapeObject): Record<string, unknown> {
       stroke_width: round(object.props.strokeWidth ?? 1),
     };
     fields.stroke_dasharray = object.props.strokeDasharray || null;
+    appendAnswerSlotFields(fields, object.props);
     return fields;
   }
 
@@ -257,11 +260,12 @@ function basicShapeFields(object: BasicShapeObject): Record<string, unknown> {
     stroke_width: round(object.props.strokeWidth ?? 1),
   };
   fields.stroke_dasharray = object.props.strokeDasharray || null;
+  appendAnswerSlotFields(fields, object.props);
   return fields;
 }
 
 function imageFields(object: ImageObject): Record<string, unknown> {
-  return {
+  const fields: Record<string, unknown> = {
     href: dslImageHref(object.props.src),
     x: round(object.x),
     y: round(object.y),
@@ -269,6 +273,8 @@ function imageFields(object: ImageObject): Record<string, unknown> {
     height: round(object.props.height),
     preserve_aspect_ratio: object.props.preserveAspectRatio ?? "xMidYMid meet",
   };
+  appendAnswerSlotFields(fields, object.props);
+  return fields;
 }
 
 function pathFields(object: PathObject): Record<string, unknown> {
@@ -279,7 +285,13 @@ function pathFields(object: PathObject): Record<string, unknown> {
     stroke_width: round(object.props.strokeWidth ?? 1),
   };
   fields.stroke_dasharray = object.props.strokeDasharray || null;
+  appendAnswerSlotFields(fields, object.props);
   return fields;
+}
+
+function appendAnswerSlotFields(fields: Record<string, unknown>, props: Record<string, unknown>): void {
+  fields.interaction = isRecord(props.interaction) ? props.interaction : null;
+  fields.input_style = isRecord(props.input_style) ? props.input_style : null;
 }
 
 function changedFields(base: Record<string, unknown>, next: Record<string, unknown>): Record<string, unknown> {
@@ -473,6 +485,10 @@ function dslImageHref(src: string): string {
   if (!src.startsWith("/api/editor/assets/")) return src;
   const parts = src.split("/");
   return decodeURIComponent(parts[parts.length - 1] ?? src);
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 function round(value: number): number {
