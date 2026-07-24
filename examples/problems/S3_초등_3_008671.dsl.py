@@ -7,7 +7,7 @@ from modu_math.dsl import (
     RectSlot,
     CircleSlot,
     LineSlot,
-)
+TextBoxSlot)
 
 
 def build_problem_template() -> ProblemTemplate:
@@ -26,8 +26,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.diagram",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(
-                    "slot.bar",
+                slot_ids=("slot.bar",
                     "slot.tool",
                     "slot.hole.1",
                     "slot.hole.2",
@@ -45,12 +44,10 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.choice.lb.1",
                     "slot.choice.lb.2",
                     "slot.choice.lb.3",
-                    "slot.choice.lb.4",
-                ),
+                    "slot.choice.lb.4",'konva_1784858509254_paste_299959_0'),
             ),
         ),
-        slots=(
-            TextSlot(
+        slots=(TextSlot(
                 id="slot.q1",
                 prompt="",
                 text="누름 못과 띠 종이를 사용하여 원을 그리려고 합니다.",
@@ -63,11 +60,9 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.q2",
                 prompt="",
-                text="원을 가장 크게 그리려면 어느 구멍에 연필을 꽂아야 하는지 알맞은 기호를 선택하세요.",
-                style_role="question",
+                text = '원을 가장 크게 그리려면 어느 구멍에 연필을 꽂아야 하는지', style_role="question",
                 x=15,
-                y=74,
-                font_size=30,
+                y = 77.934, font_size=30,
                 fill="#111111",
             ),
             RectSlot(
@@ -210,8 +205,7 @@ def build_problem_template() -> ProblemTemplate:
                 y=290,
                 font_size=25,
                 fill="#111111",
-            ),
-        ),
+            ),TextBoxSlot(id = 'konva_1784858509254_paste_299959_0', prompt = '', text = '알맞은 기호를 선택하세요.', x = 16.705, y = 84.393, font_size = 30, fill = '#111111', width = 384, height = 44, align = 'left', line_height = 1.2)),
         diagrams=(),
         groups=(),
         constraints=(),

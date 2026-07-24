@@ -14,14 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q1"
-      ]
-    },
-    {
-      "id": "region.diagram.top1",
-      "role": "diagram",
-      "flow": "absolute",
-      "slot_ids": [
         "slot.top1.box",
         "slot.top1.c1.r3",
         "slot.top1.c1.r1",
@@ -62,7 +54,16 @@
         "slot.top1.grid.h4",
         "slot.top1.grid.h5",
         "slot.top1.grid.h6",
-        "slot.top1.grid.h7"
+        "slot.top1.grid.h7",
+        "slot.q1"
+      ]
+    },
+    {
+      "id": "region.diagram.top1",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "konva_1784858509254_paste_330479_0"
       ]
     },
     {
@@ -120,7 +121,7 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "규칙에 따라 원을 4개 더 그리려고 합니다. 바르게 그린 것을 선택하세요.",
+        "text": "규칙에 따라 원을 4개 더 그리려고 합니다.",
         "style_role": "question",
         "x": 35.0,
         "y": 42.0,
@@ -1195,6 +1196,24 @@
         "stroke_width": 2.2,
         "fill": "none"
       }
+    },
+    {
+      "id": "konva_1784858509254_paste_330479_0",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "바르게 그린 것을 선택하세요.",
+        "style_role": "body",
+        "x": 37.867,
+        "y": 49.685,
+        "width": 339.0,
+        "height": 37.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 24,
+        "line_height": 1.2,
+        "fill": "#111111"
+      }
     }
   ],
   "groups": [],
@@ -1202,8 +1221,6 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.q1",
-    "region.diagram.top1",
     "slot.top1.box",
     "slot.top1.c1.r3",
     "slot.top1.c1.r1",
@@ -1245,6 +1262,9 @@
     "slot.top1.grid.h5",
     "slot.top1.grid.h6",
     "slot.top1.grid.h7",
+    "slot.q1",
+    "region.diagram.top1",
+    "konva_1784858509254_paste_330479_0",
     "region.diagram.top2",
     "slot.top2.box",
     "slot.top2.c1.r3",

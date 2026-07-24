@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from modu_math.dsl import Canvas, CircleSlot, LineSlot, ProblemTemplate, RectSlot, Region, TextSlot
+from modu_math.dsl import Canvas, CircleSlot, LineSlot, ProblemTemplate, RectSlot, Region, TextSlot, TextBoxSlot
 
 PROBLEM_ID = "S3_초등_3_008670"
 GRID_BLUE = "#1EA7FF"
@@ -135,7 +135,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.diagram.top1",
                 role="diagram",
                 flow="absolute",
-                slot_ids=TOP1_SLOT_IDS,
+                slot_ids=(TOP1_SLOT_IDS, 'konva_1784858509254_paste_330479_0'),
             ),
             Region(
                 id="region.diagram.top2",
@@ -144,12 +144,10 @@ def build_problem_template() -> ProblemTemplate:
                 slot_ids=TOP2_SLOT_IDS,
             ),
         ),
-        slots=(
-            TextSlot(
+        slots=(TextSlot(
                 id="slot.q1",
                 prompt="",
-                text="규칙에 따라 원을 4개 더 그리려고 합니다. 바르게 그린 것을 선택하세요.",
-                style_role="question",
+                text = '규칙에 따라 원을 4개 더 그리려고 합니다.', style_role="question",
                 x=35.0,
                 y=42.0,
                 font_size=24,
@@ -158,8 +156,7 @@ def build_problem_template() -> ProblemTemplate:
             *grid_slots("slot.top1", TOP1_X, TOP1_Y),
             *circle_pair_slots("slot.top1", TOP1_X, TOP1_Y, TOP1_CIRCLES),
             *grid_slots("slot.top2", TOP2_X, TOP2_Y),
-            *circle_pair_slots("slot.top2", TOP2_X, TOP2_Y, TOP2_CIRCLES),
-        ),
+            *circle_pair_slots("slot.top2", TOP2_X, TOP2_Y, TOP2_CIRCLES),TextBoxSlot(id = 'konva_1784858509254_paste_330479_0', prompt = '', text = '바르게 그린 것을 선택하세요.', x = 37.867, y = 49.685, font_size = 24, fill = '#111111', width = 339, height = 37, align = 'left', line_height = 1.2)),
         diagrams=(),
         groups=(),
         constraints=(),
