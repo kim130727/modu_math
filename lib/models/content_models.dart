@@ -130,7 +130,11 @@ class ProblemContent {
     if (key is! List && key != null && key.toString().isNotEmpty) {
       return sanitizeProblemText(key.toString());
     }
-    return sanitizeProblemText(answer['value']?.toString() ?? '');
+    final value = answer['value'];
+    if (value is List) {
+      return sanitizeProblemText(value.map((item) => item.toString()).join());
+    }
+    return sanitizeProblemText(value?.toString() ?? '');
   }
 
   List<SolutionStep> get steps {

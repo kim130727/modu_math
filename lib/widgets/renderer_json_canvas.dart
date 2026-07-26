@@ -21,6 +21,7 @@ class RendererJsonCanvas extends StatefulWidget {
 class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
   final List<TextEditingController> inputControllers = [];
   String inputSignature = '';
+  String? lastEmittedInputValue;
 
   @override
   void initState() {
@@ -31,9 +32,13 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
   @override
   void didUpdateWidget(covariant RendererJsonCanvas oldWidget) {
     super.didUpdateWidget(oldWidget);
+    final inputChangedFromThisCanvas =
+        widget.inputValue == lastEmittedInputValue &&
+            oldWidget.renderer == widget.renderer;
     _syncInputControllers(
       force: oldWidget.renderer != widget.renderer ||
-          oldWidget.inputValue != widget.inputValue,
+          (oldWidget.inputValue != widget.inputValue &&
+              !inputChangedFromThisCanvas),
     );
   }
 
@@ -100,51 +105,105 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
       final index = entry.$1;
       final slot = entry.$2;
       final rect = slot.rect;
-      final fontSize = (rect.height * 0.72 * scale).clamp(18.0, 52.0);
+      final fontSize = _inputFontSize(slot, scale);
       final maxLength = slot.maxLength;
       final inset = (2 * scale).clamp(1.0, 3.0);
+      final textColor =
+          slot.drawPlaceholderBehind ? Colors.transparent : colorScheme.onSurface;
       return Positioned(
         left: rect.left * scale + inset,
         top: rect.top * scale + inset,
         width: rect.width * scale - inset * 2,
         height: rect.height * scale - inset * 2,
-        child: TextField(
-          controller: inputControllers[index],
-          textAlign: TextAlign.center,
-          textAlignVertical: TextAlignVertical.center,
-          keyboardType: TextInputType.number,
-          inputFormatters: [
-            if (slot.digitsOnly) FilteringTextInputFormatter.digitsOnly,
-            LengthLimitingTextInputFormatter(maxLength),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            if (slot.drawPlaceholderBehind)
+              IgnorePointer(
+                child: Center(
+                  child: Text(
+                    slot.placeholder!,
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.notoSansKr(
+                      color: colorScheme.onSurface,
+                      fontSize: (rect.height * 0.86 * scale).clamp(18.0, 52.0),
+                      fontWeight: FontWeight.w500,
+                      height: 1,
+                    ),
+                  ),
+                ),
+              ),
+            TextField(
+              controller: inputControllers[index],
+              textAlign: TextAlign.center,
+              textAlignVertical: TextAlignVertical.center,
+              keyboardType:
+                  slot.digitsOnly ? TextInputType.number : TextInputType.text,
+              inputFormatters: [
+                if (slot.digitsOnly) FilteringTextInputFormatter.digitsOnly,
+                if (slot.operatorOnly)
+                  FilteringTextInputFormatter.allow(RegExp(r'[<>=]')),
+                LengthLimitingTextInputFormatter(maxLength),
+              ],
+              style: GoogleFonts.notoSansKr(
+                color: textColor,
+                fontSize: fontSize,
+                fontWeight: FontWeight.w800,
+                height: 1,
+              ),
+              cursorHeight: fontSize,
+              cursorColor:
+                  slot.drawPlaceholderBehind ? Colors.transparent : null,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                disabledBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                focusedErrorBorder: InputBorder.none,
+                filled: false,
+                hoverColor: Colors.transparent,
+                hintText: slot.drawPlaceholderBehind ? null : slot.placeholder,
+                hintStyle: GoogleFonts.notoSansKr(
+                  color: colorScheme.onSurface,
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.w800,
+                  height: 1,
+                ),
+                counterText: '',
+                contentPadding: EdgeInsets.zero,
+                isCollapsed: true,
+              ),
+              onChanged: (value) {
+                if (slot.autoAdvance &&
+                    value.length >= maxLength &&
+                    index + 1 < inputControllers.length) {
+                  FocusScope.of(context).nextFocus();
+                }
+                final nextValue = _combinedInputValue();
+                lastEmittedInputValue = nextValue;
+                if (slot.drawPlaceholderBehind) {
+                  setState(() {});
+                }
+                widget.onInputChanged?.call(nextValue);
+              },
+            ),
+            if (slot.drawPlaceholderBehind)
+              IgnorePointer(
+                child: Center(
+                  child: Text(
+                    inputControllers[index].text,
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.notoSansKr(
+                      color: colorScheme.onSurface,
+                      fontSize: fontSize,
+                      fontWeight: FontWeight.w800,
+                      height: 1,
+                    ),
+                  ),
+                ),
+              ),
           ],
-          style: GoogleFonts.notoSansKr(
-            color: colorScheme.onSurface,
-            fontSize: fontSize,
-            fontWeight: FontWeight.w800,
-            height: 1,
-          ),
-          cursorHeight: fontSize,
-          decoration: const InputDecoration(
-            border: InputBorder.none,
-            enabledBorder: InputBorder.none,
-            focusedBorder: InputBorder.none,
-            disabledBorder: InputBorder.none,
-            errorBorder: InputBorder.none,
-            focusedErrorBorder: InputBorder.none,
-            filled: false,
-            hoverColor: Colors.transparent,
-            counterText: '',
-            contentPadding: EdgeInsets.zero,
-            isCollapsed: true,
-          ),
-          onChanged: (value) {
-            if (slot.autoAdvance &&
-                value.length >= maxLength &&
-                index + 1 < inputControllers.length) {
-              FocusScope.of(context).nextFocus();
-            }
-            widget.onInputChanged?.call(_combinedInputValue());
-          },
         ),
       );
     }).toList(growable: false);
@@ -474,7 +533,10 @@ List<_InputSlot> _inputSlots(Map<String, dynamic> renderer) {
           contributesToAnswer: _contributesToAnswer(element),
           maxLength: _maxLengthForInput(element),
           digitsOnly: _digitsOnlyForInput(element),
+          operatorOnly: _operatorOnlyForInput(element),
           autoAdvance: _autoAdvanceForInput(element),
+          order: _orderForInput(element),
+          placeholder: _placeholderForInput(element),
         ),
       );
       continue;
@@ -499,11 +561,23 @@ List<_InputSlot> _inputSlots(Map<String, dynamic> renderer) {
         contributesToAnswer: _contributesToAnswer(element),
         maxLength: _maxLengthForInput(element),
         digitsOnly: _digitsOnlyForInput(element),
+        operatorOnly: _operatorOnlyForInput(element),
         autoAdvance: _autoAdvanceForInput(element),
+        order: _orderForInput(element),
+        placeholder: _placeholderForInput(element),
       ),
     );
   }
   slots.sort((a, b) {
+    final orderComparison = switch ((a.order, b.order)) {
+      (final int aOrder, final int bOrder) => aOrder.compareTo(bOrder),
+      (final int _, null) => -1,
+      (null, final int _) => 1,
+      _ => 0,
+    };
+    if (orderComparison != 0) {
+      return orderComparison;
+    }
     final row = a.rect.top.compareTo(b.rect.top).abs() < 12
         ? 0
         : a.rect.top.compareTo(b.rect.top);
@@ -525,6 +599,10 @@ bool _contributesToAnswer(Map<String, dynamic> element) {
 }
 
 bool _looksLikeInputTextBox(Map<String, dynamic> element) {
+  final interaction = _mapAt(element, 'interaction');
+  if (interaction['type']?.toString().toLowerCase() == 'input') {
+    return true;
+  }
   final text = element['text']?.toString().trim();
   if (text != '□') {
     return false;
@@ -590,9 +668,41 @@ bool _digitsOnlyForInput(Map<String, dynamic> element) {
       keyboard == 'number';
 }
 
+bool _operatorOnlyForInput(Map<String, dynamic> element) {
+  final interaction = _mapAt(element, 'interaction');
+  final valueType = interaction['value_type']?.toString().toLowerCase();
+  final keyboard = interaction['keyboard']?.toString().toLowerCase();
+  return valueType == 'operator' ||
+      valueType == 'comparison_operator' ||
+      keyboard == 'operator';
+}
+
 bool _autoAdvanceForInput(Map<String, dynamic> element) {
   final interaction = _mapAt(element, 'interaction');
   return interaction['auto_advance'] == true;
+}
+
+double _inputFontSize(_InputSlot slot, double scale) {
+  final ratio = slot.operatorOnly ? 0.58 : 0.72;
+  return (slot.rect.height * ratio * scale).clamp(16.0, 52.0);
+}
+
+int? _orderForInput(Map<String, dynamic> element) {
+  final interaction = _mapAt(element, 'interaction');
+  return _readInt(interaction['order']);
+}
+
+String? _placeholderForInput(Map<String, dynamic> element) {
+  final interaction = _mapAt(element, 'interaction');
+  final explicit = interaction['placeholder']?.toString().trim();
+  if (explicit != null && explicit.isNotEmpty) {
+    return explicit;
+  }
+  final text = element['text']?.toString().trim();
+  if (text != null && text.isNotEmpty) {
+    return text;
+  }
+  return null;
 }
 
 String _slotIdentity(Map<String, dynamic> element) {
@@ -610,7 +720,10 @@ class _InputSlot {
     required this.contributesToAnswer,
     required this.maxLength,
     required this.digitsOnly,
+    required this.operatorOnly,
     required this.autoAdvance,
+    required this.order,
+    required this.placeholder,
   });
 
   final Rect rect;
@@ -618,10 +731,16 @@ class _InputSlot {
   final bool contributesToAnswer;
   final int maxLength;
   final bool digitsOnly;
+  final bool operatorOnly;
   final bool autoAdvance;
+  final int? order;
+  final String? placeholder;
+
+  bool get drawPlaceholderBehind =>
+      operatorOnly && placeholder != null && placeholder!.isNotEmpty;
 
   String get signature =>
-      '$id:${rect.left},${rect.top},${rect.width},${rect.height}:$maxLength';
+      '$id:${rect.left},${rect.top},${rect.width},${rect.height}:$maxLength:$order:$placeholder';
 }
 
 Map<String, dynamic> _mapAt(Map<String, dynamic> map, String key) {

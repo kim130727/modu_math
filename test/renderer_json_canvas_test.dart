@@ -183,6 +183,200 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
+  testWidgets('supports ordered operator inputs on text box slots',
+      (tester) async {
+    var value = '';
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 260,
+            height: 120,
+            child: RendererJsonCanvas(
+              inputValue: value,
+              onInputChanged: (next) => value = next,
+              renderer: const {
+                'view_box': {
+                  'width': 260,
+                  'height': 120,
+                  'background': '#FFFFFF',
+                },
+                'elements': [
+                  {
+                    'id': 'slot.problem_2_blank.text',
+                    'type': 'text_box',
+                    'attributes': {
+                      'x': 40,
+                      'y': 40,
+                      'width': 44,
+                      'height': 40,
+                    },
+                    'text': '○',
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'operator',
+                      'max_length': 1,
+                      'include_in_submission': true,
+                      'order': 1,
+                      'group_id': 'final_answer',
+                      'auto_advance': true,
+                      'keyboard': 'operator',
+                    },
+                  },
+                  {
+                    'id': 'slot.problem_1_blank.text',
+                    'type': 'text_box',
+                    'attributes': {
+                      'x': 100,
+                      'y': 40,
+                      'width': 44,
+                      'height': 40,
+                    },
+                    'text': '○',
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'operator',
+                      'max_length': 1,
+                      'include_in_submission': true,
+                      'order': 0,
+                      'group_id': 'final_answer',
+                      'auto_advance': true,
+                      'keyboard': 'operator',
+                    },
+                  },
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byType(TextField), findsNWidgets(2));
+    expect(find.text('○'), findsNWidgets(2));
+
+    await tester.enterText(find.byType(TextField).at(0), '>');
+    await tester.enterText(find.byType(TextField).at(1), '=');
+
+    expect(value, equals('>='));
+    expect(find.text('○'), findsNWidgets(2));
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('keeps input in the clicked ordered slot after parent rebuild',
+      (tester) async {
+    var value = '';
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: StatefulBuilder(
+            builder: (context, setState) {
+              return SizedBox(
+                width: 260,
+                height: 140,
+                child: RendererJsonCanvas(
+                  inputValue: value,
+                  onInputChanged: (next) => setState(() => value = next),
+                  renderer: const {
+                    'view_box': {
+                      'width': 260,
+                      'height': 140,
+                      'background': '#FFFFFF',
+                    },
+                    'elements': [
+                      {
+                        'id': 'carry_hundreds.rect',
+                        'type': 'rect',
+                        'attributes': {
+                          'x': 60,
+                          'y': 20,
+                          'width': 28,
+                          'height': 28,
+                          'fill': '#ffffff',
+                          'stroke': '#111827',
+                        },
+                        'interaction': {
+                          'type': 'input',
+                          'role': 'answer',
+                          'value_type': 'digit',
+                          'max_length': 1,
+                          'include_in_submission': true,
+                          'order': 0,
+                          'keyboard': 'number',
+                        },
+                      },
+                      {
+                        'id': 'carry_tens.rect',
+                        'type': 'rect',
+                        'attributes': {
+                          'x': 92,
+                          'y': 20,
+                          'width': 28,
+                          'height': 28,
+                          'fill': '#ffffff',
+                          'stroke': '#111827',
+                        },
+                        'interaction': {
+                          'type': 'input',
+                          'role': 'answer',
+                          'value_type': 'digit',
+                          'max_length': 1,
+                          'include_in_submission': true,
+                          'order': 1,
+                          'keyboard': 'number',
+                        },
+                      },
+                      {
+                        'id': 'answer_hundreds.rect',
+                        'type': 'rect',
+                        'attributes': {
+                          'x': 60,
+                          'y': 80,
+                          'width': 28,
+                          'height': 28,
+                          'fill': '#ffffff',
+                          'stroke': '#111827',
+                        },
+                        'interaction': {
+                          'type': 'input',
+                          'role': 'answer',
+                          'value_type': 'digit',
+                          'max_length': 1,
+                          'include_in_submission': true,
+                          'order': 2,
+                          'keyboard': 'number',
+                        },
+                      },
+                    ],
+                  },
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+    );
+
+    await tester.enterText(find.byType(TextField).at(2), '9');
+    await tester.pump();
+
+    expect(value, equals('9'));
+    expect(find.widgetWithText(TextField, '9'), findsOneWidget);
+    expect(
+      tester.widget<TextField>(find.byType(TextField).at(0)).controller?.text,
+      isEmpty,
+    );
+    expect(
+      tester.widget<TextField>(find.byType(TextField).at(2)).controller?.text,
+      equals('9'),
+    );
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('syncs only answer slots when carry slots are editable',
       (tester) async {
     var value = '';

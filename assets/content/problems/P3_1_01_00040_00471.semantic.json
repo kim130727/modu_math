@@ -1,0 +1,97 @@
+{
+  "problem_id": "P3_1_01_00040_00471",
+  "problem_type": "multi_answer_expression_comparison",
+  "metadata": {
+    "title": "덧셈식의 크기 비교",
+    "tags": [],
+    "instruction": "(1)",
+    "question": "크기를 비교하여 ○ 안에 >, =, <를 알맞게 써넣으시오.",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈과 크기 비교",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "expression.problem_1_left",
+        "type": "number_expression",
+        "label": "첫 번째 비교의 왼쪽 수",
+        "expression": "532",
+        "value": 532
+      },
+      {
+        "id": "expression.problem_1_right",
+        "type": "addition_expression",
+        "label": "첫 번째 비교의 오른쪽 덧셈식",
+        "expression": "248 + 274",
+        "value": 522
+      },
+      {
+        "id": "comparison.problem_1",
+        "type": "comparison",
+        "label": "첫 번째 크기 비교",
+        "left": "expression.problem_1_left",
+        "right": "expression.problem_1_right",
+        "operator": ">"
+      },
+      {
+        "id": "expression.problem_2_left",
+        "type": "addition_expression",
+        "label": "두 번째 비교의 왼쪽 덧셈식",
+        "expression": "346 + 667",
+        "value": 1013
+      },
+      {
+        "id": "expression.problem_2_right",
+        "type": "addition_expression",
+        "label": "두 번째 비교의 오른쪽 덧셈식",
+        "expression": "428 + 585",
+        "value": 1013
+      },
+      {
+        "id": "comparison.problem_2",
+        "type": "comparison",
+        "label": "두 번째 크기 비교",
+        "left": "expression.problem_2_left",
+        "right": "expression.problem_2_right",
+        "operator": "="
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.problem_1_left_greater_than_right",
+        "type": "greater_than",
+        "subject": "expression.problem_1_left",
+        "object": "expression.problem_1_right"
+      },
+      {
+        "id": "relation.problem_2_left_equals_right",
+        "type": "equal_to",
+        "subject": "expression.problem_2_left",
+        "object": "expression.problem_2_right"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": [
+      ">",
+      "="
+    ],
+    "unit": "",
+    "items": [
+      {
+        "id": "answer.problem_1",
+        "value": ">"
+      },
+      {
+        "id": "answer.problem_2",
+        "value": "="
+      }
+    ]
+  }
+}
