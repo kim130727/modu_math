@@ -14,7 +14,7 @@ void main() {
       expect(manifest.problems.first.id, isNotEmpty);
       expect(
         manifest.problems.first.path,
-        startsWith(ContentRepository.grade3Path),
+        startsWith(ContentRepository.problemsPath),
       );
     });
 

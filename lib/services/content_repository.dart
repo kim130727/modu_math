@@ -7,6 +7,7 @@ import '../models/content_models.dart';
 
 class ContentRepository {
   static const String manifestPath = 'assets/content/problems/manifest.json';
+  static const String problemsPath = 'assets/content/problems';
   static const String grade3Path = 'assets/content/problems/grade3';
 
   Future<ProblemManifest> loadManifest() async {
@@ -59,14 +60,8 @@ class ContentRepository {
   }
 
   Future<List<String>> loadGrade3JsonProblemPrefixes() async {
-    final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
-    final prefixes = manifest
-        .listAssets()
-        .where(
-          (path) =>
-              path.startsWith('$grade3Path/') &&
-              path.endsWith('.renderer.json'),
-        )
+    final rendererPaths = await _loadRendererPaths();
+    final prefixes = rendererPaths
         .map((path) {
           final fileName = path.split('/').last;
           return fileName.replaceFirst('.renderer.json', '');
@@ -94,15 +89,15 @@ class ContentRepository {
   }
 
   Future<String> _basePathForPrefix(String filePrefix) async {
-    final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
-    final rendererPath = manifest.listAssets().firstWhere(
-          (path) =>
-              path.startsWith('$grade3Path/') &&
-              path.endsWith('/$filePrefix.renderer.json'),
-          orElse: () => '',
-        );
+    final rendererPaths = await _loadRendererPaths();
+    final rendererPath = rendererPaths.firstWhere(
+      (path) =>
+          path.endsWith('/$filePrefix.renderer.json') ||
+          path == '$problemsPath/$filePrefix.renderer.json',
+      orElse: () => '',
+    );
     if (rendererPath.isEmpty) {
-      return '$grade3Path/$filePrefix';
+      return '$problemsPath/$filePrefix';
     }
     return rendererPath.substring(
       0,
@@ -111,16 +106,7 @@ class ContentRepository {
   }
 
   Future<List<ProblemSummary>> _loadBundledProblems() async {
-    final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
-    final rendererPaths = manifest
-        .listAssets()
-        .where(
-          (path) =>
-              path.startsWith('$grade3Path/') &&
-              path.endsWith('.renderer.json'),
-        )
-        .toList()
-      ..sort();
+    final rendererPaths = await _loadRendererPaths();
 
     return rendererPaths.map((rendererPath) {
       final filePrefix = rendererPath
@@ -133,6 +119,19 @@ class ContentRepository {
           .join('/');
       return _summaryFromPrefix(path: path, filePrefix: filePrefix);
     }).toList();
+  }
+
+  Future<List<String>> _loadRendererPaths() async {
+    final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+    return manifest
+        .listAssets()
+        .where(
+          (path) =>
+              path.startsWith('$problemsPath/') &&
+              path.endsWith('.renderer.json'),
+        )
+        .toList()
+      ..sort();
   }
 
   ProblemSummary _summaryFromPrefix({

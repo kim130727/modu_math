@@ -101,43 +101,50 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
       final slot = entry.$2;
       final rect = slot.rect;
       final fontSize = (rect.height * 0.72 * scale).clamp(18.0, 52.0);
+      final maxLength = slot.maxLength;
+      final inset = (2 * scale).clamp(1.0, 3.0);
       return Positioned(
-        left: rect.left * scale,
-        top: rect.top * scale,
-        width: rect.width * scale,
-        height: rect.height * scale,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(color: colorScheme.onSurface, width: 2 * scale),
+        left: rect.left * scale + inset,
+        top: rect.top * scale + inset,
+        width: rect.width * scale - inset * 2,
+        height: rect.height * scale - inset * 2,
+        child: TextField(
+          controller: inputControllers[index],
+          textAlign: TextAlign.center,
+          textAlignVertical: TextAlignVertical.center,
+          keyboardType: TextInputType.number,
+          inputFormatters: [
+            if (slot.digitsOnly) FilteringTextInputFormatter.digitsOnly,
+            LengthLimitingTextInputFormatter(maxLength),
+          ],
+          style: GoogleFonts.notoSansKr(
+            color: colorScheme.onSurface,
+            fontSize: fontSize,
+            fontWeight: FontWeight.w800,
+            height: 1,
           ),
-          child: TextField(
-            controller: inputControllers[index],
-            textAlign: TextAlign.center,
-            textAlignVertical: TextAlignVertical.center,
-            keyboardType: TextInputType.number,
-            inputFormatters: [
-              LengthLimitingTextInputFormatter(1),
-            ],
-            style: GoogleFonts.notoSansKr(
-              color: colorScheme.onSurface,
-              fontSize: fontSize,
-              fontWeight: FontWeight.w800,
-              height: 1,
-            ),
-            decoration: const InputDecoration(
-              border: InputBorder.none,
-              counterText: '',
-              contentPadding: EdgeInsets.zero,
-              isCollapsed: true,
-            ),
-            onChanged: (value) {
-              if (value.length == 1 && index + 1 < inputControllers.length) {
-                FocusScope.of(context).nextFocus();
-              }
-              widget.onInputChanged?.call(_combinedInputValue());
-            },
+          cursorHeight: fontSize,
+          decoration: const InputDecoration(
+            border: InputBorder.none,
+            enabledBorder: InputBorder.none,
+            focusedBorder: InputBorder.none,
+            disabledBorder: InputBorder.none,
+            errorBorder: InputBorder.none,
+            focusedErrorBorder: InputBorder.none,
+            filled: false,
+            hoverColor: Colors.transparent,
+            counterText: '',
+            contentPadding: EdgeInsets.zero,
+            isCollapsed: true,
           ),
+          onChanged: (value) {
+            if (slot.autoAdvance &&
+                value.length >= maxLength &&
+                index + 1 < inputControllers.length) {
+              FocusScope.of(context).nextFocus();
+            }
+            widget.onInputChanged?.call(_combinedInputValue());
+          },
         ),
       );
     }).toList(growable: false);
@@ -191,13 +198,19 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
         .map((entry) => entry.$1)
         .toList();
     if (answerIndexes.isEmpty) {
-      return controllerIndex < chars.length ? chars[controllerIndex] : '';
+      final start = slots
+          .take(controllerIndex)
+          .fold<int>(0, (total, slot) => total + slot.maxLength);
+      return _sliceCharacters(chars, start, slots[controllerIndex].maxLength);
     }
     final answerPosition = answerIndexes.indexOf(controllerIndex);
-    if (answerPosition < 0 || answerPosition >= chars.length) {
+    if (answerPosition < 0) {
       return '';
     }
-    return chars[answerPosition];
+    final start = answerIndexes
+        .take(answerPosition)
+        .fold<int>(0, (total, index) => total + slots[index].maxLength);
+    return _sliceCharacters(chars, start, slots[controllerIndex].maxLength);
   }
 }
 
@@ -459,6 +472,9 @@ List<_InputSlot> _inputSlots(Map<String, dynamic> renderer) {
           rect: Rect.fromLTWH(x, y, width, height),
           id: element['id']?.toString() ?? '',
           contributesToAnswer: _contributesToAnswer(element),
+          maxLength: _maxLengthForInput(element),
+          digitsOnly: _digitsOnlyForInput(element),
+          autoAdvance: _autoAdvanceForInput(element),
         ),
       );
       continue;
@@ -481,6 +497,9 @@ List<_InputSlot> _inputSlots(Map<String, dynamic> renderer) {
         rect: rect,
         id: element['id']?.toString() ?? '',
         contributesToAnswer: _contributesToAnswer(element),
+        maxLength: _maxLengthForInput(element),
+        digitsOnly: _digitsOnlyForInput(element),
+        autoAdvance: _autoAdvanceForInput(element),
       ),
     );
   }
@@ -494,6 +513,13 @@ List<_InputSlot> _inputSlots(Map<String, dynamic> renderer) {
 }
 
 bool _contributesToAnswer(Map<String, dynamic> element) {
+  final interaction = _mapAt(element, 'interaction');
+  if (interaction['include_in_submission'] == true) {
+    return true;
+  }
+  if (interaction['role']?.toString().toLowerCase() == 'answer') {
+    return true;
+  }
   final slotText = _slotIdentity(element);
   return slotText.contains('answer') || slotText.contains('result');
 }
@@ -518,6 +544,10 @@ bool _looksLikeInputRect(
   Map<String, dynamic> attributes,
   Rect rect,
 ) {
+  final interaction = _mapAt(element, 'interaction');
+  if (interaction['type']?.toString().toLowerCase() == 'input') {
+    return true;
+  }
   if (rect.width < 24 || rect.height < 24 || rect.width > 120) {
     return false;
   }
@@ -541,6 +571,30 @@ bool _looksLikeInputRect(
       fillText == '#fff';
 }
 
+int _maxLengthForInput(Map<String, dynamic> element) {
+  final interaction = _mapAt(element, 'interaction');
+  final maxLength = _readInt(interaction['max_length']);
+  if (maxLength != null && maxLength > 0) {
+    return maxLength;
+  }
+  return 1;
+}
+
+bool _digitsOnlyForInput(Map<String, dynamic> element) {
+  final interaction = _mapAt(element, 'interaction');
+  final valueType = interaction['value_type']?.toString().toLowerCase();
+  final keyboard = interaction['keyboard']?.toString().toLowerCase();
+  return valueType == 'digit' ||
+      valueType == 'digits' ||
+      valueType == 'number' ||
+      keyboard == 'number';
+}
+
+bool _autoAdvanceForInput(Map<String, dynamic> element) {
+  final interaction = _mapAt(element, 'interaction');
+  return interaction['auto_advance'] == true;
+}
+
 String _slotIdentity(Map<String, dynamic> element) {
   final id = element['id']?.toString().toLowerCase() ?? '';
   final sourceRef = element['source_ref']?.toString().toLowerCase() ?? '';
@@ -554,14 +608,20 @@ class _InputSlot {
     required this.rect,
     required this.id,
     required this.contributesToAnswer,
+    required this.maxLength,
+    required this.digitsOnly,
+    required this.autoAdvance,
   });
 
   final Rect rect;
   final String id;
   final bool contributesToAnswer;
+  final int maxLength;
+  final bool digitsOnly;
+  final bool autoAdvance;
 
   String get signature =>
-      '$id:${rect.left},${rect.top},${rect.width},${rect.height}';
+      '$id:${rect.left},${rect.top},${rect.width},${rect.height}:$maxLength';
 }
 
 Map<String, dynamic> _mapAt(Map<String, dynamic> map, String key) {
@@ -577,6 +637,21 @@ double? _readDouble(Object? value) {
     return value.toDouble();
   }
   return double.tryParse(value?.toString() ?? '');
+}
+
+int? _readInt(Object? value) {
+  if (value is int) {
+    return value;
+  }
+  return int.tryParse(value?.toString() ?? '');
+}
+
+String _sliceCharacters(List<String> chars, int start, int length) {
+  if (start >= chars.length) {
+    return '';
+  }
+  final end = (start + length).clamp(0, chars.length);
+  return chars.sublist(start, end).join();
 }
 
 List<double>? _readDashArray(Object? value) {

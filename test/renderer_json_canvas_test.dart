@@ -108,6 +108,81 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
+  testWidgets('uses explicit input interaction for rectangular answer fields',
+      (tester) async {
+    var value = '';
+    const renderer = {
+      'view_box': {
+        'width': 300,
+        'height': 120,
+        'background': '#FFFFFF',
+      },
+      'elements': [
+        {
+          'id': 'answer_box.rect',
+          'type': 'rect',
+          'attributes': {
+            'x': 40,
+            'y': 40,
+            'width': 80,
+            'height': 42,
+            'fill': '#ffffff',
+            'stroke': '#111827',
+            'stroke-width': 1.2,
+          },
+          'interaction': {
+            'type': 'input',
+            'role': 'answer',
+            'value_type': 'digit',
+            'max_length': 3,
+            'include_in_submission': true,
+            'keyboard': 'number',
+          },
+        },
+      ],
+    };
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 300,
+            height: 120,
+            child: RendererJsonCanvas(
+              inputValue: value,
+              onInputChanged: (next) => value = next,
+              renderer: renderer,
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byType(TextField), findsOneWidget);
+
+    await tester.enterText(find.byType(TextField), '507');
+
+    expect(value, equals('507'));
+
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 300,
+            height: 120,
+            child: RendererJsonCanvas(
+              inputValue: '507',
+              renderer: renderer,
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.widgetWithText(TextField, '507'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('syncs only answer slots when carry slots are editable',
       (tester) async {
     var value = '';
