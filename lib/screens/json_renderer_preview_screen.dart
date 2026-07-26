@@ -103,6 +103,7 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
                           children: [
                             _RenderTab(
                               bundle: bundle,
+                              content: content,
                               tutorPanel: TutorChatPanel(
                                 key: ValueKey(bundle.filePrefix),
                                 content: content,
@@ -470,25 +471,33 @@ class _StudioTabs extends StatelessWidget {
 class _RenderTab extends StatelessWidget {
   const _RenderTab({
     required this.bundle,
+    required this.content,
     required this.tutorPanel,
   });
 
   final ProblemJsonBundle bundle;
+  final ProblemContent content;
   final Widget tutorPanel;
 
   @override
   Widget build(BuildContext context) {
-    return _RenderTabBody(bundle: bundle, tutorPanel: tutorPanel);
+    return _RenderTabBody(
+      bundle: bundle,
+      content: content,
+      tutorPanel: tutorPanel,
+    );
   }
 }
 
 class _RenderTabBody extends StatelessWidget {
   const _RenderTabBody({
     required this.bundle,
+    required this.content,
     required this.tutorPanel,
   });
 
   final ProblemJsonBundle bundle;
+  final ProblemContent content;
   final Widget tutorPanel;
 
   @override
@@ -509,6 +518,7 @@ class _RenderTabBody extends StatelessWidget {
                 child: _CanvasShell(
                   child: RendererJsonCanvas(
                     renderer: bundle.renderer,
+                    expectedAnswer: content.correctAnswer,
                   ),
                 ),
               ),

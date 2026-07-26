@@ -339,6 +339,7 @@ class _ProblemVisual extends StatelessWidget {
           child: RendererJsonCanvas(
             renderer: content.renderer,
             inputValue: answerDraft,
+            expectedAnswer: content.correctAnswer,
             onInputChanged: onAnswerChanged,
           ),
         ),

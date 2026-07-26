@@ -7,11 +7,13 @@ class RendererJsonCanvas extends StatefulWidget {
     super.key,
     required this.renderer,
     this.inputValue = '',
+    this.expectedAnswer = '',
     this.onInputChanged,
   });
 
   final Map<String, dynamic> renderer;
   final String inputValue;
+  final String expectedAnswer;
   final ValueChanged<String>? onInputChanged;
 
   @override
@@ -72,7 +74,10 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
               child: LayoutBuilder(
                 builder: (context, canvasConstraints) {
                   final scale = canvasConstraints.maxWidth / width;
-                  final inputSlots = _inputSlots(widget.renderer);
+                  final inputSlots = _inputSlots(
+                    widget.renderer,
+                    expectedAnswer: widget.expectedAnswer,
+                  );
                   _ensureControllerCount(inputSlots.length);
 
                   return Stack(
@@ -108,8 +113,9 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
       final fontSize = _inputFontSize(slot, scale);
       final maxLength = slot.maxLength;
       final inset = (2 * scale).clamp(1.0, 3.0);
-      final textColor =
-          slot.drawPlaceholderBehind ? Colors.transparent : colorScheme.onSurface;
+      final textColor = slot.drawPlaceholderBehind
+          ? Colors.transparent
+          : colorScheme.onSurface;
       return Positioned(
         left: rect.left * scale + inset,
         top: rect.top * scale + inset,
@@ -210,7 +216,10 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
   }
 
   void _syncInputControllers({required bool force}) {
-    final slots = _inputSlots(widget.renderer);
+    final slots = _inputSlots(
+      widget.renderer,
+      expectedAnswer: widget.expectedAnswer,
+    );
     final signature = slots.map((slot) => slot.signature).join('|');
     if (!force && inputSignature == signature) {
       return;
@@ -236,7 +245,10 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
   }
 
   String _combinedInputValue() {
-    final slots = _inputSlots(widget.renderer);
+    final slots = _inputSlots(
+      widget.renderer,
+      expectedAnswer: widget.expectedAnswer,
+    );
     final answerIndexes = slots.indexed
         .where((entry) => entry.$2.contributesToAnswer)
         .map((entry) => entry.$1)
@@ -510,7 +522,10 @@ List<Widget> _textBoxLayers(Map<String, dynamic> renderer, double scale) {
   }).toList(growable: false);
 }
 
-List<_InputSlot> _inputSlots(Map<String, dynamic> renderer) {
+List<_InputSlot> _inputSlots(
+  Map<String, dynamic> renderer, {
+  String expectedAnswer = '',
+}) {
   final elements = renderer['elements'];
   if (elements is! List) {
     return const [];
@@ -583,6 +598,15 @@ List<_InputSlot> _inputSlots(Map<String, dynamic> renderer) {
         : a.rect.top.compareTo(b.rect.top);
     return row != 0 ? row : a.rect.left.compareTo(b.rect.left);
   });
+  final answerLength = expectedAnswer.characters.length;
+  final answerSlots = slots.where((slot) => slot.contributesToAnswer).toList();
+  if (answerLength > 1 &&
+      answerSlots.length == 1 &&
+      answerSlots.single.maxLength < answerLength) {
+    final answerSlot = answerSlots.single;
+    final index = slots.indexOf(answerSlot);
+    slots[index] = answerSlot.copyWith(maxLength: answerLength);
+  }
   return slots;
 }
 
@@ -741,6 +765,20 @@ class _InputSlot {
 
   String get signature =>
       '$id:${rect.left},${rect.top},${rect.width},${rect.height}:$maxLength:$order:$placeholder';
+
+  _InputSlot copyWith({int? maxLength}) {
+    return _InputSlot(
+      rect: rect,
+      id: id,
+      contributesToAnswer: contributesToAnswer,
+      maxLength: maxLength ?? this.maxLength,
+      digitsOnly: digitsOnly,
+      operatorOnly: operatorOnly,
+      autoAdvance: autoAdvance,
+      order: order,
+      placeholder: placeholder,
+    );
+  }
 }
 
 Map<String, dynamic> _mapAt(Map<String, dynamic> map, String key) {
