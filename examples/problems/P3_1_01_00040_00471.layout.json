@@ -91,16 +91,38 @@
       "content": {
         "text": "○",
         "style_role": "body",
-        "x": 202,
-        "y": 71,
-        "width": 52,
-        "height": 58,
+        "x": 198.066,
+        "y": 70.016,
+        "width": 44.131,
+        "height": 40.787,
         "align": "center",
         "valign": "middle",
         "font_size": 40,
         "font_family": "Noto Sans KR",
         "fill": "#111111",
-        "line_height": 1.25
+        "line_height": 1.25,
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "digit",
+          "max_length": 1,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "auto_advance": true,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222"
+        }
       }
     },
     {
@@ -167,16 +189,38 @@
       "content": {
         "text": "○",
         "style_role": "body",
-        "x": 247,
-        "y": 127,
-        "width": 52,
-        "height": 58,
+        "x": 237.656,
+        "y": 127.492,
+        "width": 46.098,
+        "height": 43.246,
         "align": "center",
         "valign": "middle",
         "font_size": 40,
         "font_family": "Noto Sans KR",
         "fill": "#111111",
-        "line_height": 1.25
+        "line_height": 1.25,
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "digit",
+          "max_length": 1,
+          "include_in_submission": true,
+          "order": 1,
+          "group_id": "final_answer",
+          "auto_advance": true,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222"
+        }
       }
     },
     {
