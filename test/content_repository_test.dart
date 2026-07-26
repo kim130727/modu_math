@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
 import 'package:modu_math_app/models/content_models.dart';
 import 'package:modu_math_app/services/content_repository.dart';
 
@@ -44,6 +48,68 @@ void main() {
       expect(bundle.semantic, isNotEmpty);
       expect(bundle.layout, isNotEmpty);
       expect(bundle.renderer, isNotEmpty);
+    });
+
+    test('loads GitHub examples problem list and files from raw URLs',
+        () async {
+      final repository = ContentRepository.githubExamples(
+        httpClient: MockClient((request) async {
+          final url = request.url.toString();
+          if (url.contains('/git/trees/main')) {
+            return http.Response(
+              '''
+              {
+                "tree": [
+                  {
+                    "path": "examples/problems/P3_1_01_00040_00469.renderer.json",
+                    "type": "blob"
+                  }
+                ]
+              }
+              ''',
+              200,
+            );
+          }
+          if (url.endsWith('P3_1_01_00040_00469.semantic.json')) {
+            return http.Response.bytes(
+              utf8.encode('''
+              {
+                "metadata": {
+                  "title": "두 가족이 캔 고구마의 수",
+                  "question": "모두 몇 개입니까?"
+                },
+                "answer": {"value": 507}
+              }
+              '''),
+              200,
+            );
+          }
+          if (url.endsWith('P3_1_01_00040_00469.renderer.json')) {
+            return http.Response(
+              '{"view_box": {"width": 928, "height": 426}, "elements": []}',
+              200,
+            );
+          }
+          if (url.endsWith('P3_1_01_00040_00469.layout.json')) {
+            return http.Response('{"layout": "ok"}', 200);
+          }
+          if (url.endsWith('P3_1_01_00040_00469.solvable.v1.2.json')) {
+            return http.Response('{"answer": {"value": 507}}', 200);
+          }
+          if (url.endsWith('P3_1_01_00040_00469.svg')) {
+            return http.Response('<svg></svg>', 200);
+          }
+          return http.Response('Not found', 404);
+        }),
+      );
+
+      final manifest = await repository.loadManifest();
+      final content = await repository.loadProblem(manifest.problems.single);
+
+      expect(manifest.problems.single.path, equals('examples/problems'));
+      expect(content.semantic, isNotEmpty);
+      expect(content.renderer, isNotEmpty);
+      expect(content.correctAnswer, equals('507'));
     });
 
     test('normalizes list answers into submission order text', () async {

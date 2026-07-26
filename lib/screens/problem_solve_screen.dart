@@ -107,6 +107,7 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
                 onReset: _resetTutor,
                 hasNextProblem: _hasNextProblem,
                 onNextProblem: _openNextProblem,
+                allowSkipProblem: true,
               );
 
               if (wide) {

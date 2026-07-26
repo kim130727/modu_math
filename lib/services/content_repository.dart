@@ -2,17 +2,62 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 
 import '../models/content_models.dart';
 
+enum ContentRepositorySource {
+  bundledAssets,
+  githubExamples,
+}
+
 class ContentRepository {
+  ContentRepository({
+    this.source = ContentRepositorySource.bundledAssets,
+    http.Client? httpClient,
+    this.githubOwner = 'kim130727',
+    this.githubRepo = 'modu_math',
+    this.githubRef = 'main',
+    this.githubProblemsPath = 'examples/problems',
+  }) : _httpClient = httpClient ?? http.Client();
+
+  ContentRepository.githubExamples({http.Client? httpClient})
+      : this(
+          source: ContentRepositorySource.githubExamples,
+          httpClient: httpClient,
+        );
+
   static const String manifestPath = 'assets/content/problems/manifest.json';
   static const String problemsPath = 'assets/content/problems';
   static const String grade3Path = 'assets/content/problems/grade3';
 
+  final ContentRepositorySource source;
+  final http.Client _httpClient;
+  final String githubOwner;
+  final String githubRepo;
+  final String githubRef;
+  final String githubProblemsPath;
+  List<String>? _rendererPathCache;
+
   Future<ProblemManifest> loadManifest() async {
-    final source = await rootBundle.loadString(manifestPath);
-    final decoded = jsonDecode(source) as Map<String, dynamic>;
+    if (source == ContentRepositorySource.githubExamples) {
+      final githubProblems = await _loadBundledProblems();
+      return ProblemManifest(
+        version: githubRef,
+        problems: githubProblems,
+        raw: {
+          'version': githubRef,
+          'source': 'github',
+          'repository': '$githubOwner/$githubRepo',
+          'ref': githubRef,
+          'path': githubProblemsPath,
+          'problems': githubProblems.map((problem) => problem.raw).toList(),
+        },
+      );
+    }
+
+    final manifestSource = await rootBundle.loadString(manifestPath);
+    final decoded = jsonDecode(manifestSource) as Map<String, dynamic>;
     final bundledProblems = await _loadBundledProblems();
     if (bundledProblems.isEmpty) {
       return ProblemManifest.fromJson(decoded);
@@ -81,8 +126,11 @@ class ContentRepository {
     ]) {
       try {
         return await _loadJson('$basePath.$fileName');
-      } on FlutterError {
-        continue;
+      } on Object catch (error) {
+        if (_isMissingContent(error)) {
+          continue;
+        }
+        rethrow;
       }
     }
     return const {};
@@ -122,6 +170,10 @@ class ContentRepository {
   }
 
   Future<List<String>> _loadRendererPaths() async {
+    if (source == ContentRepositorySource.githubExamples) {
+      return _rendererPathCache ??= await _loadGithubRendererPaths();
+    }
+
     final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
     return manifest
         .listAssets()
@@ -201,25 +253,100 @@ class ContentRepository {
   }
 
   Future<Map<String, dynamic>> _loadJson(String assetPath) async {
-    final source = await rootBundle.loadString(assetPath);
+    final source = this.source == ContentRepositorySource.githubExamples
+        ? await _loadGithubText(assetPath)
+        : await rootBundle.loadString(assetPath);
     return jsonDecode(source) as Map<String, dynamic>;
   }
 
   Future<Map<String, dynamic>> _loadOptionalJson(String assetPath) async {
     try {
       return await _loadJson(assetPath);
-    } on FlutterError {
-      return const {};
+    } on Object catch (error) {
+      if (_isMissingContent(error)) {
+        return const {};
+      }
+      rethrow;
     }
   }
 
   Future<String> _loadOptionalText(String assetPath) async {
     try {
-      return await rootBundle.loadString(assetPath);
-    } on FlutterError {
-      return '';
+      return source == ContentRepositorySource.githubExamples
+          ? await _loadGithubText(assetPath)
+          : await rootBundle.loadString(assetPath);
+    } on Object catch (error) {
+      if (_isMissingContent(error)) {
+        return '';
+      }
+      rethrow;
     }
   }
+
+  Future<List<String>> _loadGithubRendererPaths() async {
+    final response = await _httpClient.get(
+      Uri.https(
+        'api.github.com',
+        '/repos/$githubOwner/$githubRepo/git/trees/$githubRef',
+        {'recursive': '1'},
+      ),
+      headers: const {'Accept': 'application/vnd.github+json'},
+    );
+    if (response.statusCode != 200) {
+      throw StateError(
+        'GitHub problem tree load failed: ${response.statusCode}',
+      );
+    }
+    final decoded = jsonDecode(response.body) as Map<String, dynamic>;
+    final tree = decoded['tree'];
+    if (tree is! List) {
+      return const [];
+    }
+    final prefix = githubProblemsPath.endsWith('/')
+        ? githubProblemsPath
+        : '$githubProblemsPath/';
+    return tree
+        .whereType<Map<String, dynamic>>()
+        .where((item) => item['type']?.toString() == 'blob')
+        .map((item) => item['path']?.toString() ?? '')
+        .where((path) =>
+            path.startsWith(prefix) && path.endsWith('.renderer.json'))
+        .toList()
+      ..sort();
+  }
+
+  Future<String> _loadGithubText(String path) async {
+    final response = await _httpClient.get(_githubRawUri(path));
+    if (response.statusCode == 404) {
+      throw _MissingContent(path);
+    }
+    if (response.statusCode != 200) {
+      throw StateError(
+        'GitHub problem file load failed: ${response.statusCode} $path',
+      );
+    }
+    return utf8.decode(response.bodyBytes);
+  }
+
+  Uri _githubRawUri(String path) {
+    return Uri.https(
+      'raw.githubusercontent.com',
+      '/$githubOwner/$githubRepo/$githubRef/$path',
+    );
+  }
+}
+
+bool _isMissingContent(Object error) {
+  return error is FlutterError || error is _MissingContent;
+}
+
+class _MissingContent implements Exception {
+  const _MissingContent(this.path);
+
+  final String path;
+
+  @override
+  String toString() => 'Missing content: $path';
 }
 
 int _gradeFromPrefix(String filePrefix) {

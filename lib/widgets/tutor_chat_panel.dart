@@ -26,6 +26,7 @@ class TutorChatPanel extends StatefulWidget {
     required this.onReset,
     required this.hasNextProblem,
     required this.onNextProblem,
+    this.allowSkipProblem = false,
   });
 
   final ProblemContent content;
@@ -43,6 +44,7 @@ class TutorChatPanel extends StatefulWidget {
   final VoidCallback onReset;
   final bool hasNextProblem;
   final VoidCallback onNextProblem;
+  final bool allowSkipProblem;
 
   @override
   State<TutorChatPanel> createState() => _TutorChatPanelState();
@@ -252,10 +254,10 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
               const SizedBox(height: 12),
               _ResultBanner(isCorrect: widget.isCorrect!),
             ],
-            if (widget.isCorrect == true) ...[
+            if (widget.allowSkipProblem || widget.isCorrect == true) ...[
               const SizedBox(height: 12),
               FilledButton.icon(
-                onPressed: widget.onNextProblem,
+                onPressed: widget.isBusy ? null : widget.onNextProblem,
                 icon: Icon(
                   widget.hasNextProblem
                       ? Icons.navigate_next
