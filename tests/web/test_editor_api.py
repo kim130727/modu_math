@@ -1172,6 +1172,34 @@ def test_apply_editor_overrides_does_not_revive_stale_missing_slot_without_match
     assert layout["regions"][1]["slot_ids"] == []
 
 
+def test_apply_editor_overrides_does_not_revive_unanchored_single_region_text_slot() -> None:
+    layout = {
+        "regions": [
+            {"id": "region.process", "role": "diagram", "slot_ids": ["slot.stage2.top"]},
+        ],
+        "slots": [
+            {"id": "slot.stage2.top", "kind": "text", "content": {"text": "554", "x": 355.0, "y": 133.0}},
+        ],
+    }
+    overrides = {
+        "slots": {
+            "konva_123_paste_1": {
+                "text": "5 5 4",
+                "x": 251.0,
+                "y": 104.0,
+                "width": 104.0,
+                "height": 36.0,
+                "font_size": 29,
+            }
+        }
+    }
+
+    apply_editor_overrides(layout, overrides)
+
+    assert [slot["id"] for slot in layout["slots"]] == ["slot.stage2.top"]
+    assert layout["regions"][0]["slot_ids"] == ["slot.stage2.top"]
+
+
 def test_prune_editor_overrides_removes_stale_missing_slots() -> None:
     layout = {
         "regions": [
@@ -1236,6 +1264,65 @@ def test_prune_editor_overrides_keeps_missing_slots_with_matching_prefix() -> No
         "slots": {
             "slot.choice.a.text": {"text": "A", "x": 105.0, "y": 146.0, "font_size": 28},
         }
+    }
+
+    cleaned, changed = prune_editor_overrides(layout, overrides)
+
+    assert changed is False
+    assert cleaned == overrides
+
+
+def test_prune_editor_overrides_drops_unanchored_single_region_text_slot() -> None:
+    layout = {
+        "regions": [
+            {"id": "region.process", "role": "diagram", "slot_ids": ["slot.stage2.top"]},
+        ],
+        "slots": [
+            {"id": "slot.stage2.top", "kind": "text", "content": {"text": "554", "x": 355.0, "y": 133.0}},
+        ],
+    }
+    overrides = {
+        "slots": {
+            "konva_123_paste_1": {
+                "text": "5 5 4",
+                "x": 251.0,
+                "y": 104.0,
+                "width": 104.0,
+                "height": 36.0,
+                "font_size": 29,
+            },
+        },
+        "region_slot_orders": {
+            "region.process": ["slot.stage2.top", "konva_123_paste_1"],
+        },
+    }
+
+    cleaned, changed = prune_editor_overrides(layout, overrides)
+
+    assert changed is True
+    assert "slots" not in cleaned
+    assert cleaned["region_slot_orders"] == {"region.process": ["slot.stage2.top"]}
+
+
+def test_prune_editor_overrides_keeps_missing_single_region_answer_slot() -> None:
+    layout = {
+        "regions": [
+            {"id": "region.process", "role": "diagram", "slot_ids": ["slot.stage2.top"]},
+        ],
+        "slots": [
+            {"id": "slot.stage2.top", "kind": "text", "content": {"text": "554", "x": 355.0, "y": 133.0}},
+        ],
+    }
+    overrides = {
+        "slots": {
+            "konva_123_answer": {
+                "x": 144.0,
+                "y": 218.0,
+                "width": 25.0,
+                "height": 25.0,
+                "interaction": {"type": "input", "role": "answer", "value_type": "digit"},
+            },
+        },
     }
 
     cleaned, changed = prune_editor_overrides(layout, overrides)

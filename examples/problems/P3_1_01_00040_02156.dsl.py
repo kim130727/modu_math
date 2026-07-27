@@ -52,7 +52,7 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.stage3.line",
                     "slot.stage3.answer_hundreds",
                     "slot.stage3.answer_tens",
-                    "slot.stage3.answer_ones",'konva_1785114682783_paste_393118_0', 'konva_1785114682783_paste_480251_0', 'konva_1785114682783_paste_480810_0'),
+                    "slot.stage3.answer_ones",'konva_1785114682783_paste_393118_0'),
             ),
         ),
         slots=(TextBoxSlot(
@@ -368,7 +368,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="최종 답의 일의 자리",
                 answer_key="3",
                 placeholder="",
-            ),RectSlot(id = 'konva_1785114682783_paste_393118_0', prompt = '', x = 144.88, y = 218.099, width = 24.773, height = 25.461, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 9, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), TextBoxSlot(id = 'konva_1785114682783_paste_480251_0', prompt = '', text = '5 5 4', x = 251.606, y = 103.723, font_size = 29, fill = '#111111', width = 104.4, height = 36.25, align = 'right', line_height = 1.2), TextBoxSlot(id = 'konva_1785114682783_paste_480810_0', prompt = '', text = '5 5 4', x = 444.984, y = 105.335, font_size = 29, fill = '#111111', width = 104.4, height = 36.25, align = 'right', line_height = 1.2)),
+            ),RectSlot(id = 'konva_1785114682783_paste_393118_0', prompt = '', x = 144.88, y = 218.099, width = 24.773, height = 25.461, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 9, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
         diagrams=(),
         groups=(
             Group(

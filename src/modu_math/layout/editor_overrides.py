@@ -37,7 +37,16 @@ def _slot_prefix_score(slot_id: str, candidate: str) -> int:
     return score
 
 
-def _infer_region_id_for_slot(layout: dict[str, Any], slot_id: str) -> str | None:
+def _override_is_answer_slot(slot_id: str, content: dict[str, Any]) -> bool:
+    interaction = content.get("interaction")
+    return (
+        (isinstance(interaction, dict) and interaction.get("role") == "answer")
+        or slot_id.startswith("answer.")
+        or ".answer" in slot_id
+    )
+
+
+def _infer_region_id_for_slot(layout: dict[str, Any], slot_id: str, content: dict[str, Any] | None = None) -> str | None:
     best_region_id: str | None = None
     best_score = 0
     for region in layout.get("regions", []):
@@ -52,18 +61,19 @@ def _infer_region_id_for_slot(layout: dict[str, Any], slot_id: str) -> str | Non
                 best_region_id = region.get("id") if isinstance(region.get("id"), str) else None
     if best_region_id and best_score >= 2:
         return best_region_id
-    region_ids = [
-        region.get("id")
-        for region in layout.get("regions", [])
-        if isinstance(region, dict) and isinstance(region.get("id"), str)
-    ]
-    if len(region_ids) == 1:
-        return region_ids[0]
+    if content is not None and _override_is_answer_slot(slot_id, content):
+        region_ids = [
+            region.get("id")
+            for region in layout.get("regions", [])
+            if isinstance(region, dict) and isinstance(region.get("id"), str)
+        ]
+        if len(region_ids) == 1:
+            return region_ids[0]
     return None
 
 
 def _add_missing_override_slot(layout: dict[str, Any], slot_id: str, content: dict[str, Any]) -> None:
-    region_id = _infer_region_id_for_slot(layout, slot_id)
+    region_id = _infer_region_id_for_slot(layout, slot_id, content)
     if region_id is None:
         return
 
@@ -150,7 +160,7 @@ def prune_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | N
             if not isinstance(slot_id, str) or not isinstance(patch, dict):
                 changed = True
                 continue
-            if slot_id in slot_ids or _infer_region_id_for_slot(layout, slot_id) is not None:
+            if slot_id in slot_ids or _infer_region_id_for_slot(layout, slot_id, patch) is not None:
                 patch, normalized = _normalize_slot_patch(slot_kinds.get(slot_id), patch)
                 changed = changed or normalized
                 cleaned_slots[slot_id] = patch
