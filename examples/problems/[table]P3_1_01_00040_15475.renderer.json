@@ -40,6 +40,45 @@
       }
     },
     {
+      "id": "konva_1785110879232_rect_445045.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 705.297,
+        "y": 196.034,
+        "width": 122.584,
+        "height": 42.06,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.2
+      },
+      "source_ref": "konva_1785110879232_rect_445045",
+      "refs": {
+        "layout_slot_id": "konva_1785110879232_rect_445045"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    {
       "id": "slot.table.v1.line",
       "type": "line",
       "attributes": {
@@ -298,6 +337,33 @@
         "layout_slot_id": "slot.table.r2c5"
       },
       "text": "101"
+    },
+    {
+      "id": "konva_1785110879232_text_453845.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 838.99,
+        "y": 195.978,
+        "fill": "#111827",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "width": 50.919,
+        "height": 37.966,
+        "max_width": 50.919,
+        "data-slot-kind": "text_box",
+        "data-box-x": 838.99,
+        "data-box-y": 195.978,
+        "data-box-width": 50.919,
+        "data-box-height": 37.966,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25
+      },
+      "source_ref": "konva_1785110879232_text_453845",
+      "refs": {
+        "layout_slot_id": "konva_1785110879232_text_453845"
+      },
+      "text": "권"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

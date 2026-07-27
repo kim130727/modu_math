@@ -5,7 +5,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextBoxSlot,
-)
+CircleSlot)
 
 PROBLEM_ID = "P3_1_01_00040_00471"
 PROBLEM_TITLE = "덧셈식의 크기 비교"
@@ -24,8 +24,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=(
-                    "slot.instruction",
+                slot_ids=("slot.instruction",
                     "slot.problem_1_number",
                     "slot.problem_1_left",
                     "slot.problem_1_blank",
@@ -33,12 +32,10 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.problem_2_number",
                     "slot.problem_2_left",
                     "slot.problem_2_blank",
-                    "slot.problem_2_right",
-                ),
+                    "slot.problem_2_right",'konva_1785110879232_circle_652757', 'konva_1785110879232_paste_664084_0'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.instruction",
                 x=38,
                 y=22,
@@ -154,8 +151,7 @@ def build_problem_template() -> ProblemTemplate:
                 fill="#202124",
                 align="left",
                 valign="middle",
-            ),
-        ),
+            ),CircleSlot(id = 'konva_1785110879232_circle_652757', prompt = '', cx = 219.115, cy = 92.336, r = 22.081, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2), CircleSlot(id = 'konva_1785110879232_paste_664084_0', prompt = '', cx = 263.211, cy = 150.049, r = 22.081, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2)),
     )
 
 

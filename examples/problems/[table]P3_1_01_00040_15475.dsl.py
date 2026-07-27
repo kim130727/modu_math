@@ -8,7 +8,7 @@ from modu_math.dsl import (
     RectSlot,
     Region,
     TextSlot,
-)
+TextBoxSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_15475"
@@ -35,8 +35,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.table",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(
-                    "slot.table.outer",
+                slot_ids=("slot.table.outer",
                     "slot.table.v1",
                     "slot.table.v2",
                     "slot.table.v3",
@@ -51,12 +50,10 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.table.r2c2",
                     "slot.table.r2c3",
                     "slot.table.r2c4",
-                    "slot.table.r2c5",
-                ),
+                    "slot.table.r2c5",'konva_1785110879232_rect_445045', 'konva_1785110879232_text_453845'),
             ),
         ),
-        slots=(
-            TextSlot(
+        slots=(TextSlot(
                 id="slot.question",
                 prompt="",
                 text=(
@@ -255,8 +252,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="답",
                 answer_key="534",
                 placeholder="권",
-            ),
-        ),
+            ),RectSlot(id = 'konva_1785110879232_rect_445045', prompt = '', x = 705.297, y = 196.034, width = 122.584, height = 42.06, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2), TextBoxSlot(id = 'konva_1785110879232_text_453845', prompt = '', text = '권', x = 838.99, y = 195.978, font_size = 30, fill = '#111827', width = 50.919, height = 37.966, align = 'left', line_height = 1.25)),
     )
 
 

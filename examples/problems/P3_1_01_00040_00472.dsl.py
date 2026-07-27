@@ -5,7 +5,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextBoxSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_00472"
@@ -17,94 +17,28 @@ def build_problem_template() -> ProblemTemplate:
         id=PROBLEM_ID,
         title=PROBLEM_TITLE,
         canvas=Canvas(
-            width=900,
-            height=220,
-            coordinate_mode="logical",
+            width = 600, height = 220, coordinate_mode="logical",
         ),
         regions=(
             Region(
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=(
-                    "slot.question",
-                    "slot.expression_label",
-                    "slot.expression_blank",
-                    "slot.answer_label",
-                    "slot.answer_blank",
-                ),
+                slot_ids=("slot.question",
+                    'konva_1785110879232_paste_690676_0', 'konva_1785110879232_paste_716370_0', 'konva_1785110879232_paste_740217_0'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.question",
                 x=38,
                 y=22,
-                width=824,
-                height=58,
-                text=(
-                    "도서관에서 어른 648명, 어린이 476명이 책을 읽고 있습니다. "
-                    "책 읽는 사람은 모두 몇 명입니까?"
-                ),
-                font_size=24,
+                width = 583.928, height = 68, text = '도서관에서 어른 648명, 어린이 476명이 책을 읽고 있습니다.', font_size=24,
                 font_family="Noto Sans KR",
                 fill="#202124",
                 align="left",
                 valign="middle",
             ),
-            TextBoxSlot(
-                id="slot.expression_label",
-                x=38,
-                y=88,
-                width=42,
-                height=38,
-                text="식",
-                font_size=24,
-                font_family="Noto Sans KR",
-                fill="#202124",
-                align="left",
-                valign="middle",
-            ),
-            TextBoxSlot(
-                id="slot.expression_blank",
-                x=82,
-                y=88,
-                width=170,
-                height=38,
-                text="____________",
-                font_size=24,
-                font_family="Noto Sans KR",
-                fill="#202124",
-                align="left",
-                valign="middle",
-            ),
-            TextBoxSlot(
-                id="slot.answer_label",
-                x=38,
-                y=134,
-                width=42,
-                height=38,
-                text="답",
-                font_size=24,
-                font_family="Noto Sans KR",
-                fill="#202124",
-                align="left",
-                valign="middle",
-            ),
-            TextBoxSlot(
-                id="slot.answer_blank",
-                x=82,
-                y=134,
-                width=130,
-                height=38,
-                text="_________",
-                font_size=24,
-                font_family="Noto Sans KR",
-                fill="#202124",
-                align="left",
-                valign="middle",
-            ),
-        ),
+            TextBoxSlot(id = 'konva_1785110879232_paste_690676_0', prompt = '', text = '책 읽는 사람은 모두 몇 명입니까?', x = 39.392, y = 61.063, font_size = 24, fill = '#202124', width = 348.163, height = 50.785, align = 'left', line_height = 1.25), TextBoxSlot(id = 'konva_1785110879232_paste_716370_0', prompt = '', text = '명', x = 500.474, y = 150.847, font_size = 24, fill = '#202124', width = 61.799, height = 38, align = 'left', line_height = 1.25), RectSlot(id = 'konva_1785110879232_paste_740217_0', prompt = '', x = 408.307, y = 145.841, width = 78.73, height = 41.989, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
     )
 
 

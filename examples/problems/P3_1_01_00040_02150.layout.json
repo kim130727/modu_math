@@ -14,7 +14,27 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.instruction"
+        "konva_1785110879232_rect_1350341",
+        "konva_1785110879232_paste_1362795_0",
+        "konva_1785110879232_paste_1363130_0",
+        "konva_1785110879232_paste_1394809_0",
+        "konva_1785110879232_paste_1394809_1",
+        "konva_1785110879232_paste_1394809_2",
+        "konva_1785110879232_paste_1400368_1",
+        "konva_1785110879232_paste_1400368_2",
+        "konva_1785110879232_paste_1406874_1",
+        "konva_1785110879232_paste_1406874_2",
+        "slot.instruction",
+        "slot.problem_1_carry_hundreds",
+        "slot.problem_1_carry_tens",
+        "slot.problem_1_answer_hundreds",
+        "slot.problem_1_answer_tens",
+        "slot.problem_1_answer_ones",
+        "slot.problem_2_carry_hundreds",
+        "slot.problem_2_carry_tens",
+        "slot.problem_2_answer_hundreds",
+        "slot.problem_2_answer_tens",
+        "slot.problem_2_answer_ones"
       ]
     },
     {
@@ -23,15 +43,10 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.problem_1_number",
-        "slot.problem_1_carry_hundreds",
-        "slot.problem_1_carry_tens",
         "slot.problem_1_first_addend",
         "slot.problem_1_plus_sign",
         "slot.problem_1_second_addend",
-        "slot.problem_1_line",
-        "slot.problem_1_answer_hundreds",
-        "slot.problem_1_answer_tens",
-        "slot.problem_1_answer_ones"
+        "slot.problem_1_line"
       ]
     },
     {
@@ -40,15 +55,10 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.problem_2_number",
-        "slot.problem_2_carry_hundreds",
-        "slot.problem_2_carry_tens",
         "slot.problem_2_first_addend",
         "slot.problem_2_plus_sign",
         "slot.problem_2_second_addend",
-        "slot.problem_2_line",
-        "slot.problem_2_answer_hundreds",
-        "slot.problem_2_answer_tens",
-        "slot.problem_2_answer_ones"
+        "slot.problem_2_line"
       ]
     }
   ],
@@ -88,44 +98,6 @@
         "font_size": 24,
         "font_family": "Noto Sans KR",
         "fill": "#202124",
-        "line_height": 1.25
-      }
-    },
-    {
-      "id": "slot.problem_1_carry_hundreds",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 108,
-        "y": 58,
-        "width": 32,
-        "height": 48,
-        "align": "center",
-        "valign": "middle",
-        "font_size": 32,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
-        "line_height": 1.25
-      }
-    },
-    {
-      "id": "slot.problem_1_carry_tens",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 145,
-        "y": 58,
-        "width": 32,
-        "height": 48,
-        "align": "center",
-        "valign": "middle",
-        "font_size": 32,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
         "line_height": 1.25
       }
     },
@@ -206,63 +178,6 @@
       }
     },
     {
-      "id": "slot.problem_1_answer_hundreds",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 103,
-        "y": 192,
-        "width": 40,
-        "height": 58,
-        "align": "center",
-        "valign": "middle",
-        "font_size": 40,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
-        "line_height": 1.25
-      }
-    },
-    {
-      "id": "slot.problem_1_answer_tens",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 143,
-        "y": 192,
-        "width": 40,
-        "height": 58,
-        "align": "center",
-        "valign": "middle",
-        "font_size": 40,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
-        "line_height": 1.25
-      }
-    },
-    {
-      "id": "slot.problem_1_answer_ones",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 183,
-        "y": 192,
-        "width": 40,
-        "height": 58,
-        "align": "center",
-        "valign": "middle",
-        "font_size": 40,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
-        "line_height": 1.25
-      }
-    },
-    {
       "id": "slot.problem_2_number",
       "kind": "text_box",
       "prompt": "",
@@ -278,44 +193,6 @@
         "font_size": 24,
         "font_family": "Noto Sans KR",
         "fill": "#202124",
-        "line_height": 1.25
-      }
-    },
-    {
-      "id": "slot.problem_2_carry_hundreds",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 378,
-        "y": 58,
-        "width": 32,
-        "height": 48,
-        "align": "center",
-        "valign": "middle",
-        "font_size": 32,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
-        "line_height": 1.25
-      }
-    },
-    {
-      "id": "slot.problem_2_carry_tens",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 415,
-        "y": 58,
-        "width": 32,
-        "height": 48,
-        "align": "center",
-        "valign": "middle",
-        "font_size": 32,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
         "line_height": 1.25
       }
     },
@@ -396,21 +273,270 @@
       }
     },
     {
+      "id": "konva_1785110879232_rect_1350341",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 166.608,
+        "y": 196.65,
+        "width": 24.773,
+        "height": 25.461,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "konva_1785110879232_paste_1362795_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 139.651,
+        "y": 196.262,
+        "width": 24.773,
+        "height": 25.461,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "konva_1785110879232_paste_1363130_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 112.976,
+        "y": 196.308,
+        "width": 24.773,
+        "height": 25.461,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "konva_1785110879232_paste_1394809_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 434.627,
+        "y": 193.393,
+        "width": 24.773,
+        "height": 25.461,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "konva_1785110879232_paste_1394809_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 407.67,
+        "y": 193.005,
+        "width": 24.773,
+        "height": 25.461,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "konva_1785110879232_paste_1394809_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 380.995,
+        "y": 193.051,
+        "width": 24.773,
+        "height": 25.461,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "konva_1785110879232_paste_1400368_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 144.589,
+        "y": 67.091,
+        "width": 24.773,
+        "height": 25.461,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "konva_1785110879232_paste_1400368_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 117.914,
+        "y": 67.138,
+        "width": 24.773,
+        "height": 25.461,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "konva_1785110879232_paste_1406874_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 411.89,
+        "y": 63.834,
+        "width": 24.773,
+        "height": 25.461,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "konva_1785110879232_paste_1406874_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 385.215,
+        "y": 63.881,
+        "width": 24.773,
+        "height": 25.461,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.problem_1_carry_hundreds",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "x": 108,
+        "y": 58,
+        "font_size": 32,
+        "fill": "#111111",
+        "width": 32,
+        "height": 48,
+        "align": "center",
+        "line_height": 1.25
+      }
+    },
+    {
+      "id": "slot.problem_1_carry_tens",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "x": 145,
+        "y": 58,
+        "font_size": 32,
+        "fill": "#111111",
+        "width": 32,
+        "height": 48,
+        "align": "center",
+        "line_height": 1.25
+      }
+    },
+    {
+      "id": "slot.problem_1_answer_hundreds",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "x": 103,
+        "y": 192,
+        "font_size": 40,
+        "fill": "#111111",
+        "width": 40,
+        "height": 58,
+        "align": "center",
+        "line_height": 1.25
+      }
+    },
+    {
+      "id": "slot.problem_1_answer_tens",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "x": 143,
+        "y": 192,
+        "font_size": 40,
+        "fill": "#111111",
+        "width": 40,
+        "height": 58,
+        "align": "center",
+        "line_height": 1.25
+      }
+    },
+    {
+      "id": "slot.problem_1_answer_ones",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "x": 183,
+        "y": 192,
+        "font_size": 40,
+        "fill": "#111111",
+        "width": 40,
+        "height": 58,
+        "align": "center",
+        "line_height": 1.25
+      }
+    },
+    {
+      "id": "slot.problem_2_carry_hundreds",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "x": 378,
+        "y": 58,
+        "font_size": 32,
+        "fill": "#111111",
+        "width": 32,
+        "height": 48,
+        "align": "center",
+        "line_height": 1.25
+      }
+    },
+    {
+      "id": "slot.problem_2_carry_tens",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "x": 415,
+        "y": 58,
+        "font_size": 32,
+        "fill": "#111111",
+        "width": 32,
+        "height": 48,
+        "align": "center",
+        "line_height": 1.25
+      }
+    },
+    {
       "id": "slot.problem_2_answer_hundreds",
       "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "□",
-        "style_role": "body",
         "x": 373,
         "y": 192,
+        "font_size": 40,
+        "fill": "#111111",
         "width": 40,
         "height": 58,
         "align": "center",
-        "valign": "middle",
-        "font_size": 40,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
         "line_height": 1.25
       }
     },
@@ -420,16 +546,13 @@
       "prompt": "",
       "content": {
         "text": "□",
-        "style_role": "body",
         "x": 413,
         "y": 192,
+        "font_size": 40,
+        "fill": "#111111",
         "width": 40,
         "height": 58,
         "align": "center",
-        "valign": "middle",
-        "font_size": 40,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
         "line_height": 1.25
       }
     },
@@ -439,16 +562,13 @@
       "prompt": "",
       "content": {
         "text": "□",
-        "style_role": "body",
         "x": 453,
         "y": 192,
+        "font_size": 40,
+        "fill": "#111111",
         "width": 40,
         "height": 58,
         "align": "center",
-        "valign": "middle",
-        "font_size": 40,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
         "line_height": 1.25
       }
     }
@@ -458,26 +578,36 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
+    "konva_1785110879232_rect_1350341",
+    "konva_1785110879232_paste_1362795_0",
+    "konva_1785110879232_paste_1363130_0",
+    "konva_1785110879232_paste_1394809_0",
+    "konva_1785110879232_paste_1394809_1",
+    "konva_1785110879232_paste_1394809_2",
+    "konva_1785110879232_paste_1400368_1",
+    "konva_1785110879232_paste_1400368_2",
+    "konva_1785110879232_paste_1406874_1",
+    "konva_1785110879232_paste_1406874_2",
     "slot.instruction",
     "region.problem_1",
     "slot.problem_1_number",
-    "slot.problem_1_carry_hundreds",
-    "slot.problem_1_carry_tens",
     "slot.problem_1_first_addend",
     "slot.problem_1_plus_sign",
     "slot.problem_1_second_addend",
     "slot.problem_1_line",
-    "slot.problem_1_answer_hundreds",
-    "slot.problem_1_answer_tens",
-    "slot.problem_1_answer_ones",
     "region.problem_2",
     "slot.problem_2_number",
-    "slot.problem_2_carry_hundreds",
-    "slot.problem_2_carry_tens",
     "slot.problem_2_first_addend",
     "slot.problem_2_plus_sign",
     "slot.problem_2_second_addend",
     "slot.problem_2_line",
+    "slot.problem_1_carry_hundreds",
+    "slot.problem_1_carry_tens",
+    "slot.problem_1_answer_hundreds",
+    "slot.problem_1_answer_tens",
+    "slot.problem_1_answer_ones",
+    "slot.problem_2_carry_hundreds",
+    "slot.problem_2_carry_tens",
     "slot.problem_2_answer_hundreds",
     "slot.problem_2_answer_tens",
     "slot.problem_2_answer_ones"

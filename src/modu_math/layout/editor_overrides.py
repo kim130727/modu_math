@@ -4,6 +4,16 @@ from typing import Any
 
 
 def _infer_override_slot_kind(content: dict[str, Any]) -> str:
+    if "d" in content:
+        return "path"
+    if (
+        "width" in content
+        or "height" in content
+        or "align" in content
+        or "valign" in content
+        or "line_height" in content
+    ) and ("text" in content or "font_size" in content):
+        return "text_box"
     if "text" in content or "font_size" in content or "max_width" in content:
         return "text"
     if "x1" in content or "y1" in content or "x2" in content or "y2" in content:

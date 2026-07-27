@@ -9,7 +9,7 @@ from modu_math.dsl import (
     Region,
     TextBoxSlot,
     TextSlot,
-)
+RectSlot)
 
 PROBLEM_ID = "P3_1_01_00040_02155"
 PROBLEM_TITLE = "세 자리 수의 덧셈 계산"
@@ -35,8 +35,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.problems",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(
-                    "slot.label_1",
+                slot_ids=("slot.label_1",
                     "slot.addend_1_1",
                     "slot.plus_1",
                     "slot.addend_1_2",
@@ -50,12 +49,10 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.addend_3_1",
                     "slot.plus_3",
                     "slot.addend_3_2",
-                    "slot.line_3",
-                ),
+                    "slot.line_3",'konva_1785110879232_rect_2052942', 'konva_1785110879232_paste_2066671_0', 'konva_1785110879232_paste_2071031_0'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.instruction",
                 text="다음을 계산하세요.",
                 prompt="세 개의 세 자리 수 덧셈을 계산하라는 안내",
@@ -245,8 +242,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="296과 758의 합",
                 answer_key="1054",
                 placeholder="",
-            ),
-        ),
+            ),RectSlot(id = 'konva_1785110879232_rect_2052942', prompt = '', x = 94.402, y = 166.405, width = 92.919, height = 33.237, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2), RectSlot(id = 'konva_1785110879232_paste_2066671_0', prompt = '', x = 311.66, y = 166.463, width = 92.919, height = 33.237, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2), RectSlot(id = 'konva_1785110879232_paste_2071031_0', prompt = '', x = 530.756, y = 164.685, width = 92.919, height = 33.237, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2)),
         diagrams=(),
         groups=(
             Group(

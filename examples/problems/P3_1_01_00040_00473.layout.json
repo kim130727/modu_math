@@ -3,7 +3,7 @@
   "problem_id": "P3_1_01_00040_00473",
   "title": "미란이가 모은 우표의 수",
   "canvas": {
-    "width": 900,
+    "width": 700,
     "height": 220,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
@@ -14,11 +14,10 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
+        "konva_1785110879232_paste_783799_0",
         "slot.question",
-        "slot.expression_label",
-        "slot.expression_blank",
-        "slot.answer_label",
-        "slot.answer_blank"
+        "konva_1785110879232_paste_783799_1",
+        "konva_1785110879232_paste_803386_0"
       ]
     }
   ],
@@ -28,12 +27,12 @@
       "kind": "text_box",
       "prompt": "",
       "content": {
-        "text": "미란이는 우표를 모으고 있습니다. 작년까지는 634장을 모았고, 올해는 279장을 모았습니다. 미란이는 우표를 모두 몇 장 모았습니까?",
+        "text": "미란이는 우표를 모으고 있습니다. 작년까지는 634장을 모았고,",
         "style_role": "body",
         "x": 38.0,
-        "y": 18.0,
-        "width": 824.0,
-        "height": 74.0,
+        "y": 21.0,
+        "width": 582.852,
+        "height": 68,
         "align": "left",
         "valign": "middle",
         "font_size": 24,
@@ -42,74 +41,74 @@
       }
     },
     {
-      "id": "slot.expression_label",
+      "id": "konva_1785110879232_paste_783799_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 480.752,
+        "y": 150.474,
+        "width": 78.73,
+        "height": 41.989,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "digit",
+          "max_length": 1,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "auto_advance": true,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222"
+        }
+      }
+    },
+    {
+      "id": "konva_1785110879232_paste_783799_1",
       "kind": "text_box",
       "prompt": "",
       "content": {
-        "text": "식",
+        "text": "장",
         "style_role": "body",
-        "x": 38.0,
-        "y": 96.0,
-        "width": 42.0,
+        "x": 572.919,
+        "y": 155.48,
+        "width": 61.799,
         "height": 38.0,
         "align": "left",
-        "valign": "middle",
+        "valign": "top",
         "font_size": 24,
-        "font_family": "Noto Sans KR",
+        "line_height": 1.25,
         "fill": "#202124"
       }
     },
     {
-      "id": "slot.expression_blank",
+      "id": "konva_1785110879232_paste_803386_0",
       "kind": "text_box",
       "prompt": "",
       "content": {
-        "text": "____________",
+        "text": "올해는 279장을 모았습니다. 미란이는 우표를 모두 몇 장 모았습니까?",
         "style_role": "body",
-        "x": 82.0,
-        "y": 96.0,
-        "width": 170.0,
+        "x": 38.316,
+        "y": 60.911,
+        "width": 688.354,
         "height": 38.0,
         "align": "left",
-        "valign": "middle",
+        "valign": "top",
         "font_size": 24,
-        "font_family": "Noto Sans KR",
-        "fill": "#202124"
-      }
-    },
-    {
-      "id": "slot.answer_label",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "답",
-        "style_role": "body",
-        "x": 290.0,
-        "y": 96.0,
-        "width": 42.0,
-        "height": 38.0,
-        "align": "left",
-        "valign": "middle",
-        "font_size": 24,
-        "font_family": "Noto Sans KR",
-        "fill": "#202124"
-      }
-    },
-    {
-      "id": "slot.answer_blank",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "_________",
-        "style_role": "body",
-        "x": 334.0,
-        "y": 96.0,
-        "width": 130.0,
-        "height": 38.0,
-        "align": "left",
-        "valign": "middle",
-        "font_size": 24,
-        "font_family": "Noto Sans KR",
+        "line_height": 1.25,
         "fill": "#202124"
       }
     }
@@ -119,10 +118,9 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
+    "konva_1785110879232_paste_783799_0",
     "slot.question",
-    "slot.expression_label",
-    "slot.expression_blank",
-    "slot.answer_label",
-    "slot.answer_blank"
+    "konva_1785110879232_paste_783799_1",
+    "konva_1785110879232_paste_803386_0"
   ]
 }

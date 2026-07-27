@@ -642,12 +642,25 @@ export function EditorKonva() {
       }
       const response = await buildProblem(selectedProblemId);
       const detail = [response.stdout, response.stderr].filter(Boolean).join("\n").trim();
-      setPreviewArtifacts({
+      const builtArtifacts = {
         semantic: (response.artifacts.semantic as Record<string, unknown> | null | undefined) ?? null,
         solvable: (response.artifacts.solvable as Record<string, unknown> | null | undefined) ?? null,
         layout: (response.artifacts.layout as import("../api/editorApi").LayoutDocument | null | undefined) ?? null,
         renderer: (response.artifacts.renderer as import("../api/editorApi").RendererDocument | null | undefined) ?? null,
+      };
+      const builtProblem = problemDetailToCanonicalProblem({
+        problem_id: response.problem_id,
+        base_dir: "",
+        dsl: "",
+        svg: null,
+        ...builtArtifacts,
       });
+      setPreviewArtifacts({
+        ...builtArtifacts,
+      });
+      setBaseProblemJson(builtProblem);
+      setDocument(problemJsonToEditorDocument(builtProblem));
+      setSelectedShapeIds([]);
       setDraftTutorFlow(null);
       setSaveStatus("built");
       setMessage(detail ? `Build complete for ${selectedProblemId}.\n${detail}` : `Build complete for ${selectedProblemId}.`);

@@ -7,7 +7,7 @@ from modu_math.dsl import (
     Region,
     TextBoxSlot,
     TextSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_00469"
@@ -294,15 +294,12 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="vertical",
-                slot_ids=(
-                    "slot.question",
+                slot_ids=("slot.question",
                     "slot.expression",
-                    "slot.answer",
-                ),
+                    "slot.answer",'konva_1785110879232_paste_513402_0', 'konva_1785110879232_paste_513402_1'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.question",
                 x=48,
                 y=34,
@@ -338,8 +335,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="답",
                 answer_key="507",
                 placeholder="개",
-            ),
-        ),
+            ),RectSlot(id = 'konva_1785110879232_paste_513402_0', prompt = '', x = 637.79, y = 149.022, width = 122.584, height = 42.06, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), TextBoxSlot(id = 'konva_1785110879232_paste_513402_1', prompt = '', text = '개', x = 771.483, y = 148.966, font_size = 30, fill = '#111827', width = 50.919, height = 46, align = 'left', line_height = 1.25)),
     )
 
 

@@ -1074,6 +1074,55 @@ def test_apply_editor_overrides_adds_missing_override_slot_to_matching_region() 
     assert layout["reading_order"][-1] == "slot.choice.a.text"
 
 
+def test_apply_editor_overrides_infers_missing_text_box_slot_when_box_fields_exist() -> None:
+    layout = {
+        "regions": [
+            {"id": "region.stem", "role": "stem", "slot_ids": ["slot.prompt"]},
+        ],
+        "slots": [
+            {"id": "slot.prompt", "kind": "text", "content": {"text": "Prompt"}},
+        ],
+    }
+    overrides = {
+        "slots": {
+            "slot.answer.box": {
+                "text": "□",
+                "x": 108.0,
+                "y": 58.0,
+                "width": 32.0,
+                "height": 48.0,
+                "align": "center",
+                "line_height": 1.25,
+                "font_size": 32,
+            }
+        }
+    }
+
+    apply_editor_overrides(layout, overrides)
+
+    added = next(slot for slot in layout["slots"] if slot["id"] == "slot.answer.box")
+    assert added["kind"] == "text_box"
+    assert added["content"]["y"] == 58.0
+    assert added["content"]["height"] == 48.0
+
+
+def test_apply_editor_overrides_infers_missing_path_slot_when_d_field_exists() -> None:
+    layout = {
+        "regions": [
+            {"id": "region.diagram", "role": "diagram", "slot_ids": ["slot.shape.anchor"]},
+        ],
+        "slots": [
+            {"id": "slot.shape.anchor", "kind": "rect", "content": {"x": 0.0, "y": 0.0}},
+        ],
+    }
+    overrides = {"slots": {"slot.shape.roof": {"d": "M 0 0 L 10 0 L 5 8 Z", "fill": "none"}}}
+
+    apply_editor_overrides(layout, overrides)
+
+    added = next(slot for slot in layout["slots"] if slot["id"] == "slot.shape.roof")
+    assert added["kind"] == "path"
+
+
 def test_layout_patch_delete_falls_back_to_editor_overrides(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """

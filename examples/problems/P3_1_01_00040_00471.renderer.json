@@ -7,6 +7,80 @@
   },
   "elements": [
     {
+      "id": "konva_1785110879232_circle_652757.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 219.115,
+        "cy": 92.336,
+        "r": 22.081,
+        "stroke": "#111827",
+        "stroke-width": 1.2,
+        "fill": "#ffffff"
+      },
+      "source_ref": "konva_1785110879232_circle_652757",
+      "refs": {
+        "layout_slot_id": "konva_1785110879232_circle_652757"
+      },
+      "interaction": {
+        "type": "select",
+        "role": "choice",
+        "value_type": "choice",
+        "choice_value": "konva_1785110879232_circle_652757",
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "shape_choice",
+        "keyboard": "none"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    {
+      "id": "konva_1785110879232_paste_664084_0.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 263.211,
+        "cy": 150.049,
+        "r": 22.081,
+        "stroke": "#111827",
+        "stroke-width": 1.2,
+        "fill": "#ffffff"
+      },
+      "source_ref": "konva_1785110879232_paste_664084_0",
+      "refs": {
+        "layout_slot_id": "konva_1785110879232_paste_664084_0"
+      },
+      "interaction": {
+        "type": "select",
+        "role": "choice",
+        "value_type": "choice",
+        "choice_value": "konva_1785110879232_paste_664084_0",
+        "include_in_submission": true,
+        "order": 1,
+        "group_id": "shape_choice",
+        "keyboard": "none"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    {
       "id": "slot.instruction.text",
       "type": "text_box",
       "attributes": {
@@ -88,55 +162,6 @@
       "text": "532"
     },
     {
-      "id": "slot.problem_1_blank.text",
-      "type": "text_box",
-      "attributes": {
-        "x": 198.066,
-        "y": 70.016,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR",
-        "font-size": 40,
-        "width": 44.131,
-        "height": 40.787,
-        "max_width": 44.131,
-        "data-slot-kind": "text_box",
-        "data-box-x": 198.066,
-        "data-box-y": 70.016,
-        "data-box-width": 44.131,
-        "data-box-height": 40.787,
-        "data-text-align": "center",
-        "data-vertical-align": "middle",
-        "data-line-height": 1.25
-      },
-      "source_ref": "slot.problem_1_blank",
-      "refs": {
-        "layout_slot_id": "slot.problem_1_blank"
-      },
-      "interaction": {
-        "type": "input",
-        "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
-        "include_in_submission": true,
-        "order": 0,
-        "group_id": "final_answer",
-        "auto_advance": true,
-        "keyboard": "number"
-      },
-      "input_style": {
-        "font_size_mode": "auto",
-        "font_size_adjust": 0,
-        "min_font_size": 14,
-        "max_font_size": 52,
-        "font_weight": 700,
-        "horizontal_align": "center",
-        "vertical_align": "middle",
-        "padding": 6,
-        "text_color": "#222222"
-      },
-      "text": "○"
-    },
-    {
       "id": "slot.problem_1_right.text",
       "type": "text_box",
       "attributes": {
@@ -216,55 +241,6 @@
         "layout_slot_id": "slot.problem_2_left"
       },
       "text": "346+667"
-    },
-    {
-      "id": "slot.problem_2_blank.text",
-      "type": "text_box",
-      "attributes": {
-        "x": 237.656,
-        "y": 127.492,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR",
-        "font-size": 40,
-        "width": 46.098,
-        "height": 43.246,
-        "max_width": 46.098,
-        "data-slot-kind": "text_box",
-        "data-box-x": 237.656,
-        "data-box-y": 127.492,
-        "data-box-width": 46.098,
-        "data-box-height": 43.246,
-        "data-text-align": "center",
-        "data-vertical-align": "middle",
-        "data-line-height": 1.25
-      },
-      "source_ref": "slot.problem_2_blank",
-      "refs": {
-        "layout_slot_id": "slot.problem_2_blank"
-      },
-      "interaction": {
-        "type": "input",
-        "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
-        "include_in_submission": true,
-        "order": 1,
-        "group_id": "final_answer",
-        "auto_advance": true,
-        "keyboard": "number"
-      },
-      "input_style": {
-        "font_size_mode": "auto",
-        "font_size_adjust": 0,
-        "min_font_size": 14,
-        "max_font_size": 52,
-        "font_weight": 700,
-        "horizontal_align": "center",
-        "vertical_align": "middle",
-        "padding": 6,
-        "text_color": "#222222"
-      },
-      "text": "○"
     },
     {
       "id": "slot.problem_2_right.text",

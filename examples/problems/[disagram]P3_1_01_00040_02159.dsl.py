@@ -51,12 +51,11 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.operation_1",
                     "slot.arrow_1_curve",
                     "slot.arrow_1_head",
-                    "slot.answer_1_oval",
                     "slot.operation_2_box",
                     "slot.operation_2",
                     "slot.arrow_2_curve",
                     "slot.arrow_2_head",
-                    "slot.answer_2_oval",'konva_1784592333289_arrow_2136844', 'konva_1784592333289_arrow_2144100', 'konva_1784592333289_arrow_2159396', 'konva_1784592333289_arrow_2165492'),
+                    'konva_1784592333289_arrow_2136844', 'konva_1784592333289_arrow_2144100', 'konva_1784592333289_arrow_2159396', 'konva_1784592333289_arrow_2165492', 'konva_1785110879232_rect_187005', 'konva_1785110879232_paste_195947_0', 'konva_1785110879232_paste_197056_0', 'konva_1785110879232_paste_235457_0'),
             ),
         ),
         slots=(TextBoxSlot(
@@ -67,22 +66,22 @@ def build_problem_template() -> ProblemTemplate:
             PathSlot(
                 id="slot.start_oval",
                 prompt="시작 수 156이 들어 있는 타원",
-                d = 'M 21.127 97.381 C 21.127 82.381 77.127 82.381 77.127 97.381 C 77.127 112.381 21.127 112.381 21.127 97.381 Z', fill = '#fff7ff', stroke = '#ead5e9', stroke_width = 1.2, semantic_role="given_value",
+                d = 'M 15.888 83.947 C 15.888 65.914 83.21 65.914 83.21 83.947 C 83.21 101.979 15.888 101.979 15.888 83.947 Z', fill = '#fff7ff', stroke = '#ead5e9', stroke_width = 1.2, semantic_role="given_value",
             ),
             TextSlot(
                 id="slot.start_value",
                 text = '156', prompt="연속 계산을 시작하는 수 156",
-                x = 50, y = 102.072, font_size = 15, anchor = 'middle', fill = '#111111', semantic_role="given_value",
+                x = 49.563, y = 89.854, font_size = 15, anchor = 'middle', fill = '#111111', semantic_role="given_value",
             ),
             RectSlot(
                 id="slot.operation_1_box",
                 prompt="첫 번째 덧셈 +278이 들어 있는 상자",
-                x = 84.366, y = 43.327, width = 64, height = 28, fill = '#e9f8dd', stroke = '#a9ce93', stroke_width = 1.2, semantic_role="operation",
+                x = 83.929, y = 31.109, width = 64, height = 28, fill = '#e9f8dd', stroke = '#a9ce93', stroke_width = 1.2, semantic_role="operation",
             ),
             TextSlot(
                 id="slot.operation_1",
                 text = '+278', prompt="첫 번째 연산 278 더하기",
-                x = 112, y = 64.072, font_size = 15, anchor = 'middle', fill = '#111111', semantic_role="operation",
+                x = 116.366, y = 50.545, font_size = 15, anchor = 'middle', fill = '#111111', semantic_role="operation",
             ),
             PathSlot(
                 id="slot.arrow_1_curve",
@@ -102,11 +101,6 @@ def build_problem_template() -> ProblemTemplate:
                 stroke_width=1,
                 semantic_role="flow_arrow",
             ),
-            PathSlot(
-                id="slot.answer_1_oval",
-                prompt="156에 278을 더한 결과를 쓰는 첫 번째 빈 타원",
-                d = 'M 146 96.072 C 146 81.072 202 81.072 202 96.072 C 202 111.072 146 111.072 146 96.072 Z', fill = '#ffffff', stroke = '#ead5e9', stroke_width = 1.2, semantic_role="answer_blank",
-            ),
             BlankSlot(
                 id="slot.answer_1",
                 prompt="156과 278의 합",
@@ -116,12 +110,12 @@ def build_problem_template() -> ProblemTemplate:
             RectSlot(
                 id="slot.operation_2_box",
                 prompt="두 번째 덧셈 +697이 들어 있는 상자",
-                x = 207, y = 45.072, width = 64, height = 28, fill = '#e9f8dd', stroke = '#a9ce93', stroke_width = 1.2, semantic_role="operation",
+                x = 206.563, y = 32.854, width = 64, height = 28, fill = '#e9f8dd', stroke = '#a9ce93', stroke_width = 1.2, semantic_role="operation",
             ),
             TextSlot(
                 id="slot.operation_2",
                 text = '+697', prompt="두 번째 연산 697 더하기",
-                x = 236, y = 64.072, font_size = 15, anchor = 'middle', fill = '#111111', semantic_role="operation",
+                x = 239.056, y = 51.854, font_size = 15, anchor = 'middle', fill = '#111111', semantic_role="operation",
             ),
             PathSlot(
                 id="slot.arrow_2_curve",
@@ -141,17 +135,12 @@ def build_problem_template() -> ProblemTemplate:
                 stroke_width=1,
                 semantic_role="flow_arrow",
             ),
-            PathSlot(
-                id="slot.answer_2_oval",
-                prompt="첫 번째 결과에 697을 더한 결과를 쓰는 두 번째 빈 타원",
-                d = 'M 270 96.072 C 270 81.072 326 81.072 326 96.072 C 326 111.072 270 111.072 270 96.072 Z', fill = '#ffffff', stroke = '#ead5e9', stroke_width = 1.2, semantic_role="answer_blank",
-            ),
             BlankSlot(
                 id="slot.answer_2",
                 prompt="434와 697의 합",
                 answer_key="1131",
                 placeholder="",
-            ),PathSlot(id = 'konva_1784592333289_arrow_2136844', prompt = '', d = 'M 52.83 81.62 L 79.46 58.49 M 79.46 58.49 L 75.11 68.59 M 79.46 58.49 L 68.85 61.39', fill = 'none', stroke = '#111827', stroke_width = 1.2), PathSlot(id = 'konva_1784592333289_arrow_2144100', prompt = '', d = 'M 154.116 56.306 L 172.886 77.246 M 172.886 77.246 L 162.716 73.056 M 172.886 77.246 L 169.826 66.676', fill = 'none', stroke = '#111827', stroke_width = 1.2), PathSlot(id = 'konva_1784592333289_arrow_2159396', prompt = '', d = 'M 184.25 79.44 L 204.33 58.5 M 204.33 58.5 L 200.92 68.96 M 204.33 58.5 L 194.03 62.35', fill = 'none', stroke = '#111827', stroke_width = 1.2), PathSlot(id = 'konva_1784592333289_arrow_2165492', prompt = '', d = 'M 275.93 58.93 L 299.07 82.06 M 299.07 82.06 L 288.69 78.43 M 299.07 82.06 L 295.43 71.68', fill = 'none', stroke = '#111827', stroke_width = 1.2)),
+            ),PathSlot(id = 'konva_1784592333289_arrow_2136844', prompt = '', d = 'M 52.393 69.402 L 79.023 46.272 M 79.023 46.272 L 74.673 56.372 M 79.023 46.272 L 68.413 49.172', fill = 'none', stroke = '#111827', stroke_width = 1.2), PathSlot(id = 'konva_1784592333289_arrow_2144100', prompt = '', d = 'M 153.679 44.088 L 172.449 65.028 M 172.449 65.028 L 162.279 60.838 M 172.449 65.028 L 169.389 54.458', fill = 'none', stroke = '#111827', stroke_width = 1.2), PathSlot(id = 'konva_1784592333289_arrow_2159396', prompt = '', d = 'M 183.813 67.222 L 203.893 46.282 M 203.893 46.282 L 200.483 56.742 M 203.893 46.282 L 193.593 50.132', fill = 'none', stroke = '#111827', stroke_width = 1.2), PathSlot(id = 'konva_1784592333289_arrow_2165492', prompt = '', d = 'M 275.493 46.712 L 298.633 69.842 M 298.633 69.842 L 288.253 66.212 M 298.633 69.842 L 294.993 59.462', fill = 'none', stroke = '#111827', stroke_width = 1.2), RectSlot(id = 'konva_1785110879232_rect_187005', prompt = '', x = 156.946, y = 99.877, width = 41.659, height = 22.218, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), PathSlot(id = 'konva_1785110879232_paste_195947_0', prompt = '', d = 'M 140.306 82.639 C 140.306 64.606 207.628 64.606 207.628 82.639 C 207.628 100.671 140.306 100.671 140.306 82.639 Z', fill = '#fff7ff', stroke = '#ead5e9', stroke_width = 1.2), PathSlot(id = 'konva_1785110879232_paste_197056_0', prompt = '', d = 'M 267.781 83.694 C 267.781 65.661 335.103 65.661 335.103 83.694 C 335.103 101.726 267.781 101.726 267.781 83.694 Z', fill = '#fff7ff', stroke = '#ead5e9', stroke_width = 1.2), RectSlot(id = 'konva_1785110879232_paste_235457_0', prompt = '', x = 282.477, y = 99.314, width = 41.659, height = 22.218, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 1, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
         diagrams=(),
         groups=(
             Group(

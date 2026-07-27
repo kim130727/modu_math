@@ -5,7 +5,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextBoxSlot,
-)
+RectSlot)
 
 # 문제 ID 및 타이틀 설정 (이미지 숫자에 맞게 ID 조정)
 PROBLEM_ID = "P3_1_01_00040_02149"
@@ -26,8 +26,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=(
-                    "slot.instruction",
+                slot_ids=("slot.instruction",
                     "slot.carry_hundreds",
                     "slot.carry_tens",
                     "slot.first_number",
@@ -36,12 +35,10 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.horizontal_line",
                     "slot.answer_hundreds",
                     "slot.answer_tens",
-                    "slot.answer_ones",
-                ),
+                    "slot.answer_ones",'konva_1785110879232_paste_1071192_0', 'konva_1785110879232_paste_1071192_1', 'konva_1785110879232_paste_1071192_2', 'konva_1785110879232_paste_1071192_3', 'konva_1785110879232_paste_1071192_4', 'konva_1785110879232_paste_1071192_5', 'konva_1785110879232_paste_1071192_6', 'konva_1785110879232_paste_1071192_7', 'konva_1785110879232_paste_1071192_8'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.instruction",
                 x=38,
                 y=20,
@@ -170,8 +167,7 @@ def build_problem_template() -> ProblemTemplate:
                 fill="#111111",
                 align="center",
                 valign="middle",
-            ),
-        ),
+            ),RectSlot(id = 'konva_1785110879232_paste_1071192_0', prompt = '', x = 203.945, y = 96.603, width = 19.147, height = 19.699, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 1, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), RectSlot(id = 'konva_1785110879232_paste_1071192_1', prompt = '', x = 181.745, y = 96.803, width = 19.147, height = 19.699, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), RectSlot(id = 'konva_1785110879232_paste_1071192_2', prompt = '', x = 201.145, y = 210.403, width = 19.147, height = 19.699, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 3, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), RectSlot(id = 'konva_1785110879232_paste_1071192_3', prompt = '', x = 178.345, y = 210.203, width = 19.147, height = 19.699, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 2, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), RectSlot(id = 'konva_1785110879232_paste_1071192_4', prompt = '', x = 223.945, y = 210.003, width = 19.147, height = 19.699, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 4, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), TextBoxSlot(id = 'konva_1785110879232_paste_1071192_5', prompt = '', text = '6 6 4', x = 185.545, y = 119.203, font_size = 28, fill = '#202124', width = 120, height = 43, align = 'left', line_height = 1.25), TextBoxSlot(id = 'konva_1785110879232_paste_1071192_6', prompt = '', text = '+', x = 145.545, y = 157.203, font_size = 28, fill = '#202124', width = 32, height = 43, align = 'center', line_height = 1.25), TextBoxSlot(id = 'konva_1785110879232_paste_1071192_7', prompt = '', text = '2 5 7', x = 184.745, y = 156.803, font_size = 28, fill = '#202124', width = 66.8, height = 78, align = 'left', line_height = 1.25), TextBoxSlot(id = 'konva_1785110879232_paste_1071192_8', prompt = '', text = '────────', x = 117.945, y = 183.203, font_size = 24, fill = '#111111', width = 160, height = 38, align = 'left', line_height = 1.25)),
     )
 
 

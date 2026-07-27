@@ -63,8 +63,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.diagram",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(
-                    "slot.item_1_label",
+                slot_ids=("slot.item_1_label",
                     "slot.item_1_circle",
                     "slot.item_1_horizontal_line",
                     "slot.item_1_vertical_line",
@@ -75,12 +74,10 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.item_2_horizontal_line",
                     "slot.item_2_vertical_line",
                     "slot.item_2_left_value",
-                    "slot.item_2_right_value",
-                ),
+                    "slot.item_2_right_value",'konva_1785110879232_rect_97325', 'konva_1785110879232_paste_108957_0'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.instruction",
                 text="다음 <보기>와 같이 빈 곳에 알맞은 수를 써넣으시오.",
                 prompt="보기의 규칙을 찾아 두 빈칸에 알맞은 수를 쓰라는 안내",
@@ -308,8 +305,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="756과 549의 합",
                 answer_key="1305",
                 placeholder="",
-            ),
-        ),
+            ),RectSlot(id = 'konva_1785110879232_rect_97325', prompt = '', x = 63.238, y = 244.9, width = 47.688, height = 25.434, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), RectSlot(id = 'konva_1785110879232_paste_108957_0', prompt = '', x = 217.253, y = 244.168, width = 47.688, height = 25.434, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 1, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
         diagrams=(),
         groups=(
             Group(

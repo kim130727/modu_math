@@ -51,7 +51,7 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
           fontFamily: stringProp(object.props.fontFamily) ?? KONVA_PREVIEW_FONT_FAMILY,
           fill: object.props.color ?? "#111827",
           width,
-          height: isTextBox ? fittedTextHeight(text, fontSize, width ?? estimateTextWidth(text, fontSize), lineHeight) : undefined,
+          height: isTextBox ? object.props.height ?? fittedTextHeight(text, fontSize, width ?? estimateTextWidth(text, fontSize), lineHeight) : undefined,
           align: textAlign,
           lineHeight,
           sourceKind: object.props.sourceKind ?? "text",

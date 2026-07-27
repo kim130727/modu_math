@@ -7,6 +7,45 @@
   },
   "elements": [
     {
+      "id": "konva_1785110879232_paste_513402_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 637.79,
+        "y": 149.022,
+        "width": 122.584,
+        "height": 42.06,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.2
+      },
+      "source_ref": "konva_1785110879232_paste_513402_0",
+      "refs": {
+        "layout_slot_id": "konva_1785110879232_paste_513402_0"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    {
       "id": "slot.question.text",
       "type": "text_box",
       "attributes": {
@@ -32,6 +71,33 @@
         "layout_slot_id": "slot.question"
       },
       "text": "지난 일요일 상현이네와 용진이네 가족은 주말 농장에 갔습니다. 고구마를 상현이네는 259개, 용진이네는 248개 캤습니다. 이 두 가족이 캔 고구마는 모두 몇 개입니까?"
+    },
+    {
+      "id": "konva_1785110879232_paste_513402_1.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 771.483,
+        "y": 148.966,
+        "fill": "#111827",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "width": 50.919,
+        "height": 46.0,
+        "max_width": 50.919,
+        "data-slot-kind": "text_box",
+        "data-box-x": 771.483,
+        "data-box-y": 148.966,
+        "data-box-width": 50.919,
+        "data-box-height": 46.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25
+      },
+      "source_ref": "konva_1785110879232_paste_513402_1",
+      "refs": {
+        "layout_slot_id": "konva_1785110879232_paste_513402_1"
+      },
+      "text": "개"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

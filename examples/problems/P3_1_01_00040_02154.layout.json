@@ -23,16 +23,10 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.problem_1_number",
-        "slot.problem_1_carry_hundreds",
-        "slot.problem_1_carry_tens",
         "slot.problem_1_first_addend",
         "slot.problem_1_plus_sign",
         "slot.problem_1_second_addend",
-        "slot.problem_1_line",
-        "slot.problem_1_answer_thousands",
-        "slot.problem_1_answer_hundreds",
-        "slot.problem_1_answer_tens",
-        "slot.problem_1_answer_ones"
+        "slot.problem_1_line"
       ]
     },
     {
@@ -41,16 +35,10 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.problem_2_number",
-        "slot.problem_2_carry_hundreds",
-        "slot.problem_2_carry_tens",
         "slot.problem_2_first_addend",
         "slot.problem_2_plus_sign",
         "slot.problem_2_second_addend",
-        "slot.problem_2_line",
-        "slot.problem_2_answer_thousands",
-        "slot.problem_2_answer_hundreds",
-        "slot.problem_2_answer_tens",
-        "slot.problem_2_answer_ones"
+        "slot.problem_2_line"
       ]
     }
   ],
@@ -62,9 +50,9 @@
       "content": {
         "text": "□ 안에 알맞은 수를 써넣으시오.",
         "style_role": "body",
-        "x": 20,
+        "x": 8.517,
         "y": 8,
-        "width": 840,
+        "width": 309.378,
         "height": 37,
         "align": "left",
         "valign": "middle",
@@ -81,53 +69,15 @@
       "content": {
         "text": "(1)",
         "style_role": "body",
-        "x": 24,
-        "y": 72,
+        "x": 17.651,
+        "y": 49.394,
         "width": 34,
-        "height": 63,
+        "height": 35.743,
         "align": "left",
         "valign": "middle",
         "font_size": 22,
         "font_family": "Noto Sans KR",
         "fill": "#202124",
-        "line_height": 1.25
-      }
-    },
-    {
-      "id": "slot.problem_1_carry_hundreds",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 63,
-        "y": 38,
-        "width": 28,
-        "height": 42,
-        "align": "center",
-        "valign": "middle",
-        "font_size": 27,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
-        "line_height": 1.25
-      }
-    },
-    {
-      "id": "slot.problem_1_carry_tens",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 94,
-        "y": 38,
-        "width": 28,
-        "height": 42,
-        "align": "center",
-        "valign": "middle",
-        "font_size": 27,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
         "line_height": 1.25
       }
     },
@@ -208,135 +158,21 @@
       }
     },
     {
-      "id": "slot.problem_1_answer_thousands",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 43,
-        "y": 146,
-        "width": 34,
-        "height": 51,
-        "align": "center",
-        "valign": "middle",
-        "font_size": 34,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
-        "line_height": 1.25
-      }
-    },
-    {
-      "id": "slot.problem_1_answer_hundreds",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 74,
-        "y": 146,
-        "width": 34,
-        "height": 51,
-        "align": "center",
-        "valign": "middle",
-        "font_size": 34,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
-        "line_height": 1.25
-      }
-    },
-    {
-      "id": "slot.problem_1_answer_tens",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 105,
-        "y": 146,
-        "width": 34,
-        "height": 51,
-        "align": "center",
-        "valign": "middle",
-        "font_size": 34,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
-        "line_height": 1.25
-      }
-    },
-    {
-      "id": "slot.problem_1_answer_ones",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 136,
-        "y": 146,
-        "width": 34,
-        "height": 51,
-        "align": "center",
-        "valign": "middle",
-        "font_size": 34,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
-        "line_height": 1.25
-      }
-    },
-    {
       "id": "slot.problem_2_number",
       "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "(2)",
         "style_role": "body",
-        "x": 137,
-        "y": 72,
+        "x": 214.512,
+        "y": 47.134,
         "width": 34,
-        "height": 63,
+        "height": 32.874,
         "align": "left",
         "valign": "middle",
         "font_size": 22,
         "font_family": "Noto Sans KR",
         "fill": "#202124",
-        "line_height": 1.25
-      }
-    },
-    {
-      "id": "slot.problem_2_carry_hundreds",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 180,
-        "y": 38,
-        "width": 28,
-        "height": 42,
-        "align": "center",
-        "valign": "middle",
-        "font_size": 27,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
-        "line_height": 1.25
-      }
-    },
-    {
-      "id": "slot.problem_2_carry_tens",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 211,
-        "y": 38,
-        "width": 28,
-        "height": 42,
-        "align": "center",
-        "valign": "middle",
-        "font_size": 27,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
         "line_height": 1.25
       }
     },
@@ -347,8 +183,8 @@
       "content": {
         "text": "2 5 7",
         "style_role": "body",
-        "x": 172,
-        "y": 62,
+        "x": 263.388,
+        "y": 63.435,
         "width": 104,
         "height": 40,
         "align": "center",
@@ -366,8 +202,8 @@
       "content": {
         "text": "+",
         "style_role": "body",
-        "x": 158,
-        "y": 98,
+        "x": 249.388,
+        "y": 99.435,
         "width": 24,
         "height": 40,
         "align": "center",
@@ -385,8 +221,8 @@
       "content": {
         "text": "7 6 9",
         "style_role": "body",
-        "x": 172,
-        "y": 98,
+        "x": 263.388,
+        "y": 99.435,
         "width": 104,
         "height": 40,
         "align": "center",
@@ -404,89 +240,13 @@
       "content": {
         "text": "───────",
         "style_role": "body",
-        "x": 160,
-        "y": 126,
+        "x": 251.388,
+        "y": 127.435,
         "width": 122,
         "height": 33,
         "align": "center",
         "valign": "middle",
         "font_size": 20,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
-        "line_height": 1.25
-      }
-    },
-    {
-      "id": "slot.problem_2_answer_thousands",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 160,
-        "y": 146,
-        "width": 34,
-        "height": 51,
-        "align": "center",
-        "valign": "middle",
-        "font_size": 34,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
-        "line_height": 1.25
-      }
-    },
-    {
-      "id": "slot.problem_2_answer_hundreds",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 191,
-        "y": 146,
-        "width": 34,
-        "height": 51,
-        "align": "center",
-        "valign": "middle",
-        "font_size": 34,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
-        "line_height": 1.25
-      }
-    },
-    {
-      "id": "slot.problem_2_answer_tens",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 222,
-        "y": 146,
-        "width": 34,
-        "height": 51,
-        "align": "center",
-        "valign": "middle",
-        "font_size": 34,
-        "font_family": "Noto Sans KR",
-        "fill": "#111111",
-        "line_height": 1.25
-      }
-    },
-    {
-      "id": "slot.problem_2_answer_ones",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 253,
-        "y": 146,
-        "width": 34,
-        "height": 51,
-        "align": "center",
-        "valign": "middle",
-        "font_size": 34,
         "font_family": "Noto Sans KR",
         "fill": "#111111",
         "line_height": 1.25
@@ -501,27 +261,15 @@
     "slot.instruction",
     "region.problem_1",
     "slot.problem_1_number",
-    "slot.problem_1_carry_hundreds",
-    "slot.problem_1_carry_tens",
     "slot.problem_1_first_addend",
     "slot.problem_1_plus_sign",
     "slot.problem_1_second_addend",
     "slot.problem_1_line",
-    "slot.problem_1_answer_thousands",
-    "slot.problem_1_answer_hundreds",
-    "slot.problem_1_answer_tens",
-    "slot.problem_1_answer_ones",
     "region.problem_2",
     "slot.problem_2_number",
-    "slot.problem_2_carry_hundreds",
-    "slot.problem_2_carry_tens",
     "slot.problem_2_first_addend",
     "slot.problem_2_plus_sign",
     "slot.problem_2_second_addend",
-    "slot.problem_2_line",
-    "slot.problem_2_answer_thousands",
-    "slot.problem_2_answer_hundreds",
-    "slot.problem_2_answer_tens",
-    "slot.problem_2_answer_ones"
+    "slot.problem_2_line"
   ]
 }
