@@ -7,6 +7,45 @@
   },
   "elements": [
     {
+      "id": "konva_1785114682783_paste_393118_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 144.88,
+        "y": 218.099,
+        "width": 24.773,
+        "height": 25.461,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.2
+      },
+      "source_ref": "konva_1785114682783_paste_393118_0",
+      "refs": {
+        "layout_slot_id": "konva_1785114682783_paste_393118_0"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 9,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    {
       "id": "slot.stage1.line.line",
       "type": "line",
       "attributes": {
@@ -85,7 +124,7 @@
       "id": "slot.stage1.top.text",
       "type": "text",
       "attributes": {
-        "x": 161.0,
+        "x": 196.36,
         "y": 132.959,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
@@ -96,7 +135,7 @@
       "refs": {
         "layout_slot_id": "slot.stage1.top"
       },
-      "text": "554"
+      "text": "5 5 4"
     },
     {
       "id": "slot.stage1.plus.text",
@@ -150,23 +189,6 @@
       "text": "⇒"
     },
     {
-      "id": "slot.stage2.top.text",
-      "type": "text",
-      "attributes": {
-        "x": 355.0,
-        "y": 132.959,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 29,
-        "text-anchor": "end"
-      },
-      "source_ref": "slot.stage2.top",
-      "refs": {
-        "layout_slot_id": "slot.stage2.top"
-      },
-      "text": "554"
-    },
-    {
       "id": "slot.stage2.plus.text",
       "type": "text",
       "attributes": {
@@ -218,23 +240,6 @@
       "text": "⇒"
     },
     {
-      "id": "slot.stage3.top.text",
-      "type": "text",
-      "attributes": {
-        "x": 549.0,
-        "y": 132.959,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 29,
-        "text-anchor": "end"
-      },
-      "source_ref": "slot.stage3.top",
-      "refs": {
-        "layout_slot_id": "slot.stage3.top"
-      },
-      "text": "554"
-    },
-    {
       "id": "slot.stage3.plus.text",
       "type": "text",
       "attributes": {
@@ -267,6 +272,94 @@
         "layout_slot_id": "slot.stage3.bottom"
       },
       "text": "269"
+    },
+    {
+      "id": "konva_1785114682783_paste_480251_0.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 251.606,
+        "y": 103.723,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 29,
+        "width": 104.4,
+        "height": 36.25,
+        "max_width": 104.4,
+        "data-slot-kind": "text_box",
+        "data-box-x": 251.606,
+        "data-box-y": 103.723,
+        "data-box-width": 104.4,
+        "data-box-height": 36.25,
+        "data-text-align": "right",
+        "data-vertical-align": "top",
+        "data-line-height": 1.2
+      },
+      "source_ref": "konva_1785114682783_paste_480251_0",
+      "refs": {
+        "layout_slot_id": "konva_1785114682783_paste_480251_0"
+      },
+      "text": "5 5 4"
+    },
+    {
+      "id": "konva_1785114682783_paste_480810_0.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 444.984,
+        "y": 105.335,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 29,
+        "width": 104.4,
+        "height": 36.25,
+        "max_width": 104.4,
+        "data-slot-kind": "text_box",
+        "data-box-x": 444.984,
+        "data-box-y": 105.335,
+        "data-box-width": 104.4,
+        "data-box-height": 36.25,
+        "data-text-align": "right",
+        "data-vertical-align": "top",
+        "data-line-height": 1.2
+      },
+      "source_ref": "konva_1785114682783_paste_480810_0",
+      "refs": {
+        "layout_slot_id": "konva_1785114682783_paste_480810_0"
+      },
+      "text": "5 5 4"
+    },
+    {
+      "id": "slot.stage2.top.text",
+      "type": "text",
+      "attributes": {
+        "x": 355.0,
+        "y": 132.959,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 29,
+        "text-anchor": "end"
+      },
+      "source_ref": "slot.stage2.top",
+      "refs": {
+        "layout_slot_id": "slot.stage2.top"
+      },
+      "text": "554"
+    },
+    {
+      "id": "slot.stage3.top.text",
+      "type": "text",
+      "attributes": {
+        "x": 549.0,
+        "y": 132.959,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 29,
+        "text-anchor": "end"
+      },
+      "source_ref": "slot.stage3.top",
+      "refs": {
+        "layout_slot_id": "slot.stage3.top"
+      },
+      "text": "554"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

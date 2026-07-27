@@ -17,7 +17,7 @@ export function problemJsonToLayoutPatches(base: ProblemJson, next: ProblemJson)
 
   for (const object of next.objects) {
     const baseObject = baseObjects.get(object.id);
-    patches.push(...objectPatches(baseObject, object));
+    patches.push(...objectPatches(baseObject, object, base.objects));
   }
 
   for (const object of base.objects) {
@@ -43,12 +43,12 @@ function canvasPatches(base: ProblemJson, next: ProblemJson): LayoutPatch[] {
   ];
 }
 
-function objectPatches(baseObject: ProblemObject | undefined, object: ProblemObject): LayoutPatch[] {
+function objectPatches(baseObject: ProblemObject | undefined, object: ProblemObject, baseObjects: ProblemObject[]): LayoutPatch[] {
   if (object.type === "table") {
     if (baseObject?.type === "table") return tableUpdatePatches(baseObject, object);
     return tableSlotPatches(object);
   }
-  if (!baseObject) return [addPatch(object)];
+  if (!baseObject) return [addPatch(object, inferRegionId(object, baseObjects))];
   const patch = updatePatch(baseObject, object);
   return patch ? [patch] : [];
 }
@@ -70,13 +70,63 @@ function updatePatch(baseObject: ProblemObject, object: ProblemObject): LayoutPa
   };
 }
 
-function addPatch(object: ProblemObject): LayoutPatch {
+function addPatch(object: ProblemObject, regionId?: string): LayoutPatch {
   const value = addValue(object);
+  if (regionId) value.region_id = regionId;
   return {
     target: object.id,
     op: "add",
     value,
   };
+}
+
+function inferRegionId(object: ProblemObject, baseObjects: ProblemObject[]): string | undefined {
+  const explicit = sourceRegionId(object);
+  if (explicit) return explicit;
+
+  const center = objectCenter(object);
+  let best: { regionId: string; distance: number } | null = null;
+  for (const candidate of baseObjects) {
+    const regionId = sourceRegionId(candidate);
+    if (!regionId) continue;
+    const candidateCenter = objectCenter(candidate);
+    const dx = center.x - candidateCenter.x;
+    const dy = center.y - candidateCenter.y;
+    const distance = dx * dx + dy * dy;
+    if (!best || distance < best.distance) best = { regionId, distance };
+  }
+  return best?.regionId;
+}
+
+function sourceRegionId(object: ProblemObject): string | undefined {
+  const value = object.props.sourceRegionId;
+  return typeof value === "string" && value ? value : undefined;
+}
+
+function objectCenter(object: ProblemObject): { x: number; y: number } {
+  const box = objectBounds(object);
+  return { x: box.x + box.width / 2, y: box.y + box.height / 2 };
+}
+
+function objectBounds(object: ProblemObject): { x: number; y: number; width: number; height: number } {
+  switch (object.type) {
+    case "math_text":
+      return { x: object.x, y: object.y, width: object.props.width ?? 1, height: object.props.height ?? object.props.fontSize ?? 1 };
+    case "basic_shape":
+      return { x: object.x, y: object.y, width: object.props.width, height: object.props.height };
+    case "image":
+      return { x: object.x, y: object.y, width: object.props.width, height: object.props.height };
+    case "path":
+      return { x: object.x, y: object.y, width: object.props.width, height: object.props.height };
+    case "table":
+      return { x: object.x, y: object.y, width: sum(object.props.columnWidths), height: sum(object.props.rowHeights) };
+    case "fraction_bar":
+      return { x: object.x, y: object.y, width: object.props.width, height: object.props.height };
+    case "number_line":
+      return { x: object.x, y: object.y, width: object.props.width, height: 1 };
+    case "group_objects":
+      return { x: object.x, y: object.y, width: 1, height: 1 };
+  }
 }
 
 function updateValue(baseObject: ProblemObject, object: ProblemObject): Record<string, unknown> {

@@ -9,7 +9,7 @@ from modu_math.dsl import (
     Region,
     TextBoxSlot,
     TextSlot,
-)
+RectSlot)
 
 PROBLEM_ID = "P3_1_01_00040_02156"
 PROBLEM_TITLE = "받아올림하며 세 자리 수의 덧셈 계산"
@@ -29,8 +29,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.process",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(
-                    "slot.instruction",
+                slot_ids=("slot.instruction",
                     "slot.stage1.carry",
                     "slot.stage1.top",
                     "slot.stage1.plus",
@@ -40,7 +39,6 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.arrow_1",
                     "slot.stage2.carry_hundreds",
                     "slot.stage2.carry_tens",
-                    "slot.stage2.top",
                     "slot.stage2.plus",
                     "slot.stage2.bottom",
                     "slot.stage2.line",
@@ -49,18 +47,15 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.arrow_2",
                     "slot.stage3.carry_hundreds",
                     "slot.stage3.carry_tens",
-                    "slot.stage3.top",
                     "slot.stage3.plus",
                     "slot.stage3.bottom",
                     "slot.stage3.line",
                     "slot.stage3.answer_hundreds",
                     "slot.stage3.answer_tens",
-                    "slot.stage3.answer_ones",
-                ),
+                    "slot.stage3.answer_ones",'konva_1785114682783_paste_393118_0', 'konva_1785114682783_paste_480251_0', 'konva_1785114682783_paste_480810_0'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.instruction",
                 x=24,
                 y=18.994,
@@ -90,10 +85,8 @@ def build_problem_template() -> ProblemTemplate:
             ),
             TextSlot(
                 id="slot.stage1.top",
-                text="554",
-                prompt="첫 번째 단계의 위 수 554",
-                x=161,
-                y=132.959,
+                text = '5 5 4', prompt="첫 번째 단계의 위 수 554",
+                x = 168.36, y=132.959,
                 font_size=29,
                 anchor="end",
                 fill="#111111",
@@ -110,10 +103,8 @@ def build_problem_template() -> ProblemTemplate:
             ),
             TextSlot(
                 id="slot.stage1.bottom",
-                text="269",
-                prompt="첫 번째 단계의 아래 수 269",
-                x=161,
-                y=181.959,
+                text = '2 6 9', prompt="첫 번째 단계의 아래 수 269",
+                x = 196.36, y=181.959,
                 font_size=29,
                 anchor="end",
                 fill="#111111",
@@ -173,16 +164,6 @@ def build_problem_template() -> ProblemTemplate:
                 fill="#111111",
             ),
             TextSlot(
-                id="slot.stage2.top",
-                text="554",
-                prompt="두 번째 단계의 위 수 554",
-                x=355,
-                y=132.959,
-                font_size=29,
-                anchor="end",
-                fill="#111111",
-            ),
-            TextSlot(
                 id="slot.stage2.plus",
                 text="+",
                 prompt="두 번째 단계의 덧셈 기호",
@@ -194,10 +175,8 @@ def build_problem_template() -> ProblemTemplate:
             ),
             TextSlot(
                 id="slot.stage2.bottom",
-                text="269",
-                prompt="두 번째 단계의 아래 수 269",
-                x=355,
-                y=181.959,
+                text = '2 6 9', prompt="두 번째 단계의 아래 수 269",
+                x = 359.36, y=181.959,
                 font_size=29,
                 anchor="end",
                 fill="#111111",
@@ -236,8 +215,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="slot.arrow_2",
                 text="⇒",
                 prompt="두 번째 단계에서 세 번째 단계로 진행하는 화살표",
-                x=411,
-                y=178.959,
+                x = 410, y=178.959,
                 font_size=31,
                 anchor="middle",
                 fill="#111111",
@@ -267,16 +245,6 @@ def build_problem_template() -> ProblemTemplate:
                 fill="#111111",
             ),
             TextSlot(
-                id="slot.stage3.top",
-                text="554",
-                prompt="세 번째 단계의 위 수 554",
-                x=549,
-                y=132.959,
-                font_size=29,
-                anchor="end",
-                fill="#111111",
-            ),
-            TextSlot(
                 id="slot.stage3.plus",
                 text="+",
                 prompt="세 번째 단계의 덧셈 기호",
@@ -288,10 +256,8 @@ def build_problem_template() -> ProblemTemplate:
             ),
             TextSlot(
                 id="slot.stage3.bottom",
-                text="269",
-                prompt="세 번째 단계의 아래 수 269",
-                x=549,
-                y=181.959,
+                text = '2 6 9', prompt="세 번째 단계의 아래 수 269",
+                x = 554.36, y=181.959,
                 font_size=29,
                 anchor="end",
                 fill="#111111",
@@ -402,8 +368,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="최종 답의 일의 자리",
                 answer_key="3",
                 placeholder="",
-            ),
-        ),
+            ),RectSlot(id = 'konva_1785114682783_paste_393118_0', prompt = '', x = 144.88, y = 218.099, width = 24.773, height = 25.461, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 9, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), TextBoxSlot(id = 'konva_1785114682783_paste_480251_0', prompt = '', text = '5 5 4', x = 251.606, y = 103.723, font_size = 29, fill = '#111111', width = 104.4, height = 36.25, align = 'right', line_height = 1.2), TextBoxSlot(id = 'konva_1785114682783_paste_480810_0', prompt = '', text = '5 5 4', x = 444.984, y = 105.335, font_size = 29, fill = '#111111', width = 104.4, height = 36.25, align = 'right', line_height = 1.2)),
         diagrams=(),
         groups=(
             Group(

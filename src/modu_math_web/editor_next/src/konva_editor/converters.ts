@@ -29,6 +29,7 @@ export function editorDocumentToProblemJson(document: EditorShapeDocument, base:
 
 function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
   const answerProps = answerSlotProps(object.props);
+  const regionProps = sourceRegionProps(object.props);
   switch (object.type) {
     case "math_text": {
       const text = object.props.latex || object.props.text;
@@ -55,6 +56,7 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
           align: textAlign,
           lineHeight,
           sourceKind: object.props.sourceKind ?? "text",
+          ...regionProps,
           ...answerProps,
           visible: true,
           },
@@ -76,6 +78,7 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
             stroke: object.props.stroke ?? "#111827",
             strokeWidth: object.props.strokeWidth ?? 1,
             strokeDasharray: object.props.strokeDasharray,
+            ...regionProps,
             ...answerProps,
             visible: true,
             },
@@ -95,6 +98,7 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
             stroke: object.props.stroke ?? "#111827",
             strokeWidth: object.props.strokeWidth ?? 1,
             strokeDasharray: object.props.strokeDasharray,
+            ...regionProps,
             ...answerProps,
             visible: true,
             },
@@ -125,6 +129,7 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
             height: object.props.height,
           }),
           adjustment: pointProp(object.props.adjustment),
+          ...regionProps,
           ...answerProps,
           visible: true,
           },
@@ -143,6 +148,7 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
           width: object.props.width,
           height: object.props.height,
           preserveAspectRatio: object.props.preserveAspectRatio ?? "xMidYMid meet",
+          ...regionProps,
           ...answerProps,
           visible: true,
           },
@@ -166,6 +172,7 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
             stroke: object.props.stroke ?? "#111827",
             strokeWidth: object.props.strokeWidth ?? 1,
             strokeDasharray: object.props.strokeDasharray,
+            ...regionProps,
             ...answerProps,
             visible: true,
           },
@@ -187,6 +194,7 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
           strokeDasharray: object.props.strokeDasharray,
           shapePreset: stringProp(object.props.shapePreset),
           adjustment: pointProp(object.props.adjustment),
+          ...regionProps,
           ...answerProps,
           visible: true,
           },
@@ -227,11 +235,20 @@ function answerSlotProps(props: Record<string, unknown>): { interaction?: InputI
   };
 }
 
+function sourceRegionProps(props: Record<string, unknown>): { sourceRegionId?: string } {
+  const sourceRegionId = stringProp(props.sourceRegionId);
+  return sourceRegionId ? { sourceRegionId } : {};
+}
+
 function answerShapeProps(shape: EditorShape): { interaction?: InputInteraction; input_style?: InputStyle } {
   return {
     ...(shape.interaction ? { interaction: shape.interaction } : {}),
     ...(shape.input_style ? { input_style: shape.input_style } : {}),
   };
+}
+
+function sourceRegionShapeProps(shape: EditorShape): { sourceRegionId?: string } {
+  return shape.sourceRegionId ? { sourceRegionId: shape.sourceRegionId } : {};
 }
 
 function recordProp(value: unknown): Record<string, unknown> | undefined {
@@ -267,6 +284,7 @@ function isSupportedProblemObject(object: ProblemObject): boolean {
 
 function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
   const answerProps = answerShapeProps(shape);
+  const regionProps = sourceRegionShapeProps(shape);
   switch (shape.type) {
     case "math":
       return [
@@ -285,6 +303,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             textAlign: "left",
             lineHeight: 1.25,
             sourceKind: "text_box",
+            ...regionProps,
             ...answerProps,
             ...transformProps(shape),
           },
@@ -308,6 +327,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             textAlign: shape.align ?? "left",
             lineHeight: shape.lineHeight ?? 1.25,
             sourceKind: shape.sourceKind ?? (shape.width ? "text_box" : "text"),
+            ...regionProps,
             ...answerProps,
             ...transformProps(shape),
           },
@@ -328,6 +348,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             stroke: shape.stroke ?? "#111827",
             strokeWidth: shape.strokeWidth ?? 1,
             strokeDasharray: shape.strokeDasharray,
+            ...regionProps,
             ...answerProps,
             ...transformProps(shape),
           },
@@ -348,6 +369,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             stroke: shape.stroke ?? "#111827",
             strokeWidth: shape.strokeWidth ?? 1,
             strokeDasharray: shape.strokeDasharray,
+            ...regionProps,
             ...answerProps,
             ...transformProps(shape),
           },
@@ -367,6 +389,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             stroke: shape.stroke ?? "#111827",
             strokeWidth: shape.strokeWidth ?? 1,
             strokeDasharray: shape.strokeDasharray,
+            ...regionProps,
             ...answerProps,
             ...transformProps(shape),
           },
@@ -396,6 +419,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             connectorControl: shape.control,
             connectorArrowStart: Boolean(shape.arrowStart),
             connectorArrowEnd: Boolean(shape.arrowEnd),
+            ...regionProps,
             ...answerProps,
           },
         },
@@ -418,6 +442,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             strokeDasharray: shape.strokeDasharray,
             shapePreset: shape.shapePreset,
             adjustment: shape.adjustment,
+            ...regionProps,
             ...answerProps,
             ...transformProps(shape),
           },
@@ -435,6 +460,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             width: shape.width,
             height: shape.height,
             preserveAspectRatio: shape.preserveAspectRatio,
+            ...regionProps,
             ...answerProps,
             ...transformProps(shape),
           },

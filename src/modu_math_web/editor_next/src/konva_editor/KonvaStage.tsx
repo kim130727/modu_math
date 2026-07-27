@@ -724,41 +724,19 @@ function TutorHighlight({ shape }: { shape: EditorShape }) {
 
 function AnswerSlotOverlay({ shape }: { shape: EditorShape }) {
   const bounds = paddedRect(shapeBounds(shape), 5);
-  const interaction = shape.interaction;
-  const inputStyle = shape.input_style;
-  if (!interaction) return null;
-  const fontSize = calculateAnswerPreviewFontSize(shape);
-  const label = [
-    interaction.role ?? "answer",
-    interaction.value_type ?? "digit",
-    interaction.max_length ? `${interaction.max_length}자` : null,
-    inputStyle?.font_size_mode === "fixed" ? `${inputStyle.font_size ?? fontSize}px` : `${fontSize}px`,
-  ]
-    .filter(Boolean)
-    .join(" · ");
+  if (!shape.interaction) return null;
   return (
-    <>
-      <Rect
-        x={bounds.x}
-        y={bounds.y}
-        width={bounds.width}
-        height={bounds.height}
-        stroke="#2563eb"
-        strokeWidth={1.2}
-        dash={[5, 4]}
-        fill="rgba(37, 99, 235, 0.05)"
-        listening={false}
-      />
-      <Text
-        x={bounds.x}
-        y={Math.max(0, bounds.y - 18)}
-        text={label}
-        fontSize={11}
-        fontFamily="Noto Sans KR, sans-serif"
-        fill="#1d4ed8"
-        listening={false}
-      />
-    </>
+    <Rect
+      x={bounds.x}
+      y={bounds.y}
+      width={bounds.width}
+      height={bounds.height}
+      stroke="#2563eb"
+      strokeWidth={1.2}
+      dash={[5, 4]}
+      fill="rgba(37, 99, 235, 0.05)"
+      listening={false}
+    />
   );
 }
 
@@ -1338,3 +1316,4 @@ function shapeFromNode(shape: EditorShape, node: Konva.Node): EditorShape {
   }
   return shape;
 }
+

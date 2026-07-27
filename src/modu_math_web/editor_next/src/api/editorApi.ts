@@ -33,7 +33,15 @@ export interface LayoutDocument {
   problem_id?: string;
   title?: string;
   canvas?: { width: number; height: number };
+  regions?: LayoutRegion[];
   slots?: LayoutSlot[];
+}
+
+export interface LayoutRegion {
+  id: string;
+  role?: string;
+  flow?: string;
+  slot_ids?: string[];
 }
 
 export interface LayoutSlot {
@@ -271,6 +279,7 @@ export function problemDetailToCanonicalProblem(detail: ProblemDetailResponse): 
   const layout = detail.layout;
   const renderer = detail.renderer;
   const canvas = renderer?.canvas ?? layout?.canvas ?? { width: 1280, height: 720 };
+  const slotRegions = slotRegionMap(layout);
   return {
     id: detail.problem_id,
     title: layout?.title ?? detail.problem_id,
@@ -279,9 +288,21 @@ export function problemDetailToCanonicalProblem(detail: ProblemDetailResponse): 
     // prototype is useful for whole-table semantics, but it blocks practical cell
     // and divider editing until we add a dedicated in-shape interaction model.
     objects: renderer?.elements?.length
-      ? renderer.elements.flatMap((element) => rendererElementToProblemObject(detail.problem_id, element))
-      : (layout?.slots ?? []).flatMap((slot) => layoutSlotToProblemObject(detail.problem_id, slot)),
+      ? renderer.elements.flatMap((element) => rendererElementToProblemObject(detail.problem_id, element, slotRegions.get(sourceId(element))))
+      : (layout?.slots ?? []).flatMap((slot) => layoutSlotToProblemObject(detail.problem_id, slot, slotRegions.get(slot.id))),
   };
+}
+
+function slotRegionMap(layout: LayoutDocument | null): Map<string, string> {
+  const regions = layout?.regions ?? [];
+  const map = new Map<string, string>();
+  for (const region of regions) {
+    if (!region?.id || !Array.isArray(region.slot_ids)) continue;
+    for (const slotId of region.slot_ids) {
+      if (typeof slotId === "string" && slotId) map.set(slotId, region.id);
+    }
+  }
+  return map;
 }
 
 function rendererElementsToTableObjects(elements: RendererElement[]): { objects: ProblemObject[]; consumedSlotIds: Set<string> } {
@@ -425,8 +446,9 @@ function layoutTableGroupToProblemObject(base: string, slots: LayoutSlot[]): Pro
   };
 }
 
-function rendererElementToProblemObject(problemId: string, element: RendererElement): ProblemObject[] {
+function rendererElementToProblemObject(problemId: string, element: RendererElement, sourceRegionId?: string): ProblemObject[] {
   const attrs = element.attributes;
+  const regionProps = sourceRegionId ? { sourceRegionId } : {};
   switch (element.type) {
     case "text": {
       const text = stringValue(element.text, "");
@@ -454,6 +476,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
             lineHeight: 1.2,
             sourceKind: "text",
             transform: stringValue(attrs.transform, ""),
+            ...regionProps,
             ...answerElementProps(element),
           },
         },
@@ -484,6 +507,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
             lineHeight,
             sourceKind: "text_box",
             transform: stringValue(attrs.transform, ""),
+            ...regionProps,
             ...answerElementProps(element),
           },
         },
@@ -505,6 +529,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
             strokeWidth: numberValue(attrs["stroke-width"], 1),
             strokeDasharray: stringValue(attrs["stroke-dasharray"], ""),
             transform: stringValue(attrs.transform, ""),
+            ...regionProps,
             ...answerElementProps(element),
           },
         },
@@ -527,6 +552,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
             stroke: stringValue(attrs.stroke, "#111827"),
             strokeWidth: numberValue(attrs["stroke-width"], 1),
             transform: stringValue(attrs.transform, ""),
+            ...regionProps,
             ...answerElementProps(element),
           },
         },
@@ -550,6 +576,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
             stroke: stringValue(attrs.stroke, "#111827"),
             strokeWidth: numberValue(attrs["stroke-width"], 1),
             transform: stringValue(attrs.transform, ""),
+            ...regionProps,
             ...answerElementProps(element),
           },
         },
@@ -562,6 +589,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
         strokeWidth: numberValue(attrs["stroke-width"], 1),
         strokeDasharray: stringValue(attrs["stroke-dasharray"], ""),
         transform: stringValue(attrs.transform, ""),
+        ...regionProps,
         ...answerElementProps(element),
       });
     }
@@ -580,6 +608,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
           alt: sourceId(element),
           preserveAspectRatio: stringValue(attrs.preserveAspectRatio, stringValue(attrs.preserve_aspect_ratio, "xMidYMid meet")),
           transform: stringValue(attrs.transform, ""),
+          ...regionProps,
           ...answerElementProps(element),
         },
       },
@@ -602,6 +631,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
             strokeWidth: numberValue(attrs["stroke-width"], 1),
             strokeDasharray: stringValue(attrs["stroke-dasharray"], ""),
             transform: stringValue(attrs.transform, ""),
+            ...regionProps,
             ...answerElementProps(element),
           },
         },
@@ -612,8 +642,9 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
   }
 }
 
-function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): ProblemObject[] {
+function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot, sourceRegionId?: string): ProblemObject[] {
   const content = slot.content;
+  const regionProps = sourceRegionId ? { sourceRegionId } : {};
   switch (slot.kind) {
     case "text": {
       const text = stringValue(content.text, slot.id);
@@ -639,6 +670,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             lineHeight: 1.2,
             sourceKind: "text",
             transform: stringValue(content.transform, ""),
+            ...regionProps,
             ...answerContentProps(content),
           },
         },
@@ -668,6 +700,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             lineHeight,
             sourceKind: "text_box",
             transform: stringValue(content.transform, ""),
+            ...regionProps,
             ...answerContentProps(content),
           },
         },
@@ -689,6 +722,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             strokeWidth: numberValue(content.stroke_width, 1),
             strokeDasharray: stringValue(content.stroke_dasharray, ""),
             transform: stringValue(content.transform, ""),
+            ...regionProps,
             ...answerContentProps(content),
           },
         },
@@ -711,6 +745,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             stroke: stringValue(content.stroke, "#111827"),
             strokeWidth: numberValue(content.stroke_width, 1),
             transform: stringValue(content.transform, ""),
+            ...regionProps,
             ...answerContentProps(content),
           },
         },
@@ -734,6 +769,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             stroke: stringValue(content.stroke, "#111827"),
             strokeWidth: numberValue(content.stroke_width, 1),
             transform: stringValue(content.transform, ""),
+            ...regionProps,
             ...answerContentProps(content),
           },
         },
@@ -746,6 +782,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
         strokeWidth: numberValue(content.stroke_width, 1),
         strokeDasharray: stringValue(content.stroke_dasharray, ""),
         transform: stringValue(content.transform, ""),
+        ...regionProps,
         ...answerContentProps(content),
       });
     }
@@ -762,6 +799,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             height: numberValue(content.height, 80),
             preserveAspectRatio: stringValue(content.preserve_aspect_ratio, "xMidYMid meet"),
             transform: stringValue(content.transform, ""),
+            ...regionProps,
             ...answerContentProps(content),
           },
         },
@@ -782,6 +820,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             stroke: stringValue(content.stroke, "#111827"),
             strokeWidth: numberValue(content.stroke_width, 1),
             transform: stringValue(content.transform, ""),
+            ...regionProps,
             ...answerContentProps(content),
           },
         },

@@ -52,6 +52,7 @@ export type BaseShape = {
   opacity?: number;
   locked?: boolean;
   visible?: boolean;
+  sourceRegionId?: string;
   interaction?: InputInteraction;
   input_style?: InputStyle;
 };
