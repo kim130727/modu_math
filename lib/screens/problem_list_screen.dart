@@ -375,14 +375,16 @@ class _JourneyStepTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      problem.title,
+                      '$stepNumber. ${_problemName(problem)}',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      'Rule Tutor와 한 단계씩 풀기',
+                      problem.title,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: colorScheme.onSurfaceVariant,
                         fontWeight: FontWeight.w600,
@@ -464,6 +466,14 @@ class _UnitCard extends StatelessWidget {
       ),
     );
   }
+}
+
+String _problemName(ProblemSummary problem) {
+  final filePrefix = problem.filePrefix?.trim();
+  if (filePrefix != null && filePrefix.isNotEmpty) {
+    return filePrefix;
+  }
+  return problem.id;
 }
 
 class _ProblemListData {

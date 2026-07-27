@@ -80,22 +80,15 @@ class _LearningSessionScreenState extends State<LearningSessionScreen> {
                   totalCount: data.problems.length,
                   solvedCount: data.correctProblemIds.length,
                   nextTitle: nextProblem.title,
+                  nextProblemName: _problemName(nextProblem),
                   complete: data.isComplete,
+                  onStart: () => _startProblem(data, nextIndex),
                 ),
                 const SizedBox(height: 18),
                 _ProblemPreviewList(
                   problems: data.problems,
                   correctProblemIds: data.correctProblemIds,
                   nextProblemId: nextProblem.id,
-                ),
-                const SizedBox(height: 18),
-                FilledButton.icon(
-                  onPressed: () => _startProblem(data, nextIndex),
-                  icon: Icon(data.isComplete ? Icons.replay : Icons.play_arrow),
-                  label: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    child: Text(data.isComplete ? '다시 풀기' : '이어 풀기'),
-                  ),
                 ),
               ],
             );
@@ -131,14 +124,18 @@ class _SessionHeader extends StatelessWidget {
     required this.totalCount,
     required this.solvedCount,
     required this.nextTitle,
+    required this.nextProblemName,
     required this.complete,
+    required this.onStart,
   });
 
   final String unit;
   final int totalCount;
   final int solvedCount;
   final String nextTitle;
+  final String nextProblemName;
   final bool complete;
+  final VoidCallback onStart;
 
   @override
   Widget build(BuildContext context) {
@@ -156,7 +153,21 @@ class _SessionHeader extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(unit, style: Theme.of(context).textTheme.titleLarge),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child:
+                      Text(unit, style: Theme.of(context).textTheme.titleLarge),
+                ),
+                const SizedBox(width: 12),
+                FilledButton.icon(
+                  onPressed: onStart,
+                  icon: Icon(complete ? Icons.replay : Icons.play_arrow),
+                  label: Text(complete ? '다시 풀기' : '이어 풀기'),
+                ),
+              ],
+            ),
             const SizedBox(height: 10),
             LinearProgressIndicator(
               value: progress,
@@ -182,8 +193,16 @@ class _SessionHeader extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              nextTitle,
+              nextProblemName,
               style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(height: 2),
+            Text(
+              nextTitle,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: KidsPalette.cocoaSoft,
+                    fontWeight: FontWeight.w700,
+                  ),
             ),
           ],
         ),
@@ -240,16 +259,28 @@ class _ProblemPreviewList extends StatelessWidget {
               ),
             ),
             title: Text(
-              problem.title,
+              '${index + 1}. ${_problemName(problem)}',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
-            subtitle: Text(next ? '다음에 풀 문제' : problem.type),
+            subtitle: Text(
+              next ? '다음에 풀 문제 · ${problem.title}' : problem.title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
           );
         },
       ),
     );
   }
+}
+
+String _problemName(ProblemSummary problem) {
+  final filePrefix = problem.filePrefix?.trim();
+  if (filePrefix != null && filePrefix.isNotEmpty) {
+    return filePrefix;
+  }
+  return problem.id;
 }
 
 class _SessionData {
