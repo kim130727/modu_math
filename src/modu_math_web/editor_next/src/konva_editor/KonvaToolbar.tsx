@@ -56,6 +56,7 @@ type ToolName =
   | "image"
   | "table"
   | "graphPaper"
+  | "answerSlot"
   | "delete"
   | "refresh"
   | "save"
@@ -64,6 +65,7 @@ type ToolName =
 
 interface KonvaToolbarProps {
   hasSelection: boolean;
+  hasAnswerSlotCandidate: boolean;
   onInsertShape: (preset: ShapePreset) => void;
   onAddMath: () => void;
   onAddProperFraction: () => void;
@@ -72,6 +74,7 @@ interface KonvaToolbarProps {
   onAddImage: () => void;
   onAddTable: () => void;
   onAddGraphPaper: () => void;
+  onMarkSelectedAsAnswerSlot: () => void;
   onDeleteSelected: () => void;
   onRefreshJson: () => void;
   onSave: () => void;
@@ -292,6 +295,15 @@ function ToolbarIcon({ name }: { name: ToolName }) {
           <path d="M8 4v16M12 4v16M16 4v16M4 8h16M4 12h16M4 16h16" />
         </svg>
       );
+    case "answerSlot":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="5" y="5" width="14" height="14" rx="1" />
+          <text x="12" y="16" textAnchor="middle" fontSize="10" stroke="none" fill="currentColor">
+            1
+          </text>
+        </svg>
+      );
     case "delete":
       return (
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -398,6 +410,12 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
       <IconButton label="Image" icon="image" onClick={props.onAddImage} />
       <IconButton label="Table" icon="table" onClick={props.onAddTable} />
       <IconButton label="Graph Paper" icon="graphPaper" onClick={props.onAddGraphPaper} />
+      <IconButton
+        label="Mark selected as AnswerSlot"
+        icon="answerSlot"
+        onClick={props.onMarkSelectedAsAnswerSlot}
+        disabled={!props.hasAnswerSlotCandidate}
+      />
       <IconButton label="Delete selected" icon="delete" onClick={props.onDeleteSelected} disabled={!props.hasSelection} />
       <span className="toolbar-spacer" />
       <IconButton label="Refresh JSON" icon="refresh" onClick={props.onRefreshJson} />

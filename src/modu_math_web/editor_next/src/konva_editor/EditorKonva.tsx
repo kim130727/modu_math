@@ -53,6 +53,10 @@ export function EditorKonva() {
   const idPrefix = useMemo(() => `konva_${Date.now()}`, []);
 
   const selectedShape = selectedShapeIds.length === 1 ? document.shapes.find((shape) => shape.id === selectedShapeIds[0]) ?? null : null;
+  const selectedAnswerSlotShapeIds = useMemo(() => {
+    const selected = new Set(selectedShapeIds);
+    return document.shapes.filter((shape) => selected.has(shape.id) && isAnswerSlotShape(shape)).map((shape) => shape.id);
+  }, [document.shapes, selectedShapeIds]);
   const effectiveTutorFlow = draftTutorFlow ?? previewArtifacts.renderer?.tutor_flow ?? [];
   const activeTutorFrames = useMemo(() => {
     if (!activeTutorStepId) return [];
@@ -206,6 +210,15 @@ export function EditorKonva() {
     },
     [document.shapes, updateShapes],
   );
+
+  const markSelectedAsAnswerSlot = useCallback(() => {
+    if (!selectedAnswerSlotShapeIds.length) {
+      setMessage("Select a rectangle, circle, path, or text shape first.");
+      return;
+    }
+    setAnswerSlotState(selectedAnswerSlotShapeIds, true);
+    setMessage(`Marked ${selectedAnswerSlotShapeIds.length} shape(s) as AnswerSlot.`);
+  }, [selectedAnswerSlotShapeIds, setAnswerSlotState]);
 
   const addDrawnShape = useCallback(
     (preset: ShapePreset, start: CanvasPoint, end: CanvasPoint, points?: CanvasPoint[]) => {
@@ -684,6 +697,7 @@ export function EditorKonva() {
     <div className="math-problem-editor konva-editor">
       <KonvaToolbar
         hasSelection={selectedShapeIds.length > 0}
+        hasAnswerSlotCandidate={selectedAnswerSlotShapeIds.length > 0}
         onInsertShape={insertShape}
         onAddMath={addMath}
         onAddProperFraction={addProperFraction}
@@ -692,6 +706,7 @@ export function EditorKonva() {
         onAddImage={addImage}
         onAddTable={addTable}
         onAddGraphPaper={addGraphPaper}
+        onMarkSelectedAsAnswerSlot={markSelectedAsAnswerSlot}
         onDeleteSelected={deleteSelected}
         onRefreshJson={refreshJson}
         onSave={saveJson}
