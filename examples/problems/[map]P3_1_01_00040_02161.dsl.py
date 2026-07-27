@@ -38,9 +38,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.diagram",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(
-                    # 송은이네 집
-                    "slot.house_body",
+                slot_ids=("slot.house_body",
                     "slot.house_roof",
                     "slot.house_door",
                     "slot.house_window",
@@ -67,13 +65,10 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.route_home_store",
                     "slot.route_store_school",
                     "slot.distance_487",
-                    "slot.distance_295",
-                    # 풀이 입력 영역
-                ),
+                    "slot.distance_295",'konva_1785113855579_rect_35817', 'konva_1785113855579_paste_45479_0'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.instruction",
                 text="송은이가 문방구를 들러 학교에 가려고 합니다. 집에서 학교까지의 거리를 구하시오.",
                 prompt="문방구를 거쳐 학교까지 간 전체 거리를 구하라는 문제",
@@ -369,8 +364,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="집에서 학교까지의 전체 거리",
                 answer_key="782",
                 placeholder="",
-            ),
-        ),
+            ),RectSlot(id = 'konva_1785113855579_rect_35817', prompt = '', x = 38.421, y = 199.367, width = 68.756, height = 24.988, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), TextBoxSlot(id = 'konva_1785113855579_paste_45479_0', prompt = '', text = 'm', x = 114.294, y = 203.255, font_size = 14, fill = '#444444', width = 27.995, height = 25, align = 'left', line_height = 1.2)),
         diagrams=(),
         groups=(
             Group(

@@ -59,6 +59,7 @@ type ToolName =
   | "delete"
   | "refresh"
   | "save"
+  | "saveBuild"
   | "build";
 
 interface KonvaToolbarProps {
@@ -74,6 +75,7 @@ interface KonvaToolbarProps {
   onDeleteSelected: () => void;
   onRefreshJson: () => void;
   onSave: () => void;
+  onSaveAndBuild: () => void;
   onBuild: () => void;
   onNewFile: () => void;
 }
@@ -312,6 +314,15 @@ function ToolbarIcon({ name }: { name: ToolName }) {
           <path d="M8 4v6h8V4M8 20v-6h8v6" />
         </svg>
       );
+    case "saveBuild":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 4h10l2 2v6H4V4Z" />
+          <path d="M7 4v4h6V4M7 12v-2h6v2" />
+          <path d="M11 15v5l5-2.5Z" />
+          <path d="M18 14v7" />
+        </svg>
+      );
     case "build":
       return (
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -391,6 +402,7 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
       <span className="toolbar-spacer" />
       <IconButton label="Refresh JSON" icon="refresh" onClick={props.onRefreshJson} />
       <IconButton label="Save DSL" icon="save" onClick={props.onSave} primary />
+      <IconButton label="Save and Build" icon="saveBuild" onClick={props.onSaveAndBuild} primary />
       <IconButton label="Build" icon="build" onClick={props.onBuild} />
     </div>
   );

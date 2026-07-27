@@ -94,6 +94,66 @@ def _deleted_slot_matches(slot_id: str, deleted: set[str], exact_deleted: set[st
     return False
 
 
+def _layout_slot_ids(layout: dict[str, Any]) -> set[str]:
+    return {
+        slot.get("id")
+        for slot in layout.get("slots", [])
+        if isinstance(slot, dict) and isinstance(slot.get("id"), str)
+    }
+
+
+def prune_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | None) -> tuple[dict[str, Any] | None, bool]:
+    if not isinstance(overrides, dict):
+        return overrides, False
+
+    changed = False
+    cleaned: dict[str, Any] = {key: value for key, value in overrides.items() if key not in {"slots", "region_slot_orders"}}
+    slot_ids = _layout_slot_ids(layout)
+
+    retained_override_slot_ids: set[str] = set()
+    slot_overrides = overrides.get("slots")
+    if isinstance(slot_overrides, dict):
+        cleaned_slots: dict[str, Any] = {}
+        for slot_id, patch in slot_overrides.items():
+            if not isinstance(slot_id, str) or not isinstance(patch, dict):
+                changed = True
+                continue
+            if slot_id in slot_ids or _infer_region_id_for_slot(layout, slot_id) is not None:
+                cleaned_slots[slot_id] = patch
+                retained_override_slot_ids.add(slot_id)
+            else:
+                changed = True
+        if cleaned_slots:
+            cleaned["slots"] = cleaned_slots
+        elif slot_overrides:
+            changed = True
+
+    region_slot_orders = overrides.get("region_slot_orders")
+    if isinstance(region_slot_orders, dict):
+        valid_order_ids = slot_ids | retained_override_slot_ids
+        cleaned_orders: dict[str, list[str]] = {}
+        for region_id, order in region_slot_orders.items():
+            if not isinstance(region_id, str) or not isinstance(order, list):
+                changed = True
+                continue
+            cleaned_order = [slot_id for slot_id in order if isinstance(slot_id, str) and slot_id in valid_order_ids]
+            if cleaned_order != order:
+                changed = True
+            if cleaned_order:
+                cleaned_orders[region_id] = cleaned_order
+        if cleaned_orders:
+            cleaned["region_slot_orders"] = cleaned_orders
+        elif region_slot_orders:
+            changed = True
+
+    if changed:
+        cleaned["version"] = 1
+    elif cleaned != overrides:
+        changed = True
+
+    return cleaned, changed
+
+
 def apply_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | None) -> dict[str, Any]:
     if not isinstance(overrides, dict):
         return layout

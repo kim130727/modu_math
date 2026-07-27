@@ -16,7 +16,7 @@ from modu_math.dsl import (
     compile_problem_template_to_layout,
     compile_problem_template_to_semantic,
 )
-from modu_math.layout.editor_overrides import apply_editor_overrides
+from modu_math.layout.editor_overrides import apply_editor_overrides, prune_editor_overrides
 from modu_math.pipeline.validate_contracts import validate_semantic_solvable_answer_match
 from modu_math.pipeline.tutor_renderer_flow import attach_tutor_renderer_flow, validate_tutor_renderer_flow
 from modu_math.renderer.compiler import compile_renderer_json
@@ -107,6 +107,12 @@ def _build_problem_artifacts(problem_id: str) -> str:
     editor_overrides_path = problem_paths.base_dir / f"{problem_paths.artifact_base}.editor_overrides.json"
     if editor_overrides_path.exists():
         editor_overrides = json.loads(editor_overrides_path.read_text(encoding="utf-8-sig"))
+        editor_overrides, pruned = prune_editor_overrides(layout, editor_overrides)
+        if pruned:
+            editor_overrides_path.write_text(
+                json.dumps(editor_overrides, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
         layout = apply_editor_overrides(layout, editor_overrides)
 
     renderer = compile_renderer_json(layout)

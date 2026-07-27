@@ -16,13 +16,13 @@
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 18,
         "width": 578.421,
-        "height": 52.0,
+        "height": 20.439,
         "max_width": 578.421,
         "data-slot-kind": "text_box",
         "data-box-x": 18.863,
         "data-box-y": 19.663,
         "data-box-width": 578.421,
-        "data-box-height": 52.0,
+        "data-box-height": 20.439,
         "data-text-align": "left",
         "data-vertical-align": "top",
         "data-line-height": 1.2,
@@ -293,6 +293,45 @@
       }
     },
     {
+      "id": "konva_1785113855579_rect_35817.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 38.421,
+        "y": 199.367,
+        "width": 68.756,
+        "height": 24.988,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.2
+      },
+      "source_ref": "konva_1785113855579_rect_35817",
+      "refs": {
+        "layout_slot_id": "konva_1785113855579_rect_35817"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    {
       "id": "slot.route_home_store.line",
       "type": "line",
       "attributes": {
@@ -456,6 +495,33 @@
         "layout_slot_id": "slot.distance_295"
       },
       "text": "295 m"
+    },
+    {
+      "id": "konva_1785113855579_paste_45479_0.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 114.294,
+        "y": 203.255,
+        "fill": "#444444",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 14,
+        "width": 27.995,
+        "height": 25.0,
+        "max_width": 27.995,
+        "data-slot-kind": "text_box",
+        "data-box-x": 114.294,
+        "data-box-y": 203.255,
+        "data-box-width": 27.995,
+        "data-box-height": 25.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.2
+      },
+      "source_ref": "konva_1785113855579_paste_45479_0",
+      "refs": {
+        "layout_slot_id": "konva_1785113855579_paste_45479_0"
+      },
+      "text": "m"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

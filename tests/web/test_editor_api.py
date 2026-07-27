@@ -9,7 +9,7 @@ import pytest
 from django.conf import settings
 from django.test import Client
 
-from modu_math.layout.editor_overrides import apply_editor_overrides
+from modu_math.layout.editor_overrides import apply_editor_overrides, prune_editor_overrides
 
 
 def _setup_django(tmp_path: Path) -> Client:
@@ -1151,6 +1151,57 @@ def test_apply_editor_overrides_does_not_revive_stale_missing_slot_without_match
     assert [slot["id"] for slot in layout["slots"]] == ["slot.instruction"]
     assert layout["regions"][0]["slot_ids"] == ["slot.instruction"]
     assert layout["regions"][1]["slot_ids"] == []
+
+
+def test_prune_editor_overrides_removes_stale_missing_slots() -> None:
+    layout = {
+        "regions": [
+            {"id": "region.stem", "role": "stem", "slot_ids": ["slot.instruction"]},
+            {"id": "region.problem_1", "role": "question", "slot_ids": []},
+        ],
+        "slots": [
+            {"id": "slot.instruction", "kind": "text_box", "content": {"text": "Prompt"}},
+        ],
+    }
+    overrides = {
+        "version": 1,
+        "canvas": {"width": 600, "height": 300},
+        "slots": {
+            "slot.instruction": {"x": 30},
+            "slot.problem_1_number": {"text": "(1)", "x": 30, "y": 112},
+        },
+        "region_slot_orders": {
+            "region.stem": ["slot.instruction", "slot.problem_1_number"],
+        },
+    }
+
+    cleaned, changed = prune_editor_overrides(layout, overrides)
+
+    assert changed is True
+    assert cleaned["slots"] == {"slot.instruction": {"x": 30}}
+    assert cleaned["region_slot_orders"] == {"region.stem": ["slot.instruction"]}
+    assert cleaned["canvas"] == {"width": 600, "height": 300}
+
+
+def test_prune_editor_overrides_keeps_missing_slots_with_matching_prefix() -> None:
+    layout = {
+        "regions": [
+            {"id": "region.choices", "role": "diagram", "slot_ids": ["slot.choice.box"]},
+        ],
+        "slots": [
+            {"id": "slot.choice.box", "kind": "rect", "content": {"x": 1.0, "y": 2.0}},
+        ],
+    }
+    overrides = {
+        "slots": {
+            "slot.choice.a.text": {"text": "A", "x": 105.0, "y": 146.0, "font_size": 28},
+        }
+    }
+
+    cleaned, changed = prune_editor_overrides(layout, overrides)
+
+    assert changed is False
+    assert cleaned == overrides
 
 
 def test_layout_patch_delete_falls_back_to_editor_overrides(tmp_path: Path) -> None:

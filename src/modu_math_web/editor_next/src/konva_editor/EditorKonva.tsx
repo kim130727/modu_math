@@ -525,14 +525,14 @@ export function EditorKonva() {
     if (selectedProblemId === initialProblem.id) {
       setMessage("Sample problem is local only. Open a real problem before saving to DSL.");
       setSaveStatus("error");
-      return;
+      return false;
     }
 
     const patches = problemJsonToLayoutPatches(baseProblemJson, nextProblem);
     if (!patches.length && !draftTutorFlow) {
       setMessage(`No DSL changes to save for ${selectedProblemId}.`);
       setSaveStatus("saved");
-      return;
+      return true;
     }
 
     setSaveStatus("saving");
@@ -551,9 +551,11 @@ export function EditorKonva() {
       }
       setSaveStatus("saved");
       setMessage(`Saved ${savedParts.join(" and ")} for ${selectedProblemId}. Build to refresh artifacts.`);
+      return true;
     } catch (error) {
       setSaveStatus("error");
       setMessage(`Could not save ${selectedProblemId}: ${String(error)}`);
+      return false;
     }
   }, [baseProblemJson, document, draftTutorFlow, selectedProblemId]);
 
@@ -628,7 +630,7 @@ export function EditorKonva() {
     if (selectedProblemId === initialProblem.id) {
       setMessage("Sample problem is local only. Open a real problem before building.");
       setSaveStatus("error");
-      return;
+      return false;
     }
 
     setSaveStatus("building");
@@ -664,11 +666,19 @@ export function EditorKonva() {
       setDraftTutorFlow(null);
       setSaveStatus("built");
       setMessage(detail ? `Build complete for ${selectedProblemId}.\n${detail}` : `Build complete for ${selectedProblemId}.`);
+      return true;
     } catch (error) {
       setSaveStatus("error");
       setMessage(`Could not build ${selectedProblemId}: ${String(error)}`);
+      return false;
     }
   }, [draftTutorFlow, selectedProblemId]);
+
+  const saveAndBuildCurrentProblem = useCallback(async () => {
+    const saved = await saveJson();
+    if (!saved) return;
+    await buildCurrentProblem();
+  }, [buildCurrentProblem, saveJson]);
 
   return (
     <div className="math-problem-editor konva-editor">
@@ -685,6 +695,7 @@ export function EditorKonva() {
         onDeleteSelected={deleteSelected}
         onRefreshJson={refreshJson}
         onSave={saveJson}
+        onSaveAndBuild={saveAndBuildCurrentProblem}
         onBuild={buildCurrentProblem}
         onNewFile={createNewProblem}
       />
