@@ -1123,6 +1123,36 @@ def test_apply_editor_overrides_infers_missing_path_slot_when_d_field_exists() -
     assert added["kind"] == "path"
 
 
+def test_apply_editor_overrides_does_not_revive_stale_missing_slot_without_matching_prefix() -> None:
+    layout = {
+        "regions": [
+            {"id": "region.stem", "role": "stem", "slot_ids": ["slot.instruction"]},
+            {"id": "region.problem_1", "role": "question", "slot_ids": []},
+        ],
+        "slots": [
+            {"id": "slot.instruction", "kind": "text_box", "content": {"text": "Prompt"}},
+        ],
+    }
+    overrides = {
+        "slots": {
+            "slot.problem_1_number": {
+                "text": "(1)",
+                "x": 30,
+                "y": 112,
+                "width": 48,
+                "height": 38,
+                "font_size": 24,
+            }
+        }
+    }
+
+    apply_editor_overrides(layout, overrides)
+
+    assert [slot["id"] for slot in layout["slots"]] == ["slot.instruction"]
+    assert layout["regions"][0]["slot_ids"] == ["slot.instruction"]
+    assert layout["regions"][1]["slot_ids"] == []
+
+
 def test_layout_patch_delete_falls_back_to_editor_overrides(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """

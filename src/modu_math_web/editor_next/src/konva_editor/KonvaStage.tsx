@@ -158,6 +158,7 @@ export function KonvaStage({
   };
 
   const selectShape = (shapeId: string, event: Konva.KonvaEventObject<MouseEvent | TouchEvent>) => {
+    if ("button" in event.evt && event.evt.button !== 0) return;
     event.cancelBubble = true;
     const additive = isAdditiveSelection(event.evt);
     if (!additive) {
@@ -322,6 +323,7 @@ export function KonvaStage({
         width={stageWidth}
         height={stageHeight}
         onMouseDown={(event) => {
+          if (event.evt.button !== 0) return;
           if (event.target !== event.target.getStage()) return;
           const point = pointFromEvent(event);
           if (!point) return;
@@ -336,6 +338,7 @@ export function KonvaStage({
           setSelectionRect({ x: point.x, y: point.y, width: 0, height: 0 });
         }}
         onMouseMove={(event) => {
+          if (event.evt.buttons && (event.evt.buttons & 1) === 0) return;
           if (drawStartRef.current && drawingPreset) {
             const point = pointFromEvent(event);
             if (!point) return;
@@ -350,6 +353,7 @@ export function KonvaStage({
           setSelectionRect(normalizeRect(start.x, start.y, point.x - start.x, point.y - start.y));
         }}
         onMouseUp={(event) => {
+          if (event.evt.button !== 0) return;
           if (drawStartRef.current && drawingPreset && onDrawShape) {
             const start = drawStartRef.current;
             const points = drawPointsRef.current;

@@ -49,25 +49,29 @@ def _infer_region_id_for_slot(layout: dict[str, Any], slot_id: str) -> str | Non
             if score > best_score:
                 best_score = score
                 best_region_id = region.get("id") if isinstance(region.get("id"), str) else None
-    if best_region_id:
+    if best_region_id and best_score >= 2:
         return best_region_id
-    for region in layout.get("regions", []):
-        if isinstance(region, dict) and region.get("role") == "diagram" and isinstance(region.get("id"), str):
-            return region["id"]
-    for region in layout.get("regions", []):
-        if isinstance(region, dict) and isinstance(region.get("id"), str):
-            return region["id"]
+    region_ids = [
+        region.get("id")
+        for region in layout.get("regions", [])
+        if isinstance(region, dict) and isinstance(region.get("id"), str)
+    ]
+    if len(region_ids) == 1:
+        return region_ids[0]
     return None
 
 
 def _add_missing_override_slot(layout: dict[str, Any], slot_id: str, content: dict[str, Any]) -> None:
+    region_id = _infer_region_id_for_slot(layout, slot_id)
+    if region_id is None:
+        return
+
     slots = layout.setdefault("slots", [])
     if not isinstance(slots, list):
         layout["slots"] = []
         slots = layout["slots"]
     slots.append({"id": slot_id, "kind": _infer_override_slot_kind(content), "prompt": "", "content": dict(content)})
 
-    region_id = _infer_region_id_for_slot(layout, slot_id)
     for region in layout.get("regions", []):
         if not isinstance(region, dict) or region.get("id") != region_id:
             continue
