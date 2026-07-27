@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from typing import Any
 
 
@@ -102,6 +103,36 @@ def _layout_slot_ids(layout: dict[str, Any]) -> set[str]:
     }
 
 
+def _layout_slot_kinds(layout: dict[str, Any]) -> dict[str, str]:
+    return {
+        slot["id"]: slot["kind"]
+        for slot in layout.get("slots", [])
+        if isinstance(slot, dict) and isinstance(slot.get("id"), str) and isinstance(slot.get("kind"), str)
+    }
+
+
+def _points_from_polygon_path(d: Any) -> list[list[float]] | None:
+    if not isinstance(d, str) or not d.strip():
+        return None
+    commands = set(re.findall(r"[A-Za-z]", d))
+    if commands - {"M", "m", "L", "l", "Z", "z"}:
+        return None
+    numbers = [float(match.group(0)) for match in re.finditer(r"[-+]?(?:\d*\.\d+|\d+)(?:e[-+]?\d+)?", d)]
+    if len(numbers) < 6 or len(numbers) % 2:
+        return None
+    return [[numbers[index], numbers[index + 1]] for index in range(0, len(numbers), 2)]
+
+
+def _normalize_slot_patch(slot_kind: str | None, patch: dict[str, Any]) -> tuple[dict[str, Any], bool]:
+    if slot_kind != "polygon" or "d" not in patch:
+        return patch, False
+    normalized = dict(patch)
+    points = _points_from_polygon_path(normalized.pop("d"))
+    if points is not None and "points" not in normalized:
+        normalized["points"] = points
+    return normalized, normalized != patch
+
+
 def prune_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | None) -> tuple[dict[str, Any] | None, bool]:
     if not isinstance(overrides, dict):
         return overrides, False
@@ -109,6 +140,7 @@ def prune_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | N
     changed = False
     cleaned: dict[str, Any] = {key: value for key, value in overrides.items() if key not in {"slots", "region_slot_orders"}}
     slot_ids = _layout_slot_ids(layout)
+    slot_kinds = _layout_slot_kinds(layout)
 
     retained_override_slot_ids: set[str] = set()
     slot_overrides = overrides.get("slots")
@@ -119,6 +151,8 @@ def prune_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | N
                 changed = True
                 continue
             if slot_id in slot_ids or _infer_region_id_for_slot(layout, slot_id) is not None:
+                patch, normalized = _normalize_slot_patch(slot_kinds.get(slot_id), patch)
+                changed = changed or normalized
                 cleaned_slots[slot_id] = patch
                 retained_override_slot_ids.add(slot_id)
             else:
@@ -222,6 +256,7 @@ def apply_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | N
                 continue
             content = slot.get("content")
             if isinstance(content, dict):
+                patch, _ = _normalize_slot_patch(slot.get("kind") if isinstance(slot.get("kind"), str) else None, patch)
                 content.update(patch)
 
     canvas_override = overrides.get("canvas")

@@ -5,7 +5,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextBoxSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_02154"
@@ -26,7 +26,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.instruction",),
+                slot_ids=("slot.instruction",'konva_1785114682783_paste_104870_0', 'konva_1785114682783_paste_111670_0', 'konva_1785114682783_paste_120157_0', 'konva_1785114682783_paste_126081_0', 'konva_1785114682783_paste_147820_0', 'konva_1785114682783_paste_147820_1', 'konva_1785114682783_paste_147820_2', 'konva_1785114682783_paste_147820_3', 'konva_1785114682783_paste_180671_0', 'konva_1785114682783_paste_180671_1', 'konva_1785114682783_paste_185807_0', 'konva_1785114682783_paste_185807_1'),
             ),
             Region(
                 id="region.problem_1",
@@ -65,8 +65,7 @@ def build_problem_template() -> ProblemTemplate:
                 ),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.instruction",
                 x=20,
                 y=8,
@@ -84,8 +83,7 @@ def build_problem_template() -> ProblemTemplate:
             TextBoxSlot(
                 id="slot.problem_1_number",
                 x=24,
-                y=72,
-                width=34,
+                y = 70.394, width=34,
                 height=32,
                 text="(1)",
                 font_size=22,
@@ -123,8 +121,7 @@ def build_problem_template() -> ProblemTemplate:
             TextBoxSlot(
                 id="slot.problem_1_first_addend",
                 x=55,
-                y=62,
-                width=104,
+                y = 83, width=104,
                 height=32,
                 text="5 2 9",
                 font_size=25,
@@ -136,8 +133,7 @@ def build_problem_template() -> ProblemTemplate:
             TextBoxSlot(
                 id="slot.problem_1_plus_sign",
                 x=41,
-                y=98,
-                width=24,
+                y = 119, width=24,
                 height=32,
                 text="+",
                 font_size=25,
@@ -149,8 +145,7 @@ def build_problem_template() -> ProblemTemplate:
             TextBoxSlot(
                 id="slot.problem_1_second_addend",
                 x=55,
-                y=98,
-                width=104,
+                y = 119, width=104,
                 height=32,
                 text="7 7 5",
                 font_size=25,
@@ -162,8 +157,7 @@ def build_problem_template() -> ProblemTemplate:
             TextBoxSlot(
                 id="slot.problem_1_line",
                 x=43,
-                y=126,
-                width=122,
+                y = 147, width=122,
                 height=18,
                 text="───────",
                 font_size=20,
@@ -229,8 +223,7 @@ def build_problem_template() -> ProblemTemplate:
             TextBoxSlot(
                 id="slot.problem_2_number",
                 x=137,
-                y=72,
-                width=34,
+                y = 68.134, width=34,
                 height=32,
                 text="(2)",
                 font_size=22,
@@ -268,8 +261,7 @@ def build_problem_template() -> ProblemTemplate:
             TextBoxSlot(
                 id="slot.problem_2_first_addend",
                 x=172,
-                y=62,
-                width=104,
+                y = 84.435, width=104,
                 height=32,
                 text="2 5 7",
                 font_size=25,
@@ -281,8 +273,7 @@ def build_problem_template() -> ProblemTemplate:
             TextBoxSlot(
                 id="slot.problem_2_plus_sign",
                 x=158,
-                y=98,
-                width=24,
+                y = 120.435, width=24,
                 height=32,
                 text="+",
                 font_size=25,
@@ -294,8 +285,7 @@ def build_problem_template() -> ProblemTemplate:
             TextBoxSlot(
                 id="slot.problem_2_second_addend",
                 x=172,
-                y=98,
-                width=104,
+                y = 120.435, width=104,
                 height=32,
                 text="7 6 9",
                 font_size=25,
@@ -307,8 +297,7 @@ def build_problem_template() -> ProblemTemplate:
             TextBoxSlot(
                 id="slot.problem_2_line",
                 x=160,
-                y=126,
-                width=122,
+                y = 148.435, width=122,
                 height=18,
                 text="───────",
                 font_size=20,
@@ -368,8 +357,7 @@ def build_problem_template() -> ProblemTemplate:
                 fill="#111111",
                 align="center",
                 valign="middle",
-            ),
-        ),
+            ),RectSlot(id = 'konva_1785114682783_paste_104870_0', prompt = '', x = 123.957, y = 170.956, width = 24.773, height = 25.461, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 9, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), RectSlot(id = 'konva_1785114682783_paste_111670_0', prompt = '', x = 97.239, y = 170.525, width = 24.773, height = 25.461, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 9, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), RectSlot(id = 'konva_1785114682783_paste_120157_0', prompt = '', x = 70.043, y = 170.615, width = 24.773, height = 25.461, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 9, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), RectSlot(id = 'konva_1785114682783_paste_126081_0', prompt = '', x = 43.325, y = 170.706, width = 24.773, height = 25.461, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 9, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), RectSlot(id = 'konva_1785114682783_paste_147820_0', prompt = '', x = 328.818, y = 169.134, width = 24.773, height = 25.461, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 9, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), RectSlot(id = 'konva_1785114682783_paste_147820_1', prompt = '', x = 302.1, y = 168.703, width = 24.773, height = 25.461, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 9, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), RectSlot(id = 'konva_1785114682783_paste_147820_2', prompt = '', x = 274.904, y = 168.793, width = 24.773, height = 25.461, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 9, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), RectSlot(id = 'konva_1785114682783_paste_147820_3', prompt = '', x = 248.186, y = 168.883, width = 24.773, height = 25.461, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 9, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), RectSlot(id = 'konva_1785114682783_paste_180671_0', prompt = '', x = 94.521, y = 55.461, width = 24.773, height = 25.461, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 9, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), RectSlot(id = 'konva_1785114682783_paste_180671_1', prompt = '', x = 67.804, y = 55.552, width = 24.773, height = 25.461, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 9, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), RectSlot(id = 'konva_1785114682783_paste_185807_0', prompt = '', x = 301.775, y = 53.161, width = 24.773, height = 25.461, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 9, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), RectSlot(id = 'konva_1785114682783_paste_185807_1', prompt = '', x = 275.057, y = 53.251, width = 24.773, height = 25.461, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 9, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
     )
 
 

@@ -569,7 +569,50 @@ def _editor_overrides_path(paths: Any):
     return paths.base_dir / f"{paths.artifact_base}.editor_overrides.json"
 
 
+def _layout_artifact_path(paths: Any):
+    return paths.base_dir / f"{paths.artifact_base}.layout.json"
+
+
+def _slot_kind_from_layout_artifact(paths: Any, target: str) -> str | None:
+    path = _layout_artifact_path(paths)
+    if not path.exists():
+        return None
+    try:
+        loaded = json.loads(path.read_text(encoding="utf-8-sig"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    if not isinstance(loaded, dict):
+        return None
+    for slot in loaded.get("slots", []):
+        if isinstance(slot, dict) and slot.get("id") == target and isinstance(slot.get("kind"), str):
+            return slot["kind"]
+    return None
+
+
+def _points_from_polygon_path(d: Any) -> list[list[float]] | None:
+    if not isinstance(d, str) or not d.strip():
+        return None
+    commands = set(re.findall(r"[A-Za-z]", d))
+    if commands - {"M", "m", "L", "l", "Z", "z"}:
+        return None
+    numbers = [float(match.group(0)) for match in re.finditer(r"[-+]?(?:\d*\.\d+|\d+)(?:e[-+]?\d+)?", d)]
+    if len(numbers) < 6 or len(numbers) % 2:
+        return None
+    return [[numbers[index], numbers[index + 1]] for index in range(0, len(numbers), 2)]
+
+
+def _normalize_editor_override_fields(paths: Any, target: str, fields: dict[str, Any]) -> dict[str, Any]:
+    if "d" not in fields or _slot_kind_from_layout_artifact(paths, target) != "polygon":
+        return fields
+    normalized = dict(fields)
+    points = _points_from_polygon_path(normalized.pop("d"))
+    if points is not None and "points" not in normalized:
+        normalized["points"] = points
+    return normalized
+
+
 def _save_editor_slot_override(paths: Any, target: str, fields: dict[str, Any]) -> None:
+    fields = _normalize_editor_override_fields(paths, target, fields)
     invalid = sorted(set(fields) - EDITOR_OVERRIDE_FIELDS)
     if invalid:
         raise DslPatchError(f"unsupported override field(s): {', '.join(invalid)}")
@@ -684,6 +727,8 @@ def _try_apply_fast_editor_overrides(paths: Any, patches: list[dict[str, Any]]) 
             applied.append(AppliedPatch(target="__canvas__", op=op, fields=list(value.keys())))
             continue
 
+        if "points" in value:
+            return None
         if not set(value).issubset(EDITOR_OVERRIDE_FIELDS):
             return None
         actions.append((op, target, value))

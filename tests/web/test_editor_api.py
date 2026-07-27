@@ -261,7 +261,7 @@ SLOTS = (
 
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
-    assert "points=[[1, 2], [11, 2], [1, 12]]" in updated
+    assert "points = [[1, 2], [11, 2], [1, 12]]" in updated
     assert "d=\"M 1 2 L 11 2 L 1 12 Z\"" not in updated
 
 
@@ -1051,6 +1051,25 @@ def test_apply_editor_overrides_updates_layout_slot_content() -> None:
     assert layout["slots"][1]["content"] == {"x": 9.0}
 
 
+def test_apply_editor_overrides_converts_polygon_d_override_to_points() -> None:
+    layout = {
+        "canvas": {"width": 100, "height": 100},
+        "slots": [
+            {
+                "id": "slot.house_roof",
+                "kind": "polygon",
+                "content": {"points": [[0.0, 0.0], [10.0, 0.0], [5.0, 8.0]], "fill": "#ddd"},
+            },
+        ],
+    }
+    overrides = {"slots": {"slot.house_roof": {"d": "M 12.5 20 L 28 10 L 43.5 20 Z"}}}
+
+    apply_editor_overrides(layout, overrides)
+
+    assert layout["slots"][0]["content"]["points"] == [[12.5, 20.0], [28.0, 10.0], [43.5, 20.0]]
+    assert "d" not in layout["slots"][0]["content"]
+
+
 def test_apply_editor_overrides_adds_missing_override_slot_to_matching_region() -> None:
     layout = {
         "regions": [
@@ -1181,6 +1200,27 @@ def test_prune_editor_overrides_removes_stale_missing_slots() -> None:
     assert cleaned["slots"] == {"slot.instruction": {"x": 30}}
     assert cleaned["region_slot_orders"] == {"region.stem": ["slot.instruction"]}
     assert cleaned["canvas"] == {"width": 600, "height": 300}
+
+
+def test_prune_editor_overrides_normalizes_polygon_d_override() -> None:
+    layout = {
+        "regions": [
+            {"id": "region.diagram", "role": "diagram", "slot_ids": ["slot.house_roof"]},
+        ],
+        "slots": [
+            {
+                "id": "slot.house_roof",
+                "kind": "polygon",
+                "content": {"points": [[0.0, 0.0], [10.0, 0.0], [5.0, 8.0]]},
+            },
+        ],
+    }
+    overrides = {"version": 1, "slots": {"slot.house_roof": {"d": "M 12 20 L 28 10 L 44 20 Z"}}}
+
+    cleaned, changed = prune_editor_overrides(layout, overrides)
+
+    assert changed is True
+    assert cleaned["slots"]["slot.house_roof"] == {"points": [[12.0, 20.0], [28.0, 10.0], [44.0, 20.0]]}
 
 
 def test_prune_editor_overrides_keeps_missing_slots_with_matching_prefix() -> None:
