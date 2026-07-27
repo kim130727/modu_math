@@ -130,7 +130,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                   child: Text(
                     slot.placeholder!,
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.notoSansKr(
+                    style: _problemTextStyle(
                       color: colorScheme.onSurface,
                       fontSize: (rect.height * 0.86 * scale).clamp(18.0, 52.0),
                       fontWeight: FontWeight.w500,
@@ -151,7 +151,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                   FilteringTextInputFormatter.allow(RegExp(r'[<>=]')),
                 LengthLimitingTextInputFormatter(maxLength),
               ],
-              style: GoogleFonts.notoSansKr(
+              style: _problemTextStyle(
                 color: textColor,
                 fontSize: fontSize,
                 fontWeight: FontWeight.w800,
@@ -170,7 +170,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                 filled: false,
                 hoverColor: Colors.transparent,
                 hintText: slot.drawPlaceholderBehind ? null : slot.placeholder,
-                hintStyle: GoogleFonts.notoSansKr(
+                hintStyle: _problemTextStyle(
                   color: colorScheme.onSurface,
                   fontSize: fontSize,
                   fontWeight: FontWeight.w800,
@@ -200,7 +200,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                   child: Text(
                     inputControllers[index].text,
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.notoSansKr(
+                    style: _problemTextStyle(
                       color: colorScheme.onSurface,
                       fontSize: fontSize,
                       fontWeight: FontWeight.w800,
@@ -442,7 +442,7 @@ class RendererJsonPainter extends CustomPainter {
     final painter = TextPainter(
       text: TextSpan(
         text: text,
-        style: GoogleFonts.poorStory(
+        style: _problemTextStyle(
           color: fill,
           fontSize: fontSize,
           fontWeight: FontWeight.w600,
@@ -509,7 +509,7 @@ List<Widget> _textBoxLayers(Map<String, dynamic> renderer, double scale) {
             textAlign: align,
             softWrap: true,
             overflow: TextOverflow.clip,
-            style: GoogleFonts.notoSansKr(
+            style: _problemTextStyle(
               color: _readColor(attributes['fill']) ?? Colors.black,
               fontSize: fontSize * scale,
               fontWeight: FontWeight.w600,
@@ -865,4 +865,18 @@ Color? _readColor(Object? value) {
     return Color(int.parse('$alpha$rgb', radix: 16));
   }
   return null;
+}
+
+TextStyle _problemTextStyle({
+  required Color color,
+  required double fontSize,
+  required FontWeight fontWeight,
+  required double height,
+}) {
+  return GoogleFonts.poorStory(
+    color: color,
+    fontSize: fontSize,
+    fontWeight: fontWeight,
+    height: height,
+  );
 }

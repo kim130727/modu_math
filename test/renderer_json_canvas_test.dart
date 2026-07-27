@@ -43,6 +43,10 @@ void main() {
 
     expect(find.byType(RendererJsonCanvas), findsOneWidget);
     expect(find.text('problem text'), findsOneWidget);
+    expect(
+      tester.widget<Text>(find.text('problem text')).style?.fontFamily,
+      contains('PoorStory'),
+    );
     expect(tester.takeException(), isNull);
   });
 
