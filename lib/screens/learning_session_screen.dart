@@ -89,6 +89,7 @@ class _LearningSessionScreenState extends State<LearningSessionScreen> {
                   problems: data.problems,
                   correctProblemIds: data.correctProblemIds,
                   nextProblemId: nextProblem.id,
+                  onOpenProblem: (index) => _startProblem(data, index),
                 ),
               ],
             );
@@ -216,11 +217,13 @@ class _ProblemPreviewList extends StatelessWidget {
     required this.problems,
     required this.correctProblemIds,
     required this.nextProblemId,
+    required this.onOpenProblem,
   });
 
   final List<ProblemSummary> problems;
   final Set<String> correctProblemIds;
   final String nextProblemId;
+  final ValueChanged<int> onOpenProblem;
 
   @override
   Widget build(BuildContext context) {
@@ -238,6 +241,7 @@ class _ProblemPreviewList extends StatelessWidget {
           final correct = correctProblemIds.contains(problem.id);
           final next = problem.id == nextProblemId;
           return ListTile(
+            onTap: () => onOpenProblem(index),
             leading: CircleAvatar(
               backgroundColor: correct
                   ? KidsPalette.mint
