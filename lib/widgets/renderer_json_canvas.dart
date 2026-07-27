@@ -24,6 +24,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
   final List<TextEditingController> inputControllers = [];
   String inputSignature = '';
   String? lastEmittedInputValue;
+  int? activeOperatorSlotIndex;
 
   @override
   void initState() {
@@ -34,6 +35,9 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
   @override
   void didUpdateWidget(covariant RendererJsonCanvas oldWidget) {
     super.didUpdateWidget(oldWidget);
+    if (oldWidget.renderer != widget.renderer) {
+      activeOperatorSlotIndex = null;
+    }
     final inputChangedFromThisCanvas =
         widget.inputValue == lastEmittedInputValue &&
             oldWidget.renderer == widget.renderer;
@@ -93,6 +97,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                       ),
                       ..._textBoxLayers(widget.renderer, scale),
                       ..._inputLayers(inputSlots, scale),
+                      ..._operatorChoiceLayers(inputSlots),
                     ],
                   );
                 },
@@ -113,6 +118,15 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
       final fontSize = _inputFontSize(slot, scale);
       final maxLength = slot.maxLength;
       final inset = (2 * scale).clamp(1.0, 3.0);
+      if (slot.operatorOnly) {
+        return _operatorInputLayer(
+          index: index,
+          slot: slot,
+          scale: scale,
+          inset: inset,
+          fontSize: fontSize,
+        );
+      }
       final textColor = slot.drawPlaceholderBehind
           ? Colors.transparent
           : colorScheme.onSurface;
@@ -215,6 +229,147 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
     }).toList(growable: false);
   }
 
+  Widget _operatorInputLayer({
+    required int index,
+    required _InputSlot slot,
+    required double scale,
+    required double inset,
+    required double fontSize,
+  }) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final rect = slot.rect;
+    final selected = _activeOperatorSlotIndex(_inputSlots(
+          widget.renderer,
+          expectedAnswer: widget.expectedAnswer,
+        )) ==
+        index;
+    return Positioned(
+      left: rect.left * scale + inset,
+      top: rect.top * scale + inset,
+      width: rect.width * scale - inset * 2,
+      height: rect.height * scale - inset * 2,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          key: ValueKey('operator-slot-$index'),
+          borderRadius: BorderRadius.circular(999),
+          onTap: () => setState(() => activeOperatorSlotIndex = index),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: selected
+                  ? colorScheme.primary.withValues(alpha: 0.08)
+                  : Colors.transparent,
+              shape: BoxShape.circle,
+              border: selected
+                  ? Border.all(color: colorScheme.primary, width: 1.8)
+                  : null,
+            ),
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                if (slot.placeholder != null && slot.placeholder!.isNotEmpty)
+                  Center(
+                    child: Text(
+                      slot.placeholder!,
+                      textAlign: TextAlign.center,
+                      style: _problemTextStyle(
+                        color: colorScheme.onSurface,
+                        fontSize:
+                            (rect.height * 0.86 * scale).clamp(18.0, 52.0),
+                        fontWeight: FontWeight.w500,
+                        height: 1,
+                      ),
+                    ),
+                  ),
+                Center(
+                  child: Text(
+                    inputControllers[index].text,
+                    textAlign: TextAlign.center,
+                    style: _problemTextStyle(
+                      color: colorScheme.onSurface,
+                      fontSize: fontSize,
+                      fontWeight: FontWeight.w800,
+                      height: 1,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  List<Widget> _operatorChoiceLayers(List<_InputSlot> slots) {
+    final operatorIndexes = slots.indexed
+        .where((entry) => entry.$2.operatorOnly)
+        .map((entry) => entry.$1)
+        .toList();
+    if (operatorIndexes.isEmpty) {
+      return const [];
+    }
+    final colorScheme = Theme.of(context).colorScheme;
+    final selectedIndex = _activeOperatorSlotIndex(slots);
+    final selectedValue = inputControllers[selectedIndex].text;
+    return [
+      Positioned(
+        right: 12,
+        bottom: 12,
+        child: Material(
+          color: colorScheme.surface.withValues(alpha: 0.94),
+          borderRadius: BorderRadius.circular(8),
+          elevation: 3,
+          child: Padding(
+            padding: const EdgeInsets.all(6),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: ['>', '=', '<'].map((operator) {
+                final selected = selectedValue == operator;
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 3),
+                  child: SizedBox(
+                    width: 44,
+                    height: 40,
+                    child: selected
+                        ? FilledButton(
+                            key: ValueKey('operator-choice-$operator'),
+                            onPressed: () => _setOperatorValue(operator, slots),
+                            style: FilledButton.styleFrom(
+                              padding: EdgeInsets.zero,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            child: Text(
+                              operator,
+                              style: const TextStyle(fontSize: 22),
+                            ),
+                          )
+                        : OutlinedButton(
+                            key: ValueKey('operator-choice-$operator'),
+                            onPressed: () => _setOperatorValue(operator, slots),
+                            style: OutlinedButton.styleFrom(
+                              padding: EdgeInsets.zero,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            child: Text(
+                              operator,
+                              style: const TextStyle(fontSize: 22),
+                            ),
+                          ),
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+        ),
+      ),
+    ];
+  }
+
   void _syncInputControllers({required bool force}) {
     final slots = _inputSlots(
       widget.renderer,
@@ -257,6 +412,47 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
         ? List<int>.generate(inputControllers.length, (index) => index)
         : answerIndexes;
     return indexes.map((index) => inputControllers[index].text).join().trim();
+  }
+
+  int _activeOperatorSlotIndex(List<_InputSlot> slots) {
+    final operatorIndexes = slots.indexed
+        .where((entry) => entry.$2.operatorOnly)
+        .map((entry) => entry.$1)
+        .toList();
+    if (operatorIndexes.isEmpty) {
+      return 0;
+    }
+    if (activeOperatorSlotIndex != null &&
+        operatorIndexes.contains(activeOperatorSlotIndex)) {
+      return activeOperatorSlotIndex!;
+    }
+    return operatorIndexes.firstWhere(
+      (index) => inputControllers[index].text.isEmpty,
+      orElse: () => operatorIndexes.first,
+    );
+  }
+
+  void _setOperatorValue(String operator, List<_InputSlot> slots) {
+    final index = _activeOperatorSlotIndex(slots);
+    inputControllers[index].text = operator;
+    final nextValue = _combinedInputValue();
+    lastEmittedInputValue = nextValue;
+    final operatorIndexes = slots.indexed
+        .where((entry) => entry.$2.operatorOnly)
+        .map((entry) => entry.$1)
+        .toList();
+    final currentOperatorPosition = operatorIndexes.indexOf(index);
+    int? nextIndex;
+    for (final item in operatorIndexes.skip(currentOperatorPosition + 1)) {
+      if (inputControllers[item].text.isEmpty) {
+        nextIndex = item;
+        break;
+      }
+    }
+    setState(() {
+      activeOperatorSlotIndex = nextIndex ?? index;
+    });
+    widget.onInputChanged?.call(nextValue);
   }
 
   String _inputValueForController(

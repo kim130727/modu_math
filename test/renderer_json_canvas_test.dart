@@ -243,7 +243,7 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('supports ordered operator inputs on text box slots',
+  testWidgets('supports operator choice buttons on text box slots',
       (tester) async {
     var value = '';
 
@@ -315,13 +315,18 @@ void main() {
       ),
     );
 
-    expect(find.byType(TextField), findsNWidgets(2));
+    expect(find.byType(TextField), findsNothing);
+    expect(find.byKey(const ValueKey('operator-choice->')), findsOneWidget);
+    expect(find.byKey(const ValueKey('operator-choice-=')), findsOneWidget);
+    expect(find.byKey(const ValueKey('operator-choice-<')), findsOneWidget);
     expect(find.text('○'), findsNWidgets(2));
 
-    await tester.enterText(find.byType(TextField).at(0), '>');
-    await tester.enterText(find.byType(TextField).at(1), '=');
+    await tester.tap(find.byKey(const ValueKey('operator-choice-=')));
+    await tester.pump();
+    await tester.tap(find.byKey(const ValueKey('operator-choice->')));
+    await tester.pump();
 
-    expect(value, equals('>='));
+    expect(value, equals('=>'));
     expect(find.text('○'), findsNWidgets(2));
     expect(tester.takeException(), isNull);
   });
