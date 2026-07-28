@@ -7,6 +7,45 @@
   },
   "elements": [
     {
+      "id": "konva_1785217709470_rect_1760037.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 553.732,
+        "y": 145.57,
+        "width": 114.33,
+        "height": 57.266,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.2
+      },
+      "source_ref": "konva_1785217709470_rect_1760037",
+      "refs": {
+        "layout_slot_id": "konva_1785217709470_rect_1760037"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    {
       "id": "slot.question.text",
       "type": "text_box",
       "attributes": {
@@ -14,15 +53,15 @@
         "y": 49.367,
         "fill": "#202124",
         "font-family": "Noto Sans KR",
-        "font-size": 24,
+        "font-size": 28,
         "width": 804.0,
-        "height": 80.0,
+        "height": 92.0,
         "max_width": 804.0,
         "data-slot-kind": "text_box",
         "data-box-x": 41.541,
         "data-box-y": 49.367,
         "data-box-width": 804.0,
-        "data-box-height": 80.0,
+        "data-box-height": 92.0,
         "data-text-align": "left",
         "data-vertical-align": "top",
         "data-line-height": 1.5
@@ -32,6 +71,33 @@
         "layout_slot_id": "slot.question"
       },
       "text": "미정이는 어제 동화책을 처음부터 119쪽까지 읽었더니 167쪽이 남았습니다. 미정이가 읽는 동화책의 전체 쪽수를 구하시오."
+    },
+    {
+      "id": "konva_1785217709470_paste_1729186_0.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 682.441,
+        "y": 152.675,
+        "fill": "#111827",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 28,
+        "width": 98.0,
+        "height": 43.0,
+        "max_width": 98.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 682.441,
+        "data-box-y": 152.675,
+        "data-box-width": 98.0,
+        "data-box-height": 43.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25
+      },
+      "source_ref": "konva_1785217709470_paste_1729186_0",
+      "refs": {
+        "layout_slot_id": "konva_1785217709470_paste_1729186_0"
+      },
+      "text": "쪽"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

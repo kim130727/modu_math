@@ -6,7 +6,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextBoxSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_07645"
@@ -27,22 +27,18 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="vertical",
-                slot_ids=("slot.question",),
+                slot_ids=("slot.question",'konva_1785217709470_paste_1729186_0', 'konva_1785217709470_rect_1760037'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.question",
                 x=48,
-                y=30,
-                width=804,
-                height=90,
-                text=(
+                y = 20.367, width=804,
+                height = 92, text=(
                     "미정이는 어제 동화책을 처음부터 119쪽까지 읽었더니 "
                     "167쪽이 남았습니다. 미정이가 읽는 동화책의 전체 쪽수를 구하시오."
                 ),
-                font_size=24,
-                font_family="Noto Sans KR",
+                font_size = 28, font_family="Noto Sans KR",
                 fill="#202124",
                 line_height=1.5,
                 align="left",
@@ -53,8 +49,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="답",
                 answer_key="286",
                 placeholder="쪽",
-            ),
-        ),
+            ),TextBoxSlot(id = 'konva_1785217709470_paste_1729186_0', prompt = '', text = '쪽', x = 682.441, y = 152.675, font_size = 28, fill = '#111827', width = 98, height = 43, align = 'left', line_height = 1.25), RectSlot(id = 'konva_1785217709470_rect_1760037', prompt = '', x = 553.732, y = 145.57, width = 114.33, height = 57.266, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
     )
 
 

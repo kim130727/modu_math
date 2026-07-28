@@ -8,7 +8,7 @@ from .models import DrawElement, RenderRefs, RendererDocument, RenderViewBox
 _DEFAULT_STROKE = "#111111"
 _DEFAULT_FILL = "none"
 _DEFAULT_TEXT_FILL = "#111111"
-_DEFAULT_FONT_FAMILY = "Noto Sans KR, sans-serif"
+_DEFAULT_FONT_FAMILY = '"Poor Story", "Noto Sans KR", sans-serif'
 _DEFAULT_FONT_SIZE = 26
 
 

@@ -31,7 +31,28 @@
       "d": "M 146 96.072 C 146 81.072 202 81.072 202 96.072 C 202 111.072 146 111.072 146 96.072 Z",
       "fill": "#ffffff",
       "stroke": "#ead5e9",
-      "stroke_width": 1.2
+      "stroke_width": 1.2,
+      "interaction": {
+        "type": "select",
+        "role": "choice",
+        "value_type": "choice",
+        "choice_value": "slot.answer_1_oval",
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "shape_choice",
+        "keyboard": "none"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
     },
     "slot.operation_2_box": {
       "x": 207,
@@ -46,7 +67,28 @@
       "d": "M 270 96.072 C 270 81.072 326 81.072 326 96.072 C 326 111.072 270 111.072 270 96.072 Z",
       "fill": "#ffffff",
       "stroke": "#ead5e9",
-      "stroke_width": 1.2
+      "stroke_width": 1.2,
+      "interaction": {
+        "type": "select",
+        "role": "choice",
+        "value_type": "choice",
+        "choice_value": "slot.answer_2_oval",
+        "include_in_submission": true,
+        "order": 1,
+        "group_id": "shape_choice",
+        "keyboard": "none"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
     },
     "slot.start_value": {
       "text": "156",

@@ -22,6 +22,8 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
+        "konva_1785217709470_rect_1652380",
+        "konva_1785217709470_paste_1665223_0",
         "slot.line_1",
         "slot.line_2",
         "slot.label_1",
@@ -192,6 +194,78 @@
         "stroke": "#111111",
         "stroke_width": 1.5
       }
+    },
+    {
+      "id": "konva_1785217709470_rect_1652380",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 41.0,
+        "y": 110.28,
+        "width": 65.455,
+        "height": 27.14,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "digit",
+          "max_length": 1,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "auto_advance": true,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222"
+        }
+      }
+    },
+    {
+      "id": "konva_1785217709470_paste_1665223_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 162.321,
+        "y": 110.179,
+        "width": 65.455,
+        "height": 27.14,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "digit",
+          "max_length": 1,
+          "include_in_submission": true,
+          "order": 1,
+          "group_id": "final_answer",
+          "auto_advance": true,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222"
+        }
+      }
     }
   ],
   "groups": [
@@ -226,6 +300,8 @@
     "region.stem",
     "slot.instruction",
     "region.problems",
+    "konva_1785217709470_rect_1652380",
+    "konva_1785217709470_paste_1665223_0",
     "slot.line_1",
     "slot.line_2",
     "slot.label_1",

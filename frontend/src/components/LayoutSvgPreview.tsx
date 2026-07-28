@@ -41,7 +41,8 @@ function SlotShape(props: { slot: LayoutSlot }) {
           x={numberAttr(content().x, 0)}
           y={numberAttr(content().y, 0)}
                 fill={stringAttr(content().fill, "#111111")}
-                font-family="Noto Sans KR, sans-serif"
+                font-family='"Poor Story", "Noto Sans KR", sans-serif'
+                xml:space="preserve"
                 font-size={numberAttr(content().font_size, 24)}
                 text-anchor={stringAttr(content().align, undefined) === "center" ? "middle" : undefined}
                 transform={stringAttr(content().transform, undefined)}

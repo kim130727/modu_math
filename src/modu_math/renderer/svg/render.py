@@ -9,6 +9,14 @@ from typing import Any
 
 from ...renderer.models.primitive import RenderElement, RenderGroup, RenderText, RendererAST
 
+_SVG_FONT_FACE_CSS = """@font-face {
+  font-family: 'Poor Story';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/poorstory/v24/jizfREFUsnUct9P6cDfd4Ok.ttf') format('truetype');
+}"""
+
 def _float_str(value: float) -> str:
     ivalue = int(value)
     return str(ivalue) if value == ivalue else str(value)
@@ -92,6 +100,7 @@ def _element_to_svg_lines(element: RenderElement, depth: int = 1) -> list[str]:
     attrs = {"id": element.id, **element.attributes}
 
     if isinstance(element, RenderText):
+        attrs.setdefault("xml:space", "preserve")
         if element.type == "text_box":
             raw_width = attrs.pop("width", attrs.get("data-box-width", None))
             raw_height = attrs.pop("height", attrs.get("data-box-height", None))
@@ -185,6 +194,9 @@ def render_svg(renderer: RendererAST | dict[str, Any]) -> str:
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
         f"<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"{width}\" height=\"{height}\" viewBox=\"0 0 {width} {height}\">",
         f"  <metadata><problem_id>{escape(renderer_ast.problem_id)}</problem_id></metadata>",
+        "  <defs>",
+        f"    <style>{escape(_SVG_FONT_FACE_CSS)}</style>",
+        "  </defs>",
     ]
     
     if renderer_ast.view_box.background:
