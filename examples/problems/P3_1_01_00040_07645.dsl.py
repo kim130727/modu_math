@@ -38,7 +38,7 @@ def build_problem_template() -> ProblemTemplate:
                     "미정이는 어제 동화책을 처음부터 119쪽까지 읽었더니 "
                     "167쪽이 남았습니다. 미정이가 읽는 동화책의 전체 쪽수를 구하시오."
                 ),
-                font_size = 28, font_family="Noto Sans KR",
+                font_size = 28, font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.5,
                 align="left",

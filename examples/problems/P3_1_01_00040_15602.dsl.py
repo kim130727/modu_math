@@ -321,7 +321,7 @@ def build_problem_template() -> ProblemTemplate:
                     "사진은 모두 몇 장입니까?"
                 ),
                 font_size=22,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.4,
                 align="left",

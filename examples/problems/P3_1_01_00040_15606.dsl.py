@@ -299,7 +299,7 @@ def build_problem_template() -> ProblemTemplate:
                     "지영이가 가지고 있는 구슬은 모두 몇 개입니까?"
                 ),
                 font_size=21,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.45,
                 align="left",

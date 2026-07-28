@@ -282,7 +282,7 @@ def build_problem_template() -> ProblemTemplate:
                     "두 동화책의 쪽수를 더하면 모두 몇 쪽입니까?"
                 ),
                 font_size=24,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.45,
                 align="left",

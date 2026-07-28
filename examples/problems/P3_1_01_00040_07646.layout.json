@@ -14,7 +14,8 @@
       "role": "stem",
       "flow": "vertical",
       "slot_ids": [
-        "slot.question"
+        "slot.question",
+        "konva_1785217709470_text_5567198"
       ]
     }
   ],
@@ -33,9 +34,49 @@
         "align": "left",
         "valign": "top",
         "font_size": 24,
-        "font_family": "Noto Sans KR",
+        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "line_height": 1.5,
         "fill": "#202124"
+      }
+    },
+    {
+      "id": "konva_1785217709470_text_5567198",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(소방서, 주민센터)",
+        "style_role": "body",
+        "x": 602,
+        "y": 252,
+        "width": 285,
+        "height": 40,
+        "align": "left",
+        "valign": "top",
+        "font_size": 28,
+        "line_height": 1.25,
+        "fill": "#111827",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "digit",
+          "max_length": 1,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "auto_advance": true,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222"
+        }
       }
     }
   ],
@@ -44,6 +85,7 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.question"
+    "slot.question",
+    "konva_1785217709470_text_5567198"
   ]
 }

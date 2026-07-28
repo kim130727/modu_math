@@ -45,7 +45,7 @@ def build_problem_template() -> ProblemTemplate:
                     "인호가 처음에 가지고 있던 돈은 얼마입니까?"
                 ),
                 font_size=24,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.45,
                 align="left",

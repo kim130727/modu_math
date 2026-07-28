@@ -14,6 +14,7 @@
       "role": "stem",
       "flow": "vertical",
       "slot_ids": [
+        "konva_1785217709470_rect_5615662",
         "slot.question"
       ]
     }
@@ -33,9 +34,45 @@
         "align": "left",
         "valign": "top",
         "font_size": 24,
-        "font_family": "Noto Sans KR",
+        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "line_height": 1.5,
         "fill": "#202124"
+      }
+    },
+    {
+      "id": "konva_1785217709470_rect_5615662",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 661.388,
+        "y": 157.405,
+        "width": 167.081,
+        "height": 51.887,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "digit",
+          "max_length": 1,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "auto_advance": true,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222"
+        }
       }
     }
   ],
@@ -44,6 +81,7 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
+    "konva_1785217709470_rect_5615662",
     "slot.question"
   ]
 }

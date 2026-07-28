@@ -9,6 +9,8 @@ from pathlib import Path
 import re
 from typing import Any
 
+from fontTools.ttLib import TTFont
+
 from ...renderer.models.primitive import RenderElement, RenderGroup, RenderText, RendererAST
 
 _POOR_STORY_FONT_PATH = Path(__file__).resolve().parents[1] / "assets" / "PoorStory-Regular.ttf"
@@ -92,7 +94,29 @@ def _text_unit_width(ch: str, font_size: float) -> float:
         return font_size * 0.58
     return font_size * 0.92
 
+@lru_cache(maxsize=1)
+def _poor_story_metrics() -> tuple[dict[int, str], dict[str, tuple[int, int]], int] | None:
+    try:
+        font = TTFont(_POOR_STORY_FONT_PATH)
+    except Exception:
+        return None
+    cmap: dict[int, str] = {}
+    for table in font["cmap"].tables:
+        if table.isUnicode():
+            cmap.update(table.cmap)
+    return cmap, font["hmtx"].metrics, font["head"].unitsPerEm
+
 def _text_width(text: str, font_size: float) -> float:
+    metrics = _poor_story_metrics()
+    if metrics:
+        cmap, hmtx, units_per_em = metrics
+        total = 0
+        for ch in text:
+            glyph_name = cmap.get(ord(ch))
+            if glyph_name is None:
+                return sum(_text_unit_width(ch, font_size) for ch in text)
+            total += hmtx.get(glyph_name, (units_per_em, 0))[0]
+        return total / units_per_em * font_size
     return sum(_text_unit_width(ch, font_size) for ch in text)
 
 def _wrap_long_token(token: str, max_width: float, font_size: float) -> list[str]:
@@ -116,6 +140,12 @@ def _wrap_text(text: str, max_width: float | None, font_size: float) -> list[str
     for paragraph in text.split("\n"):
         if not paragraph:
             out.append("")
+            continue
+        if _text_width(paragraph, font_size) <= max_width:
+            out.append(paragraph)
+            continue
+        if " " not in paragraph:
+            out.append(paragraph)
             continue
         words = paragraph.split(" ")
         current = ""
@@ -164,7 +194,8 @@ def _element_to_svg_lines(element: RenderElement, depth: int = 1) -> list[str]:
             line_step = font_size * line_height
             text_lines = _wrap_text(element.text, box_width if box_width > 0 else None, font_size)
             total_height = max(len(text_lines), 1) * line_step
-            valign = str(attrs.pop("data-vertical-align", "top"))
+            attrs.pop("data-vertical-align", None)
+            valign = "top"
             align = str(attrs.pop("data-text-align", "left"))
             if align == "center":
                 attrs["text-anchor"] = "middle"

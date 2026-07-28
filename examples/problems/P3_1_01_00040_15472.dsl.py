@@ -6,7 +6,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextBoxSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_15472"
@@ -27,15 +27,12 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="vertical",
-                slot_ids=(
-                    "slot.instruction",
+                slot_ids=("slot.instruction",
                     "slot.options",
-                    "slot.equation",
-                ),
+                    "slot.equation",'konva_1785217709470_rect_5693830', 'konva_1785217709470_paste_5710048_0'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.instruction",
                 x=24,
                 y=18,
@@ -43,7 +40,7 @@ def build_problem_template() -> ProblemTemplate:
                 height=35,
                 text="다음 <보기>의 수들을 빈칸에 알맞게 써넣으시오.",
                 font_size=22,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.3,
                 align="left",
@@ -57,7 +54,7 @@ def build_problem_template() -> ProblemTemplate:
                 height=52,
                 text="<보기>    325,   532,   334,   985,   415",
                 font_size=22,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.3,
                 align="left",
@@ -65,13 +62,9 @@ def build_problem_template() -> ProblemTemplate:
             ),
             TextBoxSlot(
                 id="slot.equation",
-                x=24,
-                y=130,
-                width=360,
-                height=45,
-                text="(       )+(       )=749",
-                font_size=24,
-                font_family="Noto Sans KR",
+                x = 25.196, y = 128.805, width=452,
+                height = 40, text = '(             ) + (              )=749', font_size=24,
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.3,
                 align="left",
@@ -88,8 +81,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="두 번째 빈칸",
                 answer_key="415",
                 placeholder="수",
-            ),
-        ),
+            ),RectSlot(id = 'konva_1785217709470_rect_5693830', prompt = '', x = 35.191, y = 128.594, width = 71.148, height = 35.628, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), RectSlot(id = 'konva_1785217709470_paste_5710048_0', prompt = '', x = 162.249, y = 127.489, width = 71.148, height = 35.628, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 1, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
     )
 
 

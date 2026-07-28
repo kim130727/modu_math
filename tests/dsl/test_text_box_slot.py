@@ -17,7 +17,7 @@ def test_text_box_slot_renders_fixed_box_metadata() -> None:
                 text="가나다 라마바사",
                 x=10,
                 y=20,
-                width=120,
+                width=80,
                 height=50,
                 font_size=20,
                 align="center",
@@ -28,7 +28,7 @@ def test_text_box_slot_renders_fixed_box_metadata() -> None:
     layout = compile_problem_template_to_layout(problem)
     validate_layout_json(layout)
     assert layout["slots"][0]["kind"] == "text_box"
-    assert layout["slots"][0]["content"]["width"] == 120.0
+    assert layout["slots"][0]["content"]["width"] == 80.0
 
     renderer = compile_renderer_json(layout)
     validate_renderer_json(renderer)
@@ -36,7 +36,7 @@ def test_text_box_slot_renders_fixed_box_metadata() -> None:
 
     svg = render_svg(renderer)
     assert 'data-slot-kind="text_box"' in svg
-    assert 'data-box-width="120"' in svg
+    assert 'data-box-width="80"' in svg
     assert 'text-anchor="middle"' in svg
     assert 'data-raw-text="가나다 라마바사"' in svg
 
@@ -64,6 +64,49 @@ def test_text_slot_max_width_does_not_auto_wrap() -> None:
     assert "<tspan" not in svg
     assert 'max_width="30"' in svg
     assert ">long text should stay on one rendered line</text>" in svg
+
+
+def test_text_box_preserves_unbreakable_tokens_and_spacing() -> None:
+    problem = ProblemTemplate(
+        id="text_box_no_token_break_demo",
+        title="Text box no token break demo",
+        canvas=Canvas(width=300, height=120),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.number", "slot.digits"),
+            ),
+        ),
+        slots=(
+            TextBoxSlot(
+                id="slot.number",
+                text="(1)",
+                x=10,
+                y=20,
+                width=30,
+                height=30,
+                font_size=22,
+            ),
+            TextBoxSlot(
+                id="slot.digits",
+                text="5  2  9",
+                x=10,
+                y=60,
+                width=80,
+                height=30,
+                font_size=25,
+            ),
+        ),
+    )
+
+    svg = render_svg(compile_renderer_json(compile_problem_template_to_layout(problem)))
+
+    assert "> (1)<" not in svg
+    assert ">(1)</text>" in svg
+    assert ">5  2  9</text>" in svg
+    assert "<tspan" not in svg
 
 
 def test_image_slot_renders_svg_image() -> None:

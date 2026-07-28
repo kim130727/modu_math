@@ -292,7 +292,7 @@ def build_problem_template() -> ProblemTemplate:
                     "동수가 어제와 오늘 읽은 책의 쪽수는 모두 몇 쪽입니까?"
                 ),
                 font_size=22,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.4,
                 align="left",

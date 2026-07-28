@@ -42,7 +42,7 @@ def build_problem_template() -> ProblemTemplate:
                     "냈다면 상훈이는 100원짜리와 50원짜리 우표를 각각 몇 장 샀습니까?"
                 ),
                 font_size=24,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.5,
                 align="left",

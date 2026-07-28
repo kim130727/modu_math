@@ -322,7 +322,7 @@ def build_problem_template() -> ProblemTemplate:
                     "321장의 한국 우표가 있습니다. 우표는 모두 몇 장입니까?"
                 ),
                 font_size=22,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.4,
                 align="left",
@@ -336,7 +336,7 @@ def build_problem_template() -> ProblemTemplate:
                 height=34,
                 text="식 ____________________    답 ____________________ 장",
                 font_size=22,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 align="left",
                 valign="middle",

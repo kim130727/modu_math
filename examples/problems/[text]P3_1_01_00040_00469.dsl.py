@@ -315,7 +315,7 @@ def build_problem_template() -> ProblemTemplate:
                     "248개 캤습니다. 이 두 가족이 캔 고구마는 모두 몇 개입니까?"
                 ),
                 font_size=24,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.55,
                 align="left",
@@ -329,7 +329,7 @@ def build_problem_template() -> ProblemTemplate:
                 height=34,
                 text="식",
                 font_size=24,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 align="left",
                 valign="middle",

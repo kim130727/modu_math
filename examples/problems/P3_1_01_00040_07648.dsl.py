@@ -6,7 +6,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextBoxSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_07648"
@@ -27,11 +27,10 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="vertical",
-                slot_ids=("slot.question",),
+                slot_ids=("slot.question",'konva_1785217709470_rect_5615662'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.question",
                 x=48,
                 y=30,
@@ -42,7 +41,7 @@ def build_problem_template() -> ProblemTemplate:
                     "2배입니다. 두 수의 합이 735라면 큰 수는 얼마입니까?"
                 ),
                 font_size=24,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.5,
                 align="left",
@@ -53,8 +52,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="답",
                 answer_key="490",
                 placeholder="",
-            ),
-        ),
+            ),RectSlot(id = 'konva_1785217709470_rect_5615662', prompt = '', x = 661.388, y = 157.405, width = 167.081, height = 51.887, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
     )
 
 

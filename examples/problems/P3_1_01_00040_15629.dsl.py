@@ -61,7 +61,7 @@ def build_problem_template() -> ProblemTemplate:
                 width=290,
                 height=20,
                 font_size=14,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#111111",
                 align="left",
                 valign="top",

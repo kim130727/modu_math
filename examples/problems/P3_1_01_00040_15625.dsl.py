@@ -45,7 +45,7 @@ def build_problem_template() -> ProblemTemplate:
                     "그리고 혼자 찍은 사진도 102장이 있습니다. 사진은 모두 몇 장입니까?"
                 ),
                 font_size=24,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.45,
                 align="left",

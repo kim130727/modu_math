@@ -55,7 +55,7 @@ def build_problem_template() -> ProblemTemplate:
                 width=430,
                 height=22,
                 font_size=14,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#111111",
                 align="left",
                 valign="top",
@@ -68,7 +68,7 @@ def build_problem_template() -> ProblemTemplate:
                 x=20,
                 y=38,
                 font_size=14,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#111111",
             ),
             TextSlot(
@@ -79,7 +79,7 @@ def build_problem_template() -> ProblemTemplate:
                 x=20,
                 y=60,
                 font_size=14,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#111111",
             ),
             TextSlot(
@@ -90,7 +90,7 @@ def build_problem_template() -> ProblemTemplate:
                 x=20,
                 y=82,
                 font_size=14,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#111111",
             ),
             TextSlot(
@@ -101,7 +101,7 @@ def build_problem_template() -> ProblemTemplate:
                 x=20,
                 y=104,
                 font_size=14,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#111111",
             ),
             TextSlot(
@@ -112,7 +112,7 @@ def build_problem_template() -> ProblemTemplate:
                 x=20,
                 y=126,
                 font_size=14,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#111111",
             ),
             BlankSlot(

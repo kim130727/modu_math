@@ -33,7 +33,7 @@ def build_problem_template() -> ProblemTemplate:
                 x=38,
                 y=22,
                 width = 583.928, height = 68, text = '도서관에서 어른 648명, 어린이 476명이 책을 읽고 있습니다.', font_size=24,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 align="left",
                 valign="middle",

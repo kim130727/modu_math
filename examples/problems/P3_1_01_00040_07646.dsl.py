@@ -27,11 +27,10 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="vertical",
-                slot_ids=("slot.question",),
+                slot_ids=("slot.question",'konva_1785217709470_text_5567198'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.question",
                 x=48,
                 y=30,
@@ -46,7 +45,7 @@ def build_problem_template() -> ProblemTemplate:
                     "가는 것이 더 멀겠습니까?"
                 ),
                 font_size=24,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.5,
                 align="left",
@@ -57,8 +56,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="답",
                 answer_key="소방서",
                 placeholder="를 거쳐서 가는 길",
-            ),
-        ),
+            ),TextBoxSlot(id = 'konva_1785217709470_text_5567198', prompt = '', text = '(소방서, 주민센터)', x = 602, y = 252, font_size = 28, fill = '#111827', width = 285, height = 40, align = 'left', line_height = 1.25)),
     )
 
 

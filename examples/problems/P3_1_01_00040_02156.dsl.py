@@ -63,7 +63,7 @@ def build_problem_template() -> ProblemTemplate:
                 height=66,
                 text="□ 안에 알맞은 수를 써넣으시오.",
                 font_size=23,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 align="left",
                 valign="middle",

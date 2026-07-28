@@ -6,7 +6,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextBoxSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_07649"
@@ -27,11 +27,10 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="vertical",
-                slot_ids=("slot.question",),
+                slot_ids=("slot.question",'konva_1785217709470_text_5630710', 'konva_1785217709470_rect_5648815'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.question",
                 x=48,
                 y=30,
@@ -43,7 +42,7 @@ def build_problem_template() -> ProblemTemplate:
                     "학생들에게 나누어 주기 위해 필요한 연필은 모두 몇 자루입니까?"
                 ),
                 font_size=24,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.5,
                 align="left",
@@ -54,8 +53,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="답",
                 answer_key="306",
                 placeholder="자루",
-            ),
-        ),
+            ),TextBoxSlot(id = 'konva_1785217709470_text_5630710', prompt = '', text = '자루', x = 738.732, y = 178.358, font_size = 28, fill = '#111827', width = 98, height = 43, align = 'left', line_height = 1.25), RectSlot(id = 'konva_1785217709470_rect_5648815', prompt = '', x = 591.411, y = 174.62, width = 131.555, height = 45.431, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2)),
     )
 
 

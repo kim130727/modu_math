@@ -39,7 +39,7 @@ def build_problem_template() -> ProblemTemplate:
                     "어제까지 동화책을 미정이는 129쪽 읽었고, 하윤이는 188쪽 읽었습니다. "
                     "미정이와 하윤이가 어제까지 읽은 동화책은 모두 몇 쪽입니까?"
                 ),
-                font_size = 28, font_family="Noto Sans KR",
+                font_size = 28, font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.5,
                 align="left",

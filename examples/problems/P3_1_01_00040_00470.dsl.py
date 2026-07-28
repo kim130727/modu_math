@@ -38,7 +38,7 @@ def build_problem_template() -> ProblemTemplate:
                 height=80,
                 text="진이네 과수원에서는 작년에 사과 725개를 수확하였고, 올해는 작년보다 287개를 더 수확하였습니다. 올해에 수확한 사과는 모두 몇 개입니까?",
                 font_size=24,
-                font_family="Noto Sans KR",
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.5,
                 align="left",

@@ -7,22 +7,61 @@
   },
   "elements": [
     {
+      "id": "konva_1785217709470_rect_5648815.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 591.411,
+        "y": 174.62,
+        "width": 131.555,
+        "height": 45.431,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.2
+      },
+      "source_ref": "konva_1785217709470_rect_5648815",
+      "refs": {
+        "layout_slot_id": "konva_1785217709470_rect_5648815"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    {
       "id": "slot.question.text",
       "type": "text_box",
       "attributes": {
         "x": 44.77,
         "y": 47.215,
         "fill": "#202124",
-        "font-family": "Noto Sans KR",
-        "font-size": 24,
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 28,
         "width": 804.0,
-        "height": 116.0,
+        "height": 176.0,
         "max_width": 804.0,
         "data-slot-kind": "text_box",
         "data-box-x": 44.77,
         "data-box-y": 47.215,
         "data-box-width": 804.0,
-        "data-box-height": 116.0,
+        "data-box-height": 176.0,
         "data-text-align": "left",
         "data-vertical-align": "top",
         "data-line-height": 1.5
@@ -32,6 +71,33 @@
         "layout_slot_id": "slot.question"
       },
       "text": "경진이네 학교 3학년 학생은 남학생이 87명, 여학생이 66명입니다. 3학년 학생 모두에게 연필을 2자루씩 나누어 주려고 합니다. 학생들에게 나누어 주기 위해 필요한 연필은 모두 몇 자루입니까?"
+    },
+    {
+      "id": "konva_1785217709470_text_5630710.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 738.732,
+        "y": 178.358,
+        "fill": "#111827",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 28,
+        "width": 98.0,
+        "height": 43.0,
+        "max_width": 98.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 738.732,
+        "data-box-y": 178.358,
+        "data-box-width": 98.0,
+        "data-box-height": 43.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25
+      },
+      "source_ref": "konva_1785217709470_text_5630710",
+      "refs": {
+        "layout_slot_id": "konva_1785217709470_text_5630710"
+      },
+      "text": "자루"
     }
   ],
   "contract_version": "modu_math.renderer.v2"
