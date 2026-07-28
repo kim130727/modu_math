@@ -174,6 +174,31 @@ def build_problem_template() -> ProblemTemplate:
 PROBLEM_TEMPLATE = build_problem_template()
 
 
+ANSWER = {'value': [1, 1, 4, 2, 3],
+ 'unit': '',
+ 'values': [1, 1, 4, 2, 3],
+ 'blanks': [{'id': 'konva_1785110879232_paste_1071192_0',
+             'slot_id': 'konva_1785110879232_paste_1071192_0',
+             'expected': 1},
+            {'id': 'konva_1785110879232_paste_1071192_1',
+             'slot_id': 'konva_1785110879232_paste_1071192_1',
+             'expected': 1},
+            {'id': 'konva_1785110879232_paste_1071192_2',
+             'slot_id': 'konva_1785110879232_paste_1071192_2',
+             'expected': 4},
+            {'id': 'konva_1785110879232_paste_1071192_3',
+             'slot_id': 'konva_1785110879232_paste_1071192_3',
+             'expected': 2},
+            {'id': 'konva_1785110879232_paste_1071192_4',
+             'slot_id': 'konva_1785110879232_paste_1071192_4',
+             'expected': 3}],
+ 'answer_key': [{'slot_id': 'konva_1785110879232_paste_1071192_0', 'value': 1},
+                {'slot_id': 'konva_1785110879232_paste_1071192_1', 'value': 1},
+                {'slot_id': 'konva_1785110879232_paste_1071192_2', 'value': 4},
+                {'slot_id': 'konva_1785110879232_paste_1071192_3', 'value': 2},
+                {'slot_id': 'konva_1785110879232_paste_1071192_4', 'value': 3}],
+ 'expression': '165 + 258 = 423'}
+
 SEMANTIC = {
     "problem_id": PROBLEM_ID,
     "problem_type": "multi_blank_vertical_addition",
@@ -264,33 +289,7 @@ SEMANTIC = {
             },
         ],
     },
-    "answer": {
-        "value": [1, 1, 4, 2, 3],  # [carry_hundreds, carry_tens, ans_hundreds, ans_tens, ans_ones]
-        "unit": "",
-        "expression": "165 + 258 = 423",
-        "items": [
-            {
-                "id": "answer.carry_hundreds",
-                "value": 1,
-            },
-            {
-                "id": "answer.carry_tens",
-                "value": 1,
-            },
-            {
-                "id": "answer.hundreds",
-                "value": 4,
-            },
-            {
-                "id": "answer.tens",
-                "value": 2,
-            },
-            {
-                "id": "answer.ones",
-                "value": 3,
-            },
-        ],
-    },
+    "answer": ANSWER,
 }
 
 SEMANTIC_OVERRIDE = SEMANTIC
@@ -362,14 +361,7 @@ SOLVABLE = {'schema': 'modu.solvable.v1.2',
              'expected': 165,
              'actual': 165,
              'pass': True}],
- 'answer': {'value': [1, 1, 4, 2, 3],
-            'unit': '',
-            'expression': '165 + 258 = 423',
-            'items': [{'id': 'answer.carry_hundreds', 'value': 1},
-                      {'id': 'answer.carry_tens', 'value': 1},
-                      {'id': 'answer.hundreds', 'value': 4},
-                      {'id': 'answer.tens', 'value': 2},
-                      {'id': 'answer.ones', 'value': 3}]},
+ 'answer': ANSWER,
  'understanding': {'summary': 'Find 받아올림한 수와 덧셈 결과의 각 자리 숫자 using the given information.',
                    'facts': [{'ref': 'number.addend_1',
                               'label': 'addend 1',

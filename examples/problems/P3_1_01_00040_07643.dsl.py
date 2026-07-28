@@ -6,7 +6,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextBoxSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_07643"
@@ -27,22 +27,19 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="vertical",
-                slot_ids=("slot.question",),
+                slot_ids=("slot.question",'konva_1785217709470_rect_1259829', 'konva_1785217709470_text_1269532'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.question",
                 x=48,
                 y=30,
                 width=804,
-                height=90,
-                text=(
+                height = 134, text=(
                     "어제까지 동화책을 미정이는 129쪽 읽었고, 하윤이는 188쪽 읽었습니다. "
                     "미정이와 하윤이가 어제까지 읽은 동화책은 모두 몇 쪽입니까?"
                 ),
-                font_size=24,
-                font_family="Noto Sans KR",
+                font_size = 28, font_family="Noto Sans KR",
                 fill="#202124",
                 line_height=1.5,
                 align="left",
@@ -53,8 +50,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="답",
                 answer_key="317",
                 placeholder="쪽",
-            ),
-        ),
+            ),RectSlot(id = 'konva_1785217709470_rect_1259829', prompt = '', x = 620.478, y = 163.861, width = 124.019, height = 41.127, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2), TextBoxSlot(id = 'konva_1785217709470_text_1269532', prompt = '', text = '쪽', x = 753.804, y = 163.295, font_size = 28, fill = '#111827', width = 98, height = 43, align = 'left', line_height = 1.25)),
     )
 
 

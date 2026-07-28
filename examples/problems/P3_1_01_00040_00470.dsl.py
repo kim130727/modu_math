@@ -47,7 +47,7 @@ def build_problem_template() -> ProblemTemplate:
             BlankSlot(
                 id="slot.answer",
                 prompt="답",
-                answer_key="1012",
+                answer_key=None,
                 placeholder="개",
             ),RectSlot(id = 'konva_1785110879232_paste_620338_0', prompt = '', x = 612.852, y = 175.967, width = 78.73, height = 41.989, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), TextBoxSlot(id = 'konva_1785110879232_paste_620338_1', prompt = '', text = '개', x = 708.59, y = 175.393, font_size = 30, fill = '#111827', width = 98, height = 46, align = 'left', line_height = 1.25)),
     )
@@ -55,6 +55,18 @@ def build_problem_template() -> ProblemTemplate:
 
 PROBLEM_TEMPLATE = build_problem_template()
 
+
+ANSWER = {'value': 1012,
+ 'unit': '개',
+ 'values': [1012, 1012],
+ 'blanks': [{'id': 'slot.answer', 'slot_id': 'slot.answer', 'expected': 1012},
+            {'id': 'konva_1785110879232_paste_620338_0',
+             'slot_id': 'konva_1785110879232_paste_620338_0',
+             'expected': 1012}],
+ 'answer_key': [{'slot_id': 'slot.answer', 'value': 1012},
+                {'slot_id': 'konva_1785110879232_paste_620338_0', 'value': 1012}],
+ 'type': 'numeric',
+ 'target_ref': 'quantity.this_year_apple_count'}
 
 SEMANTIC = {
     "problem_id": PROBLEM_ID,
@@ -128,12 +140,7 @@ SEMANTIC = {
             },
         ],
     },
-    "answer": {
-        "type": "numeric",
-        "value": 1012,
-        "unit": "개",
-        "target_ref": "quantity.this_year_apple_count",
-    },
+    "answer": ANSWER,
 }
 
 SEMANTIC_OVERRIDE = SEMANTIC
@@ -200,12 +207,7 @@ SOLVABLE = {
             "pass": True,
         },
     ],
-    "answer": {
-        "type": "numeric",
-        "value": 1012,
-        "unit": "개",
-        "target_ref": "quantity.this_year_apple_count",
-    },
+    "answer": ANSWER,
     "understanding": {
         "summary": "Find 올해 수확한 사과 수 using the given information.",
         "facts": [
@@ -329,12 +331,7 @@ SOLVABLE.update(
                 "pass": True,
             },
         ],
-        "answer": {
-            "type": "numeric",
-            "value": 1012,
-            "unit": "개",
-            "target_ref": "quantity.this_year_apple_count",
-        },
+        "answer": ANSWER,
         "understanding": {
             "summary": "작년에 수확한 사과 수와 올해 더 수확한 사과 수를 더해 올해 수확한 사과 수를 구하는 문제입니다.",
             "facts": [

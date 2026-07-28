@@ -14,6 +14,16 @@ PROBLEM_ID = "P3_1_01_00040_00469"
 PROBLEM_TITLE = "두 가족이 캔 고구마의 수"
 
 
+ANSWER = {'value': 507,
+ 'unit': '개',
+ 'values': [507, 507],
+ 'blanks': [{'id': 'slot.answer', 'slot_id': 'slot.answer', 'expected': 507},
+            {'id': 'konva_1785110879232_paste_513402_0',
+             'slot_id': 'konva_1785110879232_paste_513402_0',
+             'expected': 507}],
+ 'answer_key': [{'slot_id': 'slot.answer', 'value': 507},
+                {'slot_id': 'konva_1785110879232_paste_513402_0', 'value': 507}]}
+
 SEMANTIC = {
     "problem_id": PROBLEM_ID,
     "problem_type": "numeric_answer_addition_word_problem",
@@ -115,10 +125,7 @@ SEMANTIC = {
             },
         ],
     },
-    "answer": {
-        "value": 507,
-        "unit": "개",
-    },
+    "answer": ANSWER,
 }
 
 SEMANTIC_OVERRIDE = SEMANTIC
@@ -271,10 +278,7 @@ SOLVABLE = {
             "pass": True,
         },
     ],
-    "answer": {
-        "value": 507,
-        "unit": "개",
-    },
+    "answer": ANSWER,
 }
 
 SEMANTIC_ANSWER = SOLVABLE["answer"]
@@ -333,7 +337,7 @@ def build_problem_template() -> ProblemTemplate:
             BlankSlot(
                 id="slot.answer",
                 prompt="답",
-                answer_key="507",
+                answer_key=None,
                 placeholder="개",
             ),RectSlot(id = 'konva_1785110879232_paste_513402_0', prompt = '', x = 637.79, y = 149.022, width = 122.584, height = 42.06, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), TextBoxSlot(id = 'konva_1785110879232_paste_513402_1', prompt = '', text = '개', x = 771.483, y = 148.966, font_size = 30, fill = '#111827', width = 50.919, height = 46, align = 'left', line_height = 1.25)),
     )

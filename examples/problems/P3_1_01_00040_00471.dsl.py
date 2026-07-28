@@ -157,6 +157,18 @@ def build_problem_template() -> ProblemTemplate:
 
 PROBLEM_TEMPLATE = build_problem_template()
 
+ANSWER = {'value': ['>', '='],
+ 'unit': '',
+ 'values': ['>', '='],
+ 'blanks': [{'id': 'konva_1785110879232_circle_652757',
+             'slot_id': 'konva_1785110879232_circle_652757',
+             'expected': '>'},
+            {'id': 'konva_1785110879232_paste_664084_0',
+             'slot_id': 'konva_1785110879232_paste_664084_0',
+             'expected': '='}],
+ 'answer_key': [{'slot_id': 'konva_1785110879232_circle_652757', 'value': '>'},
+                {'slot_id': 'konva_1785110879232_paste_664084_0', 'value': '='}]}
+
 SEMANTIC = {
     "problem_id": PROBLEM_ID,
     "problem_type": "multi_answer_expression_comparison",
@@ -229,20 +241,7 @@ SEMANTIC = {
             },
         ],
     },
-    "answer": {
-        "value": [">", "="],
-        "unit": "",
-        "items": [
-            {
-                "id": "answer.problem_1",
-                "value": ">",
-            },
-            {
-                "id": "answer.problem_2",
-                "value": "=",
-            },
-        ],
-    },
+    "answer": ANSWER,
 }
 
 SEMANTIC_OVERRIDE = SEMANTIC
@@ -324,10 +323,7 @@ SOLVABLE = {'schema': 'modu.solvable.v1.2',
              'expected': True,
              'actual': True,
              'pass': True}],
- 'answer': {'value': ['>', '='],
-            'unit': '',
-            'items': [{'id': 'answer.problem_1', 'value': '>'},
-                      {'id': 'answer.problem_2', 'value': '='}]},
+ 'answer': ANSWER,
  'understanding': {'summary': 'Find 두 수 또는 두 덧셈식 사이에 알맞은 비교 기호 써넣기 using the given information.',
                    'facts': [{'ref': 'comparison.problem_1',
                               'label': 'problem 1',
@@ -494,14 +490,7 @@ SOLVABLE.update({
             "pass": True,
         },
     ],
-    "answer": {
-        "value": [">", "="],
-        "unit": "",
-        "items": [
-            {"id": "answer.problem_1", "value": ">"},
-            {"id": "answer.problem_2", "value": "="},
-        ],
-    },
+    "answer": ANSWER,
     "understanding": {
         "summary": "각 식의 값을 계산한 뒤, 왼쪽과 오른쪽을 비교해 빈칸에 알맞은 비교 기호를 쓰는 문제입니다.",
         "facts": [

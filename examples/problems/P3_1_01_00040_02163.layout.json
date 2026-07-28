@@ -22,22 +22,22 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
+        "konva_1785217709470_rect_1077876",
+        "konva_1785217709470_paste_1095824_0",
+        "konva_1785217709470_paste_1096221_0",
+        "konva_1785217709470_paste_1096698_0",
         "slot.line_1",
         "slot.line_2",
         "slot.label_1",
         "slot.number_1_top",
         "slot.plus_1",
         "slot.number_1_bottom_hundreds",
-        "slot.blank_1_tens",
         "slot.number_1_bottom_ones",
-        "slot.blank_1_answer_hundreds",
         "slot.number_1_answer_rest",
         "slot.label_2",
-        "slot.blank_2_top_hundreds",
         "slot.number_2_top_rest",
         "slot.plus_2",
         "slot.number_2_bottom_hundreds",
-        "slot.blank_2_bottom_tens",
         "slot.number_2_bottom_ones",
         "slot.number_2_answer"
       ]
@@ -82,10 +82,10 @@
       "kind": "text",
       "prompt": "첫 번째 덧셈의 위 수 653",
       "content": {
-        "text": "653",
+        "text": "6 5 3",
         "style_role": "body",
-        "x": 121.287,
-        "y": 70.618,
+        "x": 118.903,
+        "y": 72.16,
         "font_size": 22,
         "anchor": "end",
         "fill": "#111111"
@@ -112,21 +112,7 @@
       "content": {
         "text": "2",
         "style_role": "body",
-        "x": 86.287,
-        "y": 101.618,
-        "font_size": 22,
-        "anchor": "middle",
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.blank_1_tens",
-      "kind": "text",
-      "prompt": "첫 번째 덧셈 아래 수의 십의 자리 빈칸",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 100.287,
+        "x": 81.287,
         "y": 101.618,
         "font_size": 22,
         "anchor": "middle",
@@ -161,28 +147,14 @@
       }
     },
     {
-      "id": "slot.blank_1_answer_hundreds",
-      "kind": "text",
-      "prompt": "첫 번째 덧셈 결과의 백의 자리 빈칸",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 86.287,
-        "y": 148.618,
-        "font_size": 22,
-        "anchor": "middle",
-        "fill": "#111111"
-      }
-    },
-    {
       "id": "slot.number_1_answer_rest",
       "kind": "text",
       "prompt": "첫 번째 덧셈 결과의 십의 자리와 일의 자리 31",
       "content": {
-        "text": "31",
+        "text": "3 1",
         "style_role": "body",
-        "x": 120.287,
-        "y": 148.618,
+        "x": 119.341,
+        "y": 146.562,
         "font_size": 22,
         "anchor": "end",
         "fill": "#111111"
@@ -203,28 +175,14 @@
       }
     },
     {
-      "id": "slot.blank_2_top_hundreds",
-      "kind": "text",
-      "prompt": "두 번째 덧셈 위 수의 백의 자리 빈칸",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 211.287,
-        "y": 70.618,
-        "font_size": 22,
-        "anchor": "middle",
-        "fill": "#111111"
-      }
-    },
-    {
       "id": "slot.number_2_top_rest",
       "kind": "text",
       "prompt": "두 번째 덧셈 위 수의 십의 자리와 일의 자리 25",
       "content": {
-        "text": "25",
+        "text": "2 5",
         "style_role": "body",
-        "x": 245.287,
-        "y": 70.618,
+        "x": 243.827,
+        "y": 71.646,
         "font_size": 22,
         "anchor": "end",
         "fill": "#111111"
@@ -251,21 +209,7 @@
       "content": {
         "text": "3",
         "style_role": "body",
-        "x": 211.287,
-        "y": 101.618,
-        "font_size": 22,
-        "anchor": "middle",
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.blank_2_bottom_tens",
-      "kind": "text",
-      "prompt": "두 번째 덧셈 아래 수의 십의 자리 빈칸",
-      "content": {
-        "text": "□",
-        "style_role": "body",
-        "x": 225.287,
+        "x": 209.287,
         "y": 101.618,
         "font_size": 22,
         "anchor": "middle",
@@ -304,13 +248,69 @@
       "kind": "text",
       "prompt": "두 번째 덧셈의 결과 804",
       "content": {
-        "text": "804",
+        "text": "8 0 4",
         "style_role": "body",
-        "x": 245.287,
-        "y": 148.618,
+        "x": 247.018,
+        "y": 146.562,
         "font_size": 22,
         "anchor": "end",
         "fill": "#111111"
+      }
+    },
+    {
+      "id": "konva_1785217709470_rect_1077876",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 194.34,
+        "y": 53.056,
+        "width": 20.843,
+        "height": 22.257,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "konva_1785217709470_paste_1095824_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 217.196,
+        "y": 81.683,
+        "width": 20.843,
+        "height": 22.257,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "konva_1785217709470_paste_1096221_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 84.005,
+        "y": 81.008,
+        "width": 20.843,
+        "height": 22.257,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "konva_1785217709470_paste_1096698_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 63.371,
+        "y": 126.084,
+        "width": 20.843,
+        "height": 22.257,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
       }
     }
   ],
@@ -352,22 +352,22 @@
     "region.stem",
     "slot.instruction",
     "region.problems",
+    "konva_1785217709470_rect_1077876",
+    "konva_1785217709470_paste_1095824_0",
+    "konva_1785217709470_paste_1096221_0",
+    "konva_1785217709470_paste_1096698_0",
     "slot.line_1",
     "slot.line_2",
     "slot.label_1",
     "slot.number_1_top",
     "slot.plus_1",
     "slot.number_1_bottom_hundreds",
-    "slot.blank_1_tens",
     "slot.number_1_bottom_ones",
-    "slot.blank_1_answer_hundreds",
     "slot.number_1_answer_rest",
     "slot.label_2",
-    "slot.blank_2_top_hundreds",
     "slot.number_2_top_rest",
     "slot.plus_2",
     "slot.number_2_bottom_hundreds",
-    "slot.blank_2_bottom_tens",
     "slot.number_2_bottom_ones",
     "slot.number_2_answer"
   ]

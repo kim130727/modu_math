@@ -45,6 +45,14 @@ def build_problem_template() -> ProblemTemplate:
 PROBLEM_TEMPLATE = build_problem_template()
 
 
+ANSWER = {'value': 1124,
+ 'unit': '명',
+ 'blanks': [{'id': 'konva_1785110879232_paste_740217_0',
+             'slot_id': 'konva_1785110879232_paste_740217_0',
+             'expected': 1124}],
+ 'answer_key': [{'slot_id': 'konva_1785110879232_paste_740217_0', 'value': 1124}],
+ 'expression': '648 + 476 = 1124'}
+
 SEMANTIC = {
     "problem_id": PROBLEM_ID,
     "problem_type": "numeric_answer_addition_word_problem",
@@ -108,11 +116,7 @@ SEMANTIC = {
             },
         ],
     },
-    "answer": {
-        "value": 1124,
-        "unit": "명",
-        "expression": "648 + 476 = 1124",
-    },
+    "answer": ANSWER,
 }
 
 SEMANTIC_OVERRIDE = SEMANTIC
@@ -169,8 +173,7 @@ SOLVABLE = {'schema': 'modu.solvable.v1.2',
              'expected': 648,
              'actual': 648,
              'pass': True}],
- 'answer': {'value': 1124, 'unit': '명', 'expression': '648 + 476 = 1124'},
- 'understanding': {'summary': 'Find 도서관에서 책을 읽고 있는 사람의 전체 수 using the given information.',
+ 'answer': ANSWER, 'understanding': {'summary': 'Find 도서관에서 책을 읽고 있는 사람의 전체 수 using the given information.',
                    'facts': [{'ref': 'group.adults',
                               'label': 'adults',
                               'value': 648,

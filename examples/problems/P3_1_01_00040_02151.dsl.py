@@ -67,6 +67,22 @@ def build_problem_template() -> ProblemTemplate:
 PROBLEM_TEMPLATE = build_problem_template()
 
 
+ANSWER = {'value': [1, 1, 6, 2, 3, 1, 1, 8, 1, 4],
+ 'unit': '',
+ 'values': [1, 1, 6],
+ 'blanks': [{'id': 'konva_1785113855579_rect_123138',
+             'slot_id': 'konva_1785113855579_rect_123138',
+             'expected': 1},
+            {'id': 'konva_1785113855579_paste_146161_0',
+             'slot_id': 'konva_1785113855579_paste_146161_0',
+             'expected': 1},
+            {'id': 'konva_1785113855579_paste_150620_0',
+             'slot_id': 'konva_1785113855579_paste_150620_0',
+             'expected': 6}],
+ 'answer_key': [{'slot_id': 'konva_1785113855579_rect_123138', 'value': 1},
+                {'slot_id': 'konva_1785113855579_paste_146161_0', 'value': 1},
+                {'slot_id': 'konva_1785113855579_paste_150620_0', 'value': 6}]}
+
 SEMANTIC = {
     "problem_id": PROBLEM_ID,
     "problem_type": "multi_answer_vertical_addition",
@@ -149,63 +165,7 @@ SEMANTIC = {
             },
         ],
     },
-    "answer": {
-        "value": [
-            1,
-            1,
-            6,
-            2,
-            3,
-            1,
-            1,
-            8,
-            1,
-            4,
-        ],
-        "unit": "",
-        "items": [
-            {
-                "id": "answer.problem_1.carry_hundreds",
-                "value": 1,
-            },
-            {
-                "id": "answer.problem_1.carry_tens",
-                "value": 1,
-            },
-            {
-                "id": "answer.problem_1.hundreds",
-                "value": 6,
-            },
-            {
-                "id": "answer.problem_1.tens",
-                "value": 2,
-            },
-            {
-                "id": "answer.problem_1.ones",
-                "value": 3,
-            },
-            {
-                "id": "answer.problem_2.carry_hundreds",
-                "value": 1,
-            },
-            {
-                "id": "answer.problem_2.carry_tens",
-                "value": 1,
-            },
-            {
-                "id": "answer.problem_2.hundreds",
-                "value": 8,
-            },
-            {
-                "id": "answer.problem_2.tens",
-                "value": 1,
-            },
-            {
-                "id": "answer.problem_2.ones",
-                "value": 4,
-            },
-        ],
-    },
+    "answer": ANSWER,
 }
 
 SEMANTIC_OVERRIDE = SEMANTIC
@@ -302,18 +262,7 @@ SOLVABLE = {'schema': 'modu.solvable.v1.2',
              'expected': 458,
              'actual': 458,
              'pass': True}],
- 'answer': {'value': [1, 1, 6, 2, 3, 1, 1, 8, 1, 4],
-            'unit': '',
-            'items': [{'id': 'answer.problem_1.carry_hundreds', 'value': 1},
-                      {'id': 'answer.problem_1.carry_tens', 'value': 1},
-                      {'id': 'answer.problem_1.hundreds', 'value': 6},
-                      {'id': 'answer.problem_1.tens', 'value': 2},
-                      {'id': 'answer.problem_1.ones', 'value': 3},
-                      {'id': 'answer.problem_2.carry_hundreds', 'value': 1},
-                      {'id': 'answer.problem_2.carry_tens', 'value': 1},
-                      {'id': 'answer.problem_2.hundreds', 'value': 8},
-                      {'id': 'answer.problem_2.tens', 'value': 1},
-                      {'id': 'answer.problem_2.ones', 'value': 4}]},
+ 'answer': ANSWER,
  'understanding': {'summary': 'Find 두 세로셈의 받아올림한 수와 계산 결과 using the given information.',
                    'facts': [{'ref': 'addition.problem_1',
                               'label': 'problem 1',

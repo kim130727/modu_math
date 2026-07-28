@@ -98,6 +98,14 @@ def build_problem_template() -> ProblemTemplate:
 PROBLEM_TEMPLATE = build_problem_template()
 
 
+ANSWER = {'value': 913,
+ 'unit': '장',
+ 'blanks': [{'id': 'konva_1785110879232_paste_783799_0',
+             'slot_id': 'konva_1785110879232_paste_783799_0',
+             'expected': 913}],
+ 'answer_key': [{'slot_id': 'konva_1785110879232_paste_783799_0', 'value': 913}],
+ 'expression': '634 + 279 = 913'}
+
 SEMANTIC = {
     "problem_id": PROBLEM_ID,
     "problem_type": "numeric_answer_addition_word_problem",
@@ -161,11 +169,7 @@ SEMANTIC = {
             },
         ],
     },
-    "answer": {
-        "value": 913,
-        "unit": "장",
-        "expression": "634 + 279 = 913",
-    },
+    "answer": ANSWER,
 }
 
 SEMANTIC_OVERRIDE = SEMANTIC
@@ -224,8 +228,7 @@ SOLVABLE = {'schema': 'modu.solvable.v1.2',
              'expected': 634,
              'actual': 634,
              'pass': True}],
- 'answer': {'value': 913, 'unit': '장', 'expression': '634 + 279 = 913'},
- 'understanding': {'summary': 'Find 미란이가 모은 우표의 전체 수 using the given information.',
+ 'answer': ANSWER, 'understanding': {'summary': 'Find 미란이가 모은 우표의 전체 수 using the given information.',
                    'facts': [{'ref': 'collection.stamps_until_last_year',
                               'label': 'stamps until last year',
                               'value': 634,
