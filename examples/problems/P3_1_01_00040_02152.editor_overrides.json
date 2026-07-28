@@ -1,4 +1,14 @@
 {
+  "version": 1,
+  "deleted_slots": [
+    "slot.model_legend",
+    "slot.first_number_label",
+    "slot.first_number_models",
+    "slot.second_number_label",
+    "slot.second_number_models",
+    "slot.combine_arrow",
+    "slot.regrouped_models"
+  ],
   "slots": {
     "slot.diagram.top_box": {
       "x": 27.464,
@@ -244,22 +254,73 @@
       "stroke_width": 1
     },
     "slot.model.result.thousand1.front": {
-      "d": "M 62 369 L 100 369 L 100 407 L 62 407 Z",
       "fill": "#d9f0c8",
       "stroke": "#8fba72",
-      "stroke_width": 1
+      "stroke_width": 1,
+      "points": [
+        [
+          62.0,
+          369.0
+        ],
+        [
+          100.0,
+          369.0
+        ],
+        [
+          100.0,
+          407.0
+        ],
+        [
+          62.0,
+          407.0
+        ]
+      ]
     },
     "slot.model.result.thousand1.top": {
-      "d": "M 62 369 L 76 355 L 114 355 L 100 369 Z",
       "fill": "#e8f8dc",
       "stroke": "#8fba72",
-      "stroke_width": 1
+      "stroke_width": 1,
+      "points": [
+        [
+          62.0,
+          369.0
+        ],
+        [
+          76.0,
+          355.0
+        ],
+        [
+          114.0,
+          355.0
+        ],
+        [
+          100.0,
+          369.0
+        ]
+      ]
     },
     "slot.model.result.thousand1.side": {
-      "d": "M 100 369 L 114 355 L 114 393 L 100 407 Z",
       "fill": "#c6e6b2",
       "stroke": "#8fba72",
-      "stroke_width": 1
+      "stroke_width": 1,
+      "points": [
+        [
+          100.0,
+          369.0
+        ],
+        [
+          114.0,
+          355.0
+        ],
+        [
+          114.0,
+          393.0
+        ],
+        [
+          100.0,
+          407.0
+        ]
+      ]
     },
     "slot.model.result.h1.body": {
       "x": 142,
@@ -3800,10 +3861,23 @@
       "line_height": 1.25
     },
     "slot.diagram.arrow_head": {
-      "d": "M 229 326 L 247 326 L 238 340 Z",
       "fill": "#9a9a9a",
       "stroke": "#9a9a9a",
-      "stroke_width": 1
+      "stroke_width": 1,
+      "points": [
+        [
+          229.0,
+          326.0
+        ],
+        [
+          247.0,
+          326.0
+        ],
+        [
+          238.0,
+          340.0
+        ]
+      ]
     },
     "slot.diagram.arrow_line": {
       "x1": 238,
@@ -4739,15 +4813,5 @@
       "stroke": "#9fd0ed",
       "stroke_width": 0.55
     }
-  },
-  "version": 1,
-  "deleted_slots": [
-    "slot.model_legend",
-    "slot.first_number_label",
-    "slot.first_number_models",
-    "slot.second_number_label",
-    "slot.second_number_models",
-    "slot.combine_arrow",
-    "slot.regrouped_models"
-  ]
+  }
 }

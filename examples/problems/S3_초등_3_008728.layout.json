@@ -14,10 +14,16 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
+        "slot.inserted.image.1",
         "slot.header.text",
         "slot.header.text.copy1",
         "slot.header.text.copy1.copy2",
-        "slot.inserted.image.1"
+        "slot.inserted.car.1.body.copy2.copy4.copy5.copy8.copy9.copy5",
+        "slot.inserted.car.1.roof.copy2.copy4.copy5.copy8.copy9.copy5",
+        "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy8.copy9.copy5",
+        "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy8.copy9.copy5",
+        "slot.inserted.car.1.body.copy2.copy4.copy5.copy7.copy8.copy9.copy5",
+        "slot.inserted.car.1.roof.copy2.copy4.copy5.copy7.copy8.copy9.copy5"
       ]
     },
     {
@@ -541,6 +547,106 @@
         "font_size": 28,
         "fill": "#111111"
       }
+    },
+    {
+      "id": "slot.inserted.car.1.body.copy2.copy4.copy5.copy8.copy9.copy5",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 625 90 Q 625 80 635 80 L 645 70 L 670 70 L 680 80 L 690 80 Q 695 85 700 95 L 695 100 L 625 100 Q 625 95 625 90 Z",
+        "fill": "#ffffff",
+        "stroke": "#3E9B6D",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.roof.copy2.copy4.copy5.copy8.copy9.copy5",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 640 80 L 650 70 L 665 70 L 675 80 Z",
+        "fill": "#A7E3D3",
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy8.copy9.copy5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            645,
+            80
+          ],
+          [
+            650,
+            75
+          ],
+          [
+            655,
+            75
+          ],
+          [
+            655,
+            80
+          ]
+        ],
+        "fill": "#E8FFF8",
+        "stroke": "#2D9A7A",
+        "stroke_width": 1
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy8.copy9.copy5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            660,
+            75
+          ],
+          [
+            665,
+            75
+          ],
+          [
+            670,
+            80
+          ],
+          [
+            660,
+            80
+          ]
+        ],
+        "fill": "#E8FFF8",
+        "stroke": "#2D9A7A",
+        "stroke_width": 1
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.body.copy2.copy4.copy5.copy7.copy8.copy9.copy5",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 715 90 Q 715 80 725 80 L 735 70 L 760 70 L 770 80 L 780 80 Q 785 85 790 95 L 785 100 L 715 100 Q 715 95 715 90 Z",
+        "fill": "#ffffff",
+        "stroke": "#3E9B6D",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.roof.copy2.copy4.copy5.copy7.copy8.copy9.copy5",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 730 80 L 740 70 L 755 70 L 765 80 Z",
+        "fill": "#A7E3D3",
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.5
+      }
     }
   ],
   "groups": [],
@@ -548,10 +654,10 @@
   "diagrams": [],
   "reading_order": [
     "region.header",
+    "slot.inserted.image.1",
     "slot.header.text",
     "slot.header.text.copy1",
     "slot.header.text.copy1.copy2",
-    "slot.inserted.image.1",
     "region.cars",
     "region.speech.left",
     "slot.speech.left",
@@ -581,6 +687,12 @@
     "slot.speech.right.text1",
     "slot.speech.right.text2",
     "slot.speech.right.text3",
-    "region.footer"
+    "region.footer",
+    "slot.inserted.car.1.body.copy2.copy4.copy5.copy8.copy9.copy5",
+    "slot.inserted.car.1.roof.copy2.copy4.copy5.copy8.copy9.copy5",
+    "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy8.copy9.copy5",
+    "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy8.copy9.copy5",
+    "slot.inserted.car.1.body.copy2.copy4.copy5.copy7.copy8.copy9.copy5",
+    "slot.inserted.car.1.roof.copy2.copy4.copy5.copy7.copy8.copy9.copy5"
   ]
 }

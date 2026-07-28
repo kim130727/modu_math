@@ -14,11 +14,7 @@
       "role": "stem",
       "flow": "vertical",
       "slot_ids": [
-        "slot.instruction",
-        "slot.expression_line",
-        "slot.answer_line",
-        "slot.expression_label",
-        "slot.answer_label"
+        "slot.instruction"
       ]
     },
     {
@@ -109,8 +105,7 @@
         ],
         "stroke": "#B94E3C",
         "stroke_width": 1.5,
-        "fill": "#D9674E",
-        "d": "M 34 67 L 63 45 L 92 67 Z"
+        "fill": "#D9674E"
       }
     },
     {
@@ -235,8 +230,7 @@
         ],
         "stroke": "#B94E4E",
         "stroke_width": 1,
-        "fill": "#E56E6E",
-        "d": "M 229 66 L 273 66 L 268 76 L 234 76 Z"
+        "fill": "#E56E6E"
       }
     },
     {
@@ -329,8 +323,7 @@
         ],
         "stroke": "#62975A",
         "stroke_width": 1.5,
-        "fill": "#8FC487",
-        "d": "M 242 158 L 272 139 L 303 158 Z"
+        "fill": "#8FC487"
       }
     },
     {
@@ -455,56 +448,6 @@
         "anchor": "middle",
         "fill": "#222222"
       }
-    },
-    {
-      "id": "slot.expression_line",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 38,
-        "y1": 197,
-        "x2": 154,
-        "y2": 197,
-        "stroke": "#333333",
-        "stroke_width": 1
-      }
-    },
-    {
-      "id": "slot.answer_line",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 38,
-        "y1": 220,
-        "x2": 115,
-        "y2": 220,
-        "stroke": "#333333",
-        "stroke_width": 1
-      }
-    },
-    {
-      "id": "slot.expression_label",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "식",
-        "x": 20,
-        "y": 193,
-        "font_size": 16,
-        "fill": "#222222"
-      }
-    },
-    {
-      "id": "slot.answer_label",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "답",
-        "x": 20,
-        "y": 216,
-        "font_size": 16,
-        "fill": "#222222"
-      }
     }
   ],
   "groups": [
@@ -588,10 +531,6 @@
     "slot.store_label",
     "slot.school_label",
     "slot.distance_487",
-    "slot.distance_295",
-    "slot.expression_line",
-    "slot.answer_line",
-    "slot.expression_label",
-    "slot.answer_label"
+    "slot.distance_295"
   ]
 }

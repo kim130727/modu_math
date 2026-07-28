@@ -1,0 +1,62 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008747",
+  "problem_type": "판단",
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "truth_judgment",
+    "target_ticks": 1,
+    "target_count": 2,
+    "unit": ""
+  },
+  "plan": [
+    "두 물병의 컵 개수를 비교하고, 제시된 문장이 맞는지 확인한다."
+  ],
+  "given": [
+    {
+      "ref": "obj.cup_count.ga",
+      "value": 7
+    },
+    {
+      "ref": "obj.cup_count.na",
+      "value": 4
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "truth_judgment"
+  },
+  "method": "compare_and_check_statement",
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "7-4",
+      "value": 3
+    },
+    {
+      "id": "step.2",
+      "expr": "문장: 나 물병이 컵 3개만큼 물이 더 들어갑니다. / 비교 결과 확인",
+      "value": "false"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "7-4=3",
+      "expected": 3,
+      "actual": 3,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "truth_judgment",
+      "description": "문장이 바른지 ○/×로 판단하기"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

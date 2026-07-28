@@ -87,21 +87,22 @@
       "content": {
         "points": [
           [
-            215.0,
-            422.0
+            250,
+            557
           ],
           [
-            450.0,
-            187.0
+            485,
+            322
           ],
           [
-            685.0,
-            422.0
+            720,
+            557
           ]
         ],
         "stroke": "#222222",
-        "stroke_width": 2.0,
-        "fill": "#dddddd"
+        "stroke_width": 1.5,
+        "fill": "#dddddd",
+        "stroke_dasharray": "10 6"
       }
     },
     {
@@ -135,21 +136,22 @@
       "content": {
         "points": [
           [
-            335.0,
-            422.0
+            335,
+            422
           ],
           [
-            450.0,
-            307.0
+            450,
+            307
           ],
           [
-            565.0,
-            422.0
+            565,
+            422
           ]
         ],
         "stroke": "#222222",
-        "stroke_width": 2.0,
-        "fill": "#ffffff"
+        "stroke_width": 1.5,
+        "fill": "#ffffff",
+        "stroke_dasharray": "10 6"
       }
     },
     {
@@ -157,12 +159,13 @@
       "kind": "path",
       "prompt": "반지름이 235인 가장 바깥쪽 반원",
       "content": {
-        "d": "M 215 422 A 235 235 0 0 1 685 422",
+        "d": "M 415 252 A 235 235 0 0 1 885 252",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#222222",
-        "stroke_width": 2.0,
-        "fill": "none"
+        "stroke_width": 1.5,
+        "fill": "none",
+        "stroke_dasharray": "10 6"
       }
     },
     {
@@ -236,7 +239,15 @@
       "kind": "blank",
       "prompt": "단답형 정답",
       "content": {
-        "placeholder": "정답"
+        "placeholder": "정답",
+        "x": 64,
+        "y": 421,
+        "width": 120,
+        "height": 32,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "4 3"
       }
     }
   ],

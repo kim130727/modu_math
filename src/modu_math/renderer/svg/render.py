@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import base64
+from functools import lru_cache
 from html import escape
+from io import BytesIO
 import mimetypes
 from pathlib import Path
 import re
@@ -9,13 +11,60 @@ from typing import Any
 
 from ...renderer.models.primitive import RenderElement, RenderGroup, RenderText, RendererAST
 
-_SVG_FONT_FACE_CSS = """@font-face {
+_POOR_STORY_FONT_PATH = Path(__file__).resolve().parents[1] / "assets" / "PoorStory-Regular.ttf"
+_POOR_STORY_EXTERNAL_SRC = "https://fonts.gstatic.com/s/poorstory/v24/jizfREFUsnUct9P6cDfd4Ok.ttf"
+
+
+def _poor_story_font_face_css(src: str) -> str:
+    return f"""@font-face {{
   font-family: 'Poor Story';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('https://fonts.gstatic.com/s/poorstory/v24/jizfREFUsnUct9P6cDfd4Ok.ttf') format('truetype');
-}"""
+  src: url('{src}') format('truetype');
+}}"""
+
+
+def _iter_text_content(elements: list[RenderElement]) -> str:
+    chunks: list[str] = []
+    for element in elements:
+        if isinstance(element, RenderText):
+            chunks.append(element.text)
+        elif isinstance(element, RenderGroup):
+            chunks.append(_iter_text_content(element.elements))
+    return "".join(chunks)
+
+
+@lru_cache(maxsize=256)
+def _poor_story_subset_data_uri(text: str) -> str | None:
+    if not _POOR_STORY_FONT_PATH.is_file():
+        return None
+    try:
+        from fontTools import subset
+    except Exception:
+        return None
+
+    options = subset.Options()
+    options.name_IDs = ["*"]
+    options.name_legacy = True
+    options.name_languages = ["*"]
+
+    font = subset.load_font(str(_POOR_STORY_FONT_PATH), options)
+    subsetter = subset.Subsetter(options=options)
+    subsetter.populate(text=text or " ")
+    subsetter.subset(font)
+
+    output = BytesIO()
+    subset.save_font(font, output, options)
+    encoded = base64.b64encode(output.getvalue()).decode("ascii")
+    return f"data:font/ttf;base64,{encoded}"
+
+
+def _svg_font_face_css(renderer_ast: RendererAST) -> str:
+    text = _iter_text_content(renderer_ast.elements)
+    unique_text = "".join(sorted(set(text)))
+    src = _poor_story_subset_data_uri(unique_text)
+    return _poor_story_font_face_css(src or _POOR_STORY_EXTERNAL_SRC)
 
 def _float_str(value: float) -> str:
     ivalue = int(value)
@@ -195,7 +244,7 @@ def render_svg(renderer: RendererAST | dict[str, Any]) -> str:
         f"<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"{width}\" height=\"{height}\" viewBox=\"0 0 {width} {height}\">",
         f"  <metadata><problem_id>{escape(renderer_ast.problem_id)}</problem_id></metadata>",
         "  <defs>",
-        f"    <style>{escape(_SVG_FONT_FACE_CSS)}</style>",
+        f"    <style>{_svg_font_face_css(renderer_ast)}</style>",
         "  </defs>",
     ]
     
