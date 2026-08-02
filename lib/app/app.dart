@@ -32,8 +32,7 @@ class _ModuMathAppState extends State<ModuMathApp> {
   @override
   void initState() {
     super.initState();
-    _contentRepository =
-        widget.contentRepository ?? ContentRepository.githubExamples();
+    _contentRepository = widget.contentRepository ?? ContentRepository();
     _progressRepository =
         widget.progressRepository ?? PersistentProgressRepository();
     _router = ModuMathRouter(
