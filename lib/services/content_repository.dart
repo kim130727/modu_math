@@ -30,6 +30,7 @@ class ContentRepository {
   static const String manifestPath = 'assets/content/problems/manifest.json';
   static const String problemsPath = 'assets/content/problems';
   static const String grade3Path = 'assets/content/problems/grade3';
+  static const Set<String> localizedProblemLocales = {'ko', 'uk'};
 
   final ContentRepositorySource source;
   final http.Client _httpClient;
@@ -38,6 +39,7 @@ class ContentRepository {
   final String githubRef;
   final String githubProblemsPath;
   List<String>? _rendererPathCache;
+  String activeProblemLocale = 'ko';
 
   Future<ProblemManifest> loadManifest() async {
     if (source == ContentRepositorySource.githubExamples) {
@@ -178,12 +180,25 @@ class ContentRepository {
     return manifest
         .listAssets()
         .where(
-          (path) =>
-              path.startsWith('$problemsPath/') &&
-              path.endsWith('.renderer.json'),
+          (path) => _isBundledRendererPathForActiveLocale(path),
         )
         .toList()
       ..sort();
+  }
+
+  bool _isBundledRendererPathForActiveLocale(String path) {
+    if (!path.startsWith('$problemsPath/') ||
+        !path.endsWith('.renderer.json')) {
+      return false;
+    }
+    final locale = localizedProblemLocales.contains(activeProblemLocale)
+        ? activeProblemLocale
+        : 'ko';
+    final localizedPrefix = '$problemsPath/$locale/';
+    if (path.startsWith(localizedPrefix)) {
+      return true;
+    }
+    return false;
   }
 
   ProblemSummary _summaryFromPrefix({

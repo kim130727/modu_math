@@ -31,6 +31,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
   late Future<StudentProfile> _profileFuture;
   late Future<DailySummary> _dailySummaryFuture;
   late Future<List<RecommendedProblem>> _recommendationsFuture;
+  String? _activeProblemLocale;
   final RecommendationService _recommendationService =
       const RecommendationService();
 
@@ -38,6 +39,22 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
   void initState() {
     super.initState();
     _loadData();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final locale = AppLocaleScope.maybeOf(context)?.locale.languageCode ?? 'ko';
+    if (_activeProblemLocale == locale) {
+      return;
+    }
+    final previousLocale = _activeProblemLocale;
+    _activeProblemLocale = locale;
+    widget.repository.activeProblemLocale = locale;
+    if (previousLocale == null) {
+      return;
+    }
+    setState(_loadData);
   }
 
   void _loadData() {

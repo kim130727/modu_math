@@ -30,7 +30,7 @@ class JsonRendererPreviewScreen extends StatefulWidget {
 }
 
 class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
-  late final Future<List<String>> prefixesFuture;
+  late Future<List<String>> prefixesFuture;
   late Future<ProblemJsonBundle> bundleFuture;
   late AiTutorService tutorService;
   final List<TutorMessage> tutorMessages = [];
@@ -42,6 +42,7 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
   bool tutorBusy = false;
   int hintLevel = 0;
   int tutorStepIndex = 0;
+  String? _activeProblemLocale;
 
   @override
   void initState() {
@@ -49,6 +50,33 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
     tutorService = _createTutorService();
     prefixesFuture = widget.repository.loadGrade3JsonProblemPrefixes();
     bundleFuture = _loadInitialBundle();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final locale = AppLocaleScope.maybeOf(context)?.locale.languageCode ?? 'ko';
+    if (_activeProblemLocale == locale) {
+      return;
+    }
+    final previousLocale = _activeProblemLocale;
+    _activeProblemLocale = locale;
+    widget.repository.activeProblemLocale = locale;
+    if (previousLocale == null) {
+      return;
+    }
+    setState(() {
+      prefixesFuture = widget.repository.loadGrade3JsonProblemPrefixes();
+      bundleFuture = _loadInitialBundle();
+      selectedFilePrefix = '';
+      tutorProblemId = null;
+      tutorMessages.clear();
+      submittedAnswer = null;
+      answerDraft = '';
+      isCorrect = null;
+      hintLevel = 0;
+      tutorStepIndex = 0;
+    });
   }
 
   Future<ProblemJsonBundle> _loadInitialBundle() async {
@@ -172,7 +200,8 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
         unit: type,
         type: type,
         title: metadata['title']?.toString() ?? bundle.filePrefix,
-        path: ContentRepository.grade3Path,
+        path:
+            '${ContentRepository.problemsPath}/${widget.repository.activeProblemLocale}',
         filePrefix: bundle.filePrefix,
         raw: bundle.semantic,
       ),

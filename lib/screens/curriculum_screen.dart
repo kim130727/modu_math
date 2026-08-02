@@ -24,12 +24,31 @@ class CurriculumScreen extends StatefulWidget {
 }
 
 class _CurriculumScreenState extends State<CurriculumScreen> {
-  late final Future<ProblemManifest> _manifestFuture;
+  late Future<ProblemManifest> _manifestFuture;
+  String? _activeProblemLocale;
 
   @override
   void initState() {
     super.initState();
     _manifestFuture = widget.repository.loadManifest();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final locale = AppLocaleScope.maybeOf(context)?.locale.languageCode ?? 'ko';
+    if (_activeProblemLocale == locale) {
+      return;
+    }
+    final previousLocale = _activeProblemLocale;
+    _activeProblemLocale = locale;
+    widget.repository.activeProblemLocale = locale;
+    if (previousLocale == null) {
+      return;
+    }
+    setState(() {
+      _manifestFuture = widget.repository.loadManifest();
+    });
   }
 
   @override

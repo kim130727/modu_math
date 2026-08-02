@@ -27,12 +27,32 @@ class ProblemListScreen extends StatefulWidget {
 class _ProblemListScreenState extends State<ProblemListScreen> {
   late Future<_ProblemListData> dataFuture;
   String? selectedUnit;
+  String? _activeProblemLocale;
 
   @override
   void initState() {
     super.initState();
     selectedUnit = widget.initialUnit;
     dataFuture = _loadData();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final locale = AppLocaleScope.maybeOf(context)?.locale.languageCode ?? 'ko';
+    if (_activeProblemLocale == locale) {
+      return;
+    }
+    final previousLocale = _activeProblemLocale;
+    _activeProblemLocale = locale;
+    widget.repository.activeProblemLocale = locale;
+    if (previousLocale == null) {
+      return;
+    }
+    setState(() {
+      selectedUnit = null;
+      dataFuture = _loadData();
+    });
   }
 
   Future<_ProblemListData> _loadData() async {

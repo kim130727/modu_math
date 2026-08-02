@@ -23,14 +23,31 @@ class ReviewNoteScreen extends StatefulWidget {
 }
 
 class _ReviewNoteScreenState extends State<ReviewNoteScreen> {
-  late final Future<ProblemManifest> _manifestFuture;
-  late final Future<List<StudentAttempt>> _attemptsFuture;
+  late Future<ProblemManifest> _manifestFuture;
+  late Future<List<StudentAttempt>> _attemptsFuture;
   ErrorCategory? _selectedCategory;
+  String? _activeProblemLocale;
 
   @override
   void initState() {
     super.initState();
     _loadData();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final locale = AppLocaleScope.maybeOf(context)?.locale.languageCode ?? 'ko';
+    if (_activeProblemLocale == locale) {
+      return;
+    }
+    final previousLocale = _activeProblemLocale;
+    _activeProblemLocale = locale;
+    widget.repository.activeProblemLocale = locale;
+    if (previousLocale == null) {
+      return;
+    }
+    setState(_loadData);
   }
 
   void _loadData() {

@@ -33,6 +33,7 @@ class _ModuMathAppState extends State<ModuMathApp> {
   void initState() {
     super.initState();
     _contentRepository = widget.contentRepository ?? ContentRepository();
+    _contentRepository.activeProblemLocale = _locale.languageCode;
     _progressRepository =
         widget.progressRepository ?? PersistentProgressRepository();
     _router = ModuMathRouter(
@@ -43,10 +44,14 @@ class _ModuMathAppState extends State<ModuMathApp> {
 
   @override
   Widget build(BuildContext context) {
+    _contentRepository.activeProblemLocale = _locale.languageCode;
     return AppLocaleScope(
       locale: _locale,
       onLocaleChanged: (locale) {
-        setState(() => _locale = locale);
+        setState(() {
+          _locale = locale;
+          _contentRepository.activeProblemLocale = locale.languageCode;
+        });
       },
       child: MaterialApp(
         title: 'Modu Math',

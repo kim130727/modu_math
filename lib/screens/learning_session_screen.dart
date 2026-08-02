@@ -26,11 +26,30 @@ class LearningSessionScreen extends StatefulWidget {
 
 class _LearningSessionScreenState extends State<LearningSessionScreen> {
   late Future<_SessionData> _sessionFuture;
+  String? _activeProblemLocale;
 
   @override
   void initState() {
     super.initState();
     _sessionFuture = _loadSession();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final locale = AppLocaleScope.maybeOf(context)?.locale.languageCode ?? 'ko';
+    if (_activeProblemLocale == locale) {
+      return;
+    }
+    final previousLocale = _activeProblemLocale;
+    _activeProblemLocale = locale;
+    widget.repository.activeProblemLocale = locale;
+    if (previousLocale == null) {
+      return;
+    }
+    setState(() {
+      _sessionFuture = _loadSession();
+    });
   }
 
   Future<_SessionData> _loadSession() async {

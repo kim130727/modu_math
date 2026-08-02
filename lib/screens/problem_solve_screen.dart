@@ -43,12 +43,38 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
   bool? isCorrect;
   int hintLevel = 0;
   int tutorStepIndex = 0;
+  String? _activeProblemLocale;
 
   @override
   void initState() {
     super.initState();
     tutorService = _createTutorService();
     contentFuture = _loadContent();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final locale = AppLocaleScope.maybeOf(context)?.locale.languageCode ?? 'ko';
+    if (_activeProblemLocale == locale) {
+      return;
+    }
+    final previousLocale = _activeProblemLocale;
+    _activeProblemLocale = locale;
+    widget.repository.activeProblemLocale = locale;
+    if (previousLocale == null) {
+      return;
+    }
+    setState(() {
+      contentFuture = _loadContent();
+      tutorProblemId = null;
+      tutorMessages.clear();
+      submittedAnswer = null;
+      answerDraft = '';
+      isCorrect = null;
+      hintLevel = 0;
+      tutorStepIndex = 0;
+    });
   }
 
   Future<ProblemContent> _loadContent() {
