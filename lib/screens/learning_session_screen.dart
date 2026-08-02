@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
 import '../models/learning_progress.dart';
 import '../services/content_repository.dart';
@@ -44,10 +45,11 @@ class _LearningSessionScreenState extends State<LearningSessionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     return Scaffold(
       backgroundColor: KidsPalette.cream,
       appBar: AppBar(
-        title: const Text('학습 세션'),
+        title: Text(strings.t('session.title')),
       ),
       body: SafeArea(
         child: FutureBuilder<_SessionData>(
@@ -60,14 +62,18 @@ class _LearningSessionScreenState extends State<LearningSessionScreen> {
               return Center(
                 child: Padding(
                   padding: const EdgeInsets.all(24),
-                  child: Text('학습 세션을 준비하지 못했어요.\n${snapshot.error}'),
+                  child: Text(
+                    strings.t('session.loadError', {
+                      'error': snapshot.error,
+                    }),
+                  ),
                 ),
               );
             }
 
             final data = snapshot.data ?? const _SessionData.empty();
             if (data.problems.isEmpty) {
-              return const Center(child: Text('이 단원에는 아직 문제가 없어요.'));
+              return Center(child: Text(strings.t('session.empty')));
             }
 
             final nextIndex = data.nextProblemIndex;
@@ -140,6 +146,7 @@ class _SessionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     final progress =
         totalCount == 0 ? 0.0 : (solvedCount / totalCount).clamp(0.0, 1.0);
 
@@ -158,14 +165,20 @@ class _SessionHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  child:
-                      Text(unit, style: Theme.of(context).textTheme.titleLarge),
+                  child: Text(
+                    strings.unitTitle(unit),
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
                 ),
                 const SizedBox(width: 12),
                 FilledButton.icon(
                   onPressed: onStart,
                   icon: Icon(complete ? Icons.replay : Icons.play_arrow),
-                  label: Text(complete ? '다시 풀기' : '이어 풀기'),
+                  label: Text(
+                    complete
+                        ? strings.t('session.retry')
+                        : strings.t('session.resume'),
+                  ),
                 ),
               ],
             ),
@@ -179,7 +192,10 @@ class _SessionHeader extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              '$solvedCount / $totalCount 문제 완료',
+              strings.t('session.completedCount', {
+                'solved': solvedCount,
+                'total': totalCount,
+              }),
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: KidsPalette.cocoaSoft,
                     fontWeight: FontWeight.w700,
@@ -187,7 +203,9 @@ class _SessionHeader extends StatelessWidget {
             ),
             const SizedBox(height: 14),
             Text(
-              complete ? '모두 풀었어요. 다시 연습할 수 있어요.' : '다음 문제',
+              complete
+                  ? strings.t('session.allComplete')
+                  : strings.t('session.nextProblemLabel'),
               style: Theme.of(context).textTheme.labelLarge?.copyWith(
                     color: KidsPalette.sage,
                   ),
@@ -227,6 +245,7 @@ class _ProblemPreviewList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     return Card(
       margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -268,7 +287,11 @@ class _ProblemPreviewList extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
             subtitle: Text(
-              next ? '다음에 풀 문제 · ${problem.title}' : problem.title,
+              next
+                  ? strings.t('session.nextProblemSubtitle', {
+                      'title': problem.title,
+                    })
+                  : problem.title,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),

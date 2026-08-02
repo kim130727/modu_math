@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
+import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
 import '../models/tutor_models.dart';
 import '../utils/tutor_text_sanitizer.dart';
@@ -101,6 +102,7 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     final choices = widget.content.choices;
     final tutorChoices = widget.messages.lastWhereOrNull((message) {
           return message.isTutor && message.choices.isNotEmpty;
@@ -125,11 +127,11 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Rule Tutor',
+                        strings.t('tutor.title'),
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       Text(
-                        '풀이 규칙을 따라 한 단계씩 확인해요.',
+                        strings.t('tutor.subtitle'),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               color: colorScheme.onSurfaceVariant,
                             ),
@@ -138,7 +140,9 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
                   ),
                 ),
                 IconButton(
-                  tooltip: voiceEnabled ? '자동 읽기 끄기' : '자동 읽기 켜기',
+                  tooltip: voiceEnabled
+                      ? strings.t('tutor.voiceOffTooltip')
+                      : strings.t('tutor.voiceOnTooltip'),
                   onPressed: _toggleVoice,
                   icon: Icon(
                     voiceEnabled
@@ -147,7 +151,7 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
                   ),
                 ),
                 IconButton(
-                  tooltip: '마지막 튜터 말 다시 듣기',
+                  tooltip: strings.t('tutor.replayTooltip'),
                   onPressed: _speakLatestTutorMessage,
                   icon: const Icon(Icons.record_voice_over_outlined),
                 ),
@@ -158,6 +162,7 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
               isBusy: widget.isBusy,
               latestText: _latestTutorText,
               tutorActive: tutorActive,
+              strings: strings,
             ),
             const SizedBox(height: 14),
             Wrap(
@@ -167,21 +172,25 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
                 FilledButton.tonalIcon(
                   onPressed: widget.isBusy ? null : widget.onRestart,
                   icon: const Icon(Icons.play_arrow_outlined),
-                  label: Text(tutorActive ? '다시 시작' : '시작'),
+                  label: Text(
+                    tutorActive
+                        ? strings.t('tutor.restart')
+                        : strings.t('tutor.start'),
+                  ),
                 ),
                 OutlinedButton.icon(
                   onPressed: widget.isBusy || widget.messages.isEmpty
                       ? null
                       : widget.onNextStep,
                   icon: const Icon(Icons.arrow_forward),
-                  label: const Text('다음 단계'),
+                  label: Text(strings.t('tutor.nextStep')),
                 ),
                 OutlinedButton.icon(
                   onPressed: widget.isBusy || widget.messages.isEmpty
                       ? null
                       : widget.onReset,
                   icon: const Icon(Icons.refresh),
-                  label: const Text('초기화'),
+                  label: Text(strings.t('tutor.reset')),
                 ),
               ],
             ),
@@ -191,9 +200,9 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
                 controller: answerController,
                 style: const TextStyle(fontSize: 18),
                 textInputAction: TextInputAction.done,
-                decoration: const InputDecoration(
-                  labelText: '정답 입력',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  labelText: strings.t('answer.inputLabel'),
+                  border: const OutlineInputBorder(),
                 ),
                 onChanged: widget.onAnswerChanged,
                 onSubmitted: _submitAnswer,
@@ -245,14 +254,17 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
             FilledButton.icon(
               onPressed: widget.isBusy ? null : _submitSelectedAnswer,
               icon: const Icon(Icons.check),
-              label: const Padding(
-                padding: EdgeInsets.symmetric(vertical: 14),
-                child: Text('정답 확인', style: TextStyle(fontSize: 18)),
+              label: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                child: Text(
+                  strings.t('answer.check'),
+                  style: const TextStyle(fontSize: 18),
+                ),
               ),
             ),
             if (widget.isCorrect != null) ...[
               const SizedBox(height: 12),
-              _ResultBanner(isCorrect: widget.isCorrect!),
+              _ResultBanner(isCorrect: widget.isCorrect!, strings: strings),
             ],
             if (widget.allowSkipProblem || widget.isCorrect == true) ...[
               const SizedBox(height: 12),
@@ -266,7 +278,9 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
                 label: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   child: Text(
-                    widget.hasNextProblem ? '다음 문제로' : '단원 마치기',
+                    widget.hasNextProblem
+                        ? strings.t('tutor.nextProblem')
+                        : strings.t('tutor.finishUnit'),
                     style: const TextStyle(fontSize: 17),
                   ),
                 ),
@@ -286,7 +300,7 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
                         child: Padding(
                           padding: const EdgeInsets.all(22),
                           child: Text(
-                            '시작을 누르면 튜터가 풀이를 한 단계씩 안내해요.',
+                            strings.t('tutor.emptyConversation'),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: colorScheme.onSurfaceVariant,
@@ -345,7 +359,7 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
                     onPressed:
                         widget.isBusy || !tutorActive ? null : widget.onHint,
                     icon: const Icon(Icons.lightbulb_outline),
-                    label: const Text('힌트'),
+                    label: Text(strings.t('tutor.hint')),
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -355,7 +369,7 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
                         ? null
                         : widget.onNextStep,
                     icon: const Icon(Icons.arrow_forward),
-                    label: const Text('다음 단계'),
+                    label: Text(strings.t('tutor.nextStep')),
                   ),
                 ),
               ],
@@ -371,23 +385,25 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
                     minLines: 1,
                     maxLines: 1,
                     textInputAction: TextInputAction.send,
-                    decoration: const InputDecoration(
-                      labelText: '궁금한 점을 직접 입력하거나 보기를 눌러 보세요.',
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      labelText: strings.t('tutor.chatInput'),
+                      border: const OutlineInputBorder(),
                     ),
                     onSubmitted: _send,
                   ),
                 ),
                 const SizedBox(width: 10),
                 IconButton.filledTonal(
-                  tooltip: isListening ? '듣는 중지' : '음성으로 말하기',
+                  tooltip: isListening
+                      ? strings.t('tutor.stopListeningTooltip')
+                      : strings.t('tutor.speakTooltip'),
                   onPressed:
                       widget.isBusy || !tutorActive ? null : _toggleListening,
                   icon: Icon(isListening ? Icons.mic : Icons.mic_none),
                 ),
                 const SizedBox(width: 8),
                 IconButton.filled(
-                  tooltip: '보내기',
+                  tooltip: strings.t('tutor.sendTooltip'),
                   onPressed: widget.isBusy || !tutorActive
                       ? null
                       : () => _send(chatController.text),
@@ -404,7 +420,7 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
   String get _latestTutorText {
     final text = widget.messages.where((message) => message.isTutor).lastOrNull;
     if (text == null) {
-      return '안녕! 시작하면 같이 풀어 볼게.';
+      return AppStrings.fallback.t('tutor.defaultLatest');
     }
     return sanitizeTutorText(text.text).replaceAll(RegExp(r'\s+'), ' ');
   }
@@ -440,10 +456,16 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
 
   Future<void> _configureVoice() async {
     await tts.awaitSpeakCompletion(false);
-    await tts.setLanguage('ko-KR');
+    await _setVoiceLanguage();
     await tts.setSpeechRate(1);
     await tts.setVolume(1);
     await tts.setPitch(1.1);
+  }
+
+  Future<void> _setVoiceLanguage() {
+    final languageCode =
+        AppLocaleScope.maybeOf(context)?.locale.languageCode ?? 'ko';
+    return tts.setLanguage(languageCode == 'uk' ? 'uk-UA' : 'ko-KR');
   }
 
   Future<void> _toggleVoice() async {
@@ -456,11 +478,15 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
   }
 
   Future<void> _speakLatestTutorMessage() async {
+    final noTextToReadMessage = AppStrings.of(context).t('tutor.noTextToRead');
+    final voiceUnavailableMessage =
+        AppStrings.of(context).t('tutor.voiceUnavailable');
+    await _setVoiceLanguage();
     final latestTutorMessage = widget.messages.where((message) {
       return message.isTutor && sanitizeTutorText(message.text).isNotEmpty;
     }).lastOrNull;
     if (latestTutorMessage == null) {
-      _showVoiceMessage('아직 읽어 줄 튜터 말이 없어요.');
+      _showVoiceMessage(noTextToReadMessage);
       return;
     }
     final text = sanitizeTutorText(latestTutorMessage.text)
@@ -470,7 +496,7 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
       await tts.stop();
       await tts.speak(text);
     } catch (_) {
-      _showVoiceMessage('브라우저에서 음성 읽기를 사용할 수 없어요.');
+      _showVoiceMessage(voiceUnavailableMessage);
     }
   }
 
@@ -518,10 +544,14 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
       }
     }
 
+    final speechLocaleId =
+        AppLocaleScope.maybeOf(context)?.locale.languageCode == 'uk'
+            ? 'uk_UA'
+            : 'ko_KR';
     await tts.stop();
     await speech.listen(
       listenOptions: stt.SpeechListenOptions(
-        localeId: 'ko_KR',
+        localeId: speechLocaleId,
         partialResults: true,
         listenFor: const Duration(seconds: 12),
         pauseFor: const Duration(seconds: 3),
@@ -644,20 +674,22 @@ class _TutorActivityStrip extends StatelessWidget {
     required this.isBusy,
     required this.latestText,
     required this.tutorActive,
+    required this.strings,
   });
 
   final bool isBusy;
   final String latestText;
   final bool tutorActive;
+  final AppStrings strings;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final text = isBusy
-        ? '생각하고 있어요.'
+        ? strings.t('tutor.thinking')
         : tutorActive
             ? latestText
-            : '시작하면 첫 번째 질문이 여기에 보여요.';
+            : strings.t('tutor.firstQuestionPlaceholder');
     return DecoratedBox(
       decoration: BoxDecoration(
         color: colorScheme.secondaryContainer.withValues(alpha: 0.42),
@@ -693,9 +725,10 @@ class _TutorActivityStrip extends StatelessWidget {
 }
 
 class _ResultBanner extends StatelessWidget {
-  const _ResultBanner({required this.isCorrect});
+  const _ResultBanner({required this.isCorrect, required this.strings});
 
   final bool isCorrect;
+  final AppStrings strings;
 
   @override
   Widget build(BuildContext context) {
@@ -715,7 +748,9 @@ class _ResultBanner extends StatelessWidget {
         ),
       ),
       child: Text(
-        isCorrect ? '맞아요! 이제 이유를 정리해 볼까요.' : '다시 확인해 볼까요. 튜터가 다음 단계를 알려 줄게요.',
+        isCorrect
+            ? strings.t('tutor.correctReview')
+            : strings.t('tutor.incorrectReview'),
         style: TextStyle(
           color: textColor,
           fontSize: 16,
@@ -765,7 +800,9 @@ class _MessageBubble extends StatelessWidget {
                 ),
                 const SizedBox(width: 5),
                 Text(
-                  isTutor ? 'Tutor' : 'Student',
+                  isTutor
+                      ? AppStrings.of(context).t('tutor.title')
+                      : AppStrings.of(context).t('tutor.student'),
                   style: TextStyle(
                     color: textColor.withValues(alpha: 0.72),
                     fontSize: 12,

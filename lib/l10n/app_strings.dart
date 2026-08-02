@@ -1,0 +1,287 @@
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+class AppStrings {
+  const AppStrings(this._values);
+
+  final Map<String, String> _values;
+
+  static const supportedLocales = [Locale('ko'), Locale('uk')];
+
+  static const fallback = AppStrings({
+    'app.title': '모두수학',
+    'language.tooltip': '언어 변경',
+    'language.ko': '한국어',
+    'language.uk': 'Українська',
+    'common.grade': '{grade}학년',
+    'common.problemCount': '{count}문제',
+    'common.itemCount': '{count}개',
+    'common.retry': '다시 시도',
+    'common.reload': '다시 불러오기',
+    'common.nextProblem': '다음 문제로',
+    'common.back': '이전 화면으로',
+    'home.loadErrorTitle': '학습 정보를 불러오지 못했어요',
+    'home.retry': '다시 시도',
+    'home.reviewTooltip': '오답 노트',
+    'home.reportTooltip': '학습 리포트',
+    'home.heroTitle': '오늘은 한 문제씩\n생각해 볼까요?',
+    'home.heroSubtitle': '{grade}학년 {name}에게 맞춘 문제로 풀이 단계를 천천히 확인해요.',
+    'home.startToday': '오늘 학습 시작',
+    'home.chooseUnit': '단원에서 고르기',
+    'home.today': '오늘',
+    'home.accuracy': '정답률',
+    'home.nextProblem': '다음 문제',
+    'home.todayProblem': '오늘의 문제',
+    'home.recommendationLoading': '추천 문제를 준비하고 있어요.',
+    'home.unitLearning': '단원별 학습',
+    'home.problemCount': '{count}문제',
+    'answer.inputLabel': '답 입력',
+    'answer.check': '정답 확인',
+    'answer.showSolution': '풀이 보기',
+    'answer.correct': '맞았어요!',
+    'answer.incorrectWithAnswer': '다시 확인해 봐요. 정답: {answer}',
+    'progress.title': '학습 결과',
+    'progress.solved': '푼 문제',
+    'progress.correct': '맞힌 문제',
+    'progress.reviewAgain': '다시 볼 문제',
+    'solution.title': '풀이 단계',
+    'solution.empty': '등록된 풀이 단계가 없습니다.',
+    'curriculum.title': '단원 학습',
+    'curriculum.loadError': '단원 정보를 불러오지 못했어요.\n{error}',
+    'curriculum.empty': '아직 학습할 문제가 없어요.',
+    'curriculum.headerTitle': '오늘 배울 단원을 골라요',
+    'curriculum.headerDescription': '단원을 고르면 문제 풀이와 Rule Tutor가 바로 이어집니다.',
+    'curriculum.groupTitle': '{grade}학년 {semester}',
+    'curriculum.unknownSemester': '학기 미정',
+    'curriculum.semester.1학기': '1학기',
+    'curriculum.semester.2학기': '2학기',
+    'curriculum.semester.학기 미정': '학기 미정',
+    'curriculum.topic.덧셈과 뺄셈': '덧셈과 뺄셈',
+    'curriculum.topic.평면도형': '평면도형',
+    'curriculum.topic.나눗셈': '나눗셈',
+    'curriculum.topic.곱셈': '곱셈',
+    'curriculum.topic.길이와 시간': '길이와 시간',
+    'curriculum.topic.분수와 소수': '분수와 소수',
+    'curriculum.topic.원': '원',
+    'curriculum.topic.분수': '분수',
+    'curriculum.topic.들이와 무게': '들이와 무게',
+    'curriculum.topic.자료의 정리': '자료의 정리',
+    'session.title': '학습 세션',
+    'session.loadError': '학습 세션을 준비하지 못했어요.\n{error}',
+    'session.empty': '이 단원에는 아직 문제가 없어요.',
+    'session.resume': '이어 풀기',
+    'session.retry': '다시 풀기',
+    'session.completedCount': '{solved} / {total} 문제 완료',
+    'session.allComplete': '모두 풀었어요. 다시 연습할 수 있어요.',
+    'session.nextProblemLabel': '다음 문제',
+    'session.nextProblemSubtitle': '다음에 풀 문제 · {title}',
+    'problem.loadErrorTutor': '튜터 응답을 가져오지 못했어요. 잠시 뒤 다시 시도해 주세요.',
+    'problem.noVisual': '이 문제는 아직 화면 자료가 없어요.',
+    'problem.loadErrorTitle': '문제 자료를 불러오지 못했어요',
+    'problem.loadErrorDescription': '다시 시도하거나 다음 문제로 넘어갈 수 있어요.',
+    'problemList.loadError': '문제 목록을 불러오지 못했어요.\n{error}',
+    'problemList.journeyDescription': 'Rule Tutor와 {count}개의 문제를 차례대로 풀어봅니다.',
+    'problemList.solve': '풀기',
+    'problemList.done': '완료',
+    'problemList.startWithTutor': 'Rule Tutor로 시작',
+    'tutor.title': 'Rule Tutor',
+    'tutor.subtitle': '풀이 규칙을 따라 한 단계씩 확인해요.',
+    'tutor.voiceOffTooltip': '자동 읽기 끄기',
+    'tutor.voiceOnTooltip': '자동 읽기 켜기',
+    'tutor.replayTooltip': '마지막 튜터 말 다시 듣기',
+    'tutor.restart': '다시 시작',
+    'tutor.start': '시작',
+    'tutor.nextStep': '다음 단계',
+    'tutor.reset': '초기화',
+    'tutor.nextProblem': '다음 문제로',
+    'tutor.finishUnit': '단원 마치기',
+    'tutor.emptyConversation': '시작을 누르면 튜터가 풀이를 한 단계씩 안내해요.',
+    'tutor.hint': '힌트',
+    'tutor.chatInput': '궁금한 점을 직접 입력하거나 보기를 눌러 보세요.',
+    'tutor.stopListeningTooltip': '듣는 중지',
+    'tutor.speakTooltip': '음성으로 말하기',
+    'tutor.sendTooltip': '보내기',
+    'tutor.defaultLatest': '안녕! 시작하면 같이 풀어 볼게.',
+    'tutor.noTextToRead': '아직 읽어 줄 튜터 말이 없어요.',
+    'tutor.voiceUnavailable': '브라우저에서 음성 읽기를 사용할 수 없어요.',
+    'tutor.thinking': '생각하고 있어요.',
+    'tutor.firstQuestionPlaceholder': '시작하면 첫 번째 질문이 여기에 보여요.',
+    'tutor.correctReview': '맞아요! 이제 이유를 정리해 볼까요.',
+    'tutor.incorrectReview': '다시 확인해 볼까요. 튜터가 다음 단계를 알려 줄게요.',
+    'tutor.student': '학생',
+    'review.title': '오답노트 & 사고 단계 복습',
+    'review.loadError': '오답노트를 불러올 수 없습니다: {error}',
+    'review.filterTitle': '사고 원인별 필터',
+    'review.all': '전체 보기',
+    'review.empty': '오답 문제가 없습니다!\n꾸준한 학습으로 실력을 키워보세요.',
+    'review.submittedAnswer': '제출한 답: {answer}',
+    'review.headerTitle': '다시 볼 오답 {count}문제',
+    'review.headerDescription': '틀린 원인을 짚어보며 다시 풀면 장기 기억으로 연결돼요.',
+    'report.title': '학습 성장 리포트',
+    'report.loadError': '리포트를 불러올 수 없습니다: {error}',
+    'report.weaknessTitle': '사고 단계별 취약 분석',
+    'report.noErrors': '아직 기록된 사고 단계 오류가 없습니다.\n문제 풀이 후 오답 원인을 기록해보세요!',
+    'report.recordCount': '{count}회 기록',
+    'report.masteryTitle': '단원별 개념 숙달도',
+    'report.noMastery': '아직 풀어본 단원이 없습니다.',
+    'report.masteryStats': '시도 문제: {count}개 | 정답률: {percent}%',
+    'report.overviewTitle': '{name}의 성과 리포트',
+    'report.streak': '{days}일 연속',
+    'report.totalSolved': '누적 푼 문제',
+    'report.overallAccuracy': '전체 정답률',
+    'report.grade': '학습 학년',
+    'mastery.notStarted': '시작 전',
+    'mastery.good': '잘하고 있어요',
+    'mastery.practicing': '연습 중',
+    'mastery.needsReview': '복습 필요',
+    'errorCategory.understanding_target': '문제 목표 이해 부족',
+    'errorCategory.understanding_given': '주어진 조건 해석 오류',
+    'errorCategory.planning_concept': '개념 연결 오류',
+    'errorCategory.planning_operation': '연산/해결 계획 선택 오류',
+    'errorCategory.execution_calculation': '계산 실수',
+    'errorCategory.execution_representation': '표현 또는 식 작성 오류',
+    'errorCategory.review_condition': '조건 확인 부족',
+    'errorCategory.review_unit': '단위 또는 최종 검토 오류',
+    'errorCategory.none': '오류 없음',
+    'errorSheet.title': '어느 생각 단계에서 아쉬웠나요?',
+    'errorSheet.description':
+        '원인을 기록하면 다음 학습에서 Rule Tutor가 더 알맞은 힌트를 준비할 수 있어요.',
+    'errorSheet.understanding_target.title': '구하려는 것 놓침',
+    'errorSheet.understanding_target.description': '문제에서 무엇을 구해야 하는지 잘 못 봤어요.',
+    'errorSheet.understanding_given.title': '주어진 조건 해석 실수',
+    'errorSheet.understanding_given.description': '주어진 숫자나 수식 조건을 다르게 읽었어요.',
+    'errorSheet.planning_concept.title': '개념/공식 연결 오류',
+    'errorSheet.planning_concept.description': '어떤 수학 개념이나 법칙을 써야 할지 생각 안 났어요.',
+    'errorSheet.planning_operation.title': '연산 순서/식 세우기 오류',
+    'errorSheet.planning_operation.description':
+        '덧셈, 뺄셈, 곱셈, 나눗셈 등 해결 순서를 틀렸어요.',
+    'errorSheet.execution_calculation.title': '아쉬운 계산 실수',
+    'errorSheet.execution_calculation.description':
+        '식은 맞았는데 사칙연산 계산에서 오차가 생겼어요.',
+    'errorSheet.review_unit.title': '단위 또는 마지막 검산 부족',
+    'errorSheet.review_unit.description': '단위(cm, 개 등)를 빠뜨렸거나 검산을 안 했어요.',
+    'studio.noRenderableProblems': '렌더링 가능한 3학년 문제 자료가 없어요.',
+    'studio.tutorLoadError': '튜터 응답을 받지 못했어요. 잠시 후 다시 시도해 주세요.',
+    'studio.description': 'JSON 렌더링과 문제 구조를 한 화면에서 확인합니다.',
+    'studio.problemListTooltip': '기존 문제 목록',
+    'studio.defaultInstruction': '렌더링 데이터를 확인합니다.',
+    'studio.loadError': 'JSON 문제를 불러오지 못했습니다.\n{error}',
+  });
+
+  static AppStrings of(BuildContext context) {
+    return Localizations.of<AppStrings>(context, AppStrings) ?? fallback;
+  }
+
+  static Future<AppStrings> load(Locale locale) async {
+    final languageCode = locale.languageCode;
+    try {
+      final raw = await rootBundle.loadString('assets/i18n/$languageCode.json');
+      final decoded = jsonDecode(raw) as Map<String, dynamic>;
+      return AppStrings({
+        ...fallback._values,
+        ...decoded.map((key, value) => MapEntry(key, value.toString())),
+      });
+    } on Object {
+      return fallback;
+    }
+  }
+
+  String t(String key, [Map<String, Object?> args = const {}]) {
+    var value = _values[key] ?? fallback._values[key] ?? key;
+    for (final entry in args.entries) {
+      value = value.replaceAll('{${entry.key}}', entry.value.toString());
+    }
+    return value;
+  }
+
+  String grade(int grade) => t('common.grade', {'grade': grade});
+
+  String problemCount(int count) => t('common.problemCount', {'count': count});
+
+  String itemCount(int count) => t('common.itemCount', {'count': count});
+
+  String curriculumTerm(String value) {
+    return t('curriculum.topic.$value') == 'curriculum.topic.$value'
+        ? t('curriculum.semester.$value', const {})
+        : t('curriculum.topic.$value');
+  }
+
+  String semester(String value) {
+    if (value == '__unknown_semester__') {
+      return t('curriculum.unknownSemester');
+    }
+    return t('curriculum.semester.$value') == 'curriculum.semester.$value'
+        ? value
+        : t('curriculum.semester.$value');
+  }
+
+  String unitTitle(String value) {
+    var translated = value;
+    for (final entry in _values.entries) {
+      const prefix = 'curriculum.topic.';
+      if (entry.key.startsWith(prefix)) {
+        translated = translated.replaceAll(
+            entry.key.substring(prefix.length), entry.value);
+      }
+    }
+    for (final entry in _values.entries) {
+      const prefix = 'curriculum.semester.';
+      if (entry.key.startsWith(prefix)) {
+        translated = translated.replaceAll(
+            entry.key.substring(prefix.length), entry.value);
+      }
+    }
+    return translated;
+  }
+
+  String errorCategory(String code) => t('errorCategory.$code');
+
+  String masteryLevel(String value) {
+    return switch (value) {
+      '시작 전' => t('mastery.notStarted'),
+      '잘하고 있어요' => t('mastery.good'),
+      '연습 중' => t('mastery.practicing'),
+      '복습 필요' => t('mastery.needsReview'),
+      _ => value,
+    };
+  }
+}
+
+class AppLocaleScope extends InheritedWidget {
+  const AppLocaleScope({
+    super.key,
+    required this.locale,
+    required this.onLocaleChanged,
+    required super.child,
+  });
+
+  final Locale locale;
+  final ValueChanged<Locale> onLocaleChanged;
+
+  static AppLocaleScope? maybeOf(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<AppLocaleScope>();
+  }
+
+  @override
+  bool updateShouldNotify(AppLocaleScope oldWidget) {
+    return locale != oldWidget.locale;
+  }
+}
+
+class AppStringsDelegate extends LocalizationsDelegate<AppStrings> {
+  const AppStringsDelegate();
+
+  @override
+  bool isSupported(Locale locale) {
+    return AppStrings.supportedLocales
+        .any((supported) => supported.languageCode == locale.languageCode);
+  }
+
+  @override
+  Future<AppStrings> load(Locale locale) => AppStrings.load(locale);
+
+  @override
+  bool shouldReload(AppStringsDelegate old) => false;
+}

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import '../services/content_repository.dart';
 import '../services/learning_progress_repository.dart';
 import '../services/persistent_progress_repository.dart';
+import '../l10n/app_strings.dart';
 import '../theme/app_theme.dart';
+import '../widgets/language_toggle_button.dart';
 import 'router.dart';
 
 class ModuMathApp extends StatefulWidget {
@@ -24,6 +27,7 @@ class _ModuMathAppState extends State<ModuMathApp> {
   late final ContentRepository _contentRepository;
   late final LearningProgressRepository _progressRepository;
   late final ModuMathRouter _router;
+  Locale _locale = const Locale('ko');
 
   @override
   void initState() {
@@ -40,12 +44,40 @@ class _ModuMathAppState extends State<ModuMathApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Modu Math',
-      debugShowCheckedModeBanner: false,
-      theme: buildKidsTheme(),
-      initialRoute: ModuMathRoutes.home,
-      onGenerateRoute: _router.onGenerateRoute,
+    return AppLocaleScope(
+      locale: _locale,
+      onLocaleChanged: (locale) {
+        setState(() => _locale = locale);
+      },
+      child: MaterialApp(
+        title: 'Modu Math',
+        debugShowCheckedModeBanner: false,
+        theme: buildKidsTheme(),
+        locale: _locale,
+        localizationsDelegates: const [
+          AppStringsDelegate(),
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: AppStrings.supportedLocales,
+        initialRoute: ModuMathRoutes.home,
+        onGenerateRoute: _router.onGenerateRoute,
+        builder: (context, child) {
+          return Stack(
+            children: [
+              if (child != null) child,
+              const PositionedDirectional(
+                top: 8,
+                end: 8,
+                child: SafeArea(
+                  child: LanguageToggleButton(),
+                ),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }

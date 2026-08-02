@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_strings.dart';
 import '../models/learning_progress.dart';
 import '../models/student_profile.dart';
 import '../services/learning_progress_repository.dart';
@@ -31,17 +32,19 @@ class _LearningReportScreenState extends State<LearningReportScreen> {
 
   void _loadData() {
     _profileFuture = widget.progressRepository.getProfile();
-    _dailySummaryFuture = widget.progressRepository.getDailySummary(DateTime.now());
+    _dailySummaryFuture =
+        widget.progressRepository.getDailySummary(DateTime.now());
     _skillMasteriesFuture = widget.progressRepository.getSkillMasteries();
     _attemptsFuture = widget.progressRepository.getAttempts();
   }
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     return Scaffold(
       backgroundColor: KidsPalette.cream,
       appBar: AppBar(
-        title: const Text('학습 성장 리포트'),
+        title: Text(strings.t('report.title')),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -59,7 +62,11 @@ class _LearningReportScreenState extends State<LearningReportScreen> {
             }
 
             if (snapshot.hasError) {
-              return Center(child: Text('리포트를 불러올 수 없습니다: ${snapshot.error}'));
+              return Center(
+                child: Text(
+                  strings.t('report.loadError', {'error': snapshot.error}),
+                ),
+              );
             }
 
             final profile = snapshot.data![0] as StudentProfile;
@@ -96,7 +103,7 @@ class _LearningReportScreenState extends State<LearningReportScreen> {
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  '사고 단계별 취약 분석',
+                  strings.t('report.weaknessTitle'),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: KidsPalette.ink,
@@ -104,13 +111,13 @@ class _LearningReportScreenState extends State<LearningReportScreen> {
                 ),
                 const SizedBox(height: 12),
                 if (errorCounts.isEmpty)
-                  const Card(
+                  Card(
                     child: Padding(
-                      padding: EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(20),
                       child: Text(
-                        '아직 기록된 사고 단계 오류가 없습니다.\n문제 풀이 후 오답 원인을 기록해보세요!',
+                        strings.t('report.noErrors'),
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: KidsPalette.cocoaSoft),
+                        style: const TextStyle(color: KidsPalette.cocoaSoft),
                       ),
                     ),
                   )
@@ -124,12 +131,18 @@ class _LearningReportScreenState extends State<LearningReportScreen> {
                           children: [
                             Expanded(
                               child: Text(
-                                entry.key.label,
-                                style: const TextStyle(fontWeight: FontWeight.bold),
+                                strings.errorCategory(entry.key.code),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                             Chip(
-                              label: Text('${entry.value}회 기록'),
+                              label: Text(
+                                strings.t('report.recordCount', {
+                                  'count': entry.value,
+                                }),
+                              ),
                               backgroundColor: KidsPalette.butter,
                             ),
                           ],
@@ -139,7 +152,7 @@ class _LearningReportScreenState extends State<LearningReportScreen> {
                   }),
                 const SizedBox(height: 28),
                 Text(
-                  '단원별 개념 숙달도',
+                  strings.t('report.masteryTitle'),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: KidsPalette.ink,
@@ -147,10 +160,10 @@ class _LearningReportScreenState extends State<LearningReportScreen> {
                 ),
                 const SizedBox(height: 12),
                 if (skillMasteries.isEmpty)
-                  const Card(
+                  Card(
                     child: Padding(
-                      padding: EdgeInsets.all(20),
-                      child: Text('아직 풀어본 단원이 없습니다.'),
+                      padding: const EdgeInsets.all(20),
+                      child: Text(strings.t('report.noMastery')),
                     ),
                   )
                 else
@@ -167,14 +180,16 @@ class _LearningReportScreenState extends State<LearningReportScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  mastery.unit,
+                                  strings.unitTitle(mastery.unit),
                                   style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 Chip(
-                                  label: Text(mastery.masteryLevel),
+                                  label: Text(
+                                    strings.masteryLevel(mastery.masteryLevel),
+                                  ),
                                   backgroundColor: mastery.accuracy >= 0.8
                                       ? const Color(0xFFDCFCE7)
                                       : mastery.accuracy >= 0.5
@@ -193,7 +208,10 @@ class _LearningReportScreenState extends State<LearningReportScreen> {
                             ),
                             const SizedBox(height: 6),
                             Text(
-                              '시도 문제: ${mastery.totalAttempted}개 | 정답률: $percent%',
+                              strings.t('report.masteryStats', {
+                                'count': mastery.totalAttempted,
+                                'percent': percent,
+                              }),
                               style: const TextStyle(
                                 fontSize: 13,
                                 color: KidsPalette.cocoaSoft,
@@ -228,6 +246,7 @@ class _ReportOverviewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     final accuracyPercent = (overallAccuracy * 100).toStringAsFixed(0);
 
     return Container(
@@ -243,7 +262,7 @@ class _ReportOverviewCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '${profile.name}의 성과 리포트 📊',
+                strings.t('report.overviewTitle', {'name': profile.name}),
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -251,17 +270,22 @@ class _ReportOverviewCard extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.local_fire_department, color: Colors.orange, size: 18),
+                    const Icon(
+                      Icons.local_fire_department,
+                      color: Colors.orange,
+                      size: 18,
+                    ),
                     const SizedBox(width: 4),
                     Text(
-                      '$streakDays일 연속',
+                      strings.t('report.streak', {'days': streakDays}),
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -274,20 +298,20 @@ class _ReportOverviewCard extends StatelessWidget {
             children: [
               Expanded(
                 child: _ReportMetric(
-                  label: '누적 푼 문제',
-                  value: '$totalSolved개',
+                  label: strings.t('report.totalSolved'),
+                  value: strings.itemCount(totalSolved),
                 ),
               ),
               Expanded(
                 child: _ReportMetric(
-                  label: '전체 정답률',
+                  label: strings.t('report.overallAccuracy'),
                   value: '$accuracyPercent%',
                 ),
               ),
               Expanded(
                 child: _ReportMetric(
-                  label: '학습 학년',
-                  value: '${profile.grade}학년',
+                  label: strings.t('report.grade'),
+                  value: strings.grade(profile.grade),
                 ),
               ),
             ],

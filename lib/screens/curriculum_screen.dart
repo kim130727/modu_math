@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../app/router.dart';
+import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
 import '../services/content_repository.dart';
 import '../services/learning_progress_repository.dart';
@@ -33,10 +34,11 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     return Scaffold(
       backgroundColor: KidsPalette.cream,
       appBar: AppBar(
-        title: const Text('단원 학습'),
+        title: Text(strings.t('curriculum.title')),
       ),
       body: SafeArea(
         child: FutureBuilder<ProblemManifest>(
@@ -49,7 +51,11 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
               return Center(
                 child: Padding(
                   padding: const EdgeInsets.all(24),
-                  child: Text('단원 정보를 불러오지 못했어요.\n${snapshot.error}'),
+                  child: Text(
+                    strings.t('curriculum.loadError', {
+                      'error': snapshot.error,
+                    }),
+                  ),
                 ),
               );
             }
@@ -58,7 +64,7 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
               snapshot.data?.problems ?? const <ProblemSummary>[],
             );
             if (groups.isEmpty) {
-              return const Center(child: Text('아직 학습할 문제가 없어요.'));
+              return Center(child: Text(strings.t('curriculum.empty')));
             }
 
             return ListView(
@@ -100,6 +106,7 @@ class _CurriculumHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     return DecoratedBox(
       decoration: BoxDecoration(
         color: const Color(0xFFECEEFF),
@@ -117,12 +124,12 @@ class _CurriculumHeader extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '오늘 배울 단원을 골라요',
+                    strings.t('curriculum.headerTitle'),
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '단원을 고르면 문제 풀이와 Rule Tutor가 바로 이어집니다.',
+                    strings.t('curriculum.headerDescription'),
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: KidsPalette.cocoaSoft,
                         ),
@@ -150,11 +157,15 @@ class _CurriculumSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '${group.grade}학년 ${group.semester}',
+          strings.t('curriculum.groupTitle', {
+            'grade': group.grade,
+            'semester': strings.semester(group.semester),
+          }),
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 10),
@@ -200,6 +211,7 @@ class _UnitTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     return Card(
       margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
@@ -229,14 +241,14 @@ class _UnitTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      unit.topic,
+                      strings.unitTitle(unit.topic),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      '${unit.problemCount}문제',
+                      strings.problemCount(unit.problemCount),
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],
@@ -263,6 +275,7 @@ class _CurriculumGroup {
   final List<_CurriculumUnit> units;
 
   static List<_CurriculumGroup> fromProblems(List<ProblemSummary> problems) {
+    const unknownSemester = '__unknown_semester__';
     final unitBuckets = <String, List<ProblemSummary>>{};
     for (final problem in problems) {
       unitBuckets.putIfAbsent(problem.unit, () => []).add(problem);
@@ -271,7 +284,7 @@ class _CurriculumGroup {
     final groupedUnits = <String, List<_CurriculumUnit>>{};
     for (final entry in unitBuckets.entries) {
       final sample = entry.value.first;
-      final semester = sample.raw['semester']?.toString() ?? '학기 미정';
+      final semester = sample.raw['semester']?.toString() ?? unknownSemester;
       final groupKey = '${sample.grade}|$semester';
       groupedUnits.putIfAbsent(groupKey, () => []).add(
             _CurriculumUnit(
@@ -292,7 +305,7 @@ class _CurriculumGroup {
         });
       return _CurriculumGroup(
         grade: int.tryParse(parts.first) ?? 0,
-        semester: parts.length > 1 ? parts[1] : '학기 미정',
+        semester: parts.length > 1 ? parts[1] : unknownSemester,
         units: units,
       );
     }).toList()

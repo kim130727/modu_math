@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:modu_math_app/app/app.dart';
 import 'package:modu_math_app/models/content_models.dart';
 import 'package:modu_math_app/models/learning_progress.dart';
 import 'package:modu_math_app/models/student_profile.dart';
@@ -37,6 +38,33 @@ void main() {
     expect(find.text('단원별 학습'), findsOneWidget);
     expect(find.text('2학기 1. 곱셈'), findsWidgets);
     expect(find.text('Rule Tutor'), findsNothing);
+  });
+
+  testWidgets('switches the extracted UI copy to Ukrainian', (tester) async {
+    await tester.pumpWidget(
+      ModuMathApp(
+        contentRepository: _FakeContentRepository(),
+        progressRepository: _FakeProgressRepository(),
+      ),
+    );
+
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byIcon(Icons.language_rounded));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Моду Математика'), findsOneWidget);
+    expect(find.textContaining('Спробуємо сьогодні'), findsOneWidget);
+    expect(find.text('Почати сьогодні'), findsOneWidget);
+    expect(find.text('Обрати розділ'), findsOneWidget);
+
+    await tester.tap(find.text('Обрати розділ'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Навчання за розділами'), findsOneWidget);
+    expect(find.text('Оберіть розділ на сьогодні'), findsOneWidget);
+    expect(find.textContaining('2 семестр'), findsOneWidget);
+    expect(find.text('Множення'), findsOneWidget);
   });
 }
 

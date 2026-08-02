@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
 
 class SolutionSteps extends StatelessWidget {
@@ -9,6 +10,7 @@ class SolutionSteps extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     return Padding(
       padding: const EdgeInsets.only(top: 14),
       child: Card(
@@ -18,10 +20,12 @@ class SolutionSteps extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('풀이 단계', style: Theme.of(context).textTheme.titleMedium),
+              Text(strings.t('solution.title'),
+                  style: Theme.of(context).textTheme.titleMedium),
               const SizedBox(height: 12),
               if (steps.isEmpty)
-                const Text('등록된 풀이 단계가 없습니다.', style: TextStyle(fontSize: 17))
+                Text(strings.t('solution.empty'),
+                    style: const TextStyle(fontSize: 17))
               else
                 ...steps.indexed.map((entry) {
                   final index = entry.$1 + 1;

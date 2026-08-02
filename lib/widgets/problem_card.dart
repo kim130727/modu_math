@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
 
 class ProblemCard extends StatelessWidget {
@@ -14,6 +15,7 @@ class ProblemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     return Card(
       margin: EdgeInsets.zero,
       child: InkWell(
@@ -35,7 +37,7 @@ class ProblemCard extends StatelessWidget {
                 spacing: 8,
                 runSpacing: 8,
                 children: [
-                  _Chip(text: '${problem.grade}학년'),
+                  _Chip(text: strings.grade(problem.grade)),
                   _Chip(text: problem.unit),
                   _Chip(text: problem.type),
                 ],

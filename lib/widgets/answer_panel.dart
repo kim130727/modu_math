@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
 
 class AnswerPanel extends StatefulWidget {
@@ -35,6 +36,7 @@ class _AnswerPanelState extends State<AnswerPanel> {
   @override
   Widget build(BuildContext context) {
     final choices = widget.content.choices;
+    final strings = AppStrings.of(context);
 
     return Card(
       margin: EdgeInsets.zero,
@@ -52,9 +54,9 @@ class _AnswerPanelState extends State<AnswerPanel> {
               TextField(
                 controller: controller,
                 style: const TextStyle(fontSize: 20),
-                decoration: const InputDecoration(
-                  labelText: '답 입력',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  labelText: strings.t('answer.inputLabel'),
+                  border: const OutlineInputBorder(),
                 ),
                 onSubmitted: widget.onSubmit,
               )
@@ -81,17 +83,19 @@ class _AnswerPanelState extends State<AnswerPanel> {
                 }
                 widget.onSubmit(answer);
               },
-              child: const Padding(
-                padding: EdgeInsets.symmetric(vertical: 12),
-                child: Text('정답 확인', style: TextStyle(fontSize: 18)),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: Text(strings.t('answer.check'),
+                    style: const TextStyle(fontSize: 18)),
               ),
             ),
             const SizedBox(height: 10),
             OutlinedButton(
               onPressed: widget.onShowSolution,
-              child: const Padding(
-                padding: EdgeInsets.symmetric(vertical: 12),
-                child: Text('풀이 보기', style: TextStyle(fontSize: 18)),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: Text(strings.t('answer.showSolution'),
+                    style: const TextStyle(fontSize: 18)),
               ),
             ),
             if (widget.isCorrect != null) ...[
@@ -122,6 +126,7 @@ class _ResultBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     final colorScheme = Theme.of(context).colorScheme;
     final backgroundColor =
         isCorrect ? const Color(0xFFDCFCE7) : colorScheme.errorContainer;
@@ -135,7 +140,11 @@ class _ResultBanner extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
-        isCorrect ? '맞았어요!' : '다시 확인해 봐요. 정답: $correctAnswer',
+        isCorrect
+            ? strings.t('answer.correct')
+            : strings.t('answer.incorrectWithAnswer', {
+                'answer': correctAnswer,
+              }),
         style: TextStyle(
           color: textColor,
           fontSize: 18,

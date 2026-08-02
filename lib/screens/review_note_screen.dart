@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
 import '../models/learning_progress.dart';
 import '../services/content_repository.dart';
@@ -45,10 +46,11 @@ class _ReviewNoteScreenState extends State<ReviewNoteScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     return Scaffold(
       backgroundColor: KidsPalette.cream,
       appBar: AppBar(
-        title: const Text('오답노트 & 사고 단계 복습'),
+        title: Text(strings.t('review.title')),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -61,7 +63,11 @@ class _ReviewNoteScreenState extends State<ReviewNoteScreen> {
             }
 
             if (snapshot.hasError) {
-              return Center(child: Text('오답노트를 불러올 수 없습니다: ${snapshot.error}'));
+              return Center(
+                child: Text(
+                  strings.t('review.loadError', {'error': snapshot.error}),
+                ),
+              );
             }
 
             final manifest = snapshot.data![0] as ProblemManifest;
@@ -70,7 +76,9 @@ class _ReviewNoteScreenState extends State<ReviewNoteScreen> {
             final wrongAttempts = attempts.where((a) => !a.isCorrect).toList();
             final filteredAttempts = _selectedCategory == null
                 ? wrongAttempts
-                : wrongAttempts.where((a) => a.errorCategory == _selectedCategory).toList();
+                : wrongAttempts
+                    .where((a) => a.errorCategory == _selectedCategory)
+                    .toList();
 
             return RefreshIndicator(
               onRefresh: () async => _refresh(),
@@ -80,7 +88,7 @@ class _ReviewNoteScreenState extends State<ReviewNoteScreen> {
                   _ReviewHeaderCard(totalWrongCount: wrongAttempts.length),
                   const SizedBox(height: 20),
                   Text(
-                    '사고 원인별 필터',
+                    strings.t('review.filterTitle'),
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -91,7 +99,7 @@ class _ReviewNoteScreenState extends State<ReviewNoteScreen> {
                     child: Row(
                       children: [
                         FilterChip(
-                          label: const Text('전체 보기'),
+                          label: Text(strings.t('review.all')),
                           selected: _selectedCategory == null,
                           onSelected: (selected) {
                             setState(() => _selectedCategory = null);
@@ -104,11 +112,12 @@ class _ReviewNoteScreenState extends State<ReviewNoteScreen> {
                           return Padding(
                             padding: const EdgeInsets.only(right: 8),
                             child: FilterChip(
-                              label: Text(category.label),
+                              label: Text(strings.errorCategory(category.code)),
                               selected: _selectedCategory == category,
                               onSelected: (selected) {
                                 setState(() {
-                                  _selectedCategory = selected ? category : null;
+                                  _selectedCategory =
+                                      selected ? category : null;
                                 });
                               },
                             ),
@@ -119,13 +128,16 @@ class _ReviewNoteScreenState extends State<ReviewNoteScreen> {
                   ),
                   const SizedBox(height: 24),
                   if (filteredAttempts.isEmpty)
-                    const Center(
+                    Center(
                       child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 40),
+                        padding: const EdgeInsets.symmetric(vertical: 40),
                         child: Text(
-                          '🎉 오답 문제가 없습니다!\n꾸준한 학습으로 실력을 키워보세요.',
+                          strings.t('review.empty'),
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16, color: KidsPalette.cocoaSoft),
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: KidsPalette.cocoaSoft,
+                          ),
                         ),
                       ),
                     )
@@ -158,13 +170,20 @@ class _ReviewNoteScreenState extends State<ReviewNoteScreen> {
                               Row(
                                 children: [
                                   Chip(
-                                    label: Text(attempt.unit),
+                                    label:
+                                        Text(strings.unitTitle(attempt.unit)),
                                     backgroundColor: KidsPalette.paper,
-                                    side: const BorderSide(color: KidsPalette.line),
+                                    side: const BorderSide(
+                                      color: KidsPalette.line,
+                                    ),
                                   ),
                                   const SizedBox(width: 8),
                                   Chip(
-                                    label: Text(attempt.errorCategory.label),
+                                    label: Text(
+                                      strings.errorCategory(
+                                        attempt.errorCategory.code,
+                                      ),
+                                    ),
                                     backgroundColor: KidsPalette.butter,
                                     side: BorderSide.none,
                                   ),
@@ -180,19 +199,26 @@ class _ReviewNoteScreenState extends State<ReviewNoteScreen> {
                               ),
                               const SizedBox(height: 12),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    '제출한 답: ${attempt.answer}',
-                                    style: const TextStyle(color: KidsPalette.cocoaSoft),
+                                    strings.t('review.submittedAnswer', {
+                                      'answer': attempt.answer,
+                                    }),
+                                    style: const TextStyle(
+                                      color: KidsPalette.cocoaSoft,
+                                    ),
                                   ),
                                   FilledButton.icon(
                                     onPressed: () async {
                                       await Navigator.of(context).push(
                                         MaterialPageRoute<void>(
-                                          builder: (context) => ProblemSolveScreen(
+                                          builder: (context) =>
+                                              ProblemSolveScreen(
                                             repository: widget.repository,
-                                            progressRepository: widget.progressRepository,
+                                            progressRepository:
+                                                widget.progressRepository,
                                             problem: problem,
                                           ),
                                         ),
@@ -200,7 +226,7 @@ class _ReviewNoteScreenState extends State<ReviewNoteScreen> {
                                       _refresh();
                                     },
                                     icon: const Icon(Icons.replay, size: 18),
-                                    label: const Text('다시 풀기'),
+                                    label: Text(strings.t('session.retry')),
                                   ),
                                 ],
                               ),
@@ -226,6 +252,7 @@ class _ReviewHeaderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -234,14 +261,20 @@ class _ReviewHeaderCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Icon(Icons.fact_check_outlined, size: 36, color: KidsPalette.cocoa),
+          const Icon(
+            Icons.fact_check_outlined,
+            size: 36,
+            color: KidsPalette.cocoa,
+          ),
           const SizedBox(width: 14),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '다시 볼 오답 $totalWrongCount문제',
+                  strings.t('review.headerTitle', {
+                    'count': totalWrongCount,
+                  }),
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -249,9 +282,12 @@ class _ReviewHeaderCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 4),
-                const Text(
-                  '틀린 원인을 짚어보며 다시 풀면 장기 기억으로 연결돼요.',
-                  style: TextStyle(fontSize: 13, color: KidsPalette.cocoaSoft),
+                Text(
+                  strings.t('review.headerDescription'),
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: KidsPalette.cocoaSoft,
+                  ),
                 ),
               ],
             ),

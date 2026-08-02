@@ -4,6 +4,7 @@ import '../app/router.dart';
 import '../models/content_models.dart';
 import '../models/learning_progress.dart';
 import '../models/student_profile.dart';
+import '../l10n/app_strings.dart';
 import '../services/content_repository.dart';
 import '../services/learning_progress_repository.dart';
 import '../services/recommendation_service.dart';
@@ -58,6 +59,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     return Scaffold(
       body: SafeArea(
         child: FutureBuilder<List<dynamic>>(
@@ -75,9 +77,9 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
             if (snapshot.hasError) {
               return _HomeStateMessage(
                 icon: Icons.cloud_off_outlined,
-                title: '학습 정보를 불러오지 못했어요',
+                title: strings.t('home.loadErrorTitle'),
                 message: '${snapshot.error}',
-                actionLabel: '다시 시도',
+                actionLabel: strings.t('home.retry'),
                 onAction: _refresh,
               );
             }
@@ -191,6 +193,7 @@ class _TopNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     return Container(
       height: 64,
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -204,19 +207,19 @@ class _TopNavigation extends StatelessWidget {
           const Icon(Icons.school_rounded, color: KidsPalette.ink, size: 28),
           const SizedBox(width: 10),
           Text(
-            '모두수학',
+            strings.t('app.title'),
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w900,
                 ),
           ),
           const Spacer(),
           IconButton(
-            tooltip: '오답 노트',
+            tooltip: strings.t('home.reviewTooltip'),
             onPressed: onReview,
             icon: const Icon(Icons.fact_check_outlined),
           ),
           IconButton(
-            tooltip: '학습 리포트',
+            tooltip: strings.t('home.reportTooltip'),
             onPressed: onProgress,
             icon: const Icon(Icons.bar_chart_rounded),
           ),
@@ -297,12 +300,13 @@ class _TodayCopy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final compactType = MediaQuery.sizeOf(context).width < 460;
+    final strings = AppStrings.of(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '오늘은 한 문제씩\n생각해 볼까요?',
+          strings.t('home.heroTitle'),
           style: Theme.of(context).textTheme.displaySmall?.copyWith(
                 fontSize: compactType ? 32 : 42,
                 letterSpacing: 0,
@@ -310,7 +314,10 @@ class _TodayCopy extends StatelessWidget {
         ),
         const SizedBox(height: 14),
         Text(
-          '${profile.grade}학년 ${profile.name}에게 맞춘 문제로 풀이 단계를 천천히 확인해요.',
+          strings.t('home.heroSubtitle', {
+            'grade': profile.grade,
+            'name': profile.name,
+          }),
           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 color: KidsPalette.cocoaSoft,
                 height: 1.5,
@@ -334,9 +341,12 @@ class _TodayCopy extends StatelessWidget {
                 style: FilledButton.styleFrom(
                   minimumSize: const Size.fromHeight(56),
                 ),
-                label: const Text(
-                  '오늘 학습 시작',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+                label: Text(
+                  strings.t('home.startToday'),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w900,
+                  ),
                 ),
               ),
               const SizedBox(height: 10),
@@ -347,9 +357,12 @@ class _TodayCopy extends StatelessWidget {
                   backgroundColor: KidsPalette.paper,
                   minimumSize: const Size.fromHeight(52),
                 ),
-                label: const Text(
-                  '단원에서 고르기',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
+                label: Text(
+                  strings.t('home.chooseUnit'),
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
               ),
             ],
@@ -373,12 +386,16 @@ class _HeroStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     return Wrap(
       spacing: 10,
       runSpacing: 10,
       children: [
-        _StatPill(label: '오늘', value: '$solved/$target'),
-        _StatPill(label: '정답률', value: '${(accuracy * 100).round()}%'),
+        _StatPill(label: strings.t('home.today'), value: '$solved/$target'),
+        _StatPill(
+          label: strings.t('home.accuracy'),
+          value: '${(accuracy * 100).round()}%',
+        ),
       ],
     );
   }
@@ -421,6 +438,7 @@ class _NextProblemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     return DecoratedBox(
       decoration: BoxDecoration(
         color: KidsPalette.paper,
@@ -449,7 +467,7 @@ class _NextProblemCard extends StatelessWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    '다음 문제',
+                    strings.t('home.nextProblem'),
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
                           color: KidsPalette.sage,
                         ),
@@ -459,14 +477,16 @@ class _NextProblemCard extends StatelessWidget {
             ),
             const SizedBox(height: 14),
             Text(
-              problem?.unit ?? '오늘의 문제',
+              problem == null
+                  ? strings.t('home.todayProblem')
+                  : strings.unitTitle(problem!.unit),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: 6),
             Text(
-              problem?.title ?? '추천 문제를 준비하고 있어요.',
+              problem?.title ?? strings.t('home.recommendationLoading'),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -491,6 +511,7 @@ class _UnitRail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     final unitGroups = <String, List<ProblemSummary>>{};
     for (final problem in problems) {
       unitGroups.putIfAbsent(problem.unit, () => []).add(problem);
@@ -500,7 +521,8 @@ class _UnitRail extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('단원별 학습', style: Theme.of(context).textTheme.titleLarge),
+        Text(strings.t('home.unitLearning'),
+            style: Theme.of(context).textTheme.titleLarge),
         const SizedBox(height: 12),
         SizedBox(
           height: 152,
@@ -537,6 +559,7 @@ class _UnitTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     return SizedBox(
       width: 260,
       child: Card(
@@ -550,7 +573,7 @@ class _UnitTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  unit,
+                  strings.unitTitle(unit),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.titleMedium,
@@ -559,7 +582,7 @@ class _UnitTile extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      '$count문제',
+                      strings.t('home.problemCount', {'count': count}),
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     const Spacer(),

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 
+import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
 import '../models/tutor_models.dart';
 import '../services/ai_tutor_service.dart';
@@ -53,7 +54,7 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
   Future<ProblemJsonBundle> _loadInitialBundle() async {
     final prefixes = await prefixesFuture;
     if (prefixes.isEmpty) {
-      throw StateError('렌더링 가능한 3학년 문제 자료가 없어요.');
+      throw StateError(AppStrings.fallback.t('studio.noRenderableProblems'));
     }
     selectedFilePrefix = prefixes.first;
     return widget.repository.loadProblemJsonBundle(selectedFilePrefix);
@@ -310,7 +311,7 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
         tutorMessages.add(
           TutorMessage(
             role: TutorMessageRole.tutor,
-            text: '튜터 응답을 받지 못했어요. 잠시 후 다시 시도해 주세요.',
+            text: AppStrings.of(context).t('studio.tutorLoadError'),
             replyType: TutorReplyType.retry,
             createdAt: DateTime.now(),
           ),
@@ -343,6 +344,7 @@ class _TopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final strings = AppStrings.of(context);
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(24, 18, 24, 10),
@@ -355,7 +357,7 @@ class _TopBar extends StatelessWidget {
                 Text('Modu Math Studio', style: textTheme.displaySmall),
                 const SizedBox(height: 6),
                 Text(
-                  'JSON 렌더링과 문제 구조를 한 화면에서 확인합니다.',
+                  strings.t('studio.description'),
                   style: textTheme.bodyMedium?.copyWith(
                     color: KidsPalette.olive,
                     fontWeight: FontWeight.w700,
@@ -372,7 +374,7 @@ class _TopBar extends StatelessWidget {
           ),
           const SizedBox(width: 12),
           _RoundIconButton(
-            tooltip: '기존 문제 목록',
+            tooltip: strings.t('studio.problemListTooltip'),
             icon: Icons.list_alt,
             onPressed: onOpenList,
           ),
@@ -566,6 +568,7 @@ class _HeroPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final strings = AppStrings.of(context);
     return DecoratedBox(
       decoration: BoxDecoration(
         color: KidsPalette.butter,
@@ -591,7 +594,8 @@ class _HeroPanel extends StatelessWidget {
                   Text(bundle.filePrefix, style: textTheme.titleLarge),
                   const SizedBox(height: 5),
                   Text(
-                    instruction?.toString() ?? '렌더링 데이터를 확인합니다.',
+                    instruction?.toString() ??
+                        strings.t('studio.defaultInstruction'),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: textTheme.bodyMedium?.copyWith(
@@ -687,6 +691,7 @@ class _LoadError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(24),
@@ -699,7 +704,7 @@ class _LoadError extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: Text(
-              'JSON 문제를 불러오지 못했습니다.\n$error',
+              strings.t('studio.loadError', {'error': error}),
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),

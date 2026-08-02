@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_strings.dart';
 import '../models/learning_progress.dart';
 
 class ProgressPanel extends StatelessWidget {
@@ -11,6 +12,7 @@ class ProgressPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final percent = (summary.accuracy * 100).round();
+    final strings = AppStrings.of(context);
 
     return Card(
       margin: EdgeInsets.zero,
@@ -20,27 +22,31 @@ class ProgressPanel extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('학습 결과', style: Theme.of(context).textTheme.titleMedium),
+            Text(strings.t('progress.title'),
+                style: Theme.of(context).textTheme.titleMedium),
             const SizedBox(height: 12),
             Row(
               children: [
                 Expanded(
-                  child:
-                      _Metric(label: '푼 문제', value: '${summary.solvedCount}'),
+                  child: _Metric(
+                      label: strings.t('progress.solved'),
+                      value: '${summary.solvedCount}'),
                 ),
                 Expanded(
                   child: _Metric(
-                    label: '맞힌 문제',
+                    label: strings.t('progress.correct'),
                     value: '${summary.correctCount}',
                   ),
                 ),
-                Expanded(child: _Metric(label: '정답률', value: '$percent%')),
+                Expanded(
+                    child: _Metric(
+                        label: strings.t('home.accuracy'), value: '$percent%')),
               ],
             ),
             if (summary.wrongResults.isNotEmpty) ...[
               const SizedBox(height: 14),
               Text(
-                '다시 볼 문제',
+                strings.t('progress.reviewAgain'),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontSize: 16,
                       fontWeight: FontWeight.w800,

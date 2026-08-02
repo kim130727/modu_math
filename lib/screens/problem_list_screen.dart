@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
 import '../models/learning_progress.dart';
 import '../services/content_repository.dart';
@@ -45,9 +46,14 @@ class _ProblemListScreenState extends State<ProblemListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(selectedUnit ?? '모두수학'),
+        title: Text(
+          selectedUnit == null
+              ? strings.t('app.title')
+              : strings.unitTitle(selectedUnit!),
+        ),
         leading: selectedUnit == null
             ? null
             : IconButton(
@@ -66,7 +72,9 @@ class _ProblemListScreenState extends State<ProblemListScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(24),
                 child: Text(
-                  '문제 목록을 불러오지 못했어요.\n${snapshot.error}',
+                  strings.t('problemList.loadError', {
+                    'error': snapshot.error,
+                  }),
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ),
@@ -286,6 +294,7 @@ class _JourneyHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
 
@@ -299,10 +308,12 @@ class _JourneyHeader extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(unit, style: textTheme.titleLarge),
+                  Text(strings.unitTitle(unit), style: textTheme.titleLarge),
                   const SizedBox(height: 8),
                   Text(
-                    'Rule Tutor와 $count개의 문제를 차례대로 풀어봅니다.',
+                    strings.t('problemList.journeyDescription', {
+                      'count': count,
+                    }),
                     style: textTheme.bodyMedium?.copyWith(
                       color: colorScheme.onSurfaceVariant,
                     ),
@@ -313,7 +324,11 @@ class _JourneyHeader extends StatelessWidget {
             FilledButton.icon(
               onPressed: onStart,
               icon: Icon(isComplete ? Icons.replay : Icons.play_arrow),
-              label: Text(isComplete ? '다시 풀기' : '이어 풀기'),
+              label: Text(
+                isComplete
+                    ? strings.t('session.retry')
+                    : strings.t('session.resume'),
+              ),
             ),
           ],
         ),
@@ -337,6 +352,7 @@ class _JourneyStepTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     final colorScheme = Theme.of(context).colorScheme;
     final solved = result != null;
     final color = !solved
@@ -350,10 +366,10 @@ class _JourneyStepTile extends StatelessWidget {
             ? Icons.check_circle
             : Icons.refresh;
     final label = !solved
-        ? '풀기'
+        ? strings.t('problemList.solve')
         : result!.isCorrect
-            ? '완료'
-            : '다시 풀기';
+            ? strings.t('problemList.done')
+            : strings.t('session.retry');
 
     return Card(
       margin: EdgeInsets.zero,
@@ -420,6 +436,7 @@ class _UnitCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     final colorScheme = Theme.of(context).colorScheme;
 
     return Card(
@@ -432,10 +449,13 @@ class _UnitCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(unit, style: Theme.of(context).textTheme.titleLarge),
+              Text(
+                strings.unitTitle(unit),
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
               const Spacer(),
               Text(
-                '$count문제',
+                strings.problemCount(count),
                 style: TextStyle(
                   color: colorScheme.onSurfaceVariant,
                   fontSize: 16,
@@ -452,7 +472,7 @@ class _UnitCard extends StatelessWidget {
                   ),
                   const SizedBox(width: 6),
                   Text(
-                    'Rule Tutor로 시작',
+                    strings.t('problemList.startWithTutor'),
                     style: TextStyle(
                       color: colorScheme.onSurfaceVariant,
                       fontWeight: FontWeight.w700,

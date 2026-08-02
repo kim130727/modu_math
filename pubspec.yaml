@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   flutter_dotenv: ^6.0.1
   flutter_svg: ^2.0.10+1
   flutter_tts: ^4.2.5
@@ -25,6 +27,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/i18n/
     - assets/content/problems/
     - assets/content/problems/grade3/
     - assets/content/problems/manifest.json

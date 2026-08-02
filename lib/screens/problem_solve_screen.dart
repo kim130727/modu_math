@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
 import '../models/tutor_models.dart';
 import '../services/ai_tutor_service.dart';
@@ -279,7 +280,7 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
         tutorMessages.add(
           TutorMessage(
             role: TutorMessageRole.tutor,
-            text: '튜터 응답을 가져오지 못했어요. 잠시 뒤 다시 시도해 주세요.',
+            text: AppStrings.of(context).t('problem.loadErrorTutor'),
             replyType: TutorReplyType.retry,
             createdAt: DateTime.now(),
           ),
@@ -331,6 +332,7 @@ class _ProblemVisual extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     if (content.renderer.isNotEmpty) {
       return Card(
         margin: EdgeInsets.zero,
@@ -348,12 +350,12 @@ class _ProblemVisual extends StatelessWidget {
     if (content.svg.isNotEmpty) {
       return ProblemSvgViewer(svg: content.svg);
     }
-    return const Card(
+    return Card(
       margin: EdgeInsets.zero,
       child: Center(
         child: Padding(
-          padding: EdgeInsets.all(24),
-          child: Text('이 문제는 아직 화면 자료가 없어요.'),
+          padding: const EdgeInsets.all(24),
+          child: Text(strings.t('problem.noVisual')),
         ),
       ),
     );
@@ -377,6 +379,7 @@ class _ProblemLoadError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
 
@@ -399,13 +402,13 @@ class _ProblemLoadError extends StatelessWidget {
                   ),
                   const SizedBox(height: 14),
                   Text(
-                    '문제 자료를 불러오지 못했어요',
+                    strings.t('problem.loadErrorTitle'),
                     textAlign: TextAlign.center,
                     style: textTheme.titleMedium,
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    '다시 시도하거나 다음 문제로 넘어갈 수 있어요.',
+                    strings.t('problem.loadErrorDescription'),
                     textAlign: TextAlign.center,
                     style: textTheme.bodyMedium?.copyWith(
                       color: colorScheme.onSurfaceVariant,
@@ -415,20 +418,20 @@ class _ProblemLoadError extends StatelessWidget {
                   FilledButton.icon(
                     onPressed: onRetry,
                     icon: const Icon(Icons.refresh),
-                    label: const Text('다시 불러오기'),
+                    label: Text(strings.t('common.reload')),
                   ),
                   if (canOpenNextProblem && onNextProblem != null) ...[
                     const SizedBox(height: 10),
                     OutlinedButton.icon(
                       onPressed: onNextProblem,
                       icon: const Icon(Icons.navigate_next),
-                      label: const Text('다음 문제로'),
+                      label: Text(strings.t('common.nextProblem')),
                     ),
                   ],
                   const SizedBox(height: 10),
                   TextButton(
                     onPressed: onBack,
-                    child: const Text('이전 화면으로'),
+                    child: Text(strings.t('common.back')),
                   ),
                   const SizedBox(height: 8),
                   Text(
