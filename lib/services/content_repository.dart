@@ -140,19 +140,33 @@ class ContentRepository {
 
   Future<String> _basePathForPrefix(String filePrefix) async {
     final rendererPaths = await _loadRendererPaths();
+    final baseFilePrefix = _baseProblemPrefix(filePrefix);
+    final localizedFilePrefix = _localizedFilePrefix(filePrefix);
     final rendererPath = rendererPaths.firstWhere(
       (path) =>
+          path.endsWith('/$localizedFilePrefix.renderer.json') ||
           path.endsWith('/$filePrefix.renderer.json') ||
-          path == '$problemsPath/$filePrefix.renderer.json',
+          path.endsWith('/$baseFilePrefix.renderer.json') ||
+          path == '$problemsPath/$localizedFilePrefix.renderer.json' ||
+          path == '$problemsPath/$filePrefix.renderer.json' ||
+          path == '$problemsPath/$baseFilePrefix.renderer.json',
       orElse: () => '',
     );
     if (rendererPath.isEmpty) {
-      return '$problemsPath/$filePrefix';
+      return '$problemsPath/$localizedFilePrefix';
     }
     return rendererPath.substring(
       0,
       rendererPath.length - '.renderer.json'.length,
     );
+  }
+
+  String _localizedFilePrefix(String filePrefix) {
+    final basePrefix = _baseProblemPrefix(filePrefix);
+    final locale = localizedProblemLocales.contains(activeProblemLocale)
+        ? activeProblemLocale
+        : 'ko';
+    return '${basePrefix}_$locale';
   }
 
   Future<List<ProblemSummary>> _loadBundledProblems() async {
@@ -377,6 +391,16 @@ int _semesterFromPrefix(String filePrefix) {
 int _unitNumberFromPrefix(String filePrefix) {
   final parts = filePrefix.split('_');
   return parts.length > 2 ? int.tryParse(parts[2]) ?? 1 : 1;
+}
+
+String _baseProblemPrefix(String filePrefix) {
+  for (final locale in ContentRepository.localizedProblemLocales) {
+    final suffix = '_$locale';
+    if (filePrefix.endsWith(suffix)) {
+      return filePrefix.substring(0, filePrefix.length - suffix.length);
+    }
+  }
+  return filePrefix;
 }
 
 class ProblemJsonBundle {

@@ -50,6 +50,33 @@ void main() {
       expect(bundle.renderer, isNotEmpty);
     });
 
+    test('loads Ukrainian files from a Korean summary after locale switch',
+        () async {
+      final repository = ContentRepository()..activeProblemLocale = 'uk';
+      final koreanSummary = _summaryWithPrefix('P3_1_01_00040_00469_ko');
+
+      final content = await repository.loadProblem(koreanSummary);
+
+      expect(
+        content.semantic['metadata']['title'],
+        equals('Скільки бататів зібрали дві родини?'),
+      );
+      expect(content.summary.filePrefix, equals('P3_1_01_00040_00469_ko'));
+    });
+
+    test('loads Korean files from a suffixed localized summary', () async {
+      final repository = ContentRepository()..activeProblemLocale = 'ko';
+      final ukrainianSummary = _summaryWithPrefix('P3_1_01_00040_00469_uk');
+
+      final content = await repository.loadProblem(ukrainianSummary);
+
+      expect(
+        content.semantic['metadata']['title'],
+        equals('두 가족이 캔 고구마의 수'),
+      );
+      expect(content.summary.filePrefix, equals('P3_1_01_00040_00469_uk'));
+    });
+
     test('loads GitHub examples problem list and files from raw URLs',
         () async {
       final repository = ContentRepository.githubExamples(
@@ -149,4 +176,20 @@ void main() {
       expect(digitContent.correctAnswer, equals('11921'));
     });
   });
+}
+
+ProblemSummary _summaryWithPrefix(String filePrefix) {
+  return ProblemSummary(
+    id: filePrefix,
+    grade: 3,
+    subject: 'math',
+    unit: '1학기 1. 덧셈과 뺄셈',
+    type: 'local_json_problem',
+    title: '덧셈과 뺄셈 문제',
+    path: '${ContentRepository.problemsPath}/ko',
+    filePrefix: filePrefix,
+    raw: {
+      'filePrefix': filePrefix,
+    },
+  );
 }
