@@ -1,0 +1,104 @@
+{
+  "problem_id": "P3_1_01_00040_00469",
+  "view_box": {
+    "width": 900.0,
+    "height": 340.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "konva_1785063642549_rect_11081.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 654.0,
+        "y": 270.0,
+        "width": 78.73,
+        "height": 41.989,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.2
+      },
+      "source_ref": "konva_1785063642549_rect_11081",
+      "refs": {
+        "layout_slot_id": "konva_1785063642549_rect_11081"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 3,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    {
+      "id": "slot.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 48.0,
+        "y": 30.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans\", sans-serif",
+        "font-size": 24,
+        "width": 804.0,
+        "height": 215.0,
+        "max_width": 804.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 48.0,
+        "data-box-y": 30.0,
+        "data-box-width": 804.0,
+        "data-box-height": 215.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.55
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "Подивіться на малюнок. Родини Санхьона і Йонджіна на вихідних пішли на поле. Родина Санхьона зібрала 259 бататів, а родина Йонджіна зібрала 248 бататів. Скільки бататів зібрали обидві родини разом?"
+    },
+    {
+      "id": "konva_1785063642549_text_21880.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 760.0,
+        "y": 269.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans\", sans-serif",
+        "font-size": 30,
+        "width": 98.0,
+        "height": 46.0,
+        "max_width": 98.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 760.0,
+        "data-box-y": 269.0,
+        "data-box-width": 98.0,
+        "data-box-height": 46.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25
+      },
+      "source_ref": "konva_1785063642549_text_21880",
+      "refs": {
+        "layout_slot_id": "konva_1785063642549_text_21880"
+      },
+      "text": "шт."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,10 +1,15 @@
 from __future__ import annotations
 
-from modu_math.dsl import BlankSlot, Canvas, ProblemTemplate, RectSlot, Region, TextBoxSlot
+from modu_math.dsl import Canvas, ProblemTemplate, RectSlot, Region, TextBoxSlot
 
 
 PROBLEM_ID = "P3_1_01_00040_00469"
 PROBLEM_TITLE = "Скільки бататів зібрали дві родини?"
+PROBLEM_QUESTION = (
+    "Подивіться на малюнок. Родини Санхьона і Йонджіна на вихідних пішли на поле. "
+    "Родина Санхьона зібрала 259 бататів, а родина Йонджіна зібрала 248 бататів. "
+    "Скільки бататів зібрали обидві родини разом?"
+)
 
 
 SEMANTIC = {
@@ -17,51 +22,33 @@ SEMANTIC = {
         "topic": "додавання трицифрових чисел",
         "language": "uk-UA",
         "title": PROBLEM_TITLE,
-        "question": (
-            "Подивіться на малюнок. Родини Санхьона і Йонджіна на вихідних "
-            "пішли на поле. Родина Санхьона зібрала 259 бататів, а родина "
-            "Йонджіна зібрала 248 бататів. Скільки бататів зібрали обидві "
-            "родини разом?"
-        ),
+        "question": PROBLEM_QUESTION,
     },
     "domain": {
         "objects": [
             {"id": "person.sanghyeon", "type": "person", "label": "Санхьон"},
             {"id": "person.yongjin", "type": "person", "label": "Йонджін"},
-            {
-                "id": "group.sanghyeon_family",
-                "type": "family",
-                "label": "родина Санхьона",
-            },
-            {
-                "id": "group.yongjin_family",
-                "type": "family",
-                "label": "родина Йонджіна",
-            },
-            {
-                "id": "object.sweet_potato",
-                "type": "countable_object",
-                "label": "батат",
-                "unit": "шт.",
-            },
+            {"id": "group.sanghyeon_family", "type": "family", "label": "родина Санхьона"},
+            {"id": "group.yongjin_family", "type": "family", "label": "родина Йонджіна"},
+            {"id": "object.sweet_potato", "type": "countable_object", "label": "батат", "unit": "шт."},
             {
                 "id": "quantity.sanghyeon_family_sweet_potatoes",
                 "type": "quantity",
-                "label": "батати, які зібрала родина Санхьона",
+                "label": "батати родини Санхьона",
                 "value": 259,
                 "unit": "шт.",
             },
             {
                 "id": "quantity.yongjin_family_sweet_potatoes",
                 "type": "quantity",
-                "label": "батати, які зібрала родина Йонджіна",
+                "label": "батати родини Йонджіна",
                 "value": 248,
                 "unit": "шт.",
             },
             {
                 "id": "quantity.total_sweet_potatoes",
                 "type": "quantity",
-                "label": "батати, які зібрали обидві родини",
+                "label": "батати обох родин разом",
                 "value": 507,
                 "unit": "шт.",
             },
@@ -106,7 +93,7 @@ SOLVABLE = {
     "problem_id": PROBLEM_ID,
     "problem_type": "numeric_answer_addition_word_problem",
     "inputs": {
-        "target_label": "кількість бататів, які зібрали обидві родини",
+        "target_label": "батати обох родин разом",
         "unit": "шт.",
         "quantities": {
             "sanghyeon_family_count": 259,
@@ -121,21 +108,11 @@ SOLVABLE = {
     "given": [
         {
             "ref": "quantity.sanghyeon_family_sweet_potatoes",
-            "value": {
-                "count": 259,
-                "unit": "шт.",
-                "owner": "group.sanghyeon_family",
-                "object": "object.sweet_potato",
-            },
+            "value": {"count": 259, "unit": "шт.", "owner": "group.sanghyeon_family"},
         },
         {
             "ref": "quantity.yongjin_family_sweet_potatoes",
-            "value": {
-                "count": 248,
-                "unit": "шт.",
-                "owner": "group.yongjin_family",
-                "object": "object.sweet_potato",
-            },
+            "value": {"count": 248, "unit": "шт.", "owner": "group.yongjin_family"},
         },
     ],
     "target": {"ref": "quantity.total_sweet_potatoes", "type": "number"},
@@ -143,7 +120,7 @@ SOLVABLE = {
     "plan": [
         "Перевірити, скільки бататів зібрала родина Санхьона.",
         "Перевірити, скільки бататів зібрала родина Йонджіна.",
-        "Додати ці дві кількості, щоб знайти загальну кількість.",
+        "Додати ці дві кількості.",
     ],
     "steps": [
         {
@@ -155,20 +132,29 @@ SOLVABLE = {
             ],
             "relation_expr": "усього = батати Санхьона + батати Йонджіна",
             "expr": "259 + 248",
-            "value": {
-                "count": 507,
-                "unit": "шт.",
-                "ref": "quantity.total_sweet_potatoes",
-            },
+            "value": {"count": 507, "unit": "шт.", "ref": "quantity.total_sweet_potatoes"},
             "explanation": "Щоб знайти загальну кількість, додаємо 259 і 248.",
+        }
+    ],
+    "checks": [
+        {
+            "id": "check.inverse_subtraction",
+            "expr": "507 - 248",
+            "expected": 259,
+            "actual": 259,
+            "pass": True,
+        },
+        {
+            "id": "check.minimum_total",
+            "expr": "507 > 259 and 507 > 248",
+            "expected": True,
+            "actual": True,
+            "pass": True,
         },
     ],
     "answer": {"value": 507, "unit": "шт."},
     "understanding": {
-        "summary": (
-            "Це задача на додавання частин: потрібно додати кількість бататів "
-            "двох родин."
-        ),
+        "summary": "Це задача на додавання частин: потрібно додати кількість бататів двох родин.",
         "facts": [
             {
                 "ref": "quantity.sanghyeon_family_sweet_potatoes",
@@ -193,6 +179,16 @@ SOLVABLE = {
                 "source": "unknown",
             }
         ],
+        "relation": {
+            "type": "part_part_whole_addition",
+            "statement": "Щоб знайти, скільки бататів зібрали обидві родини разом, потрібно додати кількості бататів кожної родини.",
+            "symbolic": "усього = 259 + 248",
+            "uses": [
+                "quantity.sanghyeon_family_sweet_potatoes",
+                "quantity.yongjin_family_sweet_potatoes",
+            ],
+            "result": "quantity.total_sweet_potatoes",
+        },
     },
 }
 
@@ -203,7 +199,7 @@ def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
         id=PROBLEM_ID,
         title=PROBLEM_TITLE,
-        canvas=Canvas(width=900, height=230, coordinate_mode="logical"),
+        canvas=Canvas(width=900, height=340, coordinate_mode="logical"),
         regions=(
             Region(
                 id="region.stem",
@@ -211,8 +207,6 @@ def build_problem_template() -> ProblemTemplate:
                 flow="vertical",
                 slot_ids=(
                     "slot.question",
-                    "slot.expression",
-                    "slot.answer",
                     "konva_1785063642549_rect_11081",
                     "konva_1785063642549_text_21880",
                 ),
@@ -222,41 +216,22 @@ def build_problem_template() -> ProblemTemplate:
             TextBoxSlot(
                 id="slot.question",
                 x=48,
-                y=34,
+                y=30,
                 width=804,
-                height=72,
-                text=SEMANTIC["metadata"]["question"],
+                height=215,
+                text=PROBLEM_QUESTION,
                 font_size=24,
-                font_family="Noto Sans",
+                font_family='"Noto Sans", sans-serif',
                 fill="#202124",
                 line_height=1.55,
                 align="left",
                 valign="top",
             ),
-            TextBoxSlot(
-                id="slot.expression",
-                x=48,
-                y=125,
-                width=804,
-                height=34,
-                text="",
-                font_size=24,
-                font_family="Noto Sans",
-                fill="#202124",
-                align="left",
-                valign="middle",
-            ),
-            BlankSlot(
-                id="slot.answer",
-                prompt="",
-                answer_key="507",
-                placeholder="шт.",
-            ),
             RectSlot(
                 id="konva_1785063642549_rect_11081",
                 prompt="",
-                x=588.852,
-                y=151.967,
+                x=654,
+                y=270,
                 width=78.73,
                 height=41.989,
                 fill="#ffffff",
@@ -275,6 +250,7 @@ def build_problem_template() -> ProblemTemplate:
                 },
                 input_style={
                     "font_size_mode": "auto",
+                    "font_size_adjust": 0,
                     "min_font_size": 14,
                     "max_font_size": 52,
                     "font_weight": 700,
@@ -288,9 +264,10 @@ def build_problem_template() -> ProblemTemplate:
                 id="konva_1785063642549_text_21880",
                 prompt="",
                 text="шт.",
-                x=684.59,
-                y=151.393,
+                x=760,
+                y=269,
                 font_size=30,
+                font_family='"Noto Sans", sans-serif',
                 fill="#111827",
                 width=98,
                 height=46,

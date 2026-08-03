@@ -1,0 +1,121 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_00469",
+  "problem_type": "numeric_answer_addition_word_problem",
+  "inputs": {
+    "target_label": "батати обох родин разом",
+    "unit": "шт.",
+    "quantities": {
+      "sanghyeon_family_count": 259,
+      "yongjin_family_count": 248
+    },
+    "conditions": [
+      "Родина Санхьона зібрала 259 бататів.",
+      "Родина Йонджіна зібрала 248 бататів.",
+      "Потрібно знайти, скільки бататів зібрали обидві родини разом."
+    ]
+  },
+  "given": [
+    {
+      "ref": "quantity.sanghyeon_family_sweet_potatoes",
+      "value": {
+        "count": 259,
+        "unit": "шт.",
+        "owner": "group.sanghyeon_family"
+      }
+    },
+    {
+      "ref": "quantity.yongjin_family_sweet_potatoes",
+      "value": {
+        "count": 248,
+        "unit": "шт.",
+        "owner": "group.yongjin_family"
+      }
+    }
+  ],
+  "target": {
+    "ref": "quantity.total_sweet_potatoes",
+    "type": "number"
+  },
+  "method": "додати кількості бататів, які зібрали дві родини",
+  "plan": [
+    "Перевірити, скільки бататів зібрала родина Санхьона.",
+    "Перевірити, скільки бататів зібрала родина Йонджіна.",
+    "Додати ці дві кількості."
+  ],
+  "steps": [
+    {
+      "id": "step.add_counts",
+      "goal": "знайти загальну кількість бататів",
+      "uses": [
+        "quantity.sanghyeon_family_sweet_potatoes",
+        "quantity.yongjin_family_sweet_potatoes"
+      ],
+      "relation_expr": "усього = батати Санхьона + батати Йонджіна",
+      "expr": "259 + 248",
+      "value": {
+        "count": 507,
+        "unit": "шт.",
+        "ref": "quantity.total_sweet_potatoes"
+      },
+      "explanation": "Щоб знайти загальну кількість, додаємо 259 і 248."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.inverse_subtraction",
+      "expr": "507 - 248",
+      "expected": 259,
+      "actual": 259,
+      "pass": true
+    },
+    {
+      "id": "check.minimum_total",
+      "expr": "507 > 259 and 507 > 248",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 507,
+    "unit": "шт."
+  },
+  "understanding": {
+    "summary": "Це задача на додавання частин: потрібно додати кількість бататів двох родин.",
+    "facts": [
+      {
+        "ref": "quantity.sanghyeon_family_sweet_potatoes",
+        "label": "батати родини Санхьона",
+        "value": 259,
+        "unit": "шт.",
+        "source": "explicit"
+      },
+      {
+        "ref": "quantity.yongjin_family_sweet_potatoes",
+        "label": "батати родини Йонджіна",
+        "value": 248,
+        "unit": "шт.",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "quantity.total_sweet_potatoes",
+        "label": "батати обох родин разом",
+        "unit": "шт.",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "part_part_whole_addition",
+      "statement": "Щоб знайти, скільки бататів зібрали обидві родини разом, потрібно додати кількості бататів кожної родини.",
+      "symbolic": "усього = 259 + 248",
+      "uses": [
+        "quantity.sanghyeon_family_sweet_potatoes",
+        "quantity.yongjin_family_sweet_potatoes"
+      ],
+      "result": "quantity.total_sweet_potatoes"
+    }
+  }
+}
