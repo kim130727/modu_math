@@ -18,6 +18,7 @@ class AppStrings {
     'common.grade': '{grade}학년',
     'common.problemCount': '{count}문제',
     'common.itemCount': '{count}개',
+    'common.problemTitleForTopic': '{topic} 문제',
     'common.retry': '다시 시도',
     'common.reload': '다시 불러오기',
     'common.nextProblem': '다음 문제로',
@@ -201,6 +202,17 @@ class AppStrings {
   String problemCount(int count) => t('common.problemCount', {'count': count});
 
   String itemCount(int count) => t('common.itemCount', {'count': count});
+
+  String problemTitle(String value) {
+    const suffix = ' 문제';
+    if (!value.endsWith(suffix)) {
+      return unitTitle(value);
+    }
+    final topic = value.substring(0, value.length - suffix.length).trim();
+    return t('common.problemTitleForTopic', {
+      'topic': unitTitle(topic),
+    });
+  }
 
   String curriculumTerm(String value) {
     return t('curriculum.topic.$value') == 'curriculum.topic.$value'

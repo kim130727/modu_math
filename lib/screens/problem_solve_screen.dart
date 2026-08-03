@@ -85,7 +85,17 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.problem.title),
+        title: FutureBuilder<ProblemContent>(
+          future: contentFuture,
+          builder: (context, snapshot) {
+            final strings = AppStrings.of(context);
+            return Text(
+              snapshot.hasData
+                  ? _problemScreenTitle(snapshot.data!, strings)
+                  : strings.problemTitle(widget.problem.title),
+            );
+          },
+        ),
         toolbarHeight: 72,
       ),
       body: FutureBuilder<ProblemContent>(
@@ -343,6 +353,17 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
       ),
     );
   }
+}
+
+String _problemScreenTitle(ProblemContent content, AppStrings strings) {
+  final metadata = content.semantic['metadata'];
+  if (metadata is Map<String, dynamic>) {
+    final title = metadata['title']?.toString().trim() ?? '';
+    if (title.isNotEmpty) {
+      return title;
+    }
+  }
+  return strings.problemTitle(content.summary.title);
 }
 
 class _ProblemVisual extends StatelessWidget {
