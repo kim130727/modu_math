@@ -10,6 +10,7 @@ import 'problem_file_loader.dart'
 
 enum ContentRepositorySource {
   localExamples,
+  localHttp,
   bundledAssets,
   githubExamples,
 }
@@ -23,9 +24,10 @@ class ContentRepository {
     this.githubRef = 'main',
     this.githubProblemsPath = 'examples/problems',
     this.localProblemsPath = r'C:\projects\modu_math\examples\problems',
+    this.localHttpBaseUrl = 'http://localhost:8765',
   })  : source = source ??
             (kIsWeb
-                ? ContentRepositorySource.bundledAssets
+                ? ContentRepositorySource.localHttp
                 : ContentRepositorySource.localExamples),
         _httpClient = httpClient ?? http.Client();
 
@@ -45,6 +47,15 @@ class ContentRepository {
               localProblemsPath ?? r'C:\projects\modu_math\examples\problems',
         );
 
+  ContentRepository.localHttp({
+    http.Client? httpClient,
+    String localHttpBaseUrl = 'http://localhost:8765',
+  }) : this(
+          source: ContentRepositorySource.localHttp,
+          httpClient: httpClient,
+          localHttpBaseUrl: localHttpBaseUrl,
+        );
+
   static const String manifestPath = 'assets/content/problems/manifest.json';
   static const String problemsPath = 'assets/content/problems';
   static const String grade3Path = 'assets/content/problems/grade3';
@@ -57,10 +68,25 @@ class ContentRepository {
   final String githubRef;
   final String githubProblemsPath;
   final String localProblemsPath;
+  final String localHttpBaseUrl;
   List<String>? _rendererPathCache;
   String activeProblemLocale = 'ko';
 
   Future<ProblemManifest> loadManifest() async {
+    if (source == ContentRepositorySource.localHttp) {
+      final localProblems = await _loadBundledProblems();
+      return ProblemManifest(
+        version: 'local-http',
+        problems: localProblems,
+        raw: {
+          'version': 'local-http',
+          'source': 'local-http',
+          'baseUrl': localHttpBaseUrl,
+          'problems': localProblems.map((problem) => problem.raw).toList(),
+        },
+      );
+    }
+
     if (source == ContentRepositorySource.localExamples) {
       final localProblems = await _loadBundledProblems();
       return ProblemManifest(
@@ -180,6 +206,9 @@ class ContentRepository {
           path.endsWith('/$localizedFilePrefix.renderer.json') ||
           path.endsWith('/$filePrefix.renderer.json') ||
           path.endsWith('/$baseFilePrefix.renderer.json') ||
+          path == '$localizedFilePrefix.renderer.json' ||
+          path == '$filePrefix.renderer.json' ||
+          path == '$baseFilePrefix.renderer.json' ||
           path == '$problemsPath/$localizedFilePrefix.renderer.json' ||
           path == '$problemsPath/$filePrefix.renderer.json' ||
           path == '$problemsPath/$baseFilePrefix.renderer.json',
@@ -223,6 +252,21 @@ class ContentRepository {
       return _rendererPathCache ??= await loadLocalRendererPaths(
         localProblemsPath,
       );
+    }
+
+    if (source == ContentRepositorySource.localHttp) {
+      try {
+        return _rendererPathCache ??= await _loadLocalHttpRendererPaths();
+      } on Object {
+        final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+        return manifest
+            .listAssets()
+            .where(
+              (path) => _isBundledRendererPathForActiveLocale(path),
+            )
+            .toList()
+          ..sort();
+      }
     }
 
     if (source == ContentRepositorySource.githubExamples) {
@@ -323,6 +367,7 @@ class ContentRepository {
   Future<Map<String, dynamic>> _loadJson(String assetPath) async {
     final source = switch (this.source) {
       ContentRepositorySource.localExamples => await loadLocalText(assetPath),
+      ContentRepositorySource.localHttp => await _loadLocalHttpText(assetPath),
       ContentRepositorySource.githubExamples => await _loadGithubText(
           assetPath,
         ),
@@ -348,6 +393,9 @@ class ContentRepository {
     try {
       return switch (source) {
         ContentRepositorySource.localExamples => await loadLocalText(assetPath),
+        ContentRepositorySource.localHttp => await _loadLocalHttpText(
+            assetPath,
+          ),
         ContentRepositorySource.githubExamples => await _loadGithubText(
             assetPath,
           ),
@@ -393,6 +441,50 @@ class ContentRepository {
             path.startsWith(prefix) && path.endsWith('.renderer.json'))
         .toList()
       ..sort();
+  }
+
+  Future<List<String>> _loadLocalHttpRendererPaths() async {
+    final response = await _httpClient.get(_localHttpUri('/api/problems'));
+    if (response.statusCode != 200) {
+      throw StateError(
+        'Local problem server list load failed: ${response.statusCode}',
+      );
+    }
+    final decoded =
+        jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>;
+    final paths = decoded['paths'];
+    if (paths is! List) {
+      return const [];
+    }
+    return paths
+        .map((path) => path.toString())
+        .where((path) => path.endsWith('.renderer.json'))
+        .map((path) => path.replaceAll(r'\', '/'))
+        .toList()
+      ..sort();
+  }
+
+  Future<String> _loadLocalHttpText(String path) async {
+    final response = await _httpClient.get(
+      _localHttpUri('/files/${Uri.encodeComponent(path)}'),
+    );
+    if (response.statusCode == 404) {
+      throw _MissingContent(path);
+    }
+    if (response.statusCode != 200) {
+      throw StateError(
+        'Local problem server file load failed: ${response.statusCode} $path',
+      );
+    }
+    return utf8.decode(response.bodyBytes);
+  }
+
+  Uri _localHttpUri(String path) {
+    final base = localHttpBaseUrl.endsWith('/')
+        ? localHttpBaseUrl
+        : '$localHttpBaseUrl/';
+    final normalizedPath = path.startsWith('/') ? path.substring(1) : path;
+    return Uri.parse('$base$normalizedPath');
   }
 
   Future<String> _loadGithubText(String path) async {

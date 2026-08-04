@@ -190,6 +190,51 @@ void main() {
       expect(content.correctAnswer, equals('507'));
     });
 
+    test('loads local HTTP examples problem list and files', () async {
+      final repository = ContentRepository.localHttp(
+        localHttpBaseUrl: 'http://localhost:8765',
+        httpClient: MockClient((request) async {
+          final url = request.url.toString();
+          if (url == 'http://localhost:8765/api/problems') {
+            return http.Response(
+              '{"paths": ["P3_1_01_00040_00469.renderer.json"]}',
+              200,
+            );
+          }
+          if (url.endsWith('P3_1_01_00040_00469.semantic.json')) {
+            return http.Response(
+              '{"metadata": {"title": "local http"}, "answer": {"value": 507}}',
+              200,
+            );
+          }
+          if (url.endsWith('P3_1_01_00040_00469.renderer.json')) {
+            return http.Response(
+              '{"view_box": {"width": 928, "height": 426}, "elements": []}',
+              200,
+            );
+          }
+          if (url.endsWith('P3_1_01_00040_00469.layout.json')) {
+            return http.Response('{"layout": "ok"}', 200);
+          }
+          if (url.endsWith('P3_1_01_00040_00469.solvable.v1.2.json')) {
+            return http.Response('{"answer": {"value": 507}}', 200);
+          }
+          if (url.endsWith('P3_1_01_00040_00469.svg')) {
+            return http.Response('<svg></svg>', 200);
+          }
+          return http.Response('Not found', 404);
+        }),
+      );
+
+      final manifest = await repository.loadManifest();
+      final content = await repository.loadProblem(manifest.problems.single);
+
+      expect(manifest.raw['source'], equals('local-http'));
+      expect(manifest.problems.single.path, isEmpty);
+      expect(content.renderer, isNotEmpty);
+      expect(content.correctAnswer, equals('507'));
+    });
+
     test('normalizes list answers into submission order text', () async {
       const summary = ProblemSummary(
         id: 'list-answer',
