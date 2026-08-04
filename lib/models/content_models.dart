@@ -131,8 +131,11 @@ class ProblemContent {
       return sanitizeProblemText(key.toString());
     }
     final value = answer['value'];
+    if (value is Map<String, dynamic>) {
+      return sanitizeProblemText(_answerValueText(value));
+    }
     if (value is List) {
-      return sanitizeProblemText(value.map((item) => item.toString()).join());
+      return sanitizeProblemText(value.map(_answerValueText).join());
     }
     return sanitizeProblemText(value?.toString() ?? '');
   }
@@ -232,4 +235,18 @@ String _decodeXmlText(String value) {
       .replaceAll('&amp;', '&')
       .replaceAll('&quot;', '"')
       .replaceAll('&apos;', "'");
+}
+
+String _answerValueText(Object? value) {
+  if (value is Map<String, dynamic>) {
+    for (final key in const ['result', 'value', 'answer', 'count']) {
+      if (value.containsKey(key)) {
+        return _answerValueText(value[key]);
+      }
+    }
+  }
+  if (value is List) {
+    return value.map(_answerValueText).join();
+  }
+  return value?.toString() ?? '';
 }

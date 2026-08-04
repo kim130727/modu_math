@@ -271,6 +271,34 @@ void main() {
       expect(operatorContent.correctAnswer, equals('>='));
       expect(digitContent.correctAnswer, equals('11921'));
     });
+
+    test('extracts final answer value from slot answer maps', () {
+      const summary = ProblemSummary(
+        id: 'slot-answer',
+        grade: 3,
+        subject: 'math',
+        unit: 'unit',
+        type: 'type',
+        title: 'title',
+        path: 'assets/content/problems',
+        raw: {},
+      );
+      const content = ProblemContent(
+        summary: summary,
+        semantic: {},
+        renderer: {},
+        solvable: {
+          'answer': {
+            'value': {
+              'slot_id': 'slot.answer',
+              'value': 1012,
+            },
+          },
+        },
+      );
+
+      expect(content.correctAnswer, equals('1012'));
+    });
   });
 }
 
