@@ -9,7 +9,7 @@ from modu_math.dsl import (
     Region,
     TextBoxSlot,
     TextSlot,
-)
+RectSlot)
 
 PROBLEM_ID = "P3_1_01_00040_02158"
 PROBLEM_TITLE = "세 자리 수의 덧셈 계산"
@@ -35,8 +35,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.problems",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(
-                    "slot.label_1",
+                slot_ids=("slot.label_1",
                     "slot.addend_1_1",
                     "slot.plus_1",
                     "slot.addend_1_2",
@@ -49,12 +48,10 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.label_3",
                     "slot.expression_3",
                     "slot.label_4",
-                    "slot.expression_4",
-                ),
+                    "slot.expression_4",'konva_1785806283023_rect_306673', 'konva_1785806283023_paste_316206_0', 'konva_1785806283023_paste_323904_0', 'konva_1785806283023_paste_327885_0'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.instruction",
                 text="다음을 계산하세요.",
                 prompt="네 개의 세 자리 수 덧셈을 계산하라는 안내",
@@ -243,8 +240,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="864와 459의 합",
                 answer_key="1323",
                 placeholder="",
-            ),
-        ),
+            ),RectSlot(id = 'konva_1785806283023_rect_306673', prompt = '', x = 27.663, y = 106.969, width = 68.042, height = 34.212, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), RectSlot(id = 'konva_1785806283023_paste_316206_0', prompt = '', x = 142.808, y = 108.259, width = 68.042, height = 34.212, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 1, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), RectSlot(id = 'konva_1785806283023_paste_323904_0', prompt = '', x = 390.723, y = 34.296, width = 68.042, height = 34.212, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 2, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), RectSlot(id = 'konva_1785806283023_paste_327885_0', prompt = '', x = 391.757, y = 94.219, width = 68.042, height = 34.212, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 3, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
         diagrams=(),
         groups=(
             Group(

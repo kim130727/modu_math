@@ -229,7 +229,7 @@ def _element_to_svg_lines(element: RenderElement, depth: int = 1) -> list[str]:
         font_size_raw = attrs.get("font-size", attrs.get("font_size", 26))
         font_size = float(font_size_raw) if isinstance(font_size_raw, (int, float)) else 26.0
         # Plain TextSlot is positioned text, not a text box. Keep SVG output in
-        # sync with tldraw by honoring only explicit newlines here; automatic
+        # Keep browser-editor previews stable by honoring only explicit newlines here; automatic
         # width-based wrapping belongs to text_box.
         text_lines = element.text.split("\n")
         attrs_str = _attrs_to_str(attrs)

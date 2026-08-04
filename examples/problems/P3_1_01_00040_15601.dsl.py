@@ -6,7 +6,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextBoxSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_15601"
@@ -303,51 +303,15 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="vertical",
-                slot_ids=(
-                    "slot.question",
-                    "slot.expression",
-                    "slot.answer",
-                ),
+                slot_ids=("slot.answer",'konva_1785806283023_text_716753', 'konva_1785806283023_text_736409', 'konva_1785806283023_rect_753834'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
-                id="slot.question",
-                x=24,
-                y=20,
-                width=852,
-                height=54,
-                text=(
-                    "동민이가 가지고 있는 우표책에는 327장의 외국 우표와 "
-                    "321장의 한국 우표가 있습니다. 우표는 모두 몇 장입니까?"
-                ),
-                font_size=22,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
-                fill="#202124",
-                line_height=1.4,
-                align="left",
-                valign="top",
-            ),
-            TextBoxSlot(
-                id="slot.expression",
-                x=24,
-                y=88,
-                width=852,
-                height=34,
-                text="식 ____________________    답 ____________________ 장",
-                font_size=22,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
-                fill="#202124",
-                align="left",
-                valign="middle",
-            ),
-            BlankSlot(
+        slots=(BlankSlot(
                 id="slot.answer",
                 prompt="답",
                 answer_key="648",
                 placeholder="장",
-            ),
-        ),
+            ),TextBoxSlot(id = 'konva_1785806283023_text_716753', prompt = '', text = '장', x = 806.532, y = 114.194, font_size = 30, fill = '#111827', width = 51.495, height = 46, align = 'left', line_height = 1.25), TextBoxSlot(id = 'konva_1785806283023_text_736409', prompt = '', text = '동민이가 가지고 있는 우표책에는 327장의 외국 우표와 321장의 한국 우표가 있습니다. 우표는 모두 몇 장입니까?', x = 19.815, y = 10.735, font_size = 30, fill = '#111827', width = 860, height = 83, align = 'left', line_height = 1.25), RectSlot(id = 'konva_1785806283023_rect_753834', prompt = '', x = 612.713, y = 107.579, width = 180, height = 54.616, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
     )
 
 

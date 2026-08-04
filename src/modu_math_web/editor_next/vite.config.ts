@@ -3,11 +3,11 @@ import react from "@vitejs/plugin-react";
 import { cpSync, existsSync, rmSync } from "node:fs";
 import { resolve } from "node:path";
 
-const outDir = "static/editor_next/tldraw_assets";
+const outDir = "static/editor_next/konva_assets";
 
 export default defineConfig({
   plugins: [react(), copyMathJaxAssets()],
-  base: "/static/editor_next/tldraw_assets/",
+  base: "/static/editor_next/konva_assets/",
   build: {
     outDir,
     emptyOutDir: true,
@@ -15,11 +15,11 @@ export default defineConfig({
     rollupOptions: {
       input: "index.html",
       output: {
-        entryFileNames: "editor-next-app-tutor.js",
-        chunkFileNames: "editor-next-[name]-[hash].js",
+        entryFileNames: "editor-konva.js",
+        chunkFileNames: "editor-konva-[name]-[hash].js",
         assetFileNames: (assetInfo) => {
-          if (assetInfo.names?.some((name) => name.endsWith(".css"))) return "editor-next-app[extname]";
-          return "editor-next-[name][extname]";
+          if (assetInfo.names?.some((name) => name.endsWith(".css"))) return "editor-konva[extname]";
+          return "editor-konva-[name][extname]";
         },
       },
     },

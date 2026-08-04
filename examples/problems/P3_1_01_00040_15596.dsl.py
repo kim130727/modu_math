@@ -6,7 +6,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextSlot,
-)
+RectSlot, TextBoxSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_15596"
@@ -27,30 +27,15 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.question",),
+                slot_ids=('konva_1785806283023_rect_564409', 'konva_1785806283023_text_640138'),
             ),
         ),
-        slots=(
-            TextSlot(
-                id="slot.question",
-                prompt="",
-                text=(
-                    "백의 자리 숫자가 4, 십의 자리 숫자가 3, 일의 자리 숫자가 5인 "
-                    "수보다 534 많은 수는 얼마입니까?"
-                ),
-                style_role="question",
-                x=30,
-                y=35,
-                font_size=24,
-                fill="#111111",
-            ),
-            BlankSlot(
+        slots=(BlankSlot(
                 id="slot.answer",
                 prompt="답",
                 answer_key="969",
                 placeholder="수",
-            ),
-        ),
+            ),RectSlot(id = 'konva_1785806283023_rect_564409', prompt = '', x = 688.499, y = 124.822, width = 180, height = 62.893, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), TextBoxSlot(id = 'konva_1785806283023_text_640138', prompt = '', text = '백의 자리 숫자가 4, 십의 자리 숫자가 3, 일의 자리 숫자가 5인 수보다 534 많은 수는 얼마입니까?', x = 28.427, y = 20.65, font_size = 30, fill = '#111827', width = 860, height = 83, align = 'left', line_height = 1.25)),
     )
 
 

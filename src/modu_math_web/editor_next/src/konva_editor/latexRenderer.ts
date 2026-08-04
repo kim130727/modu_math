@@ -1,5 +1,5 @@
-const MATHJAX_BASE_URL = "/static/editor_next/tldraw_assets/mathjax";
-const MATHJAX_FONT_BASE_URL = "/static/editor_next/tldraw_assets/mathjax-newcm";
+const MATHJAX_BASE_URL = "/static/editor_next/konva_assets/mathjax";
+const MATHJAX_FONT_BASE_URL = "/static/editor_next/konva_assets/mathjax-newcm";
 const MATHJAX_COMPONENT_URL = `${MATHJAX_BASE_URL}/tex-svg.js`;
 
 declare global {

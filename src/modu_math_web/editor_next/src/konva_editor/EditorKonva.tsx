@@ -10,7 +10,7 @@ import {
   type TutorRendererStep,
   type TutorRendererOverlay,
 } from "../api/editorApi";
-import { problemJsonToLayoutPatches } from "../tldraw/converters/problemJsonToLayoutPatches";
+import { problemJsonToLayoutPatches } from "../utils/problemJsonToLayoutPatches";
 import type { EditorShape, EditorShapeDocument, InputInteraction, InputStyle } from "../types/editorShape";
 import type { ProblemJson } from "../types/problem";
 import sampleProblem from "../samples/sample_problem.json";

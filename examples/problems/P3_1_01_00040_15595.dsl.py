@@ -7,7 +7,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_15595"
@@ -34,29 +34,24 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.calculation.1",
                 role="body",
                 flow="absolute",
-                slot_ids=(
-                    "slot.calculation.1.label",
+                slot_ids=("slot.calculation.1.label",
                     "slot.calculation.1.top",
                     "slot.calculation.1.plus",
                     "slot.calculation.1.bottom",
-                    "slot.calculation.1.line",
-                ),
+                    "slot.calculation.1.line",'konva_1785806283023_rect_520993'),
             ),
             Region(
                 id="region.calculation.2",
                 role="body",
                 flow="absolute",
-                slot_ids=(
-                    "slot.calculation.2.label",
+                slot_ids=("slot.calculation.2.label",
                     "slot.calculation.2.top",
                     "slot.calculation.2.plus",
                     "slot.calculation.2.bottom",
-                    "slot.calculation.2.line",
-                ),
+                    "slot.calculation.2.line",'konva_1785806283023_paste_529430_0'),
             ),
         ),
-        slots=(
-            TextSlot(
+        slots=(TextSlot(
                 id="slot.instruction",
                 prompt="",
                 text="다음 계산을 하시오.",
@@ -189,8 +184,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="(2)",
                 answer_key="599",
                 placeholder="답",
-            ),
-        ),
+            ),RectSlot(id = 'konva_1785806283023_rect_520993', prompt = '', x = 54.934, y = 153.56, width = 95.486, height = 35.85, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), RectSlot(id = 'konva_1785806283023_paste_529430_0', prompt = '', x = 257.205, y = 152.443, width = 95.486, height = 35.85, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 1, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
     )
 
 

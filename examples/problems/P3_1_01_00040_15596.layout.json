@@ -14,22 +14,64 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.question"
+        "konva_1785806283023_rect_564409",
+        "konva_1785806283023_text_640138"
       ]
     }
   ],
   "slots": [
     {
-      "id": "slot.question",
-      "kind": "text",
+      "id": "konva_1785806283023_rect_564409",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 688.499,
+        "y": 124.822,
+        "width": 180.0,
+        "height": 62.893,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "digit",
+          "max_length": 1,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "auto_advance": true,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222"
+        }
+      }
+    },
+    {
+      "id": "konva_1785806283023_text_640138",
+      "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "백의 자리 숫자가 4, 십의 자리 숫자가 3, 일의 자리 숫자가 5인 수보다 534 많은 수는 얼마입니까?",
-        "style_role": "question",
-        "x": 30,
-        "y": 35,
-        "font_size": 24,
-        "fill": "#111111"
+        "style_role": "body",
+        "x": 28.427,
+        "y": 20.65,
+        "width": 860.0,
+        "height": 83.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 30,
+        "line_height": 1.25,
+        "fill": "#111827"
       }
     }
   ],
@@ -38,6 +80,7 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.question"
+    "konva_1785806283023_rect_564409",
+    "konva_1785806283023_text_640138"
   ]
 }

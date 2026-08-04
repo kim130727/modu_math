@@ -1,24 +1,25 @@
 {
   "deleted_slots": [
     "slot.expression_blank",
-    "slot.answer_blank"
+    "slot.answer_blank",
+    "slot.house_chimney"
   ],
   "version": 1,
   "slots": {
     "slot.instruction": {
       "text": "송은이가 문방구를 들러 학교에 가려고 합니다. 집에서 학교까지의 거리를 구하시오.",
-      "x": 20,
-      "y": 8,
+      "x": 15.335,
+      "y": 13.604,
       "font_size": 18,
       "fill": "#111111",
       "width": 610,
-      "height": 52,
+      "height": 29.584,
       "align": "left",
       "line_height": 1.2
     },
     "slot.house_body": {
-      "x": 42,
-      "y": 64,
+      "x": 71.855,
+      "y": 85.482,
       "width": 42,
       "height": 34,
       "fill": "#E9A068",
@@ -31,22 +32,22 @@
       "stroke_width": 1.5,
       "points": [
         [
-          34.0,
-          67.0
+          63.855,
+          88.482
         ],
         [
-          63.0,
-          45.0
+          92.855,
+          66.482
         ],
         [
-          92.0,
-          67.0
+          121.855,
+          88.482
         ]
       ]
     },
     "slot.house_door": {
-      "x": 58,
-      "y": 78,
+      "x": 87.855,
+      "y": 99.482,
       "width": 11,
       "height": 20,
       "fill": "#8B5A3C",
@@ -54,26 +55,17 @@
       "stroke_width": 1
     },
     "slot.house_window": {
-      "x": 74,
-      "y": 73,
+      "x": 103.855,
+      "y": 94.482,
       "width": 9,
       "height": 9,
       "fill": "#BFE5F7",
       "stroke": "#5D91A8",
       "stroke_width": 1
     },
-    "slot.house_chimney": {
-      "x": 66,
-      "y": 43,
-      "width": 6,
-      "height": 11,
-      "fill": "#9B4B3C",
-      "stroke": "#7A372E",
-      "stroke_width": 1
-    },
     "slot.store_body": {
-      "x": 226,
-      "y": 47,
+      "x": 255.855,
+      "y": 68.482,
       "width": 50,
       "height": 56,
       "fill": "#D8EEF4",
@@ -81,8 +73,8 @@
       "stroke_width": 1.5
     },
     "slot.store_sign": {
-      "x": 229,
-      "y": 50,
+      "x": 258.855,
+      "y": 71.482,
       "width": 44,
       "height": 15,
       "fill": "#F5E6CB",
@@ -95,26 +87,26 @@
       "stroke_width": 1,
       "points": [
         [
-          229.0,
-          66.0
+          258.855,
+          87.482
         ],
         [
-          273.0,
-          66.0
+          302.855,
+          87.482
         ],
         [
-          268.0,
-          76.0
+          297.855,
+          97.482
         ],
         [
-          234.0,
-          76.0
+          263.855,
+          97.482
         ]
       ]
     },
     "slot.store_door": {
-      "x": 252,
-      "y": 77,
+      "x": 281.855,
+      "y": 98.482,
       "width": 17,
       "height": 26,
       "fill": "#8EC4D5",
@@ -122,8 +114,8 @@
       "stroke_width": 1
     },
     "slot.store_window": {
-      "x": 232,
-      "y": 78,
+      "x": 261.855,
+      "y": 99.482,
       "width": 15,
       "height": 15,
       "fill": "#BDE5F2",
@@ -131,8 +123,8 @@
       "stroke_width": 1
     },
     "slot.school_body": {
-      "x": 248,
-      "y": 156,
+      "x": 277.855,
+      "y": 177.482,
       "width": 49,
       "height": 37,
       "fill": "#F4D37A",
@@ -145,22 +137,22 @@
       "stroke_width": 1.5,
       "points": [
         [
-          242.0,
-          158.0
+          271.855,
+          179.482
         ],
         [
-          272.0,
-          139.0
+          301.855,
+          160.482
         ],
         [
-          303.0,
-          158.0
+          332.855,
+          179.482
         ]
       ]
     },
     "slot.school_door": {
-      "x": 266,
-      "y": 174,
+      "x": 295.855,
+      "y": 195.482,
       "width": 13,
       "height": 19,
       "fill": "#8AB8C8",
@@ -168,8 +160,8 @@
       "stroke_width": 1
     },
     "slot.school_window_1": {
-      "x": 253,
-      "y": 164,
+      "x": 282.855,
+      "y": 185.482,
       "width": 8,
       "height": 8,
       "fill": "#BFE5F7",
@@ -177,8 +169,8 @@
       "stroke_width": 1
     },
     "slot.school_window_2": {
-      "x": 284,
-      "y": 164,
+      "x": 313.855,
+      "y": 185.482,
       "width": 8,
       "height": 8,
       "fill": "#BFE5F7",
@@ -186,40 +178,40 @@
       "stroke_width": 1
     },
     "slot.route_home_store": {
-      "x1": 87,
-      "y1": 83,
-      "x2": 232,
-      "y2": 93,
+      "x1": 116.855,
+      "y1": 104.482,
+      "x2": 261.855,
+      "y2": 114.482,
       "stroke": "#8A6A58",
       "stroke_width": 1.5
     },
     "slot.route_store_school": {
-      "x1": 232,
-      "y1": 93,
-      "x2": 268,
-      "y2": 143,
+      "x1": 261.855,
+      "y1": 114.482,
+      "x2": 297.855,
+      "y2": 164.482,
       "stroke": "#8A6A58",
       "stroke_width": 2
     },
     "slot.point_home": {
-      "cx": 87,
-      "cy": 83,
+      "cx": 116.855,
+      "cy": 104.482,
       "r": 3,
       "fill": "#7A4A35",
       "stroke": "#7A4A35",
       "stroke_width": 1
     },
     "slot.point_store": {
-      "cx": 232,
-      "cy": 93,
+      "cx": 261.855,
+      "cy": 114.482,
       "r": 3,
       "fill": "#7A4A35",
       "stroke": "#7A4A35",
       "stroke_width": 1
     },
     "slot.point_school": {
-      "cx": 268,
-      "cy": 143,
+      "cx": 297.855,
+      "cy": 164.482,
       "r": 3,
       "fill": "#7A4A35",
       "stroke": "#7A4A35",
@@ -227,37 +219,37 @@
     },
     "slot.house_label": {
       "text": "송은이네 집",
-      "x": 24,
-      "y": 116,
+      "x": 53.855,
+      "y": 137.482,
       "font_size": 14,
       "fill": "#444444"
     },
     "slot.store_label": {
       "text": "문방구",
-      "x": 283,
-      "y": 86,
+      "x": 312.855,
+      "y": 107.482,
       "font_size": 14,
       "fill": "#444444"
     },
     "slot.school_label": {
       "text": "학교",
-      "x": 305,
-      "y": 187,
+      "x": 334.855,
+      "y": 208.482,
       "font_size": 14,
       "fill": "#444444"
     },
     "slot.distance_487": {
       "text": "487 m",
-      "x": 157,
-      "y": 73,
+      "x": 186.855,
+      "y": 94.482,
       "font_size": 16,
       "fill": "#222222",
       "anchor": "middle"
     },
     "slot.distance_295": {
       "text": "295 m",
-      "x": 272,
-      "y": 118,
+      "x": 301.855,
+      "y": 139.482,
       "font_size": 16,
       "fill": "#222222",
       "anchor": "middle"

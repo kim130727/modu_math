@@ -7,58 +7,97 @@
   },
   "elements": [
     {
-      "id": "slot.question.text",
-      "type": "text_box",
+      "id": "konva_1785806283023_rect_753834.rect",
+      "type": "rect",
       "attributes": {
-        "x": 24.0,
-        "y": 20.0,
-        "fill": "#202124",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 22,
-        "width": 852.0,
-        "height": 70.0,
-        "max_width": 852.0,
-        "data-slot-kind": "text_box",
-        "data-box-x": 24.0,
-        "data-box-y": 20.0,
-        "data-box-width": 852.0,
-        "data-box-height": 70.0,
-        "data-text-align": "left",
-        "data-vertical-align": "top",
-        "data-line-height": 1.4
+        "x": 612.713,
+        "y": 107.579,
+        "width": 180.0,
+        "height": 54.616,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.2
       },
-      "source_ref": "slot.question",
+      "source_ref": "konva_1785806283023_rect_753834",
       "refs": {
-        "layout_slot_id": "slot.question"
+        "layout_slot_id": "konva_1785806283023_rect_753834"
       },
-      "text": "동민이가 가지고 있는 우표책에는 327장의 외국 우표와 321장의 한국 우표가 있습니다. 우표는 모두 몇 장입니까?"
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
     },
     {
-      "id": "slot.expression.text",
+      "id": "konva_1785806283023_text_716753.text",
       "type": "text_box",
       "attributes": {
-        "x": 24.0,
-        "y": 88.0,
-        "fill": "#202124",
+        "x": 806.532,
+        "y": 114.194,
+        "fill": "#111827",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 22,
-        "width": 852.0,
-        "height": 36.0,
-        "max_width": 852.0,
+        "font-size": 30,
+        "width": 51.495,
+        "height": 46.0,
+        "max_width": 51.495,
         "data-slot-kind": "text_box",
-        "data-box-x": 24.0,
-        "data-box-y": 88.0,
-        "data-box-width": 852.0,
-        "data-box-height": 36.0,
+        "data-box-x": 806.532,
+        "data-box-y": 114.194,
+        "data-box-width": 51.495,
+        "data-box-height": 46.0,
         "data-text-align": "left",
-        "data-vertical-align": "middle",
+        "data-vertical-align": "top",
         "data-line-height": 1.25
       },
-      "source_ref": "slot.expression",
+      "source_ref": "konva_1785806283023_text_716753",
       "refs": {
-        "layout_slot_id": "slot.expression"
+        "layout_slot_id": "konva_1785806283023_text_716753"
       },
-      "text": "식 ____________________    답 ____________________ 장"
+      "text": "장"
+    },
+    {
+      "id": "konva_1785806283023_text_736409.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 19.815,
+        "y": 10.735,
+        "fill": "#111827",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 30,
+        "width": 860.0,
+        "height": 83.0,
+        "max_width": 860.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 19.815,
+        "data-box-y": 10.735,
+        "data-box-width": 860.0,
+        "data-box-height": 83.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25
+      },
+      "source_ref": "konva_1785806283023_text_736409",
+      "refs": {
+        "layout_slot_id": "konva_1785806283023_text_736409"
+      },
+      "text": "동민이가 가지고 있는 우표책에는 327장의 외국 우표와 321장의 한국 우표가 있습니다. 우표는 모두 몇 장입니까?"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

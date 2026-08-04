@@ -1,7 +1,7 @@
 {
   "problem_id": "P3_1_01_00040_15595",
   "view_box": {
-    "width": 760.0,
+    "width": 460.0,
     "height": 260.0,
     "background": "#FFFFFF"
   },
@@ -21,6 +21,45 @@
         "layout_slot_id": "slot.instruction"
       },
       "text": "다음 계산을 하시오."
+    },
+    {
+      "id": "konva_1785806283023_rect_520993.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 54.934,
+        "y": 153.56,
+        "width": 95.486,
+        "height": 35.85,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.2
+      },
+      "source_ref": "konva_1785806283023_rect_520993",
+      "refs": {
+        "layout_slot_id": "konva_1785806283023_rect_520993"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
     },
     {
       "id": "slot.calculation.1.line.line",
@@ -109,12 +148,51 @@
       "text": "125"
     },
     {
+      "id": "konva_1785806283023_paste_529430_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 257.205,
+        "y": 152.443,
+        "width": 95.486,
+        "height": 35.85,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.2
+      },
+      "source_ref": "konva_1785806283023_paste_529430_0",
+      "refs": {
+        "layout_slot_id": "konva_1785806283023_paste_529430_0"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 1,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    {
       "id": "slot.calculation.2.line.line",
       "type": "line",
       "attributes": {
-        "x1": 249.0,
+        "x1": 281.726,
         "y1": 142.0,
-        "x2": 339.0,
+        "x2": 371.726,
         "y2": 142.0,
         "stroke": "#111111",
         "stroke-width": 1.5
@@ -128,7 +206,7 @@
       "id": "slot.calculation.2.label.text",
       "type": "text",
       "attributes": {
-        "x": 205.0,
+        "x": 237.726,
         "y": 77.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
@@ -144,7 +222,7 @@
       "id": "slot.calculation.2.top.text",
       "type": "text",
       "attributes": {
-        "x": 297.0,
+        "x": 329.726,
         "y": 77.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
@@ -162,7 +240,7 @@
       "id": "slot.calculation.2.plus.text",
       "type": "text",
       "attributes": {
-        "x": 250.0,
+        "x": 282.726,
         "y": 119.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
@@ -180,7 +258,7 @@
       "id": "slot.calculation.2.bottom.text",
       "type": "text",
       "attributes": {
-        "x": 297.0,
+        "x": 329.726,
         "y": 119.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",

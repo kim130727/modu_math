@@ -109,24 +109,20 @@ def test_editor_index_uses_static_assets_without_inline_script(tmp_path: Path) -
     assert "export function pointToSegmentDistance" in canvas_js
 
 
-def test_editor_next_index_uses_separate_solid_assets(tmp_path: Path) -> None:
+def test_editor_konva_uses_konva_assets_and_editor_next_is_removed(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
 
-    response = client.get("/editor-next/")
+    response = client.get("/editor-konva/")
 
     assert response.status_code == 200
     html = response.content.decode("utf-8")
-    assert 'id="editor-next-root"' in html
-    assert 'href="/static/editor_next/assets/editor-next.css' in html
-    assert 'type="module" src="/static/editor_next/assets/editor-next.js' in html
+    assert 'id="root" data-editor-mode="konva"' in html
+    assert 'href="/static/editor_next/konva_assets/editor-konva.css' in html
+    assert 'type="module" src="/static/editor_next/konva_assets/editor-konva.js' in html
     assert 'src="/static/editor/js/editor-app.js"' not in html
     assert 'href="/static/editor/css/editor.css"' not in html
-    css_response = client.get("/static/editor_next/assets/editor-next.css")
-    assert css_response.status_code == 200
-    assert b".editor-next-shell" in b"".join(css_response.streaming_content)
-    js_response = client.get("/static/editor_next/assets/editor-next.js")
-    assert js_response.status_code == 200
-    assert b"ModuMath Editor Next" in b"".join(js_response.streaming_content)
+    assert client.get("/editor-next/").status_code == 404
+    assert client.get("/editor-next/" + "tl" + "draw/").status_code == 404
 
 
 def test_list_endpoint_includes_0001_if_present(tmp_path: Path) -> None:

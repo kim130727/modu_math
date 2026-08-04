@@ -9,10 +9,8 @@ from modu_math_web.editor import views as editor_views
 from modu_math_web.editor_next import views as editor_next_views
 
 urlpatterns = [
-    path("", lambda request: redirect("/editor/")),
+    path("", lambda request: redirect("/editor-konva/")),
     path("editor/", editor_views.editor_index),
-    path("editor-next/", editor_next_views.editor_next_index),
-    path("editor-next/tldraw/", editor_next_views.editor_next_tldraw),
     path("editor-konva/", editor_next_views.editor_konva),
     path("api/editor/", include("modu_math_web.editor.urls")),
 ]
