@@ -6,7 +6,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextBoxSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_15603"
@@ -338,33 +338,11 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="vertical",
-                slot_ids=(
-                    "slot.question",
-                    "slot.expression",
-                    "slot.answer",
-                ),
+                slot_ids=("slot.expression",
+                    "slot.answer",'konva_1785806283023_text_1948392', 'konva_1785806283023_text_1967792', 'konva_1785806283023_rect_1979608'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
-                id="slot.question",
-                x=20,
-                y=18,
-                width=860,
-                height=62,
-                text=(
-                    "기영이가 가지고 있던 구슬 중 120개를 호근이에게 주고, "
-                    "형우에게 130개를 주었더니 남은 구슬은\n"
-                    "220개가 되었습니다. 기영이가 처음에 가지고 있던 구슬은 몇 개입니까?"
-                ),
-                font_size=21,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
-                fill="#202124",
-                line_height=1.45,
-                align="left",
-                valign="top",
-            ),
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.expression",
                 x=20,
                 y=104,
@@ -382,8 +360,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="답",
                 answer_key="470",
                 placeholder="개",
-            ),
-        ),
+            ),TextBoxSlot(id = 'konva_1785806283023_text_1948392', prompt = '', text = '기영이가 가지고 있던 구슬 중 120개를 호근이에게 주고, 형우에게 130개를 주었더니 남은 구슬은 220개가 되었습니다. 기영이가 처음에 가지고 있던 구슬은 몇 개입니까?', x = 19.815, y = 17.201, font_size = 30, fill = '#111827', width = 860, height = 121, align = 'left', line_height = 1.25), TextBoxSlot(id = 'konva_1785806283023_text_1967792', prompt = '', text = '개', x = 783.913, y = 141.352, font_size = 30, fill = '#111827', width = 42.273, height = 46, align = 'left', line_height = 1.25), RectSlot(id = 'konva_1785806283023_rect_1979608', prompt = '', x = 644.172, y = 134.03, width = 126.484, height = 53.323, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
     )
 
 

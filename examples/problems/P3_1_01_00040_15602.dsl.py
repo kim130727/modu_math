@@ -6,7 +6,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextBoxSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_15602"
@@ -302,32 +302,11 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="vertical",
-                slot_ids=(
-                    "slot.question",
-                    "slot.expression_blank",
-                    "slot.answer_blank",
-                ),
+                slot_ids=("slot.expression_blank",
+                    "slot.answer_blank",'konva_1785806283023_text_811625', 'konva_1785806283023_rect_832106', 'konva_1785806283023_paste_838959_0'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
-                id="slot.question",
-                x=24,
-                y=20,
-                width=912,
-                height=48,
-                text=(
-                    "동윤이의 사진첩에는 527장의 가족 사진과 315장의 친구 사진이 있습니다. "
-                    "사진은 모두 몇 장입니까?"
-                ),
-                font_size=22,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
-                fill="#202124",
-                line_height=1.4,
-                align="left",
-                valign="top",
-            ),
-            BlankSlot(
+        slots=(BlankSlot(
                 id="slot.expression_blank",
                 prompt="식",
                 answer_key="527 + 315 = 842",
@@ -338,8 +317,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="답",
                 answer_key="842",
                 placeholder="장",
-            ),
-        ),
+            ),TextBoxSlot(id = 'konva_1785806283023_text_811625', prompt = '', text = '동윤이의 사진첩에는 527장의 가족 사진과 315장의 친구 사진이 있습니다. 사진은 모두 몇 장입니까?', x = 25.671, y = 15.132, font_size = 30, fill = '#111827', width = 860, height = 83, align = 'left', line_height = 1.25), RectSlot(id = 'konva_1785806283023_rect_832106', prompt = '', x = 624.696, y = 105.509, width = 153.819, height = 58.755, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2), TextBoxSlot(id = 'konva_1785806283023_paste_838959_0', prompt = '', text = '장', x = 793.34, y = 112.243, font_size = 30, fill = '#111827', width = 77.331, height = 46, align = 'left', line_height = 1.25)),
     )
 
 

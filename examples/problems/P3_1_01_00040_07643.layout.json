@@ -15,31 +15,12 @@
       "flow": "vertical",
       "slot_ids": [
         "konva_1785217709470_rect_1259829",
-        "slot.question",
-        "konva_1785217709470_text_1269532"
+        "konva_1785217709470_text_1269532",
+        "konva_1785806283023_text_2138848"
       ]
     }
   ],
   "slots": [
-    {
-      "id": "slot.question",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "어제까지 동화책을 미정이는 129쪽 읽었고, 하윤이는 188쪽 읽었습니다. 미정이와 하윤이가 어제까지 읽은 동화책은 모두 몇 쪽입니까?",
-        "style_role": "body",
-        "x": 28.622,
-        "y": 47.215,
-        "width": 804,
-        "height": 80,
-        "align": "left",
-        "valign": "top",
-        "font_size": 24,
-        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "line_height": 1.5,
-        "fill": "#202124"
-      }
-    },
     {
       "id": "konva_1785217709470_rect_1259829",
       "kind": "rect",
@@ -93,6 +74,24 @@
         "line_height": 1.25,
         "fill": "#111827"
       }
+    },
+    {
+      "id": "konva_1785806283023_text_2138848",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "어제까지 동화책을 미정이는 129쪽 읽었고, 하윤이는 188쪽 읽었습니다. 미정이와 하윤이가 어제까지 읽은 동화책은 모두 몇 쪽입니까?",
+        "style_role": "body",
+        "x": 19.815,
+        "y": 23.667,
+        "width": 860.0,
+        "height": 121.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 30,
+        "line_height": 1.25,
+        "fill": "#111827"
+      }
     }
   ],
   "groups": [],
@@ -101,7 +100,7 @@
   "reading_order": [
     "region.stem",
     "konva_1785217709470_rect_1259829",
-    "slot.question",
-    "konva_1785217709470_text_1269532"
+    "konva_1785217709470_text_1269532",
+    "konva_1785806283023_text_2138848"
   ]
 }
