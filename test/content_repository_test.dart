@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
@@ -11,7 +12,7 @@ void main() {
 
   group('ContentRepository', () {
     test('discovers bundled grade 3 problem assets', () async {
-      final repository = ContentRepository();
+      final repository = ContentRepository.bundledAssets();
 
       final manifest = await repository.loadManifest();
 
@@ -25,7 +26,7 @@ void main() {
 
     test('loads a discovered problem through json renderer and solvable files',
         () async {
-      final repository = ContentRepository();
+      final repository = ContentRepository.bundledAssets();
       final manifest = await repository.loadManifest();
 
       final content = await repository.loadProblem(manifest.problems.first);
@@ -37,7 +38,7 @@ void main() {
     });
 
     test('loads the first renderer prefix as a JSON preview bundle', () async {
-      final repository = ContentRepository();
+      final repository = ContentRepository.bundledAssets();
 
       final prefixes = await repository.loadGrade3JsonProblemPrefixes();
       expect(prefixes, isNotEmpty);
@@ -52,7 +53,8 @@ void main() {
 
     test('loads Ukrainian files from a Korean summary after locale switch',
         () async {
-      final repository = ContentRepository()..activeProblemLocale = 'uk';
+      final repository = ContentRepository.bundledAssets()
+        ..activeProblemLocale = 'uk';
       final koreanSummary = _summaryWithPrefix('P3_1_01_00040_00469_ko');
 
       final content = await repository.loadProblem(koreanSummary);
@@ -65,7 +67,8 @@ void main() {
     });
 
     test('loads Korean files from a suffixed localized summary', () async {
-      final repository = ContentRepository()..activeProblemLocale = 'ko';
+      final repository = ContentRepository.bundledAssets()
+        ..activeProblemLocale = 'ko';
       final ukrainianSummary = _summaryWithPrefix('P3_1_01_00040_00469_uk');
 
       final content = await repository.loadProblem(ukrainianSummary);
@@ -134,6 +137,54 @@ void main() {
       final content = await repository.loadProblem(manifest.problems.single);
 
       expect(manifest.problems.single.path, equals('examples/problems'));
+      expect(content.semantic, isNotEmpty);
+      expect(content.renderer, isNotEmpty);
+      expect(content.correctAnswer, equals('507'));
+    });
+
+    test('loads local examples problem list and files from disk', () async {
+      final tempDir = await Directory.systemTemp.createTemp(
+        'modu_math_problem_test_',
+      );
+      addTearDown(() async {
+        if (await tempDir.exists()) {
+          await tempDir.delete(recursive: true);
+        }
+      });
+
+      const prefix = 'P3_1_01_00040_00469';
+      await File('${tempDir.path}/$prefix.semantic.json').writeAsString('''
+      {
+        "metadata": {
+          "title": "local title",
+          "question": "local question"
+        },
+        "answer": {"value": 507}
+      }
+      ''');
+      await File('${tempDir.path}/$prefix.renderer.json').writeAsString(
+        '{"view_box": {"width": 928, "height": 426}, "elements": []}',
+      );
+      await File('${tempDir.path}/$prefix.layout.json').writeAsString(
+        '{"layout": "ok"}',
+      );
+      await File('${tempDir.path}/$prefix.solvable.v1.2.json').writeAsString(
+        '{"answer": {"value": 507}}',
+      );
+      await File('${tempDir.path}/$prefix.svg').writeAsString('<svg></svg>');
+
+      final repository = ContentRepository.localExamples(
+        localProblemsPath: tempDir.path,
+      );
+
+      final manifest = await repository.loadManifest();
+      final content = await repository.loadProblem(manifest.problems.single);
+
+      expect(manifest.raw['source'], equals('local'));
+      expect(
+        manifest.problems.single.path.replaceAll(r'\', '/'),
+        tempDir.path.replaceAll(r'\', '/'),
+      );
       expect(content.semantic, isNotEmpty);
       expect(content.renderer, isNotEmpty);
       expect(content.correctAnswer, equals('507'));

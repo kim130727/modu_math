@@ -5,26 +5,44 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/content_models.dart';
+import 'problem_file_loader.dart'
+    if (dart.library.io) 'problem_file_loader_io.dart';
 
 enum ContentRepositorySource {
+  localExamples,
   bundledAssets,
   githubExamples,
 }
 
 class ContentRepository {
   ContentRepository({
-    this.source = ContentRepositorySource.bundledAssets,
+    ContentRepositorySource? source,
     http.Client? httpClient,
     this.githubOwner = 'kim130727',
     this.githubRepo = 'modu_math',
     this.githubRef = 'main',
     this.githubProblemsPath = 'examples/problems',
-  }) : _httpClient = httpClient ?? http.Client();
+    this.localProblemsPath = r'C:\projects\modu_math\examples\problems',
+  })  : source = source ??
+            (kIsWeb
+                ? ContentRepositorySource.bundledAssets
+                : ContentRepositorySource.localExamples),
+        _httpClient = httpClient ?? http.Client();
 
   ContentRepository.githubExamples({http.Client? httpClient})
       : this(
           source: ContentRepositorySource.githubExamples,
           httpClient: httpClient,
+        );
+
+  ContentRepository.bundledAssets()
+      : this(source: ContentRepositorySource.bundledAssets);
+
+  ContentRepository.localExamples({String? localProblemsPath})
+      : this(
+          source: ContentRepositorySource.localExamples,
+          localProblemsPath:
+              localProblemsPath ?? r'C:\projects\modu_math\examples\problems',
         );
 
   static const String manifestPath = 'assets/content/problems/manifest.json';
@@ -38,10 +56,25 @@ class ContentRepository {
   final String githubRepo;
   final String githubRef;
   final String githubProblemsPath;
+  final String localProblemsPath;
   List<String>? _rendererPathCache;
   String activeProblemLocale = 'ko';
 
   Future<ProblemManifest> loadManifest() async {
+    if (source == ContentRepositorySource.localExamples) {
+      final localProblems = await _loadBundledProblems();
+      return ProblemManifest(
+        version: 'local',
+        problems: localProblems,
+        raw: {
+          'version': 'local',
+          'source': 'local',
+          'path': localProblemsPath,
+          'problems': localProblems.map((problem) => problem.raw).toList(),
+        },
+      );
+    }
+
     if (source == ContentRepositorySource.githubExamples) {
       final githubProblems = await _loadBundledProblems();
       return ProblemManifest(
@@ -186,6 +219,12 @@ class ContentRepository {
   }
 
   Future<List<String>> _loadRendererPaths() async {
+    if (source == ContentRepositorySource.localExamples) {
+      return _rendererPathCache ??= await loadLocalRendererPaths(
+        localProblemsPath,
+      );
+    }
+
     if (source == ContentRepositorySource.githubExamples) {
       return _rendererPathCache ??= await _loadGithubRendererPaths();
     }
@@ -282,9 +321,15 @@ class ContentRepository {
   }
 
   Future<Map<String, dynamic>> _loadJson(String assetPath) async {
-    final source = this.source == ContentRepositorySource.githubExamples
-        ? await _loadGithubText(assetPath)
-        : await rootBundle.loadString(assetPath);
+    final source = switch (this.source) {
+      ContentRepositorySource.localExamples => await loadLocalText(assetPath),
+      ContentRepositorySource.githubExamples => await _loadGithubText(
+          assetPath,
+        ),
+      ContentRepositorySource.bundledAssets => await rootBundle.loadString(
+          assetPath,
+        ),
+    };
     return jsonDecode(source) as Map<String, dynamic>;
   }
 
@@ -301,9 +346,15 @@ class ContentRepository {
 
   Future<String> _loadOptionalText(String assetPath) async {
     try {
-      return source == ContentRepositorySource.githubExamples
-          ? await _loadGithubText(assetPath)
-          : await rootBundle.loadString(assetPath);
+      return switch (source) {
+        ContentRepositorySource.localExamples => await loadLocalText(assetPath),
+        ContentRepositorySource.githubExamples => await _loadGithubText(
+            assetPath,
+          ),
+        ContentRepositorySource.bundledAssets => await rootBundle.loadString(
+            assetPath,
+          ),
+      };
     } on Object catch (error) {
       if (_isMissingContent(error)) {
         return '';
@@ -366,7 +417,9 @@ class ContentRepository {
 }
 
 bool _isMissingContent(Object error) {
-  return error is FlutterError || error is _MissingContent;
+  return error is FlutterError ||
+      error is MissingLocalContent ||
+      error is _MissingContent;
 }
 
 class _MissingContent implements Exception {
