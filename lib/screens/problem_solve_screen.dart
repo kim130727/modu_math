@@ -359,11 +359,23 @@ String _problemScreenTitle(ProblemContent content, AppStrings strings) {
   final metadata = content.semantic['metadata'];
   if (metadata is Map<String, dynamic>) {
     final title = metadata['title']?.toString().trim() ?? '';
-    if (title.isNotEmpty) {
+    if (title.isNotEmpty && !_looksBrokenText(title)) {
       return title;
     }
   }
+  if (content.prompt.isNotEmpty && !_looksBrokenText(content.prompt)) {
+    return content.prompt;
+  }
+  if (content.summary.id.isNotEmpty) {
+    return content.summary.id;
+  }
   return strings.problemTitle(content.summary.title);
+}
+
+bool _looksBrokenText(String value) {
+  return RegExp(r'[\u3400-\u9FFF\uFFFD]').hasMatch(value) ||
+      value.contains('??') ||
+      value.contains('�');
 }
 
 class _ProblemVisual extends StatelessWidget {

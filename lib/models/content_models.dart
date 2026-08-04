@@ -90,9 +90,16 @@ class ProblemContent {
 
   String get prompt {
     final metadata = _mapAt(semantic, 'metadata');
-    return metadata['question']?.toString() ??
-        metadata['instruction']?.toString() ??
-        summary.title;
+    final semanticPrompt =
+        metadata['question']?.toString() ?? metadata['instruction']?.toString();
+    if (semanticPrompt != null && !_looksBrokenText(semanticPrompt)) {
+      return semanticPrompt;
+    }
+    final rendererPrompt = _rendererInstructionText();
+    if (rendererPrompt.isNotEmpty) {
+      return rendererPrompt;
+    }
+    return summary.title;
   }
 
   List<String> get choices {
@@ -164,6 +171,29 @@ class ProblemContent {
         .where((choice) => choice.isNotEmpty)
         .toList();
     return _extractInlineChoices(choices) ?? choices;
+  }
+
+  String _rendererInstructionText() {
+    final elements = renderer['elements'];
+    if (elements is! List) {
+      return '';
+    }
+    for (final element in elements.whereType<Map<String, dynamic>>()) {
+      final identity = [
+        element['id'],
+        element['source_ref'],
+        _mapAt(element, 'refs')['layout_slot_id'],
+        _mapAt(element, 'metadata')['layout_slot_id'],
+      ].whereType<Object>().join(' ').toLowerCase();
+      if (!identity.contains('instruction')) {
+        continue;
+      }
+      final text = element['text']?.toString().trim() ?? '';
+      if (text.isNotEmpty && !_looksBrokenText(text)) {
+        return text;
+      }
+    }
+    return '';
   }
 }
 
@@ -249,4 +279,10 @@ String _answerValueText(Object? value) {
     return value.map(_answerValueText).join();
   }
   return value?.toString() ?? '';
+}
+
+bool _looksBrokenText(String value) {
+  return RegExp(r'[\u3400-\u9FFF\uFFFD]').hasMatch(value) ||
+      value.contains('??') ||
+      value.contains('�');
 }

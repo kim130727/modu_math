@@ -299,6 +299,39 @@ void main() {
 
       expect(content.correctAnswer, equals('1012'));
     });
+
+    test('uses renderer instruction when semantic prompt is broken', () {
+      const summary = ProblemSummary(
+        id: 'broken-prompt',
+        grade: 3,
+        subject: 'math',
+        unit: 'unit',
+        type: 'type',
+        title: 'title',
+        path: 'assets/content/problems',
+        raw: {},
+      );
+      const content = ProblemContent(
+        summary: summary,
+        semantic: {
+          'metadata': {
+            'question': '???덉뿉 ?뚮쭪? ?섎? ?⑤꽔?쇱떆??',
+          },
+        },
+        solvable: {},
+        renderer: {
+          'elements': [
+            {
+              'id': 'slot.instruction.text',
+              'source_ref': 'slot.instruction',
+              'text': '□ 안에 알맞은 수를 써넣으시오.',
+            },
+          ],
+        },
+      );
+
+      expect(content.prompt, equals('□ 안에 알맞은 수를 써넣으시오.'));
+    });
   });
 }
 

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, unnecessary_const
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:modu_math_app/widgets/renderer_json_canvas.dart';
@@ -202,7 +204,7 @@ void main() {
               expectedAnswer: '507',
               onInputChanged: (next) => value = next,
               renderer: const {
-                'view_box': {
+                'view_box': const {
                   'width': 300,
                   'height': 120,
                   'background': '#FFFFFF',
@@ -526,6 +528,92 @@ void main() {
 
     expect(value, equals('83'));
     expect(find.textContaining('알맞은 수'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+  testWidgets('orders duplicated-order slots by visual problem groups',
+      (tester) async {
+    var value = '';
+    Map<String, Object?> slot({
+      required double x,
+      required double y,
+    }) {
+      return {
+        'type': 'rect',
+        'attributes': {
+          'x': x,
+          'y': y,
+          'width': 28,
+          'height': 28,
+          'fill': '#ffffff',
+          'stroke': '#111827',
+        },
+        'interaction': {
+          'type': 'input',
+          'role': 'answer',
+          'value_type': 'digit',
+          'max_length': 1,
+          'include_in_submission': true,
+          'order': 9,
+          'keyboard': 'number',
+        },
+      };
+    }
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 520,
+            height: 220,
+            child: RendererJsonCanvas(
+              inputValue: value,
+              onInputChanged: (next) => value = next,
+              renderer: {
+                'view_box': {
+                  'width': 520,
+                  'height': 220,
+                  'background': '#FFFFFF',
+                },
+                'elements': [
+                  slot(x: 100, y: 40),
+                  slot(x: 132, y: 40),
+                  slot(x: 68, y: 120),
+                  slot(x: 100, y: 120),
+                  slot(x: 132, y: 120),
+                  slot(x: 164, y: 120),
+                  slot(x: 360, y: 40),
+                  slot(x: 392, y: 40),
+                  slot(x: 328, y: 120),
+                  slot(x: 360, y: 120),
+                  slot(x: 392, y: 120),
+                  slot(x: 424, y: 120),
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    const digits = [
+      '1',
+      '1',
+      '1',
+      '3',
+      '0',
+      '4',
+      '1',
+      '1',
+      '1',
+      '0',
+      '2',
+      '6',
+    ];
+    for (var index = 0; index < digits.length; index += 1) {
+      await tester.enterText(find.byType(TextField).at(index), digits[index]);
+    }
+
+    expect(value, equals('111304111026'));
     expect(tester.takeException(), isNull);
   });
 }

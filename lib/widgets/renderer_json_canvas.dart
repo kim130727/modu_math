@@ -779,21 +779,7 @@ List<_InputSlot> _inputSlots(
       ),
     );
   }
-  slots.sort((a, b) {
-    final orderComparison = switch ((a.order, b.order)) {
-      (final int aOrder, final int bOrder) => aOrder.compareTo(bOrder),
-      (final int _, null) => -1,
-      (null, final int _) => 1,
-      _ => 0,
-    };
-    if (orderComparison != 0) {
-      return orderComparison;
-    }
-    final row = a.rect.top.compareTo(b.rect.top).abs() < 12
-        ? 0
-        : a.rect.top.compareTo(b.rect.top);
-    return row != 0 ? row : a.rect.left.compareTo(b.rect.left);
-  });
+  _sortInputSlots(slots);
   final answerLength = expectedAnswer.characters.length;
   final answerSlots = slots.where((slot) => slot.contributesToAnswer).toList();
   if (answerLength > 1 &&
@@ -804,6 +790,75 @@ List<_InputSlot> _inputSlots(
     slots[index] = answerSlot.copyWith(maxLength: answerLength);
   }
   return slots;
+}
+
+void _sortInputSlots(List<_InputSlot> slots) {
+  final orderedSlots = slots.where((slot) => slot.order != null).toList();
+  final hasMeaningfulOrder = orderedSlots.isNotEmpty &&
+      orderedSlots.map((slot) => slot.order).toSet().length > 1;
+  if (hasMeaningfulOrder) {
+    slots.sort((a, b) {
+      final orderComparison = switch ((a.order, b.order)) {
+        (final int aOrder, final int bOrder) => aOrder.compareTo(bOrder),
+        (final int _, null) => -1,
+        (null, final int _) => 1,
+        _ => 0,
+      };
+      if (orderComparison != 0) {
+        return orderComparison;
+      }
+      return _compareByRowThenLeft(a, b);
+    });
+    return;
+  }
+
+  final clusters = _horizontalClusters(slots);
+  if (clusters.length > 1) {
+    slots
+      ..clear()
+      ..addAll(
+        clusters.expand(
+          (cluster) => cluster..sort(_compareByRowThenLeft),
+        ),
+      );
+    return;
+  }
+
+  slots.sort(_compareByRowThenLeft);
+}
+
+List<List<_InputSlot>> _horizontalClusters(List<_InputSlot> slots) {
+  if (slots.length < 4) {
+    return [slots];
+  }
+  final byLeft = [...slots]..sort((a, b) => a.rect.left.compareTo(b.rect.left));
+  final averageWidth =
+      byLeft.fold<double>(0, (total, slot) => total + slot.rect.width) /
+          byLeft.length;
+  final clusters = <List<_InputSlot>>[];
+  var current = <_InputSlot>[byLeft.first];
+  var currentRight = byLeft.first.rect.right;
+  for (final slot in byLeft.skip(1)) {
+    final gap = slot.rect.left - currentRight;
+    if (gap > averageWidth * 2.2) {
+      clusters.add(current);
+      current = [slot];
+    } else {
+      current.add(slot);
+    }
+    if (slot.rect.right > currentRight) {
+      currentRight = slot.rect.right;
+    }
+  }
+  clusters.add(current);
+  return clusters;
+}
+
+int _compareByRowThenLeft(_InputSlot a, _InputSlot b) {
+  final row = a.rect.top.compareTo(b.rect.top).abs() < 12
+      ? 0
+      : a.rect.top.compareTo(b.rect.top);
+  return row != 0 ? row : a.rect.left.compareTo(b.rect.left);
 }
 
 bool _contributesToAnswer(Map<String, dynamic> element) {
