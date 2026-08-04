@@ -67,21 +67,21 @@ def build_problem_template() -> ProblemTemplate:
 PROBLEM_TEMPLATE = build_problem_template()
 
 
-ANSWER = {'value': [1, 1, 6, 2, 3, 1, 1, 8, 1, 4],
+ANSWER = {'value': [724, 841, 823],
  'unit': '',
- 'values': [1, 1, 6],
+ 'values': [724, 841, 823],
  'blanks': [{'id': 'konva_1785113855579_rect_123138',
              'slot_id': 'konva_1785113855579_rect_123138',
-             'expected': 1},
+             'expected': 724},
             {'id': 'konva_1785113855579_paste_146161_0',
              'slot_id': 'konva_1785113855579_paste_146161_0',
-             'expected': 1},
+             'expected': 841},
             {'id': 'konva_1785113855579_paste_150620_0',
              'slot_id': 'konva_1785113855579_paste_150620_0',
-             'expected': 6}],
- 'answer_key': [{'slot_id': 'konva_1785113855579_rect_123138', 'value': 1},
-                {'slot_id': 'konva_1785113855579_paste_146161_0', 'value': 1},
-                {'slot_id': 'konva_1785113855579_paste_150620_0', 'value': 6}]}
+             'expected': 823}],
+ 'answer_key': [{'slot_id': 'konva_1785113855579_rect_123138', 'value': 724},
+                {'slot_id': 'konva_1785113855579_paste_146161_0', 'value': 841},
+                {'slot_id': 'konva_1785113855579_paste_150620_0', 'value': 823}]}
 
 SEMANTIC = {
     "problem_id": PROBLEM_ID,
