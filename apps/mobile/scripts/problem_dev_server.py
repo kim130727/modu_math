@@ -8,7 +8,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlparse
 
 
-DEFAULT_ROOT = Path(r"C:\projects\modu_math\examples\problems")
+DEFAULT_ROOT = Path(__file__).resolve().parents[3] / "examples" / "problems"
 
 
 class ProblemDevHandler(BaseHTTPRequestHandler):

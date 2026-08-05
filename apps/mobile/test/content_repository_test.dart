@@ -51,7 +51,7 @@ void main() {
       expect(bundle.renderer, isNotEmpty);
     });
 
-    test('loads Ukrainian files from a Korean summary after locale switch',
+    test('falls back to examples files when localized files are absent',
         () async {
       final repository = ContentRepository.bundledAssets()
         ..activeProblemLocale = 'uk';
@@ -61,7 +61,7 @@ void main() {
 
       expect(
         content.semantic['metadata']['title'],
-        equals('Скільки бататів зібрали дві родини?'),
+        equals('두 가족이 캔 고구마의 수'),
       );
       expect(content.summary.filePrefix, equals('P3_1_01_00040_00469_ko'));
     });
@@ -243,7 +243,7 @@ void main() {
         unit: 'unit',
         type: 'type',
         title: 'title',
-        path: 'assets/content/problems',
+        path: ContentRepository.problemsPath,
         raw: {},
       );
 
@@ -280,7 +280,7 @@ void main() {
         unit: 'unit',
         type: 'type',
         title: 'title',
-        path: 'assets/content/problems',
+        path: ContentRepository.problemsPath,
         raw: {},
       );
       const content = ProblemContent(
@@ -308,7 +308,7 @@ void main() {
         unit: 'unit',
         type: 'type',
         title: 'title',
-        path: 'assets/content/problems',
+        path: ContentRepository.problemsPath,
         raw: {},
       );
       const content = ProblemContent(

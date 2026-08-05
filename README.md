@@ -28,6 +28,7 @@ Recommended assisted authoring workflow:
 
 - `src/modu_math/`: core compiler, adapters, semantic/layout/renderer/pipeline/ingest modules
 - `src/modu_semantic/`: compatibility shim package
+- `apps/mobile/`: Flutter app imported from `modu_math_app`
 - `schema/`: semantic, layout, renderer, and contract schema/profile assets
 - `examples/problems/0001/`: representative end-to-end sample bundle
 - `tests/`: focused core-pipeline tests only
@@ -40,6 +41,20 @@ uv run python -c "import modu_math; print(modu_math.__file__)"
 uv run python -m modu_math --help
 uv run pytest
 ```
+
+## Monorepo Commands
+
+Run from Windows PowerShell:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\modu_monorepo.ps1 -Task check
+```
+
+`examples/problems` is the canonical location for generated semantic,
+solvable, layout, renderer JSON and SVG files. The Flutter app reads that
+location through `apps/mobile/examples/problems`, a local junction to the
+canonical directory. Python DSL files and `locales/` remain the
+authoring/localization sources.
 
 ## Example Artifacts
 

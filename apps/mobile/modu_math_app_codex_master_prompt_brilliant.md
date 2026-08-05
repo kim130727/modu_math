@@ -66,7 +66,7 @@ Brilliant의 화면, 일러스트, 문구, 브랜드 색상 또는 고유 상호
 - `lib/screens/problem_solve_screen.dart`
 - `lib/widgets/renderer_json_canvas.dart`
 - `lib/widgets/tutor_chat_panel.dart`
-- `assets/content/problems/manifest.json`
+- `examples/problems/`
 - 기존 테스트와 CI 설정
 - 현재 Git 상태와 사용자가 이미 수정한 파일
 

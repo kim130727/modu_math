@@ -23,7 +23,7 @@ class ContentRepository {
     this.githubRepo = 'modu_math',
     this.githubRef = 'main',
     this.githubProblemsPath = 'examples/problems',
-    this.localProblemsPath = r'C:\projects\modu_math\examples\problems',
+    this.localProblemsPath = r'..\..\examples\problems',
     this.localHttpBaseUrl = 'http://localhost:8765',
   })  : source = source ??
             (kIsWeb
@@ -43,8 +43,7 @@ class ContentRepository {
   ContentRepository.localExamples({String? localProblemsPath})
       : this(
           source: ContentRepositorySource.localExamples,
-          localProblemsPath:
-              localProblemsPath ?? r'C:\projects\modu_math\examples\problems',
+          localProblemsPath: localProblemsPath ?? r'..\..\examples\problems',
         );
 
   ContentRepository.localHttp({
@@ -56,9 +55,10 @@ class ContentRepository {
           localHttpBaseUrl: localHttpBaseUrl,
         );
 
-  static const String manifestPath = 'assets/content/problems/manifest.json';
-  static const String problemsPath = 'assets/content/problems';
-  static const String grade3Path = 'assets/content/problems/grade3';
+  static const String problemsPath = 'examples/problems';
+  static const String manifestPath = '$problemsPath/manifest.json';
+  static const String grade3Path = '$problemsPath/grade3';
+  static const String generatedPath = '$problemsPath/generated';
   static const Set<String> localizedProblemLocales = {'ko', 'uk'};
 
   final ContentRepositorySource source;
@@ -117,9 +117,20 @@ class ContentRepository {
       );
     }
 
-    final manifestSource = await rootBundle.loadString(manifestPath);
-    final decoded = jsonDecode(manifestSource) as Map<String, dynamic>;
     final bundledProblems = await _loadBundledProblems();
+    final decoded = await _loadOptionalManifest();
+    if (decoded == null) {
+      return ProblemManifest(
+        version: 'examples',
+        problems: bundledProblems,
+        raw: {
+          'version': 'examples',
+          'source': 'bundled-examples',
+          'path': problemsPath,
+          'problems': bundledProblems.map((problem) => problem.raw).toList(),
+        },
+      );
+    }
     if (bundledProblems.isEmpty) {
       return ProblemManifest.fromJson(decoded);
     }
@@ -201,19 +212,11 @@ class ContentRepository {
     final rendererPaths = await _loadRendererPaths();
     final baseFilePrefix = _baseProblemPrefix(filePrefix);
     final localizedFilePrefix = _localizedFilePrefix(filePrefix);
-    final rendererPath = rendererPaths.firstWhere(
-      (path) =>
-          path.endsWith('/$localizedFilePrefix.renderer.json') ||
-          path.endsWith('/$filePrefix.renderer.json') ||
-          path.endsWith('/$baseFilePrefix.renderer.json') ||
-          path == '$localizedFilePrefix.renderer.json' ||
-          path == '$filePrefix.renderer.json' ||
-          path == '$baseFilePrefix.renderer.json' ||
-          path == '$problemsPath/$localizedFilePrefix.renderer.json' ||
-          path == '$problemsPath/$filePrefix.renderer.json' ||
-          path == '$problemsPath/$baseFilePrefix.renderer.json',
-      orElse: () => '',
-    );
+    final rendererPath =
+        _findRendererPath(rendererPaths, localizedFilePrefix) ??
+            _findRendererPath(rendererPaths, filePrefix) ??
+            _findRendererPath(rendererPaths, baseFilePrefix) ??
+            '';
     if (rendererPath.isEmpty) {
       return '$problemsPath/$localizedFilePrefix';
     }
@@ -221,6 +224,17 @@ class ContentRepository {
       0,
       rendererPath.length - '.renderer.json'.length,
     );
+  }
+
+  String? _findRendererPath(List<String> rendererPaths, String filePrefix) {
+    for (final path in rendererPaths) {
+      if (path.endsWith('/$filePrefix.renderer.json') ||
+          path == '$filePrefix.renderer.json' ||
+          path == '$problemsPath/$filePrefix.renderer.json') {
+        return path;
+      }
+    }
+    return null;
   }
 
   String _localizedFilePrefix(String filePrefix) {
@@ -261,9 +275,7 @@ class ContentRepository {
         final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
         return manifest
             .listAssets()
-            .where(
-              (path) => _isBundledRendererPathForActiveLocale(path),
-            )
+            .where((path) => _isBundledRendererPathForActiveLocale(path))
             .toList()
           ..sort();
       }
@@ -276,9 +288,7 @@ class ContentRepository {
     final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
     return manifest
         .listAssets()
-        .where(
-          (path) => _isBundledRendererPathForActiveLocale(path),
-        )
+        .where((path) => _isBundledRendererPathForActiveLocale(path))
         .toList()
       ..sort();
   }
@@ -291,11 +301,37 @@ class ContentRepository {
     final locale = localizedProblemLocales.contains(activeProblemLocale)
         ? activeProblemLocale
         : 'ko';
+    if (_isProblemPathAtRoot(path, problemsPath)) {
+      return true;
+    }
     final localizedPrefix = '$problemsPath/$locale/';
     if (path.startsWith(localizedPrefix)) {
       return true;
     }
+    if (path.startsWith('$generatedPath/')) {
+      return true;
+    }
     return false;
+  }
+
+  Future<Map<String, dynamic>?> _loadOptionalManifest() async {
+    try {
+      final manifestSource = await rootBundle.loadString(manifestPath);
+      return jsonDecode(manifestSource) as Map<String, dynamic>;
+    } on Object catch (error) {
+      if (_isMissingContent(error)) {
+        return null;
+      }
+      rethrow;
+    }
+  }
+
+  bool _isProblemPathAtRoot(String path, String rootPath) {
+    if (!path.startsWith('$rootPath/')) {
+      return false;
+    }
+    final relativePath = path.substring(rootPath.length + 1);
+    return !relativePath.contains('/');
   }
 
   ProblemSummary _summaryFromPrefix({
@@ -437,8 +473,9 @@ class ContentRepository {
         .whereType<Map<String, dynamic>>()
         .where((item) => item['type']?.toString() == 'blob')
         .map((item) => item['path']?.toString() ?? '')
-        .where((path) =>
-            path.startsWith(prefix) && path.endsWith('.renderer.json'))
+        .where(
+          (path) => path.startsWith(prefix) && path.endsWith('.renderer.json'),
+        )
         .toList()
       ..sort();
   }
