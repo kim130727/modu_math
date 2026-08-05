@@ -1,0 +1,35 @@
+name: modu_math_app
+description: A local Flutter MVP for solving Modu Math SVG/JSON problems.
+publish_to: "none"
+version: 0.1.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_dotenv: ^6.0.1
+  flutter_svg: ^2.0.10+1
+  flutter_tts: ^4.2.5
+  google_fonts: ^6.3.2
+  http: ^1.6.0
+  shared_preferences: ^2.5.3
+  speech_to_text: ^7.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/i18n/
+    - assets/content/problems/
+    - assets/content/problems/grade3/
+    - assets/content/problems/ko/
+    - assets/content/problems/uk/
+    - assets/content/problems/manifest.json
