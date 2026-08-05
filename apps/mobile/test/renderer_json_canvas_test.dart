@@ -254,7 +254,7 @@ void main() {
         home: Scaffold(
           body: SizedBox(
             width: 260,
-            height: 120,
+            height: 220,
             child: RendererJsonCanvas(
               inputValue: value,
               onInputChanged: (next) => value = next,
@@ -330,6 +330,89 @@ void main() {
 
     expect(value, equals('=>'));
     expect(find.text('○'), findsNWidgets(2));
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('supports operator choice buttons on answer circle slots',
+      (tester) async {
+    var value = '';
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 300,
+            height: 220,
+            child: RendererJsonCanvas(
+              inputValue: value,
+              expectedAnswer: '>=',
+              onInputChanged: (next) => value = next,
+              renderer: const {
+                'view_box': {
+                  'width': 300,
+                  'height': 120,
+                  'background': '#FFFFFF',
+                },
+                'elements': [
+                  {
+                    'id': 'slot.compare_1.circle',
+                    'type': 'circle',
+                    'attributes': {
+                      'cx': 100,
+                      'cy': 62,
+                      'r': 22,
+                      'stroke': '#111827',
+                      'fill': '#ffffff',
+                    },
+                    'source_ref': 'slot.compare_1',
+                    'interaction': {
+                      'type': 'select',
+                      'role': 'choice',
+                      'value_type': 'choice',
+                      'include_in_submission': true,
+                      'order': 0,
+                    },
+                  },
+                  {
+                    'id': 'slot.compare_2.circle',
+                    'type': 'circle',
+                    'attributes': {
+                      'cx': 190,
+                      'cy': 62,
+                      'r': 22,
+                      'stroke': '#111827',
+                      'fill': '#ffffff',
+                    },
+                    'source_ref': 'slot.compare_2',
+                    'interaction': {
+                      'type': 'select',
+                      'role': 'choice',
+                      'value_type': 'choice',
+                      'include_in_submission': true,
+                      'order': 1,
+                    },
+                  },
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byType(TextField), findsNothing);
+    expect(find.byKey(const ValueKey('operator-slot-0')), findsOneWidget);
+    expect(find.byKey(const ValueKey('operator-slot-1')), findsOneWidget);
+    expect(find.byKey(const ValueKey('operator-choice->')), findsOneWidget);
+
+    await tester.tap(find.byKey(const ValueKey('operator-choice->')));
+    await tester.pump();
+    await tester.tap(find.byKey(const ValueKey('operator-choice-=')));
+    await tester.pump();
+
+    expect(value, equals('>='));
+    expect(find.text('>'), findsWidgets);
+    expect(find.text('='), findsWidgets);
     expect(tester.takeException(), isNull);
   });
 

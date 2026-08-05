@@ -66,8 +66,8 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
     return LayoutBuilder(
       builder: (context, constraints) {
         return Center(
-          child: AspectRatio(
-            aspectRatio: width / height,
+          child: SizedBox(
+            width: constraints.maxWidth.isFinite ? constraints.maxWidth : width,
             child: DecoratedBox(
               decoration: BoxDecoration(
                 color: background,
@@ -84,20 +84,34 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                   );
                   _ensureControllerCount(inputSlots.length);
 
-                  return Stack(
-                    clipBehavior: Clip.hardEdge,
+                  final hasOperatorSlots =
+                      inputSlots.any((slot) => slot.operatorOnly);
+
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Positioned.fill(
-                        child: CustomPaint(
-                          painter: RendererJsonPainter(
-                            renderer: widget.renderer,
-                            logicalSize: Size(width, height),
-                          ),
+                      AspectRatio(
+                        aspectRatio: width / height,
+                        child: Stack(
+                          clipBehavior: Clip.hardEdge,
+                          children: [
+                            Positioned.fill(
+                              child: CustomPaint(
+                                painter: RendererJsonPainter(
+                                  renderer: widget.renderer,
+                                  logicalSize: Size(width, height),
+                                ),
+                              ),
+                            ),
+                            ..._textBoxLayers(widget.renderer, scale),
+                            ..._inputLayers(inputSlots, scale),
+                          ],
                         ),
                       ),
-                      ..._textBoxLayers(widget.renderer, scale),
-                      ..._inputLayers(inputSlots, scale),
-                      ..._operatorChoiceLayers(inputSlots),
+                      if (hasOperatorSlots) ...[
+                        const SizedBox(height: 10),
+                        _operatorChoiceBar(inputSlots),
+                      ],
                     ],
                   );
                 },
@@ -301,26 +315,30 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
     );
   }
 
-  List<Widget> _operatorChoiceLayers(List<_InputSlot> slots) {
+  Widget _operatorChoiceBar(List<_InputSlot> slots) {
     final operatorIndexes = slots.indexed
         .where((entry) => entry.$2.operatorOnly)
         .map((entry) => entry.$1)
         .toList();
     if (operatorIndexes.isEmpty) {
-      return const [];
+      return const SizedBox.shrink();
     }
     final colorScheme = Theme.of(context).colorScheme;
     final selectedIndex = _activeOperatorSlotIndex(slots);
     final selectedValue = inputControllers[selectedIndex].text;
-    return [
-      Positioned(
-        right: 12,
-        bottom: 12,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Align(
+        alignment: Alignment.center,
         child: Material(
-          color: colorScheme.surface.withValues(alpha: 0.94),
+          color: colorScheme.surface,
           borderRadius: BorderRadius.circular(8),
-          elevation: 3,
-          child: Padding(
+          elevation: 1,
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: colorScheme.outlineVariant),
+              borderRadius: BorderRadius.circular(8),
+            ),
             padding: const EdgeInsets.all(6),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -329,7 +347,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 3),
                   child: SizedBox(
-                    width: 44,
+                    width: 46,
                     height: 40,
                     child: selected
                         ? FilledButton(
@@ -367,7 +385,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
           ),
         ),
       ),
-    ];
+    );
   }
 
   void _syncInputControllers({required bool force}) {
@@ -752,6 +770,31 @@ List<_InputSlot> _inputSlots(
       );
       continue;
     }
+    if (type == 'circle') {
+      final attributes = _mapAt(element, 'attributes');
+      if (!_looksLikeInputCircle(element)) {
+        continue;
+      }
+      final cx = _readDouble(attributes['cx']) ?? 0;
+      final cy = _readDouble(attributes['cy']) ?? 0;
+      final radius = _readDouble(attributes['r']) ?? 0;
+      final inferredOperatorOnly = _operatorOnlyForInput(element) ||
+          _looksLikeComparisonAnswer(expectedAnswer);
+      slots.add(
+        _InputSlot(
+          rect: Rect.fromCircle(center: Offset(cx, cy), radius: radius),
+          id: element['id']?.toString() ?? '',
+          contributesToAnswer: _contributesToAnswer(element),
+          maxLength: _maxLengthForInput(element),
+          digitsOnly: _digitsOnlyForInput(element),
+          operatorOnly: inferredOperatorOnly,
+          autoAdvance: _autoAdvanceForInput(element),
+          order: _orderForInput(element),
+          placeholder: _placeholderForInput(element),
+        ),
+      );
+      continue;
+    }
     if (type != 'rect') {
       continue;
     }
@@ -924,6 +967,18 @@ bool _looksLikeInputRect(
       fillText == '#fff';
 }
 
+bool _looksLikeInputCircle(Map<String, dynamic> element) {
+  final interaction = _mapAt(element, 'interaction');
+  final type = interaction['type']?.toString().toLowerCase();
+  if (type == 'input') {
+    return true;
+  }
+  if (type != 'select' && type != 'choice') {
+    return false;
+  }
+  return _contributesToAnswer(element);
+}
+
 int _maxLengthForInput(Map<String, dynamic> element) {
   final interaction = _mapAt(element, 'interaction');
   final maxLength = _readInt(interaction['max_length']);
@@ -950,6 +1005,11 @@ bool _operatorOnlyForInput(Map<String, dynamic> element) {
   return valueType == 'operator' ||
       valueType == 'comparison_operator' ||
       keyboard == 'operator';
+}
+
+bool _looksLikeComparisonAnswer(String expectedAnswer) {
+  final value = expectedAnswer.trim();
+  return value.isNotEmpty && RegExp(r'^[<>=]+$').hasMatch(value);
 }
 
 bool _autoAdvanceForInput(Map<String, dynamic> element) {
@@ -983,9 +1043,11 @@ String? _placeholderForInput(Map<String, dynamic> element) {
 String _slotIdentity(Map<String, dynamic> element) {
   final id = element['id']?.toString().toLowerCase() ?? '';
   final sourceRef = element['source_ref']?.toString().toLowerCase() ?? '';
-  final slotId =
+  final metadataSlotId =
       _mapAt(element, 'metadata')['layout_slot_id']?.toString().toLowerCase();
-  return '$id $sourceRef ${slotId ?? ''}';
+  final refsSlotId =
+      _mapAt(element, 'refs')['layout_slot_id']?.toString().toLowerCase();
+  return '$id $sourceRef ${metadataSlotId ?? ''} ${refsSlotId ?? ''}';
 }
 
 class _InputSlot {
