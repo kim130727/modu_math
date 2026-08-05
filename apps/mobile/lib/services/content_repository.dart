@@ -70,6 +70,7 @@ class ContentRepository {
   final String localProblemsPath;
   final String localHttpBaseUrl;
   List<String>? _rendererPathCache;
+  final Map<String, Future<ProblemContent>> _problemCache = {};
   String activeProblemLocale = 'ko';
 
   Future<ProblemManifest> loadManifest() async {
@@ -145,6 +146,26 @@ class ContentRepository {
   }
 
   Future<ProblemContent> loadProblem(ProblemSummary summary) async {
+    final cacheKey = _problemCacheKey(summary);
+    final cached = _problemCache[cacheKey];
+    if (cached != null) {
+      return cached;
+    }
+    final future = _loadProblemUncached(summary);
+    _problemCache[cacheKey] = future;
+    try {
+      return await future;
+    } on Object {
+      _problemCache.remove(cacheKey);
+      rethrow;
+    }
+  }
+
+  Future<void> preloadProblem(ProblemSummary summary) async {
+    await loadProblem(summary);
+  }
+
+  Future<ProblemContent> _loadProblemUncached(ProblemSummary summary) async {
     final filePrefix = summary.filePrefix ?? summary.id;
     final basePath = await _basePathForPrefix(filePrefix);
     final semanticFuture = _loadJson('$basePath.semantic.json');
@@ -163,6 +184,14 @@ class ContentRepository {
       layout: layout,
       renderer: renderer,
     );
+  }
+
+  String _problemCacheKey(ProblemSummary summary) {
+    return [
+      source.name,
+      activeProblemLocale,
+      summary.filePrefix ?? summary.id,
+    ].join('|');
   }
 
   Future<ProblemJsonBundle> loadProblemJsonBundle(String filePrefix) async {

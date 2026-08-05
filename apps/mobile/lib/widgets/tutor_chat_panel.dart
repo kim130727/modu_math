@@ -9,6 +9,8 @@ import '../models/content_models.dart';
 import '../models/tutor_models.dart';
 import '../utils/tutor_text_sanitizer.dart';
 
+const _onsemTutorAsset = 'assets/characters/onsem_tutor.png';
+
 class TutorChatPanel extends StatefulWidget {
   const TutorChatPanel({
     super.key,
@@ -613,10 +615,20 @@ class _AnimatedTutorAvatarState extends State<_AnimatedTutorAvatar>
                     color: colorScheme.primary.withValues(alpha: 0.22),
                   ),
                 ),
-                child: Icon(
-                  Icons.smart_toy_outlined,
-                  color: colorScheme.onPrimaryContainer,
-                  size: 31,
+                child: Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: Image.asset(
+                    _onsemTutorAsset,
+                    fit: BoxFit.contain,
+                    semanticLabel: '온셈이',
+                    errorBuilder: (context, error, stackTrace) {
+                      return Icon(
+                        Icons.smart_toy_outlined,
+                        color: colorScheme.onPrimaryContainer,
+                        size: 31,
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
@@ -887,11 +899,28 @@ class _MessageBubble extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(
-                  isTutor ? Icons.smart_toy_outlined : Icons.face_outlined,
-                  size: 15,
-                  color: textColor.withValues(alpha: 0.72),
-                ),
+                if (isTutor)
+                  SizedBox(
+                    width: 17,
+                    height: 17,
+                    child: Image.asset(
+                      _onsemTutorAsset,
+                      semanticLabel: '온셈이',
+                      errorBuilder: (context, error, stackTrace) {
+                        return Icon(
+                          Icons.smart_toy_outlined,
+                          size: 15,
+                          color: textColor.withValues(alpha: 0.72),
+                        );
+                      },
+                    ),
+                  )
+                else
+                  Icon(
+                    Icons.face_outlined,
+                    size: 15,
+                    color: textColor.withValues(alpha: 0.72),
+                  ),
                 const SizedBox(width: 5),
                 Text(
                   isTutor

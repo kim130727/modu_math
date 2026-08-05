@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../l10n/app_strings.dart';
@@ -78,7 +80,19 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
   }
 
   Future<ProblemContent> _loadContent() {
-    return widget.repository.loadProblem(widget.problem);
+    final future = widget.repository.loadProblem(widget.problem);
+    unawaited(
+      future.then((_) => _preloadNextProblem()).catchError((_) {}),
+    );
+    return future;
+  }
+
+  void _preloadNextProblem() {
+    if (!_hasNextProblem) {
+      return;
+    }
+    final nextIndex = widget.problemIndex + 1;
+    unawaited(widget.repository.preloadProblem(widget.unitProblems[nextIndex]));
   }
 
   @override

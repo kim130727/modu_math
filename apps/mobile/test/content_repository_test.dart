@@ -245,6 +245,55 @@ void main() {
       expect(content.correctAnswer, equals('507'));
     });
 
+    test('reuses loaded problem content for repeated opens', () async {
+      final requestedFileUrls = <String>[];
+      final repository = ContentRepository.localHttp(
+        localHttpBaseUrl: 'http://localhost:8765',
+        httpClient: MockClient((request) async {
+          final url = request.url.toString();
+          if (url == 'http://localhost:8765/api/problems') {
+            return http.Response(
+              '{"paths": ["P3_1_01_00040_00469.renderer.json"]}',
+              200,
+            );
+          }
+          if (url.contains('/files/')) {
+            requestedFileUrls.add(url);
+          }
+          if (url.endsWith('P3_1_01_00040_00469.semantic.json')) {
+            return http.Response(
+              '{"metadata": {"title": "local http"}, "answer": {"value": 507}}',
+              200,
+            );
+          }
+          if (url.endsWith('P3_1_01_00040_00469.renderer.json')) {
+            return http.Response(
+              '{"view_box": {"width": 928, "height": 426}, "elements": []}',
+              200,
+            );
+          }
+          if (url.endsWith('P3_1_01_00040_00469.layout.json')) {
+            return http.Response('{"layout": "ok"}', 200);
+          }
+          if (url.endsWith('P3_1_01_00040_00469.solvable.v1.2.json')) {
+            return http.Response('{"answer": {"value": 507}}', 200);
+          }
+          return http.Response('Not found', 404);
+        }),
+      );
+
+      final manifest = await repository.loadManifest();
+      final first = await repository.loadProblem(manifest.problems.single);
+      final second = await repository.loadProblem(manifest.problems.single);
+
+      expect(identical(first, second), isTrue);
+      expect(
+        requestedFileUrls
+            .where((url) => url.endsWith('P3_1_01_00040_00469.renderer.json')),
+        hasLength(1),
+      );
+    });
+
     test('strips bundled examples prefix before local HTTP file requests',
         () async {
       final requestedUrls = <String>[];
