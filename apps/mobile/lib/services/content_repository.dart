@@ -147,14 +147,17 @@ class ContentRepository {
   Future<ProblemContent> loadProblem(ProblemSummary summary) async {
     final filePrefix = summary.filePrefix ?? summary.id;
     final basePath = await _basePathForPrefix(filePrefix);
-    final semantic = await _loadJson('$basePath.semantic.json');
-    final renderer = await _loadJson('$basePath.renderer.json');
-    final layout = await _loadOptionalJson('$basePath.layout.json');
-    final solvable = await _loadSolvable(basePath);
-    final svg = await _loadOptionalText('$basePath.svg');
+    final semanticFuture = _loadJson('$basePath.semantic.json');
+    final rendererFuture = _loadJson('$basePath.renderer.json');
+    final layoutFuture = _loadOptionalJson('$basePath.layout.json');
+    final solvableFuture = _loadSolvable(basePath);
+
+    final semantic = await semanticFuture;
+    final renderer = await rendererFuture;
+    final layout = await layoutFuture;
+    final solvable = await solvableFuture;
     return ProblemContent(
       summary: summary,
-      svg: svg,
       semantic: semantic,
       solvable: solvable,
       layout: layout,
@@ -164,12 +167,19 @@ class ContentRepository {
 
   Future<ProblemJsonBundle> loadProblemJsonBundle(String filePrefix) async {
     final basePath = await _basePathForPrefix(filePrefix);
-    final solvableV12 = await _loadOptionalJson('$basePath.solvable.v1.2.json');
+    final semanticFuture = _loadJson('$basePath.semantic.json');
+    final layoutFuture = _loadJson('$basePath.layout.json');
+    final rendererFuture = _loadJson('$basePath.renderer.json');
+    final solvableV12Future = _loadOptionalJson(
+      '$basePath.solvable.v1.2.json',
+    );
+
+    final solvableV12 = await solvableV12Future;
     return ProblemJsonBundle(
       filePrefix: filePrefix,
-      semantic: await _loadJson('$basePath.semantic.json'),
-      layout: await _loadJson('$basePath.layout.json'),
-      renderer: await _loadJson('$basePath.renderer.json'),
+      semantic: await semanticFuture,
+      layout: await layoutFuture,
+      renderer: await rendererFuture,
       solvable: solvableV12.isEmpty
           ? await _loadOptionalJson('$basePath.solvable.v1.1.json')
           : solvableV12,
@@ -423,28 +433,6 @@ class ContentRepository {
     } on Object catch (error) {
       if (_isMissingContent(error)) {
         return const {};
-      }
-      rethrow;
-    }
-  }
-
-  Future<String> _loadOptionalText(String assetPath) async {
-    try {
-      return switch (source) {
-        ContentRepositorySource.localExamples => await loadLocalText(assetPath),
-        ContentRepositorySource.localHttp => await _loadLocalHttpText(
-            assetPath,
-          ),
-        ContentRepositorySource.githubExamples => await _loadGithubText(
-            assetPath,
-          ),
-        ContentRepositorySource.bundledAssets => await rootBundle.loadString(
-            assetPath,
-          ),
-      };
-    } on Object catch (error) {
-      if (_isMissingContent(error)) {
-        return '';
       }
       rethrow;
     }
