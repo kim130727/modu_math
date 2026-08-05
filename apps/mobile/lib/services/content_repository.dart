@@ -28,7 +28,7 @@ class ContentRepository {
   })  : source = source ??
             (kIsWeb
                 ? ContentRepositorySource.localHttp
-                : ContentRepositorySource.localExamples),
+                : ContentRepositorySource.bundledAssets),
         _httpClient = httpClient ?? http.Client();
 
   ContentRepository.githubExamples({http.Client? httpClient})
