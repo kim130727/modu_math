@@ -12,8 +12,8 @@ void main() {
       final messages = service.startSession(content);
 
       expect(messages.single.replyType, equals(TutorReplyType.question));
-      expect(messages.single.text, contains('Rule Tutor'));
-      expect(messages.single.text, contains('두 수를 모두 더해요.'));
+      expect(messages.single.text, contains('온셈이'));
+      expect(messages.single.text, contains('1단계: 두 수를 모두 더해요.'));
       expect(messages.single.choices, contains('507'));
 
       final reply = await service.respondToStudent(
@@ -24,7 +24,7 @@ void main() {
       );
 
       expect(reply.replyType, equals(TutorReplyType.correct));
-      expect(reply.text, contains('최종 답은 507'));
+      expect(reply.text, contains('정답은 507이에요.'));
     });
   });
 }

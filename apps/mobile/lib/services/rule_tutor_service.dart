@@ -11,7 +11,7 @@ class RuleTutorService extends AiTutorService {
   TutorMode get mode => TutorMode.rule;
 
   @override
-  String get label => 'Rule';
+  String get label => '온셈이';
 
   @override
   List<TutorMessage> startSession(ProblemContent content) {
@@ -19,8 +19,7 @@ class RuleTutorService extends AiTutorService {
     if (content.solvable.isEmpty) {
       return [
         _tutor(
-          '이 문제에는 아직 풀이 규칙 데이터가 없어요.\n'
-          '다른 문제를 먼저 풀어 보거나 잠시 후 다시 시도해 주세요.',
+          '이 문제는 아직 풀이 규칙이 준비되지 않았어요.\n다른 문제를 먼저 풀거나 잠시 뒤 다시 시도해 주세요.',
           TutorReplyType.retry,
         ),
       ];
@@ -28,8 +27,7 @@ class RuleTutorService extends AiTutorService {
     if (steps.isEmpty) {
       return [
         _tutor(
-          '풀이 데이터는 있지만 단계가 비어 있어요.\n'
-          'steps 또는 plan이 있으면 단계별 튜터를 시작할 수 있어요.',
+          '풀이 데이터는 있지만 단계가 비어 있어요.\n문제 파일의 steps나 plan을 확인해 주세요.',
           TutorReplyType.retry,
         ),
       ];
@@ -67,7 +65,7 @@ class RuleTutorService extends AiTutorService {
       content,
       steps,
       next,
-      _renderRuleStep(content, steps, next, prefix: '좋아요. 다음 단계로 가 볼게요.'),
+      _renderRuleStep(content, steps, next, prefix: '좋아요. 다음 단계로 가볼게요.'),
     );
   }
 
@@ -97,7 +95,7 @@ class RuleTutorService extends AiTutorService {
         content,
         steps,
         next,
-        _renderRuleStep(content, steps, next, prefix: '좋아요. 다음 단계로 가 볼게요.'),
+        _renderRuleStep(content, steps, next, prefix: '좋아요. 다음 단계로 가볼게요.'),
       );
     }
     if (_isConfused(cleanMessage)) {
@@ -117,7 +115,7 @@ class RuleTutorService extends AiTutorService {
         content,
         steps,
         next,
-        _renderRuleStep(content, steps, next, prefix: '좋아요. 맞게 찾았어요.'),
+        _renderRuleStep(content, steps, next, prefix: '좋아요. 잘 찾았어요.'),
       );
     }
 
@@ -126,9 +124,9 @@ class RuleTutorService extends AiTutorService {
       content,
       steps,
       safeIndex,
-      '조금 다르게 본 것 같아요.\n'
+      '조금만 다시 볼게요.\n'
       '${safeIndex + 1}단계: ${step.prompt}\n'
-      '${hint.isEmpty ? '이 단계에서 확인해야 하는 값을 다시 입력해 볼까요?' : '$hint 다시 입력해 볼까요?'}',
+      '${hint.isEmpty ? '이 단계에서 필요한 값을 다시 입력해 볼까요?' : '$hint 다시 입력해 볼까요?'}',
     );
   }
 
@@ -140,8 +138,8 @@ class RuleTutorService extends AiTutorService {
   }) async {
     if (isSameAnswer(answer, content.correctAnswer)) {
       return _tutor(
-        '좋아요. 최종 답이 맞아요.\n'
-        '풀이 단계도 차근차근 잘 이어졌어요.',
+        '좋아요. 정확히 맞았어요.\n'
+        '다음 문제로 넘어가 볼까요?',
         TutorReplyType.correct,
       );
     }
@@ -172,20 +170,16 @@ class RuleTutorService extends AiTutorService {
       final highlighted =
           _givenValue(content, 'obj.highlighted_value')?.toString();
       final lead = multiple != null && highlighted != null
-          ? '$multiple에서 표시된 $highlighted의 실제 값을 찾아보는 문제예요.'
-          : '자리값을 보면서 같은 값을 만드는 식을 찾아볼게요.';
+          ? '$multiple에서 표시된 $highlighted의 실제 값을 찾아볼게요.'
+          : '자리값을 확인해서 같은 값을 만드는 식을 찾아볼게요.';
       return _renderRuleStep(content, steps, 0, prefix: lead);
     }
 
-    final method =
-        (content.solvable['method'] ?? content.solvable['problem_type'] ?? '풀이')
-            .toString()
-            .replaceAll('_', ' ');
     return _renderRuleStep(
       content,
       steps,
       0,
-      prefix: 'Rule Tutor로 단계별 풀이를 시작할게요.\n풀이 방법: $method',
+      prefix: '온셈이와 함께 한 단계씩 풀어볼게요.',
     );
   }
 
@@ -226,21 +220,21 @@ class RuleTutorService extends AiTutorService {
     if (!hasHighlighted) {
       lines
         ..add('${index + 1}단계: ${step.prompt}')
-        ..add('표시된 부분의 자리값을 보고 같은 곱셈식을 고르면 돼요.')
-        ..add('아래 보기 중 같은 값을 만드는 식을 선택해 보세요.');
+        ..add('표시된 자리값을 보고 같은 값을 만드는 식을 고르면 돼요.')
+        ..add('보기 중에서 값이 같은 식을 선택해 보세요.');
       return lines.take(4).join('\n');
     }
 
     if (index == 0) {
       lines
-        ..add('1단계: 먼저 표시된 숫자가 얼마를 뜻하는지 봐요.')
-        ..add('예를 들어 869에서 6은 십의 자리라서 60을 뜻해요.')
-        ..add('그럼 표시된 부분은 무엇에 4를 곱한 걸까요?');
+        ..add('1단계: 먼저 표시된 숫자의 자리값을 확인해요.')
+        ..add('예를 들어 869에서 6은 십의 자리라서 60이에요.')
+        ..add('표시된 부분은 어떤 값을 뜻할까요?');
     } else if (index == 1) {
       lines
         ..add('2단계: ${step.prompt}')
-        ..add('이제 60 × 4를 계산해 표시된 부분의 값을 확인해요.')
-        ..add('60 × 4는 얼마일까요?');
+        ..add('이제 찾은 값에 곱할 수를 계산해요.')
+        ..add('계산하면 얼마가 될까요?');
     } else {
       final choices = _givenValue(content, 'obj.choice_set');
       lines.add('${index + 1}단계: ${step.prompt}');
@@ -255,19 +249,16 @@ class RuleTutorService extends AiTutorService {
   String _confusionReply(ProblemContent content, _RuleStep step, int index) {
     if (_isPlaceValueMatching(content)) {
       if (index == 0) {
-        return '좋아요. 다시 천천히 볼게요.\n'
+        return '좋아요. 천천히 다시 볼게요.\n'
             '숫자는 어느 자리에 있는지에 따라 값이 달라져요.\n'
-            '표시된 숫자가 십의 자리에 있으면 10배로 생각해요.\n'
-            '그 값에 몇을 곱해야 하는지 찾아볼까요?';
+            '표시된 숫자의 자리값을 먼저 찾아볼까요?';
       }
       if (index == 1) {
-        return '앞에서 표시된 부분의 값을 확인했어요.\n'
-            '이제 그 값에 곱하는 수만 계산하면 돼요.\n'
-            '60 × 4를 다시 계산해 볼까요?';
+        return '앞에서 찾은 값을 사용하면 돼요.\n'
+            '그 값에 곱할 수를 계산해 볼까요?';
       }
-      return '이제 새 계산을 하는 단계가 아니에요.\n'
-          '앞에서 찾은 값과 같은 보기를 찾으면 돼요.\n'
-          '보기 중 값이 같은 식을 골라보세요.';
+      return '이제 새 계산을 하는 단계는 아니에요.\n'
+          '앞에서 찾은 값과 같은 보기를 골라보세요.';
     }
 
     final hint = _stepExpectedHint(content, step, index);
@@ -279,12 +270,9 @@ class RuleTutorService extends AiTutorService {
   String _complete(ProblemContent content) {
     final answer = content.correctAnswer;
     if (answer.isNotEmpty) {
-      return '좋아요. 풀이 단계가 모두 끝났어요.\n'
-          '최종 답은 $answer입니다.\n'
-          '이제 답칸에 맞게 정리해 보세요.';
+      return '정답은 $answer이에요.\n다음 문제로 넘어가 볼까요?';
     }
-    return '좋아요. 풀이 단계가 모두 끝났어요.\n'
-        '이제 문제의 답이나 보기를 맞게 정리해 보세요.';
+    return '좋아요. 풀이가 끝났어요.\n문제의 답을 입력해 볼까요?';
   }
 
   List<_RuleStep> _tutorSteps(ProblemContent content) {
@@ -342,7 +330,7 @@ class RuleTutorService extends AiTutorService {
       if (target != null && target.trim().isNotEmpty) {
         return [
           _RuleStep(
-            prompt: '표시된 부분이 실제로 어떤 곱셈식인지 보기에서 골라요.',
+            prompt: '표시된 부분이 실제로 어떤 식인지 보기에서 골라요.',
             expected: target.trim(),
             choices: _placeValueExpressionChoices(target.trim()),
           ),
@@ -377,7 +365,7 @@ class RuleTutorService extends AiTutorService {
       for (final item in evaluated)
         _RuleStep(
           prompt: item.$1 == item.$2.toString()
-              ? '${item.$1}은 이미 수로 주어졌어요.'
+              ? '${item.$1}은 이미 값으로 주어졌어요.'
               : '${item.$1}의 값을 먼저 구해요.',
           expected: item.$2.toString(),
         ),
@@ -536,20 +524,20 @@ String _stepExpectedHint(ProblemContent content, _RuleStep step, int index) {
   if (expected.isEmpty) {
     return '';
   }
-  if (step.prompt.contains('이미 수로 주어졌어요')) {
+  if (step.prompt.contains('그대로') || step.prompt.contains('주어졌')) {
     return '그 수를 그대로 입력해 보세요.';
   }
   if (_isPlaceValueMatching(content)) {
     if (index == 0) {
-      return '표시된 숫자의 자리가 어떤 값인지 먼저 확인해요.';
+      return '표시된 숫자가 어떤 자리의 값인지 먼저 확인해요.';
     }
     if (index == 1) {
-      return '찾은 값에 몇을 곱해야 하는지 계산해 보세요.';
+      return '찾은 값에 무엇을 곱해야 하는지 계산해 보세요.';
     }
-    return '보기 중 앞에서 찾은 값과 같은 식을 찾아보세요.';
+    return '보기 중에서 앞에서 찾은 값과 같은 식을 찾아보세요.';
   }
   if (_looksNumber(expected)) {
-    return '계산한 수를 입력해 보세요.';
+    return '계산한 값을 입력해 보세요.';
   }
   return '이 단계에서 찾은 말이나 값을 입력해 보세요.';
 }
@@ -607,7 +595,7 @@ bool _asksForNext(String message) {
 
 bool _isConfused(String message) {
   final value = message.replaceAll(' ', '').toLowerCase();
-  return ['모르', '이해', '무슨말', '헷갈', '어려', '힌트', '설명', 'help', 'confus']
+  return ['몰라', '이해', '무슨말', '헷갈', '어려', '힌트', '설명', 'help', 'confus']
       .any(value.contains);
 }
 
@@ -636,12 +624,12 @@ List<String> _comparisonExpressions(ProblemContent content) {
 
 num? _evaluateArithmetic(String expression) {
   final text = expression
-      .replaceAll('×', '*')
       .replaceAll('횞', '*')
+      .replaceAll('×', '*')
       .replaceAll('x', '*')
       .replaceAll('X', '*')
-      .replaceAll('÷', '/')
       .replaceAll('첨', '/')
+      .replaceAll('÷', '/')
       .replaceAll(' ', '');
   if (!RegExp(r'^[\d+\-*/().]+$').hasMatch(text)) {
     return null;
