@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:modu_math_app/models/content_models.dart';
+import 'package:modu_math_app/models/tutor_models.dart';
 import 'package:modu_math_app/widgets/tutor_chat_panel.dart';
 
 void main() {
@@ -54,6 +55,47 @@ void main() {
 
     expect(find.byIcon(Icons.navigate_next), findsOneWidget);
     expect(openedNextProblem, isTrue);
+  });
+
+  testWidgets('keeps the solved state compact', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SingleChildScrollView(
+            child: TutorChatPanel(
+              content: _problemContent,
+              messages: [
+                TutorMessage(
+                  role: TutorMessageRole.tutor,
+                  text: '좋아요. 최종 답이 맞아요.',
+                  createdAt: DateTime(2026),
+                ),
+              ],
+              isBusy: false,
+              answerDraft: '42',
+              submittedAnswer: '42',
+              isCorrect: true,
+              onAnswerChanged: (_) {},
+              onSubmit: (_) {},
+              onSend: (_) {},
+              onHint: () {},
+              onNextStep: () {},
+              onRestart: () {},
+              onReset: () {},
+              hasNextProblem: true,
+              onNextProblem: () {},
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('내 답'), findsOneWidget);
+    expect(find.text('42'), findsOneWidget);
+    expect(find.text('풀이 과정 보기'), findsOneWidget);
+    expect(find.byIcon(Icons.check), findsNothing);
+    expect(find.byIcon(Icons.lightbulb_outline), findsNothing);
+    expect(find.byIcon(Icons.send), findsNothing);
   });
 }
 

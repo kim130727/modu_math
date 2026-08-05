@@ -185,7 +185,7 @@ class ContentRepository {
         })
         .toSet()
         .toList()
-      ..sort();
+      ..sort(_compareProblemPrefixes);
     return prefixes;
   }
 
@@ -248,7 +248,7 @@ class ContentRepository {
   Future<List<ProblemSummary>> _loadBundledProblems() async {
     final rendererPaths = await _loadRendererPaths();
 
-    return rendererPaths.map((rendererPath) {
+    final problems = rendererPaths.map((rendererPath) {
       final filePrefix = rendererPath
           .split('/')
           .last
@@ -258,7 +258,10 @@ class ContentRepository {
           .sublist(0, rendererPath.split('/').length - 1)
           .join('/');
       return _summaryFromPrefix(path: path, filePrefix: filePrefix);
-    }).toList();
+    }).toList()
+      ..sort((a, b) =>
+          _compareProblemPrefixes(a.filePrefix ?? a.id, b.filePrefix ?? b.id));
+    return problems;
   }
 
   Future<List<String>> _loadRendererPaths() async {
@@ -502,18 +505,42 @@ class ContentRepository {
   }
 
   Future<String> _loadLocalHttpText(String path) async {
-    final response = await _httpClient.get(
-      _localHttpUri('/files/${Uri.encodeComponent(path)}'),
-    );
-    if (response.statusCode == 404) {
-      throw _MissingContent(path);
-    }
-    if (response.statusCode != 200) {
-      throw StateError(
-        'Local problem server file load failed: ${response.statusCode} $path',
+    final serverPath = _serverRelativeProblemPath(path);
+    try {
+      final response = await _httpClient.get(
+        _localHttpUri('/files/${Uri.encodeComponent(serverPath)}'),
       );
+      if (response.statusCode == 404) {
+        throw _MissingContent(path);
+      }
+      if (response.statusCode != 200) {
+        throw StateError(
+          'Local problem server file load failed: ${response.statusCode} $path',
+        );
+      }
+      return utf8.decode(response.bodyBytes);
+    } on _MissingContent {
+      rethrow;
+    } on Object {
+      return rootBundle.loadString(_bundledProblemPath(path));
     }
-    return utf8.decode(response.bodyBytes);
+  }
+
+  String _serverRelativeProblemPath(String path) {
+    final normalized = path.replaceAll(r'\', '/');
+    const prefix = '$problemsPath/';
+    if (normalized.startsWith(prefix)) {
+      return normalized.substring(prefix.length);
+    }
+    return normalized;
+  }
+
+  String _bundledProblemPath(String path) {
+    final normalized = path.replaceAll(r'\', '/');
+    if (normalized.startsWith('$problemsPath/')) {
+      return normalized;
+    }
+    return '$problemsPath/$normalized';
   }
 
   Uri _localHttpUri(String path) {
@@ -583,6 +610,41 @@ String _baseProblemPrefix(String filePrefix) {
     }
   }
   return filePrefix;
+}
+
+int _compareProblemPrefixes(String a, String b) {
+  final aParts = _tokenizeForNaturalSort(a);
+  final bParts = _tokenizeForNaturalSort(b);
+  final length = aParts.length < bParts.length ? aParts.length : bParts.length;
+  for (var i = 0; i < length; i += 1) {
+    final aPart = aParts[i];
+    final bPart = bParts[i];
+    final aNumber = int.tryParse(aPart);
+    final bNumber = int.tryParse(bPart);
+    if (aNumber != null && bNumber != null) {
+      final numberComparison = aNumber.compareTo(bNumber);
+      if (numberComparison != 0) {
+        return numberComparison;
+      }
+      final lengthComparison = aPart.length.compareTo(bPart.length);
+      if (lengthComparison != 0) {
+        return lengthComparison;
+      }
+      continue;
+    }
+    final textComparison = aPart.compareTo(bPart);
+    if (textComparison != 0) {
+      return textComparison;
+    }
+  }
+  return aParts.length.compareTo(bParts.length);
+}
+
+List<String> _tokenizeForNaturalSort(String value) {
+  return RegExp(r'\d+|\D+')
+      .allMatches(value)
+      .map((match) => match.group(0) ?? '')
+      .toList();
 }
 
 class ProblemJsonBundle {

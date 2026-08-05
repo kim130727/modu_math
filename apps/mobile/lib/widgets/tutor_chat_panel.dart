@@ -104,12 +104,15 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
   Widget build(BuildContext context) {
     final strings = AppStrings.of(context);
     final choices = widget.content.choices;
-    final tutorChoices = widget.messages.lastWhereOrNull((message) {
-          return message.isTutor && message.choices.isNotEmpty;
-        })?.choices ??
-        const <String>[];
     final colorScheme = Theme.of(context).colorScheme;
     final tutorActive = widget.messages.isNotEmpty;
+    final solvedCorrectly = widget.isCorrect == true;
+    final tutorChoices = solvedCorrectly
+        ? const <String>[]
+        : widget.messages.lastWhereOrNull((message) {
+              return message.isTutor && message.choices.isNotEmpty;
+            })?.choices ??
+            const <String>[];
 
     return Card(
       margin: EdgeInsets.zero,
@@ -157,45 +160,49 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
                 ),
               ],
             ),
-            const SizedBox(height: 12),
-            _TutorActivityStrip(
-              isBusy: widget.isBusy,
-              latestText: _latestTutorText,
-              tutorActive: tutorActive,
-              strings: strings,
-            ),
-            const SizedBox(height: 14),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                FilledButton.tonalIcon(
-                  onPressed: widget.isBusy ? null : widget.onRestart,
-                  icon: const Icon(Icons.play_arrow_outlined),
-                  label: Text(
-                    tutorActive
-                        ? strings.t('tutor.restart')
-                        : strings.t('tutor.start'),
+            if (!solvedCorrectly) ...[
+              const SizedBox(height: 12),
+              _TutorActivityStrip(
+                isBusy: widget.isBusy,
+                latestText: _latestTutorText,
+                tutorActive: tutorActive,
+                strings: strings,
+              ),
+              const SizedBox(height: 14),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  FilledButton.tonalIcon(
+                    onPressed: widget.isBusy ? null : widget.onRestart,
+                    icon: const Icon(Icons.play_arrow_outlined),
+                    label: Text(
+                      tutorActive
+                          ? strings.t('tutor.restart')
+                          : strings.t('tutor.start'),
+                    ),
                   ),
-                ),
-                OutlinedButton.icon(
-                  onPressed: widget.isBusy || widget.messages.isEmpty
-                      ? null
-                      : widget.onNextStep,
-                  icon: const Icon(Icons.arrow_forward),
-                  label: Text(strings.t('tutor.nextStep')),
-                ),
-                OutlinedButton.icon(
-                  onPressed: widget.isBusy || widget.messages.isEmpty
-                      ? null
-                      : widget.onReset,
-                  icon: const Icon(Icons.refresh),
-                  label: Text(strings.t('tutor.reset')),
-                ),
-              ],
-            ),
+                  OutlinedButton.icon(
+                    onPressed: widget.isBusy || widget.messages.isEmpty
+                        ? null
+                        : widget.onNextStep,
+                    icon: const Icon(Icons.arrow_forward),
+                    label: Text(strings.t('tutor.nextStep')),
+                  ),
+                  OutlinedButton.icon(
+                    onPressed: widget.isBusy || widget.messages.isEmpty
+                        ? null
+                        : widget.onReset,
+                    icon: const Icon(Icons.refresh),
+                    label: Text(strings.t('tutor.reset')),
+                  ),
+                ],
+              ),
+            ],
             const SizedBox(height: 14),
-            if (choices.isEmpty)
+            if (solvedCorrectly)
+              _SubmittedAnswerSummary(answer: widget.submittedAnswer ?? '')
+            else if (choices.isEmpty)
               TextField(
                 controller: answerController,
                 style: const TextStyle(fontSize: 18),
@@ -250,18 +257,20 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
                   );
                 }).toList(),
               ),
-            const SizedBox(height: 14),
-            FilledButton.icon(
-              onPressed: widget.isBusy ? null : _submitSelectedAnswer,
-              icon: const Icon(Icons.check),
-              label: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                child: Text(
-                  strings.t('answer.check'),
-                  style: const TextStyle(fontSize: 18),
+            if (!solvedCorrectly) ...[
+              const SizedBox(height: 14),
+              FilledButton.icon(
+                onPressed: widget.isBusy ? null : _submitSelectedAnswer,
+                icon: const Icon(Icons.check),
+                label: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  child: Text(
+                    strings.t('answer.check'),
+                    style: const TextStyle(fontSize: 18),
+                  ),
                 ),
               ),
-            ),
+            ],
             if (widget.isCorrect != null) ...[
               const SizedBox(height: 12),
               _ResultBanner(isCorrect: widget.isCorrect!, strings: strings),
@@ -286,42 +295,14 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
                 ),
               ),
             ],
-            const SizedBox(height: 14),
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxHeight: 390),
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: colorScheme.surfaceContainerLowest,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: colorScheme.outlineVariant),
-                ),
-                child: widget.messages.isEmpty
-                    ? Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(22),
-                          child: Text(
-                            strings.t('tutor.emptyConversation'),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: colorScheme.onSurfaceVariant,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                      )
-                    : ListView.separated(
-                        padding: const EdgeInsets.all(12),
-                        shrinkWrap: true,
-                        itemCount: widget.messages.length,
-                        separatorBuilder: (_, __) => const SizedBox(height: 10),
-                        itemBuilder: (context, index) {
-                          return _MessageBubble(
-                            message: widget.messages[index],
-                          );
-                        },
-                      ),
+            if (widget.messages.isNotEmpty || !solvedCorrectly) ...[
+              const SizedBox(height: 14),
+              _ConversationSection(
+                messages: widget.messages,
+                initiallyExpanded: !solvedCorrectly,
+                emptyText: strings.t('tutor.emptyConversation'),
               ),
-            ),
+            ],
             if (widget.isBusy) ...[
               const SizedBox(height: 10),
               ClipRRect(
@@ -351,66 +332,68 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
                 }).toList(),
               ),
             ],
-            const SizedBox(height: 14),
-            Row(
-              children: [
-                Expanded(
-                  child: OutlinedButton.icon(
-                    onPressed:
-                        widget.isBusy || !tutorActive ? null : widget.onHint,
-                    icon: const Icon(Icons.lightbulb_outline),
-                    label: Text(strings.t('tutor.hint')),
+            if (!solvedCorrectly) ...[
+              const SizedBox(height: 14),
+              Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed:
+                          widget.isBusy || !tutorActive ? null : widget.onHint,
+                      icon: const Icon(Icons.lightbulb_outline),
+                      label: Text(strings.t('tutor.hint')),
+                    ),
                   ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: OutlinedButton.icon(
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed: widget.isBusy || !tutorActive
+                          ? null
+                          : widget.onNextStep,
+                      icon: const Icon(Icons.arrow_forward),
+                      label: Text(strings.t('tutor.nextStep')),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: chatController,
+                      enabled: tutorActive && !widget.isBusy,
+                      minLines: 1,
+                      maxLines: 1,
+                      textInputAction: TextInputAction.send,
+                      decoration: InputDecoration(
+                        labelText: strings.t('tutor.chatInput'),
+                        border: const OutlineInputBorder(),
+                      ),
+                      onSubmitted: _send,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  IconButton.filledTonal(
+                    tooltip: isListening
+                        ? strings.t('tutor.stopListeningTooltip')
+                        : strings.t('tutor.speakTooltip'),
+                    onPressed:
+                        widget.isBusy || !tutorActive ? null : _toggleListening,
+                    icon: Icon(isListening ? Icons.mic : Icons.mic_none),
+                  ),
+                  const SizedBox(width: 8),
+                  IconButton.filled(
+                    tooltip: strings.t('tutor.sendTooltip'),
                     onPressed: widget.isBusy || !tutorActive
                         ? null
-                        : widget.onNextStep,
-                    icon: const Icon(Icons.arrow_forward),
-                    label: Text(strings.t('tutor.nextStep')),
+                        : () => _send(chatController.text),
+                    icon: const Icon(Icons.send),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: chatController,
-                    enabled: tutorActive && !widget.isBusy,
-                    minLines: 1,
-                    maxLines: 1,
-                    textInputAction: TextInputAction.send,
-                    decoration: InputDecoration(
-                      labelText: strings.t('tutor.chatInput'),
-                      border: const OutlineInputBorder(),
-                    ),
-                    onSubmitted: _send,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                IconButton.filledTonal(
-                  tooltip: isListening
-                      ? strings.t('tutor.stopListeningTooltip')
-                      : strings.t('tutor.speakTooltip'),
-                  onPressed:
-                      widget.isBusy || !tutorActive ? null : _toggleListening,
-                  icon: Icon(isListening ? Icons.mic : Icons.mic_none),
-                ),
-                const SizedBox(width: 8),
-                IconButton.filled(
-                  tooltip: strings.t('tutor.sendTooltip'),
-                  onPressed: widget.isBusy || !tutorActive
-                      ? null
-                      : () => _send(chatController.text),
-                  icon: const Icon(Icons.send),
-                ),
-              ],
-            ),
+                ],
+              ),
+            ],
           ],
         ),
       ),
@@ -724,6 +707,47 @@ class _TutorActivityStrip extends StatelessWidget {
   }
 }
 
+class _SubmittedAnswerSummary extends StatelessWidget {
+  const _SubmittedAnswerSummary({required this.answer});
+
+  final String answer;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainerLowest,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: colorScheme.outlineVariant),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+        child: Row(
+          children: [
+            Icon(Icons.edit_note, color: colorScheme.primary),
+            const SizedBox(width: 10),
+            Text(
+              '내 답',
+              style: TextStyle(
+                color: colorScheme.onSurfaceVariant,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const Spacer(),
+            Text(
+              answer,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w900,
+                  ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _ResultBanner extends StatelessWidget {
   const _ResultBanner({required this.isCorrect, required this.strings});
 
@@ -756,6 +780,76 @@ class _ResultBanner extends StatelessWidget {
           fontSize: 16,
           fontWeight: FontWeight.w800,
         ),
+      ),
+    );
+  }
+}
+
+class _ConversationSection extends StatelessWidget {
+  const _ConversationSection({
+    required this.messages,
+    required this.initiallyExpanded,
+    required this.emptyText,
+  });
+
+  final List<TutorMessage> messages;
+  final bool initiallyExpanded;
+  final String emptyText;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final conversation = ConstrainedBox(
+      constraints: const BoxConstraints(maxHeight: 320),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: colorScheme.surfaceContainerLowest,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: colorScheme.outlineVariant),
+        ),
+        child: messages.isEmpty
+            ? Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(22),
+                  child: Text(
+                    emptyText,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: colorScheme.onSurfaceVariant,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              )
+            : ListView.separated(
+                padding: const EdgeInsets.all(12),
+                shrinkWrap: true,
+                itemCount: messages.length,
+                separatorBuilder: (_, __) => const SizedBox(height: 10),
+                itemBuilder: (context, index) {
+                  return _MessageBubble(message: messages[index]);
+                },
+              ),
+      ),
+    );
+
+    if (initiallyExpanded) {
+      return conversation;
+    }
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: colorScheme.outlineVariant),
+      ),
+      child: ExpansionTile(
+        tilePadding: const EdgeInsets.symmetric(horizontal: 14),
+        childrenPadding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+        title: const Text(
+          '풀이 과정 보기',
+          style: TextStyle(fontWeight: FontWeight.w800),
+        ),
+        children: [conversation],
       ),
     );
   }

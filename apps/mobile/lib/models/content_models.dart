@@ -132,7 +132,16 @@ class ProblemContent {
     final answer = answerMap;
     final key = answer['answer_key'];
     if (key is List && key.isNotEmpty) {
-      return sanitizeProblemText(key.first.toString());
+      final values = key
+          .map(_answerValueText)
+          .map(sanitizeProblemText)
+          .where((value) => value.isNotEmpty)
+          .toList();
+      final uniqueValues = values.toSet();
+      if (uniqueValues.length == 1) {
+        return uniqueValues.single;
+      }
+      return values.join();
     }
     if (key is! List && key != null && key.toString().isNotEmpty) {
       return sanitizeProblemText(key.toString());

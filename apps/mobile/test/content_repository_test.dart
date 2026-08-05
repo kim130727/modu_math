@@ -37,6 +37,16 @@ void main() {
       expect(content.correctAnswer, isNotEmpty);
     });
 
+    test('extracts duplicate slot answer key maps as one final answer',
+        () async {
+      final repository = ContentRepository.bundledAssets();
+      final summary = _summaryWithPrefix('P3_1_01_00040_00469');
+
+      final content = await repository.loadProblem(summary);
+
+      expect(content.correctAnswer, equals('507'));
+    });
+
     test('loads the first renderer prefix as a JSON preview bundle', () async {
       final repository = ContentRepository.bundledAssets();
 
@@ -235,6 +245,97 @@ void main() {
       expect(content.correctAnswer, equals('507'));
     });
 
+    test('strips bundled examples prefix before local HTTP file requests',
+        () async {
+      final requestedUrls = <String>[];
+      final repository = ContentRepository.localHttp(
+        localHttpBaseUrl: 'http://localhost:8765',
+        httpClient: MockClient((request) async {
+          final url = request.url.toString();
+          requestedUrls.add(url);
+          if (url == 'http://localhost:8765/api/problems') {
+            return http.Response(
+              '{"paths": ["examples/problems/P3_1_01_00040_00469.renderer.json"]}',
+              200,
+            );
+          }
+          if (url.endsWith('P3_1_01_00040_00469.semantic.json')) {
+            return http.Response(
+              '{"metadata": {"title": "local http"}, "answer": {"value": 507}}',
+              200,
+            );
+          }
+          if (url.endsWith('P3_1_01_00040_00469.renderer.json')) {
+            return http.Response(
+              '{"view_box": {"width": 928, "height": 426}, "elements": []}',
+              200,
+            );
+          }
+          if (url.endsWith('P3_1_01_00040_00469.layout.json')) {
+            return http.Response('{"layout": "ok"}', 200);
+          }
+          if (url.endsWith('P3_1_01_00040_00469.solvable.v1.2.json')) {
+            return http.Response('{"answer": {"value": 507}}', 200);
+          }
+          if (url.endsWith('P3_1_01_00040_00469.svg')) {
+            return http.Response('<svg></svg>', 200);
+          }
+          return http.Response('Not found', 404);
+        }),
+      );
+
+      final manifest = await repository.loadManifest();
+      final content = await repository.loadProblem(manifest.problems.single);
+
+      expect(content.correctAnswer, equals('507'));
+      expect(
+        requestedUrls,
+        contains(
+          'http://localhost:8765/files/P3_1_01_00040_00469.semantic.json',
+        ),
+      );
+      expect(
+        requestedUrls,
+        isNot(
+          contains(
+            'http://localhost:8765/files/examples%2Fproblems%2FP3_1_01_00040_00469.semantic.json',
+          ),
+        ),
+      );
+    });
+
+    test('orders problem prefixes by numeric sequence', () async {
+      final repository = ContentRepository.localHttp(
+        localHttpBaseUrl: 'http://localhost:8765',
+        httpClient: MockClient((request) async {
+          if (request.url.toString() == 'http://localhost:8765/api/problems') {
+            return http.Response(
+              jsonEncode({
+                'paths': [
+                  'P3_1_01_00040_00470.renderer.json',
+                  'P3_1_01_00040_00469.renderer.json',
+                  'P3_1_01_00040_02135.renderer.json',
+                ],
+              }),
+              200,
+            );
+          }
+          return http.Response('Not found', 404);
+        }),
+      );
+
+      final prefixes = await repository.loadGrade3JsonProblemPrefixes();
+
+      expect(
+        prefixes,
+        equals([
+          'P3_1_01_00040_00469',
+          'P3_1_01_00040_00470',
+          'P3_1_01_00040_02135',
+        ]),
+      );
+    });
+
     test('normalizes list answers into submission order text', () async {
       const summary = ProblemSummary(
         id: 'list-answer',
@@ -298,6 +399,34 @@ void main() {
       );
 
       expect(content.correctAnswer, equals('1012'));
+    });
+
+    test('joins distinct answer key map values for multi-slot answers', () {
+      const summary = ProblemSummary(
+        id: 'multi-slot-answer',
+        grade: 3,
+        subject: 'math',
+        unit: 'unit',
+        type: 'type',
+        title: 'title',
+        path: ContentRepository.problemsPath,
+        raw: {},
+      );
+      const content = ProblemContent(
+        summary: summary,
+        semantic: {},
+        renderer: {},
+        solvable: {
+          'answer': {
+            'answer_key': [
+              {'slot_id': 'slot.operator.1', 'value': '>'},
+              {'slot_id': 'slot.operator.2', 'value': '='},
+            ],
+          },
+        },
+      );
+
+      expect(content.correctAnswer, equals('>='));
     });
 
     test('uses renderer instruction when semantic prompt is broken', () {
