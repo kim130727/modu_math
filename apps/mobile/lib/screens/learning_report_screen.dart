@@ -5,6 +5,7 @@ import '../models/learning_progress.dart';
 import '../models/student_profile.dart';
 import '../services/learning_progress_repository.dart';
 import '../theme/app_theme.dart';
+import '../widgets/onsem_loading_indicator.dart';
 
 class LearningReportScreen extends StatefulWidget {
   const LearningReportScreen({
@@ -58,7 +59,7 @@ class _LearningReportScreenState extends State<LearningReportScreen> {
           ]),
           builder: (context, snapshot) {
             if (snapshot.connectionState != ConnectionState.done) {
-              return const Center(child: CircularProgressIndicator());
+              return const OnsemLoadingIndicator(label: '학습 기록을 정리하고 있어요');
             }
 
             if (snapshot.hasError) {

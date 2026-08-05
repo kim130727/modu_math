@@ -5,6 +5,7 @@ import '../models/content_models.dart';
 import '../models/learning_progress.dart';
 import '../services/content_repository.dart';
 import '../services/learning_progress_repository.dart';
+import '../widgets/onsem_loading_indicator.dart';
 import '../widgets/progress_panel.dart';
 import 'problem_solve_screen.dart';
 
@@ -85,7 +86,7 @@ class _ProblemListScreenState extends State<ProblemListScreen> {
         future: dataFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState != ConnectionState.done) {
-            return const Center(child: CircularProgressIndicator());
+            return const OnsemLoadingIndicator(label: '문제 목록을 모으고 있어요');
           }
           if (snapshot.hasError) {
             return Center(

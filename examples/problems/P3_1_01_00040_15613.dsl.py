@@ -6,7 +6,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextBoxSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_15613"
@@ -270,25 +270,18 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="vertical",
-                slot_ids=(
-                    "slot.question",
-                    "slot.answer",
-                ),
+                slot_ids=("slot.question",
+                    'konva_1785891230215_rect_6075212', 'konva_1785891230215_text_6079300'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.question",
-                x=24,
-                y=28,
-                width=852,
-                height=74,
-                text=(
+                x = 26.584, y = 24.12, width=852,
+                height = 98, text=(
                     "과수원에서 배를 따서 앞집에 113개를 주었더니 325개가 남았습니다. "
                     "처음에 딴 배는 모두 몇 개입니까?"
                 ),
-                font_size=24,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
+                font_size = 30, font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.5,
                 align="left",
@@ -299,8 +292,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="답",
                 answer_key="438",
                 placeholder="개",
-            ),
-        ),
+            ),RectSlot(id = 'konva_1785891230215_rect_6075212', prompt = '', x = 611.421, y = 126.977, width = 154.164, height = 54.616, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2), TextBoxSlot(id = 'konva_1785891230215_text_6079300', prompt = '', text = '개', x = 783.279, y = 134.886, font_size = 30, fill = '#111827', width = 60.537, height = 46, align = 'left', line_height = 1.25)),
     )
 
 

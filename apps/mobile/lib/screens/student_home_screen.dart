@@ -9,6 +9,7 @@ import '../services/content_repository.dart';
 import '../services/learning_progress_repository.dart';
 import '../services/recommendation_service.dart';
 import '../theme/app_theme.dart';
+import '../widgets/onsem_loading_indicator.dart';
 import 'problem_solve_screen.dart';
 import 'review_note_screen.dart';
 
@@ -88,7 +89,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
           ]),
           builder: (context, snapshot) {
             if (snapshot.connectionState != ConnectionState.done) {
-              return const Center(child: CircularProgressIndicator());
+              return const OnsemLoadingIndicator(label: '오늘의 문제를 고르고 있어요');
             }
 
             if (snapshot.hasError) {

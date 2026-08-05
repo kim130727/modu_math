@@ -6,6 +6,7 @@ import '../models/learning_progress.dart';
 import '../services/content_repository.dart';
 import '../services/learning_progress_repository.dart';
 import '../theme/app_theme.dart';
+import '../widgets/onsem_loading_indicator.dart';
 import 'problem_solve_screen.dart';
 
 class ReviewNoteScreen extends StatefulWidget {
@@ -76,7 +77,7 @@ class _ReviewNoteScreenState extends State<ReviewNoteScreen> {
           future: Future.wait([_manifestFuture, _attemptsFuture]),
           builder: (context, snapshot) {
             if (snapshot.connectionState != ConnectionState.done) {
-              return const Center(child: CircularProgressIndicator());
+              return const OnsemLoadingIndicator(label: '오답노트를 살펴보고 있어요');
             }
 
             if (snapshot.hasError) {

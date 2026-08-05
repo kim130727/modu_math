@@ -10,6 +10,7 @@ import '../services/content_repository.dart';
 import '../services/learning_progress_repository.dart';
 import '../services/rule_tutor_service.dart';
 import '../utils/answer_normalizer.dart';
+import '../widgets/onsem_loading_indicator.dart';
 import '../widgets/problem_svg_viewer.dart';
 import '../widgets/renderer_json_canvas.dart';
 import '../widgets/tutor_chat_panel.dart';
@@ -82,17 +83,19 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
   Future<ProblemContent> _loadContent() {
     final future = widget.repository.loadProblem(widget.problem);
     unawaited(
-      future.then((_) => _preloadNextProblem()).catchError((_) {}),
+      future.then((_) => _preloadUpcomingProblems()).catchError((_) {}),
     );
     return future;
   }
 
-  void _preloadNextProblem() {
+  void _preloadUpcomingProblems() {
     if (!_hasNextProblem) {
       return;
     }
-    final nextIndex = widget.problemIndex + 1;
-    unawaited(widget.repository.preloadProblem(widget.unitProblems[nextIndex]));
+    final end = (widget.problemIndex + 3).clamp(0, widget.unitProblems.length);
+    for (var index = widget.problemIndex + 1; index < end; index += 1) {
+      unawaited(widget.repository.preloadProblem(widget.unitProblems[index]));
+    }
   }
 
   @override
@@ -116,7 +119,7 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
         future: contentFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState != ConnectionState.done) {
-            return const Center(child: CircularProgressIndicator());
+            return const OnsemLoadingIndicator(label: '다음 문제로 달려가고 있어요');
           }
           if (snapshot.hasError) {
             return _ProblemLoadError(
@@ -349,12 +352,16 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
         widget.problemIndex + 1 < widget.unitProblems.length;
   }
 
-  void _openNextProblem() {
+  Future<void> _openNextProblem() async {
     if (!_hasNextProblem) {
       Navigator.of(context).pop();
       return;
     }
     final nextIndex = widget.problemIndex + 1;
+    await widget.repository.preloadProblem(widget.unitProblems[nextIndex]);
+    if (!mounted) {
+      return;
+    }
     Navigator.of(context).pushReplacement(
       MaterialPageRoute<void>(
         builder: (context) => ProblemSolveScreen(

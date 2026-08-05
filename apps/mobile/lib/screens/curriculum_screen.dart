@@ -6,6 +6,7 @@ import '../models/content_models.dart';
 import '../services/content_repository.dart';
 import '../services/learning_progress_repository.dart';
 import '../theme/app_theme.dart';
+import '../widgets/onsem_loading_indicator.dart';
 
 class CurriculumScreen extends StatefulWidget {
   const CurriculumScreen({
@@ -64,7 +65,7 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
           future: _manifestFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState != ConnectionState.done) {
-              return const Center(child: CircularProgressIndicator());
+              return const OnsemLoadingIndicator(label: '단원을 준비하고 있어요');
             }
             if (snapshot.hasError) {
               return Center(

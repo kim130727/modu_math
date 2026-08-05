@@ -9,6 +9,7 @@ import '../services/content_repository.dart';
 import '../services/rule_tutor_service.dart';
 import '../theme/app_theme.dart';
 import '../utils/answer_normalizer.dart';
+import '../widgets/onsem_loading_indicator.dart';
 import '../widgets/renderer_json_canvas.dart';
 import '../widgets/tutor_chat_panel.dart';
 import '../services/learning_progress_repository.dart';
@@ -101,7 +102,7 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
                 future: bundleFuture,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState != ConnectionState.done) {
-                    return const Center(child: CircularProgressIndicator());
+                    return const OnsemLoadingIndicator(label: '미리보기를 준비하고 있어요');
                   }
                   if (snapshot.hasError) {
                     return _LoadError(error: snapshot.error);

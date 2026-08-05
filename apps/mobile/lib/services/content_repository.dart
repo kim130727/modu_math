@@ -71,7 +71,18 @@ class ContentRepository {
   final String localHttpBaseUrl;
   List<String>? _rendererPathCache;
   final Map<String, Future<ProblemContent>> _problemCache = {};
-  String activeProblemLocale = 'ko';
+  final Map<String, ProblemContent> _completedProblemCache = {};
+  String _activeProblemLocale = 'ko';
+
+  String get activeProblemLocale => _activeProblemLocale;
+
+  set activeProblemLocale(String locale) {
+    if (_activeProblemLocale == locale) {
+      return;
+    }
+    _activeProblemLocale = locale;
+    _rendererPathCache = null;
+  }
 
   Future<ProblemManifest> loadManifest() async {
     if (source == ContentRepositorySource.localHttp) {
@@ -145,16 +156,29 @@ class ContentRepository {
     );
   }
 
-  Future<ProblemContent> loadProblem(ProblemSummary summary) async {
+  Future<ProblemContent> loadProblem(ProblemSummary summary) {
     final cacheKey = _problemCacheKey(summary);
+    final completed = _completedProblemCache[cacheKey];
+    if (completed != null) {
+      return SynchronousFuture(completed);
+    }
     final cached = _problemCache[cacheKey];
     if (cached != null) {
       return cached;
     }
+    return _cacheProblemLoad(summary, cacheKey);
+  }
+
+  Future<ProblemContent> _cacheProblemLoad(
+    ProblemSummary summary,
+    String cacheKey,
+  ) async {
     final future = _loadProblemUncached(summary);
     _problemCache[cacheKey] = future;
     try {
-      return await future;
+      final content = await future;
+      _completedProblemCache[cacheKey] = content;
+      return content;
     } on Object {
       _problemCache.remove(cacheKey);
       rethrow;

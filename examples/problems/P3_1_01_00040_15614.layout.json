@@ -14,8 +14,9 @@
       "role": "stem",
       "flow": "vertical",
       "slot_ids": [
+        "konva_1785891230215_rect_6041804",
         "slot.question",
-        "slot.answer"
+        "konva_1785891230215_text_6011436"
       ]
     }
   ],
@@ -27,24 +28,48 @@
       "content": {
         "text": "영진이는 가게에서 120원짜리 과자를 사고, 문구점에서 340원짜리 공책을 샀더니 420원이 남았습니다. 영진이가 처음에 가지고 있던 돈은 얼마입니까?",
         "style_role": "body",
-        "x": 24.0,
-        "y": 28.0,
+        "x": 18.833,
+        "y": 22.827,
         "width": 852.0,
-        "height": 76.0,
+        "height": 143.0,
         "align": "left",
         "valign": "top",
-        "font_size": 24,
+        "font_size": 30,
         "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "line_height": 1.5,
         "fill": "#202124"
       }
     },
     {
-      "id": "slot.answer",
-      "kind": "blank",
-      "prompt": "답",
+      "id": "konva_1785891230215_text_6011436",
+      "kind": "text_box",
+      "prompt": "",
       "content": {
-        "placeholder": "원"
+        "text": "원",
+        "style_role": "body",
+        "x": 813.283,
+        "y": 145.939,
+        "width": 54.078,
+        "height": 46.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 30,
+        "line_height": 1.25,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "konva_1785891230215_rect_6041804",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 650.175,
+        "y": 138.616,
+        "width": 142.537,
+        "height": 57.203,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
       }
     }
   ],
@@ -53,7 +78,8 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
+    "konva_1785891230215_rect_6041804",
     "slot.question",
-    "slot.answer"
+    "konva_1785891230215_text_6011436"
   ]
 }

@@ -6,7 +6,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextBoxSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_15614"
@@ -339,26 +339,19 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="vertical",
-                slot_ids=(
-                    "slot.question",
-                    "slot.answer",
-                ),
+                slot_ids=("slot.question",
+                    'konva_1785891230215_text_6011436', 'konva_1785891230215_rect_6041804'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.question",
-                x=24,
-                y=28,
-                width=852,
-                height=76,
-                text=(
+                x = 18.833, y = 22.827, width=852,
+                height = 143, text=(
                     "영진이는 가게에서 120원짜리 과자를 사고, 문구점에서 340원짜리 "
                     "공책을 샀더니 420원이 남았습니다. 영진이가 처음에 가지고 있던 "
                     "돈은 얼마입니까?"
                 ),
-                font_size=24,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
+                font_size = 30, font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.5,
                 align="left",
@@ -369,8 +362,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="답",
                 answer_key="880",
                 placeholder="원",
-            ),
-        ),
+            ),TextBoxSlot(id = 'konva_1785891230215_text_6011436', prompt = '', text = '원', x = 813.283, y = 145.939, font_size = 30, fill = '#111827', width = 54.078, height = 46, align = 'left', line_height = 1.25), RectSlot(id = 'konva_1785891230215_rect_6041804', prompt = '', x = 650.175, y = 138.616, width = 142.537, height = 57.203, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2)),
     )
 
 
