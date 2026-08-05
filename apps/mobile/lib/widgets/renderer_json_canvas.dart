@@ -823,16 +823,50 @@ List<_InputSlot> _inputSlots(
     );
   }
   _sortInputSlots(slots);
+  _applyExpectedAnswerLength(slots, expectedAnswer);
+  return slots;
+}
+
+void _applyExpectedAnswerLength(List<_InputSlot> slots, String expectedAnswer) {
   final answerLength = expectedAnswer.characters.length;
+  if (answerLength <= 1) {
+    return;
+  }
+
   final answerSlots = slots.where((slot) => slot.contributesToAnswer).toList();
-  if (answerLength > 1 &&
-      answerSlots.length == 1 &&
-      answerSlots.single.maxLength < answerLength) {
+  if (answerSlots.length == 1 && answerSlots.single.maxLength < answerLength) {
     final answerSlot = answerSlots.single;
     final index = slots.indexOf(answerSlot);
     slots[index] = answerSlot.copyWith(maxLength: answerLength);
+    return;
   }
-  return slots;
+
+  if (answerSlots.length < 2 || answerLength % answerSlots.length != 0) {
+    return;
+  }
+  final inferredLength = answerLength ~/ answerSlots.length;
+  if (inferredLength <= 1) {
+    return;
+  }
+  for (final answerSlot in answerSlots) {
+    if (!_isWideNumericAnswerSlot(answerSlot, inferredLength) ||
+        answerSlot.maxLength >= inferredLength) {
+      continue;
+    }
+    final index = slots.indexOf(answerSlot);
+    slots[index] = answerSlot.copyWith(maxLength: inferredLength);
+  }
+}
+
+bool _isWideNumericAnswerSlot(_InputSlot slot, int inferredLength) {
+  final minimumWidth = (slot.rect.height * inferredLength * 0.62).clamp(
+    44.0,
+    double.infinity,
+  );
+  return slot.digitsOnly &&
+      !slot.operatorOnly &&
+      slot.rect.width >= minimumWidth &&
+      slot.rect.width / slot.rect.height > 1.35;
 }
 
 void _sortInputSlots(List<_InputSlot> slots) {

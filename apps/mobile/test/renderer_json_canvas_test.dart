@@ -245,6 +245,71 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
+  testWidgets('expands wide answer slots for multi-answer number groups',
+      (tester) async {
+    var value = '';
+
+    Map<String, Object?> answerBox({
+      required double x,
+      required int order,
+    }) {
+      return {
+        'type': 'rect',
+        'attributes': {
+          'x': x,
+          'y': 60,
+          'width': 84,
+          'height': 34,
+          'fill': '#ffffff',
+          'stroke': '#111827',
+        },
+        'interaction': {
+          'type': 'input',
+          'role': 'answer',
+          'value_type': 'digit',
+          'max_length': 1,
+          'include_in_submission': true,
+          'order': order,
+          'keyboard': 'number',
+        },
+      };
+    }
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 360,
+            height: 140,
+            child: RendererJsonCanvas(
+              inputValue: value,
+              expectedAnswer: '724841823',
+              onInputChanged: (next) => value = next,
+              renderer: {
+                'view_box': {
+                  'width': 360,
+                  'height': 140,
+                  'background': '#FFFFFF',
+                },
+                'elements': [
+                  answerBox(x: 32, order: 0),
+                  answerBox(x: 138, order: 1),
+                  answerBox(x: 244, order: 2),
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    await tester.enterText(find.byType(TextField).first, '724');
+
+    expect(value, equals('724'));
+    expect(find.widgetWithText(TextField, '724'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('supports operator choice buttons on text box slots',
       (tester) async {
     var value = '';

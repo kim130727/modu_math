@@ -19,11 +19,11 @@
         "konva_1785065387111_paste_146425_0",
         "konva_1785065387111_paste_146425_1",
         "konva_1785065387111_paste_166216_0",
+        "slot.horizontal_line",
         "slot.instruction",
         "slot.first_number",
         "slot.plus_sign",
-        "slot.second_number",
-        "slot.horizontal_line"
+        "slot.second_number"
       ]
     }
   ],
@@ -59,7 +59,7 @@
         "width": 120,
         "height": 43,
         "align": "left",
-        "valign": "middle",
+        "valign": "top",
         "font_size": 28,
         "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "fill": "#202124",
@@ -78,7 +78,7 @@
         "width": 32,
         "height": 43,
         "align": "center",
-        "valign": "middle",
+        "valign": "top",
         "font_size": 28,
         "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "fill": "#202124",
@@ -97,7 +97,7 @@
         "width": 66.8,
         "height": 78,
         "align": "left",
-        "valign": "middle",
+        "valign": "top",
         "font_size": 28,
         "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "fill": "#202124",
@@ -106,21 +106,15 @@
     },
     {
       "id": "slot.horizontal_line",
-      "kind": "text_box",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "text": "────────",
-        "style_role": "body",
-        "x": 94.036,
-        "y": 188.808,
-        "width": 160,
-        "height": 38,
-        "align": "left",
-        "valign": "middle",
-        "font_size": 24,
-        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "fill": "#111111",
-        "line_height": 1.25
+        "x1": 94.036,
+        "y1": 204.0,
+        "x2": 254.036,
+        "y2": 204.0,
+        "stroke": "#111111",
+        "stroke_width": 1.6
       }
     },
     {
@@ -314,10 +308,10 @@
     "konva_1785065387111_paste_146425_0",
     "konva_1785065387111_paste_146425_1",
     "konva_1785065387111_paste_166216_0",
+    "slot.horizontal_line",
     "slot.instruction",
     "slot.first_number",
     "slot.plus_sign",
-    "slot.second_number",
-    "slot.horizontal_line"
+    "slot.second_number"
   ]
 }

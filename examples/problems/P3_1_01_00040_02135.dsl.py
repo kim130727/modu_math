@@ -4,6 +4,7 @@ from modu_math.dsl import (
     Canvas,
     ProblemTemplate,
     Region,
+    LineSlot,
     TextBoxSlot,
 RectSlot)
 
@@ -52,7 +53,7 @@ def build_problem_template() -> ProblemTemplate:
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 align="left",
-                valign="middle",
+                valign="top",
             ),
             TextBoxSlot(
                 id="slot.plus_sign",
@@ -63,7 +64,7 @@ def build_problem_template() -> ProblemTemplate:
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 align="center",
-                valign="middle",
+                valign="top",
             ),
             TextBoxSlot(
                 id="slot.second_number",
@@ -73,16 +74,16 @@ def build_problem_template() -> ProblemTemplate:
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 align="left",
-                valign="middle",
+                valign="top",
             ),
-            TextBoxSlot(
+            LineSlot(
                 id="slot.horizontal_line",
-                x = 84.8, y = 168.4, width = 121.2, height = 19.2, text="────────",
-                font_size=24,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
-                fill="#111111",
-                align="left",
-                valign="middle",
+                x1=94.036,
+                y1=204.0,
+                x2=254.036,
+                y2=204.0,
+                stroke="#111111",
+                stroke_width=1.6,
             ),
             RectSlot(id = 'konva_1785065387111_rect_91826', prompt = '', x = 146.4, y = 88.6, width = 19.147, height = 19.699, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2), RectSlot(id = 'konva_1785065387111_paste_117760_0', prompt = '', x = 123.2, y = 88.8, width = 19.147, height = 19.699, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2), RectSlot(id = 'konva_1785065387111_paste_146425_0', prompt = '', x = 148.8, y = 188.6, width = 19.147, height = 19.699, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2), RectSlot(id = 'konva_1785065387111_paste_146425_1', prompt = '', x = 125.6, y = 188.8, width = 19.147, height = 19.699, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2), RectSlot(id = 'konva_1785065387111_paste_166216_0', prompt = '', x = 171.2, y = 188.6, width = 19.147, height = 19.699, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2)),
     )

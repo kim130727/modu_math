@@ -202,6 +202,22 @@
       }
     },
     {
+      "id": "slot.horizontal_line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 94.036,
+        "y1": 204.0,
+        "x2": 254.036,
+        "y2": 204.0,
+        "stroke": "#111111",
+        "stroke-width": 1.6
+      },
+      "source_ref": "slot.horizontal_line",
+      "refs": {
+        "layout_slot_id": "slot.horizontal_line"
+      }
+    },
+    {
       "id": "slot.instruction.text",
       "type": "text_box",
       "attributes": {
@@ -246,7 +262,7 @@
         "data-box-width": 120.0,
         "data-box-height": 43.0,
         "data-text-align": "left",
-        "data-vertical-align": "middle",
+        "data-vertical-align": "top",
         "data-line-height": 1.25
       },
       "source_ref": "slot.first_number",
@@ -273,7 +289,7 @@
         "data-box-width": 32.0,
         "data-box-height": 43.0,
         "data-text-align": "center",
-        "data-vertical-align": "middle",
+        "data-vertical-align": "top",
         "data-line-height": 1.25
       },
       "source_ref": "slot.plus_sign",
@@ -300,7 +316,7 @@
         "data-box-width": 66.8,
         "data-box-height": 78.0,
         "data-text-align": "left",
-        "data-vertical-align": "middle",
+        "data-vertical-align": "top",
         "data-line-height": 1.25
       },
       "source_ref": "slot.second_number",
@@ -308,33 +324,6 @@
         "layout_slot_id": "slot.second_number"
       },
       "text": "2 5 7"
-    },
-    {
-      "id": "slot.horizontal_line.text",
-      "type": "text_box",
-      "attributes": {
-        "x": 94.036,
-        "y": 188.808,
-        "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 24,
-        "width": 160.0,
-        "height": 38.0,
-        "max_width": 160.0,
-        "data-slot-kind": "text_box",
-        "data-box-x": 94.036,
-        "data-box-y": 188.808,
-        "data-box-width": 160.0,
-        "data-box-height": 38.0,
-        "data-text-align": "left",
-        "data-vertical-align": "middle",
-        "data-line-height": 1.25
-      },
-      "source_ref": "slot.horizontal_line",
-      "refs": {
-        "layout_slot_id": "slot.horizontal_line"
-      },
-      "text": "────────"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

@@ -3,157 +3,102 @@
   "problem_id": "P3_1_01_00040_02151",
   "problem_type": "multi_answer_vertical_addition",
   "inputs": {
-    "target_label": "두 세로셈의 받아올림한 수와 계산 결과",
+    "target_label": "각 세로셈의 계산 결과",
     "unit": "",
-    "answer_type": "digit_list",
+    "answer_type": "number_list",
     "quantities": {
       "problem_1": {
-        "first_addend": 326,
-        "second_addend": 297
+        "first_addend": 449,
+        "second_addend": 275
       },
       "problem_2": {
-        "first_addend": 458,
-        "second_addend": 356
+        "first_addend": 373,
+        "second_addend": 468
+      },
+      "problem_3": {
+        "first_addend": 536,
+        "second_addend": 287
       }
     },
     "conditions": [
       "일의 자리부터 차례대로 계산합니다.",
       "각 자리의 합이 10 이상이면 바로 윗자리로 1을 받아올림합니다.",
-      "받아올림한 수와 덧셈 결과의 각 자리 숫자를 네모 안에 씁니다."
+      "각 세로셈의 계산 결과를 네모 안에 씁니다."
     ]
   },
   "given": [
     {
       "ref": "addition.problem_1",
       "value": {
-        "first_addend": 326,
-        "second_addend": 297
+        "first_addend": 449,
+        "second_addend": 275
       }
     },
     {
       "ref": "addition.problem_2",
       "value": {
-        "first_addend": 458,
-        "second_addend": 356
+        "first_addend": 373,
+        "second_addend": 468
+      }
+    },
+    {
+      "ref": "addition.problem_3",
+      "value": {
+        "first_addend": 536,
+        "second_addend": 287
       }
     }
   ],
   "target": {
-    "ref": "answer.vertical_addition_blanks",
-    "type": "digit_list"
+    "ref": "answer.vertical_addition_results",
+    "type": "number_list"
   },
-  "method": "각 세로셈에서 일의 자리부터 더하고, 받아올림한 수를 바로 윗자리 계산에 포함한다.",
+  "method": "각 세로셈에서 일의 자리부터 더하고 받아올림을 다음 자리 계산에 포함한다.",
   "plan": [
-    "첫 번째 세로셈 326+297을 일의 자리부터 계산한다.",
-    "첫 번째 세로셈의 받아올림한 수와 결과를 쓴다.",
-    "두 번째 세로셈 458+356을 일의 자리부터 계산한다.",
-    "두 번째 세로셈의 받아올림한 수와 결과를 쓴다."
+    "첫 번째 세로셈 449+275를 계산한다.",
+    "두 번째 세로셈 373+468을 계산한다.",
+    "세 번째 세로셈 536+287을 계산한다."
   ],
   "steps": [
     {
-      "id": "step.problem_1.add_ones",
-      "expr": "6 + 7",
-      "value": 13,
-      "explanation": "첫 번째 세로셈의 일의 자리에서 6과 7을 더하면 13이므로 3을 쓰고 1을 받아올림합니다."
-    },
-    {
-      "id": "step.problem_1.add_tens",
-      "expr": "2 + 9 + 1",
-      "value": 12,
-      "explanation": "십의 자리에서 2와 9에 받아올림한 1을 더하면 12이므로 2를 쓰고 1을 받아올림합니다."
-    },
-    {
-      "id": "step.problem_1.add_hundreds",
-      "expr": "3 + 2 + 1",
-      "value": 6,
-      "explanation": "백의 자리에서 3과 2에 받아올림한 1을 더하면 6입니다."
-    },
-    {
       "id": "step.problem_1.compose_sum",
-      "expr": "326 + 297",
-      "value": 623,
-      "explanation": "첫 번째 세로셈의 결과는 623입니다."
-    },
-    {
-      "id": "step.problem_2.add_ones",
-      "expr": "8 + 6",
-      "value": 14,
-      "explanation": "두 번째 세로셈의 일의 자리에서 8과 6을 더하면 14이므로 4를 쓰고 1을 받아올림합니다."
-    },
-    {
-      "id": "step.problem_2.add_tens",
-      "expr": "5 + 5 + 1",
-      "value": 11,
-      "explanation": "십의 자리에서 5와 5에 받아올림한 1을 더하면 11이므로 1을 쓰고 1을 받아올림합니다."
-    },
-    {
-      "id": "step.problem_2.add_hundreds",
-      "expr": "4 + 3 + 1",
-      "value": 8,
-      "explanation": "백의 자리에서 4와 3에 받아올림한 1을 더하면 8입니다."
+      "expr": "449 + 275",
+      "value": 724,
+      "explanation": "449와 275를 더하면 724입니다."
     },
     {
       "id": "step.problem_2.compose_sum",
-      "expr": "458 + 356",
-      "value": 814,
-      "explanation": "두 번째 세로셈의 결과는 814입니다."
+      "expr": "373 + 468",
+      "value": 841,
+      "explanation": "373과 468을 더하면 841입니다."
+    },
+    {
+      "id": "step.problem_3.compose_sum",
+      "expr": "536 + 287",
+      "value": 823,
+      "explanation": "536과 287을 더하면 823입니다."
     }
   ],
   "checks": [
     {
-      "id": "check.problem_1.ones",
-      "expr": "6 + 7",
-      "expected": 13,
-      "actual": 13,
-      "pass": true
-    },
-    {
-      "id": "check.problem_1.tens",
-      "expr": "2 + 9 + 1",
-      "expected": 12,
-      "actual": 12,
-      "pass": true
-    },
-    {
       "id": "check.problem_1.total",
-      "expr": "326 + 297",
-      "expected": 623,
-      "actual": 623,
-      "pass": true
-    },
-    {
-      "id": "check.problem_2.ones",
-      "expr": "8 + 6",
-      "expected": 14,
-      "actual": 14,
-      "pass": true
-    },
-    {
-      "id": "check.problem_2.tens",
-      "expr": "5 + 5 + 1",
-      "expected": 11,
-      "actual": 11,
+      "expr": "449 + 275",
+      "expected": 724,
+      "actual": 724,
       "pass": true
     },
     {
       "id": "check.problem_2.total",
-      "expr": "458 + 356",
-      "expected": 814,
-      "actual": 814,
+      "expr": "373 + 468",
+      "expected": 841,
+      "actual": 841,
       "pass": true
     },
     {
-      "id": "check.problem_1.inverse",
-      "expr": "623 - 297",
-      "expected": 326,
-      "actual": 326,
-      "pass": true
-    },
-    {
-      "id": "check.problem_2.inverse",
-      "expr": "814 - 356",
-      "expected": 458,
-      "actual": 458,
+      "id": "check.problem_3.total",
+      "expr": "536 + 287",
+      "expected": 823,
+      "actual": 823,
       "pass": true
     }
   ],
@@ -202,24 +147,34 @@
     ]
   },
   "understanding": {
-    "summary": "Find 두 세로셈의 받아올림한 수와 계산 결과 using the given information.",
+    "summary": "세 자리 수 세로셈 세 개의 합을 구합니다.",
     "facts": [
       {
         "ref": "addition.problem_1",
-        "label": "problem 1",
+        "label": "첫 번째 세로셈",
         "value": {
-          "first_addend": 326,
-          "second_addend": 297
+          "first_addend": 449,
+          "second_addend": 275
         },
         "unit": "",
         "source": "explicit"
       },
       {
         "ref": "addition.problem_2",
-        "label": "problem 2",
+        "label": "두 번째 세로셈",
         "value": {
-          "first_addend": 458,
-          "second_addend": 356
+          "first_addend": 373,
+          "second_addend": 468
+        },
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "addition.problem_3",
+        "label": "세 번째 세로셈",
+        "value": {
+          "first_addend": 536,
+          "second_addend": 287
         },
         "unit": "",
         "source": "explicit"
@@ -227,34 +182,22 @@
     ],
     "unknowns": [
       {
-        "ref": "answer.vertical_addition_blanks",
-        "label": "두 세로셈의 받아올림한 수와 계산 결과",
+        "ref": "answer.vertical_addition_results",
+        "label": "각 세로셈의 계산 결과",
         "unit": "",
         "source": "unknown"
       }
     ],
     "relation": {
-      "type": "각 세로셈에서 일의 자리부터 더하고, 받아올림한 수를 바로 윗자리 계산에 포함한다.",
-      "statement": "첫 번째 세로셈 326+297을 일의 자리부터 계산한다.",
-      "symbolic": "6 + 7",
+      "type": "vertical_addition",
+      "statement": "세 자리 수 세로셈 세 개를 각각 계산합니다.",
+      "symbolic": "449+275, 373+468, 536+287",
       "uses": [
         "addition.problem_1",
-        "addition.problem_2"
+        "addition.problem_2",
+        "addition.problem_3"
       ],
-      "result": "answer.vertical_addition_blanks"
-    },
-    "diagnostic_questions": [
-      {
-        "id": "understand.target",
-        "type": "multiple_choice",
-        "prompt": "What should we find?",
-        "choices": [
-          "problem 1",
-          "problem 2",
-          "두 세로셈의 받아올림한 수와 계산 결과"
-        ],
-        "answer_index": 2
-      }
-    ]
+      "result": "answer.vertical_addition_results"
+    }
   }
 }

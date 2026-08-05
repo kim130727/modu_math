@@ -1,7 +1,7 @@
 {
   "schema": "modu.layout.v1",
   "problem_id": "P3_1_01_00040_02151",
-  "title": "받아올림이 있는 세 자리 수의 덧셈",
+  "title": "세 자리 수의 덧셈 계산",
   "canvas": {
     "width": 600,
     "height": 300,
@@ -17,22 +17,22 @@
         "konva_1785113855579_rect_123138",
         "konva_1785113855579_paste_146161_0",
         "konva_1785113855579_paste_150620_0",
+        "konva_1785113315829_paste_130223_4",
+        "konva_1785113315829_paste_130223_9",
+        "konva_1785113315829_paste_135339_4",
         "slot.instruction",
         "konva_1785113315829_paste_130223_0",
         "konva_1785113315829_paste_130223_1",
         "konva_1785113315829_paste_130223_2",
         "konva_1785113315829_paste_130223_3",
-        "konva_1785113315829_paste_130223_4",
         "konva_1785113315829_paste_130223_5",
         "konva_1785113315829_paste_130223_6",
         "konva_1785113315829_paste_130223_7",
         "konva_1785113315829_paste_130223_8",
-        "konva_1785113315829_paste_130223_9",
         "konva_1785113315829_paste_135339_0",
         "konva_1785113315829_paste_135339_1",
         "konva_1785113315829_paste_135339_2",
-        "konva_1785113315829_paste_135339_3",
-        "konva_1785113315829_paste_135339_4"
+        "konva_1785113315829_paste_135339_3"
       ]
     },
     {
@@ -142,20 +142,15 @@
     },
     {
       "id": "konva_1785113315829_paste_130223_4",
-      "kind": "text_box",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "text": "───────",
-        "style_role": "body",
-        "x": 68.435,
-        "y": 150.0,
-        "width": 122.0,
-        "height": 33.0,
-        "align": "center",
-        "valign": "top",
-        "font_size": 20,
-        "line_height": 1.25,
-        "fill": "#111111"
+        "x1": 68.435,
+        "y1": 164.0,
+        "x2": 190.435,
+        "y2": 164.0,
+        "stroke": "#111111",
+        "stroke_width": 1.6
       }
     },
     {
@@ -232,20 +227,15 @@
     },
     {
       "id": "konva_1785113315829_paste_130223_9",
-      "kind": "text_box",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "text": "───────",
-        "style_role": "body",
-        "x": 249.388,
-        "y": 151.435,
-        "width": 122.0,
-        "height": 33.0,
-        "align": "center",
-        "valign": "top",
-        "font_size": 20,
-        "line_height": 1.25,
-        "fill": "#111111"
+        "x1": 249.388,
+        "y1": 165.435,
+        "x2": 371.388,
+        "y2": 165.435,
+        "stroke": "#111111",
+        "stroke_width": 1.6
       }
     },
     {
@@ -253,7 +243,7 @@
       "kind": "text_box",
       "prompt": "",
       "content": {
-        "text": "(2)",
+        "text": "(3)",
         "style_role": "body",
         "x": 400.311,
         "y": 70.746,
@@ -322,20 +312,15 @@
     },
     {
       "id": "konva_1785113315829_paste_135339_4",
-      "kind": "text_box",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "text": "───────",
-        "style_role": "body",
-        "x": 437.187,
-        "y": 151.047,
-        "width": 122.0,
-        "height": 33.0,
-        "align": "center",
-        "valign": "top",
-        "font_size": 20,
-        "line_height": 1.25,
-        "fill": "#111111"
+        "x1": 437.187,
+        "y1": 165.047,
+        "x2": 559.187,
+        "y2": 165.047,
+        "stroke": "#111111",
+        "stroke_width": 1.6
       }
     },
     {
@@ -353,8 +338,8 @@
         "interaction": {
           "type": "input",
           "role": "answer",
-          "value_type": "digit",
-          "max_length": 1,
+          "value_type": "number",
+          "max_length": 3,
           "include_in_submission": true,
           "order": 0,
           "group_id": "final_answer",
@@ -389,8 +374,8 @@
         "interaction": {
           "type": "input",
           "role": "answer",
-          "value_type": "digit",
-          "max_length": 1,
+          "value_type": "number",
+          "max_length": 3,
           "include_in_submission": true,
           "order": 1,
           "group_id": "final_answer",
@@ -425,8 +410,8 @@
         "interaction": {
           "type": "input",
           "role": "answer",
-          "value_type": "digit",
-          "max_length": 1,
+          "value_type": "number",
+          "max_length": 3,
           "include_in_submission": true,
           "order": 2,
           "group_id": "final_answer",
@@ -455,22 +440,22 @@
     "konva_1785113855579_rect_123138",
     "konva_1785113855579_paste_146161_0",
     "konva_1785113855579_paste_150620_0",
+    "konva_1785113315829_paste_130223_4",
+    "konva_1785113315829_paste_130223_9",
+    "konva_1785113315829_paste_135339_4",
     "slot.instruction",
     "konva_1785113315829_paste_130223_0",
     "konva_1785113315829_paste_130223_1",
     "konva_1785113315829_paste_130223_2",
     "konva_1785113315829_paste_130223_3",
-    "konva_1785113315829_paste_130223_4",
     "konva_1785113315829_paste_130223_5",
     "konva_1785113315829_paste_130223_6",
     "konva_1785113315829_paste_130223_7",
     "konva_1785113315829_paste_130223_8",
-    "konva_1785113315829_paste_130223_9",
     "konva_1785113315829_paste_135339_0",
     "konva_1785113315829_paste_135339_1",
     "konva_1785113315829_paste_135339_2",
     "konva_1785113315829_paste_135339_3",
-    "konva_1785113315829_paste_135339_4",
     "region.problem_1",
     "region.problem_2"
   ]

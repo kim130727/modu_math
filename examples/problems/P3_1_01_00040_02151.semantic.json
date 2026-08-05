@@ -2,7 +2,7 @@
   "problem_id": "P3_1_01_00040_02151",
   "problem_type": "multi_answer_vertical_addition",
   "metadata": {
-    "title": "받아올림이 있는 세 자리 수의 덧셈",
+    "title": "세 자리 수의 덧셈 계산",
     "tags": [],
     "instruction": "(1)",
     "question": "□ 안에 알맞은 수를 써넣으시오.",
@@ -15,7 +15,7 @@
     "grade": 3,
     "semester": 1,
     "subject": "수학",
-    "topic": "받아올림이 있는 세 자리 수의 덧셈",
+    "topic": "세 자리 수의 덧셈 계산",
     "language": "ko-KR"
   },
   "domain": {
@@ -24,49 +24,25 @@
         "id": "addition.problem_1",
         "type": "vertical_addition",
         "label": "첫 번째 세로셈",
-        "first_addend": 326,
-        "second_addend": 297,
-        "sum": 623
-      },
-      {
-        "id": "carry.problem_1.ones_to_tens",
-        "type": "carry",
-        "label": "첫 번째 세로셈의 일의 자리 받아올림",
-        "from_place": "ones",
-        "to_place": "tens",
-        "value": 1
-      },
-      {
-        "id": "carry.problem_1.tens_to_hundreds",
-        "type": "carry",
-        "label": "첫 번째 세로셈의 십의 자리 받아올림",
-        "from_place": "tens",
-        "to_place": "hundreds",
-        "value": 1
+        "first_addend": 449,
+        "second_addend": 275,
+        "sum": 724
       },
       {
         "id": "addition.problem_2",
         "type": "vertical_addition",
         "label": "두 번째 세로셈",
-        "first_addend": 458,
-        "second_addend": 356,
-        "sum": 814
+        "first_addend": 373,
+        "second_addend": 468,
+        "sum": 841
       },
       {
-        "id": "carry.problem_2.ones_to_tens",
-        "type": "carry",
-        "label": "두 번째 세로셈의 일의 자리 받아올림",
-        "from_place": "ones",
-        "to_place": "tens",
-        "value": 1
-      },
-      {
-        "id": "carry.problem_2.tens_to_hundreds",
-        "type": "carry",
-        "label": "두 번째 세로셈의 십의 자리 받아올림",
-        "from_place": "tens",
-        "to_place": "hundreds",
-        "value": 1
+        "id": "addition.problem_3",
+        "type": "vertical_addition",
+        "label": "세 번째 세로셈",
+        "first_addend": 536,
+        "second_addend": 287,
+        "sum": 823
       }
     ],
     "relations": [
@@ -75,8 +51,8 @@
         "type": "sum_of",
         "subject": "addition.problem_1",
         "values": [
-          326,
-          297
+          449,
+          275
         ]
       },
       {
@@ -84,8 +60,17 @@
         "type": "sum_of",
         "subject": "addition.problem_2",
         "values": [
-          458,
-          356
+          373,
+          468
+        ]
+      },
+      {
+        "id": "relation.problem_3_sum",
+        "type": "sum_of",
+        "subject": "addition.problem_3",
+        "values": [
+          536,
+          287
         ]
       }
     ],
