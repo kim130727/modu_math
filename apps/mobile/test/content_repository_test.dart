@@ -61,7 +61,7 @@ void main() {
       expect(bundle.renderer, isNotEmpty);
     });
 
-    test('falls back to examples files when localized files are absent',
+    test('loads active locale files when localized examples exist',
         () async {
       final repository = ContentRepository.bundledAssets()
         ..activeProblemLocale = 'uk';
@@ -70,13 +70,14 @@ void main() {
       final content = await repository.loadProblem(koreanSummary);
 
       expect(
-        content.semantic['metadata']['title'],
-        equals('두 가족이 캔 고구마의 수'),
+        content.semantic['metadata']['language'],
+        equals('uk-UA'),
       );
       expect(content.summary.filePrefix, equals('P3_1_01_00040_00469_ko'));
     });
 
-    test('loads Korean files from a suffixed localized summary', () async {
+    test('falls back to base Korean files from a suffixed localized summary',
+        () async {
       final repository = ContentRepository.bundledAssets()
         ..activeProblemLocale = 'ko';
       final ukrainianSummary = _summaryWithPrefix('P3_1_01_00040_00469_uk');
@@ -84,8 +85,8 @@ void main() {
       final content = await repository.loadProblem(ukrainianSummary);
 
       expect(
-        content.semantic['metadata']['title'],
-        equals('두 가족이 캔 고구마의 수'),
+        content.semantic['metadata']['language'],
+        equals('ko-KR'),
       );
       expect(content.summary.filePrefix, equals('P3_1_01_00040_00469_uk'));
     });

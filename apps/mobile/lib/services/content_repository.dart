@@ -277,8 +277,8 @@ class ContentRepository {
     final localizedFilePrefix = _localizedFilePrefix(filePrefix);
     final rendererPath =
         _findRendererPath(rendererPaths, localizedFilePrefix) ??
-            _findRendererPath(rendererPaths, filePrefix) ??
             _findRendererPath(rendererPaths, baseFilePrefix) ??
+            _findRendererPath(rendererPaths, filePrefix) ??
             '';
     if (rendererPath.isEmpty) {
       return '$problemsPath/$localizedFilePrefix';
