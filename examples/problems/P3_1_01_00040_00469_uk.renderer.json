@@ -1,0 +1,104 @@
+{
+  "problem_id": "P3_1_01_00040_00469",
+  "view_box": {
+    "width": 900.0,
+    "height": 230.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "konva_1785063642549_rect_11081.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 610.0,
+        "y": 160.0,
+        "width": 110.0,
+        "height": 42.0,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.2
+      },
+      "source_ref": "konva_1785063642549_rect_11081",
+      "refs": {
+        "layout_slot_id": "konva_1785063642549_rect_11081"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 3,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    {
+      "id": "slot.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 20.0,
+        "y": 18.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans\", \"Arial\", sans-serif",
+        "font-size": 26,
+        "width": 860.0,
+        "height": 114.0,
+        "max_width": 860.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 20.0,
+        "data-box-y": 18.0,
+        "data-box-width": 860.0,
+        "data-box-height": 114.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.35
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "Минулої неділі родини Санхьона та Йонджіна поїхали на заміську ферму. Родина Санхьона зібрала 259 бататів, а родина Йонджіна —\n248 бататів. Скільки всього бататів зібрали обидві родини?"
+    },
+    {
+      "id": "konva_1785063642549_text_21880.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 738.0,
+        "y": 163.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans\", \"Arial\", sans-serif",
+        "font-size": 28,
+        "width": 52.0,
+        "height": 40.0,
+        "max_width": 52.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 738.0,
+        "data-box-y": 163.0,
+        "data-box-width": 52.0,
+        "data-box-height": 40.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25
+      },
+      "source_ref": "konva_1785063642549_text_21880",
+      "refs": {
+        "layout_slot_id": "konva_1785063642549_text_21880"
+      },
+      "text": "шт."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

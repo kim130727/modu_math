@@ -1,0 +1,178 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_00469",
+  "problem_type": "numeric_answer_addition_word_problem",
+  "inputs": {
+    "target_label": "кількість бататів, зібраних двома родинами",
+    "unit": "шт.",
+    "quantities": {
+      "sanghyeon_family_count": 259,
+      "yongjin_family_count": 248
+    },
+    "conditions": [
+      "Родина Санхьона зібрала 259 бататів.",
+      "Родина Йонджіна зібрала 248 бататів.",
+      "Потрібно знайти загальну кількість бататів, зібраних двома родинами."
+    ]
+  },
+  "given": [
+    {
+      "ref": "quantity.sanghyeon_family_sweet_potatoes",
+      "value": {
+        "count": 259,
+        "unit": "шт.",
+        "owner": "group.sanghyeon_family",
+        "object": "object.sweet_potato"
+      }
+    },
+    {
+      "ref": "quantity.yongjin_family_sweet_potatoes",
+      "value": {
+        "count": 248,
+        "unit": "шт.",
+        "owner": "group.yongjin_family",
+        "object": "object.sweet_potato"
+      }
+    }
+  ],
+  "target": {
+    "ref": "quantity.total_sweet_potatoes",
+    "type": "number"
+  },
+  "understanding": {
+    "summary": "У цій задачі потрібно додати кількість бататів, зібраних кожною родиною, і знайти їх загальну кількість.",
+    "facts": [
+      {
+        "ref": "quantity.sanghyeon_family_sweet_potatoes",
+        "label": "Кількість бататів, зібраних родиною Санхьона",
+        "value": 259,
+        "unit": "шт.",
+        "source": "explicit"
+      },
+      {
+        "ref": "quantity.yongjin_family_sweet_potatoes",
+        "label": "Кількість бататів, зібраних родиною Йонджіна",
+        "value": 248,
+        "unit": "шт.",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "quantity.total_sweet_potatoes",
+        "label": "Кількість бататів, зібраних двома родинами",
+        "unit": "шт.",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "part_part_whole_addition",
+      "statement": "Щоб знайти загальну кількість бататів, зібраних двома родинами, потрібно додати кількості, зібрані кожною родиною.",
+      "symbolic": "Усього = кількість родини Санхьона + кількість родини Йонджіна",
+      "uses": [
+        "quantity.sanghyeon_family_sweet_potatoes",
+        "quantity.yongjin_family_sweet_potatoes"
+      ],
+      "result": "quantity.total_sweet_potatoes"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "Що потрібно знайти в цій задачі?",
+        "choices": [
+          "Кількість бататів, зібраних родиною Санхьона",
+          "Кількість бататів, зібраних родиною Йонджіна",
+          "Кількість бататів, зібраних двома родинами"
+        ],
+        "answer_index": 2
+      },
+      {
+        "id": "understand.relation",
+        "type": "multiple_choice",
+        "prompt": "Що потрібно зробити, щоб знайти загальну кількість бататів, зібраних двома родинами?",
+        "choices": [
+          "Додати 259 і 248.",
+          "Від 259 відняти 248.",
+          "Порівняти 259 і 248."
+        ],
+        "answer_index": 0
+      }
+    ],
+    "student_restatement": {
+      "prompt": "Спробуймо переказати головну думку задачі.",
+      "template": "Додаємо {first_count} шт. і {second_count} шт., щоб знайти {target_label}.",
+      "answer": "Додаємо 259 і 248, щоб знайти кількість бататів, зібраних двома родинами."
+    }
+  },
+  "method": "Знаходимо загальну кількість бататів, зібраних двома родинами, за допомогою додавання.",
+  "plan": [
+    "Визначити кількість бататів, зібраних родиною Санхьона.",
+    "Визначити кількість бататів, зібраних родиною Йонджіна.",
+    "Додати два числа та знайти загальну кількість бататів."
+  ],
+  "steps": [
+    {
+      "id": "step.add_counts",
+      "goal": "Знайти загальну кількість бататів, зібраних двома родинами.",
+      "uses": [
+        "quantity.sanghyeon_family_sweet_potatoes",
+        "quantity.yongjin_family_sweet_potatoes"
+      ],
+      "relation_expr": "Усього = кількість родини Санхьона + кількість родини Йонджіна",
+      "expr": "259 + 248",
+      "value": {
+        "count": 507,
+        "unit": "шт.",
+        "ref": "quantity.total_sweet_potatoes"
+      },
+      "explanation": "Щоб знайти загальну кількість бататів, зібраних двома родинами, додаємо 259 і 248."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.inverse_subtraction",
+      "expr": "507 - 248",
+      "expected": 259,
+      "actual": 259,
+      "pass": true
+    },
+    {
+      "id": "check.minimum_total",
+      "expr": "507 > 259 and 507 > 248",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 507,
+    "unit": "шт.",
+    "values": [
+      507,
+      507
+    ],
+    "blanks": [
+      {
+        "id": "slot.answer",
+        "slot_id": "slot.answer",
+        "expected": 507
+      },
+      {
+        "id": "konva_1785063642549_rect_11081",
+        "slot_id": "konva_1785063642549_rect_11081",
+        "expected": 507
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer",
+        "value": 507
+      },
+      {
+        "slot_id": "konva_1785063642549_rect_11081",
+        "value": 507
+      }
+    ]
+  }
+}
