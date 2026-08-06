@@ -1579,15 +1579,17 @@ def apply_layout_patches(
     patches: list[dict[str, Any]],
     *,
     format_source: bool = True,
+    fast_overrides: bool = False,
 ) -> tuple[str, list[AppliedPatch]]:
     paths = resolve_problem_paths(problem_id)
     source = paths.dsl_path.read_text(encoding="utf-8")
     if not source.strip():
         raise DslPatchError("DSL file is empty; restore or save a valid DSL before editing layout")
 
-    fast_applied = _try_apply_fast_editor_overrides(paths, patches)
-    if fast_applied is not None:
-        return source, fast_applied
+    if fast_overrides:
+        fast_applied = _try_apply_fast_editor_overrides(paths, patches)
+        if fast_applied is not None:
+            return source, fast_applied
 
     try:
         module = cst.parse_module(source)
@@ -1758,7 +1760,17 @@ def apply_layout_patches(
 
         raise DslPatchError(f"target slot not found: {target}")
 
-    updated_code = format_dsl_source(transformed.code) if format_source else transformed.code
+    preserve_polygon_point_spacing = any(
+        patch.get("op") == "update"
+        and isinstance(patch.get("value"), dict)
+        and "points" in patch["value"]
+        for patch in patches
+    )
+    updated_code = (
+        format_dsl_source(transformed.code)
+        if format_source and not preserve_polygon_point_spacing
+        else transformed.code
+    )
     paths.dsl_path.write_text(updated_code, encoding="utf-8")
     return updated_code, applied
 

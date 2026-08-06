@@ -21,7 +21,7 @@ ARTIFACT_FILES = {
 }
 
 _PROBLEM_LIST_CACHE_TTL_SECONDS = 5.0
-_PROBLEM_LIST_CACHE: dict[bool, tuple[float, list[dict[str, Any]]]] = {}
+_PROBLEM_LIST_CACHE: dict[tuple[bool, tuple[tuple[str, str], ...]], tuple[float, list[dict[str, Any]]]] = {}
 
 
 BLANK_PROBLEM_DSL = '''from __future__ import annotations
@@ -462,7 +462,9 @@ def invalidate_problem_list_cache() -> None:
 
 def list_problem_directories(*, include_artifacts: bool = False) -> list[dict[str, Any]]:
     now = time.monotonic()
-    cached = _PROBLEM_LIST_CACHE.get(include_artifacts)
+    roots_key = tuple((alias, str(root)) for alias, root in problem_roots())
+    cache_key = (include_artifacts, roots_key)
+    cached = _PROBLEM_LIST_CACHE.get(cache_key)
     if cached and now - cached[0] < _PROBLEM_LIST_CACHE_TTL_SECONDS:
         return [dict(problem) for problem in cached[1]]
 
@@ -506,7 +508,7 @@ def list_problem_directories(*, include_artifacts: bool = False) -> list[dict[st
                 problem
             )
     result = sorted(problems, key=lambda p: p["problem_id"])
-    _PROBLEM_LIST_CACHE[include_artifacts] = (now, result)
+    _PROBLEM_LIST_CACHE[cache_key] = (now, result)
     return [dict(problem) for problem in result]
 
 
@@ -568,6 +570,7 @@ def create_blank_problem(problem_id: str, title: str | None = None) -> dict[str,
 
 def save_problem_dsl(problem_id: str, dsl: str) -> tuple[ProblemPaths, str]:
     paths = resolve_problem_paths(problem_id)
+    dsl = format_dsl_source(dsl)
     paths.dsl_path.write_text(dsl, encoding="utf-8")
     return paths, dsl
 

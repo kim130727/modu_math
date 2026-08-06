@@ -209,14 +209,14 @@ def save_dsl(request: HttpRequest, problem_id: str) -> JsonResponse:
             return _error("'dsl' must be a string", status=400)
         if not dsl.strip():
             return _error("'dsl' must not be empty", status=400)
-        save_problem_dsl(problem_id, dsl)
+        _, dsl = save_problem_dsl(problem_id, dsl)
     except ValueError as exc:
         return _error(str(exc), status=400)
     except FileNotFoundError as exc:
         return _error(str(exc), status=404)
     except Exception as exc:
         return _error(str(exc), status=500)
-    return JsonResponse({"ok": True, "problem_id": problem_id})
+    return JsonResponse({"ok": True, "problem_id": problem_id, "dsl": dsl})
 
 
 @require_POST
@@ -263,10 +263,18 @@ def layout_patch(request: HttpRequest, problem_id: str) -> JsonResponse:
         patches = data.get("patches")
         if not isinstance(patches, list):
             return _error("'patches' must be a list", status=400)
-        format_source = data.get("format", False)
+        format_source = data.get("format", True)
         if not isinstance(format_source, bool):
             return _error("'format' must be a boolean", status=400)
-        dsl_text, applied = apply_layout_patches(problem_id, patches, format_source=format_source)
+        fast_overrides = data.get("fast", False)
+        if not isinstance(fast_overrides, bool):
+            return _error("'fast' must be a boolean", status=400)
+        dsl_text, applied = apply_layout_patches(
+            problem_id,
+            patches,
+            format_source=format_source,
+            fast_overrides=fast_overrides,
+        )
     except DslPatchError as exc:
         return _error(str(exc), status=400)
     except ValueError as exc:

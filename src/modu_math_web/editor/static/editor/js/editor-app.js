@@ -657,7 +657,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       return true;
     }
 
-    async function commitPatches(patches, reason = "저장 완료", withBuild = false, problemId = currentProblemId, formatSource = false) {
+    async function commitPatches(patches, reason = "저장 완료", withBuild = false, problemId = currentProblemId, formatSource = false, fast = false) {
       if (!problemId) return;
       if (!patches || !patches.length) return;
       if (!(document.getElementById("dslEditor").value || "").trim()) {
@@ -673,8 +673,8 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       });
       const savePromise = withApiErrors(() => (
         withBuild
-          ? applyLayoutPatchesAndBuild(problemId, patches, { format: formatSource })
-          : applyLayoutPatches(problemId, patches, { format: formatSource })
+          ? applyLayoutPatchesAndBuild(problemId, patches, { format: formatSource, fast })
+          : applyLayoutPatches(problemId, patches, { format: formatSource, fast })
       ));
       pendingPatchSaves.push(savePromise);
       let data;
@@ -5406,7 +5406,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         setStatus(`드래그 저장 중: ${patches.length}개`, true);
         queueDragCommit(async () => {
           try {
-            await commitPatches(patches, `드래그 저장 완료: ${patches.length}개`, false, local.problemId, false);
+            await commitPatches(patches, `드래그 저장 완료: ${patches.length}개`, false, local.problemId, false, true);
             if (!historyBusy) {
               for (const pch of patches) {
                 const found = local.beforeMap.get(pch.target);
