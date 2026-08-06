@@ -1,19 +1,25 @@
 {
+  "version": 1,
+  "deleted_slots": [
+    "slot.expression",
+    "slot.answer"
+  ],
   "slots": {
     "slot.question": {
-      "x": 20,
-      "y": 18,
-      "width": 860,
-      "height": 114,
-      "font_size": 26,
-      "font_family": "\"Noto Sans\", \"Arial\", sans-serif",
-      "line_height": 1.35
+      "x": 20.872,
+      "y": 12.015,
+      "font_size": 19,
+      "fill": "#202124",
+      "width": 804,
+      "height": 148.0,
+      "align": "left",
+      "line_height": 1.55,
+      "text": "Минулої неділі родини Санхьона та Йонджіна поїхали на заміську ферму. Родина Санхьона зібрала 259 бататів, а родина Йонджіна —\n248 бататів. Скільки всього бататів зібрали обидві родини?"
     },
     "konva_1785063642549_rect_11081": {
-      "x": 610,
-      "y": 160,
-      "width": 110,
-      "height": 42,
+      "x": 619.856,
+      "y": 161.02,
+      "width": 107.15,
       "interaction": {
         "type": "input",
         "role": "answer",
@@ -24,20 +30,24 @@
         "group_id": "final_answer",
         "auto_advance": true,
         "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
       }
     },
     "konva_1785063642549_text_21880": {
-      "x": 738,
-      "y": 163,
-      "width": 52,
-      "height": 40,
-      "font_size": 28,
-      "font_family": "\"Noto Sans\", \"Arial\", sans-serif"
+      "x": 744.014,
+      "y": 165.619,
+      "width": 43.744,
+      "text": "шт."
     }
-  },
-  "version": 1,
-  "deleted_slots": [
-    "slot.expression",
-    "slot.answer"
-  ]
+  }
 }
