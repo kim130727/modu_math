@@ -1,0 +1,141 @@
+{
+  "problem_id": "P3_1_01_00040_00469",
+  "problem_type": "numeric_answer_addition_word_problem",
+  "metadata": {
+    "title": "Кількість бататів, зібраних двома родинами",
+    "tags": [],
+    "instruction": "шт.",
+    "question": "Минулої неділі родини Санхьона та Йонджіна поїхали на заміську ферму. Родина Санхьона зібрала 259 бататів, а родина Йонджіна —\n248 бататів. Скільки всього бататів зібрали обидві родини?",
+    "required_layout_ids": [
+      "konva_1785063642549_rect_11081"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "Математика",
+    "topic": "Додавання трицифрових чисел",
+    "language": "uk-UA"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "person.sanghyeon",
+        "type": "person",
+        "label": "Санхьон"
+      },
+      {
+        "id": "person.yongjin",
+        "type": "person",
+        "label": "Йонджін"
+      },
+      {
+        "id": "group.sanghyeon_family",
+        "type": "family",
+        "label": "Родина Санхьона"
+      },
+      {
+        "id": "group.yongjin_family",
+        "type": "family",
+        "label": "Родина Йонджіна"
+      },
+      {
+        "id": "object.sweet_potato",
+        "type": "countable_object",
+        "label": "Батат",
+        "unit": "шт."
+      },
+      {
+        "id": "quantity.sanghyeon_family_sweet_potatoes",
+        "type": "quantity",
+        "label": "Кількість бататів, зібраних родиною Санхьона",
+        "value": 259,
+        "unit": "шт."
+      },
+      {
+        "id": "quantity.yongjin_family_sweet_potatoes",
+        "type": "quantity",
+        "label": "Кількість бататів, зібраних родиною Йонджіна",
+        "value": 248,
+        "unit": "шт."
+      },
+      {
+        "id": "quantity.total_sweet_potatoes",
+        "type": "quantity",
+        "label": "Кількість бататів, зібраних двома родинами",
+        "value": 507,
+        "unit": "шт."
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.sanghyeon_belongs_to_family",
+        "type": "member_of",
+        "from_id": "person.sanghyeon",
+        "to_id": "group.sanghyeon_family"
+      },
+      {
+        "id": "relation.yongjin_belongs_to_family",
+        "type": "member_of",
+        "from_id": "person.yongjin",
+        "to_id": "group.yongjin_family"
+      },
+      {
+        "id": "relation.sanghyeon_family_collected",
+        "type": "collected",
+        "from_id": "group.sanghyeon_family",
+        "to_id": "object.sweet_potato",
+        "quantity": "quantity.sanghyeon_family_sweet_potatoes"
+      },
+      {
+        "id": "relation.yongjin_family_collected",
+        "type": "collected",
+        "from_id": "group.yongjin_family",
+        "to_id": "object.sweet_potato",
+        "quantity": "quantity.yongjin_family_sweet_potatoes"
+      },
+      {
+        "id": "relation.sanghyeon_count_part_of_total",
+        "type": "part_of_sum",
+        "from_id": "quantity.sanghyeon_family_sweet_potatoes",
+        "to_id": "quantity.total_sweet_potatoes"
+      },
+      {
+        "id": "relation.yongjin_count_part_of_total",
+        "type": "part_of_sum",
+        "from_id": "quantity.yongjin_family_sweet_potatoes",
+        "to_id": "quantity.total_sweet_potatoes"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": 507,
+    "unit": "шт.",
+    "values": [
+      507,
+      507
+    ],
+    "blanks": [
+      {
+        "id": "slot.answer",
+        "slot_id": "slot.answer",
+        "expected": 507
+      },
+      {
+        "id": "konva_1785063642549_rect_11081",
+        "slot_id": "konva_1785063642549_rect_11081",
+        "expected": 507
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer",
+        "value": 507
+      },
+      {
+        "slot_id": "konva_1785063642549_rect_11081",
+        "value": 507
+      }
+    ]
+  }
+}

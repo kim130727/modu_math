@@ -1,15 +1,5 @@
 {
   "slots": {
-    "slot.answer": {
-      "x": 64,
-      "y": 421,
-      "width": 120,
-      "height": 32,
-      "fill": "#ffffff",
-      "stroke": "#111111",
-      "stroke_width": 1.5,
-      "stroke_dasharray": "4 3"
-    },
     "slot.inner_triangle": {
       "points": [
         [
@@ -33,16 +23,16 @@
     "slot.outer_triangle": {
       "points": [
         [
-          250,
-          557
+          215.413,
+          422.21
         ],
         [
-          485,
-          322
+          450.413,
+          187.21
         ],
         [
-          720,
-          557
+          685.413,
+          422.21
         ]
       ],
       "fill": "#dddddd",
@@ -50,12 +40,18 @@
       "stroke_width": 1.5,
       "stroke_dasharray": "10 6"
     },
-    "slot.outer_semicircle": {
-      "d": "M 415 252 A 235 235 0 0 1 885 252",
-      "stroke": "#222222",
-      "stroke_width": 1.5,
-      "stroke_dasharray": "10 6"
+    "slot.question": {
+      "width": 490.088
+    },
+    "slot.instruction": {
+      "font_size": 28,
+      "width": 577.932,
+      "height": 46
     }
   },
-  "version": 1
+  "version": 1,
+  "deleted_slots": [
+    "slot.outer_semicircle",
+    "slot.answer"
+  ]
 }

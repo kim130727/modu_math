@@ -381,6 +381,19 @@ def resolve_problem_paths(problem_id: str) -> ProblemPaths:
             artifact_base=artifact_base,
         )
 
+    file_target = target.with_name(f"{target.name}.dsl.py")
+    if file_target.exists() and file_target.is_file():
+        artifact_base = file_target.name[: -len(".dsl.py")]
+        rel = file_target.relative_to(root).as_posix()
+        return ProblemPaths(
+            problem_id=_display_problem_id(alias, rel),
+            root_alias=alias,
+            root_dir=root,
+            base_dir=file_target.parent,
+            dsl_path=file_target,
+            artifact_base=artifact_base,
+        )
+
     raise FileNotFoundError(f"problem not found: {safe_problem_id}")
 
 

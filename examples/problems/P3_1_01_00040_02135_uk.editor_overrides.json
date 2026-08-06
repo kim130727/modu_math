@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "canvas": {
+    "width": 380,
+    "height": 260
+  },
+  "deleted_slots": [
+    "slot.carry_hundreds",
+    "slot.carry_tens",
+    "slot.answer_hundreds",
+    "slot.answer_tens",
+    "slot.answer_ones"
+  ],
+  "slots": {
+    "slot.instruction": {
+      "x": 16,
+      "y": 14,
+      "font_size": 20,
+      "fill": "#202124",
+      "width": 348,
+      "height": 58,
+      "align": "left",
+      "line_height": 1.2,
+      "text": "Впишіть у клітинки відповідні числа.",
+      "font_family": "\"Noto Sans\", \"Arial\", sans-serif"
+    },
+    "slot.first_number": {
+      "x": 130,
+      "y": 112.4,
+      "font_size": 28,
+      "fill": "#202124",
+      "width": 64.4,
+      "height": 42,
+      "align": "left",
+      "line_height": 1.25,
+      "text": "6 6 4"
+    },
+    "slot.plus_sign": {
+      "x": 90.4,
+      "y": 143.2,
+      "font_size": 28,
+      "fill": "#202124",
+      "width": 32,
+      "height": 42,
+      "align": "center",
+      "line_height": 1.25,
+      "text": "+"
+    },
+    "slot.second_number": {
+      "x": 130.4,
+      "y": 143.2,
+      "font_size": 28,
+      "fill": "#202124",
+      "width": 61.2,
+      "height": 42,
+      "align": "left",
+      "line_height": 1.25,
+      "text": "2 5 7"
+    },
+    "slot.horizontal_line": {
+      "x": 84.8,
+      "y": 168.4,
+      "font_size": 15,
+      "fill": "#111111",
+      "width": 121.2,
+      "height": 19.2,
+      "align": "left",
+      "line_height": 1.25,
+      "text": "────────"
+    },
+    "konva_1785065387111_rect_91826": {
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 1,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      },
+      "x": 146.4,
+      "y": 88.6
+    },
+    "konva_1785065387111_paste_117760_0": {
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      },
+      "x": 123.2,
+      "y": 88.8
+    },
+    "konva_1785065387111_paste_146425_0": {
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 3,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      },
+      "x": 148.8,
+      "y": 188.6
+    },
+    "konva_1785065387111_paste_146425_1": {
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 2,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      },
+      "x": 125.6,
+      "y": 188.8
+    },
+    "konva_1785065387111_paste_166216_0": {
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 4,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      },
+      "x": 171.2,
+      "y": 188.6
+    }
+  }
+}

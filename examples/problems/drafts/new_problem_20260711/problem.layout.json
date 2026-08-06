@@ -26,7 +26,6 @@
         "slot.outer_triangle",
         "slot.middle_triangle",
         "slot.inner_triangle",
-        "slot.outer_semicircle",
         "slot.middle_semicircle",
         "slot.inner_semicircle",
         "slot.left_dashed_line",
@@ -38,9 +37,7 @@
       "id": "region.answer",
       "role": "answer",
       "flow": "vertical",
-      "slot_ids": [
-        "slot.answer"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
@@ -53,7 +50,7 @@
         "style_role": "body",
         "x": 48.0,
         "y": 32.0,
-        "width": 804.0,
+        "width": 490.088,
         "height": 54.0,
         "align": "left",
         "valign": "top",
@@ -71,11 +68,11 @@
         "style_role": "body",
         "x": 48.0,
         "y": 92.0,
-        "width": 804.0,
-        "height": 42.0,
+        "width": 577.932,
+        "height": 46,
         "align": "left",
         "valign": "top",
-        "font_size": 20,
+        "font_size": 28,
         "line_height": 1.35,
         "semantic_role": "instruction"
       }
@@ -87,16 +84,16 @@
       "content": {
         "points": [
           [
-            250,
-            557
+            215.413,
+            422.21
           ],
           [
-            485,
-            322
+            450.413,
+            187.21
           ],
           [
-            720,
-            557
+            685.413,
+            422.21
           ]
         ],
         "stroke": "#222222",
@@ -151,20 +148,6 @@
         "stroke": "#222222",
         "stroke_width": 1.5,
         "fill": "#ffffff",
-        "stroke_dasharray": "10 6"
-      }
-    },
-    {
-      "id": "slot.outer_semicircle",
-      "kind": "path",
-      "prompt": "반지름이 235인 가장 바깥쪽 반원",
-      "content": {
-        "d": "M 415 252 A 235 235 0 0 1 885 252",
-        "x": 0.0,
-        "y": 0.0,
-        "stroke": "#222222",
-        "stroke_width": 1.5,
-        "fill": "none",
         "stroke_dasharray": "10 6"
       }
     },
@@ -233,22 +216,6 @@
         "stroke": "none",
         "fill": "#222222"
       }
-    },
-    {
-      "id": "slot.answer",
-      "kind": "blank",
-      "prompt": "단답형 정답",
-      "content": {
-        "placeholder": "정답",
-        "x": 64,
-        "y": 421,
-        "width": 120,
-        "height": 32,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke_width": 1.5,
-        "stroke_dasharray": "4 3"
-      }
     }
   ],
   "groups": [],
@@ -262,13 +229,11 @@
     "slot.outer_triangle",
     "slot.middle_triangle",
     "slot.inner_triangle",
-    "slot.outer_semicircle",
     "slot.middle_semicircle",
     "slot.inner_semicircle",
     "slot.left_dashed_line",
     "slot.right_dashed_line",
     "slot.center_point",
-    "region.answer",
-    "slot.answer"
+    "region.answer"
   ]
 }
