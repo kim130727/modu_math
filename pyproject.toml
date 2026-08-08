@@ -37,7 +37,7 @@ web = [
 [project.scripts]
 modu = "modu_math.cli:main"
 modu-math = "modu_math.cli:main"
-modu-web = "modu_math_web.manage:main"
+modu-web = "modu_math_web.__main__:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
