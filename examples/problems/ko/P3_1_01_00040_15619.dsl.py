@@ -264,9 +264,7 @@ def build_problem_template() -> ProblemTemplate:
         id=PROBLEM_ID,
         title=PROBLEM_TITLE,
         canvas=Canvas(
-            width=900,
-            height=150,
-            coordinate_mode="logical",
+            width = 600, height = 250, coordinate_mode="logical",
         ),
         regions=(
             Region(
@@ -275,24 +273,18 @@ def build_problem_template() -> ProblemTemplate:
                 flow="vertical",
                 slot_ids=(
                     "slot.question",
-                    "slot.expression",
-                    "slot.answer",
+                    
                 ),
             ),
         ),
         slots=(
             TextBoxSlot(
                 id="slot.question",
-                x=20,
-                y=14,
-                width=860,
-                height=58,
-                text=(
+                x = 14.098, y = 14.984, width = 458.689, height = 191.049, text=(
                     "동수는 책읽기를 좋아합니다. 어제는 415쪽을 읽었고, 오늘은 432쪽을 읽었습니다. "
                     "동수가 어제와 오늘 읽은 책의 쪽수는 모두 몇 쪽입니까?"
                 ),
-                font_size=22,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
+                font_size = 30, font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.4,
                 align="left",

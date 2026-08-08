@@ -109,9 +109,7 @@ def build_problem_template() -> ProblemTemplate:
         id=PROBLEM_ID,
         title=PROBLEM_TITLE,
         canvas=Canvas(
-            width=765,
-            height=193,
-            coordinate_mode="logical",
+            width = 400, height = 193, coordinate_mode="logical",
         ),
         regions=(
             Region(
@@ -140,8 +138,6 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.question2",
                     "slot.question3",
                     "slot.question4",
-                    "slot.answer.ones",
-                    "slot.answer.regrouped_hundreds",
                     "slot.answer.regrouped_tens",
                     "slot.answer.direct_hundreds",
                     "slot.answer.total",

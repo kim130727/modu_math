@@ -1,8 +1,8 @@
 {
   "problem_id": "P3_1_01_00040_15629",
   "view_box": {
-    "width": 765.0,
-    "height": 98.0,
+    "width": 200.0,
+    "height": 150.0,
     "background": "#FFFFFF"
   },
   "elements": [
@@ -10,8 +10,8 @@
       "id": "slot.instruction.text",
       "type": "text_box",
       "attributes": {
-        "x": 20.0,
-        "y": 1.0,
+        "x": 11.2,
+        "y": 17.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 14,
@@ -19,8 +19,8 @@
         "height": 20.0,
         "max_width": 290.0,
         "data-slot-kind": "text_box",
-        "data-box-x": 20.0,
-        "data-box-y": 1.0,
+        "data-box-x": 11.2,
+        "data-box-y": 17.0,
         "data-box-width": 290.0,
         "data-box-height": 20.0,
         "data-text-align": "left",
@@ -37,8 +37,8 @@
       "id": "slot.second.blank_box.rect",
       "type": "rect",
       "attributes": {
-        "x": 70.0,
-        "y": 46.0,
+        "x": 61.2,
+        "y": 62.0,
         "width": 14.0,
         "height": 19.0,
         "fill": "#ffffff",
@@ -55,8 +55,8 @@
       "id": "slot.result.blank_box.rect",
       "type": "rect",
       "attributes": {
-        "x": 56.0,
-        "y": 75.0,
+        "x": 47.2,
+        "y": 91.0,
         "width": 14.0,
         "height": 19.0,
         "fill": "#ffffff",
@@ -73,10 +73,10 @@
       "id": "slot.rule.line",
       "type": "line",
       "attributes": {
-        "x1": 31.0,
-        "y1": 69.0,
-        "x2": 99.0,
-        "y2": 69.0,
+        "x1": 22.2,
+        "y1": 85.0,
+        "x2": 90.2,
+        "y2": 85.0,
         "stroke": "#111111",
         "stroke-width": 1.0,
         "data-semantic-role": "calculation_rule"
@@ -90,8 +90,8 @@
       "id": "slot.first_number.text",
       "type": "text",
       "attributes": {
-        "x": 58.0,
-        "y": 38.0,
+        "x": 49.2,
+        "y": 54.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 15,
@@ -107,8 +107,8 @@
       "id": "slot.plus.text",
       "type": "text",
       "attributes": {
-        "x": 38.0,
-        "y": 61.0,
+        "x": 29.2,
+        "y": 77.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 15,
@@ -124,8 +124,8 @@
       "id": "slot.second.hundreds.text",
       "type": "text",
       "attributes": {
-        "x": 58.0,
-        "y": 61.0,
+        "x": 49.2,
+        "y": 77.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 15,
@@ -141,8 +141,8 @@
       "id": "slot.second.ones.text",
       "type": "text",
       "attributes": {
-        "x": 87.0,
-        "y": 61.0,
+        "x": 78.2,
+        "y": 77.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 15,
@@ -158,8 +158,8 @@
       "id": "slot.result.tens_ones.text",
       "type": "text",
       "attributes": {
-        "x": 73.0,
-        "y": 90.0,
+        "x": 64.2,
+        "y": 106.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 15,
@@ -170,40 +170,6 @@
         "layout_slot_id": "slot.result.tens_ones"
       },
       "text": "62"
-    },
-    {
-      "id": "slot.blank1.blank",
-      "type": "rect",
-      "attributes": {
-        "x": 64.0,
-        "y": 122.0,
-        "width": 120.0,
-        "height": 32.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.blank1",
-      "refs": {
-        "layout_slot_id": "slot.blank1"
-      }
-    },
-    {
-      "id": "slot.blank2.blank",
-      "type": "rect",
-      "attributes": {
-        "x": 64.0,
-        "y": 170.0,
-        "width": 120.0,
-        "height": 32.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.blank2",
-      "refs": {
-        "layout_slot_id": "slot.blank2"
-      }
     }
   ],
   "contract_version": "modu_math.renderer.v2"

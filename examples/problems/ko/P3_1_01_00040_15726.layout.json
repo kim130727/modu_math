@@ -3,7 +3,7 @@
   "problem_id": "P3_1_01_00040_15726",
   "title": "수 모형으로 알아보는 262와 271의 합",
   "canvas": {
-    "width": 765,
+    "width": 400,
     "height": 193,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
@@ -14,7 +14,9 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.instruction"
+        "slot.instruction",
+        "slot.answer.ones",
+        "slot.answer.regrouped_hundreds"
       ]
     },
     {
@@ -57,8 +59,6 @@
         "slot.question2",
         "slot.question3",
         "slot.question4",
-        "slot.answer.ones",
-        "slot.answer.regrouped_hundreds",
         "slot.answer.regrouped_tens",
         "slot.answer.direct_hundreds",
         "slot.answer.total"
@@ -543,6 +543,8 @@
   "reading_order": [
     "region.stem",
     "slot.instruction",
+    "slot.answer.ones",
+    "slot.answer.regrouped_hundreds",
     "region.models",
     "slot.model262.container",
     "slot.model262.hundred.1",
@@ -573,8 +575,6 @@
     "slot.question2",
     "slot.question3",
     "slot.question4",
-    "slot.answer.ones",
-    "slot.answer.regrouped_hundreds",
     "slot.answer.regrouped_tens",
     "slot.answer.direct_hundreds",
     "slot.answer.total"

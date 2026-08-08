@@ -30,11 +30,9 @@ def build_problem_template() -> ProblemTemplate:
                 slot_ids=(
                     "slot.instruction",
                     "slot.question1",
-                    "slot.answer1",
                     "slot.question2",
-                    "slot.answer2",
                     "slot.question3",
-                    "slot.answer3",
+                    
                 ),
             ),
         ),
@@ -44,8 +42,7 @@ def build_problem_template() -> ProblemTemplate:
                 x=20,
                 y=12,
                 width=920,
-                height=48,
-                text=(
+                height = 134.557, text=(
                     "2, 4, 6의 숫자 카드를 한 번씩만 사용하여 세 자리 수를 만들려고 합니다. "
                     "만들 수 있는 가장 큰 수와 가장 작은 수의 합을 구하려고 할 때 물음에 답하시오."
                 ),

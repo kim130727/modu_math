@@ -3,7 +3,7 @@
   "problem_id": "P3_1_01_00040_15621",
   "title": "자리값을 이용한 265와 432의 덧셈",
   "canvas": {
-    "width": 765,
+    "width": 400,
     "height": 94,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
@@ -33,12 +33,7 @@
         "slot.line1.suffix",
         "slot.line2.prefix",
         "slot.line2.plus",
-        "slot.line2.equals",
-        "slot.blank1",
-        "slot.blank2",
-        "slot.blank3",
-        "slot.blank4",
-        "slot.blank5"
+        "slot.line2.equals"
       ]
     }
   ],
@@ -67,9 +62,9 @@
       "kind": "rect",
       "prompt": "자리값으로 덧셈하는 과정이 제시된 회색 영역",
       "content": {
-        "x": 20.0,
-        "y": 24.0,
-        "width": 744.0,
+        "x": 22.508,
+        "y": 22.746,
+        "width": 353.348,
         "height": 69.0,
         "stroke": "#111111",
         "stroke_width": 1.0,
@@ -235,46 +230,6 @@
         "fill": "#ffffff",
         "semantic_role": "answer_blank"
       }
-    },
-    {
-      "id": "slot.blank1",
-      "kind": "blank",
-      "prompt": "265를 200, 60, 5로 나눌 때 십의 자리 수",
-      "content": {
-        "placeholder": ""
-      }
-    },
-    {
-      "id": "slot.blank2",
-      "kind": "blank",
-      "prompt": "432를 400, 30, 2로 나눌 때 일의 자리 수",
-      "content": {
-        "placeholder": ""
-      }
-    },
-    {
-      "id": "slot.blank3",
-      "kind": "blank",
-      "prompt": "60과 30의 합",
-      "content": {
-        "placeholder": ""
-      }
-    },
-    {
-      "id": "slot.blank4",
-      "kind": "blank",
-      "prompt": "5와 2의 합",
-      "content": {
-        "placeholder": ""
-      }
-    },
-    {
-      "id": "slot.blank5",
-      "kind": "blank",
-      "prompt": "265와 432의 합",
-      "content": {
-        "placeholder": ""
-      }
     }
   ],
   "groups": [],
@@ -295,11 +250,6 @@
     "slot.line1.suffix",
     "slot.line2.prefix",
     "slot.line2.plus",
-    "slot.line2.equals",
-    "slot.blank1",
-    "slot.blank2",
-    "slot.blank3",
-    "slot.blank4",
-    "slot.blank5"
+    "slot.line2.equals"
   ]
 }

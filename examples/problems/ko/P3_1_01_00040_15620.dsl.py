@@ -18,9 +18,7 @@ def build_problem_template() -> ProblemTemplate:
         id=PROBLEM_ID,
         title=PROBLEM_TITLE,
         canvas=Canvas(
-            width=960,
-            height=150,
-            coordinate_mode="logical",
+            width = 500, height = 200, coordinate_mode="logical",
         ),
         regions=(
             Region(
@@ -38,14 +36,11 @@ def build_problem_template() -> ProblemTemplate:
                 id="slot.question",
                 x=24,
                 y=24,
-                width=912,
-                height=48,
-                text=(
+                width = 407.607, height = 149.098, text=(
                     "인호가 340원짜리 연필을 사고 나니 540원이 남았습니다. "
                     "인호가 처음에 가지고 있던 돈은 얼마입니까?"
                 ),
-                font_size=24,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
+                font_size = 30, font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.45,
                 align="left",

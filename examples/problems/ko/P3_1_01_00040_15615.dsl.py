@@ -255,9 +255,7 @@ def build_problem_template() -> ProblemTemplate:
         id=PROBLEM_ID,
         title=PROBLEM_TITLE,
         canvas=Canvas(
-            width=900,
-            height=170,
-            coordinate_mode="logical",
+            width = 600, height = 170, coordinate_mode="logical",
         ),
         regions=(
             Region(
@@ -266,23 +264,18 @@ def build_problem_template() -> ProblemTemplate:
                 flow="vertical",
                 slot_ids=(
                     "slot.question",
-                    "slot.answer",
+                    
                 ),
             ),
         ),
         slots=(
             TextBoxSlot(
                 id="slot.question",
-                x=24,
-                y=24,
-                width=852,
-                height=54,
-                text=(
+                x = 14.41, y = 20.311, width = 561.344, height = 143.689, text=(
                     "동화책이 두 권 있습니다. 한 권은 230쪽이고 다른 한 권은 450쪽입니다. "
                     "두 동화책의 쪽수를 더하면 모두 몇 쪽입니까?"
                 ),
-                font_size=24,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
+                font_size = 30, font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.45,
                 align="left",

@@ -1,7 +1,7 @@
 {
   "problem_id": "P3_1_01_00040_15726",
   "view_box": {
-    "width": 765.0,
+    "width": 400.0,
     "height": 193.0,
     "background": "#FFFFFF"
   },
@@ -22,6 +22,40 @@
         "layout_slot_id": "slot.instruction"
       },
       "text": "262+271을 수 모형으로 알아보시오."
+    },
+    {
+      "id": "slot.answer.ones.blank",
+      "type": "rect",
+      "attributes": {
+        "x": 64.0,
+        "y": 48.0,
+        "width": 120.0,
+        "height": 32.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.answer.ones",
+      "refs": {
+        "layout_slot_id": "slot.answer.ones"
+      }
+    },
+    {
+      "id": "slot.answer.regrouped_hundreds.blank",
+      "type": "rect",
+      "attributes": {
+        "x": 64.0,
+        "y": 96.0,
+        "width": 120.0,
+        "height": 32.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.answer.regrouped_hundreds",
+      "refs": {
+        "layout_slot_id": "slot.answer.regrouped_hundreds"
+      }
     },
     {
       "id": "slot.model262.container.rect",
@@ -524,45 +558,11 @@
       "text": "(4) 262+271은 얼마입니까?"
     },
     {
-      "id": "slot.answer.ones.blank",
-      "type": "rect",
-      "attributes": {
-        "x": 64.0,
-        "y": 217.0,
-        "width": 120.0,
-        "height": 32.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.answer.ones",
-      "refs": {
-        "layout_slot_id": "slot.answer.ones"
-      }
-    },
-    {
-      "id": "slot.answer.regrouped_hundreds.blank",
-      "type": "rect",
-      "attributes": {
-        "x": 64.0,
-        "y": 265.0,
-        "width": 120.0,
-        "height": 32.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.answer.regrouped_hundreds",
-      "refs": {
-        "layout_slot_id": "slot.answer.regrouped_hundreds"
-      }
-    },
-    {
       "id": "slot.answer.regrouped_tens.blank",
       "type": "rect",
       "attributes": {
         "x": 64.0,
-        "y": 313.0,
+        "y": 217.0,
         "width": 120.0,
         "height": 32.0,
         "fill": "#ffffff",
@@ -579,7 +579,7 @@
       "type": "rect",
       "attributes": {
         "x": 64.0,
-        "y": 361.0,
+        "y": 265.0,
         "width": 120.0,
         "height": 32.0,
         "fill": "#ffffff",
@@ -596,7 +596,7 @@
       "type": "rect",
       "attributes": {
         "x": 64.0,
-        "y": 409.0,
+        "y": 313.0,
         "width": 120.0,
         "height": 32.0,
         "fill": "#ffffff",

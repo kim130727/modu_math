@@ -269,9 +269,7 @@ def build_problem_template() -> ProblemTemplate:
         id=PROBLEM_ID,
         title=PROBLEM_TITLE,
         canvas=Canvas(
-            width=900,
-            height=180,
-            coordinate_mode="logical",
+            width = 600, height = 180, coordinate_mode="logical",
         ),
         regions=(
             Region(
@@ -281,16 +279,14 @@ def build_problem_template() -> ProblemTemplate:
                 slot_ids=(
                     "slot.question",
                     "slot.expression",
-                    "slot.answer",
+                    
                 ),
             ),
         ),
         slots=(
             TextBoxSlot(
                 id="slot.question",
-                x=20,
-                y=18,
-                width = 449.62, height = 135.525, text=(
+                x = 12.869, y = 14.066, width = 449.62, height = 135.525, text=(
                     "주차장에 있던 차 중에서 146대가 나가고 231대가 남았습니다. "
                     "처음 주차장에 있던 차는 모두 몇 대입니까?"
                 ),

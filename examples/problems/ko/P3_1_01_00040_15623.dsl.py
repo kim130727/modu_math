@@ -18,9 +18,7 @@ def build_problem_template() -> ProblemTemplate:
         id=PROBLEM_ID,
         title=PROBLEM_TITLE,
         canvas=Canvas(
-            width=960,
-            height=150,
-            coordinate_mode="logical",
+            width = 600, height = 200, coordinate_mode="logical",
         ),
         regions=(
             Region(
@@ -36,11 +34,7 @@ def build_problem_template() -> ProblemTemplate:
         slots=(
             TextBoxSlot(
                 id="slot.question",
-                x=24,
-                y=24,
-                width=912,
-                height=52,
-                text=(
+                x = 19.082, y = 15.148, width = 533.311, height = 171.016, text=(
                     "현석이는 어머니로부터 용돈을 받아 310원어치 준비물을 사고, "
                     "420원짜리 빵을 사 먹었더니 130원이 남았습니다. "
                     "어머니로부터 받은 용돈은 얼마입니까?"

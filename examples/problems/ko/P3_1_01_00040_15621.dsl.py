@@ -20,9 +20,7 @@ def build_problem_template() -> ProblemTemplate:
         id=PROBLEM_ID,
         title=PROBLEM_TITLE,
         canvas=Canvas(
-            width=765,
-            height=94,
-            coordinate_mode="logical",
+            width = 400, height = 94, coordinate_mode="logical",
         ),
         regions=(
             Region(
@@ -48,11 +46,7 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.line2.blank4_box",
                     "slot.line2.equals",
                     "slot.line2.blank5_box",
-                    "slot.blank1",
-                    "slot.blank2",
-                    "slot.blank3",
-                    "slot.blank4",
-                    "slot.blank5",
+                    
                 ),
             ),
         ),
@@ -76,10 +70,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="slot.work_area",
                 prompt="자리값으로 덧셈하는 과정이 제시된 회색 영역",
                 semantic_role="work_area",
-                x=20,
-                y=24,
-                width=744,
-                height=69,
+                x = 22.508, y = 22.746, width = 353.348, height=69,
                 fill="#eeeeee",
                 stroke="#111111",
                 stroke_width=1,

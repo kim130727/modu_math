@@ -265,9 +265,7 @@ def build_problem_template() -> ProblemTemplate:
         id=PROBLEM_ID,
         title=PROBLEM_TITLE,
         canvas=Canvas(
-            width=900,
-            height=170,
-            coordinate_mode="logical",
+            width = 600, height = 170, coordinate_mode="logical",
         ),
         regions=(
             Region(
@@ -285,14 +283,11 @@ def build_problem_template() -> ProblemTemplate:
                 id="slot.question",
                 x=24,
                 y=24,
-                width=852,
-                height=54,
-                text=(
+                width = 545.115, height = 140, text=(
                     "줄넘기를 하였습니다. 주영이는 123회, 영수는 342회를 넘었습니다. "
                     "두 사람이 넘은 줄넘기는 모두 몇 회입니까?"
                 ),
-                font_size=24,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
+                font_size = 30, font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.45,
                 align="left",

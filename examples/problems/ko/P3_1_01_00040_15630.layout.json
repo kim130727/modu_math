@@ -3,8 +3,8 @@
   "problem_id": "P3_1_01_00040_15630",
   "title": "차가 123인 두 수 찾기",
   "canvas": {
-    "width": 619,
-    "height": 133,
+    "width": 300,
+    "height": 150,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -14,7 +14,8 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.question"
+        "slot.question",
+        "slot.answer"
       ]
     },
     {
@@ -26,8 +27,7 @@
         "slot.choice2",
         "slot.choice3",
         "slot.choice4",
-        "slot.choice5",
-        "slot.answer"
+        "slot.choice5"
       ]
     }
   ],
@@ -39,8 +39,8 @@
       "content": {
         "text": "다음 두 수의 차가 123인 것은 어느 것입니까?",
         "style_role": "body",
-        "x": 20.0,
-        "y": 2.0,
+        "x": 8.0,
+        "y": 12.0,
         "width": 430.0,
         "height": 22.0,
         "align": "left",
@@ -58,8 +58,8 @@
       "content": {
         "text": "① 647, 341",
         "style_role": "body",
-        "x": 20.0,
-        "y": 38.0,
+        "x": 16.0,
+        "y": 46.0,
         "font_size": 14,
         "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "fill": "#111111",
@@ -73,8 +73,8 @@
       "content": {
         "text": "② 488, 227",
         "style_role": "body",
-        "x": 20.0,
-        "y": 60.0,
+        "x": 16.0,
+        "y": 68.0,
         "font_size": 14,
         "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "fill": "#111111",
@@ -88,8 +88,8 @@
       "content": {
         "text": "③ 847, 740",
         "style_role": "body",
-        "x": 20.0,
-        "y": 82.0,
+        "x": 16.0,
+        "y": 90.0,
         "font_size": 14,
         "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "fill": "#111111",
@@ -103,8 +103,8 @@
       "content": {
         "text": "④ 528, 405",
         "style_role": "body",
-        "x": 20.0,
-        "y": 104.0,
+        "x": 16.0,
+        "y": 112.0,
         "font_size": 14,
         "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "fill": "#111111",
@@ -118,8 +118,8 @@
       "content": {
         "text": "⑤ 386, 223",
         "style_role": "body",
-        "x": 20.0,
-        "y": 126.0,
+        "x": 16.0,
+        "y": 134.0,
         "font_size": 14,
         "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "fill": "#111111",
@@ -141,12 +141,12 @@
   "reading_order": [
     "region.stem",
     "slot.question",
+    "slot.answer",
     "region.choices",
     "slot.choice1",
     "slot.choice2",
     "slot.choice3",
     "slot.choice4",
-    "slot.choice5",
-    "slot.answer"
+    "slot.choice5"
   ]
 }

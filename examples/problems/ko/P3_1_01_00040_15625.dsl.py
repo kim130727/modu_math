@@ -18,9 +18,7 @@ def build_problem_template() -> ProblemTemplate:
         id=PROBLEM_ID,
         title=PROBLEM_TITLE,
         canvas=Canvas(
-            width=960,
-            height=150,
-            coordinate_mode="logical",
+            width = 600, height = 200, coordinate_mode="logical",
         ),
         regions=(
             Region(
@@ -38,14 +36,11 @@ def build_problem_template() -> ProblemTemplate:
                 id="slot.question",
                 x=24,
                 y=24,
-                width=912,
-                height=52,
-                text=(
+                width = 549.246, height = 182, text=(
                     "재형이의 앨범에는 324장의 가족 사진과 133장의 친구 사진이 있습니다. "
                     "그리고 혼자 찍은 사진도 102장이 있습니다. 사진은 모두 몇 장입니까?"
                 ),
-                font_size=24,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
+                font_size = 30, font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.45,
                 align="left",

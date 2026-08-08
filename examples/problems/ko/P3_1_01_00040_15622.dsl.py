@@ -18,9 +18,7 @@ def build_problem_template() -> ProblemTemplate:
         id=PROBLEM_ID,
         title=PROBLEM_TITLE,
         canvas=Canvas(
-            width=960,
-            height=150,
-            coordinate_mode="logical",
+            width = 600, height = 200, coordinate_mode="logical",
         ),
         regions=(
             Region(
@@ -29,24 +27,19 @@ def build_problem_template() -> ProblemTemplate:
                 flow="vertical",
                 slot_ids=(
                     "slot.question",
-                    "slot.answer",
+                    
                 ),
             ),
         ),
         slots=(
             TextBoxSlot(
                 id="slot.question",
-                x=24,
-                y=24,
-                width=912,
-                height=52,
-                text=(
+                x = 9.836, y = 4.623, width = 545.213, height = 176.377, text=(
                     "진우는 윤지와 함께 밤을 주웠습니다. 진우는 231개를 주웠고, "
                     "윤지는 진우보다 26개를 더 주웠습니다. 두 사람이 주운 밤은 "
                     "모두 몇 개입니까?"
                 ),
-                font_size=24,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
+                font_size = 30, font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.45,
                 align="left",
