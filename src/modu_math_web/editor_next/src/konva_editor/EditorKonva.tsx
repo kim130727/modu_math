@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ProblemList } from "../components/ProblemList";
+import { ProblemList, type ProblemLanguage } from "../components/ProblemList";
 import {
   applyLayoutPatches,
   buildProblem,
@@ -39,6 +39,7 @@ export function EditorKonva() {
   }>({ semantic: null, solvable: null, layout: null, renderer: null });
   const [selectedShapeIds, setSelectedShapeIds] = useState<string[]>([]);
   const [selectedProblemId, setSelectedProblemId] = useState(initialProblem.id);
+  const [activeProblemLanguage, setActiveProblemLanguage] = useState<ProblemLanguage>("ko");
   const [message, setMessage] = useState("Loaded sample problem in Konva editor.");
   const [saveStatus, setSaveStatus] = useState<SaveStatus>("saved");
   const [drawingPreset, setDrawingPreset] = useState<ShapePreset | null>(null);
@@ -104,6 +105,8 @@ export function EditorKonva() {
           layout: detail.layout,
           renderer: detail.renderer,
         });
+        const problemLanguage = problemLanguageFromId(detail.problem_id);
+        if (problemLanguage) setActiveProblemLanguage(problemLanguage);
       } catch (error) {
         setMessage(`Could not load ${problemId}: ${String(error)}`);
       }
@@ -726,7 +729,13 @@ export function EditorKonva() {
         }}
       />
       <div className="editor-body konva-editor-body">
-        <ProblemList key={problemListVersion} selectedProblemId={selectedProblemId} onOpenProblem={openProblem} />
+        <ProblemList
+          key={problemListVersion}
+          selectedProblemId={selectedProblemId}
+          language={activeProblemLanguage}
+          onOpenProblem={openProblem}
+          onLanguageChange={setActiveProblemLanguage}
+        />
         <div className="konva-main-panel">
           <KonvaStage
             width={document.canvas.width}
@@ -888,6 +897,11 @@ function SidePanelIcon({ icon }: { icon: SidePanelTab }) {
       <path d="m14 9 3 3-3 3" />
     </svg>
   );
+}
+
+function problemLanguageFromId(problemId: string): ProblemLanguage | null {
+  const firstPart = problemId.replace(/\\/g, "/").split("/").filter(Boolean)[0];
+  return firstPart === "ko" || firstPart === "uk" ? firstPart : null;
 }
 
 function normalizeNewProblemId(value: string): string {

@@ -5,6 +5,9 @@ export interface ProblemSummary {
   problem_id: string;
   root: string;
   path: string;
+  language: "ko" | "uk" | string | null;
+  canonical_problem_id: string | null;
+  equivalent_problem_ids: Record<string, string>;
   has_input_png: boolean;
   has_dsl: boolean;
   has_semantic: boolean;

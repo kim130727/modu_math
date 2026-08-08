@@ -254,6 +254,38 @@ input {
   background: #ffffff;
 }
 
+.problem-language-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 8px 8px 0;
+}
+
+.problem-language-toggle button {
+  min-width: 0;
+  height: 32px;
+  padding: 0 8px;
+  border: 1px solid #cfd8e3;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #172033;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.problem-language-toggle button.active {
+  border-color: #2563eb;
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.problem-language-toggle button:disabled {
+  background: #f8fafc;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
 .problem-search-wrap {
   padding: 8px 8px 4px;
 }

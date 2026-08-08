@@ -22,6 +22,8 @@ ARTIFACT_FILES = {
 
 _PROBLEM_LIST_CACHE_TTL_SECONDS = 5.0
 _PROBLEM_LIST_CACHE: dict[tuple[bool, tuple[tuple[str, str], ...]], tuple[float, list[dict[str, Any]]]] = {}
+LANGUAGE_PROBLEM_FOLDERS = {"ko", "uk"}
+LANGUAGE_FILENAME_SUFFIXES = {"ko": "_ko", "uk": "_uk"}
 
 
 BLANK_PROBLEM_DSL = '''from __future__ import annotations
@@ -349,6 +351,28 @@ def _display_problem_id(alias: str, relative_id: str) -> str:
     return f"{alias}/{relative_id}" if alias else relative_id
 
 
+def _language_problem_metadata(relative_id: str) -> tuple[str | None, str | None]:
+    parts = PurePosixPath(relative_id).parts
+    if not parts or parts[0] not in LANGUAGE_PROBLEM_FOLDERS:
+        return None, None
+
+    language = parts[0]
+    language_relative = PurePosixPath(*parts[1:]).as_posix() if len(parts) > 1 else ""
+    if not language_relative:
+        return language, None
+
+    if language_relative.endswith(".dsl.py"):
+        language_relative = language_relative[: -len(".dsl.py")]
+        suffix = LANGUAGE_FILENAME_SUFFIXES.get(language)
+        if suffix and language_relative.endswith(suffix):
+            language_relative = language_relative[: -len(suffix)]
+
+    if language_relative.endswith("/problem"):
+        language_relative = language_relative[: -len("/problem")]
+
+    return language, language_relative or None
+
+
 def resolve_problem_paths(problem_id: str) -> ProblemPaths:
     safe_problem_id = validate_problem_id(problem_id)
     alias, relative_id, root = _split_problem_root(safe_problem_id)
@@ -484,6 +508,9 @@ def list_problem_directories(*, include_artifacts: bool = False) -> list[dict[st
                 "problem_id": _display_problem_id(alias, relative_id),
                 "root": alias or "problems",
                 "path": str(child.relative_to(root.parent)).replace("\\", "/"),
+                "language": None,
+                "canonical_problem_id": None,
+                "equivalent_problem_ids": {},
                 "has_input_png": False,
                 "has_dsl": True,
                 "has_semantic": False,
@@ -504,9 +531,25 @@ def list_problem_directories(*, include_artifacts: bool = False) -> list[dict[st
                         "has_svg": (child / f"{artifact_base}{ARTIFACT_FILES['svg']}").exists(),
                     }
                 )
+            language, canonical_problem_id = _language_problem_metadata(relative_id)
+            problem["language"] = language
+            problem["canonical_problem_id"] = canonical_problem_id
             problems.append(
                 problem
             )
+    equivalents_by_canonical: dict[str, dict[str, str]] = {}
+    for problem in problems:
+        language = problem.get("language")
+        canonical_problem_id = problem.get("canonical_problem_id")
+        if not isinstance(language, str) or not isinstance(canonical_problem_id, str):
+            continue
+        equivalents_by_canonical.setdefault(canonical_problem_id, {})[language] = problem["problem_id"]
+
+    for problem in problems:
+        canonical_problem_id = problem.get("canonical_problem_id")
+        if isinstance(canonical_problem_id, str):
+            problem["equivalent_problem_ids"] = dict(equivalents_by_canonical.get(canonical_problem_id, {}))
+
     result = sorted(problems, key=lambda p: p["problem_id"])
     _PROBLEM_LIST_CACHE[cache_key] = (now, result)
     return [dict(problem) for problem in result]

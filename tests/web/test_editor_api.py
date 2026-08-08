@@ -19,6 +19,9 @@ def _setup_django(tmp_path: Path) -> Client:
     django.setup()
     settings.PROBLEMS_ROOT = Path(os.environ["MODU_PROBLEMS_ROOT"])
     settings.GOLDEN_PROBLEMS_ROOT = Path(os.environ["MODU_GOLDEN_PROBLEMS_ROOT"])
+    from modu_math_web.editor.services.problems import invalidate_problem_list_cache
+
+    invalidate_problem_list_cache()
     return Client()
 
 
@@ -133,6 +136,30 @@ def test_list_endpoint_includes_0001_if_present(tmp_path: Path) -> None:
     body = response.json()
     ids = {p["problem_id"] for p in body["problems"]}
     assert "0001" in ids
+
+
+def test_list_endpoint_marks_language_equivalents(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    problems_root = tmp_path / "examples" / "problems"
+    (problems_root / "ko").mkdir(parents=True)
+    (problems_root / "uk").mkdir(parents=True)
+    (problems_root / "ko" / "same.dsl.py").write_text("PROBLEM_TEMPLATE = None\n", encoding="utf-8")
+    (problems_root / "ko" / "only_ko.dsl.py").write_text("PROBLEM_TEMPLATE = None\n", encoding="utf-8")
+    (problems_root / "uk" / "same_uk.dsl.py").write_text("PROBLEM_TEMPLATE = None\n", encoding="utf-8")
+
+    response = client.get("/api/editor/problems/")
+
+    assert response.status_code == 200
+    problems = {p["problem_id"]: p for p in response.json()["problems"]}
+    assert problems["ko/same.dsl.py"]["language"] == "ko"
+    assert problems["ko/same.dsl.py"]["canonical_problem_id"] == "same"
+    assert problems["ko/same.dsl.py"]["equivalent_problem_ids"] == {
+        "ko": "ko/same.dsl.py",
+        "uk": "uk/same_uk.dsl.py",
+    }
+    assert problems["uk/same_uk.dsl.py"]["language"] == "uk"
+    assert problems["uk/same_uk.dsl.py"]["canonical_problem_id"] == "same"
+    assert problems["ko/only_ko.dsl.py"]["equivalent_problem_ids"] == {"ko": "ko/only_ko.dsl.py"}
 
 
 def test_detail_reads_dsl_and_missing_artifact_is_null(tmp_path: Path) -> None:

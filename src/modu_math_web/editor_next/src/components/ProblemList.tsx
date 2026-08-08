@@ -1,9 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { listProblems, type ProblemSummary } from "../api/editorApi";
 
+export type ProblemLanguage = "ko" | "uk";
+
 interface ProblemListProps {
   selectedProblemId: string;
+  language: ProblemLanguage;
   onOpenProblem: (problemId: string) => void;
+  onLanguageChange: (language: ProblemLanguage) => void;
 }
 
 interface ProblemTreeNode {
@@ -13,7 +17,7 @@ interface ProblemTreeNode {
   problems: ProblemSummary[];
 }
 
-export function ProblemList({ selectedProblemId, onOpenProblem }: ProblemListProps) {
+export function ProblemList({ selectedProblemId, language, onOpenProblem, onLanguageChange }: ProblemListProps) {
   const [problems, setProblems] = useState<ProblemSummary[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -41,11 +45,13 @@ export function ProblemList({ selectedProblemId, onOpenProblem }: ProblemListPro
     };
   }, []);
 
+  const languageProblems = useMemo(() => problems.filter((problem) => problem.language === language), [language, problems]);
+  const selectedProblem = useMemo(() => problems.find((problem) => problem.problem_id === selectedProblemId) ?? null, [problems, selectedProblemId]);
   const filteredProblems = useMemo(() => {
     const normalizedQuery = normalizeSearch(query);
-    if (!normalizedQuery) return problems;
-    return problems.filter((problem) => problemMatches(problem, normalizedQuery));
-  }, [problems, query]);
+    if (!normalizedQuery) return languageProblems;
+    return languageProblems.filter((problem) => problemMatches(problem, normalizedQuery));
+  }, [languageProblems, query]);
 
   const tree = useMemo(() => buildProblemTree(filteredProblems), [filteredProblems]);
   const searching = query.trim().length > 0;
@@ -59,9 +65,37 @@ export function ProblemList({ selectedProblemId, onOpenProblem }: ProblemListPro
     });
   };
 
+  const switchLanguage = (nextLanguage: ProblemLanguage) => {
+    if (nextLanguage === language) return;
+    const equivalentProblemId = selectedProblem?.equivalent_problem_ids?.[nextLanguage];
+    onLanguageChange(nextLanguage);
+    if (equivalentProblemId) onOpenProblem(equivalentProblemId);
+  };
+
   return (
     <aside className="problem-list-panel">
       <div className="panel-title">문제 탐색</div>
+      <div className="problem-language-toggle" role="tablist" aria-label="Problem language">
+        {(["ko", "uk"] as const).map((option) => {
+          const equivalentProblemId = selectedProblem?.equivalent_problem_ids?.[option];
+          const isActive = option === language;
+          const disabled = !isActive && selectedProblem?.language != null && !equivalentProblemId;
+          return (
+            <button
+              key={option}
+              type="button"
+              role="tab"
+              aria-selected={isActive}
+              className={isActive ? "active" : ""}
+              disabled={disabled}
+              title={disabled ? "이 언어에 같은 문제가 없습니다." : languageLabel(option)}
+              onClick={() => switchLanguage(option)}
+            >
+              {languageLabel(option)}
+            </button>
+          );
+        })}
+      </div>
       <div className="problem-search-wrap">
         <input
           className="problem-search-input"
@@ -72,7 +106,7 @@ export function ProblemList({ selectedProblemId, onOpenProblem }: ProblemListPro
           aria-label="파일명 또는 폴더 검색"
         />
         <div className="problem-count">
-          {filteredProblems.length} / {problems.length}개
+          {filteredProblems.length} / {languageProblems.length}개
         </div>
       </div>
       {loading ? <div className="problem-list-status">Loading...</div> : null}
@@ -152,6 +186,10 @@ function ProblemTree({
   );
 }
 
+function languageLabel(language: ProblemLanguage): string {
+  return language === "ko" ? "한국어" : "Українська";
+}
+
 function buildProblemTree(problems: ProblemSummary[]): ProblemTreeNode {
   const root: ProblemTreeNode = { name: "", path: "", folders: new Map(), problems: [] };
 
@@ -175,6 +213,7 @@ function buildProblemTree(problems: ProblemSummary[]): ProblemTreeNode {
 function problemFolderParts(problem: ProblemSummary): string[] {
   const rawPath = problem.path || folderPathFromProblemId(problem.problem_id);
   const parts = rawPath.replace(/\\/g, "/").replace(/^\/+/, "").split("/").filter(Boolean);
+  if (parts[0] === "problems" && (parts[1] === "ko" || parts[1] === "uk")) parts.splice(0, 2);
   return parts.at(-1)?.endsWith(".dsl.py") ? parts.slice(0, -1) : parts;
 }
 
@@ -200,6 +239,7 @@ function problemMatches(problem: ProblemSummary, normalizedQuery: string): boole
     normalizeSearch(problem.problem_id).includes(normalizedQuery) ||
     normalizeSearch(problem.root).includes(normalizedQuery) ||
     normalizeSearch(problem.path).includes(normalizedQuery) ||
+    normalizeSearch(problem.canonical_problem_id ?? "").includes(normalizedQuery) ||
     normalizeSearch(problemFileName(problem)).includes(normalizedQuery)
   );
 }
