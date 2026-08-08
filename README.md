@@ -39,6 +39,7 @@ Recommended assisted authoring workflow:
 ```bash
 uv run python -c "import modu_math; print(modu_math.__file__)"
 uv run python -m modu_math --help
+uv run modu-web runserver 127.0.0.1:8000
 uv run pytest
 ```
 

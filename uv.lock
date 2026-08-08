@@ -593,9 +593,11 @@ name = "modu-math"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "black" },
     { name = "django" },
     { name = "fonttools" },
     { name = "jsonschema" },
+    { name = "libcst" },
     { name = "openai" },
 ]
 
@@ -623,6 +625,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "black", specifier = ">=24.0.0" },
     { name = "black", marker = "extra == 'dev'", specifier = ">=24.0.0" },
     { name = "black", marker = "extra == 'web'", specifier = ">=24.0.0" },
     { name = "django", specifier = ">=4.2.30" },
@@ -631,6 +634,7 @@ requires-dist = [
     { name = "jsonschema", specifier = ">=4.0.0" },
     { name = "jsonschema", marker = "extra == 'dev'", specifier = ">=4.0.0" },
     { name = "jsonschema", marker = "extra == 'web'", specifier = ">=4.0.0" },
+    { name = "libcst", specifier = ">=1.4.0" },
     { name = "libcst", marker = "extra == 'web'", specifier = ">=1.4.0" },
     { name = "openai", specifier = ">=1.0.0" },
     { name = "openai", marker = "extra == 'llm'", specifier = ">=1.0.0" },

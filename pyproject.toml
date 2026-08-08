@@ -9,9 +9,11 @@ description = "Python DSL library that compiles math problems into semantic, lay
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "black>=24.0.0",
     "django>=4.2.30",
     "fonttools>=4.0.0",
     "jsonschema>=4.0.0",
+    "libcst>=1.4.0",
     "openai>=1.0.0",
 ]
 
@@ -35,6 +37,7 @@ web = [
 [project.scripts]
 modu = "modu_math.cli:main"
 modu-math = "modu_math.cli:main"
+modu-web = "modu_math_web.manage:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
