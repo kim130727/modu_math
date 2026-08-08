@@ -165,3 +165,39 @@ def test_compile_renderer_preserves_answer_slot_metadata_without_type_conversion
     assert element["interaction"]["type"] == "input"
     assert element["input_style"]["font_size_mode"] == "auto"
 
+
+def test_compile_renderer_places_blank_after_text_box_bottom() -> None:
+    layout = {
+        "problem_id": "text_box_then_blank_example_0001",
+        "canvas": {"width": 600, "height": 170, "background": "#ffffff"},
+        "regions": [{"id": "region.stem", "role": "stem", "flow": "vertical", "slot_ids": ["slot.question", "slot.answer"]}],
+        "slots": [
+            {
+                "id": "slot.question",
+                "kind": "text_box",
+                "prompt": "",
+                "content": {
+                    "text": "동화책이 두 권 있습니다. 한 권은 230쪽이고 다른 한 권은 450쪽입니다.",
+                    "x": 14,
+                    "y": 20,
+                    "width": 560,
+                    "height": 144,
+                    "font_size": 30,
+                    "line_height": 1.45,
+                },
+            },
+            {"id": "slot.answer", "kind": "blank", "prompt": "답", "content": {"placeholder": "쪽"}},
+        ],
+        "diagrams": [],
+    }
+
+    renderer = compile_renderer_json(layout)
+    validate_renderer_json(renderer)
+
+    question = next(element for element in renderer["elements"] if element["id"] == "slot.question.text")
+    blank = next(element for element in renderer["elements"] if element["id"] == "slot.answer.blank")
+    question_bottom = question["attributes"]["data-box-y"] + question["attributes"]["data-box-height"]
+
+    assert blank["attributes"]["y"] >= question_bottom + 12
+    assert renderer["view_box"]["height"] >= blank["attributes"]["y"] + blank["attributes"]["height"]
+

@@ -47,6 +47,10 @@ def compile_renderer_from_layout(layout: dict[str, Any]) -> RendererDocument:
     if isinstance(layout.get("slots"), list) or isinstance(layout.get("diagrams"), list):
         elements.extend(_compile_contract_layout(layout, width=width, height=height))
 
+    content_bottom = _content_bottom(elements)
+    if content_bottom > view_box.height:
+        view_box = RenderViewBox(width=view_box.width, height=content_bottom, background=view_box.background)
+
     return RendererDocument(problem_id=problem_id, view_box=view_box, elements=tuple(elements))
 
 
@@ -330,8 +334,10 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
                     text=text,
                 )
             )
-            if isinstance(content.get("y"), int | float):
-                y = max(y, ty + 56.0)
+            if kind == "text_box":
+                y = max(y, ty + box_height + 40.0)
+            elif isinstance(content.get("y"), int | float):
+                y = max(y, ty + font_size + 24.0)
             else:
                 y += 56.0
             continue
@@ -648,6 +654,40 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
             )
 
     return elements, y
+
+
+def _content_bottom(elements: list[DrawElement]) -> float:
+    bottom = 0.0
+    for element in elements:
+        attrs = element.attributes
+        if element.type == "group":
+            bottom = max(bottom, _content_bottom(list(element.elements)))
+            continue
+        if element.type == "text_box":
+            box_y = attrs.get("data-box-y")
+            box_height = attrs.get("data-box-height")
+            if isinstance(box_y, int | float) and isinstance(box_height, int | float):
+                bottom = max(bottom, float(box_y) + float(box_height))
+                continue
+        y = attrs.get("y")
+        height = attrs.get("height")
+        if isinstance(y, int | float) and isinstance(height, int | float):
+            bottom = max(bottom, float(y) + float(height))
+            continue
+        cy = attrs.get("cy")
+        radius = attrs.get("r")
+        if isinstance(cy, int | float) and isinstance(radius, int | float):
+            bottom = max(bottom, float(cy) + float(radius))
+            continue
+        y_values = [attrs.get("y1"), attrs.get("y2")]
+        numeric_y_values = [float(value) for value in y_values if isinstance(value, int | float)]
+        if numeric_y_values:
+            bottom = max(bottom, max(numeric_y_values))
+            continue
+        if element.type == "text" and isinstance(y, int | float):
+            font_size = attrs.get("font-size")
+            bottom = max(bottom, float(y) + (float(font_size) if isinstance(font_size, int | float) else _DEFAULT_FONT_SIZE))
+    return bottom + 16.0 if bottom else 0.0
 
 
 def _answer_element_kwargs(content: dict[str, Any]) -> dict[str, dict[str, Any]]:
