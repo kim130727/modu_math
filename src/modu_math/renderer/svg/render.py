@@ -144,9 +144,6 @@ def _wrap_text(text: str, max_width: float | None, font_size: float) -> list[str
         if _text_width(paragraph, font_size) <= max_width:
             out.append(paragraph)
             continue
-        if " " not in paragraph:
-            out.append(paragraph)
-            continue
         words = paragraph.split(" ")
         current = ""
         for word in words:

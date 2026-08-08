@@ -232,12 +232,12 @@ function defaultInteractionForShape(shape: EditorShape): InputInteraction {
   return {
     type: "input",
     role: "answer",
-    value_type: "digit",
-    max_length: 1,
+    value_type: "integer",
+    max_length: 3,
     include_in_submission: true,
     order: 0,
     group_id: "final_answer",
-    auto_advance: true,
+    auto_advance: false,
     keyboard: "number",
   };
 }

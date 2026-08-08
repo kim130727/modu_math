@@ -1,0 +1,338 @@
+{
+  "slots": {
+    "slot.instruction": {
+      "text": "□ 안에 알맞은 수를 써넣으시오.",
+      "x": 25,
+      "y": 30,
+      "font_size": 24,
+      "fill": "#111111"
+    },
+    "slot.calculation.1.box.ones": {
+      "x": 132.793,
+      "y": 156.569,
+      "width": 20.242,
+      "height": 27,
+      "fill": "#ffffff",
+      "stroke": "#111111",
+      "stroke_width": 1,
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    "slot.calculation.1.box.tens": {
+      "x": 117.362,
+      "y": 197.569,
+      "width": 36.103,
+      "height": 27,
+      "fill": "#ffffff",
+      "stroke": "#111111",
+      "stroke_width": 1,
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 1,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    "slot.calculation.1.box.hundreds": {
+      "x": 99.345,
+      "y": 238.569,
+      "width": 53.69,
+      "height": 27,
+      "fill": "#ffffff",
+      "stroke": "#111111",
+      "stroke_width": 1,
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 2,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    "slot.calculation.1.box.total": {
+      "x": 99.345,
+      "y": 290.569,
+      "width": 53.69,
+      "height": 29,
+      "fill": "#ffffff",
+      "stroke": "#111111",
+      "stroke_width": 1,
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 6,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    "slot.calculation.1.line.top": {
+      "x1": 69,
+      "y1": 143,
+      "x2": 161,
+      "y2": 143,
+      "stroke": "#111111",
+      "stroke_width": 1.5
+    },
+    "slot.calculation.1.line.bottom": {
+      "x1": 71,
+      "y1": 278,
+      "x2": 163,
+      "y2": 278,
+      "stroke": "#111111",
+      "stroke_width": 1.5
+    },
+    "slot.calculation.1.label": {
+      "text": "(1)",
+      "x": 25,
+      "y": 78,
+      "font_size": 22,
+      "fill": "#111111"
+    },
+    "slot.calculation.1.top": {
+      "text": "2 1 7",
+      "x": 124.5,
+      "y": 78,
+      "font_size": 25,
+      "fill": "#111111",
+      "anchor": "middle"
+    },
+    "slot.calculation.1.plus": {
+      "text": "+",
+      "x": 70,
+      "y": 120,
+      "font_size": 25,
+      "fill": "#111111",
+      "anchor": "middle"
+    },
+    "slot.calculation.1.bottom": {
+      "text": "5 4 2",
+      "x": 124.5,
+      "y": 120,
+      "font_size": 25,
+      "fill": "#111111",
+      "anchor": "middle"
+    },
+    "slot.calculation.2.box.tens": {
+      "x": 319.379,
+      "y": 197.569,
+      "width": 31.793,
+      "height": 27,
+      "fill": "#ffffff",
+      "stroke": "#111111",
+      "stroke_width": 1,
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 4,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    "slot.calculation.2.box.hundreds": {
+      "x": 300.931,
+      "y": 239,
+      "width": 50.672,
+      "height": 27,
+      "fill": "#ffffff",
+      "stroke": "#111111",
+      "stroke_width": 1,
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 5,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    "slot.calculation.2.box.total": {
+      "x": 301.034,
+      "y": 291,
+      "width": 51.966,
+      "height": 29,
+      "fill": "#ffffff",
+      "stroke": "#111111",
+      "stroke_width": 1,
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 7,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    "slot.calculation.2.line.top": {
+      "x1": 269,
+      "y1": 143,
+      "x2": 361,
+      "y2": 143,
+      "stroke": "#111111",
+      "stroke_width": 1.5
+    },
+    "slot.calculation.2.line.bottom": {
+      "x1": 271,
+      "y1": 278,
+      "x2": 363,
+      "y2": 278,
+      "stroke": "#111111",
+      "stroke_width": 1.5
+    },
+    "slot.calculation.2.label": {
+      "text": "(2)",
+      "x": 225,
+      "y": 78,
+      "font_size": 22,
+      "fill": "#111111"
+    },
+    "slot.calculation.2.top": {
+      "text": "3 8 6",
+      "x": 324.5,
+      "y": 78,
+      "font_size": 25,
+      "fill": "#111111",
+      "anchor": "middle"
+    },
+    "slot.calculation.2.plus": {
+      "text": "+",
+      "x": 270,
+      "y": 120,
+      "font_size": 25,
+      "fill": "#111111",
+      "anchor": "middle"
+    },
+    "slot.calculation.2.bottom": {
+      "text": "2 1 1",
+      "x": 324.5,
+      "y": 120,
+      "font_size": 25,
+      "fill": "#111111",
+      "anchor": "middle"
+    }
+  },
+  "version": 1,
+  "deleted_slots": [
+    "slot.answer.1.ones",
+    "slot.answer.1.tens",
+    "slot.answer.1.hundreds",
+    "slot.answer.1.total",
+    "slot.answer.2.ones",
+    "slot.answer.2.tens",
+    "slot.answer.2.hundreds",
+    "slot.answer.2.total",
+    "slot.calculation.2.box.ones"
+  ],
+  "canvas": {
+    "width": 500,
+    "height": 350
+  }
+}

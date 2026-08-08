@@ -1074,6 +1074,47 @@ def test_apply_editor_overrides_updates_layout_slot_content() -> None:
     assert layout["slots"][1]["content"] == {"x": 9.0}
 
 
+def test_prune_editor_overrides_clamps_text_box_height_to_fit_content() -> None:
+    layout = {
+        "regions": [{"id": "region.stem", "role": "stem", "slot_ids": ["slot.question"]}],
+        "slots": [
+            {
+                "id": "slot.question",
+                "kind": "text_box",
+                "content": {
+                    "text": "동민이는 구슬을 215개 가지고 있고, 가희는 구슬을 132개 가지고 있습니다.",
+                    "width": 240,
+                    "height": 120,
+                    "font_size": 30,
+                    "line_height": 1.25,
+                },
+            }
+        ],
+    }
+    overrides = {"slots": {"slot.question": {"height": 69}}}
+
+    cleaned, changed = prune_editor_overrides(layout, overrides)
+
+    assert changed is True
+    assert cleaned["slots"]["slot.question"]["height"] >= 120
+
+
+def test_prune_editor_overrides_keeps_answer_slot_when_no_replacement_exists() -> None:
+    layout = {
+        "regions": [{"id": "region.stem", "role": "stem", "slot_ids": ["slot.question", "slot.answer"]}],
+        "slots": [
+            {"id": "slot.question", "kind": "text_box", "content": {"text": "Prompt"}},
+            {"id": "slot.answer", "kind": "blank", "content": {"answer_key": "377", "placeholder": "대"}},
+        ],
+    }
+    overrides = {"deleted_slots": ["slot.answer"]}
+
+    cleaned, changed = prune_editor_overrides(layout, overrides)
+
+    assert changed is True
+    assert "deleted_slots" not in cleaned
+
+
 def test_apply_editor_overrides_converts_polygon_d_override_to_points() -> None:
     layout = {
         "canvas": {"width": 100, "height": 100},

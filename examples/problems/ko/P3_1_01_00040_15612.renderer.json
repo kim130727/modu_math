@@ -1,0 +1,236 @@
+{
+  "problem_id": "P3_1_01_00040_15612",
+  "view_box": {
+    "width": 500.0,
+    "height": 220.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.question.text",
+      "type": "text",
+      "attributes": {
+        "x": 24.0,
+        "y": 28.0,
+        "fill": "#222222",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "다음 중 합이 가장 큰 것은 어느 것입니까?"
+    },
+    {
+      "id": "konva_1786192274303_paste_953794_0.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 311.853,
+        "y": 159.18,
+        "fill": "#202124",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 21,
+        "width": 47.295,
+        "height": 35.0,
+        "max_width": 47.295,
+        "data-slot-kind": "text_box",
+        "data-box-x": 311.853,
+        "data-box-y": 159.18,
+        "data-box-width": 47.295,
+        "data-box-height": 35.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25
+      },
+      "source_ref": "konva_1786192274303_paste_953794_0",
+      "refs": {
+        "layout_slot_id": "konva_1786192274303_paste_953794_0"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      },
+      "text": "(   )"
+    },
+    {
+      "id": "slot.choice_1.number.text",
+      "type": "text",
+      "attributes": {
+        "x": 26.0,
+        "y": 62.0,
+        "fill": "#2F80C9",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice_1.number",
+      "refs": {
+        "layout_slot_id": "slot.choice_1.number"
+      },
+      "text": "①"
+    },
+    {
+      "id": "slot.choice_1.expression.text",
+      "type": "text",
+      "attributes": {
+        "x": 55.0,
+        "y": 62.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice_1.expression",
+      "refs": {
+        "layout_slot_id": "slot.choice_1.expression"
+      },
+      "text": "320+145"
+    },
+    {
+      "id": "slot.choice_2.number.text",
+      "type": "text",
+      "attributes": {
+        "x": 26.0,
+        "y": 92.0,
+        "fill": "#2F80C9",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice_2.number",
+      "refs": {
+        "layout_slot_id": "slot.choice_2.number"
+      },
+      "text": "②"
+    },
+    {
+      "id": "slot.choice_2.expression.text",
+      "type": "text",
+      "attributes": {
+        "x": 55.0,
+        "y": 92.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice_2.expression",
+      "refs": {
+        "layout_slot_id": "slot.choice_2.expression"
+      },
+      "text": "300+200"
+    },
+    {
+      "id": "slot.choice_3.number.text",
+      "type": "text",
+      "attributes": {
+        "x": 26.0,
+        "y": 122.0,
+        "fill": "#2F80C9",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice_3.number",
+      "refs": {
+        "layout_slot_id": "slot.choice_3.number"
+      },
+      "text": "③"
+    },
+    {
+      "id": "slot.choice_3.expression.text",
+      "type": "text",
+      "attributes": {
+        "x": 55.0,
+        "y": 122.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice_3.expression",
+      "refs": {
+        "layout_slot_id": "slot.choice_3.expression"
+      },
+      "text": "163+326"
+    },
+    {
+      "id": "slot.choice_4.number.text",
+      "type": "text",
+      "attributes": {
+        "x": 26.0,
+        "y": 152.0,
+        "fill": "#2F80C9",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice_4.number",
+      "refs": {
+        "layout_slot_id": "slot.choice_4.number"
+      },
+      "text": "④"
+    },
+    {
+      "id": "slot.choice_4.expression.text",
+      "type": "text",
+      "attributes": {
+        "x": 55.0,
+        "y": 152.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice_4.expression",
+      "refs": {
+        "layout_slot_id": "slot.choice_4.expression"
+      },
+      "text": "236+362"
+    },
+    {
+      "id": "slot.choice_5.number.text",
+      "type": "text",
+      "attributes": {
+        "x": 26.0,
+        "y": 182.0,
+        "fill": "#2F80C9",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice_5.number",
+      "refs": {
+        "layout_slot_id": "slot.choice_5.number"
+      },
+      "text": "⑤"
+    },
+    {
+      "id": "slot.choice_5.expression.text",
+      "type": "text",
+      "attributes": {
+        "x": 55.0,
+        "y": 182.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice_5.expression",
+      "refs": {
+        "layout_slot_id": "slot.choice_5.expression"
+      },
+      "text": "405+104"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

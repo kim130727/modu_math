@@ -1,0 +1,543 @@
+{
+  "problem_id": "P3_1_01_00040_15598",
+  "view_box": {
+    "width": 500.0,
+    "height": 350.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.calculation.1.box.ones.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 132.793,
+        "y": 156.569,
+        "width": 20.242,
+        "height": 27.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.calculation.1.box.ones",
+      "refs": {
+        "layout_slot_id": "slot.calculation.1.box.ones"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    {
+      "id": "slot.calculation.1.box.tens.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 117.362,
+        "y": 197.569,
+        "width": 36.103,
+        "height": 27.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.calculation.1.box.tens",
+      "refs": {
+        "layout_slot_id": "slot.calculation.1.box.tens"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 1,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    {
+      "id": "slot.calculation.1.box.hundreds.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 99.345,
+        "y": 238.569,
+        "width": 53.69,
+        "height": 27.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.calculation.1.box.hundreds",
+      "refs": {
+        "layout_slot_id": "slot.calculation.1.box.hundreds"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 2,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    {
+      "id": "slot.calculation.1.box.total.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 99.345,
+        "y": 290.569,
+        "width": 53.69,
+        "height": 29.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.calculation.1.box.total",
+      "refs": {
+        "layout_slot_id": "slot.calculation.1.box.total"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 6,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    {
+      "id": "slot.calculation.1.line.top.line",
+      "type": "line",
+      "attributes": {
+        "x1": 69.0,
+        "y1": 143.0,
+        "x2": 161.0,
+        "y2": 143.0,
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.calculation.1.line.top",
+      "refs": {
+        "layout_slot_id": "slot.calculation.1.line.top"
+      }
+    },
+    {
+      "id": "slot.calculation.1.line.bottom.line",
+      "type": "line",
+      "attributes": {
+        "x1": 71.0,
+        "y1": 278.0,
+        "x2": 163.0,
+        "y2": 278.0,
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.calculation.1.line.bottom",
+      "refs": {
+        "layout_slot_id": "slot.calculation.1.line.bottom"
+      }
+    },
+    {
+      "id": "slot.instruction.text",
+      "type": "text",
+      "attributes": {
+        "x": 25.0,
+        "y": 30.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.instruction",
+      "refs": {
+        "layout_slot_id": "slot.instruction"
+      },
+      "text": "□ 안에 알맞은 수를 써넣으시오."
+    },
+    {
+      "id": "slot.calculation.1.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 25.0,
+        "y": 78.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.calculation.1.label",
+      "refs": {
+        "layout_slot_id": "slot.calculation.1.label"
+      },
+      "text": "(1)"
+    },
+    {
+      "id": "slot.calculation.1.top.text",
+      "type": "text",
+      "attributes": {
+        "x": 124.5,
+        "y": 78.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 25,
+        "max_width": 80.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.calculation.1.top",
+      "refs": {
+        "layout_slot_id": "slot.calculation.1.top"
+      },
+      "text": "2 1 7"
+    },
+    {
+      "id": "slot.calculation.1.plus.text",
+      "type": "text",
+      "attributes": {
+        "x": 70.0,
+        "y": 120.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 25,
+        "max_width": 30.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.calculation.1.plus",
+      "refs": {
+        "layout_slot_id": "slot.calculation.1.plus"
+      },
+      "text": "+"
+    },
+    {
+      "id": "slot.calculation.1.bottom.text",
+      "type": "text",
+      "attributes": {
+        "x": 124.5,
+        "y": 120.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 25,
+        "max_width": 80.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.calculation.1.bottom",
+      "refs": {
+        "layout_slot_id": "slot.calculation.1.bottom"
+      },
+      "text": "5 4 2"
+    },
+    {
+      "id": "konva_1786192274303_paste_279482_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 330.931,
+        "y": 155.569,
+        "width": 20.242,
+        "height": 27.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.0
+      },
+      "source_ref": "konva_1786192274303_paste_279482_0",
+      "refs": {
+        "layout_slot_id": "konva_1786192274303_paste_279482_0"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    {
+      "id": "slot.calculation.2.box.tens.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 319.379,
+        "y": 197.569,
+        "width": 31.793,
+        "height": 27.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.calculation.2.box.tens",
+      "refs": {
+        "layout_slot_id": "slot.calculation.2.box.tens"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 4,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    {
+      "id": "slot.calculation.2.box.hundreds.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 300.931,
+        "y": 239.0,
+        "width": 50.672,
+        "height": 27.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.calculation.2.box.hundreds",
+      "refs": {
+        "layout_slot_id": "slot.calculation.2.box.hundreds"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 5,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    {
+      "id": "slot.calculation.2.box.total.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 301.034,
+        "y": 291.0,
+        "width": 51.966,
+        "height": 29.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.calculation.2.box.total",
+      "refs": {
+        "layout_slot_id": "slot.calculation.2.box.total"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 7,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    {
+      "id": "slot.calculation.2.line.top.line",
+      "type": "line",
+      "attributes": {
+        "x1": 269.0,
+        "y1": 143.0,
+        "x2": 361.0,
+        "y2": 143.0,
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.calculation.2.line.top",
+      "refs": {
+        "layout_slot_id": "slot.calculation.2.line.top"
+      }
+    },
+    {
+      "id": "slot.calculation.2.line.bottom.line",
+      "type": "line",
+      "attributes": {
+        "x1": 271.0,
+        "y1": 278.0,
+        "x2": 363.0,
+        "y2": 278.0,
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.calculation.2.line.bottom",
+      "refs": {
+        "layout_slot_id": "slot.calculation.2.line.bottom"
+      }
+    },
+    {
+      "id": "slot.calculation.2.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 225.0,
+        "y": 78.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.calculation.2.label",
+      "refs": {
+        "layout_slot_id": "slot.calculation.2.label"
+      },
+      "text": "(2)"
+    },
+    {
+      "id": "slot.calculation.2.top.text",
+      "type": "text",
+      "attributes": {
+        "x": 324.5,
+        "y": 78.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 25,
+        "max_width": 80.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.calculation.2.top",
+      "refs": {
+        "layout_slot_id": "slot.calculation.2.top"
+      },
+      "text": "3 8 6"
+    },
+    {
+      "id": "slot.calculation.2.plus.text",
+      "type": "text",
+      "attributes": {
+        "x": 270.0,
+        "y": 120.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 25,
+        "max_width": 30.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.calculation.2.plus",
+      "refs": {
+        "layout_slot_id": "slot.calculation.2.plus"
+      },
+      "text": "+"
+    },
+    {
+      "id": "slot.calculation.2.bottom.text",
+      "type": "text",
+      "attributes": {
+        "x": 324.5,
+        "y": 120.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 25,
+        "max_width": 80.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.calculation.2.bottom",
+      "refs": {
+        "layout_slot_id": "slot.calculation.2.bottom"
+      },
+      "text": "2 1 1"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

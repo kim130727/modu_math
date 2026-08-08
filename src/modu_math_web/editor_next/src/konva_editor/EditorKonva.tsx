@@ -642,7 +642,7 @@ export function EditorKonva() {
     [patchTutorOverlay],
   );
 
-  const buildCurrentProblem = useCallback(async () => {
+  const buildSavedProblem = useCallback(async () => {
     if (selectedProblemId === initialProblem.id) {
       setMessage("Sample problem is local only. Open a real problem before building.");
       setSaveStatus("error");
@@ -690,11 +690,15 @@ export function EditorKonva() {
     }
   }, [draftTutorFlow, selectedProblemId]);
 
-  const saveAndBuildCurrentProblem = useCallback(async () => {
+  const buildCurrentProblem = useCallback(async () => {
     const saved = await saveJson();
-    if (!saved) return;
+    if (!saved) return false;
+    return buildSavedProblem();
+  }, [buildSavedProblem, saveJson]);
+
+  const saveAndBuildCurrentProblem = useCallback(async () => {
     await buildCurrentProblem();
-  }, [buildCurrentProblem, saveJson]);
+  }, [buildCurrentProblem]);
 
   return (
     <div className="math-problem-editor konva-editor">

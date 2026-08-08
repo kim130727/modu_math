@@ -457,7 +457,29 @@ def _normalize_slot_with_interaction(slot: AuthoringSlot) -> dict[str, Any]:
         normalized["content"]["interaction"] = dict(slot.interaction)
     if slot.input_style is not None:
         normalized["content"]["input_style"] = dict(slot.input_style)
+    _normalize_answer_input_interaction(normalized)
     return normalized
+
+
+def _normalize_answer_input_interaction(slot: dict[str, Any]) -> None:
+    content = slot.get("content")
+    if not isinstance(content, dict):
+        return
+    interaction = content.get("interaction")
+    if not isinstance(interaction, dict):
+        return
+    if interaction.get("type") != "input" or interaction.get("role") != "answer":
+        return
+    width = content.get("width")
+    if (
+        interaction.get("value_type") == "digit"
+        and interaction.get("max_length") == 1
+        and isinstance(width, int | float)
+        and width >= 60
+    ):
+        interaction["value_type"] = "integer"
+        interaction["max_length"] = 3
+        interaction["auto_advance"] = False
 
 
 def _normalize_shape_object(obj: ShapeObject) -> dict[str, Any]:

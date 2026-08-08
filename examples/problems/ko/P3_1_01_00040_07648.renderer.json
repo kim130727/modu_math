@@ -1,0 +1,77 @@
+{
+  "problem_id": "P3_1_01_00040_07648",
+  "view_box": {
+    "width": 900.0,
+    "height": 230.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "konva_1785217709470_rect_5615662.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 641.47,
+        "y": 155.192,
+        "width": 167.081,
+        "height": 51.887,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.2
+      },
+      "source_ref": "konva_1785217709470_rect_5615662",
+      "refs": {
+        "layout_slot_id": "konva_1785217709470_rect_5615662"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    {
+      "id": "slot.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 40.464,
+        "y": 53.671,
+        "fill": "#202124",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 24,
+        "width": 804.0,
+        "height": 80.0,
+        "max_width": 804.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 40.464,
+        "data-box-y": 53.671,
+        "data-box-width": 804.0,
+        "data-box-height": 80.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "서로 다른 두 수가 있습니다. 두 수 중 큰 수는 작은 수의 2배입니다. 두 수의 합이 735라면 큰 수는 얼마입니까?"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -109,6 +109,31 @@ def test_text_box_preserves_unbreakable_tokens_and_spacing() -> None:
     assert "<tspan" not in svg
 
 
+def test_text_box_wraps_long_korean_text_without_spaces() -> None:
+    problem = ProblemTemplate(
+        id="text_box_korean_wrap_demo",
+        title="Text box Korean wrap demo",
+        canvas=Canvas(width=300, height=160),
+        regions=(Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.tb",)),),
+        slots=(
+            TextBoxSlot(
+                id="slot.tb",
+                text="가나다라마바사아자차카타파하",
+                x=10,
+                y=20,
+                width=80,
+                height=90,
+                font_size=20,
+            ),
+        ),
+    )
+
+    svg = render_svg(compile_renderer_json(compile_problem_template_to_layout(problem)))
+
+    assert "<tspan" in svg
+    assert 'data-raw-text="가나다라마바사아자차카타파하"' in svg
+
+
 def test_image_slot_renders_svg_image() -> None:
     problem = ProblemTemplate(
         id="image_slot_demo",

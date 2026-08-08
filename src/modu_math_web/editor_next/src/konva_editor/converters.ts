@@ -39,6 +39,7 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
       const lineHeight = object.props.lineHeight ?? 1.25;
       const needsAlignmentBox = textAlign !== "left";
       const width = isTextBox || needsAlignmentBox ? object.props.width ?? estimateTextWidth(text, fontSize) : undefined;
+      const fittedHeight = fittedTextHeight(text, fontSize, width ?? estimateTextWidth(text, fontSize), lineHeight);
 
       return [
         applySvgRotateTransform(
@@ -52,7 +53,7 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
           fontFamily: stringProp(object.props.fontFamily) ?? KONVA_PREVIEW_FONT_FAMILY,
           fill: object.props.color ?? "#111827",
           width,
-          height: isTextBox ? object.props.height ?? fittedTextHeight(text, fontSize, width ?? estimateTextWidth(text, fontSize), lineHeight) : undefined,
+          height: isTextBox ? Math.max(object.props.height ?? 0, fittedHeight) : undefined,
           align: textAlign,
           lineHeight,
           sourceKind: object.props.sourceKind ?? "text",
@@ -310,6 +311,13 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
         },
       ];
     case "text":
+      const sourceKind = shape.sourceKind ?? (shape.width ? "text_box" : "text");
+      const lineHeight = shape.lineHeight ?? 1.25;
+      const width = shape.width;
+      const height =
+        sourceKind === "text_box" && typeof width === "number"
+          ? Math.max(shape.height ?? 0, fittedTextHeight(shape.text, shape.fontSize, width, lineHeight))
+          : shape.height;
       return [
         {
           id: shape.id,
@@ -321,12 +329,12 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             text: shape.text,
             fontSize: shape.fontSize,
             fontFamily: shape.fontFamily ?? KONVA_PREVIEW_FONT_FAMILY,
-            width: shape.width,
-            height: shape.height,
+            width,
+            height,
             color: shape.fill ?? "#111827",
             textAlign: shape.align ?? "left",
-            lineHeight: shape.lineHeight ?? 1.25,
-            sourceKind: shape.sourceKind ?? (shape.width ? "text_box" : "text"),
+            lineHeight,
+            sourceKind,
             ...regionProps,
             ...answerProps,
             ...transformProps(shape),
