@@ -927,6 +927,11 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       return m ? m[1] : null;
     }
 
+    function baseTenSlotBase(slotId) {
+      const m = String(slotId || "").match(/^(slot\.figure\.base_ten_[a-z]+_\d+)(?:\.|$)/);
+      return m ? m[1] : null;
+    }
+
     function mathSlotBase(slotId) {
       const m = String(slotId || "").match(/^(slot\.math\.[a-zA-Z0-9_]+)(?:\.(?:whole|num|bar|den))?$/);
       return m ? m[1] : null;
@@ -960,6 +965,21 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         if (!used.has(candidate)) return candidate;
       }
       return `slot.graphpaper_${Date.now()}`;
+    }
+
+    function uniqueBaseTenBase(kind) {
+      const ids = extractDslSlotIds();
+      const used = new Set();
+      for (const id of ids) {
+        const base = baseTenSlotBase(id);
+        if (base) used.add(base);
+      }
+      const cleanKind = String(kind || "one").replace(/[^a-zA-Z0-9_]+/g, "_") || "one";
+      for (let i = 1; i < 10000; i += 1) {
+        const candidate = `slot.figure.base_ten_${cleanKind}_${i}`;
+        if (!used.has(candidate)) return candidate;
+      }
+      return `slot.figure.base_ten_${cleanKind}_${Date.now()}`;
     }
 
     function uniqueMathBase(kind = "frac") {
@@ -1178,6 +1198,139 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
           }),
         });
       }
+      return { base, patches };
+    }
+
+    function pathFromSegments(segments) {
+      return segments.map(([x1, y1, x2, y2]) => `M ${snapValue(x1)} ${snapValue(y1)} L ${snapValue(x2)} ${snapValue(y2)}`).join(" ");
+    }
+
+    function polygonContent(points, fill, stroke, stroke_width = 1) {
+      return { points: points.map(([x, y]) => [snapValue(x), snapValue(y)]), fill, stroke, stroke_width };
+    }
+
+    function addHundredModelPatches(patches, base, x, y, withRegion) {
+      const size = 82;
+      const depth = 18;
+      const stroke = "#1d6fa3";
+      const frontFill = "#5cc6ee";
+      const topFill = "#94dcf6";
+      const sideFill = "#35abd8";
+      const grid = "#1d6fa3";
+      const step = size / 10;
+      const dstep = depth / 10;
+      const frontSegments = [];
+      const topSegments = [];
+      const sideSegments = [];
+      for (let i = 1; i < 10; i += 1) {
+        const offset = step * i;
+        const doffset = dstep * i;
+        frontSegments.push([x + offset, y + depth, x + offset, y + depth + size]);
+        frontSegments.push([x, y + depth + offset, x + size, y + depth + offset]);
+        topSegments.push([x + doffset, y + depth - doffset, x + size + doffset, y + depth - doffset]);
+        topSegments.push([x + offset, y + depth, x + offset + depth, y]);
+        sideSegments.push([x + size + doffset, y + depth - doffset, x + size + doffset, y + depth + size - doffset]);
+        sideSegments.push([x + size, y + depth + offset, x + size + depth, y + offset]);
+      }
+      patches.push({
+        target: `${base}.front`,
+        op: "add",
+        value: withRegion({ kind: "rect", content: { x, y: snapValue(y + depth), width: size, height: size, fill: frontFill, stroke, stroke_width: 1.2 } }),
+      });
+      patches.push({
+        target: `${base}.top`,
+        op: "add",
+        value: withRegion({ kind: "polygon", content: polygonContent([[x, y + depth], [x + depth, y], [x + size + depth, y], [x + size, y + depth]], topFill, stroke, 1) }),
+      });
+      patches.push({
+        target: `${base}.side`,
+        op: "add",
+        value: withRegion({ kind: "polygon", content: polygonContent([[x + size, y + depth], [x + size + depth, y], [x + size + depth, y + size], [x + size, y + size + depth]], sideFill, stroke, 1) }),
+      });
+      patches.push({
+        target: `${base}.front.grid`,
+        op: "add",
+        value: withRegion({ kind: "path", content: { d: pathFromSegments(frontSegments), fill: "none", stroke: grid, stroke_width: 0.55 } }),
+      });
+      patches.push({
+        target: `${base}.top.grid`,
+        op: "add",
+        value: withRegion({ kind: "path", content: { d: pathFromSegments(topSegments), fill: "none", stroke: grid, stroke_width: 0.45 } }),
+      });
+      patches.push({
+        target: `${base}.side.grid`,
+        op: "add",
+        value: withRegion({ kind: "path", content: { d: pathFromSegments(sideSegments), fill: "none", stroke: grid, stroke_width: 0.45 } }),
+      });
+    }
+
+    function addTenModelPatches(patches, base, x, y, withRegion) {
+      const cell = 8;
+      const width = cell * 1.35;
+      const height = cell * 10;
+      const depth = cell * 0.45;
+      const stroke = "#1d6fa3";
+      patches.push({
+        target: `${base}.front`,
+        op: "add",
+        value: withRegion({ kind: "rect", content: { x, y: snapValue(y + depth), width, height, fill: "#5cc6ee", stroke, stroke_width: 1.2 } }),
+      });
+      patches.push({
+        target: `${base}.top`,
+        op: "add",
+        value: withRegion({ kind: "polygon", content: polygonContent([[x, y + depth], [x + depth, y], [x + width + depth, y], [x + width, y + depth]], "#94dcf6", stroke, 1) }),
+      });
+      patches.push({
+        target: `${base}.side`,
+        op: "add",
+        value: withRegion({ kind: "polygon", content: polygonContent([[x + width, y + depth], [x + width + depth, y], [x + width + depth, y + height], [x + width, y + height + depth]], "#35abd8", stroke, 1) }),
+      });
+      for (let i = 1; i < 10; i += 1) {
+        const yy = snapValue(y + depth + cell * i);
+        patches.push({
+          target: `${base}.cell.${i}`,
+          op: "add",
+          value: withRegion({ kind: "line", content: { x1: x, y1: yy, x2: snapValue(x + width), y2: yy, stroke, stroke_width: 0.7 } }),
+        });
+      }
+    }
+
+    function addOneModelPatches(patches, base, x, y, withRegion) {
+      const size = 16;
+      const depth = size * 0.45;
+      const stroke = "#1d6fa3";
+      patches.push({
+        target: `${base}.front`,
+        op: "add",
+        value: withRegion({ kind: "rect", content: { x, y: snapValue(y + depth), width: size, height: size, fill: "#5cc6ee", stroke, stroke_width: 1 } }),
+      });
+      patches.push({
+        target: `${base}.top`,
+        op: "add",
+        value: withRegion({ kind: "polygon", content: polygonContent([[x, y + depth], [x + depth, y], [x + size + depth, y], [x + size, y + depth]], "#94dcf6", stroke, 0.9) }),
+      });
+      patches.push({
+        target: `${base}.side`,
+        op: "add",
+        value: withRegion({ kind: "polygon", content: polygonContent([[x + size, y + depth], [x + size + depth, y], [x + size + depth, y + size], [x + size, y + size + depth]], "#35abd8", stroke, 0.9) }),
+      });
+    }
+
+    function baseTenModelPatches(kind) {
+      const cleanKind = ["hundred", "ten", "one"].includes(kind) ? kind : "one";
+      const dimensions = {
+        hundred: { width: 100, height: 100 },
+        ten: { width: 18, height: 84 },
+        one: { width: 24, height: 24 },
+      }[cleanKind];
+      const { x, y } = selectedInsertOrigin(dimensions.width, dimensions.height) || defaultInsertOrigin(dimensions.width, dimensions.height);
+      const base = uniqueBaseTenBase(cleanKind);
+      const regionId = selectedInsertRegionId() || firstUsableRegionId();
+      const withRegion = (value) => regionId ? { ...value, region_id: regionId } : value;
+      const patches = [];
+      if (cleanKind === "hundred") addHundredModelPatches(patches, base, x, y, withRegion);
+      if (cleanKind === "ten") addTenModelPatches(patches, base, x, y, withRegion);
+      if (cleanKind === "one") addOneModelPatches(patches, base, x, y, withRegion);
       return { base, patches };
     }
 
@@ -1531,6 +1684,14 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       const { base, patches } = graphPaperPatches(rows, cols);
       await commitPatches(patches, `모눈종이 삽입 완료: ${cols}칸 x ${rows}칸`);
       restoreSelection([`${base}.v0`]);
+    }
+
+    async function insertBaseTenModel(kind) {
+      if (!currentProblemId) throw new Error("문제를 먼저 여세요.");
+      const { base, patches } = baseTenModelPatches(kind);
+      const label = kind === "hundred" ? "백 모형" : kind === "ten" ? "십 모형" : "낱개 모형";
+      await commitPatches(patches, `${label} 삽입 완료`);
+      restoreSelection([`${base}.front`]);
     }
 
     async function insertBarModel(options) {
@@ -5954,6 +6115,18 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     }
     document.getElementById("insertTableBtn").onclick = openTableDialog;
     document.getElementById("insertGraphPaperBtn").onclick = openGraphPaperDialog;
+    document.getElementById("insertBaseTenHundredBtn").onclick = async () => {
+      try { await insertBaseTenModel("hundred"); }
+      catch (err) { setStatus(String(err.message || err), true); }
+    };
+    document.getElementById("insertBaseTenTenBtn").onclick = async () => {
+      try { await insertBaseTenModel("ten"); }
+      catch (err) { setStatus(String(err.message || err), true); }
+    };
+    document.getElementById("insertBaseTenOneBtn").onclick = async () => {
+      try { await insertBaseTenModel("one"); }
+      catch (err) { setStatus(String(err.message || err), true); }
+    };
     document.getElementById("insertBarModelBtn").onclick = openBarModelDialog;
     document.getElementById("insertTickBarBtn").onclick = openTickBarDialog;
     document.getElementById("insertFractionBtn").onclick = () => openMathDialog(false);

@@ -2,7 +2,7 @@
   "problem_id": "P3_1_01_00040_07646",
   "view_box": {
     "width": 900.0,
-    "height": 320.0,
+    "height": 347.293,
     "background": "#FFFFFF"
   },
   "elements": [
@@ -16,13 +16,13 @@
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 30,
         "width": 804.0,
-        "height": 237.91,
+        "height": 278.0,
         "max_width": 804.0,
         "data-slot-kind": "text_box",
         "data-box-x": 15.058,
         "data-box-y": 11.417,
         "data-box-width": 804.0,
-        "data-box-height": 237.91,
+        "data-box-height": 278.0,
         "data-text-align": "left",
         "data-vertical-align": "top",
         "data-line-height": 1.5
@@ -43,13 +43,13 @@
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 28,
         "width": 206.199,
-        "height": 40.0,
+        "height": 78.0,
         "max_width": 206.199,
         "data-slot-kind": "text_box",
         "data-box-x": 645.922,
         "data-box-y": 253.293,
         "data-box-width": 206.199,
-        "data-box-height": 40.0,
+        "data-box-height": 78.0,
         "data-text-align": "left",
         "data-vertical-align": "top",
         "data-line-height": 1.25
@@ -61,12 +61,12 @@
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
+        "value_type": "integer",
+        "max_length": 3,
         "include_in_submission": true,
         "order": 0,
         "group_id": "final_answer",
-        "auto_advance": true,
+        "auto_advance": false,
         "keyboard": "number"
       },
       "input_style": {

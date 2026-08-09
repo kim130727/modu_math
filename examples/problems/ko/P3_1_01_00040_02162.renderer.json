@@ -2,7 +2,7 @@
   "problem_id": "P3_1_01_00040_02162",
   "view_box": {
     "width": 300.0,
-    "height": 145.0,
+    "height": 153.42000000000002,
     "background": "#FFFFFF"
   },
   "elements": [
@@ -53,12 +53,12 @@
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
+        "value_type": "integer",
+        "max_length": 3,
         "include_in_submission": true,
         "order": 0,
         "group_id": "final_answer",
-        "auto_advance": true,
+        "auto_advance": false,
         "keyboard": "number"
       },
       "input_style": {
@@ -92,12 +92,12 @@
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
+        "value_type": "integer",
+        "max_length": 3,
         "include_in_submission": true,
         "order": 1,
         "group_id": "final_answer",
-        "auto_advance": true,
+        "auto_advance": false,
         "keyboard": "number"
       },
       "input_style": {

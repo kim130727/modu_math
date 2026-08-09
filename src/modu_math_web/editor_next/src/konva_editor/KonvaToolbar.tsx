@@ -56,6 +56,9 @@ type ToolName =
   | "image"
   | "table"
   | "graphPaper"
+  | "baseTen100"
+  | "baseTen10"
+  | "baseTen1"
   | "answerSlot"
   | "delete"
   | "refresh"
@@ -74,6 +77,9 @@ interface KonvaToolbarProps {
   onAddImage: () => void;
   onAddTable: () => void;
   onAddGraphPaper: () => void;
+  onAddBaseTenHundred: () => void;
+  onAddBaseTenTen: () => void;
+  onAddBaseTenOne: () => void;
   onMarkSelectedAsAnswerSlot: () => void;
   onDeleteSelected: () => void;
   onRefreshJson: () => void;
@@ -295,6 +301,32 @@ function ToolbarIcon({ name }: { name: ToolName }) {
           <path d="M8 4v16M12 4v16M16 4v16M4 8h16M4 12h16M4 16h16" />
         </svg>
       );
+    case "baseTen100":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 8h11v11H5z" />
+          <path d="M5 8l3-3h11l-3 3" />
+          <path d="M16 8l3-3v11l-3 3" />
+          <path d="M8.7 8v11M12.3 8v11M5 11.7h11M5 15.3h11" />
+        </svg>
+      );
+    case "baseTen10":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 6h6v14H8z" />
+          <path d="M8 6l2-2h6l-2 2" />
+          <path d="M14 6l2-2v14l-2 2" />
+          <path d="M8 9h6M8 12h6M8 15h6" />
+        </svg>
+      );
+    case "baseTen1":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 9h8v8H7z" />
+          <path d="M7 9l3-3h8l-3 3" />
+          <path d="M15 9l3-3v8l-3 3" />
+        </svg>
+      );
     case "answerSlot":
       return (
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -410,6 +442,9 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
       <IconButton label="Image" icon="image" onClick={props.onAddImage} />
       <IconButton label="Table" icon="table" onClick={props.onAddTable} />
       <IconButton label="Graph Paper" icon="graphPaper" onClick={props.onAddGraphPaper} />
+      <IconButton label="Base-ten hundred" icon="baseTen100" onClick={props.onAddBaseTenHundred} />
+      <IconButton label="Base-ten ten" icon="baseTen10" onClick={props.onAddBaseTenTen} />
+      <IconButton label="Base-ten one" icon="baseTen1" onClick={props.onAddBaseTenOne} />
       <IconButton
         label="Mark selected as AnswerSlot"
         icon="answerSlot"

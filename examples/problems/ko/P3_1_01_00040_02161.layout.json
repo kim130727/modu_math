@@ -62,7 +62,7 @@
         "x": 15.335,
         "y": 13.604,
         "width": 610,
-        "height": 29.584,
+        "height": 52.0,
         "align": "left",
         "valign": "top",
         "font_size": 18,
@@ -451,12 +451,12 @@
         "interaction": {
           "type": "input",
           "role": "answer",
-          "value_type": "digit",
-          "max_length": 1,
+          "value_type": "integer",
+          "max_length": 3,
           "include_in_submission": true,
           "order": 0,
           "group_id": "final_answer",
-          "auto_advance": true,
+          "auto_advance": false,
           "keyboard": "number"
         },
         "input_style": {

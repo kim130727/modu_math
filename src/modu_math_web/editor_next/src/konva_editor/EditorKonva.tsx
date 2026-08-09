@@ -428,6 +428,13 @@ export function EditorKonva() {
     addShapes(shapes);
   }, [addShapes, nextId]);
 
+  const addBaseTenModel = useCallback(
+    (kind: "hundred" | "ten" | "one") => {
+      addShapes(createBaseTenModelShapes(kind, nextId(`base_ten_${kind}`)));
+    },
+    [addShapes, nextId],
+  );
+
   const deleteSelected = useCallback(() => {
     if (!selectedShapeIds.length) return;
     const selected = new Set(selectedShapeIds);
@@ -713,6 +720,9 @@ export function EditorKonva() {
         onAddImage={addImage}
         onAddTable={addTable}
         onAddGraphPaper={addGraphPaper}
+        onAddBaseTenHundred={() => addBaseTenModel("hundred")}
+        onAddBaseTenTen={() => addBaseTenModel("ten")}
+        onAddBaseTenOne={() => addBaseTenModel("one")}
         onMarkSelectedAsAnswerSlot={markSelectedAsAnswerSlot}
         onDeleteSelected={deleteSelected}
         onRefreshJson={refreshJson}
@@ -1155,6 +1165,99 @@ function createShapeFromPreset(preset: ShapePreset, id: string): EditorShape {
         strokeWidth,
       };
   }
+}
+
+function createBaseTenModelShapes(kind: "hundred" | "ten" | "one", baseId: string): EditorShape[] {
+  const x = 220;
+  const y = 180;
+  const stroke = "#1d6fa3";
+  const frontFill = "#5cc6ee";
+  const topFill = "#94dcf6";
+  const sideFill = "#35abd8";
+
+  if (kind === "hundred") {
+    const size = 82;
+    const depth = 18;
+    const shapes: EditorShape[] = [
+      { id: `${baseId}_front`, type: "rect", x, y: y + depth, width: size, height: size, fill: frontFill, stroke, strokeWidth: 1.2 },
+      polygonPathShape(`${baseId}_top`, [[x, y + depth], [x + depth, y], [x + size + depth, y], [x + size, y + depth]], topFill, stroke),
+      polygonPathShape(`${baseId}_side`, [[x + size, y + depth], [x + size + depth, y], [x + size + depth, y + size], [x + size, y + size + depth]], sideFill, stroke),
+    ];
+    const frontSegments: string[] = [];
+    const topSegments: string[] = [];
+    const sideSegments: string[] = [];
+    const step = size / 10;
+    const dstep = depth / 10;
+    for (let i = 1; i < 10; i += 1) {
+      const offset = step * i;
+      const doffset = dstep * i;
+      frontSegments.push(segmentD(offset, 0, offset, size));
+      frontSegments.push(segmentD(0, offset, size, offset));
+      topSegments.push(segmentD(doffset, depth - doffset, size + doffset, depth - doffset));
+      topSegments.push(segmentD(offset, depth, offset + depth, 0));
+      sideSegments.push(segmentD(doffset, depth - doffset, doffset, depth + size - doffset));
+      sideSegments.push(segmentD(0, depth + offset, depth, offset));
+    }
+    shapes.push(pathShape(`${baseId}_front_grid`, x, y + depth, size, size, frontSegments.join(" "), "none", stroke, 0.55));
+    shapes.push(pathShape(`${baseId}_top_grid`, x, y, size + depth, depth, topSegments.join(" "), "none", stroke, 0.45));
+    shapes.push(pathShape(`${baseId}_side_grid`, x + size, y, depth, size + depth, sideSegments.join(" "), "none", stroke, 0.45));
+    return shapes;
+  }
+
+  if (kind === "ten") {
+    const cell = 8;
+    const width = cell * 1.35;
+    const height = cell * 10;
+    const depth = cell * 0.45;
+    const shapes: EditorShape[] = [
+      { id: `${baseId}_front`, type: "rect", x, y: y + depth, width, height, fill: frontFill, stroke, strokeWidth: 1.2 },
+      polygonPathShape(`${baseId}_top`, [[x, y + depth], [x + depth, y], [x + width + depth, y], [x + width, y + depth]], topFill, stroke),
+      polygonPathShape(`${baseId}_side`, [[x + width, y + depth], [x + width + depth, y], [x + width + depth, y + height], [x + width, y + height + depth]], sideFill, stroke),
+    ];
+    for (let i = 1; i < 10; i += 1) {
+      const yy = y + depth + cell * i;
+      shapes.push({ id: `${baseId}_cell_${i}`, type: "line", x, y: yy, points: [0, 0, width, 0], stroke, strokeWidth: 0.7 });
+    }
+    return shapes;
+  }
+
+  const size = 16;
+  const depth = size * 0.45;
+  return [
+    { id: `${baseId}_front`, type: "rect", x, y: y + depth, width: size, height: size, fill: frontFill, stroke, strokeWidth: 1 },
+    polygonPathShape(`${baseId}_top`, [[x, y + depth], [x + depth, y], [x + size + depth, y], [x + size, y + depth]], topFill, stroke, 0.9),
+    polygonPathShape(`${baseId}_side`, [[x + size, y + depth], [x + size + depth, y], [x + size + depth, y + size], [x + size, y + size + depth]], sideFill, stroke, 0.9),
+  ];
+}
+
+function polygonPathShape(id: string, points: Array<[number, number]>, fill: string, stroke: string, strokeWidth = 1): EditorShape {
+  const minX = Math.min(...points.map(([px]) => px));
+  const minY = Math.min(...points.map(([, py]) => py));
+  const maxX = Math.max(...points.map(([px]) => px));
+  const maxY = Math.max(...points.map(([, py]) => py));
+  const d = points
+    .map(([px, py], index) => `${index === 0 ? "M" : "L"} ${roundCanvasNumber(px - minX)} ${roundCanvasNumber(py - minY)}`)
+    .join(" ");
+  return pathShape(id, minX, minY, maxX - minX, maxY - minY, `${d} Z`, fill, stroke, strokeWidth);
+}
+
+function pathShape(id: string, x: number, y: number, width: number, height: number, d: string, fill: string, stroke: string, strokeWidth: number): EditorShape {
+  return {
+    id,
+    type: "path",
+    x: roundCanvasNumber(x),
+    y: roundCanvasNumber(y),
+    width: roundCanvasNumber(Math.max(1, width)),
+    height: roundCanvasNumber(Math.max(1, height)),
+    d,
+    fill,
+    stroke,
+    strokeWidth,
+  };
+}
+
+function segmentD(x1: number, y1: number, x2: number, y2: number): string {
+  return `M ${roundCanvasNumber(x1)} ${roundCanvasNumber(y1)} L ${roundCanvasNumber(x2)} ${roundCanvasNumber(y2)}`;
 }
 
 function defaultShapeAdjustment(preset: ShapePreset, width: number, height: number): { x: number; y: number } | undefined {

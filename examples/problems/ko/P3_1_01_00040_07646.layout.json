@@ -30,7 +30,7 @@
         "x": 15.058,
         "y": 11.417,
         "width": 804,
-        "height": 237.91,
+        "height": 278.0,
         "align": "left",
         "valign": "top",
         "font_size": 30,
@@ -49,7 +49,7 @@
         "x": 645.922,
         "y": 253.293,
         "width": 206.199,
-        "height": 40,
+        "height": 78.0,
         "align": "left",
         "valign": "top",
         "font_size": 28,
@@ -58,12 +58,12 @@
         "interaction": {
           "type": "input",
           "role": "answer",
-          "value_type": "digit",
-          "max_length": 1,
+          "value_type": "integer",
+          "max_length": 3,
           "include_in_submission": true,
           "order": 0,
           "group_id": "final_answer",
-          "auto_advance": true,
+          "auto_advance": false,
           "keyboard": "number"
         },
         "input_style": {

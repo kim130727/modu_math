@@ -35,8 +35,7 @@ def build_problem_template() -> ProblemTemplate:
                 x=48,
                 y=30,
                 width=804,
-                height=190,
-                text=(
+                height = 278, text=(
                     "집에서 학교로 가는 길은 소방서를 거쳐 가는 것과 주민센터를 "
                     "거쳐서 가는 것 두 가지입니다. 집에서 소방서까지 168m이고 "
                     "소방서에서 학교까지는 726m입니다. 그리고 집에서 주민센터까지는 "
@@ -56,7 +55,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="답",
                 answer_key="소방서",
                 placeholder="를 거쳐서 가는 길",
-            ),TextBoxSlot(id = 'konva_1785217709470_text_5567198', prompt = '', text = '(소방서, 주민센터)', x = 569.201, y = 256.982, font_size = 28, fill = '#111827', width = 285, height = 40, align = 'left', line_height = 1.25)),
+            ),TextBoxSlot(id = 'konva_1785217709470_text_5567198', prompt = '', text = '(소방서, 주민센터)', x = 565.829, y = 255.879, font_size = 28, fill = '#111827', width = 285, height = 78, align = 'left', line_height = 1.25)),
     )
 
 
