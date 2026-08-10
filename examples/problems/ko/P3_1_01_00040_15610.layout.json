@@ -14,8 +14,7 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.question",
-        "slot.answer"
+        "slot.question"
       ]
     },
     {
@@ -49,9 +48,9 @@
       "kind": "rect",
       "prompt": "비교식을 담는 상자",
       "content": {
-        "x": 26.89,
-        "y": 52.92,
-        "width": 492.823,
+        "x": 18.278,
+        "y": 54.07,
+        "width": 370.531,
         "height": 58.0,
         "stroke": "#111111",
         "stroke_width": 1.0,
@@ -65,8 +64,8 @@
       "content": {
         "text": "400+156",
         "style_role": "body",
-        "x": 225.78,
-        "y": 91.067,
+        "x": 167.98,
+        "y": 90.867,
         "font_size": 22,
         "anchor": "end",
         "fill": "#333333"
@@ -77,8 +76,8 @@
       "kind": "circle",
       "prompt": "비교 기호를 쓰는 곳",
       "content": {
-        "cx": 272.78,
-        "cy": 84.067,
+        "cx": 203.458,
+        "cy": 81.614,
         "r": 15.0,
         "stroke": "#111111",
         "stroke_width": 1.5,
@@ -113,18 +112,10 @@
       "content": {
         "text": "501",
         "style_role": "body",
-        "x": 325.78,
-        "y": 91.067,
+        "x": 246.98,
+        "y": 89.867,
         "font_size": 22,
         "fill": "#333333"
-      }
-    },
-    {
-      "id": "slot.answer",
-      "kind": "blank",
-      "prompt": "○ 안에 들어갈 비교 기호",
-      "content": {
-        "placeholder": ">, =, <"
       }
     }
   ],
@@ -134,7 +125,6 @@
   "reading_order": [
     "region.stem",
     "slot.question",
-    "slot.answer",
     "region.comparison",
     "slot.comparison.background",
     "slot.comparison.circle",

@@ -7,6 +7,45 @@
   },
   "elements": [
     {
+      "id": "konva_1786318975740_rect_369098.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 273.108,
+        "y": 172.097,
+        "width": 55.228,
+        "height": 30.597,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.2
+      },
+      "source_ref": "konva_1786318975740_rect_369098",
+      "refs": {
+        "layout_slot_id": "konva_1786318975740_rect_369098"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    {
       "id": "slot.question.text",
       "type": "text_box",
       "attributes": {
@@ -140,18 +179,18 @@
       "id": "slot.option_5.text",
       "type": "text_box",
       "attributes": {
-        "x": 20.0,
-        "y": 176.0,
+        "x": 19.282,
+        "y": 173.845,
         "fill": "#202124",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 21,
-        "width": 300.0,
+        "width": 180.148,
         "height": 35.0,
-        "max_width": 300.0,
+        "max_width": 180.148,
         "data-slot-kind": "text_box",
-        "data-box-x": 20.0,
-        "data-box-y": 176.0,
-        "data-box-width": 300.0,
+        "data-box-x": 19.282,
+        "data-box-y": 173.845,
+        "data-box-width": 180.148,
         "data-box-height": 35.0,
         "data-text-align": "left",
         "data-vertical-align": "middle"
@@ -161,55 +200,6 @@
         "layout_slot_id": "slot.option_5"
       },
       "text": "⑤ 545+235"
-    },
-    {
-      "id": "konva_1786192274303_paste_691418_0.text",
-      "type": "text_box",
-      "attributes": {
-        "x": 283.345,
-        "y": 210.18,
-        "fill": "#202124",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 21,
-        "width": 47.295,
-        "height": 35.0,
-        "max_width": 47.295,
-        "data-slot-kind": "text_box",
-        "data-box-x": 283.345,
-        "data-box-y": 210.18,
-        "data-box-width": 47.295,
-        "data-box-height": 35.0,
-        "data-text-align": "left",
-        "data-vertical-align": "top",
-        "data-line-height": 1.25
-      },
-      "source_ref": "konva_1786192274303_paste_691418_0",
-      "refs": {
-        "layout_slot_id": "konva_1786192274303_paste_691418_0"
-      },
-      "interaction": {
-        "type": "input",
-        "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
-        "include_in_submission": true,
-        "order": 0,
-        "group_id": "final_answer",
-        "auto_advance": true,
-        "keyboard": "number"
-      },
-      "input_style": {
-        "font_size_mode": "auto",
-        "font_size_adjust": 0,
-        "min_font_size": 14,
-        "max_font_size": 52,
-        "font_weight": 700,
-        "horizontal_align": "center",
-        "vertical_align": "middle",
-        "padding": 6,
-        "text_color": "#222222"
-      },
-      "text": "(   )"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

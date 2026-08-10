@@ -180,6 +180,22 @@ export function EditorKonva() {
   }, []);
 
   const nextId = useCallback((kind: string) => `${idPrefix}_${kind}_${Math.round(performance.now())}`, [idPrefix]);
+  const fitInsertBox = useCallback(
+    (width: number, height: number, minWidth = 24, minHeight = 24) => {
+      const pad = 10;
+      const maxWidth = Math.max(minWidth, document.canvas.width - pad * 2);
+      const maxHeight = Math.max(minHeight, document.canvas.height - pad * 2);
+      const fittedWidth = Math.max(minWidth, Math.min(width, maxWidth));
+      const fittedHeight = Math.max(minHeight, Math.min(height, maxHeight));
+      return {
+        x: clampNumber((document.canvas.width - fittedWidth) / 2, pad, Math.max(pad, document.canvas.width - fittedWidth - pad)),
+        y: clampNumber((document.canvas.height - fittedHeight) / 2, pad, Math.max(pad, document.canvas.height - fittedHeight - pad)),
+        width: fittedWidth,
+        height: fittedHeight,
+      };
+    },
+    [document.canvas.height, document.canvas.width],
+  );
 
   const insertShape = useCallback(
     (preset: ShapePreset) => {
@@ -233,36 +249,39 @@ export function EditorKonva() {
   const addText = useCallback(() => {
     const text = "Text";
     const fontSize = 30;
+    const desiredWidth = autoTextWidth(text, fontSize);
+    const box = fitInsertBox(desiredWidth, fittedTextHeight(text, fontSize, desiredWidth), 24, 24);
     addShape({
       id: nextId("text"),
       type: "text",
-      x: 180,
-      y: 400,
+      x: box.x,
+      y: box.y,
       text,
       fontSize,
       fontFamily: KONVA_PREVIEW_FONT_FAMILY,
       fill: "#111827",
-      width: autoTextWidth(text, fontSize),
-      height: fittedTextHeight(text, fontSize, autoTextWidth(text, fontSize)),
+      width: box.width,
+      height: box.height,
       lineHeight: 1.25,
       sourceKind: "text",
     });
-  }, [addShape, nextId]);
+  }, [addShape, fitInsertBox, nextId]);
 
   const addMathShape = useCallback(
     (latex: string, width = 260, height = 72) => {
+      const box = fitInsertBox(width, height, 48, 32);
       addShape({
         id: nextId("math"),
         type: "math",
-        x: 180,
-        y: 470,
+        x: box.x,
+        y: box.y,
         latex,
-        width,
-        height,
+        width: box.width,
+        height: box.height,
         fontSize: 30,
       });
     },
-    [addShape, nextId],
+    [addShape, fitInsertBox, nextId],
   );
 
   const addMath = useCallback(() => {
@@ -293,12 +312,14 @@ export function EditorKonva() {
       try {
         const src = await readFileAsDataUrl(file);
         const size = await loadImageSize(src);
-        const fit = fitImageSize(size.width, size.height, 360, 260);
+        const maxBox = fitInsertBox(360, 260, 24, 24);
+        const fit = fitImageSize(size.width, size.height, maxBox.width, maxBox.height);
+        const box = fitInsertBox(fit.width, fit.height, 24, 24);
         addShape({
           id: nextId("image"),
           type: "image",
-          x: 520,
-          y: 280,
+          x: box.x,
+          y: box.y,
           src,
           width: fit.width,
           height: fit.height,
@@ -309,7 +330,7 @@ export function EditorKonva() {
         setMessage(`Could not insert image ${file.name}: ${String(error)}`);
       }
     },
-    [addShape, nextId],
+    [addShape, fitInsertBox, nextId],
   );
 
   const addTable = useCallback(() => {
@@ -318,12 +339,15 @@ export function EditorKonva() {
     const cols = promptInteger("Columns", 3, 1, 20);
     if (cols === null) return;
 
-    const x = 220;
-    const y = 160;
-    const cellWidth = 120;
-    const cellHeight = 56;
-    const width = cols * cellWidth;
-    const height = rows * cellHeight;
+    const desiredCellWidth = 120;
+    const desiredCellHeight = 56;
+    const box = fitInsertBox(cols * desiredCellWidth, rows * desiredCellHeight, cols * 12, rows * 12);
+    const x = box.x;
+    const y = box.y;
+    const cellWidth = box.width / cols;
+    const cellHeight = box.height / rows;
+    const width = box.width;
+    const height = box.height;
     const base = nextId("table");
     const shapes: EditorShape[] = [
       {
@@ -383,7 +407,7 @@ export function EditorKonva() {
     }
 
     addShapes(shapes);
-  }, [addShapes, nextId]);
+  }, [addShapes, fitInsertBox, nextId]);
 
   const addGraphPaper = useCallback(() => {
     const rows = promptInteger("Rows", 8, 1, 40);
@@ -391,11 +415,12 @@ export function EditorKonva() {
     const cols = promptInteger("Columns", 10, 1, 40);
     if (cols === null) return;
 
-    const cellSize = 25;
-    const x = 220;
-    const y = 160;
+    const box = fitInsertBox(cols * 25, rows * 25, cols * 4, rows * 4);
+    const cellSize = Math.min(box.width / cols, box.height / rows);
     const width = cols * cellSize;
     const height = rows * cellSize;
+    const x = box.x;
+    const y = box.y;
     const stroke = "#2563eb";
     const strokeWidth = 1;
     const base = nextId("graphpaper");
@@ -426,7 +451,7 @@ export function EditorKonva() {
     }
 
     addShapes(shapes);
-  }, [addShapes, nextId]);
+  }, [addShapes, fitInsertBox, nextId]);
 
   const addBaseTenModel = useCallback(
     (kind: "hundred" | "ten" | "one") => {
@@ -1442,6 +1467,10 @@ function arrowHeadPath(from: CanvasPoint, to: CanvasPoint): string {
 
 function roundCanvasNumber(value: number): number {
   return Math.round(value * 100) / 100;
+}
+
+function clampNumber(value: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, value));
 }
 
 function applyAutoSizing(nextShape: EditorShape, previousShape: EditorShape): EditorShape {

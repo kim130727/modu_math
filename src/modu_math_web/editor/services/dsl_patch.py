@@ -15,15 +15,17 @@ from modu_math.pipeline.tutor_renderer_flow import normalize_tutor_renderer_flow
 from .dsl_format import format_dsl_source
 from .problems import resolve_problem_paths
 
+SLOT_METADATA_FIELDS = {"interaction", "input_style"}
 SUPPORTED_SLOTS = {
-    "TextSlot": {"text", "x", "y", "font_size", "max_width", "font_family", "anchor", "fill", "style_role", "transform", "interaction", "input_style"},
-    "TextBoxSlot": {"text", "x", "y", "width", "height", "font_size", "font_family", "align", "valign", "line_height", "fill", "style_role", "transform", "interaction", "input_style"},
-    "CircleSlot": {"cx", "cy", "r", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform", "interaction", "input_style"},
-    "LineSlot": {"x1", "y1", "x2", "y2", "stroke", "stroke_width", "stroke_dasharray", "transform"},
-    "RectSlot": {"x", "y", "width", "height", "stroke", "stroke_width", "stroke_dasharray", "rx", "ry", "fill", "transform", "interaction", "input_style"},
-    "PolygonSlot": {"points", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform", "interaction", "input_style"},
-    "ImageSlot": {"href", "x", "y", "width", "height", "preserve_aspect_ratio", "transform"},
-    "PathSlot": {"d", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform", "interaction", "input_style"},
+    "TextSlot": {"text", "x", "y", "font_size", "max_width", "font_family", "anchor", "fill", "style_role", "transform"} | SLOT_METADATA_FIELDS,
+    "TextBoxSlot": {"text", "x", "y", "width", "height", "font_size", "font_family", "align", "valign", "line_height", "fill", "style_role", "transform"} | SLOT_METADATA_FIELDS,
+    "BlankSlot": {"answer_key", "placeholder"} | SLOT_METADATA_FIELDS,
+    "CircleSlot": {"cx", "cy", "r", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform"} | SLOT_METADATA_FIELDS,
+    "LineSlot": {"x1", "y1", "x2", "y2", "stroke", "stroke_width", "stroke_dasharray", "transform"} | SLOT_METADATA_FIELDS,
+    "RectSlot": {"x", "y", "width", "height", "stroke", "stroke_width", "stroke_dasharray", "rx", "ry", "fill", "transform"} | SLOT_METADATA_FIELDS,
+    "PolygonSlot": {"points", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform"} | SLOT_METADATA_FIELDS,
+    "ImageSlot": {"href", "x", "y", "width", "height", "preserve_aspect_ratio", "transform"} | SLOT_METADATA_FIELDS,
+    "PathSlot": {"d", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform"} | SLOT_METADATA_FIELDS,
 }
 SLOT_KIND_TO_CTOR = {
     "text": "TextSlot",
@@ -111,7 +113,7 @@ def _normalize_slot_id(value: str) -> str:
 
 
 def _renderer_element_slot_target(value: str) -> str:
-    return re.sub(r"\.(?:text|line|rect|path|polygon|circle|image)$", "", value)
+    return re.sub(r"\.(?:text|line|rect|path|polygon|circle|image|blank)$", "", value)
 
 
 def _measurement_tool_base_from_slot_id(slot_id: str) -> str | None:
@@ -668,6 +670,41 @@ def _save_editor_canvas_override(paths: Any, fields: dict[str, Any]) -> None:
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def _clear_editor_canvas_override(paths: Any) -> None:
+    path = _editor_overrides_path(paths)
+    if not path.exists():
+        return
+    loaded = json.loads(path.read_text(encoding="utf-8-sig"))
+    if not isinstance(loaded, dict) or "canvas" not in loaded:
+        return
+    loaded.pop("canvas", None)
+    loaded["version"] = 1
+    path.write_text(json.dumps(loaded, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def _clear_editor_slot_override_fields(paths: Any, target: str, fields: list[str] | tuple[str, ...] | set[str]) -> None:
+    path = _editor_overrides_path(paths)
+    if not path.exists():
+        return
+    loaded = json.loads(path.read_text(encoding="utf-8-sig"))
+    if not isinstance(loaded, dict):
+        return
+    slots = loaded.get("slots")
+    if not isinstance(slots, dict):
+        return
+    current = slots.get(target)
+    if not isinstance(current, dict):
+        return
+    for field in fields:
+        current.pop(field, None)
+    if not current:
+        slots.pop(target, None)
+    if not slots:
+        loaded.pop("slots", None)
+    loaded["version"] = 1
+    path.write_text(json.dumps(loaded, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
 def _save_editor_slot_delete(paths: Any, target: str) -> None:
     path = _editor_overrides_path(paths)
     data: dict[str, Any] = {}
@@ -699,6 +736,9 @@ def _try_apply_fast_editor_overrides(paths: Any, patches: list[dict[str, Any]]) 
         if not isinstance(target, str) or not target:
             raise DslPatchError("patch target must be a non-empty string")
 
+        if target in CANVAS_TARGETS:
+            return None
+
         if op == "delete":
             actions.append((op, target, None))
             applied.append(AppliedPatch(target=target, op=op, fields=[]))
@@ -719,13 +759,6 @@ def _try_apply_fast_editor_overrides(paths: Any, patches: list[dict[str, Any]]) 
             return None
         if not isinstance(value, dict):
             raise DslPatchError("patch value must be an object")
-
-        if target in CANVAS_TARGETS:
-            if not set(value).issubset(CANVAS_FIELDS):
-                return None
-            actions.append(("canvas", target, value))
-            applied.append(AppliedPatch(target="__canvas__", op=op, fields=list(value.keys())))
-            continue
 
         if "points" in value:
             return None
@@ -1657,6 +1690,7 @@ def apply_layout_patches(
             transformed = transformed.visit(updater)
             if not updater.updated:
                 raise DslPatchError("Canvas not found")
+            _clear_editor_canvas_override(paths)
             applied.append(AppliedPatch(target="__canvas__", op=op, fields=list(value.keys())))
             continue
 
@@ -1665,6 +1699,7 @@ def apply_layout_patches(
             transformed = transformed.visit(updater)
             if not updater.updated:
                 raise DslPatchError(f"target character group not found: {target}")
+            _clear_editor_slot_override_fields(paths, target, value.keys())
             applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
             continue
 
@@ -1672,6 +1707,7 @@ def apply_layout_patches(
             updater = FigureGroupMoveUpdater(target=target, fields=value)
             transformed = transformed.visit(updater)
             if updater.updated:
+                _clear_editor_slot_override_fields(paths, target, value.keys())
                 applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
                 continue
 
@@ -1679,30 +1715,35 @@ def apply_layout_patches(
             updater = TableGroupMoveUpdater(target=target, fields=value)
             transformed = transformed.visit(updater)
             if updater.updated:
+                _clear_editor_slot_override_fields(paths, target, value.keys())
                 applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
                 continue
 
         paper_fold_updater = PaperFoldSequenceMoveUpdater(target=target, fields=value)
         transformed = transformed.visit(paper_fold_updater)
         if paper_fold_updater.updated:
+            _clear_editor_slot_override_fields(paths, target, value.keys())
             applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
             continue
 
         measurement_tool_updater = MeasurementToolMoveUpdater(target=target, fields=value)
         transformed = transformed.visit(measurement_tool_updater)
         if measurement_tool_updater.updated:
+            _clear_editor_slot_override_fields(paths, target, value.keys())
             applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
             continue
 
         generated_slot_override_updater = GeneratedHelperSlotOverrideUpdater(target=target, fields=value)
         transformed = transformed.visit(generated_slot_override_updater)
         if generated_slot_override_updater.updated:
+            _clear_editor_slot_override_fields(paths, target, value.keys())
             applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
             continue
 
         single_paper_fold_updater = SinglePaperFoldHelperUpdater(target=target, fields=value)
         transformed = transformed.visit(single_paper_fold_updater)
         if single_paper_fold_updater.updated:
+            _clear_editor_slot_override_fields(paths, target, value.keys())
             applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
             continue
 
@@ -1712,12 +1753,14 @@ def apply_layout_patches(
         grid_updater = GridSlotsMoveUpdater(target=target, fields=value)
         transformed = transformed.visit(grid_updater)
         if grid_updater.updated:
+            _clear_editor_slot_override_fields(paths, target, value.keys())
             applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
             continue
 
         candidate_point_updater = CandidatePointMoveUpdater(target=target, fields=value)
         transformed = transformed.visit(candidate_point_updater)
         if candidate_point_updater.updated:
+            _clear_editor_slot_override_fields(paths, target, value.keys())
             applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
             continue
 
@@ -1726,12 +1769,14 @@ def apply_layout_patches(
         updater = SlotUpdater(target=target, fields=value)
         transformed = transformed.visit(updater)
         if updater.updated:
+            _clear_editor_slot_override_fields(paths, target, value.keys())
             applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
             continue
 
         person_updater = PersonSlotsUpdater(target=target, fields=value)
         transformed = transformed.visit(person_updater)
         if person_updater.updated:
+            _clear_editor_slot_override_fields(paths, target, value.keys())
             applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
             continue
 
@@ -1744,12 +1789,14 @@ def apply_layout_patches(
         frac_updater = FractionSlotsUpdater(target_prefix=frac_prefix, fields=value)
         transformed = transformed.visit(frac_updater)
         if frac_updater.updated:
+            _clear_editor_slot_override_fields(paths, frac_prefix, value.keys())
             applied.append(AppliedPatch(target=frac_prefix, op=op, fields=list(value.keys())))
             continue
 
         frac_parts_updater = FractionPartsMoveUpdater(target_prefix=frac_prefix, fields=value)
         transformed = transformed.visit(frac_parts_updater)
         if frac_parts_updater.updated:
+            _clear_editor_slot_override_fields(paths, frac_prefix, value.keys())
             applied.append(AppliedPatch(target=frac_prefix, op=op, fields=list(value.keys())))
             continue
 

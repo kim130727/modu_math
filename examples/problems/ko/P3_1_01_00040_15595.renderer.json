@@ -26,8 +26,8 @@
       "id": "konva_1785806283023_rect_520993.rect",
       "type": "rect",
       "attributes": {
-        "x": 54.934,
-        "y": 153.56,
+        "x": 63.517,
+        "y": 156.204,
         "width": 95.486,
         "height": 35.85,
         "fill": "#ffffff",
@@ -41,12 +41,12 @@
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
+        "value_type": "integer",
+        "max_length": 3,
         "include_in_submission": true,
         "order": 0,
         "group_id": "final_answer",
-        "auto_advance": true,
+        "auto_advance": false,
         "keyboard": "number"
       },
       "input_style": {
@@ -109,7 +109,7 @@
       "refs": {
         "layout_slot_id": "slot.calculation.1.top"
       },
-      "text": "270"
+      "text": "2 7 0"
     },
     {
       "id": "slot.calculation.1.plus.text",
@@ -145,14 +145,14 @@
       "refs": {
         "layout_slot_id": "slot.calculation.1.bottom"
       },
-      "text": "125"
+      "text": "1 2 5"
     },
     {
       "id": "konva_1785806283023_paste_529430_0.rect",
       "type": "rect",
       "attributes": {
-        "x": 257.205,
-        "y": 152.443,
+        "x": 273.712,
+        "y": 153.104,
         "width": 95.486,
         "height": 35.85,
         "fill": "#ffffff",
@@ -166,12 +166,12 @@
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
+        "value_type": "integer",
+        "max_length": 3,
         "include_in_submission": true,
         "order": 1,
         "group_id": "final_answer",
-        "auto_advance": true,
+        "auto_advance": false,
         "keyboard": "number"
       },
       "input_style": {
@@ -234,7 +234,7 @@
       "refs": {
         "layout_slot_id": "slot.calculation.2.top"
       },
-      "text": "394"
+      "text": "3 9 4"
     },
     {
       "id": "slot.calculation.2.plus.text",
@@ -270,7 +270,7 @@
       "refs": {
         "layout_slot_id": "slot.calculation.2.bottom"
       },
-      "text": "205"
+      "text": "2 0 5"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

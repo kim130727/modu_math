@@ -6,7 +6,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextBoxSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_15607"
@@ -276,17 +276,13 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="vertical",
-                slot_ids=(
-                    "slot.question",
-                    "slot.expression",
-                    
-                ),
+                slot_ids=("slot.question",
+                    "slot.expression",'konva_1786318975740_paste_229834_0', 'konva_1786319433892_rect_505049'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.question",
-                x = 12.869, y = 14.066, width = 449.62, height = 135.525, text=(
+                x = 24.065, y = 8.892, width = 449.62, height = 135.525, text=(
                     "주차장에 있던 차 중에서 146대가 나가고 231대가 남았습니다. "
                     "처음 주차장에 있던 차는 모두 몇 대입니까?"
                 ),
@@ -309,13 +305,7 @@ def build_problem_template() -> ProblemTemplate:
                 align="left",
                 valign="middle",
             ),
-            BlankSlot(
-                id="slot.answer",
-                prompt="답",
-                answer_key="377",
-                placeholder="대",
-            ),
-        ),
+            TextBoxSlot(id = 'konva_1786318975740_paste_229834_0', prompt = '', text = '대', x = 489.934, y = 126.868, font_size = 30, fill = '#202124', width = 49.95, height = 52, align = 'left', line_height = 1.45), RectSlot(id = 'konva_1786319433892_rect_505049', prompt = '', x = 380.353, y = 129.995, width = 98.185, height = 39.96, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
     )
 
 

@@ -652,6 +652,59 @@ SLOTS = (
     assert "height=80.0" in updated
 
 
+def test_layout_patch_clears_stale_override_fields_after_dsl_slot_update(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import RectSlot
+
+SLOTS = (
+    RectSlot(id="slot.box", x=10.0, y=20.0, width=30.0, height=40.0),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+    overrides_path = problem_dir / "problem.editor_overrides.json"
+    overrides_path.write_text(
+        json.dumps(
+            {
+                "version": 1,
+                "slots": {
+                    "slot.box": {
+                        "x": 99.0,
+                        "y": 88.0,
+                        "width": 77.0,
+                        "height": 66.0,
+                        "fill": "#ffffff",
+                    }
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.box",
+                "op": "update",
+                "value": {"x": 5.0, "y": 15.0, "width": 120.0},
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "x=5.0" in updated
+    assert "y=15.0" in updated
+    assert "width=120.0" in updated
+    overrides = json.loads(overrides_path.read_text(encoding="utf-8"))
+    assert overrides["slots"]["slot.box"] == {"height": 66.0, "fill": "#ffffff"}
+
+
 def test_layout_patch_adds_image_slot_and_import(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """
@@ -701,6 +754,55 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     assert "data:image/png;base64,AAAA" in updated
     namespace: dict[str, object] = {}
     exec(updated, namespace)
+
+
+def test_layout_patch_adds_image_slot_answer_metadata(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import Canvas, ProblemTemplate, Region
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="p_image_answer_add",
+    title="image answer add",
+    canvas=Canvas(width=300, height=200),
+    regions=(Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=()),),
+    slots=(),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.image_answer",
+                "op": "add",
+                "value": {
+                    "kind": "image",
+                    "region_id": "region.diagram",
+                    "content": {
+                        "href": "data:image/png;base64,AAAA",
+                        "x": 10.0,
+                        "y": 20.0,
+                        "width": 80.0,
+                        "height": 60.0,
+                        "interaction": {"type": "input", "role": "answer", "value_type": "integer"},
+                        "input_style": {"font_size_mode": "auto"},
+                    },
+                },
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "ImageSlot" in updated
+    assert '"role": "answer"' in updated
+    assert '"font_size_mode": "auto"' in updated
 
 
 def test_layout_patch_add_clears_conflicting_deleted_slot_override(tmp_path: Path) -> None:
@@ -1099,7 +1201,45 @@ def test_prune_editor_overrides_clamps_text_box_height_to_fit_content() -> None:
     assert cleaned["slots"]["slot.question"]["height"] >= 120
 
 
-def test_prune_editor_overrides_keeps_answer_slot_when_no_replacement_exists() -> None:
+def test_prune_editor_overrides_drops_stale_text_that_removes_dsl_spacing() -> None:
+    layout = {
+        "regions": [{"id": "region.problem", "role": "diagram", "slot_ids": ["slot.addend"]}],
+        "slots": [
+            {
+                "id": "slot.addend",
+                "kind": "text",
+                "content": {"text": "2 3 5", "x": 100.0, "y": 60.0, "font_size": 21},
+            }
+        ],
+    }
+    overrides = {"slots": {"slot.addend": {"text": "235", "x": 105.0}}}
+
+    cleaned, changed = prune_editor_overrides(layout, overrides)
+
+    assert changed is True
+    assert cleaned["slots"]["slot.addend"] == {"x": 105.0}
+
+
+def test_prune_editor_overrides_keeps_text_that_adds_editor_spacing() -> None:
+    layout = {
+        "regions": [{"id": "region.problem", "role": "diagram", "slot_ids": ["slot.addend"]}],
+        "slots": [
+            {
+                "id": "slot.addend",
+                "kind": "text",
+                "content": {"text": "235", "x": 100.0, "y": 60.0, "font_size": 21},
+            }
+        ],
+    }
+    overrides = {"slots": {"slot.addend": {"text": "2 3 5", "x": 105.0}}}
+
+    cleaned, changed = prune_editor_overrides(layout, overrides)
+
+    assert changed is False
+    assert cleaned == overrides
+
+
+def test_prune_editor_overrides_keeps_explicit_answer_slot_delete() -> None:
     layout = {
         "regions": [{"id": "region.stem", "role": "stem", "slot_ids": ["slot.question", "slot.answer"]}],
         "slots": [
@@ -1111,8 +1251,8 @@ def test_prune_editor_overrides_keeps_answer_slot_when_no_replacement_exists() -
 
     cleaned, changed = prune_editor_overrides(layout, overrides)
 
-    assert changed is True
-    assert "deleted_slots" not in cleaned
+    assert changed is False
+    assert cleaned == overrides
 
 
 def test_apply_editor_overrides_converts_polygon_d_override_to_points() -> None:
@@ -1439,6 +1579,32 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     assert "slot.editor_next.circle.1" not in updated
 
 
+def test_layout_patch_delete_accepts_blank_renderer_element_id(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import BlankSlot, Canvas, ProblemTemplate, Region
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="p",
+    canvas=Canvas(width=100, height=100),
+    regions=(Region(id="region.diagram", role="diagram", slot_ids=("slot.answer",)),),
+    slots=(BlankSlot(id="slot.answer", answer_key="7"),),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {"patches": [{"target": "slot.answer.blank", "op": "delete"}]}
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "slot.answer" not in updated
+
+
 def test_apply_editor_overrides_removes_deleted_slots() -> None:
     layout = {
         "regions": [{"id": "region.diagram", "slot_ids": ["slot.keep", "slot.delete"]}],
@@ -1678,6 +1844,41 @@ SLOTS = (
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
     assert 'transform="rotate(25 45 20)"' in updated
+
+
+def test_layout_patch_updates_line_slot_answer_metadata(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import LineSlot
+
+SLOTS = (
+    LineSlot(id="slot.line", x1=10.0, y1=20.0, x2=80.0, y2=20.0),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.line",
+                "op": "update",
+                "value": {
+                    "interaction": {"type": "input", "role": "answer", "value_type": "integer"},
+                    "input_style": {"font_size_mode": "auto"},
+                },
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert '"role": "answer"' in updated
+    assert '"font_size_mode": "auto"' in updated
 
 
 def test_layout_patch_updates_person_slots_helper_anchor(tmp_path: Path) -> None:
@@ -2110,3 +2311,46 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
     assert "Canvas(width=180, height=160)" in updated
+
+
+def test_fast_layout_patch_updates_canvas_size_in_dsl(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import Canvas, ProblemTemplate
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="0001",
+    title="canvas",
+    canvas=Canvas(width=100, height=120),
+    regions=(),
+    slots=(),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+    overrides_path = problem_dir / "problem.editor_overrides.json"
+    overrides_path.write_text(
+        json.dumps({"version": 1, "canvas": {"width": 140, "height": 150}, "slots": {}}),
+        encoding="utf-8",
+    )
+
+    payload = {
+        "fast": True,
+        "patches": [
+            {
+                "target": "__canvas__",
+                "op": "update",
+                "value": {"width": 180, "height": 160},
+            }
+        ],
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "Canvas(width=180, height=160)" in updated
+    overrides = json.loads(overrides_path.read_text(encoding="utf-8"))
+    assert "canvas" not in overrides

@@ -235,6 +235,28 @@ def _normalize_slot_patch(slot_kind: str | None, patch: dict[str, Any]) -> tuple
     return normalized, normalized != patch
 
 
+def _compact_text_for_spacing_compare(text: str) -> str:
+    return "".join(char for char in text if not char.isspace())
+
+
+def _whitespace_count(text: str) -> int:
+    return sum(1 for char in text if char.isspace())
+
+
+def _drop_stale_text_override_if_base_has_more_spacing(content: dict[str, Any], patch: dict[str, Any]) -> tuple[dict[str, Any], bool]:
+    base_text = content.get("text")
+    patch_text = patch.get("text")
+    if not isinstance(base_text, str) or not isinstance(patch_text, str) or base_text == patch_text:
+        return patch, False
+    if _compact_text_for_spacing_compare(base_text) != _compact_text_for_spacing_compare(patch_text):
+        return patch, False
+    if _whitespace_count(base_text) <= _whitespace_count(patch_text):
+        return patch, False
+    normalized = dict(patch)
+    normalized.pop("text", None)
+    return normalized, True
+
+
 def prune_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | None) -> tuple[dict[str, Any] | None, bool]:
     if not isinstance(overrides, dict):
         return overrides, False
@@ -245,17 +267,7 @@ def prune_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | N
     slot_kinds = _layout_slot_kinds(layout)
     deleted_slots = overrides.get("deleted_slots")
     if isinstance(deleted_slots, list):
-        deleted = {slot_id for slot_id in deleted_slots if isinstance(slot_id, str)}
         cleaned_deleted = list(deleted_slots)
-        if any(_is_answer_slot_id(slot_id) and slot_id in slot_ids for slot_id in deleted):
-            replacements = {
-                slot_id
-                for slot_id, patch in (overrides.get("slots") or {}).items()
-                if isinstance(slot_id, str) and isinstance(patch, dict) and _override_is_answer_slot(slot_id, patch)
-            }
-            if not replacements and not _layout_has_answer_interaction(layout, deleted):
-                cleaned_deleted = [slot_id for slot_id in cleaned_deleted if not (isinstance(slot_id, str) and _is_answer_slot_id(slot_id))]
-                changed = True
         if cleaned_deleted:
             cleaned["deleted_slots"] = cleaned_deleted
         elif deleted_slots:
@@ -273,12 +285,15 @@ def prune_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | N
                 patch, normalized = _normalize_slot_patch(slot_kinds.get(slot_id), patch)
                 base_slot = next((slot for slot in layout.get("slots", []) if isinstance(slot, dict) and slot.get("id") == slot_id), None)
                 base_content = base_slot.get("content") if isinstance(base_slot, dict) and isinstance(base_slot.get("content"), dict) else {}
+                patch, text_spacing_normalized = _drop_stale_text_override_if_base_has_more_spacing(base_content, patch)
+                normalized = normalized or text_spacing_normalized
                 if slot_kinds.get(slot_id) == "text_box":
                     patch, text_normalized = _normalize_text_box_height(base_content, patch)
                     normalized = normalized or text_normalized
                 changed = changed or normalized
-                cleaned_slots[slot_id] = patch
-                retained_override_slot_ids.add(slot_id)
+                if patch:
+                    cleaned_slots[slot_id] = patch
+                    retained_override_slot_ids.add(slot_id)
             else:
                 changed = True
         if cleaned_slots:

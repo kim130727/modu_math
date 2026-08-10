@@ -64,7 +64,7 @@ def build_problem_template() -> ProblemTemplate:
             RectSlot(
                 id="slot.comparison.background",
                 prompt="비교식을 담는 상자",
-                x = 48.89, y = 54.92, width = 284.823, height=58,
+                x = 18.278, y = 54.07, width = 370.531, height=58,
                 fill="#eeeeee",
                 stroke="#111111",
                 stroke_width=1,
@@ -80,7 +80,7 @@ def build_problem_template() -> ProblemTemplate:
             CircleSlot(
                 id="slot.comparison.circle",
                 prompt="비교 기호를 쓰는 곳",
-                cx = 205.18, cy = 97.133, r=15,
+                cx = 203.458, cy = 81.614, r=15,
                 fill="#ffffff",
                 stroke="#111111",
                 stroke_width=1.5,
@@ -92,12 +92,7 @@ def build_problem_template() -> ProblemTemplate:
                 x = 246.98, y = 89.867, font_size=22,
                 fill="#333333",
             ),
-            BlankSlot(
-                id="slot.answer",
-                prompt="○ 안에 들어갈 비교 기호",
-                answer_key=">",
-                placeholder=">, =, <",
-            ),
+            
         ),
     )
 

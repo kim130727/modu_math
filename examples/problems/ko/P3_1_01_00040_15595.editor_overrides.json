@@ -1,4 +1,13 @@
 {
+  "version": 1,
+  "canvas": {
+    "width": 460,
+    "height": 260
+  },
+  "deleted_slots": [
+    "slot.answer.1",
+    "slot.answer.2"
+  ],
   "slots": {
     "slot.instruction": {
       "text": "다음 계산을 하시오.",
@@ -23,7 +32,6 @@
       "fill": "#111111"
     },
     "slot.calculation.1.top": {
-      "text": "270",
       "x": 120,
       "y": 77,
       "font_size": 25,
@@ -39,7 +47,6 @@
       "anchor": "middle"
     },
     "slot.calculation.1.bottom": {
-      "text": "125",
       "x": 120,
       "y": 119,
       "font_size": 25,
@@ -62,7 +69,6 @@
       "fill": "#111111"
     },
     "slot.calculation.2.top": {
-      "text": "394",
       "x": 329.726,
       "y": 77,
       "font_size": 25,
@@ -78,21 +84,11 @@
       "anchor": "middle"
     },
     "slot.calculation.2.bottom": {
-      "text": "205",
       "x": 329.726,
       "y": 119,
       "font_size": 25,
       "fill": "#111111",
       "anchor": "middle"
     }
-  },
-  "version": 1,
-  "deleted_slots": [
-    "slot.answer.1",
-    "slot.answer.2"
-  ],
-  "canvas": {
-    "width": 460,
-    "height": 260
   }
 }

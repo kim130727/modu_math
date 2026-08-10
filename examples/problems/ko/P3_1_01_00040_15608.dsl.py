@@ -6,7 +6,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextBoxSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_15608"
@@ -293,9 +293,7 @@ def build_problem_template() -> ProblemTemplate:
         id=PROBLEM_ID,
         title=PROBLEM_TITLE,
         canvas=Canvas(
-            width=900,
-            height=300,
-            coordinate_mode="logical",
+            width = 500, height = 300, coordinate_mode="logical",
         ),
         regions=(
             Region(
@@ -308,7 +306,7 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.option_3",
                     "slot.option_4",
                     "slot.option_5",
-                    'konva_1786192274303_paste_691418_0'),
+                    'konva_1786318975740_rect_369098'),
             ),
         ),
         slots=(TextBoxSlot(
@@ -378,10 +376,7 @@ def build_problem_template() -> ProblemTemplate:
             ),
             TextBoxSlot(
                 id="slot.option_5",
-                x=20,
-                y=176,
-                width=300,
-                height=30,
+                x = 19.282, y = 173.845, width = 180.148, height=30,
                 text="⑤ 545+235",
                 font_size=21,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
@@ -394,7 +389,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="정답 번호",
                 answer_key="5",
                 placeholder="번호",
-            ),TextBoxSlot(id = 'konva_1786192274303_paste_691418_0', prompt = '', text = '(   )', x = 283.345, y = 210.18, font_size = 21, fill = '#202124', width = 47.295, height = 35, align = 'left', line_height = 1.25, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
+            ),RectSlot(id = 'konva_1786318975740_rect_369098', prompt = '', x = 273.108, y = 172.097, width = 55.228, height = 30.597, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
     )
 
 

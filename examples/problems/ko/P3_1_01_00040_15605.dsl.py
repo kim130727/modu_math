@@ -279,9 +279,7 @@ def build_problem_template() -> ProblemTemplate:
         ),
         slots=(TextBoxSlot(
                 id="slot.question",
-                x=20,
-                y=18,
-                width = 581.885, height = 171.131, text=(
+                x = 11.962, y = 7.941, width = 581.885, height = 171.131, text=(
                     "동민이는 구슬을 215개 가지고 있고, 가희는 구슬을 132개 가지고 있습니다. "
                     "두 사람이 가지고 있는 구슬은 모두 몇 개입니까?"
                 ),

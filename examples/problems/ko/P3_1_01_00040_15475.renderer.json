@@ -1,27 +1,11 @@
 {
   "problem_id": "P3_1_01_00040_15475",
   "view_box": {
-    "width": 960.0,
+    "width": 850.0,
     "height": 260.0,
     "background": "#FFFFFF"
   },
   "elements": [
-    {
-      "id": "slot.question.text",
-      "type": "text",
-      "attributes": {
-        "x": 30.0,
-        "y": 28.0,
-        "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 24
-      },
-      "source_ref": "slot.question",
-      "refs": {
-        "layout_slot_id": "slot.question"
-      },
-      "text": "다음은 지희네 반 학급 문고의 책의 수를 조사한 것입니다. 동화책과 위인전을 더하면 모두 몇 권입니까?"
-    },
     {
       "id": "slot.table.outer.rect",
       "type": "rect",
@@ -43,7 +27,7 @@
       "id": "konva_1785217709470_rect_5785318.rect",
       "type": "rect",
       "attributes": {
-        "x": 720.67,
+        "x": 658.67,
         "y": 196.067,
         "width": 126.029,
         "height": 44.355,
@@ -58,12 +42,12 @@
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
+        "value_type": "integer",
+        "max_length": 3,
         "include_in_submission": true,
         "order": 0,
         "group_id": "final_answer",
-        "auto_advance": true,
+        "auto_advance": false,
         "keyboard": "number"
       },
       "input_style": {
@@ -342,7 +326,7 @@
       "id": "konva_1785217709470_text_5795606.text",
       "type": "text_box",
       "attributes": {
-        "x": 859.809,
+        "x": 797.809,
         "y": 196.569,
         "fill": "#111827",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
@@ -351,7 +335,7 @@
         "height": 43.0,
         "max_width": 68.144,
         "data-slot-kind": "text_box",
-        "data-box-x": 859.809,
+        "data-box-x": 797.809,
         "data-box-y": 196.569,
         "data-box-width": 68.144,
         "data-box-height": 43.0,
@@ -364,6 +348,33 @@
         "layout_slot_id": "konva_1785217709470_text_5795606"
       },
       "text": "권"
+    },
+    {
+      "id": "konva_1786319433892_text_228561.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 23.834,
+        "y": 14.04,
+        "fill": "#111827",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 30,
+        "width": 674.552,
+        "height": 121.0,
+        "max_width": 674.552,
+        "data-slot-kind": "text_box",
+        "data-box-x": 23.834,
+        "data-box-y": 14.04,
+        "data-box-width": 674.552,
+        "data-box-height": 121.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25
+      },
+      "source_ref": "konva_1786319433892_text_228561",
+      "refs": {
+        "layout_slot_id": "konva_1786319433892_text_228561"
+      },
+      "text": "다음은 지희네 반 학급 문고의 책의 수를 조사한 것입니다. 동화책과 위인전을 더하면 모두 몇 권입니까?"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

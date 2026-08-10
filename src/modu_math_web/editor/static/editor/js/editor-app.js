@@ -846,9 +846,34 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
 
     function defaultInsertOrigin(width, height) {
       const canvas = currentCanvasBox();
+      const pad = 10;
+      const maxX = canvas.x + Math.max(pad, canvas.width - width - pad);
+      const maxY = canvas.y + Math.max(pad, canvas.height - height - pad);
       return {
-        x: snapValue(Math.max(10, (canvas.width - width) / 2)),
-        y: snapValue(Math.max(10, (canvas.height - height) / 2)),
+        x: snapValue(canvasClamp(canvas.x + (canvas.width - width) / 2, canvas.x + pad, maxX)),
+        y: snapValue(canvasClamp(canvas.y + (canvas.height - height) / 2, canvas.y + pad, maxY)),
+      };
+    }
+
+    function fitInsertSize(width, height, minWidth = 24, minHeight = 24) {
+      const canvas = currentCanvasBox();
+      const pad = 10;
+      const maxWidth = Math.max(minWidth, canvas.width - pad * 2);
+      const maxHeight = Math.max(minHeight, canvas.height - pad * 2);
+      return {
+        width: Math.max(minWidth, Math.min(width, maxWidth)),
+        height: Math.max(minHeight, Math.min(height, maxHeight)),
+      };
+    }
+
+    function clampInsertOrigin(x, y, width, height) {
+      const canvas = currentCanvasBox();
+      const pad = 10;
+      const maxX = canvas.x + Math.max(pad, canvas.width - width - pad);
+      const maxY = canvas.y + Math.max(pad, canvas.height - height - pad);
+      return {
+        x: snapValue(canvasClamp(x, canvas.x + pad, maxX)),
+        y: snapValue(canvasClamp(y, canvas.y + pad, maxY)),
       };
     }
 
@@ -858,10 +883,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       if (!item || item.isCanvas || item.isFraction) return null;
       const box = itemBBox(item);
       if (!box || !Number.isFinite(box.x) || !Number.isFinite(box.y) || !Number.isFinite(box.width) || !Number.isFinite(box.height)) return null;
-      return {
-        x: snapValue(box.x + box.width / 2 - width / 2),
-        y: snapValue(box.y + box.height / 2 - height / 2),
-      };
+      return clampInsertOrigin(box.x + box.width / 2 - width / 2, box.y + box.height / 2 - height / 2, width, height);
     }
 
     function selectedInsertRegionId() {
@@ -1055,8 +1077,11 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     }
 
     function compositeShapePatches(def) {
-      const fallbackWidth = Number(def.w || def.sourceWidth || 80);
-      const fallbackHeight = Number(def.h || def.sourceHeight || fallbackWidth);
+      const desiredWidth = Number(def.w || def.sourceWidth || 80);
+      const desiredHeight = Number(def.h || def.sourceHeight || desiredWidth);
+      const fitted = fitInsertSize(desiredWidth, desiredHeight, 24, 24);
+      const fallbackWidth = fitted.width;
+      const fallbackHeight = fitted.height;
       const { x, y } = defaultInsertOrigin(fallbackWidth, fallbackHeight);
       const base = uniqueFigureBase(def.id);
       const regionId = firstUsableRegionId();
@@ -1076,10 +1101,11 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     function tablePatches(rows, cols) {
       const cleanRows = Math.max(1, Math.min(20, Number(rows) || 1));
       const cleanCols = Math.max(1, Math.min(20, Number(cols) || 1));
-      const cellWidth = 105;
-      const cellHeight = 58;
-      const width = cleanCols * cellWidth;
-      const height = cleanRows * cellHeight;
+      const fitted = fitInsertSize(cleanCols * 105, cleanRows * 58, cleanCols * 12, cleanRows * 12);
+      const width = fitted.width;
+      const height = fitted.height;
+      const cellWidth = width / cleanCols;
+      const cellHeight = height / cleanRows;
       const { x, y } = defaultInsertOrigin(width, height);
       const base = uniqueTableBase();
       const regionId = firstUsableRegionId();
@@ -1164,7 +1190,8 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     function graphPaperPatches(rows, cols) {
       const cleanRows = Math.max(1, Math.min(40, Number(rows) || 1));
       const cleanCols = Math.max(1, Math.min(40, Number(cols) || 1));
-      const cellSize = 25;
+      const fitted = fitInsertSize(cleanCols * 25, cleanRows * 25, cleanCols * 4, cleanRows * 4);
+      const cellSize = Math.min(fitted.width / cleanCols, fitted.height / cleanRows);
       const width = cleanCols * cellSize;
       const height = cleanRows * cellSize;
       const { x, y } = defaultInsertOrigin(width, height);
@@ -1323,7 +1350,8 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         ten: { width: 18, height: 84 },
         one: { width: 24, height: 24 },
       }[cleanKind];
-      const { x, y } = selectedInsertOrigin(dimensions.width, dimensions.height) || defaultInsertOrigin(dimensions.width, dimensions.height);
+      const fitted = fitInsertSize(dimensions.width, dimensions.height, Math.min(24, dimensions.width), Math.min(24, dimensions.height));
+      const { x, y } = selectedInsertOrigin(fitted.width, fitted.height) || defaultInsertOrigin(fitted.width, fitted.height);
       const base = uniqueBaseTenBase(cleanKind);
       const regionId = selectedInsertRegionId() || firstUsableRegionId();
       const withRegion = (value) => regionId ? { ...value, region_id: regionId } : value;
@@ -1361,11 +1389,18 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       const cleanCells = clampInt(cells, 1, 20, 3);
       const shadedList = configList(shadedCounts);
       const colorList = configList(fillColors);
-      const cellWidth = 58;
-      const barHeight = 40;
+      const desiredCellWidth = 58;
+      const desiredBarHeight = 40;
       const barGap = 54;
+      const desiredWidth = cleanCells * desiredCellWidth;
+      const desiredHeight = cleanBars * desiredBarHeight + (cleanBars - 1) * barGap;
+      const fitted = fitInsertSize(desiredWidth, desiredHeight, cleanCells * 12, cleanBars * 12);
+      const scale = Math.min(fitted.width / desiredWidth, fitted.height / desiredHeight);
+      const cellWidth = desiredCellWidth * scale;
+      const barHeight = desiredBarHeight * scale;
+      const scaledBarGap = barGap * scale;
       const width = cleanCells * cellWidth;
-      const height = cleanBars * barHeight + (cleanBars - 1) * barGap;
+      const height = cleanBars * barHeight + (cleanBars - 1) * scaledBarGap;
       const { x, y } = defaultInsertOrigin(width, height);
       const base = uniqueFigureBase("bar_model");
       const regionId = firstUsableRegionId();
@@ -1374,7 +1409,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       const patches = [];
 
       for (let barIndex = 0; barIndex < cleanBars; barIndex += 1) {
-        const barY = snapValue(y + barIndex * (barHeight + barGap));
+        const barY = snapValue(y + barIndex * (barHeight + scaledBarGap));
         const shaded = clampInt(configListValue(shadedList, barIndex, "0"), 0, cleanCells, 0);
         const fill = String(configListValue(colorList, barIndex, "#f3d7ea") || "#f3d7ea").trim() || "#f3d7ea";
         for (let cellIndex = 0; cellIndex < shaded; cellIndex += 1) {
@@ -1450,10 +1485,14 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       const cleanMajor = clampInt(majorEvery, 0, cleanTotal, 7);
       const filledList = configList(filledTicks);
       const labelList = configList(labels);
-      const width = 464;
-      const rowGap = 96;
+      const desiredRowGap = 96;
+      const desiredHeight = Math.max(70, (cleanRows - 1) * desiredRowGap + 82);
+      const fitted = fitInsertSize(582, desiredHeight, 120, 60);
+      const scale = Math.min(1, fitted.height / desiredHeight);
+      const width = Math.max(40, fitted.width - 118);
+      const rowGap = desiredRowGap * scale;
       const labelWidth = 118;
-      const height = Math.max(70, (cleanRows - 1) * rowGap + 82);
+      const height = fitted.height;
       const { x, y } = defaultInsertOrigin(labelWidth + width, height);
       const axisX = snapValue(x + labelWidth);
       const base = uniqueFigureBase("tick_bar");
@@ -1717,8 +1756,11 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
 
 
     function shapePayload(def) {
-      const width = Number(def.w || 120);
-      const height = Number(def.h || (def.kind === "line" ? 70 : 86));
+      const desiredWidth = Number(def.w || 120);
+      const desiredHeight = Number(def.h || (def.kind === "line" ? 70 : 86));
+      const fitted = fitInsertSize(desiredWidth, desiredHeight, 24, 24);
+      const width = fitted.width;
+      const height = fitted.height;
       const { x, y } = defaultInsertOrigin(width, height);
       const stroke = def.stroke || DEFAULT_SHAPE_STYLE.stroke;
       const fill = def.fill !== undefined ? def.fill : DEFAULT_SHAPE_STYLE.fill;
@@ -1788,7 +1830,8 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
 
     function textPayload() {
       const fontSize = 24;
-      const { x, y } = defaultInsertOrigin(120, fontSize * 1.2);
+      const textHeight = fontSize * 1.2;
+      const { x, y } = defaultInsertOrigin(120, textHeight);
       return addRegionToPatch({
         kind: "text",
         content: {
@@ -1802,8 +1845,9 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     }
 
     function textBoxPayload() {
-      const width = 360;
-      const height = 70;
+      const fitted = fitInsertSize(360, 70, 48, 32);
+      const width = fitted.width;
+      const height = fitted.height;
       const { x, y } = defaultInsertOrigin(width, height);
       return addRegionToPatch({
         kind: "text_box",
@@ -1843,7 +1887,8 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       const intrinsic = await imageSizeFromDataUrl(href);
       const maxWidth = 320;
       const maxHeight = 240;
-      const scale = Math.min(1, maxWidth / Math.max(intrinsic.width, 1), maxHeight / Math.max(intrinsic.height, 1));
+      const fittedMax = fitInsertSize(maxWidth, maxHeight, 24, 24);
+      const scale = Math.min(1, fittedMax.width / Math.max(intrinsic.width, 1), fittedMax.height / Math.max(intrinsic.height, 1));
       const width = Math.max(24, Math.round(intrinsic.width * scale));
       const height = Math.max(24, Math.round(intrinsic.height * scale));
       const { x, y } = defaultInsertOrigin(width, height);

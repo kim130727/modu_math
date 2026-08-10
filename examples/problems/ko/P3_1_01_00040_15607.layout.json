@@ -14,8 +14,9 @@
       "role": "stem",
       "flow": "vertical",
       "slot_ids": [
+        "konva_1786319433892_rect_505049",
         "slot.question",
-        "slot.answer"
+        "konva_1786318975740_paste_229834_0"
       ]
     }
   ],
@@ -27,8 +28,8 @@
       "content": {
         "text": "주차장에 있던 차 중에서 146대가 나가고 231대가 남았습니다. 처음 주차장에 있던 차는 모두 몇 대입니까?",
         "style_role": "body",
-        "x": 12.869,
-        "y": 14.066,
+        "x": 24.065,
+        "y": 8.892,
         "width": 449.62,
         "height": 182.0,
         "align": "left",
@@ -40,11 +41,57 @@
       }
     },
     {
-      "id": "slot.answer",
-      "kind": "blank",
-      "prompt": "답",
+      "id": "konva_1786318975740_paste_229834_0",
+      "kind": "text_box",
+      "prompt": "",
       "content": {
-        "placeholder": "대"
+        "text": "대",
+        "style_role": "body",
+        "x": 489.934,
+        "y": 126.868,
+        "width": 49.95,
+        "height": 52.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 30,
+        "line_height": 1.45,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "konva_1786319433892_rect_505049",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 380.353,
+        "y": 129.995,
+        "width": 98.185,
+        "height": 39.96,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "integer",
+          "max_length": 3,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "auto_advance": false,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222"
+        }
       }
     }
   ],
@@ -53,7 +100,8 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
+    "konva_1786319433892_rect_505049",
     "slot.question",
-    "slot.answer"
+    "konva_1786318975740_paste_229834_0"
   ]
 }
