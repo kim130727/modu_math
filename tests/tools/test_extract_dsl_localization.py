@@ -60,6 +60,10 @@ def test_extract_uses_stable_keys_and_skips_non_translatable_fields(tmp_path: Pa
 
     data = json.loads(out_path.read_text(encoding="utf-8"))
     assert data["template.slots.slot.question.text"]["source"] == "Add the numbers."
+    assert data["template.slots.slot.question.text"] == {
+        "source": "Add the numbers.",
+        "translation": "",
+    }
     assert data["semantic.domain.objects.object.apple.label"]["source"] == "apple"
     assert data["solvable.steps.step.add.goal"]["source"] == "Find the total."
     assert data["solvable.inputs.conditions.0"]["source"] == "There are 2 apples."
@@ -69,7 +73,7 @@ def test_extract_uses_stable_keys_and_skips_non_translatable_fields(tmp_path: Pa
     assert all(not key.endswith(".font_family") for key in data)
 
 
-def test_extract_preserves_translation_marks_changed_and_obsolete(tmp_path: Path) -> None:
+def test_extract_drops_stale_translation_and_obsolete_entries(tmp_path: Path) -> None:
     dsl_path = tmp_path / "problem.dsl.py"
     out_path = tmp_path / "p_localize.locale.json"
     _write_dsl(dsl_path)
@@ -77,12 +81,10 @@ def test_extract_preserves_translation_marks_changed_and_obsolete(tmp_path: Path
 
     data = json.loads(out_path.read_text(encoding="utf-8"))
     data["template.slots.slot.question.text"]["translation"] = "Addiere die Zahlen."
-    data["template.slots.slot.question.text"]["status"] = "translated"
     data["old.key"] = {
         "source": "gone",
         "source_hash": sha256(b"gone").hexdigest(),
         "translation": "weg",
-        "status": "translated",
     }
     out_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
@@ -91,9 +93,9 @@ def test_extract_preserves_translation_marks_changed_and_obsolete(tmp_path: Path
 
     updated = json.loads(out_path.read_text(encoding="utf-8"))
     question = updated["template.slots.slot.question.text"]
-    assert question["translation"] == "Addiere die Zahlen."
-    assert question["status"] == "needs_review"
-    assert updated["old.key"]["status"] == "obsolete"
+    assert question == {"source": "Add all numbers.", "translation": ""}
+    assert "old.key" not in updated
+    assert all("source_hash" not in entry and "status" not in entry for entry in updated.values())
 
 
 def test_extract_does_not_modify_existing_dsl(tmp_path: Path) -> None:

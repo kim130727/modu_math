@@ -79,7 +79,6 @@ SKIP_FIELDS = {
     "text_color",
 }
 
-VALID_STATUSES = {"untranslated", "translated", "needs_review", "obsolete"}
 COLOR_RE = re.compile(r"^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$")
 NUMBER_RE = re.compile(r"^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:\s*[가-힣A-Za-z%]+)?$")
 MATH_RE = re.compile(r"^[\d\s+\-*/=<>≤≥().,\[\]{}:]+$")
@@ -134,9 +133,7 @@ def add_entry(entries: dict[str, dict[str, str]], key: str, source: str) -> None
         return
     entries[key] = {
         "source": source,
-        "source_hash": source_hash(source),
         "translation": "",
-        "status": "untranslated",
     }
 
 
@@ -212,34 +209,19 @@ def merge_entries(
         previous = existing.get(key)
         if isinstance(previous, dict):
             translation = previous.get("translation", "")
-            status = previous.get("status", "untranslated")
-            if status not in VALID_STATUSES:
-                status = "untranslated"
-            if previous.get("source_hash") != entry["source_hash"]:
-                status = "needs_review"
-            elif status == "obsolete":
-                status = "untranslated" if not translation else "translated"
+            previous_hash = previous.get("source_hash")
+            previous_source = previous.get("source")
+            source_changed = (
+                previous_hash != source_hash(entry["source"])
+                if isinstance(previous_hash, str) and previous_hash
+                else previous_source != entry["source"]
+            )
             merged[key] = {
                 "source": entry["source"],
-                "source_hash": entry["source_hash"],
-                "translation": translation if isinstance(translation, str) else "",
-                "status": status,
+                "translation": translation if isinstance(translation, str) and not source_changed else "",
             }
         else:
             merged[key] = entry
-
-    for key in sorted(set(existing) - set(extracted)):
-        previous = existing[key]
-        if not isinstance(previous, dict):
-            continue
-        obsolete = {
-            "source": previous.get("source", ""),
-            "source_hash": previous.get("source_hash", ""),
-            "translation": previous.get("translation", ""),
-            "status": "obsolete",
-        }
-        merged[key] = {name: value if isinstance(value, str) else "" for name, value in obsolete.items()}
-        merged[key]["status"] = "obsolete"
 
     return {key: merged[key] for key in sorted(merged)}
 
