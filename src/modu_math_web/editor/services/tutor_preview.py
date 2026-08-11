@@ -5,6 +5,8 @@ import os
 from dataclasses import dataclass
 from typing import Any
 
+from modu_math.solvable import diagnose_student_response
+
 
 @dataclass(frozen=True)
 class TutorValidation:
@@ -67,6 +69,14 @@ def rule_tutor_response(payload: dict[str, Any], message: str, history: list[dic
         return _rule_response(solvable, steps, next_index, _render_rule_step(solvable, steps, next_index, prefix=_localized_phrase(lang, "next"), lang=lang))
     if _student_is_confused(clean_message):
         return _rule_response(solvable, steps, waiting_index, _rule_confusion_reply(solvable, waiting_step, waiting_index, lang=lang))
+    diagnosed = diagnose_student_response(solvable, clean_message, correct=False)
+    if diagnosed.get("status") == "diagnosed":
+        return _rule_response(
+            solvable,
+            steps,
+            waiting_index,
+            str(diagnosed.get("feedback") or _localized_phrase(lang, "try_again")),
+        )
     if _answer_matches_step(clean_message, waiting_step):
         next_index = waiting_index + 1
         if next_index >= len(steps):
@@ -795,7 +805,7 @@ def _given_value(solvable: dict[str, Any], ref: str) -> Any:
     if not isinstance(given, list):
         return None
     for item in given:
-        if isinstance(item, dict) and item.get("ref") == ref:
+        if isinstance(item, dict) and (item.get("ref") == ref or item.get("id") == ref):
             return item.get("value")
     return None
 

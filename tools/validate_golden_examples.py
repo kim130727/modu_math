@@ -20,6 +20,7 @@ SOLVABLE_ALIASES = [
     "problem.solvable.v1.json",
     "problem.solvable.v1.1.json",
     "problem.solvable.v1.2.json",
+    "problem.solvable.v1.3.json",
 ]
 
 
@@ -70,7 +71,9 @@ def _select_problem_dirs(root: Path, explicit: list[str] | None, limit: int) -> 
 def _missing_items(problem_dir: Path) -> list[str]:
     missing = [name for name in REQUIRED_EXACT if not (problem_dir / name).exists()]
     if not any((problem_dir / alias).exists() for alias in SOLVABLE_ALIASES):
-        missing.append("problem.solvable.json|problem.solvable.v1.json|problem.solvable.v1.1.json|problem.solvable.v1.2.json")
+        missing.append(
+            "problem.solvable.json|problem.solvable.v1.json|problem.solvable.v1.1.json|problem.solvable.v1.2.json|problem.solvable.v1.3.json"
+        )
     return missing
 
 

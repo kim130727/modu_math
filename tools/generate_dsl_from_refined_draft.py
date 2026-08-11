@@ -184,9 +184,10 @@ COMPACT_DSL_RULES = """Compact DSL generation rules:
 - Include SEMANTIC_OVERRIDE and SOLVABLE.
 - SEMANTIC_OVERRIDE must include non-empty problem_id equal to the ProblemTemplate id.
 - SEMANTIC_OVERRIDE: meaning-only (no coordinates/style mirrors).
-- SOLVABLE must use schema "modu.solvable.v1.2".
-- SOLVABLE: include schema/problem_id/problem_type/inputs/given/target/understanding/plan/steps/checks/answer.
-- SOLVABLE.understanding should split facts, unknowns, relation, and small diagnostic questions for the student's first read.
+- SOLVABLE must use schema "modu.solvable.v1.3".
+- SOLVABLE: include schema/problem_id/given/target/method/steps/answer.
+- SOLVABLE may include problem_type, plan, checks, and diagnostics only when useful.
+- Do not repeat given as inputs or understanding.facts; do not repeat target as understanding.unknowns.
 - SEMANTIC_OVERRIDE["answer"] and SOLVABLE["answer"] must match for strict validation.
 - Do not infer hidden answers into visible blanks.
 - If uncertain, keep minimal valid structure and add TODO comments.
@@ -282,9 +283,9 @@ Rules:
 - Keep visible worksheet text exact.
 - Include `SEMANTIC_OVERRIDE` and `SOLVABLE`.
 - `SEMANTIC_OVERRIDE["problem_id"]` must exist and match `{problem_id}`.
-- `SOLVABLE["schema"]` must be "modu.solvable.v1.2".
+- `SOLVABLE["schema"]` must be "modu.solvable.v1.3".
 - `SOLVABLE["problem_id"]` must match `{problem_id}`.
-- `SOLVABLE["understanding"]` should include summary, facts, unknowns, relation, and diagnostic questions before calculation steps.
+- Keep SOLVABLE concise with given/target/method/steps/answer; plan, checks, and diagnostics are optional.
 - `SEMANTIC_OVERRIDE["answer"]` and `SOLVABLE["answer"]` must match for strict validation.
 - Keep semantic meaning-focused, not renderer/layout mirrors.
 - Do not infer blank answers unless visibly printed.
@@ -321,14 +322,13 @@ Safety and authoring rules:
 - Do not output JSON.
 - `SEMANTIC_OVERRIDE` and `SOLVABLE` are mandatory.
 - `SEMANTIC_OVERRIDE` must be concise domain/answer-centric semantics, not slot-by-slot mirror listing.
-- `SOLVABLE["schema"]` must be "modu.solvable.v1.2".
+- `SOLVABLE["schema"]` must be "modu.solvable.v1.3".
 - `ProblemTemplate.id`, `SEMANTIC_OVERRIDE["problem_id"]`, and `SOLVABLE["problem_id"]` must all match `{problem_id}`.
 - `SEMANTIC_OVERRIDE["answer"]` and `SOLVABLE["answer"]` must match for strict validation.
-- `SOLVABLE` must include: schema, problem_id, problem_type, inputs, given, target, understanding, plan, steps, checks, answer.
-- `SOLVABLE["understanding"]` should help the student identify given facts, the unknown target, and the relation before calculation.
-- Every `SOLVABLE.steps[]` item MUST include exactly these required keys at minimum: id (string), expr (string), value (any).
-- Every `SOLVABLE.checks[]` item MUST include exactly these required keys at minimum: id (string), expr (string), expected, actual, pass (boolean).
-- Never omit required SOLVABLE fields even if uncertain; use conservative placeholders rather than missing keys.
+- `SOLVABLE` must include: schema, problem_id, given, target, method, steps, answer.
+- Do not add inputs/understanding just to repeat given and target.
+- Every `SOLVABLE.steps[]` item MUST include exactly these required keys at minimum: expr (string), value (any). id is optional.
+- `SOLVABLE.checks[]` may be simple strings or objects and is optional.
 - Do not solve inferred answers and do not render inferred answers inside blanks unless printed in the image.
 - Preserve TODO comments for uncertain parts.
 - Keep structure faithful to visible layout: boxes, blanks, arrows, tables, fraction slots, diagrams, and spacing groups.

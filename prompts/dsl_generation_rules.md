@@ -144,72 +144,44 @@ Rules:
 
 ```python
 SOLVABLE = {
-    "schema": "modu.solvable.v1.2",
+    "schema": "modu.solvable.v1.3",
     "problem_id": "...",
-    "problem_type": "...",
-    "inputs": {},
-    "given": [],
-    "target": {"ref": "...", "type": "..."},
-    "understanding": {
-        "summary": "...",
-        "facts": [
-            {"ref": "...", "label": "...", "value": "...", "unit": "", "source": "explicit"}
-        ],
-        "unknowns": [
-            {"ref": "...", "label": "...", "unit": ""}
-        ],
-        "relation": {
-            "type": "...",
-            "statement": "..."
-        },
-        "diagnostic_questions": [
-            {
-                "id": "understand.target",
-                "type": "multiple_choice",
-                "prompt": "...",
-                "choices": ["...", "..."],
-                "answer_index": 0,
-            }
-        ],
-    },
-    "plan": [],
-    "steps": [
-        {
-            "id": "step.1",
-            "expr": "...",
-            "value": "...",
-        }
+    "given": [
+        {"id": "known_quantity", "value": 3},
     ],
-    "checks": [
-        {
-            "id": "check.1",
-            "expr": "...",
-            "expected": "...",
-            "actual": "...",
-            "pass": True,
-        }
+    "target": {"id": "answer", "unit": ""},
+    "method": "short_method_code",
+    "steps": [
+        {"expr": "...", "value": "..."}
     ],
     "answer": {
         "value": "...",
         "unit": "",
-        "derived_from": "step.1",
+    },
+    "diagnostics": {
+        "skills": ["add.basic"],
+        "errors": {"student response": "common.error_code"},
     },
 }
 ```
 
 Rules:
 
-- `SOLVABLE["schema"]` must be exactly `"modu.solvable.v1.2"`.
+- `SOLVABLE["schema"]` must be exactly `"modu.solvable.v1.3"`.
 - `SOLVABLE["problem_id"]` must match `ProblemTemplate.id`.
-- `inputs`, `given`, `target`, `understanding`, `plan`, `steps`, `checks`, and `answer` must be present.
-- `understanding` is for the student's first look at the problem: facts are directly given information, unknowns are what must be found, relation is how the information connects, and diagnostic questions check the gist before computation.
-- Every step must include at least `id`, `expr`, and `value`.
-- Every check must include at least `id`, `expr`, `expected`, `actual`, and `pass`.
+- `given`, `target`, `method`, `steps`, and `answer` must be present.
+- Do not add `inputs` or `understanding.facts` just to repeat `given`.
+- Do not add `understanding.unknowns` just to repeat `target`.
+- `plan`, `checks`, and `diagnostics` are optional.
+- Every step must include at least `expr` and `value`; `id` is optional.
+- `checks` may be simple strings or objects.
+- `diagnostics.skills` uses short concept codes.
+- `diagnostics.errors` maps `학생 응답` to a common error code. Do not repeat long feedback in each DSL.
 - Use conservative explicit placeholders plus TODO comments when a value is uncertain.
 - Keep `SOLVABLE` small and verifiable.
 - For geometry problems, include the geometric reason behind any non-obvious relation in `SOLVABLE["steps"][].explanation` or `SOLVABLE["plan"]`; for example, explain why an inscribed regular hexagon has side length equal to the circle radius before using that relation.
 
-### Solvable v1.2 Schema Guardrails
+### Legacy Solvable v1.2 Schema Guardrails
 
 Before finalizing any generated DSL, check these exact schema constraints. These are common build blockers.
 
@@ -339,7 +311,7 @@ uv run python tools/validate_generated_dsl.py --dsl <problem.dsl.py> --strict --
 This means:
 
 - `ProblemTemplate.id`, `SEMANTIC_OVERRIDE["problem_id"]`, and `SOLVABLE["problem_id"]` match.
-- `SOLVABLE` validates against `schema/solvable/solvable.v1.2.json`.
+- `SOLVABLE` validates against `schema/solvable/solvable.v1.3.json`.
 - semantic answer and solvable answer match.
 - semantic remains meaning-only.
 - layout/renderer/SVG remain generated artifacts.

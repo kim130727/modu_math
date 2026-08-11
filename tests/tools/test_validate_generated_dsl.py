@@ -212,3 +212,51 @@ SOLVABLE = {
     solvable = json.loads(solvable_path.read_text(encoding="utf-8"))
     assert solvable["schema"] == "modu.solvable.v1.2"
     assert solvable["understanding"]["relation"]["type"] == "part_part_whole"
+
+
+def test_run_build_accepts_concise_solvable_v1_3(tmp_path: Path) -> None:
+    dsl_path = tmp_path / "problem.dsl.py"
+    out_prefix = tmp_path / "problem"
+    dsl_path.write_text(
+        '''
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="p_v13",
+    title="v1.3",
+    canvas=Canvas(width=300, height=200),
+    regions=(Region(id="region.stem", role="stem", slot_ids=("slot.q",)),),
+    slots=(TextSlot(id="slot.q", text="6 x 4 = ?", x=20, y=40),),
+)
+
+SEMANTIC_OVERRIDE = {
+    "problem_id": "p_v13",
+    "problem_type": "multiplication",
+    "domain": {"objects": [], "relations": []},
+    "answer": {"value": 24, "unit": "자루"},
+}
+
+SOLVABLE = {
+    "schema": "modu.solvable.v1.3",
+    "problem_id": "p_v13",
+    "given": [
+        {"id": "items_per_box", "value": 6},
+        {"id": "box_count", "value": 4},
+    ],
+    "target": {"id": "total", "unit": "자루"},
+    "method": "multiply_equal_groups",
+    "steps": [{"expr": "6 x 4", "value": 24}],
+    "answer": {"value": 24, "unit": "자루"},
+}
+'''.lstrip(),
+        encoding="utf-8",
+    )
+
+    _run_build(dsl_path=dsl_path, out_prefix=out_prefix, strict=True, emit_solvable=True)
+
+    solvable_path = tmp_path / "problem.solvable.v1.3.json"
+    assert solvable_path.exists()
+    solvable = json.loads(solvable_path.read_text(encoding="utf-8"))
+    assert solvable["schema"] == "modu.solvable.v1.3"
+    assert "inputs" not in solvable
+    assert "understanding" not in solvable

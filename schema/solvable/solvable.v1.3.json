@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "modu.solvable.v1.3.schema.json",
+  "title": "Modu Solvable Schema v1.3",
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "given_item": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "ref": {
+          "type": "string"
+        },
+        "value": {},
+        "unit": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      },
+      "anyOf": [
+        {
+          "required": ["id", "value"]
+        },
+        {
+          "required": ["ref", "value"]
+        }
+      ]
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "ref": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      },
+      "anyOf": [
+        {
+          "required": ["id"]
+        },
+        {
+          "required": ["ref"]
+        }
+      ]
+    },
+    "step": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "goal": {
+          "type": "string"
+        },
+        "expr": {
+          "type": "string"
+        },
+        "value": {},
+        "explanation": {
+          "type": "string"
+        }
+      },
+      "required": ["expr", "value"]
+    },
+    "check": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "additionalProperties": true
+        }
+      ]
+    },
+    "diagnostics": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "skills": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "errors": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "answer": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "value": {},
+        "unit": {
+          "type": "string"
+        }
+      },
+      "required": ["value", "unit"]
+    }
+  },
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "modu.solvable.v1.3"
+    },
+    "problem_id": {
+      "type": "string"
+    },
+    "problem_type": {
+      "type": "string"
+    },
+    "given": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/given_item"
+      }
+    },
+    "target": {
+      "$ref": "#/$defs/target"
+    },
+    "method": {
+      "type": "string"
+    },
+    "plan": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/step"
+      }
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/check"
+      }
+    },
+    "answer": {
+      "$ref": "#/$defs/answer"
+    },
+    "diagnostics": {
+      "$ref": "#/$defs/diagnostics"
+    }
+  },
+  "required": [
+    "schema",
+    "problem_id",
+    "given",
+    "target",
+    "method",
+    "steps",
+    "answer"
+  ]
+}

@@ -226,14 +226,20 @@ class ContentRepository {
     final solvableV12Future = _loadOptionalJson(
       '$basePath.solvable.v1.2.json',
     );
+    final solvableV13Future = _loadOptionalJson(
+      '$basePath.solvable.v1.3.json',
+    );
 
+    final solvableV13 = await solvableV13Future;
     final solvableV12 = await solvableV12Future;
     return ProblemJsonBundle(
       filePrefix: filePrefix,
       semantic: await semanticFuture,
       layout: await layoutFuture,
       renderer: await rendererFuture,
-      solvable: solvableV12.isEmpty
+      solvable: solvableV13.isNotEmpty
+          ? solvableV13
+          : solvableV12.isEmpty
           ? await _loadOptionalJson('$basePath.solvable.v1.1.json')
           : solvableV12,
     );
@@ -255,6 +261,7 @@ class ContentRepository {
   Future<Map<String, dynamic>> _loadSolvable(String basePath) async {
     for (final fileName in const [
       'solvable.json',
+      'solvable.v1.3.json',
       'solvable.v1.2.json',
       'solvable.v1.1.json',
       'solvable.v1.json',

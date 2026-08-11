@@ -491,7 +491,7 @@ Object? _givenValue(ProblemContent content, String ref) {
     return null;
   }
   for (final item in given.whereType<Map<String, dynamic>>()) {
-    if (item['ref'] == ref) {
+    if (item['ref'] == ref || item['id'] == ref) {
       return item['value'];
     }
   }

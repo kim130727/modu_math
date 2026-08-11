@@ -105,7 +105,7 @@ def _parse_solvable_schema_tag(solvable: dict[str, Any]) -> str:
     schema_value = solvable.get("schema")
     if not isinstance(schema_value, str):
         raise ValueError(
-            "SOLVABLE['schema'] must be a string like 'modu.solvable.v1.1' or 'modu.solvable.v1.2'."
+            "SOLVABLE['schema'] must be a string like 'modu.solvable.v1.1', 'modu.solvable.v1.2', or 'modu.solvable.v1.3'."
         )
     prefix = "modu.solvable."
     if not schema_value.startswith(prefix):
@@ -155,8 +155,10 @@ def _assert_semantic_concise(semantic: dict[str, Any]) -> None:
 
 def _assert_solvable_enriched(solvable: dict[str, Any], problem_id: str) -> None:
     schema = solvable.get("schema")
-    if schema not in {"modu.solvable.v1.1", "modu.solvable.v1.2"}:
-        raise ValueError("SOLVABLE.schema must be 'modu.solvable.v1.1' or 'modu.solvable.v1.2'.")
+    if schema not in {"modu.solvable.v1.1", "modu.solvable.v1.2", "modu.solvable.v1.3"}:
+        raise ValueError(
+            "SOLVABLE.schema must be 'modu.solvable.v1.1', 'modu.solvable.v1.2', or 'modu.solvable.v1.3'."
+        )
     if solvable.get("problem_id") != problem_id:
         raise ValueError("SOLVABLE.problem_id must match semantic/problem id.")
     if not isinstance(solvable.get("answer"), dict):

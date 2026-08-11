@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from modu_math.solvable import diagnose_student_response, normalize_solvable
 from modu_math_web.editor.services.tutor_preview import _speech_instructions, _speech_voice, _system_prompt, rule_tutor_response, tutor_speech_locale
 
 
@@ -197,3 +198,61 @@ def test_rule_tutor_v1_2_uses_understanding_and_plain_numeric_choices() -> None:
     assert "알맞은 것을 골라볼까요?" in retry["reply"]
     assert "이 단계에서 생각한 값을 입력해 주세요" not in retry["reply"]
     assert retry["choices"] == ["오른쪽 원의 반지름", "세 원의 원주의 합"]
+def test_solvable_v1_3_registered_error_returns_catalog_feedback() -> None:
+    solvable = {
+        "schema": "modu.solvable.v1.3",
+        "problem_id": "p_mul",
+        "given": [{"id": "items_per_box", "value": 6}, {"id": "box_count", "value": 4}],
+        "target": {"id": "total", "unit": "자루"},
+        "method": "multiply_equal_groups",
+        "steps": [{"expr": "6 x 4", "value": 24}],
+        "answer": {"value": 24, "unit": "자루"},
+        "diagnostics": {
+            "skills": ["mul.equal_groups", "mul.basic"],
+            "errors": {"10": "plan.add_operands", "20": "execute.mul_fact"},
+        },
+    }
+
+    diagnostic = diagnose_student_response(solvable, "10", correct=False)
+
+    assert diagnostic["stage"] == "plan"
+    assert diagnostic["remediation"] == "repeated_addition"
+
+    response = rule_tutor_response({"solvable": solvable}, "10", [{"role": "assistant", "content": "Step 1: 6 x 4"}])
+    assert "두 수를 바로 더하지 말고" in response["reply"]
+
+
+def test_solvable_v1_3_unregistered_error_uses_default_rule_tutor_flow() -> None:
+    solvable = {
+        "schema": "modu.solvable.v1.3",
+        "problem_id": "p_mul",
+        "given": [{"id": "items_per_box", "value": 6}, {"id": "box_count", "value": 4}],
+        "target": {"id": "total", "unit": "자루"},
+        "method": "multiply_equal_groups",
+        "steps": [{"expr": "6 x 4", "value": 24}],
+        "answer": {"value": 24, "unit": "자루"},
+        "diagnostics": {"errors": {"10": "plan.add_operands"}},
+    }
+
+    diagnostic = diagnose_student_response(solvable, "11", correct=False)
+    response = rule_tutor_response({"solvable": solvable}, "11", [{"role": "assistant", "content": "Step 1: 6 x 4"}])
+
+    assert diagnostic["status"] == "incorrect"
+    assert "두 수를 바로 더하지 말고" not in response["reply"]
+
+
+def test_normalize_solvable_accepts_v1_3_id_fields() -> None:
+    normalized = normalize_solvable(
+        {
+            "schema": "modu.solvable.v1.3",
+            "problem_id": "p",
+            "given": [{"id": "a", "value": 1}],
+            "target": {"id": "answer", "unit": ""},
+            "method": "one_step",
+            "steps": [{"expr": "1", "value": 1}],
+            "answer": {"value": 1, "unit": ""},
+        }
+    )
+
+    assert normalized.given[0]["ref"] == "a"
+    assert normalized.target["ref"] == "answer"

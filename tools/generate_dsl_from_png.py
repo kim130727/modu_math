@@ -281,7 +281,9 @@ def _normalize_solvable_schema_fields(source: str) -> str:
             continue
 
         # Canonicalize solvable schema to current target version.
-        data["schema"] = "modu.solvable.v1.2"
+        data["schema"] = "modu.solvable.v1.3"
+        data.pop("inputs", None)
+        data.pop("understanding", None)
 
         steps = data.get("steps")
         if isinstance(steps, list):
