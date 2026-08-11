@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 
 from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot
+from modu_math.pipeline.answer_contracts import AnswerContractError
 from tools.validate_generated_dsl import (
     _assert_bundle_consistency,
     _run_build,
@@ -260,3 +261,66 @@ SOLVABLE = {
     assert solvable["schema"] == "modu.solvable.v1.3"
     assert "inputs" not in solvable
     assert "understanding" not in solvable
+
+
+def test_run_build_rejects_stale_answer_slot_when_explicit_input_exists(tmp_path: Path) -> None:
+    dsl_path = tmp_path / "problem.dsl.py"
+    out_prefix = tmp_path / "problem"
+    dsl_path.write_text(
+        '''
+from modu_math.dsl import BlankSlot, Canvas, ProblemTemplate, RectSlot, Region
+
+ANSWER = {
+    "value": 7,
+    "unit": "",
+    "blanks": [
+        {"id": "slot.answer", "slot_id": "slot.answer", "expected": 7},
+        {"id": "slot.input", "slot_id": "slot.input", "expected": 7},
+    ],
+    "choices": [],
+    "answer_key": [
+        {"slot_id": "slot.answer", "value": 7},
+        {"slot_id": "slot.input", "value": 7},
+    ],
+}
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="p_stale_answer",
+    title="stale",
+    canvas=Canvas(width=300, height=200),
+    regions=(Region(id="region.stem", role="stem", slot_ids=("slot.answer", "slot.input")),),
+    slots=(
+        BlankSlot(id="slot.answer", answer_key="7"),
+        RectSlot(
+            id="slot.input",
+            x=20,
+            y=40,
+            width=90,
+            height=36,
+            interaction={"type": "input", "role": "answer", "include_in_submission": True},
+        ),
+    ),
+)
+
+SEMANTIC_OVERRIDE = {
+    "problem_id": "p_stale_answer",
+    "problem_type": "numeric",
+    "domain": {"objects": [], "relations": []},
+    "answer": ANSWER,
+}
+
+SOLVABLE = {
+    "schema": "modu.solvable.v1.3",
+    "problem_id": "p_stale_answer",
+    "given": [{"id": "a", "value": 7}],
+    "target": {"id": "answer"},
+    "method": "read_answer",
+    "steps": [{"expr": "7", "value": 7}],
+    "answer": ANSWER,
+}
+'''.lstrip(),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(AnswerContractError, match="non-submitted answer slot"):
+        _run_build(dsl_path=dsl_path, out_prefix=out_prefix, strict=True, emit_solvable=True)

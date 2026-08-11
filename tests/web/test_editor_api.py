@@ -490,6 +490,48 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     assert (problem_dir / "problem.svg").exists()
 
 
+def test_build_endpoint_rejects_deleted_answer_slot_override(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import BlankSlot, Canvas, ProblemTemplate, Region
+
+ANSWER = {
+    "value": 7,
+    "unit": "",
+    "blanks": [{"id": "slot.answer", "slot_id": "slot.answer", "expected": 7}],
+    "choices": [],
+    "answer_key": [{"slot_id": "slot.answer", "value": 7}],
+}
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="p_deleted_answer",
+    title="deleted answer",
+    canvas=Canvas(width=300, height=200),
+    regions=(Region(id="region.stem", role="stem", slot_ids=("slot.answer",)),),
+    slots=(BlankSlot(id="slot.answer", answer_key="7"),),
+)
+
+SEMANTIC_OVERRIDE = {
+    "problem_id": "p_deleted_answer",
+    "problem_type": "numeric",
+    "domain": {"objects": [], "relations": []},
+    "answer": ANSWER,
+}
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+    (problem_dir / "problem.editor_overrides.json").write_text(
+        json.dumps({"version": 1, "deleted_slots": ["slot.answer"]}, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
+    response = client.post("/api/editor/problems/0001/build/")
+
+    assert response.status_code == 500
+    body = response.json()
+    assert body["ok"] is False
+    assert "deleted layout slot" in body["error"]
+
+
 def test_build_endpoint_normalizes_solvable_plan_string(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """

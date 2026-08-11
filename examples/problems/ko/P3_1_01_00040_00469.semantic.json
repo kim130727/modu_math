@@ -4,8 +4,8 @@
   "metadata": {
     "title": "두 가족이 캔 고구마의 수",
     "tags": [],
-    "instruction": "식",
-    "question": "지난 일요일 상현이네와 용진이네 가족은 주말 농장에 갔습니다. 고구마를 상현이네는 259개, 용진이네는\n248개 캤습니다. 이 두 가족이 캔 고구마는 모두 몇 개입니까?",
+    "instruction": "259 + 248 =",
+    "question": "지난 일요일 상현이네와 용진이네 가족은 주말 농장에 갔습니다. 고구마를 상현이네는 259개, 용진이네는 248개 캤습니다. 이 두 가족이 캔 고구마는 모두 몇 개입니까?",
     "required_layout_ids": [
       "konva_1785063642549_rect_11081"
     ],
@@ -21,12 +21,12 @@
       {
         "id": "person.sanghyeon",
         "type": "person",
-        "label": "상현이"
+        "label": "상현"
       },
       {
         "id": "person.yongjin",
         "type": "person",
-        "label": "용진이"
+        "label": "용진"
       },
       {
         "id": "group.sanghyeon_family",
@@ -112,15 +112,10 @@
     "value": 507,
     "unit": "개",
     "values": [
-      507,
       507
     ],
+    "choices": [],
     "blanks": [
-      {
-        "id": "slot.answer",
-        "slot_id": "slot.answer",
-        "expected": 507
-      },
       {
         "id": "konva_1785063642549_rect_11081",
         "slot_id": "konva_1785063642549_rect_11081",
@@ -128,10 +123,6 @@
       }
     ],
     "answer_key": [
-      {
-        "slot_id": "slot.answer",
-        "value": 507
-      },
       {
         "slot_id": "konva_1785063642549_rect_11081",
         "value": 507

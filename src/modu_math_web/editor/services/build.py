@@ -17,6 +17,7 @@ from modu_math.dsl import (
     compile_problem_template_to_semantic,
 )
 from modu_math.layout.editor_overrides import apply_editor_overrides, prune_editor_overrides
+from modu_math.pipeline.answer_contracts import validate_answer_slot_contract
 from modu_math.pipeline.validate_contracts import validate_semantic_solvable_answer_match
 from modu_math.pipeline.tutor_renderer_flow import attach_tutor_renderer_flow, validate_tutor_renderer_flow
 from modu_math.renderer.compiler import compile_renderer_json
@@ -106,10 +107,14 @@ def _build_problem_artifacts(problem_id: str) -> str:
     semantic = compile_problem_template_to_semantic(problem, problem_type="diagram_problem")
     layout = compile_problem_template_to_layout(problem)
 
+    deleted_answer_slots: set[str] = set()
     editor_overrides_path = problem_paths.base_dir / f"{problem_paths.artifact_base}.editor_overrides.json"
     if editor_overrides_path.exists():
         editor_overrides = json.loads(editor_overrides_path.read_text(encoding="utf-8-sig"))
         editor_overrides, pruned = prune_editor_overrides(layout, editor_overrides)
+        deleted_slots = editor_overrides.get("deleted_slots") if isinstance(editor_overrides, dict) else None
+        if isinstance(deleted_slots, list):
+            deleted_answer_slots = {slot_id for slot_id in deleted_slots if isinstance(slot_id, str)}
         if pruned:
             editor_overrides_path.write_text(
                 json.dumps(editor_overrides, ensure_ascii=False, indent=2) + "\n",
@@ -142,6 +147,27 @@ def _build_problem_artifacts(problem_id: str) -> str:
     _schema_validator("schema/renderer/renderer.v1.json").validate(renderer)
     validate_tutor_renderer_flow(renderer, solvable if isinstance(solvable, dict) else None)
 
+    if solvable:
+        if not isinstance(solvable, dict):
+            raise ValueError("SOLVABLE must be a dict when provided.")
+        solvable = _normalize_solvable_for_schema(solvable)
+        solvable_tag = _parse_solvable_schema_tag(solvable)
+        schema_relative = f"schema/solvable/solvable.{solvable_tag}.json"
+        schema_path = _repo_root() / schema_relative
+        if not schema_path.exists():
+            raise FileNotFoundError(
+                f"Solvable schema file not found for '{solvable.get('schema')}': {schema_path}"
+            )
+        _schema_validator(schema_relative).validate(solvable)
+        validate_semantic_solvable_answer_match(semantic, solvable)
+
+    validate_answer_slot_contract(
+        layout=layout,
+        semantic=semantic,
+        solvable=solvable if isinstance(solvable, dict) else None,
+        deleted_slots=deleted_answer_slots,
+    )
+
     problem_paths.artifact_path("semantic").write_text(
         json.dumps(semantic, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
@@ -157,18 +183,7 @@ def _build_problem_artifacts(problem_id: str) -> str:
     problem_paths.artifact_path("svg").write_text(svg, encoding="utf-8")
 
     if solvable:
-        if not isinstance(solvable, dict):
-            raise ValueError("SOLVABLE must be a dict when provided.")
-        solvable = _normalize_solvable_for_schema(solvable)
         solvable_tag = _parse_solvable_schema_tag(solvable)
-        schema_relative = f"schema/solvable/solvable.{solvable_tag}.json"
-        schema_path = _repo_root() / schema_relative
-        if not schema_path.exists():
-            raise FileNotFoundError(
-                f"Solvable schema file not found for '{solvable.get('schema')}': {schema_path}"
-            )
-        _schema_validator(schema_relative).validate(solvable)
-        validate_semantic_solvable_answer_match(semantic, solvable)
         (problem_paths.base_dir / f"{problem_paths.artifact_base}.solvable.{solvable_tag}.json").write_text(
             json.dumps(solvable, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",

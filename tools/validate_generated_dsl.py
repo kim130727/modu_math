@@ -14,6 +14,7 @@ from modu_math.layout.validate import validate_layout_json
 from modu_math.pipeline.validate_contracts import (
     validate_contract_bundle,
 )
+from modu_math.pipeline.answer_contracts import validate_answer_slot_contract
 from modu_math.renderer.compiler import compile_renderer_json
 from modu_math.renderer.svg.render import render_svg
 from modu_math.renderer.validate import validate_renderer_json
@@ -412,6 +413,11 @@ def _build_from_problem_template(
         semantic_override=semantic_override,
         solvable=solvable,
         layout=layout,
+    )
+    validate_answer_slot_contract(
+        layout=layout,
+        semantic=semantic,
+        solvable=solvable,
     )
 
     semantic_override_problem_id = None
