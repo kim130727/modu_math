@@ -1,14 +1,28 @@
 import type { AnswerInteractionType, AnswerKeyboard, AnswerRole, AnswerValueType, EditorShape, InputInteraction, InputStyle } from "../types/editorShape";
+import { scalePathData } from "../utils/pathData";
 import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
 
 interface PropertyPanelProps {
   shape: EditorShape | null;
+  selectedShapes?: EditorShape[];
   saveStatus: "saved" | "saving" | "unsaved" | "building" | "built" | "error";
   onChange: (patch: Partial<EditorShape>) => void;
+  onScaleSelection?: (scalePercent: number) => void;
 }
 
-export function PropertyPanel({ shape, saveStatus, onChange }: PropertyPanelProps) {
+export function PropertyPanel({ shape, selectedShapes = [], saveStatus, onChange, onScaleSelection }: PropertyPanelProps) {
   if (!shape) {
+    if (selectedShapes.length > 1) {
+      return (
+        <section className="konva-property-panel">
+          <PropertyPanelTitle saveStatus={saveStatus} />
+          <div className="konva-field-grid">
+            <ReadOnlyField label="selection" value={`${selectedShapes.length} shapes`} />
+            <NumberField label="scale %" value={100} onChange={(scale) => onScaleSelection?.(scale)} />
+          </div>
+        </section>
+      );
+    }
     return (
       <section className="konva-property-panel">
         <PropertyPanelTitle saveStatus={saveStatus} />
@@ -46,6 +60,9 @@ export function PropertyPanel({ shape, saveStatus, onChange }: PropertyPanelProp
             value={shape.strokeDasharray ?? ""}
             onChange={(strokeDasharray) => onChange({ strokeDasharray } as Partial<EditorShape>)}
           />
+        ) : null}
+        {scalableShape(shape) && shape.type !== "baseTenBlock" ? (
+          <NumberField label="scale %" value={shapeScalePercent(shape)} onChange={(scale) => onChange(shapeScalePatch(shape, scale))} />
         ) : null}
         {shape.type === "rect" || shape.type === "image" || shape.type === "math" || shape.type === "baseTenBlock" ? (
           <>
@@ -325,6 +342,48 @@ function TextAreaField({ label, value, onChange }: { label: string; value: strin
 
 function round(value: number): number {
   return Math.round(value * 100) / 100;
+}
+
+function scalableShape(shape: EditorShape): shape is Extract<EditorShape, { type: "rect" | "circle" | "path" | "image" | "math" | "baseTenBlock" }> {
+  return shape.type === "rect" || shape.type === "circle" || shape.type === "path" || shape.type === "image" || shape.type === "math" || shape.type === "baseTenBlock";
+}
+
+function shapeScalePercent(shape: Extract<EditorShape, { type: "rect" | "circle" | "path" | "image" | "math" }>): number {
+  const base = shapeBaseSize(shape);
+  if (shape.type === "circle") return round((shape.radius / base.radius) * 100);
+  return round((shape.width / base.width) * 100);
+}
+
+function shapeScalePatch(shape: Extract<EditorShape, { type: "rect" | "circle" | "path" | "image" | "math" }>, scalePercent: number): Partial<EditorShape> {
+  const base = shapeBaseSize(shape);
+  const scale = Math.max(1, Number.isFinite(scalePercent) ? scalePercent : 100) / 100;
+  if (shape.type === "circle") {
+    return { radius: round(base.radius * scale) } as Partial<EditorShape>;
+  }
+  const nextWidth = round(base.width * scale);
+  const nextHeight = round(base.height * scale);
+  if (shape.type === "path") {
+    const scaleX = shape.width ? nextWidth / shape.width : 1;
+    const scaleY = shape.height ? nextHeight / shape.height : 1;
+    return {
+      width: nextWidth,
+      height: nextHeight,
+      d: scalePathData(shape.d, scaleX, scaleY),
+      adjustment: shape.adjustment ? { x: round(shape.adjustment.x * scaleX), y: round(shape.adjustment.y * scaleY) } : undefined,
+    } as Partial<EditorShape>;
+  }
+  return {
+    width: nextWidth,
+    height: nextHeight,
+  } as Partial<EditorShape>;
+}
+
+function shapeBaseSize(shape: Extract<EditorShape, { type: "rect" | "circle" | "path" | "image" | "math" }>): { width: number; height: number; radius: number } {
+  if (shape.type === "circle") return { width: 140, height: 140, radius: 70 };
+  if (shape.type === "math") return { width: 260, height: 72, radius: 0 };
+  if (shape.type === "path") return { width: 180, height: 120, radius: 0 };
+  if (shape.type === "image") return { width: 180, height: 120, radius: 0 };
+  return { width: 180, height: 96, radius: 0 };
 }
 
 function baseTenScalePercent(shape: Extract<EditorShape, { type: "baseTenBlock" }>): number {

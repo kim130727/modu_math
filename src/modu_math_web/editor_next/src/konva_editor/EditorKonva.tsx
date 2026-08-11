@@ -13,6 +13,7 @@ import {
 import { problemJsonToLayoutPatches } from "../utils/problemJsonToLayoutPatches";
 import type { BaseTenBlockKind, EditorShape, EditorShapeDocument, InputInteraction, InputStyle } from "../types/editorShape";
 import type { ProblemJson } from "../types/problem";
+import { scalePathData } from "../utils/pathData";
 import sampleProblem from "../samples/sample_problem.json";
 import { connectorArrowForPreset, connectorKindForPreset } from "./connectorGeometry";
 import { editorDocumentToProblemJson, estimateTextWidth, fittedTextHeight, problemJsonToEditorDocument } from "./converters";
@@ -54,6 +55,10 @@ export function EditorKonva() {
   const idPrefix = useMemo(() => `konva_${Date.now()}`, []);
 
   const selectedShape = selectedShapeIds.length === 1 ? document.shapes.find((shape) => shape.id === selectedShapeIds[0]) ?? null : null;
+  const selectedShapes = useMemo(() => {
+    const selected = new Set(selectedShapeIds);
+    return document.shapes.filter((shape) => selected.has(shape.id));
+  }, [document.shapes, selectedShapeIds]);
   const selectedAnswerSlotShapeIds = useMemo(() => {
     const selected = new Set(selectedShapeIds);
     return document.shapes.filter((shape) => selected.has(shape.id) && isAnswerSlotShape(shape)).map((shape) => shape.id);
@@ -161,6 +166,16 @@ export function EditorKonva() {
       updateShape(applyAutoSizing({ ...selectedShape, ...patch } as EditorShape, selectedShape));
     },
     [selectedShape, updateShape],
+  );
+
+  const scaleSelectedShapes = useCallback(
+    (scalePercent: number) => {
+      if (!selectedShapes.length) return;
+      const scale = Math.max(1, Number.isFinite(scalePercent) ? scalePercent : 100) / 100;
+      const bounds = selectionBounds(selectedShapes);
+      updateShapes(selectedShapes.map((shape) => scaleShapeAround(shape, bounds.x, bounds.y, scale)));
+    },
+    [selectedShapes, updateShapes],
   );
 
   const addShape = useCallback(
@@ -825,7 +840,13 @@ export function EditorKonva() {
           </div>
           <div className="konva-side-content">
             {activeSidePanel === "properties" ? (
-              <PropertyPanel shape={selectedShape} saveStatus={saveStatus} onChange={patchSelectedShape} />
+              <PropertyPanel
+                shape={selectedShape}
+                selectedShapes={selectedShapes}
+                saveStatus={saveStatus}
+                onChange={patchSelectedShape}
+                onScaleSelection={scaleSelectedShapes}
+              />
             ) : null}
             {activeSidePanel === "tutor" ? (
               <TutorPreviewPanel
@@ -1251,6 +1272,116 @@ function defaultConnectorControlFromDelta(kind: "straight" | "elbow" | "curve", 
     return { x: roundCanvasNumber(dx / 2), y: roundCanvasNumber(dy / 2 - lift) };
   }
   return { x: roundCanvasNumber(dx / 2), y: roundCanvasNumber(dy / 2) };
+}
+
+function selectionBounds(shapes: EditorShape[]): { x: number; y: number; width: number; height: number } {
+  const bounds = shapes.map(shapeBoundsForScaling);
+  const minX = Math.min(...bounds.map((bound) => bound.x));
+  const minY = Math.min(...bounds.map((bound) => bound.y));
+  const maxX = Math.max(...bounds.map((bound) => bound.x + bound.width));
+  const maxY = Math.max(...bounds.map((bound) => bound.y + bound.height));
+  return { x: minX, y: minY, width: Math.max(1, maxX - minX), height: Math.max(1, maxY - minY) };
+}
+
+function shapeBoundsForScaling(shape: EditorShape): { x: number; y: number; width: number; height: number } {
+  if (shape.type === "circle") {
+    return { x: shape.x - shape.radius, y: shape.y - shape.radius, width: shape.radius * 2, height: shape.radius * 2 };
+  }
+  if (shape.type === "line") {
+    const xs = shape.points.filter((_, index) => index % 2 === 0).map((point) => shape.x + point);
+    const ys = shape.points.filter((_, index) => index % 2 === 1).map((point) => shape.y + point);
+    const minX = Math.min(shape.x, ...xs);
+    const minY = Math.min(shape.y, ...ys);
+    const maxX = Math.max(shape.x, ...xs);
+    const maxY = Math.max(shape.y, ...ys);
+    return { x: minX, y: minY, width: Math.max(1, maxX - minX), height: Math.max(1, maxY - minY) };
+  }
+  if (shape.type === "connector") {
+    const points = [shape.start, shape.end, shape.control].filter(Boolean) as Array<{ x: number; y: number }>;
+    const xs = points.map((point) => shape.x + point.x);
+    const ys = points.map((point) => shape.y + point.y);
+    const minX = Math.min(shape.x, ...xs);
+    const minY = Math.min(shape.y, ...ys);
+    const maxX = Math.max(shape.x, ...xs);
+    const maxY = Math.max(shape.y, ...ys);
+    return { x: minX, y: minY, width: Math.max(1, maxX - minX), height: Math.max(1, maxY - minY) };
+  }
+  if (shape.type === "text") {
+    return {
+      x: shape.x,
+      y: shape.y,
+      width: shape.width ?? estimateTextWidth(shape.text, shape.fontSize),
+      height: shape.height ?? fittedTextHeight(shape.text, shape.fontSize, shape.width ?? estimateTextWidth(shape.text, shape.fontSize), shape.lineHeight ?? 1.25),
+    };
+  }
+  if (shape.type === "baseTenBlock") {
+    return { x: shape.x, y: shape.y, width: shape.width + shape.depth, height: shape.height + shape.depth };
+  }
+  return { x: shape.x, y: shape.y, width: shape.width, height: shape.height };
+}
+
+function scaleShapeAround(shape: EditorShape, originX: number, originY: number, scale: number): EditorShape {
+  const nextX = roundCanvasNumber(originX + (shape.x - originX) * scale);
+  const nextY = roundCanvasNumber(originY + (shape.y - originY) * scale);
+  const commonPatch = { x: nextX, y: nextY, offsetX: scaleOptional(shape.offsetX, scale), offsetY: scaleOptional(shape.offsetY, scale) };
+  if (shape.type === "rect") {
+    return { ...shape, ...commonPatch, width: scaledAtLeast(shape.width, scale, 6), height: scaledAtLeast(shape.height, scale, 6), cornerRadius: scaleOptional(shape.cornerRadius, scale) };
+  }
+  if (shape.type === "image") {
+    return { ...shape, ...commonPatch, width: scaledAtLeast(shape.width, scale, 6), height: scaledAtLeast(shape.height, scale, 6) };
+  }
+  if (shape.type === "math") {
+    return { ...shape, ...commonPatch, width: scaledAtLeast(shape.width, scale, 24), height: scaledAtLeast(shape.height, scale, 16), fontSize: scaleOptional(shape.fontSize, scale) };
+  }
+  if (shape.type === "baseTenBlock") {
+    return { ...shape, ...commonPatch, width: scaledAtLeast(shape.width, scale, 6), height: scaledAtLeast(shape.height, scale, 6), depth: scaledAtLeast(shape.depth, scale, 0) };
+  }
+  if (shape.type === "circle") {
+    return { ...shape, ...commonPatch, radius: scaledAtLeast(shape.radius, scale, 4) };
+  }
+  if (shape.type === "path") {
+    return {
+      ...shape,
+      ...commonPatch,
+      d: scalePathData(shape.d, scale, scale),
+      width: scaledAtLeast(shape.width, scale, 1),
+      height: scaledAtLeast(shape.height, scale, 1),
+      adjustment: shape.adjustment
+        ? { x: roundCanvasNumber(shape.adjustment.x * scale), y: roundCanvasNumber(shape.adjustment.y * scale) }
+        : undefined,
+    };
+  }
+  if (shape.type === "text") {
+    return {
+      ...shape,
+      ...commonPatch,
+      fontSize: scaledAtLeast(shape.fontSize, scale, 4),
+      width: shape.width === undefined ? undefined : scaledAtLeast(shape.width, scale, 8),
+      height: shape.height === undefined ? undefined : scaledAtLeast(shape.height, scale, 8),
+    };
+  }
+  if (shape.type === "line") {
+    return { ...shape, ...commonPatch, points: shape.points.map((point) => roundCanvasNumber(point * scale)), strokeWidth: scaleOptional(shape.strokeWidth, scale) };
+  }
+  if (shape.type === "connector") {
+    return {
+      ...shape,
+      ...commonPatch,
+      start: { x: roundCanvasNumber(shape.start.x * scale), y: roundCanvasNumber(shape.start.y * scale) },
+      end: { x: roundCanvasNumber(shape.end.x * scale), y: roundCanvasNumber(shape.end.y * scale) },
+      control: shape.control ? { x: roundCanvasNumber(shape.control.x * scale), y: roundCanvasNumber(shape.control.y * scale) } : undefined,
+      strokeWidth: scaleOptional(shape.strokeWidth, scale),
+    };
+  }
+  return shape;
+}
+
+function scaledAtLeast(value: number, scale: number, min: number): number {
+  return roundCanvasNumber(Math.max(min, value * scale));
+}
+
+function scaleOptional(value: number | undefined, scale: number): number | undefined {
+  return value === undefined ? undefined : roundCanvasNumber(value * scale);
 }
 
 function lineLikePreset(preset: ShapePreset): boolean {
