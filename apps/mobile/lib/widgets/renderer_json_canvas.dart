@@ -523,7 +523,7 @@ class RendererJsonPainter extends CustomPainter {
 
     final elements = renderer['elements'];
     if (elements is List) {
-      for (final element in elements.whereType<Map<String, dynamic>>()) {
+      for (final element in rendererVisibleElements(elements)) {
         _paintElement(canvas, element);
       }
     }
@@ -723,8 +723,7 @@ List<Widget> _textBoxLayers(Map<String, dynamic> renderer, double scale) {
   if (elements is! List) {
     return const [];
   }
-  return elements
-      .whereType<Map<String, dynamic>>()
+  return rendererVisibleElements(elements)
       .where((element) => element['type']?.toString() == 'text_box')
       .where((element) => !_looksLikeInputTextBox(element))
       .map((element) {
@@ -780,7 +779,7 @@ List<_InputSlot> _inputSlots(
     return const [];
   }
   final slots = <_InputSlot>[];
-  for (final element in elements.whereType<Map<String, dynamic>>()) {
+  for (final element in rendererVisibleElements(elements)) {
     final type = element['type']?.toString();
     if (type == 'text_box' && _looksLikeInputTextBox(element)) {
       final attributes = _mapAt(element, 'attributes');
@@ -860,6 +859,74 @@ List<_InputSlot> _inputSlots(
   _sortInputSlots(slots);
   _applyExpectedAnswerLength(slots, expectedAnswer);
   return slots;
+}
+
+@visibleForTesting
+List<Map<String, dynamic>> rendererVisibleElements(List<dynamic> elements) {
+  final typedElements = elements.whereType<Map<String, dynamic>>().toList();
+  return typedElements
+      .where(
+        (element) => !_isLegacyAnswerBlankInsideTextBox(element, typedElements),
+      )
+      .toList(growable: false);
+}
+
+bool _isLegacyAnswerBlankInsideTextBox(
+  Map<String, dynamic> element,
+  List<Map<String, dynamic>> elements,
+) {
+  if (element['type']?.toString() != 'rect') {
+    return false;
+  }
+  if (_mapAt(element, 'interaction').isNotEmpty) {
+    return false;
+  }
+  final identity = _slotIdentity(element);
+  if (!identity.contains('answer') || !identity.contains('blank')) {
+    return false;
+  }
+  final rect = _elementRect(element);
+  if (rect == null || rect.isEmpty) {
+    return false;
+  }
+  for (final other in elements) {
+    if (identical(other, element) ||
+        other['type']?.toString() != 'text_box' ||
+        _looksLikeInputTextBox(other)) {
+      continue;
+    }
+    final textRect = _elementRect(other);
+    if (textRect == null || textRect.isEmpty) {
+      continue;
+    }
+    final overlap = rect.intersect(textRect);
+    if (overlap.isEmpty) {
+      continue;
+    }
+    final overlapArea = overlap.width * overlap.height;
+    final rectArea = rect.width * rect.height;
+    if (rectArea > 0 && overlapArea / rectArea > 0.65) {
+      return true;
+    }
+  }
+  return false;
+}
+
+Rect? _elementRect(Map<String, dynamic> element) {
+  final attributes = _mapAt(element, 'attributes');
+  final x =
+      _readDouble(attributes['x']) ?? _readDouble(attributes['data-box-x']);
+  final y =
+      _readDouble(attributes['y']) ?? _readDouble(attributes['data-box-y']);
+  final width = _readDouble(attributes['width']) ??
+      _readDouble(attributes['data-box-width']) ??
+      _readDouble(attributes['max_width']);
+  final height = _readDouble(attributes['height']) ??
+      _readDouble(attributes['data-box-height']);
+  if (x == null || y == null || width == null || height == null) {
+    return null;
+  }
+  return Rect.fromLTWH(x, y, width, height);
 }
 
 void _applyExpectedAnswerLength(List<_InputSlot> slots, String expectedAnswer) {

@@ -797,4 +797,67 @@ void main() {
       equals(const Offset(78, 62)),
     );
   });
+
+  test('hides legacy answer blank rectangles that overlap question text', () {
+    final visible = rendererVisibleElements([
+      {
+        'id': 'slot.question.text',
+        'type': 'text_box',
+        'attributes': {
+          'x': 24,
+          'y': 24,
+          'width': 407,
+          'height': 149,
+        },
+        'text': 'word problem',
+      },
+      {
+        'id': 'slot.answer.blank',
+        'type': 'rect',
+        'attributes': {
+          'x': 64,
+          'y': 56,
+          'width': 120,
+          'height': 32,
+          'fill': '#ffffff',
+          'stroke': '#111111',
+        },
+      },
+    ]);
+
+    expect(visible.map((element) => element['id']), ['slot.question.text']);
+  });
+
+  test('keeps answer blank rectangles outside question text', () {
+    final visible = rendererVisibleElements([
+      {
+        'id': 'slot.question.text',
+        'type': 'text_box',
+        'attributes': {
+          'x': 24,
+          'y': 24,
+          'width': 407,
+          'height': 149,
+        },
+        'text': 'word problem',
+      },
+      {
+        'id': 'slot.answer.blank',
+        'type': 'rect',
+        'attributes': {
+          'x': 64,
+          'y': 188,
+          'width': 120,
+          'height': 32,
+          'fill': '#ffffff',
+          'stroke': '#111111',
+        },
+      },
+    ]);
+
+    expect(
+      visible.map((element) => element['id']),
+      ['slot.question.text', 'slot.answer.blank'],
+    );
+  });
 }
