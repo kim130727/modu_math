@@ -109,7 +109,10 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
             return Text(
               snapshot.hasData
                   ? _problemScreenTitle(snapshot.data!, strings)
-                  : strings.problemTitle(widget.problem.title),
+                  : _problemTitleWithPrefix(
+                      widget.problem.id,
+                      strings.problemTitle(widget.problem.title),
+                    ),
             );
           },
         ),
@@ -377,20 +380,32 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
 }
 
 String _problemScreenTitle(ProblemContent content, AppStrings strings) {
+  final fallbackTitle = strings.problemTitle(content.summary.title);
+  var title = fallbackTitle;
   final metadata = content.semantic['metadata'];
   if (metadata is Map<String, dynamic>) {
-    final title = metadata['title']?.toString().trim() ?? '';
-    if (title.isNotEmpty && !_looksBrokenText(title)) {
-      return title;
+    final metadataTitle = metadata['title']?.toString().trim() ?? '';
+    if (metadataTitle.isNotEmpty && !_looksBrokenText(metadataTitle)) {
+      title = metadataTitle;
     }
+  } else if (content.prompt.isNotEmpty && !_looksBrokenText(content.prompt)) {
+    title = content.prompt;
+  } else if (content.summary.id.isNotEmpty) {
+    title = content.summary.id;
   }
-  if (content.prompt.isNotEmpty && !_looksBrokenText(content.prompt)) {
-    return content.prompt;
+  return _problemTitleWithPrefix(content.summary.id, title);
+}
+
+String _problemTitleWithPrefix(String problemId, String title) {
+  final normalizedId = problemId.trim();
+  final normalizedTitle = title.trim();
+  if (normalizedId.isEmpty) {
+    return normalizedTitle;
   }
-  if (content.summary.id.isNotEmpty) {
-    return content.summary.id;
+  if (normalizedTitle.isEmpty || normalizedTitle == normalizedId) {
+    return normalizedId;
   }
-  return strings.problemTitle(content.summary.title);
+  return '$normalizedId · $normalizedTitle';
 }
 
 bool _looksBrokenText(String value) {
