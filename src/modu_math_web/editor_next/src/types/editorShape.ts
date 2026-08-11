@@ -1,4 +1,13 @@
-export type EditorShape = RectShape | CircleShape | LineShape | ConnectorShape | PathShape | TextShape | ImageShape | MathShape;
+export type EditorShape =
+  | RectShape
+  | CircleShape
+  | LineShape
+  | ConnectorShape
+  | PathShape
+  | TextShape
+  | ImageShape
+  | MathShape
+  | BaseTenBlockShape;
 
 export type AnswerInteractionType = "input" | "select";
 export type AnswerRole = "answer" | "result" | "intermediate" | "carry" | "blank" | "choice";
@@ -140,6 +149,21 @@ export type MathShape = BaseShape & {
   width: number;
   height: number;
   fontSize?: number;
+};
+
+export type BaseTenBlockKind = "thousand" | "hundred" | "ten" | "one";
+
+export type BaseTenBlockShape = BaseShape & {
+  type: "baseTenBlock";
+  kind: BaseTenBlockKind;
+  width: number;
+  height: number;
+  depth: number;
+  fill?: string;
+  topFill?: string;
+  sideFill?: string;
+  stroke?: string;
+  strokeWidth?: number;
 };
 
 export interface EditorShapeDocument {

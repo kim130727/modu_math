@@ -56,6 +56,7 @@ type ToolName =
   | "image"
   | "table"
   | "graphPaper"
+  | "baseTen1000"
   | "baseTen100"
   | "baseTen10"
   | "baseTen1"
@@ -77,6 +78,7 @@ interface KonvaToolbarProps {
   onAddImage: () => void;
   onAddTable: () => void;
   onAddGraphPaper: () => void;
+  onAddBaseTenThousand: () => void;
   onAddBaseTenHundred: () => void;
   onAddBaseTenTen: () => void;
   onAddBaseTenOne: () => void;
@@ -301,6 +303,16 @@ function ToolbarIcon({ name }: { name: ToolName }) {
           <path d="M8 4v16M12 4v16M16 4v16M4 8h16M4 12h16M4 16h16" />
         </svg>
       );
+    case "baseTen1000":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 9h10v10H5z" />
+          <path d="M5 9l4-4h10l-4 4" />
+          <path d="M15 9l4-4v10l-4 4" />
+          <path d="M7.5 9v10M10 9v10M12.5 9v10M5 11.5h10M5 14h10M5 16.5h10" />
+          <path d="M7 7h10M9 5v3M11.5 5v3M14 5v3M15 11.5h3M15 14h3M15 16.5h2.5" />
+        </svg>
+      );
     case "baseTen100":
       return (
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -442,6 +454,7 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
       <IconButton label="Image" icon="image" onClick={props.onAddImage} />
       <IconButton label="Table" icon="table" onClick={props.onAddTable} />
       <IconButton label="Graph Paper" icon="graphPaper" onClick={props.onAddGraphPaper} />
+      <IconButton label="Base-ten thousand cube" icon="baseTen1000" onClick={props.onAddBaseTenThousand} />
       <IconButton label="Base-ten hundred" icon="baseTen100" onClick={props.onAddBaseTenHundred} />
       <IconButton label="Base-ten ten" icon="baseTen10" onClick={props.onAddBaseTenTen} />
       <IconButton label="Base-ten one" icon="baseTen1" onClick={props.onAddBaseTenOne} />

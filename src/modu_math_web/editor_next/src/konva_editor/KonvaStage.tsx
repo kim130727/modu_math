@@ -832,6 +832,9 @@ function shapeBounds(shape: EditorShape): CanvasRect {
   if (shape.type === "path") {
     return { x: shape.x, y: shape.y, width: shape.width, height: shape.height };
   }
+  if (shape.type === "baseTenBlock") {
+    return { x: shape.x, y: shape.y, width: shape.width + shape.depth, height: shape.height + shape.depth };
+  }
   return { x: shape.x, y: shape.y, width: shape.width, height: shape.height };
 }
 
@@ -988,6 +991,7 @@ function shapeLongEnough(shape: EditorShape): boolean {
   if (shape.type === "path" || shape.type === "rect" || shape.type === "image" || shape.type === "math") {
     return Math.max(shape.width, shape.height) >= 4;
   }
+  if (shape.type === "baseTenBlock") return Math.max(shape.width, shape.height) >= 4;
   if (shape.type === "text") return Math.max(shape.width ?? 0, shape.height ?? 0) >= 4;
   if (shape.type === "circle") return shape.radius >= 2;
   return false;
@@ -1002,6 +1006,9 @@ function drawingEndPoint(shape: EditorShape): CanvasPoint {
   }
   if (shape.type === "path" || shape.type === "rect" || shape.type === "image" || shape.type === "math") {
     return { x: shape.x + shape.width, y: shape.y + shape.height };
+  }
+  if (shape.type === "baseTenBlock") {
+    return { x: shape.x + shape.width + shape.depth, y: shape.y + shape.height + shape.depth };
   }
   return { x: shape.x, y: shape.y };
 }
@@ -1271,6 +1278,18 @@ function shapeFromNode(shape: EditorShape, node: Konva.Node): EditorShape {
       rotation: node.rotation(),
       width: Math.max(24, shape.width * scaleX),
       height: Math.max(16, shape.height * scaleY),
+    };
+  }
+  if (shape.type === "baseTenBlock") {
+    const depthScale = (Math.abs(scaleX) + Math.abs(scaleY)) / 2;
+    return {
+      ...shape,
+      x: node.x(),
+      y: node.y(),
+      rotation: node.rotation(),
+      width: Math.max(6, shape.width * Math.abs(scaleX)),
+      height: Math.max(6, shape.height * Math.abs(scaleY)),
+      depth: Math.max(0, shape.depth * depthScale),
     };
   }
   if (shape.type === "path") {

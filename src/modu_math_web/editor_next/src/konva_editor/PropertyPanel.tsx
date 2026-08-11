@@ -47,10 +47,17 @@ export function PropertyPanel({ shape, saveStatus, onChange }: PropertyPanelProp
             onChange={(strokeDasharray) => onChange({ strokeDasharray } as Partial<EditorShape>)}
           />
         ) : null}
-        {shape.type === "rect" || shape.type === "image" || shape.type === "math" ? (
+        {shape.type === "rect" || shape.type === "image" || shape.type === "math" || shape.type === "baseTenBlock" ? (
           <>
             <NumberField label="width" value={shape.width} onChange={(width) => onChange({ width } as Partial<EditorShape>)} />
             <NumberField label="height" value={shape.height} onChange={(height) => onChange({ height } as Partial<EditorShape>)} />
+          </>
+        ) : null}
+        {shape.type === "baseTenBlock" ? (
+          <>
+            <ReadOnlyField label="kind" value={shape.kind} />
+            <NumberField label="scale %" value={baseTenScalePercent(shape)} onChange={(scale) => onChange(baseTenScalePatch(shape, scale))} />
+            <NumberField label="depth" value={shape.depth} onChange={(depth) => onChange({ depth } as Partial<EditorShape>)} />
           </>
         ) : null}
         {shape.type === "circle" ? (
@@ -318,4 +325,32 @@ function TextAreaField({ label, value, onChange }: { label: string; value: strin
 
 function round(value: number): number {
   return Math.round(value * 100) / 100;
+}
+
+function baseTenScalePercent(shape: Extract<EditorShape, { type: "baseTenBlock" }>): number {
+  const dimensions = baseTenBaseDimensions(shape.kind);
+  return round((shape.width / dimensions.width) * 100);
+}
+
+function baseTenScalePatch(shape: Extract<EditorShape, { type: "baseTenBlock" }>, scalePercent: number): Partial<EditorShape> {
+  const dimensions = baseTenBaseDimensions(shape.kind);
+  const scale = Math.max(1, Number.isFinite(scalePercent) ? scalePercent : 100) / 100;
+  return {
+    width: round(dimensions.width * scale),
+    height: round(dimensions.height * scale),
+    depth: round(dimensions.depth * scale),
+  } as Partial<EditorShape>;
+}
+
+function baseTenBaseDimensions(kind: Extract<EditorShape, { type: "baseTenBlock" }>["kind"]): { width: number; height: number; depth: number } {
+  switch (kind) {
+    case "thousand":
+      return { width: 120, height: 120, depth: 42 };
+    case "hundred":
+      return { width: 96, height: 96, depth: 20 };
+    case "ten":
+      return { width: 16, height: 112, depth: 7 };
+    case "one":
+      return { width: 28, height: 28, depth: 10 };
+  }
 }

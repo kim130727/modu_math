@@ -474,7 +474,99 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
           },
         },
       ];
+    case "baseTenBlock":
+      return baseTenBlockToProblemObjects(shape);
   }
+}
+
+function baseTenBlockToProblemObjects(shape: Extract<EditorShape, { type: "baseTenBlock" }>): ProblemObject[] {
+  const stroke = shape.stroke ?? "#7ea86f";
+  const strokeWidth = shape.strokeWidth ?? 0.8;
+  const fill = shape.fill ?? "#b9dd9f";
+  const topFill = shape.topFill ?? "#d2edbf";
+  const sideFill = shape.sideFill ?? "#9fcd86";
+  const depth = Math.max(0, Math.min(shape.depth, shape.width * 0.55, shape.height * 0.55));
+  const frontY = depth;
+  const grid = shape.kind === "one" ? 1 : 10;
+  const objects: ProblemObject[] = [
+    pathObject(`${shape.id}_top`, shape.x, shape.y, shape.width + depth, depth, `M 0 ${frontY} L ${depth} 0 L ${shape.width + depth} 0 L ${shape.width} ${frontY} Z`, topFill, stroke, strokeWidth),
+    pathObject(
+      `${shape.id}_side`,
+      shape.x + shape.width,
+      shape.y,
+      depth,
+      shape.height + depth,
+      `M 0 ${frontY} L ${depth} 0 L ${depth} ${shape.height} L 0 ${shape.height + frontY} Z`,
+      sideFill,
+      stroke,
+      strokeWidth,
+    ),
+    {
+      id: `${shape.id}_front`,
+      type: "basic_shape",
+      x: shape.x,
+      y: shape.y + frontY,
+      props: {
+        shape: "rectangle",
+        width: shape.width,
+        height: shape.height,
+        fill,
+        stroke,
+        strokeWidth,
+      },
+    },
+  ];
+
+  if (grid > 1) {
+    const segments: string[] = [];
+    for (let i = 1; i < grid; i += 1) {
+      const x = (shape.width / grid) * i;
+      const y = frontY + (shape.height / grid) * i;
+      const d = (depth / grid) * i;
+      segments.push(segmentD(x, frontY, x, frontY + shape.height));
+      segments.push(segmentD(0, y, shape.width, y));
+      if (depth > 0) {
+        segments.push(segmentD(d, frontY - d, shape.width + d, frontY - d));
+        segments.push(segmentD(x, frontY, x + depth, 0));
+        segments.push(segmentD(shape.width + d, frontY - d, shape.width + d, frontY - d + shape.height));
+        segments.push(segmentD(shape.width, y, shape.width + depth, y - depth));
+      }
+    }
+    objects.push(pathObject(`${shape.id}_grid`, shape.x, shape.y, shape.width + depth, shape.height + depth, segments.join(" "), "none", stroke, 0.38));
+  }
+
+  return objects;
+}
+
+function pathObject(
+  id: string,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  d: string,
+  fill: string,
+  stroke: string,
+  strokeWidth: number,
+): ProblemObject {
+  return {
+    id,
+    type: "path",
+    x,
+    y,
+    props: {
+      d,
+      width,
+      height,
+      fill,
+      stroke,
+      strokeWidth,
+    },
+  };
+}
+
+function segmentD(x1: number, y1: number, x2: number, y2: number): string {
+  return `M ${roundForTransform(x1)} ${roundForTransform(y1)} L ${roundForTransform(x2)} ${roundForTransform(y2)}`;
 }
 
 function shapeBaseX(shape: EditorShape): number {

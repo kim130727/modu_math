@@ -119,7 +119,81 @@ export function ShapeRenderer({ shape, nodeRef, onSelect, onDragStart, onDragMov
       return <ImageShapeRenderer shape={shape} common={common} />;
     case "math":
       return <MathShapeRenderer shape={shape} common={common} />;
+    case "baseTenBlock":
+      return <BaseTenBlockRenderer shape={shape} common={common} />;
   }
+}
+
+function BaseTenBlockRenderer({
+  shape,
+  common,
+}: {
+  shape: Extract<EditorShape, { type: "baseTenBlock" }>;
+  common: Record<string, unknown>;
+}) {
+  const stroke = shape.stroke ?? "#7ea86f";
+  const strokeWidth = shape.strokeWidth ?? 0.8;
+  const frontFill = normalizeFill(shape.fill ?? "#b9dd9f");
+  const topFill = normalizeFill(shape.topFill ?? "#d2edbf");
+  const sideFill = normalizeFill(shape.sideFill ?? "#9fcd86");
+  const depth = Math.max(0, Math.min(shape.depth, shape.width * 0.55, shape.height * 0.55));
+  const frontY = depth;
+  const grid = shape.kind === "one" ? 1 : shape.kind === "ten" ? 10 : 10;
+
+  return (
+    <Group {...common}>
+      <Path
+        data={`M 0 ${frontY} L ${depth} 0 L ${shape.width + depth} 0 L ${shape.width} ${frontY} Z`}
+        fill={topFill}
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        lineJoin="round"
+      />
+      <Path
+        data={`M ${shape.width} ${frontY} L ${shape.width + depth} 0 L ${shape.width + depth} ${shape.height} L ${shape.width} ${
+          shape.height + frontY
+        } Z`}
+        fill={sideFill}
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        lineJoin="round"
+      />
+      <Rect x={0} y={frontY} width={shape.width} height={shape.height} fill={frontFill} stroke={stroke} strokeWidth={strokeWidth} />
+      {grid > 1 ? <BaseTenGridLines width={shape.width} height={shape.height} depth={depth} frontY={frontY} grid={grid} stroke={stroke} /> : null}
+    </Group>
+  );
+}
+
+function BaseTenGridLines({
+  width,
+  height,
+  depth,
+  frontY,
+  grid,
+  stroke,
+}: {
+  width: number;
+  height: number;
+  depth: number;
+  frontY: number;
+  grid: number;
+  stroke: string;
+}) {
+  const lines = [];
+  for (let i = 1; i < grid; i += 1) {
+    const x = (width / grid) * i;
+    const y = frontY + (height / grid) * i;
+    const d = (depth / grid) * i;
+    lines.push(<Line key={`front-v-${i}`} points={[x, frontY, x, frontY + height]} stroke={stroke} strokeWidth={0.38} listening={false} />);
+    lines.push(<Line key={`front-h-${i}`} points={[0, y, width, y]} stroke={stroke} strokeWidth={0.38} listening={false} />);
+    if (depth > 0) {
+      lines.push(<Line key={`top-depth-${i}`} points={[d, frontY - d, width + d, frontY - d]} stroke={stroke} strokeWidth={0.32} listening={false} />);
+      lines.push(<Line key={`top-col-${i}`} points={[x, frontY, x + depth, 0]} stroke={stroke} strokeWidth={0.32} listening={false} />);
+      lines.push(<Line key={`side-depth-${i}`} points={[width + d, frontY - d, width + d, frontY - d + height]} stroke={stroke} strokeWidth={0.32} listening={false} />);
+      lines.push(<Line key={`side-row-${i}`} points={[width, y, width + depth, y - depth]} stroke={stroke} strokeWidth={0.32} listening={false} />);
+    }
+  }
+  return <>{lines}</>;
 }
 
 function ImageShapeRenderer({ shape, common }: { shape: Extract<EditorShape, { type: "image" }>; common: Record<string, unknown> }) {

@@ -92,7 +92,7 @@ def build_problem_template() -> ProblemTemplate:
                 fill="#ffffff",
                 stroke="#111111",
                 stroke_width=1,
-            ),
+            interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}),
             TextSlot(
                 id="slot.second.ones",
                 prompt="두 번째 수의 일의 자리 숫자 1",
@@ -117,7 +117,7 @@ def build_problem_template() -> ProblemTemplate:
                 fill="#ffffff",
                 stroke="#111111",
                 stroke_width=1,
-            ),
+            interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 1, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}),
             TextSlot(
                 id="slot.result.tens_ones",
                 prompt="합의 십의 자리와 일의 자리 숫자 62",
