@@ -1,0 +1,103 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "P3_1_01_00040_00469",
+  "problem_type": "numeric_answer_addition_word_problem",
+  "given": [
+    {
+      "id": "sanghyeon_family_count",
+      "ref": "quantity.sanghyeon_family_sweet_potatoes",
+      "value": {
+        "count": 259,
+        "unit": "개",
+        "owner": "group.sanghyeon_family",
+        "object": "object.sweet_potato"
+      },
+      "unit": "개",
+      "label": "상현이네 가족이 캔 고구마 수"
+    },
+    {
+      "id": "yongjin_family_count",
+      "ref": "quantity.yongjin_family_sweet_potatoes",
+      "value": {
+        "count": 248,
+        "unit": "개",
+        "owner": "group.yongjin_family",
+        "object": "object.sweet_potato"
+      },
+      "unit": "개",
+      "label": "용진이네 가족이 캔 고구마 수"
+    }
+  ],
+  "target": {
+    "id": "total_sweet_potatoes",
+    "ref": "quantity.total_sweet_potatoes",
+    "type": "number",
+    "unit": "개",
+    "label": "두 가족이 캔 고구마 수"
+  },
+  "method": "add_parts",
+  "plan": [
+    "상현이네 가족이 캔 고구마 수를 확인한다.",
+    "용진이네 가족이 캔 고구마 수를 확인한다.",
+    "두 수를 더해 전체 고구마 수를 구한다."
+  ],
+  "steps": [
+    {
+      "id": "step.add_counts",
+      "goal": "두 가족이 캔 고구마 수를 모두 구한다.",
+      "expr": "259 + 248",
+      "value": {
+        "count": 507,
+        "unit": "개",
+        "ref": "quantity.total_sweet_potatoes"
+      },
+      "explanation": "전체 수를 구하는 문제이므로 259와 248을 더한다."
+    }
+  ],
+  "checks": [
+    "507 - 248 = 259",
+    "507 - 259 = 248"
+  ],
+  "answer": {
+    "value": 507,
+    "unit": "개",
+    "values": [
+      507,
+      507
+    ],
+    "choices": [],
+    "blanks": [
+      {
+        "id": "slot.answer",
+        "slot_id": "slot.answer",
+        "expected": 507
+      },
+      {
+        "id": "konva_1785063642549_rect_11081",
+        "slot_id": "konva_1785063642549_rect_11081",
+        "expected": 507
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer",
+        "value": 507
+      },
+      {
+        "slot_id": "konva_1785063642549_rect_11081",
+        "value": 507
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "add.part_part_whole",
+      "add.three_digit"
+    ],
+    "errors": {
+      "497": "execute.add_carry",
+      "259": "plan.copy_one_part",
+      "248": "plan.copy_one_part"
+    }
+  }
+}
