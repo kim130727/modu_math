@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -667,12 +668,29 @@ class RendererJsonPainter extends CustomPainter {
       maxLines: 3,
     )..layout(maxWidth: _readDouble(attributes['max_width']) ?? 860);
 
-    painter.paint(
-      canvas,
-      Offset(
-        _readDouble(attributes['x']) ?? 0,
-        (_readDouble(attributes['y']) ?? 0) - fontSize,
-      ),
+    final baseline =
+        painter.computeDistanceToActualBaseline(TextBaseline.alphabetic) ??
+            fontSize;
+    final anchorWidth = _textAnchorWidth(painter);
+    final offset = rendererTextPaintOffset(
+      x: _readDouble(attributes['x']) ?? 0,
+      y: _readDouble(attributes['y']) ?? 0,
+      baseline: baseline,
+      anchorWidth: anchorWidth,
+      textAnchor: attributes['text-anchor'],
+    );
+
+    painter.paint(canvas, offset);
+  }
+
+  double _textAnchorWidth(TextPainter painter) {
+    final lines = painter.computeLineMetrics();
+    if (lines.isEmpty) {
+      return painter.width;
+    }
+    return lines.fold<double>(
+      0,
+      (width, line) => line.width > width ? line.width : width,
     );
   }
 
@@ -681,6 +699,23 @@ class RendererJsonPainter extends CustomPainter {
     return oldDelegate.renderer != renderer ||
         oldDelegate.logicalSize != logicalSize;
   }
+}
+
+@visibleForTesting
+Offset rendererTextPaintOffset({
+  required double x,
+  required double y,
+  required double baseline,
+  required double anchorWidth,
+  required Object? textAnchor,
+}) {
+  final anchor = textAnchor?.toString().trim().toLowerCase();
+  final left = switch (anchor) {
+    'middle' => x - anchorWidth / 2,
+    'end' => x - anchorWidth,
+    _ => x,
+  };
+  return Offset(left, y - baseline);
 }
 
 List<Widget> _textBoxLayers(Map<String, dynamic> renderer, double scale) {

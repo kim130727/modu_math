@@ -14,8 +14,8 @@
       "role": "stem",
       "flow": "vertical",
       "slot_ids": [
-        "slot.question",
-        "slot.answer"
+        "konva_1786410614957_rect_47608",
+        "slot.question"
       ]
     }
   ],
@@ -27,8 +27,8 @@
       "content": {
         "text": "동화책이 두 권 있습니다. 한 권은 230쪽이고 다른 한 권은 450쪽입니다. 두 동화책의 쪽수를 더하면 모두 몇 쪽입니까?",
         "style_role": "body",
-        "x": 14.41,
-        "y": 20.311,
+        "x": 6.66,
+        "y": 5.654,
         "width": 561.344,
         "height": 143.689,
         "align": "left",
@@ -40,11 +40,39 @@
       }
     },
     {
-      "id": "slot.answer",
-      "kind": "blank",
-      "prompt": "답",
+      "id": "konva_1786410614957_rect_47608",
+      "kind": "rect",
+      "prompt": "",
       "content": {
-        "placeholder": "쪽"
+        "x": 421.524,
+        "y": 109.303,
+        "width": 146.413,
+        "height": 46.857,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "integer",
+          "max_length": 3,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "auto_advance": false,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222"
+        }
       }
     }
   ],
@@ -53,7 +81,7 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.question",
-    "slot.answer"
+    "konva_1786410614957_rect_47608",
+    "slot.question"
   ]
 }

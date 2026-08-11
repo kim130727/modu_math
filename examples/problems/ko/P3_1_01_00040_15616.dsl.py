@@ -6,7 +6,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextBoxSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_15616"
@@ -272,18 +272,13 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="vertical",
-                slot_ids=(
-                    "slot.question",
-                    "slot.answer",
-                ),
+                slot_ids=("slot.question",
+                    'konva_1786410614957_rect_658800'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.question",
-                x=24,
-                y=24,
-                width = 545.115, height = 140, text=(
+                x = 22.278, y = 12.792, width = 545.115, height = 140, text=(
                     "줄넘기를 하였습니다. 주영이는 123회, 영수는 342회를 넘었습니다. "
                     "두 사람이 넘은 줄넘기는 모두 몇 회입니까?"
                 ),
@@ -293,13 +288,7 @@ def build_problem_template() -> ProblemTemplate:
                 align="left",
                 valign="top",
             ),
-            BlankSlot(
-                id="slot.answer",
-                prompt="답",
-                answer_key="465",
-                placeholder="회",
-            ),
-        ),
+            RectSlot(id = 'konva_1786410614957_rect_658800', prompt = '', x = 368.99, y = 115.338, width = 137.801, height = 45.995, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
     )
 
 

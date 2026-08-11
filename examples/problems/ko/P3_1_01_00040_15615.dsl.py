@@ -6,7 +6,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextBoxSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_15615"
@@ -141,16 +141,12 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="vertical",
-                slot_ids=(
-                    "slot.question",
-                    
-                ),
+                slot_ids=("slot.question",'konva_1786410614957_rect_47608'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.question",
-                x = 14.41, y = 20.311, width = 561.344, height = 143.689, text=(
+                x = 6.66, y = 5.654, width = 561.344, height = 143.689, text=(
                     "동화책이 두 권 있습니다. 한 권은 230쪽이고 다른 한 권은 450쪽입니다. "
                     "두 동화책의 쪽수를 더하면 모두 몇 쪽입니까?"
                 ),
@@ -160,13 +156,7 @@ def build_problem_template() -> ProblemTemplate:
                 align="left",
                 valign="top",
             ),
-            BlankSlot(
-                id="slot.answer",
-                prompt="답",
-                answer_key="680",
-                placeholder="쪽",
-            ),
-        ),
+            RectSlot(id = 'konva_1786410614957_rect_47608', prompt = '', x = 421.524, y = 109.303, width = 146.413, height = 46.857, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
     )
 
 

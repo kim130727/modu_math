@@ -764,4 +764,37 @@ void main() {
     expect(value, equals('111304111026'));
     expect(tester.takeException(), isNull);
   });
+
+  test('positions svg text using baseline and text-anchor', () {
+    expect(
+      rendererTextPaintOffset(
+        x: 120,
+        y: 80,
+        baseline: 18,
+        anchorWidth: 42,
+        textAnchor: null,
+      ),
+      equals(const Offset(120, 62)),
+    );
+    expect(
+      rendererTextPaintOffset(
+        x: 120,
+        y: 80,
+        baseline: 18,
+        anchorWidth: 42,
+        textAnchor: 'middle',
+      ),
+      equals(const Offset(99, 62)),
+    );
+    expect(
+      rendererTextPaintOffset(
+        x: 120,
+        y: 80,
+        baseline: 18,
+        anchorWidth: 42,
+        textAnchor: 'end',
+      ),
+      equals(const Offset(78, 62)),
+    );
+  });
 }
