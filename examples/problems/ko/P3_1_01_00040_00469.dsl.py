@@ -221,14 +221,12 @@ def build_problem_template() -> ProblemTemplate:
                 x=32,
                 y=24,
                 width=836,
-                height=92,
-                text=(
+                height = 139, text=(
                     "지난 일요일 상현이네와 용진이네 가족은 주말 농장에 갔습니다. "
                     "고구마를 상현이네는 259개, 용진이네는 248개 캤습니다. "
                     "이 두 가족이 캔 고구마는 모두 몇 개입니까?"
                 ),
-                font_size=24,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
+                font_size = 30, font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 line_height=1.45,
                 align="left",
@@ -239,8 +237,7 @@ def build_problem_template() -> ProblemTemplate:
                 x=124,
                 y=146,
                 width=340,
-                height=42,
-                text="259 + 248 =",
+                height = 46, text="259 + 248 =",
                 font_size=30,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
@@ -290,8 +287,7 @@ def build_problem_template() -> ProblemTemplate:
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#111827",
                 width=60,
-                height=44,
-                align="left",
+                height = 46, align="left",
                 valign="middle",
                 line_height=1.25,
             ),

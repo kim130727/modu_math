@@ -241,6 +241,39 @@ def test_solvable_v1_3_unregistered_error_uses_default_rule_tutor_flow() -> None
     assert "두 수를 바로 더하지 말고" not in response["reply"]
 
 
+def test_unregistered_addition_place_value_error_uses_inferred_feedback() -> None:
+    solvable = {
+        "schema": "modu.solvable.v1.3",
+        "problem_id": "P3_1_01_00040_00469",
+        "problem_type": "numeric_answer_addition_word_problem",
+        "method": "add_parts",
+        "steps": [
+            {
+                "id": "step.add_counts",
+                "goal": "두 수를 모두 구한다.",
+                "expr": "259 + 248",
+                "value": 507,
+            }
+        ],
+        "answer": {"value": 507, "unit": "개"},
+        "diagnostics": {"errors": {"259": "plan.copy_one_part", "248": "plan.copy_one_part"}},
+    }
+
+    diagnostic = diagnose_student_response(solvable, "1111", correct=False)
+    payload = {"semantic": {"metadata": {"language": "ko"}}, "solvable": solvable}
+    first = rule_tutor_response(payload, "start", [])
+    response = rule_tutor_response(
+        payload,
+        "1111",
+        [{"role": "assistant", "content": first["reply"]}],
+    )
+
+    assert diagnostic["error_code"] == "execute.place_value_compose"
+    assert diagnostic["remediation"] == "place_value_compose"
+    assert "받아올림" in response["reply"]
+    assert "이어 쓰면 안" in response["reply"]
+
+
 def test_normalize_solvable_accepts_v1_3_id_fields() -> None:
     normalized = normalize_solvable(
         {

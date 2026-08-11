@@ -106,6 +106,10 @@ class RuleTutorService extends AiTutorService {
         _confusionReply(content, step, safeIndex),
       );
     }
+    final diagnostic = _diagnosticFeedback(content, step, cleanMessage);
+    if (diagnostic.isNotEmpty) {
+      return _ruleResponse(content, steps, safeIndex, diagnostic);
+    }
     if (_answerMatchesStep(cleanMessage, step)) {
       final next = safeIndex + 1;
       if (next >= steps.length) {
@@ -313,11 +317,13 @@ class RuleTutorService extends AiTutorService {
             : raw.containsKey('expected')
                 ? _studentExpectedAnswer(raw['expected'])
                 : '';
+        final expr = raw['expr']?.toString().trim() ?? '';
         return _RuleStep(
           prompt:
               prompt.isEmpty ? '$index번째 풀이 단계를 확인해요.' : _cleanPrompt(prompt),
           expected: expected,
           explanation: _cleanPrompt(explanation),
+          expr: expr,
         );
       }
       return _RuleStep(prompt: '$index번째 풀이 단계를 확인해요.', expected: '');
@@ -462,12 +468,14 @@ class _RuleStep {
     required this.expected,
     this.explanation = '',
     this.choices = const [],
+    this.expr = '',
   });
 
   final String prompt;
   final String expected;
   final String explanation;
   final List<String> choices;
+  final String expr;
 }
 
 bool _isPlaceValueMatching(ProblemContent content) {
@@ -581,6 +589,111 @@ bool _answerMatchesStep(String message, _RuleStep step) {
       .whereType<String>()
       .toSet();
   return expectedNumbers.any(messageNumbers.contains);
+}
+
+String _diagnosticFeedback(
+  ProblemContent content,
+  _RuleStep step,
+  String message,
+) {
+  final registered = _registeredDiagnosticFeedback(content, message);
+  if (registered.isNotEmpty) {
+    return registered;
+  }
+  return _inferredArithmeticFeedback(step, message);
+}
+
+String _registeredDiagnosticFeedback(ProblemContent content, String message) {
+  final diagnostics = content.solvable['diagnostics'];
+  if (diagnostics is! Map<String, dynamic>) {
+    return '';
+  }
+  final errors = diagnostics['errors'];
+  if (errors is! Map<String, dynamic>) {
+    return '';
+  }
+  final code = errors[message.trim()]?.toString();
+  if (code == null || code.isEmpty) {
+    return '';
+  }
+  switch (code) {
+    case 'plan.copy_one_part':
+      return '한 가족의 수만 쓰면 안 돼요. 두 가족이 캔 수를 모두 구해야 하니 두 수를 더해 보세요.';
+    case 'execute.add_carry':
+      return '받아올림을 다시 확인해요. 일의 자리부터 더하고, 10이 넘으면 다음 자리로 1을 올려요.';
+    case 'execute.add_fact':
+      return '덧셈 계산을 다시 확인해요. 각 자리의 수를 차례로 더해 보세요.';
+    case 'execute.place_value_compose':
+      return '받아올림한 수나 중간 계산을 그대로 이어 쓰면 안 돼요. 각 자리 숫자로 다시 모아 보세요.';
+  }
+  return '';
+}
+
+String _inferredArithmeticFeedback(_RuleStep step, String message) {
+  final response = message.trim();
+  if (!RegExp(r'^-?\d+$').hasMatch(response)) {
+    return '';
+  }
+  final expected = int.tryParse(step.expected.trim());
+  if (expected == null) {
+    return '';
+  }
+  final terms = _additionTerms(step.expr);
+  if (terms.length < 2 ||
+      terms.fold<int>(0, (sum, item) => sum + item) != expected) {
+    return '';
+  }
+  final normalized = response.replaceFirst(RegExp(r'^0+'), '');
+  final cleanResponse = normalized.isEmpty ? '0' : normalized;
+  if (cleanResponse == expected.toString()) {
+    return '';
+  }
+  if (_hasColumnCarry(terms) &&
+      cleanResponse.length > expected.abs().toString().length) {
+    return '받아올림한 수나 중간 계산을 그대로 이어 쓰면 안 돼요. 일의 자리부터 계산해 각 자리 숫자로 다시 모아 보세요.';
+  }
+  if (_hasColumnCarry(terms)) {
+    return '받아올림을 다시 확인해요. 일의 자리부터 더하고, 10이 넘으면 다음 자리로 1을 올려요.';
+  }
+  return '';
+}
+
+List<int> _additionTerms(String expression) {
+  if (!RegExp(r'^\s*\d+\s*(?:\+\s*\d+\s*)+$').hasMatch(expression)) {
+    return const [];
+  }
+  return RegExp(r'\d+')
+      .allMatches(expression)
+      .map((match) => int.parse(match.group(0)!))
+      .toList();
+}
+
+bool _hasColumnCarry(List<int> terms) {
+  if (terms.isEmpty) {
+    return false;
+  }
+  var carry = 0;
+  final maxDigits = terms
+      .map((term) => term.abs().toString().length)
+      .fold<int>(0, (max, length) => length > max ? length : max);
+  for (var place = 0; place < maxDigits; place += 1) {
+    final divisor = _intPow10(place);
+    final columnSum = carry +
+        terms.fold<int>(0, (sum, term) => sum + (term.abs() ~/ divisor) % 10);
+    if (columnSum >= 10) {
+      return true;
+    }
+    carry = columnSum ~/ 10;
+  }
+  return carry > 0;
+}
+
+int _intPow10(int exponent) {
+  var value = 1;
+  for (var index = 0; index < exponent; index += 1) {
+    value *= 10;
+  }
+  return value;
 }
 
 bool _wantsRestart(String message) {

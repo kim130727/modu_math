@@ -26,6 +26,25 @@ void main() {
       expect(reply.replyType, equals(TutorReplyType.correct));
       expect(reply.text, contains('정답은 507이에요.'));
     });
+
+    test('infers addition place value feedback for unregistered wrong answer',
+        () async {
+      const service = RuleTutorService();
+      final content = _additionContent();
+      final messages = service.startSession(content);
+
+      final reply = await service.respondToStudent(
+        content: content,
+        messages: messages,
+        message: '1111',
+        stepIndex: 0,
+      );
+
+      expect(reply.replyType, equals(TutorReplyType.question));
+      expect(reply.text, contains('받아올림'));
+      expect(reply.text, contains('이어 쓰면 안'));
+      expect(reply.choices, contains('507'));
+    });
   });
 }
 
