@@ -111,6 +111,7 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
     final solvedCorrectly = widget.isCorrect == true;
     final latestTutorMessage =
         widget.messages.where((message) => message.isTutor).lastOrNull;
+    final diagnosticActive = latestTutorMessage?.pendingDiagnosticCode != null;
     final tutorChoices = solvedCorrectly
         ? const <String>[]
         : latestTutorMessage?.choices ?? const <String>[];
@@ -184,7 +185,9 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
                     ),
                   ),
                   OutlinedButton.icon(
-                    onPressed: widget.isBusy || widget.messages.isEmpty
+                    onPressed: widget.isBusy ||
+                            widget.messages.isEmpty ||
+                            diagnosticActive
                         ? null
                         : widget.onNextStep,
                     icon: const Icon(Icons.arrow_forward),
@@ -340,7 +343,9 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
                   Expanded(
                     child: OutlinedButton.icon(
                       onPressed:
-                          widget.isBusy || !tutorActive ? null : widget.onHint,
+                          widget.isBusy || !tutorActive || diagnosticActive
+                              ? null
+                              : widget.onHint,
                       icon: const Icon(Icons.lightbulb_outline),
                       label: Text(strings.t('tutor.hint')),
                     ),
@@ -348,9 +353,10 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
                   const SizedBox(width: 10),
                   Expanded(
                     child: OutlinedButton.icon(
-                      onPressed: widget.isBusy || !tutorActive
-                          ? null
-                          : widget.onNextStep,
+                      onPressed:
+                          widget.isBusy || !tutorActive || diagnosticActive
+                              ? null
+                              : widget.onNextStep,
                       icon: const Icon(Icons.arrow_forward),
                       label: Text(strings.t('tutor.nextStep')),
                     ),

@@ -106,7 +106,7 @@ class RuleTutorService extends AiTutorService {
         return _tutor(
           result.feedback,
           TutorReplyType.question,
-          choices: _stepChoices(content, steps, safeIndex),
+          pendingDiagnosticCode: result.nextDiagnosticCode,
           errorCategory: result.errorCategory,
         );
       }
@@ -473,7 +473,7 @@ class RuleTutorService extends AiTutorService {
     }
 
     if (_looksNumber(expected)) {
-      return _numericChoices(expected);
+      return const [];
     }
     final problemChoices = content.choices;
     if (problemChoices.isNotEmpty && index == steps.length - 1) {

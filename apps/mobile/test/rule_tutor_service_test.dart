@@ -14,7 +14,7 @@ void main() {
       final messages = service.startSession(content);
 
       expect(messages.single.replyType, equals(TutorReplyType.question));
-      expect(messages.single.choices, contains('507'));
+      expect(messages.single.choices, isEmpty);
 
       final reply = await service.respondToStudent(
         content: content,
@@ -40,7 +40,7 @@ void main() {
 
       expect(reply.replyType, equals(TutorReplyType.question));
       expect(reply.text, contains('받아올림'));
-      expect(reply.choices, contains('507'));
+      expect(reply.choices, isEmpty);
     });
 
     test('accepts the correct submitted answer immediately', () async {
@@ -126,6 +126,59 @@ void main() {
         carryFeedback.errorCategory,
         equals(ErrorCategory.executionCalculation),
       );
+    });
+
+    test('walks carry diagnosis one place at a time', () async {
+      const service = RuleTutorService();
+      final content = _additionContent();
+      final onesPrompt = await service.reviewAnswer(
+        content: content,
+        messages: const [],
+        answer: '497',
+      );
+      final tensPrompt = await service.respondToStudent(
+        content: content,
+        messages: [onesPrompt, service.student('17')],
+        message: '17',
+        stepIndex: 0,
+      );
+      final hundredsPrompt = await service.respondToStudent(
+        content: content,
+        messages: [
+          onesPrompt,
+          service.student('17'),
+          tensPrompt,
+          service.student('10')
+        ],
+        message: '10',
+        stepIndex: 0,
+      );
+      final finalFeedback = await service.respondToStudent(
+        content: content,
+        messages: [
+          onesPrompt,
+          service.student('17'),
+          tensPrompt,
+          service.student('10'),
+          hundredsPrompt,
+          service.student('5'),
+        ],
+        message: '5',
+        stepIndex: 0,
+      );
+
+      expect(tensPrompt.text, contains('십의 자리만 볼게요'));
+      expect(
+          tensPrompt.pendingDiagnosticCode, equals('execute.add_carry.tens'));
+      expect(tensPrompt.choices, isEmpty);
+      expect(hundredsPrompt.text, contains('백의 자리'));
+      expect(
+        hundredsPrompt.pendingDiagnosticCode,
+        equals('execute.add_carry.hundreds'),
+      );
+      expect(hundredsPrompt.choices, isEmpty);
+      expect(finalFeedback.text, contains('507'));
+      expect(finalFeedback.pendingDiagnosticCode, isNull);
     });
 
     test('does not immediately classify an unregistered wrong answer',

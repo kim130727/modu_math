@@ -57,10 +57,48 @@ class DiagnosticConfirmationService {
               '그래서 259와 248을 함께 더해야 해요.',
         );
       case 'execute.add_carry':
+        if (_matchesAny(confirmationAnswer, const ['17'])) {
+          return const DiagnosticResult(
+            errorCategory: ErrorCategory.executionCalculation,
+            feedback: '맞아요. 17이니까 일의 자리에는 7을 쓰고, 1을 십의 자리로 올려요.\n'
+                '이제 십의 자리만 볼게요. 5와 4, 그리고 받아올린 1을 더하면 얼마인가요?',
+            nextDiagnosticCode: 'execute.add_carry.tens',
+          );
+        }
         return const DiagnosticResult(
           errorCategory: ErrorCategory.executionCalculation,
-          feedback: '9와 8을 더하면 17이에요.\n'
-              '일의 자리에 7을 쓰고 십의 자리로 1을 받아올림한 뒤 다시 이어서 계산해 볼게요.',
+          feedback: '9와 8을 더하면 17이에요. 그래서 일의 자리에는 7을 쓰고, 1을 십의 자리로 올려요.\n'
+              '이제 십의 자리만 볼게요. 5와 4, 그리고 받아올린 1을 더하면 얼마인가요?',
+          nextDiagnosticCode: 'execute.add_carry.tens',
+        );
+      case 'execute.add_carry.tens':
+        if (_matchesAny(confirmationAnswer, const ['10'])) {
+          return const DiagnosticResult(
+            errorCategory: ErrorCategory.executionCalculation,
+            feedback: '좋아요. 5와 4와 1을 더하면 10이에요.\n'
+                '십의 자리에는 0을 쓰고, 1을 백의 자리로 올려요. 마지막으로 백의 자리에서 2와 2와 받아올린 1을 더하면 얼마인가요?',
+            nextDiagnosticCode: 'execute.add_carry.hundreds',
+          );
+        }
+        return const DiagnosticResult(
+          errorCategory: ErrorCategory.executionCalculation,
+          feedback: '십의 자리에는 일의 자리에서 받아올린 1도 함께 더해야 해요.\n'
+              '5와 4와 1을 더하면 얼마인지 다시 확인해 볼게요.',
+          nextDiagnosticCode: 'execute.add_carry.tens',
+        );
+      case 'execute.add_carry.hundreds':
+        if (_matchesAny(confirmationAnswer, const ['5'])) {
+          return const DiagnosticResult(
+            errorCategory: ErrorCategory.executionCalculation,
+            feedback: '맞아요. 백의 자리는 5예요.\n'
+                '그래서 각 자리 숫자를 모으면 507이 됩니다.',
+          );
+        }
+        return const DiagnosticResult(
+          errorCategory: ErrorCategory.executionCalculation,
+          feedback: '백의 자리도 십의 자리에서 받아올린 1을 함께 더해야 해요.\n'
+              '2와 2와 1을 더하면 얼마인지 확인해 볼게요.',
+          nextDiagnosticCode: 'execute.add_carry.hundreds',
         );
     }
     return null;
@@ -118,8 +156,10 @@ class DiagnosticResult {
   const DiagnosticResult({
     required this.errorCategory,
     required this.feedback,
+    this.nextDiagnosticCode,
   });
 
   final ErrorCategory errorCategory;
   final String feedback;
+  final String? nextDiagnosticCode;
 }
