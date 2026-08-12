@@ -1,11 +1,17 @@
 import '../models/content_models.dart';
+import '../models/learning_progress.dart';
 import '../models/tutor_models.dart';
 import '../utils/answer_normalizer.dart';
 import '../utils/tutor_text_sanitizer.dart';
 import 'ai_tutor_service.dart';
+import 'diagnostic_confirmation_service.dart';
 
 class RuleTutorService extends AiTutorService {
-  const RuleTutorService();
+  const RuleTutorService({
+    this.diagnosticConfirmationService = const DiagnosticConfirmationService(),
+  });
+
+  final DiagnosticConfirmationService diagnosticConfirmationService;
 
   @override
   TutorMode get mode => TutorMode.rule;
@@ -89,6 +95,22 @@ class RuleTutorService extends AiTutorService {
     if (_wantsRestart(cleanMessage)) {
       return _ruleResponse(content, steps, 0, _ruleIntro(content, steps));
     }
+    final pendingDiagnosticCode =
+        diagnosticConfirmationService.pendingCodeFrom(messages);
+    if (pendingDiagnosticCode != null) {
+      final result = diagnosticConfirmationService.resultFor(
+        diagnosticCode: pendingDiagnosticCode,
+        confirmationAnswer: cleanMessage,
+      );
+      if (result != null) {
+        return _tutor(
+          result.feedback,
+          TutorReplyType.question,
+          choices: _stepChoices(content, steps, safeIndex),
+          errorCategory: result.errorCategory,
+        );
+      }
+    }
     if (_asksForNext(cleanMessage)) {
       final next = (safeIndex + 1).clamp(0, steps.length - 1);
       return _ruleResponse(
@@ -104,6 +126,18 @@ class RuleTutorService extends AiTutorService {
         steps,
         safeIndex,
         _confusionReply(content, step, safeIndex),
+      );
+    }
+    final diagnosticPrompt = diagnosticConfirmationService.promptFor(
+      content: content,
+      answer: cleanMessage,
+    );
+    if (diagnosticPrompt != null) {
+      return _tutor(
+        diagnosticPrompt.text,
+        TutorReplyType.question,
+        choices: diagnosticPrompt.choices,
+        pendingDiagnosticCode: diagnosticPrompt.diagnosticCode,
       );
     }
     final diagnostic = _diagnosticFeedback(content, step, cleanMessage);
@@ -145,6 +179,24 @@ class RuleTutorService extends AiTutorService {
         '좋아요. 정확히 맞았어요.\n'
         '다음 문제로 넘어가 볼까요?',
         TutorReplyType.correct,
+      );
+    }
+    final diagnosticPrompt = diagnosticConfirmationService.promptFor(
+      content: content,
+      answer: answer,
+    );
+    if (diagnosticPrompt != null) {
+      return _tutor(
+        diagnosticPrompt.text,
+        TutorReplyType.question,
+        choices: diagnosticPrompt.choices,
+        pendingDiagnosticCode: diagnosticPrompt.diagnosticCode,
+      );
+    }
+    if (_hasRegisteredDiagnostics(content)) {
+      return _tutor(
+        '어느 자리에서 달라졌는지 하나씩 확인해 볼게요.',
+        TutorReplyType.question,
       );
     }
     return respondToStudent(
@@ -451,12 +503,16 @@ class RuleTutorService extends AiTutorService {
     String text,
     TutorReplyType type, {
     List<String> choices = const [],
+    String? pendingDiagnosticCode,
+    ErrorCategory errorCategory = ErrorCategory.none,
   }) {
     return TutorMessage(
       role: TutorMessageRole.tutor,
       text: sanitizeTutorText(text),
       replyType: type,
       choices: choices,
+      pendingDiagnosticCode: pendingDiagnosticCode,
+      errorCategory: errorCategory,
       createdAt: DateTime.now(),
     );
   }
@@ -627,6 +683,15 @@ String _registeredDiagnosticFeedback(ProblemContent content, String message) {
       return '받아올림한 수나 중간 계산을 그대로 이어 쓰면 안 돼요. 각 자리 숫자로 다시 모아 보세요.';
   }
   return '';
+}
+
+bool _hasRegisteredDiagnostics(ProblemContent content) {
+  final diagnostics = content.solvable['diagnostics'];
+  if (diagnostics is! Map<String, dynamic>) {
+    return false;
+  }
+  final errors = diagnostics['errors'];
+  return errors is Map && errors.isNotEmpty;
 }
 
 String _inferredArithmeticFeedback(_RuleStep step, String message) {

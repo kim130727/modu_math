@@ -1,3 +1,5 @@
+import 'learning_progress.dart';
+
 enum TutorMessageRole {
   tutor,
   student,
@@ -24,6 +26,8 @@ class TutorMessage {
     required this.createdAt,
     this.replyType,
     this.choices = const [],
+    this.pendingDiagnosticCode,
+    this.errorCategory = ErrorCategory.none,
   });
 
   final TutorMessageRole role;
@@ -31,6 +35,8 @@ class TutorMessage {
   final DateTime createdAt;
   final TutorReplyType? replyType;
   final List<String> choices;
+  final String? pendingDiagnosticCode;
+  final ErrorCategory errorCategory;
 
   bool get isTutor => role == TutorMessageRole.tutor;
 }

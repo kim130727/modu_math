@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
+import '../models/learning_progress.dart';
 import '../models/tutor_models.dart';
 import '../services/ai_tutor_service.dart';
 import '../services/content_repository.dart';
@@ -321,6 +322,15 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
     setState(() => tutorBusy = true);
     try {
       final reply = await request();
+      if (!mounted) {
+        return;
+      }
+      if (reply.errorCategory != ErrorCategory.none) {
+        await widget.progressRepository?.updateAttemptErrorCategory(
+          attemptId: '',
+          category: reply.errorCategory,
+        );
+      }
       if (!mounted) {
         return;
       }
