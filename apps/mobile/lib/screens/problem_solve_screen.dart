@@ -4,17 +4,15 @@ import 'package:flutter/material.dart';
 
 import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
-import '../models/learning_progress.dart';
-import '../models/tutor_models.dart';
-import '../services/ai_tutor_service.dart';
 import '../services/content_repository.dart';
 import '../services/learning_progress_repository.dart';
-import '../services/rule_tutor_service.dart';
+import '../services/solvable_hint_service.dart';
 import '../utils/answer_normalizer.dart';
+import '../widgets/answer_panel.dart';
+import '../widgets/hint_panel.dart';
 import '../widgets/onsem_loading_indicator.dart';
 import '../widgets/problem_svg_viewer.dart';
 import '../widgets/renderer_json_canvas.dart';
-import '../widgets/tutor_chat_panel.dart';
 
 class ProblemSolveScreen extends StatefulWidget {
   const ProblemSolveScreen({
@@ -38,21 +36,19 @@ class ProblemSolveScreen extends StatefulWidget {
 
 class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
   late Future<ProblemContent> contentFuture;
-  late AiTutorService tutorService;
-  final List<TutorMessage> tutorMessages = [];
-  bool tutorBusy = false;
-  String? tutorProblemId;
+  final SolvableHintService hintService = const SolvableHintService();
   String? submittedAnswer;
   String answerDraft = '';
   bool? isCorrect;
   int hintLevel = 0;
-  int tutorStepIndex = 0;
   String? _activeProblemLocale;
+  String? _learningSessionProblemId;
+  String? _learningSessionId;
+  Future<String?>? _learningSessionFuture;
 
   @override
   void initState() {
     super.initState();
-    tutorService = _createTutorService();
     contentFuture = _loadContent();
   }
 
@@ -71,13 +67,13 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
     }
     setState(() {
       contentFuture = _loadContent();
-      tutorProblemId = null;
-      tutorMessages.clear();
       submittedAnswer = null;
       answerDraft = '';
       isCorrect = null;
       hintLevel = 0;
-      tutorStepIndex = 0;
+      _learningSessionProblemId = null;
+      _learningSessionId = null;
+      _learningSessionFuture = null;
     });
   }
 
@@ -140,7 +136,7 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
           }
 
           final content = snapshot.data!;
-          _ensureTutorSession(content);
+          unawaited(_ensureLearningSession(content));
           return LayoutBuilder(
             builder: (context, constraints) {
               final wide = constraints.maxWidth >= 960;
@@ -149,21 +145,23 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
                 answerDraft: answerDraft,
                 onAnswerChanged: _updateAnswerDraft,
               );
-              final tutorPanel = TutorChatPanel(
+              final answerPanel = AnswerPanel(
                 content: content,
-                messages: tutorMessages,
-                isBusy: tutorBusy,
                 answerDraft: answerDraft,
                 submittedAnswer: submittedAnswer,
                 isCorrect: isCorrect,
                 onAnswerChanged: _updateAnswerDraft,
                 onSubmit: (answer) => _submit(content, answer),
-                onSend: (message) => _sendTutorMessage(content, message),
-                onHint: () => _requestHint(content),
-                onNextStep: () => _requestNextStep(content),
-                onRestart: () => _restartTutor(content),
-                onReset: _resetTutor,
-                hasNextProblem: _hasNextProblem,
+                onShowSolution: () => _revealSolution(content),
+              );
+              final hintPanel = HintPanel(
+                hints: hintService.buildHints(content),
+                visibleLevel: hintLevel,
+                onRevealNext: () => _revealNextHint(content),
+              );
+              final controls = _ProblemControls(
+                canOpenNextProblem: _hasNextProblem,
+                onRetry: () => _restartProblem(content),
                 onNextProblem: _openNextProblem,
               );
 
@@ -181,7 +179,15 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
                             const SizedBox(width: 20),
                             Expanded(
                               flex: 4,
-                              child: ListView(children: [tutorPanel]),
+                              child: ListView(
+                                children: [
+                                  answerPanel,
+                                  const SizedBox(height: 14),
+                                  hintPanel,
+                                  const SizedBox(height: 14),
+                                  controls,
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -197,7 +203,11 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
                   children: [
                     SizedBox(height: 340, child: problemViewer),
                     const SizedBox(height: 16),
-                    tutorPanel,
+                    answerPanel,
+                    const SizedBox(height: 14),
+                    hintPanel,
+                    const SizedBox(height: 14),
+                    controls,
                   ],
                 ),
               );
@@ -210,6 +220,14 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
 
   Future<void> _submit(ProblemContent content, String answer) async {
     final correct = isSameAnswer(answer, content.correctAnswer);
+    final sessionId = await _ensureLearningSession(content);
+    if (sessionId != null) {
+      await widget.progressRepository?.recordSessionSubmission(
+        sessionId: sessionId,
+        answer: answer,
+        isCorrect: correct,
+      );
+    }
     await widget.progressRepository?.recordAttempt(
       problem: content.summary,
       answer: answer,
@@ -220,50 +238,20 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
       answerDraft = answer;
       submittedAnswer = answer;
       isCorrect = correct;
-      tutorMessages.add(tutorService.student(answer));
     });
-    await _addTutorReply(
-      () => tutorService.reviewAnswer(
-        content: content,
-        messages: tutorMessages,
-        answer: answer,
-      ),
-    );
   }
 
-  void _ensureTutorSession(ProblemContent content) {
-    if (tutorProblemId == content.summary.id) {
-      return;
-    }
-    tutorProblemId = content.summary.id;
-    tutorMessages.clear();
-    hintLevel = 0;
-    tutorStepIndex = 0;
-  }
-
-  void _restartTutor(ProblemContent content) {
+  void _restartProblem(ProblemContent content) {
     setState(() {
       submittedAnswer = null;
       answerDraft = '';
       isCorrect = null;
-      tutorMessages.clear();
-      tutorMessages.addAll(tutorService.startSession(content));
-      tutorProblemId = content.summary.id;
       hintLevel = 0;
-      tutorStepIndex = 0;
+      _learningSessionProblemId = null;
+      _learningSessionId = null;
+      _learningSessionFuture = null;
     });
-  }
-
-  void _resetTutor() {
-    setState(() {
-      tutorMessages.clear();
-      tutorProblemId = null;
-      submittedAnswer = null;
-      answerDraft = '';
-      isCorrect = null;
-      hintLevel = 0;
-      tutorStepIndex = 0;
-    });
+    unawaited(_ensureLearningSession(content));
   }
 
   void _updateAnswerDraft(String value) {
@@ -273,87 +261,62 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
     setState(() => answerDraft = value);
   }
 
-  Future<void> _sendTutorMessage(ProblemContent content, String message) async {
-    setState(() {
-      tutorMessages.add(tutorService.student(message));
+  Future<String?> _ensureLearningSession(ProblemContent content) async {
+    if (widget.progressRepository == null) {
+      return null;
+    }
+    if (_learningSessionProblemId == content.summary.id &&
+        _learningSessionId != null) {
+      return _learningSessionId;
+    }
+    final existingFuture = _learningSessionFuture;
+    if (_learningSessionProblemId == content.summary.id &&
+        existingFuture != null) {
+      return existingFuture;
+    }
+    _learningSessionProblemId = content.summary.id;
+    _learningSessionFuture = widget.progressRepository!
+        .startLearningSession(
+      problem: content.summary,
+      skillIds: _skillIdsFromSolvable(content.solvable),
+    )
+        .then<String?>((session) {
+      _learningSessionId = session.sessionId;
+      return session.sessionId;
+    }).catchError((_) {
+      _learningSessionProblemId = null;
+      _learningSessionFuture = null;
+      return null;
     });
-    await _addTutorReply(
-      () => tutorService.respondToStudent(
-        content: content,
-        messages: tutorMessages,
-        message: message,
-        stepIndex: tutorStepIndex,
-      ),
-    );
+    return _learningSessionFuture;
   }
 
-  Future<void> _requestHint(ProblemContent content) async {
-    final currentHintLevel = hintLevel;
-    setState(() => hintLevel += 1);
-    await _addTutorReply(
-      () => tutorService.hint(
-        content: content,
-        messages: tutorMessages,
-        hintLevel: currentHintLevel,
-      ),
-    );
-  }
-
-  Future<void> _requestNextStep(ProblemContent content) async {
-    final currentStepIndex = tutorStepIndex;
-    setState(() => tutorStepIndex += 1);
-    await _addTutorReply(
-      () => tutorService.nextQuestion(
-        content: content,
-        messages: tutorMessages,
-        stepIndex: currentStepIndex,
-      ),
-    );
-  }
-
-  Future<void> _addTutorReply(Future<TutorMessage> Function() request) async {
-    if (tutorBusy) {
+  Future<void> _revealNextHint(ProblemContent content) async {
+    if (hintLevel >= 4) {
       return;
     }
-    setState(() => tutorBusy = true);
-    try {
-      final reply = await request();
-      if (!mounted) {
-        return;
-      }
-      if (reply.errorCategory != ErrorCategory.none) {
-        await widget.progressRepository?.updateAttemptErrorCategory(
-          attemptId: '',
-          category: reply.errorCategory,
-        );
-      }
-      if (!mounted) {
-        return;
-      }
-      setState(() {
-        tutorMessages.add(reply);
-        tutorBusy = false;
-      });
-    } catch (_) {
-      if (!mounted) {
-        return;
-      }
-      setState(() {
-        tutorMessages.add(
-          TutorMessage(
-            role: TutorMessageRole.tutor,
-            text: AppStrings.of(context).t('problem.loadErrorTutor'),
-            replyType: TutorReplyType.retry,
-            createdAt: DateTime.now(),
-          ),
-        );
-        tutorBusy = false;
-      });
+    final nextLevel = hintLevel + 1;
+    setState(() => hintLevel = nextLevel);
+    final sessionId = await _ensureLearningSession(content);
+    if (sessionId != null) {
+      await widget.progressRepository?.recordSessionHint(
+        sessionId: sessionId,
+        level: nextLevel,
+      );
     }
   }
 
-  AiTutorService _createTutorService() {
-    return const RuleTutorService();
+  Future<void> _revealSolution(ProblemContent content) async {
+    if (hintLevel < 4) {
+      setState(() => hintLevel = 4);
+      final sessionId = await _ensureLearningSession(content);
+      if (sessionId != null) {
+        await widget.progressRepository?.recordSessionHint(
+          sessionId: sessionId,
+          level: 4,
+        );
+      }
+    }
   }
 
   bool get _hasNextProblem {
@@ -418,6 +381,63 @@ bool _looksBrokenText(String value) {
   return RegExp(r'[\u3400-\u9FFF\uFFFD]').hasMatch(value) ||
       value.contains('??') ||
       value.contains('�');
+}
+
+List<String> _skillIdsFromSolvable(Map<String, dynamic> solvable) {
+  final diagnostics = solvable['diagnostics'];
+  if (diagnostics is! Map<String, dynamic>) {
+    return const [];
+  }
+  final skills = diagnostics['skills'];
+  if (skills is! List) {
+    return const [];
+  }
+  return skills
+      .map((skill) => skill.toString().trim())
+      .where((skill) => skill.isNotEmpty)
+      .toList();
+}
+
+class _ProblemControls extends StatelessWidget {
+  const _ProblemControls({
+    required this.canOpenNextProblem,
+    required this.onRetry,
+    required this.onNextProblem,
+  });
+
+  final bool canOpenNextProblem;
+  final VoidCallback onRetry;
+  final VoidCallback onNextProblem;
+
+  @override
+  Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
+    return Card(
+      margin: EdgeInsets.zero,
+      child: Padding(
+        padding: const EdgeInsets.all(18),
+        child: Row(
+          children: [
+            Expanded(
+              child: OutlinedButton.icon(
+                onPressed: onRetry,
+                icon: const Icon(Icons.refresh),
+                label: const Text('다시 풀기'),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: FilledButton.icon(
+                onPressed: canOpenNextProblem ? onNextProblem : null,
+                icon: const Icon(Icons.navigate_next),
+                label: Text(strings.t('common.nextProblem')),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class _ProblemVisual extends StatelessWidget {

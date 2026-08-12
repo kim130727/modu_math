@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -669,8 +668,7 @@ class RendererJsonPainter extends CustomPainter {
     )..layout(maxWidth: _readDouble(attributes['max_width']) ?? 860);
 
     final baseline =
-        painter.computeDistanceToActualBaseline(TextBaseline.alphabetic) ??
-            fontSize;
+        painter.computeDistanceToActualBaseline(TextBaseline.alphabetic);
     final anchorWidth = _textAnchorWidth(painter);
     final offset = rendererTextPaintOffset(
       x: _readDouble(attributes['x']) ?? 0,

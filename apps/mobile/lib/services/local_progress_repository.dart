@@ -9,11 +9,14 @@ class LocalProgressRepository implements LearningProgressRepository {
   LocalProgressRepository({
     StudentProfile? initialProfile,
     List<StudentAttempt>? initialAttempts,
+    List<LearningSession>? initialSessions,
   })  : _profile = initialProfile ?? StudentProfile.defaultProfile(),
-        _attempts = List<StudentAttempt>.from(initialAttempts ?? const []);
+        _attempts = List<StudentAttempt>.from(initialAttempts ?? const []),
+        _sessions = List<LearningSession>.from(initialSessions ?? const []);
 
   StudentProfile _profile;
   final List<StudentAttempt> _attempts;
+  final List<LearningSession> _sessions;
 
   @override
   Future<StudentProfile> getProfile() async {
@@ -28,6 +31,78 @@ class LocalProgressRepository implements LearningProgressRepository {
   @override
   Future<List<StudentAttempt>> getAttempts() async {
     return List.unmodifiable(_attempts);
+  }
+
+  @override
+  Future<List<LearningSession>> getLearningSessions() async {
+    return List.unmodifiable(_sessions);
+  }
+
+  @override
+  Future<LearningSession> startLearningSession({
+    required ProblemSummary problem,
+    required List<String> skillIds,
+  }) async {
+    final now = DateTime.now();
+    final session = LearningSession(
+      sessionId: 'session_${now.microsecondsSinceEpoch}_${problem.id}',
+      problemId: problem.id,
+      unit: problem.unit,
+      skillIds: List.unmodifiable(skillIds),
+      startedAt: now,
+      finishedAt: null,
+      hints: const [],
+      submissions: const [],
+    );
+    _sessions.add(session);
+    return session;
+  }
+
+  @override
+  Future<void> recordSessionHint({
+    required String sessionId,
+    required int level,
+  }) async {
+    final index = _sessions.indexWhere((session) {
+      return session.sessionId == sessionId;
+    });
+    if (index == -1) {
+      return;
+    }
+    final session = _sessions[index];
+    _sessions[index] = session.copyWith(
+      hints: [
+        ...session.hints,
+        LearningHintUsage(level: level, usedAt: DateTime.now()),
+      ],
+    );
+  }
+
+  @override
+  Future<void> recordSessionSubmission({
+    required String sessionId,
+    required String answer,
+    required bool isCorrect,
+  }) async {
+    final index = _sessions.indexWhere((session) {
+      return session.sessionId == sessionId;
+    });
+    if (index == -1) {
+      return;
+    }
+    final now = DateTime.now();
+    final session = _sessions[index];
+    _sessions[index] = session.copyWith(
+      finishedAt: isCorrect ? (session.finishedAt ?? now) : session.finishedAt,
+      submissions: [
+        ...session.submissions,
+        LearningSubmission(
+          answer: answer,
+          isCorrect: isCorrect,
+          submittedAt: now,
+        ),
+      ],
+    );
   }
 
   @override
@@ -163,6 +238,7 @@ class LocalProgressRepository implements LearningProgressRepository {
   @override
   Future<void> clearAll() async {
     _attempts.clear();
+    _sessions.clear();
   }
 
   void _updateStreak(DateTime now) {
@@ -195,6 +271,7 @@ class LocalProgressRepository implements LearningProgressRepository {
     return jsonEncode({
       'profile': _profile.toJson(),
       'attempts': _attempts.map((a) => a.toJson()).toList(),
+      'learningSessions': _sessions.map((session) => session.toJson()).toList(),
     });
   }
 
@@ -210,9 +287,17 @@ class LocalProgressRepository implements LearningProgressRepository {
             .map(StudentAttempt.fromJson)
             .toList()
         : <StudentAttempt>[];
+    final rawSessions = decoded['learningSessions'];
+    final sessions = rawSessions is List
+        ? rawSessions
+            .whereType<Map<String, dynamic>>()
+            .map(LearningSession.fromJson)
+            .toList()
+        : <LearningSession>[];
     return LocalProgressRepository(
       initialProfile: profile,
       initialAttempts: attempts,
+      initialSessions: sessions,
     );
   }
 }

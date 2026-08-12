@@ -61,6 +61,54 @@ void main() {
       expect(queue.length, equals(1));
       expect(queue.first.problemId, equals('P002'));
     });
+
+    test('records hints and ordered submissions in a learning session',
+        () async {
+      const summary = ProblemSummary(
+        id: 'P-session',
+        grade: 3,
+        subject: 'math',
+        unit: 'addition',
+        type: 'calc',
+        title: 'Session problem',
+        path: '',
+        raw: {},
+      );
+
+      final session = await repository.startLearningSession(
+        problem: summary,
+        skillIds: const ['addition.basic'],
+      );
+      await repository.recordSessionHint(
+        sessionId: session.sessionId,
+        level: 2,
+      );
+      await repository.recordSessionSubmission(
+        sessionId: session.sessionId,
+        answer: '5',
+        isCorrect: false,
+      );
+      await repository.recordSessionSubmission(
+        sessionId: session.sessionId,
+        answer: '7',
+        isCorrect: true,
+      );
+
+      final sessions = await repository.getLearningSessions();
+      final saved = sessions.single;
+      expect(saved.skillIds, equals(['addition.basic']));
+      expect(saved.hints.single.level, equals(2));
+      expect(saved.submissions.map((submission) => submission.answer), [
+        '5',
+        '7',
+      ]);
+      expect(saved.isFirstAttemptCorrect, isFalse);
+      expect(saved.isFinallyCorrect, isTrue);
+      expect(saved.submissionCount, equals(2));
+      expect(saved.maxHintLevel, equals(2));
+      expect(saved.finishedAt, isNotNull);
+      expect(saved.timeSpent, isNotNull);
+    });
   });
 
   group('LearningProgressSummary', () {
@@ -215,6 +263,18 @@ void main() {
 
       expect(attempts, isEmpty);
       expect(profile.grade, equals(3));
+    });
+
+    test('loads older stored progress without learning session data', () async {
+      SharedPreferences.setMockInitialValues({
+        storageKey:
+            '{"profile":{"id":"student","name":"A","grade":3,"targetDailyCount":5,"streakDays":0},"attempts":[]}',
+      });
+
+      final repository = PersistentProgressRepository(storageKey: storageKey);
+
+      expect(await repository.getAttempts(), isEmpty);
+      expect(await repository.getLearningSessions(), isEmpty);
     });
   });
 }

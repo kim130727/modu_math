@@ -104,6 +104,41 @@ class _FakeProgressRepository implements LearningProgressRepository {
   }
 
   @override
+  Future<List<LearningSession>> getLearningSessions() async {
+    return const [];
+  }
+
+  @override
+  Future<LearningSession> startLearningSession({
+    required ProblemSummary problem,
+    required List<String> skillIds,
+  }) async {
+    return LearningSession(
+      sessionId: 'session_test',
+      problemId: problem.id,
+      unit: problem.unit,
+      skillIds: skillIds,
+      startedAt: DateTime(2026, 7, 23),
+      finishedAt: null,
+      hints: const [],
+      submissions: const [],
+    );
+  }
+
+  @override
+  Future<void> recordSessionHint({
+    required String sessionId,
+    required int level,
+  }) async {}
+
+  @override
+  Future<void> recordSessionSubmission({
+    required String sessionId,
+    required String answer,
+    required bool isCorrect,
+  }) async {}
+
+  @override
   Future<DailySummary> getDailySummary(DateTime date) async {
     return DailySummary(
       date: date,

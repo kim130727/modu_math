@@ -7,15 +7,19 @@ class AnswerPanel extends StatefulWidget {
   const AnswerPanel({
     super.key,
     required this.content,
+    required this.answerDraft,
     required this.submittedAnswer,
     required this.isCorrect,
+    required this.onAnswerChanged,
     required this.onSubmit,
     required this.onShowSolution,
   });
 
   final ProblemContent content;
+  final String answerDraft;
   final String? submittedAnswer;
   final bool? isCorrect;
+  final ValueChanged<String> onAnswerChanged;
   final ValueChanged<String> onSubmit;
   final VoidCallback onShowSolution;
 
@@ -26,6 +30,24 @@ class AnswerPanel extends StatefulWidget {
 class _AnswerPanelState extends State<AnswerPanel> {
   final TextEditingController controller = TextEditingController();
   String? selectedChoice;
+
+  @override
+  void initState() {
+    super.initState();
+    controller.text = widget.answerDraft;
+  }
+
+  @override
+  void didUpdateWidget(covariant AnswerPanel oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.answerDraft == controller.text) {
+      return;
+    }
+    controller.text = widget.answerDraft;
+    controller.selection = TextSelection.collapsed(
+      offset: controller.text.length,
+    );
+  }
 
   @override
   void dispose() {
@@ -58,6 +80,7 @@ class _AnswerPanelState extends State<AnswerPanel> {
                   labelText: strings.t('answer.inputLabel'),
                   border: const OutlineInputBorder(),
                 ),
+                onChanged: widget.onAnswerChanged,
                 onSubmitted: widget.onSubmit,
               )
             else
@@ -69,7 +92,10 @@ class _AnswerPanelState extends State<AnswerPanel> {
                   return ChoiceChip(
                     selected: selected,
                     label: Text(choice, style: const TextStyle(fontSize: 18)),
-                    onSelected: (_) => setState(() => selectedChoice = choice),
+                    onSelected: (_) {
+                      setState(() => selectedChoice = choice);
+                      widget.onAnswerChanged(choice);
+                    },
                   );
                 }).toList(),
               ),

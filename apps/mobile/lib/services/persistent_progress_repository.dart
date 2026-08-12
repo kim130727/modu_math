@@ -64,6 +64,50 @@ class PersistentProgressRepository implements LearningProgressRepository {
   }
 
   @override
+  Future<List<LearningSession>> getLearningSessions() async {
+    return (await _repository()).getLearningSessions();
+  }
+
+  @override
+  Future<LearningSession> startLearningSession({
+    required ProblemSummary problem,
+    required List<String> skillIds,
+  }) async {
+    final repository = await _repository();
+    final session = await repository.startLearningSession(
+      problem: problem,
+      skillIds: skillIds,
+    );
+    await _save(repository);
+    return session;
+  }
+
+  @override
+  Future<void> recordSessionHint({
+    required String sessionId,
+    required int level,
+  }) async {
+    final repository = await _repository();
+    await repository.recordSessionHint(sessionId: sessionId, level: level);
+    await _save(repository);
+  }
+
+  @override
+  Future<void> recordSessionSubmission({
+    required String sessionId,
+    required String answer,
+    required bool isCorrect,
+  }) async {
+    final repository = await _repository();
+    await repository.recordSessionSubmission(
+      sessionId: sessionId,
+      answer: answer,
+      isCorrect: isCorrect,
+    );
+    await _save(repository);
+  }
+
+  @override
   Future<void> recordAttempt({
     required ProblemSummary problem,
     required String answer,

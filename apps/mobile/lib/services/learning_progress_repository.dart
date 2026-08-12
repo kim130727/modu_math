@@ -9,6 +9,24 @@ abstract class LearningProgressRepository {
 
   Future<List<StudentAttempt>> getAttempts();
 
+  Future<List<LearningSession>> getLearningSessions();
+
+  Future<LearningSession> startLearningSession({
+    required ProblemSummary problem,
+    required List<String> skillIds,
+  });
+
+  Future<void> recordSessionHint({
+    required String sessionId,
+    required int level,
+  });
+
+  Future<void> recordSessionSubmission({
+    required String sessionId,
+    required String answer,
+    required bool isCorrect,
+  });
+
   Future<void> recordAttempt({
     required ProblemSummary problem,
     required String answer,
