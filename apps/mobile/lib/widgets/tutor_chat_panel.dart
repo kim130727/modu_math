@@ -109,12 +109,11 @@ class _TutorChatPanelState extends State<TutorChatPanel> {
     final colorScheme = Theme.of(context).colorScheme;
     final tutorActive = widget.messages.isNotEmpty;
     final solvedCorrectly = widget.isCorrect == true;
+    final latestTutorMessage =
+        widget.messages.where((message) => message.isTutor).lastOrNull;
     final tutorChoices = solvedCorrectly
         ? const <String>[]
-        : widget.messages.lastWhereOrNull((message) {
-              return message.isTutor && message.choices.isNotEmpty;
-            })?.choices ??
-            const <String>[];
+        : latestTutorMessage?.choices ?? const <String>[];
 
     return Card(
       margin: EdgeInsets.zero,
@@ -955,16 +954,6 @@ extension _IterableLastOrNull<T> on Iterable<T> {
     T? value;
     for (final item in this) {
       value = item;
-    }
-    return value;
-  }
-
-  T? lastWhereOrNull(bool Function(T item) test) {
-    T? value;
-    for (final item in this) {
-      if (test(item)) {
-        value = item;
-      }
     }
     return value;
   }

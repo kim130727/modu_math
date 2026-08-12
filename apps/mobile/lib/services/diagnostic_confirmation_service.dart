@@ -19,19 +19,14 @@ class DiagnosticConfirmationService {
       case 'plan.copy_one_part':
         return const DiagnosticPrompt(
           diagnosticCode: 'plan.copy_one_part',
-          text: '이 문제에서 구해야 하는 것은 무엇인가요?',
-          choices: [
-            '상현이네 가족의 수',
-            '용진이네 가족의 수',
-            '두 가족이 캔 전체 수',
-          ],
+          text: '잠깐 확인해 볼게요.\n'
+              '이 문제에서 구해야 하는 것은 상현이네 가족의 수인가요, 용진이네 가족의 수인가요, 아니면 두 가족이 캔 전체 수인가요?',
         );
       case 'execute.add_carry':
         return const DiagnosticPrompt(
           diagnosticCode: 'execute.add_carry',
-          text: '일의 자리에서 9와 8을 더하면 얼마인가요?\n'
-              '그다음 받아올림이 필요한지 확인해 볼게요.',
-          choices: ['17', '7', '18'],
+          text: '계산을 바로 고치기 전에 한 자리만 확인해 볼게요.\n'
+              '일의 자리에서 9와 8을 더하면 얼마인가요?',
         );
     }
     return null;
@@ -53,19 +48,19 @@ class DiagnosticConfirmationService {
           return const DiagnosticResult(
             errorCategory: ErrorCategory.planningOperation,
             feedback: '맞아요. 구해야 하는 것은 두 가족이 캔 전체 수예요.\n'
-                '한 가족의 수만 옮긴 것이 아니라 259와 248을 더해 볼게요.',
+                '그러면 한 가족의 수만 쓰지 말고 259와 248을 더해 볼게요.',
           );
         }
         return const DiagnosticResult(
           errorCategory: ErrorCategory.understandingTarget,
-          feedback: '이 문제에서 구해야 하는 것은 한 가족의 수가 아니라 두 가족이 캔 전체 수예요.\n'
+          feedback: '여기서 구해야 하는 것은 한 가족의 수가 아니라 두 가족이 캔 전체 수예요.\n'
               '그래서 259와 248을 함께 더해야 해요.',
         );
       case 'execute.add_carry':
         return const DiagnosticResult(
           errorCategory: ErrorCategory.executionCalculation,
           feedback: '9와 8을 더하면 17이에요.\n'
-              '일의 자리에 7을 쓰고 십의 자리로 1을 받아올림해서 다시 계산해 볼게요.',
+              '일의 자리에 7을 쓰고 십의 자리로 1을 받아올림한 뒤 다시 이어서 계산해 볼게요.',
         );
     }
     return null;
@@ -111,7 +106,7 @@ class DiagnosticPrompt {
   const DiagnosticPrompt({
     required this.diagnosticCode,
     required this.text,
-    required this.choices,
+    this.choices = const [],
   });
 
   final String diagnosticCode;

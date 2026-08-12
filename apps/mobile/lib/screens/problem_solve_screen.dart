@@ -165,7 +165,6 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
                 onReset: _resetTutor,
                 hasNextProblem: _hasNextProblem,
                 onNextProblem: _openNextProblem,
-                allowSkipProblem: true,
               );
 
               if (wide) {
@@ -221,9 +220,6 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
       answerDraft = answer;
       submittedAnswer = answer;
       isCorrect = correct;
-      if (tutorMessages.isEmpty) {
-        tutorMessages.addAll(tutorService.startSession(content));
-      }
       tutorMessages.add(tutorService.student(answer));
     });
     await _addTutorReply(

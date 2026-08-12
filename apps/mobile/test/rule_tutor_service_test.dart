@@ -66,10 +66,11 @@ void main() {
         );
 
         expect(reply.replyType, equals(TutorReplyType.question));
-        expect(reply.text, contains('이 문제에서 구해야 하는 것은 무엇인가요?'));
-        expect(reply.choices, contains('상현이네 가족의 수'));
-        expect(reply.choices, contains('용진이네 가족의 수'));
-        expect(reply.choices, contains('두 가족이 캔 전체 수'));
+        expect(reply.text, contains('이 문제에서 구해야 하는 것은'));
+        expect(reply.text, contains('상현이네 가족의 수'));
+        expect(reply.text, contains('용진이네 가족의 수'));
+        expect(reply.text, contains('두 가족이 캔 전체 수'));
+        expect(reply.choices, isEmpty);
         expect(reply.pendingDiagnosticCode, equals('plan.copy_one_part'));
         expect(reply.errorCategory, equals(ErrorCategory.none));
       }
@@ -86,7 +87,7 @@ void main() {
 
       expect(reply.replyType, equals(TutorReplyType.question));
       expect(reply.text, contains('일의 자리에서 9와 8을 더하면 얼마인가요?'));
-      expect(reply.text, contains('받아올림'));
+      expect(reply.choices, isEmpty);
       expect(reply.pendingDiagnosticCode, equals('execute.add_carry'));
       expect(reply.errorCategory, equals(ErrorCategory.none));
     });
