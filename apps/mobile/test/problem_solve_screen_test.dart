@@ -82,6 +82,79 @@ void main() {
     expect(find.textContaining('힌트를 보고 한 번 더 생각'), findsOneWidget);
   });
 
+  testWidgets('shows authored diagnostic feedback from condition rules',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(1200, 900));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: ProblemSolveScreen(
+          repository: _FakeContentRepository(content: _diagnosticContent),
+          progressRepository: _FakeProgressRepository(),
+          problem: _summary,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.enterText(find.byType(TextField), '259');
+    await tester.tap(find.byType(FilledButton).first);
+    await tester.pumpAndSettle();
+
+    expect(find.textContaining('한 가족이 캔 수만 쓰면 안 돼요'), findsOneWidget);
+    expect(find.textContaining('정답:'), findsNothing);
+  });
+
+  testWidgets('shows range diagnostic feedback for unlisted wrong numbers',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(1200, 900));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: ProblemSolveScreen(
+          repository: _FakeContentRepository(content: _diagnosticContent),
+          progressRepository: _FakeProgressRepository(),
+          problem: _summary,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.enterText(find.byType(TextField), '300');
+    await tester.tap(find.byType(FilledButton).first);
+    await tester.pumpAndSettle();
+
+    expect(find.textContaining('자리'), findsOneWidget);
+    expect(find.textContaining('정답:'), findsNothing);
+  });
+
+  testWidgets('shows place-specific feedback for carry mistakes',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(1200, 900));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: ProblemSolveScreen(
+          repository: _FakeContentRepository(content: _diagnosticContent),
+          progressRepository: _FakeProgressRepository(),
+          problem: _summary,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.enterText(find.byType(TextField), '607');
+    await tester.tap(find.byType(FilledButton).first);
+    await tester.pumpAndSettle();
+
+    expect(find.textContaining('백의 자리'), findsOneWidget);
+    expect(find.textContaining('두 번 더하면'), findsOneWidget);
+    expect(find.textContaining('정답:'), findsNothing);
+  });
+
   testWidgets('syncs renderer answer slot input into the answer panel',
       (tester) async {
     await tester.binding.setSurfaceSize(const Size(1200, 900));
@@ -277,6 +350,61 @@ const _content = ProblemContent(
       'value': 7,
       'choices': ['5', '7'],
     },
+  },
+);
+
+const _diagnosticContent = ProblemContent(
+  summary: _summary,
+  svg: '<svg></svg>',
+  semantic: {
+    'answer': {
+      'value': 507,
+      'unit': '개',
+    },
+  },
+  solvable: {
+    'given': [
+      {
+        'id': 'first',
+        'value': 259,
+      },
+      {
+        'id': 'second',
+        'value': 248,
+      },
+    ],
+    'answer': {
+      'value': 507,
+      'unit': '개',
+      'answer_key': [
+        {
+          'slot_id': 'answer',
+          'value': 507,
+          'diagnostics': [
+            {
+              'id': 'diag.answer_equals_given_value',
+              'condition': 'answer_equals_given_value',
+              'concept': '구해야 할 것',
+              'reason': '주어진 한 가족의 수만 답으로 씀',
+              'feedback': '한 가족이 캔 수만 쓰면 안 돼요. 두 가족이 캔 고구마를 모두 더해 보세요.',
+            },
+            {
+              'id': 'diag.addition_with_carry_wrong_answer',
+              'condition': 'addition_with_carry_wrong_answer',
+              'concept': '받아올림',
+              'reason': '받아올림이 있는 덧셈에서 정답과 다른 숫자를 입력함',
+              'feedback': '일의 자리부터 다시 계산해요. 10이 넘으면 올린 1을 다음 자리 계산에 꼭 넣어 보세요.',
+            },
+          ],
+        },
+      ],
+    },
+    'steps': [
+      {
+        'expr': '259 + 248',
+        'value': 507,
+      },
+    ],
   },
 );
 

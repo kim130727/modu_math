@@ -92,6 +92,55 @@
         }
       ]
     },
+    "diagnostic_rule": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "wrong_value": {},
+        "wrong_pattern": {
+          "type": "string"
+        },
+        "wrong_min": {
+          "type": "number"
+        },
+        "wrong_max": {
+          "type": "number"
+        },
+        "condition": {
+          "type": "string"
+        },
+        "concept": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "feedback": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "concept", "reason", "feedback"],
+      "anyOf": [
+        {
+          "required": ["wrong_value"]
+        },
+        {
+          "required": ["wrong_pattern"]
+        },
+        {
+          "required": ["wrong_min"]
+        },
+        {
+          "required": ["wrong_max"]
+        },
+        {
+          "required": ["condition"]
+        }
+      ]
+    },
     "diagnostics": {
       "type": "object",
       "additionalProperties": false,
@@ -107,8 +156,50 @@
           "additionalProperties": {
             "type": "string"
           }
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/diagnostic_code_rule"
+          }
         }
       }
+    },
+    "diagnostic_code_rule": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "condition": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        }
+      },
+      "required": ["condition", "code"]
+    },
+    "answer_key_item": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "slot_id": {
+          "type": "string"
+        },
+        "value": {},
+        "unit": {
+          "type": "string"
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/diagnostic_rule"
+          }
+        }
+      },
+      "required": ["slot_id", "value"]
     },
     "answer": {
       "type": "object",
@@ -117,9 +208,38 @@
         "value": {},
         "unit": {
           "type": "string"
+        },
+        "answer_key": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/answer_key_item"
+          }
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/diagnostic_rule"
+          }
         }
       },
       "required": ["value", "unit"]
+    },
+    "student_hint": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "level": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "title": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": ["level", "text"]
     }
   },
   "properties": {
@@ -168,6 +288,12 @@
     },
     "diagnostics": {
       "$ref": "#/$defs/diagnostics"
+    },
+    "student_hints": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/student_hint"
+      }
     }
   },
   "required": [

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
+import '../services/answer_diagnostic_service.dart';
 import '../services/content_repository.dart';
 import '../services/learning_progress_repository.dart';
 import '../services/solvable_hint_service.dart';
@@ -36,6 +37,8 @@ class ProblemSolveScreen extends StatefulWidget {
 
 class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
   late Future<ProblemContent> contentFuture;
+  final AnswerDiagnosticService answerDiagnosticService =
+      const AnswerDiagnosticService();
   final SolvableHintService hintService = const SolvableHintService();
   String? submittedAnswer;
   String answerDraft = '';
@@ -149,6 +152,12 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
                 content: content,
                 answerDraft: answerDraft,
                 isCorrect: isCorrect,
+                diagnosticFeedback: isCorrect == false
+                    ? answerDiagnosticService.feedbackFor(
+                        content: content,
+                        answer: submittedAnswer ?? answerDraft,
+                      )
+                    : null,
                 onAnswerChanged: _updateAnswerDraft,
                 onSubmit: (answer) => _submit(content, answer),
               );

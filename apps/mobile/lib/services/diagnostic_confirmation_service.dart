@@ -113,10 +113,15 @@ class DiagnosticConfirmationService {
     }
     final errors = diagnostics['errors'];
     if (errors is! Map<String, dynamic>) {
-      return null;
+      final ruleCode = _diagnosticRuleCodeFor(content, diagnostics, answer);
+      return ruleCode == null || ruleCode.isEmpty ? null : ruleCode;
     }
     final code = errors[answer.trim()]?.toString();
-    return code == null || code.isEmpty ? null : code;
+    if (code != null && code.isNotEmpty) {
+      return code;
+    }
+    final ruleCode = _diagnosticRuleCodeFor(content, diagnostics, answer);
+    return ruleCode == null || ruleCode.isEmpty ? null : ruleCode;
   }
 
   String? pendingCodeFrom(List<TutorMessage> messages) {
@@ -130,4 +135,105 @@ class DiagnosticConfirmationService {
     }
     return null;
   }
+}
+
+String? _diagnosticRuleCodeFor(
+  ProblemContent content,
+  Map<String, dynamic> diagnostics,
+  String answer,
+) {
+  final rules = diagnostics['rules'];
+  if (rules is! List) {
+    return null;
+  }
+  for (final rule in rules.whereType<Map>()) {
+    final condition = rule['condition']?.toString().trim();
+    final code = rule['code']?.toString().trim();
+    if (condition == null ||
+        condition.isEmpty ||
+        code == null ||
+        code.isEmpty) {
+      continue;
+    }
+    if (_matchesDiagnosticCondition(content, answer, condition)) {
+      return code;
+    }
+  }
+  return null;
+}
+
+bool _matchesDiagnosticCondition(
+  ProblemContent content,
+  String answer,
+  String condition,
+) {
+  final numericAnswer = num.tryParse(answer.trim());
+  final correct = num.tryParse(content.correctAnswer.trim());
+  return switch (condition) {
+    'answer_equals_given_value' => _answerEqualsGivenValue(content, answer),
+    'numeric_wrong_answer' =>
+      numericAnswer != null && (correct == null || numericAnswer != correct),
+    'addition_with_carry_wrong_answer' => numericAnswer != null &&
+        (correct == null || numericAnswer != correct) &&
+        _hasCarry(_additionTerms(content)),
+    _ => false,
+  };
+}
+
+bool _answerEqualsGivenValue(ProblemContent content, String answer) {
+  final given = content.solvable['given'];
+  if (given is! List) {
+    return false;
+  }
+  for (final item in given.whereType<Map>()) {
+    final value = item['value'];
+    if (value != null && value.toString().trim() == answer.trim()) {
+      return true;
+    }
+  }
+  return false;
+}
+
+List<int> _additionTerms(ProblemContent content) {
+  final steps = content.solvable['steps'];
+  if (steps is! List) {
+    return const [];
+  }
+  for (final step in steps.whereType<Map>()) {
+    final expr = step['expr']?.toString().trim();
+    if (expr != null && RegExp(r'^\s*\d+\s*(?:\+\s*\d+\s*)+$').hasMatch(expr)) {
+      return RegExp(r'\d+')
+          .allMatches(expr)
+          .map((match) => int.parse(match.group(0)!))
+          .toList();
+    }
+  }
+  return const [];
+}
+
+bool _hasCarry(List<int> terms) {
+  var carry = 0;
+  final maxDigits = terms
+      .map((term) => term.toString().length)
+      .fold<int>(0, (max, length) => length > max ? length : max);
+  for (var index = 0; index < maxDigits; index += 1) {
+    final divisor = _pow10(index);
+    final sum = terms.fold<int>(
+      carry,
+      (total, term) => total + (term ~/ divisor) % 10,
+    );
+    if (sum >= 10) {
+      return true;
+    }
+    carry = sum ~/ 10;
+  }
+  return false;
+}
+
+int _pow10(int exponent) {
+  var result = 1;
+  for (var index = 0; index < exponent; index += 1) {
+    result *= 10;
+  }
+  return result;
 }

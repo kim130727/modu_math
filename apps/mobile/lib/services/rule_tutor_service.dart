@@ -3,6 +3,7 @@ import '../models/learning_progress.dart';
 import '../models/tutor_models.dart';
 import '../utils/answer_normalizer.dart';
 import '../utils/tutor_text_sanitizer.dart';
+import 'answer_diagnostic_service.dart';
 import 'ai_tutor_service.dart';
 import 'diagnostic_confirmation_service.dart';
 import 'diagnostic_strategies/diagnostic_strategy.dart';
@@ -691,29 +692,10 @@ String _diagnosticFeedback(
 }
 
 String _registeredDiagnosticFeedback(ProblemContent content, String message) {
-  final diagnostics = content.solvable['diagnostics'];
-  if (diagnostics is! Map<String, dynamic>) {
-    return '';
-  }
-  final errors = diagnostics['errors'];
-  if (errors is! Map<String, dynamic>) {
-    return '';
-  }
-  final code = errors[message.trim()]?.toString();
-  if (code == null || code.isEmpty) {
-    return '';
-  }
-  switch (code) {
-    case 'plan.copy_one_part':
-      return '한 가족의 수만 쓰면 안 돼요. 두 가족이 캔 수를 모두 구해야 하니 두 수를 더해 보세요.';
-    case 'execute.add_carry':
-      return '받아올림을 다시 확인해요. 일의 자리부터 더하고, 10이 넘으면 다음 자리로 1을 올려요.';
-    case 'execute.add_fact':
-      return '덧셈 계산을 다시 확인해요. 각 자리의 수를 차례로 더해 보세요.';
-    case 'execute.place_value_compose':
-      return '받아올림한 수나 중간 계산을 그대로 이어 쓰면 안 돼요. 각 자리 숫자로 다시 모아 보세요.';
-  }
-  return '';
+  return const AnswerDiagnosticService().feedbackFor(
+    content: content,
+    answer: message,
+  );
 }
 
 bool _hasRegisteredDiagnostics(ProblemContent content) {

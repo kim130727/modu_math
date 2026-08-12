@@ -17,6 +17,18 @@ class SolvableHintService {
   const SolvableHintService();
 
   List<SolvableHint> buildHints(ProblemContent content) {
+    final authoredHints = _authoredStudentHints(content);
+    if (authoredHints.isNotEmpty) {
+      return authoredHints
+          .map(
+            (hint) => SolvableHint(
+              level: hint.level,
+              title: hint.title,
+              body: _withoutAnswer(content, hint.body),
+            ),
+          )
+          .toList();
+    }
     return [
       SolvableHint(
         level: 1,
@@ -51,6 +63,9 @@ class SolvableHintService {
   }
 
   String _firstStepText(ProblemContent content) {
+    if (_isComparisonOperatorHint(content)) {
+      return '첫 번째 빈칸의 왼쪽과 오른쪽을 비교해 보세요. 수가 아니라 식이면 먼저 계산해요.';
+    }
     if (_isVerticalAdditionHint(content)) {
       return '맨 오른쪽 자리부터 더해 보세요. 10이 넘으면 1을 다음 자리로 올려요.';
     }
@@ -58,6 +73,13 @@ class SolvableHintService {
   }
 
   String _finalCheckHint(ProblemContent content) {
+    if (_isComparisonOperatorHint(content)) {
+      return [
+        '왼쪽이 더 크면 > 를 써요.',
+        '오른쪽이 더 크면 < 를 써요.',
+        '두 값이 같으면 = 를 써요.',
+      ].join('\n');
+    }
     if (_isVerticalAdditionHint(content)) {
       return [
         '맨 오른쪽 자리부터 차례대로 계산했나요?',
@@ -81,7 +103,37 @@ class SolvableHintService {
   }
 }
 
+List<SolvableHint> _authoredStudentHints(ProblemContent content) {
+  final rawHints = content.solvable['student_hints'];
+  if (rawHints is! List) {
+    return const [];
+  }
+  final hints = <SolvableHint>[];
+  for (final item in rawHints) {
+    if (item is! Map) {
+      continue;
+    }
+    final level = item['level'] is int ? item['level'] as int : hints.length + 1;
+    final body = _readText(item['text']);
+    if (body.isEmpty) {
+      continue;
+    }
+    final title = _readText(item['title'], fallback: '$level단계');
+    hints.add(SolvableHint(level: level, title: title, body: body));
+  }
+  hints.sort((a, b) => a.level.compareTo(b.level));
+  return hints;
+}
+
 String _methodHintText(ProblemContent content) {
+  if (_isComparisonOperatorHint(content)) {
+    return [
+      '빈칸 하나씩 왼쪽과 오른쪽을 비교해요.',
+      '식이 있으면 양쪽 값을 먼저 구해요.',
+      '더 큰 쪽으로 기호가 벌어지게 써요.',
+    ].join('\n');
+  }
+
   if (_isVerticalAdditionHint(content)) {
     return [
       '일의 자리부터 더해요.',
@@ -95,8 +147,8 @@ String _methodHintText(ProblemContent content) {
       method == '나누어 주어진 수들을 모두 더해요.' ||
       method.contains('덧셈')) {
     return [
-      '따로 있는 수들을 하나로 모으는 문제예요.',
-      '문제에 나온 수들을 더해 보세요.',
+      '문제에 나온 두 수를 찾아요.',
+      '두 수를 더해서 전체가 얼마인지 구해요.',
     ].join('\n');
   }
   if (method.contains('곱셈')) {
@@ -109,6 +161,19 @@ String _methodHintText(ProblemContent content) {
     '문제에 나온 수를 먼저 찾아요.',
     '무엇을 구하는지 보고 알맞은 계산을 골라요.',
   ].join('\n');
+}
+
+bool _isComparisonOperatorHint(ProblemContent content) {
+  final pieces = <String>[
+    _readText(content.solvable['target']),
+    _readText(content.solvable['method']),
+    _readText(content.solvable['plan']),
+    _readText(content.solvable['steps']),
+  ].join(' ');
+  return pieces.contains('비교 기호') ||
+      pieces.contains('비교') ||
+      pieces.contains('comparison_operators') ||
+      pieces.contains('operator_list');
 }
 
 bool _isVerticalAdditionHint(ProblemContent content) {

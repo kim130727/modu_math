@@ -9,6 +9,7 @@ class AnswerPanel extends StatefulWidget {
     required this.content,
     required this.answerDraft,
     required this.isCorrect,
+    this.diagnosticFeedback,
     required this.onAnswerChanged,
     required this.onSubmit,
   });
@@ -16,6 +17,7 @@ class AnswerPanel extends StatefulWidget {
   final ProblemContent content;
   final String answerDraft;
   final bool? isCorrect;
+  final String? diagnosticFeedback;
   final ValueChanged<String> onAnswerChanged;
   final ValueChanged<String> onSubmit;
 
@@ -115,6 +117,7 @@ class _AnswerPanelState extends State<AnswerPanel> {
               const SizedBox(height: 14),
               _ResultBanner(
                 isCorrect: widget.isCorrect!,
+                diagnosticFeedback: widget.diagnosticFeedback,
               ),
             ],
           ],
@@ -127,9 +130,11 @@ class _AnswerPanelState extends State<AnswerPanel> {
 class _ResultBanner extends StatelessWidget {
   const _ResultBanner({
     required this.isCorrect,
+    this.diagnosticFeedback,
   });
 
   final bool isCorrect;
+  final String? diagnosticFeedback;
 
   @override
   Widget build(BuildContext context) {
@@ -140,6 +145,13 @@ class _ResultBanner extends StatelessWidget {
     final textColor =
         isCorrect ? const Color(0xFF166534) : colorScheme.onErrorContainer;
 
+    final feedback = diagnosticFeedback?.trim() ?? '';
+    final message = isCorrect
+        ? strings.t('answer.correct')
+        : feedback.isNotEmpty
+            ? feedback
+            : strings.t('answer.incorrectWithAnswer');
+
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
@@ -147,9 +159,7 @@ class _ResultBanner extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
-        isCorrect
-            ? strings.t('answer.correct')
-            : strings.t('answer.incorrectWithAnswer'),
+        message,
         style: TextStyle(
           color: textColor,
           fontSize: 18,

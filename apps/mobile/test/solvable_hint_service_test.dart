@@ -10,8 +10,8 @@ void main() {
 
     expect(hints, hasLength(4));
     expect(hints[0].body, contains('사과의 전체 개수'));
-    expect(hints[1].body, contains('따로 있는 수'));
-    expect(hints[1].body, contains('더해 보세요'));
+    expect(hints[1].body, contains('문제에 나온 두 수'));
+    expect(hints[1].body, contains('전체가 얼마인지'));
     expect(hints[2].body, contains('문제에 나온 수'));
     expect(hints[3].title, contains('마지막 점검'));
     expect(hints[3].body, contains('빠뜨리지 않았나요'));
@@ -26,10 +26,20 @@ void main() {
     }
   });
 
+  test('uses authored student hints before generated fallback hints', () {
+    final hints = service.buildHints(_contentWithStudentHints);
+
+    expect(hints, hasLength(2));
+    expect(hints[0].title, equals('1단계: 문제 이해'));
+    expect(hints[0].body, contains('두 가족이 캔 고구마 수'));
+    expect(hints[1].body, contains('□'));
+    expect(hints[1].body, isNot(contains('507')));
+  });
+
   test('naturalizes internal method codes for students', () {
     final hints = service.buildHints(_contentWithMethodCode);
 
-    expect(hints[1].body, contains('문제에 나온 수들을 더해 보세요'));
+    expect(hints[1].body, contains('두 수를 더해서 전체가 얼마인지'));
     expect(hints[1].body, isNot(contains('add_parts')));
   });
 
@@ -84,6 +94,9 @@ void main() {
     );
 
     expect(comparisonHints[0].body, contains('각 빈칸에 들어갈 비교 기호'));
+    expect(comparisonHints[1].body, contains('빈칸 하나씩 왼쪽과 오른쪽을 비교'));
+    expect(comparisonHints[2].body, contains('첫 번째 빈칸'));
+    expect(comparisonHints[3].body, contains('왼쪽이 더 크면 >'));
     expect(readersHints[0].body, contains('책을 읽고 있는 사람의 전체 수'));
     expect(stampsHints[0].body, contains('우표의 전체 수'));
     for (final hint in [comparisonHints[0], readersHints[0], stampsHints[0]]) {
@@ -146,6 +159,26 @@ const _contentWithMethodCode = ProblemContent(
       {
         'explanation': '259와 248을 더한다',
         'value': '507',
+      },
+    ],
+    'answer': {'value': 507},
+  },
+);
+
+const _contentWithStudentHints = ProblemContent(
+  summary: _summary,
+  semantic: {},
+  solvable: {
+    'student_hints': [
+      {
+        'level': 1,
+        'title': '1단계: 문제 이해',
+        'text': '두 가족이 캔 고구마 수를 모두 구하는 문제예요.',
+      },
+      {
+        'level': 2,
+        'title': '2단계: 계산 방법',
+        'text': '259와 248을 더하면 507이 되는지 확인해요.',
       },
     ],
     'answer': {'value': 507},

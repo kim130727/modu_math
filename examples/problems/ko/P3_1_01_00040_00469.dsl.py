@@ -29,6 +29,22 @@ ANSWER = {
         {
             "slot_id": "konva_1785063642549_rect_11081",
             "value": 507,
+            "diagnostics": [
+                {
+                    "id": "diag.answer_equals_given_value",
+                    "condition": "answer_equals_given_value",
+                    "concept": "구해야 할 것",
+                    "reason": "주어진 한 가족의 수만 답으로 씀",
+                    "feedback": "한 가족이 캔 수만 쓰면 안 돼요. 두 가족이 캔 고구마를 모두 더해 보세요.",
+                },
+                {
+                    "id": "diag.addition_with_carry_wrong_answer",
+                    "condition": "addition_with_carry_wrong_answer",
+                    "concept": "받아올림",
+                    "reason": "받아올림이 있는 덧셈에서 정답과 다른 숫자를 입력함",
+                    "feedback": "일의 자리부터 다시 계산해요. 10이 넘으면 올린 1을 다음 자리 계산에 꼭 넣어 보세요.",
+                },
+            ],
         },
     ],
 }
@@ -181,13 +197,47 @@ SOLVABLE = {
     ],
     "answer": ANSWER,
     "diagnostics": {
-        "skills": ["add.part_part_whole", "add.three_digit"],
-        "errors": {
-            "497": "execute.add_carry",
-            "259": "plan.copy_one_part",
-            "248": "plan.copy_one_part",
-        },
+        "skills": [
+            "understand.target",
+            "plan.add_parts",
+            "execute.add_carry",
+            "execute.place_value_compose",
+        ],
+        "rules": [
+            {
+                "id": "diag.answer_equals_given_value",
+                "condition": "answer_equals_given_value",
+                "code": "plan.copy_one_part",
+            },
+            {
+                "id": "diag.addition_with_carry_wrong_answer",
+                "condition": "addition_with_carry_wrong_answer",
+                "code": "execute.add_carry",
+            },
+        ],
     },
+    "student_hints": [
+        {
+            "level": 1,
+            "title": "1단계: 구해야 할 것",
+            "text": "상현이네와 용진이네가 캔 고구마를 모두 합한 수를 구해요.",
+        },
+        {
+            "level": 2,
+            "title": "2단계: 해결 방법",
+            "text": "상현이네 259개와 용진이네 248개를 더해요. 한 가족의 수만 쓰면 안 돼요.",
+        },
+        {
+            "level": 3,
+            "title": "3단계: 계산 시작",
+            "text": "일의 자리부터 계산해요. 9와 8을 더했을 때 10이 넘으면 1을 십의 자리로 올려요.",
+        },
+        {
+            "level": 4,
+            "title": "4단계: 마지막 점검",
+            "text": "일의 자리에서 올린 1을 십의 자리에 넣었나요? 십의 자리에서도 10이 넘는지 확인해 보세요.",
+        },
+    ],
 }
 
 SEMANTIC_ANSWER = SOLVABLE["answer"]

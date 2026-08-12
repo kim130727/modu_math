@@ -53,6 +53,20 @@ void main() {
       expect(reply.pendingDiagnosticCode, equals('plan.copy_one_part'));
     });
 
+    test('uses diagnostic rules without enumerating representative answers',
+        () async {
+      const service = RuleTutorService();
+      final reply = await service.reviewAnswer(
+        content: _ruleBasedAdditionContent(),
+        messages: const [],
+        answer: '259',
+      );
+
+      expect(reply.replyType, equals(TutorReplyType.question));
+      expect(reply.text, contains('1번째 부분의 수'));
+      expect(reply.pendingDiagnosticCode, equals('plan.copy_one_part'));
+    });
+
     test('asks carry confirmation from the expression digits', () async {
       const service = RuleTutorService();
       final reply = await service.reviewAnswer(
@@ -357,6 +371,70 @@ ProblemContent _genericAdditionContent() {
           '36': 'plan.copy_one_part',
           '53': 'execute.add_carry',
         },
+      },
+    },
+  );
+}
+
+ProblemContent _ruleBasedAdditionContent() {
+  return const ProblemContent(
+    summary: ProblemSummary(
+      id: 'P_ADD_RULE',
+      grade: 3,
+      subject: 'math',
+      unit: 'addition',
+      type: 'numeric_answer_addition_word_problem',
+      title: 'Rule addition',
+      path: '',
+      raw: {},
+    ),
+    svg: '<svg></svg>',
+    semantic: {
+      'answer': {
+        'value': 507,
+      },
+    },
+    solvable: {
+      'method': 'add_parts',
+      'given': [
+        {
+          'id': 'first',
+          'value': 259,
+        },
+        {
+          'id': 'second',
+          'value': 248,
+        },
+      ],
+      'target': {
+        'id': 'total',
+      },
+      'steps': [
+        {
+          'id': 'step.add_counts',
+          'goal': 'Find the total count.',
+          'expr': '259 + 248',
+          'value': 507,
+        },
+      ],
+      'answer': {
+        'value': 507,
+      },
+      'diagnostics': {
+        'skills': [
+          'plan.add_parts',
+          'execute.add_carry',
+        ],
+        'rules': [
+          {
+            'condition': 'answer_equals_given_value',
+            'code': 'plan.copy_one_part',
+          },
+          {
+            'condition': 'addition_with_carry_wrong_answer',
+            'code': 'execute.add_carry',
+          },
+        ],
       },
     },
   );
