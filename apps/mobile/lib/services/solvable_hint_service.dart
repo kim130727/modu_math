@@ -31,10 +31,7 @@ class SolvableHintService {
         title: '2단계: 해결 방법',
         body: _withoutAnswer(
           content,
-          [
-            '방법: ${_methodText(content.solvable['method'])}',
-            '계획: ${_readText(content.solvable['plan'], fallback: '주어진 조건을 차례대로 사용해 보세요.')}',
-          ].join('\n'),
+          _methodHintText(content),
         ),
       ),
       SolvableHint(
@@ -54,29 +51,25 @@ class SolvableHintService {
   }
 
   String _firstStepText(ProblemContent content) {
-    final steps = content.steps;
-    if (steps.isEmpty) {
-      return '첫 번째로 주어진 수와 조건을 확인한 뒤 식을 세워 보세요.';
+    if (_isVerticalAdditionHint(content)) {
+      return '맨 오른쪽 자리부터 더해 보세요. 10이 넘으면 1을 다음 자리로 올려요.';
     }
-    return '첫 번째 단계: ${_stepText(steps.first)}';
+    return '먼저 문제에 나온 수를 찾아 보세요. 그다음 어떤 계산을 해야 할지 생각해요.';
   }
 
   String _finalCheckHint(ProblemContent content) {
-    final steps = content.steps;
-    if (steps.isNotEmpty) {
-      final lastStep = _stepText(steps.last);
+    if (_isVerticalAdditionHint(content)) {
       return [
-        '식과 계산 방향이 문제에서 구하는 것과 맞는지 확인해 보세요.',
-        '마지막으로 확인할 부분: $lastStep',
-        '내가 쓴 답이 두 수를 모두 사용한 결과인지 다시 살펴보세요.',
+        '맨 오른쪽 자리부터 차례대로 계산했나요?',
+        '올린 1을 빠뜨리지 않았나요?',
+        '답 칸에는 마지막 계산 결과만 적어요.',
       ].join('\n');
     }
-    return '주어진 수를 모두 사용했는지, 구해야 하는 것에 맞는 식을 세웠는지 다시 확인해 보세요.';
-  }
-
-  String _stepText(SolutionStep step) {
-    final explanation = sanitizeProblemText(step.explanation).trim();
-    return explanation.isEmpty ? '주어진 조건을 이용해 첫 계산을 시작해 보세요.' : explanation;
+    return [
+      '문제에 나온 수를 빠뜨리지 않았나요?',
+      '구해야 하는 것에 맞는 계산을 했나요?',
+      '답을 쓰기 전에 한 번 더 읽어 보세요.',
+    ].join('\n');
   }
 
   String _withoutAnswer(ProblemContent content, String text) {
@@ -86,6 +79,49 @@ class SolvableHintService {
     }
     return text.replaceAll(answer, '□');
   }
+}
+
+String _methodHintText(ProblemContent content) {
+  if (_isVerticalAdditionHint(content)) {
+    return [
+      '일의 자리부터 더해요.',
+      '10이 넘으면 다음 자리 위에 1을 작게 적어요.',
+      '다음 자리는 올린 1도 함께 더해요.',
+    ].join('\n');
+  }
+
+  final method = _methodText(content.solvable['method']);
+  if (method == '덧셈으로 전체를 구해요.' ||
+      method == '나누어 주어진 수들을 모두 더해요.' ||
+      method.contains('덧셈')) {
+    return [
+      '따로 있는 수들을 하나로 모으는 문제예요.',
+      '문제에 나온 수들을 더해 보세요.',
+    ].join('\n');
+  }
+  if (method.contains('곱셈')) {
+    return [
+      '같은 수가 여러 번 나오면 곱셈을 생각해요.',
+      '한 묶음의 수와 묶음의 개수를 찾아 보세요.',
+    ].join('\n');
+  }
+  return [
+    '문제에 나온 수를 먼저 찾아요.',
+    '무엇을 구하는지 보고 알맞은 계산을 골라요.',
+  ].join('\n');
+}
+
+bool _isVerticalAdditionHint(ProblemContent content) {
+  final pieces = <String>[
+    _readText(content.solvable['target']),
+    _readText(content.solvable['method']),
+    _readText(content.solvable['plan']),
+    _readText(content.solvable['steps']),
+  ].join(' ');
+  return pieces.contains('받아올림') ||
+      pieces.contains('세로셈') ||
+      pieces.contains('자리') ||
+      pieces.contains('vertical_addition');
 }
 
 String _targetHintText(ProblemContent content) {

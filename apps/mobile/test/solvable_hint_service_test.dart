@@ -10,12 +10,11 @@ void main() {
 
     expect(hints, hasLength(4));
     expect(hints[0].body, contains('사과의 전체 개수'));
-    expect(hints[1].body, contains('덧셈'));
-    expect(hints[1].body, contains('두 묶음을 더한다'));
-    expect(hints[2].body, contains('3 + 4를 쓴다'));
+    expect(hints[1].body, contains('따로 있는 수'));
+    expect(hints[1].body, contains('더해 보세요'));
+    expect(hints[2].body, contains('문제에 나온 수'));
     expect(hints[3].title, contains('마지막 점검'));
-    expect(hints[3].body, contains('3 + 4를 쓴다'));
-    expect(hints[3].body, contains('두 수를 모두 사용'));
+    expect(hints[3].body, contains('빠뜨리지 않았나요'));
     expect(hints[3].body, isNot(contains('답이 조건에 맞는지 확인한다')));
   });
 
@@ -30,8 +29,22 @@ void main() {
   test('naturalizes internal method codes for students', () {
     final hints = service.buildHints(_contentWithMethodCode);
 
-    expect(hints[1].body, contains('나누어 주어진 수들을 모두 더해요'));
+    expect(hints[1].body, contains('문제에 나온 수들을 더해 보세요'));
     expect(hints[1].body, isNot(contains('add_parts')));
+  });
+
+  test('uses elementary wording for carrying hints without exposing results',
+      () {
+    final hints = service.buildHints(_verticalAdditionContent);
+
+    expect(hints[0].body, contains('받아올림한 수와 계산 결과'));
+    expect(hints[1].body, contains('일의 자리부터'));
+    expect(hints[1].body, contains('10이 넘으면'));
+    expect(hints[2].body, contains('맨 오른쪽 자리'));
+    expect(hints[3].body, contains('올린 1을 빠뜨리지 않았나요'));
+    expect(hints[3].body, isNot(contains('921')));
+    expect(hints[3].body, isNot(contains('4와 7')));
+    expect(hints[3].body, isNot(contains('6과 5')));
   });
 
   test('uses target label instead of internal target refs', () {
@@ -106,7 +119,7 @@ void main() {
 
     expect(hints, hasLength(4));
     expect(hints[0].body, contains('무엇을 구해야 하는지'));
-    expect(hints[2].body, contains('첫 번째로'));
+    expect(hints[2].body, contains('먼저 문제에 나온 수'));
     expect(hints[3].body, isNotEmpty);
   });
 }
@@ -136,6 +149,30 @@ const _contentWithMethodCode = ProblemContent(
       },
     ],
     'answer': {'value': 507},
+  },
+);
+
+const _verticalAdditionContent = ProblemContent(
+  summary: _summary,
+  semantic: {},
+  solvable: {
+    'target': {
+      'ref': 'answer.vertical_addition_blanks',
+      'type': 'digit_list',
+    },
+    'method': 'vertical_addition_with_carry',
+    'plan': '일의 자리부터 더하고 받아올림한 수를 다음 자리의 계산에 포함한다.',
+    'steps': [
+      {
+        'explanation': '일의 자리에서 4와 7을 더하면 11입니다.',
+        'value': '1',
+      },
+      {
+        'explanation': '십의 자리에서 6과 5에 받아올림한 1을 더합니다.',
+        'value': '2',
+      },
+    ],
+    'answer': {'value': 921},
   },
 );
 
