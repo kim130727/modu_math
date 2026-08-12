@@ -60,7 +60,30 @@ class DiagnosticConfirmationService {
     return null;
   }
 
+  DiagnosticPrompt? promptForCode({
+    required ProblemContent content,
+    required String diagnosticCode,
+    required String answer,
+  }) {
+    for (final strategy in strategies) {
+      if (!strategy.supports(content) &&
+          !strategy.supportsDiagnosticCode(diagnosticCode)) {
+        continue;
+      }
+      final prompt = strategy.promptFor(
+        content: content,
+        diagnosticCode: diagnosticCode,
+        answer: answer,
+      );
+      if (prompt != null) {
+        return prompt;
+      }
+    }
+    return null;
+  }
+
   DiagnosticResult? resultFor({
+    required ProblemContent content,
     required String diagnosticCode,
     required String confirmationAnswer,
   }) {
@@ -69,6 +92,7 @@ class DiagnosticConfirmationService {
         continue;
       }
       final result = strategy.resultFor(
+        content: content,
         diagnosticCode: diagnosticCode,
         confirmationAnswer: confirmationAnswer,
       );

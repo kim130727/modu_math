@@ -5,6 +5,7 @@ import '../utils/answer_normalizer.dart';
 import '../utils/tutor_text_sanitizer.dart';
 import 'ai_tutor_service.dart';
 import 'diagnostic_confirmation_service.dart';
+import 'diagnostic_strategies/diagnostic_strategy.dart';
 
 class RuleTutorService extends AiTutorService {
   const RuleTutorService({
@@ -99,6 +100,7 @@ class RuleTutorService extends AiTutorService {
         diagnosticConfirmationService.pendingCodeFrom(messages);
     if (pendingDiagnosticCode != null) {
       final result = diagnosticConfirmationService.resultFor(
+        content: content,
         diagnosticCode: pendingDiagnosticCode,
         confirmationAnswer: cleanMessage,
       );
@@ -138,6 +140,19 @@ class RuleTutorService extends AiTutorService {
         TutorReplyType.question,
         choices: diagnosticPrompt.choices,
         pendingDiagnosticCode: diagnosticPrompt.diagnosticCode,
+      );
+    }
+    final inferredDiagnosticPrompt = _inferredDiagnosticPrompt(
+      content,
+      step,
+      cleanMessage,
+    );
+    if (inferredDiagnosticPrompt != null) {
+      return _tutor(
+        inferredDiagnosticPrompt.text,
+        TutorReplyType.question,
+        choices: inferredDiagnosticPrompt.choices,
+        pendingDiagnosticCode: inferredDiagnosticPrompt.diagnosticCode,
       );
     }
     final diagnostic = _diagnosticFeedback(content, step, cleanMessage);
@@ -192,6 +207,22 @@ class RuleTutorService extends AiTutorService {
         choices: diagnosticPrompt.choices,
         pendingDiagnosticCode: diagnosticPrompt.diagnosticCode,
       );
+    }
+    final steps = _tutorSteps(content);
+    if (steps.isNotEmpty) {
+      final inferredDiagnosticPrompt = _inferredDiagnosticPrompt(
+        content,
+        steps.first,
+        answer,
+      );
+      if (inferredDiagnosticPrompt != null) {
+        return _tutor(
+          inferredDiagnosticPrompt.text,
+          TutorReplyType.question,
+          choices: inferredDiagnosticPrompt.choices,
+          pendingDiagnosticCode: inferredDiagnosticPrompt.diagnosticCode,
+        );
+      }
     }
     if (_hasRegisteredDiagnostics(content)) {
       return _tutor(
@@ -692,6 +723,32 @@ bool _hasRegisteredDiagnostics(ProblemContent content) {
   }
   final errors = diagnostics['errors'];
   return errors is Map && errors.isNotEmpty;
+}
+
+DiagnosticPrompt? _inferredDiagnosticPrompt(
+  ProblemContent content,
+  _RuleStep step,
+  String message,
+) {
+  if (!RegExp(r'^-?\d+$').hasMatch(message.trim())) {
+    return null;
+  }
+  if (_answerMatchesStep(message, step)) {
+    return null;
+  }
+  final expected = int.tryParse(step.expected.trim());
+  final terms = _additionTerms(step.expr);
+  if (expected == null ||
+      terms.length < 2 ||
+      terms.fold<int>(0, (sum, item) => sum + item) != expected ||
+      !_hasColumnCarry(terms)) {
+    return null;
+  }
+  return const DiagnosticConfirmationService().promptForCode(
+    content: content,
+    diagnosticCode: 'execute.add_carry',
+    answer: message,
+  );
 }
 
 String _inferredArithmeticFeedback(_RuleStep step, String message) {

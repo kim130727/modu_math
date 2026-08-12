@@ -16,6 +16,7 @@ abstract class DiagnosticStrategy {
   });
 
   DiagnosticResult? resultFor({
+    required ProblemContent content,
     required String diagnosticCode,
     required String confirmationAnswer,
   });
@@ -93,6 +94,7 @@ class PlaceholderDiagnosticStrategy extends DiagnosticStrategy {
 
   @override
   DiagnosticResult? resultFor({
+    required ProblemContent content,
     required String diagnosticCode,
     required String confirmationAnswer,
   }) {

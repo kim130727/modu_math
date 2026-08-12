@@ -26,22 +26,6 @@ void main() {
       expect(reply.replyType, equals(TutorReplyType.correct));
     });
 
-    test('infers addition feedback during step tutoring', () async {
-      const service = RuleTutorService();
-      final content = _additionContent();
-      final messages = service.startSession(content);
-
-      final reply = await service.respondToStudent(
-        content: content,
-        messages: messages,
-        message: '1111',
-        stepIndex: 0,
-      );
-
-      expect(reply.replyType, equals(TutorReplyType.question));
-      expect(reply.choices, isEmpty);
-    });
-
     test('accepts the correct submitted answer immediately', () async {
       const service = RuleTutorService();
       final reply = await service.reviewAnswer(
@@ -53,30 +37,23 @@ void main() {
       expect(reply.replyType, equals(TutorReplyType.correct));
     });
 
-    test('asks target confirmation for copied part answers', () async {
+    test('asks target confirmation without problem-specific names', () async {
       const service = RuleTutorService();
-      final content = _additionContent();
+      final reply = await service.reviewAnswer(
+        content: _genericAdditionContent(),
+        messages: const [],
+        answer: '36',
+      );
 
-      for (final answer in const ['259', '248']) {
-        final reply = await service.reviewAnswer(
-          content: content,
-          messages: const [],
-          answer: answer,
-        );
-
-        expect(reply.replyType, equals(TutorReplyType.question));
-        expect(reply.text, contains('이 문제에서 구해야 하는 것은'));
-        expect(reply.text, contains('상현이네 가족의 수'));
-        expect(reply.text, contains('용진이네 가족의 수'));
-        expect(reply.text, contains('두 가족이 캔 전체 수'));
-        expect(reply.choices, isEmpty);
-        expect(reply.pendingDiagnosticCode, equals('plan.copy_one_part'));
-        expect(reply.errorCategory, equals(ErrorCategory.none));
-      }
+      expect(reply.replyType, equals(TutorReplyType.question));
+      expect(reply.text, contains('1번째 부분의 수'));
+      expect(reply.text, contains('2번째 부분의 수'));
+      expect(reply.text, contains('전체 수'));
+      expect(reply.choices, isEmpty);
+      expect(reply.pendingDiagnosticCode, equals('plan.copy_one_part'));
     });
 
-    test('asks carry confirmation for the representative carry answer',
-        () async {
+    test('asks carry confirmation from the expression digits', () async {
       const service = RuleTutorService();
       final reply = await service.reviewAnswer(
         content: _additionContent(),
@@ -87,7 +64,7 @@ void main() {
       expect(reply.replyType, equals(TutorReplyType.question));
       expect(reply.text, contains('일의 자리에서 9와 8을 더하면 얼마인가요?'));
       expect(reply.choices, isEmpty);
-      expect(reply.pendingDiagnosticCode, equals('execute.add_carry'));
+      expect(reply.pendingDiagnosticCode, equals('execute.add_carry.0'));
       expect(reply.errorCategory, equals(ErrorCategory.none));
     });
 
@@ -101,8 +78,8 @@ void main() {
       );
       final targetFeedback = await service.respondToStudent(
         content: content,
-        messages: [targetPrompt, service.student('용진이네 가족의 수')],
-        message: '용진이네 가족의 수',
+        messages: [targetPrompt, service.student('두 가족이 캔 전체 수')],
+        message: '두 가족이 캔 전체 수',
         stepIndex: 0,
       );
       final carryPrompt = await service.reviewAnswer(
@@ -119,7 +96,7 @@ void main() {
 
       expect(
         targetFeedback.errorCategory,
-        equals(ErrorCategory.understandingTarget),
+        equals(ErrorCategory.planningOperation),
       );
       expect(
         carryFeedback.errorCategory,
@@ -167,33 +144,65 @@ void main() {
       );
 
       expect(tensPrompt.text, contains('십의 자리만 볼게요'));
+      expect(tensPrompt.text, contains('5와 4와 받아올린 1'));
       expect(
         tensPrompt.pendingDiagnosticCode,
-        equals('execute.add_carry.tens'),
+        equals('execute.add_carry.1'),
       );
-      expect(tensPrompt.choices, isEmpty);
       expect(hundredsPrompt.text, contains('백의 자리'));
+      expect(hundredsPrompt.text, contains('2와 2와 받아올린 1'));
       expect(
         hundredsPrompt.pendingDiagnosticCode,
-        equals('execute.add_carry.hundreds'),
+        equals('execute.add_carry.2'),
       );
-      expect(hundredsPrompt.choices, isEmpty);
       expect(finalFeedback.text, contains('507'));
       expect(finalFeedback.pendingDiagnosticCode, isNull);
     });
 
-    test('does not immediately classify an unregistered wrong answer',
-        () async {
+    test('walks carry diagnosis for a different addition expression', () async {
+      const service = RuleTutorService();
+      final content = _genericAdditionContent();
+      final onesPrompt = await service.reviewAnswer(
+        content: content,
+        messages: const [],
+        answer: '53',
+      );
+      final tensPrompt = await service.respondToStudent(
+        content: content,
+        messages: [onesPrompt, service.student('13')],
+        message: '13',
+        stepIndex: 0,
+      );
+      final finalFeedback = await service.respondToStudent(
+        content: content,
+        messages: [
+          onesPrompt,
+          service.student('13'),
+          tensPrompt,
+          service.student('6')
+        ],
+        message: '6',
+        stepIndex: 0,
+      );
+
+      expect(onesPrompt.text, contains('6와 7'));
+      expect(tensPrompt.text, contains('3와 2와 받아올린 1'));
+      expect(finalFeedback.text, contains('63'));
+    });
+
+    test('starts place diagnosis for an unregistered wrong answer', () async {
       const service = RuleTutorService();
       final reply = await service.reviewAnswer(
         content: _additionContent(),
         messages: const [],
-        answer: '506',
+        answer: '300',
       );
 
       expect(reply.replyType, equals(TutorReplyType.question));
-      expect(reply.text, contains('어느 자리에서 달라졌는지 하나씩 확인해 볼게요.'));
-      expect(reply.text, isNot(contains('받아올림')));
+      expect(reply.text, contains('일의 자리'));
+      expect(reply.text, contains('9'));
+      expect(reply.text, contains('8'));
+      expect(reply.pendingDiagnosticCode, equals('execute.add_carry.0'));
       expect(reply.errorCategory, equals(ErrorCategory.none));
     });
 
@@ -276,6 +285,10 @@ ProblemContent _additionContent() {
         'value': 507,
         'unit': '개',
       },
+      'target': {
+        'id': 'total',
+        'label': '두 가족이 캔 전체 수',
+      },
       'diagnostics': {
         'skills': [
           'add.part_part_whole',
@@ -285,6 +298,64 @@ ProblemContent _additionContent() {
           '497': 'execute.add_carry',
           '259': 'plan.copy_one_part',
           '248': 'plan.copy_one_part',
+        },
+      },
+    },
+  );
+}
+
+ProblemContent _genericAdditionContent() {
+  return const ProblemContent(
+    summary: ProblemSummary(
+      id: 'P_ADD_GENERIC',
+      grade: 2,
+      subject: 'math',
+      unit: 'addition',
+      type: 'numeric_answer_addition_word_problem',
+      title: 'Generic addition',
+      path: '',
+      raw: {},
+    ),
+    svg: '<svg></svg>',
+    semantic: {
+      'answer': {
+        'value': 63,
+      },
+    },
+    solvable: {
+      'method': 'add_parts',
+      'given': [
+        {
+          'id': 'first',
+          'value': 36,
+        },
+        {
+          'id': 'second',
+          'value': 27,
+        },
+      ],
+      'target': {
+        'id': 'total',
+      },
+      'steps': [
+        {
+          'id': 'step.add_counts',
+          'goal': 'Find the total count.',
+          'expr': '36 + 27',
+          'value': 63,
+        },
+      ],
+      'answer': {
+        'value': 63,
+      },
+      'diagnostics': {
+        'skills': [
+          'add.part_part_whole',
+          'add.two_digit',
+        ],
+        'errors': {
+          '36': 'plan.copy_one_part',
+          '53': 'execute.add_carry',
         },
       },
     },
