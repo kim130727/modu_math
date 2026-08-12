@@ -22,6 +22,7 @@ import { JsonImportExport } from "./JsonImportExport";
 import { KonvaStage, type CanvasPoint } from "./KonvaStage";
 import { KonvaToolbar, type ShapePreset } from "./KonvaToolbar";
 import { PropertyPanel } from "./PropertyPanel";
+import type { AnswerBindingOption } from "./PropertyPanel";
 import { TutorFlowPanel } from "./TutorFlowPanel";
 import { TutorPreviewPanel } from "./TutorPreviewPanel";
 
@@ -63,6 +64,7 @@ export function EditorKonva() {
     const selected = new Set(selectedShapeIds);
     return document.shapes.filter((shape) => selected.has(shape.id) && isAnswerSlotShape(shape)).map((shape) => shape.id);
   }, [document.shapes, selectedShapeIds]);
+  const answerBindingOptions = useMemo(() => answerOptionsFromSolvable(previewArtifacts.solvable), [previewArtifacts.solvable]);
   const effectiveTutorFlow = draftTutorFlow ?? previewArtifacts.renderer?.tutor_flow ?? [];
   const activeTutorFrames = useMemo(() => {
     if (!activeTutorStepId) return [];
@@ -235,14 +237,14 @@ export function EditorKonva() {
           enabled
             ? ({
                 ...shape,
-                interaction: shape.interaction ?? defaultInteractionForShape(shape, startOrder + index),
+                interaction: shape.interaction ?? defaultInteractionForShape(shape, startOrder + index, answerBindingOptions),
                 input_style: shape.input_style ?? defaultInputStyle(),
               } as EditorShape)
             : ({ ...shape, interaction: undefined, input_style: undefined } as EditorShape),
         ),
       );
     },
-    [document.shapes, updateShapes],
+    [answerBindingOptions, document.shapes, updateShapes],
   );
 
   const markSelectedAsAnswerSlot = useCallback(() => {
@@ -843,6 +845,7 @@ export function EditorKonva() {
               <PropertyPanel
                 shape={selectedShape}
                 selectedShapes={selectedShapes}
+                answerOptions={answerBindingOptions}
                 saveStatus={saveStatus}
                 onChange={patchSelectedShape}
                 onScaleSelection={scaleSelectedShapes}
@@ -1011,7 +1014,8 @@ function nextAnswerOrder(shapes: EditorShape[]): number {
   return orders.length ? Math.max(...orders) + 1 : 0;
 }
 
-function defaultInteractionForShape(shape: EditorShape, order: number): InputInteraction {
+function defaultInteractionForShape(shape: EditorShape, order: number, answerOptions: AnswerBindingOption[] = []): InputInteraction {
+  const singleAnswer = answerOptions.length === 1 ? answerOptions[0] : null;
   if (shape.type === "circle" || shape.type === "path") {
     return {
       type: "select",
@@ -1030,11 +1034,74 @@ function defaultInteractionForShape(shape: EditorShape, order: number): InputInt
     value_type: "digit",
     max_length: 1,
     include_in_submission: true,
-    order,
+    order: singleAnswer?.index ?? order,
     group_id: "final_answer",
+    answer_key_index: singleAnswer?.index,
+    answer_ref: singleAnswer?.ref,
     auto_advance: true,
     keyboard: "number",
   };
+}
+
+function answerOptionsFromSolvable(solvable: Record<string, unknown> | null): AnswerBindingOption[] {
+  const answer = recordValue(solvable?.answer);
+  if (!answer) return [];
+  const answerKey = Array.isArray(answer.answer_key) ? answer.answer_key : [];
+  const options = answerKey
+    .map((item, index) => answerOptionFromItem(item, index))
+    .filter((option): option is AnswerBindingOption => Boolean(option));
+  if (options.length) return options;
+
+  const values = Array.isArray(answer.values) ? answer.values : [];
+  const valueOptions = values
+    .map((item, index) => answerOptionFromItem(item, index))
+    .filter((option): option is AnswerBindingOption => Boolean(option));
+  if (valueOptions.length) return valueOptions;
+
+  const value = answerValueText(answer.value);
+  if (!value) return [];
+  const unit = stringValue(answer.unit);
+  return [{ index: 0, value, unit, label: answerOptionLabel(0, value, unit, "최종 정답"), ref: "answer.value" }];
+}
+
+function answerOptionFromItem(item: unknown, index: number): AnswerBindingOption | null {
+  if (!item || typeof item !== "object" || Array.isArray(item)) {
+    const value = answerValueText(item);
+    return value ? { index, value, label: answerOptionLabel(index, value) } : null;
+  }
+  const record = item as Record<string, unknown>;
+  const value = answerValueText(record.value ?? record.expected ?? record.result ?? record.answer);
+  if (!value) return null;
+  const unit = stringValue(record.unit);
+  const ref = stringValue(record.slot_id) || stringValue(record.target_ref) || stringValue(record.ref) || `answer_key[${index}]`;
+  const labelSource = stringValue(record.label) || stringValue(record.id) || stringValue(record.slot_id) || `답 ${index + 1}`;
+  return { index, value, unit, ref, label: answerOptionLabel(index, value, unit, labelSource) };
+}
+
+function answerOptionLabel(index: number, value: string, unit = "", prefix = `답 ${index + 1}`): string {
+  return `${prefix}: ${value}${unit ? ` ${unit}` : ""}`;
+}
+
+function answerValueText(value: unknown): string {
+  if (value === null || value === undefined) return "";
+  if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") return String(value);
+  if (Array.isArray(value)) return value.map(answerValueText).join("");
+  if (typeof value === "object") {
+    const record = value as Record<string, unknown>;
+    for (const key of ["value", "expected", "result", "answer", "count", "text"]) {
+      const text = answerValueText(record[key]);
+      if (text) return text;
+    }
+  }
+  return "";
+}
+
+function recordValue(value: unknown): Record<string, unknown> | null {
+  return value && typeof value === "object" && !Array.isArray(value) ? (value as Record<string, unknown>) : null;
+}
+
+function stringValue(value: unknown): string {
+  return typeof value === "string" && value.trim() ? value : "";
 }
 
 function defaultInputStyle(): InputStyle {

@@ -23,6 +23,8 @@ export interface InputInteraction {
   order?: number;
   group_id?: string;
   choice_value?: string | number;
+  answer_key_index?: number;
+  answer_ref?: string;
   placeholder?: string;
   auto_advance?: boolean;
   keyboard?: AnswerKeyboard;

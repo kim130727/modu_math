@@ -5,12 +5,21 @@ import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
 interface PropertyPanelProps {
   shape: EditorShape | null;
   selectedShapes?: EditorShape[];
+  answerOptions?: AnswerBindingOption[];
   saveStatus: "saved" | "saving" | "unsaved" | "building" | "built" | "error";
   onChange: (patch: Partial<EditorShape>) => void;
   onScaleSelection?: (scalePercent: number) => void;
 }
 
-export function PropertyPanel({ shape, selectedShapes = [], saveStatus, onChange, onScaleSelection }: PropertyPanelProps) {
+export interface AnswerBindingOption {
+  index: number;
+  label: string;
+  value: string;
+  unit?: string;
+  ref?: string;
+}
+
+export function PropertyPanel({ shape, selectedShapes = [], answerOptions = [], saveStatus, onChange, onScaleSelection }: PropertyPanelProps) {
   if (!shape) {
     if (selectedShapes.length > 1) {
       return (
@@ -37,7 +46,7 @@ export function PropertyPanel({ shape, selectedShapes = [], saveStatus, onChange
       <div className="konva-field-grid">
         <ReadOnlyField label="id" value={shape.id} />
         <ReadOnlyField label="type" value={shape.type} />
-        {isAnswerSlotShape(shape) ? <AnswerSlotFields shape={shape} onChange={onChange} /> : null}
+        {isAnswerSlotShape(shape) ? <AnswerSlotFields shape={shape} answerOptions={answerOptions} onChange={onChange} /> : null}
         <NumberField label="x" value={shape.x} onChange={(x) => onChange({ x } as Partial<EditorShape>)} />
         <NumberField label="y" value={shape.y} onChange={(y) => onChange({ y } as Partial<EditorShape>)} />
         <NumberField label="rotation" value={shape.rotation ?? 0} onChange={(rotation) => onChange({ rotation } as Partial<EditorShape>)} />
@@ -104,7 +113,15 @@ export function PropertyPanel({ shape, selectedShapes = [], saveStatus, onChange
   );
 }
 
-function AnswerSlotFields({ shape, onChange }: { shape: EditorShape; onChange: (patch: Partial<EditorShape>) => void }) {
+function AnswerSlotFields({
+  shape,
+  answerOptions,
+  onChange,
+}: {
+  shape: EditorShape;
+  answerOptions: AnswerBindingOption[];
+  onChange: (patch: Partial<EditorShape>) => void;
+}) {
   const interaction = shape.interaction;
   const inputStyle = shape.input_style;
   const enabled = Boolean(interaction);
@@ -117,7 +134,7 @@ function AnswerSlotFields({ shape, onChange }: { shape: EditorShape; onChange: (
           onChange(
             checked
               ? ({
-                  interaction: interaction ?? defaultInteractionForShape(shape),
+                  interaction: interaction ?? defaultInteractionForShape(shape, answerOptions),
                   input_style: inputStyle ?? defaultInputStyle(),
                 } as Partial<EditorShape>)
               : ({ interaction: undefined, input_style: undefined } as Partial<EditorShape>),
@@ -126,6 +143,34 @@ function AnswerSlotFields({ shape, onChange }: { shape: EditorShape; onChange: (
       />
       {interaction ? (
         <>
+          {interaction.role === "answer" ? (
+            answerOptions.length ? (
+              <SelectField
+                label="정답 연결"
+                value={interaction.answer_key_index === undefined ? "" : String(interaction.answer_key_index)}
+                options={["", ...answerOptions.map((option) => String(option.index))]}
+                optionLabels={{
+                  "": "연결 안 함",
+                  ...Object.fromEntries(answerOptions.map((option) => [String(option.index), option.label])),
+                }}
+                onChange={(value) => {
+                  const answer_key_index = value === "" ? undefined : Number(value);
+                  const option = answerOptions.find((item) => item.index === answer_key_index);
+                  onChange({
+                    interaction: {
+                      ...interaction,
+                      answer_key_index,
+                      answer_ref: option?.ref,
+                      order: answer_key_index ?? interaction.order ?? 0,
+                      group_id: interaction.group_id || "final_answer",
+                    },
+                  } as Partial<EditorShape>);
+                }}
+              />
+            ) : (
+              <ReadOnlyField label="정답 연결" value="연결할 answer_key가 없습니다" />
+            )
+          ) : null}
           <SelectField
             label="입력 방식"
             value={interaction.type}
@@ -240,7 +285,8 @@ function isAnswerSlotShape(shape: EditorShape): boolean {
   return shape.type === "rect" || shape.type === "circle" || shape.type === "path" || shape.type === "text";
 }
 
-function defaultInteractionForShape(shape: EditorShape): InputInteraction {
+function defaultInteractionForShape(shape: EditorShape, answerOptions: AnswerBindingOption[] = []): InputInteraction {
+  const singleAnswer = answerOptions.length === 1 ? answerOptions[0] : null;
   if (shape.type === "circle" || shape.type === "path") {
     return {
       type: "select",
@@ -259,8 +305,10 @@ function defaultInteractionForShape(shape: EditorShape): InputInteraction {
     value_type: "integer",
     max_length: 3,
     include_in_submission: true,
-    order: 0,
+    order: singleAnswer?.index ?? 0,
     group_id: "final_answer",
+    answer_key_index: singleAnswer?.index,
+    answer_ref: singleAnswer?.ref,
     auto_advance: false,
     keyboard: "number",
   };
@@ -298,14 +346,26 @@ function CheckboxField({ label, checked, onChange }: { label: string; checked: b
   );
 }
 
-function SelectField({ label, value, options, onChange }: { label: string; value: string; options: string[]; onChange: (value: string) => void }) {
+function SelectField({
+  label,
+  value,
+  options,
+  optionLabels = {},
+  onChange,
+}: {
+  label: string;
+  value: string;
+  options: string[];
+  optionLabels?: Record<string, string>;
+  onChange: (value: string) => void;
+}) {
   return (
     <label className="konva-field">
       <span>{label}</span>
       <select value={value} onChange={(event) => onChange(event.target.value)}>
         {options.map((option) => (
           <option key={option} value={option}>
-            {option}
+            {optionLabels[option] ?? option}
           </option>
         ))}
       </select>
