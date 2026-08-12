@@ -8,20 +8,16 @@ class AnswerPanel extends StatefulWidget {
     super.key,
     required this.content,
     required this.answerDraft,
-    required this.submittedAnswer,
     required this.isCorrect,
     required this.onAnswerChanged,
     required this.onSubmit,
-    required this.onShowSolution,
   });
 
   final ProblemContent content;
   final String answerDraft;
-  final String? submittedAnswer;
   final bool? isCorrect;
   final ValueChanged<String> onAnswerChanged;
   final ValueChanged<String> onSubmit;
-  final VoidCallback onShowSolution;
 
   @override
   State<AnswerPanel> createState() => _AnswerPanelState();
@@ -115,21 +111,10 @@ class _AnswerPanelState extends State<AnswerPanel> {
                     style: const TextStyle(fontSize: 18)),
               ),
             ),
-            const SizedBox(height: 10),
-            OutlinedButton(
-              onPressed: widget.onShowSolution,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: Text(strings.t('answer.showSolution'),
-                    style: const TextStyle(fontSize: 18)),
-              ),
-            ),
             if (widget.isCorrect != null) ...[
               const SizedBox(height: 14),
               _ResultBanner(
                 isCorrect: widget.isCorrect!,
-                answer: widget.submittedAnswer ?? '',
-                correctAnswer: widget.content.correctAnswer,
               ),
             ],
           ],
@@ -142,13 +127,9 @@ class _AnswerPanelState extends State<AnswerPanel> {
 class _ResultBanner extends StatelessWidget {
   const _ResultBanner({
     required this.isCorrect,
-    required this.answer,
-    required this.correctAnswer,
   });
 
   final bool isCorrect;
-  final String answer;
-  final String correctAnswer;
 
   @override
   Widget build(BuildContext context) {
@@ -168,9 +149,7 @@ class _ResultBanner extends StatelessWidget {
       child: Text(
         isCorrect
             ? strings.t('answer.correct')
-            : strings.t('answer.incorrectWithAnswer', {
-                'answer': correctAnswer,
-              }),
+            : strings.t('answer.incorrectWithAnswer'),
         style: TextStyle(
           color: textColor,
           fontSize: 18,

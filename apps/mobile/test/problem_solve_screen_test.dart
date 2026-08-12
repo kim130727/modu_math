@@ -32,6 +32,7 @@ void main() {
 
     expect(find.byType(TutorChatPanel), findsNothing);
     expect(find.text('힌트 보기'), findsOneWidget);
+    expect(find.text('풀이 보기'), findsNothing);
     expect(progressRepository.startedSessions, equals(1));
     expect(progressRepository.sessions.single.skillIds, equals(['skill.add']));
 
@@ -77,6 +78,8 @@ void main() {
     expect(progressRepository.submissions.single.isCorrect, isFalse);
     expect(progressRepository.attempts.single.isCorrect, isFalse);
     expect(await progressRepository.getReviewQueue(), hasLength(1));
+    expect(find.textContaining('정답: 7'), findsNothing);
+    expect(find.textContaining('힌트를 보고 한 번 더 생각'), findsOneWidget);
   });
 
   testWidgets('syncs renderer answer slot input into the answer panel',

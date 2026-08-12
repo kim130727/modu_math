@@ -148,11 +148,9 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
               final answerPanel = AnswerPanel(
                 content: content,
                 answerDraft: answerDraft,
-                submittedAnswer: submittedAnswer,
                 isCorrect: isCorrect,
                 onAnswerChanged: _updateAnswerDraft,
                 onSubmit: (answer) => _submit(content, answer),
-                onShowSolution: () => _revealSolution(content),
               );
               final hintPanel = HintPanel(
                 hints: hintService.buildHints(content),
@@ -303,19 +301,6 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
         sessionId: sessionId,
         level: nextLevel,
       );
-    }
-  }
-
-  Future<void> _revealSolution(ProblemContent content) async {
-    if (hintLevel < 4) {
-      setState(() => hintLevel = 4);
-      final sessionId = await _ensureLearningSession(content);
-      if (sessionId != null) {
-        await widget.progressRepository?.recordSessionHint(
-          sessionId: sessionId,
-          level: 4,
-        );
-      }
     }
   }
 
