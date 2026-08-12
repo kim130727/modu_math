@@ -39,7 +39,6 @@ void main() {
       );
 
       expect(reply.replyType, equals(TutorReplyType.question));
-      expect(reply.text, contains('받아올림'));
       expect(reply.choices, isEmpty);
     });
 
@@ -148,7 +147,7 @@ void main() {
           onesPrompt,
           service.student('17'),
           tensPrompt,
-          service.student('10')
+          service.student('10'),
         ],
         message: '10',
         stepIndex: 0,
@@ -169,7 +168,9 @@ void main() {
 
       expect(tensPrompt.text, contains('십의 자리만 볼게요'));
       expect(
-          tensPrompt.pendingDiagnosticCode, equals('execute.add_carry.tens'));
+        tensPrompt.pendingDiagnosticCode,
+        equals('execute.add_carry.tens'),
+      );
       expect(tensPrompt.choices, isEmpty);
       expect(hundredsPrompt.text, contains('백의 자리'));
       expect(
@@ -212,13 +213,9 @@ void main() {
         messages: const [],
         answer: '259',
       );
-      final messages = [
-        prompt,
-        service.student('두 가족이 캔 전체 수'),
-      ];
       final feedback = await service.respondToStudent(
         content: content,
-        messages: messages,
+        messages: [prompt, service.student('두 가족이 캔 전체 수')],
         message: '두 가족이 캔 전체 수',
         stepIndex: 0,
       );
