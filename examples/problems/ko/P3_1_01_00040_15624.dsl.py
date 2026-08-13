@@ -18,9 +18,7 @@ def build_problem_template() -> ProblemTemplate:
         id=PROBLEM_ID,
         title=PROBLEM_TITLE,
         canvas=Canvas(
-            width=960,
-            height=225,
-            coordinate_mode="logical",
+            width = 960, height = 500, coordinate_mode="logical",
         ),
         regions=(
             Region(
@@ -58,8 +56,7 @@ def build_problem_template() -> ProblemTemplate:
                 x=20,
                 y=68,
                 width=920,
-                height=28,
-                text="(1) 숫자 카드를 이용하여 만들 수 있는 가장 큰 세 자리 수를 쓰시오.",
+                height = 31, text="(1) 숫자 카드를 이용하여 만들 수 있는 가장 큰 세 자리 수를 쓰시오.",
                 font_size=18,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
@@ -77,8 +74,7 @@ def build_problem_template() -> ProblemTemplate:
                 x=20,
                 y=105,
                 width=920,
-                height=28,
-                text="(2) 숫자 카드를 이용하여 만들 수 있는 가장 작은 세 자리 수를 쓰시오.",
+                height = 31, text="(2) 숫자 카드를 이용하여 만들 수 있는 가장 작은 세 자리 수를 쓰시오.",
                 font_size=18,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
@@ -96,8 +92,7 @@ def build_problem_template() -> ProblemTemplate:
                 x=20,
                 y=142,
                 width=920,
-                height=28,
-                text=(
+                height = 31, text=(
                     "(3) 숫자 카드를 이용하여 만들 수 있는 가장 큰 세 자리 수와 "
                     "가장 작은 세 자리 수의 합을 구하시오."
                 ),

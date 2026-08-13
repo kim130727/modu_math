@@ -14,8 +14,7 @@
       "role": "stem",
       "flow": "vertical",
       "slot_ids": [
-        "slot.question",
-        "slot.answer"
+        "slot.question"
       ]
     }
   ],
@@ -30,21 +29,13 @@
         "x": 14.098,
         "y": 14.984,
         "width": 458.689,
-        "height": 191.049,
+        "height": 218,
         "align": "left",
         "valign": "top",
         "font_size": 30,
         "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "line_height": 1.4,
         "fill": "#202124"
-      }
-    },
-    {
-      "id": "slot.answer",
-      "kind": "blank",
-      "prompt": "답",
-      "content": {
-        "placeholder": "쪽"
       }
     }
   ],
@@ -53,7 +44,6 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.question",
-    "slot.answer"
+    "slot.question"
   ]
 }

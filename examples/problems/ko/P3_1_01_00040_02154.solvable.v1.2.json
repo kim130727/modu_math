@@ -3,7 +3,7 @@
   "problem_id": "P3_1_01_00040_02154",
   "problem_type": "multi_answer_vertical_addition",
   "inputs": {
-    "target_label": "???몃줈?덉쓽 諛쏆븘?щ┝???섏? 怨꾩궛 寃곌낵",
+    "target_label": "두 세로셈의 받아올림한 수와 계산 결과",
     "unit": "",
     "answer_type": "digit_list",
     "quantities": {
@@ -17,9 +17,9 @@
       }
     },
     "conditions": [
-      "?쇱쓽 ?먮━遺??李⑤??濡?怨꾩궛?⑸땲??",
-      "媛??먮━???⑹씠 10 ?댁긽?대㈃ 諛붾줈 ?쀬옄由щ줈 1??諛쏆븘?щ┝?⑸땲??",
-      "諛쏆븘?щ┝???섏? ?㏃뀍 寃곌낵??媛??먮━ ?レ옄瑜??ㅻえ ?덉뿉 ?곷땲??"
+      "각 세로셈에서 일의 자리부터 더합니다.",
+      "각 자리의 합이 10 이상이면 바로 윗자리로 1을 받아올림합니다.",
+      "받아올림한 수와 덧셈 결과의 각 자리 숫자를 네모 안에 씁니다."
     ]
   },
   "given": [
@@ -42,61 +42,61 @@
     "ref": "answer.vertical_addition_blanks",
     "type": "digit_list"
   },
-  "method": "媛??몃줈?덉뿉???쇱쓽 ?먮━遺???뷀븯怨? 諛쏆븘?щ┝???섎? 諛붾줈 ?쀬옄由?怨꾩궛???ы븿?쒕떎.",
+  "method": "각 세로셈에서 일의 자리부터 더하고, 받아올림한 수를 바로 윗자리 계산에 포함한다.",
   "plan": [
-    "泥?踰덉㎏ ?몃줈??529+775瑜??쇱쓽 ?먮━遺??怨꾩궛?쒕떎.",
-    "泥?踰덉㎏ ?몃줈?덉쓽 諛쏆븘?щ┝???섏? 寃곌낵瑜??대떎.",
-    "??踰덉㎏ ?몃줈??257+769瑜??쇱쓽 ?먮━遺??怨꾩궛?쒕떎.",
-    "??踰덉㎏ ?몃줈?덉쓽 諛쏆븘?щ┝???섏? 寃곌낵瑜??대떎."
+    "첫 번째 세로셈 529+775를 일의 자리부터 계산한다.",
+    "첫 번째 세로셈의 받아올림한 수와 결과를 쓴다.",
+    "두 번째 세로셈 257+769를 일의 자리부터 계산한다.",
+    "두 번째 세로셈의 받아올림한 수와 결과를 쓴다."
   ],
   "steps": [
     {
       "id": "step.problem_1.add_ones",
       "expr": "9 + 5",
       "value": 14,
-      "explanation": "?쇱쓽 ?먮━?먯꽌 9? 5瑜??뷀븯硫?14?대?濡?4瑜??곌퀬 1??諛쏆븘?щ┝?⑸땲??"
+      "explanation": "일의 자리에서 9와 5를 더하면 14이므로 4를 쓰고 1을 받아올림합니다."
     },
     {
       "id": "step.problem_1.add_tens",
       "expr": "2 + 7 + 1",
       "value": 10,
-      "explanation": "??쓽 ?먮━?먯꽌 2? 7??諛쏆븘?щ┝??1???뷀븯硫?10?대?濡?0???곌퀬 1??諛쏆븘?щ┝?⑸땲??"
+      "explanation": "십의 자리에서 2와 7에 받아올림한 1을 더하면 10이므로 0을 쓰고 1을 받아올림합니다."
     },
     {
       "id": "step.problem_1.add_hundreds",
       "expr": "5 + 7 + 1",
       "value": 13,
-      "explanation": "諛깆쓽 ?먮━?먯꽌 5? 7??諛쏆븘?щ┝??1???뷀븯硫?13?대?濡?13???욎뿉 ?곷땲??"
+      "explanation": "백의 자리에서 5와 7에 받아올림한 1을 더하면 13이므로 천의 자리와 백의 자리에 13을 씁니다."
     },
     {
       "id": "step.problem_1.compose_sum",
       "expr": "529 + 775",
       "value": 1304,
-      "explanation": "泥?踰덉㎏ ?몃줈?덉쓽 寃곌낵??1304?낅땲??"
+      "explanation": "첫 번째 세로셈의 결과는 1304입니다."
     },
     {
       "id": "step.problem_2.add_ones",
       "expr": "7 + 9",
       "value": 16,
-      "explanation": "?쇱쓽 ?먮━?먯꽌 7怨?9瑜??뷀븯硫?16?대?濡?6???곌퀬 1??諛쏆븘?щ┝?⑸땲??"
+      "explanation": "일의 자리에서 7과 9를 더하면 16이므로 6을 쓰고 1을 받아올림합니다."
     },
     {
       "id": "step.problem_2.add_tens",
       "expr": "5 + 6 + 1",
       "value": 12,
-      "explanation": "??쓽 ?먮━?먯꽌 5? 6??諛쏆븘?щ┝??1???뷀븯硫?12?대?濡?2瑜??곌퀬 1??諛쏆븘?щ┝?⑸땲??"
+      "explanation": "십의 자리에서 5와 6에 받아올림한 1을 더하면 12이므로 2를 쓰고 1을 받아올림합니다."
     },
     {
       "id": "step.problem_2.add_hundreds",
       "expr": "2 + 7 + 1",
       "value": 10,
-      "explanation": "諛깆쓽 ?먮━?먯꽌 2? 7??諛쏆븘?щ┝??1???뷀븯硫?10?대?濡?10???욎뿉 ?곷땲??"
+      "explanation": "백의 자리에서 2와 7에 받아올림한 1을 더하면 10이므로 천의 자리와 백의 자리에 10을 씁니다."
     },
     {
       "id": "step.problem_2.compose_sum",
       "expr": "257 + 769",
       "value": 1026,
-      "explanation": "??踰덉㎏ ?몃줈?덉쓽 寃곌낵??1026?낅땲??"
+      "explanation": "두 번째 세로셈의 결과는 1026입니다."
     }
   ],
   "checks": [
@@ -194,14 +194,126 @@
         "id": "answer.problem_2.ones",
         "value": 6
       }
+    ],
+    "blanks": [
+      {
+        "id": "konva_1786191666134_paste_271306_1",
+        "slot_id": "konva_1786191666134_paste_271306_1",
+        "expected": 1
+      },
+      {
+        "id": "konva_1786191666134_paste_271306_0",
+        "slot_id": "konva_1786191666134_paste_271306_0",
+        "expected": 1
+      },
+      {
+        "id": "konva_1786191666134_paste_245858_0",
+        "slot_id": "konva_1786191666134_paste_245858_0",
+        "expected": 1
+      },
+      {
+        "id": "konva_1786191666134_paste_241138_0",
+        "slot_id": "konva_1786191666134_paste_241138_0",
+        "expected": 3
+      },
+      {
+        "id": "konva_1786191666134_paste_235314_0",
+        "slot_id": "konva_1786191666134_paste_235314_0",
+        "expected": 0
+      },
+      {
+        "id": "konva_1785114682783_paste_104870_0",
+        "slot_id": "konva_1785114682783_paste_104870_0",
+        "expected": 4
+      },
+      {
+        "id": "konva_1786191666134_paste_274730_1",
+        "slot_id": "konva_1786191666134_paste_274730_1",
+        "expected": 1
+      },
+      {
+        "id": "konva_1786191666134_paste_274730_0",
+        "slot_id": "konva_1786191666134_paste_274730_0",
+        "expected": 1
+      },
+      {
+        "id": "konva_1786191666134_paste_255258_3",
+        "slot_id": "konva_1786191666134_paste_255258_3",
+        "expected": 1
+      },
+      {
+        "id": "konva_1786191666134_paste_255258_2",
+        "slot_id": "konva_1786191666134_paste_255258_2",
+        "expected": 0
+      },
+      {
+        "id": "konva_1786191666134_paste_255258_1",
+        "slot_id": "konva_1786191666134_paste_255258_1",
+        "expected": 2
+      },
+      {
+        "id": "konva_1786191666134_paste_255258_0",
+        "slot_id": "konva_1786191666134_paste_255258_0",
+        "expected": 6
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "konva_1786191666134_paste_271306_1",
+        "value": 1
+      },
+      {
+        "slot_id": "konva_1786191666134_paste_271306_0",
+        "value": 1
+      },
+      {
+        "slot_id": "konva_1786191666134_paste_245858_0",
+        "value": 1
+      },
+      {
+        "slot_id": "konva_1786191666134_paste_241138_0",
+        "value": 3
+      },
+      {
+        "slot_id": "konva_1786191666134_paste_235314_0",
+        "value": 0
+      },
+      {
+        "slot_id": "konva_1785114682783_paste_104870_0",
+        "value": 4
+      },
+      {
+        "slot_id": "konva_1786191666134_paste_274730_1",
+        "value": 1
+      },
+      {
+        "slot_id": "konva_1786191666134_paste_274730_0",
+        "value": 1
+      },
+      {
+        "slot_id": "konva_1786191666134_paste_255258_3",
+        "value": 1
+      },
+      {
+        "slot_id": "konva_1786191666134_paste_255258_2",
+        "value": 0
+      },
+      {
+        "slot_id": "konva_1786191666134_paste_255258_1",
+        "value": 2
+      },
+      {
+        "slot_id": "konva_1786191666134_paste_255258_0",
+        "value": 6
+      }
     ]
   },
   "understanding": {
-    "summary": "Find ???몃줈?덉쓽 諛쏆븘?щ┝???섏? 怨꾩궛 寃곌낵 using the given information.",
+    "summary": "두 세로셈의 받아올림한 수와 계산 결과를 구하는 문제입니다.",
     "facts": [
       {
         "ref": "addition.problem_1",
-        "label": "problem 1",
+        "label": "첫 번째 세로셈",
         "value": {
           "first_addend": 529,
           "second_addend": 775
@@ -211,7 +323,7 @@
       },
       {
         "ref": "addition.problem_2",
-        "label": "problem 2",
+        "label": "두 번째 세로셈",
         "value": {
           "first_addend": 257,
           "second_addend": 769
@@ -223,15 +335,15 @@
     "unknowns": [
       {
         "ref": "answer.vertical_addition_blanks",
-        "label": "???몃줈?덉쓽 諛쏆븘?щ┝???섏? 怨꾩궛 寃곌낵",
+        "label": "두 세로셈의 받아올림한 수와 계산 결과",
         "unit": "",
         "source": "unknown"
       }
     ],
     "relation": {
-      "type": "媛??몃줈?덉뿉???쇱쓽 ?먮━遺???뷀븯怨? 諛쏆븘?щ┝???섎? 諛붾줈 ?쀬옄由?怨꾩궛???ы븿?쒕떎.",
-      "statement": "泥?踰덉㎏ ?몃줈??529+775瑜??쇱쓽 ?먮━遺??怨꾩궛?쒕떎.",
-      "symbolic": "9 + 5",
+      "type": "각 세로셈에서 일의 자리부터 더하고, 받아올림한 수를 바로 윗자리 계산에 포함한다.",
+      "statement": "각 세로셈을 일의 자리부터 차례로 계산합니다.",
+      "symbolic": "vertical_addition",
       "uses": [
         "addition.problem_1",
         "addition.problem_2"
@@ -242,11 +354,11 @@
       {
         "id": "understand.target",
         "type": "multiple_choice",
-        "prompt": "What should we find?",
+        "prompt": "이 문제에서 구해야 하는 것은 무엇인가요?",
         "choices": [
-          "problem 1",
-          "problem 2",
-          "???몃줈?덉쓽 諛쏆븘?щ┝???섏? 怨꾩궛 寃곌낵"
+          "첫 번째 세로셈",
+          "두 번째 세로셈",
+          "두 세로셈의 받아올림한 수와 계산 결과"
         ],
         "answer_index": 2
       }

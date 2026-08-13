@@ -14,8 +14,7 @@
       "role": "stem",
       "flow": "vertical",
       "slot_ids": [
-        "slot.question",
-        "slot.answer"
+        "slot.question"
       ]
     }
   ],
@@ -27,8 +26,8 @@
       "content": {
         "text": "재형이의 앨범에는 324장의 가족 사진과 133장의 친구 사진이 있습니다. 그리고 혼자 찍은 사진도 102장이 있습니다. 사진은 모두 몇 장입니까?",
         "style_role": "body",
-        "x": 24.0,
-        "y": 24.0,
+        "x": 16.823,
+        "y": 8.22,
         "width": 549.246,
         "height": 182.0,
         "align": "left",
@@ -38,14 +37,6 @@
         "line_height": 1.45,
         "fill": "#202124"
       }
-    },
-    {
-      "id": "slot.answer",
-      "kind": "blank",
-      "prompt": "답",
-      "content": {
-        "placeholder": "장"
-      }
     }
   ],
   "groups": [],
@@ -53,7 +44,6 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.question",
-    "slot.answer"
+    "slot.question"
   ]
 }

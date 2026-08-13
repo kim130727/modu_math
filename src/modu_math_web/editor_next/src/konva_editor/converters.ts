@@ -607,7 +607,7 @@ export function normalizedTextBoxWidth(text: string, fontSize: number, width?: n
   if (!text.trim() || align !== "left" || text.includes("\n")) return capped(width);
   if (maxWidth !== undefined && width > maxWidth) return capped(width);
   const suspiciouslyWide = width > Math.max(fittedWidth * 2.2, fittedWidth + fontSize * 2.5);
-  return suspiciouslyWide ? capped(fittedWidth) : capped(Math.max(width, fittedWidth));
+  return suspiciouslyWide ? capped(fittedWidth) : capped(width);
 }
 
 function maxTextBoxWidthWithinCanvas(x: number, canvasWidth: number): number {
