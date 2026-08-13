@@ -77,6 +77,13 @@ class ChoiceSlot(SlotBase):
 class BlankSlot(SlotBase):
     answer_key: str | None = None
     placeholder: str = ""
+    x: float | None = None
+    y: float | None = None
+    width: float | None = None
+    height: float | None = None
+    fill: str | None = None
+    stroke: str | None = None
+    stroke_width: float | None = None
     kind: str = "blank"
 
 

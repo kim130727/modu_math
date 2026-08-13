@@ -1250,30 +1250,32 @@ function shapeFromNode(shape: EditorShape, node: Konva.Node): EditorShape {
   node.scaleY(1);
 
   if (shape.type === "rect") {
+    const size = scaledNodeSize(shape.width, shape.height, scaleX, scaleY, 6, 6);
     return {
       ...shape,
       x: node.x(),
       y: node.y(),
       rotation: node.rotation(),
-      width: Math.max(6, shape.width * scaleX),
-      height: Math.max(6, shape.height * scaleY),
+      width: size.width,
+      height: size.height,
     };
   }
   if (shape.type === "image") {
+    const size = scaledNodeSize(shape.width, shape.height, scaleX, scaleY, 6, 6);
     return {
       ...shape,
       x: node.x(),
       y: node.y(),
       rotation: node.rotation(),
-      width: Math.max(6, shape.width * scaleX),
-      height: Math.max(6, shape.height * scaleY),
+      width: size.width,
+      height: size.height,
     };
   }
   if (shape.type === "text") {
-    const width = Math.max(24, (shape.width ?? node.width()) * scaleX);
+    const width = Math.max(24, (shape.width ?? node.width()) * Math.abs(scaleX));
     const previousHeight = shape.height;
     const scaledHeight =
-      typeof previousHeight === "number" && Math.abs(scaleY - 1) > 0.01 ? Math.max(12, previousHeight * scaleY) : previousHeight;
+      typeof previousHeight === "number" && Math.abs(Math.abs(scaleY) - 1) > 0.01 ? Math.max(12, previousHeight * Math.abs(scaleY)) : previousHeight;
     return {
       ...shape,
       x: node.x(),
@@ -1285,13 +1287,14 @@ function shapeFromNode(shape: EditorShape, node: Konva.Node): EditorShape {
     };
   }
   if (shape.type === "math") {
+    const size = scaledNodeSize(shape.width, shape.height, scaleX, scaleY, 24, 16);
     return {
       ...shape,
       x: node.x(),
       y: node.y(),
       rotation: node.rotation(),
-      width: Math.max(24, shape.width * scaleX),
-      height: Math.max(16, shape.height * scaleY),
+      width: size.width,
+      height: size.height,
     };
   }
   if (shape.type === "baseTenBlock") {
@@ -1348,5 +1351,12 @@ function shapeFromNode(shape: EditorShape, node: Konva.Node): EditorShape {
     };
   }
   return shape;
+}
+
+function scaledNodeSize(width: number, height: number, scaleX: number, scaleY: number, minWidth: number, minHeight: number): { width: number; height: number } {
+  return {
+    width: roundStageNumber(Math.max(minWidth, width * Math.abs(scaleX))),
+    height: roundStageNumber(Math.max(minHeight, height * Math.abs(scaleY))),
+  };
 }
 

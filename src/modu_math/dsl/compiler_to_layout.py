@@ -253,13 +253,28 @@ def _normalize_slot(slot: AuthoringSlot) -> dict[str, Any]:
         }
 
     if isinstance(slot, BlankSlot):
+        content: dict[str, Any] = {
+            "placeholder": slot.placeholder,
+        }
+        if slot.x is not None:
+            content["x"] = float(slot.x)
+        if slot.y is not None:
+            content["y"] = float(slot.y)
+        if slot.width is not None:
+            content["width"] = float(slot.width)
+        if slot.height is not None:
+            content["height"] = float(slot.height)
+        if isinstance(slot.fill, str):
+            content["fill"] = slot.fill
+        if isinstance(slot.stroke, str):
+            content["stroke"] = slot.stroke
+        if slot.stroke_width is not None:
+            content["stroke_width"] = float(slot.stroke_width)
         return {
             "id": slot.id,
             "kind": slot.kind,
             "prompt": slot.prompt or "",
-            "content": {
-                "placeholder": slot.placeholder,
-            },
+            "content": content,
         }
 
     if isinstance(slot, LabelSlot):

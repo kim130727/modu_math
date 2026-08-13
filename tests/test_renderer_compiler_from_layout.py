@@ -201,3 +201,38 @@ def test_compile_renderer_places_blank_after_text_box_bottom() -> None:
     assert blank["attributes"]["y"] >= question_bottom + 12
     assert renderer["view_box"]["height"] >= blank["attributes"]["y"] + blank["attributes"]["height"]
 
+
+def test_compile_renderer_uses_authored_blank_geometry() -> None:
+    layout = {
+        "problem_id": "sized_blank_example_0001",
+        "canvas": {"width": 400, "height": 180, "background": "#ffffff"},
+        "regions": [{"id": "region.answer", "role": "answer", "flow": "absolute", "slot_ids": ["slot.answer"]}],
+        "slots": [
+            {
+                "id": "slot.answer",
+                "kind": "blank",
+                "prompt": "",
+                "content": {
+                    "placeholder": "",
+                    "x": 210,
+                    "y": 94,
+                    "width": 172,
+                    "height": 58,
+                    "fill": "#f8fafc",
+                    "stroke": "#111827",
+                    "stroke_width": 1.2,
+                },
+            }
+        ],
+        "diagrams": [],
+    }
+
+    renderer = compile_renderer_json(layout)
+    validate_renderer_json(renderer)
+
+    blank = next(element for element in renderer["elements"] if element["id"] == "slot.answer.blank")
+    assert blank["attributes"]["x"] == 210.0
+    assert blank["attributes"]["y"] == 94.0
+    assert blank["attributes"]["width"] == 172.0
+    assert blank["attributes"]["height"] == 58.0
+

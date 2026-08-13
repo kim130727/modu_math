@@ -296,6 +296,20 @@ def _slot_kwargs(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSl
         out = [("id", slot.id), ("prompt", slot.prompt), ("placeholder", slot.placeholder), ("__ctor__", "BlankSlot")]
         if slot.answer_key is not None:
             out.append(("answer_key", slot.answer_key))
+        if slot.x is not None:
+            out.append(("x", slot.x))
+        if slot.y is not None:
+            out.append(("y", slot.y))
+        if slot.width is not None:
+            out.append(("width", slot.width))
+        if slot.height is not None:
+            out.append(("height", slot.height))
+        if isinstance(slot.fill, str):
+            out.append(("fill", slot.fill))
+        if isinstance(slot.stroke, str):
+            out.append(("stroke", slot.stroke))
+        if slot.stroke_width is not None:
+            out.append(("stroke_width", slot.stroke_width))
         return out
     if isinstance(slot, RectSlot):
         out = [
@@ -651,6 +665,20 @@ def _slot_expr(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot
         ]
         if slot.answer_key is not None:
             keywords.append(ast.keyword(arg="answer_key", value=ast.Constant(value=slot.answer_key)))
+        if slot.x is not None:
+            keywords.append(ast.keyword(arg="x", value=ast.Constant(value=slot.x)))
+        if slot.y is not None:
+            keywords.append(ast.keyword(arg="y", value=ast.Constant(value=slot.y)))
+        if slot.width is not None:
+            keywords.append(ast.keyword(arg="width", value=ast.Constant(value=slot.width)))
+        if slot.height is not None:
+            keywords.append(ast.keyword(arg="height", value=ast.Constant(value=slot.height)))
+        if isinstance(slot.fill, str):
+            keywords.append(ast.keyword(arg="fill", value=ast.Constant(value=slot.fill)))
+        if isinstance(slot.stroke, str):
+            keywords.append(ast.keyword(arg="stroke", value=ast.Constant(value=slot.stroke)))
+        if slot.stroke_width is not None:
+            keywords.append(ast.keyword(arg="stroke_width", value=ast.Constant(value=slot.stroke_width)))
         return ast.Call(
             func=ast.Name(id="BlankSlot", ctx=ast.Load()),
             args=[],
@@ -1005,6 +1033,13 @@ def _slot_from_layout(
             prompt=prompt,
             placeholder=_string(content.get("placeholder"), ""),
             answer_key=blank_answer_key,
+            x=_number_or_none(content.get("x")),
+            y=_number_or_none(content.get("y")),
+            width=_number_or_none(content.get("width")),
+            height=_number_or_none(content.get("height")),
+            fill=_string(content.get("fill"), None),
+            stroke=_string(content.get("stroke"), None),
+            stroke_width=_number_or_none(content.get("stroke_width")),
         )
     if kind == "label":
         return LabelSlot(

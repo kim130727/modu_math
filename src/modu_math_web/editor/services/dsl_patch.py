@@ -19,7 +19,7 @@ SLOT_METADATA_FIELDS = {"interaction", "input_style"}
 SUPPORTED_SLOTS = {
     "TextSlot": {"text", "x", "y", "font_size", "max_width", "font_family", "anchor", "fill", "style_role", "transform"} | SLOT_METADATA_FIELDS,
     "TextBoxSlot": {"text", "x", "y", "width", "height", "font_size", "font_family", "align", "valign", "line_height", "fill", "style_role", "transform"} | SLOT_METADATA_FIELDS,
-    "BlankSlot": {"answer_key", "placeholder"} | SLOT_METADATA_FIELDS,
+    "BlankSlot": {"answer_key", "placeholder", "x", "y", "width", "height", "fill", "stroke", "stroke_width"} | SLOT_METADATA_FIELDS,
     "CircleSlot": {"cx", "cy", "r", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform"} | SLOT_METADATA_FIELDS,
     "LineSlot": {"x1", "y1", "x2", "y2", "stroke", "stroke_width", "stroke_dasharray", "transform"} | SLOT_METADATA_FIELDS,
     "RectSlot": {"x", "y", "width", "height", "stroke", "stroke_width", "stroke_dasharray", "rx", "ry", "fill", "transform"} | SLOT_METADATA_FIELDS,

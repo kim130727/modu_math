@@ -145,7 +145,20 @@
     "type": "text",
     "value": "소방서",
     "unit": "",
-    "target_ref": "place.fire_station"
+    "target_ref": "place.fire_station",
+    "blanks": [
+      {
+        "id": "konva_1785217709470_text_5567198",
+        "slot_id": "konva_1785217709470_text_5567198",
+        "expected": "소방서"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "konva_1785217709470_text_5567198",
+        "value": "소방서"
+      }
+    ]
   },
   "understanding": {
     "summary": "소방서를 거치는 길과 주민센터를 거치는 길의 전체 거리를 각각 더하여 어느 길이 더 먼지 비교하는 문제입니다.",

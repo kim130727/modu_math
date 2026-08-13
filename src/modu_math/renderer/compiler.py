@@ -403,24 +403,29 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
             continue
 
         if kind == "blank":
+            bw = float(content.get("width", 120.0))
+            bh = float(content.get("height", 32.0))
+            bx = float(content.get("x", x))
+            by = float(content.get("y", y - 24.0))
             elements.append(
                 DrawElement(
                     id=f"{slot_id}.blank",
                     type="rect",
                     attributes={
-                        "x": x,
-                        "y": y - 24.0,
-                        "width": 120.0,
-                        "height": 32.0,
-                        "fill": "#ffffff",
-                        "stroke": _DEFAULT_STROKE,
-                        "stroke-width": 1.5,
+                        "x": bx,
+                        "y": by,
+                        "width": bw,
+                        "height": bh,
+                        "fill": str(content.get("fill", "#ffffff")),
+                        "stroke": str(content.get("stroke", _DEFAULT_STROKE)),
+                        "stroke-width": float(content.get("stroke_width", 1.5)),
                     },
                     source_ref=slot_id,
                     refs=refs,
+                    **_answer_element_kwargs(content),
                 )
             )
-            y += 48.0
+            y = max(y + 48.0, by + bh + 16.0)
             continue
 
         if kind == "label":
