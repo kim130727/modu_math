@@ -320,8 +320,7 @@ def build_problem_template() -> ProblemTemplate:
                 x=28,
                 y=470,
                 width=844,
-                height=42,
-                text=(
+                height = 61, text=(
                     "(1) 낱개 모형끼리 더하면 십 모형 (   )개와 "
                     "낱개 모형 (   )개입니다."
                 ),
@@ -336,8 +335,7 @@ def build_problem_template() -> ProblemTemplate:
                 x=28,
                 y=516,
                 width=844,
-                height=42,
-                text=(
+                height = 61, text=(
                     "(2) 십 모형끼리 더하면 백 모형 (   )개와 "
                     "십 모형 (   )개입니다."
                 ),
@@ -352,8 +350,7 @@ def build_problem_template() -> ProblemTemplate:
                 x=28,
                 y=562,
                 width=844,
-                height=42,
-                text=(
+                height = 61, text=(
                     "(3) 백 모형끼리 더하면 천 모형 (   )개와 "
                     "백 모형 (   )개입니다."
                 ),

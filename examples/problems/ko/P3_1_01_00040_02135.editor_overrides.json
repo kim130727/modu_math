@@ -4,15 +4,18 @@
     "height": 260
   },
   "version": 1,
+  "deleted_slots": [
+    "slot.carry_hundreds",
+    "slot.carry_tens",
+    "slot.answer_hundreds",
+    "slot.answer_tens",
+    "slot.answer_ones"
+  ],
   "slots": {
     "slot.instruction": {
       "text": "□ 안에 알맞은 수를 써넣으시오.",
-      "x": 38,
-      "y": 20,
       "font_size": 24,
       "fill": "#202124",
-      "width": 824,
-      "height": 38,
       "align": "left",
       "line_height": 1.25
     },
@@ -179,12 +182,5 @@
       "x": 200.036,
       "y": 215.608
     }
-  },
-  "deleted_slots": [
-    "slot.carry_hundreds",
-    "slot.carry_tens",
-    "slot.answer_hundreds",
-    "slot.answer_tens",
-    "slot.answer_ones"
-  ]
+  }
 }

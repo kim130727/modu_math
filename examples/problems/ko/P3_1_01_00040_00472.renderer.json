@@ -25,12 +25,12 @@
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
+        "value_type": "integer",
+        "max_length": 3,
         "include_in_submission": true,
         "order": 0,
         "group_id": "final_answer",
-        "auto_advance": true,
+        "auto_advance": false,
         "keyboard": "number"
       },
       "input_style": {
@@ -49,19 +49,19 @@
       "id": "slot.question.text",
       "type": "text_box",
       "attributes": {
-        "x": 38.0,
-        "y": 22.0,
+        "x": 32.976,
+        "y": 27.738,
         "fill": "#202124",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 24,
-        "width": 583.928,
-        "height": 68.0,
-        "max_width": 583.928,
+        "width": 504.263,
+        "height": 98.0,
+        "max_width": 504.263,
         "data-slot-kind": "text_box",
-        "data-box-x": 38.0,
-        "data-box-y": 22.0,
-        "data-box-width": 583.928,
-        "data-box-height": 68.0,
+        "data-box-x": 32.976,
+        "data-box-y": 27.738,
+        "data-box-width": 504.263,
+        "data-box-height": 98.0,
         "data-text-align": "left",
         "data-vertical-align": "middle"
       },
@@ -69,34 +69,7 @@
       "refs": {
         "layout_slot_id": "slot.question"
       },
-      "text": "도서관에서 어른 648명, 어린이 476명이 책을 읽고 있습니다."
-    },
-    {
-      "id": "konva_1785110879232_paste_690676_0.text",
-      "type": "text_box",
-      "attributes": {
-        "x": 39.392,
-        "y": 61.063,
-        "fill": "#202124",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 24,
-        "width": 348.163,
-        "height": 50.785,
-        "max_width": 348.163,
-        "data-slot-kind": "text_box",
-        "data-box-x": 39.392,
-        "data-box-y": 61.063,
-        "data-box-width": 348.163,
-        "data-box-height": 50.785,
-        "data-text-align": "left",
-        "data-vertical-align": "top",
-        "data-line-height": 1.25
-      },
-      "source_ref": "konva_1785110879232_paste_690676_0",
-      "refs": {
-        "layout_slot_id": "konva_1785110879232_paste_690676_0"
-      },
-      "text": "책 읽는 사람은 모두 몇 명입니까?"
+      "text": "도서관에서 어른 648명, 어린이 476명이 책을 읽고 있습니다. 책 읽는 사람은 모두 몇 명입니까?"
     },
     {
       "id": "konva_1785110879232_paste_716370_0.text",

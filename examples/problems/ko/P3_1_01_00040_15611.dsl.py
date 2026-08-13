@@ -191,7 +191,7 @@ def build_problem_template() -> ProblemTemplate:
                 fill="#ffffff",
                 stroke="#111111",
                 stroke_width=1,
-            ),
+            interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 1, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}),
             RectSlot(
                 id="slot.top.blank_ones.rect",
                 prompt="첫 번째 수의 일의 자리 빈칸",
@@ -202,7 +202,7 @@ def build_problem_template() -> ProblemTemplate:
                 fill="#ffffff",
                 stroke="#111111",
                 stroke_width=1,
-            ),
+            interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}),
             TextSlot(
                 id="slot.plus",
                 prompt="덧셈 기호",
@@ -223,7 +223,7 @@ def build_problem_template() -> ProblemTemplate:
                 fill="#ffffff",
                 stroke="#111111",
                 stroke_width=1,
-            ),
+            interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 2, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}),
             LineSlot(
                 id="slot.addition.line",
                 prompt="세로셈의 밑줄",
@@ -244,7 +244,7 @@ def build_problem_template() -> ProblemTemplate:
                 fill="#ffffff",
                 stroke="#111111",
                 stroke_width=1,
-            ),
+            interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 3, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}),
             BlankSlot(
                 id="slot.blank.top_tens",
                 prompt="첫 번째 수의 십의 자리",
@@ -268,7 +268,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="계산 결과의 일의 자리",
                 answer_key="7",
                 placeholder="숫자 카드",
-            ),TextBoxSlot(id = 'konva_1786192274303_paste_838274_0', prompt = '', text = '3', x = 199.852, y = 84.328, font_size = 24, fill = '#111111', width = 95, height = 37, align = 'center', line_height = 1.2), TextBoxSlot(id = 'konva_1786192274303_paste_838834_0', prompt = '', text = '5', x = 224.344, y = 84.41, font_size = 24, fill = '#111111', width = 95, height = 37, align = 'center', line_height = 1.2), TextBoxSlot(id = 'konva_1786192274303_paste_849762_0', prompt = '', text = '3', x = 171.525, y = 128.393, font_size = 24, fill = '#111111', width = 95, height = 37, align = 'center', line_height = 1.2), TextBoxSlot(id = 'konva_1786192274303_paste_854403_0', prompt = '', text = '8', x = 232.148, y = 128.475, font_size = 24, fill = '#111111', width = 30.213, height = 37, align = 'center', line_height = 1.2)),
+            ),TextBoxSlot(id = 'konva_1786192274303_paste_838274_0', prompt = '', text = '3', x = 199.397, y = 85.328, font_size = 24, fill = '#111111', width = 95, height = 37, align = 'center', line_height = 1.2), TextBoxSlot(id = 'konva_1786192274303_paste_838834_0', prompt = '', text = '5', x = 224.526, y = 84.776, font_size = 24, fill = '#111111', width = 95, height = 37, align = 'center', line_height = 1.2), TextBoxSlot(id = 'konva_1786192274303_paste_849762_0', prompt = '', text = '3', x = 171.525, y = 128.393, font_size = 24, fill = '#111111', width = 95, height = 37, align = 'center', line_height = 1.2), TextBoxSlot(id = 'konva_1786192274303_paste_854403_0', prompt = '', text = '8', x = 232.148, y = 128.475, font_size = 24, fill = '#111111', width = 30.213, height = 37, align = 'center', line_height = 1.2)),
     )
 
 

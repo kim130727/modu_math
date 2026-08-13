@@ -16,8 +16,7 @@
       "slot_ids": [
         "konva_1785110879232_paste_783799_0",
         "slot.question",
-        "konva_1785110879232_paste_783799_1",
-        "konva_1785110879232_paste_803386_0"
+        "konva_1785110879232_paste_783799_1"
       ]
     }
   ],
@@ -27,12 +26,12 @@
       "kind": "text_box",
       "prompt": "",
       "content": {
-        "text": "미란이는 우표를 모으고 있습니다. 작년까지는 634장을 모았고,",
+        "text": "미란이는 우표를 모으고 있습니다. 작년까지는 634장을 모았고, 올해는 279장을 모았습니다. 미란이는 우표를 모두 몇 장 모았습니까?",
         "style_role": "body",
         "x": 38.0,
         "y": 21.0,
         "width": 582.852,
-        "height": 68,
+        "height": 98.0,
         "align": "left",
         "valign": "middle",
         "font_size": 24,
@@ -55,12 +54,12 @@
         "interaction": {
           "type": "input",
           "role": "answer",
-          "value_type": "digit",
-          "max_length": 1,
+          "value_type": "integer",
+          "max_length": 3,
           "include_in_submission": true,
           "order": 0,
           "group_id": "final_answer",
-          "auto_advance": true,
+          "auto_advance": false,
           "keyboard": "number"
         },
         "input_style": {
@@ -93,24 +92,6 @@
         "line_height": 1.25,
         "fill": "#202124"
       }
-    },
-    {
-      "id": "konva_1785110879232_paste_803386_0",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "올해는 279장을 모았습니다. 미란이는 우표를 모두 몇 장 모았습니까?",
-        "style_role": "body",
-        "x": 38.316,
-        "y": 60.911,
-        "width": 688.354,
-        "height": 38.0,
-        "align": "left",
-        "valign": "top",
-        "font_size": 24,
-        "line_height": 1.25,
-        "fill": "#202124"
-      }
     }
   ],
   "groups": [],
@@ -120,7 +101,6 @@
     "region.stem",
     "konva_1785110879232_paste_783799_0",
     "slot.question",
-    "konva_1785110879232_paste_783799_1",
-    "konva_1785110879232_paste_803386_0"
+    "konva_1785110879232_paste_783799_1"
   ]
 }

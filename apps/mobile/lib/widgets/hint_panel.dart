@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../services/solvable_hint_service.dart';
 
-class HintPanel extends StatelessWidget {
+class HintPanel extends StatefulWidget {
   const HintPanel({
     super.key,
     required this.hints,
@@ -15,10 +15,45 @@ class HintPanel extends StatelessWidget {
   final VoidCallback onRevealNext;
 
   @override
+  State<HintPanel> createState() => _HintPanelState();
+}
+
+class _HintPanelState extends State<HintPanel> {
+  final Map<int, TextEditingController> _controllers = {};
+  final Map<int, bool> _results = {};
+  final Map<int, String> _selectedChoices = {};
+
+  @override
+  void didUpdateWidget(covariant HintPanel oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.hints == widget.hints) {
+      return;
+    }
+    _results.clear();
+    _selectedChoices.clear();
+    final levels = widget.hints.map((hint) => hint.level).toSet();
+    for (final entry in _controllers.entries.toList()) {
+      if (!levels.contains(entry.key)) {
+        entry.value.dispose();
+        _controllers.remove(entry.key);
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    for (final controller in _controllers.values) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final visibleHints = hints.where((hint) => hint.level <= visibleLevel);
-    final canRevealMore = visibleLevel < hints.length;
+    final visibleHints =
+        widget.hints.where((hint) => hint.level <= widget.visibleLevel);
+    final canRevealMore = widget.visibleLevel < widget.hints.length;
 
     return Card(
       margin: EdgeInsets.zero,
@@ -41,7 +76,7 @@ class HintPanel extends StatelessWidget {
             ),
             const SizedBox(height: 14),
             FilledButton.icon(
-              onPressed: canRevealMore ? onRevealNext : null,
+              onPressed: canRevealMore ? widget.onRevealNext : null,
               icon: const Icon(Icons.visibility_outlined),
               label: Text(canRevealMore ? '힌트 보기' : '모든 힌트를 봤어요'),
             ),
@@ -74,6 +109,20 @@ class HintPanel extends StatelessWidget {
                           ),
                           const SizedBox(height: 6),
                           Text(hint.body),
+                          if (hint.miniQuestion.trim().isNotEmpty &&
+                              (hint.choices.isNotEmpty ||
+                                  hint.acceptedAnswers.isNotEmpty)) ...[
+                            const SizedBox(height: 12),
+                            _MiniHintProblem(
+                              hint: hint,
+                              controller: _controllerFor(hint.level),
+                              result: _results[hint.level],
+                              selectedChoice: _selectedChoices[hint.level],
+                              onSelectChoice: (choice) =>
+                                  _checkChoice(hint, choice),
+                              onCheck: () => _checkMiniProblem(hint),
+                            ),
+                          ],
                         ],
                       ),
                     ),
@@ -86,4 +135,123 @@ class HintPanel extends StatelessWidget {
       ),
     );
   }
+
+  TextEditingController _controllerFor(int level) {
+    return _controllers.putIfAbsent(level, TextEditingController.new);
+  }
+
+  void _checkMiniProblem(SolvableHint hint) {
+    final answer = _normalizeMiniAnswer(_controllerFor(hint.level).text);
+    final correct = hint.acceptedAnswers
+        .map(_normalizeMiniAnswer)
+        .any((expected) => expected == answer);
+    setState(() => _results[hint.level] = correct);
+  }
+
+  void _checkChoice(SolvableHint hint, HintChoice choice) {
+    setState(() {
+      _selectedChoices[hint.level] = choice.label;
+      _results[hint.level] = choice.isCorrect;
+    });
+  }
+}
+
+class _MiniHintProblem extends StatelessWidget {
+  const _MiniHintProblem({
+    required this.hint,
+    required this.controller,
+    required this.result,
+    required this.selectedChoice,
+    required this.onSelectChoice,
+    required this.onCheck,
+  });
+
+  final SolvableHint hint;
+  final TextEditingController controller;
+  final bool? result;
+  final String? selectedChoice;
+  final ValueChanged<HintChoice> onSelectChoice;
+  final VoidCallback onCheck;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colorScheme.surface,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: colorScheme.outlineVariant),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              hint.miniQuestion,
+              style: const TextStyle(fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 8),
+            if (hint.choices.isNotEmpty)
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: hint.choices.map((choice) {
+                  return ChoiceChip(
+                    label: Text(choice.label),
+                    selected: selectedChoice == choice.label,
+                    onSelected: (_) => onSelectChoice(choice),
+                  );
+                }).toList(),
+              )
+            else
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: controller,
+                      decoration: const InputDecoration(
+                        isDense: true,
+                        border: OutlineInputBorder(),
+                        labelText: '작은 답',
+                      ),
+                      onSubmitted: (_) => onCheck(),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  OutlinedButton(
+                    onPressed: onCheck,
+                    child: const Text('확인'),
+                  ),
+                ],
+              ),
+            if (result != null) ...[
+              const SizedBox(height: 8),
+              Text(
+                result!
+                    ? hint.successMessage
+                    : '조금 달라요. 질문을 다시 보고 한 번 더 골라 보세요.',
+                style: TextStyle(
+                  color: result! ? const Color(0xFF166534) : colorScheme.error,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+String _normalizeMiniAnswer(String value) {
+  return value
+      .trim()
+      .toLowerCase()
+      .replaceAll(' ', '')
+      .replaceAll('→', '+')
+      .replaceAll('=', '')
+      .replaceAll('입니다', '')
+      .replaceAll('이에요', '')
+      .replaceAll('예요', '');
 }

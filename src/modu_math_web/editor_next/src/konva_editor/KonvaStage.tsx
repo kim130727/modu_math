@@ -5,6 +5,7 @@ import type { TutorRendererOverlay } from "../api/editorApi";
 import type { ConnectorShape, EditorShape, LineShape } from "../types/editorShape";
 import { scalePathData } from "../utils/pathData";
 import { connectorArrowForPreset, connectorBounds, connectorControl, connectorEnd, connectorKindForPreset, connectorPathData, connectorStart } from "./connectorGeometry";
+import { estimateTextWidth, normalizedTextBoxHeight } from "./converters";
 import { KONVA_PREVIEW_FONT_LOAD_SPEC } from "./fonts";
 import { ShapeRenderer } from "./ShapeRenderer";
 import { adjustableShapePoint } from "./shapeGeometry";
@@ -827,7 +828,13 @@ function shapeBounds(shape: EditorShape): CanvasRect {
     return connectorBounds(shape);
   }
   if (shape.type === "text") {
-    return { x: shape.x, y: shape.y, width: shape.width ?? Math.max(24, shape.text.length * shape.fontSize * 0.55), height: shape.height ?? shape.fontSize * 1.3 };
+    const textWidth = shape.width ?? estimateTextWidth(shape.text, shape.fontSize);
+    return {
+      x: shape.x,
+      y: shape.y,
+      width: textWidth,
+      height: normalizedTextBoxHeight(shape.text, shape.fontSize, textWidth, shape.height, shape.lineHeight ?? 1.25),
+    };
   }
   if (shape.type === "path") {
     return { x: shape.x, y: shape.y, width: shape.width, height: shape.height };
@@ -1260,13 +1267,17 @@ function shapeFromNode(shape: EditorShape, node: Konva.Node): EditorShape {
     };
   }
   if (shape.type === "text") {
+    const width = Math.max(24, (shape.width ?? node.width()) * scaleX);
+    const previousHeight = shape.height;
+    const scaledHeight =
+      typeof previousHeight === "number" && Math.abs(scaleY - 1) > 0.01 ? Math.max(12, previousHeight * scaleY) : previousHeight;
     return {
       ...shape,
       x: node.x(),
       y: node.y(),
       rotation: node.rotation(),
-      width: Math.max(24, (shape.width ?? node.width()) * scaleX),
-      height: shape.height ? Math.max(12, shape.height * scaleY) : undefined,
+      width,
+      height: normalizedTextBoxHeight(shape.text, shape.fontSize, width, scaledHeight, shape.lineHeight ?? 1.25),
       sourceKind: "text_box",
     };
   }

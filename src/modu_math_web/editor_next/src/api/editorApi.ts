@@ -220,12 +220,16 @@ export function createProblem(problemId: string, title?: string): Promise<Proble
 export async function applyLayoutPatches(
   problemId: string,
   patches: LayoutPatch[],
-  options: { format?: boolean } = {},
+  options: { format?: boolean; fast?: boolean } = {},
 ): Promise<LayoutPatchResponse> {
   return requestJson<LayoutPatchResponse>(encodedProblemPath(problemId, "/layout-patch/"), {
     method: "POST",
     headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify({ patches, format: options.format ?? false }),
+    body: JSON.stringify({
+      patches,
+      format: options.format ?? false,
+      fast: options.fast ?? false,
+    }),
   });
 }
 

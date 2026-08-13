@@ -125,6 +125,7 @@ function AnswerSlotFields({
   const interaction = shape.interaction;
   const inputStyle = shape.input_style;
   const enabled = Boolean(interaction);
+  const selectedAnswerOption = interaction ? selectedAnswerBinding(interaction, answerOptions) : null;
   return (
     <>
       <CheckboxField
@@ -144,32 +145,35 @@ function AnswerSlotFields({
       {interaction ? (
         <>
           {interaction.role === "answer" ? (
-            answerOptions.length ? (
-              <SelectField
-                label="정답 연결"
-                value={interaction.answer_key_index === undefined ? "" : String(interaction.answer_key_index)}
-                options={["", ...answerOptions.map((option) => String(option.index))]}
-                optionLabels={{
-                  "": "연결 안 함",
-                  ...Object.fromEntries(answerOptions.map((option) => [String(option.index), option.label])),
-                }}
-                onChange={(value) => {
-                  const answer_key_index = value === "" ? undefined : Number(value);
-                  const option = answerOptions.find((item) => item.index === answer_key_index);
-                  onChange({
-                    interaction: {
-                      ...interaction,
-                      answer_key_index,
-                      answer_ref: option?.ref,
-                      order: answer_key_index ?? interaction.order ?? 0,
-                      group_id: interaction.group_id || "final_answer",
-                    },
-                  } as Partial<EditorShape>);
-                }}
-              />
-            ) : (
-              <ReadOnlyField label="정답 연결" value="연결할 answer_key가 없습니다" />
-            )
+            <>
+              {answerOptions.length ? (
+                <SelectField
+                  label="정답"
+                  value={selectedAnswerOption ? String(selectedAnswerOption.index) : ""}
+                  options={["", ...answerOptions.map((option) => String(option.index))]}
+                  optionLabels={{
+                    "": "연결 안 함",
+                    ...Object.fromEntries(answerOptions.map((option) => [String(option.index), option.label])),
+                  }}
+                  onChange={(value) => {
+                    const answer_key_index = value === "" ? undefined : Number(value);
+                    const option = answerOptions.find((item) => item.index === answer_key_index);
+                    onChange({
+                      interaction: {
+                        ...interaction,
+                        answer_key_index,
+                        answer_ref: option?.ref,
+                        order: answer_key_index ?? interaction.order ?? 0,
+                        group_id: interaction.group_id || "final_answer",
+                      },
+                    } as Partial<EditorShape>);
+                  }}
+                />
+              ) : (
+                <ReadOnlyField label="정답" value="연결할 answer_key가 없습니다" />
+              )}
+              <ReadOnlyField label="정답 값" value={answerValueLabel(selectedAnswerOption, interaction)} />
+            </>
           ) : null}
           <SelectField
             label="입력 방식"
@@ -261,6 +265,25 @@ function AnswerSlotFields({
   );
 }
 
+function selectedAnswerBinding(interaction: InputInteraction, answerOptions: AnswerBindingOption[]): AnswerBindingOption | null {
+  if (typeof interaction.answer_key_index === "number") {
+    const byIndex = answerOptions.find((option) => option.index === interaction.answer_key_index);
+    if (byIndex) return byIndex;
+  }
+  if (interaction.answer_ref) {
+    const byRef = answerOptions.find((option) => option.ref === interaction.answer_ref);
+    if (byRef) return byRef;
+  }
+  return null;
+}
+
+function answerValueLabel(option: AnswerBindingOption | null, interaction: InputInteraction): string {
+  if (option) return `${option.value}${option.unit ? ` ${option.unit}` : ""}${option.ref ? ` (${option.ref})` : ""}`;
+  if (interaction.answer_ref) return `연결 ref: ${interaction.answer_ref}`;
+  if (typeof interaction.answer_key_index === "number") return `연결 index: ${interaction.answer_key_index}`;
+  return "연결 안 함";
+}
+
 function PropertyPanelTitle({ saveStatus }: { saveStatus: PropertyPanelProps["saveStatus"] }) {
   return (
     <div className="panel-title konva-property-title">
@@ -287,6 +310,7 @@ function isAnswerSlotShape(shape: EditorShape): boolean {
 
 function defaultInteractionForShape(shape: EditorShape, answerOptions: AnswerBindingOption[] = []): InputInteraction {
   const singleAnswer = answerOptions.length === 1 ? answerOptions[0] : null;
+  const firstAnswer = singleAnswer ?? answerOptions[0] ?? null;
   if (shape.type === "circle" || shape.type === "path") {
     return {
       type: "select",
@@ -305,10 +329,10 @@ function defaultInteractionForShape(shape: EditorShape, answerOptions: AnswerBin
     value_type: "integer",
     max_length: 3,
     include_in_submission: true,
-    order: singleAnswer?.index ?? 0,
+    order: firstAnswer?.index ?? 0,
     group_id: "final_answer",
-    answer_key_index: singleAnswer?.index,
-    answer_ref: singleAnswer?.ref,
+    answer_key_index: firstAnswer?.index,
+    answer_ref: firstAnswer?.ref,
     auto_advance: false,
     keyboard: "number",
   };

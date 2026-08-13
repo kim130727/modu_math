@@ -16,7 +16,6 @@
       "slot_ids": [
         "konva_1785110879232_paste_740217_0",
         "slot.question",
-        "konva_1785110879232_paste_690676_0",
         "konva_1785110879232_paste_716370_0"
       ]
     }
@@ -27,34 +26,16 @@
       "kind": "text_box",
       "prompt": "",
       "content": {
-        "text": "도서관에서 어른 648명, 어린이 476명이 책을 읽고 있습니다.",
+        "text": "도서관에서 어른 648명, 어린이 476명이 책을 읽고 있습니다. 책 읽는 사람은 모두 몇 명입니까?",
         "style_role": "body",
-        "x": 38.0,
-        "y": 22.0,
-        "width": 583.928,
-        "height": 68.0,
+        "x": 32.976,
+        "y": 27.738,
+        "width": 504.263,
+        "height": 98.0,
         "align": "left",
         "valign": "middle",
         "font_size": 24,
         "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "fill": "#202124"
-      }
-    },
-    {
-      "id": "konva_1785110879232_paste_690676_0",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "책 읽는 사람은 모두 몇 명입니까?",
-        "style_role": "body",
-        "x": 39.392,
-        "y": 61.063,
-        "width": 348.163,
-        "height": 50.785,
-        "align": "left",
-        "valign": "top",
-        "font_size": 24,
-        "line_height": 1.25,
         "fill": "#202124"
       }
     },
@@ -91,12 +72,12 @@
         "interaction": {
           "type": "input",
           "role": "answer",
-          "value_type": "digit",
-          "max_length": 1,
+          "value_type": "integer",
+          "max_length": 3,
           "include_in_submission": true,
           "order": 0,
           "group_id": "final_answer",
-          "auto_advance": true,
+          "auto_advance": false,
           "keyboard": "number"
         },
         "input_style": {
@@ -120,7 +101,6 @@
     "region.stem",
     "konva_1785110879232_paste_740217_0",
     "slot.question",
-    "konva_1785110879232_paste_690676_0",
     "konva_1785110879232_paste_716370_0"
   ]
 }

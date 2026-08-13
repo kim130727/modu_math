@@ -25,12 +25,12 @@
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
+        "value_type": "integer",
+        "max_length": 3,
         "include_in_submission": true,
         "order": 0,
         "group_id": "final_answer",
-        "auto_advance": true,
+        "auto_advance": false,
         "keyboard": "number"
       },
       "input_style": {
@@ -55,13 +55,13 @@
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 24,
         "width": 582.852,
-        "height": 68.0,
+        "height": 98.0,
         "max_width": 582.852,
         "data-slot-kind": "text_box",
         "data-box-x": 38.0,
         "data-box-y": 21.0,
         "data-box-width": 582.852,
-        "data-box-height": 68.0,
+        "data-box-height": 98.0,
         "data-text-align": "left",
         "data-vertical-align": "middle"
       },
@@ -69,7 +69,7 @@
       "refs": {
         "layout_slot_id": "slot.question"
       },
-      "text": "미란이는 우표를 모으고 있습니다. 작년까지는 634장을 모았고,"
+      "text": "미란이는 우표를 모으고 있습니다. 작년까지는 634장을 모았고, 올해는 279장을 모았습니다. 미란이는 우표를 모두 몇 장 모았습니까?"
     },
     {
       "id": "konva_1785110879232_paste_783799_1.text",
@@ -97,33 +97,6 @@
         "layout_slot_id": "konva_1785110879232_paste_783799_1"
       },
       "text": "장"
-    },
-    {
-      "id": "konva_1785110879232_paste_803386_0.text",
-      "type": "text_box",
-      "attributes": {
-        "x": 38.316,
-        "y": 60.911,
-        "fill": "#202124",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 24,
-        "width": 688.354,
-        "height": 38.0,
-        "max_width": 688.354,
-        "data-slot-kind": "text_box",
-        "data-box-x": 38.316,
-        "data-box-y": 60.911,
-        "data-box-width": 688.354,
-        "data-box-height": 38.0,
-        "data-text-align": "left",
-        "data-vertical-align": "top",
-        "data-line-height": 1.25
-      },
-      "source_ref": "konva_1785110879232_paste_803386_0",
-      "refs": {
-        "layout_slot_id": "konva_1785110879232_paste_803386_0"
-      },
-      "text": "올해는 279장을 모았습니다. 미란이는 우표를 모두 몇 장 모았습니까?"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

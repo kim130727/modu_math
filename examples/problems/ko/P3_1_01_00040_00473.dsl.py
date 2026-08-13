@@ -28,13 +28,13 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.expression_label",
                     "slot.expression_blank",
                     "slot.answer_label",
-                    "slot.answer_blank",'konva_1785110879232_paste_783799_0', 'konva_1785110879232_paste_783799_1', 'konva_1785110879232_paste_803386_0'),
+                    "slot.answer_blank",'konva_1785110879232_paste_783799_0', 'konva_1785110879232_paste_783799_1', ),
             ),
         ),
         slots=(TextBoxSlot(
                 id="slot.question",
                 x=38,
-                y = 21, width = 582.852, height = 38, text = '미란이는 우표를 모으고 있습니다. 작년까지는 634장을 모았고,', font_size=24,
+                y = 21, width = 582.852, height = 98, text = '미란이는 우표를 모으고 있습니다. 작년까지는 634장을 모았고, 올해는 279장을 모았습니다. 미란이는 우표를 모두 몇 장 모았습니까?', font_size=24,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 align="left",
@@ -91,7 +91,7 @@ def build_problem_template() -> ProblemTemplate:
                 fill="#202124",
                 align="left",
                 valign="middle",
-            ),RectSlot(id = 'konva_1785110879232_paste_783799_0', prompt = '', x = 480.752, y = 150.474, width = 78.73, height = 41.989, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), TextBoxSlot(id = 'konva_1785110879232_paste_783799_1', prompt = '', text = '장', x = 572.919, y = 155.48, font_size = 24, fill = '#202124', width = 61.799, height = 38, align = 'left', line_height = 1.25), TextBoxSlot(id = 'konva_1785110879232_paste_803386_0', prompt = '', text = '올해는 279장을 모았습니다. 미란이는 우표를 모두 몇 장 모았습니까?', x = 38.316, y = 60.911, font_size = 24, fill = '#202124', width = 688.354, height = 38, align = 'left', line_height = 1.25)),
+            ),RectSlot(id = 'konva_1785110879232_paste_783799_0', prompt = '', x = 480.752, y = 150.474, width = 78.73, height = 41.989, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), TextBoxSlot(id = 'konva_1785110879232_paste_783799_1', prompt = '', text = '장', x = 572.919, y = 155.48, font_size = 24, fill = '#202124', width = 61.799, height = 38, align = 'left', line_height = 1.25), ),
     )
 
 

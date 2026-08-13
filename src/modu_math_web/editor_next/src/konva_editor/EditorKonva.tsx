@@ -64,7 +64,10 @@ export function EditorKonva() {
     const selected = new Set(selectedShapeIds);
     return document.shapes.filter((shape) => selected.has(shape.id) && isAnswerSlotShape(shape)).map((shape) => shape.id);
   }, [document.shapes, selectedShapeIds]);
-  const answerBindingOptions = useMemo(() => answerOptionsFromSolvable(previewArtifacts.solvable), [previewArtifacts.solvable]);
+  const answerBindingOptions = useMemo(
+    () => answerOptionsFromArtifacts(previewArtifacts.solvable, previewArtifacts.semantic),
+    [previewArtifacts.semantic, previewArtifacts.solvable],
+  );
   const effectiveTutorFlow = draftTutorFlow ?? previewArtifacts.renderer?.tutor_flow ?? [];
   const activeTutorFrames = useMemo(() => {
     if (!activeTutorStepId) return [];
@@ -605,7 +608,7 @@ export function EditorKonva() {
     try {
       const savedParts: string[] = [];
       if (patches.length) {
-        const response = await applyLayoutPatches(selectedProblemId, patches, { format: false });
+        const response = await applyLayoutPatches(selectedProblemId, patches, { format: false, fast: true });
         setBaseProblemJson(nextProblem);
         savedParts.push(`${response.applied.length} layout patch(es)`);
       }
@@ -1016,6 +1019,7 @@ function nextAnswerOrder(shapes: EditorShape[]): number {
 
 function defaultInteractionForShape(shape: EditorShape, order: number, answerOptions: AnswerBindingOption[] = []): InputInteraction {
   const singleAnswer = answerOptions.length === 1 ? answerOptions[0] : null;
+  const orderedAnswer = answerOptions.find((option) => option.index === order) ?? singleAnswer;
   if (shape.type === "circle" || shape.type === "path") {
     return {
       type: "select",
@@ -1034,17 +1038,24 @@ function defaultInteractionForShape(shape: EditorShape, order: number, answerOpt
     value_type: "digit",
     max_length: 1,
     include_in_submission: true,
-    order: singleAnswer?.index ?? order,
+    order: orderedAnswer?.index ?? order,
     group_id: "final_answer",
-    answer_key_index: singleAnswer?.index,
-    answer_ref: singleAnswer?.ref,
+    answer_key_index: orderedAnswer?.index,
+    answer_ref: orderedAnswer?.ref,
     auto_advance: true,
     keyboard: "number",
   };
 }
 
-function answerOptionsFromSolvable(solvable: Record<string, unknown> | null): AnswerBindingOption[] {
-  const answer = recordValue(solvable?.answer);
+function answerOptionsFromArtifacts(
+  solvable: Record<string, unknown> | null,
+  semantic: Record<string, unknown> | null,
+): AnswerBindingOption[] {
+  return dedupeAnswerOptions([...answerOptionsFromArtifact(solvable), ...answerOptionsFromArtifact(semantic)]);
+}
+
+function answerOptionsFromArtifact(artifact: Record<string, unknown> | null): AnswerBindingOption[] {
+  const answer = recordValue(artifact?.answer);
   if (!answer) return [];
   const answerKey = Array.isArray(answer.answer_key) ? answer.answer_key : [];
   const options = answerKey
@@ -1062,6 +1073,16 @@ function answerOptionsFromSolvable(solvable: Record<string, unknown> | null): An
   if (!value) return [];
   const unit = stringValue(answer.unit);
   return [{ index: 0, value, unit, label: answerOptionLabel(0, value, unit, "최종 정답"), ref: "answer.value" }];
+}
+
+function dedupeAnswerOptions(options: AnswerBindingOption[]): AnswerBindingOption[] {
+  const seen = new Set<string>();
+  return options.filter((option) => {
+    const key = option.ref || `${option.index}:${option.value}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 }
 
 function answerOptionFromItem(item: unknown, index: number): AnswerBindingOption | null {

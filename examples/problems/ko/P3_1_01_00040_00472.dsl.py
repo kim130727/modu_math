@@ -25,20 +25,18 @@ def build_problem_template() -> ProblemTemplate:
                 role="stem",
                 flow="absolute",
                 slot_ids=("slot.question",
-                    'konva_1785110879232_paste_690676_0', 'konva_1785110879232_paste_716370_0', 'konva_1785110879232_paste_740217_0'),
+                    'konva_1785110879232_paste_716370_0', 'konva_1785110879232_paste_740217_0'),
             ),
         ),
         slots=(TextBoxSlot(
                 id="slot.question",
-                x=38,
-                y=22,
-                width = 583.928, height = 68, text = '도서관에서 어른 648명, 어린이 476명이 책을 읽고 있습니다.', font_size=24,
+                x = 32.976, y = 27.738, width = 504.263, height = 98, text = '도서관에서 어른 648명, 어린이 476명이 책을 읽고 있습니다. 책 읽는 사람은 모두 몇 명입니까?', font_size=24,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 align="left",
                 valign="middle",
             ),
-            TextBoxSlot(id = 'konva_1785110879232_paste_690676_0', prompt = '', text = '책 읽는 사람은 모두 몇 명입니까?', x = 39.392, y = 61.063, font_size = 24, fill = '#202124', width = 348.163, height = 50.785, align = 'left', line_height = 1.25), TextBoxSlot(id = 'konva_1785110879232_paste_716370_0', prompt = '', text = '명', x = 500.474, y = 150.847, font_size = 24, fill = '#202124', width = 61.799, height = 38, align = 'left', line_height = 1.25), RectSlot(id = 'konva_1785110879232_paste_740217_0', prompt = '', x = 408.307, y = 145.841, width = 78.73, height = 41.989, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
+            TextBoxSlot(id = 'konva_1785110879232_paste_716370_0', prompt = '', text = '명', x = 500.474, y = 150.847, font_size = 24, fill = '#202124', width = 61.799, height = 38, align = 'left', line_height = 1.25), RectSlot(id = 'konva_1785110879232_paste_740217_0', prompt = '', x = 408.307, y = 145.841, width = 78.73, height = 41.989, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
     )
 
 

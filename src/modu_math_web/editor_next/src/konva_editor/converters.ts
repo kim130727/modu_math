@@ -53,7 +53,7 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
           fontFamily: stringProp(object.props.fontFamily) ?? KONVA_PREVIEW_FONT_FAMILY,
           fill: object.props.color ?? "#111827",
           width,
-          height: isTextBox ? Math.max(object.props.height ?? 0, fittedHeight) : undefined,
+          height: isTextBox ? normalizedTextBoxHeight(text, fontSize, width ?? estimateTextWidth(text, fontSize), object.props.height, lineHeight) : undefined,
           align: textAlign,
           lineHeight,
           sourceKind: object.props.sourceKind ?? "text",
@@ -316,7 +316,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
       const width = shape.width;
       const height =
         sourceKind === "text_box" && typeof width === "number"
-          ? Math.max(shape.height ?? 0, fittedTextHeight(shape.text, shape.fontSize, width, lineHeight))
+          ? normalizedTextBoxHeight(shape.text, shape.fontSize, width, shape.height, lineHeight)
           : shape.height;
       return [
         {
@@ -593,6 +593,14 @@ export function estimateTextWidth(text: string, fontSize: number): number {
 
 export function fittedTextHeight(text: string, fontSize: number, width: number, lineHeight = 1.25): number {
   return Math.max(24, Math.ceil(estimateWrappedLineCount(text, fontSize, width) * fontSize * lineHeight + 8));
+}
+
+export function normalizedTextBoxHeight(text: string, fontSize: number, width: number, height?: number, lineHeight = 1.25): number {
+  const fittedHeight = fittedTextHeight(text, fontSize, width, lineHeight);
+  if (typeof height !== "number" || !Number.isFinite(height)) return fittedHeight;
+  if (!text.trim()) return Math.max(24, height);
+  const suspiciouslyTall = height > Math.max(fittedHeight * 2.5, fittedHeight + fontSize * 2);
+  return suspiciouslyTall ? fittedHeight : Math.max(height, fittedHeight);
 }
 
 export function estimateWrappedTextHeight(text: string, fontSize: number, width: number, lineHeight = 1.25): number {

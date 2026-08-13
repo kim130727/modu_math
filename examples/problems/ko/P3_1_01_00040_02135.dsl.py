@@ -37,8 +37,7 @@ def build_problem_template() -> ProblemTemplate:
         ),
         slots=(TextBoxSlot(
                 id="slot.instruction",
-                x = 10.8, y = 22.4, width = 288, height=42,
-                text="□ 안에 알맞은 수를 써넣으시오.",
+                x = 21.182, y = 19.546, width = 315.818, height = 68, text="□ 안에 알맞은 수를 써넣으시오.",
                 font_size=24,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
