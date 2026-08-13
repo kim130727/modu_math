@@ -2,7 +2,7 @@
   "problem_id": "P3_1_01_00040_15624",
   "view_box": {
     "width": 960.0,
-    "height": 225.0,
+    "height": 500.0,
     "background": "#FFFFFF"
   },
   "elements": [
@@ -43,13 +43,13 @@
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 18,
         "width": 920.0,
-        "height": 28.0,
+        "height": 31.0,
         "max_width": 920.0,
         "data-slot-kind": "text_box",
         "data-box-x": 20.0,
         "data-box-y": 68.0,
         "data-box-width": 920.0,
-        "data-box-height": 28.0,
+        "data-box-height": 31.0,
         "data-text-align": "left",
         "data-vertical-align": "middle"
       },
@@ -69,13 +69,13 @@
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 18,
         "width": 920.0,
-        "height": 28.0,
+        "height": 31.0,
         "max_width": 920.0,
         "data-slot-kind": "text_box",
         "data-box-x": 20.0,
         "data-box-y": 105.0,
         "data-box-width": 920.0,
-        "data-box-height": 28.0,
+        "data-box-height": 31.0,
         "data-text-align": "left",
         "data-vertical-align": "middle"
       },
@@ -95,13 +95,13 @@
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 18,
         "width": 920.0,
-        "height": 28.0,
+        "height": 31.0,
         "max_width": 920.0,
         "data-slot-kind": "text_box",
         "data-box-x": 20.0,
         "data-box-y": 142.0,
         "data-box-width": 920.0,
-        "data-box-height": 28.0,
+        "data-box-height": 31.0,
         "data-text-align": "left",
         "data-vertical-align": "middle"
       },
@@ -110,6 +110,57 @@
         "layout_slot_id": "slot.question3"
       },
       "text": "(3) 숫자 카드를 이용하여 만들 수 있는 가장 큰 세 자리 수와 가장 작은 세 자리 수의 합을 구하시오."
+    },
+    {
+      "id": "slot.answer1.blank",
+      "type": "rect",
+      "attributes": {
+        "x": 64.0,
+        "y": 189.0,
+        "width": 120.0,
+        "height": 32.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.answer1",
+      "refs": {
+        "layout_slot_id": "slot.answer1"
+      }
+    },
+    {
+      "id": "slot.answer2.blank",
+      "type": "rect",
+      "attributes": {
+        "x": 64.0,
+        "y": 237.0,
+        "width": 120.0,
+        "height": 32.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.answer2",
+      "refs": {
+        "layout_slot_id": "slot.answer2"
+      }
+    },
+    {
+      "id": "slot.answer3.blank",
+      "type": "rect",
+      "attributes": {
+        "x": 64.0,
+        "y": 285.0,
+        "width": 120.0,
+        "height": 32.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.answer3",
+      "refs": {
+        "layout_slot_id": "slot.answer3"
+      }
     }
   ],
   "contract_version": "modu_math.renderer.v2"

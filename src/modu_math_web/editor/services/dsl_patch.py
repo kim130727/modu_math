@@ -736,9 +736,6 @@ def _try_apply_fast_editor_overrides(paths: Any, patches: list[dict[str, Any]]) 
         if not isinstance(target, str) or not target:
             raise DslPatchError("patch target must be a non-empty string")
 
-        if target in CANVAS_TARGETS:
-            return None
-
         if op == "delete":
             actions.append((op, target, None))
             applied.append(AppliedPatch(target=target, op=op, fields=[]))
@@ -759,6 +756,13 @@ def _try_apply_fast_editor_overrides(paths: Any, patches: list[dict[str, Any]]) 
             return None
         if not isinstance(value, dict):
             raise DslPatchError("patch value must be an object")
+
+        if target in CANVAS_TARGETS:
+            if not set(value).issubset(CANVAS_FIELDS):
+                return None
+            actions.append(("canvas", target, value))
+            applied.append(AppliedPatch(target="__canvas__", op=op, fields=list(value.keys())))
+            continue
 
         if "points" in value:
             return None

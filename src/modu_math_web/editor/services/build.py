@@ -16,7 +16,11 @@ from modu_math.dsl import (
     compile_problem_template_to_layout,
     compile_problem_template_to_semantic,
 )
-from modu_math.layout.editor_overrides import apply_editor_overrides, prune_editor_overrides
+from modu_math.layout.editor_overrides import (
+    apply_editor_overrides,
+    prune_deleted_legacy_answer_slots,
+    prune_editor_overrides,
+)
 from modu_math.pipeline.answer_contracts import validate_answer_slot_contract
 from modu_math.pipeline.validate_contracts import validate_semantic_solvable_answer_match
 from modu_math.pipeline.tutor_renderer_flow import attach_tutor_renderer_flow, validate_tutor_renderer_flow
@@ -98,6 +102,78 @@ def _normalize_solvable_for_schema(solvable: dict[str, Any]) -> dict[str, Any]:
     return normalized
 
 
+def _submitted_answer_slot_ids(layout: dict[str, Any]) -> list[str]:
+    slot_ids: list[str] = []
+    for slot in layout.get("slots", []):
+        if not isinstance(slot, dict):
+            continue
+        slot_id = slot.get("id")
+        content = slot.get("content")
+        interaction = content.get("interaction") if isinstance(content, dict) else None
+        if (
+            isinstance(slot_id, str)
+            and isinstance(interaction, dict)
+            and interaction.get("role") == "answer"
+            and interaction.get("type") == "input"
+            and interaction.get("include_in_submission") is not False
+        ):
+            slot_ids.append(slot_id)
+    return slot_ids
+
+
+def _answer_slot_ids(answer: Any) -> set[str]:
+    if not isinstance(answer, dict):
+        return set()
+    out: set[str] = set()
+    for key in ("blanks", "answer_key"):
+        items = answer.get(key)
+        if not isinstance(items, list):
+            continue
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            slot_id = item.get("slot_id") or item.get("id") or item.get("blank_id")
+            if isinstance(slot_id, str) and slot_id.strip():
+                out.add(slot_id)
+    return out
+
+
+def _with_single_submit_slot_answer(answer: Any, slot_id: str) -> Any:
+    if not isinstance(answer, dict):
+        return answer
+    value = answer.get("value")
+    if not isinstance(value, str | int | float) or isinstance(value, bool):
+        return answer
+    if _answer_slot_ids(answer) == {slot_id}:
+        return answer
+    normalized = dict(answer)
+    normalized["blanks"] = [{"id": slot_id, "slot_id": slot_id, "expected": value}]
+    normalized["answer_key"] = [{"slot_id": slot_id, "value": value}]
+    return normalized
+
+
+def _attach_single_submit_slot_answer(
+    *,
+    layout: dict[str, Any],
+    semantic: dict[str, Any],
+    solvable: dict[str, Any] | None,
+) -> tuple[dict[str, Any], dict[str, Any] | None]:
+    submit_slot_ids = _submitted_answer_slot_ids(layout)
+    if len(submit_slot_ids) != 1:
+        return semantic, solvable
+    slot_id = submit_slot_ids[0]
+    semantic_answer = _with_single_submit_slot_answer(semantic.get("answer"), slot_id)
+    if semantic_answer is not semantic.get("answer"):
+        semantic = dict(semantic)
+        semantic["answer"] = semantic_answer
+    if isinstance(solvable, dict):
+        solvable_answer = _with_single_submit_slot_answer(solvable.get("answer"), slot_id)
+        if solvable_answer is not solvable.get("answer"):
+            solvable = dict(solvable)
+            solvable["answer"] = solvable_answer
+    return semantic, solvable
+
+
 def _build_problem_artifacts(problem_id: str) -> str:
     safe_problem_id = validate_problem_id(problem_id)
     problem_paths = resolve_problem_paths(safe_problem_id)
@@ -106,26 +182,6 @@ def _build_problem_artifacts(problem_id: str) -> str:
 
     semantic = compile_problem_template_to_semantic(problem, problem_type="diagram_problem")
     layout = compile_problem_template_to_layout(problem)
-
-    deleted_answer_slots: set[str] = set()
-    editor_overrides_path = problem_paths.base_dir / f"{problem_paths.artifact_base}.editor_overrides.json"
-    if editor_overrides_path.exists():
-        editor_overrides = json.loads(editor_overrides_path.read_text(encoding="utf-8-sig"))
-        editor_overrides, pruned = prune_editor_overrides(layout, editor_overrides)
-        deleted_slots = editor_overrides.get("deleted_slots") if isinstance(editor_overrides, dict) else None
-        if isinstance(deleted_slots, list):
-            deleted_answer_slots = {slot_id for slot_id in deleted_slots if isinstance(slot_id, str)}
-        if pruned:
-            editor_overrides_path.write_text(
-                json.dumps(editor_overrides, ensure_ascii=False, indent=2) + "\n",
-                encoding="utf-8",
-            )
-        layout = apply_editor_overrides(layout, editor_overrides)
-
-    renderer = compile_renderer_json(layout)
-    if hasattr(module, "TUTOR_RENDERER_FLOW"):
-        renderer = attach_tutor_renderer_flow(renderer, module.TUTOR_RENDERER_FLOW)
-    svg = inline_local_image_hrefs(render_svg(renderer), problem_paths.base_dir)
 
     if hasattr(module, "SEMANTIC_OVERRIDE"):
         semantic_override = module.SEMANTIC_OVERRIDE
@@ -141,6 +197,38 @@ def _build_problem_artifacts(problem_id: str) -> str:
         solvable = module.SOLVABLE
     elif hasattr(module, "build_solvable"):
         solvable = module.build_solvable()
+
+    deleted_answer_slots: set[str] = set()
+    editor_overrides_path = problem_paths.base_dir / f"{problem_paths.artifact_base}.editor_overrides.json"
+    if editor_overrides_path.exists():
+        editor_overrides = json.loads(editor_overrides_path.read_text(encoding="utf-8-sig"))
+        editor_overrides, pruned = prune_editor_overrides(layout, editor_overrides)
+        editor_overrides, answer_pruned = prune_deleted_legacy_answer_slots(
+            layout,
+            editor_overrides,
+            semantic.get("answer"),
+        )
+        pruned = pruned or answer_pruned
+        deleted_slots = editor_overrides.get("deleted_slots") if isinstance(editor_overrides, dict) else None
+        if isinstance(deleted_slots, list):
+            deleted_answer_slots = {slot_id for slot_id in deleted_slots if isinstance(slot_id, str)}
+        if pruned:
+            editor_overrides_path.write_text(
+                json.dumps(editor_overrides, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+        layout = apply_editor_overrides(layout, editor_overrides)
+
+    semantic, solvable = _attach_single_submit_slot_answer(
+        layout=layout,
+        semantic=semantic,
+        solvable=solvable if isinstance(solvable, dict) else None,
+    )
+
+    renderer = compile_renderer_json(layout)
+    if hasattr(module, "TUTOR_RENDERER_FLOW"):
+        renderer = attach_tutor_renderer_flow(renderer, module.TUTOR_RENDERER_FLOW)
+    svg = inline_local_image_hrefs(render_svg(renderer), problem_paths.base_dir)
 
     _schema_validator("schema/semantic/semantic.v1.json").validate(semantic)
     _schema_validator("schema/layout/layout.v1.json").validate(layout)

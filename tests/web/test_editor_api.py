@@ -9,7 +9,11 @@ import pytest
 from django.conf import settings
 from django.test import Client
 
-from modu_math.layout.editor_overrides import apply_editor_overrides, prune_editor_overrides
+from modu_math.layout.editor_overrides import (
+    apply_editor_overrides,
+    prune_deleted_legacy_answer_slots,
+    prune_editor_overrides,
+)
 
 
 def _setup_django(tmp_path: Path) -> Client:
@@ -493,7 +497,7 @@ PROBLEM_TEMPLATE = ProblemTemplate(
 def test_build_endpoint_rejects_deleted_answer_slot_override(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """
-from modu_math.dsl import BlankSlot, Canvas, ProblemTemplate, Region
+from modu_math.dsl import Canvas, ProblemTemplate, RectSlot, Region
 
 ANSWER = {
     "value": 7,
@@ -508,7 +512,14 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     title="deleted answer",
     canvas=Canvas(width=300, height=200),
     regions=(Region(id="region.stem", role="stem", slot_ids=("slot.answer",)),),
-    slots=(BlankSlot(id="slot.answer", answer_key="7"),),
+    slots=(RectSlot(
+        id="slot.answer",
+        x=20,
+        y=40,
+        width=90,
+        height=40,
+        interaction={"type": "input", "role": "answer", "include_in_submission": True},
+    ),),
 )
 
 SEMANTIC_OVERRIDE = {
@@ -597,6 +608,43 @@ SOLVABLE = {
     assert body["ok"] is True
     solvable = json.loads((problem_dir / "problem.solvable.v1.2.json").read_text(encoding="utf-8"))
     assert solvable["plan"] == ["Add the two numbers."]
+
+
+def test_build_attaches_single_submit_slot_to_scalar_answers() -> None:
+    from modu_math_web.editor.services.build import _attach_single_submit_slot_answer
+
+    layout = {
+        "slots": [
+            {
+                "id": "slot.answer.visual",
+                "kind": "rect",
+                "content": {
+                    "interaction": {
+                        "type": "input",
+                        "role": "answer",
+                        "include_in_submission": True,
+                    }
+                },
+            },
+            {"id": "slot.answer.legacy", "kind": "blank", "content": {}},
+        ]
+    }
+    semantic = {
+        "answer": {
+            "type": "numeric",
+            "value": 490,
+            "blanks": [{"id": "slot.answer.legacy", "slot_id": "slot.answer.legacy", "expected": "490"}],
+        }
+    }
+    solvable = {"answer": {"type": "numeric", "value": 490}}
+
+    semantic, solvable = _attach_single_submit_slot_answer(layout=layout, semantic=semantic, solvable=solvable)
+
+    expected_key = [{"slot_id": "slot.answer.visual", "value": 490}]
+    assert semantic["answer"]["answer_key"] == expected_key
+    assert solvable["answer"]["answer_key"] == expected_key
+    assert semantic["answer"]["blanks"][0]["slot_id"] == "slot.answer.visual"
+    assert solvable["answer"]["blanks"][0]["slot_id"] == "slot.answer.visual"
 
 
 def test_detail_rewrites_relative_svg_image_assets(tmp_path: Path) -> None:
@@ -1295,6 +1343,24 @@ def test_prune_editor_overrides_keeps_explicit_answer_slot_delete() -> None:
 
     assert changed is False
     assert cleaned == overrides
+
+
+def test_prune_deleted_legacy_answer_slots_drops_stale_blank_delete() -> None:
+    layout = {
+        "regions": [{"id": "region.stem", "role": "stem", "slot_ids": ["slot.question", "slot.answer"]}],
+        "slots": [
+            {"id": "slot.question", "kind": "text_box", "content": {"text": "Prompt"}},
+            {"id": "slot.answer", "kind": "blank", "content": {"answer_key": "377", "placeholder": ""}},
+            {"id": "slot.drawn.answer", "kind": "rect", "content": {"interaction": {"role": "answer"}}},
+        ],
+    }
+    overrides = {"deleted_slots": ["slot.answer", "slot.drawn.answer"], "version": 1}
+    answer = {"answer_key": [{"slot_id": "slot.answer", "value": 377}, {"slot_id": "slot.drawn.answer", "value": 7}]}
+
+    cleaned, changed = prune_deleted_legacy_answer_slots(layout, overrides, answer)
+
+    assert changed is True
+    assert cleaned == {"deleted_slots": ["slot.drawn.answer"], "version": 1}
 
 
 def test_apply_editor_overrides_converts_polygon_d_override_to_points() -> None:
@@ -2355,7 +2421,7 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     assert "Canvas(width=180, height=160)" in updated
 
 
-def test_fast_layout_patch_updates_canvas_size_in_dsl(tmp_path: Path) -> None:
+def test_fast_layout_patch_updates_canvas_size_in_editor_overrides(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """
 from modu_math.dsl import Canvas, ProblemTemplate
@@ -2393,6 +2459,6 @@ PROBLEM_TEMPLATE = ProblemTemplate(
 
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
-    assert "Canvas(width=180, height=160)" in updated
+    assert "Canvas(width=100, height=120)" in updated
     overrides = json.loads(overrides_path.read_text(encoding="utf-8"))
-    assert "canvas" not in overrides
+    assert overrides["canvas"] == {"width": 180, "height": 160}

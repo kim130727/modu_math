@@ -61,12 +61,22 @@ void main() {
   test('builds hints for each comparison subproblem', () {
     final hints = service.buildHints(_comparisonContent);
 
-    expect(hints, hasLength(4));
-    expect(hints.map((hint) => hint.level), equals([1, 2, 1, 2]));
-    expect(hints[0].title, equals('(1) 양쪽 값 계산'));
-    expect(_correctChoice(hints[1]), equals('>'));
-    expect(hints[2].title, equals('(2) 양쪽 값 계산'));
-    expect(_correctChoice(hints[3]), equals('='));
+    expect(hints, hasLength(12));
+    expect(hints.take(5).map((hint) => hint.level), equals([1, 2, 3, 4, 5]));
+    expect(
+        hints.skip(5).map((hint) => hint.level), equals([1, 2, 3, 4, 5, 6, 7]));
+    expect(hints[0].title, equals('1단계: (1) 왼쪽 값 확인'));
+    expect(hints[1].title, equals('2단계: (1) 오른쪽 일의 자리 더하기'));
+    expect(_correctChoice(hints[1]), equals('12'));
+    expect(hints[2].title, equals('3단계: (1) 오른쪽 십의 자리 더하기'));
+    expect(_correctChoice(hints[2]), equals('4 + 7 + 1'));
+    expect(hints[4].title, equals('5단계: (1) 비교 기호 고르기'));
+    expect(_correctChoice(hints[4]), equals('>'));
+    expect(hints[5].title, equals('1단계: (2) 왼쪽 일의 자리 더하기'));
+    expect(hints[8].title, equals('4단계: (2) 오른쪽 일의 자리 더하기'));
+    expect(_correctChoice(hints[9]), equals('2 + 8 + 1'));
+    expect(hints[11].title, equals('7단계: (2) 비교 기호 고르기'));
+    expect(_correctChoice(hints[11]), equals('='));
   });
 }
 

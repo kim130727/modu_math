@@ -4,7 +4,7 @@
   "title": "숫자 카드로 만든 가장 큰 수와 가장 작은 수의 합",
   "canvas": {
     "width": 960,
-    "height": 225,
+    "height": 500,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -17,7 +17,10 @@
         "slot.instruction",
         "slot.question1",
         "slot.question2",
-        "slot.question3"
+        "slot.question3",
+        "slot.answer1",
+        "slot.answer2",
+        "slot.answer3"
       ]
     }
   ],
@@ -51,12 +54,20 @@
         "x": 20.0,
         "y": 68.0,
         "width": 920.0,
-        "height": 28.0,
+        "height": 31.0,
         "align": "left",
         "valign": "middle",
         "font_size": 18,
         "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.answer1",
+      "kind": "blank",
+      "prompt": "(1) 가장 큰 세 자리 수",
+      "content": {
+        "placeholder": ""
       }
     },
     {
@@ -69,12 +80,20 @@
         "x": 20.0,
         "y": 105.0,
         "width": 920.0,
-        "height": 28.0,
+        "height": 31.0,
         "align": "left",
         "valign": "middle",
         "font_size": 18,
         "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.answer2",
+      "kind": "blank",
+      "prompt": "(2) 가장 작은 세 자리 수",
+      "content": {
+        "placeholder": ""
       }
     },
     {
@@ -87,12 +106,20 @@
         "x": 20.0,
         "y": 142.0,
         "width": 920.0,
-        "height": 28.0,
+        "height": 31.0,
         "align": "left",
         "valign": "middle",
         "font_size": 18,
         "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.answer3",
+      "kind": "blank",
+      "prompt": "(3) 가장 큰 수와 가장 작은 수의 합",
+      "content": {
+        "placeholder": ""
       }
     }
   ],
@@ -104,6 +131,9 @@
     "slot.instruction",
     "slot.question1",
     "slot.question2",
-    "slot.question3"
+    "slot.question3",
+    "slot.answer1",
+    "slot.answer2",
+    "slot.answer3"
   ]
 }

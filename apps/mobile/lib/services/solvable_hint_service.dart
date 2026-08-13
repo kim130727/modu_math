@@ -145,36 +145,154 @@ List<SolvableHint> _comparisonSubproblemHints(ProblemContent content) {
         : leftValue < rightValue
             ? '<'
             : '=';
-    hints.add(
-      SolvableHint(
-        level: 1,
-        title: '($number) 양쪽 값 계산',
-        body: '먼저 왼쪽과 오른쪽 식의 값을 각각 계산해요.',
-        miniQuestion: '($number)번의 왼쪽과 오른쪽 값은 무엇인가요?',
-        choices: _textChoices(
-          '$leftValue, $rightValue',
-          [
-            '$rightValue, $leftValue',
-            '$leftExpression, $rightExpression',
-          ],
-        ),
-        acceptedAnswers: ['$leftValue,$rightValue', '$leftValue, $rightValue'],
-        successMessage: '맞아요. 이제 두 값을 비교하면 돼요.',
-      ),
-    );
-    hints.add(
-      SolvableHint(
-        level: 2,
-        title: '($number) 비교 기호 고르기',
-        body: '$leftValue와 $rightValue 중 어느 쪽이 큰지 비교해요.',
-        miniQuestion: '($number)번 빈칸에 들어갈 기호는 무엇인가요?',
-        choices: _textChoices(operator, ['>', '=', '<']),
-        acceptedAnswers: [operator],
-        successMessage: '좋아요. ($number)번은 $leftValue $operator $rightValue입니다.',
+    hints.addAll(
+      _comparisonHintsForSubproblem(
+        number: number,
+        leftExpression: leftExpression,
+        leftValue: leftValue,
+        rightExpression: rightExpression,
+        rightValue: rightValue,
+        operator: operator,
       ),
     );
   }
   return hints;
+}
+
+List<SolvableHint> _comparisonHintsForSubproblem({
+  required int number,
+  required String leftExpression,
+  required int leftValue,
+  required String rightExpression,
+  required int rightValue,
+  required String operator,
+}) {
+  final hints = <SolvableHint>[];
+  var level = 1;
+  level = _appendExpressionPlaceValueHints(
+    hints,
+    problemNumber: number,
+    sideLabel: '왼쪽',
+    expression: leftExpression,
+    expectedValue: leftValue,
+    startLevel: level,
+  );
+  level = _appendExpressionPlaceValueHints(
+    hints,
+    problemNumber: number,
+    sideLabel: '오른쪽',
+    expression: rightExpression,
+    expectedValue: rightValue,
+    startLevel: level,
+  );
+  hints.add(
+    SolvableHint(
+      level: level,
+      title: '$level단계: ($number) 비교 기호 고르기',
+      body: '계산한 두 값을 비교해요. 왼쪽은 $leftValue, 오른쪽은 $rightValue입니다.',
+      miniQuestion: '($number)번 빈칸에 들어갈 기호는 무엇인가요?',
+      choices: _textChoices(operator, ['>', '=', '<']),
+      acceptedAnswers: [operator],
+      successMessage: '좋아요. ($number)번은 $leftValue $operator $rightValue입니다.',
+    ),
+  );
+  return hints;
+}
+
+int _appendExpressionPlaceValueHints(
+  List<SolvableHint> hints, {
+  required int problemNumber,
+  required String sideLabel,
+  required String expression,
+  required int expectedValue,
+  required int startLevel,
+}) {
+  final terms = _additionExpressionTerms(expression);
+  if (terms == null) {
+    hints.add(
+      SolvableHint(
+        level: startLevel,
+        title: '$startLevel단계: ($problemNumber) $sideLabel 값 확인',
+        body: '$sideLabel 식은 이미 수로 주어져 있어요. 값을 그대로 확인합니다.',
+        miniQuestion: '($problemNumber)번 $sideLabel 값은 무엇인가요?',
+        choices: _numberChoices(
+            expectedValue, [expectedValue - 10, expectedValue + 10]),
+        acceptedAnswers: ['$expectedValue'],
+        successMessage: '맞아요. $sideLabel 값은 $expectedValue입니다.',
+      ),
+    );
+    return startLevel + 1;
+  }
+
+  final left = terms[0];
+  final right = terms[1];
+  final onesLeft = left % 10;
+  final onesRight = right % 10;
+  final onesSum = onesLeft + onesRight;
+  final onesDigit = onesSum % 10;
+  final carryToTens = onesSum ~/ 10;
+  final tensLeft = (left ~/ 10) % 10;
+  final tensRight = (right ~/ 10) % 10;
+  final tensSum = tensLeft + tensRight + carryToTens;
+  final tensDigit = tensSum % 10;
+  final carryToHundreds = tensSum ~/ 10;
+  final hundredsLeft = (left ~/ 100) % 10;
+  final hundredsRight = (right ~/ 100) % 10;
+
+  hints.add(
+    SolvableHint(
+      level: startLevel,
+      title: '$startLevel단계: ($problemNumber) $sideLabel 일의 자리 더하기',
+      body: '$sideLabel 식 $expression을 일의 자리부터 계산해요.',
+      miniQuestion: '$onesLeft + $onesRight은 얼마인가요?',
+      choices: _numberChoices(onesSum, [onesDigit, onesSum + 1]),
+      acceptedAnswers: ['$onesSum'],
+      successMessage: '맞아요. 일의 자리 합은 $onesSum입니다.',
+    ),
+  );
+  hints.add(
+    SolvableHint(
+      level: startLevel + 1,
+      title: '${startLevel + 1}단계: ($problemNumber) $sideLabel 십의 자리 더하기',
+      body: '일의 자리에서 올린 $carryToTens도 십의 자리 계산에 함께 넣어요.',
+      miniQuestion: '십의 자리 계산으로 알맞은 것은 무엇인가요?',
+      choices: _textChoices(
+        '$tensLeft + $tensRight + $carryToTens',
+        ['$tensLeft + $tensRight', '$onesLeft + $onesRight'],
+      ),
+      acceptedAnswers: [
+        '$tensLeft+$tensRight+$carryToTens',
+        '$tensLeft + $tensRight + $carryToTens',
+      ],
+      successMessage: '좋아요. 십의 자리에는 $tensDigit을 쓰고 $carryToHundreds을 올립니다.',
+    ),
+  );
+  hints.add(
+    SolvableHint(
+      level: startLevel + 2,
+      title: '${startLevel + 2}단계: ($problemNumber) $sideLabel 값 완성',
+      body: '마지막으로 백의 자리까지 계산해 $sideLabel 값을 완성해요.',
+      miniQuestion: '$sideLabel 식 $expression의 값은 무엇인가요?',
+      choices: _numberChoices(
+        expectedValue,
+        [
+          (hundredsLeft + hundredsRight) * 100 + tensDigit * 10 + onesDigit,
+          expectedValue + 10,
+        ],
+      ),
+      acceptedAnswers: ['$expectedValue'],
+      successMessage: '맞아요. $sideLabel 값은 $expectedValue입니다.',
+    ),
+  );
+  return startLevel + 3;
+}
+
+List<int>? _additionExpressionTerms(String expression) {
+  final match = RegExp(r'^\s*(\d+)\s*\+\s*(\d+)\s*$').firstMatch(expression);
+  if (match == null) {
+    return null;
+  }
+  return [int.parse(match.group(1)!), int.parse(match.group(2)!)];
 }
 
 List<SolvableHint> _columnAdditionHints(ProblemContent content) {

@@ -213,6 +213,92 @@ def _layout_slot_kinds(layout: dict[str, Any]) -> dict[str, str]:
     }
 
 
+def _answer_slot_ids(answer: Any) -> set[str]:
+    if not isinstance(answer, dict):
+        return set()
+    out: set[str] = set()
+    for key in ("blanks", "answer_key"):
+        items = answer.get(key)
+        if not isinstance(items, list):
+            continue
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            slot_id = item.get("slot_id") or item.get("id") or item.get("blank_id")
+            if isinstance(slot_id, str) and slot_id.strip():
+                out.add(slot_id)
+    return out
+
+
+def _answer_scalar_value(answer: Any) -> Any:
+    if not isinstance(answer, dict):
+        return None
+    value = answer.get("value")
+    if isinstance(value, str | int | float) and not isinstance(value, bool):
+        return value
+    return None
+
+
+def _submitted_answer_slot_ids(layout: dict[str, Any], deleted: set[str] | None = None) -> set[str]:
+    deleted = deleted or set()
+    exact_deleted = deleted & _layout_slot_ids(layout)
+    out: set[str] = set()
+    for slot in layout.get("slots", []):
+        if not isinstance(slot, dict):
+            continue
+        slot_id = slot.get("id")
+        if not isinstance(slot_id, str) or _deleted_slot_matches(slot_id, deleted, exact_deleted):
+            continue
+        content = slot.get("content")
+        interaction = content.get("interaction") if isinstance(content, dict) else None
+        if (
+            isinstance(interaction, dict)
+            and interaction.get("role") == "answer"
+            and interaction.get("type") == "input"
+            and interaction.get("include_in_submission") is not False
+        ):
+            out.add(slot_id)
+    return out
+
+
+def prune_deleted_legacy_answer_slots(
+    layout: dict[str, Any],
+    overrides: dict[str, Any] | None,
+    answer: Any,
+) -> tuple[dict[str, Any] | None, bool]:
+    if not isinstance(overrides, dict):
+        return overrides, False
+    deleted_slots = overrides.get("deleted_slots")
+    if not isinstance(deleted_slots, list):
+        return overrides, False
+
+    answer_slot_ids = _answer_slot_ids(answer)
+    has_single_visual_answer = _answer_scalar_value(answer) is not None and len(_submitted_answer_slot_ids(layout, set(deleted_slots))) == 1
+    if not answer_slot_ids and not has_single_visual_answer:
+        return overrides, False
+
+    slot_kinds = _layout_slot_kinds(layout)
+    cleaned_deleted = [
+        slot_id
+        for slot_id in deleted_slots
+        if not (
+            isinstance(slot_id, str)
+            and slot_kinds.get(slot_id) == "blank"
+            and (slot_id in answer_slot_ids or has_single_visual_answer)
+        )
+    ]
+    if cleaned_deleted == deleted_slots:
+        return overrides, False
+
+    cleaned = dict(overrides)
+    if cleaned_deleted:
+        cleaned["deleted_slots"] = cleaned_deleted
+    else:
+        cleaned.pop("deleted_slots", None)
+    cleaned["version"] = 1
+    return cleaned, True
+
+
 def _points_from_polygon_path(d: Any) -> list[list[float]] | None:
     if not isinstance(d, str) or not d.strip():
         return None
