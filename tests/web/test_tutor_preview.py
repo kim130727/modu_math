@@ -215,11 +215,12 @@ def test_solvable_v1_3_registered_error_returns_catalog_feedback() -> None:
 
     diagnostic = diagnose_student_response(solvable, "10", correct=False)
 
+    assert diagnostic["diagnostic_status"] == "candidate"
     assert diagnostic["stage"] == "plan"
     assert diagnostic["remediation"] == "repeated_addition"
 
     response = rule_tutor_response({"solvable": solvable}, "10", [{"role": "assistant", "content": "Step 1: 6 x 4"}])
-    assert "두 수를 바로 더하지 말고" in response["reply"]
+    assert response["diagnostic"]["diagnostic_status"] == "candidate"
 
 
 def test_solvable_v1_3_unregistered_error_uses_default_rule_tutor_flow() -> None:
@@ -268,10 +269,24 @@ def test_unregistered_addition_place_value_error_uses_inferred_feedback() -> Non
         [{"role": "assistant", "content": first["reply"]}],
     )
 
+    assert diagnostic["diagnostic_status"] == "candidate"
     assert diagnostic["error_code"] == "execute.place_value_compose"
     assert diagnostic["remediation"] == "place_value_compose"
-    assert "받아올림" in response["reply"]
-    assert "이어 쓰면 안" in response["reply"]
+    assert response["diagnostic"]["diagnostic_status"] == "candidate"
+    assert "자리값" in response["reply"]
+
+    confirmed = rule_tutor_response(
+        payload,
+        "네",
+        [
+            {"role": "assistant", "content": first["reply"]},
+            {"role": "user", "content": "1111"},
+            {"role": "assistant", "content": response["reply"]},
+        ],
+    )
+
+    assert confirmed["diagnostic"]["diagnostic_status"] == "confirmed"
+    assert confirmed["attempt"]["diagnostic_code"] == "execute.place_value_compose"
 
 
 def test_normalize_solvable_accepts_v1_3_id_fields() -> None:

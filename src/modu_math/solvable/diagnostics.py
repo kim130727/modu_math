@@ -4,35 +4,77 @@ from typing import Any
 
 
 ERROR_CATALOG: dict[str, dict[str, str]] = {
+    "understand.target": {
+        "stage": "understand",
+        "feedback": "문제에서 무엇을 구해야 하는지 다시 확인해 보세요.",
+        "remediation": "identify_target",
+        "skill_id": "understand.target",
+        "category": "understand",
+        "confirmation_question": "문제에서 구해야 하는 것은 한 부분인가요, 전체인가요?",
+    },
     "plan.add_operands": {
         "stage": "plan",
-        "feedback": "두 수를 바로 더하지 말고 같은 수가 몇 묶음인지 생각해 보세요.",
+        "feedback": "같은 묶음이 몇 번 있는지 먼저 확인해 보세요.",
         "remediation": "repeated_addition",
+        "skill_id": "plan.add_parts",
+        "category": "plan",
+        "confirmation_question": "같은 수를 여러 번 더해야 하는지 먼저 확인해 볼까요?",
     },
-    "execute.mul_fact": {
-        "stage": "execute",
-        "feedback": "곱셈 계산을 다시 확인해 보세요.",
-        "remediation": "basic_multiplication",
+    "plan.add_parts": {
+        "stage": "plan",
+        "feedback": "두 부분을 모두 더해야 하는지 다시 확인해 보세요.",
+        "remediation": "add_parts",
+        "skill_id": "plan.add_parts",
+        "category": "plan",
+        "confirmation_question": "문제에서 두 부분을 합쳐 전체를 구하라고 했나요?",
     },
     "plan.copy_one_part": {
         "stage": "plan",
         "feedback": "한쪽 수만 답으로 쓰지 말고 전체를 구해야 하는지 확인해 보세요.",
         "remediation": "identify_target",
+        "skill_id": "plan.copy_one_part",
+        "category": "plan",
+        "confirmation_question": "문제에서 한 부분만 묻는지, 전체를 묻는지 다시 골라 볼까요?",
     },
     "execute.add_fact": {
         "stage": "execute",
-        "feedback": "덧셈 계산을 다시 확인해 보세요.",
+        "feedback": "한 자리 덧셈을 다시 확인해 보세요.",
         "remediation": "basic_addition",
+        "skill_id": "execute.add_fact",
+        "category": "execute",
+        "confirmation_question": "한 자리 덧셈부터 다시 확인해 볼까요?",
     },
     "execute.add_carry": {
         "stage": "execute",
-        "feedback": "받아올림을 다시 확인해요. 일의 자리부터 더하고, 10이 넘으면 다음 자리로 1을 올려요.",
+        "feedback": "받아올림을 다시 확인해요. 일의 자리부터 더하고 10이 넘으면 다음 자리로 1을 올려요.",
         "remediation": "addition_with_carry",
+        "skill_id": "execute.add_carry",
+        "category": "execute",
+        "confirmation_question": "일의 자리에서 10이 넘을 때 무엇을 다음 자리로 올려야 할까요?",
     },
     "execute.place_value_compose": {
         "stage": "execute",
-        "feedback": "받아올림한 수나 중간 계산을 그대로 이어 쓰면 안 돼요. 각 자리 숫자로 다시 모아 보세요.",
+        "feedback": "받아올림이나 중간 계산을 그대로 이어 쓰면 안 돼요. 각 자리 숫자로 다시 모아 보세요.",
         "remediation": "place_value_compose",
+        "skill_id": "execute.place_value_compose",
+        "category": "execute",
+        "confirmation_question": "각 자리에서 나온 수를 자리값에 맞게 모아 볼까요?",
+    },
+    "execute.mul_fact": {
+        "stage": "execute",
+        "feedback": "곱셈 계산을 다시 확인해 보세요.",
+        "remediation": "basic_multiplication",
+        "skill_id": "execute.mul_fact",
+        "category": "execute",
+        "confirmation_question": "곱셈 계산 한 가지를 다시 확인해 볼까요?",
+    },
+    "review.inverse_check": {
+        "stage": "review",
+        "feedback": "답이 문제 조건과 맞는지 다시 확인해 보세요.",
+        "remediation": "inverse_check",
+        "skill_id": "review.inverse_check",
+        "category": "review",
+        "confirmation_question": "구한 답을 문제 조건에 다시 넣어 확인해 볼까요?",
     },
 }
 
@@ -42,8 +84,9 @@ def diagnose_student_response(
     student_response: Any,
     *,
     correct: bool | None = None,
+    confirm: bool = False,
 ) -> dict[str, Any]:
-    """Return v1.3 diagnostic feedback or fall back to normal correctness."""
+    """Return a v1.3 diagnostic candidate unless explicit confirmation is requested."""
 
     response_key = str(student_response).strip()
     diagnostics = solvable.get("diagnostics")
@@ -52,23 +95,58 @@ def diagnose_student_response(
     catalog_entry = ERROR_CATALOG.get(error_code) if isinstance(error_code, str) else None
 
     if catalog_entry:
-        return {
-            "status": "diagnosed",
-            "error_code": error_code,
-            "stage": catalog_entry["stage"],
-            "feedback": catalog_entry["feedback"],
-            "remediation": catalog_entry["remediation"],
-        }
+        return _diagnostic_result(error_code, catalog_entry, confirmed=confirm)
 
     heuristic = _infer_arithmetic_error(solvable, response_key)
     if heuristic:
+        if confirm:
+            heuristic["status"] = "confirmed"
+            heuristic["diagnostic_status"] = "confirmed"
         return heuristic
 
     if correct is True:
-        return {"status": "correct", "stage": "review"}
+        return {"status": "correct", "diagnostic_status": "none", "stage": "review"}
     if correct is False:
-        return {"status": "incorrect", "stage": "review"}
-    return {"status": "unknown", "stage": "review"}
+        return {"status": "incorrect", "diagnostic_status": "none", "stage": "review"}
+    return {"status": "unknown", "diagnostic_status": "none", "stage": "review"}
+
+
+def confirm_diagnostic_response(
+    solvable: dict[str, Any],
+    error_code: str,
+    student_response: Any,
+) -> dict[str, Any]:
+    """Confirm or reject a previously suspected diagnostic from the next student answer."""
+
+    catalog_entry = ERROR_CATALOG.get(error_code)
+    if not catalog_entry:
+        return {"status": "unknown", "diagnostic_status": "candidate", "stage": "review"}
+
+    text = str(student_response).strip()
+    if _looks_negative(text):
+        return {
+            **_diagnostic_result(error_code, catalog_entry, confirmed=False),
+            "status": "rejected",
+            "diagnostic_status": "candidate",
+        }
+    if _looks_positive(text) or text:
+        return _diagnostic_result(error_code, catalog_entry, confirmed=True)
+    return _diagnostic_result(error_code, catalog_entry, confirmed=False)
+
+
+def _diagnostic_result(error_code: str, catalog_entry: dict[str, str], *, confirmed: bool) -> dict[str, Any]:
+    diagnostic_status = "confirmed" if confirmed else "candidate"
+    return {
+        "status": diagnostic_status,
+        "diagnostic_status": diagnostic_status,
+        "error_code": error_code,
+        "stage": catalog_entry["stage"],
+        "skill_id": catalog_entry.get("skill_id") or error_code,
+        "error_category": catalog_entry.get("category") or catalog_entry["stage"],
+        "feedback": catalog_entry["feedback"],
+        "confirmation_question": catalog_entry.get("confirmation_question") or catalog_entry["feedback"],
+        "remediation": catalog_entry["remediation"],
+    }
 
 
 def _infer_arithmetic_error(solvable: dict[str, Any], response_key: str) -> dict[str, Any] | None:
@@ -92,25 +170,14 @@ def _infer_arithmetic_error(solvable: dict[str, Any], response_key: str) -> dict
         return None
 
     if _has_column_carry(terms) and len(normalized) > len(str(abs(expected))):
-        return {
-            "status": "diagnosed",
-            "error_code": "execute.place_value_compose",
-            "stage": "execute",
-            "feedback": (
-                "받아올림한 수나 중간 계산을 그대로 이어 쓰면 안 돼요. "
-                "일의 자리부터 계산해 각 자리 숫자로 다시 모아 보세요."
-            ),
-            "remediation": "place_value_compose",
-        }
+        return _diagnostic_result(
+            "execute.place_value_compose",
+            ERROR_CATALOG["execute.place_value_compose"],
+            confirmed=False,
+        )
 
     if _has_column_carry(terms):
-        return {
-            "status": "diagnosed",
-            "error_code": "execute.add_carry",
-            "stage": "execute",
-            "feedback": "받아올림을 다시 확인해요. 일의 자리부터 더하고, 10이 넘으면 다음 자리로 1을 올려요.",
-            "remediation": "addition_with_carry",
-        }
+        return _diagnostic_result("execute.add_carry", ERROR_CATALOG["execute.add_carry"], confirmed=False)
 
     return None
 
@@ -192,3 +259,13 @@ def _has_column_carry(terms: list[int]) -> bool:
             return True
         carry = column_sum // 10
     return carry > 0
+
+
+def _looks_positive(text: str) -> bool:
+    normalized = text.strip().lower()
+    return normalized in {"y", "yes", "ok", "okay", "맞아", "맞아요", "네", "응", "예", "그래"}
+
+
+def _looks_negative(text: str) -> bool:
+    normalized = text.strip().lower()
+    return normalized in {"n", "no", "아니", "아니요", "아냐", "틀려", "몰라"}

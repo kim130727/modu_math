@@ -5,7 +5,7 @@ import os
 from dataclasses import dataclass
 from typing import Any
 
-from modu_math.solvable import diagnose_student_response
+from modu_math.solvable import build_attempt, confirm_diagnostic_response, diagnose_student_response
 
 
 @dataclass(frozen=True)
@@ -69,23 +69,53 @@ def rule_tutor_response(payload: dict[str, Any], message: str, history: list[dic
         return _rule_response(solvable, steps, next_index, _render_rule_step(solvable, steps, next_index, prefix=_localized_phrase(lang, "next"), lang=lang))
     if _student_is_confused(clean_message):
         return _rule_response(solvable, steps, waiting_index, _rule_confusion_reply(solvable, waiting_step, waiting_index, lang=lang))
+
+    pending_code = _pending_diagnostic_code(history)
+    if pending_code:
+        confirmed = confirm_diagnostic_response(solvable, pending_code, clean_message)
+        if confirmed.get("diagnostic_status") == "confirmed":
+            return _rule_response(
+                solvable,
+                steps,
+                waiting_index,
+                str(confirmed.get("feedback") or _localized_phrase(lang, "try_again")),
+                diagnostic=confirmed,
+                attempt=_attempt_payload(solvable, clean_message, waiting_step, confirmed, correct=False),
+            )
+
     diagnosed = diagnose_student_response(solvable, clean_message, correct=False)
-    if diagnosed.get("status") == "diagnosed":
+    if diagnosed.get("diagnostic_status") == "candidate":
+        return _rule_response(
+            solvable,
+            steps,
+            waiting_index,
+            str(diagnosed.get("confirmation_question") or _localized_phrase(lang, "try_again")),
+            diagnostic=diagnosed,
+            attempt=_attempt_payload(solvable, clean_message, waiting_step, diagnosed, correct=False),
+        )
+    if diagnosed.get("diagnostic_status") == "confirmed":
         return _rule_response(
             solvable,
             steps,
             waiting_index,
             str(diagnosed.get("feedback") or _localized_phrase(lang, "try_again")),
+            diagnostic=diagnosed,
+            attempt=_attempt_payload(solvable, clean_message, waiting_step, diagnosed, correct=False),
         )
     if _answer_matches_step(clean_message, waiting_step):
         next_index = waiting_index + 1
         if next_index >= len(steps):
-            return {"reply": _rule_complete(solvable, prefix=_correct_prefix(waiting_step, lang=lang), lang=lang), "choices": []}
+            return {
+                "reply": _rule_complete(solvable, prefix=_correct_prefix(waiting_step, lang=lang), lang=lang),
+                "choices": [],
+                "attempt": _attempt_payload(solvable, clean_message, waiting_step, {"status": "correct"}, correct=True),
+            }
         return _rule_response(
             solvable,
             steps,
             next_index,
             _render_rule_step(solvable, steps, next_index, prefix=_correct_prefix(waiting_step, lang=lang), lang=lang),
+            attempt=_attempt_payload(solvable, clean_message, waiting_step, {"status": "correct"}, correct=True),
         )
 
     if waiting_step.get("kind") == "understanding":
@@ -465,10 +495,23 @@ def _understanding_intro(solvable: dict[str, Any], *, lang: str = "ko") -> str:
     return "First, let's understand what the problem is asking."
 
 
-def _rule_response(solvable: dict[str, Any], steps: list[dict[str, str]], index: int, reply: str) -> dict[str, Any]:
+def _rule_response(
+    solvable: dict[str, Any],
+    steps: list[dict[str, str]],
+    index: int,
+    reply: str,
+    *,
+    diagnostic: dict[str, Any] | None = None,
+    attempt: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     step = steps[index] if 0 <= index < len(steps) else {}
     step_id = step.get("id") if isinstance(step.get("id"), str) else f"step.{index + 1}"
-    return {"reply": reply, "choices": _step_choices(solvable, steps, index), "current_step_id": step_id}
+    response: dict[str, Any] = {"reply": reply, "choices": _step_choices(solvable, steps, index), "current_step_id": step_id}
+    if diagnostic:
+        response["diagnostic"] = diagnostic
+    if attempt:
+        response["attempt"] = attempt
+    return response
 
 
 def _step_choices(solvable: dict[str, Any], steps: list[dict[str, str]], index: int) -> list[str]:
@@ -692,6 +735,63 @@ def _last_rule_step_index(history: list[dict[str, str]], steps: list[dict[str, s
                     if seen == number:
                         return index
     return None
+
+
+def _pending_diagnostic_code(history: list[dict[str, str]]) -> str | None:
+    from modu_math.solvable import ERROR_CATALOG
+
+    for item in reversed(history):
+        if item.get("role") != "assistant":
+            continue
+        content = item.get("content", "")
+        if not isinstance(content, str):
+            continue
+        normalized_content = _normalize_answer_text(content)
+        for code, entry in ERROR_CATALOG.items():
+            question = entry.get("confirmation_question")
+            if isinstance(question, str) and _normalize_answer_text(question) in normalized_content:
+                return code
+        return None
+    return None
+
+
+def _attempt_payload(
+    solvable: dict[str, Any],
+    message: str,
+    step: dict[str, str],
+    diagnostic: dict[str, Any],
+    *,
+    correct: bool,
+) -> dict[str, Any]:
+    problem_id = str(solvable.get("problem_id") or "")
+    skill_ids = _attempt_skill_ids(solvable, step, diagnostic)
+    attempt = build_attempt(
+        problem_id=problem_id,
+        skill_ids=skill_ids,
+        submitted_answer=message,
+        correct=correct,
+        first_try_correct=correct,
+        final_correct=correct,
+        max_hint_level_used=0,
+        retry_count=0 if correct else 1,
+        diagnostic=diagnostic,
+    )
+    return attempt.to_record()
+
+
+def _attempt_skill_ids(solvable: dict[str, Any], step: dict[str, str], diagnostic: dict[str, Any]) -> list[str]:
+    skill_ids: list[str] = []
+    diagnostic_skill = diagnostic.get("skill_id")
+    if isinstance(diagnostic_skill, str) and diagnostic_skill.strip():
+        skill_ids.append(diagnostic_skill.strip())
+    diagnostics = solvable.get("diagnostics")
+    raw_skills = diagnostics.get("skills") if isinstance(diagnostics, dict) else None
+    if isinstance(raw_skills, list):
+        skill_ids.extend(str(skill) for skill in raw_skills if str(skill).strip())
+    step_id = step.get("id")
+    if isinstance(step_id, str) and step_id.strip():
+        skill_ids.append(step_id.strip())
+    return _unique_choices(skill_ids)
 
 
 def _answer_matches_step(message: str, step: dict[str, str]) -> bool:

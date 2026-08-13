@@ -31,7 +31,7 @@ def _path_numbers(d: str) -> list[float]:
 
 
 def test_circle_area_0001_radius_helper_path_keeps_semantic_id_and_position() -> None:
-    module = _load_module(Path("examples/problems/초6_2_원의넓이_0001.dsl.py"))
+    module = _load_module(Path("examples/problems/ko/초6_2_원의넓이_0001.dsl.py"))
     problem = getattr(module, "PROBLEM_TEMPLATE")
     assert isinstance(problem, ProblemTemplate)
 

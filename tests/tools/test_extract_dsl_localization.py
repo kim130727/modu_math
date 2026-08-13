@@ -99,7 +99,7 @@ def test_extract_drops_stale_translation_and_obsolete_entries(tmp_path: Path) ->
 
 
 def test_extract_does_not_modify_existing_dsl(tmp_path: Path) -> None:
-    dsl_path = Path("examples/problems/P3_1_01_00040_00469.dsl.py")
+    dsl_path = Path("examples/problems/ko/P3_1_01_00040_00469.dsl.py")
     before = sha256(dsl_path.read_bytes()).hexdigest()
 
     assert (
