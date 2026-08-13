@@ -19,6 +19,8 @@ class SolvableHint {
     this.miniQuestion = '',
     this.acceptedAnswers = const [],
     this.choices = const [],
+    this.groupKey,
+    this.groupLabel,
     this.successMessage = '좋아요. 다음 단계로 가 볼게요.',
   });
 
@@ -28,7 +30,34 @@ class SolvableHint {
   final String miniQuestion;
   final List<String> acceptedAnswers;
   final List<HintChoice> choices;
+  final String? groupKey;
+  final String? groupLabel;
   final String successMessage;
+}
+
+List<SolvableHint> _withHintGroup(
+  List<SolvableHint> hints, {
+  String? groupKey,
+  String? groupLabel,
+}) {
+  if (groupKey == null) {
+    return hints;
+  }
+  return hints
+      .map(
+        (hint) => SolvableHint(
+          level: hint.level,
+          title: hint.title,
+          body: hint.body,
+          miniQuestion: hint.miniQuestion,
+          acceptedAnswers: hint.acceptedAnswers,
+          choices: hint.choices,
+          groupKey: hint.groupKey ?? groupKey,
+          groupLabel: hint.groupLabel ?? groupLabel,
+          successMessage: hint.successMessage,
+        ),
+      )
+      .toList();
 }
 
 class SolvableHintService {
@@ -129,6 +158,8 @@ List<SolvableHint> _comparisonSubproblemHints(ProblemContent content) {
   final hints = <SolvableHint>[];
   for (final entry in entries.indexed) {
     final number = entry.$1 + 1;
+    final groupKey = entries.length > 1 ? '$number' : null;
+    final groupLabel = entries.length > 1 ? '($number)' : null;
     final data = entry.$2.value;
     final leftExpression = data['left_expression']?.toString() ?? '';
     final rightExpression = data['right_expression']?.toString() ?? '';
@@ -153,6 +184,8 @@ List<SolvableHint> _comparisonSubproblemHints(ProblemContent content) {
         rightExpression: rightExpression,
         rightValue: rightValue,
         operator: operator,
+        groupKey: groupKey,
+        groupLabel: groupLabel,
       ),
     );
   }
@@ -166,6 +199,8 @@ List<SolvableHint> _comparisonHintsForSubproblem({
   required String rightExpression,
   required int rightValue,
   required String operator,
+  String? groupKey,
+  String? groupLabel,
 }) {
   final hints = <SolvableHint>[];
   var level = 1;
@@ -176,6 +211,8 @@ List<SolvableHint> _comparisonHintsForSubproblem({
     expression: leftExpression,
     expectedValue: leftValue,
     startLevel: level,
+    groupKey: groupKey,
+    groupLabel: groupLabel,
   );
   level = _appendExpressionPlaceValueHints(
     hints,
@@ -184,6 +221,8 @@ List<SolvableHint> _comparisonHintsForSubproblem({
     expression: rightExpression,
     expectedValue: rightValue,
     startLevel: level,
+    groupKey: groupKey,
+    groupLabel: groupLabel,
   );
   hints.add(
     SolvableHint(
@@ -193,10 +232,12 @@ List<SolvableHint> _comparisonHintsForSubproblem({
       miniQuestion: '($number)번 빈칸에 들어갈 기호는 무엇인가요?',
       choices: _textChoices(operator, ['>', '=', '<']),
       acceptedAnswers: [operator],
+      groupKey: groupKey,
+      groupLabel: groupLabel,
       successMessage: '좋아요. ($number)번은 $leftValue $operator $rightValue입니다.',
     ),
   );
-  return hints;
+  return _withHintGroup(hints, groupKey: groupKey, groupLabel: groupLabel);
 }
 
 int _appendExpressionPlaceValueHints(
@@ -206,6 +247,8 @@ int _appendExpressionPlaceValueHints(
   required String expression,
   required int expectedValue,
   required int startLevel,
+  String? groupKey,
+  String? groupLabel,
 }) {
   final terms = _additionExpressionTerms(expression);
   if (terms == null) {
@@ -303,12 +346,18 @@ List<SolvableHint> _columnAdditionHints(ProblemContent content) {
   final hints = <SolvableHint>[];
   for (final entry in termSets.indexed) {
     final titlePrefix = termSets.length > 1 ? '(${entry.$1 + 1}) ' : '';
+    final groupKey = termSets.length > 1 ? '${entry.$1 + 1}' : null;
+    final groupLabel = termSets.length > 1 ? '(${entry.$1 + 1})' : null;
     hints.addAll(
-      _columnAdditionHintsForTerms(
-        entry.$2[0].abs(),
-        entry.$2[1].abs(),
-        startLevel: 1,
-        titlePrefix: titlePrefix,
+      _withHintGroup(
+        _columnAdditionHintsForTerms(
+          entry.$2[0].abs(),
+          entry.$2[1].abs(),
+          startLevel: 1,
+          titlePrefix: titlePrefix,
+        ),
+        groupKey: groupKey,
+        groupLabel: groupLabel,
       ),
     );
   }

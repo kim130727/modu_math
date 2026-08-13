@@ -256,7 +256,7 @@ class _SubproblemTabs extends StatelessWidget {
 List<_HintGroup> _hintGroups(List<SolvableHint> hints) {
   final grouped = <String, List<SolvableHint>>{};
   for (final hint in hints) {
-    final key = _groupKeyForTitle(hint.title);
+    final key = hint.groupKey ?? _groupKeyForTitle(hint.title);
     grouped.putIfAbsent(key, () => []).add(hint);
   }
   return grouped.entries

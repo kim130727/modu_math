@@ -9,6 +9,7 @@ void main() {
     final hints = service.buildHints(_columnAdditionContent);
 
     expect(hints, hasLength(4));
+    expect(hints.map((hint) => hint.groupKey).toSet(), equals({null}));
     expect(hints[0].title, equals('1단계: 일의 자리 더하기'));
     expect(hints[0].miniQuestion, equals('9 + 8은 얼마인가요?'));
     expect(_correctChoice(hints[0]), equals('17'));
@@ -50,6 +51,9 @@ void main() {
     final hints = service.buildHints(_multiAdditionContent);
 
     expect(hints, hasLength(8));
+    expect(hints.map((hint) => hint.groupKey).toSet(), equals({'1', '2'}));
+    expect(hints.where((hint) => hint.groupKey == '1'), hasLength(4));
+    expect(hints.where((hint) => hint.groupKey == '2'), hasLength(4));
     expect(hints[0].title, equals('1단계: (1) 일의 자리 더하기'));
     expect(hints[2].title, equals('3단계: (1) 십의 자리 더하기'));
     expect(_correctChoice(hints[2]), equals('7 + 5 + 1'));
@@ -62,6 +66,9 @@ void main() {
     final hints = service.buildHints(_comparisonContent);
 
     expect(hints, hasLength(12));
+    expect(hints.map((hint) => hint.groupKey).toSet(), equals({'1', '2'}));
+    expect(hints.where((hint) => hint.groupKey == '1'), hasLength(5));
+    expect(hints.where((hint) => hint.groupKey == '2'), hasLength(7));
     expect(hints.take(5).map((hint) => hint.level), equals([1, 2, 3, 4, 5]));
     expect(
         hints.skip(5).map((hint) => hint.level), equals([1, 2, 3, 4, 5, 6, 7]));
