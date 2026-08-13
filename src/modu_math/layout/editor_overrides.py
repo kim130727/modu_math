@@ -261,6 +261,50 @@ def _submitted_answer_slot_ids(layout: dict[str, Any], deleted: set[str] | None 
     return out
 
 
+def _remove_slot_ids_from_layout(layout: dict[str, Any], remove_ids: set[str]) -> None:
+    if not remove_ids:
+        return
+    slots = layout.get("slots")
+    if isinstance(slots, list):
+        layout["slots"] = [
+            slot
+            for slot in slots
+            if not (isinstance(slot, dict) and isinstance(slot.get("id"), str) and slot["id"] in remove_ids)
+        ]
+    for region in layout.get("regions", []):
+        if isinstance(region, dict) and isinstance(region.get("slot_ids"), list):
+            region["slot_ids"] = [slot_id for slot_id in region["slot_ids"] if slot_id not in remove_ids]
+    if isinstance(layout.get("reading_order"), list):
+        layout["reading_order"] = [slot_id for slot_id in layout["reading_order"] if slot_id not in remove_ids]
+
+
+def prune_legacy_answer_blank_slots(layout: dict[str, Any], answer: Any) -> tuple[dict[str, Any], set[str]]:
+    """Remove old BlankSlot answers when a visual input slot now owns submission.
+
+    Older DSL files often kept a `slot.answer` BlankSlot for the semantic answer
+    while editors added a positioned RectSlot with `interaction`. Rendering both
+    creates a duplicate answer box. If exactly one visual answer input is present,
+    answer-like blank slots are legacy scaffolding and should not render.
+    """
+    if _answer_scalar_value(answer) is None or len(_submitted_answer_slot_ids(layout)) != 1:
+        return layout, set()
+
+    answer_slot_ids = _answer_slot_ids(answer)
+    remove_ids = {
+        slot.get("id")
+        for slot in layout.get("slots", [])
+        if (
+            isinstance(slot, dict)
+            and slot.get("kind") == "blank"
+            and isinstance(slot.get("id"), str)
+            and (_is_answer_slot_id(slot["id"]) or slot["id"] in answer_slot_ids)
+        )
+    }
+    remove_ids = {slot_id for slot_id in remove_ids if isinstance(slot_id, str)}
+    _remove_slot_ids_from_layout(layout, remove_ids)
+    return layout, remove_ids
+
+
 def prune_deleted_legacy_answer_slots(
     layout: dict[str, Any],
     overrides: dict[str, Any] | None,
@@ -430,14 +474,8 @@ def apply_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | N
         def is_deleted(slot_id: Any) -> bool:
             return isinstance(slot_id, str) and _deleted_slot_matches(slot_id, deleted, exact_deleted)
 
-        slots = layout.get("slots")
-        if isinstance(slots, list):
-            layout["slots"] = [slot for slot in slots if not (isinstance(slot, dict) and is_deleted(slot.get("id")))]
-        for region in layout.get("regions", []):
-            if isinstance(region, dict) and isinstance(region.get("slot_ids"), list):
-                region["slot_ids"] = [slot_id for slot_id in region["slot_ids"] if not is_deleted(slot_id)]
-        if isinstance(layout.get("reading_order"), list):
-            layout["reading_order"] = [item for item in layout["reading_order"] if not is_deleted(item)]
+        remove_ids = {slot_id for slot_id in slot_ids if is_deleted(slot_id)}
+        _remove_slot_ids_from_layout(layout, remove_ids)
 
     region_slot_orders = overrides.get("region_slot_orders")
     if isinstance(region_slot_orders, dict):

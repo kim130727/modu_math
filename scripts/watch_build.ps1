@@ -98,7 +98,12 @@ from modu_math.dsl import (
     compile_problem_template_to_layout,
     compile_problem_template_to_semantic,
 )
-from modu_math.layout.editor_overrides import apply_editor_overrides, prune_editor_overrides
+from modu_math.layout.editor_overrides import (
+    apply_editor_overrides,
+    prune_deleted_legacy_answer_slots,
+    prune_editor_overrides,
+    prune_legacy_answer_blank_slots,
+)
 from modu_math.pipeline.answer_contracts import validate_answer_slot_contract
 from modu_math.renderer.compiler import compile_renderer_json
 from modu_math.renderer.svg.render import inline_local_image_hrefs, render_svg
@@ -132,6 +137,12 @@ editor_overrides_path = base.with_suffix(".editor_overrides.json")
 if editor_overrides_path.exists():
     editor_overrides = json.loads(editor_overrides_path.read_text(encoding="utf-8-sig"))
     editor_overrides, pruned = prune_editor_overrides(layout, editor_overrides)
+    editor_overrides, answer_pruned = prune_deleted_legacy_answer_slots(
+        layout,
+        editor_overrides,
+        semantic.get("answer"),
+    )
+    pruned = pruned or answer_pruned
     deleted_slots = editor_overrides.get("deleted_slots") if isinstance(editor_overrides, dict) else None
     if isinstance(deleted_slots, list):
         deleted_answer_slots = {slot_id for slot_id in deleted_slots if isinstance(slot_id, str)}
@@ -141,11 +152,6 @@ if editor_overrides_path.exists():
             encoding="utf-8",
         )
     layout = apply_editor_overrides(layout, editor_overrides)
-
-renderer = compile_renderer_json(layout)
-if hasattr(module, "TUTOR_RENDERER_FLOW"):
-    renderer = attach_tutor_renderer_flow(renderer, module.TUTOR_RENDERER_FLOW)
-svg = inline_local_image_hrefs(render_svg(renderer), base.parent)
 
 def deep_merge_dict(base: dict, override: dict) -> dict:
     out = dict(base)
@@ -174,6 +180,69 @@ def normalize_solvable_for_schema(solvable: dict) -> dict:
         normalized["plan"] = [normalized["plan"]]
     return normalized
 
+def submitted_answer_slot_ids(layout: dict) -> list[str]:
+    slot_ids = []
+    for slot in layout.get("slots", []):
+        if not isinstance(slot, dict):
+            continue
+        slot_id = slot.get("id")
+        content = slot.get("content")
+        interaction = content.get("interaction") if isinstance(content, dict) else None
+        if (
+            isinstance(slot_id, str)
+            and isinstance(interaction, dict)
+            and interaction.get("role") == "answer"
+            and interaction.get("type") == "input"
+            and interaction.get("include_in_submission") is not False
+        ):
+            slot_ids.append(slot_id)
+    return slot_ids
+
+def answer_slot_ids(answer) -> set[str]:
+    if not isinstance(answer, dict):
+        return set()
+    out = set()
+    for key in ("blanks", "answer_key"):
+        items = answer.get(key)
+        if not isinstance(items, list):
+            continue
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            slot_id = item.get("slot_id") or item.get("id") or item.get("blank_id")
+            if isinstance(slot_id, str) and slot_id.strip():
+                out.add(slot_id)
+    return out
+
+def with_single_submit_slot_answer(answer, slot_id: str):
+    if not isinstance(answer, dict):
+        return answer
+    value = answer.get("value")
+    if not isinstance(value, (str, int, float)) or isinstance(value, bool):
+        return answer
+    if answer_slot_ids(answer) == {slot_id}:
+        return answer
+    normalized = dict(answer)
+    normalized["blanks"] = [{"id": slot_id, "slot_id": slot_id, "expected": value}]
+    normalized["answer_key"] = [{"slot_id": slot_id, "value": value}]
+    return normalized
+
+def attach_single_submit_slot_answer(layout: dict, semantic: dict, solvable):
+    submit_slot_ids = submitted_answer_slot_ids(layout)
+    if len(submit_slot_ids) != 1:
+        return semantic, solvable
+    slot_id = submit_slot_ids[0]
+    semantic_answer = with_single_submit_slot_answer(semantic.get("answer"), slot_id)
+    if semantic_answer is not semantic.get("answer"):
+        semantic = dict(semantic)
+        semantic["answer"] = semantic_answer
+    if isinstance(solvable, dict):
+        solvable_answer = with_single_submit_slot_answer(solvable.get("answer"), slot_id)
+        if solvable_answer is not solvable.get("answer"):
+            solvable = dict(solvable)
+            solvable["answer"] = solvable_answer
+    return semantic, solvable
+
 # Optional: Semantic override (inject/replace selected semantic fields from DSL)
 if hasattr(module, "SEMANTIC_OVERRIDE"):
     semantic_override = module.SEMANTIC_OVERRIDE
@@ -192,6 +261,15 @@ if hasattr(module, "SOLVABLE"):
     solvable = module.SOLVABLE
 elif hasattr(module, "build_solvable"):
     solvable = module.build_solvable()
+
+layout, auto_deleted_answer_slots = prune_legacy_answer_blank_slots(layout, semantic.get("answer"))
+deleted_answer_slots.update(auto_deleted_answer_slots)
+semantic, solvable = attach_single_submit_slot_answer(layout, semantic, solvable if isinstance(solvable, dict) else None)
+
+renderer = compile_renderer_json(layout)
+if hasattr(module, "TUTOR_RENDERER_FLOW"):
+    renderer = attach_tutor_renderer_flow(renderer, module.TUTOR_RENDERER_FLOW)
+svg = inline_local_image_hrefs(render_svg(renderer), base.parent)
 
 # Validation
 semantic_schema = json.loads((repo / "schema/semantic/semantic.v1.json").read_text(encoding="utf-8-sig"))

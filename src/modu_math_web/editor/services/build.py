@@ -20,6 +20,7 @@ from modu_math.layout.editor_overrides import (
     apply_editor_overrides,
     prune_deleted_legacy_answer_slots,
     prune_editor_overrides,
+    prune_legacy_answer_blank_slots,
 )
 from modu_math.pipeline.answer_contracts import validate_answer_slot_contract
 from modu_math.pipeline.validate_contracts import validate_semantic_solvable_answer_match
@@ -218,6 +219,9 @@ def _build_problem_artifacts(problem_id: str) -> str:
                 encoding="utf-8",
             )
         layout = apply_editor_overrides(layout, editor_overrides)
+
+    layout, auto_deleted_answer_slots = prune_legacy_answer_blank_slots(layout, semantic.get("answer"))
+    deleted_answer_slots.update(auto_deleted_answer_slots)
 
     semantic, solvable = _attach_single_submit_slot_answer(
         layout=layout,

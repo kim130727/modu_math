@@ -13,6 +13,7 @@ from modu_math.layout.editor_overrides import (
     apply_editor_overrides,
     prune_deleted_legacy_answer_slots,
     prune_editor_overrides,
+    prune_legacy_answer_blank_slots,
 )
 
 
@@ -1361,6 +1362,36 @@ def test_prune_deleted_legacy_answer_slots_drops_stale_blank_delete() -> None:
 
     assert changed is True
     assert cleaned == {"deleted_slots": ["slot.drawn.answer"], "version": 1}
+
+
+def test_prune_legacy_answer_blank_slots_removes_duplicate_visual_answer_box() -> None:
+    layout = {
+        "regions": [{"id": "region.stem", "role": "stem", "slot_ids": ["slot.question", "slot.answer", "slot.drawn.answer"]}],
+        "slots": [
+            {"id": "slot.question", "kind": "text_box", "content": {"text": "Prompt"}},
+            {"id": "slot.answer", "kind": "blank", "content": {"placeholder": ""}},
+            {
+                "id": "slot.drawn.answer",
+                "kind": "rect",
+                "content": {
+                    "interaction": {
+                        "type": "input",
+                        "role": "answer",
+                        "include_in_submission": True,
+                    },
+                },
+            },
+        ],
+        "reading_order": ["region.stem", "slot.question", "slot.answer", "slot.drawn.answer"],
+    }
+    answer = {"type": "numeric", "value": 490}
+
+    cleaned, removed = prune_legacy_answer_blank_slots(layout, answer)
+
+    assert removed == {"slot.answer"}
+    assert [slot["id"] for slot in cleaned["slots"]] == ["slot.question", "slot.drawn.answer"]
+    assert cleaned["regions"][0]["slot_ids"] == ["slot.question", "slot.drawn.answer"]
+    assert cleaned["reading_order"] == ["region.stem", "slot.question", "slot.drawn.answer"]
 
 
 def test_apply_editor_overrides_converts_polygon_d_override_to_points() -> None:
