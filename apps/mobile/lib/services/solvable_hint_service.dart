@@ -35,6 +35,11 @@ class SolvableHintService {
   const SolvableHintService();
 
   List<SolvableHint> buildHints(ProblemContent content) {
+    final comparisonHints = _comparisonSubproblemHints(content);
+    if (comparisonHints.isNotEmpty) {
+      return comparisonHints;
+    }
+
     final columnHints = _columnAdditionHints(content);
     if (columnHints.isNotEmpty) {
       return columnHints;
@@ -45,36 +50,36 @@ class SolvableHintService {
       return authoredHints;
     }
 
-    return [
-      const SolvableHint(
+    return const [
+      SolvableHint(
         level: 1,
         title: '1단계: 묻는 것 찾기',
         body: '문제에서 무엇을 구해야 하는지 먼저 확인해요.',
         miniQuestion: '무엇을 구하는 문제인가요?',
         choices: [
           HintChoice(label: '전체 수', isCorrect: true),
-          HintChoice(label: '한쪽 수'),
+          HintChoice(label: '처음 수'),
           HintChoice(label: '남은 수'),
         ],
         acceptedAnswers: ['전체 수', '전체'],
-        successMessage: '맞아요. 전체를 구할 때는 주어진 수들을 함께 봐야 해요.',
+        successMessage: '맞아요. 구해야 하는 값을 먼저 확인하면 계산이 쉬워져요.',
       ),
-      const SolvableHint(
+      SolvableHint(
         level: 2,
         title: '2단계: 계산 방법 고르기',
-        body: '전체를 구하는 문제라면 더하기를 쓰는지 확인해요.',
-        miniQuestion: '전체를 구할 때 가장 알맞은 계산은 무엇인가요?',
+        body: '전체나 합계를 구하는 문제라면 더하기를 쓰는지 확인해요.',
+        miniQuestion: '전체를 구할 때 알맞은 계산은 무엇인가요?',
         choices: [
           HintChoice(label: '더하기', isCorrect: true),
           HintChoice(label: '빼기'),
           HintChoice(label: '비교하기'),
         ],
         acceptedAnswers: ['더하기', '+'],
-        successMessage: '좋아요. 이제 자릿값을 보며 차근차근 더해요.',
+        successMessage: '좋아요. 이제 주어진 값을 차근차근 계산해요.',
       ),
-      const SolvableHint(
+      SolvableHint(
         level: 3,
-        title: '3단계: 작은 수부터 계산',
+        title: '3단계: 자리 맞춰 계산',
         body: '오른쪽 자리부터 계산해요. 한 자리씩 보면 실수가 줄어요.',
         miniQuestion: '계산은 어느 자리부터 시작하나요?',
         choices: [
@@ -85,31 +90,119 @@ class SolvableHintService {
         acceptedAnswers: ['일의 자리', '일'],
         successMessage: '맞아요. 일의 자리부터 시작해요.',
       ),
-      const SolvableHint(
+      SolvableHint(
         level: 4,
         title: '4단계: 다시 확인',
         body: '각 자리의 답과 올림한 1을 빠뜨리지 않았는지 확인해요.',
         miniQuestion: '마지막에 꼭 확인할 것은 무엇인가요?',
         choices: [
           HintChoice(label: '올림한 수를 더했는지', isCorrect: true),
-          HintChoice(label: '글씨를 크게 썼는지'),
+          HintChoice(label: '글자가 크게 보이는지'),
           HintChoice(label: '문제를 한 번만 봤는지'),
         ],
-        acceptedAnswers: ['올림', '올림한 수', '받아올림'],
-        successMessage: '좋아요. 올림한 수까지 확인하면 더 정확해져요.',
+        acceptedAnswers: ['올림', '받아올림'],
+        successMessage: '좋아요. 올림까지 확인하면 더 정확해져요.',
       ),
     ];
   }
 }
 
-List<SolvableHint> _columnAdditionHints(ProblemContent content) {
-  final terms = _additionTerms(content);
-  if (terms.length < 2 || !_isAdditionProblem(content)) {
+List<SolvableHint> _comparisonSubproblemHints(ProblemContent content) {
+  if (!_isComparisonProblem(content)) {
+    return const [];
+  }
+  final quantities = _mapAt(content.solvable['inputs'], 'quantities');
+  final entries = quantities.entries
+      .where((entry) => entry.value is Map)
+      .map((entry) => MapEntry(entry.key.toString(), entry.value as Map))
+      .where(
+        (entry) =>
+            entry.value.containsKey('left_expression') &&
+            entry.value.containsKey('right_expression'),
+      )
+      .toList()
+    ..sort((a, b) => a.key.compareTo(b.key));
+  if (entries.isEmpty) {
     return const [];
   }
 
-  final left = terms[0].abs();
-  final right = terms[1].abs();
+  final hints = <SolvableHint>[];
+  for (final entry in entries.indexed) {
+    final number = entry.$1 + 1;
+    final data = entry.$2.value;
+    final leftExpression = data['left_expression']?.toString() ?? '';
+    final rightExpression = data['right_expression']?.toString() ?? '';
+    final leftValue = _readInt(data['left_value']);
+    final rightValue = _readInt(data['right_value']);
+    if (leftExpression.isEmpty ||
+        rightExpression.isEmpty ||
+        leftValue == null ||
+        rightValue == null) {
+      continue;
+    }
+    final operator = leftValue > rightValue
+        ? '>'
+        : leftValue < rightValue
+            ? '<'
+            : '=';
+    hints.add(
+      SolvableHint(
+        level: hints.length + 1,
+        title: '($number) 양쪽 값 계산',
+        body: '먼저 왼쪽과 오른쪽 식의 값을 각각 계산해요.',
+        miniQuestion: '($number)번의 왼쪽과 오른쪽 값은 무엇인가요?',
+        choices: _textChoices(
+          '$leftValue, $rightValue',
+          [
+            '$rightValue, $leftValue',
+            '$leftExpression, $rightExpression',
+          ],
+        ),
+        acceptedAnswers: ['$leftValue,$rightValue', '$leftValue, $rightValue'],
+        successMessage: '맞아요. 이제 두 값을 비교하면 돼요.',
+      ),
+    );
+    hints.add(
+      SolvableHint(
+        level: hints.length + 1,
+        title: '($number) 비교 기호 고르기',
+        body: '$leftValue와 $rightValue 중 어느 쪽이 큰지 비교해요.',
+        miniQuestion: '($number)번 빈칸에 들어갈 기호는 무엇인가요?',
+        choices: _textChoices(operator, ['>', '=', '<']),
+        acceptedAnswers: [operator],
+        successMessage: '좋아요. ($number)번은 $leftValue $operator $rightValue입니다.',
+      ),
+    );
+  }
+  return hints;
+}
+
+List<SolvableHint> _columnAdditionHints(ProblemContent content) {
+  final termSets = _additionTermSets(content);
+  if (termSets.isEmpty || !_isAdditionProblem(content)) {
+    return const [];
+  }
+  final hints = <SolvableHint>[];
+  for (final entry in termSets.indexed) {
+    final titlePrefix = termSets.length > 1 ? '(${entry.$1 + 1}) ' : '';
+    hints.addAll(
+      _columnAdditionHintsForTerms(
+        entry.$2[0].abs(),
+        entry.$2[1].abs(),
+        startLevel: hints.length + 1,
+        titlePrefix: titlePrefix,
+      ),
+    );
+  }
+  return hints;
+}
+
+List<SolvableHint> _columnAdditionHintsForTerms(
+  int left,
+  int right, {
+  required int startLevel,
+  String titlePrefix = '',
+}) {
   final answer = left + right;
   final onesLeft = left % 10;
   final onesRight = right % 10;
@@ -127,30 +220,30 @@ List<SolvableHint> _columnAdditionHints(ProblemContent content) {
 
   return [
     SolvableHint(
-      level: 1,
-      title: '1단계: 일의 자리 더하기',
-      body: '맨 오른쪽에 있는 일의 자리부터 더해요.',
+      level: startLevel,
+      title: '$startLevel단계: $titlePrefix일의 자리 더하기',
+      body: '맨 오른쪽 일의 자리부터 더해요.',
       miniQuestion: '$onesLeft + $onesRight은 얼마인가요?',
       choices: _numberChoices(onesSum, [onesSum - 1, onesDigit, onesSum + 1]),
       acceptedAnswers: ['$onesSum'],
       successMessage: '맞아요. 일의 자리 합은 $onesSum이에요.',
     ),
     SolvableHint(
-      level: 2,
-      title: '2단계: 일의 자리 쓰기',
-      body: '$onesSum처럼 10이 넘으면 일의 자리 숫자만 아래에 쓰고, 1은 다음 자리로 올려요.',
+      level: startLevel + 1,
+      title: '${startLevel + 1}단계: $titlePrefix일의 자리 쓰기',
+      body: '$onesSum처럼 10을 넘으면 일의 자리 숫자만 아래에 쓰고, 1은 다음 자리로 올려요.',
       miniQuestion: '일의 자리에는 어떤 숫자를 쓰나요?',
       choices: _numberChoices(
         onesDigit,
         [onesSum, carryToTens, (onesDigit + 1) % 10],
       ),
       acceptedAnswers: ['$onesDigit'],
-      successMessage: '좋아요. 일의 자리에는 $onesDigit을 쓰고, 1을 십의 자리로 올려요.',
+      successMessage: '좋아요. 일의 자리에는 $onesDigit을 쓰고, $carryToTens을 십의 자리로 올려요.',
     ),
     SolvableHint(
-      level: 3,
-      title: '3단계: 십의 자리 더하기',
-      body: '십의 자리 숫자들을 더할 때, 아까 올린 1도 함께 더해요.',
+      level: startLevel + 2,
+      title: '${startLevel + 2}단계: $titlePrefix십의 자리 더하기',
+      body: '십의 자리 숫자들을 더할 때, 아까 올린 수도 함께 더해요.',
       miniQuestion: '십의 자리 계산으로 알맞은 것은 무엇인가요?',
       choices: _textChoices(
         '$tensLeft + $tensRight + $carryToTens',
@@ -163,12 +256,13 @@ List<SolvableHint> _columnAdditionHints(ProblemContent content) {
         '$tensLeft+$tensRight+$carryToTens',
         '$tensLeft + $tensRight + $carryToTens',
       ],
-      successMessage: '맞아요. $tensLeft + $tensRight에 올린 1을 더해서 $tensSum이 돼요.',
+      successMessage:
+          '맞아요. $tensLeft + $tensRight에 올린 $carryToTens을 더해서 $tensSum이 돼요.',
     ),
     SolvableHint(
-      level: 4,
-      title: '4단계: 백의 자리와 답',
-      body: '십의 자리에서 또 10이 넘었다면 1을 백의 자리로 올려요. 마지막으로 세 자리를 이어서 답을 만들어요.',
+      level: startLevel + 3,
+      title: '${startLevel + 3}단계: $titlePrefix백의 자리와 답',
+      body: '십의 자리에서 또 10을 넘으면 1을 백의 자리로 올려요. 마지막으로 각 자리 숫자를 이어 답을 만들어요.',
       miniQuestion: '백의 자리까지 계산하면 알맞은 답은 무엇인가요?',
       choices: _numberChoices(
         answer,
@@ -210,11 +304,17 @@ List<HintChoice> _numberChoices(int correct, List<int> distractors) {
 }
 
 List<HintChoice> _textChoices(String correct, List<String> distractors) {
-  final labels = <String>[correct];
-  for (final distractor in distractors) {
-    if (distractor.trim().isNotEmpty && !labels.contains(distractor)) {
-      labels.add(distractor);
+  final labels = <String>[];
+  void add(String value) {
+    final label = value.trim();
+    if (label.isNotEmpty && !labels.contains(label)) {
+      labels.add(label);
     }
+  }
+
+  add(correct);
+  for (final distractor in distractors) {
+    add(distractor);
   }
   return labels
       .take(3)
@@ -265,6 +365,79 @@ bool _isAdditionProblem(ProblemContent content) {
       pieces.contains('+') ||
       pieces.contains('더하기') ||
       pieces.contains('덧셈');
+}
+
+bool _isComparisonProblem(ProblemContent content) {
+  final pieces = <String>[
+    content.summary.unit,
+    content.summary.type,
+    _readText(content.solvable['method']),
+    _readText(content.solvable['problem_type']),
+    _readText(_mapAt(content.solvable['inputs'], 'answer_type')),
+  ].join(' ').toLowerCase();
+  return pieces.contains('comparison') ||
+      pieces.contains('compare') ||
+      pieces.contains('비교') ||
+      pieces.contains('comparison_operator');
+}
+
+List<List<int>> _additionTermSets(ProblemContent content) {
+  final fromQuantities = _additionTermSetsFromQuantities(content.solvable);
+  if (fromQuantities.isNotEmpty) {
+    return fromQuantities;
+  }
+
+  final fromSteps = _additionTermSetsFromSteps(content.solvable);
+  if (fromSteps.isNotEmpty) {
+    return fromSteps;
+  }
+
+  final terms = _additionTerms(content);
+  return terms.length >= 2 ? [terms.take(2).toList()] : const [];
+}
+
+List<List<int>> _additionTermSetsFromQuantities(Map<String, dynamic> solvable) {
+  final quantities = _mapAt(_mapAt(solvable['inputs'], 'quantities'), null);
+  if (quantities.isEmpty) {
+    return const [];
+  }
+  final sets = <List<int>>[];
+  final entries = quantities.entries.toList()
+    ..sort((a, b) => a.key.toString().compareTo(b.key.toString()));
+  for (final entry in entries) {
+    final value = entry.value;
+    if (value is Map) {
+      final addends = value['addends'];
+      if (addends is List) {
+        final terms = addends
+            .map((item) => _readInt(item))
+            .whereType<int>()
+            .take(2)
+            .toList();
+        if (terms.length >= 2) {
+          sets.add(terms);
+        }
+      }
+    }
+  }
+  return sets;
+}
+
+List<List<int>> _additionTermSetsFromSteps(Map<String, dynamic> solvable) {
+  final steps = solvable['steps'];
+  if (steps is! List) {
+    return const [];
+  }
+  final sets = <List<int>>[];
+  for (final step in steps.whereType<Map>()) {
+    final match = RegExp(r'(\d+)\s*\+\s*(\d+)')
+        .firstMatch(step['expr']?.toString() ?? '');
+    if (match == null) {
+      continue;
+    }
+    sets.add([int.parse(match.group(1)!), int.parse(match.group(2)!)]);
+  }
+  return sets;
 }
 
 List<int> _additionTerms(ProblemContent content) {
@@ -340,4 +513,29 @@ List<String> _readTextParts(Object? value) {
     return value.values.expand(_readTextParts).toList();
   }
   return const [];
+}
+
+Map<String, dynamic> _mapAt(Object? value, Object? key) {
+  final target = key == null
+      ? value
+      : value is Map
+          ? value[key]
+          : null;
+  if (target is Map<String, dynamic>) {
+    return target;
+  }
+  if (target is Map) {
+    return target.map((key, value) => MapEntry(key.toString(), value));
+  }
+  return const {};
+}
+
+int? _readInt(Object? value) {
+  if (value is int) {
+    return value;
+  }
+  if (value is num) {
+    return value.round();
+  }
+  return int.tryParse(value?.toString() ?? '');
 }

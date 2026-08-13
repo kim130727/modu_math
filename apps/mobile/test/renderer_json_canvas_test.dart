@@ -860,4 +860,80 @@ void main() {
       ['slot.question.text', 'slot.answer.blank'],
     );
   });
+
+  testWidgets('renders path answer blanks as interactive slots',
+      (tester) async {
+    var value = '';
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 365,
+            height: 125,
+            child: RendererJsonCanvas(
+              inputValue: value,
+              expectedAnswer: '12',
+              onInputChanged: (next) => value = next,
+              renderer: {
+                'view_box': {
+                  'width': 365,
+                  'height': 125,
+                  'background': '#FFFFFF',
+                },
+                'elements': [
+                  {
+                    'id': 'slot.answer_1_oval.path',
+                    'type': 'path',
+                    'attributes': {
+                      'd':
+                          'M 146 96 C 146 81 202 81 202 96 C 202 111 146 111 146 96 Z',
+                      'stroke': '#111111',
+                      'stroke-width': 1.2,
+                      'fill': '#ffffff',
+                    },
+                    'interaction': {
+                      'type': 'select',
+                      'role': 'choice',
+                      'value_type': 'digit',
+                      'include_in_submission': true,
+                      'order': 0,
+                      'keyboard': 'number',
+                    },
+                  },
+                  {
+                    'id': 'slot.answer_2_oval.path',
+                    'type': 'path',
+                    'attributes': {
+                      'd':
+                          'M 270 96 C 270 81 326 81 326 96 C 326 111 270 111 270 96 Z',
+                      'stroke': '#111111',
+                      'stroke-width': 1.2,
+                      'fill': '#ffffff',
+                    },
+                    'interaction': {
+                      'type': 'select',
+                      'role': 'choice',
+                      'value_type': 'digit',
+                      'include_in_submission': true,
+                      'order': 1,
+                      'keyboard': 'number',
+                    },
+                  },
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byType(TextField), findsNWidgets(2));
+
+    await tester.enterText(find.byType(TextField).first, '1');
+    await tester.enterText(find.byType(TextField).last, '2');
+
+    expect(value, equals('12'));
+    expect(tester.takeException(), isNull);
+  });
 }

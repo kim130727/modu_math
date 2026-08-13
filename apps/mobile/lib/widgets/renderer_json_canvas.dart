@@ -540,6 +540,8 @@ class RendererJsonPainter extends CustomPainter {
         _paintLine(canvas, attributes);
       case 'rect':
         _paintRect(canvas, attributes);
+      case 'path':
+        _paintPath(canvas, attributes);
       case 'text':
         _paintText(canvas, element, attributes);
     }
@@ -643,6 +645,31 @@ class RendererJsonPainter extends CustomPainter {
         ..style = PaintingStyle.stroke
         ..strokeWidth = strokeWidth,
     );
+  }
+
+  void _paintPath(Canvas canvas, Map<String, dynamic> attributes) {
+    final path = _parseSvgPath(attributes['d']?.toString() ?? '');
+    if (path == null) {
+      return;
+    }
+    final fill = _readColor(attributes['fill']);
+    final stroke = _readColor(attributes['stroke']);
+    final strokeWidth = _readDouble(attributes['stroke-width']) ?? 1;
+
+    if (fill != null) {
+      canvas.drawPath(path, Paint()..color = fill);
+    }
+    if (stroke != null && strokeWidth > 0) {
+      canvas.drawPath(
+        path,
+        Paint()
+          ..color = stroke
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = strokeWidth
+          ..strokeCap = StrokeCap.round
+          ..strokeJoin = StrokeJoin.round,
+      );
+    }
   }
 
   void _paintText(
@@ -827,6 +854,29 @@ List<_InputSlot> _inputSlots(
       );
       continue;
     }
+    if (type == 'path') {
+      if (!_looksLikeInputPath(element)) {
+        continue;
+      }
+      final rect = _pathBounds(_mapAt(element, 'attributes')['d']?.toString());
+      if (rect == null || rect.isEmpty) {
+        continue;
+      }
+      slots.add(
+        _InputSlot(
+          rect: rect,
+          id: element['id']?.toString() ?? '',
+          contributesToAnswer: _contributesToAnswer(element),
+          maxLength: _maxLengthForInput(element),
+          digitsOnly: _digitsOnlyForInput(element),
+          operatorOnly: _operatorOnlyForInput(element),
+          autoAdvance: _autoAdvanceForInput(element),
+          order: _orderForInput(element),
+          placeholder: _placeholderForInput(element),
+        ),
+      );
+      continue;
+    }
     if (type != 'rect') {
       continue;
     }
@@ -912,6 +962,12 @@ bool _isLegacyAnswerBlankInsideTextBox(
 
 Rect? _elementRect(Map<String, dynamic> element) {
   final attributes = _mapAt(element, 'attributes');
+  if (element['type']?.toString() == 'path') {
+    final bounds = _pathBounds(attributes['d']?.toString());
+    if (bounds != null) {
+      return bounds;
+    }
+  }
   final x =
       _readDouble(attributes['x']) ?? _readDouble(attributes['data-box-x']);
   final y =
@@ -926,6 +982,93 @@ Rect? _elementRect(Map<String, dynamic> element) {
   }
   return Rect.fromLTWH(x, y, width, height);
 }
+
+Path? _parseSvgPath(String data) {
+  final tokens = _svgPathTokens(data);
+  if (tokens.isEmpty) {
+    return null;
+  }
+  final path = Path();
+  var index = 0;
+  var command = '';
+  Offset current = Offset.zero;
+  Offset start = Offset.zero;
+
+  bool hasNumber() => index < tokens.length && !_isPathCommand(tokens[index]);
+  double? nextNumber() {
+    if (!hasNumber()) {
+      return null;
+    }
+    return double.tryParse(tokens[index++]);
+  }
+
+  while (index < tokens.length) {
+    if (_isPathCommand(tokens[index])) {
+      command = tokens[index++];
+    }
+    switch (command) {
+      case 'M':
+        final x = nextNumber();
+        final y = nextNumber();
+        if (x == null || y == null) {
+          return path;
+        }
+        current = Offset(x, y);
+        start = current;
+        path.moveTo(x, y);
+        command = 'L';
+      case 'L':
+        final x = nextNumber();
+        final y = nextNumber();
+        if (x == null || y == null) {
+          return path;
+        }
+        current = Offset(x, y);
+        path.lineTo(x, y);
+      case 'C':
+        final x1 = nextNumber();
+        final y1 = nextNumber();
+        final x2 = nextNumber();
+        final y2 = nextNumber();
+        final x3 = nextNumber();
+        final y3 = nextNumber();
+        if ([x1, y1, x2, y2, x3, y3].any((value) => value == null)) {
+          return path;
+        }
+        current = Offset(x3!, y3!);
+        path.cubicTo(x1!, y1!, x2!, y2!, x3, y3);
+      case 'Z':
+      case 'z':
+        path.close();
+        current = start;
+        command = '';
+      default:
+        return path;
+    }
+  }
+  return path;
+}
+
+Rect? _pathBounds(String? data) {
+  if (data == null || data.trim().isEmpty) {
+    return null;
+  }
+  final path = _parseSvgPath(data);
+  if (path == null) {
+    return null;
+  }
+  final bounds = path.getBounds();
+  return bounds.isEmpty ? null : bounds;
+}
+
+List<String> _svgPathTokens(String data) {
+  return RegExp(r'[MLCZmlcz]|[-+]?(?:\d*\.\d+|\d+)(?:[eE][-+]?\d+)?')
+      .allMatches(data)
+      .map((match) => match.group(0)!)
+      .toList(growable: false);
+}
+
+bool _isPathCommand(String token) => RegExp(r'^[MLCZmlcz]$').hasMatch(token);
 
 void _applyExpectedAnswerLength(List<_InputSlot> slots, String expectedAnswer) {
   final answerLength = expectedAnswer.characters.length;
@@ -1102,6 +1245,18 @@ bool _looksLikeInputRect(
 }
 
 bool _looksLikeInputCircle(Map<String, dynamic> element) {
+  final interaction = _mapAt(element, 'interaction');
+  final type = interaction['type']?.toString().toLowerCase();
+  if (type == 'input') {
+    return true;
+  }
+  if (type != 'select' && type != 'choice') {
+    return false;
+  }
+  return _contributesToAnswer(element);
+}
+
+bool _looksLikeInputPath(Map<String, dynamic> element) {
   final interaction = _mapAt(element, 'interaction');
   final type = interaction['type']?.toString().toLowerCase();
   if (type == 'input') {

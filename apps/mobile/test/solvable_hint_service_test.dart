@@ -45,6 +45,28 @@ void main() {
     expect(hints[0].body, contains('전체를 구하는 문제예요.'));
     expect(hints[1].body, isNot(contains('507')));
   });
+
+  test('builds place-value hints for each addition subproblem', () {
+    final hints = service.buildHints(_multiAdditionContent);
+
+    expect(hints, hasLength(8));
+    expect(hints[0].title, equals('1단계: (1) 일의 자리 더하기'));
+    expect(hints[2].title, equals('3단계: (1) 십의 자리 더하기'));
+    expect(_correctChoice(hints[2]), equals('7 + 5 + 1'));
+    expect(hints[4].title, equals('5단계: (2) 일의 자리 더하기'));
+    expect(hints[6].title, equals('7단계: (2) 십의 자리 더하기'));
+    expect(_correctChoice(hints[6]), equals('5 + 5 + 1'));
+  });
+
+  test('builds hints for each comparison subproblem', () {
+    final hints = service.buildHints(_comparisonContent);
+
+    expect(hints, hasLength(4));
+    expect(hints[0].title, equals('(1) 양쪽 값 계산'));
+    expect(_correctChoice(hints[1]), equals('>'));
+    expect(hints[2].title, equals('(2) 양쪽 값 계산'));
+    expect(_correctChoice(hints[3]), equals('='));
+  });
 }
 
 String _correctChoice(SolvableHint hint) {
@@ -103,5 +125,60 @@ const _contentWithStudentHints = ProblemContent(
       },
     ],
     'answer': {'value': 507},
+  },
+);
+
+const _multiAdditionContent = ProblemContent(
+  summary: _summary,
+  semantic: {},
+  solvable: {
+    'problem_type': 'multi_numeric_answer_vertical_addition',
+    'inputs': {
+      'quantities': {
+        'problem_1': {
+          'addends': [379, 855],
+        },
+        'problem_2': {
+          'addends': [654, 758],
+        },
+      },
+    },
+    'answer': {
+      'answer_key': [
+        {'value': 1234},
+        {'value': 1412},
+      ],
+    },
+  },
+);
+
+const _comparisonContent = ProblemContent(
+  summary: _summary,
+  semantic: {},
+  solvable: {
+    'problem_type': 'multi_answer_expression_comparison',
+    'inputs': {
+      'answer_type': 'comparison_operator',
+      'quantities': {
+        'problem_1': {
+          'left_expression': '532',
+          'left_value': 532,
+          'right_expression': '248 + 274',
+          'right_value': 522,
+        },
+        'problem_2': {
+          'left_expression': '346 + 667',
+          'left_value': 1013,
+          'right_expression': '428 + 585',
+          'right_value': 1013,
+        },
+      },
+    },
+    'answer': {
+      'answer_key': [
+        {'value': '>'},
+        {'value': '='},
+      ],
+    },
   },
 );
