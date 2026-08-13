@@ -22,6 +22,8 @@ class _HintPanelState extends State<HintPanel> {
   final Map<String, TextEditingController> _controllers = {};
   final Map<String, bool> _results = {};
   final Map<String, String> _selectedChoices = {};
+  final Map<String, int> _visibleLevelsByGroup = {};
+  String? _selectedGroupKey;
 
   @override
   void didUpdateWidget(covariant HintPanel oldWidget) {
@@ -38,6 +40,12 @@ class _HintPanelState extends State<HintPanel> {
         _controllers.remove(entry.key);
       }
     }
+    final groupKeys =
+        _hintGroups(widget.hints).map((group) => group.key).toSet();
+    _visibleLevelsByGroup.removeWhere((key, _) => !groupKeys.contains(key));
+    if (_selectedGroupKey != null && !groupKeys.contains(_selectedGroupKey)) {
+      _selectedGroupKey = null;
+    }
   }
 
   @override
@@ -51,9 +59,25 @@ class _HintPanelState extends State<HintPanel> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final visibleHints =
-        widget.hints.where((hint) => hint.level <= widget.visibleLevel);
-    final canRevealMore = widget.visibleLevel < widget.hints.length;
+    final groups = _hintGroups(widget.hints);
+    final hasSubproblemTabs = groups.length > 1;
+    final activeGroup = groups.isEmpty
+        ? null
+        : groups.firstWhere(
+            (group) => group.key == _selectedGroupKey,
+            orElse: () => groups.first,
+          );
+    final activeVisibleLevel = activeGroup == null
+        ? 0
+        : hasSubproblemTabs
+            ? _visibleLevelsByGroup[activeGroup.key] ?? 0
+            : widget.visibleLevel;
+    final visibleHints = activeGroup?.hints
+            .where((hint) => hint.level <= activeVisibleLevel)
+            .toList() ??
+        const <SolvableHint>[];
+    final canRevealMore =
+        activeGroup != null && activeVisibleLevel < activeGroup.maxLevel;
 
     return Card(
       margin: EdgeInsets.zero,
@@ -75,8 +99,18 @@ class _HintPanelState extends State<HintPanel> {
               ],
             ),
             const SizedBox(height: 14),
+            if (hasSubproblemTabs && activeGroup != null) ...[
+              _SubproblemTabs(
+                groups: groups,
+                selectedKey: activeGroup.key,
+                onSelect: (key) => setState(() => _selectedGroupKey = key),
+              ),
+              const SizedBox(height: 12),
+            ],
             FilledButton.icon(
-              onPressed: canRevealMore ? widget.onRevealNext : null,
+              onPressed: canRevealMore && activeGroup != null
+                  ? () => _revealNext(activeGroup)
+                  : null,
               icon: const Icon(Icons.visibility_outlined),
               label: Text(canRevealMore ? '힌트 보기' : '모든 힌트를 봤어요'),
             ),
@@ -90,6 +124,9 @@ class _HintPanelState extends State<HintPanel> {
               const SizedBox(height: 14),
               ...visibleHints.map((hint) {
                 final hintKey = _hintKey(hint);
+                final title = hasSubproblemTabs
+                    ? _titleWithoutGroup(hint.title)
+                    : hint.title;
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 12),
                   child: DecoratedBox(
@@ -103,7 +140,7 @@ class _HintPanelState extends State<HintPanel> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            hint.title,
+                            title,
                             style: const TextStyle(
                               fontWeight: FontWeight.w800,
                             ),
@@ -159,6 +196,101 @@ class _HintPanelState extends State<HintPanel> {
   String _hintKey(SolvableHint hint) {
     return '${hint.level}|${hint.title}|${hint.miniQuestion}';
   }
+
+  void _revealNext(_HintGroup group) {
+    setState(() {
+      _visibleLevelsByGroup[group.key] =
+          (_visibleLevelsByGroup[group.key] ?? 0) + 1;
+    });
+    widget.onRevealNext();
+  }
+}
+
+class _HintGroup {
+  const _HintGroup({
+    required this.key,
+    required this.label,
+    required this.hints,
+  });
+
+  final String key;
+  final String label;
+  final List<SolvableHint> hints;
+
+  int get maxLevel {
+    if (hints.isEmpty) {
+      return 0;
+    }
+    return hints.map((hint) => hint.level).reduce((a, b) => a > b ? a : b);
+  }
+}
+
+class _SubproblemTabs extends StatelessWidget {
+  const _SubproblemTabs({
+    required this.groups,
+    required this.selectedKey,
+    required this.onSelect,
+  });
+
+  final List<_HintGroup> groups;
+  final String selectedKey;
+  final ValueChanged<String> onSelect;
+
+  @override
+  Widget build(BuildContext context) {
+    return SegmentedButton<String>(
+      segments: [
+        for (final group in groups)
+          ButtonSegment<String>(
+            value: group.key,
+            label: Text(group.label),
+          ),
+      ],
+      selected: {selectedKey},
+      onSelectionChanged: (selection) => onSelect(selection.first),
+      showSelectedIcon: false,
+    );
+  }
+}
+
+List<_HintGroup> _hintGroups(List<SolvableHint> hints) {
+  final grouped = <String, List<SolvableHint>>{};
+  for (final hint in hints) {
+    final key = _groupKeyForTitle(hint.title);
+    grouped.putIfAbsent(key, () => []).add(hint);
+  }
+  return grouped.entries
+      .map(
+        (entry) => _HintGroup(
+          key: entry.key,
+          label: entry.key == 'all' ? '전체' : '(${entry.key})',
+          hints: entry.value,
+        ),
+      )
+      .toList();
+}
+
+String _groupKeyForTitle(String title) {
+  final afterStep = RegExp(r'^\s*\d+[^:]*:\s*\((\d+)\)').firstMatch(title);
+  if (afterStep != null) {
+    return afterStep.group(1)!;
+  }
+  final atStart = RegExp(r'^\s*\((\d+)\)').firstMatch(title);
+  if (atStart != null) {
+    return atStart.group(1)!;
+  }
+  return 'all';
+}
+
+String _titleWithoutGroup(String title) {
+  final withoutStepGroup = title.replaceFirst(
+    RegExp(r'^(\s*\d+[^:]*:\s*)\(\d+\)\s*'),
+    r'$1',
+  );
+  if (withoutStepGroup != title) {
+    return withoutStepGroup;
+  }
+  return title.replaceFirst(RegExp(r'^\s*\(\d+\)\s*'), '');
 }
 
 class _MiniHintProblem extends StatelessWidget {

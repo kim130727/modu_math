@@ -46,18 +46,18 @@ void main() {
     expect(revealCount, equals(0));
   });
 
-  testWidgets('keeps mini problem state separate for hints with same level',
-      (tester) async {
+  testWidgets('shows subproblem hints in independent tabs', (tester) async {
+    var revealCount = 0;
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
           body: HintPanel(
-            visibleLevel: 1,
-            onRevealNext: () {},
+            visibleLevel: 0,
+            onRevealNext: () => revealCount += 1,
             hints: const [
               SolvableHint(
                 level: 1,
-                title: 'Step 1: problem 1',
+                title: '1: (1) ones place',
                 body: 'First subproblem.',
                 miniQuestion: 'Problem 1 ones sum?',
                 choices: [
@@ -68,7 +68,7 @@ void main() {
               ),
               SolvableHint(
                 level: 1,
-                title: 'Step 1: problem 2',
+                title: '1: (2) ones place',
                 body: 'Second subproblem.',
                 miniQuestion: 'Problem 2 ones sum?',
                 choices: [
@@ -83,15 +83,32 @@ void main() {
       ),
     );
 
+    expect(find.text('(1)'), findsOneWidget);
+    expect(find.text('(2)'), findsOneWidget);
+    expect(find.text('Problem 1 ones sum?'), findsNothing);
+    expect(find.text('Problem 2 ones sum?'), findsNothing);
+
+    await tester.tap(find.byType(FilledButton));
+    await tester.pumpAndSettle();
     expect(find.text('Problem 1 ones sum?'), findsOneWidget);
-    expect(find.text('Problem 2 ones sum?'), findsOneWidget);
+    expect(find.text('Problem 2 ones sum?'), findsNothing);
 
     await tester.tap(find.text('3'));
     await tester.pumpAndSettle();
     expect(find.text('Problem 2 correct.'), findsNothing);
 
+    await tester.tap(find.text('(2)'));
+    await tester.pumpAndSettle();
+    expect(find.text('Problem 1 ones sum?'), findsNothing);
+    expect(find.text('Problem 2 ones sum?'), findsNothing);
+
+    await tester.tap(find.byType(FilledButton));
+    await tester.pumpAndSettle();
+    expect(find.text('Problem 2 ones sum?'), findsOneWidget);
+
     await tester.tap(find.text('14'));
     await tester.pumpAndSettle();
     expect(find.text('Problem 2 correct.'), findsOneWidget);
+    expect(revealCount, equals(2));
   });
 }

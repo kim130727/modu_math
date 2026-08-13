@@ -147,7 +147,7 @@ List<SolvableHint> _comparisonSubproblemHints(ProblemContent content) {
             : '=';
     hints.add(
       SolvableHint(
-        level: hints.length + 1,
+        level: 1,
         title: '($number) 양쪽 값 계산',
         body: '먼저 왼쪽과 오른쪽 식의 값을 각각 계산해요.',
         miniQuestion: '($number)번의 왼쪽과 오른쪽 값은 무엇인가요?',
@@ -164,7 +164,7 @@ List<SolvableHint> _comparisonSubproblemHints(ProblemContent content) {
     );
     hints.add(
       SolvableHint(
-        level: hints.length + 1,
+        level: 2,
         title: '($number) 비교 기호 고르기',
         body: '$leftValue와 $rightValue 중 어느 쪽이 큰지 비교해요.',
         miniQuestion: '($number)번 빈칸에 들어갈 기호는 무엇인가요?',

@@ -62,6 +62,7 @@ void main() {
     final hints = service.buildHints(_comparisonContent);
 
     expect(hints, hasLength(4));
+    expect(hints.map((hint) => hint.level), equals([1, 2, 1, 2]));
     expect(hints[0].title, equals('(1) 양쪽 값 계산'));
     expect(_correctChoice(hints[1]), equals('>'));
     expect(hints[2].title, equals('(2) 양쪽 값 계산'));
