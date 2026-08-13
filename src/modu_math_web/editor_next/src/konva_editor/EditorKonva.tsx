@@ -16,7 +16,7 @@ import type { ProblemJson } from "../types/problem";
 import { scalePathData } from "../utils/pathData";
 import sampleProblem from "../samples/sample_problem.json";
 import { connectorArrowForPreset, connectorKindForPreset } from "./connectorGeometry";
-import { editorDocumentToProblemJson, estimateTextWidth, fittedTextHeight, problemJsonToEditorDocument } from "./converters";
+import { editorDocumentToProblemJson, estimateTextWidth, fittedTextHeight, normalizedTextBoxWidth, problemJsonToEditorDocument } from "./converters";
 import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
 import { JsonImportExport } from "./JsonImportExport";
 import { KonvaStage, type CanvasPoint } from "./KonvaStage";
@@ -1657,7 +1657,12 @@ function applyAutoTextSizing(nextShape: Extract<EditorShape, { type: "text" }>, 
     return nextShape;
   }
   if (nextShape.sourceKind === "text_box") {
-    const width = nextShape.width ?? autoTextWidth(nextShape.text, nextShape.fontSize);
+    const width = normalizedTextBoxWidth(
+      nextShape.text,
+      nextShape.fontSize,
+      nextShape.width ?? autoTextWidth(nextShape.text, nextShape.fontSize),
+      nextShape.align ?? "left",
+    );
     return {
       ...nextShape,
       width,

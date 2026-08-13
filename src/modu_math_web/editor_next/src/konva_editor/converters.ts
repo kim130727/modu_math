@@ -1,5 +1,5 @@
 import type { EditorShape, EditorShapeDocument, InputInteraction, InputStyle } from "../types/editorShape";
-import type { ProblemJson, ProblemObject } from "../types/problem";
+import type { ProblemCanvas, ProblemJson, ProblemObject } from "../types/problem";
 import { connectorToPathObject } from "./connectorGeometry";
 import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
 import { inferAdjustableShapePreset, pathDataForShape } from "./shapeGeometry";
@@ -9,7 +9,7 @@ export function problemJsonToEditorDocument(problem: ProblemJson): EditorShapeDo
     id: problem.id,
     title: problem.title,
     canvas: problem.canvas,
-    shapes: problem.objects.flatMap(problemObjectToEditorShape),
+    shapes: problem.objects.flatMap((object) => problemObjectToEditorShape(object, problem.canvas)),
   };
 }
 
@@ -27,7 +27,7 @@ export function editorDocumentToProblemJson(document: EditorShapeDocument, base:
   };
 }
 
-function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
+function problemObjectToEditorShape(object: ProblemObject, canvas: ProblemCanvas): EditorShape[] {
   const answerProps = answerSlotProps(object.props);
   const regionProps = sourceRegionProps(object.props);
   switch (object.type) {
@@ -38,7 +38,9 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
       const textAlign = object.props.textAlign ?? "left";
       const lineHeight = object.props.lineHeight ?? 1.25;
       const needsAlignmentBox = textAlign !== "left";
-      const width = isTextBox || needsAlignmentBox ? object.props.width ?? estimateTextWidth(text, fontSize) : undefined;
+      const sourceWidth = object.props.width ?? estimateTextWidth(text, fontSize);
+      const maxWidth = maxTextBoxWidthWithinCanvas(object.x, canvas.width);
+      const width = isTextBox || needsAlignmentBox ? normalizedTextBoxWidth(text, fontSize, sourceWidth, textAlign, maxWidth) : undefined;
       const fittedHeight = fittedTextHeight(text, fontSize, width ?? estimateTextWidth(text, fontSize), lineHeight);
 
       return [
@@ -313,7 +315,10 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
     case "text":
       const sourceKind = shape.sourceKind ?? (shape.width ? "text_box" : "text");
       const lineHeight = shape.lineHeight ?? 1.25;
-      const width = shape.width;
+      const width =
+        sourceKind === "text_box" && typeof shape.width === "number"
+          ? normalizedTextBoxWidth(shape.text, shape.fontSize, shape.width, shape.align ?? "left")
+          : shape.width;
       const height =
         sourceKind === "text_box" && typeof width === "number"
           ? normalizedTextBoxHeight(shape.text, shape.fontSize, width, shape.height, lineHeight)
@@ -589,6 +594,25 @@ function roundForTransform(value: number): number {
 
 export function estimateTextWidth(text: string, fontSize: number): number {
   return Math.max(80, estimateLineWidth(text, fontSize));
+}
+
+export function fittedTextWidth(text: string, fontSize: number): number {
+  return Math.max(12, Math.ceil(estimateLineWidth(text, fontSize) + fontSize * 0.28));
+}
+
+export function normalizedTextBoxWidth(text: string, fontSize: number, width?: number, align = "left", maxWidth?: number): number {
+  const fittedWidth = fittedTextWidth(text, fontSize);
+  const capped = (value: number) => Math.max(24, Math.min(value, maxWidth ?? value));
+  if (typeof width !== "number" || !Number.isFinite(width)) return capped(fittedWidth);
+  if (!text.trim() || align !== "left" || text.includes("\n")) return capped(width);
+  if (maxWidth !== undefined && width > maxWidth) return capped(width);
+  const suspiciouslyWide = width > Math.max(fittedWidth * 2.2, fittedWidth + fontSize * 2.5);
+  return suspiciouslyWide ? capped(fittedWidth) : capped(Math.max(width, fittedWidth));
+}
+
+function maxTextBoxWidthWithinCanvas(x: number, canvasWidth: number): number {
+  const margin = 16;
+  return Math.max(24, canvasWidth - x - margin);
 }
 
 export function fittedTextHeight(text: string, fontSize: number, width: number, lineHeight = 1.25): number {

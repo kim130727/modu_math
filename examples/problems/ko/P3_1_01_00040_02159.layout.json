@@ -129,14 +129,17 @@
         "fill": "#ffffff",
         "semantic_role": "answer_blank",
         "interaction": {
-          "type": "select",
-          "role": "choice",
-          "value_type": "choice",
-          "choice_value": "slot.answer_1_oval",
+          "type": "input",
+          "role": "answer",
+          "value_type": "integer",
+          "max_length": 4,
           "include_in_submission": true,
           "order": 0,
-          "group_id": "shape_choice",
-          "keyboard": "none"
+          "group_id": "final_answer",
+          "answer_key_index": 0,
+          "answer_ref": "slot.answer_1_oval",
+          "auto_advance": true,
+          "keyboard": "number"
         },
         "input_style": {
           "font_size_mode": "auto",
@@ -194,14 +197,17 @@
         "fill": "#ffffff",
         "semantic_role": "answer_blank",
         "interaction": {
-          "type": "select",
-          "role": "choice",
-          "value_type": "choice",
-          "choice_value": "slot.answer_2_oval",
+          "type": "input",
+          "role": "answer",
+          "value_type": "integer",
+          "max_length": 4,
           "include_in_submission": true,
           "order": 1,
-          "group_id": "shape_choice",
-          "keyboard": "none"
+          "group_id": "final_answer",
+          "answer_key_index": 1,
+          "answer_ref": "slot.answer_2_oval",
+          "auto_advance": true,
+          "keyboard": "number"
         },
         "input_style": {
           "font_size_mode": "auto",

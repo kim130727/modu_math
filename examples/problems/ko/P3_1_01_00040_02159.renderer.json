@@ -2,7 +2,7 @@
   "problem_id": "P3_1_01_00040_02159",
   "view_box": {
     "width": 365.0,
-    "height": 125.0,
+    "height": 133.072,
     "background": "#FFFFFF"
   },
   "elements": [
@@ -82,14 +82,17 @@
         "layout_slot_id": "slot.answer_1_oval"
       },
       "interaction": {
-        "type": "select",
-        "role": "choice",
-        "value_type": "choice",
-        "choice_value": "slot.answer_1_oval",
+        "type": "input",
+        "role": "answer",
+        "value_type": "integer",
+        "max_length": 4,
         "include_in_submission": true,
         "order": 0,
-        "group_id": "shape_choice",
-        "keyboard": "none"
+        "group_id": "final_answer",
+        "answer_key_index": 0,
+        "answer_ref": "slot.answer_1_oval",
+        "auto_advance": true,
+        "keyboard": "number"
       },
       "input_style": {
         "font_size_mode": "auto",
@@ -136,14 +139,17 @@
         "layout_slot_id": "slot.answer_2_oval"
       },
       "interaction": {
-        "type": "select",
-        "role": "choice",
-        "value_type": "choice",
-        "choice_value": "slot.answer_2_oval",
+        "type": "input",
+        "role": "answer",
+        "value_type": "integer",
+        "max_length": 4,
         "include_in_submission": true,
         "order": 1,
-        "group_id": "shape_choice",
-        "keyboard": "none"
+        "group_id": "final_answer",
+        "answer_key_index": 1,
+        "answer_ref": "slot.answer_2_oval",
+        "auto_advance": true,
+        "keyboard": "number"
       },
       "input_style": {
         "font_size_mode": "auto",

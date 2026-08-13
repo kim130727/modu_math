@@ -3,7 +3,7 @@ import { Circle, Group, Image as KonvaImage, Line, Path, Rect, Text } from "reac
 import type Konva from "konva";
 import type { EditorShape } from "../types/editorShape";
 import { connectorPathData } from "./connectorGeometry";
-import { estimateWrappedTextHeight, normalizedTextBoxHeight } from "./converters";
+import { estimateWrappedTextHeight, normalizedTextBoxHeight, normalizedTextBoxWidth } from "./converters";
 import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
 import { renderLatexToSvgDataUrl } from "./latexRenderer";
 import { pathDataForShape } from "./shapeGeometry";
@@ -102,7 +102,10 @@ export function ShapeRenderer({ shape, nodeRef, onSelect, onDragStart, onDragMov
         />
       );
     case "text":
-      const textWidth = shape.width;
+      const textWidth =
+        shape.sourceKind === "text_box" && typeof shape.width === "number"
+          ? normalizedTextBoxWidth(shape.text, shape.fontSize, shape.width, shape.align ?? "left")
+          : shape.width;
       const textHeight =
         typeof textWidth === "number"
           ? normalizedTextBoxHeight(shape.text, shape.fontSize, textWidth, shape.height, shape.lineHeight ?? 1.25)

@@ -189,7 +189,7 @@ List<SolvableHint> _columnAdditionHints(ProblemContent content) {
       _columnAdditionHintsForTerms(
         entry.$2[0].abs(),
         entry.$2[1].abs(),
-        startLevel: hints.length + 1,
+        startLevel: 1,
         titlePrefix: titlePrefix,
       ),
     );

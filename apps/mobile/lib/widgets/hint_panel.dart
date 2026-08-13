@@ -19,9 +19,9 @@ class HintPanel extends StatefulWidget {
 }
 
 class _HintPanelState extends State<HintPanel> {
-  final Map<int, TextEditingController> _controllers = {};
-  final Map<int, bool> _results = {};
-  final Map<int, String> _selectedChoices = {};
+  final Map<String, TextEditingController> _controllers = {};
+  final Map<String, bool> _results = {};
+  final Map<String, String> _selectedChoices = {};
 
   @override
   void didUpdateWidget(covariant HintPanel oldWidget) {
@@ -31,9 +31,9 @@ class _HintPanelState extends State<HintPanel> {
     }
     _results.clear();
     _selectedChoices.clear();
-    final levels = widget.hints.map((hint) => hint.level).toSet();
+    final keys = widget.hints.map(_hintKey).toSet();
     for (final entry in _controllers.entries.toList()) {
-      if (!levels.contains(entry.key)) {
+      if (!keys.contains(entry.key)) {
         entry.value.dispose();
         _controllers.remove(entry.key);
       }
@@ -89,6 +89,7 @@ class _HintPanelState extends State<HintPanel> {
             ] else ...[
               const SizedBox(height: 14),
               ...visibleHints.map((hint) {
+                final hintKey = _hintKey(hint);
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 12),
                   child: DecoratedBox(
@@ -115,12 +116,12 @@ class _HintPanelState extends State<HintPanel> {
                             const SizedBox(height: 12),
                             _MiniHintProblem(
                               hint: hint,
-                              controller: _controllerFor(hint.level),
-                              result: _results[hint.level],
-                              selectedChoice: _selectedChoices[hint.level],
+                              controller: _controllerFor(hintKey),
+                              result: _results[hintKey],
+                              selectedChoice: _selectedChoices[hintKey],
                               onSelectChoice: (choice) =>
-                                  _checkChoice(hint, choice),
-                              onCheck: () => _checkMiniProblem(hint),
+                                  _checkChoice(hintKey, choice),
+                              onCheck: () => _checkMiniProblem(hintKey, hint),
                             ),
                           ],
                         ],
@@ -136,23 +137,27 @@ class _HintPanelState extends State<HintPanel> {
     );
   }
 
-  TextEditingController _controllerFor(int level) {
-    return _controllers.putIfAbsent(level, TextEditingController.new);
+  TextEditingController _controllerFor(String key) {
+    return _controllers.putIfAbsent(key, TextEditingController.new);
   }
 
-  void _checkMiniProblem(SolvableHint hint) {
-    final answer = _normalizeMiniAnswer(_controllerFor(hint.level).text);
+  void _checkMiniProblem(String key, SolvableHint hint) {
+    final answer = _normalizeMiniAnswer(_controllerFor(key).text);
     final correct = hint.acceptedAnswers
         .map(_normalizeMiniAnswer)
         .any((expected) => expected == answer);
-    setState(() => _results[hint.level] = correct);
+    setState(() => _results[key] = correct);
   }
 
-  void _checkChoice(SolvableHint hint, HintChoice choice) {
+  void _checkChoice(String key, HintChoice choice) {
     setState(() {
-      _selectedChoices[hint.level] = choice.label;
-      _results[hint.level] = choice.isCorrect;
+      _selectedChoices[key] = choice.label;
+      _results[key] = choice.isCorrect;
     });
+  }
+
+  String _hintKey(SolvableHint hint) {
+    return '${hint.level}|${hint.title}|${hint.miniQuestion}';
   }
 }
 

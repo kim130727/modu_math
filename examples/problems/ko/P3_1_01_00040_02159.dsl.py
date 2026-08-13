@@ -253,13 +253,13 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [
-            {"id": "slot.answer_1", "type": "number", "value": 434, "unit": ""},
-            {"id": "slot.answer_2", "type": "number", "value": 1131, "unit": ""},
+            {"id": "slot.answer_1_oval", "type": "number", "value": 434, "unit": ""},
+            {"id": "slot.answer_2_oval", "type": "number", "value": 1131, "unit": ""},
         ],
         "choices": [],
         "answer_key": [
-            {"blank_id": "slot.answer_1", "value": 434, "unit": ""},
-            {"blank_id": "slot.answer_2", "value": 1131, "unit": ""},
+            {"blank_id": "slot.answer_1_oval", "value": 434, "unit": ""},
+            {"blank_id": "slot.answer_2_oval", "value": 1131, "unit": ""},
         ],
         "value": [434, 1131],
         "unit": "",

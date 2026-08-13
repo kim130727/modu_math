@@ -5,7 +5,7 @@ import type { TutorRendererOverlay } from "../api/editorApi";
 import type { ConnectorShape, EditorShape, LineShape } from "../types/editorShape";
 import { scalePathData } from "../utils/pathData";
 import { connectorArrowForPreset, connectorBounds, connectorControl, connectorEnd, connectorKindForPreset, connectorPathData, connectorStart } from "./connectorGeometry";
-import { estimateTextWidth, normalizedTextBoxHeight } from "./converters";
+import { estimateTextWidth, normalizedTextBoxHeight, normalizedTextBoxWidth } from "./converters";
 import { KONVA_PREVIEW_FONT_LOAD_SPEC } from "./fonts";
 import { ShapeRenderer } from "./ShapeRenderer";
 import { adjustableShapePoint } from "./shapeGeometry";
@@ -828,7 +828,10 @@ function shapeBounds(shape: EditorShape): CanvasRect {
     return connectorBounds(shape);
   }
   if (shape.type === "text") {
-    const textWidth = shape.width ?? estimateTextWidth(shape.text, shape.fontSize);
+    const textWidth =
+      shape.sourceKind === "text_box"
+        ? normalizedTextBoxWidth(shape.text, shape.fontSize, shape.width ?? estimateTextWidth(shape.text, shape.fontSize), shape.align ?? "left")
+        : shape.width ?? estimateTextWidth(shape.text, shape.fontSize);
     return {
       x: shape.x,
       y: shape.y,

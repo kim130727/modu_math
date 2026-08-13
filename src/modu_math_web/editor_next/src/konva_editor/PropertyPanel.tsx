@@ -142,39 +142,14 @@ function AnswerSlotFields({
           )
         }
       />
+      <AnswerBindingFields
+        interaction={interaction}
+        answerOptions={answerOptions}
+        selectedAnswerOption={selectedAnswerOption}
+        onChange={onChange}
+      />
       {interaction ? (
         <>
-          {interaction.role === "answer" ? (
-            <>
-              {answerOptions.length ? (
-                <SelectField
-                  label="정답"
-                  value={selectedAnswerOption ? String(selectedAnswerOption.index) : ""}
-                  options={["", ...answerOptions.map((option) => String(option.index))]}
-                  optionLabels={{
-                    "": "연결 안 함",
-                    ...Object.fromEntries(answerOptions.map((option) => [String(option.index), option.label])),
-                  }}
-                  onChange={(value) => {
-                    const answer_key_index = value === "" ? undefined : Number(value);
-                    const option = answerOptions.find((item) => item.index === answer_key_index);
-                    onChange({
-                      interaction: {
-                        ...interaction,
-                        answer_key_index,
-                        answer_ref: option?.ref,
-                        order: answer_key_index ?? interaction.order ?? 0,
-                        group_id: interaction.group_id || "final_answer",
-                      },
-                    } as Partial<EditorShape>);
-                  }}
-                />
-              ) : (
-                <ReadOnlyField label="정답" value="연결할 answer_key가 없습니다" />
-              )}
-              <ReadOnlyField label="정답 값" value={answerValueLabel(selectedAnswerOption, interaction)} />
-            </>
-          ) : null}
           <SelectField
             label="입력 방식"
             value={interaction.type}
@@ -265,6 +240,59 @@ function AnswerSlotFields({
   );
 }
 
+function AnswerBindingFields({
+  interaction,
+  answerOptions,
+  selectedAnswerOption,
+  onChange,
+}: {
+  interaction: InputInteraction | undefined;
+  answerOptions: AnswerBindingOption[];
+  selectedAnswerOption: AnswerBindingOption | null;
+  onChange: (patch: Partial<EditorShape>) => void;
+}) {
+  if (!interaction) {
+    return <ReadOnlyField label="정답 연결" value="입력 기능을 켜면 정답 값을 볼 수 있습니다" />;
+  }
+
+  if (interaction.role !== "answer") {
+    return <ReadOnlyField label="정답 연결" value="역할을 answer로 바꾸면 정답 값을 볼 수 있습니다" />;
+  }
+
+  return (
+    <>
+      {answerOptions.length ? (
+        <SelectField
+          label="정답"
+          value={selectedAnswerOption ? String(selectedAnswerOption.index) : ""}
+          options={["", ...answerOptions.map((option) => String(option.index))]}
+          optionLabels={{
+            "": "연결 안 함",
+            ...Object.fromEntries(answerOptions.map((option) => [String(option.index), option.label])),
+          }}
+          onChange={(value) => {
+            const answer_key_index = value === "" ? undefined : Number(value);
+            const option = answerOptions.find((item) => item.index === answer_key_index);
+            onChange({
+              interaction: {
+                ...interaction,
+                answer_key_index,
+                answer_ref: option?.ref,
+                order: answer_key_index ?? interaction.order ?? 0,
+                group_id: interaction.group_id || "final_answer",
+              },
+            } as Partial<EditorShape>);
+          }}
+        />
+      ) : (
+        <ReadOnlyField label="정답" value="연결할 answer_key가 없습니다" />
+      )}
+      <ReadOnlyField label="정답 값" value={answerValueLabel(selectedAnswerOption, interaction)} />
+      <ReadOnlyField label="정답 연결 상태" value={answerBindingStatusLabel(selectedAnswerOption, interaction, answerOptions)} />
+    </>
+  );
+}
+
 function selectedAnswerBinding(interaction: InputInteraction, answerOptions: AnswerBindingOption[]): AnswerBindingOption | null {
   if (typeof interaction.answer_key_index === "number") {
     const byIndex = answerOptions.find((option) => option.index === interaction.answer_key_index);
@@ -274,14 +302,39 @@ function selectedAnswerBinding(interaction: InputInteraction, answerOptions: Ans
     const byRef = answerOptions.find((option) => option.ref === interaction.answer_ref);
     if (byRef) return byRef;
   }
+  if (interaction.role === "answer" && typeof interaction.order === "number") {
+    const byOrder = answerOptions.find((option) => option.index === interaction.order);
+    if (byOrder) return byOrder;
+  }
   return null;
 }
 
 function answerValueLabel(option: AnswerBindingOption | null, interaction: InputInteraction): string {
-  if (option) return `${option.value}${option.unit ? ` ${option.unit}` : ""}${option.ref ? ` (${option.ref})` : ""}`;
+  if (option) return `${option.value}${option.unit ? ` ${option.unit}` : ""}`;
   if (interaction.answer_ref) return `연결 ref: ${interaction.answer_ref}`;
   if (typeof interaction.answer_key_index === "number") return `연결 index: ${interaction.answer_key_index}`;
+  if (typeof interaction.order === "number") return `순서 ${interaction.order}에 해당하는 answer_key를 찾지 못했습니다`;
   return "연결 안 함";
+}
+
+function answerBindingStatusLabel(
+  option: AnswerBindingOption | null,
+  interaction: InputInteraction,
+  answerOptions: AnswerBindingOption[],
+): string {
+  if (option) {
+    const parts = [`answer_key[${option.index}]`];
+    if (option.ref) parts.push(option.ref);
+    if (typeof interaction.order === "number") parts.push(`order ${interaction.order}`);
+    return parts.join(" · ");
+  }
+  if (!answerOptions.length) return "현재 문제에서 answer_key를 찾지 못했습니다";
+  if (interaction.answer_ref) return `저장된 ref(${interaction.answer_ref})와 일치하는 answer_key가 없습니다`;
+  if (typeof interaction.answer_key_index === "number") {
+    return `저장된 index(${interaction.answer_key_index})와 일치하는 answer_key가 없습니다`;
+  }
+  if (typeof interaction.order === "number") return `order ${interaction.order} 기준으로 연결 후보가 없습니다`;
+  return "콤보박스에서 연결할 정답을 선택하세요";
 }
 
 function PropertyPanelTitle({ saveStatus }: { saveStatus: PropertyPanelProps["saveStatus"] }) {

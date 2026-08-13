@@ -53,8 +53,8 @@ void main() {
     expect(hints[0].title, equals('1단계: (1) 일의 자리 더하기'));
     expect(hints[2].title, equals('3단계: (1) 십의 자리 더하기'));
     expect(_correctChoice(hints[2]), equals('7 + 5 + 1'));
-    expect(hints[4].title, equals('5단계: (2) 일의 자리 더하기'));
-    expect(hints[6].title, equals('7단계: (2) 십의 자리 더하기'));
+    expect(hints[4].title, equals('1단계: (2) 일의 자리 더하기'));
+    expect(hints[6].title, equals('3단계: (2) 십의 자리 더하기'));
     expect(_correctChoice(hints[6]), equals('5 + 5 + 1'));
   });
 
