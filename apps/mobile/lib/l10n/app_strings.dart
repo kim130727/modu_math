@@ -21,6 +21,7 @@ class AppStrings {
     'common.problemTitleForTopic': '{topic} 문제',
     'common.retry': '다시 시도',
     'common.reload': '다시 불러오기',
+    'common.previousProblem': '이전 문제로',
     'common.nextProblem': '다음 문제로',
     'common.back': '이전 화면으로',
     'home.loadErrorTitle': '학습 정보를 불러오지 못했어요',

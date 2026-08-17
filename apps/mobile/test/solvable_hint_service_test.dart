@@ -72,28 +72,51 @@ void main() {
     expect(_correctChoice(hints[6]), equals('5 + 5 + 1'));
   });
 
+  test('uses only the matching addition subproblem for suffixed ids', () {
+    final hints = service.buildHints(_additionSubproblemOneContent);
+
+    expect(hints, hasLength(4));
+    expect(hints.map((hint) => hint.groupKey).toSet(), equals({null}));
+    expect(hints[0].title, equals('1단계: 일의 자리 더하기'));
+    expect(hints[0].miniQuestion, equals('9 + 5은 얼마인가요?'));
+    expect(_correctChoice(hints[0]), equals('14'));
+    expect(hints[3].title, equals('4단계: 백의 자리와 답'));
+    expect(_correctChoice(hints[3]), equals('724'));
+  });
+
   test('builds hints for each comparison subproblem', () {
     final hints = service.buildHints(_comparisonContent);
 
-    expect(hints, hasLength(12));
+    expect(hints, hasLength(11));
     expect(hints.map((hint) => hint.groupKey).toSet(), equals({'1', '2'}));
-    expect(hints.where((hint) => hint.groupKey == '1'), hasLength(5));
+    expect(hints.where((hint) => hint.groupKey == '1'), hasLength(4));
     expect(hints.where((hint) => hint.groupKey == '2'), hasLength(7));
-    expect(hints.take(5).map((hint) => hint.level), equals([1, 2, 3, 4, 5]));
+    expect(hints.take(4).map((hint) => hint.level), equals([1, 2, 3, 4]));
     expect(
-        hints.skip(5).map((hint) => hint.level), equals([1, 2, 3, 4, 5, 6, 7]));
-    expect(hints[0].title, equals('1단계: (1) 왼쪽 값 확인'));
-    expect(hints[1].title, equals('2단계: (1) 오른쪽 일의 자리 더하기'));
-    expect(_correctChoice(hints[1]), equals('12'));
-    expect(hints[2].title, equals('3단계: (1) 오른쪽 십의 자리 더하기'));
-    expect(_correctChoice(hints[2]), equals('4 + 7 + 1'));
-    expect(hints[4].title, equals('5단계: (1) 비교 기호 고르기'));
-    expect(_correctChoice(hints[4]), equals('>'));
-    expect(hints[5].title, equals('1단계: (2) 왼쪽 일의 자리 더하기'));
-    expect(hints[8].title, equals('4단계: (2) 오른쪽 일의 자리 더하기'));
-    expect(_correctChoice(hints[9]), equals('2 + 8 + 1'));
-    expect(hints[11].title, equals('7단계: (2) 비교 기호 고르기'));
-    expect(_correctChoice(hints[11]), equals('='));
+        hints.skip(4).map((hint) => hint.level), equals([1, 2, 3, 4, 5, 6, 7]));
+    expect(hints[0].title, equals('1단계: (1) 오른쪽 일의 자리 더하기'));
+    expect(_correctChoice(hints[0]), equals('12'));
+    expect(hints[1].title, equals('2단계: (1) 오른쪽 십의 자리 더하기'));
+    expect(_correctChoice(hints[1]), equals('4 + 7 + 1'));
+    expect(hints[3].title, equals('4단계: (1) 비교 기호 고르기'));
+    expect(_correctChoice(hints[3]), equals('>'));
+    expect(hints[4].title, equals('1단계: (2) 왼쪽 일의 자리 더하기'));
+    expect(hints[7].title, equals('4단계: (2) 오른쪽 일의 자리 더하기'));
+    expect(_correctChoice(hints[8]), equals('2 + 8 + 1'));
+    expect(hints[10].title, equals('7단계: (2) 비교 기호 고르기'));
+    expect(_correctChoice(hints[10]), equals('='));
+  });
+
+  test('uses only the matching comparison subproblem for suffixed ids', () {
+    final hints = service.buildHints(_comparisonSubproblemOneContent);
+
+    expect(hints, hasLength(4));
+    expect(hints.map((hint) => hint.groupKey).toSet(), equals({null}));
+    expect(hints[0].title, equals('1단계: 오른쪽 일의 자리 더하기'));
+    expect(hints[0].miniQuestion, equals('8 + 4은 얼마인가요?'));
+    expect(hints[3].title, equals('4단계: 비교 기호 고르기'));
+    expect(hints[3].miniQuestion, equals('빈칸에 들어갈 기호는 무엇인가요?'));
+    expect(_correctChoice(hints[3]), equals('>'));
   });
 }
 
@@ -215,6 +238,47 @@ const _multiAdditionContent = ProblemContent(
   },
 );
 
+const _additionSubproblemOneSummary = ProblemSummary(
+  id: 'P3_1_01_00040_02151_1',
+  grade: 3,
+  subject: 'math',
+  unit: 'addition',
+  type: 'calc',
+  title: '세 자리 수의 덧셈 계산',
+  path: '',
+  raw: {},
+);
+
+const _additionSubproblemOneContent = ProblemContent(
+  summary: _additionSubproblemOneSummary,
+  semantic: {},
+  solvable: {
+    'problem_type': 'multi_answer_vertical_addition',
+    'inputs': {
+      'answer_type': 'number_list',
+      'quantities': {
+        'problem_1': {
+          'first_addend': 449,
+          'second_addend': 275,
+        },
+        'problem_2': {
+          'first_addend': 373,
+          'second_addend': 468,
+        },
+        'problem_3': {
+          'first_addend': 536,
+          'second_addend': 287,
+        },
+      },
+    },
+    'answer': {
+      'answer_key': [
+        {'value': 724},
+      ],
+    },
+  },
+);
+
 const _comparisonContent = ProblemContent(
   summary: _summary,
   semantic: {},
@@ -241,6 +305,47 @@ const _comparisonContent = ProblemContent(
       'answer_key': [
         {'value': '>'},
         {'value': '='},
+      ],
+    },
+  },
+);
+
+const _comparisonSubproblemOneSummary = ProblemSummary(
+  id: 'P3_1_01_00040_00471_1',
+  grade: 3,
+  subject: 'math',
+  unit: 'addition',
+  type: 'calc',
+  title: '비교 문제',
+  path: '',
+  raw: {},
+);
+
+const _comparisonSubproblemOneContent = ProblemContent(
+  summary: _comparisonSubproblemOneSummary,
+  semantic: {},
+  solvable: {
+    'problem_type': 'multi_answer_expression_comparison',
+    'inputs': {
+      'answer_type': 'comparison_operator',
+      'quantities': {
+        'problem_1': {
+          'left_expression': '532',
+          'left_value': 532,
+          'right_expression': '248 + 274',
+          'right_value': 522,
+        },
+        'problem_2': {
+          'left_expression': '346 + 667',
+          'left_value': 1013,
+          'right_expression': '428 + 585',
+          'right_value': 1013,
+        },
+      },
+    },
+    'answer': {
+      'answer_key': [
+        {'value': '>'},
       ],
     },
   },

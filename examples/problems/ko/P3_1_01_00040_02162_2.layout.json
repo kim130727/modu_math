@@ -22,7 +22,6 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "konva_1785217709470_paste_1665223_0",
         "konva_1786944463263_rect_1518102",
         "slot.line_2",
         "slot.addend_2_1",
@@ -72,7 +71,7 @@
       "content": {
         "text": "+",
         "style_role": "body",
-        "x": 95.5,
+        "x": 97,
         "y": 84.8,
         "font_size": 21,
         "anchor": "middle",
@@ -107,60 +106,12 @@
       }
     },
     {
-      "id": "slot.answer_2",
-      "kind": "blank",
-      "prompt": "529와 898의 합",
-      "content": {
-        "placeholder": ""
-      }
-    },
-    {
-      "id": "konva_1785217709470_paste_1665223_0",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 100.321,
-        "y": 106.579,
-        "width": 65.455,
-        "height": 27.14,
-        "stroke": "#111827",
-        "stroke_width": 1.2,
-        "fill": "#ffffff",
-        "interaction": {
-          "type": "input",
-          "role": "answer",
-          "value_type": "integer",
-          "max_length": 4,
-          "include_in_submission": true,
-          "order": 0,
-          "group_id": "final_answer",
-          "auto_advance": false,
-          "keyboard": "number",
-          "answer_key_index": 0,
-          "answer_ref": "konva_1785217709470_paste_1665223_0"
-        },
-        "input_style": {
-          "font_size_mode": "auto",
-          "font_size_adjust": 0,
-          "min_font_size": 14,
-          "max_font_size": 52,
-          "font_weight": 700,
-          "horizontal_align": "center",
-          "vertical_align": "middle",
-          "padding": 6,
-          "text_color": "#222222",
-          "width": 65.455,
-          "height": 27.14
-        }
-      }
-    },
-    {
       "id": "konva_1786944463263_rect_1518102",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 83.6,
-        "y": 103.2,
+        "x": 84.8,
+        "y": 102.4,
         "width": 84.4,
         "height": 29.6,
         "stroke": "#111827",
@@ -203,8 +154,7 @@
         "slot.addend_2_1",
         "slot.plus_2",
         "slot.addend_2_2",
-        "slot.line_2",
-        "slot.answer_2"
+        "slot.line_2"
       ]
     }
   ],
@@ -214,7 +164,6 @@
     "region.stem",
     "slot.instruction",
     "region.problems",
-    "konva_1785217709470_paste_1665223_0",
     "konva_1786944463263_rect_1518102",
     "slot.line_2",
     "slot.addend_2_1",

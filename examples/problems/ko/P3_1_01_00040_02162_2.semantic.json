@@ -10,6 +10,7 @@
       "vertical-calculation",
       "numeric-answer"
     ],
+    "instruction": "다음 덧셈을 하시오.",
     "question": "다음 덧셈을 하시오.",
     "required_layout_ids": [
       "slot.line_1",
@@ -27,15 +28,6 @@
   },
   "domain": {
     "objects": [
-      {
-        "id": "calculation.1",
-        "type": "vertical_addition",
-        "label": "첫 번째 덧셈",
-        "addends": [
-          235,
-          486
-        ]
-      },
       {
         "id": "calculation.2",
         "type": "vertical_addition",
@@ -73,12 +65,6 @@
   "answer": {
     "blanks": [
       {
-        "id": "konva_1785217709470_paste_1665223_0",
-        "slot_id": "konva_1785217709470_paste_1665223_0",
-        "expected": 1427,
-        "unit": ""
-      },
-      {
         "id": "konva_1786944463263_rect_1518102",
         "slot_id": "konva_1786944463263_rect_1518102",
         "expected": 1427,
@@ -88,11 +74,6 @@
     "choices": [],
     "answer_key": [
       {
-        "slot_id": "konva_1785217709470_paste_1665223_0",
-        "value": 1427,
-        "unit": ""
-      },
-      {
         "slot_id": "konva_1786944463263_rect_1518102",
         "value": 1427,
         "unit": ""
@@ -100,7 +81,6 @@
     ],
     "confidence": 1.0,
     "value": [
-      1427,
       1427
     ],
     "unit": "",

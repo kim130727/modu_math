@@ -38,33 +38,6 @@
   },
   "given": [
     {
-      "ref": "calculation.1",
-      "value": {
-        "addends": [
-          286,
-          435
-        ]
-      }
-    },
-    {
-      "ref": "calculation.2",
-      "value": {
-        "addends": [
-          479,
-          837
-        ]
-      }
-    },
-    {
-      "ref": "calculation.3",
-      "value": {
-        "addends": [
-          296,
-          638
-        ]
-      }
-    },
-    {
       "ref": "calculation.4",
       "value": {
         "addends": [
@@ -82,27 +55,6 @@
     "summary": "네 개의 세 자리 수 덧셈을 계산하여 각각의 답을 구하는 문제입니다.",
     "facts": [
       {
-        "ref": "calculation.1",
-        "label": "첫 번째 덧셈식",
-        "value": "286 + 435",
-        "unit": "",
-        "source": "explicit"
-      },
-      {
-        "ref": "calculation.2",
-        "label": "두 번째 덧셈식",
-        "value": "479 + 837",
-        "unit": "",
-        "source": "explicit"
-      },
-      {
-        "ref": "calculation.3",
-        "label": "세 번째 덧셈식",
-        "value": "296 + 638",
-        "unit": "",
-        "source": "explicit"
-      },
-      {
         "ref": "calculation.4",
         "label": "네 번째 덧셈식",
         "value": "864 + 459",
@@ -111,24 +63,6 @@
       }
     ],
     "unknowns": [
-      {
-        "ref": "answer.1",
-        "label": "286 + 435의 계산 결과",
-        "unit": "",
-        "source": "unknown"
-      },
-      {
-        "ref": "answer.2",
-        "label": "479 + 837의 계산 결과",
-        "unit": "",
-        "source": "unknown"
-      },
-      {
-        "ref": "answer.3",
-        "label": "296 + 638의 계산 결과",
-        "unit": "",
-        "source": "unknown"
-      },
       {
         "ref": "answer.4",
         "label": "864 + 459의 계산 결과",
@@ -187,45 +121,6 @@
   ],
   "steps": [
     {
-      "id": "step.1",
-      "goal": "286 + 435를 계산합니다.",
-      "uses": [
-        "calculation.1"
-      ],
-      "expr": "286 + 435",
-      "value": {
-        "sum": 721,
-        "ref": "answer.1"
-      },
-      "explanation": "일의 자리 6+5=11에서 1을 쓰고 1을 받아올림합니다. 십의 자리 8+3+1=12에서 2를 쓰고 1을 받아올림합니다. 백의 자리 2+4+1=7이므로 721입니다."
-    },
-    {
-      "id": "step.2",
-      "goal": "479 + 837을 계산합니다.",
-      "uses": [
-        "calculation.2"
-      ],
-      "expr": "479 + 837",
-      "value": {
-        "sum": 1316,
-        "ref": "answer.2"
-      },
-      "explanation": "일의 자리 9+7=16에서 6을 쓰고 1을 받아올림합니다. 십의 자리 7+3+1=11에서 1을 쓰고 1을 받아올림합니다. 백의 자리 4+8+1=13이므로 1316입니다."
-    },
-    {
-      "id": "step.3",
-      "goal": "296 + 638을 계산합니다.",
-      "uses": [
-        "calculation.3"
-      ],
-      "expr": "296 + 638",
-      "value": {
-        "sum": 934,
-        "ref": "answer.3"
-      },
-      "explanation": "일의 자리 6+8=14에서 4를 쓰고 1을 받아올림합니다. 십의 자리 9+3+1=13에서 3을 쓰고 1을 받아올림합니다. 백의 자리 2+6+1=9이므로 934입니다."
-    },
-    {
       "id": "step.4",
       "goal": "864 + 459를 계산합니다.",
       "uses": [
@@ -276,24 +171,6 @@
   "answer": {
     "blanks": [
       {
-        "id": "konva_1785806283023_rect_306673",
-        "slot_id": "konva_1785806283023_rect_306673",
-        "expected": 721,
-        "unit": ""
-      },
-      {
-        "id": "konva_1785806283023_paste_316206_0",
-        "slot_id": "konva_1785806283023_paste_316206_0",
-        "expected": 1316,
-        "unit": ""
-      },
-      {
-        "id": "konva_1785806283023_paste_323904_0",
-        "slot_id": "konva_1785806283023_paste_323904_0",
-        "expected": 934,
-        "unit": ""
-      },
-      {
         "id": "konva_1785806283023_paste_327885_0",
         "slot_id": "konva_1785806283023_paste_327885_0",
         "expected": 1323,
@@ -303,30 +180,12 @@
     "choices": [],
     "answer_key": [
       {
-        "slot_id": "konva_1785806283023_rect_306673",
-        "value": 721,
-        "unit": ""
-      },
-      {
-        "slot_id": "konva_1785806283023_paste_316206_0",
-        "value": 1316,
-        "unit": ""
-      },
-      {
-        "slot_id": "konva_1785806283023_paste_323904_0",
-        "value": 934,
-        "unit": ""
-      },
-      {
         "slot_id": "konva_1785806283023_paste_327885_0",
         "value": 1323,
         "unit": ""
       }
     ],
     "value": [
-      721,
-      1316,
-      934,
       1323
     ],
     "unit": "",

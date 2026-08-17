@@ -180,20 +180,112 @@ void main() {
     final answerField = tester.widget<TextField>(textFields.last);
     expect(answerField.controller?.text, equals('507'));
   });
+
+  testWidgets('opens next problem even when preload fails', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(1200, 900));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    const nextSummary = ProblemSummary(
+      id: 'P-next',
+      grade: 3,
+      subject: 'math',
+      unit: 'addition',
+      type: 'calc',
+      title: 'Next problem',
+      path: '',
+      raw: {},
+    );
+    final repository = _FakeContentRepository(
+      preloadFailureIds: {nextSummary.id},
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: ProblemSolveScreen(
+          repository: repository,
+          progressRepository: _FakeProgressRepository(),
+          problem: _summary,
+          unitProblems: [_summary, nextSummary],
+          problemIndex: 0,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byIcon(Icons.navigate_next));
+    await tester.pumpAndSettle();
+
+    expect(repository.preloadedProblemIds, contains(nextSummary.id));
+    expect(find.textContaining(nextSummary.id), findsOneWidget);
+  });
+
+  testWidgets('opens previous problem from problem controls', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(1200, 900));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    const previousSummary = ProblemSummary(
+      id: 'P-previous',
+      grade: 3,
+      subject: 'math',
+      unit: 'addition',
+      type: 'calc',
+      title: 'Previous problem',
+      path: '',
+      raw: {},
+    );
+    final repository = _FakeContentRepository();
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: ProblemSolveScreen(
+          repository: repository,
+          progressRepository: _FakeProgressRepository(),
+          problem: _summary,
+          unitProblems: [previousSummary, _summary],
+          problemIndex: 1,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byIcon(Icons.navigate_before));
+    await tester.pumpAndSettle();
+
+    expect(repository.preloadedProblemIds, contains(previousSummary.id));
+    expect(find.textContaining(previousSummary.id), findsOneWidget);
+  });
 }
 
 class _FakeContentRepository extends ContentRepository {
-  _FakeContentRepository({this.content = _content});
+  _FakeContentRepository({
+    this.content = _content,
+    this.preloadFailureIds = const {},
+  });
 
   final ProblemContent content;
+  final Set<String> preloadFailureIds;
+  final List<String> preloadedProblemIds = [];
 
   @override
   Future<ProblemContent> loadProblem(ProblemSummary summary) async {
-    return content;
+    if (content.summary.id == summary.id) {
+      return content;
+    }
+    return ProblemContent(
+      summary: summary,
+      svg: content.svg,
+      semantic: content.semantic,
+      solvable: content.solvable,
+      layout: content.layout,
+      renderer: content.renderer,
+    );
   }
 
   @override
-  Future<void> preloadProblem(ProblemSummary summary) async {}
+  Future<void> preloadProblem(ProblemSummary summary) async {
+    preloadedProblemIds.add(summary.id);
+    if (preloadFailureIds.contains(summary.id)) {
+      throw StateError('preload failed for ${summary.id}');
+    }
+  }
 }
 
 class _FakeProgressRepository implements LearningProgressRepository {

@@ -141,7 +141,7 @@ List<SolvableHint> _comparisonSubproblemHints(ProblemContent content) {
     return const [];
   }
   final quantities = _mapAt(content.solvable['inputs'], 'quantities');
-  final entries = quantities.entries
+  final allEntries = quantities.entries
       .where((entry) => entry.value is Map)
       .map((entry) => MapEntry(entry.key.toString(), entry.value as Map))
       .where(
@@ -151,13 +151,14 @@ List<SolvableHint> _comparisonSubproblemHints(ProblemContent content) {
       )
       .toList()
     ..sort((a, b) => a.key.compareTo(b.key));
+  final entries = _selectComparisonEntriesForContent(content, allEntries);
   if (entries.isEmpty) {
     return const [];
   }
 
   final hints = <SolvableHint>[];
   for (final entry in entries.indexed) {
-    final number = entry.$1 + 1;
+    final number = _comparisonEntryNumber(entry.$2.key) ?? entry.$1 + 1;
     final groupKey = entries.length > 1 ? '$number' : null;
     final groupLabel = entries.length > 1 ? '($number)' : null;
     final data = entry.$2.value;
@@ -204,40 +205,142 @@ List<SolvableHint> _comparisonHintsForSubproblem({
 }) {
   final hints = <SolvableHint>[];
   var level = 1;
-  level = _appendExpressionPlaceValueHints(
-    hints,
-    problemNumber: number,
-    sideLabel: '왼쪽',
-    expression: leftExpression,
-    expectedValue: leftValue,
-    startLevel: level,
-    groupKey: groupKey,
-    groupLabel: groupLabel,
-  );
-  level = _appendExpressionPlaceValueHints(
-    hints,
-    problemNumber: number,
-    sideLabel: '오른쪽',
-    expression: rightExpression,
-    expectedValue: rightValue,
-    startLevel: level,
-    groupKey: groupKey,
-    groupLabel: groupLabel,
-  );
+  final leftNeedsCalculation = _additionExpressionTerms(leftExpression) != null;
+  final rightNeedsCalculation =
+      _additionExpressionTerms(rightExpression) != null;
+  if (leftNeedsCalculation) {
+    level = _appendExpressionPlaceValueHints(
+      hints,
+      problemNumber: number,
+      sideLabel: '왼쪽',
+      expression: leftExpression,
+      expectedValue: leftValue,
+      startLevel: level,
+      groupKey: groupKey,
+      groupLabel: groupLabel,
+    );
+  }
+  if (rightNeedsCalculation) {
+    level = _appendExpressionPlaceValueHints(
+      hints,
+      problemNumber: number,
+      sideLabel: '오른쪽',
+      expression: rightExpression,
+      expectedValue: rightValue,
+      startLevel: level,
+      groupKey: groupKey,
+      groupLabel: groupLabel,
+    );
+  }
+  if (!leftNeedsCalculation && !rightNeedsCalculation) {
+    level = _appendDirectComparisonValuesHint(
+      hints,
+      problemNumber: number,
+      leftValue: leftValue,
+      rightValue: rightValue,
+      startLevel: level,
+      groupKey: groupKey,
+      groupLabel: groupLabel,
+    );
+  }
+  final titleProblemLabel = groupLabel == null ? '' : ' $groupLabel';
+  final questionProblemLabel = groupLabel == null ? '' : '$number번 ';
   hints.add(
     SolvableHint(
       level: level,
-      title: '$level단계: ($number) 비교 기호 고르기',
+      title: '$level단계:$titleProblemLabel 비교 기호 고르기',
       body: '계산한 두 값을 비교해요. 왼쪽은 $leftValue, 오른쪽은 $rightValue입니다.',
-      miniQuestion: '($number)번 빈칸에 들어갈 기호는 무엇인가요?',
+      miniQuestion: '${questionProblemLabel}빈칸에 들어갈 기호는 무엇인가요?',
       choices: _textChoices(operator, ['>', '=', '<']),
       acceptedAnswers: [operator],
       groupKey: groupKey,
       groupLabel: groupLabel,
-      successMessage: '좋아요. ($number)번은 $leftValue $operator $rightValue입니다.',
+      successMessage: '좋아요. $leftValue $operator $rightValue입니다.',
     ),
   );
   return _withHintGroup(hints, groupKey: groupKey, groupLabel: groupLabel);
+}
+
+List<MapEntry<String, Map<dynamic, dynamic>>>
+    _selectComparisonEntriesForContent(
+  ProblemContent content,
+  List<MapEntry<String, Map<dynamic, dynamic>>> entries,
+) {
+  final suffixNumber = _subproblemNumberFromProblemId(content.summary.id);
+  if (suffixNumber != null) {
+    final suffixKey = 'problem_$suffixNumber';
+    final selected = entries.where((entry) => entry.key == suffixKey).toList();
+    if (selected.isNotEmpty) {
+      return selected;
+    }
+  }
+  final answerCount = _answerKeyCount(content);
+  if (answerCount > 0 && answerCount < entries.length) {
+    return entries.take(answerCount).toList();
+  }
+  return entries;
+}
+
+int? _subproblemNumberFromProblemId(String problemId) {
+  final match = RegExp(r'_(\d+)$').firstMatch(problemId);
+  if (match == null) {
+    return null;
+  }
+  return int.tryParse(match.group(1)!);
+}
+
+int? _comparisonEntryNumber(String key) {
+  final match = RegExp(r'^problem_(\d+)$').firstMatch(key);
+  if (match == null) {
+    return null;
+  }
+  return int.tryParse(match.group(1)!);
+}
+
+int _answerKeyCount(ProblemContent content) {
+  final answer = _mapAt(content.solvable, 'answer').isNotEmpty
+      ? _mapAt(content.solvable, 'answer')
+      : _mapAt(content.semantic, 'answer');
+  final key = answer['answer_key'];
+  if (key is List && key.isNotEmpty) {
+    return key.length;
+  }
+  final values = answer['values'];
+  if (values is List && values.isNotEmpty) {
+    return values.length;
+  }
+  final blanks = answer['blanks'];
+  if (blanks is List && blanks.isNotEmpty) {
+    return blanks.length;
+  }
+  return 0;
+}
+
+int _appendDirectComparisonValuesHint(
+  List<SolvableHint> hints, {
+  required int problemNumber,
+  required int leftValue,
+  required int rightValue,
+  required int startLevel,
+  String? groupKey,
+  String? groupLabel,
+}) {
+  final titleProblemLabel = groupLabel == null ? '' : ' $groupLabel';
+  final questionProblemLabel = groupLabel == null ? '' : '$problemNumber번 ';
+  hints.add(
+    SolvableHint(
+      level: startLevel,
+      title: '$startLevel단계:$titleProblemLabel 두 값 확인',
+      body: '양쪽이 모두 수로 주어졌어요. 왼쪽 값과 오른쪽 값을 그대로 확인합니다.',
+      miniQuestion: '${questionProblemLabel}왼쪽 값은 무엇인가요?',
+      choices: _numberChoices(leftValue, [leftValue - 10, leftValue + 10]),
+      acceptedAnswers: ['$leftValue'],
+      groupKey: groupKey,
+      groupLabel: groupLabel,
+      successMessage: '맞아요. 왼쪽 값은 $leftValue입니다.',
+    ),
+  );
+  return startLevel + 1;
 }
 
 int _appendExpressionPlaceValueHints(
@@ -252,20 +355,10 @@ int _appendExpressionPlaceValueHints(
 }) {
   final terms = _additionExpressionTerms(expression);
   if (terms == null) {
-    hints.add(
-      SolvableHint(
-        level: startLevel,
-        title: '$startLevel단계: ($problemNumber) $sideLabel 값 확인',
-        body: '$sideLabel 식은 이미 수로 주어져 있어요. 값을 그대로 확인합니다.',
-        miniQuestion: '($problemNumber)번 $sideLabel 값은 무엇인가요?',
-        choices: _numberChoices(
-            expectedValue, [expectedValue - 10, expectedValue + 10]),
-        acceptedAnswers: ['$expectedValue'],
-        successMessage: '맞아요. $sideLabel 값은 $expectedValue입니다.',
-      ),
-    );
-    return startLevel + 1;
+    return startLevel;
   }
+  final titleProblemLabel = groupLabel == null ? '' : ' $groupLabel';
+  final questionProblemLabel = groupLabel == null ? '' : '$problemNumber번 ';
 
   final left = terms[0];
   final right = terms[1];
@@ -285,7 +378,7 @@ int _appendExpressionPlaceValueHints(
   hints.add(
     SolvableHint(
       level: startLevel,
-      title: '$startLevel단계: ($problemNumber) $sideLabel 일의 자리 더하기',
+      title: '$startLevel단계:$titleProblemLabel $sideLabel 일의 자리 더하기',
       body: '$sideLabel 식 $expression을 일의 자리부터 계산해요.',
       miniQuestion: '$onesLeft + $onesRight은 얼마인가요?',
       choices: _numberChoices(onesSum, [onesDigit, onesSum + 1]),
@@ -296,7 +389,7 @@ int _appendExpressionPlaceValueHints(
   hints.add(
     SolvableHint(
       level: startLevel + 1,
-      title: '${startLevel + 1}단계: ($problemNumber) $sideLabel 십의 자리 더하기',
+      title: '${startLevel + 1}단계:$titleProblemLabel $sideLabel 십의 자리 더하기',
       body: '일의 자리에서 올린 $carryToTens도 십의 자리 계산에 함께 넣어요.',
       miniQuestion: '십의 자리 계산으로 알맞은 것은 무엇인가요?',
       choices: _textChoices(
@@ -313,9 +406,9 @@ int _appendExpressionPlaceValueHints(
   hints.add(
     SolvableHint(
       level: startLevel + 2,
-      title: '${startLevel + 2}단계: ($problemNumber) $sideLabel 값 완성',
+      title: '${startLevel + 2}단계:$titleProblemLabel $sideLabel 값 완성',
       body: '마지막으로 백의 자리까지 계산해 $sideLabel 값을 완성해요.',
-      miniQuestion: '$sideLabel 식 $expression의 값은 무엇인가요?',
+      miniQuestion: '$questionProblemLabel$sideLabel 식 $expression의 값은 무엇인가요?',
       choices: _numberChoices(
         expectedValue,
         [
@@ -549,12 +642,12 @@ bool _isComparisonProblem(ProblemContent content) {
 }
 
 List<List<int>> _additionTermSets(ProblemContent content) {
-  final fromQuantities = _additionTermSetsFromQuantities(content.solvable);
+  final fromQuantities = _additionTermSetsFromQuantities(content);
   if (fromQuantities.isNotEmpty) {
     return fromQuantities;
   }
 
-  final fromSteps = _additionTermSetsFromSteps(content.solvable);
+  final fromSteps = _additionTermSetsFromSteps(content);
   if (fromSteps.isNotEmpty) {
     return fromSteps;
   }
@@ -563,47 +656,71 @@ List<List<int>> _additionTermSets(ProblemContent content) {
   return terms.length >= 2 ? [terms.take(2).toList()] : const [];
 }
 
-List<List<int>> _additionTermSetsFromQuantities(Map<String, dynamic> solvable) {
-  final quantities = _mapAt(_mapAt(solvable['inputs'], 'quantities'), null);
+List<List<int>> _additionTermSetsFromQuantities(ProblemContent content) {
+  final quantities =
+      _mapAt(_mapAt(content.solvable['inputs'], 'quantities'), null);
   if (quantities.isEmpty) {
     return const [];
   }
-  final sets = <List<int>>[];
   final firstAddend = _readInt(quantities['first_addend']);
   final secondAddend = _readInt(quantities['second_addend']);
   if (firstAddend != null && secondAddend != null) {
-    sets.add([firstAddend, secondAddend]);
-    return sets;
+    return [
+      [firstAddend, secondAddend],
+    ];
   }
 
-  final entries = quantities.entries.toList()
+  final entries = quantities.entries
+      .where((entry) => entry.value is Map)
+      .map((entry) => MapEntry(entry.key.toString(), entry.value as Map))
+      .toList()
     ..sort((a, b) => a.key.toString().compareTo(b.key.toString()));
+  final selectedEntries = _selectAdditionEntriesForContent(content, entries);
+  final sets = <List<int>>[];
   for (final entry in entries) {
+    if (!selectedEntries.any((selected) => selected.key == entry.key)) {
+      continue;
+    }
     final value = entry.value;
-    if (value is Map) {
-      final addends = value['addends'];
-      if (addends is List) {
-        final terms = addends
-            .map((item) => _readInt(item))
-            .whereType<int>()
-            .take(2)
-            .toList();
-        if (terms.length >= 2) {
-          sets.add(terms);
-        }
+    final first = _readInt(value['first_addend']);
+    final second = _readInt(value['second_addend']);
+    if (first != null && second != null) {
+      sets.add([first, second]);
+      continue;
+    }
+    final addends = value['addends'];
+    if (addends is List) {
+      final terms = addends
+          .map((item) => _readInt(item))
+          .whereType<int>()
+          .take(2)
+          .toList();
+      if (terms.length >= 2) {
+        sets.add(terms);
       }
     }
   }
   return sets;
 }
 
-List<List<int>> _additionTermSetsFromSteps(Map<String, dynamic> solvable) {
-  final steps = solvable['steps'];
+List<List<int>> _additionTermSetsFromSteps(ProblemContent content) {
+  final steps = content.solvable['steps'];
   if (steps is! List) {
     return const [];
   }
+  final suffixNumber = _subproblemNumberFromProblemId(content.summary.id);
+  final rawSteps = steps.whereType<Map>().where((step) {
+    if (suffixNumber == null) {
+      return true;
+    }
+    final id = step['id']?.toString() ?? '';
+    return id.contains('problem_$suffixNumber');
+  }).toList();
+  final selectedSteps = suffixNumber == null && _answerKeyCount(content) > 0
+      ? rawSteps.take(_answerKeyCount(content)).toList()
+      : rawSteps;
   final sets = <List<int>>[];
-  for (final step in steps.whereType<Map>()) {
+  for (final step in selectedSteps) {
     final match = RegExp(r'(\d+)\s*\+\s*(\d+)')
         .firstMatch(step['expr']?.toString() ?? '');
     if (match == null) {
@@ -612,6 +729,25 @@ List<List<int>> _additionTermSetsFromSteps(Map<String, dynamic> solvable) {
     sets.add([int.parse(match.group(1)!), int.parse(match.group(2)!)]);
   }
   return sets;
+}
+
+List<MapEntry<String, Map<dynamic, dynamic>>> _selectAdditionEntriesForContent(
+  ProblemContent content,
+  List<MapEntry<String, Map<dynamic, dynamic>>> entries,
+) {
+  final suffixNumber = _subproblemNumberFromProblemId(content.summary.id);
+  if (suffixNumber != null) {
+    final suffixKey = 'problem_$suffixNumber';
+    final selected = entries.where((entry) => entry.key == suffixKey).toList();
+    if (selected.isNotEmpty) {
+      return selected;
+    }
+  }
+  final answerCount = _answerKeyCount(content);
+  if (answerCount > 0 && answerCount < entries.length) {
+    return entries.take(answerCount).toList();
+  }
+  return entries;
 }
 
 List<int> _additionTerms(ProblemContent content) {

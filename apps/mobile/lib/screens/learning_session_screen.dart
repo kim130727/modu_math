@@ -59,7 +59,7 @@ class _LearningSessionScreenState extends State<LearningSessionScreen> {
     final problems = manifest.problems
         .where((problem) => problem.unit == widget.unit)
         .toList()
-      ..sort((a, b) => a.id.compareTo(b.id));
+      ..sort(_compareProblemSummaries);
     return _SessionData(problems: problems, attempts: attempts);
   }
 
@@ -328,6 +328,45 @@ String _problemName(ProblemSummary problem) {
     return filePrefix;
   }
   return problem.id;
+}
+
+int _compareProblemSummaries(ProblemSummary a, ProblemSummary b) {
+  return _compareProblemPrefixes(_problemName(a), _problemName(b));
+}
+
+int _compareProblemPrefixes(String a, String b) {
+  final aParts = _tokenizeForNaturalSort(a);
+  final bParts = _tokenizeForNaturalSort(b);
+  final length = aParts.length < bParts.length ? aParts.length : bParts.length;
+  for (var i = 0; i < length; i += 1) {
+    final aPart = aParts[i];
+    final bPart = bParts[i];
+    final aNumber = int.tryParse(aPart);
+    final bNumber = int.tryParse(bPart);
+    if (aNumber != null && bNumber != null) {
+      final numberComparison = aNumber.compareTo(bNumber);
+      if (numberComparison != 0) {
+        return numberComparison;
+      }
+      final lengthComparison = aPart.length.compareTo(bPart.length);
+      if (lengthComparison != 0) {
+        return lengthComparison;
+      }
+      continue;
+    }
+    final textComparison = aPart.compareTo(bPart);
+    if (textComparison != 0) {
+      return textComparison;
+    }
+  }
+  return aParts.length.compareTo(bParts.length);
+}
+
+List<String> _tokenizeForNaturalSort(String value) {
+  return RegExp(r'\d+|\D+')
+      .allMatches(value)
+      .map((match) => match.group(0) ?? '')
+      .toList();
 }
 
 class _SessionData {

@@ -12,7 +12,7 @@
       "word-problem",
       "numeric-answer"
     ],
-    "instruction": "m",
+    "instruction": "송은이가 문방구를 들러 학교에 가려고 합니다. 집에서 학교까지의 거리를 구하시오.",
     "question": "송은이가 문방구를 들러 학교에 가려고 합니다. 집에서 학교까지의 거리를 구하시오.",
     "required_layout_ids": [
       "slot.house_body",
@@ -110,27 +110,16 @@
   "answer": {
     "blanks": [
       {
-        "id": "slot.expression_blank",
-        "type": "expression",
-        "value": "487 + 295 = 782",
-        "unit": ""
-      },
-      {
-        "id": "slot.answer_blank",
-        "type": "number",
-        "value": 782,
+        "id": "konva_1785806283023_rect_383194",
+        "slot_id": "konva_1785806283023_rect_383194",
+        "expected": 782,
         "unit": "m"
       }
     ],
     "choices": [],
     "answer_key": [
       {
-        "blank_id": "slot.expression_blank",
-        "value": "487 + 295 = 782",
-        "unit": ""
-      },
-      {
-        "blank_id": "slot.answer_blank",
+        "slot_id": "konva_1785806283023_rect_383194",
         "value": 782,
         "unit": "m"
       }

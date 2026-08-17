@@ -55,6 +55,26 @@ void main() {
       expect(next.text, contains('6 + 5'));
     });
 
+    test('uses only the matching suffixed vertical addition subproblem',
+        () async {
+      const service = RuleTutorService();
+      final content = _suffixedVerticalAdditionContent();
+
+      final messages = service.startSession(content);
+      final next = await service.nextQuestion(
+        content: content,
+        messages: messages,
+        stepIndex: 0,
+      );
+
+      expect(messages.single.text, contains('9 + 5'));
+      expect(next.text, contains('4 + 7'));
+      expect(messages.single.text, isNot(contains('373')));
+      expect(messages.single.text, isNot(contains('468')));
+      expect(next.text, isNot(contains('373')));
+      expect(next.text, isNot(contains('468')));
+    });
+
     test('asks target confirmation without problem-specific names', () async {
       const service = RuleTutorService();
       final reply = await service.reviewAnswer(
@@ -378,6 +398,53 @@ ProblemContent _verticalAdditionContent() {
       ],
       'answer': {
         'value': [1, 1, 9, 2, 1]
+      },
+    },
+  );
+}
+
+ProblemContent _suffixedVerticalAdditionContent() {
+  return const ProblemContent(
+    summary: ProblemSummary(
+      id: 'P3_1_01_00040_02151_1',
+      grade: 3,
+      subject: 'math',
+      unit: 'addition',
+      type: 'multi_answer_vertical_addition',
+      title: 'Column addition',
+      path: '',
+      raw: {},
+    ),
+    svg: '<svg></svg>',
+    semantic: {},
+    solvable: {
+      'problem_type': 'multi_answer_vertical_addition',
+      'inputs': {
+        'answer_type': 'number_list',
+        'quantities': {
+          'problem_1': {
+            'first_addend': 449,
+            'second_addend': 275,
+          },
+          'problem_2': {
+            'first_addend': 373,
+            'second_addend': 468,
+          },
+          'problem_3': {
+            'first_addend': 536,
+            'second_addend': 287,
+          },
+        },
+      },
+      'steps': [
+        {'id': 'step.problem_1.compose_sum', 'expr': '449 + 275', 'value': 724},
+        {'id': 'step.problem_2.compose_sum', 'expr': '373 + 468', 'value': 841},
+        {'id': 'step.problem_3.compose_sum', 'expr': '536 + 287', 'value': 823},
+      ],
+      'answer': {
+        'answer_key': [
+          {'value': 724},
+        ],
       },
     },
   );

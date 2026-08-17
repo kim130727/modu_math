@@ -429,8 +429,8 @@
       "content": {
         "text": "295 m",
         "style_role": "body",
-        "x": 301.855,
-        "y": 139.482,
+        "x": 318.371,
+        "y": 149.072,
         "font_size": 16,
         "anchor": "middle",
         "fill": "#222222"
@@ -454,10 +454,12 @@
           "value_type": "integer",
           "max_length": 3,
           "include_in_submission": true,
-          "order": 0,
+          "order": 1,
           "group_id": "final_answer",
           "auto_advance": false,
-          "keyboard": "number"
+          "keyboard": "number",
+          "answer_key_index": 1,
+          "answer_ref": "answer_key[1]"
         },
         "input_style": {
           "font_size_mode": "auto",
@@ -468,7 +470,9 @@
           "horizontal_align": "center",
           "vertical_align": "middle",
           "padding": 6,
-          "text_color": "#222222"
+          "text_color": "#222222",
+          "width": 65.244,
+          "height": 25.016
         }
       }
     },
@@ -481,8 +485,8 @@
         "style_role": "body",
         "x": 541.278,
         "y": 185.177,
-        "width": 41.815,
-        "height": 30.0,
+        "width": 18.9,
+        "height": 24.0,
         "align": "left",
         "valign": "top",
         "font_size": 18,
@@ -500,7 +504,6 @@
         "slot.house_roof",
         "slot.house_door",
         "slot.house_window",
-        "slot.house_chimney",
         "slot.house_label",
         "slot.point_home"
       ]

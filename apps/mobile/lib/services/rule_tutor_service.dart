@@ -374,8 +374,9 @@ class RuleTutorService extends AiTutorService {
         : content.solvable['plan'] is List
             ? content.solvable['plan'] as List
             : const [];
+    final selectedRawSteps = _selectRuleStepsForContent(content, rawSteps);
 
-    return rawSteps.indexed.map((entry) {
+    return selectedRawSteps.indexed.map((entry) {
       final index = entry.$1 + 1;
       final raw = entry.$2;
       if (raw is String) {
@@ -654,20 +655,20 @@ bool _isVerticalAdditionContent(ProblemContent content) {
 }
 
 List<List<int>> _columnAdditionTermSets(ProblemContent content) {
-  final fromQuantities = _columnTermSetsFromQuantities(content.solvable);
+  final fromQuantities = _columnTermSetsFromQuantities(content);
   if (fromQuantities.isNotEmpty) {
     return fromQuantities;
   }
 
-  final fromSteps = _columnTermSetsFromSteps(content.solvable);
+  final fromSteps = _columnTermSetsFromSteps(content);
   if (fromSteps.isNotEmpty) {
     return fromSteps;
   }
   return const [];
 }
 
-List<List<int>> _columnTermSetsFromQuantities(Map<String, dynamic> solvable) {
-  final inputs = solvable['inputs'];
+List<List<int>> _columnTermSetsFromQuantities(ProblemContent content) {
+  final inputs = content.solvable['inputs'];
   final quantities = inputs is Map ? inputs['quantities'] : null;
   if (quantities is! Map) {
     return const [];
@@ -681,12 +682,22 @@ List<List<int>> _columnTermSetsFromQuantities(Map<String, dynamic> solvable) {
     ];
   }
 
-  final sets = <List<int>>[];
-  final entries = quantities.entries.toList()
+  final entries = quantities.entries
+      .where((entry) => entry.value is Map)
+      .map((entry) => MapEntry(entry.key.toString(), entry.value as Map))
+      .toList()
     ..sort((a, b) => a.key.toString().compareTo(b.key.toString()));
+  final selectedEntries = _selectRuleProblemEntries(content, entries);
+  final sets = <List<int>>[];
   for (final entry in entries) {
+    if (!selectedEntries.any((selected) => selected.key == entry.key)) {
+      continue;
+    }
     final value = entry.value;
-    if (value is! Map) {
+    final first = _readRuleInt(value['first_addend']);
+    final second = _readRuleInt(value['second_addend']);
+    if (first != null && second != null) {
+      sets.add([first, second]);
       continue;
     }
     final addends = value['addends'];
@@ -705,13 +716,14 @@ List<List<int>> _columnTermSetsFromQuantities(Map<String, dynamic> solvable) {
   return sets;
 }
 
-List<List<int>> _columnTermSetsFromSteps(Map<String, dynamic> solvable) {
-  final steps = solvable['steps'];
+List<List<int>> _columnTermSetsFromSteps(ProblemContent content) {
+  final steps = content.solvable['steps'];
   if (steps is! List) {
     return const [];
   }
+  final selectedSteps = _selectRuleStepsForContent(content, steps);
   final sets = <List<int>>[];
-  for (final step in steps.whereType<Map>()) {
+  for (final step in selectedSteps.whereType<Map>()) {
     final match = RegExp(r'(\d+)\s*\+\s*(\d+)')
         .firstMatch(step['expr']?.toString() ?? '');
     if (match == null) {
@@ -720,6 +732,77 @@ List<List<int>> _columnTermSetsFromSteps(Map<String, dynamic> solvable) {
     sets.add([int.parse(match.group(1)!), int.parse(match.group(2)!)]);
   }
   return sets;
+}
+
+List<Object?> _selectRuleStepsForContent(
+  ProblemContent content,
+  List<Object?> steps,
+) {
+  final suffixNumber = _ruleSubproblemNumberFromProblemId(content.summary.id);
+  if (suffixNumber != null && steps.length > 1) {
+    final suffixNeedle = 'problem_$suffixNumber';
+    final byId = steps.where((step) {
+      if (step is! Map) {
+        return false;
+      }
+      return (step['id']?.toString() ?? '').contains(suffixNeedle);
+    }).toList();
+    if (byId.isNotEmpty) {
+      return byId;
+    }
+    final index = suffixNumber - 1;
+    if (index >= 0 && index < steps.length) {
+      return [steps[index]];
+    }
+  }
+  final answerCount = _ruleAnswerKeyCount(content);
+  if (answerCount > 0 && answerCount < steps.length) {
+    return steps.take(answerCount).toList();
+  }
+  return steps;
+}
+
+List<MapEntry<String, Map<dynamic, dynamic>>> _selectRuleProblemEntries(
+  ProblemContent content,
+  List<MapEntry<String, Map<dynamic, dynamic>>> entries,
+) {
+  final suffixNumber = _ruleSubproblemNumberFromProblemId(content.summary.id);
+  if (suffixNumber != null) {
+    final suffixKey = 'problem_$suffixNumber';
+    final selected = entries.where((entry) => entry.key == suffixKey).toList();
+    if (selected.isNotEmpty) {
+      return selected;
+    }
+  }
+  final answerCount = _ruleAnswerKeyCount(content);
+  if (answerCount > 0 && answerCount < entries.length) {
+    return entries.take(answerCount).toList();
+  }
+  return entries;
+}
+
+int? _ruleSubproblemNumberFromProblemId(String problemId) {
+  final match = RegExp(r'_(\d+)$').firstMatch(problemId);
+  if (match == null) {
+    return null;
+  }
+  return int.tryParse(match.group(1)!);
+}
+
+int _ruleAnswerKeyCount(ProblemContent content) {
+  final rawAnswer = content.solvable['answer'] is Map
+      ? content.solvable['answer']
+      : content.semantic['answer'];
+  if (rawAnswer is! Map) {
+    return 0;
+  }
+  for (final key in const ['answer_key', 'values', 'blanks']) {
+    final value = rawAnswer[key];
+    if (value is List && value.isNotEmpty) {
+      return value.length;
+    }
+  }
+  return 0;
 }
 
 String _readRuleText(Object? value) {
@@ -991,6 +1074,25 @@ List<String> _comparisonExpressions(ProblemContent content) {
   final quantities =
       inputs is Map<String, dynamic> ? inputs['quantities'] : null;
   if (quantities is Map<String, dynamic>) {
+    final entries = quantities.entries
+        .where((entry) => entry.value is Map)
+        .map((entry) => MapEntry(entry.key.toString(), entry.value as Map))
+        .toList()
+      ..sort((a, b) => a.key.compareTo(b.key));
+    final selectedEntries = _selectRuleProblemEntries(content, entries);
+    final expressions = <String>[];
+    for (final entry in selectedEntries) {
+      final value = entry.value;
+      for (final key in const ['left_expression', 'right_expression']) {
+        final expression = value[key]?.toString().trim() ?? '';
+        if (expression.isNotEmpty) {
+          expressions.add(expression);
+        }
+      }
+    }
+    if (expressions.isNotEmpty) {
+      return expressions;
+    }
     return quantities.values
         .whereType<String>()
         .where((value) => value.trim().isNotEmpty)

@@ -94,7 +94,11 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
     }
     final end = (widget.problemIndex + 3).clamp(0, widget.unitProblems.length);
     for (var index = widget.problemIndex + 1; index < end; index += 1) {
-      unawaited(widget.repository.preloadProblem(widget.unitProblems[index]));
+      unawaited(
+        widget.repository
+            .preloadProblem(widget.unitProblems[index])
+            .catchError((_) {}),
+      );
     }
   }
 
@@ -127,12 +131,15 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
           if (snapshot.hasError) {
             return _ProblemLoadError(
               error: snapshot.error,
+              canOpenPreviousProblem: _hasPreviousProblem,
               canOpenNextProblem: _hasNextProblem,
               onRetry: () {
                 setState(() {
                   contentFuture = _loadContent();
                 });
               },
+              onPreviousProblem:
+                  _hasPreviousProblem ? _openPreviousProblem : null,
               onNextProblem: _hasNextProblem ? _openNextProblem : null,
               onBack: () => Navigator.of(context).pop(),
             );
@@ -167,8 +174,10 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
                 onRevealNext: () => _revealNextHint(content),
               );
               final controls = _ProblemControls(
+                canOpenPreviousProblem: _hasPreviousProblem,
                 canOpenNextProblem: _hasNextProblem,
                 onRetry: () => _restartProblem(content),
+                onPreviousProblem: _openPreviousProblem,
                 onNextProblem: _openNextProblem,
               );
 
@@ -318,13 +327,48 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
         widget.problemIndex + 1 < widget.unitProblems.length;
   }
 
+  bool get _hasPreviousProblem {
+    return widget.unitProblems.isNotEmpty && widget.problemIndex > 0;
+  }
+
+  Future<void> _openPreviousProblem() async {
+    if (!_hasPreviousProblem) {
+      return;
+    }
+    final previousIndex = widget.problemIndex - 1;
+    try {
+      await widget.repository
+          .preloadProblem(widget.unitProblems[previousIndex]);
+    } on Object {
+      // The destination screen can still render its own loading error.
+    }
+    if (!mounted) {
+      return;
+    }
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute<void>(
+        builder: (context) => ProblemSolveScreen(
+          repository: widget.repository,
+          progressRepository: widget.progressRepository,
+          problem: widget.unitProblems[previousIndex],
+          unitProblems: widget.unitProblems,
+          problemIndex: previousIndex,
+        ),
+      ),
+    );
+  }
+
   Future<void> _openNextProblem() async {
     if (!_hasNextProblem) {
       Navigator.of(context).pop();
       return;
     }
     final nextIndex = widget.problemIndex + 1;
-    await widget.repository.preloadProblem(widget.unitProblems[nextIndex]);
+    try {
+      await widget.repository.preloadProblem(widget.unitProblems[nextIndex]);
+    } on Object {
+      // The destination screen can still render its own loading error.
+    }
     if (!mounted) {
       return;
     }
@@ -394,13 +438,17 @@ List<String> _skillIdsFromSolvable(Map<String, dynamic> solvable) {
 
 class _ProblemControls extends StatelessWidget {
   const _ProblemControls({
+    required this.canOpenPreviousProblem,
     required this.canOpenNextProblem,
     required this.onRetry,
+    required this.onPreviousProblem,
     required this.onNextProblem,
   });
 
+  final bool canOpenPreviousProblem;
   final bool canOpenNextProblem;
   final VoidCallback onRetry;
+  final VoidCallback onPreviousProblem;
   final VoidCallback onNextProblem;
 
   @override
@@ -410,24 +458,45 @@ class _ProblemControls extends StatelessWidget {
       margin: EdgeInsets.zero,
       child: Padding(
         padding: const EdgeInsets.all(18),
-        child: Row(
-          children: [
-            Expanded(
-              child: OutlinedButton.icon(
-                onPressed: onRetry,
-                icon: const Icon(Icons.refresh),
-                label: const Text('다시 풀기'),
-              ),
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: FilledButton.icon(
-                onPressed: canOpenNextProblem ? onNextProblem : null,
-                icon: const Icon(Icons.navigate_next),
-                label: Text(strings.t('common.nextProblem')),
-              ),
-            ),
-          ],
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final previousButton = OutlinedButton.icon(
+              onPressed: canOpenPreviousProblem ? onPreviousProblem : null,
+              icon: const Icon(Icons.navigate_before),
+              label: Text(strings.t('common.previousProblem')),
+            );
+            final retryButton = OutlinedButton.icon(
+              onPressed: onRetry,
+              icon: const Icon(Icons.refresh),
+              label: Text(strings.t('common.retry')),
+            );
+            final nextButton = FilledButton.icon(
+              onPressed: canOpenNextProblem ? onNextProblem : null,
+              icon: const Icon(Icons.navigate_next),
+              label: Text(strings.t('common.nextProblem')),
+            );
+            if (constraints.maxWidth < 520) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  previousButton,
+                  const SizedBox(height: 10),
+                  retryButton,
+                  const SizedBox(height: 10),
+                  nextButton,
+                ],
+              );
+            }
+            return Row(
+              children: [
+                Expanded(child: previousButton),
+                const SizedBox(width: 10),
+                Expanded(child: retryButton),
+                const SizedBox(width: 10),
+                Expanded(child: nextButton),
+              ],
+            );
+          },
         ),
       ),
     );
@@ -480,15 +549,19 @@ class _ProblemVisual extends StatelessWidget {
 class _ProblemLoadError extends StatelessWidget {
   const _ProblemLoadError({
     required this.error,
+    required this.canOpenPreviousProblem,
     required this.canOpenNextProblem,
     required this.onRetry,
+    required this.onPreviousProblem,
     required this.onNextProblem,
     required this.onBack,
   });
 
   final Object? error;
+  final bool canOpenPreviousProblem;
   final bool canOpenNextProblem;
   final VoidCallback onRetry;
+  final VoidCallback? onPreviousProblem;
   final VoidCallback? onNextProblem;
   final VoidCallback onBack;
 
@@ -535,6 +608,14 @@ class _ProblemLoadError extends StatelessWidget {
                     icon: const Icon(Icons.refresh),
                     label: Text(strings.t('common.reload')),
                   ),
+                  if (canOpenPreviousProblem && onPreviousProblem != null) ...[
+                    const SizedBox(height: 10),
+                    OutlinedButton.icon(
+                      onPressed: onPreviousProblem,
+                      icon: const Icon(Icons.navigate_before),
+                      label: Text(strings.t('common.previousProblem')),
+                    ),
+                  ],
                   if (canOpenNextProblem && onNextProblem != null) ...[
                     const SizedBox(height: 10),
                     OutlinedButton.icon(

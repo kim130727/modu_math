@@ -43,14 +43,14 @@
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 18,
-        "width": 41.815,
-        "height": 30.0,
-        "max_width": 41.815,
+        "width": 18.9,
+        "height": 24.0,
+        "max_width": 18.9,
         "data-slot-kind": "text_box",
         "data-box-x": 541.278,
         "data-box-y": 185.177,
-        "data-box-width": 41.815,
-        "data-box-height": 30.0,
+        "data-box-width": 18.9,
+        "data-box-height": 24.0,
         "data-text-align": "left",
         "data-vertical-align": "top",
         "data-line-height": 1.2
@@ -355,10 +355,12 @@
         "value_type": "integer",
         "max_length": 3,
         "include_in_submission": true,
-        "order": 0,
+        "order": 1,
         "group_id": "final_answer",
         "auto_advance": false,
-        "keyboard": "number"
+        "keyboard": "number",
+        "answer_key_index": 1,
+        "answer_ref": "answer_key[1]"
       },
       "input_style": {
         "font_size_mode": "auto",
@@ -369,7 +371,9 @@
         "horizontal_align": "center",
         "vertical_align": "middle",
         "padding": 6,
-        "text_color": "#222222"
+        "text_color": "#222222",
+        "width": 65.244,
+        "height": 25.016
       }
     },
     {
@@ -524,8 +528,8 @@
       "id": "slot.distance_295.text",
       "type": "text",
       "attributes": {
-        "x": 301.855,
-        "y": 139.482,
+        "x": 318.371,
+        "y": 149.072,
         "fill": "#222222",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 16,

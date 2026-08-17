@@ -11,6 +11,7 @@
       "horizontal-calculation",
       "numeric-answer"
     ],
+    "instruction": "다음을 계산하세요.",
     "question": "다음을 계산하세요.",
     "required_layout_ids": [
       "slot.line_1",
@@ -36,33 +37,6 @@
         "addends": [
           286,
           435
-        ]
-      },
-      {
-        "id": "calculation.2",
-        "type": "vertical_addition",
-        "label": "두 번째 덧셈",
-        "addends": [
-          479,
-          837
-        ]
-      },
-      {
-        "id": "calculation.3",
-        "type": "horizontal_addition",
-        "label": "세 번째 덧셈",
-        "addends": [
-          296,
-          638
-        ]
-      },
-      {
-        "id": "calculation.4",
-        "type": "horizontal_addition",
-        "label": "네 번째 덧셈",
-        "addends": [
-          864,
-          459
         ]
       }
     ],
@@ -117,24 +91,6 @@
         "slot_id": "konva_1785806283023_rect_306673",
         "expected": 721,
         "unit": ""
-      },
-      {
-        "id": "konva_1785806283023_paste_316206_0",
-        "slot_id": "konva_1785806283023_paste_316206_0",
-        "expected": 1316,
-        "unit": ""
-      },
-      {
-        "id": "konva_1785806283023_paste_323904_0",
-        "slot_id": "konva_1785806283023_paste_323904_0",
-        "expected": 934,
-        "unit": ""
-      },
-      {
-        "id": "konva_1785806283023_paste_327885_0",
-        "slot_id": "konva_1785806283023_paste_327885_0",
-        "expected": 1323,
-        "unit": ""
       }
     ],
     "choices": [],
@@ -143,29 +99,11 @@
         "slot_id": "konva_1785806283023_rect_306673",
         "value": 721,
         "unit": ""
-      },
-      {
-        "slot_id": "konva_1785806283023_paste_316206_0",
-        "value": 1316,
-        "unit": ""
-      },
-      {
-        "slot_id": "konva_1785806283023_paste_323904_0",
-        "value": 934,
-        "unit": ""
-      },
-      {
-        "slot_id": "konva_1785806283023_paste_327885_0",
-        "value": 1323,
-        "unit": ""
       }
     ],
     "confidence": 1.0,
     "value": [
-      721,
-      1316,
-      934,
-      1323
+      721
     ],
     "unit": "",
     "sentence": "(1) 721, (2) 1316, (3) 934, (4) 1323입니다."

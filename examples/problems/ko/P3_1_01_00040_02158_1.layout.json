@@ -3,7 +3,7 @@
   "problem_id": "P3_1_01_00040_02158",
   "title": "세 자리 수의 덧셈 계산",
   "canvas": {
-    "width": 620,
+    "width": 320,
     "height": 170,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
@@ -23,23 +23,10 @@
       "flow": "absolute",
       "slot_ids": [
         "konva_1785806283023_rect_306673",
-        "konva_1785806283023_paste_316206_0",
-        "konva_1785806283023_paste_323904_0",
-        "konva_1785806283023_paste_327885_0",
         "slot.line_1",
-        "slot.line_2",
-        "slot.label_1",
         "slot.addend_1_1",
         "slot.plus_1",
-        "slot.addend_1_2",
-        "slot.label_2",
-        "slot.addend_2_1",
-        "slot.plus_2",
-        "slot.addend_2_2",
-        "slot.label_3",
-        "slot.expression_3",
-        "slot.label_4",
-        "slot.expression_4"
+        "slot.addend_1_2"
       ]
     }
   ],
@@ -64,28 +51,14 @@
       }
     },
     {
-      "id": "slot.label_1",
-      "kind": "text",
-      "prompt": "첫 번째 계산 번호",
-      "content": {
-        "text": "(1)",
-        "style_role": "body",
-        "x": 22.0,
-        "y": 42.0,
-        "font_size": 18,
-        "anchor": "start",
-        "fill": "#111111"
-      }
-    },
-    {
       "id": "slot.addend_1_1",
       "kind": "text",
       "prompt": "첫 번째 덧셈의 위 수 286",
       "content": {
         "text": "286",
         "style_role": "body",
-        "x": 99.0,
-        "y": 42.0,
+        "x": 180.052,
+        "y": 61.354,
         "font_size": 21,
         "anchor": "end",
         "fill": "#111111"
@@ -98,8 +71,8 @@
       "content": {
         "text": "+",
         "style_role": "body",
-        "x": 51.0,
-        "y": 70.0,
+        "x": 133.552,
+        "y": 89.354,
         "font_size": 21,
         "anchor": "middle",
         "fill": "#111111"
@@ -112,8 +85,8 @@
       "content": {
         "text": "435",
         "style_role": "body",
-        "x": 99.0,
-        "y": 70.0,
+        "x": 180.052,
+        "y": 89.354,
         "font_size": 21,
         "anchor": "end",
         "fill": "#111111"
@@ -124,169 +97,12 @@
       "kind": "line",
       "prompt": "첫 번째 세로셈의 계산선",
       "content": {
-        "x1": 41.0,
-        "y1": 82.0,
-        "x2": 102.0,
-        "y2": 82.0,
+        "x1": 122.052,
+        "y1": 101.354,
+        "x2": 183.052,
+        "y2": 101.354,
         "stroke": "#111111",
         "stroke_width": 1.5
-      }
-    },
-    {
-      "id": "slot.answer_1",
-      "kind": "blank",
-      "prompt": "286과 435의 합",
-      "content": {
-        "placeholder": ""
-      }
-    },
-    {
-      "id": "slot.label_2",
-      "kind": "text",
-      "prompt": "두 번째 계산 번호",
-      "content": {
-        "text": "(2)",
-        "style_role": "body",
-        "x": 176.0,
-        "y": 42.0,
-        "font_size": 18,
-        "anchor": "start",
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.addend_2_1",
-      "kind": "text",
-      "prompt": "두 번째 덧셈의 위 수 479",
-      "content": {
-        "text": "479",
-        "style_role": "body",
-        "x": 253.0,
-        "y": 42.0,
-        "font_size": 21,
-        "anchor": "end",
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.plus_2",
-      "kind": "text",
-      "prompt": "두 번째 덧셈 기호",
-      "content": {
-        "text": "+",
-        "style_role": "body",
-        "x": 205.0,
-        "y": 70.0,
-        "font_size": 21,
-        "anchor": "middle",
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.addend_2_2",
-      "kind": "text",
-      "prompt": "두 번째 덧셈의 아래 수 837",
-      "content": {
-        "text": "837",
-        "style_role": "body",
-        "x": 253.0,
-        "y": 70.0,
-        "font_size": 21,
-        "anchor": "end",
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.line_2",
-      "kind": "line",
-      "prompt": "두 번째 세로셈의 계산선",
-      "content": {
-        "x1": 195.0,
-        "y1": 82.0,
-        "x2": 256.0,
-        "y2": 82.0,
-        "stroke": "#111111",
-        "stroke_width": 1.5
-      }
-    },
-    {
-      "id": "slot.answer_2",
-      "kind": "blank",
-      "prompt": "479와 837의 합",
-      "content": {
-        "placeholder": ""
-      }
-    },
-    {
-      "id": "slot.label_3",
-      "kind": "text",
-      "prompt": "세 번째 계산 번호",
-      "content": {
-        "text": "(3)",
-        "style_role": "body",
-        "x": 22.0,
-        "y": 130.0,
-        "font_size": 18,
-        "anchor": "start",
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.expression_3",
-      "kind": "text",
-      "prompt": "세 번째 덧셈식 296 더하기 638",
-      "content": {
-        "text": "296 + 638",
-        "style_role": "body",
-        "x": 82.0,
-        "y": 130.0,
-        "font_size": 20,
-        "anchor": "start",
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.answer_3",
-      "kind": "blank",
-      "prompt": "296과 638의 합",
-      "content": {
-        "placeholder": ""
-      }
-    },
-    {
-      "id": "slot.label_4",
-      "kind": "text",
-      "prompt": "네 번째 계산 번호",
-      "content": {
-        "text": "(4)",
-        "style_role": "body",
-        "x": 176.0,
-        "y": 130.0,
-        "font_size": 18,
-        "anchor": "start",
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.expression_4",
-      "kind": "text",
-      "prompt": "네 번째 덧셈식 864 더하기 459",
-      "content": {
-        "text": "864 + 459",
-        "style_role": "body",
-        "x": 236.0,
-        "y": 130.0,
-        "font_size": 20,
-        "anchor": "start",
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.answer_4",
-      "kind": "blank",
-      "prompt": "864와 459의 합",
-      "content": {
-        "placeholder": ""
       }
     },
     {
@@ -294,8 +110,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 27.663,
-        "y": 106.969,
+        "x": 121.42,
+        "y": 122.258,
         "width": 68.042,
         "height": 34.212,
         "stroke": "#111827",
@@ -305,7 +121,7 @@
           "type": "input",
           "role": "answer",
           "value_type": "integer",
-          "max_length": 3,
+          "max_length": 4,
           "include_in_submission": true,
           "order": 0,
           "group_id": "final_answer",
@@ -321,115 +137,9 @@
           "horizontal_align": "center",
           "vertical_align": "middle",
           "padding": 6,
-          "text_color": "#222222"
-        }
-      }
-    },
-    {
-      "id": "konva_1785806283023_paste_316206_0",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 142.808,
-        "y": 108.259,
-        "width": 68.042,
-        "height": 34.212,
-        "stroke": "#111827",
-        "stroke_width": 1.2,
-        "fill": "#ffffff",
-        "interaction": {
-          "type": "input",
-          "role": "answer",
-          "value_type": "integer",
-          "max_length": 3,
-          "include_in_submission": true,
-          "order": 1,
-          "group_id": "final_answer",
-          "auto_advance": false,
-          "keyboard": "number"
-        },
-        "input_style": {
-          "font_size_mode": "auto",
-          "font_size_adjust": 0,
-          "min_font_size": 14,
-          "max_font_size": 52,
-          "font_weight": 700,
-          "horizontal_align": "center",
-          "vertical_align": "middle",
-          "padding": 6,
-          "text_color": "#222222"
-        }
-      }
-    },
-    {
-      "id": "konva_1785806283023_paste_323904_0",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 390.723,
-        "y": 34.296,
-        "width": 68.042,
-        "height": 34.212,
-        "stroke": "#111827",
-        "stroke_width": 1.2,
-        "fill": "#ffffff",
-        "interaction": {
-          "type": "input",
-          "role": "answer",
-          "value_type": "integer",
-          "max_length": 3,
-          "include_in_submission": true,
-          "order": 2,
-          "group_id": "final_answer",
-          "auto_advance": false,
-          "keyboard": "number"
-        },
-        "input_style": {
-          "font_size_mode": "auto",
-          "font_size_adjust": 0,
-          "min_font_size": 14,
-          "max_font_size": 52,
-          "font_weight": 700,
-          "horizontal_align": "center",
-          "vertical_align": "middle",
-          "padding": 6,
-          "text_color": "#222222"
-        }
-      }
-    },
-    {
-      "id": "konva_1785806283023_paste_327885_0",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 391.757,
-        "y": 94.219,
-        "width": 68.042,
-        "height": 34.212,
-        "stroke": "#111827",
-        "stroke_width": 1.2,
-        "fill": "#ffffff",
-        "interaction": {
-          "type": "input",
-          "role": "answer",
-          "value_type": "integer",
-          "max_length": 3,
-          "include_in_submission": true,
-          "order": 3,
-          "group_id": "final_answer",
-          "auto_advance": false,
-          "keyboard": "number"
-        },
-        "input_style": {
-          "font_size_mode": "auto",
-          "font_size_adjust": 0,
-          "min_font_size": 14,
-          "max_font_size": 52,
-          "font_weight": 700,
-          "horizontal_align": "center",
-          "vertical_align": "middle",
-          "padding": 6,
-          "text_color": "#222222"
+          "text_color": "#222222",
+          "width": 68.042,
+          "height": 34.212
         }
       }
     }
@@ -439,42 +149,10 @@
       "id": "group.problem_1",
       "role": "vertical_addition",
       "member_ids": [
-        "slot.label_1",
         "slot.addend_1_1",
         "slot.plus_1",
         "slot.addend_1_2",
-        "slot.line_1",
-        "slot.answer_1"
-      ]
-    },
-    {
-      "id": "group.problem_2",
-      "role": "vertical_addition",
-      "member_ids": [
-        "slot.label_2",
-        "slot.addend_2_1",
-        "slot.plus_2",
-        "slot.addend_2_2",
-        "slot.line_2",
-        "slot.answer_2"
-      ]
-    },
-    {
-      "id": "group.problem_3",
-      "role": "horizontal_addition",
-      "member_ids": [
-        "slot.label_3",
-        "slot.expression_3",
-        "slot.answer_3"
-      ]
-    },
-    {
-      "id": "group.problem_4",
-      "role": "horizontal_addition",
-      "member_ids": [
-        "slot.label_4",
-        "slot.expression_4",
-        "slot.answer_4"
+        "slot.line_1"
       ]
     }
   ],
@@ -485,22 +163,9 @@
     "slot.instruction",
     "region.problems",
     "konva_1785806283023_rect_306673",
-    "konva_1785806283023_paste_316206_0",
-    "konva_1785806283023_paste_323904_0",
-    "konva_1785806283023_paste_327885_0",
     "slot.line_1",
-    "slot.line_2",
-    "slot.label_1",
     "slot.addend_1_1",
     "slot.plus_1",
-    "slot.addend_1_2",
-    "slot.label_2",
-    "slot.addend_2_1",
-    "slot.plus_2",
-    "slot.addend_2_2",
-    "slot.label_3",
-    "slot.expression_3",
-    "slot.label_4",
-    "slot.expression_4"
+    "slot.addend_1_2"
   ]
 }
