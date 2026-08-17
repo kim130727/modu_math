@@ -70,7 +70,9 @@ def test_compile_to_layout_preserves_high_level_diagram_objects() -> None:
             LabelSlot(id="slot.label", text="A", target_object_id="obj.circle"),
         ),
         constraints=(
-            Constraint(id="c.align", type="align", target_ids=("obj.cube", "obj.triangle")),
+            Constraint(
+                id="c.align", type="align", target_ids=("obj.cube", "obj.triangle")
+            ),
         ),
     )
     problem = ProblemTemplate(
@@ -106,7 +108,11 @@ def test_compile_to_layout_preserves_stable_ids() -> None:
         regions=(Region(id="region.custom", role="custom"),),
         slots=(TextSlot(id="slot.alpha", text="alpha"),),
         groups=(Group(id="group.one", member_ids=("slot.alpha",), role="custom"),),
-        constraints=(Constraint(id="cons.one", type="inside", target_ids=("slot.alpha", "region.custom")),),
+        constraints=(
+            Constraint(
+                id="cons.one", type="inside", target_ids=("slot.alpha", "region.custom")
+            ),
+        ),
         diagrams=(DiagramTemplate(id="diagram.one", objects=(Circle(id="obj.one"),)),),
     )
 
@@ -119,6 +125,40 @@ def test_compile_to_layout_preserves_stable_ids() -> None:
     assert layout["constraints"][0]["id"] == "cons.one"
     assert layout["diagrams"][0]["id"] == "diagram.one"
     assert layout["diagrams"][0]["objects"][0]["id"] == "obj.one"
+
+
+def test_compile_to_layout_flattens_nested_region_slot_ids() -> None:
+    problem = ProblemTemplate(
+        id="p_nested_region_slots",
+        title="Nested region slots",
+        canvas=Canvas(width=400, height=300),
+        regions=(
+            Region(
+                id="region.calculation.1",
+                role="body",
+                slot_ids=(("slot.top", "slot.line"), "slot.answer"),
+            ),
+        ),
+        slots=(
+            TextSlot(id="slot.top", text="217"),
+            LineSlot(id="slot.line", x1=20, y1=30, x2=90, y2=30),
+            TextSlot(id="slot.answer", text="□"),
+        ),
+    )
+
+    layout = compile_problem_template_to_layout(problem)
+
+    assert layout["regions"][0]["slot_ids"] == [
+        "slot.line",
+        "slot.top",
+        "slot.answer",
+    ]
+    assert layout["reading_order"] == [
+        "region.calculation.1",
+        "slot.line",
+        "slot.top",
+        "slot.answer",
+    ]
 
 
 def test_compile_to_layout_draws_small_center_circles_above_large_circles() -> None:

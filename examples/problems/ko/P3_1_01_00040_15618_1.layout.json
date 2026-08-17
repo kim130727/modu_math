@@ -1,0 +1,171 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15618",
+  "title": "두 세 자리 수의 덧셈",
+  "canvas": {
+    "width": 300,
+    "height": 230,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "konva_1786192274303_rect_1194250",
+        "slot.instruction"
+      ]
+    },
+    {
+      "id": "region.expressions",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.expression_1.line",
+        "slot.expression_1.top",
+        "slot.expression_1.operator",
+        "slot.expression_1.bottom"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다음 덧셈을 하시오.",
+        "style_role": "question",
+        "x": 24.0,
+        "y": 28.0,
+        "font_size": 22,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.expression_1.top",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3 7 5",
+        "style_role": "number",
+        "x": 187.541,
+        "y": 72.459,
+        "font_size": 24,
+        "max_width": 90.0,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.expression_1.operator",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "+",
+        "style_role": "operator",
+        "x": 112.541,
+        "y": 110.459,
+        "font_size": 24,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.expression_1.bottom",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4 1 3",
+        "style_role": "number",
+        "x": 187.541,
+        "y": 110.459,
+        "font_size": 24,
+        "max_width": 90.0,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.expression_1.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 105.541,
+        "y1": 127.459,
+        "x2": 189.541,
+        "y2": 127.459,
+        "stroke": "#111111",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.answer_1",
+      "kind": "blank",
+      "prompt": "(1)",
+      "content": {
+        "placeholder": ""
+      }
+    },
+    {
+      "id": "slot.answer_2",
+      "kind": "blank",
+      "prompt": "(2)",
+      "content": {
+        "placeholder": ""
+      }
+    },
+    {
+      "id": "konva_1786192274303_rect_1194250",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 100.557,
+        "y": 137.787,
+        "width": 93.705,
+        "height": 35.344,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "integer",
+          "max_length": 3,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "auto_advance": false,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 93.705,
+          "height": 35.344
+        }
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "konva_1786192274303_rect_1194250",
+    "slot.instruction",
+    "region.expressions",
+    "slot.expression_1.line",
+    "slot.expression_1.top",
+    "slot.expression_1.operator",
+    "slot.expression_1.bottom"
+  ]
+}

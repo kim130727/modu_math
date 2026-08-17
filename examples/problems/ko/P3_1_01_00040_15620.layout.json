@@ -14,7 +14,9 @@
       "role": "stem",
       "flow": "vertical",
       "slot_ids": [
-        "slot.question"
+        "konva_1786962334798_rect_118898",
+        "slot.question",
+        "konva_1786962334798_text_103938"
       ]
     }
   ],
@@ -26,8 +28,8 @@
       "content": {
         "text": "인호가 340원짜리 연필을 사고 나니 540원이 남았습니다. 인호가 처음에 가지고 있던 돈은 얼마입니까?",
         "style_role": "body",
-        "x": 24.0,
-        "y": 24.0,
+        "x": 15.393,
+        "y": 13.344,
         "width": 407.607,
         "height": 182,
         "align": "left",
@@ -37,6 +39,64 @@
         "line_height": 1.45,
         "fill": "#202124"
       }
+    },
+    {
+      "id": "konva_1786962334798_text_103938",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "원",
+        "style_role": "body",
+        "x": 445.672,
+        "y": 147.082,
+        "width": 38.328,
+        "height": 46.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 30,
+        "line_height": 1.25,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "konva_1786962334798_rect_118898",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 323.689,
+        "y": 145.574,
+        "width": 118.52,
+        "height": 45.18,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "integer",
+          "max_length": 3,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "answer_key_index": 0,
+          "answer_ref": "answer.value",
+          "auto_advance": false,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 118.52,
+          "height": 45.18
+        }
+      }
     }
   ],
   "groups": [],
@@ -44,6 +104,8 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.question"
+    "konva_1786962334798_rect_118898",
+    "slot.question",
+    "konva_1786962334798_text_103938"
   ]
 }

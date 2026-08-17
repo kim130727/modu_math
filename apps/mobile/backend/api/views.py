@@ -7,6 +7,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from .answer_normalization import answers_match
 from .serializers import (
     AnonymousSessionSerializer,
     AttemptSerializer,
@@ -114,7 +115,9 @@ class DailySummaryView(APIView):
                 "date": selected.isoformat(),
                 "totalAttempted": total_attempted,
                 "totalCorrect": total_correct,
-                "accuracy": 0 if total_attempted == 0 else total_correct / total_attempted,
+                "accuracy": (
+                    0 if total_attempted == 0 else total_correct / total_attempted
+                ),
                 "streakDays": _streak_days(store.attempts_for(student), selected),
             }
         )
@@ -252,7 +255,10 @@ def _tutor_reply(data: dict[str, Any]) -> tuple[str, str]:
             return "hint", "First, find exactly what the problem is asking for."
         if level == 1:
             return "hint", f"Connect the given numbers to {unit} before calculating."
-        return "hint", "Choose one operation and check whether it matches the condition."
+        return (
+            "hint",
+            "Choose one operation and check whether it matches the condition.",
+        )
 
     if action == "next_question":
         return "question", "What condition should we check before doing the next step?"
@@ -260,4 +266,8 @@ def _tutor_reply(data: dict[str, Any]) -> tuple[str, str]:
     if action == "respond":
         return "question", "Good start. Which given value supports that idea?"
 
+    correct_answer = problem.get("correctAnswer")
+    submitted_answer = data.get("answer", "")
+    if correct_answer and answers_match(submitted_answer, correct_answer, unit):
+        return "correct", "Good, that's right."
     return "retry", "Compare your answer with the condition once more before we finish."

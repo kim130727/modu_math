@@ -2,6 +2,7 @@ from datetime import datetime, timezone
 
 from rest_framework import serializers
 
+from .answer_normalization import normalize_correct_answer
 
 ERROR_CATEGORIES = (
     "understanding_target",
@@ -84,6 +85,14 @@ class TutorProblemSerializer(serializers.Serializer):
     answerMap = serializers.DictField(required=False, default=dict, write_only=True)
     semantic = serializers.DictField(required=False, default=dict, write_only=True)
     solvable = serializers.DictField(required=False, default=dict, write_only=True)
+
+    def validate(self, attrs):
+        if "correctAnswer" in attrs:
+            attrs["correctAnswer"] = normalize_correct_answer(
+                attrs["correctAnswer"],
+                attrs.get("unit", ""),
+            )
+        return attrs
 
 
 class TutorRequestSerializer(serializers.Serializer):

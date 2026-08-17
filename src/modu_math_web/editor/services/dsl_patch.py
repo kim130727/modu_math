@@ -17,15 +17,104 @@ from .problems import resolve_problem_paths
 
 SLOT_METADATA_FIELDS = {"interaction", "input_style"}
 SUPPORTED_SLOTS = {
-    "TextSlot": {"text", "x", "y", "font_size", "max_width", "font_family", "anchor", "fill", "style_role", "transform"} | SLOT_METADATA_FIELDS,
-    "TextBoxSlot": {"text", "x", "y", "width", "height", "font_size", "font_family", "align", "valign", "line_height", "fill", "style_role", "transform"} | SLOT_METADATA_FIELDS,
-    "BlankSlot": {"answer_key", "placeholder", "x", "y", "width", "height", "fill", "stroke", "stroke_width"} | SLOT_METADATA_FIELDS,
-    "CircleSlot": {"cx", "cy", "r", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform"} | SLOT_METADATA_FIELDS,
-    "LineSlot": {"x1", "y1", "x2", "y2", "stroke", "stroke_width", "stroke_dasharray", "transform"} | SLOT_METADATA_FIELDS,
-    "RectSlot": {"x", "y", "width", "height", "stroke", "stroke_width", "stroke_dasharray", "rx", "ry", "fill", "transform"} | SLOT_METADATA_FIELDS,
-    "PolygonSlot": {"points", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform"} | SLOT_METADATA_FIELDS,
-    "ImageSlot": {"href", "x", "y", "width", "height", "preserve_aspect_ratio", "transform"} | SLOT_METADATA_FIELDS,
-    "PathSlot": {"d", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform"} | SLOT_METADATA_FIELDS,
+    "TextSlot": {
+        "text",
+        "x",
+        "y",
+        "font_size",
+        "max_width",
+        "font_family",
+        "anchor",
+        "fill",
+        "style_role",
+        "transform",
+    }
+    | SLOT_METADATA_FIELDS,
+    "TextBoxSlot": {
+        "text",
+        "x",
+        "y",
+        "width",
+        "height",
+        "font_size",
+        "font_family",
+        "align",
+        "valign",
+        "line_height",
+        "fill",
+        "style_role",
+        "transform",
+    }
+    | SLOT_METADATA_FIELDS,
+    "BlankSlot": {
+        "answer_key",
+        "placeholder",
+        "x",
+        "y",
+        "width",
+        "height",
+        "fill",
+        "stroke",
+        "stroke_width",
+    }
+    | SLOT_METADATA_FIELDS,
+    "CircleSlot": {
+        "cx",
+        "cy",
+        "r",
+        "stroke",
+        "stroke_width",
+        "stroke_dasharray",
+        "fill",
+        "transform",
+    }
+    | SLOT_METADATA_FIELDS,
+    "LineSlot": {
+        "x1",
+        "y1",
+        "x2",
+        "y2",
+        "stroke",
+        "stroke_width",
+        "stroke_dasharray",
+        "transform",
+    }
+    | SLOT_METADATA_FIELDS,
+    "RectSlot": {
+        "x",
+        "y",
+        "width",
+        "height",
+        "stroke",
+        "stroke_width",
+        "stroke_dasharray",
+        "rx",
+        "ry",
+        "fill",
+        "transform",
+    }
+    | SLOT_METADATA_FIELDS,
+    "PolygonSlot": {
+        "points",
+        "stroke",
+        "stroke_width",
+        "stroke_dasharray",
+        "fill",
+        "transform",
+    }
+    | SLOT_METADATA_FIELDS,
+    "ImageSlot": {
+        "href",
+        "x",
+        "y",
+        "width",
+        "height",
+        "preserve_aspect_ratio",
+        "transform",
+    }
+    | SLOT_METADATA_FIELDS,
+    "PathSlot": {"d", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform"}
+    | SLOT_METADATA_FIELDS,
 }
 SLOT_KIND_TO_CTOR = {
     "text": "TextSlot",
@@ -46,7 +135,10 @@ SLOT_MOVE_FIELDS = {"move_dx", "move_dy"}
 BASE_TEN_HELPERS = {"_base_ten_model", "_partition_box"}
 PLACE_HELPERS = {"school_slots", "house_slots", "playground_slots"}
 PAPER_FOLD_SEQUENCE_HELPERS = {"circle_fold_sequence_slots"}
-PAPER_FOLD_SINGLE_HELPERS = {"folded_half_circle_slots", "opened_circle_with_fold_slots"}
+PAPER_FOLD_SINGLE_HELPERS = {
+    "folded_half_circle_slots",
+    "opened_circle_with_fold_slots",
+}
 GRID_HELPERS = {"_grid_slots"}
 CANDIDATE_POINT_HELPERS = {"_candidate_slots"}
 MEASUREMENT_TOOL_HELPERS = {"compass_on_ruler_slots"}
@@ -99,7 +191,9 @@ class TutorRendererFlowUpdater(cst.CSTTransformer):
         self.updated = True
         return self._assignment()
 
-    def leave_Module(self, original_node: cst.Module, updated_node: cst.Module) -> cst.Module:
+    def leave_Module(
+        self, original_node: cst.Module, updated_node: cst.Module
+    ) -> cst.Module:
         if self.updated:
             return updated_node
         body = list(updated_node.body)
@@ -146,14 +240,20 @@ def _resolve_target_slot_id(module: cst.Module, target: str) -> str:
     if target in collector.slot_ids:
         return target
     norm_target = _normalize_slot_id(target)
-    candidates = [sid for sid in collector.slot_ids if _normalize_slot_id(sid) == norm_target]
+    candidates = [
+        sid for sid in collector.slot_ids if _normalize_slot_id(sid) == norm_target
+    ]
     if len(candidates) == 1:
         return candidates[0]
     # Allow unique prefix matching for shorthand ids like "slot.q".
     prefix_candidates = [sid for sid in collector.slot_ids if sid.startswith(target)]
     if len(prefix_candidates) == 1:
         return prefix_candidates[0]
-    norm_prefix_candidates = [sid for sid in collector.slot_ids if _normalize_slot_id(sid).startswith(norm_target)]
+    norm_prefix_candidates = [
+        sid
+        for sid in collector.slot_ids
+        if _normalize_slot_id(sid).startswith(norm_target)
+    ]
     if len(norm_prefix_candidates) == 1:
         return norm_prefix_candidates[0]
     return target
@@ -208,7 +308,9 @@ class DslImportEnsurer(cst.CSTTransformer):
         self.saw_dsl_import = False
         self.changed = False
 
-    def leave_ImportFrom(self, original_node: cst.ImportFrom, updated_node: cst.ImportFrom) -> cst.ImportFrom:
+    def leave_ImportFrom(
+        self, original_node: cst.ImportFrom, updated_node: cst.ImportFrom
+    ) -> cst.ImportFrom:
         if _qualified_name(original_node.module) != "modu_math.dsl":
             return updated_node
         self.saw_dsl_import = True
@@ -224,7 +326,9 @@ class DslImportEnsurer(cst.CSTTransformer):
         self.changed = True
         return updated_node.with_changes(names=tuple(names))
 
-    def leave_Module(self, original_node: cst.Module, updated_node: cst.Module) -> cst.Module:
+    def leave_Module(
+        self, original_node: cst.Module, updated_node: cst.Module
+    ) -> cst.Module:
         if self.saw_dsl_import:
             return updated_node
 
@@ -279,7 +383,9 @@ class SlotUpdater(cst.CSTTransformer):
         self.fields = fields
         self.updated = False
 
-    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+    def leave_Call(
+        self, original_node: cst.Call, updated_node: cst.Call
+    ) -> cst.BaseExpression:
         slot_type = _call_name(original_node)
         if slot_type not in SUPPORTED_SLOTS:
             return updated_node
@@ -309,14 +415,22 @@ class SlotUpdater(cst.CSTTransformer):
         fields = _compatible_slot_fields(slot_type, self.fields)
         invalid = sorted(set(fields) - allowed)
         if invalid:
-            raise DslPatchError(f"unsupported field(s) for {slot_type}: {', '.join(invalid)}")
+            raise DslPatchError(
+                f"unsupported field(s) for {slot_type}: {', '.join(invalid)}"
+            )
 
         args = list(updated_node.args)
         for field_name, field_value in fields.items():
             if field_value is None:
-                args = [arg for arg in args if not (arg.keyword and arg.keyword.value == field_name)]
+                args = [
+                    arg
+                    for arg in args
+                    if not (arg.keyword and arg.keyword.value == field_name)
+                ]
                 continue
-            replacement = cst.Arg(keyword=cst.Name(field_name), value=_arg_value_to_cst(field_value))
+            replacement = cst.Arg(
+                keyword=cst.Name(field_name), value=_arg_value_to_cst(field_value)
+            )
             replaced = False
             for idx, arg in enumerate(args):
                 if arg.keyword and arg.keyword.value == field_name:
@@ -345,13 +459,17 @@ class CanvasUpdater(cst.CSTTransformer):
         self.fields = fields
         self.updated = False
 
-    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+    def leave_Call(
+        self, original_node: cst.Call, updated_node: cst.Call
+    ) -> cst.BaseExpression:
         if self.updated or _call_name(original_node) != "Canvas":
             return updated_node
 
         invalid = sorted(set(self.fields) - CANVAS_FIELDS)
         if invalid:
-            raise DslPatchError(f"unsupported field(s) for Canvas: {', '.join(invalid)}")
+            raise DslPatchError(
+                f"unsupported field(s) for Canvas: {', '.join(invalid)}"
+            )
 
         args = list(updated_node.args)
         for field_name, field_value in self.fields.items():
@@ -367,7 +485,9 @@ class FractionSlotsUpdater(cst.CSTTransformer):
         self.fields = fields
         self.updated = False
 
-    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+    def leave_Call(
+        self, original_node: cst.Call, updated_node: cst.Call
+    ) -> cst.BaseExpression:
         slot_type = _call_name(original_node)
         if slot_type != "fraction_slots":
             return updated_node
@@ -385,7 +505,9 @@ class FractionSlotsUpdater(cst.CSTTransformer):
 
         invalid = sorted(set(self.fields) - FRACTION_MOVE_FIELDS)
         if invalid:
-            raise DslPatchError(f"unsupported field(s) for fraction_slots: {', '.join(invalid)}")
+            raise DslPatchError(
+                f"unsupported field(s) for fraction_slots: {', '.join(invalid)}"
+            )
 
         move_dx = float(self.fields.get("move_dx", 0.0))
         move_dy = float(self.fields.get("move_dy", 0.0))
@@ -399,12 +521,16 @@ class FractionSlotsUpdater(cst.CSTTransformer):
         required = ("x", "numerator_y", "bar_y", "denominator_y")
         missing = [name for name in required if name not in kw_to_index]
         if missing:
-            raise DslPatchError(f"fraction_slots missing required arg(s): {', '.join(missing)}")
+            raise DslPatchError(
+                f"fraction_slots missing required arg(s): {', '.join(missing)}"
+            )
 
         def _replace_numeric_arg(name: str, delta: float) -> None:
             idx = kw_to_index[name]
             original = args[idx]
-            args[idx] = cst.Arg(keyword=cst.Name(name), value=_shift_numeric_expr(original.value, delta))
+            args[idx] = cst.Arg(
+                keyword=cst.Name(name), value=_shift_numeric_expr(original.value, delta)
+            )
 
         _replace_numeric_arg("x", move_dx)
         _replace_numeric_arg("numerator_y", move_dy)
@@ -421,7 +547,9 @@ class FractionPartsMoveUpdater(cst.CSTTransformer):
         self.fields = fields
         self.updated = False
 
-    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+    def leave_Call(
+        self, original_node: cst.Call, updated_node: cst.Call
+    ) -> cst.BaseExpression:
         slot_type = _call_name(original_node)
         if slot_type not in SUPPORTED_SLOTS:
             return updated_node
@@ -435,12 +563,16 @@ class FractionPartsMoveUpdater(cst.CSTTransformer):
             return updated_node
         if not isinstance(slot_id, str):
             return updated_node
-        if not any(slot_id == f"{self.target_prefix}.{part}" for part in FRACTION_SLOT_PARTS):
+        if not any(
+            slot_id == f"{self.target_prefix}.{part}" for part in FRACTION_SLOT_PARTS
+        ):
             return updated_node
 
         invalid = sorted(set(self.fields) - FRACTION_MOVE_FIELDS)
         if invalid:
-            raise DslPatchError(f"unsupported field(s) for fraction parts: {', '.join(invalid)}")
+            raise DslPatchError(
+                f"unsupported field(s) for fraction parts: {', '.join(invalid)}"
+            )
 
         dx = float(self.fields.get("move_dx", 0.0))
         dy = float(self.fields.get("move_dy", 0.0))
@@ -460,20 +592,28 @@ def _replace_or_append_arg(args: list[cst.Arg], name: str, value: Any) -> None:
     args.append(replacement)
 
 
-def _shift_or_append_numeric_arg(args: list[cst.Arg], name: str, delta: float, default: float | None = None) -> bool:
+def _shift_or_append_numeric_arg(
+    args: list[cst.Arg], name: str, delta: float, default: float | None = None
+) -> bool:
     if delta == 0 and default is None:
         return False
     for idx, arg in enumerate(args):
         if arg.keyword and arg.keyword.value == name:
-            args[idx] = cst.Arg(keyword=cst.Name(name), value=_shift_numeric_expr(arg.value, delta))
+            args[idx] = cst.Arg(
+                keyword=cst.Name(name), value=_shift_numeric_expr(arg.value, delta)
+            )
             return True
     if default is not None:
-        args.append(cst.Arg(keyword=cst.Name(name), value=_arg_value_to_cst(default + delta)))
+        args.append(
+            cst.Arg(keyword=cst.Name(name), value=_arg_value_to_cst(default + delta))
+        )
         return True
     return False
 
 
-def _shift_slot_call_args(args: list[cst.Arg], slot_type: str, dx: float, dy: float) -> bool:
+def _shift_slot_call_args(
+    args: list[cst.Arg], slot_type: str, dx: float, dy: float
+) -> bool:
     changed = False
     if slot_type in {"TextSlot", "TextBoxSlot", "RectSlot"}:
         changed = _shift_or_append_numeric_arg(args, "x", dx) or changed
@@ -509,14 +649,20 @@ def _shift_points_arg(args: list[cst.Arg], dx: float, dy: float) -> bool:
             if not isinstance(x, (int, float)) or not isinstance(y, (int, float)):
                 return False
             shifted.append([float(x) + dx, float(y) + dy])
-        args[idx] = cst.Arg(keyword=cst.Name("points"), value=_arg_value_to_cst(shifted))
+        args[idx] = cst.Arg(
+            keyword=cst.Name("points"), value=_arg_value_to_cst(shifted)
+        )
         return True
     return False
 
 
 def _shift_path_d_arg(args: list[cst.Arg], dx: float, dy: float) -> bool:
     for idx, arg in enumerate(args):
-        if not arg.keyword or arg.keyword.value != "d" or not isinstance(arg.value, cst.SimpleString):
+        if (
+            not arg.keyword
+            or arg.keyword.value != "d"
+            or not isinstance(arg.value, cst.SimpleString)
+        ):
             continue
         try:
             d = cst.parse_expression(arg.value.value).evaluated_value
@@ -559,7 +705,9 @@ def _first_string_arg(call: cst.Call, keyword_name: str) -> str | None:
 
 
 def _path_number_bounds(d: str) -> tuple[float, float, float, float] | None:
-    numbers = [float(m.group(0)) for m in re.finditer(r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)", d)]
+    numbers = [
+        float(m.group(0)) for m in re.finditer(r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)", d)
+    ]
     if len(numbers) < 4:
         return None
     xs = numbers[0::2]
@@ -586,7 +734,11 @@ def _slot_kind_from_layout_artifact(paths: Any, target: str) -> str | None:
     if not isinstance(loaded, dict):
         return None
     for slot in loaded.get("slots", []):
-        if isinstance(slot, dict) and slot.get("id") == target and isinstance(slot.get("kind"), str):
+        if (
+            isinstance(slot, dict)
+            and slot.get("id") == target
+            and isinstance(slot.get("kind"), str)
+        ):
             return slot["kind"]
     return None
 
@@ -597,13 +749,18 @@ def _points_from_polygon_path(d: Any) -> list[list[float]] | None:
     commands = set(re.findall(r"[A-Za-z]", d))
     if commands - {"M", "m", "L", "l", "Z", "z"}:
         return None
-    numbers = [float(match.group(0)) for match in re.finditer(r"[-+]?(?:\d*\.\d+|\d+)(?:e[-+]?\d+)?", d)]
+    numbers = [
+        float(match.group(0))
+        for match in re.finditer(r"[-+]?(?:\d*\.\d+|\d+)(?:e[-+]?\d+)?", d)
+    ]
     if len(numbers) < 6 or len(numbers) % 2:
         return None
     return [[numbers[index], numbers[index + 1]] for index in range(0, len(numbers), 2)]
 
 
-def _normalize_editor_override_fields(paths: Any, target: str, fields: dict[str, Any]) -> dict[str, Any]:
+def _normalize_editor_override_fields(
+    paths: Any, target: str, fields: dict[str, Any]
+) -> dict[str, Any]:
     if "d" not in fields or _slot_kind_from_layout_artifact(paths, target) != "polygon":
         return fields
     normalized = dict(fields)
@@ -642,13 +799,17 @@ def _save_editor_slot_override(paths: Any, target: str, fields: dict[str, Any]) 
     if not slots:
         data.pop("slots", None)
     data["version"] = 1
-    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
 
 
 def _save_editor_canvas_override(paths: Any, fields: dict[str, Any]) -> None:
     invalid = sorted(set(fields) - CANVAS_FIELDS)
     if invalid:
-        raise DslPatchError(f"unsupported canvas override field(s): {', '.join(invalid)}")
+        raise DslPatchError(
+            f"unsupported canvas override field(s): {', '.join(invalid)}"
+        )
     path = _editor_overrides_path(paths)
     data: dict[str, Any] = {}
     if path.exists():
@@ -667,7 +828,9 @@ def _save_editor_canvas_override(paths: Any, fields: dict[str, Any]) -> None:
     if not canvas:
         data.pop("canvas", None)
     data["version"] = 1
-    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
 
 
 def _clear_editor_canvas_override(paths: Any) -> None:
@@ -679,10 +842,14 @@ def _clear_editor_canvas_override(paths: Any) -> None:
         return
     loaded.pop("canvas", None)
     loaded["version"] = 1
-    path.write_text(json.dumps(loaded, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(loaded, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
 
 
-def _clear_editor_slot_override_fields(paths: Any, target: str, fields: list[str] | tuple[str, ...] | set[str]) -> None:
+def _clear_editor_slot_override_fields(
+    paths: Any, target: str, fields: list[str] | tuple[str, ...] | set[str]
+) -> None:
     path = _editor_overrides_path(paths)
     if not path.exists():
         return
@@ -702,7 +869,9 @@ def _clear_editor_slot_override_fields(paths: Any, target: str, fields: list[str
     if not slots:
         loaded.pop("slots", None)
     loaded["version"] = 1
-    path.write_text(json.dumps(loaded, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(loaded, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
 
 
 def _save_editor_slot_delete(paths: Any, target: str) -> None:
@@ -722,10 +891,14 @@ def _save_editor_slot_delete(paths: Any, target: str) -> None:
     if isinstance(slots, dict):
         slots.pop(target, None)
     data["version"] = 1
-    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
 
 
-def _try_apply_fast_editor_overrides(paths: Any, patches: list[dict[str, Any]]) -> list[AppliedPatch] | None:
+def _try_apply_fast_editor_overrides(
+    paths: Any, patches: list[dict[str, Any]]
+) -> list[AppliedPatch] | None:
     actions: list[tuple[str, str, dict[str, Any] | list[Any] | None]] = []
     applied: list[AppliedPatch] = []
 
@@ -747,9 +920,13 @@ def _try_apply_fast_editor_overrides(paths: Any, patches: list[dict[str, Any]]) 
             region_id = value.get("region_id")
             slot_ids = value.get("slot_ids")
             if not isinstance(region_id, str) or not isinstance(slot_ids, list):
-                raise DslPatchError("layer patch requires value.region_id and value.slot_ids")
+                raise DslPatchError(
+                    "layer patch requires value.region_id and value.slot_ids"
+                )
             actions.append((op, region_id, slot_ids))
-            applied.append(AppliedPatch(target=target, op=op, fields=["region_id", "slot_ids"]))
+            applied.append(
+                AppliedPatch(target=target, op=op, fields=["region_id", "slot_ids"])
+            )
             continue
 
         if op != "update":
@@ -761,7 +938,9 @@ def _try_apply_fast_editor_overrides(paths: Any, patches: list[dict[str, Any]]) 
             if not set(value).issubset(CANVAS_FIELDS):
                 return None
             actions.append(("canvas", target, value))
-            applied.append(AppliedPatch(target="__canvas__", op=op, fields=list(value.keys())))
+            applied.append(
+                AppliedPatch(target="__canvas__", op=op, fields=list(value.keys()))
+            )
             continue
 
         if "points" in value:
@@ -775,11 +954,17 @@ def _try_apply_fast_editor_overrides(paths: Any, patches: list[dict[str, Any]]) 
         if op == "delete":
             _save_editor_slot_delete(paths, target)
         elif op == "layer":
-            _save_editor_region_slot_order(paths, target, value if isinstance(value, list) else [])
+            _save_editor_region_slot_order(
+                paths, target, value if isinstance(value, list) else []
+            )
         elif op == "canvas":
-            _save_editor_canvas_override(paths, value if isinstance(value, dict) else {})
+            _save_editor_canvas_override(
+                paths, value if isinstance(value, dict) else {}
+            )
         else:
-            _save_editor_slot_override(paths, target, value if isinstance(value, dict) else {})
+            _save_editor_slot_override(
+                paths, target, value if isinstance(value, dict) else {}
+            )
 
     return applied
 
@@ -812,7 +997,9 @@ def _clear_editor_slot_delete(paths: Any, target: str) -> None:
     else:
         loaded.pop("deleted_slots", None)
     loaded["version"] = 1
-    path.write_text(json.dumps(loaded, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(loaded, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
 
 
 def _clear_editor_slot_state(paths: Any, target: str) -> None:
@@ -833,6 +1020,7 @@ def _clear_editor_slot_state(paths: Any, target: str) -> None:
 
     deleted = loaded.get("deleted_slots")
     if isinstance(deleted, list):
+
         def conflicts(deleted_id: Any) -> bool:
             if not isinstance(deleted_id, str):
                 return False
@@ -853,13 +1041,21 @@ def _clear_editor_slot_state(paths: Any, target: str) -> None:
     if not changed:
         return
     loaded["version"] = 1
-    path.write_text(json.dumps(loaded, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(loaded, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
 
 
-def _save_editor_region_slot_order(paths: Any, region_id: str, slot_ids: list[Any]) -> None:
-    clean_slot_ids = [slot_id for slot_id in slot_ids if isinstance(slot_id, str) and slot_id]
+def _save_editor_region_slot_order(
+    paths: Any, region_id: str, slot_ids: list[Any]
+) -> None:
+    clean_slot_ids = [
+        slot_id for slot_id in slot_ids if isinstance(slot_id, str) and slot_id
+    ]
     if not region_id or not clean_slot_ids:
-        raise DslPatchError("layer patch requires value.region_id and non-empty value.slot_ids")
+        raise DslPatchError(
+            "layer patch requires value.region_id and non-empty value.slot_ids"
+        )
     path = _editor_overrides_path(paths)
     data: dict[str, Any] = {}
     if path.exists():
@@ -872,7 +1068,9 @@ def _save_editor_region_slot_order(paths: Any, region_id: str, slot_ids: list[An
         data["region_slot_orders"] = orders
     orders[region_id] = clean_slot_ids
     data["version"] = 1
-    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
 
 
 def _circle_helper_prefix(target: str, helper_name: str) -> str | None:
@@ -886,7 +1084,9 @@ def _circle_helper_prefix(target: str, helper_name: str) -> str | None:
     return target
 
 
-def _function_contains_single_paper_helper(function_node: cst.FunctionDef, target: str) -> bool:
+def _function_contains_single_paper_helper(
+    function_node: cst.FunctionDef, target: str
+) -> bool:
     class Finder(cst.CSTVisitor):
         def __init__(self) -> None:
             self.found = False
@@ -896,7 +1096,10 @@ def _function_contains_single_paper_helper(function_node: cst.FunctionDef, targe
             if call_name not in PAPER_FOLD_SINGLE_HELPERS:
                 return
             prefix = _first_string_arg(node, "prefix")
-            if prefix is not None and _circle_helper_prefix(target, call_name) == prefix:
+            if (
+                prefix is not None
+                and _circle_helper_prefix(target, call_name) == prefix
+            ):
                 self.found = True
 
     finder = Finder()
@@ -904,7 +1107,9 @@ def _function_contains_single_paper_helper(function_node: cst.FunctionDef, targe
     return finder.found
 
 
-def _generated_slot_override_statement(target: str, fields: dict[str, Any]) -> cst.BaseStatement:
+def _generated_slot_override_statement(
+    target: str, fields: dict[str, Any]
+) -> cst.BaseStatement:
     replacements = ", ".join(f"{name}={repr(value)}" for name, value in fields.items())
     code = f"slots = tuple(replace(slot, {replacements}) if slot.id == {target!r} else slot for slot in slots)"
     return cst.parse_statement(code)
@@ -930,34 +1135,59 @@ class GeneratedHelperSlotOverrideUpdater(cst.CSTTransformer):
             left_value == self.target and right == "slot.id"
         )
 
-    def leave_IfExp(self, original_node: cst.IfExp, updated_node: cst.IfExp) -> cst.BaseExpression:
+    def leave_IfExp(
+        self, original_node: cst.IfExp, updated_node: cst.IfExp
+    ) -> cst.BaseExpression:
         if not self._is_target_slot_test(original_node.test):
             return updated_node
-        if not isinstance(updated_node.body, cst.Call) or _call_name(updated_node.body) != "replace":
+        if (
+            not isinstance(updated_node.body, cst.Call)
+            or _call_name(updated_node.body) != "replace"
+        ):
             return updated_node
         args = list(updated_node.body.args)
         for name, value in self.fields.items():
             _replace_or_append_arg(args, name, value)
         self.updated = True
-        return updated_node.with_changes(body=updated_node.body.with_changes(args=tuple(args)))
+        return updated_node.with_changes(
+            body=updated_node.body.with_changes(args=tuple(args))
+        )
 
-    def leave_FunctionDef(self, original_node: cst.FunctionDef, updated_node: cst.FunctionDef) -> cst.FunctionDef:
-        if self.updated or not _function_contains_single_paper_helper(original_node, self.target):
+    def leave_FunctionDef(
+        self, original_node: cst.FunctionDef, updated_node: cst.FunctionDef
+    ) -> cst.FunctionDef:
+        if self.updated or not _function_contains_single_paper_helper(
+            original_node, self.target
+        ):
             return updated_node
         if "d" not in self.fields:
             return updated_node
 
-        invalid = sorted(set(self.fields) - {"d", "transform", "stroke", "stroke_width", "fill"})
+        invalid = sorted(
+            set(self.fields) - {"d", "transform", "stroke", "stroke_width", "fill"}
+        )
         if invalid:
             return updated_node
 
         body = list(updated_node.body.body)
-        insert_at = next((idx for idx, stmt in enumerate(body) if isinstance(stmt, cst.SimpleStatementLine) and any(isinstance(item, cst.Return) for item in stmt.body)), None)
+        insert_at = next(
+            (
+                idx
+                for idx, stmt in enumerate(body)
+                if isinstance(stmt, cst.SimpleStatementLine)
+                and any(isinstance(item, cst.Return) for item in stmt.body)
+            ),
+            None,
+        )
         if insert_at is None:
             return updated_node
-        body.insert(insert_at, _generated_slot_override_statement(self.target, self.fields))
+        body.insert(
+            insert_at, _generated_slot_override_statement(self.target, self.fields)
+        )
         self.updated = True
-        return updated_node.with_changes(body=updated_node.body.with_changes(body=tuple(body)))
+        return updated_node.with_changes(
+            body=updated_node.body.with_changes(body=tuple(body))
+        )
 
 
 class SinglePaperFoldHelperUpdater(cst.CSTTransformer):
@@ -966,7 +1196,9 @@ class SinglePaperFoldHelperUpdater(cst.CSTTransformer):
         self.fields = fields
         self.updated = False
 
-    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+    def leave_Call(
+        self, original_node: cst.Call, updated_node: cst.Call
+    ) -> cst.BaseExpression:
         call_name = _call_name(original_node)
         if call_name not in PAPER_FOLD_SINGLE_HELPERS:
             return updated_node
@@ -975,9 +1207,14 @@ class SinglePaperFoldHelperUpdater(cst.CSTTransformer):
         if prefix is None or _circle_helper_prefix(self.target, call_name) != prefix:
             return updated_node
 
-        invalid = sorted(set(self.fields) - {"cx", "cy", "r", "d", "x1", "y1", "x2", "y2", "transform"})
+        invalid = sorted(
+            set(self.fields)
+            - {"cx", "cy", "r", "d", "x1", "y1", "x2", "y2", "transform"}
+        )
         if invalid:
-            raise DslPatchError(f"unsupported field(s) for paper fold helper: {', '.join(invalid)}")
+            raise DslPatchError(
+                f"unsupported field(s) for paper fold helper: {', '.join(invalid)}"
+            )
 
         updates: dict[str, float] = {}
         if {"cx", "cy", "r"} & set(self.fields):
@@ -1017,7 +1254,9 @@ class SinglePaperFoldHelperUpdater(cst.CSTTransformer):
         return updated_node.with_changes(args=tuple(args))
 
 
-def _person_anchor_from_patch(part: str, fields: dict[str, Any]) -> tuple[float | None, float | None]:
+def _person_anchor_from_patch(
+    part: str, fields: dict[str, Any]
+) -> tuple[float | None, float | None]:
     cx: float | None = None
     head_cy: float | None = None
 
@@ -1056,7 +1295,9 @@ class PersonSlotsUpdater(cst.CSTTransformer):
         self.fields = fields
         self.updated = False
 
-    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+    def leave_Call(
+        self, original_node: cst.Call, updated_node: cst.Call
+    ) -> cst.BaseExpression:
         if _call_name(original_node) != "person_slots":
             return updated_node
 
@@ -1102,13 +1343,17 @@ class CharacterGroupMoveUpdater(cst.CSTTransformer):
         self.fields = fields
         self.updated = False
 
-    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+    def leave_Call(
+        self, original_node: cst.Call, updated_node: cst.Call
+    ) -> cst.BaseExpression:
         if not self.key:
             return updated_node
 
         invalid = sorted(set(self.fields) - CHARACTER_MOVE_FIELDS)
         if invalid:
-            raise DslPatchError(f"unsupported field(s) for character group: {', '.join(invalid)}")
+            raise DslPatchError(
+                f"unsupported field(s) for character group: {', '.join(invalid)}"
+            )
 
         dx = float(self.fields.get("move_dx", 0.0))
         dy = float(self.fields.get("move_dy", 0.0))
@@ -1124,7 +1369,12 @@ class CharacterGroupMoveUpdater(cst.CSTTransformer):
             changed = _shift_or_append_numeric_arg(args, "bubble_cy", dy) or changed
             changed = _shift_or_append_numeric_arg(args, "head_cy", dy) or changed
             changed = _shift_or_append_numeric_arg(args, "tail_y", dy) or changed
-            changed = _shift_or_append_numeric_arg(args, "name_y", dy, _speaker_name_y_default(call_name)) or changed
+            changed = (
+                _shift_or_append_numeric_arg(
+                    args, "name_y", dy, _speaker_name_y_default(call_name)
+                )
+                or changed
+            )
             if changed:
                 self.updated = True
                 return updated_node.with_changes(args=tuple(args))
@@ -1184,7 +1434,9 @@ class FigureGroupMoveUpdater(cst.CSTTransformer):
         self.fields = fields
         self.updated = False
 
-    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+    def leave_Call(
+        self, original_node: cst.Call, updated_node: cst.Call
+    ) -> cst.BaseExpression:
         call_name = _call_name(original_node)
         dx = float(self.fields.get("move_dx", 0.0))
         dy = float(self.fields.get("move_dy", 0.0))
@@ -1196,7 +1448,9 @@ class FigureGroupMoveUpdater(cst.CSTTransformer):
                 return updated_node
             invalid = sorted(set(self.fields) - FIGURE_MOVE_FIELDS)
             if invalid:
-                raise DslPatchError(f"unsupported field(s) for figure group: {', '.join(invalid)}")
+                raise DslPatchError(
+                    f"unsupported field(s) for figure group: {', '.join(invalid)}"
+                )
             changed = False
             if len(args) >= 3 and args[1].keyword is None and args[2].keyword is None:
                 args[1] = cst.Arg(value=_shift_numeric_expr(args[1].value, dx))
@@ -1217,7 +1471,9 @@ class FigureGroupMoveUpdater(cst.CSTTransformer):
                 return updated_node
             invalid = sorted(set(self.fields) - FIGURE_MOVE_FIELDS)
             if invalid:
-                raise DslPatchError(f"unsupported field(s) for figure group: {', '.join(invalid)}")
+                raise DslPatchError(
+                    f"unsupported field(s) for figure group: {', '.join(invalid)}"
+                )
             changed = False
             changed = _shift_or_append_numeric_arg(args, "x", dx) or changed
             changed = _shift_or_append_numeric_arg(args, "y", dy) or changed
@@ -1237,7 +1493,9 @@ class FigureGroupMoveUpdater(cst.CSTTransformer):
             if isinstance(slot_id, str) and slot_id.startswith(f"{self.target}."):
                 invalid = sorted(set(self.fields) - FIGURE_MOVE_FIELDS)
                 if invalid:
-                    raise DslPatchError(f"unsupported field(s) for figure group: {', '.join(invalid)}")
+                    raise DslPatchError(
+                        f"unsupported field(s) for figure group: {', '.join(invalid)}"
+                    )
                 if _shift_slot_call_args(args, call_name, dx, dy):
                     self.updated = True
                     return updated_node.with_changes(args=tuple(args))
@@ -1250,7 +1508,9 @@ class TableGroupMoveUpdater(cst.CSTTransformer):
         self.fields = fields
         self.updated = False
 
-    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+    def leave_Call(
+        self, original_node: cst.Call, updated_node: cst.Call
+    ) -> cst.BaseExpression:
         call_name = _call_name(original_node)
         if call_name not in SUPPORTED_SLOTS:
             return updated_node
@@ -1267,7 +1527,9 @@ class TableGroupMoveUpdater(cst.CSTTransformer):
 
         invalid = sorted(set(self.fields) - FIGURE_MOVE_FIELDS)
         if invalid:
-            raise DslPatchError(f"unsupported field(s) for table group: {', '.join(invalid)}")
+            raise DslPatchError(
+                f"unsupported field(s) for table group: {', '.join(invalid)}"
+            )
 
         dx = float(self.fields.get("move_dx", 0.0))
         dy = float(self.fields.get("move_dy", 0.0))
@@ -1284,7 +1546,9 @@ class PaperFoldSequenceMoveUpdater(cst.CSTTransformer):
         self.fields = fields
         self.updated = False
 
-    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+    def leave_Call(
+        self, original_node: cst.Call, updated_node: cst.Call
+    ) -> cst.BaseExpression:
         call_name = _call_name(original_node)
         if call_name not in PAPER_FOLD_SEQUENCE_HELPERS:
             return updated_node
@@ -1295,7 +1559,9 @@ class PaperFoldSequenceMoveUpdater(cst.CSTTransformer):
 
         invalid = sorted(set(self.fields) - FIGURE_MOVE_FIELDS)
         if invalid:
-            raise DslPatchError(f"unsupported field(s) for paper fold group: {', '.join(invalid)}")
+            raise DslPatchError(
+                f"unsupported field(s) for paper fold group: {', '.join(invalid)}"
+            )
 
         dx = float(self.fields.get("move_dx", 0.0))
         dy = float(self.fields.get("move_dy", 0.0))
@@ -1316,7 +1582,9 @@ class MeasurementToolMoveUpdater(cst.CSTTransformer):
         self.fields = fields
         self.updated = False
 
-    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+    def leave_Call(
+        self, original_node: cst.Call, updated_node: cst.Call
+    ) -> cst.BaseExpression:
         if _call_name(original_node) not in MEASUREMENT_TOOL_HELPERS:
             return updated_node
 
@@ -1326,7 +1594,9 @@ class MeasurementToolMoveUpdater(cst.CSTTransformer):
 
         invalid = sorted(set(self.fields) - FIGURE_MOVE_FIELDS)
         if invalid:
-            raise DslPatchError(f"unsupported field(s) for measurement tool group: {', '.join(invalid)}")
+            raise DslPatchError(
+                f"unsupported field(s) for measurement tool group: {', '.join(invalid)}"
+            )
 
         dx = float(self.fields.get("move_dx", 0.0))
         dy = float(self.fields.get("move_dy", 0.0))
@@ -1347,7 +1617,9 @@ class GridSlotsMoveUpdater(cst.CSTTransformer):
         self.fields = fields
         self.updated = False
 
-    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+    def leave_Call(
+        self, original_node: cst.Call, updated_node: cst.Call
+    ) -> cst.BaseExpression:
         if _call_name(original_node) not in GRID_HELPERS:
             return updated_node
 
@@ -1357,7 +1629,9 @@ class GridSlotsMoveUpdater(cst.CSTTransformer):
 
         invalid = sorted(set(self.fields) - FIGURE_MOVE_FIELDS)
         if invalid:
-            raise DslPatchError(f"unsupported field(s) for grid group: {', '.join(invalid)}")
+            raise DslPatchError(
+                f"unsupported field(s) for grid group: {', '.join(invalid)}"
+            )
 
         dx = float(self.fields.get("move_dx", 0.0))
         dy = float(self.fields.get("move_dy", 0.0))
@@ -1378,7 +1652,9 @@ class CandidatePointMoveUpdater(cst.CSTTransformer):
         self.fields = fields
         self.updated = False
 
-    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+    def leave_Call(
+        self, original_node: cst.Call, updated_node: cst.Call
+    ) -> cst.BaseExpression:
         if _call_name(original_node) not in CANDIDATE_POINT_HELPERS:
             return updated_node
 
@@ -1388,7 +1664,9 @@ class CandidatePointMoveUpdater(cst.CSTTransformer):
 
         invalid = sorted(set(self.fields) - FIGURE_MOVE_FIELDS)
         if invalid:
-            raise DslPatchError(f"unsupported field(s) for candidate point group: {', '.join(invalid)}")
+            raise DslPatchError(
+                f"unsupported field(s) for candidate point group: {', '.join(invalid)}"
+            )
 
         dx = float(self.fields.get("move_dx", 0.0))
         dy = float(self.fields.get("move_dy", 0.0))
@@ -1433,15 +1711,23 @@ def _slot_call_from_value(slot_id: str, value: dict[str, Any]) -> cst.Call:
 
     args = [
         cst.Arg(keyword=cst.Name("id"), value=_arg_value_to_cst(slot_id)),
-        cst.Arg(keyword=cst.Name("prompt"), value=_arg_value_to_cst(value.get("prompt", ""))),
+        cst.Arg(
+            keyword=cst.Name("prompt"), value=_arg_value_to_cst(value.get("prompt", ""))
+        ),
     ]
     for field_name, field_value in content.items():
         if field_value is not None:
-            args.append(cst.Arg(keyword=cst.Name(field_name), value=_arg_value_to_cst(field_value)))
+            args.append(
+                cst.Arg(
+                    keyword=cst.Name(field_name), value=_arg_value_to_cst(field_value)
+                )
+            )
     return cst.Call(func=cst.Name(ctor), args=tuple(args))
 
 
-def _tuple_with_appended_value(expr: cst.BaseExpression, value: cst.BaseExpression) -> cst.Tuple:
+def _tuple_with_appended_value(
+    expr: cst.BaseExpression, value: cst.BaseExpression
+) -> cst.Tuple:
     if isinstance(expr, cst.Tuple):
         elements = list(expr.elements)
     else:
@@ -1473,7 +1759,9 @@ def _region_with_appended_slot_id(region_call: cst.Call, slot_id: str) -> cst.Ca
     else:
         slot_ids_arg = region_args[slot_ids_idx]
         region_args[slot_ids_idx] = slot_ids_arg.with_changes(
-            value=_tuple_with_appended_value(slot_ids_arg.value, _arg_value_to_cst(slot_id))
+            value=_tuple_with_appended_value(
+                slot_ids_arg.value, _arg_value_to_cst(slot_id)
+            )
         )
     return region_call.with_changes(args=tuple(region_args))
 
@@ -1485,7 +1773,9 @@ class SlotAddTransformer(cst.CSTTransformer):
         self.added_slot = False
         self.added_region_ref = False
 
-    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+    def leave_Call(
+        self, original_node: cst.Call, updated_node: cst.Call
+    ) -> cst.BaseExpression:
         slot_type = _call_name(original_node)
         if slot_type != "ProblemTemplate":
             return updated_node
@@ -1497,7 +1787,9 @@ class SlotAddTransformer(cst.CSTTransformer):
 
         slot_call = _slot_call_from_value(self.target, self.value)
         slots_arg = args[slots_idx]
-        args[slots_idx] = slots_arg.with_changes(value=_tuple_with_appended_value(slots_arg.value, slot_call))
+        args[slots_idx] = slots_arg.with_changes(
+            value=_tuple_with_appended_value(slots_arg.value, slot_call)
+        )
         self.added_slot = True
 
         region_id = self.value.get("region_id")
@@ -1511,25 +1803,42 @@ class SlotAddTransformer(cst.CSTTransformer):
             first_region_index: int | None = None
             for el in regions_arg.value.elements:
                 region_value = el.value
-                if not isinstance(region_value, cst.Call) or _call_name(region_value) != "Region":
+                if (
+                    not isinstance(region_value, cst.Call)
+                    or _call_name(region_value) != "Region"
+                ):
                     new_region_elements.append(el)
                     continue
                 if first_region_index is None:
                     first_region_index = len(new_region_elements)
-                if not self.added_region_ref and _region_matches(region_value, region_id):
-                    region_value = _region_with_appended_slot_id(region_value, self.target)
+                if not self.added_region_ref and _region_matches(
+                    region_value, region_id
+                ):
+                    region_value = _region_with_appended_slot_id(
+                        region_value, self.target
+                    )
                     self.added_region_ref = True
                 new_region_elements.append(el.with_changes(value=region_value))
-            if not self.added_region_ref and region_id is None and first_region_index is not None:
+            if (
+                not self.added_region_ref
+                and region_id is None
+                and first_region_index is not None
+            ):
                 first_region_el = new_region_elements[first_region_index]
                 first_region_value = first_region_el.value
                 if isinstance(first_region_value, cst.Call):
-                    new_region_elements[first_region_index] = first_region_el.with_changes(
-                        value=_region_with_appended_slot_id(first_region_value, self.target)
+                    new_region_elements[first_region_index] = (
+                        first_region_el.with_changes(
+                            value=_region_with_appended_slot_id(
+                                first_region_value, self.target
+                            )
+                        )
                     )
                     self.added_region_ref = True
             args[regions_idx] = regions_arg.with_changes(
-                value=regions_arg.value.with_changes(elements=tuple(new_region_elements))
+                value=regions_arg.value.with_changes(
+                    elements=tuple(new_region_elements)
+                )
             )
 
         if regions_idx is not None and not self.added_region_ref:
@@ -1554,7 +1863,9 @@ class SlotDeleteTransformer(cst.CSTTransformer):
                 id_arg = _keyword_arg(val, "id")
                 if id_arg is not None and isinstance(id_arg.value, cst.SimpleString):
                     try:
-                        slot_id = cst.parse_expression(id_arg.value.value).evaluated_value
+                        slot_id = cst.parse_expression(
+                            id_arg.value.value
+                        ).evaluated_value
                     except Exception:
                         slot_id = None
                     if slot_id == self.target:
@@ -1562,7 +1873,9 @@ class SlotDeleteTransformer(cst.CSTTransformer):
                         return cst.RemoveFromParent()
         return updated_node
 
-    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+    def leave_Call(
+        self, original_node: cst.Call, updated_node: cst.Call
+    ) -> cst.BaseExpression:
         # Region(..., slot_ids=(...)) 참조 정리
         slot_type = _call_name(original_node)
         if slot_type == "Region":
@@ -1588,7 +1901,9 @@ class SlotDeleteTransformer(cst.CSTTransformer):
                                 self.cleaned_refs = True
                                 continue
                         new_elems.append(el)
-                    args[idx] = arg.with_changes(value=val.with_changes(elements=tuple(new_elems)))
+                    args[idx] = arg.with_changes(
+                        value=val.with_changes(elements=tuple(new_elems))
+                    )
                 elif isinstance(val, cst.List):
                     new_elems = []
                     for el in val.elements:
@@ -1605,7 +1920,9 @@ class SlotDeleteTransformer(cst.CSTTransformer):
                                 self.cleaned_refs = True
                                 continue
                         new_elems.append(el)
-                    args[idx] = arg.with_changes(value=val.with_changes(elements=tuple(new_elems)))
+                    args[idx] = arg.with_changes(
+                        value=val.with_changes(elements=tuple(new_elems))
+                    )
             if changed:
                 return updated_node.with_changes(args=tuple(args))
         return updated_node
@@ -1621,9 +1938,11 @@ def apply_layout_patches(
     paths = resolve_problem_paths(problem_id)
     source = paths.dsl_path.read_text(encoding="utf-8")
     if not source.strip():
-        raise DslPatchError("DSL file is empty; restore or save a valid DSL before editing layout")
+        raise DslPatchError(
+            "DSL file is empty; restore or save a valid DSL before editing layout"
+        )
 
-    if fast_overrides:
+    if fast_overrides or _is_suffixed_split_artifact(paths.artifact_base):
         fast_applied = _try_apply_fast_editor_overrides(paths, patches)
         if fast_applied is not None:
             return source, fast_applied
@@ -1631,7 +1950,9 @@ def apply_layout_patches(
     try:
         module = cst.parse_module(source)
     except cst.ParserSyntaxError as exc:
-        raise DslPatchError(f"DSL syntax error; fix the DSL file before applying layout patches: {exc}") from exc
+        raise DslPatchError(
+            f"DSL syntax error; fix the DSL file before applying layout patches: {exc}"
+        ) from exc
 
     applied: list[AppliedPatch] = []
     transformed = module
@@ -1644,7 +1965,9 @@ def apply_layout_patches(
             raise DslPatchError("patch target must be a non-empty string")
 
         if op == "delete":
-            target = _resolve_target_slot_id(transformed, _renderer_element_slot_target(target))
+            target = _resolve_target_slot_id(
+                transformed, _renderer_element_slot_target(target)
+            )
             deleter = SlotDeleteTransformer(target=target)
             transformed = transformed.visit(deleter)
             if not deleter.deleted_slot:
@@ -1671,7 +1994,9 @@ def apply_layout_patches(
                 raise DslPatchError("ProblemTemplate not found")
             transformed = _ensure_dsl_import(transformed, ctor)
             _clear_editor_slot_state(paths, target)
-            applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
+            applied.append(
+                AppliedPatch(target=target, op=op, fields=list(value.keys()))
+            )
             continue
 
         if not isinstance(value, dict):
@@ -1681,13 +2006,19 @@ def apply_layout_patches(
             region_id = value.get("region_id")
             slot_ids = value.get("slot_ids")
             if not isinstance(region_id, str) or not isinstance(slot_ids, list):
-                raise DslPatchError("layer patch requires value.region_id and value.slot_ids")
+                raise DslPatchError(
+                    "layer patch requires value.region_id and value.slot_ids"
+                )
             _save_editor_region_slot_order(paths, region_id, slot_ids)
-            applied.append(AppliedPatch(target=target, op=op, fields=["region_id", "slot_ids"]))
+            applied.append(
+                AppliedPatch(target=target, op=op, fields=["region_id", "slot_ids"])
+            )
             continue
 
         if op != "update":
-            raise DslPatchError("only 'add', 'update', 'delete', and 'layer' ops are supported")
+            raise DslPatchError(
+                "only 'add', 'update', 'delete', and 'layer' ops are supported"
+            )
 
         if target in CANVAS_TARGETS:
             updater = CanvasUpdater(fields=value)
@@ -1695,7 +2026,9 @@ def apply_layout_patches(
             if not updater.updated:
                 raise DslPatchError("Canvas not found")
             _clear_editor_canvas_override(paths)
-            applied.append(AppliedPatch(target="__canvas__", op=op, fields=list(value.keys())))
+            applied.append(
+                AppliedPatch(target="__canvas__", op=op, fields=list(value.keys()))
+            )
             continue
 
         if _character_group_key(target):
@@ -1704,7 +2037,9 @@ def apply_layout_patches(
             if not updater.updated:
                 raise DslPatchError(f"target character group not found: {target}")
             _clear_editor_slot_override_fields(paths, target, value.keys())
-            applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
+            applied.append(
+                AppliedPatch(target=target, op=op, fields=list(value.keys()))
+            )
             continue
 
         if target.startswith("slot.figure."):
@@ -1712,7 +2047,9 @@ def apply_layout_patches(
             transformed = transformed.visit(updater)
             if updater.updated:
                 _clear_editor_slot_override_fields(paths, target, value.keys())
-                applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
+                applied.append(
+                    AppliedPatch(target=target, op=op, fields=list(value.keys()))
+                )
                 continue
 
         if re.match(r"^slot\.table(?:_\d+)?$", target):
@@ -1720,35 +2057,51 @@ def apply_layout_patches(
             transformed = transformed.visit(updater)
             if updater.updated:
                 _clear_editor_slot_override_fields(paths, target, value.keys())
-                applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
+                applied.append(
+                    AppliedPatch(target=target, op=op, fields=list(value.keys()))
+                )
                 continue
 
         paper_fold_updater = PaperFoldSequenceMoveUpdater(target=target, fields=value)
         transformed = transformed.visit(paper_fold_updater)
         if paper_fold_updater.updated:
             _clear_editor_slot_override_fields(paths, target, value.keys())
-            applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
+            applied.append(
+                AppliedPatch(target=target, op=op, fields=list(value.keys()))
+            )
             continue
 
-        measurement_tool_updater = MeasurementToolMoveUpdater(target=target, fields=value)
+        measurement_tool_updater = MeasurementToolMoveUpdater(
+            target=target, fields=value
+        )
         transformed = transformed.visit(measurement_tool_updater)
         if measurement_tool_updater.updated:
             _clear_editor_slot_override_fields(paths, target, value.keys())
-            applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
+            applied.append(
+                AppliedPatch(target=target, op=op, fields=list(value.keys()))
+            )
             continue
 
-        generated_slot_override_updater = GeneratedHelperSlotOverrideUpdater(target=target, fields=value)
+        generated_slot_override_updater = GeneratedHelperSlotOverrideUpdater(
+            target=target, fields=value
+        )
         transformed = transformed.visit(generated_slot_override_updater)
         if generated_slot_override_updater.updated:
             _clear_editor_slot_override_fields(paths, target, value.keys())
-            applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
+            applied.append(
+                AppliedPatch(target=target, op=op, fields=list(value.keys()))
+            )
             continue
 
-        single_paper_fold_updater = SinglePaperFoldHelperUpdater(target=target, fields=value)
+        single_paper_fold_updater = SinglePaperFoldHelperUpdater(
+            target=target, fields=value
+        )
         transformed = transformed.visit(single_paper_fold_updater)
         if single_paper_fold_updater.updated:
             _clear_editor_slot_override_fields(paths, target, value.keys())
-            applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
+            applied.append(
+                AppliedPatch(target=target, op=op, fields=list(value.keys()))
+            )
             continue
 
         if _measurement_tool_base_from_slot_id(target):
@@ -1758,14 +2111,18 @@ def apply_layout_patches(
         transformed = transformed.visit(grid_updater)
         if grid_updater.updated:
             _clear_editor_slot_override_fields(paths, target, value.keys())
-            applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
+            applied.append(
+                AppliedPatch(target=target, op=op, fields=list(value.keys()))
+            )
             continue
 
         candidate_point_updater = CandidatePointMoveUpdater(target=target, fields=value)
         transformed = transformed.visit(candidate_point_updater)
         if candidate_point_updater.updated:
             _clear_editor_slot_override_fields(paths, target, value.keys())
-            applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
+            applied.append(
+                AppliedPatch(target=target, op=op, fields=list(value.keys()))
+            )
             continue
 
         target = _resolve_target_slot_id(transformed, target)
@@ -1774,14 +2131,18 @@ def apply_layout_patches(
         transformed = transformed.visit(updater)
         if updater.updated:
             _clear_editor_slot_override_fields(paths, target, value.keys())
-            applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
+            applied.append(
+                AppliedPatch(target=target, op=op, fields=list(value.keys()))
+            )
             continue
 
         person_updater = PersonSlotsUpdater(target=target, fields=value)
         transformed = transformed.visit(person_updater)
         if person_updater.updated:
             _clear_editor_slot_override_fields(paths, target, value.keys())
-            applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
+            applied.append(
+                AppliedPatch(target=target, op=op, fields=list(value.keys()))
+            )
             continue
 
         frac_prefix = target
@@ -1794,19 +2155,27 @@ def apply_layout_patches(
         transformed = transformed.visit(frac_updater)
         if frac_updater.updated:
             _clear_editor_slot_override_fields(paths, frac_prefix, value.keys())
-            applied.append(AppliedPatch(target=frac_prefix, op=op, fields=list(value.keys())))
+            applied.append(
+                AppliedPatch(target=frac_prefix, op=op, fields=list(value.keys()))
+            )
             continue
 
-        frac_parts_updater = FractionPartsMoveUpdater(target_prefix=frac_prefix, fields=value)
+        frac_parts_updater = FractionPartsMoveUpdater(
+            target_prefix=frac_prefix, fields=value
+        )
         transformed = transformed.visit(frac_parts_updater)
         if frac_parts_updater.updated:
             _clear_editor_slot_override_fields(paths, frac_prefix, value.keys())
-            applied.append(AppliedPatch(target=frac_prefix, op=op, fields=list(value.keys())))
+            applied.append(
+                AppliedPatch(target=frac_prefix, op=op, fields=list(value.keys()))
+            )
             continue
 
         if set(value).issubset(EDITOR_OVERRIDE_FIELDS):
             _save_editor_slot_override(paths, target, value)
-            applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
+            applied.append(
+                AppliedPatch(target=target, op=op, fields=list(value.keys()))
+            )
             continue
 
         raise DslPatchError(f"target slot not found: {target}")
@@ -1826,6 +2195,10 @@ def apply_layout_patches(
     return updated_code, applied
 
 
+def _is_suffixed_split_artifact(artifact_base: str) -> bool:
+    return re.fullmatch(r".+_[1-9]\d*", artifact_base) is not None
+
+
 def save_tutor_renderer_flow(
     problem_id: str,
     flow: Any,
@@ -1835,15 +2208,21 @@ def save_tutor_renderer_flow(
     paths = resolve_problem_paths(problem_id)
     source = paths.dsl_path.read_text(encoding="utf-8")
     if not source.strip():
-        raise DslPatchError("DSL file is empty; restore or save a valid DSL before editing tutor flow")
+        raise DslPatchError(
+            "DSL file is empty; restore or save a valid DSL before editing tutor flow"
+        )
     try:
         module = cst.parse_module(source)
     except cst.ParserSyntaxError as exc:
-        raise DslPatchError(f"DSL syntax error; fix the DSL file before saving tutor flow: {exc}") from exc
+        raise DslPatchError(
+            f"DSL syntax error; fix the DSL file before saving tutor flow: {exc}"
+        ) from exc
 
     normalized = normalize_tutor_renderer_flow(flow)
     updater = TutorRendererFlowUpdater(normalized)
     transformed = module.visit(updater)
-    updated_code = format_dsl_source(transformed.code) if format_source else transformed.code
+    updated_code = (
+        format_dsl_source(transformed.code) if format_source else transformed.code
+    )
     paths.dsl_path.write_text(updated_code, encoding="utf-8")
     return updated_code, normalized

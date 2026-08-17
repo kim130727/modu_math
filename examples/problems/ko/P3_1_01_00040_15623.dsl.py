@@ -6,7 +6,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextBoxSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_15623"
@@ -25,14 +25,11 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="vertical",
-                slot_ids=(
-                    "slot.question",
-                    "slot.answer",
-                ),
+                slot_ids=("slot.question",
+                    "slot.answer",'konva_1786962334798_rect_193618', 'konva_1786962334798_text_200387'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.question",
                 x = 19.082, y = 15.148, width = 533.311, height = 171.016, text=(
                     "현석이는 어머니로부터 용돈을 받아 310원어치 준비물을 사고, "
@@ -51,8 +48,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="답",
                 answer_key="860",
                 placeholder="원",
-            ),
-        ),
+            ),RectSlot(id = 'konva_1786962334798_rect_193618', prompt = '', x = 391.639, y = 135.246, width = 134.26, height = 54.69, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'answer_key_index': 0, 'answer_ref': 'answer.value', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}), TextBoxSlot(id = 'konva_1786962334798_text_200387', prompt = '', text = '원', x = 535.262, y = 140.934, font_size = 30, fill = '#111827', width = 49.803, height = 46, align = 'left', line_height = 1.25)),
     )
 
 

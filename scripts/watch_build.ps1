@@ -51,11 +51,16 @@ function Resolve-DslPath {
         throw "DSL file for problem $ProblemIdValue not found in examples\problems or examples\golden"
     }
 
-    # Prefer exact basename match first, then fallback to first partial match.
+    # Prefer exact basename match first. If only split copies exist, forcing an
+    # explicit suffix avoids building one artifact with another artifact's id.
     $exactName = "$ProblemIdValue.dsl.py"
     $exact = $matches | Where-Object { $_.Name -eq $exactName } | Select-Object -First 1
     if ($exact) {
         return $exact.FullName
+    }
+    if ($matches.Count -gt 1) {
+        $candidateNames = ($matches | Select-Object -ExpandProperty Name) -join ", "
+        throw "Exact DSL file not found for $ProblemIdValue. Multiple partial matches exist; use one explicit problem id: $candidateNames"
     }
     return ($matches | Select-Object -First 1).FullName
 }
@@ -104,7 +109,10 @@ from modu_math.layout.editor_overrides import (
     prune_editor_overrides,
     prune_legacy_answer_blank_slots,
 )
-from modu_math.pipeline.answer_contracts import validate_answer_slot_contract
+from modu_math.layout.sanitizer import sanitize_layout
+from modu_math.pipeline.answer_contracts import normalize_answer_for_deleted_slots, normalize_answer_for_submit_slots, validate_answer_slot_contract
+from modu_math.pipeline.semantic_normalizer import normalize_semantic_for_schema
+from modu_math.pipeline.subproblem_projection import project_suffixed_subproblem
 from modu_math.renderer.compiler import compile_renderer_json
 from modu_math.renderer.svg.render import inline_local_image_hrefs, render_svg
 from modu_math.pipeline.validate_contracts import validate_semantic_solvable_answer_match
@@ -133,6 +141,7 @@ semantic = compile_problem_template_to_semantic(problem, problem_type="diagram_p
 layout = compile_problem_template_to_layout(problem)
 
 deleted_answer_slots = set()
+editor_override_slot_ids = set()
 editor_overrides_path = base.with_suffix(".editor_overrides.json")
 if editor_overrides_path.exists():
     editor_overrides = json.loads(editor_overrides_path.read_text(encoding="utf-8-sig"))
@@ -144,6 +153,9 @@ if editor_overrides_path.exists():
     )
     pruned = pruned or answer_pruned
     deleted_slots = editor_overrides.get("deleted_slots") if isinstance(editor_overrides, dict) else None
+    override_slots = editor_overrides.get("slots") if isinstance(editor_overrides, dict) else None
+    if isinstance(override_slots, dict):
+        editor_override_slot_ids = {slot_id for slot_id in override_slots if isinstance(slot_id, str)}
     if isinstance(deleted_slots, list):
         deleted_answer_slots = {slot_id for slot_id in deleted_slots if isinstance(slot_id, str)}
     if pruned:
@@ -181,7 +193,10 @@ def normalize_solvable_for_schema(solvable: dict) -> dict:
     return normalized
 
 def submitted_answer_slot_ids(layout: dict) -> list[str]:
-    slot_ids = []
+    return [slot["slot_id"] for slot in submitted_answer_slots(layout)]
+
+def submitted_answer_slots(layout: dict) -> list[dict]:
+    slots = []
     for slot in layout.get("slots", []):
         if not isinstance(slot, dict):
             continue
@@ -195,8 +210,13 @@ def submitted_answer_slot_ids(layout: dict) -> list[str]:
             and interaction.get("type") == "input"
             and interaction.get("include_in_submission") is not False
         ):
-            slot_ids.append(slot_id)
-    return slot_ids
+            slots.append({
+                "slot_id": slot_id,
+                "answer_key_index": interaction.get("answer_key_index"),
+                "answer_ref": interaction.get("answer_ref"),
+                "order": interaction.get("order"),
+            })
+    return slots
 
 def answer_slot_ids(answer) -> set[str]:
     if not isinstance(answer, dict):
@@ -227,18 +247,17 @@ def with_single_submit_slot_answer(answer, slot_id: str):
     normalized["answer_key"] = [{"slot_id": slot_id, "value": value}]
     return normalized
 
-def attach_single_submit_slot_answer(layout: dict, semantic: dict, solvable):
-    submit_slot_ids = submitted_answer_slot_ids(layout)
-    if len(submit_slot_ids) != 1:
+def attach_submit_slot_answers(layout: dict, semantic: dict, solvable):
+    submit_slots = submitted_answer_slots(layout)
+    if not submit_slots:
         return semantic, solvable
-    slot_id = submit_slot_ids[0]
-    semantic_answer = with_single_submit_slot_answer(semantic.get("answer"), slot_id)
-    if semantic_answer is not semantic.get("answer"):
+    semantic_answer, semantic_changed = normalize_answer_for_submit_slots(semantic.get("answer"), submit_slots)
+    if semantic_changed:
         semantic = dict(semantic)
         semantic["answer"] = semantic_answer
     if isinstance(solvable, dict):
-        solvable_answer = with_single_submit_slot_answer(solvable.get("answer"), slot_id)
-        if solvable_answer is not solvable.get("answer"):
+        solvable_answer, solvable_changed = normalize_answer_for_submit_slots(solvable.get("answer"), submit_slots)
+        if solvable_changed:
             solvable = dict(solvable)
             solvable["answer"] = solvable_answer
     return semantic, solvable
@@ -262,9 +281,39 @@ if hasattr(module, "SOLVABLE"):
 elif hasattr(module, "build_solvable"):
     solvable = module.build_solvable()
 
+semantic, _semantic_normalized = normalize_semantic_for_schema(semantic)
+
+layout, semantic, solvable, projected_deleted_slots = project_suffixed_subproblem(
+    artifact_id=base.name,
+    template_id=getattr(problem, "id", None),
+    layout=layout,
+    semantic=semantic,
+    solvable=solvable if isinstance(solvable, dict) else None,
+    protected_slot_ids=editor_override_slot_ids,
+)
+deleted_answer_slots.update(projected_deleted_slots)
+
 layout, auto_deleted_answer_slots = prune_legacy_answer_blank_slots(layout, semantic.get("answer"))
 deleted_answer_slots.update(auto_deleted_answer_slots)
-semantic, solvable = attach_single_submit_slot_answer(layout, semantic, solvable if isinstance(solvable, dict) else None)
+layout = sanitize_layout(layout, deleted_slots=deleted_answer_slots)
+semantic, solvable = attach_submit_slot_answers(layout, semantic, solvable if isinstance(solvable, dict) else None)
+semantic_answer, removed_semantic_answer_slots = normalize_answer_for_deleted_slots(
+    semantic.get("answer"),
+    deleted_answer_slots,
+)
+if removed_semantic_answer_slots:
+    semantic = dict(semantic)
+    semantic["answer"] = semantic_answer
+if isinstance(solvable, dict):
+    solvable_answer, removed_solvable_answer_slots = normalize_answer_for_deleted_slots(
+        solvable.get("answer"),
+        deleted_answer_slots,
+    )
+    if removed_solvable_answer_slots:
+        solvable = dict(solvable)
+        solvable["answer"] = solvable_answer
+
+semantic, _semantic_normalized = normalize_semantic_for_schema(semantic)
 
 renderer = compile_renderer_json(layout)
 if hasattr(module, "TUTOR_RENDERER_FLOW"):
@@ -285,6 +334,7 @@ if solvable:
     if not isinstance(solvable, dict):
         raise ValueError("SOLVABLE must be a dict when provided.")
     solvable = normalize_solvable_for_schema(solvable)
+    solvable, _solvable_normalized = normalize_semantic_for_schema(solvable)
     solvable_tag = parse_solvable_schema_tag(solvable)
     solvable_schema_path = repo / "schema/solvable" / f"solvable.{solvable_tag}.json"
     if not solvable_schema_path.exists():

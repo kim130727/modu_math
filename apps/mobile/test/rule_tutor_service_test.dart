@@ -37,6 +37,24 @@ void main() {
       expect(reply.replyType, equals(TutorReplyType.correct));
     });
 
+    test('compacts vertical addition micro steps from direct quantities',
+        () async {
+      const service = RuleTutorService();
+      final content = _verticalAdditionContent();
+
+      final messages = service.startSession(content);
+      final next = await service.nextQuestion(
+        content: content,
+        messages: messages,
+        stepIndex: 0,
+      );
+
+      expect(messages.single.text, contains('1단계'));
+      expect(messages.single.text, contains('4 + 7'));
+      expect(next.text, contains('2단계'));
+      expect(next.text, contains('6 + 5'));
+    });
+
     test('asks target confirmation without problem-specific names', () async {
       const service = RuleTutorService();
       final reply = await service.reviewAnswer(
@@ -313,6 +331,53 @@ ProblemContent _additionContent() {
           '259': 'plan.copy_one_part',
           '248': 'plan.copy_one_part',
         },
+      },
+    },
+  );
+}
+
+ProblemContent _verticalAdditionContent() {
+  return const ProblemContent(
+    summary: ProblemSummary(
+      id: 'P3_1_01_00040_02135',
+      grade: 3,
+      subject: 'math',
+      unit: 'addition',
+      type: 'multi_blank_vertical_addition',
+      title: 'Column addition',
+      path: '',
+      raw: {},
+    ),
+    svg: '<svg></svg>',
+    semantic: {},
+    solvable: {
+      'problem_type': 'multi_blank_vertical_addition',
+      'inputs': {
+        'answer_type': 'digit_list',
+        'quantities': {
+          'first_addend': 664,
+          'second_addend': 257,
+        },
+      },
+      'target': {'type': 'digit_list'},
+      'steps': [
+        {'id': 'step.add_ones', 'expr': '4 + 7', 'value': 11},
+        {
+          'id': 'step.write_ones_and_carry',
+          'expr': '11 = 1 x 10 + 1',
+          'value': {'carry': 1, 'digit': 1},
+        },
+        {'id': 'step.add_tens', 'expr': '6 + 5 + 1', 'value': 12},
+        {
+          'id': 'step.write_tens_and_carry',
+          'expr': '12 = 1 x 10 + 2',
+          'value': {'carry': 1, 'digit': 2},
+        },
+        {'id': 'step.add_hundreds', 'expr': '6 + 2 + 1', 'value': 9},
+        {'id': 'step.compose_answer', 'expr': '900 + 20 + 1', 'value': 921},
+      ],
+      'answer': {
+        'value': [1, 1, 9, 2, 1]
       },
     },
   );

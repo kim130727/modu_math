@@ -37,21 +37,29 @@ def compile_renderer_from_layout(layout: dict[str, Any]) -> RendererDocument:
     width = float(canvas.get("width", 960))
     height = float(canvas.get("height", 640))
     background = canvas.get("background")
-    resolved_background = background if isinstance(background, str) and background.strip() else "#FFFFFF"
+    resolved_background = (
+        background if isinstance(background, str) and background.strip() else "#FFFFFF"
+    )
     view_box = RenderViewBox(width=width, height=height, background=resolved_background)
 
     elements: list[DrawElement] = []
     if isinstance(layout.get("nodes"), list):
         elements.extend(_compile_legacy_nodes(layout))
 
-    if isinstance(layout.get("slots"), list) or isinstance(layout.get("diagrams"), list):
+    if isinstance(layout.get("slots"), list) or isinstance(
+        layout.get("diagrams"), list
+    ):
         elements.extend(_compile_contract_layout(layout, width=width, height=height))
 
     content_bottom = _content_bottom(elements)
     if content_bottom > view_box.height:
-        view_box = RenderViewBox(width=view_box.width, height=content_bottom, background=view_box.background)
+        view_box = RenderViewBox(
+            width=view_box.width, height=content_bottom, background=view_box.background
+        )
 
-    return RendererDocument(problem_id=problem_id, view_box=view_box, elements=tuple(elements))
+    return RendererDocument(
+        problem_id=problem_id, view_box=view_box, elements=tuple(elements)
+    )
 
 
 def compile_renderer_json(layout: dict[str, Any]) -> dict[str, Any]:
@@ -64,7 +72,11 @@ def _compile_legacy_nodes(layout: dict[str, Any]) -> list[DrawElement]:
         return []
     sorted_nodes = sorted(
         [node for node in nodes if isinstance(node, dict)],
-        key=lambda node: int(node.get("z_order", 0)) if isinstance(node.get("z_order"), int | float) else 0,
+        key=lambda node: (
+            int(node.get("z_order", 0))
+            if isinstance(node.get("z_order"), int | float)
+            else 0
+        ),
     )
     compiled: list[DrawElement] = []
     for node in sorted_nodes:
@@ -86,8 +98,16 @@ def _node_to_element(node: dict[str, Any]) -> DrawElement | None:
 
     x = float(node.get("x", 0))
     y = float(node.get("y", 0))
-    width = float(node.get("width", 0)) if isinstance(node.get("width"), int | float) else 0.0
-    height = float(node.get("height", 0)) if isinstance(node.get("height"), int | float) else 0.0
+    width = (
+        float(node.get("width", 0))
+        if isinstance(node.get("width"), int | float)
+        else 0.0
+    )
+    height = (
+        float(node.get("height", 0))
+        if isinstance(node.get("height"), int | float)
+        else 0.0
+    )
 
     if node_type == "text":
         text = str(props.get("text", ""))
@@ -107,9 +127,11 @@ def _node_to_element(node: dict[str, Any]) -> DrawElement | None:
         if isinstance(raw_children, list):
             sorted_children = sorted(
                 [child for child in raw_children if isinstance(child, dict)],
-                key=lambda child: int(child.get("z_order", 0))
-                if isinstance(child.get("z_order"), int | float)
-                else 0,
+                key=lambda child: (
+                    int(child.get("z_order", 0))
+                    if isinstance(child.get("z_order"), int | float)
+                    else 0
+                ),
             )
             for child in sorted_children:
                 compiled = _node_to_element(child)
@@ -131,29 +153,45 @@ def _node_to_element(node: dict[str, Any]) -> DrawElement | None:
                 object_id=node_id,
                 object_type=object_type,
                 object_data=props,
-                frame=_Frame(x=x, y=y, width=max(width, 80.0), height=max(height, 80.0)),
+                frame=_Frame(
+                    x=x, y=y, width=max(width, 80.0), height=max(height, 80.0)
+                ),
                 diagram_id=None,
             )
             return DrawElement(
                 id=f"{node_id}.group",
                 type="group",
                 attributes={},
-                source_ref=node.get("source_ref") if isinstance(node.get("source_ref"), str) else node_id,
+                source_ref=(
+                    node.get("source_ref")
+                    if isinstance(node.get("source_ref"), str)
+                    else node_id
+                ),
                 refs=refs,
                 elements=expansion.elements,
             )
-        return _shape_node_to_primitive(node_id=node_id, node=node, props=props, refs=refs)
+        return _shape_node_to_primitive(
+            node_id=node_id, node=node, props=props, refs=refs
+        )
 
     return DrawElement(
         id=node_id,
         type="rect",
-        attributes={"x": x, "y": y, "width": max(width, 1.0), "height": max(height, 1.0), **_shape_style(props)},
+        attributes={
+            "x": x,
+            "y": y,
+            "width": max(width, 1.0),
+            "height": max(height, 1.0),
+            **_shape_style(props),
+        },
         source_ref=node.get("source_ref"),
         refs=refs,
     )
 
 
-def _shape_node_to_primitive(node_id: str, node: dict[str, Any], props: dict[str, Any], refs: RenderRefs) -> DrawElement:
+def _shape_node_to_primitive(
+    node_id: str, node: dict[str, Any], props: dict[str, Any], refs: RenderRefs
+) -> DrawElement:
     shape_type = str(props.get("shape_type") or "rect")
     x = float(node.get("x", 0))
     y = float(node.get("y", 0))
@@ -163,13 +201,29 @@ def _shape_node_to_primitive(node_id: str, node: dict[str, Any], props: dict[str
         attributes = {
             "x": x,
             "y": y,
-            "width": float(node.get("width", 0)) if isinstance(node.get("width"), int | float) else 0,
-            "height": float(node.get("height", 0)) if isinstance(node.get("height"), int | float) else 0,
+            "width": (
+                float(node.get("width", 0))
+                if isinstance(node.get("width"), int | float)
+                else 0
+            ),
+            "height": (
+                float(node.get("height", 0))
+                if isinstance(node.get("height"), int | float)
+                else 0
+            ),
             **style,
         }
-        return DrawElement(id=node_id, type="rect", attributes=attributes, source_ref=source_ref, refs=refs)
+        return DrawElement(
+            id=node_id,
+            type="rect",
+            attributes=attributes,
+            source_ref=source_ref,
+            refs=refs,
+        )
     if shape_type == "circle":
-        radius = float(props.get("r", 0)) if isinstance(props.get("r"), int | float) else 0
+        radius = (
+            float(props.get("r", 0)) if isinstance(props.get("r"), int | float) else 0
+        )
         return DrawElement(
             id=node_id,
             type="circle",
@@ -222,8 +276,16 @@ def _shape_node_to_primitive(node_id: str, node: dict[str, Any], props: dict[str
             attributes={
                 "x": x,
                 "y": y,
-                "width": float(node.get("width", 0)) if isinstance(node.get("width"), int | float) else 0,
-                "height": float(node.get("height", 0)) if isinstance(node.get("height"), int | float) else 0,
+                "width": (
+                    float(node.get("width", 0))
+                    if isinstance(node.get("width"), int | float)
+                    else 0
+                ),
+                "height": (
+                    float(node.get("height", 0))
+                    if isinstance(node.get("height"), int | float)
+                    else 0
+                ),
                 "href": str(props.get("href", "")),
             },
             source_ref=source_ref,
@@ -246,22 +308,34 @@ def _shape_node_to_primitive(node_id: str, node: dict[str, Any], props: dict[str
     )
 
 
-def _compile_contract_layout(layout: dict[str, Any], *, width: float, height: float) -> list[DrawElement]:
+def _compile_contract_layout(
+    layout: dict[str, Any], *, width: float, height: float
+) -> list[DrawElement]:
     elements: list[DrawElement] = []
     slot_elements, slot_bottom = _compile_slots(layout, width=width)
     elements.extend(slot_elements)
-    diagram_elements = _compile_diagrams(layout, width=width, height=height, start_y=max(slot_bottom + 28.0, 220.0))
+    diagram_elements = _compile_diagrams(
+        layout, width=width, height=height, start_y=max(slot_bottom + 28.0, 220.0)
+    )
     elements.extend(diagram_elements)
     return elements
 
 
-def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawElement], float]:
+def _compile_slots(
+    layout: dict[str, Any], *, width: float
+) -> tuple[list[DrawElement], float]:
     slots = layout.get("slots", [])
     if not isinstance(slots, list):
         return [], 72.0
 
     ordered_slot_ids = _resolve_slot_order(layout)
-    slot_by_id = {str(slot.get("id")): slot for slot in slots if isinstance(slot, dict) and isinstance(slot.get("id"), str)}
+    region_slot_ids = _region_slot_ids(layout)
+    has_regions = bool(region_slot_ids)
+    slot_by_id = {
+        str(slot.get("id")): slot
+        for slot in slots
+        if isinstance(slot, dict) and isinstance(slot.get("id"), str)
+    }
 
     y = 72.0
     x = 64.0
@@ -276,17 +350,41 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
         if not isinstance(content, dict):
             content = {}
         refs = RenderRefs(layout_slot_id=slot_id)
-        transform = str(content["transform"]) if isinstance(content.get("transform"), str) and content.get("transform") else None
+        transform = (
+            str(content["transform"])
+            if isinstance(content.get("transform"), str) and content.get("transform")
+            else None
+        )
         answer_kwargs = _answer_element_kwargs(content)
         if kind in {"text", "text_box"}:
             text = str(content.get("text", ""))
             tx = float(content["x"]) if isinstance(content.get("x"), int | float) else x
             ty = float(content["y"]) if isinstance(content.get("y"), int | float) else y
-            font_size = int(content["font_size"]) if isinstance(content.get("font_size"), int | float) else _DEFAULT_FONT_SIZE
-            fill = str(content["fill"]) if isinstance(content.get("fill"), str) else _DEFAULT_TEXT_FILL
-            font_family = str(content["font_family"]) if isinstance(content.get("font_family"), str) else _DEFAULT_FONT_FAMILY
-            text_anchor = str(content["anchor"]) if isinstance(content.get("anchor"), str) else None
-            semantic_role = str(content["semantic_role"]) if isinstance(content.get("semantic_role"), str) else None
+            font_size = (
+                int(content["font_size"])
+                if isinstance(content.get("font_size"), int | float)
+                else _DEFAULT_FONT_SIZE
+            )
+            fill = (
+                str(content["fill"])
+                if isinstance(content.get("fill"), str)
+                else _DEFAULT_TEXT_FILL
+            )
+            font_family = (
+                str(content["font_family"])
+                if isinstance(content.get("font_family"), str)
+                else _DEFAULT_FONT_FAMILY
+            )
+            text_anchor = (
+                str(content["anchor"])
+                if isinstance(content.get("anchor"), str)
+                else None
+            )
+            semantic_role = (
+                str(content["semantic_role"])
+                if isinstance(content.get("semantic_role"), str)
+                else None
+            )
             attributes: dict[str, Any] = {
                 "x": tx,
                 "y": ty,
@@ -298,8 +396,16 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
             if isinstance(content.get("max_width"), int | float):
                 attributes["max_width"] = float(content["max_width"])
             if kind == "text_box":
-                box_width = float(content["width"]) if isinstance(content.get("width"), int | float) else max_text_width
-                box_height = float(content["height"]) if isinstance(content.get("height"), int | float) else font_size * 1.2
+                box_width = (
+                    float(content["width"])
+                    if isinstance(content.get("width"), int | float)
+                    else max_text_width
+                )
+                box_height = (
+                    float(content["height"])
+                    if isinstance(content.get("height"), int | float)
+                    else font_size * 1.2
+                )
                 attributes.update(
                     {
                         "width": box_width,
@@ -403,6 +509,12 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
             continue
 
         if kind == "blank":
+            if (
+                has_regions
+                and slot_id not in region_slot_ids
+                and not _has_explicit_blank_geometry(content)
+            ):
+                continue
             bw = float(content.get("width", 120.0))
             bh = float(content.get("height", 32.0))
             bx = float(content.get("x", x))
@@ -456,9 +568,21 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
             stroke = str(content.get("stroke", _DEFAULT_STROKE))
             fill = str(content.get("fill", "#ffffff"))
             stroke_width = float(content.get("stroke_width", 1.5))
-            corner_rx = float(content["rx"]) if isinstance(content.get("rx"), int | float) else None
-            corner_ry = float(content["ry"]) if isinstance(content.get("ry"), int | float) else None
-            semantic_role = str(content["semantic_role"]) if isinstance(content.get("semantic_role"), str) else None
+            corner_rx = (
+                float(content["rx"])
+                if isinstance(content.get("rx"), int | float)
+                else None
+            )
+            corner_ry = (
+                float(content["ry"])
+                if isinstance(content.get("ry"), int | float)
+                else None
+            )
+            semantic_role = (
+                str(content["semantic_role"])
+                if isinstance(content.get("semantic_role"), str)
+                else None
+            )
             attributes: dict[str, Any] = {
                 "x": x_pos,
                 "y": y_pos,
@@ -496,8 +620,16 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
             y2 = float(content.get("y2", y))
             stroke = str(content.get("stroke", _DEFAULT_STROKE))
             stroke_width = float(content.get("stroke_width", 2.0))
-            stroke_dasharray = str(content["stroke_dasharray"]) if isinstance(content.get("stroke_dasharray"), str) else None
-            semantic_role = str(content["semantic_role"]) if isinstance(content.get("semantic_role"), str) else None
+            stroke_dasharray = (
+                str(content["stroke_dasharray"])
+                if isinstance(content.get("stroke_dasharray"), str)
+                else None
+            )
+            semantic_role = (
+                str(content["semantic_role"])
+                if isinstance(content.get("semantic_role"), str)
+                else None
+            )
             attributes: dict[str, Any] = {
                 "x1": x1,
                 "y1": y1,
@@ -532,7 +664,11 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
             stroke = str(content.get("stroke", _DEFAULT_STROKE))
             stroke_width = float(content.get("stroke_width", 2.0))
             fill = str(content.get("fill", "none"))
-            semantic_role = str(content["semantic_role"]) if isinstance(content.get("semantic_role"), str) else None
+            semantic_role = (
+                str(content["semantic_role"])
+                if isinstance(content.get("semantic_role"), str)
+                else None
+            )
             attributes: dict[str, Any] = {
                 "cx": cx,
                 "cy": cy,
@@ -568,7 +704,11 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
             stroke = str(content.get("stroke", _DEFAULT_STROKE))
             stroke_width = float(content.get("stroke_width", 2.0))
             fill = str(content.get("fill", "none"))
-            semantic_role = str(content["semantic_role"]) if isinstance(content.get("semantic_role"), str) else None
+            semantic_role = (
+                str(content["semantic_role"])
+                if isinstance(content.get("semantic_role"), str)
+                else None
+            )
             attributes: dict[str, Any] = {
                 "points": points,
                 "stroke": stroke,
@@ -598,7 +738,11 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
             ih = float(content.get("height", 90.0))
             href = str(content.get("href", ""))
             preserve = str(content.get("preserve_aspect_ratio", "xMidYMid meet"))
-            semantic_role = str(content["semantic_role"]) if isinstance(content.get("semantic_role"), str) else None
+            semantic_role = (
+                str(content["semantic_role"])
+                if isinstance(content.get("semantic_role"), str)
+                else None
+            )
             attributes: dict[str, Any] = {
                 "x": x_pos,
                 "y": y_pos,
@@ -626,13 +770,29 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
 
         if kind == "path":
             d = str(content.get("d", ""))
-            x_pos = float(content["x"]) if isinstance(content.get("x"), int | float) else 0.0
-            y_pos = float(content["y"]) if isinstance(content.get("y"), int | float) else 0.0
+            x_pos = (
+                float(content["x"])
+                if isinstance(content.get("x"), int | float)
+                else 0.0
+            )
+            y_pos = (
+                float(content["y"])
+                if isinstance(content.get("y"), int | float)
+                else 0.0
+            )
             stroke = str(content.get("stroke", _DEFAULT_STROKE))
             stroke_width = float(content.get("stroke_width", 2.0))
-            stroke_dasharray = str(content["stroke_dasharray"]) if isinstance(content.get("stroke_dasharray"), str) else None
+            stroke_dasharray = (
+                str(content["stroke_dasharray"])
+                if isinstance(content.get("stroke_dasharray"), str)
+                else None
+            )
             fill = str(content.get("fill", "none"))
-            semantic_role = str(content["semantic_role"]) if isinstance(content.get("semantic_role"), str) else None
+            semantic_role = (
+                str(content["semantic_role"])
+                if isinstance(content.get("semantic_role"), str)
+                else None
+            )
             attributes: dict[str, Any] = {
                 "d": d,
                 "stroke": stroke,
@@ -685,13 +845,23 @@ def _content_bottom(elements: list[DrawElement]) -> float:
             bottom = max(bottom, float(cy) + float(radius))
             continue
         y_values = [attrs.get("y1"), attrs.get("y2")]
-        numeric_y_values = [float(value) for value in y_values if isinstance(value, int | float)]
+        numeric_y_values = [
+            float(value) for value in y_values if isinstance(value, int | float)
+        ]
         if numeric_y_values:
             bottom = max(bottom, max(numeric_y_values))
             continue
         if element.type == "text" and isinstance(y, int | float):
             font_size = attrs.get("font-size")
-            bottom = max(bottom, float(y) + (float(font_size) if isinstance(font_size, int | float) else _DEFAULT_FONT_SIZE))
+            bottom = max(
+                bottom,
+                float(y)
+                + (
+                    float(font_size)
+                    if isinstance(font_size, int | float)
+                    else _DEFAULT_FONT_SIZE
+                ),
+            )
     return bottom + 16.0 if bottom else 0.0
 
 
@@ -709,7 +879,11 @@ def _answer_element_kwargs(content: dict[str, Any]) -> dict[str, dict[str, Any]]
 def _resolve_slot_order(layout: dict[str, Any]) -> list[str]:
     regions = layout.get("regions", [])
     slots = layout.get("slots", [])
-    slot_ids = [str(slot.get("id")) for slot in slots if isinstance(slot, dict) and isinstance(slot.get("id"), str)]
+    slot_ids = [
+        str(slot.get("id"))
+        for slot in slots
+        if isinstance(slot, dict) and isinstance(slot.get("id"), str)
+    ]
     seen: set[str] = set()
     ordered: list[str] = []
     if isinstance(regions, list):
@@ -720,7 +894,11 @@ def _resolve_slot_order(layout: dict[str, Any]) -> list[str]:
             if not isinstance(region_slot_ids, list):
                 continue
             for slot_id in region_slot_ids:
-                if isinstance(slot_id, str) and slot_id in slot_ids and slot_id not in seen:
+                if (
+                    isinstance(slot_id, str)
+                    and slot_id in slot_ids
+                    and slot_id not in seen
+                ):
                     ordered.append(slot_id)
                     seen.add(slot_id)
     for slot_id in slot_ids:
@@ -729,7 +907,33 @@ def _resolve_slot_order(layout: dict[str, Any]) -> list[str]:
     return ordered
 
 
-def _compile_diagrams(layout: dict[str, Any], *, width: float, height: float, start_y: float) -> list[DrawElement]:
+def _region_slot_ids(layout: dict[str, Any]) -> set[str]:
+    regions = layout.get("regions", [])
+    if not isinstance(regions, list):
+        return set()
+    slot_ids: set[str] = set()
+    for region in regions:
+        if not isinstance(region, dict):
+            continue
+        region_slot_ids = region.get("slot_ids", [])
+        if not isinstance(region_slot_ids, list):
+            continue
+        for slot_id in region_slot_ids:
+            if isinstance(slot_id, str) and slot_id:
+                slot_ids.add(slot_id)
+    return slot_ids
+
+
+def _has_explicit_blank_geometry(content: dict[str, Any]) -> bool:
+    return any(
+        isinstance(content.get(key), int | float)
+        for key in ("x", "y", "width", "height")
+    )
+
+
+def _compile_diagrams(
+    layout: dict[str, Any], *, width: float, height: float, start_y: float
+) -> list[DrawElement]:
     diagrams = layout.get("diagrams", [])
     if not isinstance(diagrams, list) or not diagrams:
         return []
@@ -737,7 +941,9 @@ def _compile_diagrams(layout: dict[str, Any], *, width: float, height: float, st
     margin = 48.0
     gap = 18.0
     usable_height = max(height - start_y - margin, 180.0)
-    each_height = max((usable_height - gap * (len(diagrams) - 1)) / max(len(diagrams), 1), 160.0)
+    each_height = max(
+        (usable_height - gap * (len(diagrams) - 1)) / max(len(diagrams), 1), 160.0
+    )
 
     elements: list[DrawElement] = []
     for index, diagram in enumerate(diagrams):
@@ -753,7 +959,9 @@ def _compile_diagrams(layout: dict[str, Any], *, width: float, height: float, st
                 height=each_height,
             ),
         )
-        group_elements = _compile_single_diagram(diagram=diagram, diagram_id=diagram_id, frame=frame)
+        group_elements = _compile_single_diagram(
+            diagram=diagram, diagram_id=diagram_id, frame=frame
+        )
         elements.append(
             DrawElement(
                 id=f"{diagram_id}.group",
@@ -767,7 +975,9 @@ def _compile_diagrams(layout: dict[str, Any], *, width: float, height: float, st
     return elements
 
 
-def _compile_single_diagram(diagram: dict[str, Any], *, diagram_id: str, frame: _Frame) -> list[DrawElement]:
+def _compile_single_diagram(
+    diagram: dict[str, Any], *, diagram_id: str, frame: _Frame
+) -> list[DrawElement]:
     objects = diagram.get("objects", [])
     label_slots = diagram.get("label_slots", [])
     if not isinstance(objects, list):
@@ -792,7 +1002,9 @@ def _compile_single_diagram(diagram: dict[str, Any], *, diagram_id: str, frame: 
             width=cell_width,
             height=max(frame.height - 20.0, 80.0),
         )
-        object_frame = _frame_from_layout(obj.get("frame"), fallback=default_object_frame)
+        object_frame = _frame_from_layout(
+            obj.get("frame"), fallback=default_object_frame
+        )
         expansion = _expand_object(
             object_id=object_id,
             object_type=object_type,
@@ -830,7 +1042,11 @@ def _compile_single_diagram(diagram: dict[str, Any], *, diagram_id: str, frame: 
                     "font-size": 20,
                 },
                 source_ref=label_id,
-                refs=RenderRefs(layout_slot_id=label_id, layout_diagram_id=diagram_id, layout_object_id=target_id or None),
+                refs=RenderRefs(
+                    layout_slot_id=label_id,
+                    layout_diagram_id=diagram_id,
+                    layout_object_id=target_id or None,
+                ),
                 text=text,
             )
         )
@@ -850,9 +1066,13 @@ def _expand_object(
     object_type_normalized = object_type.strip().lower()
 
     if object_type_normalized == "cube":
-        return _expand_cube(object_id=object_id, frame=frame, refs=refs, source_ref=source_ref)
+        return _expand_cube(
+            object_id=object_id, frame=frame, refs=refs, source_ref=source_ref
+        )
     if object_type_normalized == "triangle":
-        return _expand_triangle(object_id=object_id, frame=frame, refs=refs, source_ref=source_ref)
+        return _expand_triangle(
+            object_id=object_id, frame=frame, refs=refs, source_ref=source_ref
+        )
     if object_type_normalized == "circle":
         mark_center = bool(object_data.get("mark_center"))
         return _expand_circle_object(
@@ -863,12 +1083,35 @@ def _expand_object(
             mark_center=mark_center,
         )
     if object_type_normalized == "grid":
-        rows = int(object_data.get("rows", 1)) if isinstance(object_data.get("rows"), int | float) else 1
-        cols = int(object_data.get("cols", 1)) if isinstance(object_data.get("cols"), int | float) else 1
-        return _expand_grid(object_id=object_id, frame=frame, refs=refs, source_ref=source_ref, rows=rows, cols=cols)
+        rows = (
+            int(object_data.get("rows", 1))
+            if isinstance(object_data.get("rows"), int | float)
+            else 1
+        )
+        cols = (
+            int(object_data.get("cols", 1))
+            if isinstance(object_data.get("cols"), int | float)
+            else 1
+        )
+        return _expand_grid(
+            object_id=object_id,
+            frame=frame,
+            refs=refs,
+            source_ref=source_ref,
+            rows=rows,
+            cols=cols,
+        )
     if object_type_normalized == "fraction_area_model":
-        partitions = int(object_data.get("partitions", 2)) if isinstance(object_data.get("partitions"), int | float) else 2
-        shaded = int(object_data.get("shaded", 1)) if isinstance(object_data.get("shaded"), int | float) else 1
+        partitions = (
+            int(object_data.get("partitions", 2))
+            if isinstance(object_data.get("partitions"), int | float)
+            else 2
+        )
+        shaded = (
+            int(object_data.get("shaded", 1))
+            if isinstance(object_data.get("shaded"), int | float)
+            else 1
+        )
         orientation = str(object_data.get("orientation", "horizontal"))
         return _expand_fraction_area_model(
             object_id=object_id,
@@ -881,28 +1124,55 @@ def _expand_object(
         )
     if object_type_normalized == "arrow":
         direction = str(object_data.get("direction", "right"))
-        return _expand_arrow(object_id=object_id, frame=frame, refs=refs, source_ref=source_ref, direction=direction)
-    return _expand_fallback_box(object_id=object_id, frame=frame, refs=refs, source_ref=source_ref)
+        return _expand_arrow(
+            object_id=object_id,
+            frame=frame,
+            refs=refs,
+            source_ref=source_ref,
+            direction=direction,
+        )
+    return _expand_fallback_box(
+        object_id=object_id, frame=frame, refs=refs, source_ref=source_ref
+    )
 
 
-def _expand_cube(*, object_id: str, frame: _Frame, refs: RenderRefs, source_ref: str) -> _ObjectExpansion:
+def _expand_cube(
+    *, object_id: str, frame: _Frame, refs: RenderRefs, source_ref: str
+) -> _ObjectExpansion:
     offset = max(min(frame.width, frame.height) * 0.22, 14.0)
     bx, by = frame.x + 8.0, frame.y + 8.0
-    bw, bh = max(frame.width - offset - 16.0, 24.0), max(frame.height - offset - 16.0, 24.0)
+    bw, bh = max(frame.width - offset - 16.0, 24.0), max(
+        frame.height - offset - 16.0, 24.0
+    )
     fx, fy = bx + offset, by + offset
 
-    def line(eid: str, x1: float, y1: float, x2: float, y2: float, hidden: bool = False) -> DrawElement:
-        attrs = {"x1": x1, "y1": y1, "x2": x2, "y2": y2, "stroke": _DEFAULT_STROKE, "stroke-width": 2}
+    def line(
+        eid: str, x1: float, y1: float, x2: float, y2: float, hidden: bool = False
+    ) -> DrawElement:
+        attrs = {
+            "x1": x1,
+            "y1": y1,
+            "x2": x2,
+            "y2": y2,
+            "stroke": _DEFAULT_STROKE,
+            "stroke-width": 2,
+        }
         if hidden:
             attrs["stroke-dasharray"] = "6 4"
             attrs["opacity"] = 0.65
-        return DrawElement(id=eid, type="line", attributes=attrs, source_ref=source_ref, refs=refs)
+        return DrawElement(
+            id=eid, type="line", attributes=attrs, source_ref=source_ref, refs=refs
+        )
 
     elements = (
         line(f"{object_id}.edge.back.top", bx, by, bx + bw, by),
         line(f"{object_id}.edge.back.left", bx, by, bx, by + bh),
-        line(f"{object_id}.edge.back.right", bx + bw, by, bx + bw, by + bh, hidden=True),
-        line(f"{object_id}.edge.back.bottom", bx, by + bh, bx + bw, by + bh, hidden=True),
+        line(
+            f"{object_id}.edge.back.right", bx + bw, by, bx + bw, by + bh, hidden=True
+        ),
+        line(
+            f"{object_id}.edge.back.bottom", bx, by + bh, bx + bw, by + bh, hidden=True
+        ),
         line(f"{object_id}.edge.front.top", fx, fy, fx + bw, fy),
         line(f"{object_id}.edge.front.left", fx, fy, fx, fy + bh),
         line(f"{object_id}.edge.front.right", fx + bw, fy, fx + bw, fy + bh),
@@ -922,19 +1192,29 @@ def _expand_cube(*, object_id: str, frame: _Frame, refs: RenderRefs, source_ref:
     return _ObjectExpansion(elements=elements, anchors=anchors)
 
 
-def _expand_triangle(*, object_id: str, frame: _Frame, refs: RenderRefs, source_ref: str) -> _ObjectExpansion:
+def _expand_triangle(
+    *, object_id: str, frame: _Frame, refs: RenderRefs, source_ref: str
+) -> _ObjectExpansion:
     top = [frame.x + frame.width / 2.0, frame.y + 8.0]
     left = [frame.x + 8.0, frame.y + frame.height - 8.0]
     right = [frame.x + frame.width - 8.0, frame.y + frame.height - 8.0]
     element = DrawElement(
         id=f"{object_id}.polygon",
         type="polygon",
-        attributes={"points": [top, left, right], "fill": _DEFAULT_FILL, "stroke": _DEFAULT_STROKE, "stroke-width": 2},
+        attributes={
+            "points": [top, left, right],
+            "fill": _DEFAULT_FILL,
+            "stroke": _DEFAULT_STROKE,
+            "stroke-width": 2,
+        },
         source_ref=source_ref,
         refs=refs,
     )
     anchors = {
-        "center": ((top[0] + left[0] + right[0]) / 3.0, (top[1] + left[1] + right[1]) / 3.0),
+        "center": (
+            (top[0] + left[0] + right[0]) / 3.0,
+            (top[1] + left[1] + right[1]) / 3.0,
+        ),
         "top": (top[0], top[1] - 10.0),
         "left": (left[0] - 12.0, left[1]),
         "right": (right[0] + 8.0, right[1]),
@@ -956,7 +1236,14 @@ def _expand_circle_object(
     circle = DrawElement(
         id=f"{object_id}.circle",
         type="circle",
-        attributes={"cx": cx, "cy": cy, "r": r, "fill": _DEFAULT_FILL, "stroke": _DEFAULT_STROKE, "stroke-width": 2},
+        attributes={
+            "cx": cx,
+            "cy": cy,
+            "r": r,
+            "fill": _DEFAULT_FILL,
+            "stroke": _DEFAULT_STROKE,
+            "stroke-width": 2,
+        },
         source_ref=source_ref,
         refs=refs,
     )
@@ -966,7 +1253,14 @@ def _expand_circle_object(
             DrawElement(
                 id=f"{object_id}.center",
                 type="circle",
-                attributes={"cx": cx, "cy": cy, "r": 3.0, "fill": _DEFAULT_STROKE, "stroke": _DEFAULT_STROKE, "stroke-width": 1},
+                attributes={
+                    "cx": cx,
+                    "cy": cy,
+                    "r": 3.0,
+                    "fill": _DEFAULT_STROKE,
+                    "stroke": _DEFAULT_STROKE,
+                    "stroke-width": 1,
+                },
                 source_ref=source_ref,
                 refs=refs,
             )
@@ -1001,7 +1295,15 @@ def _expand_grid(
         DrawElement(
             id=f"{object_id}.grid.boundary",
             type="rect",
-            attributes={"x": x, "y": y, "width": w, "height": h, "fill": _DEFAULT_FILL, "stroke": _DEFAULT_STROKE, "stroke-width": 2},
+            attributes={
+                "x": x,
+                "y": y,
+                "width": w,
+                "height": h,
+                "fill": _DEFAULT_FILL,
+                "stroke": _DEFAULT_STROKE,
+                "stroke-width": 2,
+            },
             source_ref=source_ref,
             refs=refs,
         )
@@ -1013,7 +1315,14 @@ def _expand_grid(
             DrawElement(
                 id=f"{object_id}.grid.v.{col}",
                 type="line",
-                attributes={"x1": vx, "y1": y, "x2": vx, "y2": y + h, "stroke": _DEFAULT_STROKE, "stroke-width": 1.5},
+                attributes={
+                    "x1": vx,
+                    "y1": y,
+                    "x2": vx,
+                    "y2": y + h,
+                    "stroke": _DEFAULT_STROKE,
+                    "stroke-width": 1.5,
+                },
                 source_ref=source_ref,
                 refs=refs,
             )
@@ -1024,12 +1333,23 @@ def _expand_grid(
             DrawElement(
                 id=f"{object_id}.grid.h.{row}",
                 type="line",
-                attributes={"x1": x, "y1": hy, "x2": x + w, "y2": hy, "stroke": _DEFAULT_STROKE, "stroke-width": 1.5},
+                attributes={
+                    "x1": x,
+                    "y1": hy,
+                    "x2": x + w,
+                    "y2": hy,
+                    "stroke": _DEFAULT_STROKE,
+                    "stroke-width": 1.5,
+                },
                 source_ref=source_ref,
                 refs=refs,
             )
         )
-    anchors = {"center": (x + w / 2.0, y + h / 2.0), "top": (x + w / 2.0, y - 8.0), "right": (x + w + 8.0, y + h / 2.0)}
+    anchors = {
+        "center": (x + w / 2.0, y + h / 2.0),
+        "top": (x + w / 2.0, y - 8.0),
+        "right": (x + w + 8.0, y + h / 2.0),
+    }
     return _ObjectExpansion(elements=tuple(elements), anchors=anchors)
 
 
@@ -1055,7 +1375,15 @@ def _expand_fraction_area_model(
         DrawElement(
             id=f"{object_id}.fraction.boundary",
             type="rect",
-            attributes={"x": x, "y": y, "width": w, "height": h, "fill": _DEFAULT_FILL, "stroke": _DEFAULT_STROKE, "stroke-width": 2},
+            attributes={
+                "x": x,
+                "y": y,
+                "width": w,
+                "height": h,
+                "fill": _DEFAULT_FILL,
+                "stroke": _DEFAULT_STROKE,
+                "stroke-width": 2,
+            },
             source_ref=source_ref,
             refs=refs,
         )
@@ -1068,7 +1396,14 @@ def _expand_fraction_area_model(
                 DrawElement(
                     id=f"{object_id}.fraction.partition.{index}",
                     type="line",
-                    attributes={"x1": px, "y1": y, "x2": px, "y2": y + h, "stroke": _DEFAULT_STROKE, "stroke-width": 1.2},
+                    attributes={
+                        "x1": px,
+                        "y1": y,
+                        "x2": px,
+                        "y2": y + h,
+                        "stroke": _DEFAULT_STROKE,
+                        "stroke-width": 1.2,
+                    },
                     source_ref=source_ref,
                     refs=refs,
                 )
@@ -1079,7 +1414,14 @@ def _expand_fraction_area_model(
                 DrawElement(
                     id=f"{object_id}.fraction.partition.{index}",
                     type="line",
-                    attributes={"x1": x, "y1": py, "x2": x + w, "y2": py, "stroke": _DEFAULT_STROKE, "stroke-width": 1.2},
+                    attributes={
+                        "x1": x,
+                        "y1": py,
+                        "x2": x + w,
+                        "y2": py,
+                        "stroke": _DEFAULT_STROKE,
+                        "stroke-width": 1.2,
+                    },
                     source_ref=source_ref,
                     refs=refs,
                 )
@@ -1123,7 +1465,11 @@ def _expand_fraction_area_model(
                 )
             )
 
-    anchors = {"center": (x + w / 2.0, y + h / 2.0), "right": (x + w + 10.0, y + h / 2.0), "top": (x + w / 2.0, y - 8.0)}
+    anchors = {
+        "center": (x + w / 2.0, y + h / 2.0),
+        "right": (x + w + 10.0, y + h / 2.0),
+        "top": (x + w / 2.0, y - 8.0),
+    }
     return _ObjectExpansion(elements=tuple(elements), anchors=anchors)
 
 
@@ -1165,23 +1511,42 @@ def _expand_arrow(
         DrawElement(
             id=f"{object_id}.arrow.body",
             type="line",
-            attributes={"x1": line[0], "y1": line[1], "x2": line[2], "y2": line[3], "stroke": _DEFAULT_STROKE, "stroke-width": 2},
+            attributes={
+                "x1": line[0],
+                "y1": line[1],
+                "x2": line[2],
+                "y2": line[3],
+                "stroke": _DEFAULT_STROKE,
+                "stroke-width": 2,
+            },
             source_ref=source_ref,
             refs=refs,
         ),
         DrawElement(
             id=f"{object_id}.arrow.head",
             type="polygon",
-            attributes={"points": head_points, "fill": _DEFAULT_STROKE, "stroke": _DEFAULT_STROKE, "stroke-width": 1.5},
+            attributes={
+                "points": head_points,
+                "fill": _DEFAULT_STROKE,
+                "stroke": _DEFAULT_STROKE,
+                "stroke-width": 1.5,
+            },
             source_ref=source_ref,
             refs=refs,
         ),
     )
-    anchors = {"center": (cx, cy), "tip": anchor, "right": (x + w + 8.0, cy), "top": (cx, y - 8.0)}
+    anchors = {
+        "center": (cx, cy),
+        "tip": anchor,
+        "right": (x + w + 8.0, cy),
+        "top": (cx, y - 8.0),
+    }
     return _ObjectExpansion(elements=elements, anchors=anchors)
 
 
-def _expand_fallback_box(*, object_id: str, frame: _Frame, refs: RenderRefs, source_ref: str) -> _ObjectExpansion:
+def _expand_fallback_box(
+    *, object_id: str, frame: _Frame, refs: RenderRefs, source_ref: str
+) -> _ObjectExpansion:
     element = DrawElement(
         id=f"{object_id}.box",
         type="rect",
@@ -1211,15 +1576,25 @@ def _resolve_label_position(
         return frame.x + 12.0, frame.y + 24.0
     if anchor in anchors:
         return anchors[anchor]
-    return anchors.get("center", (frame.x + frame.width / 2.0, frame.y + frame.height / 2.0))
+    return anchors.get(
+        "center", (frame.x + frame.width / 2.0, frame.y + frame.height / 2.0)
+    )
 
 
 def _frame_from_layout(raw_frame: Any, *, fallback: _Frame) -> _Frame:
     if not isinstance(raw_frame, dict):
         return fallback
 
-    x = float(raw_frame.get("x", fallback.x)) if isinstance(raw_frame.get("x"), int | float) else fallback.x
-    y = float(raw_frame.get("y", fallback.y)) if isinstance(raw_frame.get("y"), int | float) else fallback.y
+    x = (
+        float(raw_frame.get("x", fallback.x))
+        if isinstance(raw_frame.get("x"), int | float)
+        else fallback.x
+    )
+    y = (
+        float(raw_frame.get("y", fallback.y))
+        if isinstance(raw_frame.get("y"), int | float)
+        else fallback.y
+    )
     width = (
         float(raw_frame.get("width", fallback.width))
         if isinstance(raw_frame.get("width"), int | float)
@@ -1234,10 +1609,20 @@ def _frame_from_layout(raw_frame: Any, *, fallback: _Frame) -> _Frame:
 
 
 def _shape_style(props: dict[str, Any]) -> dict[str, Any]:
-    stroke = props.get("stroke") if isinstance(props.get("stroke"), str) else _DEFAULT_STROKE
+    stroke = (
+        props.get("stroke") if isinstance(props.get("stroke"), str) else _DEFAULT_STROKE
+    )
     fill = props.get("fill") if isinstance(props.get("fill"), str) else _DEFAULT_FILL
-    stroke_width = float(props.get("stroke_width", 1.5)) if isinstance(props.get("stroke_width"), int | float) else 1.5
-    style: dict[str, Any] = {"stroke": stroke, "fill": fill, "stroke-width": stroke_width}
+    stroke_width = (
+        float(props.get("stroke_width", 1.5))
+        if isinstance(props.get("stroke_width"), int | float)
+        else 1.5
+    )
+    style: dict[str, Any] = {
+        "stroke": stroke,
+        "fill": fill,
+        "stroke-width": stroke_width,
+    }
     if isinstance(props.get("opacity"), int | float):
         style["opacity"] = float(props["opacity"])
     if isinstance(props.get("stroke_dasharray"), str):
@@ -1246,9 +1631,19 @@ def _shape_style(props: dict[str, Any]) -> dict[str, Any]:
 
 
 def _text_style(props: dict[str, Any]) -> dict[str, Any]:
-    fill = props.get("fill") if isinstance(props.get("fill"), str) else _DEFAULT_TEXT_FILL
-    family = props.get("font_family") if isinstance(props.get("font_family"), str) else _DEFAULT_FONT_FAMILY
-    size = float(props.get("font_size", _DEFAULT_FONT_SIZE)) if isinstance(props.get("font_size"), int | float) else _DEFAULT_FONT_SIZE
+    fill = (
+        props.get("fill") if isinstance(props.get("fill"), str) else _DEFAULT_TEXT_FILL
+    )
+    family = (
+        props.get("font_family")
+        if isinstance(props.get("font_family"), str)
+        else _DEFAULT_FONT_FAMILY
+    )
+    size = (
+        float(props.get("font_size", _DEFAULT_FONT_SIZE))
+        if isinstance(props.get("font_size"), int | float)
+        else _DEFAULT_FONT_SIZE
+    )
     style: dict[str, Any] = {"fill": fill, "font-family": family, "font-size": size}
     if isinstance(props.get("font_weight"), str):
         style["font-weight"] = props["font_weight"]

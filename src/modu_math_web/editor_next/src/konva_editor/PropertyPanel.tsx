@@ -288,6 +288,7 @@ function AnswerBindingFields({
         <ReadOnlyField label="정답" value="연결할 answer_key가 없습니다" />
       )}
       <ReadOnlyField label="정답 값" value={answerValueLabel(selectedAnswerOption, interaction)} />
+      {selectedAnswerOption?.unit ? <ReadOnlyField label="정답 단위" value={selectedAnswerOption.unit} /> : null}
       <ReadOnlyField label="정답 연결 상태" value={answerBindingStatusLabel(selectedAnswerOption, interaction, answerOptions)} />
     </>
   );
@@ -310,7 +311,7 @@ function selectedAnswerBinding(interaction: InputInteraction, answerOptions: Ans
 }
 
 function answerValueLabel(option: AnswerBindingOption | null, interaction: InputInteraction): string {
-  if (option) return `${option.value}${option.unit ? ` ${option.unit}` : ""}`;
+  if (option) return option.value;
   if (interaction.answer_ref) return `연결 ref: ${interaction.answer_ref}`;
   if (typeof interaction.answer_key_index === "number") return `연결 index: ${interaction.answer_key_index}`;
   if (typeof interaction.order === "number") return `순서 ${interaction.order}에 해당하는 answer_key를 찾지 못했습니다`;

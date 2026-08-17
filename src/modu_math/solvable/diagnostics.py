@@ -1,7 +1,7 @@
 from __future__ import annotations
 
+import re
 from typing import Any
-
 
 ERROR_CATALOG: dict[str, dict[str, str]] = {
     "understand.target": {
@@ -92,7 +92,9 @@ def diagnose_student_response(
     diagnostics = solvable.get("diagnostics")
     errors = diagnostics.get("errors") if isinstance(diagnostics, dict) else None
     error_code = errors.get(response_key) if isinstance(errors, dict) else None
-    catalog_entry = ERROR_CATALOG.get(error_code) if isinstance(error_code, str) else None
+    catalog_entry = (
+        ERROR_CATALOG.get(error_code) if isinstance(error_code, str) else None
+    )
 
     if catalog_entry:
         return _diagnostic_result(error_code, catalog_entry, confirmed=confirm)
@@ -120,7 +122,11 @@ def confirm_diagnostic_response(
 
     catalog_entry = ERROR_CATALOG.get(error_code)
     if not catalog_entry:
-        return {"status": "unknown", "diagnostic_status": "candidate", "stage": "review"}
+        return {
+            "status": "unknown",
+            "diagnostic_status": "candidate",
+            "stage": "review",
+        }
 
     text = str(student_response).strip()
     if _looks_negative(text):
@@ -134,7 +140,9 @@ def confirm_diagnostic_response(
     return _diagnostic_result(error_code, catalog_entry, confirmed=False)
 
 
-def _diagnostic_result(error_code: str, catalog_entry: dict[str, str], *, confirmed: bool) -> dict[str, Any]:
+def _diagnostic_result(
+    error_code: str, catalog_entry: dict[str, str], *, confirmed: bool
+) -> dict[str, Any]:
     diagnostic_status = "confirmed" if confirmed else "candidate"
     return {
         "status": diagnostic_status,
@@ -144,13 +152,17 @@ def _diagnostic_result(error_code: str, catalog_entry: dict[str, str], *, confir
         "skill_id": catalog_entry.get("skill_id") or error_code,
         "error_category": catalog_entry.get("category") or catalog_entry["stage"],
         "feedback": catalog_entry["feedback"],
-        "confirmation_question": catalog_entry.get("confirmation_question") or catalog_entry["feedback"],
+        "confirmation_question": catalog_entry.get("confirmation_question")
+        or catalog_entry["feedback"],
         "remediation": catalog_entry["remediation"],
     }
 
 
-def _infer_arithmetic_error(solvable: dict[str, Any], response_key: str) -> dict[str, Any] | None:
-    if not response_key or not response_key.lstrip("-").isdigit():
+def _infer_arithmetic_error(
+    solvable: dict[str, Any], response_key: str
+) -> dict[str, Any] | None:
+    parsed_response = _parse_int(response_key)
+    if parsed_response is None:
         return None
 
     expected = _expected_integer(solvable)
@@ -165,7 +177,7 @@ def _infer_arithmetic_error(solvable: dict[str, Any], response_key: str) -> dict
     if len(terms) < 2 or sum(terms) != expected:
         return None
 
-    normalized = response_key.lstrip("0") or "0"
+    normalized = str(parsed_response)
     if normalized == str(expected):
         return None
 
@@ -177,7 +189,9 @@ def _infer_arithmetic_error(solvable: dict[str, Any], response_key: str) -> dict
         )
 
     if _has_column_carry(terms):
-        return _diagnostic_result("execute.add_carry", ERROR_CATALOG["execute.add_carry"], confirmed=False)
+        return _diagnostic_result(
+            "execute.add_carry", ERROR_CATALOG["execute.add_carry"], confirmed=False
+        )
 
     return None
 
@@ -237,8 +251,10 @@ def _parse_int(value: Any) -> int | None:
         return value
     if isinstance(value, float) and value.is_integer():
         return int(value)
-    if isinstance(value, str) and value.strip().lstrip("-").isdigit():
-        return int(value.strip())
+    if isinstance(value, str):
+        match = re.search(r"-?\d+", value.strip())
+        if match:
+            return int(match.group(0))
     return None
 
 
@@ -263,7 +279,18 @@ def _has_column_carry(terms: list[int]) -> bool:
 
 def _looks_positive(text: str) -> bool:
     normalized = text.strip().lower()
-    return normalized in {"y", "yes", "ok", "okay", "맞아", "맞아요", "네", "응", "예", "그래"}
+    return normalized in {
+        "y",
+        "yes",
+        "ok",
+        "okay",
+        "맞아",
+        "맞아요",
+        "네",
+        "응",
+        "예",
+        "그래",
+    }
 
 
 def _looks_negative(text: str) -> bool:

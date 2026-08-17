@@ -5,8 +5,32 @@ from collections.abc import Mapping, Sequence
 from pprint import pformat
 from typing import Any
 
-from .models.base import BlankSlot, Canvas, ChoiceSlot, CircleSlot, Constraint, Group, ImageSlot, LabelSlot, LineSlot, PathSlot, PolygonSlot, RectSlot, Region, TextBoxSlot, TextSlot
-from .models.objects import Arrow, Circle, Cube, FractionAreaModel, Grid, ShapeObject, Triangle
+from .models.base import (
+    BlankSlot,
+    Canvas,
+    ChoiceSlot,
+    CircleSlot,
+    Constraint,
+    Group,
+    ImageSlot,
+    LabelSlot,
+    LineSlot,
+    PathSlot,
+    PolygonSlot,
+    RectSlot,
+    Region,
+    TextBoxSlot,
+    TextSlot,
+)
+from .models.objects import (
+    Arrow,
+    Circle,
+    Cube,
+    FractionAreaModel,
+    Grid,
+    ShapeObject,
+    Triangle,
+)
 from .models.templates import DiagramTemplate, ProblemTemplate
 
 
@@ -27,7 +51,10 @@ def problem_template_from_layout(
         coordinate_mode=_coordinate_mode(canvas_raw.get("coordinate_mode")),
     )
 
-    regions = tuple(_region_from_layout(item, index) for index, item in enumerate(_sequence(layout.get("regions"))))
+    regions = tuple(
+        _region_from_layout(item, index)
+        for index, item in enumerate(_sequence(layout.get("regions")))
+    )
     choice_answer_keys, blank_answer_keys = _build_slot_answer_maps(semantic)
     slots = tuple(
         _slot_from_layout(
@@ -38,11 +65,18 @@ def problem_template_from_layout(
         )
         for index, item in enumerate(_sequence(layout.get("slots")))
     )
-    groups = tuple(_group_from_layout(item, index) for index, item in enumerate(_sequence(layout.get("groups"))))
-    constraints = tuple(
-        _constraint_from_layout(item, index) for index, item in enumerate(_sequence(layout.get("constraints")))
+    groups = tuple(
+        _group_from_layout(item, index)
+        for index, item in enumerate(_sequence(layout.get("groups")))
     )
-    diagrams = tuple(_diagram_from_layout(item, index) for index, item in enumerate(_sequence(layout.get("diagrams"))))
+    constraints = tuple(
+        _constraint_from_layout(item, index)
+        for index, item in enumerate(_sequence(layout.get("constraints")))
+    )
+    diagrams = tuple(
+        _diagram_from_layout(item, index)
+        for index, item in enumerate(_sequence(layout.get("diagrams")))
+    )
 
     return ProblemTemplate(
         id=problem_id,
@@ -70,7 +104,9 @@ def export_layout_to_dsl_source(
         raise ValueError(f"variable_name must be a valid identifier: {variable_name!r}")
 
     template = problem_template_from_layout(layout, semantic=semantic)
-    return _render_problem_template_source(template, function_name=function_name, variable_name=variable_name)
+    return _render_problem_template_source(
+        template, function_name=function_name, variable_name=variable_name
+    )
 
 
 def _render_problem_template_source(
@@ -87,13 +123,43 @@ def _render_problem_template_source(
         f"def {function_name}() -> ProblemTemplate:",
     ]
 
-    lines.extend(_format_call_assignment("canvas", "Canvas", _canvas_kwargs(template.canvas), indent=1))
-    lines.extend(_format_tuple_assignment("regions", [_region_kwargs(region) for region in template.regions], "Region", indent=1))
-    lines.extend(_format_tuple_assignment("slots", [_slot_kwargs_with_answer_metadata(slot) for slot in template.slots], None, indent=1))
     lines.extend(
-        _format_tuple_assignment("diagrams", [_diagram_kwargs(diagram) for diagram in template.diagrams], None, indent=1)
+        _format_call_assignment(
+            "canvas", "Canvas", _canvas_kwargs(template.canvas), indent=1
+        )
     )
-    lines.extend(_format_tuple_assignment("groups", [_group_kwargs(group) for group in template.groups], "Group", indent=1))
+    lines.extend(
+        _format_tuple_assignment(
+            "regions",
+            [_region_kwargs(region) for region in template.regions],
+            "Region",
+            indent=1,
+        )
+    )
+    lines.extend(
+        _format_tuple_assignment(
+            "slots",
+            [_slot_kwargs_with_answer_metadata(slot) for slot in template.slots],
+            None,
+            indent=1,
+        )
+    )
+    lines.extend(
+        _format_tuple_assignment(
+            "diagrams",
+            [_diagram_kwargs(diagram) for diagram in template.diagrams],
+            None,
+            indent=1,
+        )
+    )
+    lines.extend(
+        _format_tuple_assignment(
+            "groups",
+            [_group_kwargs(group) for group in template.groups],
+            "Group",
+            indent=1,
+        )
+    )
     lines.extend(
         _format_tuple_assignment(
             "constraints",
@@ -117,7 +183,14 @@ def _render_problem_template_source(
                 ("constraints", "constraints"),
             ],
             indent=1,
-            raw_keys={"canvas", "regions", "slots", "diagrams", "groups", "constraints"},
+            raw_keys={
+                "canvas",
+                "regions",
+                "slots",
+                "diagrams",
+                "groups",
+                "constraints",
+            },
             assign_to="return",
             trailing_comma=False,
         )
@@ -126,8 +199,12 @@ def _render_problem_template_source(
     return "\n".join(lines)
 
 
-def _format_call_assignment(name: str, ctor: str, kwargs: list[tuple[str, Any]], *, indent: int) -> list[str]:
-    return _format_call_lines(ctor, kwargs, indent=indent, assign_to=name, trailing_comma=False)
+def _format_call_assignment(
+    name: str, ctor: str, kwargs: list[tuple[str, Any]], *, indent: int
+) -> list[str]:
+    return _format_call_lines(
+        ctor, kwargs, indent=indent, assign_to=name, trailing_comma=False
+    )
 
 
 def _format_tuple_assignment(
@@ -144,12 +221,26 @@ def _format_tuple_assignment(
         return out
     for kwargs in items:
         if ctor:
-            raw_keys = {"objects", "label_slots", "constraints"} if ctor == "DiagramTemplate" else None
-            out.extend(_format_call_lines(ctor, kwargs, indent=indent + 1, raw_keys=raw_keys))
+            raw_keys = (
+                {"objects", "label_slots", "constraints"}
+                if ctor == "DiagramTemplate"
+                else None
+            )
+            out.extend(
+                _format_call_lines(ctor, kwargs, indent=indent + 1, raw_keys=raw_keys)
+            )
             continue
         item_ctor = _infer_ctor(kwargs)
-        item_raw_keys = {"objects", "label_slots", "constraints"} if item_ctor == "DiagramTemplate" else None
-        out.extend(_format_call_lines(item_ctor, kwargs, indent=indent + 1, raw_keys=item_raw_keys))
+        item_raw_keys = (
+            {"objects", "label_slots", "constraints"}
+            if item_ctor == "DiagramTemplate"
+            else None
+        )
+        out.extend(
+            _format_call_lines(
+                item_ctor, kwargs, indent=indent + 1, raw_keys=item_raw_keys
+            )
+        )
     out.append(f"{prefix})")
     return out
 
@@ -215,9 +306,26 @@ def _region_kwargs(region: Region) -> list[tuple[str, Any]]:
     ]
 
 
-def _slot_kwargs_with_answer_metadata(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | LineSlot | CircleSlot | PolygonSlot | ImageSlot | PathSlot) -> list[tuple[str, Any]]:
+def _slot_kwargs_with_answer_metadata(
+    slot: (
+        TextSlot
+        | TextBoxSlot
+        | ChoiceSlot
+        | BlankSlot
+        | LabelSlot
+        | RectSlot
+        | LineSlot
+        | CircleSlot
+        | PolygonSlot
+        | ImageSlot
+        | PathSlot
+    ),
+) -> list[tuple[str, Any]]:
     kwargs = _slot_kwargs(slot)
-    ctor_index = next((index for index, (key, _) in enumerate(kwargs) if key == "__ctor__"), len(kwargs))
+    ctor_index = next(
+        (index for index, (key, _) in enumerate(kwargs) if key == "__ctor__"),
+        len(kwargs),
+    )
     extras: list[tuple[str, Any]] = []
     if slot.interaction is not None:
         extras.append(("interaction", dict(slot.interaction)))
@@ -228,7 +336,21 @@ def _slot_kwargs_with_answer_metadata(slot: TextSlot | TextBoxSlot | ChoiceSlot 
     return kwargs
 
 
-def _slot_kwargs(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | LineSlot | CircleSlot | PolygonSlot | ImageSlot | PathSlot) -> list[tuple[str, Any]]:
+def _slot_kwargs(
+    slot: (
+        TextSlot
+        | TextBoxSlot
+        | ChoiceSlot
+        | BlankSlot
+        | LabelSlot
+        | RectSlot
+        | LineSlot
+        | CircleSlot
+        | PolygonSlot
+        | ImageSlot
+        | PathSlot
+    ),
+) -> list[tuple[str, Any]]:
     if isinstance(slot, TextSlot):
         out: list[tuple[str, Any]] = [
             ("id", slot.id),
@@ -293,7 +415,12 @@ def _slot_kwargs(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSl
             out.append(("answer_key", tuple(slot.answer_key)))
         return out
     if isinstance(slot, BlankSlot):
-        out = [("id", slot.id), ("prompt", slot.prompt), ("placeholder", slot.placeholder), ("__ctor__", "BlankSlot")]
+        out = [
+            ("id", slot.id),
+            ("prompt", slot.prompt),
+            ("placeholder", slot.placeholder),
+            ("__ctor__", "BlankSlot"),
+        ]
         if slot.answer_key is not None:
             out.append(("answer_key", slot.answer_key))
         if slot.x is not None:
@@ -459,33 +586,76 @@ def _constraint_kwargs(constraint: Constraint) -> list[tuple[str, Any]]:
 def _diagram_kwargs(diagram: DiagramTemplate) -> list[tuple[str, Any]]:
     return [
         ("id", diagram.id),
-        ("objects", _tuple_expr_repr([_shape_call_repr(shape) for shape in diagram.objects])),
-        ("label_slots", _tuple_expr_repr([_slot_call_repr(slot) for slot in diagram.label_slots])),
-        ("constraints", _tuple_expr_repr([_constraint_call_repr(item) for item in diagram.constraints])),
+        (
+            "objects",
+            _tuple_expr_repr([_shape_call_repr(shape) for shape in diagram.objects]),
+        ),
+        (
+            "label_slots",
+            _tuple_expr_repr([_slot_call_repr(slot) for slot in diagram.label_slots]),
+        ),
+        (
+            "constraints",
+            _tuple_expr_repr(
+                [_constraint_call_repr(item) for item in diagram.constraints]
+            ),
+        ),
         ("__ctor__", "DiagramTemplate"),
     ]
 
 
 def _shape_call_repr(shape: ShapeObject) -> str:
     if isinstance(shape, Cube):
-        kwargs = [("id", shape.id), ("style_role", shape.style_role), ("edge_label_mode", shape.edge_label_mode), ("perspective", shape.perspective)]
+        kwargs = [
+            ("id", shape.id),
+            ("style_role", shape.style_role),
+            ("edge_label_mode", shape.edge_label_mode),
+            ("perspective", shape.perspective),
+        ]
         return _call_repr("Cube", kwargs)
     if isinstance(shape, Triangle):
-        kwargs = [("id", shape.id), ("style_role", shape.style_role), ("variant", shape.variant)]
+        kwargs = [
+            ("id", shape.id),
+            ("style_role", shape.style_role),
+            ("variant", shape.variant),
+        ]
         return _call_repr("Triangle", kwargs)
     if isinstance(shape, Circle):
-        kwargs = [("id", shape.id), ("style_role", shape.style_role), ("mark_center", shape.mark_center)]
+        kwargs = [
+            ("id", shape.id),
+            ("style_role", shape.style_role),
+            ("mark_center", shape.mark_center),
+        ]
         return _call_repr("Circle", kwargs)
     if isinstance(shape, Grid):
-        kwargs = [("id", shape.id), ("style_role", shape.style_role), ("rows", shape.rows), ("cols", shape.cols)]
+        kwargs = [
+            ("id", shape.id),
+            ("style_role", shape.style_role),
+            ("rows", shape.rows),
+            ("cols", shape.cols),
+        ]
         return _call_repr("Grid", kwargs)
     if isinstance(shape, Arrow):
-        kwargs = [("id", shape.id), ("style_role", shape.style_role), ("direction", shape.direction)]
+        kwargs = [
+            ("id", shape.id),
+            ("style_role", shape.style_role),
+            ("direction", shape.direction),
+        ]
         return _call_repr("Arrow", kwargs)
     if isinstance(shape, FractionAreaModel):
-        kwargs = [("id", shape.id), ("style_role", shape.style_role), ("partitions", shape.partitions), ("shaded", shape.shaded), ("orientation", shape.orientation)]
+        kwargs = [
+            ("id", shape.id),
+            ("style_role", shape.style_role),
+            ("partitions", shape.partitions),
+            ("shaded", shape.shaded),
+            ("orientation", shape.orientation),
+        ]
         return _call_repr("FractionAreaModel", kwargs)
-    kwargs = [("id", shape.id), ("object_type", shape.object_type), ("style_role", shape.style_role)]
+    kwargs = [
+        ("id", shape.id),
+        ("object_type", shape.object_type),
+        ("style_role", shape.style_role),
+    ]
     return _call_repr("ShapeObject", kwargs)
 
 
@@ -509,7 +679,10 @@ def _constraint_call_repr(constraint: Constraint) -> str:
             ("id", constraint.id),
             ("type", constraint.type),
             ("target_ids", tuple(constraint.target_ids)),
-            ("params", dict(sorted(constraint.params.items(), key=lambda item: item[0]))),
+            (
+                "params",
+                dict(sorted(constraint.params.items(), key=lambda item: item[0])),
+            ),
         ],
     )
 
@@ -547,13 +720,29 @@ def _problem_template_expr(template: ProblemTemplate) -> ast.expr:
             ast.keyword(arg="id", value=ast.Constant(value=template.id)),
             ast.keyword(arg="title", value=ast.Constant(value=template.title)),
             ast.keyword(arg="canvas", value=_canvas_expr(template.canvas)),
-            ast.keyword(arg="regions", value=_tuple_expr(_region_expr(region) for region in template.regions)),
-            ast.keyword(arg="slots", value=_tuple_expr(_slot_expr(slot) for slot in template.slots)),
-            ast.keyword(arg="diagrams", value=_tuple_expr(_diagram_expr(diagram) for diagram in template.diagrams)),
-            ast.keyword(arg="groups", value=_tuple_expr(_group_expr(group) for group in template.groups)),
+            ast.keyword(
+                arg="regions",
+                value=_tuple_expr(_region_expr(region) for region in template.regions),
+            ),
+            ast.keyword(
+                arg="slots",
+                value=_tuple_expr(_slot_expr(slot) for slot in template.slots),
+            ),
+            ast.keyword(
+                arg="diagrams",
+                value=_tuple_expr(
+                    _diagram_expr(diagram) for diagram in template.diagrams
+                ),
+            ),
+            ast.keyword(
+                arg="groups",
+                value=_tuple_expr(_group_expr(group) for group in template.groups),
+            ),
             ast.keyword(
                 arg="constraints",
-                value=_tuple_expr(_constraint_expr(constraint) for constraint in template.constraints),
+                value=_tuple_expr(
+                    _constraint_expr(constraint) for constraint in template.constraints
+                ),
             ),
         ],
     )
@@ -566,7 +755,9 @@ def _canvas_expr(canvas: Canvas) -> ast.expr:
         keywords=[
             ast.keyword(arg="width", value=ast.Constant(value=canvas.width)),
             ast.keyword(arg="height", value=ast.Constant(value=canvas.height)),
-            ast.keyword(arg="coordinate_mode", value=ast.Constant(value=canvas.coordinate_mode)),
+            ast.keyword(
+                arg="coordinate_mode", value=ast.Constant(value=canvas.coordinate_mode)
+            ),
         ],
     )
 
@@ -579,12 +770,46 @@ def _region_expr(region: Region) -> ast.expr:
             ast.keyword(arg="id", value=ast.Constant(value=region.id)),
             ast.keyword(arg="role", value=ast.Constant(value=region.role)),
             ast.keyword(arg="flow", value=ast.Constant(value=region.flow)),
-            ast.keyword(arg="slot_ids", value=_tuple_expr(ast.Constant(value=item) for item in region.slot_ids)),
+            ast.keyword(
+                arg="slot_ids",
+                value=_tuple_expr(
+                    ast.Constant(value=item)
+                    for item in _flatten_slot_ids(region.slot_ids)
+                ),
+            ),
         ],
     )
 
 
-def _slot_expr(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | LineSlot | CircleSlot | PolygonSlot | ImageSlot | PathSlot) -> ast.expr:
+def _flatten_slot_ids(items: Any) -> tuple[str, ...]:
+    if isinstance(items, str):
+        return (items,)
+    if not isinstance(items, (list, tuple)):
+        return ()
+    out: list[str] = []
+    for item in items:
+        if isinstance(item, str):
+            out.append(item)
+        elif isinstance(item, (list, tuple)):
+            out.extend(_flatten_slot_ids(item))
+    return tuple(out)
+
+
+def _slot_expr(
+    slot: (
+        TextSlot
+        | TextBoxSlot
+        | ChoiceSlot
+        | BlankSlot
+        | LabelSlot
+        | RectSlot
+        | LineSlot
+        | CircleSlot
+        | PolygonSlot
+        | ImageSlot
+        | PathSlot
+    ),
+) -> ast.expr:
     if isinstance(slot, TextSlot):
         keywords = [
             ast.keyword(arg="id", value=ast.Constant(value=slot.id)),
@@ -597,17 +822,33 @@ def _slot_expr(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot
         if slot.y is not None:
             keywords.append(ast.keyword(arg="y", value=ast.Constant(value=slot.y)))
         if slot.font_size is not None:
-            keywords.append(ast.keyword(arg="font_size", value=ast.Constant(value=slot.font_size)))
+            keywords.append(
+                ast.keyword(arg="font_size", value=ast.Constant(value=slot.font_size))
+            )
         if slot.max_width is not None:
-            keywords.append(ast.keyword(arg="max_width", value=ast.Constant(value=slot.max_width)))
+            keywords.append(
+                ast.keyword(arg="max_width", value=ast.Constant(value=slot.max_width))
+            )
         if isinstance(slot.font_family, str) and slot.font_family:
-            keywords.append(ast.keyword(arg="font_family", value=ast.Constant(value=slot.font_family)))
+            keywords.append(
+                ast.keyword(
+                    arg="font_family", value=ast.Constant(value=slot.font_family)
+                )
+            )
         if isinstance(slot.anchor, str) and slot.anchor:
-            keywords.append(ast.keyword(arg="anchor", value=ast.Constant(value=slot.anchor)))
+            keywords.append(
+                ast.keyword(arg="anchor", value=ast.Constant(value=slot.anchor))
+            )
         if isinstance(slot.fill, str) and slot.fill:
-            keywords.append(ast.keyword(arg="fill", value=ast.Constant(value=slot.fill)))
+            keywords.append(
+                ast.keyword(arg="fill", value=ast.Constant(value=slot.fill))
+            )
         if isinstance(slot.semantic_role, str) and slot.semantic_role:
-            keywords.append(ast.keyword(arg="semantic_role", value=ast.Constant(value=slot.semantic_role)))
+            keywords.append(
+                ast.keyword(
+                    arg="semantic_role", value=ast.Constant(value=slot.semantic_role)
+                )
+            )
         return ast.Call(
             func=ast.Name(id="TextSlot", ctx=ast.Load()),
             args=[],
@@ -625,19 +866,39 @@ def _slot_expr(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot
             ast.keyword(arg="height", value=ast.Constant(value=slot.height)),
         ]
         if slot.font_size is not None:
-            keywords.append(ast.keyword(arg="font_size", value=ast.Constant(value=slot.font_size)))
+            keywords.append(
+                ast.keyword(arg="font_size", value=ast.Constant(value=slot.font_size))
+            )
         if isinstance(slot.font_family, str) and slot.font_family:
-            keywords.append(ast.keyword(arg="font_family", value=ast.Constant(value=slot.font_family)))
+            keywords.append(
+                ast.keyword(
+                    arg="font_family", value=ast.Constant(value=slot.font_family)
+                )
+            )
         if slot.align != "left":
-            keywords.append(ast.keyword(arg="align", value=ast.Constant(value=slot.align)))
+            keywords.append(
+                ast.keyword(arg="align", value=ast.Constant(value=slot.align))
+            )
         if slot.valign != "top":
-            keywords.append(ast.keyword(arg="valign", value=ast.Constant(value=slot.valign)))
+            keywords.append(
+                ast.keyword(arg="valign", value=ast.Constant(value=slot.valign))
+            )
         if slot.line_height is not None:
-            keywords.append(ast.keyword(arg="line_height", value=ast.Constant(value=slot.line_height)))
+            keywords.append(
+                ast.keyword(
+                    arg="line_height", value=ast.Constant(value=slot.line_height)
+                )
+            )
         if isinstance(slot.fill, str) and slot.fill:
-            keywords.append(ast.keyword(arg="fill", value=ast.Constant(value=slot.fill)))
+            keywords.append(
+                ast.keyword(arg="fill", value=ast.Constant(value=slot.fill))
+            )
         if isinstance(slot.semantic_role, str) and slot.semantic_role:
-            keywords.append(ast.keyword(arg="semantic_role", value=ast.Constant(value=slot.semantic_role)))
+            keywords.append(
+                ast.keyword(
+                    arg="semantic_role", value=ast.Constant(value=slot.semantic_role)
+                )
+            )
         return ast.Call(
             func=ast.Name(id="TextBoxSlot", ctx=ast.Load()),
             args=[],
@@ -647,11 +908,23 @@ def _slot_expr(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot
         keywords = [
             ast.keyword(arg="id", value=ast.Constant(value=slot.id)),
             ast.keyword(arg="prompt", value=ast.Constant(value=slot.prompt)),
-            ast.keyword(arg="choices", value=_tuple_expr(ast.Constant(value=item) for item in slot.choices)),
-            ast.keyword(arg="multiple_select", value=ast.Constant(value=slot.multiple_select)),
+            ast.keyword(
+                arg="choices",
+                value=_tuple_expr(ast.Constant(value=item) for item in slot.choices),
+            ),
+            ast.keyword(
+                arg="multiple_select", value=ast.Constant(value=slot.multiple_select)
+            ),
         ]
         if slot.answer_key:
-            keywords.append(ast.keyword(arg="answer_key", value=_tuple_expr(ast.Constant(value=item) for item in slot.answer_key)))
+            keywords.append(
+                ast.keyword(
+                    arg="answer_key",
+                    value=_tuple_expr(
+                        ast.Constant(value=item) for item in slot.answer_key
+                    ),
+                )
+            )
         return ast.Call(
             func=ast.Name(id="ChoiceSlot", ctx=ast.Load()),
             args=[],
@@ -664,21 +937,35 @@ def _slot_expr(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot
             ast.keyword(arg="placeholder", value=ast.Constant(value=slot.placeholder)),
         ]
         if slot.answer_key is not None:
-            keywords.append(ast.keyword(arg="answer_key", value=ast.Constant(value=slot.answer_key)))
+            keywords.append(
+                ast.keyword(arg="answer_key", value=ast.Constant(value=slot.answer_key))
+            )
         if slot.x is not None:
             keywords.append(ast.keyword(arg="x", value=ast.Constant(value=slot.x)))
         if slot.y is not None:
             keywords.append(ast.keyword(arg="y", value=ast.Constant(value=slot.y)))
         if slot.width is not None:
-            keywords.append(ast.keyword(arg="width", value=ast.Constant(value=slot.width)))
+            keywords.append(
+                ast.keyword(arg="width", value=ast.Constant(value=slot.width))
+            )
         if slot.height is not None:
-            keywords.append(ast.keyword(arg="height", value=ast.Constant(value=slot.height)))
+            keywords.append(
+                ast.keyword(arg="height", value=ast.Constant(value=slot.height))
+            )
         if isinstance(slot.fill, str):
-            keywords.append(ast.keyword(arg="fill", value=ast.Constant(value=slot.fill)))
+            keywords.append(
+                ast.keyword(arg="fill", value=ast.Constant(value=slot.fill))
+            )
         if isinstance(slot.stroke, str):
-            keywords.append(ast.keyword(arg="stroke", value=ast.Constant(value=slot.stroke)))
+            keywords.append(
+                ast.keyword(arg="stroke", value=ast.Constant(value=slot.stroke))
+            )
         if slot.stroke_width is not None:
-            keywords.append(ast.keyword(arg="stroke_width", value=ast.Constant(value=slot.stroke_width)))
+            keywords.append(
+                ast.keyword(
+                    arg="stroke_width", value=ast.Constant(value=slot.stroke_width)
+                )
+            )
         return ast.Call(
             func=ast.Name(id="BlankSlot", ctx=ast.Load()),
             args=[],
@@ -694,20 +981,39 @@ def _slot_expr(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot
             ast.keyword(arg="height", value=ast.Constant(value=slot.height)),
         ]
         if isinstance(slot.stroke, str):
-            keywords.append(ast.keyword(arg="stroke", value=ast.Constant(value=slot.stroke)))
+            keywords.append(
+                ast.keyword(arg="stroke", value=ast.Constant(value=slot.stroke))
+            )
         if slot.stroke_width is not None:
-            keywords.append(ast.keyword(arg="stroke_width", value=ast.Constant(value=slot.stroke_width)))
+            keywords.append(
+                ast.keyword(
+                    arg="stroke_width", value=ast.Constant(value=slot.stroke_width)
+                )
+            )
         if isinstance(slot.stroke_dasharray, str) and slot.stroke_dasharray:
-            keywords.append(ast.keyword(arg="stroke_dasharray", value=ast.Constant(value=slot.stroke_dasharray)))
+            keywords.append(
+                ast.keyword(
+                    arg="stroke_dasharray",
+                    value=ast.Constant(value=slot.stroke_dasharray),
+                )
+            )
         if slot.rx is not None:
             keywords.append(ast.keyword(arg="rx", value=ast.Constant(value=slot.rx)))
         if slot.ry is not None:
             keywords.append(ast.keyword(arg="ry", value=ast.Constant(value=slot.ry)))
         if isinstance(slot.fill, str):
-            keywords.append(ast.keyword(arg="fill", value=ast.Constant(value=slot.fill)))
+            keywords.append(
+                ast.keyword(arg="fill", value=ast.Constant(value=slot.fill))
+            )
         if isinstance(slot.semantic_role, str) and slot.semantic_role:
-            keywords.append(ast.keyword(arg="semantic_role", value=ast.Constant(value=slot.semantic_role)))
-        return ast.Call(func=ast.Name(id="RectSlot", ctx=ast.Load()), args=[], keywords=keywords)
+            keywords.append(
+                ast.keyword(
+                    arg="semantic_role", value=ast.Constant(value=slot.semantic_role)
+                )
+            )
+        return ast.Call(
+            func=ast.Name(id="RectSlot", ctx=ast.Load()), args=[], keywords=keywords
+        )
     if isinstance(slot, LineSlot):
         keywords = [
             ast.keyword(arg="id", value=ast.Constant(value=slot.id)),
@@ -718,14 +1024,31 @@ def _slot_expr(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot
             ast.keyword(arg="y2", value=ast.Constant(value=slot.y2)),
         ]
         if isinstance(slot.stroke, str):
-            keywords.append(ast.keyword(arg="stroke", value=ast.Constant(value=slot.stroke)))
+            keywords.append(
+                ast.keyword(arg="stroke", value=ast.Constant(value=slot.stroke))
+            )
         if slot.stroke_width is not None:
-            keywords.append(ast.keyword(arg="stroke_width", value=ast.Constant(value=slot.stroke_width)))
+            keywords.append(
+                ast.keyword(
+                    arg="stroke_width", value=ast.Constant(value=slot.stroke_width)
+                )
+            )
         if isinstance(slot.stroke_dasharray, str) and slot.stroke_dasharray:
-            keywords.append(ast.keyword(arg="stroke_dasharray", value=ast.Constant(value=slot.stroke_dasharray)))
+            keywords.append(
+                ast.keyword(
+                    arg="stroke_dasharray",
+                    value=ast.Constant(value=slot.stroke_dasharray),
+                )
+            )
         if isinstance(slot.semantic_role, str) and slot.semantic_role:
-            keywords.append(ast.keyword(arg="semantic_role", value=ast.Constant(value=slot.semantic_role)))
-        return ast.Call(func=ast.Name(id="LineSlot", ctx=ast.Load()), args=[], keywords=keywords)
+            keywords.append(
+                ast.keyword(
+                    arg="semantic_role", value=ast.Constant(value=slot.semantic_role)
+                )
+            )
+        return ast.Call(
+            func=ast.Name(id="LineSlot", ctx=ast.Load()), args=[], keywords=keywords
+        )
     if isinstance(slot, CircleSlot):
         keywords = [
             ast.keyword(arg="id", value=ast.Constant(value=slot.id)),
@@ -735,16 +1058,35 @@ def _slot_expr(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot
             ast.keyword(arg="r", value=ast.Constant(value=slot.r)),
         ]
         if isinstance(slot.stroke, str):
-            keywords.append(ast.keyword(arg="stroke", value=ast.Constant(value=slot.stroke)))
+            keywords.append(
+                ast.keyword(arg="stroke", value=ast.Constant(value=slot.stroke))
+            )
         if slot.stroke_width is not None:
-            keywords.append(ast.keyword(arg="stroke_width", value=ast.Constant(value=slot.stroke_width)))
+            keywords.append(
+                ast.keyword(
+                    arg="stroke_width", value=ast.Constant(value=slot.stroke_width)
+                )
+            )
         if isinstance(slot.stroke_dasharray, str) and slot.stroke_dasharray:
-            keywords.append(ast.keyword(arg="stroke_dasharray", value=ast.Constant(value=slot.stroke_dasharray)))
+            keywords.append(
+                ast.keyword(
+                    arg="stroke_dasharray",
+                    value=ast.Constant(value=slot.stroke_dasharray),
+                )
+            )
         if isinstance(slot.fill, str):
-            keywords.append(ast.keyword(arg="fill", value=ast.Constant(value=slot.fill)))
+            keywords.append(
+                ast.keyword(arg="fill", value=ast.Constant(value=slot.fill))
+            )
         if isinstance(slot.semantic_role, str) and slot.semantic_role:
-            keywords.append(ast.keyword(arg="semantic_role", value=ast.Constant(value=slot.semantic_role)))
-        return ast.Call(func=ast.Name(id="CircleSlot", ctx=ast.Load()), args=[], keywords=keywords)
+            keywords.append(
+                ast.keyword(
+                    arg="semantic_role", value=ast.Constant(value=slot.semantic_role)
+                )
+            )
+        return ast.Call(
+            func=ast.Name(id="CircleSlot", ctx=ast.Load()), args=[], keywords=keywords
+        )
     if isinstance(slot, PolygonSlot):
         keywords = [
             ast.keyword(arg="id", value=ast.Constant(value=slot.id)),
@@ -752,22 +1094,47 @@ def _slot_expr(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot
             ast.keyword(
                 arg="points",
                 value=_tuple_expr(
-                    ast.Tuple(elts=[ast.Constant(value=float(x)), ast.Constant(value=float(y))], ctx=ast.Load())
+                    ast.Tuple(
+                        elts=[
+                            ast.Constant(value=float(x)),
+                            ast.Constant(value=float(y)),
+                        ],
+                        ctx=ast.Load(),
+                    )
                     for x, y in slot.points
                 ),
             ),
         ]
         if isinstance(slot.stroke, str):
-            keywords.append(ast.keyword(arg="stroke", value=ast.Constant(value=slot.stroke)))
+            keywords.append(
+                ast.keyword(arg="stroke", value=ast.Constant(value=slot.stroke))
+            )
         if slot.stroke_width is not None:
-            keywords.append(ast.keyword(arg="stroke_width", value=ast.Constant(value=slot.stroke_width)))
+            keywords.append(
+                ast.keyword(
+                    arg="stroke_width", value=ast.Constant(value=slot.stroke_width)
+                )
+            )
         if isinstance(slot.stroke_dasharray, str) and slot.stroke_dasharray:
-            keywords.append(ast.keyword(arg="stroke_dasharray", value=ast.Constant(value=slot.stroke_dasharray)))
+            keywords.append(
+                ast.keyword(
+                    arg="stroke_dasharray",
+                    value=ast.Constant(value=slot.stroke_dasharray),
+                )
+            )
         if isinstance(slot.fill, str):
-            keywords.append(ast.keyword(arg="fill", value=ast.Constant(value=slot.fill)))
+            keywords.append(
+                ast.keyword(arg="fill", value=ast.Constant(value=slot.fill))
+            )
         if isinstance(slot.semantic_role, str) and slot.semantic_role:
-            keywords.append(ast.keyword(arg="semantic_role", value=ast.Constant(value=slot.semantic_role)))
-        return ast.Call(func=ast.Name(id="PolygonSlot", ctx=ast.Load()), args=[], keywords=keywords)
+            keywords.append(
+                ast.keyword(
+                    arg="semantic_role", value=ast.Constant(value=slot.semantic_role)
+                )
+            )
+        return ast.Call(
+            func=ast.Name(id="PolygonSlot", ctx=ast.Load()), args=[], keywords=keywords
+        )
     if isinstance(slot, ImageSlot):
         keywords = [
             ast.keyword(arg="id", value=ast.Constant(value=slot.id)),
@@ -779,12 +1146,25 @@ def _slot_expr(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot
             ast.keyword(arg="height", value=ast.Constant(value=slot.height)),
         ]
         if isinstance(slot.preserve_aspect_ratio, str) and slot.preserve_aspect_ratio:
-            keywords.append(ast.keyword(arg="preserve_aspect_ratio", value=ast.Constant(value=slot.preserve_aspect_ratio)))
+            keywords.append(
+                ast.keyword(
+                    arg="preserve_aspect_ratio",
+                    value=ast.Constant(value=slot.preserve_aspect_ratio),
+                )
+            )
         if isinstance(slot.transform, str) and slot.transform:
-            keywords.append(ast.keyword(arg="transform", value=ast.Constant(value=slot.transform)))
+            keywords.append(
+                ast.keyword(arg="transform", value=ast.Constant(value=slot.transform))
+            )
         if isinstance(slot.semantic_role, str) and slot.semantic_role:
-            keywords.append(ast.keyword(arg="semantic_role", value=ast.Constant(value=slot.semantic_role)))
-        return ast.Call(func=ast.Name(id="ImageSlot", ctx=ast.Load()), args=[], keywords=keywords)
+            keywords.append(
+                ast.keyword(
+                    arg="semantic_role", value=ast.Constant(value=slot.semantic_role)
+                )
+            )
+        return ast.Call(
+            func=ast.Name(id="ImageSlot", ctx=ast.Load()), args=[], keywords=keywords
+        )
     if isinstance(slot, PathSlot):
         keywords = [
             ast.keyword(arg="id", value=ast.Constant(value=slot.id)),
@@ -792,16 +1172,35 @@ def _slot_expr(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot
             ast.keyword(arg="d", value=ast.Constant(value=slot.d)),
         ]
         if isinstance(slot.stroke, str):
-            keywords.append(ast.keyword(arg="stroke", value=ast.Constant(value=slot.stroke)))
+            keywords.append(
+                ast.keyword(arg="stroke", value=ast.Constant(value=slot.stroke))
+            )
         if slot.stroke_width is not None:
-            keywords.append(ast.keyword(arg="stroke_width", value=ast.Constant(value=slot.stroke_width)))
+            keywords.append(
+                ast.keyword(
+                    arg="stroke_width", value=ast.Constant(value=slot.stroke_width)
+                )
+            )
         if isinstance(slot.stroke_dasharray, str) and slot.stroke_dasharray:
-            keywords.append(ast.keyword(arg="stroke_dasharray", value=ast.Constant(value=slot.stroke_dasharray)))
+            keywords.append(
+                ast.keyword(
+                    arg="stroke_dasharray",
+                    value=ast.Constant(value=slot.stroke_dasharray),
+                )
+            )
         if isinstance(slot.fill, str):
-            keywords.append(ast.keyword(arg="fill", value=ast.Constant(value=slot.fill)))
+            keywords.append(
+                ast.keyword(arg="fill", value=ast.Constant(value=slot.fill))
+            )
         if isinstance(slot.semantic_role, str) and slot.semantic_role:
-            keywords.append(ast.keyword(arg="semantic_role", value=ast.Constant(value=slot.semantic_role)))
-        return ast.Call(func=ast.Name(id="PathSlot", ctx=ast.Load()), args=[], keywords=keywords)
+            keywords.append(
+                ast.keyword(
+                    arg="semantic_role", value=ast.Constant(value=slot.semantic_role)
+                )
+            )
+        return ast.Call(
+            func=ast.Name(id="PathSlot", ctx=ast.Load()), args=[], keywords=keywords
+        )
     return ast.Call(
         func=ast.Name(id="LabelSlot", ctx=ast.Load()),
         args=[],
@@ -809,8 +1208,12 @@ def _slot_expr(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot
             ast.keyword(arg="id", value=ast.Constant(value=slot.id)),
             ast.keyword(arg="prompt", value=ast.Constant(value=slot.prompt)),
             ast.keyword(arg="text", value=ast.Constant(value=slot.text)),
-            ast.keyword(arg="target_object_id", value=ast.Constant(value=slot.target_object_id)),
-            ast.keyword(arg="target_anchor", value=ast.Constant(value=slot.target_anchor)),
+            ast.keyword(
+                arg="target_object_id", value=ast.Constant(value=slot.target_object_id)
+            ),
+            ast.keyword(
+                arg="target_anchor", value=ast.Constant(value=slot.target_anchor)
+            ),
         ],
     )
 
@@ -821,7 +1224,12 @@ def _group_expr(group: Group) -> ast.expr:
         args=[],
         keywords=[
             ast.keyword(arg="id", value=ast.Constant(value=group.id)),
-            ast.keyword(arg="member_ids", value=_tuple_expr(ast.Constant(value=item) for item in group.member_ids)),
+            ast.keyword(
+                arg="member_ids",
+                value=_tuple_expr(
+                    ast.Constant(value=item) for item in group.member_ids
+                ),
+            ),
             ast.keyword(arg="role", value=ast.Constant(value=group.role)),
         ],
     )
@@ -834,7 +1242,12 @@ def _constraint_expr(constraint: Constraint) -> ast.expr:
         keywords=[
             ast.keyword(arg="id", value=ast.Constant(value=constraint.id)),
             ast.keyword(arg="type", value=ast.Constant(value=constraint.type)),
-            ast.keyword(arg="target_ids", value=_tuple_expr(ast.Constant(value=item) for item in constraint.target_ids)),
+            ast.keyword(
+                arg="target_ids",
+                value=_tuple_expr(
+                    ast.Constant(value=item) for item in constraint.target_ids
+                ),
+            ),
             ast.keyword(arg="params", value=_dict_expr(constraint.params)),
         ],
     )
@@ -846,9 +1259,20 @@ def _diagram_expr(diagram: DiagramTemplate) -> ast.expr:
         args=[],
         keywords=[
             ast.keyword(arg="id", value=ast.Constant(value=diagram.id)),
-            ast.keyword(arg="objects", value=_tuple_expr(_shape_expr(item) for item in diagram.objects)),
-            ast.keyword(arg="label_slots", value=_tuple_expr(_slot_expr(item) for item in diagram.label_slots)),
-            ast.keyword(arg="constraints", value=_tuple_expr(_constraint_expr(item) for item in diagram.constraints)),
+            ast.keyword(
+                arg="objects",
+                value=_tuple_expr(_shape_expr(item) for item in diagram.objects),
+            ),
+            ast.keyword(
+                arg="label_slots",
+                value=_tuple_expr(_slot_expr(item) for item in diagram.label_slots),
+            ),
+            ast.keyword(
+                arg="constraints",
+                value=_tuple_expr(
+                    _constraint_expr(item) for item in diagram.constraints
+                ),
+            ),
         ],
     )
 
@@ -860,9 +1284,16 @@ def _shape_expr(shape: ShapeObject) -> ast.expr:
             args=[],
             keywords=[
                 ast.keyword(arg="id", value=ast.Constant(value=shape.id)),
-                ast.keyword(arg="style_role", value=ast.Constant(value=shape.style_role)),
-                ast.keyword(arg="edge_label_mode", value=ast.Constant(value=shape.edge_label_mode)),
-                ast.keyword(arg="perspective", value=ast.Constant(value=shape.perspective)),
+                ast.keyword(
+                    arg="style_role", value=ast.Constant(value=shape.style_role)
+                ),
+                ast.keyword(
+                    arg="edge_label_mode",
+                    value=ast.Constant(value=shape.edge_label_mode),
+                ),
+                ast.keyword(
+                    arg="perspective", value=ast.Constant(value=shape.perspective)
+                ),
             ],
         )
     if isinstance(shape, Triangle):
@@ -871,7 +1302,9 @@ def _shape_expr(shape: ShapeObject) -> ast.expr:
             args=[],
             keywords=[
                 ast.keyword(arg="id", value=ast.Constant(value=shape.id)),
-                ast.keyword(arg="style_role", value=ast.Constant(value=shape.style_role)),
+                ast.keyword(
+                    arg="style_role", value=ast.Constant(value=shape.style_role)
+                ),
                 ast.keyword(arg="variant", value=ast.Constant(value=shape.variant)),
             ],
         )
@@ -881,8 +1314,12 @@ def _shape_expr(shape: ShapeObject) -> ast.expr:
             args=[],
             keywords=[
                 ast.keyword(arg="id", value=ast.Constant(value=shape.id)),
-                ast.keyword(arg="style_role", value=ast.Constant(value=shape.style_role)),
-                ast.keyword(arg="mark_center", value=ast.Constant(value=shape.mark_center)),
+                ast.keyword(
+                    arg="style_role", value=ast.Constant(value=shape.style_role)
+                ),
+                ast.keyword(
+                    arg="mark_center", value=ast.Constant(value=shape.mark_center)
+                ),
             ],
         )
     if isinstance(shape, Grid):
@@ -891,7 +1328,9 @@ def _shape_expr(shape: ShapeObject) -> ast.expr:
             args=[],
             keywords=[
                 ast.keyword(arg="id", value=ast.Constant(value=shape.id)),
-                ast.keyword(arg="style_role", value=ast.Constant(value=shape.style_role)),
+                ast.keyword(
+                    arg="style_role", value=ast.Constant(value=shape.style_role)
+                ),
                 ast.keyword(arg="rows", value=ast.Constant(value=shape.rows)),
                 ast.keyword(arg="cols", value=ast.Constant(value=shape.cols)),
             ],
@@ -902,7 +1341,9 @@ def _shape_expr(shape: ShapeObject) -> ast.expr:
             args=[],
             keywords=[
                 ast.keyword(arg="id", value=ast.Constant(value=shape.id)),
-                ast.keyword(arg="style_role", value=ast.Constant(value=shape.style_role)),
+                ast.keyword(
+                    arg="style_role", value=ast.Constant(value=shape.style_role)
+                ),
                 ast.keyword(arg="direction", value=ast.Constant(value=shape.direction)),
             ],
         )
@@ -912,10 +1353,16 @@ def _shape_expr(shape: ShapeObject) -> ast.expr:
             args=[],
             keywords=[
                 ast.keyword(arg="id", value=ast.Constant(value=shape.id)),
-                ast.keyword(arg="style_role", value=ast.Constant(value=shape.style_role)),
-                ast.keyword(arg="partitions", value=ast.Constant(value=shape.partitions)),
+                ast.keyword(
+                    arg="style_role", value=ast.Constant(value=shape.style_role)
+                ),
+                ast.keyword(
+                    arg="partitions", value=ast.Constant(value=shape.partitions)
+                ),
                 ast.keyword(arg="shaded", value=ast.Constant(value=shape.shaded)),
-                ast.keyword(arg="orientation", value=ast.Constant(value=shape.orientation)),
+                ast.keyword(
+                    arg="orientation", value=ast.Constant(value=shape.orientation)
+                ),
             ],
         )
     return ast.Call(
@@ -963,7 +1410,9 @@ def _region_from_layout(raw: Any, index: int) -> Region:
         id=_require_non_empty_str(data.get("id"), f"regions[{index}].id"),
         role=_region_role(data.get("role")),
         flow=_region_flow(data.get("flow")),
-        slot_ids=tuple(_string_list(data.get("slot_ids"), f"regions[{index}].slot_ids")),
+        slot_ids=tuple(
+            _string_list(data.get("slot_ids"), f"regions[{index}].slot_ids")
+        ),
     )
 
 
@@ -973,7 +1422,19 @@ def _slot_from_layout(
     *,
     choice_answer_keys: Mapping[str, tuple[str, ...]] | None = None,
     blank_answer_keys: Mapping[str, str] | None = None,
-) -> TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | LineSlot | CircleSlot | PolygonSlot | ImageSlot | PathSlot:
+) -> (
+    TextSlot
+    | TextBoxSlot
+    | ChoiceSlot
+    | BlankSlot
+    | LabelSlot
+    | RectSlot
+    | LineSlot
+    | CircleSlot
+    | PolygonSlot
+    | ImageSlot
+    | PathSlot
+):
     data = _require_mapping(raw, f"slots[{index}]")
     slot_id = _require_non_empty_str(data.get("id"), f"slots[{index}].id")
     kind = _require_non_empty_str(data.get("kind"), f"slots[{index}].kind")
@@ -1006,8 +1467,12 @@ def _slot_from_layout(
             style_role=_string(content.get("style_role"), "body"),
             x=float(_require_number(content.get("x"), f"slots[{index}].content.x")),
             y=float(_require_number(content.get("y"), f"slots[{index}].content.y")),
-            width=float(_require_number(content.get("width"), f"slots[{index}].content.width")),
-            height=float(_require_number(content.get("height"), f"slots[{index}].content.height")),
+            width=float(
+                _require_number(content.get("width"), f"slots[{index}].content.width")
+            ),
+            height=float(
+                _require_number(content.get("height"), f"slots[{index}].content.height")
+            ),
             font_size=_int_or_none(content.get("font_size")),
             font_family=_string(content.get("font_family"), None),
             align=_text_align(content.get("align")),
@@ -1022,7 +1487,9 @@ def _slot_from_layout(
         return ChoiceSlot(
             id=slot_id,
             prompt=prompt,
-            choices=tuple(_string_list(content.get("choices"), f"slots[{index}].content.choices")),
+            choices=tuple(
+                _string_list(content.get("choices"), f"slots[{index}].content.choices")
+            ),
             answer_key=choice_answer_key,
             multiple_select=bool(content.get("multiple_select", False)),
         )
@@ -1055,8 +1522,12 @@ def _slot_from_layout(
             prompt=prompt,
             x=float(_require_number(content.get("x"), f"slots[{index}].content.x")),
             y=float(_require_number(content.get("y"), f"slots[{index}].content.y")),
-            width=float(_require_number(content.get("width"), f"slots[{index}].content.width")),
-            height=float(_require_number(content.get("height"), f"slots[{index}].content.height")),
+            width=float(
+                _require_number(content.get("width"), f"slots[{index}].content.width")
+            ),
+            height=float(
+                _require_number(content.get("height"), f"slots[{index}].content.height")
+            ),
             stroke=_string(content.get("stroke"), None),
             stroke_width=_number_or_none(content.get("stroke_width")),
             stroke_dasharray=_string(content.get("stroke_dasharray"), None),
@@ -1100,7 +1571,12 @@ def _slot_from_layout(
         if isinstance(points_raw, list):
             for point in points_raw:
                 if isinstance(point, (list, tuple)) and len(point) >= 2:
-                    points.append((float(_as_float(point[0], 0.0)), float(_as_float(point[1], 0.0))))
+                    points.append(
+                        (
+                            float(_as_float(point[0], 0.0)),
+                            float(_as_float(point[1], 0.0)),
+                        )
+                    )
         return PolygonSlot(
             id=slot_id,
             prompt=prompt,
@@ -1119,9 +1595,15 @@ def _slot_from_layout(
             href=_string(content.get("href"), "") or "",
             x=float(_require_number(content.get("x"), f"slots[{index}].content.x")),
             y=float(_require_number(content.get("y"), f"slots[{index}].content.y")),
-            width=float(_require_number(content.get("width"), f"slots[{index}].content.width")),
-            height=float(_require_number(content.get("height"), f"slots[{index}].content.height")),
-            preserve_aspect_ratio=_string(content.get("preserve_aspect_ratio"), "xMidYMid meet"),
+            width=float(
+                _require_number(content.get("width"), f"slots[{index}].content.width")
+            ),
+            height=float(
+                _require_number(content.get("height"), f"slots[{index}].content.height")
+            ),
+            preserve_aspect_ratio=_string(
+                content.get("preserve_aspect_ratio"), "xMidYMid meet"
+            ),
             transform=_string(content.get("transform"), None),
             semantic_role=_string(content.get("semantic_role"), None),
             **answer_kwargs,
@@ -1141,7 +1623,9 @@ def _slot_from_layout(
     raise ValueError(f"Unsupported slot kind: {kind!r}")
 
 
-def _answer_metadata_kwargs(content: Mapping[str, Any]) -> dict[str, dict[str, Any] | None]:
+def _answer_metadata_kwargs(
+    content: Mapping[str, Any],
+) -> dict[str, dict[str, Any] | None]:
     kwargs: dict[str, dict[str, Any] | None] = {}
     interaction = content.get("interaction")
     input_style = content.get("input_style")
@@ -1156,7 +1640,9 @@ def _group_from_layout(raw: Any, index: int) -> Group:
     data = _require_mapping(raw, f"groups[{index}]")
     return Group(
         id=_require_non_empty_str(data.get("id"), f"groups[{index}].id"),
-        member_ids=tuple(_string_list(data.get("member_ids"), f"groups[{index}].member_ids")),
+        member_ids=tuple(
+            _string_list(data.get("member_ids"), f"groups[{index}].member_ids")
+        ),
         role=_group_role(data.get("role")),
     )
 
@@ -1168,7 +1654,9 @@ def _constraint_from_layout(raw: Any, index: int) -> Constraint:
     return Constraint(
         id=_require_non_empty_str(data.get("id"), f"constraints[{index}].id"),
         type=_constraint_type(data.get("type")),
-        target_ids=tuple(_string_list(data.get("target_ids"), f"constraints[{index}].target_ids")),
+        target_ids=tuple(
+            _string_list(data.get("target_ids"), f"constraints[{index}].target_ids")
+        ),
         params=params,
     )
 
@@ -1238,7 +1726,9 @@ def _shape_from_layout(raw: Any, diagram_index: int, object_index: int) -> Shape
         return FractionAreaModel(
             id=object_id,
             style_role=style_role,
-            partitions=int(_require_number(data.get("partitions"), f"{path}.partitions")),
+            partitions=int(
+                _require_number(data.get("partitions"), f"{path}.partitions")
+            ),
             shaded=int(_require_number(data.get("shaded"), f"{path}.shaded")),
             orientation=_fraction_orientation(data.get("orientation")),
         )
@@ -1249,10 +1739,17 @@ def _shape_from_layout(raw: Any, diagram_index: int, object_index: int) -> Shape
 def _label_slot_from_layout(raw: Any, diagram_index: int, slot_index: int) -> LabelSlot:
     data = _require_mapping(raw, f"diagrams[{diagram_index}].label_slots[{slot_index}]")
     if _string(data.get("kind"), "") not in {"", "label"}:
-        raise ValueError(f"Diagram label slot must have kind='label' when provided: {data!r}")
-    content = _require_mapping(data.get("content"), f"diagrams[{diagram_index}].label_slots[{slot_index}].content")
+        raise ValueError(
+            f"Diagram label slot must have kind='label' when provided: {data!r}"
+        )
+    content = _require_mapping(
+        data.get("content"),
+        f"diagrams[{diagram_index}].label_slots[{slot_index}].content",
+    )
     return LabelSlot(
-        id=_require_non_empty_str(data.get("id"), f"diagrams[{diagram_index}].label_slots[{slot_index}].id"),
+        id=_require_non_empty_str(
+            data.get("id"), f"diagrams[{diagram_index}].label_slots[{slot_index}].id"
+        ),
         prompt=_string(data.get("prompt"), None),
         text=_string(content.get("text"), ""),
         target_object_id=_string(content.get("target_object_id"), ""),
@@ -1288,7 +1785,9 @@ def _build_slot_answer_maps(
 
             values = item.get("values")
             if isinstance(values, list):
-                tuple_values = tuple(str(value) for value in values if value is not None)
+                tuple_values = tuple(
+                    str(value) for value in values if value is not None
+                )
                 if tuple_values:
                     for ref in refs:
                         choice_answer_keys[ref] = tuple_values
@@ -1304,7 +1803,9 @@ def _build_slot_answer_maps(
         for blank in blanks:
             if not isinstance(blank, Mapping):
                 continue
-            slot_ref = _string(blank.get("slot_id"), None) or _string(blank.get("id"), None)
+            slot_ref = _string(blank.get("slot_id"), None) or _string(
+                blank.get("id"), None
+            )
             expected = blank.get("expected")
             if slot_ref and expected is not None and slot_ref not in blank_answer_keys:
                 blank_answer_keys[slot_ref] = str(expected)
@@ -1522,5 +2023,7 @@ def _fraction_orientation(value: Any) -> str:
     orientation = _string(value, "horizontal")
     allowed = {"horizontal", "vertical"}
     if orientation not in allowed:
-        raise ValueError(f"Unsupported fraction_area_model.orientation: {orientation!r}")
+        raise ValueError(
+            f"Unsupported fraction_area_model.orientation: {orientation!r}"
+        )
     return orientation

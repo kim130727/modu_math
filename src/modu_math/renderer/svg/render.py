@@ -191,8 +191,7 @@ def _element_to_svg_lines(element: RenderElement, depth: int = 1) -> list[str]:
             line_step = font_size * line_height
             text_lines = _wrap_text(element.text, box_width if box_width > 0 else None, font_size)
             total_height = max(len(text_lines), 1) * line_step
-            attrs.pop("data-vertical-align", None)
-            valign = "top"
+            valign = str(attrs.pop("data-vertical-align", "top") or "top")
             align = str(attrs.pop("data-text-align", "left"))
             if align == "center":
                 attrs["text-anchor"] = "middle"

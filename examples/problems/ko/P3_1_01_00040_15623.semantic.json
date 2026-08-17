@@ -4,15 +4,17 @@
   "metadata": {
     "title": "현석이가 어머니로부터 받은 용돈",
     "tags": [],
+    "instruction": "두 번 사용한 돈과 남은 돈을 더하여 처음 받은 용돈을 구합니다.",
     "question": "현석이는 어머니로부터 용돈을 받아 310원어치 준비물을 사고, 420원짜리 빵을 사 먹었더니 130원이 남았습니다. 어머니로부터 받은 용돈은 얼마입니까?",
-    "required_layout_ids": [],
+    "required_layout_ids": [
+      "konva_1786962334798_rect_193618"
+    ],
     "extraction_confidence": 1.0,
     "grade": 3,
     "semester": 1,
     "subject": "수학",
     "topic": "세 자리 수의 덧셈과 뺄셈",
-    "language": "ko-KR",
-    "instruction": "두 번 사용한 돈과 남은 돈을 더하여 처음 받은 용돈을 구합니다."
+    "language": "ko-KR"
   },
   "domain": {
     "objects": [
@@ -150,6 +152,21 @@
     "value": 860,
     "unit": "원",
     "target_ref": "quantity.initial_allowance",
-    "derived_from": "step.find_initial_allowance"
+    "derived_from": "step.find_initial_allowance",
+    "blanks": [
+      {
+        "id": "konva_1786962334798_rect_193618",
+        "slot_id": "konva_1786962334798_rect_193618",
+        "expected": 860,
+        "unit": "원"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "konva_1786962334798_rect_193618",
+        "value": 860,
+        "unit": "원"
+      }
+    ]
   }
 }

@@ -1,0 +1,296 @@
+{
+  "problem_id": "P3_1_01_00040_02164",
+  "view_box": {
+    "width": 400.0,
+    "height": 250.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.instruction.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 16.8,
+        "y": 10.4,
+        "fill": "#222222",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 15,
+        "width": 338.8,
+        "height": 43.0,
+        "max_width": 338.8,
+        "data-slot-kind": "text_box",
+        "data-box-x": 16.8,
+        "data-box-y": 10.4,
+        "data-box-width": 338.8,
+        "data-box-height": 43.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.15,
+        "data-semantic-role": "instruction"
+      },
+      "source_ref": "slot.instruction",
+      "refs": {
+        "layout_slot_id": "slot.instruction"
+      },
+      "text": "다음 <보기>와 같이 빈 곳에 알맞은 수를 써넣으시오."
+    },
+    {
+      "id": "slot.example_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 35.525,
+        "y": 72.164,
+        "width": 120.0,
+        "height": 121.0,
+        "fill": "#ffffff",
+        "stroke": "#888888",
+        "stroke-width": 1.2,
+        "data-semantic-role": "example_container"
+      },
+      "source_ref": "slot.example_box",
+      "refs": {
+        "layout_slot_id": "slot.example_box"
+      }
+    },
+    {
+      "id": "slot.example_circle.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 45.525 136.164 C 45.525 108.55 67.911 86.164 95.525 86.164 C 123.139 86.164 145.525 108.55 145.525 136.164 C 145.525 163.778 123.139 186.164 95.525 186.164 C 67.911 186.164 45.525 163.778 45.525 136.164 Z",
+        "stroke": "#efc66a",
+        "stroke-width": 1.1,
+        "fill": "#fff5d9",
+        "data-semantic-role": "addition_rule_diagram"
+      },
+      "source_ref": "slot.example_circle",
+      "refs": {
+        "layout_slot_id": "slot.example_circle"
+      }
+    },
+    {
+      "id": "slot.example_horizontal_line.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 45.525 136.164 L 145.525 136.164",
+        "stroke": "#efc66a",
+        "stroke-width": 1.1,
+        "fill": "none",
+        "data-semantic-role": "partition_line"
+      },
+      "source_ref": "slot.example_horizontal_line",
+      "refs": {
+        "layout_slot_id": "slot.example_horizontal_line"
+      }
+    },
+    {
+      "id": "slot.example_vertical_line.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 95.525 86.164 L 95.525 136.164",
+        "stroke": "#efc66a",
+        "stroke-width": 1.1,
+        "fill": "none",
+        "data-semantic-role": "partition_line"
+      },
+      "source_ref": "slot.example_vertical_line",
+      "refs": {
+        "layout_slot_id": "slot.example_vertical_line"
+      }
+    },
+    {
+      "id": "slot.example_label.text",
+      "type": "text",
+      "attributes": {
+        "x": 96.344,
+        "y": 56.311,
+        "fill": "#333333",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 14,
+        "text-anchor": "middle",
+        "data-semantic-role": "example_label"
+      },
+      "source_ref": "slot.example_label",
+      "refs": {
+        "layout_slot_id": "slot.example_label"
+      },
+      "text": "<보기>"
+    },
+    {
+      "id": "slot.example_left_value.text",
+      "type": "text",
+      "attributes": {
+        "x": 71.525,
+        "y": 122.164,
+        "fill": "#222222",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 15,
+        "text-anchor": "middle",
+        "data-semantic-role": "given_value"
+      },
+      "source_ref": "slot.example_left_value",
+      "refs": {
+        "layout_slot_id": "slot.example_left_value"
+      },
+      "text": "259"
+    },
+    {
+      "id": "slot.example_right_value.text",
+      "type": "text",
+      "attributes": {
+        "x": 119.525,
+        "y": 122.164,
+        "fill": "#222222",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 15,
+        "text-anchor": "middle",
+        "data-semantic-role": "given_value"
+      },
+      "source_ref": "slot.example_right_value",
+      "refs": {
+        "layout_slot_id": "slot.example_right_value"
+      },
+      "text": "287"
+    },
+    {
+      "id": "slot.example_sum.text",
+      "type": "text",
+      "attributes": {
+        "x": 95.525,
+        "y": 166.164,
+        "fill": "#222222",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 15,
+        "text-anchor": "middle",
+        "data-semantic-role": "example_result"
+      },
+      "source_ref": "slot.example_sum",
+      "refs": {
+        "layout_slot_id": "slot.example_sum"
+      },
+      "text": "546"
+    },
+    {
+      "id": "slot.item_1_circle.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 220.246 136.639 C 220.246 109.577 242.184 87.639 269.246 87.639 C 296.308 87.639 318.246 109.577 318.246 136.639 C 318.246 163.701 296.308 185.639 269.246 185.639 C 242.184 185.639 220.246 163.701 220.246 136.639 Z",
+        "stroke": "#efc66a",
+        "stroke-width": 1.1,
+        "fill": "#ffffff",
+        "data-semantic-role": "answer_diagram"
+      },
+      "source_ref": "slot.item_1_circle",
+      "refs": {
+        "layout_slot_id": "slot.item_1_circle"
+      }
+    },
+    {
+      "id": "slot.item_1_horizontal_line.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 220.246 136.639 L 318.246 136.639",
+        "stroke": "#efc66a",
+        "stroke-width": 1.1,
+        "fill": "none",
+        "data-semantic-role": "partition_line"
+      },
+      "source_ref": "slot.item_1_horizontal_line",
+      "refs": {
+        "layout_slot_id": "slot.item_1_horizontal_line"
+      }
+    },
+    {
+      "id": "slot.item_1_vertical_line.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 269.246 87.639 L 269.246 136.639",
+        "stroke": "#efc66a",
+        "stroke-width": 1.1,
+        "fill": "none",
+        "data-semantic-role": "partition_line"
+      },
+      "source_ref": "slot.item_1_vertical_line",
+      "refs": {
+        "layout_slot_id": "slot.item_1_vertical_line"
+      }
+    },
+    {
+      "id": "konva_1785217709470_rect_934908.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 242.369,
+        "y": 146.003,
+        "width": 54.115,
+        "height": 28.861,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.2
+      },
+      "source_ref": "konva_1785217709470_rect_934908",
+      "refs": {
+        "layout_slot_id": "konva_1785217709470_rect_934908"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "integer",
+        "max_length": 4,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": false,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222",
+        "width": 54.115,
+        "height": 28.861
+      }
+    },
+    {
+      "id": "slot.item_1_left_value.text",
+      "type": "text",
+      "attributes": {
+        "x": 245.246,
+        "y": 122.639,
+        "fill": "#222222",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 15,
+        "text-anchor": "middle",
+        "data-semantic-role": "given_value"
+      },
+      "source_ref": "slot.item_1_left_value",
+      "refs": {
+        "layout_slot_id": "slot.item_1_left_value"
+      },
+      "text": "236"
+    },
+    {
+      "id": "slot.item_1_right_value.text",
+      "type": "text",
+      "attributes": {
+        "x": 293.246,
+        "y": 122.639,
+        "fill": "#222222",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 15,
+        "text-anchor": "middle",
+        "data-semantic-role": "given_value"
+      },
+      "source_ref": "slot.item_1_right_value",
+      "refs": {
+        "layout_slot_id": "slot.item_1_right_value"
+      },
+      "text": "465"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

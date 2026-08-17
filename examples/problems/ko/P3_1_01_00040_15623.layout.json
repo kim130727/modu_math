@@ -14,7 +14,9 @@
       "role": "stem",
       "flow": "vertical",
       "slot_ids": [
-        "slot.question"
+        "konva_1786962334798_rect_193618",
+        "slot.question",
+        "konva_1786962334798_text_200387"
       ]
     }
   ],
@@ -37,6 +39,64 @@
         "line_height": 1.45,
         "fill": "#202124"
       }
+    },
+    {
+      "id": "konva_1786962334798_rect_193618",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 391.639,
+        "y": 137.31,
+        "width": 134.26,
+        "height": 54.69,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "integer",
+          "max_length": 3,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "answer_key_index": 0,
+          "answer_ref": "answer.value",
+          "auto_advance": false,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 134.26,
+          "height": 54.69
+        }
+      }
+    },
+    {
+      "id": "konva_1786962334798_text_200387",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "원",
+        "style_role": "body",
+        "x": 535.262,
+        "y": 142.998,
+        "width": 49.803,
+        "height": 46.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 30,
+        "line_height": 1.25,
+        "fill": "#111827"
+      }
     }
   ],
   "groups": [],
@@ -44,6 +104,8 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.question"
+    "konva_1786962334798_rect_193618",
+    "slot.question",
+    "konva_1786962334798_text_200387"
   ]
 }

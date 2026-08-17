@@ -1,7 +1,14 @@
 from __future__ import annotations
 
 from modu_math.solvable import diagnose_student_response, normalize_solvable
-from modu_math_web.editor.services.tutor_preview import _speech_instructions, _speech_voice, _system_prompt, rule_tutor_response, tutor_speech_locale
+from modu_math_web.editor.services.tutor_preview import (
+    _speech_instructions,
+    _speech_voice,
+    _system_prompt,
+    _tutor_steps,
+    rule_tutor_response,
+    tutor_speech_locale,
+)
 
 
 def test_tutor_prompt_explains_inscribed_hexagon_radius_relation() -> None:
@@ -51,9 +58,55 @@ def test_rule_tutor_uses_problem_language_for_default_reply() -> None:
     assert "단계" not in first["reply"]
 
 
+def test_tutor_steps_compact_vertical_addition_micro_steps() -> None:
+    payload = {
+        "semantic": {"metadata": {"language": "ko"}},
+        "solvable": {
+            "schema": "modu.solvable.v1.2",
+            "problem_type": "multi_blank_vertical_addition",
+            "inputs": {
+                "answer_type": "digit_list",
+                "quantities": {"first_addend": 664, "second_addend": 257},
+            },
+            "target": {"type": "digit_list"},
+            "steps": [
+                {"id": "step.add_ones", "expr": "4 + 7", "value": 11},
+                {
+                    "id": "step.write_ones_and_carry",
+                    "expr": "11 = 1 x 10 + 1",
+                    "value": {"carry": 1, "digit": 1},
+                },
+                {"id": "step.add_tens", "expr": "6 + 5 + 1", "value": 12},
+                {
+                    "id": "step.write_tens_and_carry",
+                    "expr": "12 = 1 x 10 + 2",
+                    "value": {"carry": 1, "digit": 2},
+                },
+                {"id": "step.add_hundreds", "expr": "6 + 2 + 1", "value": 9},
+                {"id": "step.compose_answer", "expr": "900 + 20 + 1", "value": 921},
+            ],
+            "answer": {"value": [1, 1, 9, 2, 1]},
+        },
+    }
+
+    steps = _tutor_steps(payload, payload["solvable"])
+
+    assert [step["id"] for step in steps] == [
+        "step.add_ones",
+        "step.add_tens",
+        "step.add_hundreds",
+        "step.compose_answer",
+    ]
+    assert [step["expected"] for step in steps] == ["11", "12", "9", "921"]
+
+
 def test_tutor_speech_uses_local_accent_instructions() -> None:
-    assert tutor_speech_locale({"semantic": {"metadata": {"language": "km"}}}) == "km-KH"
-    assert tutor_speech_locale({"semantic": {"metadata": {"language": "my"}}}) == "my-MM"
+    assert (
+        tutor_speech_locale({"semantic": {"metadata": {"language": "km"}}}) == "km-KH"
+    )
+    assert (
+        tutor_speech_locale({"semantic": {"metadata": {"language": "my"}}}) == "my-MM"
+    )
 
     assert _speech_voice("km-KH") == "coral"
     assert "Khmer" in _speech_instructions("km-KH")
@@ -120,7 +173,12 @@ def test_rule_tutor_v1_2_uses_understanding_and_plain_numeric_choices() -> None:
             "understanding": {
                 "summary": "세 원의 원주의 합을 구하는 문제",
                 "facts": [
-                    {"ref": "measure.middle_right", "label": "가운데와 오른쪽 중심 사이 거리", "value": 18, "unit": "cm"}
+                    {
+                        "ref": "measure.middle_right",
+                        "label": "가운데와 오른쪽 중심 사이 거리",
+                        "value": 18,
+                        "unit": "cm",
+                    }
                 ],
                 "unknowns": [
                     {"ref": "answer.target", "label": "세 원의 원주의 합", "unit": "cm"}
@@ -151,7 +209,11 @@ def test_rule_tutor_v1_2_uses_understanding_and_plain_numeric_choices() -> None:
                     "id": "step.1",
                     "goal": "가운데 원의 반지름을 구합니다.",
                     "expr": "r_middle = 18 - 10",
-                    "value": {"radius": 8, "unit": "cm", "ref": "derived.radius_middle"},
+                    "value": {
+                        "radius": 8,
+                        "unit": "cm",
+                        "ref": "derived.radius_middle",
+                    },
                     "explanation": "18cm에서 오른쪽 원의 반지름 10cm를 뺍니다.",
                 },
                 {
@@ -171,7 +233,7 @@ def test_rule_tutor_v1_2_uses_understanding_and_plain_numeric_choices() -> None:
     assert "derive radii" not in first["reply"]
     assert "확인 1: 이 문제에서 구해야 하는 것은 무엇인가요?" in first["reply"]
     assert "세 원의 원주의 합" in first["choices"]
-    assert "{\"radius\"" not in first["choices"]
+    assert '{"radius"' not in first["choices"]
 
     second = rule_tutor_response(
         payload,
@@ -198,6 +260,8 @@ def test_rule_tutor_v1_2_uses_understanding_and_plain_numeric_choices() -> None:
     assert "알맞은 것을 골라볼까요?" in retry["reply"]
     assert "이 단계에서 생각한 값을 입력해 주세요" not in retry["reply"]
     assert retry["choices"] == ["오른쪽 원의 반지름", "세 원의 원주의 합"]
+
+
 def test_solvable_v1_3_registered_error_returns_catalog_feedback() -> None:
     solvable = {
         "schema": "modu.solvable.v1.3",
@@ -219,7 +283,11 @@ def test_solvable_v1_3_registered_error_returns_catalog_feedback() -> None:
     assert diagnostic["stage"] == "plan"
     assert diagnostic["remediation"] == "repeated_addition"
 
-    response = rule_tutor_response({"solvable": solvable}, "10", [{"role": "assistant", "content": "Step 1: 6 x 4"}])
+    response = rule_tutor_response(
+        {"solvable": solvable},
+        "10",
+        [{"role": "assistant", "content": "Step 1: 6 x 4"}],
+    )
     assert response["diagnostic"]["diagnostic_status"] == "candidate"
 
 
@@ -236,7 +304,11 @@ def test_solvable_v1_3_unregistered_error_uses_default_rule_tutor_flow() -> None
     }
 
     diagnostic = diagnose_student_response(solvable, "11", correct=False)
-    response = rule_tutor_response({"solvable": solvable}, "11", [{"role": "assistant", "content": "Step 1: 6 x 4"}])
+    response = rule_tutor_response(
+        {"solvable": solvable},
+        "11",
+        [{"role": "assistant", "content": "Step 1: 6 x 4"}],
+    )
 
     assert diagnostic["status"] == "incorrect"
     assert "두 수를 바로 더하지 말고" not in response["reply"]
@@ -257,7 +329,9 @@ def test_unregistered_addition_place_value_error_uses_inferred_feedback() -> Non
             }
         ],
         "answer": {"value": 507, "unit": "개"},
-        "diagnostics": {"errors": {"259": "plan.copy_one_part", "248": "plan.copy_one_part"}},
+        "diagnostics": {
+            "errors": {"259": "plan.copy_one_part", "248": "plan.copy_one_part"}
+        },
     }
 
     diagnostic = diagnose_student_response(solvable, "1111", correct=False)

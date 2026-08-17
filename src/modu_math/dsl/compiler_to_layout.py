@@ -4,7 +4,24 @@ from dataclasses import asdict
 import re
 from typing import Any
 
-from .models.base import BlankSlot, ChoiceSlot, CircleSlot, Constraint, Group, ImageSlot, LabelSlot, LineSlot, PathSlot, PolygonSlot, RectSlot, Region, TextBoxSlot, TextSlot
+from modu_math.layout.sanitizer import sanitize_answer_input_content
+
+from .models.base import (
+    BlankSlot,
+    ChoiceSlot,
+    CircleSlot,
+    Constraint,
+    Group,
+    ImageSlot,
+    LabelSlot,
+    LineSlot,
+    PathSlot,
+    PolygonSlot,
+    RectSlot,
+    Region,
+    TextBoxSlot,
+    TextSlot,
+)
 from .models.objects import ShapeObject
 from .models.templates import AuthoringSlot, DiagramTemplate, ProblemTemplate
 
@@ -18,7 +35,9 @@ def compile_problem_template_to_layout(problem: ProblemTemplate) -> dict[str, An
     normalized_regions = _normalize_regions(problem.regions, slots)
     diagrams = [_normalize_diagram(diagram) for diagram in problem.diagrams]
     groups = [_normalize_group(group) for group in problem.groups]
-    constraints = [_normalize_constraint(constraint) for constraint in problem.constraints]
+    constraints = [
+        _normalize_constraint(constraint) for constraint in problem.constraints
+    ]
 
     layout: dict[str, Any] = {
         "schema": "modu.layout.v1",
@@ -54,7 +73,9 @@ def _normalize_graphpaper_bounds(slots: list[dict[str, Any]]) -> None:
         content = slot.get("content")
         if not isinstance(content, dict):
             continue
-        groups.setdefault(match.group(1), {"v": [], "h": []})[match.group(2)].append(content)
+        groups.setdefault(match.group(1), {"v": [], "h": []})[match.group(2)].append(
+            content
+        )
 
     for group in groups.values():
         verticals = group["v"]
@@ -64,12 +85,14 @@ def _normalize_graphpaper_bounds(slots: list[dict[str, Any]]) -> None:
         vertical_xs = [
             float(content["x1"])
             for content in verticals
-            if isinstance(content.get("x1"), int | float) and content.get("x1") == content.get("x2")
+            if isinstance(content.get("x1"), int | float)
+            and content.get("x1") == content.get("x2")
         ]
         horizontal_ys = [
             float(content["y1"])
             for content in horizontals
-            if isinstance(content.get("y1"), int | float) and content.get("y1") == content.get("y2")
+            if isinstance(content.get("y1"), int | float)
+            and content.get("y1") == content.get("y2")
         ]
         if len(vertical_xs) < 2 or len(horizontal_ys) < 2:
             continue
@@ -112,7 +135,9 @@ def _assert_unique_ids(problem: ProblemTemplate) -> None:
             consume(constraint.id, f"diagram '{diagram.id}' constraints")
 
 
-def _normalize_regions(regions: tuple[Region, ...], slots: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def _normalize_regions(
+    regions: tuple[Region, ...], slots: list[dict[str, Any]]
+) -> list[dict[str, Any]]:
     slot_by_id = {slot["id"]: slot for slot in slots}
     slot_ids = [slot["id"] for slot in slots]
     known_slots = set(slot_ids)
@@ -121,7 +146,7 @@ def _normalize_regions(regions: tuple[Region, ...], slots: list[dict[str, Any]])
 
     for region in regions:
         safe_slot_ids: list[str] = []
-        for slot_id in region.slot_ids:
+        for slot_id in _flatten_slot_ids(region.slot_ids):
             if slot_id in known_slots and slot_id not in assigned:
                 safe_slot_ids.append(slot_id)
                 assigned.add(slot_id)
@@ -134,8 +159,8 @@ def _normalize_regions(regions: tuple[Region, ...], slots: list[dict[str, Any]])
             }
         )
 
-    unassigned = [slot_id for slot_id in slot_ids if slot_id not in assigned]
     if not normalized:
+        unassigned = [slot_id for slot_id in slot_ids if slot_id not in assigned]
         normalized.append(
             {
                 "id": "region.stem",
@@ -144,15 +169,53 @@ def _normalize_regions(regions: tuple[Region, ...], slots: list[dict[str, Any]])
                 "slot_ids": unassigned,
             }
         )
-    elif unassigned:
-        target_region = next((region for region in normalized if region["role"] == "stem"), normalized[0])
-        target_region["slot_ids"] = [*target_region["slot_ids"], *unassigned]
+    else:
+        unassigned = [
+            slot_id
+            for slot_id in slot_ids
+            if slot_id not in assigned
+            and not _is_unplaced_contract_blank(slot_by_id.get(slot_id, {}))
+        ]
+        if unassigned:
+            target_region = next(
+                (region for region in normalized if region["role"] == "stem"),
+                normalized[0],
+            )
+            target_region["slot_ids"] = [*target_region["slot_ids"], *unassigned]
 
     # Automatic Layering: Stable sort by z-priority to prevent background covering foreground.
     for region in normalized:
-        region["slot_ids"].sort(key=lambda sid: _get_z_priority(slot_by_id.get(sid, {})))
+        region["slot_ids"].sort(
+            key=lambda sid: _get_z_priority(slot_by_id.get(sid, {}))
+        )
 
     return normalized
+
+
+def _flatten_slot_ids(items: Any) -> tuple[str, ...]:
+    if isinstance(items, str):
+        return (items,)
+    if not isinstance(items, (list, tuple)):
+        return ()
+    out: list[str] = []
+    for item in items:
+        if isinstance(item, str):
+            out.append(item)
+        elif isinstance(item, (list, tuple)):
+            out.extend(_flatten_slot_ids(item))
+    return tuple(out)
+
+
+def _is_unplaced_contract_blank(slot: dict[str, Any]) -> bool:
+    if slot.get("kind") != "blank":
+        return False
+    content = slot.get("content")
+    if not isinstance(content, dict):
+        return True
+    return not any(
+        isinstance(content.get(key), int | float)
+        for key in ("x", "y", "width", "height")
+    )
 
 
 def _get_z_priority(slot: dict[str, Any]) -> int:
@@ -162,7 +225,11 @@ def _get_z_priority(slot: dict[str, Any]) -> int:
     content = slot.get("content", {})
     if kind == "circle" and isinstance(content, dict):
         radius = content.get("r")
-        if "center" in slot_id or "point" in slot_id or (isinstance(radius, int | float) and radius <= 8):
+        if (
+            "center" in slot_id
+            or "point" in slot_id
+            or (isinstance(radius, int | float) and radius <= 8)
+        ):
             return 25
     priorities = {
         "image": 0,
@@ -461,8 +528,12 @@ def _normalize_diagram(diagram: DiagramTemplate) -> dict[str, Any]:
     return {
         "id": diagram.id,
         "objects": [_normalize_shape_object(obj) for obj in diagram.objects],
-        "label_slots": [_normalize_slot_with_interaction(slot) for slot in diagram.label_slots],
-        "constraints": [_normalize_constraint(constraint) for constraint in diagram.constraints],
+        "label_slots": [
+            _normalize_slot_with_interaction(slot) for slot in diagram.label_slots
+        ],
+        "constraints": [
+            _normalize_constraint(constraint) for constraint in diagram.constraints
+        ],
     }
 
 
@@ -485,6 +556,7 @@ def _normalize_answer_input_interaction(slot: dict[str, Any]) -> None:
         return
     if interaction.get("type") != "input" or interaction.get("role") != "answer":
         return
+    sanitize_answer_input_content(content)
     width = content.get("width")
     if (
         interaction.get("value_type") == "digit"
@@ -501,7 +573,9 @@ def _normalize_shape_object(obj: ShapeObject) -> dict[str, Any]:
     return asdict(obj)
 
 
-def _build_reading_order(regions: list[dict[str, Any]], diagrams: list[dict[str, Any]]) -> list[str]:
+def _build_reading_order(
+    regions: list[dict[str, Any]], diagrams: list[dict[str, Any]]
+) -> list[str]:
     ordered: list[str] = []
     seen: set[str] = set()
 

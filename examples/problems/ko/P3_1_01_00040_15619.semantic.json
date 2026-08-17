@@ -4,8 +4,11 @@
   "metadata": {
     "title": "동수가 어제와 오늘 읽은 책의 총쪽수",
     "tags": [],
+    "instruction": "쪽",
     "question": "동수는 책읽기를 좋아합니다. 어제는 415쪽을 읽었고, 오늘은 432쪽을 읽었습니다. 동수가 어제와 오늘 읽은 책의 쪽수는 모두 몇 쪽입니까?",
-    "required_layout_ids": [],
+    "required_layout_ids": [
+      "konva_1786962334798_rect_65307"
+    ],
     "extraction_confidence": 1.0,
     "grade": 3,
     "semester": 1,
@@ -85,6 +88,21 @@
     "value": 847,
     "unit": "쪽",
     "target_ref": "quantity.total_pages_read",
-    "derived_from": "step.add_pages_read"
+    "derived_from": "step.add_pages_read",
+    "blanks": [
+      {
+        "id": "konva_1786962334798_rect_65307",
+        "slot_id": "konva_1786962334798_rect_65307",
+        "expected": 847,
+        "unit": "쪽"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "konva_1786962334798_rect_65307",
+        "value": 847,
+        "unit": "쪽"
+      }
+    ]
   }
 }

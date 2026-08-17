@@ -428,6 +428,11 @@ class RuleTutorService extends AiTutorService {
       }
     }
 
+    final additionSteps = _deriveColumnAdditionSteps(content);
+    if (additionSteps.isNotEmpty) {
+      return additionSteps;
+    }
+
     final method = (content.solvable['method'] ?? '').toString().toLowerCase();
     final type =
         (content.solvable['problem_type'] ?? '').toString().toLowerCase();
@@ -467,6 +472,58 @@ class RuleTutorService extends AiTutorService {
       ),
     );
     return steps;
+  }
+
+  List<_RuleStep> _deriveColumnAdditionSteps(ProblemContent content) {
+    final terms = _columnAdditionTermSets(content);
+    if (terms.length != 1 ||
+        terms.single.length < 2 ||
+        !_isVerticalAdditionContent(content)) {
+      return const [];
+    }
+
+    final left = terms.single[0].abs();
+    final right = terms.single[1].abs();
+    if (left < 10 || right < 10) {
+      return const [];
+    }
+
+    final answer = left + right;
+    final onesLeft = left % 10;
+    final onesRight = right % 10;
+    final onesSum = onesLeft + onesRight;
+    final carryToTens = onesSum ~/ 10;
+    final tensLeft = (left ~/ 10) % 10;
+    final tensRight = (right ~/ 10) % 10;
+    final tensSum = tensLeft + tensRight + carryToTens;
+    final carryToHundreds = tensSum ~/ 10;
+    final hundredsLeft = (left ~/ 100) % 10;
+    final hundredsRight = (right ~/ 100) % 10;
+    final hundredsSum = hundredsLeft + hundredsRight + carryToHundreds;
+
+    return [
+      _RuleStep(
+        prompt: '일의 자리 $onesLeft + $onesRight를 계산해요.',
+        expected: '$onesSum',
+        expr: '$onesLeft + $onesRight',
+      ),
+      _RuleStep(
+        prompt: '십의 자리 $tensLeft + $tensRight에 받아올림 $carryToTens을 더해요.',
+        expected: '$tensSum',
+        expr: '$tensLeft + $tensRight + $carryToTens',
+      ),
+      _RuleStep(
+        prompt:
+            '백의 자리 $hundredsLeft + $hundredsRight에 받아올림 $carryToHundreds을 더해요.',
+        expected: '$hundredsSum',
+        expr: '$hundredsLeft + $hundredsRight + $carryToHundreds',
+      ),
+      _RuleStep(
+        prompt: '각 자리의 숫자를 모아 합을 만들어요.',
+        expected: '$answer',
+        expr: '$left + $right',
+      ),
+    ];
   }
 
   List<String> _stepChoices(
@@ -579,6 +636,119 @@ bool _isPlaceValueMatching(ProblemContent content) {
   return problemType.contains('place_value') ||
       problemType.contains('matching_expression') ||
       problemType.contains('자리값');
+}
+
+bool _isVerticalAdditionContent(ProblemContent content) {
+  final target = content.solvable['target'];
+  final inputs = content.solvable['inputs'];
+  final pieces = <String>[
+    content.summary.type,
+    _readRuleText(content.solvable['method']),
+    _readRuleText(content.solvable['problem_type']),
+    target is Map ? _readRuleText(target['type']) : '',
+    inputs is Map ? _readRuleText(inputs['answer_type']) : '',
+  ].join(' ').toLowerCase();
+  return pieces.contains('vertical_addition') ||
+      pieces.contains('multi_blank_vertical_addition') ||
+      pieces.contains('digit_list');
+}
+
+List<List<int>> _columnAdditionTermSets(ProblemContent content) {
+  final fromQuantities = _columnTermSetsFromQuantities(content.solvable);
+  if (fromQuantities.isNotEmpty) {
+    return fromQuantities;
+  }
+
+  final fromSteps = _columnTermSetsFromSteps(content.solvable);
+  if (fromSteps.isNotEmpty) {
+    return fromSteps;
+  }
+  return const [];
+}
+
+List<List<int>> _columnTermSetsFromQuantities(Map<String, dynamic> solvable) {
+  final inputs = solvable['inputs'];
+  final quantities = inputs is Map ? inputs['quantities'] : null;
+  if (quantities is! Map) {
+    return const [];
+  }
+
+  final firstAddend = _readRuleInt(quantities['first_addend']);
+  final secondAddend = _readRuleInt(quantities['second_addend']);
+  if (firstAddend != null && secondAddend != null) {
+    return [
+      [firstAddend, secondAddend],
+    ];
+  }
+
+  final sets = <List<int>>[];
+  final entries = quantities.entries.toList()
+    ..sort((a, b) => a.key.toString().compareTo(b.key.toString()));
+  for (final entry in entries) {
+    final value = entry.value;
+    if (value is! Map) {
+      continue;
+    }
+    final addends = value['addends'];
+    if (addends is! List) {
+      continue;
+    }
+    final terms = addends
+        .map((item) => _readRuleInt(item))
+        .whereType<int>()
+        .take(2)
+        .toList();
+    if (terms.length >= 2) {
+      sets.add(terms);
+    }
+  }
+  return sets;
+}
+
+List<List<int>> _columnTermSetsFromSteps(Map<String, dynamic> solvable) {
+  final steps = solvable['steps'];
+  if (steps is! List) {
+    return const [];
+  }
+  final sets = <List<int>>[];
+  for (final step in steps.whereType<Map>()) {
+    final match = RegExp(r'(\d+)\s*\+\s*(\d+)')
+        .firstMatch(step['expr']?.toString() ?? '');
+    if (match == null) {
+      continue;
+    }
+    sets.add([int.parse(match.group(1)!), int.parse(match.group(2)!)]);
+  }
+  return sets;
+}
+
+String _readRuleText(Object? value) {
+  if (value == null) {
+    return '';
+  }
+  if (value is String || value is num || value is bool) {
+    return value.toString();
+  }
+  if (value is List) {
+    return value.map(_readRuleText).where((text) => text.isNotEmpty).join(' ');
+  }
+  if (value is Map) {
+    return value.values
+        .map(_readRuleText)
+        .where((text) => text.isNotEmpty)
+        .join(' ');
+  }
+  return '';
+}
+
+int? _readRuleInt(Object? value) {
+  if (value is int) {
+    return value;
+  }
+  if (value is num) {
+    return value.round();
+  }
+  return int.tryParse(value?.toString() ?? '');
 }
 
 Object? _givenValue(ProblemContent content, String ref) {

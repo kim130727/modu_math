@@ -1,4 +1,14 @@
-from modu_math.dsl import Canvas, ImageSlot, ProblemTemplate, Region, TextBoxSlot, TextSlot, compile_problem_template_to_layout
+from modu_math.dsl import (
+    BlankSlot,
+    Canvas,
+    ImageSlot,
+    ProblemTemplate,
+    RectSlot,
+    Region,
+    TextBoxSlot,
+    TextSlot,
+    compile_problem_template_to_layout,
+)
 from modu_math.layout.validate import validate_layout_json
 from modu_math.renderer.compiler import compile_renderer_json
 from modu_math.renderer.svg.render import inline_local_image_hrefs, render_svg
@@ -10,7 +20,11 @@ def test_text_box_slot_renders_fixed_box_metadata() -> None:
         id="text_box_demo",
         title="Text box demo",
         canvas=Canvas(width=300, height=120),
-        regions=(Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.tb",)),),
+        regions=(
+            Region(
+                id="region.stem", role="stem", flow="absolute", slot_ids=("slot.tb",)
+            ),
+        ),
         slots=(
             TextBoxSlot(
                 id="slot.tb",
@@ -46,7 +60,11 @@ def test_text_slot_max_width_does_not_auto_wrap() -> None:
         id="text_no_wrap_demo",
         title="Text no wrap demo",
         canvas=Canvas(width=300, height=120),
-        regions=(Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.text",)),),
+        regions=(
+            Region(
+                id="region.stem", role="stem", flow="absolute", slot_ids=("slot.text",)
+            ),
+        ),
         slots=(
             TextSlot(
                 id="slot.text",
@@ -64,6 +82,44 @@ def test_text_slot_max_width_does_not_auto_wrap() -> None:
     assert "<tspan" not in svg
     assert 'max_width="30"' in svg
     assert ">long text should stay on one rendered line</text>" in svg
+
+
+def test_answer_input_rect_uses_white_fill_even_when_authored_dark() -> None:
+    problem = ProblemTemplate(
+        id="answer_input_style_demo",
+        title="Answer input style demo",
+        canvas=Canvas(width=160, height=100),
+        regions=(
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=("slot.answer_box",),
+            ),
+        ),
+        slots=(
+            RectSlot(
+                id="slot.answer_box",
+                x=30,
+                y=40,
+                width=20,
+                height=20,
+                fill="#111111",
+                interaction={
+                    "type": "input",
+                    "role": "answer",
+                    "include_in_submission": True,
+                },
+            ),
+        ),
+    )
+
+    layout = compile_problem_template_to_layout(problem)
+    content = layout["slots"][0]["content"]
+
+    assert content["fill"] == "#ffffff"
+    assert content["stroke"] == "#111827"
+    assert content["input_style"]["font_size_mode"] == "auto"
 
 
 def test_text_box_preserves_unbreakable_tokens_and_spacing() -> None:
@@ -109,12 +165,45 @@ def test_text_box_preserves_unbreakable_tokens_and_spacing() -> None:
     assert "<tspan" not in svg
 
 
+def test_text_box_honors_middle_vertical_alignment() -> None:
+    problem = ProblemTemplate(
+        id="text_box_middle_valign_demo",
+        title="Text box middle valign demo",
+        canvas=Canvas(width=300, height=120),
+        regions=(
+            Region(
+                id="region.stem", role="stem", flow="absolute", slot_ids=("slot.tb",)
+            ),
+        ),
+        slots=(
+            TextBoxSlot(
+                id="slot.tb",
+                text="507",
+                x=10,
+                y=20,
+                width=80,
+                height=80,
+                font_size=20,
+                valign="middle",
+            ),
+        ),
+    )
+
+    svg = render_svg(compile_renderer_json(compile_problem_template_to_layout(problem)))
+
+    assert 'y="68"' in svg
+
+
 def test_text_box_wraps_long_korean_text_without_spaces() -> None:
     problem = ProblemTemplate(
         id="text_box_korean_wrap_demo",
         title="Text box Korean wrap demo",
         canvas=Canvas(width=300, height=160),
-        regions=(Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.tb",)),),
+        regions=(
+            Region(
+                id="region.stem", role="stem", flow="absolute", slot_ids=("slot.tb",)
+            ),
+        ),
         slots=(
             TextBoxSlot(
                 id="slot.tb",
@@ -139,7 +228,14 @@ def test_image_slot_renders_svg_image() -> None:
         id="image_slot_demo",
         title="Image slot demo",
         canvas=Canvas(width=300, height=180),
-        regions=(Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=("slot.image",)),),
+        regions=(
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=("slot.image",),
+            ),
+        ),
         slots=(
             ImageSlot(
                 id="slot.image",
@@ -170,6 +266,37 @@ def test_image_slot_renders_svg_image() -> None:
     assert 'transform="rotate(15 80 70)"' in svg
 
 
+def test_unplaced_blank_slot_stays_contract_only_when_regions_are_explicit() -> None:
+    problem = ProblemTemplate(
+        id="contract_only_blank_demo",
+        title="Contract-only blank demo",
+        canvas=Canvas(width=260, height=140),
+        regions=(
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=("slot.visible",),
+            ),
+        ),
+        slots=(
+            TextSlot(id="slot.visible", text="□", x=80, y=90, font_size=28),
+            BlankSlot(id="answer.contract", prompt="answer", answer_key="7"),
+        ),
+    )
+
+    layout = compile_problem_template_to_layout(problem)
+    region_slot_ids = {
+        slot_id for region in layout["regions"] for slot_id in region["slot_ids"]
+    }
+    renderer = compile_renderer_json(layout)
+
+    assert "answer.contract" not in region_slot_ids
+    assert all(
+        element["id"] != "answer.contract.blank" for element in renderer["elements"]
+    )
+
+
 def test_svg_renders_text_above_images_even_when_slots_are_mixed() -> None:
     problem = ProblemTemplate(
         id="text_above_image_demo",
@@ -185,7 +312,14 @@ def test_svg_renders_text_above_images_even_when_slots_are_mixed() -> None:
         ),
         slots=(
             TextSlot(id="slot.text", text="visible text", x=30, y=60, font_size=20),
-            ImageSlot(id="slot.image", href="data:image/png;base64,AAAA", x=20, y=30, width=160, height=90),
+            ImageSlot(
+                id="slot.image",
+                href="data:image/png;base64,AAAA",
+                x=20,
+                y=30,
+                width=160,
+                height=90,
+            ),
         ),
     )
 
@@ -193,7 +327,9 @@ def test_svg_renders_text_above_images_even_when_slots_are_mixed() -> None:
     renderer = compile_renderer_json(layout)
     svg = render_svg(renderer)
 
-    assert svg.index('<image id="slot.image.image"') < svg.index('<text id="slot.text.text"')
+    assert svg.index('<image id="slot.image.image"') < svg.index(
+        '<text id="slot.text.text"'
+    )
 
 
 def test_inline_local_image_hrefs_embeds_saved_svg_assets(tmp_path) -> None:

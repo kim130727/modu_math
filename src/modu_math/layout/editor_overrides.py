@@ -3,13 +3,20 @@ from __future__ import annotations
 import re
 from typing import Any
 
+from modu_math.layout.sanitizer import sanitize_answer_input_content
+
 
 def _text_width(text: str, font_size: float) -> float:
     width = 0.0
     for char in text:
         if char.isspace():
             width += font_size * 0.34
-        elif "\u1100" <= char <= "\u11ff" or "\u3130" <= char <= "\u318f" or "\uac00" <= char <= "\ud7af" or "\u3400" <= char <= "\u9fff":
+        elif (
+            "\u1100" <= char <= "\u11ff"
+            or "\u3130" <= char <= "\u318f"
+            or "\uac00" <= char <= "\ud7af"
+            or "\u3400" <= char <= "\u9fff"
+        ):
             width += font_size
         elif char.isupper() or char.isdigit():
             width += font_size * 0.62
@@ -20,7 +27,9 @@ def _text_width(text: str, font_size: float) -> float:
     return width
 
 
-def _minimum_text_box_height(content: dict[str, Any], patch: dict[str, Any] | None = None) -> float | None:
+def _minimum_text_box_height(
+    content: dict[str, Any], patch: dict[str, Any] | None = None
+) -> float | None:
     merged = dict(content)
     if patch:
         merged.update(patch)
@@ -37,11 +46,21 @@ def _minimum_text_box_height(content: dict[str, Any], patch: dict[str, Any] | No
     if not isinstance(line_height, int | float) or line_height <= 0:
         line_height = 1.25
     usable_width = max(float(font_size), float(width))
-    line_count = sum(max(1, int((_text_width(line, float(font_size)) + usable_width - 1) // usable_width)) for line in text.splitlines() or [""])
+    line_count = sum(
+        max(
+            1,
+            int(
+                (_text_width(line, float(font_size)) + usable_width - 1) // usable_width
+            ),
+        )
+        for line in text.splitlines() or [""]
+    )
     return max(24.0, line_count * float(font_size) * float(line_height) + 8.0)
 
 
-def _normalize_text_box_height(content: dict[str, Any], patch: dict[str, Any]) -> tuple[dict[str, Any], bool]:
+def _normalize_text_box_height(
+    content: dict[str, Any], patch: dict[str, Any]
+) -> tuple[dict[str, Any], bool]:
     if "height" not in patch:
         return patch, False
     height = patch.get("height")
@@ -62,6 +81,8 @@ def _normalize_answer_input_interaction(content: dict[str, Any]) -> None:
     interaction = content.get("interaction")
     if not isinstance(interaction, dict):
         return
+    if interaction.get("type") == "input" and interaction.get("role") == "answer":
+        sanitize_answer_input_content(content)
     width = content.get("width")
     if (
         interaction.get("type") == "input"
@@ -76,8 +97,38 @@ def _normalize_answer_input_interaction(content: dict[str, Any]) -> None:
         interaction["auto_advance"] = False
 
 
+def _rect_size_for_text_blank(content: dict[str, Any]) -> float:
+    font_size = content.get("font_size")
+    return float(font_size) * 0.82 if isinstance(font_size, int | float) else 18.0
+
+
+def _prepare_text_blank_rect_override(
+    slot: dict[str, Any],
+    patch: dict[str, Any],
+) -> dict[str, Any]:
+    if slot.get("kind") != "text":
+        return patch
+    content = slot.get("content")
+    if not isinstance(content, dict):
+        return patch
+    text = content.get("text")
+    if not isinstance(text, str) or text.strip() != "□":
+        return patch
+    if "x" not in patch and "y" not in patch:
+        return patch
+    if "width" in patch and "height" in patch:
+        return patch
+    normalized = dict(patch)
+    size = _rect_size_for_text_blank(content)
+    normalized.setdefault("width", round(size, 3))
+    normalized.setdefault("height", round(size, 3))
+    return normalized
+
+
 def _is_answer_slot_id(slot_id: str) -> bool:
-    return slot_id == "slot.answer" or slot_id.endswith(".answer") or ".answer." in slot_id
+    return (
+        slot_id == "slot.answer" or slot_id.endswith(".answer") or ".answer." in slot_id
+    )
 
 
 def _layout_has_answer_interaction(layout: dict[str, Any], deleted: set[str]) -> bool:
@@ -85,7 +136,9 @@ def _layout_has_answer_interaction(layout: dict[str, Any], deleted: set[str]) ->
         if not isinstance(slot, dict):
             continue
         slot_id = slot.get("id")
-        if not isinstance(slot_id, str) or _deleted_slot_matches(slot_id, deleted, deleted & _layout_slot_ids(layout)):
+        if not isinstance(slot_id, str) or _deleted_slot_matches(
+            slot_id, deleted, deleted & _layout_slot_ids(layout)
+        ):
             continue
         content = slot.get("content")
         interaction = content.get("interaction") if isinstance(content, dict) else None
@@ -136,7 +189,9 @@ def _override_is_answer_slot(slot_id: str, content: dict[str, Any]) -> bool:
     )
 
 
-def _infer_region_id_for_slot(layout: dict[str, Any], slot_id: str, content: dict[str, Any] | None = None) -> str | None:
+def _infer_region_id_for_slot(
+    layout: dict[str, Any], slot_id: str, content: dict[str, Any] | None = None
+) -> str | None:
     best_region_id: str | None = None
     best_score = 0
     for region in layout.get("regions", []):
@@ -148,7 +203,9 @@ def _infer_region_id_for_slot(layout: dict[str, Any], slot_id: str, content: dic
             score = _slot_prefix_score(slot_id, existing_id)
             if score > best_score:
                 best_score = score
-                best_region_id = region.get("id") if isinstance(region.get("id"), str) else None
+                best_region_id = (
+                    region.get("id") if isinstance(region.get("id"), str) else None
+                )
     if best_region_id and best_score >= 2:
         return best_region_id
     if content is not None and _override_is_answer_slot(slot_id, content):
@@ -162,7 +219,9 @@ def _infer_region_id_for_slot(layout: dict[str, Any], slot_id: str, content: dic
     return None
 
 
-def _add_missing_override_slot(layout: dict[str, Any], slot_id: str, content: dict[str, Any]) -> None:
+def _add_missing_override_slot(
+    layout: dict[str, Any], slot_id: str, content: dict[str, Any]
+) -> None:
     region_id = _infer_region_id_for_slot(layout, slot_id, content)
     if region_id is None:
         return
@@ -173,7 +232,14 @@ def _add_missing_override_slot(layout: dict[str, Any], slot_id: str, content: di
         slots = layout["slots"]
     normalized_content = dict(content)
     _normalize_answer_input_interaction(normalized_content)
-    slots.append({"id": slot_id, "kind": _infer_override_slot_kind(content), "prompt": "", "content": normalized_content})
+    slots.append(
+        {
+            "id": slot_id,
+            "kind": _infer_override_slot_kind(content),
+            "prompt": "",
+            "content": normalized_content,
+        }
+    )
 
     for region in layout.get("regions", []):
         if not isinstance(region, dict) or region.get("id") != region_id:
@@ -188,7 +254,9 @@ def _add_missing_override_slot(layout: dict[str, Any], slot_id: str, content: di
         reading_order.append(slot_id)
 
 
-def _deleted_slot_matches(slot_id: str, deleted: set[str], exact_deleted: set[str]) -> bool:
+def _deleted_slot_matches(
+    slot_id: str, deleted: set[str], exact_deleted: set[str]
+) -> bool:
     if slot_id in deleted:
         return True
     for deleted_id in deleted - exact_deleted:
@@ -209,7 +277,9 @@ def _layout_slot_kinds(layout: dict[str, Any]) -> dict[str, str]:
     return {
         slot["id"]: slot["kind"]
         for slot in layout.get("slots", [])
-        if isinstance(slot, dict) and isinstance(slot.get("id"), str) and isinstance(slot.get("kind"), str)
+        if isinstance(slot, dict)
+        and isinstance(slot.get("id"), str)
+        and isinstance(slot.get("kind"), str)
     }
 
 
@@ -239,7 +309,27 @@ def _answer_scalar_value(answer: Any) -> Any:
     return None
 
 
-def _submitted_answer_slot_ids(layout: dict[str, Any], deleted: set[str] | None = None) -> set[str]:
+def _answer_value_count(answer: Any) -> int | None:
+    if not isinstance(answer, dict):
+        return None
+    if _answer_scalar_value(answer) is not None:
+        return 1
+    values = answer.get("value")
+    if not isinstance(values, list):
+        values = answer.get("values")
+    if not isinstance(values, list):
+        return None
+    count = 0
+    for value in values:
+        if not isinstance(value, str | int | float) or isinstance(value, bool):
+            return None
+        count += 1
+    return count if count > 0 else None
+
+
+def _submitted_answer_slot_ids(
+    layout: dict[str, Any], deleted: set[str] | None = None
+) -> set[str]:
     deleted = deleted or set()
     exact_deleted = deleted & _layout_slot_ids(layout)
     out: set[str] = set()
@@ -247,7 +337,9 @@ def _submitted_answer_slot_ids(layout: dict[str, Any], deleted: set[str] | None 
         if not isinstance(slot, dict):
             continue
         slot_id = slot.get("id")
-        if not isinstance(slot_id, str) or _deleted_slot_matches(slot_id, deleted, exact_deleted):
+        if not isinstance(slot_id, str) or _deleted_slot_matches(
+            slot_id, deleted, exact_deleted
+        ):
             continue
         content = slot.get("content")
         interaction = content.get("interaction") if isinstance(content, dict) else None
@@ -269,16 +361,26 @@ def _remove_slot_ids_from_layout(layout: dict[str, Any], remove_ids: set[str]) -
         layout["slots"] = [
             slot
             for slot in slots
-            if not (isinstance(slot, dict) and isinstance(slot.get("id"), str) and slot["id"] in remove_ids)
+            if not (
+                isinstance(slot, dict)
+                and isinstance(slot.get("id"), str)
+                and slot["id"] in remove_ids
+            )
         ]
     for region in layout.get("regions", []):
         if isinstance(region, dict) and isinstance(region.get("slot_ids"), list):
-            region["slot_ids"] = [slot_id for slot_id in region["slot_ids"] if slot_id not in remove_ids]
+            region["slot_ids"] = [
+                slot_id for slot_id in region["slot_ids"] if slot_id not in remove_ids
+            ]
     if isinstance(layout.get("reading_order"), list):
-        layout["reading_order"] = [slot_id for slot_id in layout["reading_order"] if slot_id not in remove_ids]
+        layout["reading_order"] = [
+            slot_id for slot_id in layout["reading_order"] if slot_id not in remove_ids
+        ]
 
 
-def prune_legacy_answer_blank_slots(layout: dict[str, Any], answer: Any) -> tuple[dict[str, Any], set[str]]:
+def prune_legacy_answer_blank_slots(
+    layout: dict[str, Any], answer: Any
+) -> tuple[dict[str, Any], set[str]]:
     """Remove old BlankSlot answers when a visual input slot now owns submission.
 
     Older DSL files often kept a `slot.answer` BlankSlot for the semantic answer
@@ -286,10 +388,15 @@ def prune_legacy_answer_blank_slots(layout: dict[str, Any], answer: Any) -> tupl
     creates a duplicate answer box. If exactly one visual answer input is present,
     answer-like blank slots are legacy scaffolding and should not render.
     """
-    if _answer_scalar_value(answer) is None or len(_submitted_answer_slot_ids(layout)) != 1:
+    submitted_slot_ids = _submitted_answer_slot_ids(layout)
+    answer_value_count = _answer_value_count(answer)
+    if answer_value_count is None or len(submitted_slot_ids) != answer_value_count:
         return layout, set()
 
     answer_slot_ids = _answer_slot_ids(answer)
+    visual_answer_owns_contract = (
+        not answer_slot_ids or answer_slot_ids == submitted_slot_ids
+    )
     remove_ids = {
         slot.get("id")
         for slot in layout.get("slots", [])
@@ -297,7 +404,11 @@ def prune_legacy_answer_blank_slots(layout: dict[str, Any], answer: Any) -> tupl
             isinstance(slot, dict)
             and slot.get("kind") == "blank"
             and isinstance(slot.get("id"), str)
-            and (_is_answer_slot_id(slot["id"]) or slot["id"] in answer_slot_ids)
+            and (
+                _is_answer_slot_id(slot["id"])
+                or slot["id"] in answer_slot_ids
+                or visual_answer_owns_contract
+            )
         )
     }
     remove_ids = {slot_id for slot_id in remove_ids if isinstance(slot_id, str)}
@@ -317,7 +428,10 @@ def prune_deleted_legacy_answer_slots(
         return overrides, False
 
     answer_slot_ids = _answer_slot_ids(answer)
-    has_single_visual_answer = _answer_scalar_value(answer) is not None and len(_submitted_answer_slot_ids(layout, set(deleted_slots))) == 1
+    has_single_visual_answer = (
+        _answer_scalar_value(answer) is not None
+        and len(_submitted_answer_slot_ids(layout, set(deleted_slots))) == 1
+    )
     if not answer_slot_ids and not has_single_visual_answer:
         return overrides, False
 
@@ -349,13 +463,18 @@ def _points_from_polygon_path(d: Any) -> list[list[float]] | None:
     commands = set(re.findall(r"[A-Za-z]", d))
     if commands - {"M", "m", "L", "l", "Z", "z"}:
         return None
-    numbers = [float(match.group(0)) for match in re.finditer(r"[-+]?(?:\d*\.\d+|\d+)(?:e[-+]?\d+)?", d)]
+    numbers = [
+        float(match.group(0))
+        for match in re.finditer(r"[-+]?(?:\d*\.\d+|\d+)(?:e[-+]?\d+)?", d)
+    ]
     if len(numbers) < 6 or len(numbers) % 2:
         return None
     return [[numbers[index], numbers[index + 1]] for index in range(0, len(numbers), 2)]
 
 
-def _normalize_slot_patch(slot_kind: str | None, patch: dict[str, Any]) -> tuple[dict[str, Any], bool]:
+def _normalize_slot_patch(
+    slot_kind: str | None, patch: dict[str, Any]
+) -> tuple[dict[str, Any], bool]:
     if slot_kind != "polygon" or "d" not in patch:
         return patch, False
     normalized = dict(patch)
@@ -373,12 +492,20 @@ def _whitespace_count(text: str) -> int:
     return sum(1 for char in text if char.isspace())
 
 
-def _drop_stale_text_override_if_base_has_more_spacing(content: dict[str, Any], patch: dict[str, Any]) -> tuple[dict[str, Any], bool]:
+def _drop_stale_text_override_if_base_has_more_spacing(
+    content: dict[str, Any], patch: dict[str, Any]
+) -> tuple[dict[str, Any], bool]:
     base_text = content.get("text")
     patch_text = patch.get("text")
-    if not isinstance(base_text, str) or not isinstance(patch_text, str) or base_text == patch_text:
+    if (
+        not isinstance(base_text, str)
+        or not isinstance(patch_text, str)
+        or base_text == patch_text
+    ):
         return patch, False
-    if _compact_text_for_spacing_compare(base_text) != _compact_text_for_spacing_compare(patch_text):
+    if _compact_text_for_spacing_compare(
+        base_text
+    ) != _compact_text_for_spacing_compare(patch_text):
         return patch, False
     if _whitespace_count(base_text) <= _whitespace_count(patch_text):
         return patch, False
@@ -387,12 +514,18 @@ def _drop_stale_text_override_if_base_has_more_spacing(content: dict[str, Any], 
     return normalized, True
 
 
-def prune_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | None) -> tuple[dict[str, Any] | None, bool]:
+def prune_editor_overrides(
+    layout: dict[str, Any], overrides: dict[str, Any] | None
+) -> tuple[dict[str, Any] | None, bool]:
     if not isinstance(overrides, dict):
         return overrides, False
 
     changed = False
-    cleaned: dict[str, Any] = {key: value for key, value in overrides.items() if key not in {"slots", "region_slot_orders", "deleted_slots"}}
+    cleaned: dict[str, Any] = {
+        key: value
+        for key, value in overrides.items()
+        if key not in {"slots", "region_slot_orders", "deleted_slots"}
+    }
     slot_ids = _layout_slot_ids(layout)
     slot_kinds = _layout_slot_kinds(layout)
     deleted_slots = overrides.get("deleted_slots")
@@ -411,14 +544,37 @@ def prune_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | N
             if not isinstance(slot_id, str) or not isinstance(patch, dict):
                 changed = True
                 continue
-            if slot_id in slot_ids or _infer_region_id_for_slot(layout, slot_id, patch) is not None:
-                patch, normalized = _normalize_slot_patch(slot_kinds.get(slot_id), patch)
-                base_slot = next((slot for slot in layout.get("slots", []) if isinstance(slot, dict) and slot.get("id") == slot_id), None)
-                base_content = base_slot.get("content") if isinstance(base_slot, dict) and isinstance(base_slot.get("content"), dict) else {}
-                patch, text_spacing_normalized = _drop_stale_text_override_if_base_has_more_spacing(base_content, patch)
+            if (
+                slot_id in slot_ids
+                or _infer_region_id_for_slot(layout, slot_id, patch) is not None
+            ):
+                patch, normalized = _normalize_slot_patch(
+                    slot_kinds.get(slot_id), patch
+                )
+                base_slot = next(
+                    (
+                        slot
+                        for slot in layout.get("slots", [])
+                        if isinstance(slot, dict) and slot.get("id") == slot_id
+                    ),
+                    None,
+                )
+                base_content = (
+                    base_slot.get("content")
+                    if isinstance(base_slot, dict)
+                    and isinstance(base_slot.get("content"), dict)
+                    else {}
+                )
+                patch, text_spacing_normalized = (
+                    _drop_stale_text_override_if_base_has_more_spacing(
+                        base_content, patch
+                    )
+                )
                 normalized = normalized or text_spacing_normalized
                 if slot_kinds.get(slot_id) == "text_box":
-                    patch, text_normalized = _normalize_text_box_height(base_content, patch)
+                    patch, text_normalized = _normalize_text_box_height(
+                        base_content, patch
+                    )
                     normalized = normalized or text_normalized
                 changed = changed or normalized
                 if patch:
@@ -439,7 +595,11 @@ def prune_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | N
             if not isinstance(region_id, str) or not isinstance(order, list):
                 changed = True
                 continue
-            cleaned_order = [slot_id for slot_id in order if isinstance(slot_id, str) and slot_id in valid_order_ids]
+            cleaned_order = [
+                slot_id
+                for slot_id in order
+                if isinstance(slot_id, str) and slot_id in valid_order_ids
+            ]
             if cleaned_order != order:
                 changed = True
             if cleaned_order:
@@ -457,12 +617,18 @@ def prune_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | N
     return cleaned, changed
 
 
-def apply_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | None) -> dict[str, Any]:
+def apply_editor_overrides(
+    layout: dict[str, Any], overrides: dict[str, Any] | None
+) -> dict[str, Any]:
     if not isinstance(overrides, dict):
         return layout
 
     deleted_slots = overrides.get("deleted_slots")
-    deleted = {slot_id for slot_id in deleted_slots if isinstance(slot_id, str)} if isinstance(deleted_slots, list) else set()
+    deleted = (
+        {slot_id for slot_id in deleted_slots if isinstance(slot_id, str)}
+        if isinstance(deleted_slots, list)
+        else set()
+    )
     if deleted:
         slot_ids = {
             slot.get("id")
@@ -472,7 +638,9 @@ def apply_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | N
         exact_deleted = deleted & slot_ids
 
         def is_deleted(slot_id: Any) -> bool:
-            return isinstance(slot_id, str) and _deleted_slot_matches(slot_id, deleted, exact_deleted)
+            return isinstance(slot_id, str) and _deleted_slot_matches(
+                slot_id, deleted, exact_deleted
+            )
 
         remove_ids = {slot_id for slot_id in slot_ids if is_deleted(slot_id)}
         _remove_slot_ids_from_layout(layout, remove_ids)
@@ -483,13 +651,29 @@ def apply_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | N
             if not isinstance(region, dict):
                 continue
             region_id = region.get("id")
-            override_order = region_slot_orders.get(region_id) if isinstance(region_id, str) else None
+            override_order = (
+                region_slot_orders.get(region_id)
+                if isinstance(region_id, str)
+                else None
+            )
             current_order = region.get("slot_ids")
-            if not isinstance(override_order, list) or not isinstance(current_order, list):
+            if not isinstance(override_order, list) or not isinstance(
+                current_order, list
+            ):
                 continue
-            current_set = {slot_id for slot_id in current_order if isinstance(slot_id, str)}
-            ordered = [slot_id for slot_id in override_order if isinstance(slot_id, str) and slot_id in current_set]
-            ordered.extend(slot_id for slot_id in current_order if isinstance(slot_id, str) and slot_id not in ordered)
+            current_set = {
+                slot_id for slot_id in current_order if isinstance(slot_id, str)
+            }
+            ordered = [
+                slot_id
+                for slot_id in override_order
+                if isinstance(slot_id, str) and slot_id in current_set
+            ]
+            ordered.extend(
+                slot_id
+                for slot_id in current_order
+                if isinstance(slot_id, str) and slot_id not in ordered
+            )
             region["slot_ids"] = ordered
 
     slot_overrides = overrides.get("slots")
@@ -519,7 +703,11 @@ def apply_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | N
                 continue
             content = slot.get("content")
             if isinstance(content, dict):
-                patch, _ = _normalize_slot_patch(slot.get("kind") if isinstance(slot.get("kind"), str) else None, patch)
+                patch, _ = _normalize_slot_patch(
+                    slot.get("kind") if isinstance(slot.get("kind"), str) else None,
+                    patch,
+                )
+                patch = _prepare_text_blank_rect_override(slot, patch)
                 content.update(patch)
                 _normalize_answer_input_interaction(content)
 

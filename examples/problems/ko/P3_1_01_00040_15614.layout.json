@@ -48,7 +48,7 @@
         "text": "원",
         "style_role": "body",
         "x": 813.283,
-        "y": 145.939,
+        "y": 152.12,
         "width": 54.078,
         "height": 46.0,
         "align": "left",
@@ -64,12 +64,38 @@
       "prompt": "",
       "content": {
         "x": 650.175,
-        "y": 138.616,
+        "y": 144.797,
         "width": 142.537,
         "height": 57.203,
         "stroke": "#111827",
         "stroke_width": 1.2,
-        "fill": "#ffffff"
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "integer",
+          "max_length": 3,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "answer_key_index": 0,
+          "answer_ref": "answer.value",
+          "auto_advance": false,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 142.537,
+          "height": 57.203
+        }
       }
     }
   ],

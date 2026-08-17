@@ -569,6 +569,13 @@ List<List<int>> _additionTermSetsFromQuantities(Map<String, dynamic> solvable) {
     return const [];
   }
   final sets = <List<int>>[];
+  final firstAddend = _readInt(quantities['first_addend']);
+  final secondAddend = _readInt(quantities['second_addend']);
+  if (firstAddend != null && secondAddend != null) {
+    sets.add([firstAddend, secondAddend]);
+    return sets;
+  }
+
   final entries = quantities.entries.toList()
     ..sort((a, b) => a.key.toString().compareTo(b.key.toString()));
   for (final entry in entries) {

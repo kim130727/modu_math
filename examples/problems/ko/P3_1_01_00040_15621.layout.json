@@ -48,7 +48,7 @@
         "x": 20.0,
         "y": 2.0,
         "width": 300.0,
-        "height": 20.0,
+        "height": 26,
         "align": "left",
         "valign": "top",
         "font_size": 14,
@@ -91,14 +91,40 @@
       "kind": "rect",
       "prompt": "265의 십의 자리 수를 쓰는 첫 번째 빈칸",
       "content": {
-        "x": 174.0,
+        "x": 160.4,
         "y": 33.0,
-        "width": 34.0,
+        "width": 47.6,
         "height": 24.0,
         "stroke": "#111111",
         "stroke_width": 1.0,
         "fill": "#ffffff",
-        "semantic_role": "answer_blank"
+        "semantic_role": "answer_blank",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "digit",
+          "max_length": 1,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "answer_key_index": 0,
+          "answer_ref": "answer_key[0]",
+          "auto_advance": true,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 47.6,
+          "height": 24.0
+        }
       }
     },
     {
@@ -127,7 +153,33 @@
         "stroke": "#111111",
         "stroke_width": 1.0,
         "fill": "#ffffff",
-        "semantic_role": "answer_blank"
+        "semantic_role": "answer_blank",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "digit",
+          "max_length": 1,
+          "include_in_submission": true,
+          "order": 1,
+          "group_id": "final_answer",
+          "answer_key_index": 1,
+          "answer_ref": "answer_key[1]",
+          "auto_advance": true,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 28.0,
+          "height": 24.0
+        }
       }
     },
     {
@@ -170,7 +222,33 @@
         "stroke": "#111111",
         "stroke_width": 1.0,
         "fill": "#ffffff",
-        "semantic_role": "answer_blank"
+        "semantic_role": "answer_blank",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "digit",
+          "max_length": 1,
+          "include_in_submission": true,
+          "order": 2,
+          "group_id": "final_answer",
+          "answer_key_index": 2,
+          "answer_ref": "answer_key[2]",
+          "auto_advance": true,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 37.0,
+          "height": 24.0
+        }
       }
     },
     {
@@ -199,7 +277,33 @@
         "stroke": "#111111",
         "stroke_width": 1.0,
         "fill": "#ffffff",
-        "semantic_role": "answer_blank"
+        "semantic_role": "answer_blank",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "digit",
+          "max_length": 1,
+          "include_in_submission": true,
+          "order": 3,
+          "group_id": "final_answer",
+          "answer_key_index": 3,
+          "answer_ref": "answer_key[3]",
+          "auto_advance": true,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 28.0,
+          "height": 24.0
+        }
       }
     },
     {
@@ -228,7 +332,33 @@
         "stroke": "#111111",
         "stroke_width": 1.0,
         "fill": "#ffffff",
-        "semantic_role": "answer_blank"
+        "semantic_role": "answer_blank",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "digit",
+          "max_length": 1,
+          "include_in_submission": true,
+          "order": 4,
+          "group_id": "final_answer",
+          "answer_key_index": 4,
+          "answer_ref": "answer_key[4]",
+          "auto_advance": true,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 42.0,
+          "height": 24.0
+        }
       }
     }
   ],

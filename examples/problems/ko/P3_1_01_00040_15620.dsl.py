@@ -6,7 +6,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextBoxSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_15620"
@@ -25,18 +25,13 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="vertical",
-                slot_ids=(
-                    "slot.question",
-                    "slot.answer",
-                ),
+                slot_ids=("slot.question",
+                    "slot.answer",'konva_1786962334798_text_103938', 'konva_1786962334798_rect_118898'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.question",
-                x=24,
-                y=24,
-                width = 407.607, height = 149.098, text=(
+                x = 15.393, y = 13.344, width = 407.607, height = 149.098, text=(
                     "인호가 340원짜리 연필을 사고 나니 540원이 남았습니다. "
                     "인호가 처음에 가지고 있던 돈은 얼마입니까?"
                 ),
@@ -51,8 +46,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="답",
                 answer_key="880",
                 placeholder="원",
-            ),
-        ),
+            ),TextBoxSlot(id = 'konva_1786962334798_text_103938', prompt = '', text = '원', x = 445.672, y = 147.082, font_size = 30, fill = '#111827', width = 38.328, height = 46, align = 'left', line_height = 1.25), RectSlot(id = 'konva_1786962334798_rect_118898', prompt = '', x = 323.689, y = 145.574, width = 118.52, height = 45.18, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'answer_key_index': 0, 'answer_ref': 'answer.value', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
     )
 
 

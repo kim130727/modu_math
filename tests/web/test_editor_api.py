@@ -15,6 +15,11 @@ from modu_math.layout.editor_overrides import (
     prune_editor_overrides,
     prune_legacy_answer_blank_slots,
 )
+from modu_math.pipeline.answer_contracts import (
+    normalize_answer_for_deleted_slots,
+    normalize_answer_for_submit_slots,
+    normalize_answer_value_units,
+)
 
 
 def _setup_django(tmp_path: Path) -> Client:
@@ -117,7 +122,9 @@ def test_editor_index_uses_static_assets_without_inline_script(tmp_path: Path) -
     assert "export function pointToSegmentDistance" in canvas_js
 
 
-def test_editor_konva_uses_konva_assets_and_editor_next_is_removed(tmp_path: Path) -> None:
+def test_editor_konva_uses_konva_assets_and_editor_next_is_removed(
+    tmp_path: Path,
+) -> None:
     client = _setup_django(tmp_path)
 
     response = client.get("/editor-konva/")
@@ -148,9 +155,15 @@ def test_list_endpoint_marks_language_equivalents(tmp_path: Path) -> None:
     problems_root = tmp_path / "examples" / "problems"
     (problems_root / "ko").mkdir(parents=True)
     (problems_root / "uk").mkdir(parents=True)
-    (problems_root / "ko" / "same.dsl.py").write_text("PROBLEM_TEMPLATE = None\n", encoding="utf-8")
-    (problems_root / "ko" / "only_ko.dsl.py").write_text("PROBLEM_TEMPLATE = None\n", encoding="utf-8")
-    (problems_root / "uk" / "same_uk.dsl.py").write_text("PROBLEM_TEMPLATE = None\n", encoding="utf-8")
+    (problems_root / "ko" / "same.dsl.py").write_text(
+        "PROBLEM_TEMPLATE = None\n", encoding="utf-8"
+    )
+    (problems_root / "ko" / "only_ko.dsl.py").write_text(
+        "PROBLEM_TEMPLATE = None\n", encoding="utf-8"
+    )
+    (problems_root / "uk" / "same_uk.dsl.py").write_text(
+        "PROBLEM_TEMPLATE = None\n", encoding="utf-8"
+    )
 
     response = client.get("/api/editor/problems/")
 
@@ -164,7 +177,9 @@ def test_list_endpoint_marks_language_equivalents(tmp_path: Path) -> None:
     }
     assert problems["uk/same_uk.dsl.py"]["language"] == "uk"
     assert problems["uk/same_uk.dsl.py"]["canonical_problem_id"] == "same"
-    assert problems["ko/only_ko.dsl.py"]["equivalent_problem_ids"] == {"ko": "ko/only_ko.dsl.py"}
+    assert problems["ko/only_ko.dsl.py"]["equivalent_problem_ids"] == {
+        "ko": "ko/only_ko.dsl.py"
+    }
 
 
 def test_detail_reads_dsl_and_missing_artifact_is_null(tmp_path: Path) -> None:
@@ -290,10 +305,12 @@ SLOTS = (
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
     assert "points = [[1, 2], [11, 2], [1, 12]]" in updated
-    assert "d=\"M 1 2 L 11 2 L 1 12 Z\"" not in updated
+    assert 'd="M 1 2 L 11 2 L 1 12 Z"' not in updated
 
 
-def test_layout_patch_can_skip_formatting_for_fast_drag_save(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+def test_layout_patch_can_skip_formatting_for_fast_drag_save(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """
 from modu_math.dsl import TextSlot
@@ -371,7 +388,9 @@ SLOTS = (
     assert "DSL syntax error" in payload["error"]
 
 
-def test_layout_patch_add_slot_falls_back_to_first_region_when_no_diagram_region(tmp_path: Path) -> None:
+def test_layout_patch_add_slot_falls_back_to_first_region_when_no_diagram_region(
+    tmp_path: Path,
+) -> None:
     client = _setup_django(tmp_path)
     problem_dir = _write_problem(
         tmp_path,
@@ -466,10 +485,12 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
     assert "PolygonSlot" in updated
     assert "points=[[1, 2], [11, 2], [1, 12]]" in updated
-    assert "d=\"M 1 2 L 11 2 L 1 12 Z\"" not in updated
+    assert 'd="M 1 2 L 11 2 L 1 12 Z"' not in updated
 
 
-def test_build_endpoint_generates_artifacts_without_shell_script(tmp_path: Path) -> None:
+def test_build_endpoint_generates_artifacts_without_shell_script(
+    tmp_path: Path,
+) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """
 from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot
@@ -532,7 +553,9 @@ SEMANTIC_OVERRIDE = {
 """.lstrip()
     problem_dir = _write_problem(tmp_path, "0001", dsl_text)
     (problem_dir / "problem.editor_overrides.json").write_text(
-        json.dumps({"version": 1, "deleted_slots": ["slot.answer"]}, ensure_ascii=False),
+        json.dumps(
+            {"version": 1, "deleted_slots": ["slot.answer"]}, ensure_ascii=False
+        ),
         encoding="utf-8",
     )
 
@@ -607,7 +630,9 @@ SOLVABLE = {
     assert response.status_code == 200
     body = response.json()
     assert body["ok"] is True
-    solvable = json.loads((problem_dir / "problem.solvable.v1.2.json").read_text(encoding="utf-8"))
+    solvable = json.loads(
+        (problem_dir / "problem.solvable.v1.2.json").read_text(encoding="utf-8")
+    )
     assert solvable["plan"] == ["Add the two numbers."]
 
 
@@ -634,12 +659,20 @@ def test_build_attaches_single_submit_slot_to_scalar_answers() -> None:
         "answer": {
             "type": "numeric",
             "value": 490,
-            "blanks": [{"id": "slot.answer.legacy", "slot_id": "slot.answer.legacy", "expected": "490"}],
+            "blanks": [
+                {
+                    "id": "slot.answer.legacy",
+                    "slot_id": "slot.answer.legacy",
+                    "expected": "490",
+                }
+            ],
         }
     }
     solvable = {"answer": {"type": "numeric", "value": 490}}
 
-    semantic, solvable = _attach_single_submit_slot_answer(layout=layout, semantic=semantic, solvable=solvable)
+    semantic, solvable = _attach_single_submit_slot_answer(
+        layout=layout, semantic=semantic, solvable=solvable
+    )
 
     expected_key = [{"slot_id": "slot.answer.visual", "value": 490}]
     assert semantic["answer"]["answer_key"] == expected_key
@@ -668,7 +701,9 @@ def test_detail_rewrites_relative_svg_image_assets(tmp_path: Path) -> None:
 
 def test_problem_asset_serves_file_from_problem_folder(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
-    problem_dir = _write_problem(tmp_path, "0001", "from modu_math.dsl import TextSlot\n")
+    problem_dir = _write_problem(
+        tmp_path, "0001", "from modu_math.dsl import TextSlot\n"
+    )
     (problem_dir / "local.png").write_bytes(b"png")
 
     response = client.get("/api/editor/assets/0001/local.png")
@@ -743,7 +778,9 @@ SLOTS = (
     assert "height=80.0" in updated
 
 
-def test_layout_patch_clears_stale_override_fields_after_dsl_slot_update(tmp_path: Path) -> None:
+def test_layout_patch_clears_stale_override_fields_after_dsl_slot_update(
+    tmp_path: Path,
+) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """
 from modu_math.dsl import RectSlot
@@ -794,6 +831,51 @@ SLOTS = (
     assert "width=120.0" in updated
     overrides = json.loads(overrides_path.read_text(encoding="utf-8"))
     assert overrides["slots"]["slot.box"] == {"height": 66.0, "fill": "#ffffff"}
+
+
+def test_layout_patch_for_suffixed_split_problem_prefers_editor_overrides(
+    tmp_path: Path,
+) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="P3_1_01_00040_02163",
+    title="split",
+    canvas=Canvas(width=300, height=120),
+    regions=(Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=("slot.plus_2",)),),
+    slots=(TextSlot(id="slot.plus_2", text="+", x=185.0, y=79.0),),
+)
+""".lstrip()
+    problem_dir = tmp_path / "examples" / "problems" / "ko"
+    problem_dir.mkdir(parents=True)
+    dsl_path = problem_dir / "P3_1_01_00040_02163_2.dsl.py"
+    dsl_path.write_text(dsl_text, encoding="utf-8")
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.plus_2",
+                "op": "update",
+                "value": {"x": 150.0, "y": 105.8},
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/ko/P3_1_01_00040_02163_2.dsl.py/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    assert dsl_path.read_text(encoding="utf-8") == dsl_text
+    overrides = json.loads(
+        (problem_dir / "P3_1_01_00040_02163_2.editor_overrides.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert overrides["slots"]["slot.plus_2"] == {"x": 150.0, "y": 105.8}
 
 
 def test_layout_patch_adds_image_slot_and_import(tmp_path: Path) -> None:
@@ -876,7 +958,11 @@ PROBLEM_TEMPLATE = ProblemTemplate(
                         "y": 20.0,
                         "width": 80.0,
                         "height": 60.0,
-                        "interaction": {"type": "input", "role": "answer", "value_type": "integer"},
+                        "interaction": {
+                            "type": "input",
+                            "role": "answer",
+                            "value_type": "integer",
+                        },
                         "input_style": {"font_size_mode": "auto"},
                     },
                 },
@@ -896,7 +982,9 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     assert '"font_size_mode": "auto"' in updated
 
 
-def test_layout_patch_add_clears_conflicting_deleted_slot_override(tmp_path: Path) -> None:
+def test_layout_patch_add_clears_conflicting_deleted_slot_override(
+    tmp_path: Path,
+) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """
 from modu_math.dsl import Canvas, ProblemTemplate, Region
@@ -912,7 +1000,9 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     problem_dir = _write_problem(tmp_path, "0001", dsl_text)
     overrides_path = problem_dir / "problem.editor_overrides.json"
     overrides_path.write_text(
-        json.dumps({"deleted_slots": ["slot.math.fraction"], "version": 1}, ensure_ascii=False),
+        json.dumps(
+            {"deleted_slots": ["slot.math.fraction"], "version": 1}, ensure_ascii=False
+        ),
         encoding="utf-8",
     )
 
@@ -940,7 +1030,9 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     assert "deleted_slots" not in overrides
 
 
-def test_layout_patch_add_clears_stale_slot_override_for_same_target(tmp_path: Path) -> None:
+def test_layout_patch_add_clears_stale_slot_override_for_same_target(
+    tmp_path: Path,
+) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """
 from modu_math.dsl import Canvas, ProblemTemplate, Region
@@ -1045,7 +1137,12 @@ PROBLEM_TEMPLATE = ProblemTemplate(
                 "value": {
                     "kind": "text",
                     "region_id": "region.diagram",
-                    "content": {"text": "", "x": 20.0, "y": 45.0, "style_role": "table"},
+                    "content": {
+                        "text": "",
+                        "x": 20.0,
+                        "y": 45.0,
+                        "style_role": "table",
+                    },
                 },
             },
         ]
@@ -1149,7 +1246,9 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     assert 'd="M 15 17 Q 35 37 55 57"' in updated
 
 
-def test_layout_patch_falls_back_to_editor_overrides_for_generated_slot(tmp_path: Path) -> None:
+def test_layout_patch_falls_back_to_editor_overrides_for_generated_slot(
+    tmp_path: Path,
+) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """
 from modu_math.dsl import ProblemTemplate
@@ -1171,8 +1270,15 @@ from modu_math.dsl import ProblemTemplate
         content_type="application/json",
     )
     assert response.status_code == 200
-    overrides = json.loads((problem_dir / "problem.editor_overrides.json").read_text(encoding="utf-8"))
-    assert overrides["slots"]["slot.generated.body"] == {"x": 15.0, "y": 25.0, "width": 40.0, "height": 50.0}
+    overrides = json.loads(
+        (problem_dir / "problem.editor_overrides.json").read_text(encoding="utf-8")
+    )
+    assert overrides["slots"]["slot.generated.body"] == {
+        "x": 15.0,
+        "y": 25.0,
+        "width": 40.0,
+        "height": 50.0,
+    }
 
 
 def test_layout_patch_rejects_empty_dsl_before_saving_overrides(tmp_path: Path) -> None:
@@ -1200,7 +1306,9 @@ def test_layout_patch_rejects_empty_dsl_before_saving_overrides(tmp_path: Path) 
 
 def test_save_dsl_rejects_empty_dsl(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
-    problem_dir = _write_problem(tmp_path, "0001", "from modu_math.dsl import TextSlot\n")
+    problem_dir = _write_problem(
+        tmp_path, "0001", "from modu_math.dsl import TextSlot\n"
+    )
 
     response = client.post(
         "/api/editor/problems/0001/dsl/",
@@ -1210,7 +1318,9 @@ def test_save_dsl_rejects_empty_dsl(tmp_path: Path) -> None:
 
     assert response.status_code == 400
     assert "must not be empty" in response.json()["error"]
-    assert (problem_dir / "problem.dsl.py").read_text(encoding="utf-8") == "from modu_math.dsl import TextSlot\n"
+    assert (problem_dir / "problem.dsl.py").read_text(
+        encoding="utf-8"
+    ) == "from modu_math.dsl import TextSlot\n"
 
 
 def test_save_dsl_formats_python_source(tmp_path: Path) -> None:
@@ -1255,7 +1365,11 @@ def test_apply_editor_overrides_updates_layout_slot_content() -> None:
     layout = {
         "canvas": {"width": 100, "height": 100},
         "slots": [
-            {"id": "slot.generated.body", "kind": "rect", "content": {"x": 1.0, "y": 2.0, "width": 3.0}},
+            {
+                "id": "slot.generated.body",
+                "kind": "rect",
+                "content": {"x": 1.0, "y": 2.0, "width": 3.0},
+            },
             {"id": "slot.other", "kind": "text", "content": {"x": 9.0}},
         ],
     }
@@ -1263,13 +1377,20 @@ def test_apply_editor_overrides_updates_layout_slot_content() -> None:
 
     apply_editor_overrides(layout, overrides)
 
-    assert layout["slots"][0]["content"] == {"x": 15.0, "y": 2.0, "width": 3.0, "height": 50.0}
+    assert layout["slots"][0]["content"] == {
+        "x": 15.0,
+        "y": 2.0,
+        "width": 3.0,
+        "height": 50.0,
+    }
     assert layout["slots"][1]["content"] == {"x": 9.0}
 
 
 def test_prune_editor_overrides_clamps_text_box_height_to_fit_content() -> None:
     layout = {
-        "regions": [{"id": "region.stem", "role": "stem", "slot_ids": ["slot.question"]}],
+        "regions": [
+            {"id": "region.stem", "role": "stem", "slot_ids": ["slot.question"]}
+        ],
         "slots": [
             {
                 "id": "slot.question",
@@ -1294,7 +1415,9 @@ def test_prune_editor_overrides_clamps_text_box_height_to_fit_content() -> None:
 
 def test_prune_editor_overrides_drops_stale_text_that_removes_dsl_spacing() -> None:
     layout = {
-        "regions": [{"id": "region.problem", "role": "diagram", "slot_ids": ["slot.addend"]}],
+        "regions": [
+            {"id": "region.problem", "role": "diagram", "slot_ids": ["slot.addend"]}
+        ],
         "slots": [
             {
                 "id": "slot.addend",
@@ -1313,7 +1436,9 @@ def test_prune_editor_overrides_drops_stale_text_that_removes_dsl_spacing() -> N
 
 def test_prune_editor_overrides_keeps_text_that_adds_editor_spacing() -> None:
     layout = {
-        "regions": [{"id": "region.problem", "role": "diagram", "slot_ids": ["slot.addend"]}],
+        "regions": [
+            {"id": "region.problem", "role": "diagram", "slot_ids": ["slot.addend"]}
+        ],
         "slots": [
             {
                 "id": "slot.addend",
@@ -1332,10 +1457,20 @@ def test_prune_editor_overrides_keeps_text_that_adds_editor_spacing() -> None:
 
 def test_prune_editor_overrides_keeps_explicit_answer_slot_delete() -> None:
     layout = {
-        "regions": [{"id": "region.stem", "role": "stem", "slot_ids": ["slot.question", "slot.answer"]}],
+        "regions": [
+            {
+                "id": "region.stem",
+                "role": "stem",
+                "slot_ids": ["slot.question", "slot.answer"],
+            }
+        ],
         "slots": [
             {"id": "slot.question", "kind": "text_box", "content": {"text": "Prompt"}},
-            {"id": "slot.answer", "kind": "blank", "content": {"answer_key": "377", "placeholder": "대"}},
+            {
+                "id": "slot.answer",
+                "kind": "blank",
+                "content": {"answer_key": "377", "placeholder": "대"},
+            },
         ],
     }
     overrides = {"deleted_slots": ["slot.answer"]}
@@ -1348,15 +1483,34 @@ def test_prune_editor_overrides_keeps_explicit_answer_slot_delete() -> None:
 
 def test_prune_deleted_legacy_answer_slots_drops_stale_blank_delete() -> None:
     layout = {
-        "regions": [{"id": "region.stem", "role": "stem", "slot_ids": ["slot.question", "slot.answer"]}],
+        "regions": [
+            {
+                "id": "region.stem",
+                "role": "stem",
+                "slot_ids": ["slot.question", "slot.answer"],
+            }
+        ],
         "slots": [
             {"id": "slot.question", "kind": "text_box", "content": {"text": "Prompt"}},
-            {"id": "slot.answer", "kind": "blank", "content": {"answer_key": "377", "placeholder": ""}},
-            {"id": "slot.drawn.answer", "kind": "rect", "content": {"interaction": {"role": "answer"}}},
+            {
+                "id": "slot.answer",
+                "kind": "blank",
+                "content": {"answer_key": "377", "placeholder": ""},
+            },
+            {
+                "id": "slot.drawn.answer",
+                "kind": "rect",
+                "content": {"interaction": {"role": "answer"}},
+            },
         ],
     }
     overrides = {"deleted_slots": ["slot.answer", "slot.drawn.answer"], "version": 1}
-    answer = {"answer_key": [{"slot_id": "slot.answer", "value": 377}, {"slot_id": "slot.drawn.answer", "value": 7}]}
+    answer = {
+        "answer_key": [
+            {"slot_id": "slot.answer", "value": 377},
+            {"slot_id": "slot.drawn.answer", "value": 7},
+        ]
+    }
 
     cleaned, changed = prune_deleted_legacy_answer_slots(layout, overrides, answer)
 
@@ -1366,7 +1520,13 @@ def test_prune_deleted_legacy_answer_slots_drops_stale_blank_delete() -> None:
 
 def test_prune_legacy_answer_blank_slots_removes_duplicate_visual_answer_box() -> None:
     layout = {
-        "regions": [{"id": "region.stem", "role": "stem", "slot_ids": ["slot.question", "slot.answer", "slot.drawn.answer"]}],
+        "regions": [
+            {
+                "id": "region.stem",
+                "role": "stem",
+                "slot_ids": ["slot.question", "slot.answer", "slot.drawn.answer"],
+            }
+        ],
         "slots": [
             {"id": "slot.question", "kind": "text_box", "content": {"text": "Prompt"}},
             {"id": "slot.answer", "kind": "blank", "content": {"placeholder": ""}},
@@ -1382,16 +1542,320 @@ def test_prune_legacy_answer_blank_slots_removes_duplicate_visual_answer_box() -
                 },
             },
         ],
-        "reading_order": ["region.stem", "slot.question", "slot.answer", "slot.drawn.answer"],
+        "reading_order": [
+            "region.stem",
+            "slot.question",
+            "slot.answer",
+            "slot.drawn.answer",
+        ],
     }
     answer = {"type": "numeric", "value": 490}
 
     cleaned, removed = prune_legacy_answer_blank_slots(layout, answer)
 
     assert removed == {"slot.answer"}
-    assert [slot["id"] for slot in cleaned["slots"]] == ["slot.question", "slot.drawn.answer"]
+    assert [slot["id"] for slot in cleaned["slots"]] == [
+        "slot.question",
+        "slot.drawn.answer",
+    ]
     assert cleaned["regions"][0]["slot_ids"] == ["slot.question", "slot.drawn.answer"]
-    assert cleaned["reading_order"] == ["region.stem", "slot.question", "slot.drawn.answer"]
+    assert cleaned["reading_order"] == [
+        "region.stem",
+        "slot.question",
+        "slot.drawn.answer",
+    ]
+
+
+def test_prune_legacy_answer_blank_slots_removes_expression_box_when_visual_answer_owns_contract() -> (
+    None
+):
+    layout = {
+        "regions": [
+            {
+                "id": "region.stem",
+                "role": "stem",
+                "slot_ids": [
+                    "slot.question",
+                    "slot.expression",
+                    "konva.answer",
+                    "slot.unit",
+                ],
+            }
+        ],
+        "slots": [
+            {"id": "slot.question", "kind": "text_box", "content": {"text": "Prompt"}},
+            {
+                "id": "slot.expression",
+                "kind": "blank",
+                "prompt": "식",
+                "content": {"placeholder": ""},
+            },
+            {
+                "id": "konva.answer",
+                "kind": "rect",
+                "content": {
+                    "interaction": {
+                        "type": "input",
+                        "role": "answer",
+                        "include_in_submission": True,
+                    },
+                },
+            },
+            {"id": "slot.unit", "kind": "text_box", "content": {"text": "개"}},
+        ],
+        "reading_order": [
+            "region.stem",
+            "slot.question",
+            "slot.expression",
+            "konva.answer",
+            "slot.unit",
+        ],
+    }
+    answer = {
+        "type": "numeric",
+        "value": 377,
+        "unit": "개",
+    }
+
+    cleaned, removed = prune_legacy_answer_blank_slots(layout, answer)
+
+    assert removed == {"slot.expression"}
+    assert [slot["id"] for slot in cleaned["slots"]] == [
+        "slot.question",
+        "konva.answer",
+        "slot.unit",
+    ]
+    assert cleaned["regions"][0]["slot_ids"] == [
+        "slot.question",
+        "konva.answer",
+        "slot.unit",
+    ]
+    assert cleaned["reading_order"] == [
+        "region.stem",
+        "slot.question",
+        "konva.answer",
+        "slot.unit",
+    ]
+
+
+def test_prune_legacy_answer_blank_slots_removes_multi_blank_boxes_when_visual_answers_own_contract() -> (
+    None
+):
+    layout = {
+        "regions": [
+            {
+                "id": "region.calculation",
+                "role": "diagram",
+                "slot_ids": [
+                    "slot.top.blank_tens.rect",
+                    "slot.top.blank_ones.rect",
+                    "slot.blank.top_tens",
+                    "slot.blank.top_ones",
+                ],
+            }
+        ],
+        "slots": [
+            {
+                "id": "slot.top.blank_tens.rect",
+                "kind": "rect",
+                "content": {
+                    "interaction": {
+                        "type": "input",
+                        "role": "answer",
+                        "include_in_submission": True,
+                        "order": 0,
+                    },
+                },
+            },
+            {
+                "id": "slot.top.blank_ones.rect",
+                "kind": "rect",
+                "content": {
+                    "interaction": {
+                        "type": "input",
+                        "role": "answer",
+                        "include_in_submission": True,
+                        "order": 1,
+                    },
+                },
+            },
+            {
+                "id": "slot.blank.top_tens",
+                "kind": "blank",
+                "content": {"placeholder": "숫자 카드"},
+            },
+            {
+                "id": "slot.blank.top_ones",
+                "kind": "blank",
+                "content": {"placeholder": "숫자 카드"},
+            },
+        ],
+        "reading_order": [
+            "region.calculation",
+            "slot.top.blank_tens.rect",
+            "slot.top.blank_ones.rect",
+            "slot.blank.top_tens",
+            "slot.blank.top_ones",
+        ],
+    }
+    answer = {
+        "type": "multi_value",
+        "value": [5, 2],
+        "values": [
+            {"value": 5, "target_ref": "answer.top_tens"},
+            {"value": 2, "target_ref": "answer.top_ones"},
+        ],
+    }
+
+    cleaned, removed = prune_legacy_answer_blank_slots(layout, answer)
+
+    assert removed == {"slot.blank.top_tens", "slot.blank.top_ones"}
+    assert [slot["id"] for slot in cleaned["slots"]] == [
+        "slot.top.blank_tens.rect",
+        "slot.top.blank_ones.rect",
+    ]
+    assert cleaned["regions"][0]["slot_ids"] == [
+        "slot.top.blank_tens.rect",
+        "slot.top.blank_ones.rect",
+    ]
+
+
+def test_normalize_answer_for_deleted_slots_keeps_remaining_multi_answer() -> None:
+    answer = {
+        "value": [">", "="],
+        "values": [">", "="],
+        "unit": "",
+        "blanks": [
+            {"id": "slot.first", "slot_id": "slot.first", "expected": ">"},
+            {"id": "slot.second", "slot_id": "slot.second", "expected": "="},
+        ],
+        "answer_key": [
+            {"slot_id": "slot.first", "value": ">"},
+            {"slot_id": "slot.second", "value": "="},
+        ],
+    }
+
+    normalized, removed = normalize_answer_for_deleted_slots(answer, {"slot.second"})
+
+    assert removed == {"slot.second"}
+    assert normalized["value"] == [">"]
+    assert normalized["values"] == [">"]
+    assert normalized["blanks"] == [
+        {"id": "slot.first", "slot_id": "slot.first", "expected": ">"}
+    ]
+    assert normalized["answer_key"] == [{"slot_id": "slot.first", "value": ">"}]
+
+
+def test_normalize_answer_for_submit_slots_remaps_multi_answer_values() -> None:
+    answer = {
+        "value": [721, 1316],
+        "unit": "",
+        "blanks": [
+            {"id": "slot.answer_1", "type": "number", "value": 721},
+            {"id": "slot.answer_2", "type": "number", "value": 1316},
+        ],
+        "answer_key": [
+            {"blank_id": "slot.answer_1", "value": 721},
+            {"blank_id": "slot.answer_2", "value": 1316},
+        ],
+    }
+
+    normalized, changed = normalize_answer_for_submit_slots(
+        answer, ["konva.a", "konva.b"]
+    )
+
+    assert changed is True
+    assert normalized["blanks"] == [
+        {"id": "konva.a", "slot_id": "konva.a", "expected": 721, "unit": ""},
+        {"id": "konva.b", "slot_id": "konva.b", "expected": 1316, "unit": ""},
+    ]
+    assert normalized["answer_key"] == [
+        {"slot_id": "konva.a", "value": 721, "unit": ""},
+        {"slot_id": "konva.b", "value": 1316, "unit": ""},
+    ]
+
+
+def test_normalize_answer_for_submit_slots_uses_answer_key_index_subset() -> None:
+    answer = {
+        "value": [1234, 1412, 1054],
+        "unit": "",
+        "answer_key": [
+            {"blank_id": "slot.answer_1", "value": 1234},
+            {"blank_id": "slot.answer_2", "value": 1412},
+            {"blank_id": "slot.answer_3", "value": 1054},
+        ],
+    }
+
+    normalized, changed = normalize_answer_for_submit_slots(
+        answer,
+        [
+            {
+                "slot_id": "konva.answer_2",
+                "answer_key_index": 1,
+                "answer_ref": "answer_key[1]",
+            }
+        ],
+    )
+
+    assert changed is True
+    assert normalized["value"] == [1412]
+    assert normalized["answer_key"] == [
+        {"slot_id": "konva.answer_2", "value": 1412, "unit": ""}
+    ]
+
+
+def test_normalize_answer_for_submit_slots_uses_submit_order_subset() -> None:
+    answer = {
+        "value": [395, 599],
+        "values": [395, 599],
+        "unit": "",
+        "answer_key": [],
+        "blanks": [],
+    }
+
+    normalized, changed = normalize_answer_for_submit_slots(
+        answer,
+        [{"slot_id": "konva.answer_1", "order": 0}],
+    )
+
+    assert changed is True
+    assert normalized["value"] == [395]
+    assert normalized["values"] == [395]
+    assert normalized["blanks"] == [
+        {
+            "id": "konva.answer_1",
+            "slot_id": "konva.answer_1",
+            "expected": 395,
+            "unit": "",
+        }
+    ]
+    assert normalized["answer_key"] == [
+        {"slot_id": "konva.answer_1", "value": 395, "unit": ""}
+    ]
+
+
+def test_normalize_answer_value_units_strips_unit_from_numeric_values() -> None:
+    answer = {
+        "type": "numeric",
+        "value": "438 개",
+        "unit": "개",
+        "blanks": [
+            {"id": "slot.answer", "slot_id": "slot.answer", "expected": "438개"}
+        ],
+        "answer_key": [{"slot_id": "slot.answer", "value": "438 개", "unit": "개"}],
+    }
+
+    normalized, changed = normalize_answer_value_units(answer)
+
+    assert changed is True
+    assert normalized["value"] == 438
+    assert normalized["unit"] == "개"
+    assert normalized["blanks"] == [
+        {"id": "slot.answer", "slot_id": "slot.answer", "expected": 438}
+    ]
+    assert normalized["answer_key"] == [
+        {"slot_id": "slot.answer", "value": 438, "unit": "개"}
+    ]
 
 
 def test_apply_editor_overrides_converts_polygon_d_override_to_points() -> None:
@@ -1401,7 +1865,10 @@ def test_apply_editor_overrides_converts_polygon_d_override_to_points() -> None:
             {
                 "id": "slot.house_roof",
                 "kind": "polygon",
-                "content": {"points": [[0.0, 0.0], [10.0, 0.0], [5.0, 8.0]], "fill": "#ddd"},
+                "content": {
+                    "points": [[0.0, 0.0], [10.0, 0.0], [5.0, 8.0]],
+                    "fill": "#ddd",
+                },
             },
         ],
     }
@@ -1409,7 +1876,11 @@ def test_apply_editor_overrides_converts_polygon_d_override_to_points() -> None:
 
     apply_editor_overrides(layout, overrides)
 
-    assert layout["slots"][0]["content"]["points"] == [[12.5, 20.0], [28.0, 10.0], [43.5, 20.0]]
+    assert layout["slots"][0]["content"]["points"] == [
+        [12.5, 20.0],
+        [28.0, 10.0],
+        [43.5, 20.0],
+    ]
     assert "d" not in layout["slots"][0]["content"]
 
 
@@ -1417,15 +1888,28 @@ def test_apply_editor_overrides_adds_missing_override_slot_to_matching_region() 
     layout = {
         "regions": [
             {"id": "region.stem", "role": "stem", "slot_ids": ["slot.q.text"]},
-            {"id": "region.choices", "role": "diagram", "slot_ids": ["slot.choice.box"]},
+            {
+                "id": "region.choices",
+                "role": "diagram",
+                "slot_ids": ["slot.choice.box"],
+            },
         ],
         "slots": [
             {"id": "slot.q.text", "kind": "text", "content": {"text": "Question"}},
             {"id": "slot.choice.box", "kind": "rect", "content": {"x": 1.0, "y": 2.0}},
         ],
-        "reading_order": ["region.stem", "slot.q.text", "region.choices", "slot.choice.box"],
+        "reading_order": [
+            "region.stem",
+            "slot.q.text",
+            "region.choices",
+            "slot.choice.box",
+        ],
     }
-    overrides = {"slots": {"slot.choice.a.text": {"text": "①", "x": 105.0, "y": 146.0, "font_size": 28}}}
+    overrides = {
+        "slots": {
+            "slot.choice.a.text": {"text": "①", "x": 105.0, "y": 146.0, "font_size": 28}
+        }
+    }
 
     apply_editor_overrides(layout, overrides)
 
@@ -1436,7 +1920,9 @@ def test_apply_editor_overrides_adds_missing_override_slot_to_matching_region() 
     assert layout["reading_order"][-1] == "slot.choice.a.text"
 
 
-def test_apply_editor_overrides_infers_missing_text_box_slot_when_box_fields_exist() -> None:
+def test_apply_editor_overrides_infers_missing_text_box_slot_when_box_fields_exist() -> (
+    None
+):
     layout = {
         "regions": [
             {"id": "region.stem", "role": "stem", "slot_ids": ["slot.prompt"]},
@@ -1471,13 +1957,23 @@ def test_apply_editor_overrides_infers_missing_text_box_slot_when_box_fields_exi
 def test_apply_editor_overrides_infers_missing_path_slot_when_d_field_exists() -> None:
     layout = {
         "regions": [
-            {"id": "region.diagram", "role": "diagram", "slot_ids": ["slot.shape.anchor"]},
+            {
+                "id": "region.diagram",
+                "role": "diagram",
+                "slot_ids": ["slot.shape.anchor"],
+            },
         ],
         "slots": [
-            {"id": "slot.shape.anchor", "kind": "rect", "content": {"x": 0.0, "y": 0.0}},
+            {
+                "id": "slot.shape.anchor",
+                "kind": "rect",
+                "content": {"x": 0.0, "y": 0.0},
+            },
         ],
     }
-    overrides = {"slots": {"slot.shape.roof": {"d": "M 0 0 L 10 0 L 5 8 Z", "fill": "none"}}}
+    overrides = {
+        "slots": {"slot.shape.roof": {"d": "M 0 0 L 10 0 L 5 8 Z", "fill": "none"}}
+    }
 
     apply_editor_overrides(layout, overrides)
 
@@ -1485,14 +1981,20 @@ def test_apply_editor_overrides_infers_missing_path_slot_when_d_field_exists() -
     assert added["kind"] == "path"
 
 
-def test_apply_editor_overrides_does_not_revive_stale_missing_slot_without_matching_prefix() -> None:
+def test_apply_editor_overrides_does_not_revive_stale_missing_slot_without_matching_prefix() -> (
+    None
+):
     layout = {
         "regions": [
             {"id": "region.stem", "role": "stem", "slot_ids": ["slot.instruction"]},
             {"id": "region.problem_1", "role": "question", "slot_ids": []},
         ],
         "slots": [
-            {"id": "slot.instruction", "kind": "text_box", "content": {"text": "Prompt"}},
+            {
+                "id": "slot.instruction",
+                "kind": "text_box",
+                "content": {"text": "Prompt"},
+            },
         ],
     }
     overrides = {
@@ -1515,13 +2017,23 @@ def test_apply_editor_overrides_does_not_revive_stale_missing_slot_without_match
     assert layout["regions"][1]["slot_ids"] == []
 
 
-def test_apply_editor_overrides_does_not_revive_unanchored_single_region_text_slot() -> None:
+def test_apply_editor_overrides_does_not_revive_unanchored_single_region_text_slot() -> (
+    None
+):
     layout = {
         "regions": [
-            {"id": "region.process", "role": "diagram", "slot_ids": ["slot.stage2.top"]},
+            {
+                "id": "region.process",
+                "role": "diagram",
+                "slot_ids": ["slot.stage2.top"],
+            },
         ],
         "slots": [
-            {"id": "slot.stage2.top", "kind": "text", "content": {"text": "554", "x": 355.0, "y": 133.0}},
+            {
+                "id": "slot.stage2.top",
+                "kind": "text",
+                "content": {"text": "554", "x": 355.0, "y": 133.0},
+            },
         ],
     }
     overrides = {
@@ -1550,7 +2062,11 @@ def test_prune_editor_overrides_removes_stale_missing_slots() -> None:
             {"id": "region.problem_1", "role": "question", "slot_ids": []},
         ],
         "slots": [
-            {"id": "slot.instruction", "kind": "text_box", "content": {"text": "Prompt"}},
+            {
+                "id": "slot.instruction",
+                "kind": "text_box",
+                "content": {"text": "Prompt"},
+            },
         ],
     }
     overrides = {
@@ -1576,7 +2092,11 @@ def test_prune_editor_overrides_removes_stale_missing_slots() -> None:
 def test_prune_editor_overrides_normalizes_polygon_d_override() -> None:
     layout = {
         "regions": [
-            {"id": "region.diagram", "role": "diagram", "slot_ids": ["slot.house_roof"]},
+            {
+                "id": "region.diagram",
+                "role": "diagram",
+                "slot_ids": ["slot.house_roof"],
+            },
         ],
         "slots": [
             {
@@ -1586,18 +2106,27 @@ def test_prune_editor_overrides_normalizes_polygon_d_override() -> None:
             },
         ],
     }
-    overrides = {"version": 1, "slots": {"slot.house_roof": {"d": "M 12 20 L 28 10 L 44 20 Z"}}}
+    overrides = {
+        "version": 1,
+        "slots": {"slot.house_roof": {"d": "M 12 20 L 28 10 L 44 20 Z"}},
+    }
 
     cleaned, changed = prune_editor_overrides(layout, overrides)
 
     assert changed is True
-    assert cleaned["slots"]["slot.house_roof"] == {"points": [[12.0, 20.0], [28.0, 10.0], [44.0, 20.0]]}
+    assert cleaned["slots"]["slot.house_roof"] == {
+        "points": [[12.0, 20.0], [28.0, 10.0], [44.0, 20.0]]
+    }
 
 
 def test_prune_editor_overrides_keeps_missing_slots_with_matching_prefix() -> None:
     layout = {
         "regions": [
-            {"id": "region.choices", "role": "diagram", "slot_ids": ["slot.choice.box"]},
+            {
+                "id": "region.choices",
+                "role": "diagram",
+                "slot_ids": ["slot.choice.box"],
+            },
         ],
         "slots": [
             {"id": "slot.choice.box", "kind": "rect", "content": {"x": 1.0, "y": 2.0}},
@@ -1605,7 +2134,12 @@ def test_prune_editor_overrides_keeps_missing_slots_with_matching_prefix() -> No
     }
     overrides = {
         "slots": {
-            "slot.choice.a.text": {"text": "A", "x": 105.0, "y": 146.0, "font_size": 28},
+            "slot.choice.a.text": {
+                "text": "A",
+                "x": 105.0,
+                "y": 146.0,
+                "font_size": 28,
+            },
         }
     }
 
@@ -1618,10 +2152,18 @@ def test_prune_editor_overrides_keeps_missing_slots_with_matching_prefix() -> No
 def test_prune_editor_overrides_drops_unanchored_single_region_text_slot() -> None:
     layout = {
         "regions": [
-            {"id": "region.process", "role": "diagram", "slot_ids": ["slot.stage2.top"]},
+            {
+                "id": "region.process",
+                "role": "diagram",
+                "slot_ids": ["slot.stage2.top"],
+            },
         ],
         "slots": [
-            {"id": "slot.stage2.top", "kind": "text", "content": {"text": "554", "x": 355.0, "y": 133.0}},
+            {
+                "id": "slot.stage2.top",
+                "kind": "text",
+                "content": {"text": "554", "x": 355.0, "y": 133.0},
+            },
         ],
     }
     overrides = {
@@ -1650,10 +2192,18 @@ def test_prune_editor_overrides_drops_unanchored_single_region_text_slot() -> No
 def test_prune_editor_overrides_keeps_missing_single_region_answer_slot() -> None:
     layout = {
         "regions": [
-            {"id": "region.process", "role": "diagram", "slot_ids": ["slot.stage2.top"]},
+            {
+                "id": "region.process",
+                "role": "diagram",
+                "slot_ids": ["slot.stage2.top"],
+            },
         ],
         "slots": [
-            {"id": "slot.stage2.top", "kind": "text", "content": {"text": "554", "x": 355.0, "y": 133.0}},
+            {
+                "id": "slot.stage2.top",
+                "kind": "text",
+                "content": {"text": "554", "x": 355.0, "y": 133.0},
+            },
         ],
     }
     overrides = {
@@ -1663,7 +2213,11 @@ def test_prune_editor_overrides_keeps_missing_single_region_answer_slot() -> Non
                 "y": 218.0,
                 "width": 25.0,
                 "height": 25.0,
-                "interaction": {"type": "input", "role": "answer", "value_type": "digit"},
+                "interaction": {
+                    "type": "input",
+                    "role": "answer",
+                    "value_type": "digit",
+                },
             },
         },
     }
@@ -1688,7 +2242,9 @@ from modu_math.dsl import ProblemTemplate
         content_type="application/json",
     )
     assert response.status_code == 200
-    overrides = json.loads((problem_dir / "problem.editor_overrides.json").read_text(encoding="utf-8"))
+    overrides = json.loads(
+        (problem_dir / "problem.editor_overrides.json").read_text(encoding="utf-8")
+    )
     assert overrides["deleted_slots"] == ["slot.generated.body"]
 
 
@@ -1706,7 +2262,9 @@ PROBLEM_TEMPLATE = ProblemTemplate(
 """.lstrip()
     problem_dir = _write_problem(tmp_path, "0001", dsl_text)
 
-    payload = {"patches": [{"target": "slot.editor_next.circle.1.circle", "op": "delete"}]}
+    payload = {
+        "patches": [{"target": "slot.editor_next.circle.1.circle", "op": "delete"}]
+    }
     response = client.post(
         "/api/editor/problems/0001/layout-patch/",
         data=json.dumps(payload),
@@ -1762,9 +2320,16 @@ def test_apply_editor_overrides_removes_deleted_slots() -> None:
     assert layout["reading_order"] == ["region.diagram", "slot.keep"]
 
 
-def test_apply_editor_overrides_removes_deleted_prefix_when_exact_slot_missing() -> None:
+def test_apply_editor_overrides_removes_deleted_prefix_when_exact_slot_missing() -> (
+    None
+):
     layout = {
-        "regions": [{"id": "region.stem", "slot_ids": ["slot.q.num", "slot.q.text", "slot.other"]}],
+        "regions": [
+            {
+                "id": "region.stem",
+                "slot_ids": ["slot.q.num", "slot.q.text", "slot.other"],
+            }
+        ],
         "slots": [
             {"id": "slot.q.num", "kind": "text", "content": {"text": "81."}},
             {"id": "slot.q.text", "kind": "text", "content": {"text": "Question"}},
@@ -1799,7 +2364,9 @@ def test_apply_editor_overrides_keeps_children_when_exact_deleted_slot_exists() 
     assert layout["reading_order"] == ["region.stem", "slot.q.num"]
 
 
-def test_layout_patch_layer_order_falls_back_to_editor_overrides(tmp_path: Path) -> None:
+def test_layout_patch_layer_order_falls_back_to_editor_overrides(
+    tmp_path: Path,
+) -> None:
     client = _setup_django(tmp_path)
     dsl_text = "from modu_math.dsl import ProblemTemplate\n"
     problem_dir = _write_problem(tmp_path, "0001", dsl_text)
@@ -1809,7 +2376,10 @@ def test_layout_patch_layer_order_falls_back_to_editor_overrides(tmp_path: Path)
             {
                 "target": "__layer__",
                 "op": "layer",
-                "value": {"region_id": "region.diagram", "slot_ids": ["slot.back", "slot.front"]},
+                "value": {
+                    "region_id": "region.diagram",
+                    "slot_ids": ["slot.back", "slot.front"],
+                },
             }
         ]
     }
@@ -1820,17 +2390,26 @@ def test_layout_patch_layer_order_falls_back_to_editor_overrides(tmp_path: Path)
     )
 
     assert response.status_code == 200
-    overrides = json.loads((problem_dir / "problem.editor_overrides.json").read_text(encoding="utf-8"))
-    assert overrides["region_slot_orders"]["region.diagram"] == ["slot.back", "slot.front"]
+    overrides = json.loads(
+        (problem_dir / "problem.editor_overrides.json").read_text(encoding="utf-8")
+    )
+    assert overrides["region_slot_orders"]["region.diagram"] == [
+        "slot.back",
+        "slot.front",
+    ]
 
 
 def test_apply_editor_overrides_reorders_region_slots() -> None:
     layout = {
-        "regions": [{"id": "region.diagram", "slot_ids": ["slot.a", "slot.b", "slot.c"]}],
+        "regions": [
+            {"id": "region.diagram", "slot_ids": ["slot.a", "slot.b", "slot.c"]}
+        ],
         "slots": [{"id": "slot.a"}, {"id": "slot.b"}, {"id": "slot.c"}],
         "reading_order": ["region.diagram", "slot.a", "slot.b", "slot.c"],
     }
-    overrides = {"region_slot_orders": {"region.diagram": ["slot.c", "slot.a", "slot.b"]}}
+    overrides = {
+        "region_slot_orders": {"region.diagram": ["slot.c", "slot.a", "slot.b"]}
+    }
 
     apply_editor_overrides(layout, overrides)
 
@@ -1901,7 +2480,9 @@ SLOTS = (
     assert "r=70.0" in updated
 
 
-def test_layout_patch_overrides_folded_edge_generated_by_wrapper(tmp_path: Path) -> None:
+def test_layout_patch_overrides_folded_edge_generated_by_wrapper(
+    tmp_path: Path,
+) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """
 from dataclasses import replace
@@ -2002,7 +2583,11 @@ SLOTS = (
                 "target": "slot.line",
                 "op": "update",
                 "value": {
-                    "interaction": {"type": "input", "role": "answer", "value_type": "integer"},
+                    "interaction": {
+                        "type": "input",
+                        "role": "answer",
+                        "value_type": "integer",
+                    },
                     "input_style": {"font_size_mode": "auto"},
                 },
             }
@@ -2073,7 +2658,15 @@ SLOTS = (
 """.lstrip()
     problem_dir = _write_problem(tmp_path, "0001", dsl_text)
 
-    payload = {"patches": [{"target": "slot.character.left", "op": "update", "value": {"move_dx": 7.0, "move_dy": 11.0}}]}
+    payload = {
+        "patches": [
+            {
+                "target": "slot.character.left",
+                "op": "update",
+                "value": {"move_dx": 7.0, "move_dy": 11.0},
+            }
+        ]
+    }
     response = client.post(
         "/api/editor/problems/0001/layout-patch/",
         data=json.dumps(payload),
@@ -2089,7 +2682,9 @@ SLOTS = (
     assert "character_hand_slots(" in updated
     assert "card_x=(80.0) + (7.0)" in updated
     assert "card_y=(120.0) + (11.0)" in updated
-    assert 'RectSlot(id="slot.card_left", x=(80.0) + (7.0), y=(120.0) + (11.0)' in updated
+    assert (
+        'RectSlot(id="slot.card_left", x=(80.0) + (7.0), y=(120.0) + (11.0)' in updated
+    )
 
 
 def test_layout_patch_moves_base_ten_figure_helper(tmp_path: Path) -> None:
@@ -2116,8 +2711,16 @@ SLOTS = (
 
     payload = {
         "patches": [
-            {"target": "slot.figure.top", "op": "update", "value": {"move_dx": 15.0, "move_dy": 25.0}},
-            {"target": "slot.figure.group1", "op": "update", "value": {"move_dx": -5.0, "move_dy": 10.0}},
+            {
+                "target": "slot.figure.top",
+                "op": "update",
+                "value": {"move_dx": 15.0, "move_dy": 25.0},
+            },
+            {
+                "target": "slot.figure.group1",
+                "op": "update",
+                "value": {"move_dx": -5.0, "move_dy": 10.0},
+            },
         ]
     }
     response = client.post(
@@ -2128,8 +2731,14 @@ SLOTS = (
 
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
-    assert '_base_ten_model("slot.figure.top", x=(100.0) + (15.0), y=(50.0) + (25.0)' in updated
-    assert '_partition_box("slot.figure.group1", x=(200.0) + (-5.0), y=(150.0) + (10.0))' in updated
+    assert (
+        '_base_ten_model("slot.figure.top", x=(100.0) + (15.0), y=(50.0) + (25.0)'
+        in updated
+    )
+    assert (
+        '_partition_box("slot.figure.group1", x=(200.0) + (-5.0), y=(150.0) + (10.0))'
+        in updated
+    )
 
 
 def test_layout_patch_moves_one_bar_model_bar(tmp_path: Path) -> None:
@@ -2170,7 +2779,9 @@ SLOTS = (
     assert 'id="slot.figure.bar_model_1.bar1.div1"' in updated
     assert "x1=(60.0) + (12.0)" in updated
     assert "y1=(20.0) + (-5.0)" in updated
-    assert 'RectSlot(id="slot.figure.bar_model_1.bar2.shade1", x=10.0, y=70.0' in updated
+    assert (
+        'RectSlot(id="slot.figure.bar_model_1.bar2.shade1", x=10.0, y=70.0' in updated
+    )
 
 
 def test_layout_patch_moves_one_tick_bar_row(tmp_path: Path) -> None:
@@ -2209,7 +2820,10 @@ SLOTS = (
     assert 'id="slot.figure.tick_bar_1.row1.axis"' in updated
     assert "x1=(120.0) + (6.0)" in updated
     assert "y1=(30.0) + (8.0)" in updated
-    assert 'TextSlot(id="slot.figure.tick_bar_1.row2.label", text="1 3/7 m", x=10.0, y=80.0)' in updated
+    assert (
+        'TextSlot(id="slot.figure.tick_bar_1.row2.label", text="1 3/7 m", x=10.0, y=80.0)'
+        in updated
+    )
 
 
 def test_layout_patch_moves_circle_fold_sequence_helper(tmp_path: Path) -> None:
@@ -2225,7 +2839,11 @@ SLOTS = (
 
     payload = {
         "patches": [
-            {"target": "slot.fold", "op": "update", "value": {"move_dx": 12.0, "move_dy": -8.0}},
+            {
+                "target": "slot.fold",
+                "op": "update",
+                "value": {"move_dx": 12.0, "move_dy": -8.0},
+            },
         ]
     }
     response = client.post(
@@ -2236,7 +2854,7 @@ SLOTS = (
 
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
-    assert 'circle_fold_sequence_slots(' in updated
+    assert "circle_fold_sequence_slots(" in updated
     assert '"slot.fold"' in updated
     assert "x=(40.0) + (12.0)" in updated
     assert "y=(245.0) + (-8.0)" in updated
@@ -2267,8 +2885,16 @@ SLOTS = (
 
     payload = {
         "patches": [
-            {"target": "slot.grid", "op": "update", "value": {"move_dx": 11.0, "move_dy": -7.0}},
-            {"target": "slot.pt.rieul", "op": "update", "value": {"move_dx": -5.0, "move_dy": 13.0}},
+            {
+                "target": "slot.grid",
+                "op": "update",
+                "value": {"move_dx": 11.0, "move_dy": -7.0},
+            },
+            {
+                "target": "slot.pt.rieul",
+                "op": "update",
+                "value": {"move_dx": -5.0, "move_dy": 13.0},
+            },
         ]
     }
     response = client.post(
@@ -2279,8 +2905,11 @@ SLOTS = (
 
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
-    assert '_grid_slots("slot.grid", x=(100.0) + (11.0), y=(50.0) + (-7.0), step=30.0)' in updated
-    assert '_candidate_slots(' in updated
+    assert (
+        '_grid_slots("slot.grid", x=(100.0) + (11.0), y=(50.0) + (-7.0), step=30.0)'
+        in updated
+    )
+    assert "_candidate_slots(" in updated
     assert '"slot.pt.rieul"' in updated
     assert "origin_x=(140.0) + (-5.0)" in updated
     assert "origin_y=(80.0) + (13.0)" in updated
@@ -2306,7 +2935,11 @@ SLOTS = (
 
     payload = {
         "patches": [
-            {"target": "slot.choice1", "op": "update", "value": {"move_dx": 10.0, "move_dy": -5.0}},
+            {
+                "target": "slot.choice1",
+                "op": "update",
+                "value": {"move_dx": 10.0, "move_dy": -5.0},
+            },
         ]
     }
     response = client.post(
@@ -2334,7 +2967,11 @@ SLOTS = (
 
     payload = {
         "patches": [
-            {"target": "slot.choice1.ruler.body", "op": "update", "value": {"x": 115.0, "y": 235.0}},
+            {
+                "target": "slot.choice1.ruler.body",
+                "op": "update",
+                "value": {"x": 115.0, "y": 235.0},
+            },
         ]
     }
     response = client.post(
@@ -2358,7 +2995,15 @@ SPEAKERS = (
 """.lstrip()
     problem_dir = _write_problem(tmp_path, "0001", dsl_text)
 
-    payload = {"patches": [{"target": "slot.character.left", "op": "update", "value": {"move_dx": 7.0, "move_dy": 11.0}}]}
+    payload = {
+        "patches": [
+            {
+                "target": "slot.character.left",
+                "op": "update",
+                "value": {"move_dx": 7.0, "move_dy": 11.0},
+            }
+        ]
+    }
     response = client.post(
         "/api/editor/problems/0001/layout-patch/",
         data=json.dumps(payload),
@@ -2399,7 +3044,13 @@ PROBLEM_TEMPLATE = ProblemTemplate(
                 "value": {
                     "kind": "text",
                     "region_id": "region.main",
-                    "content": {"text": "A", "x": 20, "y": 30, "font_size": 12, "fill": "#111111"},
+                    "content": {
+                        "text": "A",
+                        "x": 20,
+                        "y": 30,
+                        "font_size": 12,
+                        "fill": "#111111",
+                    },
                 },
             }
         ]
@@ -2452,7 +3103,9 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     assert "Canvas(width=180, height=160)" in updated
 
 
-def test_fast_layout_patch_updates_canvas_size_in_editor_overrides(tmp_path: Path) -> None:
+def test_fast_layout_patch_updates_canvas_size_in_editor_overrides(
+    tmp_path: Path,
+) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """
 from modu_math.dsl import Canvas, ProblemTemplate
@@ -2468,7 +3121,9 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     problem_dir = _write_problem(tmp_path, "0001", dsl_text)
     overrides_path = problem_dir / "problem.editor_overrides.json"
     overrides_path.write_text(
-        json.dumps({"version": 1, "canvas": {"width": 140, "height": 150}, "slots": {}}),
+        json.dumps(
+            {"version": 1, "canvas": {"width": 140, "height": 150}, "slots": {}}
+        ),
         encoding="utf-8",
     )
 

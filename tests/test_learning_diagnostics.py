@@ -27,20 +27,46 @@ def test_registered_error_is_candidate_before_confirmation() -> None:
     assert confirmed["diagnostic_status"] == "confirmed"
 
 
+def test_arithmetic_diagnostic_reads_numeric_response_with_unit() -> None:
+    solvable = {
+        "schema": "modu.solvable.v1.3",
+        "problem_id": "p_add",
+        "steps": [{"expr": "259 + 248", "value": 507}],
+        "answer": {"value": 507, "unit": "개"},
+    }
+
+    diagnostic = diagnose_student_response(solvable, "1507개", correct=False)
+
+    assert diagnostic["diagnostic_status"] == "candidate"
+    assert diagnostic["skill_id"] == "execute.place_value_compose"
+
+
 def test_rule_tutor_asks_confirmation_before_feedback() -> None:
     solvable = {
         "schema": "modu.solvable.v1.3",
         "problem_id": "P3_1_01_00040_00469",
         "problem_type": "numeric_answer_addition_word_problem",
         "method": "add_parts",
-        "steps": [{"id": "step.add_counts", "goal": "전체 수 구하기", "expr": "259 + 248", "value": 507}],
+        "steps": [
+            {
+                "id": "step.add_counts",
+                "goal": "전체 수 구하기",
+                "expr": "259 + 248",
+                "value": 507,
+            }
+        ],
         "answer": {"value": 507, "unit": ""},
-        "diagnostics": {"skills": ["plan.add_parts"], "errors": {"259": "plan.copy_one_part"}},
+        "diagnostics": {
+            "skills": ["plan.add_parts"],
+            "errors": {"259": "plan.copy_one_part"},
+        },
     }
     payload = {"semantic": {"metadata": {"language": "ko"}}, "solvable": solvable}
     first = rule_tutor_response(payload, "start", [])
 
-    candidate = rule_tutor_response(payload, "259", [{"role": "assistant", "content": first["reply"]}])
+    candidate = rule_tutor_response(
+        payload, "259", [{"role": "assistant", "content": first["reply"]}]
+    )
     confirmed = rule_tutor_response(
         payload,
         "네",
@@ -64,11 +90,22 @@ def test_skill_state_uses_recent_five_attempts_and_repeated_confirmed_errors() -
             skill_ids=["execute.add_carry"],
             submitted_answer="wrong",
             correct=False,
-            diagnostic={"error_code": "execute.add_carry", "diagnostic_status": "confirmed", "error_category": "execute"},
+            diagnostic={
+                "error_code": "execute.add_carry",
+                "diagnostic_status": "confirmed",
+                "error_category": "execute",
+            },
         )
         for i in range(2)
     ]
-    attempts.append(build_attempt(problem_id="p2", skill_ids=["execute.add_carry"], submitted_answer="507", correct=True))
+    attempts.append(
+        build_attempt(
+            problem_id="p2",
+            skill_ids=["execute.add_carry"],
+            submitted_answer="507",
+            correct=True,
+        )
+    )
 
     states = compute_skill_states(attempts)
 
@@ -78,7 +115,12 @@ def test_skill_state_uses_recent_five_attempts_and_repeated_confirmed_errors() -
 
 def test_skill_state_marks_stable_after_four_of_five_without_hints() -> None:
     attempts = [
-        build_attempt(problem_id=f"p{i}", skill_ids=["plan.add_parts"], submitted_answer="ok", correct=i != 0)
+        build_attempt(
+            problem_id=f"p{i}",
+            skill_ids=["plan.add_parts"],
+            submitted_answer="ok",
+            correct=i != 0,
+        )
         for i in range(5)
     ]
 
@@ -89,7 +131,10 @@ def test_skill_state_marks_stable_after_four_of_five_without_hints() -> None:
 
 def test_recommendations_prioritize_repeated_error_skills() -> None:
     states = {
-        "execute.add_carry": {"state": "needs_support", "repeated_error_code": "execute.add_carry"},
+        "execute.add_carry": {
+            "state": "needs_support",
+            "repeated_error_code": "execute.add_carry",
+        },
         "plan.add_parts": {"state": "stable"},
     }
     problems = [

@@ -27,6 +27,16 @@ void main() {
     expect(_correctChoice(hints[3]), equals('507'));
   });
 
+  test('treats direct addend quantities as one column addition problem', () {
+    final hints = service.buildHints(_directQuantityColumnAdditionContent);
+
+    expect(hints, hasLength(4));
+    expect(hints.map((hint) => hint.groupKey).toSet(), equals({null}));
+    expect(hints[0].miniQuestion, equals('4 + 7은 얼마인가요?'));
+    expect(_correctChoice(hints[0]), equals('11'));
+    expect(_correctChoice(hints[3]), equals('921'));
+  });
+
   test('uses elementary multiple-choice fallback hints', () {
     final hints = service.buildHints(_simpleContent);
 
@@ -113,6 +123,41 @@ const _columnAdditionContent = ProblemContent(
     'method': 'vertical_addition_with_carry',
     'plan': '259 + 248을 일의 자리부터 더한다.',
     'answer': {'value': 507},
+  },
+);
+
+const _directQuantityColumnAdditionContent = ProblemContent(
+  summary: _summary,
+  semantic: {},
+  solvable: {
+    'problem_type': 'multi_blank_vertical_addition',
+    'inputs': {
+      'answer_type': 'digit_list',
+      'quantities': {
+        'first_addend': 664,
+        'second_addend': 257,
+      },
+    },
+    'target': {'type': 'digit_list'},
+    'steps': [
+      {'id': 'step.add_ones', 'expr': '4 + 7', 'value': 11},
+      {
+        'id': 'step.write_ones_and_carry',
+        'expr': '11 = 1 x 10 + 1',
+        'value': {'carry': 1, 'digit': 1},
+      },
+      {'id': 'step.add_tens', 'expr': '6 + 5 + 1', 'value': 12},
+      {
+        'id': 'step.write_tens_and_carry',
+        'expr': '12 = 1 x 10 + 2',
+        'value': {'carry': 1, 'digit': 2},
+      },
+      {'id': 'step.add_hundreds', 'expr': '6 + 2 + 1', 'value': 9},
+      {'id': 'step.compose_answer', 'expr': '900 + 20 + 1', 'value': 921},
+    ],
+    'answer': {
+      'value': [1, 1, 9, 2, 1]
+    },
   },
 );
 

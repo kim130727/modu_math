@@ -2,7 +2,7 @@
   "problem_id": "P3_1_01_00040_15614",
   "view_box": {
     "width": 900.0,
-    "height": 210.0,
+    "height": 218.0,
     "background": "#FFFFFF"
   },
   "elements": [
@@ -11,7 +11,7 @@
       "type": "rect",
       "attributes": {
         "x": 650.175,
-        "y": 138.616,
+        "y": 144.797,
         "width": 142.537,
         "height": 57.203,
         "fill": "#ffffff",
@@ -21,6 +21,32 @@
       "source_ref": "konva_1785891230215_rect_6041804",
       "refs": {
         "layout_slot_id": "konva_1785891230215_rect_6041804"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "integer",
+        "max_length": 3,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "answer_key_index": 0,
+        "answer_ref": "answer.value",
+        "auto_advance": false,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222",
+        "width": 142.537,
+        "height": 57.203
       }
     },
     {
@@ -55,7 +81,7 @@
       "type": "text_box",
       "attributes": {
         "x": 813.283,
-        "y": 145.939,
+        "y": 152.12,
         "fill": "#111827",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 30,
@@ -64,7 +90,7 @@
         "max_width": 54.078,
         "data-slot-kind": "text_box",
         "data-box-x": 813.283,
-        "data-box-y": 145.939,
+        "data-box-y": 152.12,
         "data-box-width": 54.078,
         "data-box-height": 46.0,
         "data-text-align": "left",

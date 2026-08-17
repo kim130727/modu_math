@@ -6,7 +6,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     Region,
     TextBoxSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_15622"
@@ -25,14 +25,10 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="vertical",
-                slot_ids=(
-                    "slot.question",
-                    
-                ),
+                slot_ids=("slot.question",'konva_1786962334798_rect_157066', 'konva_1786962334798_text_165587'),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.question",
                 x = 9.836, y = 4.623, width = 545.213, height = 176.377, text=(
                     "진우는 윤지와 함께 밤을 주웠습니다. 진우는 231개를 주웠고, "
@@ -50,8 +46,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="답",
                 answer_key="488",
                 placeholder="개",
-            ),
-        ),
+            ),RectSlot(id = 'konva_1786962334798_rect_157066', prompt = '', x = 399.508, y = 138.197, width = 142.13, height = 51.74, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2), TextBoxSlot(id = 'konva_1786962334798_text_165587', prompt = '', text = '개', x = 549.525, y = 143.885, font_size = 30, fill = '#111827', width = 37.016, height = 46, align = 'left', line_height = 1.25)),
     )
 
 

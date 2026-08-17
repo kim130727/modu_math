@@ -94,7 +94,7 @@
       "id": "slot.card1.text.text",
       "type": "text",
       "attributes": {
-        "x": 36.0,
+        "x": 37.5,
         "y": 72.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
@@ -111,7 +111,7 @@
       "id": "slot.card5.text.text",
       "type": "text",
       "attributes": {
-        "x": 72.0,
+        "x": 73.5,
         "y": 72.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
@@ -128,7 +128,7 @@
       "id": "slot.card2.text.text",
       "type": "text",
       "attributes": {
-        "x": 108.0,
+        "x": 109.5,
         "y": 72.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
@@ -145,7 +145,7 @@
       "id": "slot.card7.text.text",
       "type": "text",
       "attributes": {
-        "x": 144.0,
+        "x": 145.5,
         "y": 72.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
@@ -173,6 +173,32 @@
       "source_ref": "slot.top.blank_tens.rect",
       "refs": {
         "layout_slot_id": "slot.top.blank_tens.rect"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "answer_key_index": 0,
+        "answer_ref": "answer.top_tens",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222",
+        "width": 22.0,
+        "height": 28.0
       }
     },
     {
@@ -190,6 +216,32 @@
       "source_ref": "slot.top.blank_ones.rect",
       "refs": {
         "layout_slot_id": "slot.top.blank_ones.rect"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 1,
+        "group_id": "final_answer",
+        "answer_key_index": 1,
+        "answer_ref": "answer.top_ones",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222",
+        "width": 22.0,
+        "height": 28.0
       }
     },
     {
@@ -207,6 +259,32 @@
       "source_ref": "slot.bottom.blank_hundreds.rect",
       "refs": {
         "layout_slot_id": "slot.bottom.blank_hundreds.rect"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 2,
+        "group_id": "final_answer",
+        "answer_key_index": 2,
+        "answer_ref": "answer.bottom_hundreds",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222",
+        "width": 22.0,
+        "height": 28.0
       }
     },
     {
@@ -224,6 +302,32 @@
       "source_ref": "slot.result.blank_ones.rect",
       "refs": {
         "layout_slot_id": "slot.result.blank_ones.rect"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 3,
+        "group_id": "final_answer",
+        "answer_key_index": 3,
+        "answer_ref": "answer.result_ones",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222",
+        "width": 22.0,
+        "height": 28.0
       }
     },
     {
@@ -280,8 +384,8 @@
       "id": "konva_1786192274303_paste_838274_0.text",
       "type": "text_box",
       "attributes": {
-        "x": 199.852,
-        "y": 84.328,
+        "x": 200.475,
+        "y": 86.197,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 24,
@@ -289,8 +393,8 @@
         "height": 37.0,
         "max_width": 95.0,
         "data-slot-kind": "text_box",
-        "data-box-x": 199.852,
-        "data-box-y": 84.328,
+        "data-box-x": 200.475,
+        "data-box-y": 86.197,
         "data-box-width": 95.0,
         "data-box-height": 37.0,
         "data-text-align": "center",
@@ -307,8 +411,8 @@
       "id": "konva_1786192274303_paste_838834_0.text",
       "type": "text_box",
       "attributes": {
-        "x": 224.344,
-        "y": 84.41,
+        "x": 224.967,
+        "y": 86.902,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 24,
@@ -316,8 +420,8 @@
         "height": 37.0,
         "max_width": 95.0,
         "data-slot-kind": "text_box",
-        "data-box-x": 224.344,
-        "data-box-y": 84.41,
+        "data-box-x": 224.967,
+        "data-box-y": 86.902,
         "data-box-width": 95.0,
         "data-box-height": 37.0,
         "data-text-align": "center",

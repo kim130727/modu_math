@@ -105,3 +105,63 @@ class ApiContractTests(TestCase):
         self.assertEqual(response.data["message"]["role"], "tutor")
         self.assertEqual(response.data["message"]["replyType"], "hint")
         self.assertNotIn("24", response.data["message"]["text"])
+
+    def test_tutor_review_answer_matches_numeric_answer_without_unit(self):
+        self._session()
+
+        response = self.client.post(
+            "/api/v1/tutor/messages",
+            {
+                "action": "review_answer",
+                "answer": "880",
+                "problem": {
+                    "id": "P3_1_01_00040_15614",
+                    "grade": 3,
+                    "subject": "math",
+                    "unit": "원",
+                    "type": "word_problem",
+                    "title": "Problem",
+                    "prompt": "처음에 있던 돈은 얼마입니까?",
+                    "choices": [],
+                    "correctAnswer": "880원",
+                    "answerMap": {},
+                    "semantic": {},
+                    "solvable": {},
+                },
+                "messages": [],
+            },
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data["message"]["replyType"], "correct")
+
+    def test_tutor_review_answer_matches_numeric_answer_with_unit(self):
+        self._session()
+
+        response = self.client.post(
+            "/api/v1/tutor/messages",
+            {
+                "action": "review_answer",
+                "answer": "880 원",
+                "problem": {
+                    "id": "P3_1_01_00040_15614",
+                    "grade": 3,
+                    "subject": "math",
+                    "unit": "원",
+                    "type": "word_problem",
+                    "title": "Problem",
+                    "prompt": "처음에 있던 돈은 얼마입니까?",
+                    "choices": [],
+                    "correctAnswer": "880",
+                    "answerMap": {},
+                    "semantic": {},
+                    "solvable": {},
+                },
+                "messages": [],
+            },
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data["message"]["replyType"], "correct")

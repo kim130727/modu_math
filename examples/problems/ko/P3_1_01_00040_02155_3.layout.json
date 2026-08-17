@@ -1,0 +1,211 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_02155",
+  "title": "세 자리 수의 덧셈 계산",
+  "canvas": {
+    "width": 300,
+    "height": 250,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.instruction"
+      ]
+    },
+    {
+      "id": "region.problems",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "konva_1785110879232_paste_2071031_0",
+        "slot.line_3",
+        "slot.addend_3_1",
+        "slot.plus_3",
+        "slot.addend_3_2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text_box",
+      "prompt": "세 개의 세 자리 수 덧셈을 계산하라는 안내",
+      "content": {
+        "text": "다음을 계산하세요.",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 18.0,
+        "width": 300.0,
+        "height": 38.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 25,
+        "line_height": 1.2,
+        "fill": "#111111",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.answer_1",
+      "kind": "blank",
+      "prompt": "379와 855의 합",
+      "content": {
+        "placeholder": ""
+      }
+    },
+    {
+      "id": "slot.answer_2",
+      "kind": "blank",
+      "prompt": "654와 758의 합",
+      "content": {
+        "placeholder": ""
+      }
+    },
+    {
+      "id": "slot.addend_3_1",
+      "kind": "text",
+      "prompt": "세 번째 덧셈의 위 수 296",
+      "content": {
+        "text": "296",
+        "style_role": "body",
+        "x": 211.082,
+        "y": 109.18,
+        "font_size": 28,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.plus_3",
+      "kind": "text",
+      "prompt": "세 번째 덧셈 기호",
+      "content": {
+        "text": "+",
+        "style_role": "body",
+        "x": 146.082,
+        "y": 156.18,
+        "font_size": 28,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.addend_3_2",
+      "kind": "text",
+      "prompt": "세 번째 덧셈의 아래 수 758",
+      "content": {
+        "text": "758",
+        "style_role": "body",
+        "x": 211.082,
+        "y": 156.18,
+        "font_size": 28,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.line_3",
+      "kind": "line",
+      "prompt": "세 번째 세로셈의 계산선",
+      "content": {
+        "x1": 126.082,
+        "y1": 172.18,
+        "x2": 223.082,
+        "y2": 172.18,
+        "stroke": "#111111",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.answer_3",
+      "kind": "blank",
+      "prompt": "296과 758의 합",
+      "content": {
+        "placeholder": ""
+      }
+    },
+    {
+      "id": "konva_1785110879232_paste_2071031_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 125.838,
+        "y": 185.865,
+        "width": 92.919,
+        "height": 33.237,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "include_in_submission": true,
+          "order": 2,
+          "group_id": "final_answer",
+          "answer_key_index": 2,
+          "answer_ref": "answer_key[2]"
+        },
+        "input_style": {
+          "width": 41.53846153846154,
+          "height": 35.7993847993848,
+          "font_size": 32
+        }
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "group.problem_1",
+      "role": "vertical_addition",
+      "member_ids": [
+        "slot.label_1",
+        "slot.addend_1_1",
+        "slot.plus_1",
+        "slot.addend_1_2",
+        "slot.line_1",
+        "slot.answer_1"
+      ]
+    },
+    {
+      "id": "group.problem_2",
+      "role": "vertical_addition",
+      "member_ids": [
+        "slot.label_2",
+        "slot.addend_2_1",
+        "slot.plus_2",
+        "slot.addend_2_2",
+        "slot.line_2",
+        "slot.answer_2"
+      ]
+    },
+    {
+      "id": "group.problem_3",
+      "role": "vertical_addition",
+      "member_ids": [
+        "slot.label_3",
+        "slot.addend_3_1",
+        "slot.plus_3",
+        "slot.addend_3_2",
+        "slot.line_3",
+        "slot.answer_3"
+      ]
+    }
+  ],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.instruction",
+    "region.problems",
+    "konva_1785110879232_paste_2071031_0",
+    "slot.line_3",
+    "slot.addend_3_1",
+    "slot.plus_3",
+    "slot.addend_3_2"
+  ]
+}

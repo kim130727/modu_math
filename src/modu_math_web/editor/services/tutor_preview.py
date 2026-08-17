@@ -5,7 +5,11 @@ import os
 from dataclasses import dataclass
 from typing import Any
 
-from modu_math.solvable import build_attempt, confirm_diagnostic_response, diagnose_student_response
+from modu_math.solvable import (
+    build_attempt,
+    confirm_diagnostic_response,
+    diagnose_student_response,
+)
 
 
 @dataclass(frozen=True)
@@ -30,11 +34,34 @@ def validate_tutor_payload(payload: dict[str, Any]) -> list[TutorValidation]:
     answer = _extract_answer(semantic, solvable)
     steps = _extract_steps(solvable)
     return [
-        TutorValidation("ok" if semantic else "warn", "semantic JSON is available." if semantic else "semantic JSON is missing."),
-        TutorValidation("ok" if solvable else "warn", "solvable JSON is available." if solvable else "solvable JSON is missing."),
-        TutorValidation("ok" if question else "warn", "question text was found." if question else "question text could not be found."),
-        TutorValidation("ok" if answer else "warn", "answer data was found." if answer else "answer data could not be found."),
-        TutorValidation("ok" if steps else "warn", f"{len(steps)} solvable step(s) found." if steps else "solvable steps are missing."),
+        TutorValidation(
+            "ok" if semantic else "warn",
+            "semantic JSON is available." if semantic else "semantic JSON is missing.",
+        ),
+        TutorValidation(
+            "ok" if solvable else "warn",
+            "solvable JSON is available." if solvable else "solvable JSON is missing.",
+        ),
+        TutorValidation(
+            "ok" if question else "warn",
+            (
+                "question text was found."
+                if question
+                else "question text could not be found."
+            ),
+        ),
+        TutorValidation(
+            "ok" if answer else "warn",
+            "answer data was found." if answer else "answer data could not be found.",
+        ),
+        TutorValidation(
+            "ok" if steps else "warn",
+            (
+                f"{len(steps)} solvable step(s) found."
+                if steps
+                else "solvable steps are missing."
+            ),
+        ),
     ]
 
 
@@ -46,7 +73,9 @@ def mock_tutor_response(payload: dict[str, Any], message: str) -> str:
     return _clean_tutor_text(_mock_reply(payload, mode), mode)
 
 
-def rule_tutor_response(payload: dict[str, Any], message: str, history: list[dict[str, str]]) -> dict[str, Any]:
+def rule_tutor_response(
+    payload: dict[str, Any], message: str, history: list[dict[str, str]]
+) -> dict[str, Any]:
     lang = _payload_language(payload)
     solvable = _record_or_none(payload.get("solvable"))
     if not solvable:
@@ -59,16 +88,36 @@ def rule_tutor_response(payload: dict[str, Any], message: str, history: list[dic
     clean_message = message.strip()
     waiting_index = _last_rule_step_index(history, steps)
     if waiting_index is None:
-        return _rule_response(solvable, steps, 0, _rule_intro(solvable, steps, lang=lang))
+        return _rule_response(
+            solvable, steps, 0, _rule_intro(solvable, steps, lang=lang)
+        )
 
     waiting_step = steps[min(waiting_index, len(steps) - 1)]
     if _student_wants_restart(clean_message):
-        return _rule_response(solvable, steps, 0, _rule_intro(solvable, steps, lang=lang))
+        return _rule_response(
+            solvable, steps, 0, _rule_intro(solvable, steps, lang=lang)
+        )
     if _student_asks_for_next(clean_message):
         next_index = min(waiting_index + 1, len(steps) - 1)
-        return _rule_response(solvable, steps, next_index, _render_rule_step(solvable, steps, next_index, prefix=_localized_phrase(lang, "next"), lang=lang))
+        return _rule_response(
+            solvable,
+            steps,
+            next_index,
+            _render_rule_step(
+                solvable,
+                steps,
+                next_index,
+                prefix=_localized_phrase(lang, "next"),
+                lang=lang,
+            ),
+        )
     if _student_is_confused(clean_message):
-        return _rule_response(solvable, steps, waiting_index, _rule_confusion_reply(solvable, waiting_step, waiting_index, lang=lang))
+        return _rule_response(
+            solvable,
+            steps,
+            waiting_index,
+            _rule_confusion_reply(solvable, waiting_step, waiting_index, lang=lang),
+        )
 
     pending_code = _pending_diagnostic_code(history)
     if pending_code:
@@ -80,7 +129,9 @@ def rule_tutor_response(payload: dict[str, Any], message: str, history: list[dic
                 waiting_index,
                 str(confirmed.get("feedback") or _localized_phrase(lang, "try_again")),
                 diagnostic=confirmed,
-                attempt=_attempt_payload(solvable, clean_message, waiting_step, confirmed, correct=False),
+                attempt=_attempt_payload(
+                    solvable, clean_message, waiting_step, confirmed, correct=False
+                ),
             )
 
     diagnosed = diagnose_student_response(solvable, clean_message, correct=False)
@@ -89,9 +140,14 @@ def rule_tutor_response(payload: dict[str, Any], message: str, history: list[dic
             solvable,
             steps,
             waiting_index,
-            str(diagnosed.get("confirmation_question") or _localized_phrase(lang, "try_again")),
+            str(
+                diagnosed.get("confirmation_question")
+                or _localized_phrase(lang, "try_again")
+            ),
             diagnostic=diagnosed,
-            attempt=_attempt_payload(solvable, clean_message, waiting_step, diagnosed, correct=False),
+            attempt=_attempt_payload(
+                solvable, clean_message, waiting_step, diagnosed, correct=False
+            ),
         )
     if diagnosed.get("diagnostic_status") == "confirmed":
         return _rule_response(
@@ -100,22 +156,44 @@ def rule_tutor_response(payload: dict[str, Any], message: str, history: list[dic
             waiting_index,
             str(diagnosed.get("feedback") or _localized_phrase(lang, "try_again")),
             diagnostic=diagnosed,
-            attempt=_attempt_payload(solvable, clean_message, waiting_step, diagnosed, correct=False),
+            attempt=_attempt_payload(
+                solvable, clean_message, waiting_step, diagnosed, correct=False
+            ),
         )
     if _answer_matches_step(clean_message, waiting_step):
         next_index = waiting_index + 1
         if next_index >= len(steps):
             return {
-                "reply": _rule_complete(solvable, prefix=_correct_prefix(waiting_step, lang=lang), lang=lang),
+                "reply": _rule_complete(
+                    solvable, prefix=_correct_prefix(waiting_step, lang=lang), lang=lang
+                ),
                 "choices": [],
-                "attempt": _attempt_payload(solvable, clean_message, waiting_step, {"status": "correct"}, correct=True),
+                "attempt": _attempt_payload(
+                    solvable,
+                    clean_message,
+                    waiting_step,
+                    {"status": "correct"},
+                    correct=True,
+                ),
             }
         return _rule_response(
             solvable,
             steps,
             next_index,
-            _render_rule_step(solvable, steps, next_index, prefix=_correct_prefix(waiting_step, lang=lang), lang=lang),
-            attempt=_attempt_payload(solvable, clean_message, waiting_step, {"status": "correct"}, correct=True),
+            _render_rule_step(
+                solvable,
+                steps,
+                next_index,
+                prefix=_correct_prefix(waiting_step, lang=lang),
+                lang=lang,
+            ),
+            attempt=_attempt_payload(
+                solvable,
+                clean_message,
+                waiting_step,
+                {"status": "correct"},
+                correct=True,
+            ),
         )
 
     if waiting_step.get("kind") == "understanding":
@@ -123,30 +201,52 @@ def rule_tutor_response(payload: dict[str, Any], message: str, history: list[dic
             solvable,
             steps,
             waiting_index,
-            _render_rule_step(solvable, steps, waiting_index, prefix=_localized_phrase(lang, "try_again"), lang=lang),
+            _render_rule_step(
+                solvable,
+                steps,
+                waiting_index,
+                prefix=_localized_phrase(lang, "try_again"),
+                lang=lang,
+            ),
         )
 
-    expected_hint = _step_expected_hint(solvable, waiting_step, waiting_index, lang=lang)
+    expected_hint = _step_expected_hint(
+        solvable, waiting_step, waiting_index, lang=lang
+    )
     if expected_hint:
-        return _rule_response(solvable, steps, waiting_index, (
-            f"{_localized_phrase(lang, 'try_again')}\n"
-            f"{_display_step_label(steps, waiting_index, lang=lang)}: {waiting_step['prompt']}\n"
-            f"{expected_hint} {_localized_phrase(lang, 'enter_again')}"
-        ))
-    return _rule_response(solvable, steps, waiting_index, (
-        f"{_localized_phrase(lang, 'enter_step_value')}\n"
-        f"{_display_step_label(steps, waiting_index, lang=lang)}: {waiting_step['prompt']}"
-    ))
+        return _rule_response(
+            solvable,
+            steps,
+            waiting_index,
+            (
+                f"{_localized_phrase(lang, 'try_again')}\n"
+                f"{_display_step_label(steps, waiting_index, lang=lang)}: {waiting_step['prompt']}\n"
+                f"{expected_hint} {_localized_phrase(lang, 'enter_again')}"
+            ),
+        )
+    return _rule_response(
+        solvable,
+        steps,
+        waiting_index,
+        (
+            f"{_localized_phrase(lang, 'enter_step_value')}\n"
+            f"{_display_step_label(steps, waiting_index, lang=lang)}: {waiting_step['prompt']}"
+        ),
+    )
 
 
-def openai_tutor_response(payload: dict[str, Any], message: str, history: list[dict[str, str]]) -> str:
+def openai_tutor_response(
+    payload: dict[str, Any], message: str, history: list[dict[str, str]]
+) -> str:
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
         raise EnvironmentError("OPENAI_API_KEY is not set. Add it to .env.")
     try:
         from openai import OpenAI
     except ImportError as exc:
-        raise ImportError("openai package is required. Install with: pip install openai") from exc
+        raise ImportError(
+            "openai package is required. Install with: pip install openai"
+        ) from exc
 
     model = os.getenv("OPENAI_MODEL") or "gpt-5.4-nano"
     deterministic_reply = _deterministic_reply(payload, message)
@@ -157,8 +257,19 @@ def openai_tutor_response(payload: dict[str, Any], message: str, history: list[d
     response = client.responses.create(
         model=model,
         input=[
-            {"role": "system", "content": [{"type": "input_text", "text": _system_prompt(payload)}]},
-            {"role": "user", "content": [{"type": "input_text", "text": _preview_context(payload, history, message)}]},
+            {
+                "role": "system",
+                "content": [{"type": "input_text", "text": _system_prompt(payload)}],
+            },
+            {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "input_text",
+                        "text": _preview_context(payload, history, message),
+                    }
+                ],
+            },
         ],
     )
     output_text = getattr(response, "output_text", None)
@@ -193,7 +304,9 @@ def openai_tutor_speech(text: str, locale: str) -> tuple[bytes, str]:
     try:
         from openai import OpenAI
     except ImportError as exc:
-        raise ImportError("openai package is required. Install with: pip install openai") from exc
+        raise ImportError(
+            "openai package is required. Install with: pip install openai"
+        ) from exc
 
     client = OpenAI(api_key=api_key)
     response = client.audio.speech.create(
@@ -238,12 +351,13 @@ def _system_prompt(payload: dict[str, Any]) -> str:
         "If support mode is why: explain why that way helps, using concrete words, then ask one question. "
         "If support mode is general: respond only to the student's latest answer. If the student is partly right, say so and ask the next small question. "
         "In general mode, do not use the answer key or teacher notes to jump ahead. "
-        "Do not solve all choices for the student. "
-        + _strategy_prompt(payload)
+        "Do not solve all choices for the student. " + _strategy_prompt(payload)
     )
 
 
-def _tutor_steps(payload: dict[str, Any], solvable: dict[str, Any]) -> list[dict[str, str]]:
+def _tutor_steps(
+    payload: dict[str, Any], solvable: dict[str, Any]
+) -> list[dict[str, str]]:
     derived_steps = _derive_tutor_steps(payload, solvable)
     if derived_steps:
         return _understanding_steps(solvable, derived_steps) + derived_steps
@@ -262,7 +376,10 @@ def _tutor_steps(payload: dict[str, Any], solvable: dict[str, Any]) -> list[dict
         if isinstance(raw_step, str):
             prompt = raw_step.strip()
         elif isinstance(raw_step, dict):
-            prompt = _first_string(raw_step, ["question", "prompt", "goal", "text", "description", "expr", "id"])
+            prompt = _first_string(
+                raw_step,
+                ["question", "prompt", "goal", "text", "description", "expr", "id"],
+            )
             explanation = _first_string(raw_step, ["explanation"])
             if "value" in raw_step:
                 expected = _student_expected_answer(raw_step["value"])
@@ -283,7 +400,9 @@ def _tutor_steps(payload: dict[str, Any], solvable: dict[str, Any]) -> list[dict
     return _understanding_steps(solvable, steps) + steps
 
 
-def _understanding_steps(solvable: dict[str, Any], solve_steps: list[dict[str, str]]) -> list[dict[str, str]]:
+def _understanding_steps(
+    solvable: dict[str, Any], solve_steps: list[dict[str, str]]
+) -> list[dict[str, str]]:
     understanding = _record_or_none(solvable.get("understanding"))
     if not understanding:
         return []
@@ -301,7 +420,11 @@ def _understanding_steps(solvable: dict[str, Any], solve_steps: list[dict[str, s
             choices = question.get("choices")
             answer_index = question.get("answer_index")
             expected = ""
-            if isinstance(choices, list) and isinstance(answer_index, int) and 0 <= answer_index < len(choices):
+            if (
+                isinstance(choices, list)
+                and isinstance(answer_index, int)
+                and 0 <= answer_index < len(choices)
+            ):
                 expected = str(choices[answer_index])
             elif "answer" in question:
                 expected = _student_expected_answer(question["answer"])
@@ -316,7 +439,9 @@ def _understanding_steps(solvable: dict[str, Any], solve_steps: list[dict[str, s
             steps.append(step)
 
     if solve_steps:
-        first_step_prompt = _first_step_target_text(solve_steps[0].get("prompt", "").strip())
+        first_step_prompt = _first_step_target_text(
+            solve_steps[0].get("prompt", "").strip()
+        )
         if first_step_prompt:
             choices = _first_step_target_choices(understanding, first_step_prompt)
             steps.append(
@@ -341,7 +466,9 @@ def _first_step_target_text(prompt: str) -> str:
     return text.strip()
 
 
-def _first_step_target_choices(understanding: dict[str, Any], expected: str) -> list[str]:
+def _first_step_target_choices(
+    understanding: dict[str, Any], expected: str
+) -> list[str]:
     candidates = [expected]
     unknowns = understanding.get("unknowns")
     if isinstance(unknowns, list):
@@ -355,7 +482,9 @@ def _first_step_target_choices(understanding: dict[str, Any], expected: str) -> 
     return _unique_choices(candidates)
 
 
-def _derive_tutor_steps(payload: dict[str, Any], solvable: dict[str, Any]) -> list[dict[str, str]]:
+def _derive_tutor_steps(
+    payload: dict[str, Any], solvable: dict[str, Any]
+) -> list[dict[str, str]]:
     lang = _payload_language(payload)
     method = str(solvable.get("method") or "").lower()
     problem_type = str(solvable.get("problem_type") or "").lower()
@@ -370,6 +499,10 @@ def _derive_tutor_steps(payload: dict[str, Any], solvable: dict[str, Any]) -> li
                 }
             ]
 
+    addition_steps = _derive_vertical_addition_steps(solvable, lang=lang)
+    if addition_steps:
+        return addition_steps
+
     if "compare" not in method and "비교" not in problem_type:
         return []
 
@@ -377,7 +510,9 @@ def _derive_tutor_steps(payload: dict[str, Any], solvable: dict[str, Any]) -> li
     if len(expressions) < 2:
         return []
 
-    evaluated = [(label, expr, _evaluate_arithmetic(expr)) for label, expr in expressions]
+    evaluated = [
+        (label, expr, _evaluate_arithmetic(expr)) for label, expr in expressions
+    ]
     if any(value is None for _, _, value in evaluated):
         return []
 
@@ -386,29 +521,214 @@ def _derive_tutor_steps(payload: dict[str, Any], solvable: dict[str, Any]) -> li
     choose_smaller = "작" in question or "small" in question.lower()
     choose_larger = "크" in question or "큰" in question or "large" in question.lower()
     answer_record = _record_or_none(solvable.get("answer"))
-    answer_value = _stringify_answer(answer_record.get("value")) if answer_record and "value" in answer_record else ""
+    answer_value = (
+        _stringify_answer(answer_record.get("value"))
+        if answer_record and "value" in answer_record
+        else ""
+    )
 
     steps: list[dict[str, str]] = []
     for _, expr, value in evaluated:
         if str(expr).strip() == str(value):
-            prompt = _localized_phrase(lang, "step_copy_given_expression").format(expr=expr)
+            prompt = _localized_phrase(lang, "step_copy_given_expression").format(
+                expr=expr
+            )
         else:
-            prompt = _localized_phrase(lang, "step_calculate_expression").format(expr=expr)
+            prompt = _localized_phrase(lang, "step_calculate_expression").format(
+                expr=expr
+            )
         steps.append({"prompt": prompt, "expected": str(value), "kind": "calculate"})
 
     values_text = ", ".join(f"{expr} = {value}" for _, expr, value in evaluated)
     if choose_smaller:
-        compare_prompt = _localized_phrase(lang, "step_compare_smaller").format(values=values_text)
+        compare_prompt = _localized_phrase(lang, "step_compare_smaller").format(
+            values=values_text
+        )
     elif choose_larger:
-        compare_prompt = _localized_phrase(lang, "step_compare_larger").format(values=values_text)
+        compare_prompt = _localized_phrase(lang, "step_compare_larger").format(
+            values=values_text
+        )
     else:
-        compare_prompt = _localized_phrase(lang, "step_compare_condition").format(values=values_text)
-    steps.append({"prompt": compare_prompt, "expected": answer_value, "kind": "compare"})
+        compare_prompt = _localized_phrase(lang, "step_compare_condition").format(
+            values=values_text
+        )
+    steps.append(
+        {"prompt": compare_prompt, "expected": answer_value, "kind": "compare"}
+    )
     return steps
 
 
+def _derive_vertical_addition_steps(
+    solvable: dict[str, Any], *, lang: str
+) -> list[dict[str, str]]:
+    terms = _addition_terms_from_solvable(solvable)
+    if len(terms) < 2:
+        return []
+
+    left, right = abs(terms[0]), abs(terms[1])
+    if left < 10 or right < 10:
+        return []
+
+    method = str(solvable.get("method") or "").lower()
+    problem_type = str(solvable.get("problem_type") or "").lower()
+    if not _is_vertical_addition_solvable(solvable):
+        return []
+
+    answer = left + right
+    ones_left = left % 10
+    ones_right = right % 10
+    ones_sum = ones_left + ones_right
+    carry_to_tens = ones_sum // 10
+    tens_left = (left // 10) % 10
+    tens_right = (right // 10) % 10
+    tens_sum = tens_left + tens_right + carry_to_tens
+    carry_to_hundreds = tens_sum // 10
+    hundreds_left = (left // 100) % 10
+    hundreds_right = (right // 100) % 10
+    hundreds_sum = hundreds_left + hundreds_right + carry_to_hundreds
+
+    if lang == "ko":
+        return [
+            {
+                "id": "step.add_ones",
+                "prompt": f"일의 자리 {ones_left} + {ones_right}를 계산해요.",
+                "expected": str(ones_sum),
+                "kind": "calculate",
+                "expr": f"{ones_left} + {ones_right}",
+            },
+            {
+                "id": "step.add_tens",
+                "prompt": f"십의 자리 {tens_left} + {tens_right}에 받아올림 {carry_to_tens}을 더해요.",
+                "expected": str(tens_sum),
+                "kind": "calculate",
+                "expr": f"{tens_left} + {tens_right} + {carry_to_tens}",
+            },
+            {
+                "id": "step.add_hundreds",
+                "prompt": f"백의 자리 {hundreds_left} + {hundreds_right}에 받아올림 {carry_to_hundreds}을 더해요.",
+                "expected": str(hundreds_sum),
+                "kind": "calculate",
+                "expr": f"{hundreds_left} + {hundreds_right} + {carry_to_hundreds}",
+            },
+            {
+                "id": "step.compose_answer",
+                "prompt": "각 자리의 숫자를 모아 합을 만들어요.",
+                "expected": str(answer),
+                "kind": "compose",
+                "expr": f"{left} + {right}",
+            },
+        ]
+
+    return [
+        {
+            "id": "step.add_ones",
+            "prompt": f"Add the ones digits: {ones_left} + {ones_right}.",
+            "expected": str(ones_sum),
+            "kind": "calculate",
+            "expr": f"{ones_left} + {ones_right}",
+        },
+        {
+            "id": "step.add_tens",
+            "prompt": f"Add the tens digits with the carry: {tens_left} + {tens_right} + {carry_to_tens}.",
+            "expected": str(tens_sum),
+            "kind": "calculate",
+            "expr": f"{tens_left} + {tens_right} + {carry_to_tens}",
+        },
+        {
+            "id": "step.add_hundreds",
+            "prompt": f"Add the hundreds digits with the carry: {hundreds_left} + {hundreds_right} + {carry_to_hundreds}.",
+            "expected": str(hundreds_sum),
+            "kind": "calculate",
+            "expr": f"{hundreds_left} + {hundreds_right} + {carry_to_hundreds}",
+        },
+        {
+            "id": "step.compose_answer",
+            "prompt": "Put the place-value digits together to make the sum.",
+            "expected": str(answer),
+            "kind": "compose",
+            "expr": f"{left} + {right}",
+        },
+    ]
+
+
+def _addition_terms_from_solvable(solvable: dict[str, Any]) -> list[int]:
+    inputs = _record_or_none(solvable.get("inputs"))
+    quantities = _record_or_none(inputs.get("quantities") if inputs else None)
+    if quantities:
+        first = _int_or_none(quantities.get("first_addend"))
+        second = _int_or_none(quantities.get("second_addend"))
+        if first is not None and second is not None:
+            return [first, second]
+
+        for value in quantities.values():
+            item = _record_or_none(value)
+            addends = item.get("addends") if item else None
+            if isinstance(addends, list):
+                terms = [_int_or_none(addend) for addend in addends]
+                clean_terms = [term for term in terms if term is not None]
+                if len(clean_terms) >= 2:
+                    return clean_terms[:2]
+
+    given = solvable.get("given")
+    if isinstance(given, list):
+        terms: list[int] = []
+        for item in given:
+            record = _record_or_none(item)
+            value = _int_or_none(record.get("value") if record else None)
+            if value is not None:
+                terms.append(value)
+        if len(terms) >= 2:
+            return terms[:2]
+
+    for raw_step in solvable.get("steps") or []:
+        if not isinstance(raw_step, dict):
+            continue
+        expression = str(raw_step.get("expr") or "")
+        import re
+
+        match = re.search(r"(\d+)\s*\+\s*(\d+)", expression)
+        if match:
+            return [int(match.group(1)), int(match.group(2))]
+    return []
+
+
+def _is_vertical_addition_solvable(solvable: dict[str, Any]) -> bool:
+    inputs = _record_or_none(solvable.get("inputs"))
+    answer_type = str(inputs.get("answer_type") if inputs else "").lower()
+    target = _record_or_none(solvable.get("target"))
+    target_type = str(target.get("type") if target else "").lower()
+    method = str(solvable.get("method") or "").lower()
+    problem_type = str(solvable.get("problem_type") or "").lower()
+    return (
+        "vertical_addition" in method
+        or "vertical_addition" in problem_type
+        or "multi_blank_vertical_addition" in problem_type
+        or answer_type == "digit_list"
+        or target_type == "digit_list"
+    )
+
+
+def _int_or_none(value: Any) -> int | None:
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, int):
+        return value
+    if isinstance(value, float) and value.is_integer():
+        return int(value)
+    if isinstance(value, str):
+        try:
+            return int(value.strip())
+        except ValueError:
+            return None
+    return None
+
+
 def _comparison_expressions(solvable: dict[str, Any]) -> list[tuple[str, str]]:
-    quantities = _record_or_none(_record_or_none(solvable.get("inputs")).get("quantities") if _record_or_none(solvable.get("inputs")) else None)
+    quantities = _record_or_none(
+        _record_or_none(solvable.get("inputs")).get("quantities")
+        if _record_or_none(solvable.get("inputs"))
+        else None
+    )
     expressions: list[tuple[str, str]] = []
     if quantities:
         for key, value in quantities.items():
@@ -423,7 +743,9 @@ def _comparison_expressions(solvable: dict[str, Any]) -> list[tuple[str, str]]:
                     continue
                 value = item.get("value")
                 if isinstance(value, str) and value.strip():
-                    expressions.append((str(item.get("ref") or len(expressions) + 1), value.strip()))
+                    expressions.append(
+                        (str(item.get("ref") or len(expressions) + 1), value.strip())
+                    )
     return expressions
 
 
@@ -432,7 +754,12 @@ def _evaluate_arithmetic(expression: str) -> int | float | None:
     import operator
     import re
 
-    text = expression.replace("×", "*").replace("x", "*").replace("X", "*").replace("÷", "/")
+    text = (
+        expression.replace("×", "*")
+        .replace("x", "*")
+        .replace("X", "*")
+        .replace("÷", "/")
+    )
     if not re.fullmatch(r"[\d\s+\-*/().]+", text):
         return None
     operators = {
@@ -464,16 +791,26 @@ def _evaluate_arithmetic(expression: str) -> int | float | None:
     return value
 
 
-def _rule_intro(solvable: dict[str, Any], steps: list[dict[str, str]], *, lang: str = "ko") -> str:
+def _rule_intro(
+    solvable: dict[str, Any], steps: list[dict[str, str]], *, lang: str = "ko"
+) -> str:
     if _is_place_value_matching({"solvable": solvable}):
         multiple = _given_value(solvable, "obj.multiple")
         highlighted = _given_value(solvable, "obj.highlighted_value")
         lead = _localized_phrase(lang, "intro_place_value")
         if multiple and highlighted:
-            lead = _localized_phrase(lang, "intro_highlighted").format(multiple=multiple, highlighted=highlighted)
+            lead = _localized_phrase(lang, "intro_highlighted").format(
+                multiple=multiple, highlighted=highlighted
+            )
         return _render_rule_step(solvable, steps, 0, prefix=lead, lang=lang)
     if steps and steps[0].get("kind") == "understanding":
-        return _render_rule_step(solvable, steps, 0, prefix=_understanding_intro(solvable, lang=lang), lang=lang)
+        return _render_rule_step(
+            solvable,
+            steps,
+            0,
+            prefix=_understanding_intro(solvable, lang=lang),
+            lang=lang,
+        )
     if _is_inscribed_regular_hexagon_perimeter({"solvable": solvable}):
         return _render_rule_step(
             solvable,
@@ -482,8 +819,16 @@ def _rule_intro(solvable: dict[str, Any], steps: list[dict[str, str]], *, lang: 
             prefix=_localized_phrase(lang, "intro_hexagon"),
             lang=lang,
         )
-    method = str(solvable.get("method") or solvable.get("problem_type") or "풀이").replace("_", " ")
-    return _render_rule_step(solvable, steps, 0, prefix=_localized_phrase(lang, "intro_general").format(method=method), lang=lang)
+    method = str(
+        solvable.get("method") or solvable.get("problem_type") or "풀이"
+    ).replace("_", " ")
+    return _render_rule_step(
+        solvable,
+        steps,
+        0,
+        prefix=_localized_phrase(lang, "intro_general").format(method=method),
+        lang=lang,
+    )
 
 
 def _understanding_intro(solvable: dict[str, Any], *, lang: str = "ko") -> str:
@@ -506,7 +851,11 @@ def _rule_response(
 ) -> dict[str, Any]:
     step = steps[index] if 0 <= index < len(steps) else {}
     step_id = step.get("id") if isinstance(step.get("id"), str) else f"step.{index + 1}"
-    response: dict[str, Any] = {"reply": reply, "choices": _step_choices(solvable, steps, index), "current_step_id": step_id}
+    response: dict[str, Any] = {
+        "reply": reply,
+        "choices": _step_choices(solvable, steps, index),
+        "current_step_id": step_id,
+    }
     if diagnostic:
         response["diagnostic"] = diagnostic
     if attempt:
@@ -514,7 +863,9 @@ def _rule_response(
     return response
 
 
-def _step_choices(solvable: dict[str, Any], steps: list[dict[str, str]], index: int) -> list[str]:
+def _step_choices(
+    solvable: dict[str, Any], steps: list[dict[str, str]], index: int
+) -> list[str]:
     step = steps[index]
     expected = step.get("expected", "").strip()
     if not expected:
@@ -524,7 +875,11 @@ def _step_choices(solvable: dict[str, Any], steps: list[dict[str, str]], index: 
         return _unique_choices([str(choice) for choice in step_choices])
 
     if _is_place_value_matching({"solvable": solvable}):
-        if index == 0 and _given_value(solvable, "obj.multiple") and _given_value(solvable, "obj.highlighted_value"):
+        if (
+            index == 0
+            and _given_value(solvable, "obj.multiple")
+            and _given_value(solvable, "obj.highlighted_value")
+        ):
             return _unique_choices(["6", expected, "600", "869"])
         if index == 1:
             return _numeric_choices(expected)
@@ -576,7 +931,14 @@ def _place_value_expression_choices(expression: str) -> list[str]:
         base = left
         while base % 10 == 0:
             base //= 10
-        return _unique_choices([f"{base} × {right}", f"{base} × {right * 10}", f"{left} × {right}", f"{left * 10} × {right}"])
+        return _unique_choices(
+            [
+                f"{base} × {right}",
+                f"{base} × {right * 10}",
+                f"{left} × {right}",
+                f"{left * 10} × {right}",
+            ]
+        )
     else:
         candidates = [left, left * 10, left * 100, max(1, left // 10)]
     return _unique_choices([f"{candidate} × {right}" for candidate in candidates])
@@ -611,23 +973,40 @@ def _number_or_none(value: str) -> int | float | None:
 
 
 def _format_number(value: int | float) -> str:
-    return str(int(value)) if isinstance(value, float) and value.is_integer() else str(value)
+    return (
+        str(int(value))
+        if isinstance(value, float) and value.is_integer()
+        else str(value)
+    )
 
 
-def _render_rule_step(solvable: dict[str, Any], steps: list[dict[str, str]], index: int, *, prefix: str = "", lang: str = "ko") -> str:
+def _render_rule_step(
+    solvable: dict[str, Any],
+    steps: list[dict[str, str]],
+    index: int,
+    *,
+    prefix: str = "",
+    lang: str = "ko",
+) -> str:
     step = steps[index]
     if _is_place_value_matching({"solvable": solvable}):
-        return _render_place_value_step(solvable, steps, index, prefix=prefix, lang=lang)
+        return _render_place_value_step(
+            solvable, steps, index, prefix=prefix, lang=lang
+        )
 
     expected_hint = _step_expected_hint(solvable, step, index, lang=lang)
     lines = [line for line in prefix.splitlines() if line.strip()]
     lines.append(f"{_display_step_label(steps, index, lang=lang)}: {step['prompt']}")
     if step.get("kind") == "understanding":
         if step.get("choices"):
-            lines.append("알맞은 것을 골라볼까요?" if lang == "ko" else "Choose the best answer.")
+            lines.append(
+                "알맞은 것을 골라볼까요?" if lang == "ko" else "Choose the best answer."
+            )
         return "\n".join(lines[:4])
     question = _step_question(step, lang=lang)
-    lines.append(question or expected_hint or _localized_phrase(lang, "enter_step_value"))
+    lines.append(
+        question or expected_hint or _localized_phrase(lang, "enter_step_value")
+    )
     return "\n".join(lines[:5])
 
 
@@ -639,7 +1018,9 @@ def _correct_prefix(step: dict[str, str], *, lang: str = "ko") -> str:
     return "\n".join(lines)
 
 
-def _display_step_label(steps: list[dict[str, str]], index: int, *, lang: str = "ko") -> str:
+def _display_step_label(
+    steps: list[dict[str, str]], index: int, *, lang: str = "ko"
+) -> str:
     step = steps[index]
     if step.get("kind") == "understanding":
         n = sum(1 for item in steps[: index + 1] if item.get("kind") == "understanding")
@@ -662,10 +1043,20 @@ def _step_question(step: dict[str, str], *, lang: str = "ko") -> str:
     return "What should go here?"
 
 
-def _render_place_value_step(solvable: dict[str, Any], steps: list[dict[str, str]], index: int, *, prefix: str = "", lang: str = "ko") -> str:
+def _render_place_value_step(
+    solvable: dict[str, Any],
+    steps: list[dict[str, str]],
+    index: int,
+    *,
+    prefix: str = "",
+    lang: str = "ko",
+) -> str:
     step = steps[index]
     lines = [line for line in prefix.splitlines() if line.strip()]
-    has_highlighted_value = bool(_given_value(solvable, "obj.multiple") and _given_value(solvable, "obj.highlighted_value"))
+    has_highlighted_value = bool(
+        _given_value(solvable, "obj.multiple")
+        and _given_value(solvable, "obj.highlighted_value")
+    )
     if not has_highlighted_value:
         lines.append(f"{_localized_step_label(lang, index)}: {step['prompt']}")
         lines.append(_localized_phrase(lang, "place_value_hint"))
@@ -694,18 +1085,26 @@ def _render_place_value_step(solvable: dict[str, Any], steps: list[dict[str, str
     return "\n".join(lines[:4])
 
 
-def _rule_complete(solvable: dict[str, Any], *, prefix: str = "", lang: str = "ko") -> str:
+def _rule_complete(
+    solvable: dict[str, Any], *, prefix: str = "", lang: str = "ko"
+) -> str:
     answer_record = _record_or_none(solvable.get("answer"))
     answer = _answer_display(answer_record)
     lines = [line for line in prefix.splitlines() if line.strip()]
     if answer:
-        lines.extend(_localized_phrase(lang, "complete_with_answer").format(answer=answer).splitlines())
+        lines.extend(
+            _localized_phrase(lang, "complete_with_answer")
+            .format(answer=answer)
+            .splitlines()
+        )
     else:
         lines.extend(_localized_phrase(lang, "complete").splitlines())
     return "\n".join(lines[:5])
 
 
-def _last_rule_step_index(history: list[dict[str, str]], steps: list[dict[str, str]]) -> int | None:
+def _last_rule_step_index(
+    history: list[dict[str, str]], steps: list[dict[str, str]]
+) -> int | None:
     import re
 
     for item in reversed(history):
@@ -749,7 +1148,10 @@ def _pending_diagnostic_code(history: list[dict[str, str]]) -> str | None:
         normalized_content = _normalize_answer_text(content)
         for code, entry in ERROR_CATALOG.items():
             question = entry.get("confirmation_question")
-            if isinstance(question, str) and _normalize_answer_text(question) in normalized_content:
+            if (
+                isinstance(question, str)
+                and _normalize_answer_text(question) in normalized_content
+            ):
                 return code
         return None
     return None
@@ -779,7 +1181,9 @@ def _attempt_payload(
     return attempt.to_record()
 
 
-def _attempt_skill_ids(solvable: dict[str, Any], step: dict[str, str], diagnostic: dict[str, Any]) -> list[str]:
+def _attempt_skill_ids(
+    solvable: dict[str, Any], step: dict[str, str], diagnostic: dict[str, Any]
+) -> list[str]:
     skill_ids: list[str] = []
     diagnostic_skill = diagnostic.get("skill_id")
     if isinstance(diagnostic_skill, str) and diagnostic_skill.strip():
@@ -822,7 +1226,9 @@ def _normalize_answer_text(value: str) -> str:
     )
 
 
-def _step_expected_hint(solvable: dict[str, Any], step: dict[str, str], index: int, *, lang: str = "ko") -> str:
+def _step_expected_hint(
+    solvable: dict[str, Any], step: dict[str, str], index: int, *, lang: str = "ko"
+) -> str:
     import re
 
     expected = step.get("expected", "").strip()
@@ -845,7 +1251,9 @@ def _step_expected_hint(solvable: dict[str, Any], step: dict[str, str], index: i
 
 def _student_wants_restart(message: str) -> bool:
     normalized = message.replace(" ", "").lower()
-    return any(token in normalized for token in ("처음", "다시", "시작", "reset", "restart"))
+    return any(
+        token in normalized for token in ("처음", "다시", "시작", "reset", "restart")
+    )
 
 
 def _student_asks_for_next(message: str) -> bool:
@@ -871,7 +1279,9 @@ def _student_is_confused(message: str) -> bool:
     )
 
 
-def _rule_confusion_reply(solvable: dict[str, Any], step: dict[str, str], index: int, *, lang: str = "ko") -> str:
+def _rule_confusion_reply(
+    solvable: dict[str, Any], step: dict[str, str], index: int, *, lang: str = "ko"
+) -> str:
     if _is_place_value_matching({"solvable": solvable}) and lang == "ko":
         if index == 0:
             return (
@@ -918,7 +1328,9 @@ def _first_string(source: dict[str, Any], keys: list[str]) -> str:
     return ""
 
 
-def _preview_context(payload: dict[str, Any], history: list[dict[str, str]], message: str) -> str:
+def _preview_context(
+    payload: dict[str, Any], history: list[dict[str, str]], message: str
+) -> str:
     compact_payload = {
         "problem_id": payload.get("problem_id"),
         "problem_type": _problem_type(payload),
@@ -958,9 +1370,7 @@ def _strategy_prompt(payload: dict[str, Any]) -> str:
             "Then continue with diameter divided by 2, hexagon perimeter = radius times 6, circle circumference = diameter times pi, and subtract. "
             "Keep the reply short, but never skip the geometric reason for side = radius."
         )
-    return (
-        "For multiple-choice tasks, guide the student to check one option at a time and eliminate mismatches before computation."
-    )
+    return "For multiple-choice tasks, guide the student to check one option at a time and eliminate mismatches before computation."
 
 
 def _is_inscribed_regular_hexagon_perimeter(payload: dict[str, Any]) -> bool:
@@ -970,21 +1380,33 @@ def _is_inscribed_regular_hexagon_perimeter(payload: dict[str, Any]) -> bool:
     method = str(solvable.get("method") if solvable else "").lower()
     refs: set[str] = set()
     if solvable and isinstance(solvable.get("given"), list):
-        refs = {str(item.get("ref") or "") for item in solvable["given"] if isinstance(item, dict)}
+        refs = {
+            str(item.get("ref") or "")
+            for item in solvable["given"]
+            if isinstance(item, dict)
+        }
     text = " ".join(
         value
         for value in (
             problem_type,
             method,
             str(_nested_get(semantic, ["answer", "target", "type"]) or "").lower(),
-            str(_nested_get(solvable, ["target", "type"]) or "").lower() if solvable else "",
+            (
+                str(_nested_get(solvable, ["target", "type"]) or "").lower()
+                if solvable
+                else ""
+            ),
         )
         if value
     )
     return (
         "hexagon" in text
         and ("perimeter" in text or "circumference" in text)
-        and ("rel.hexagon_inscribed" in refs or "rel.hexagon_side_equals_radius" in refs or "inscribed" in text)
+        and (
+            "rel.hexagon_inscribed" in refs
+            or "rel.hexagon_side_equals_radius" in refs
+            or "inscribed" in text
+        )
     )
 
 
@@ -1111,11 +1533,32 @@ def _finalize_tutor_text(payload: dict[str, Any], text: str, mode: str) -> str:
 
 
 def _has_mode_label(text: str) -> bool:
-    return any(label in text for label in ("[힌트]", "[모르겠어요]", "[이유]", "힌트:", "모르겠어요:", "이유:"))
+    return any(
+        label in text
+        for label in (
+            "[힌트]",
+            "[모르겠어요]",
+            "[이유]",
+            "힌트:",
+            "모르겠어요:",
+            "이유:",
+        )
+    )
 
 
 def _mode_label_count(text: str) -> int:
-    return sum(1 for label in ("[힌트]", "[모르겠어요]", "[이유]", "힌트:", "모르겠어요:", "이유:") if label in text)
+    return sum(
+        1
+        for label in (
+            "[힌트]",
+            "[모르겠어요]",
+            "[이유]",
+            "힌트:",
+            "모르겠어요:",
+            "이유:",
+        )
+        if label in text
+    )
 
 
 def _has_label_for_mode(text: str, mode: str) -> bool:
@@ -1134,7 +1577,9 @@ def _keep_single_mode_section(text: str, mode: str) -> str:
         "why": ["[이유]", "이유:"],
     }
     all_labels = [label for group in labels.values() for label in group]
-    positions = sorted((index, label) for label in all_labels if (index := text.find(label)) >= 0)
+    positions = sorted(
+        (index, label) for label in all_labels if (index := text.find(label)) >= 0
+    )
     if not positions:
         return text
 
@@ -1182,7 +1627,10 @@ def _layout_summary(layout: dict[str, Any] | None) -> dict[str, Any] | None:
     if not layout:
         return None
     slots = layout.get("slots")
-    return {"canvas": layout.get("canvas"), "slot_count": len(slots) if isinstance(slots, list) else 0}
+    return {
+        "canvas": layout.get("canvas"),
+        "slot_count": len(slots) if isinstance(slots, list) else 0,
+    }
 
 
 def _record_or_none(value: Any) -> dict[str, Any] | None:
@@ -1274,7 +1722,9 @@ def _speech_instructions(locale: str) -> str:
         "zh": "Simplified Chinese Mandarin with a natural mainland Chinese accent",
         "km": "Khmer with a natural Cambodian accent",
         "my": "Burmese with a natural Myanmar accent",
-    }.get(_speech_language(locale), "the requested language with a natural local accent")
+    }.get(
+        _speech_language(locale), "the requested language with a natural local accent"
+    )
     return (
         f"Speak in {language}. "
         "Sound like a warm local elementary math tutor. "
@@ -1343,10 +1793,15 @@ _LOCALIZED_TEXT: dict[str, dict[str, str]] = {
 
 _LOCALIZED_PHRASES: dict[str, dict[str, str]] = {
     "ko": {
-        "step": "{n}단계", "next": "좋아요. 다음 단계로 가 볼게요.", "correct": "좋아요, 맞았어요.",
-        "try_again": "조금 다르게 본 것 같아요.", "enter_again": "다시 입력해 볼까요?",
-        "enter_step_value": "이 단계에서 생각한 값을 입력해 주세요.", "enter_calculated_number": "계산한 수를 입력해 보세요.",
-        "copy_given_number": "그 수를 그대로 입력해 보세요.", "confusion": "좋아요, 이 단계만 다시 볼게요.",
+        "step": "{n}단계",
+        "next": "좋아요. 다음 단계로 가 볼게요.",
+        "correct": "좋아요, 맞았어요.",
+        "try_again": "조금 다르게 본 것 같아요.",
+        "enter_again": "다시 입력해 볼까요?",
+        "enter_step_value": "이 단계에서 생각한 값을 입력해 주세요.",
+        "enter_calculated_number": "계산한 수를 입력해 보세요.",
+        "copy_given_number": "그 수를 그대로 입력해 보세요.",
+        "confusion": "좋아요, 이 단계만 다시 볼게요.",
         "intro_place_value": "Rule Tutor로 자리값을 보면서 풀어 볼게요.",
         "intro_highlighted": "{multiple}에서 색칠한 부분 {highlighted}이 어떤 보기와 같은지 찾는 문제예요.",
         "intro_hexagon": "Rule Tutor로 도형의 이유를 확인하면서 풀어 볼게요.\n먼저 지름으로 반지름을 구합니다.",
@@ -1363,10 +1818,15 @@ _LOCALIZED_PHRASES: dict[str, dict[str, str]] = {
         "step_compare_condition": "계산한 값을 비교해요. {values} 중 조건에 맞는 것은 무엇일까요?",
     },
     "en": {
-        "step": "Step {n}", "next": "Good. Let's go to the next step.", "correct": "Good, that's right.",
-        "try_again": "I think we looked at it a little differently.", "enter_again": "Try entering it again.",
-        "enter_step_value": "Enter the value for this step.", "enter_calculated_number": "Enter the number you calculated.",
-        "copy_given_number": "Enter that number as it is.", "confusion": "Good. Let's look at just this step again.",
+        "step": "Step {n}",
+        "next": "Good. Let's go to the next step.",
+        "correct": "Good, that's right.",
+        "try_again": "I think we looked at it a little differently.",
+        "enter_again": "Try entering it again.",
+        "enter_step_value": "Enter the value for this step.",
+        "enter_calculated_number": "Enter the number you calculated.",
+        "copy_given_number": "Enter that number as it is.",
+        "confusion": "Good. Let's look at just this step again.",
         "intro_place_value": "Let's solve it by looking at place value.",
         "intro_highlighted": "Find which choice matches the colored part {highlighted} in {multiple}.",
         "intro_hexagon": "Let's check the shape reason first.\nFirst, use the diameter to find the radius.",
@@ -1383,10 +1843,15 @@ _LOCALIZED_PHRASES: dict[str, dict[str, str]] = {
         "step_compare_condition": "Compare the values. From {values}, which one matches the condition?",
     },
     "ja": {
-        "step": "ステップ{n}", "next": "いいですね。次のステップに進みましょう。", "correct": "いいですね、正解です。",
-        "try_again": "少し違う見方をしたようです。", "enter_again": "もう一度入力してみましょう。",
-        "enter_step_value": "このステップで考えた値を入力してください。", "enter_calculated_number": "計算した数を入力してください。",
-        "copy_given_number": "その数をそのまま入力してください。", "confusion": "いいですね。このステップだけもう一度見ましょう。",
+        "step": "ステップ{n}",
+        "next": "いいですね。次のステップに進みましょう。",
+        "correct": "いいですね、正解です。",
+        "try_again": "少し違う見方をしたようです。",
+        "enter_again": "もう一度入力してみましょう。",
+        "enter_step_value": "このステップで考えた値を入力してください。",
+        "enter_calculated_number": "計算した数を入力してください。",
+        "copy_given_number": "その数をそのまま入力してください。",
+        "confusion": "いいですね。このステップだけもう一度見ましょう。",
         "intro_place_value": "位の値を見ながら解いてみましょう。",
         "intro_highlighted": "{multiple} の色の部分 {highlighted} がどの選択肢と同じか探す問題です。",
         "intro_hexagon": "まず図形の理由を確認しながら解きましょう。\nはじめに直径から半径を求めます。",
@@ -1403,10 +1868,15 @@ _LOCALIZED_PHRASES: dict[str, dict[str, str]] = {
         "step_compare_condition": "値を比べましょう。{values} の中で条件に合うのはどれですか。",
     },
     "zh": {
-        "step": "第{n}步", "next": "很好。我们进入下一步。", "correct": "很好，答对了。",
-        "try_again": "好像看得有一点不同。", "enter_again": "请再输入一次。",
-        "enter_step_value": "请输入这一步得到的值。", "enter_calculated_number": "请输入你算出的数。",
-        "copy_given_number": "请直接输入这个数。", "confusion": "好，我们只重新看这一步。",
+        "step": "第{n}步",
+        "next": "很好。我们进入下一步。",
+        "correct": "很好，答对了。",
+        "try_again": "好像看得有一点不同。",
+        "enter_again": "请再输入一次。",
+        "enter_step_value": "请输入这一步得到的值。",
+        "enter_calculated_number": "请输入你算出的数。",
+        "copy_given_number": "请直接输入这个数。",
+        "confusion": "好，我们只重新看这一步。",
         "intro_place_value": "我们看位值来解题。",
         "intro_highlighted": "这道题要找出 {multiple} 中涂色部分 {highlighted} 和哪个选项相同。",
         "intro_hexagon": "我们先确认图形中的理由。\n先用直径求半径。",
@@ -1425,10 +1895,15 @@ _LOCALIZED_PHRASES: dict[str, dict[str, str]] = {
 }
 
 _LOCALIZED_PHRASES["km"] = _LOCALIZED_PHRASES["en"] | {
-    "step": "ជំហាន {n}", "next": "ល្អណាស់។ យើងទៅជំហានបន្ទាប់។", "correct": "ល្អណាស់ ត្រឹមត្រូវហើយ។",
-    "try_again": "មើលទៅយើងគិតខុសបន្តិចហើយ។", "enter_again": "សូមបញ្ចូលម្តងទៀត។",
-    "enter_step_value": "បញ្ចូលតម្លៃសម្រាប់ជំហាននេះ។", "enter_calculated_number": "បញ្ចូលចំនួនដែលបានគណនា។",
-    "copy_given_number": "សូមបញ្ចូលចំនួននោះដូចដើម។", "confusion": "ល្អណាស់។ យើងមើលតែជំហាននេះម្តងទៀត។",
+    "step": "ជំហាន {n}",
+    "next": "ល្អណាស់។ យើងទៅជំហានបន្ទាប់។",
+    "correct": "ល្អណាស់ ត្រឹមត្រូវហើយ។",
+    "try_again": "មើលទៅយើងគិតខុសបន្តិចហើយ។",
+    "enter_again": "សូមបញ្ចូលម្តងទៀត។",
+    "enter_step_value": "បញ្ចូលតម្លៃសម្រាប់ជំហាននេះ។",
+    "enter_calculated_number": "បញ្ចូលចំនួនដែលបានគណនា។",
+    "copy_given_number": "សូមបញ្ចូលចំនួននោះដូចដើម។",
+    "confusion": "ល្អណាស់។ យើងមើលតែជំហាននេះម្តងទៀត។",
     "intro_place_value": "យើងនឹងប្រើ Rule Tutor មើលតម្លៃតាមខ្ទង់។",
     "intro_highlighted": "នេះជាលំហាត់រកថាផ្នែកដែលបានពណ៌ {highlighted} ក្នុង {multiple} ស្មើនឹងជម្រើសណា។",
     "intro_hexagon": "យើងនឹងពិនិត្យហេតុផលរបស់រូបរាងជាមួយ Rule Tutor។\nមុនដំបូង រកកាំពីអង្កត់ផ្ចិត។",
@@ -1445,10 +1920,15 @@ _LOCALIZED_PHRASES["km"] = _LOCALIZED_PHRASES["en"] | {
     "step_compare_condition": "ប្រៀបធៀបតម្លៃ។ ក្នុង {values} មួយណាត្រូវនឹងលក្ខខណ្ឌ?",
 }
 _LOCALIZED_PHRASES["my"] = _LOCALIZED_PHRASES["en"] | {
-    "step": "အဆင့် {n}", "next": "ကောင်းပါတယ်။ နောက်အဆင့်သို့ သွားကြမယ်။", "correct": "ကောင်းပါတယ်၊ မှန်ပါတယ်။",
-    "try_again": "နည်းနည်း မတူတဲ့ဘက်ကနေ ကြည့်မိသလိုပါပဲ။", "enter_again": "ထပ်ထည့်ကြည့်ပါ။",
-    "enter_step_value": "ဒီအဆင့်အတွက် တန်ဖိုးကို ထည့်ပါ။", "enter_calculated_number": "တွက်ထားတဲ့ ကိန်းကို ထည့်ပါ။",
-    "copy_given_number": "အဲဒီကိန်းကို မပြောင်းဘဲ ထည့်ပါ။", "confusion": "ကောင်းပါတယ်။ ဒီအဆင့်ကိုပဲ ပြန်ကြည့်မယ်။",
+    "step": "အဆင့် {n}",
+    "next": "ကောင်းပါတယ်။ နောက်အဆင့်သို့ သွားကြမယ်။",
+    "correct": "ကောင်းပါတယ်၊ မှန်ပါတယ်။",
+    "try_again": "နည်းနည်း မတူတဲ့ဘက်ကနေ ကြည့်မိသလိုပါပဲ။",
+    "enter_again": "ထပ်ထည့်ကြည့်ပါ။",
+    "enter_step_value": "ဒီအဆင့်အတွက် တန်ဖိုးကို ထည့်ပါ။",
+    "enter_calculated_number": "တွက်ထားတဲ့ ကိန်းကို ထည့်ပါ။",
+    "copy_given_number": "အဲဒီကိန်းကို မပြောင်းဘဲ ထည့်ပါ။",
+    "confusion": "ကောင်းပါတယ်။ ဒီအဆင့်ကိုပဲ ပြန်ကြည့်မယ်။",
     "intro_place_value": "Rule Tutor နဲ့ နေရာတန်ဖိုးကို ကြည့်ပြီး ဖြေကြမယ်။",
     "intro_highlighted": "{multiple} ထဲက အရောင်ခြယ်ထားတဲ့ {highlighted} က ဘယ်ရွေးချယ်မှုနဲ့ တူလဲ ရှာရမယ့် မေးခွန်းပါ။",
     "intro_hexagon": "Rule Tutor နဲ့ ပုံသဏ္ဍာန်အကြောင်းရင်းကို စစ်ကြမယ်။\nပထမဆုံး အချင်းကနေ အချင်းဝက်ကို ရှာပါ။",
@@ -1468,11 +1948,17 @@ _LOCALIZED_PHRASES["my"] = _LOCALIZED_PHRASES["en"] | {
 
 def _localized_text(payload: dict[str, Any], key: str) -> str:
     lang = _payload_language(payload)
-    return _LOCALIZED_TEXT.get(lang, _LOCALIZED_TEXT["ko"]).get(key) or _LOCALIZED_TEXT["ko"][key]
+    return (
+        _LOCALIZED_TEXT.get(lang, _LOCALIZED_TEXT["ko"]).get(key)
+        or _LOCALIZED_TEXT["ko"][key]
+    )
 
 
 def _localized_phrase(lang: str, key: str) -> str:
-    return _LOCALIZED_PHRASES.get(lang, _LOCALIZED_PHRASES["ko"]).get(key) or _LOCALIZED_PHRASES["ko"][key]
+    return (
+        _LOCALIZED_PHRASES.get(lang, _LOCALIZED_PHRASES["ko"]).get(key)
+        or _LOCALIZED_PHRASES["ko"][key]
+    )
 
 
 def _localized_step_label(lang: str, index: int) -> str:
@@ -1494,7 +1980,9 @@ def _extract_question(semantic: dict[str, Any] | None) -> str | None:
     return None
 
 
-def _extract_answer(semantic: dict[str, Any] | None, solvable: dict[str, Any] | None) -> str | None:
+def _extract_answer(
+    semantic: dict[str, Any] | None, solvable: dict[str, Any] | None
+) -> str | None:
     for source in (solvable, semantic):
         if not source:
             continue
@@ -1517,10 +2005,19 @@ def _extract_steps(solvable: dict[str, Any] | None) -> list[str]:
         if isinstance(step, str) and step.strip():
             steps.append(step.strip())
         elif isinstance(step, dict):
-            text = step.get("text") or step.get("explanation") or step.get("description") or step.get("expr")
+            text = (
+                step.get("text")
+                or step.get("explanation")
+                or step.get("description")
+                or step.get("expr")
+            )
             if isinstance(text, str) and text.strip():
                 value = step.get("value")
-                steps.append(text.strip() if value is None else f"{text.strip()} -> {_stringify_answer(value)}")
+                steps.append(
+                    text.strip()
+                    if value is None
+                    else f"{text.strip()} -> {_stringify_answer(value)}"
+                )
     return steps
 
 

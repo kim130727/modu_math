@@ -100,28 +100,60 @@
     ],
     "unit": "",
     "values": [
-      {
-        "value": 5,
-        "unit": "",
-        "target_ref": "answer.top_tens"
-      },
-      {
-        "value": 2,
-        "unit": "",
-        "target_ref": "answer.top_ones"
-      },
-      {
-        "value": 1,
-        "unit": "",
-        "target_ref": "answer.bottom_hundreds"
-      },
-      {
-        "value": 7,
-        "unit": "",
-        "target_ref": "answer.result_ones"
-      }
+      5,
+      2,
+      1,
+      7
     ],
     "target_ref": "answer.blank_digits",
-    "derived_from": "step.complete_addition"
+    "derived_from": "step.complete_addition",
+    "blanks": [
+      {
+        "id": "slot.top.blank_tens.rect",
+        "slot_id": "slot.top.blank_tens.rect",
+        "expected": 5,
+        "unit": ""
+      },
+      {
+        "id": "slot.top.blank_ones.rect",
+        "slot_id": "slot.top.blank_ones.rect",
+        "expected": 2,
+        "unit": ""
+      },
+      {
+        "id": "slot.bottom.blank_hundreds.rect",
+        "slot_id": "slot.bottom.blank_hundreds.rect",
+        "expected": 1,
+        "unit": ""
+      },
+      {
+        "id": "slot.result.blank_ones.rect",
+        "slot_id": "slot.result.blank_ones.rect",
+        "expected": 7,
+        "unit": ""
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.top.blank_tens.rect",
+        "value": 5,
+        "unit": ""
+      },
+      {
+        "slot_id": "slot.top.blank_ones.rect",
+        "value": 2,
+        "unit": ""
+      },
+      {
+        "slot_id": "slot.bottom.blank_hundreds.rect",
+        "value": 1,
+        "unit": ""
+      },
+      {
+        "slot_id": "slot.result.blank_ones.rect",
+        "value": 7,
+        "unit": ""
+      }
+    ]
   }
 }

@@ -8,7 +8,20 @@ from ..semantic.models.domain import DomainObject, DomainRelation, SemanticDomai
 from ..semantic.models.metadata import SemanticMetadata
 from ..semantic.models.problem import SemanticProblem
 from ..semantic.normalize import normalize_semantic
-from .models.base import BlankSlot, ChoiceSlot, CircleSlot, ImageSlot, LabelSlot, LineSlot, PathSlot, PolygonSlot, RectSlot, Region, TextBoxSlot, TextSlot
+from .models.base import (
+    BlankSlot,
+    ChoiceSlot,
+    CircleSlot,
+    ImageSlot,
+    LabelSlot,
+    LineSlot,
+    PathSlot,
+    PolygonSlot,
+    RectSlot,
+    Region,
+    TextBoxSlot,
+    TextSlot,
+)
 from .models.objects import ShapeObject
 from .models.templates import AuthoringSlot, DiagramTemplate, ProblemTemplate
 
@@ -94,7 +107,10 @@ def compile_problem_template_to_semantic(
                     id=slot.id,
                     type="blank",
                     refs=_refs_for_slot(slot.id, region),
-                    properties={"prompt": slot.prompt or "", "placeholder": slot.placeholder},
+                    properties={
+                        "prompt": slot.prompt or "",
+                        "placeholder": slot.placeholder,
+                    },
                 )
             )
             answer.blanks.append(
@@ -292,7 +308,9 @@ def compile_problem_template_to_semantic(
         answer=answer,
     )
     normalized = normalize_semantic(semantic.to_dict())
-    return _attach_confidence_defaults(normalized, default_confidence=default_confidence)
+    return _attach_confidence_defaults(
+        normalized, default_confidence=default_confidence
+    )
 
 
 def _attach_confidence_defaults(
@@ -354,9 +372,23 @@ def _assert_unique_ids(problem: ProblemTemplate) -> None:
 def _slot_to_region(regions: tuple[Region, ...]) -> dict[str, Region]:
     mapping: dict[str, Region] = {}
     for region in regions:
-        for slot_id in region.slot_ids:
+        for slot_id in _flatten_slot_ids(region.slot_ids):
             mapping[slot_id] = region
     return mapping
+
+
+def _flatten_slot_ids(items: Any) -> tuple[str, ...]:
+    if isinstance(items, str):
+        return (items,)
+    if not isinstance(items, (list, tuple)):
+        return ()
+    out: list[str] = []
+    for item in items:
+        if isinstance(item, str):
+            out.append(item)
+        elif isinstance(item, (list, tuple)):
+            out.extend(_flatten_slot_ids(item))
+    return tuple(out)
 
 
 def _refs_for_slot(slot_id: str, region: Region | None) -> list[dict[str, str]]:
@@ -366,7 +398,9 @@ def _refs_for_slot(slot_id: str, region: Region | None) -> list[dict[str, str]]:
     return refs
 
 
-def _infer_text_role(slot: TextSlot, region: Region | None, question_consumed: bool) -> str:
+def _infer_text_role(
+    slot: TextSlot, region: Region | None, question_consumed: bool
+) -> str:
     style = slot.style_role.lower()
     if style in {"instruction", "directive"}:
         return "instruction"
@@ -407,7 +441,10 @@ def _append_diagram_semantics(
             DomainObject(
                 id=obj.id,
                 type=obj.object_type,
-                refs=[{"kind": "diagram", "id": diagram.id}, {"kind": "object", "id": obj.id}],
+                refs=[
+                    {"kind": "diagram", "id": diagram.id},
+                    {"kind": "object", "id": obj.id},
+                ],
                 layout_required=True,
                 properties=_semantic_properties_for_shape(obj),
             )

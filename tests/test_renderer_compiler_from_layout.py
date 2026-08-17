@@ -22,7 +22,10 @@ def test_compile_renderer_from_multiple_choice_layout() -> None:
                 "id": "slot_choices",
                 "kind": "choice",
                 "prompt": "Select one answer.",
-                "content": {"choices": ["32", "42", "44", "46"], "multiple_select": False},
+                "content": {
+                    "choices": ["32", "42", "44", "46"],
+                    "multiple_select": False,
+                },
             },
         ],
         "diagrams": [],
@@ -95,13 +98,26 @@ def test_compile_renderer_preserves_slot_transform() -> None:
     layout = {
         "problem_id": "transform_example_0001",
         "canvas": {"width": 200, "height": 120, "background": "#ffffff"},
-        "regions": [{"id": "region_diagram", "role": "diagram", "flow": "absolute", "slot_ids": ["slot_line"]}],
+        "regions": [
+            {
+                "id": "region_diagram",
+                "role": "diagram",
+                "flow": "absolute",
+                "slot_ids": ["slot_line"],
+            }
+        ],
         "slots": [
             {
                 "id": "slot_line",
                 "kind": "line",
                 "prompt": "",
-                "content": {"x1": 10, "y1": 20, "x2": 90, "y2": 20, "transform": "rotate(30 50 20)"},
+                "content": {
+                    "x1": 10,
+                    "y1": 20,
+                    "x2": 90,
+                    "y2": 20,
+                    "transform": "rotate(30 50 20)",
+                },
             }
         ],
         "diagrams": [],
@@ -112,11 +128,20 @@ def test_compile_renderer_preserves_slot_transform() -> None:
     assert renderer["elements"][0]["attributes"]["transform"] == "rotate(30 50 20)"
 
 
-def test_compile_renderer_preserves_answer_slot_metadata_without_type_conversion() -> None:
+def test_compile_renderer_preserves_answer_slot_metadata_without_type_conversion() -> (
+    None
+):
     layout = {
         "problem_id": "answer_slot_example_0001",
         "canvas": {"width": 200, "height": 120, "background": "#ffffff"},
-        "regions": [{"id": "region_answer", "role": "answer", "flow": "absolute", "slot_ids": ["answer.final"]}],
+        "regions": [
+            {
+                "id": "region_answer",
+                "role": "answer",
+                "flow": "absolute",
+                "slot_ids": ["answer.final"],
+            }
+        ],
         "slots": [
             {
                 "id": "answer.final",
@@ -170,7 +195,14 @@ def test_compile_renderer_places_blank_after_text_box_bottom() -> None:
     layout = {
         "problem_id": "text_box_then_blank_example_0001",
         "canvas": {"width": 600, "height": 170, "background": "#ffffff"},
-        "regions": [{"id": "region.stem", "role": "stem", "flow": "vertical", "slot_ids": ["slot.question", "slot.answer"]}],
+        "regions": [
+            {
+                "id": "region.stem",
+                "role": "stem",
+                "flow": "vertical",
+                "slot_ids": ["slot.question", "slot.answer"],
+            }
+        ],
         "slots": [
             {
                 "id": "slot.question",
@@ -186,7 +218,12 @@ def test_compile_renderer_places_blank_after_text_box_bottom() -> None:
                     "line_height": 1.45,
                 },
             },
-            {"id": "slot.answer", "kind": "blank", "prompt": "답", "content": {"placeholder": "쪽"}},
+            {
+                "id": "slot.answer",
+                "kind": "blank",
+                "prompt": "답",
+                "content": {"placeholder": "쪽"},
+            },
         ],
         "diagrams": [],
     }
@@ -194,19 +231,39 @@ def test_compile_renderer_places_blank_after_text_box_bottom() -> None:
     renderer = compile_renderer_json(layout)
     validate_renderer_json(renderer)
 
-    question = next(element for element in renderer["elements"] if element["id"] == "slot.question.text")
-    blank = next(element for element in renderer["elements"] if element["id"] == "slot.answer.blank")
-    question_bottom = question["attributes"]["data-box-y"] + question["attributes"]["data-box-height"]
+    question = next(
+        element
+        for element in renderer["elements"]
+        if element["id"] == "slot.question.text"
+    )
+    blank = next(
+        element
+        for element in renderer["elements"]
+        if element["id"] == "slot.answer.blank"
+    )
+    question_bottom = (
+        question["attributes"]["data-box-y"] + question["attributes"]["data-box-height"]
+    )
 
     assert blank["attributes"]["y"] >= question_bottom + 12
-    assert renderer["view_box"]["height"] >= blank["attributes"]["y"] + blank["attributes"]["height"]
+    assert (
+        renderer["view_box"]["height"]
+        >= blank["attributes"]["y"] + blank["attributes"]["height"]
+    )
 
 
 def test_compile_renderer_uses_authored_blank_geometry() -> None:
     layout = {
         "problem_id": "sized_blank_example_0001",
         "canvas": {"width": 400, "height": 180, "background": "#ffffff"},
-        "regions": [{"id": "region.answer", "role": "answer", "flow": "absolute", "slot_ids": ["slot.answer"]}],
+        "regions": [
+            {
+                "id": "region.answer",
+                "role": "answer",
+                "flow": "absolute",
+                "slot_ids": ["slot.answer"],
+            }
+        ],
         "slots": [
             {
                 "id": "slot.answer",
@@ -230,9 +287,72 @@ def test_compile_renderer_uses_authored_blank_geometry() -> None:
     renderer = compile_renderer_json(layout)
     validate_renderer_json(renderer)
 
-    blank = next(element for element in renderer["elements"] if element["id"] == "slot.answer.blank")
+    blank = next(
+        element
+        for element in renderer["elements"]
+        if element["id"] == "slot.answer.blank"
+    )
     assert blank["attributes"]["x"] == 210.0
     assert blank["attributes"]["y"] == 94.0
     assert blank["attributes"]["width"] == 172.0
     assert blank["attributes"]["height"] == 58.0
 
+
+def test_compile_renderer_skips_unplaced_contract_only_blank() -> None:
+    layout = {
+        "problem_id": "contract_only_blank_example_0001",
+        "canvas": {"width": 320, "height": 180},
+        "regions": [
+            {
+                "id": "region.diagram",
+                "role": "diagram",
+                "flow": "absolute",
+                "slot_ids": ["slot.visible"],
+            }
+        ],
+        "slots": [
+            {
+                "id": "slot.visible",
+                "kind": "text",
+                "content": {"text": "□", "x": 80, "y": 90, "font_size": 28},
+            },
+            {
+                "id": "answer.contract",
+                "kind": "blank",
+                "content": {"answer_key": "7", "placeholder": ""},
+            },
+        ],
+    }
+
+    renderer = compile_renderer_json(layout)
+
+    assert any(element["id"] == "slot.visible.text" for element in renderer["elements"])
+    assert all(
+        element["id"] != "answer.contract.blank" for element in renderer["elements"]
+    )
+
+
+def test_compile_renderer_keeps_region_blank_without_authored_geometry() -> None:
+    layout = {
+        "problem_id": "region_blank_example_0001",
+        "canvas": {"width": 320, "height": 180},
+        "regions": [
+            {
+                "id": "region.answer",
+                "role": "answer",
+                "flow": "vertical",
+                "slot_ids": ["slot.answer"],
+            }
+        ],
+        "slots": [
+            {
+                "id": "slot.answer",
+                "kind": "blank",
+                "content": {"answer_key": "7", "placeholder": ""},
+            },
+        ],
+    }
+
+    renderer = compile_renderer_json(layout)
+
+    assert any(element["id"] == "slot.answer.blank" for element in renderer["elements"])
