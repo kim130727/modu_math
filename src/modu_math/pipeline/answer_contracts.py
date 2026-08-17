@@ -331,6 +331,8 @@ def _answer_values_for_submit_slots(
     values = _answer_values(answer)
     if len(values) == len(submit_slots):
         return values
+    if len(submit_slots) == 1 and len(values) == 1:
+        return values
 
     indexed_values: list[Any] = []
     for submit_slot in submit_slots:

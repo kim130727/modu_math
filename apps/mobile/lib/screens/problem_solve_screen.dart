@@ -336,15 +336,7 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
       return;
     }
     final previousIndex = widget.problemIndex - 1;
-    try {
-      await widget.repository
-          .preloadProblem(widget.unitProblems[previousIndex]);
-    } on Object {
-      // The destination screen can still render its own loading error.
-    }
-    if (!mounted) {
-      return;
-    }
+    _preloadProblemInBackground(widget.unitProblems[previousIndex]);
     Navigator.of(context).pushReplacement(
       MaterialPageRoute<void>(
         builder: (context) => ProblemSolveScreen(
@@ -364,14 +356,7 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
       return;
     }
     final nextIndex = widget.problemIndex + 1;
-    try {
-      await widget.repository.preloadProblem(widget.unitProblems[nextIndex]);
-    } on Object {
-      // The destination screen can still render its own loading error.
-    }
-    if (!mounted) {
-      return;
-    }
+    _preloadProblemInBackground(widget.unitProblems[nextIndex]);
     Navigator.of(context).pushReplacement(
       MaterialPageRoute<void>(
         builder: (context) => ProblemSolveScreen(
@@ -383,6 +368,10 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
         ),
       ),
     );
+  }
+
+  void _preloadProblemInBackground(ProblemSummary problem) {
+    unawaited(widget.repository.preloadProblem(problem).catchError((_) {}));
   }
 }
 

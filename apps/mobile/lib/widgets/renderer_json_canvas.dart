@@ -1307,7 +1307,11 @@ bool _autoAdvanceForInput(Map<String, dynamic> element) {
 }
 
 double _inputFontSize(_InputSlot slot, double scale) {
-  final ratio = slot.operatorOnly ? 0.58 : 0.72;
+  final ratio = slot.operatorOnly
+      ? 0.58
+      : slot.maxLength > 1
+          ? 0.52
+          : 0.72;
   return (slot.rect.height * ratio * scale).clamp(16.0, 52.0);
 }
 

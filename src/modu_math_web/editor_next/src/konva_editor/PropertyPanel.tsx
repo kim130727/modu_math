@@ -278,7 +278,7 @@ function AnswerBindingFields({
                 ...interaction,
                 answer_key_index,
                 answer_ref: option?.ref,
-                order: answer_key_index ?? interaction.order ?? 0,
+                order: option ? option.index + 1 : interaction.order ?? 1,
                 group_id: interaction.group_id || "final_answer",
               },
             } as Partial<EditorShape>);
@@ -303,8 +303,14 @@ function selectedAnswerBinding(interaction: InputInteraction, answerOptions: Ans
     const byRef = answerOptions.find((option) => option.ref === interaction.answer_ref);
     if (byRef) return byRef;
   }
+  if (interaction.role === "answer" && answerOptions.length === 1) {
+    return answerOptions[0];
+  }
   if (interaction.role === "answer" && typeof interaction.order === "number") {
-    const byOrder = answerOptions.find((option) => option.index === interaction.order);
+    const order = interaction.order;
+    const byOneBasedOrder = answerOptions.find((option) => option.index === order - 1);
+    if (byOneBasedOrder) return byOneBasedOrder;
+    const byOrder = answerOptions.find((option) => option.index === order);
     if (byOrder) return byOrder;
   }
   return null;

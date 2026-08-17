@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:modu_math_app/models/content_models.dart';
@@ -218,6 +220,47 @@ void main() {
     expect(find.textContaining(nextSummary.id), findsOneWidget);
   });
 
+  testWidgets('opens next problem without waiting for slow preload',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(1200, 900));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    const nextSummary = ProblemSummary(
+      id: 'P-slow-next',
+      grade: 3,
+      subject: 'math',
+      unit: 'addition',
+      type: 'calc',
+      title: 'Slow next problem',
+      path: '',
+      raw: {},
+    );
+    final repository = _FakeContentRepository(
+      preloadCompleters: {
+        nextSummary.id: Completer<void>(),
+      },
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: ProblemSolveScreen(
+          repository: repository,
+          progressRepository: _FakeProgressRepository(),
+          problem: _summary,
+          unitProblems: [_summary, nextSummary],
+          problemIndex: 0,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byIcon(Icons.navigate_next));
+    await tester.pump();
+    await tester.pump();
+
+    expect(repository.preloadedProblemIds, contains(nextSummary.id));
+    expect(find.textContaining(nextSummary.id), findsOneWidget);
+  });
+
   testWidgets('opens previous problem from problem controls', (tester) async {
     await tester.binding.setSurfaceSize(const Size(1200, 900));
     addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -258,10 +301,12 @@ class _FakeContentRepository extends ContentRepository {
   _FakeContentRepository({
     this.content = _content,
     this.preloadFailureIds = const {},
+    this.preloadCompleters = const {},
   });
 
   final ProblemContent content;
   final Set<String> preloadFailureIds;
+  final Map<String, Completer<void>> preloadCompleters;
   final List<String> preloadedProblemIds = [];
 
   @override
@@ -282,6 +327,10 @@ class _FakeContentRepository extends ContentRepository {
   @override
   Future<void> preloadProblem(ProblemSummary summary) async {
     preloadedProblemIds.add(summary.id);
+    final completer = preloadCompleters[summary.id];
+    if (completer != null) {
+      return completer.future;
+    }
     if (preloadFailureIds.contains(summary.id)) {
       throw StateError('preload failed for ${summary.id}');
     }

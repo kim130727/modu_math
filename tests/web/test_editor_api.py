@@ -2017,6 +2017,25 @@ def test_normalize_answer_for_submit_slots_uses_submit_order_subset() -> None:
     ]
 
 
+def test_normalize_answer_for_single_submit_slot_keeps_single_value_despite_order() -> None:
+    answer = {
+        "value": [934],
+        "unit": "",
+        "answer_key": [{"slot_id": "old.answer", "value": 934}],
+    }
+
+    normalized, changed = normalize_answer_for_submit_slots(
+        answer,
+        [{"slot_id": "konva.answer_3", "order": 2}],
+    )
+
+    assert changed is True
+    assert normalized["value"] == [934]
+    assert normalized["answer_key"] == [
+        {"slot_id": "konva.answer_3", "value": 934, "unit": ""}
+    ]
+
+
 def test_normalize_answer_value_units_strips_unit_from_numeric_values() -> None:
     answer = {
         "type": "numeric",

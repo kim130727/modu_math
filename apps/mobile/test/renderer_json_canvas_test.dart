@@ -936,4 +936,55 @@ void main() {
     expect(value, equals('12'));
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets('sizes multi-digit answer text to match surrounding problem text',
+      (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 365,
+            height: 125,
+            child: RendererJsonCanvas(
+              inputValue: '434',
+              expectedAnswer: '4341131',
+              renderer: {
+                'view_box': {
+                  'width': 365,
+                  'height': 125,
+                  'background': '#FFFFFF',
+                },
+                'elements': [
+                  {
+                    'id': 'slot.answer_1_oval.path',
+                    'type': 'path',
+                    'attributes': {
+                      'd':
+                          'M 146 96 C 146 81 202 81 202 96 C 202 111 146 111 146 96 Z',
+                      'stroke': '#111111',
+                      'stroke-width': 1.2,
+                      'fill': '#ffffff',
+                    },
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'integer',
+                      'include_in_submission': true,
+                      'order': 0,
+                      'max_length': 4,
+                      'keyboard': 'number',
+                    },
+                  },
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    final field = tester.widget<TextField>(find.byType(TextField));
+
+    expect(field.style?.fontSize, lessThanOrEqualTo(18));
+  });
 }
