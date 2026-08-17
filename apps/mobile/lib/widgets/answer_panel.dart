@@ -27,7 +27,8 @@ class AnswerPanel extends StatefulWidget {
 
 class _AnswerPanelState extends State<AnswerPanel> {
   final TextEditingController controller = TextEditingController();
-  String? selectedChoice;
+  int? selectedChoiceIndex;
+  Set<int> selectedChoiceIndexes = {};
 
   @override
   void initState() {
@@ -57,6 +58,7 @@ class _AnswerPanelState extends State<AnswerPanel> {
   Widget build(BuildContext context) {
     final choices = widget.content.choices;
     final strings = AppStrings.of(context);
+    final allowsMultipleChoices = _allowsMultipleChoices(widget.content);
 
     return Card(
       margin: EdgeInsets.zero,
@@ -85,14 +87,38 @@ class _AnswerPanelState extends State<AnswerPanel> {
               Wrap(
                 spacing: 10,
                 runSpacing: 10,
-                children: choices.map((choice) {
-                  final selected = selectedChoice == choice;
+                children: choices.indexed.map((entry) {
+                  final choiceIndex = entry.$1;
+                  final choice = entry.$2;
+                  final selected = allowsMultipleChoices
+                      ? selectedChoiceIndexes.contains(choiceIndex)
+                      : selectedChoiceIndex == choiceIndex;
                   return ChoiceChip(
                     selected: selected,
                     label: Text(choice, style: const TextStyle(fontSize: 18)),
                     onSelected: (_) {
-                      setState(() => selectedChoice = choice);
-                      widget.onAnswerChanged(choice);
+                      setState(() {
+                        if (allowsMultipleChoices) {
+                          selectedChoiceIndexes = {...selectedChoiceIndexes};
+                          if (selectedChoiceIndexes.contains(choiceIndex)) {
+                            selectedChoiceIndexes.remove(choiceIndex);
+                          } else {
+                            selectedChoiceIndexes.add(choiceIndex);
+                          }
+                          selectedChoiceIndex = null;
+                        } else {
+                          selectedChoiceIndex = choiceIndex;
+                          selectedChoiceIndexes = {};
+                        }
+                      });
+                      widget.onAnswerChanged(
+                        allowsMultipleChoices
+                            ? _selectedChoiceAnswer(
+                                choices,
+                                selectedChoiceIndexes,
+                              )
+                            : choice,
+                      );
                     },
                   );
                 }).toList(),
@@ -100,8 +126,13 @@ class _AnswerPanelState extends State<AnswerPanel> {
             const SizedBox(height: 16),
             FilledButton(
               onPressed: () {
-                final answer =
-                    choices.isEmpty ? controller.text : selectedChoice;
+                final answer = choices.isEmpty
+                    ? controller.text
+                    : allowsMultipleChoices
+                        ? _selectedChoiceAnswer(choices, selectedChoiceIndexes)
+                        : selectedChoiceIndex == null
+                            ? null
+                            : choices[selectedChoiceIndex!];
                 if (answer == null || answer.trim().isEmpty) {
                   return;
                 }
@@ -125,6 +156,33 @@ class _AnswerPanelState extends State<AnswerPanel> {
       ),
     );
   }
+}
+
+bool _allowsMultipleChoices(ProblemContent content) {
+  final answer = content.answerMap;
+  final target = answer['target'];
+  final targetType = target is Map<String, dynamic>
+      ? target['type']?.toString().toLowerCase()
+      : null;
+  if (targetType != null &&
+      (targetType.contains('multiple') ||
+          targetType.contains('multi') ||
+          targetType.contains('selected_'))) {
+    return true;
+  }
+  final answerKey = answer['answer_key'];
+  if (answerKey is List && answerKey.length > 1 && content.choices.isNotEmpty) {
+    return true;
+  }
+  final value = answer['value'];
+  return value is List && value.length > 1 && content.choices.isNotEmpty;
+}
+
+String _selectedChoiceAnswer(List<String> choices, Set<int> selectedIndexes) {
+  return choices.indexed
+      .where((entry) => selectedIndexes.contains(entry.$1))
+      .map((entry) => entry.$2)
+      .join();
 }
 
 class _ResultBanner extends StatelessWidget {

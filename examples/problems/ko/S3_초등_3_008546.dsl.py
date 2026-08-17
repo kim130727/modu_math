@@ -4,8 +4,8 @@ from modu_math.dsl import Canvas, ProblemTemplate, Region, RectSlot, TextSlot
 
 def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
-        id="S3_초등_3_008546",
-        title="계산 결과가 가장 큰 것을 찾아 기호를 선택하세요.",
+        id="S3_??_3_008546",
+        title="?? ??? ?? ? ?? ?? ??? ?????.",
         canvas=Canvas(width=870, height=360, coordinate_mode="logical"),
         regions=(
             Region(
@@ -38,7 +38,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.q.text",
                 prompt="",
-                text="계산 결과가 가장 큰 것을 찾아 기호를 선택하세요.",
+                text="?? ??? ?? ? ?? ?? ??? ?????.",
                 style_role="question",
                 x=54,
                 y=50,
@@ -97,12 +97,12 @@ def build_problem_template() -> ProblemTemplate:
 PROBLEM_TEMPLATE = build_problem_template()
 
 SEMANTIC_OVERRIDE = {
-    "problem_id": "S3_초등_3_008546",
-    "problem_type": "multiple_choice_comparison",
+    "problem_id": "S3_??_3_008546",
+    "problem_type": "??_??_??_??",
     "metadata": {
         "language": "ko",
-        "question": "계산 결과가 가장 큰 것을 찾아 기호를 선택하세요.",
-        "instruction": "보기의 곱셈 결과를 비교하여 가장 큰 기호를 고른다.",
+        "question": "?? ??? ?? ? ?? ?? ??? ?????.",
+        "instruction": "?? ??? ?? ? ?? ?? ??? ?????.",
     },
     "domain": {
         "objects": [
@@ -137,7 +137,7 @@ SEMANTIC_OVERRIDE = {
             },
             "plan": {
                 "method": "compare_products",
-                "description": "각 곱셈식의 결과를 비교하여 가장 큰 기호를 찾는다.",
+                "description": "?? ??? ?? ? ??? ??",
             },
             "execute": {"expected_operations": ["calculate_product", "compare_results"]},
             "review": {"check_methods": ["largest_value_check"]},
@@ -145,11 +145,15 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": [
+            "ㄱ",
+            "ㄴ",
+            "ㄷ",
+        ],
+        "answer_key": [{"id": "choice.2", "value": "ㄴ"}],
         "target": {
             "type": "selected_symbol",
-            "description": "계산 결과가 가장 큰 보기의 기호",
+            "description": "?? ??? ?? ? ??? ??",
         },
         "value": "ㄴ",
         "unit": "",
@@ -158,8 +162,8 @@ SEMANTIC_OVERRIDE = {
 
 SOLVABLE = {
     "schema": "modu.solvable.v1.1",
-    "problem_id": "S3_초등_3_008546",
-    "problem_type": "multiple_choice_comparison",
+    "problem_id": "S3_??_3_008546",
+    "problem_type": "??_??_??_??",
     "inputs": {
         "total_ticks": 3,
         "target_label": "계산 결과가 가장 큰 기호",
@@ -192,11 +196,15 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": [
+            "ㄱ",
+            "ㄴ",
+            "ㄷ",
+        ],
+        "answer_key": [{"id": "choice.2", "value": "ㄴ"}],
         "target": {
             "type": "selected_symbol",
-            "description": "계산 결과가 가장 큰 보기의 기호",
+            "description": "?? ??? ?? ? ??? ??",
         },
         "value": "ㄴ",
         "unit": "",
@@ -233,7 +241,7 @@ SOLVABLE["understanding"] = {
             "id": "understand.greatest",
             "type": "multiple_choice",
             "prompt": "Which symbol has the greatest product?",
-            "choices": ["A", "B", "C"],
+            "choices": ["ㄱ", "ㄴ", "ㄷ"],
             "answer_index": 1,
         },
     ],

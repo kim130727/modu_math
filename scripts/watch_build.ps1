@@ -12,6 +12,12 @@ if (-not $ProblemId -and -not $DslPath) {
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+$Utf8NoBom = [System.Text.UTF8Encoding]::new($false)
+[Console]::InputEncoding = $Utf8NoBom
+[Console]::OutputEncoding = $Utf8NoBom
+$OutputEncoding = $Utf8NoBom
+if ($env:PYTHONUTF8 -ne "1") { $env:PYTHONUTF8 = "1" }
+if ($env:PYTHONIOENCODING -ne "utf-8") { $env:PYTHONIOENCODING = "utf-8" }
 
 $RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 $PythonExe = Join-Path $RepoRoot ".venv\Scripts\python.exe"

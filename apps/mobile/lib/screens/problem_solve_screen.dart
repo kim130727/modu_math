@@ -515,6 +515,7 @@ class _ProblemVisual extends StatelessWidget {
             renderer: content.renderer,
             inputValue: answerDraft,
             expectedAnswer: content.correctAnswer,
+            suppressInputs: content.choices.isNotEmpty,
             onInputChanged: onAnswerChanged,
           ),
         ),

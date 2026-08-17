@@ -8,12 +8,14 @@ class RendererJsonCanvas extends StatefulWidget {
     required this.renderer,
     this.inputValue = '',
     this.expectedAnswer = '',
+    this.suppressInputs = false,
     this.onInputChanged,
   });
 
   final Map<String, dynamic> renderer;
   final String inputValue;
   final String expectedAnswer;
+  final bool suppressInputs;
   final ValueChanged<String>? onInputChanged;
 
   @override
@@ -81,6 +83,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                   final inputSlots = _inputSlots(
                     widget.renderer,
                     expectedAnswer: widget.expectedAnswer,
+                    suppressInputs: widget.suppressInputs,
                   );
                   _ensureControllerCount(inputSlots.length);
 
@@ -255,6 +258,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
     final selected = _activeOperatorSlotIndex(_inputSlots(
           widget.renderer,
           expectedAnswer: widget.expectedAnswer,
+          suppressInputs: widget.suppressInputs,
         )) ==
         index;
     return Positioned(
@@ -392,6 +396,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
     final slots = _inputSlots(
       widget.renderer,
       expectedAnswer: widget.expectedAnswer,
+      suppressInputs: widget.suppressInputs,
     );
     final signature = slots.map((slot) => slot.signature).join('|');
     if (!force && inputSignature == signature) {
@@ -421,6 +426,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
     final slots = _inputSlots(
       widget.renderer,
       expectedAnswer: widget.expectedAnswer,
+      suppressInputs: widget.suppressInputs,
     );
     final answerIndexes = slots.indexed
         .where((entry) => entry.$2.contributesToAnswer)
@@ -540,6 +546,8 @@ class RendererJsonPainter extends CustomPainter {
         _paintLine(canvas, attributes);
       case 'rect':
         _paintRect(canvas, attributes);
+      case 'polygon':
+        _paintPolygon(canvas, attributes);
       case 'path':
         _paintPath(canvas, attributes);
       case 'text':
@@ -647,6 +655,31 @@ class RendererJsonPainter extends CustomPainter {
     );
   }
 
+  void _paintPolygon(Canvas canvas, Map<String, dynamic> attributes) {
+    final path = rendererPolygonPath(attributes['points']);
+    if (path == null) {
+      return;
+    }
+    final fill = _readColor(attributes['fill']);
+    final stroke = _readColor(attributes['stroke']);
+    final strokeWidth = _readDouble(attributes['stroke-width']) ?? 1;
+
+    if (fill != null) {
+      canvas.drawPath(path, Paint()..color = fill);
+    }
+    if (stroke != null && strokeWidth > 0) {
+      canvas.drawPath(
+        path,
+        Paint()
+          ..color = stroke
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = strokeWidth
+          ..strokeCap = StrokeCap.round
+          ..strokeJoin = StrokeJoin.round,
+      );
+    }
+  }
+
   void _paintPath(Canvas canvas, Map<String, dynamic> attributes) {
     final path = _parseSvgPath(attributes['d']?.toString() ?? '');
     if (path == null) {
@@ -727,6 +760,34 @@ class RendererJsonPainter extends CustomPainter {
 }
 
 @visibleForTesting
+Path? rendererPolygonPath(Object? rawPoints) {
+  if (rawPoints is! List || rawPoints.length < 2) {
+    return null;
+  }
+  final points = <Offset>[];
+  for (final rawPoint in rawPoints) {
+    if (rawPoint is! List || rawPoint.length < 2) {
+      continue;
+    }
+    final x = _readDouble(rawPoint[0]);
+    final y = _readDouble(rawPoint[1]);
+    if (x == null || y == null) {
+      continue;
+    }
+    points.add(Offset(x, y));
+  }
+  if (points.length < 2) {
+    return null;
+  }
+  final path = Path()..moveTo(points.first.dx, points.first.dy);
+  for (final point in points.skip(1)) {
+    path.lineTo(point.dx, point.dy);
+  }
+  path.close();
+  return path;
+}
+
+@visibleForTesting
 Offset rendererTextPaintOffset({
   required double x,
   required double y,
@@ -798,7 +859,11 @@ List<Widget> _textBoxLayers(Map<String, dynamic> renderer, double scale) {
 List<_InputSlot> _inputSlots(
   Map<String, dynamic> renderer, {
   String expectedAnswer = '',
+  bool suppressInputs = false,
 }) {
+  if (suppressInputs) {
+    return const [];
+  }
   final elements = renderer['elements'];
   if (elements is! List) {
     return const [];

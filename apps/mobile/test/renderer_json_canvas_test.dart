@@ -798,6 +798,18 @@ void main() {
     );
   });
 
+  test('builds a closed path for polygon renderer elements', () {
+    final path = rendererPolygonPath([
+      [10, 20],
+      [70, 20],
+      [70, 80],
+      [10, 80],
+    ]);
+
+    expect(path, isNotNull);
+    expect(path!.getBounds(), equals(const Rect.fromLTWH(10, 20, 60, 60)));
+  });
+
   test('hides legacy answer blank rectangles that overlap question text', () {
     final visible = rendererVisibleElements([
       {
@@ -986,5 +998,50 @@ void main() {
     final field = tester.widget<TextField>(find.byType(TextField));
 
     expect(field.style?.fontSize, lessThanOrEqualTo(18));
+  });
+
+  testWidgets('suppresses renderer input slots for choice problems',
+      (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 240,
+            height: 160,
+            child: RendererJsonCanvas(
+              suppressInputs: true,
+              renderer: {
+                'view_box': {
+                  'width': 240,
+                  'height': 160,
+                  'background': '#FFFFFF',
+                },
+                'elements': [
+                  {
+                    'id': 'slot.answer.rect',
+                    'type': 'rect',
+                    'attributes': {
+                      'x': 40,
+                      'y': 60,
+                      'width': 80,
+                      'height': 40,
+                      'stroke': '#111111',
+                      'fill': '#ffffff',
+                    },
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'include_in_submission': true,
+                    },
+                  },
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byType(TextField), findsNothing);
   });
 }

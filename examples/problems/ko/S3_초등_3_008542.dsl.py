@@ -228,13 +228,16 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["80 × 40", "62 × 50", "90 × 30", "43 × 60"],
+        "answer_key": [
+            {"id": "choice.1", "value": "80 × 40"},
+            {"id": "choice.2", "value": "62 × 50"},
+        ],
         "target": {
-            "type": "selected_multiplication_expressions",
+            "type": "multiple_choice_values",
             "description": "계산 결과가 3000보다 큰 곱셈식",
         },
-        "value": 2,
+        "value": ["80 × 40", "62 × 50"],
         "unit": "",
     },
 }
@@ -257,7 +260,7 @@ SOLVABLE = {
         {"ref": "obj.expr4", "value": {"expression": "43 × 60"}},
         {"ref": "obj.threshold", "value": 3000},
     ],
-    "target": {"ref": "answer.target", "type": "selected_multiplication_expressions"},
+    "target": {"ref": "answer.target", "type": "multiple_choice_values"},
     "method": "compute_and_compare",
     "plan": [
         "각 곱셈식을 계산한다.",
@@ -313,13 +316,16 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["80 × 40", "62 × 50", "90 × 30", "43 × 60"],
+        "answer_key": [
+            {"id": "choice.1", "value": "80 × 40"},
+            {"id": "choice.2", "value": "62 × 50"},
+        ],
         "target": {
-            "type": "selected_multiplication_expressions",
+            "type": "multiple_choice_values",
             "description": "계산 결과가 3000보다 큰 곱셈식",
         },
-        "value": 2,
+        "value": ["80 × 40", "62 × 50"],
         "unit": "",
     },
 }

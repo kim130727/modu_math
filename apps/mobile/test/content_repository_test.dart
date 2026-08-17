@@ -61,8 +61,7 @@ void main() {
       expect(bundle.renderer, isNotEmpty);
     });
 
-    test('loads active locale files when localized examples exist',
-        () async {
+    test('loads active locale files when localized examples exist', () async {
       final repository = ContentRepository.bundledAssets()
         ..activeProblemLocale = 'uk';
       final koreanSummary = _summaryWithPrefix('P3_1_01_00040_00469_ko');
@@ -477,6 +476,75 @@ void main() {
       );
 
       expect(content.correctAnswer, equals('>='));
+    });
+
+    test('uses choice answer key value for multiple-choice answers', () {
+      const summary = ProblemSummary(
+        id: 'choice-answer',
+        grade: 3,
+        subject: 'math',
+        unit: 'unit',
+        type: 'type',
+        title: 'title',
+        path: ContentRepository.problemsPath,
+        raw: {},
+      );
+      const content = ProblemContent(
+        summary: summary,
+        semantic: {},
+        renderer: {},
+        solvable: {
+          'answer': {
+            'choices': ['6 × 4', '69 × 4', '60 × 4', '600 × 4'],
+            'answer_key': [
+              {'id': 'choice.3', 'value': '60 × 4'},
+            ],
+          },
+        },
+      );
+
+      expect(content.correctAnswer, equals('60 × 4'));
+    });
+
+    test('uses renderer choice slots when answer choices are missing', () {
+      const summary = ProblemSummary(
+        id: 'renderer-choice-answer',
+        grade: 3,
+        subject: 'math',
+        unit: 'unit',
+        type: 'type',
+        title: 'title',
+        path: ContentRepository.problemsPath,
+        raw: {},
+      );
+      const content = ProblemContent(
+        summary: summary,
+        semantic: {},
+        solvable: {
+          'answer': {
+            'target': {'type': 'choice_order'},
+            'value': '3',
+          },
+        },
+        renderer: {
+          'elements': [
+            {
+              'id': 'slot.choice.2.text',
+              'source_ref': 'slot.choice.2',
+              'text': '\u2461 B',
+              'attributes': {'x': 200, 'y': 100},
+            },
+            {
+              'id': 'slot.choice.1.text',
+              'source_ref': 'slot.choice.1',
+              'text': '\u2460 A',
+              'attributes': {'x': 100, 'y': 100},
+            },
+          ],
+        },
+      );
+
+      expect(content.choices, equals(['1. A', '2. B']));
     });
 
     test('uses renderer instruction when semantic prompt is broken', () {

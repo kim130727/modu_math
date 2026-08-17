@@ -42,7 +42,8 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.choice.1",
                     "slot.choice.2",
                     "slot.choice.3",
-                    "slot.choice.4",'konva_1786962334798_rect_569404'),
+                    "slot.choice.4",
+                ),
             ),
         ),
         slots=(TextSlot(
@@ -271,7 +272,8 @@ def build_problem_template() -> ProblemTemplate:
                 style_role="diagram",
                 x = 700.236, y = 214.415, font_size=28,
                 fill="#111111",
-            ),RectSlot(id = 'konva_1786962334798_rect_569404', prompt = '', x = 740.707, y = 292.566, width = 97.21, height = 56.79, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'answer_key_index': 0, 'answer_ref': 'answer.value', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
+            ),
+        ),
         diagrams=(),
         groups=(),
         constraints=(),
@@ -311,12 +313,12 @@ SEMANTIC_OVERRIDE = {
     "answer": {
         "blanks": [],
         "choices": ["6 × 4", "69 × 4", "60 × 4", "600 × 4"],
-        "answer_key": [],
+        "answer_key": [{"id": "choice.3", "value": "60 × 4"}],
         "target": {
-            "type": "choice_number",
+            "type": "choice_value",
             "description": "색칠한 부분 240에 해당하는 보기 번호",
         },
-        "value": 3,
+        "value": "60 × 4",
         "unit": "",
     },
 }
@@ -337,7 +339,7 @@ SOLVABLE = {
         {"ref": "obj.highlighted_value", "value": "240"},
         {"ref": "obj.choice_set", "value": ["6 × 4", "69 × 4", "60 × 4", "600 × 4"]},
     ],
-    "target": {"ref": "answer.target", "type": "choice_number"},
+    "target": {"ref": "answer.target", "type": "choice_value"},
     "method": "place_value_matching",
     "plan": [
         "색칠한 부분이 나타내는 자리값을 해설 문장과 함께 확인한다.",
@@ -346,7 +348,7 @@ SOLVABLE = {
     "steps": [
         {"id": "step.1", "expr": "869에서 6은 60을 나타낸다", "value": "60"},
         {"id": "step.2", "expr": "60 × 4", "value": 240},
-        {"id": "step.3", "expr": "색칠한 부분 240에 대응하는 보기 찾기", "value": 3},
+        {"id": "step.3", "expr": "색칠한 부분 240에 대응하는 보기 찾기", "value": "60 × 4"},
     ],
     "checks": [
         {"id": "check.1", "expr": "60 × 4 = 240", "expected": 240, "actual": 240, "pass": True}
@@ -354,12 +356,12 @@ SOLVABLE = {
     "answer": {
         "blanks": [],
         "choices": ["6 × 4", "69 × 4", "60 × 4", "600 × 4"],
-        "answer_key": [],
+        "answer_key": [{"id": "choice.3", "value": "60 × 4"}],
         "target": {
-            "type": "choice_number",
+            "type": "choice_value",
             "description": "색칠한 부분 240에 해당하는 보기 번호",
         },
-        "value": 3,
+        "value": "60 × 4",
         "unit": "",
     },
 }

@@ -117,6 +117,10 @@ class ProblemContent {
         return sanitizeProblemText(choice.toString());
       }).toList();
     }
+    final rendererChoices = _choicesFromRenderer();
+    if (rendererChoices.isNotEmpty) {
+      return rendererChoices;
+    }
     return _choicesFromSvg();
   }
 
@@ -182,6 +186,41 @@ class ProblemContent {
     return _extractInlineChoices(choices) ?? choices;
   }
 
+  List<String> _choicesFromRenderer() {
+    final elements = renderer['elements'];
+    if (elements is! List) {
+      return const [];
+    }
+    final choices = <({double x, double y, String text})>[];
+    for (final element in elements.whereType<Map<String, dynamic>>()) {
+      final identity = [
+        element['id'],
+        element['source_ref'],
+        _mapAt(element, 'refs')['layout_slot_id'],
+        _mapAt(element, 'metadata')['layout_slot_id'],
+      ].whereType<Object>().join(' ').toLowerCase();
+      if (!identity.contains('slot.choice')) {
+        continue;
+      }
+      final text = sanitizeProblemText(element['text']?.toString() ?? '');
+      if (text.isEmpty) {
+        continue;
+      }
+      final attributes = _mapAt(element, 'attributes');
+      choices.add((
+        x: _numberValue(attributes['x']) ?? 0,
+        y: _numberValue(attributes['y']) ?? 0,
+        text: text,
+      ));
+    }
+    choices.sort((a, b) {
+      final row = (a.y - b.y).abs() < 16 ? 0 : a.y.compareTo(b.y);
+      return row != 0 ? row : a.x.compareTo(b.x);
+    });
+    final texts = choices.map((choice) => choice.text).toList();
+    return _extractInlineChoices(texts) ?? texts;
+  }
+
   String _rendererInstructionText() {
     final elements = renderer['elements'];
     if (elements is! List) {
@@ -204,6 +243,13 @@ class ProblemContent {
     }
     return '';
   }
+}
+
+double? _numberValue(Object? value) {
+  if (value is num) {
+    return value.toDouble();
+  }
+  return double.tryParse(value?.toString() ?? '');
 }
 
 List<String>? _extractInlineChoices(List<String> choices) {

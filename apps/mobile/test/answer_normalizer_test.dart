@@ -16,5 +16,11 @@ void main() {
       expect(isSameAnswer('3', '3'), isTrue);
       expect(isSameAnswer('3', '4'), isFalse);
     });
+
+    test('compares marked choice labels by their leading number', () {
+      expect(isSameAnswer('\u2462 \u3137, \u3131, \u3134', '3'), isTrue);
+      expect(isSameAnswer('(3) \u3137, \u3131, \u3134', '3'), isTrue);
+      expect(isSameAnswer('3. \u3137, \u3131, \u3134', '3'), isTrue);
+    });
   });
 }

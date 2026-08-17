@@ -166,8 +166,11 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": [
+            "412 × 4",
+            "526 × 3",
+        ],
+        "answer_key": [{"id": "choice.2", "value": "526 × 3"}],
         "target": {
             "type": "selected_expression",
             "description": "보기와 계산 결과가 같은 식",
@@ -221,8 +224,11 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": [
+            "412 × 4",
+            "526 × 3",
+        ],
+        "answer_key": [{"id": "choice.2", "value": "526 × 3"}],
         "target": {
             "type": "selected_expression",
             "description": "보기와 계산 결과가 같은 식",

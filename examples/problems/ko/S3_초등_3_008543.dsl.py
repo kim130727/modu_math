@@ -199,13 +199,18 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": [
+            "① ㄱ, ㄴ, ㄷ",
+            "② ㄷ, ㄴ, ㄱ",
+            "③ ㄷ, ㄱ, ㄴ",
+            "④ ㄴ, ㄱ, ㄷ",
+        ],
+        "answer_key": [{"id": "choice.3", "value": "③ ㄷ, ㄱ, ㄴ"}],
         "target": {
             "type": "choice_order",
             "description": "계산 결과가 큰 것부터 순서대로 나열한 보기",
         },
-        "value": 3,
+        "value": "3",
         "unit": "",
     },
 }
@@ -262,13 +267,18 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": [
+            "① ㄱ, ㄴ, ㄷ",
+            "② ㄷ, ㄴ, ㄱ",
+            "③ ㄷ, ㄱ, ㄴ",
+            "④ ㄴ, ㄱ, ㄷ",
+        ],
+        "answer_key": [{"id": "choice.3", "value": "③ ㄷ, ㄱ, ㄴ"}],
         "target": {
             "type": "choice_order",
             "description": "계산 결과가 큰 것부터 순서대로 나열한 보기",
         },
-        "value": 3,
+        "value": "3",
         "unit": "",
     },
 }

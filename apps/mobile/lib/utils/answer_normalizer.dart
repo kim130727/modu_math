@@ -3,10 +3,10 @@ String normalizeAnswer(String value) {
       .trim()
       .toLowerCase()
       .replaceAll(RegExp(r'\s+'), '')
-      .replaceAll('×', '*')
-      .replaceAll('횞', '*')
+      .replaceAll('\u00d7', '*')
+      .replaceAll('\ud6de', '*')
       .replaceAll('x', '*')
-      .replaceAll('번', '')
+      .replaceAll('\ubc88', '')
       .replaceAll(',', '');
 
   final leadingChoice = _leadingChoiceNumber(compact);
@@ -15,13 +15,13 @@ String normalizeAnswer(String value) {
   }
 
   return compact
-      .replaceAll('가', 'ㄱ')
-      .replaceAll('나', 'ㄴ')
-      .replaceAll('다', 'ㄷ')
-      .replaceAll('라', 'ㄹ')
-      .replaceAll('마', 'ㅁ')
-      .replaceAll('바', 'ㅂ')
-      .replaceAll('사', 'ㅅ');
+      .replaceAll('\uac00', '\u3131')
+      .replaceAll('\ub098', '\u3134')
+      .replaceAll('\ub2e4', '\u3137')
+      .replaceAll('\ub77c', '\u3139')
+      .replaceAll('\ub9c8', '\u3141')
+      .replaceAll('\ubc14', '\u3142')
+      .replaceAll('\uc0ac', '\u3145');
 }
 
 bool isSameAnswer(String submitted, String correct) {
@@ -34,15 +34,20 @@ String? _leadingChoiceNumber(String value) {
   }
 
   const circled = {
-    '①': '1',
-    '②': '2',
-    '③': '3',
-    '④': '4',
-    '⑤': '5',
-    '⑥': '6',
-    '⑦': '7',
-    '⑧': '8',
-    '⑨': '9',
+    '\u2460': '1',
+    '\u2461': '2',
+    '\u2462': '3',
+    '\u2463': '4',
+    '\u2464': '5',
+    '\u2465': '6',
+    '\u2466': '7',
+    '\u2467': '8',
+    '\u2468': '9',
+    '\u3260': '1',
+    '\u3261': '2',
+    '\u3262': '3',
+    '\u3263': '4',
+    '\u3264': '5',
   };
 
   final first = value.substring(0, 1);
@@ -50,6 +55,16 @@ String? _leadingChoiceNumber(String value) {
     return circled[first];
   }
 
-  final match = RegExp(r'^[1-9]$').firstMatch(value);
-  return match?.group(0);
+  final bare = RegExp(r'^[1-9]$').firstMatch(value);
+  if (bare != null) {
+    return bare.group(0);
+  }
+
+  final parenthesized = RegExp(r'^\(([1-9])\)').firstMatch(value);
+  if (parenthesized != null) {
+    return parenthesized.group(1);
+  }
+
+  final marked = RegExp(r'^([1-9])[.)]').firstMatch(value);
+  return marked?.group(1);
 }

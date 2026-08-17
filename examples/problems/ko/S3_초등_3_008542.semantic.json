@@ -83,14 +83,31 @@
   },
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "80 × 40",
+      "62 × 50",
+      "90 × 30",
+      "43 × 60"
+    ],
+    "answer_key": [
+      {
+        "id": "choice.1",
+        "value": "80 × 40"
+      },
+      {
+        "id": "choice.2",
+        "value": "62 × 50"
+      }
+    ],
     "confidence": 1.0,
     "target": {
-      "type": "selected_multiplication_expressions",
+      "type": "multiple_choice_values",
       "description": "계산 결과가 3000보다 큰 곱셈식"
     },
-    "value": 2,
+    "value": [
+      "80 × 40",
+      "62 × 50"
+    ],
     "unit": ""
   }
 }

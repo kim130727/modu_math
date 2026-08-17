@@ -36,9 +36,7 @@
       "id": "region.answer",
       "role": "answer",
       "flow": "absolute",
-      "slot_ids": [
-        "konva_1786962334798_rect_1215252"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
@@ -159,46 +157,6 @@
         "font_size": 28,
         "fill": "#111111"
       }
-    },
-    {
-      "id": "konva_1786962334798_rect_1215252",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 744.0,
-        "y": 298.0,
-        "width": 96.0,
-        "height": 54.0,
-        "fill": "#ffffff",
-        "stroke": "#111827",
-        "stroke_width": 1.2,
-        "interaction": {
-          "type": "input",
-          "role": "answer",
-          "value_type": "integer",
-          "max_length": 3,
-          "include_in_submission": true,
-          "order": 0,
-          "group_id": "final_answer",
-          "answer_key_index": 0,
-          "answer_ref": "answer.value",
-          "auto_advance": false,
-          "keyboard": "number"
-        },
-        "input_style": {
-          "font_size_mode": "auto",
-          "font_size_adjust": 0,
-          "min_font_size": 14,
-          "max_font_size": 52,
-          "font_weight": 700,
-          "horizontal_align": "center",
-          "vertical_align": "middle",
-          "padding": 6,
-          "text_color": "#222222",
-          "width": 96.0,
-          "height": 54.0
-        }
-      }
     }
   ],
   "groups": [],
@@ -216,7 +174,6 @@
     "slot.choice.2",
     "slot.choice.3",
     "slot.choice.4",
-    "region.answer",
-    "konva_1786962334798_rect_1215252"
+    "region.answer"
   ]
 }
