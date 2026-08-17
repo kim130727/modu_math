@@ -178,3 +178,40 @@ def test_sanitize_layout_separates_following_slots_from_long_top_text() -> None:
     assert by_id["slot.table.r1c1"]["content"]["y"] == 179.169
     assert by_id["slot.table.r2c1"]["content"]["y"] == 224.169
     assert by_id["slot.answer"]["content"]["y"] == 196.067
+
+
+def test_sanitize_layout_preserves_editor_moved_slot_near_top_text() -> None:
+    layout = {
+        "canvas": {"width": 960, "height": 500},
+        "slots": [
+            {
+                "id": "slot.instruction",
+                "kind": "text_box",
+                "content": {
+                    "text": "2, 4, 6의 숫자 카드를 한 번씩만 사용하여 세 자리 수를 만들려고 합니다.",
+                    "x": 20.0,
+                    "y": 12.0,
+                    "width": 920.0,
+                    "height": 134.557,
+                    "font_size": 30,
+                },
+            },
+            {
+                "id": "slot.question1",
+                "kind": "text_box",
+                "content": {
+                    "text": "(1) 숫자 카드를 이용하여 만들 수 있는 가장 큰 세 자리 수를 쓰시오.",
+                    "x": 16.852,
+                    "y": 121.508,
+                    "width": 918.492,
+                    "height": 83,
+                    "font_size": 30,
+                },
+            },
+        ],
+    }
+
+    sanitized = sanitize_layout(layout, protected_slot_ids={"slot.question1"})
+    by_id = {slot["id"]: slot for slot in sanitized["slots"]}
+
+    assert by_id["slot.question1"]["content"]["y"] == 121.508

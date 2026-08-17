@@ -16,7 +16,8 @@
       "slot.mul.hline3",
       "slot.mul.hline4",
       "slot.mul.highlight",
-      "slot.choice.box"
+      "slot.choice.box",
+      "konva_1786962334798_rect_569404"
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
@@ -56,15 +57,33 @@
     "confidence": 1.0
   },
   "answer": {
-    "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "blanks": [
+      {
+        "id": "konva_1786962334798_rect_569404",
+        "slot_id": "konva_1786962334798_rect_569404",
+        "expected": 3,
+        "unit": ""
+      }
+    ],
+    "choices": [
+      "6 × 4",
+      "69 × 4",
+      "60 × 4",
+      "600 × 4"
+    ],
+    "answer_key": [
+      {
+        "slot_id": "konva_1786962334798_rect_569404",
+        "value": 3,
+        "unit": ""
+      }
+    ],
     "confidence": 1.0,
     "target": {
-      "type": "matching_expression",
-      "description": "색칠한 부분 240에 해당하는 실제 곱"
+      "type": "choice_number",
+      "description": "색칠한 부분 240에 해당하는 보기 번호"
     },
-    "value": "60 × 4",
+    "value": 3,
     "unit": ""
   }
 }

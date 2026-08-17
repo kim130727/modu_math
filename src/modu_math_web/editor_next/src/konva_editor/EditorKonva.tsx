@@ -1170,6 +1170,7 @@ function shapePresetLabel(preset: ShapePreset): string {
     curve: "곡선",
     freeformShape: "자유형: 도형",
     freeformScribble: "자유형: 자유 곡선",
+    point: "점",
   };
   return labels[preset] ?? "도형";
 }
@@ -1265,6 +1266,8 @@ function createShapeFromPreset(preset: ShapePreset, id: string): EditorShape {
       return { id, type: "rect", x, y, width: 180, height: 96, fill, stroke, strokeWidth };
     case "roundRect":
       return { id, type: "rect", x, y, width: 180, height: 96, fill, stroke, strokeWidth, cornerRadius: 14 };
+    case "point":
+      return { id, type: "circle", x: x + 8, y: y + 8, radius: 6, fill: stroke, stroke, strokeWidth: 0 };
     case "circle":
       return { id, type: "circle", x: x + 70, y: y + 70, radius: 70, fill, stroke, strokeWidth };
     case "arc":

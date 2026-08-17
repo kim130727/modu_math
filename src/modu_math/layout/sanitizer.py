@@ -8,10 +8,12 @@ def sanitize_layout(
     layout: dict[str, Any],
     *,
     deleted_slots: set[str] | None = None,
+    protected_slot_ids: set[str] | None = None,
 ) -> dict[str, Any]:
     """Apply final layout invariants before rendering or writing artifacts."""
     sanitized = copy.deepcopy(layout)
     deleted_slots = deleted_slots or set()
+    protected_slot_ids = protected_slot_ids or set()
     slots = sanitized.get("slots")
     if not isinstance(slots, list):
         sanitized["slots"] = []
@@ -30,7 +32,9 @@ def sanitize_layout(
             sanitize_answer_input_content(content)
             _clamp_box_content_to_canvas(content, canvas_box)
         clean_slots.append(slot)
-    _separate_top_text_from_following_slots(clean_slots, canvas_box)
+    _separate_top_text_from_following_slots(
+        clean_slots, canvas_box, protected_slot_ids=protected_slot_ids
+    )
     sanitized["slots"] = clean_slots
 
     slot_ids = {slot["id"] for slot in clean_slots if isinstance(slot.get("id"), str)}
@@ -133,6 +137,8 @@ def _clamp_box_content_to_canvas(
 def _separate_top_text_from_following_slots(
     slots: list[dict[str, Any]],
     canvas_box: tuple[float, float] | None,
+    *,
+    protected_slot_ids: set[str],
 ) -> None:
     if canvas_box is None:
         return
@@ -146,6 +152,9 @@ def _separate_top_text_from_following_slots(
     candidates: list[tuple[dict[str, Any], tuple[float, float, float, float]]] = []
     for slot in slots:
         if _is_top_text_slot(slot):
+            continue
+        slot_id = slot.get("id")
+        if isinstance(slot_id, str) and slot_id in protected_slot_ids:
             continue
         box = _slot_box(slot)
         if box is None:
@@ -183,6 +192,8 @@ def _separate_top_text_from_following_slots(
     for slot in slots:
         slot_id = slot.get("id")
         if not isinstance(slot_id, str) or slot_id in shifted:
+            continue
+        if slot_id in protected_slot_ids:
             continue
         if not any(slot_id.startswith(prefix) for prefix in candidate_prefixes):
             continue

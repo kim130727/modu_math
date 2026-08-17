@@ -30,6 +30,7 @@ export function editorDocumentToProblemJson(document: EditorShapeDocument, base:
 function problemObjectToEditorShape(object: ProblemObject, canvas: ProblemCanvas): EditorShape[] {
   const answerProps = answerSlotProps(object.props);
   const regionProps = sourceRegionProps(object.props);
+  const semanticProps = semanticRoleProps(object.props);
   switch (object.type) {
     case "math_text": {
       const text = object.props.latex || object.props.text;
@@ -60,6 +61,7 @@ function problemObjectToEditorShape(object: ProblemObject, canvas: ProblemCanvas
           lineHeight,
           sourceKind: object.props.sourceKind ?? "text",
           ...regionProps,
+          ...semanticProps,
           ...answerProps,
           visible: true,
           },
@@ -243,6 +245,11 @@ function sourceRegionProps(props: Record<string, unknown>): { sourceRegionId?: s
   return sourceRegionId ? { sourceRegionId } : {};
 }
 
+function semanticRoleProps(props: Record<string, unknown>): { semanticRole?: string } {
+  const semanticRole = stringProp(props.semantic_role);
+  return semanticRole ? { semanticRole } : {};
+}
+
 function answerShapeProps(shape: EditorShape): { interaction?: InputInteraction; input_style?: InputStyle } {
   return {
     ...(shape.interaction ? { interaction: shape.interaction } : {}),
@@ -252,6 +259,10 @@ function answerShapeProps(shape: EditorShape): { interaction?: InputInteraction;
 
 function sourceRegionShapeProps(shape: EditorShape): { sourceRegionId?: string } {
   return shape.sourceRegionId ? { sourceRegionId: shape.sourceRegionId } : {};
+}
+
+function semanticRoleShapeProps(shape: EditorShape): { semantic_role?: string } {
+  return shape.semanticRole ? { semantic_role: shape.semanticRole } : {};
 }
 
 function recordProp(value: unknown): Record<string, unknown> | undefined {
@@ -288,6 +299,7 @@ function isSupportedProblemObject(object: ProblemObject): boolean {
 function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
   const answerProps = answerShapeProps(shape);
   const regionProps = sourceRegionShapeProps(shape);
+  const semanticProps = semanticRoleShapeProps(shape);
   switch (shape.type) {
     case "math":
       return [
@@ -307,6 +319,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             lineHeight: 1.25,
             sourceKind: "text_box",
             ...regionProps,
+            ...semanticProps,
             ...answerProps,
             ...transformProps(shape),
           },
@@ -341,6 +354,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             lineHeight,
             sourceKind,
             ...regionProps,
+            ...semanticProps,
             ...answerProps,
             ...transformProps(shape),
           },

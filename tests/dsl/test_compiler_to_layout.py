@@ -18,6 +18,7 @@ from modu_math.dsl import (
     LineSlot,
     ProblemTemplate,
     Region,
+    TextBoxSlot,
     TextSlot,
     Triangle,
     compile_problem_template_to_layout,
@@ -161,6 +162,47 @@ def test_compile_to_layout_flattens_nested_region_slot_ids() -> None:
     ]
 
 
+def test_compile_to_layout_tightens_pasted_short_text_box_without_moving_text() -> None:
+    problem = ProblemTemplate(
+        id="p_pasted_short_text_box",
+        title="Pasted short text box",
+        canvas=Canvas(width=400, height=300),
+        regions=(Region(id="region.stem", role="body"),),
+        slots=(
+            TextBoxSlot(
+                id="konva_123_paste_456_0",
+                text="3",
+                x=200.0,
+                y=80.0,
+                width=95.0,
+                height=37.0,
+                font_size=24,
+                align="center",
+                line_height=1.2,
+            ),
+            TextBoxSlot(
+                id="slot.question",
+                text="긴 안내문은 넓은 박스를 유지합니다.",
+                x=20.0,
+                y=20.0,
+                width=300.0,
+                height=60.0,
+                font_size=20,
+            ),
+        ),
+    )
+
+    layout = compile_problem_template_to_layout(problem)
+    slot_by_id = {slot["id"]: slot for slot in layout["slots"]}
+    pasted = slot_by_id["konva_123_paste_456_0"]["content"]
+    question = slot_by_id["slot.question"]["content"]
+
+    assert pasted["width"] < 30
+    assert pasted["height"] == 30.0
+    assert pasted["x"] > 230
+    assert question["width"] == 300.0
+
+
 def test_compile_to_layout_draws_small_center_circles_above_large_circles() -> None:
     problem = ProblemTemplate(
         id="p_center_z_order",
@@ -183,6 +225,27 @@ def test_compile_to_layout_draws_small_center_circles_above_large_circles() -> N
     layout = compile_problem_template_to_layout(problem)
 
     assert layout["regions"][0]["slot_ids"] == ["slot.big.circle", "slot.center"]
+
+
+def test_compile_to_layout_tags_korean_choice_and_symbol_markers() -> None:
+    problem = ProblemTemplate(
+        id="p_symbol_markers",
+        title="Symbol markers",
+        canvas=Canvas(width=400, height=300),
+        regions=(Region(id="region.body", role="body"),),
+        slots=(
+            TextSlot(id="slot.choice.marker", text="(\uac00)", style_role="choice"),
+            TextSlot(id="slot.diagram.label", text="\u3131"),
+            TextSlot(id="slot.name", text="\uc2b9\uc544"),
+        ),
+    )
+
+    layout = compile_problem_template_to_layout(problem)
+    slot_by_id = {slot["id"]: slot for slot in layout["slots"]}
+
+    assert slot_by_id["slot.choice.marker"]["content"]["semantic_role"] == "choice_marker"
+    assert slot_by_id["slot.diagram.label"]["content"]["semantic_role"] == "symbol_label"
+    assert "semantic_role" not in slot_by_id["slot.name"]["content"]
 
 
 def test_compile_to_layout_aligns_graphpaper_outer_bounds() -> None:

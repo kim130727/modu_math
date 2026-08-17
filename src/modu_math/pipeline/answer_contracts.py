@@ -45,7 +45,7 @@ def normalize_answer_for_deleted_slots(
             kept_items.append(item)
             if key == "answer_key" and value_key in item:
                 kept_answer_values.append(item[value_key])
-        if removed_any and kept_items:
+        if removed_any:
             normalized[key] = kept_items
 
     if not removed_ids:
@@ -283,7 +283,10 @@ def _answer_slot_ids(answer: Any) -> set[str]:
         for item in items:
             if not isinstance(item, dict):
                 continue
-            slot_id = item.get("slot_id") or item.get("id") or item.get("blank_id")
+            if key == "blanks":
+                slot_id = item.get("slot_id") or item.get("blank_id") or item.get("id")
+            else:
+                slot_id = item.get("slot_id") or item.get("blank_id")
             if isinstance(slot_id, str) and slot_id.strip():
                 out.add(slot_id)
     return out

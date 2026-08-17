@@ -125,6 +125,18 @@ def _prepare_text_blank_rect_override(
     return normalized
 
 
+def _drop_transform_for_absolute_geometry_override(
+    slot_kind: str | None, content: dict[str, Any], patch: dict[str, Any]
+) -> None:
+    """Treat edited absolute geometry as authoritative over a DSL transform."""
+    if "transform" in patch:
+        return
+    if slot_kind == "line" and {"x1", "y1", "x2", "y2"} & set(patch):
+        content.pop("transform", None)
+    elif slot_kind == "path" and "d" in patch:
+        content.pop("transform", None)
+
+
 def _is_answer_slot_id(slot_id: str) -> bool:
     return (
         slot_id == "slot.answer" or slot_id.endswith(".answer") or ".answer." in slot_id
@@ -190,8 +202,16 @@ def _override_is_answer_slot(slot_id: str, content: dict[str, Any]) -> bool:
 
 
 def _infer_region_id_for_slot(
-    layout: dict[str, Any], slot_id: str, content: dict[str, Any] | None = None
+    layout: dict[str, Any],
+    slot_id: str,
+    content: dict[str, Any] | None = None,
+    explicit_region_id: str | None = None,
 ) -> str | None:
+    if explicit_region_id:
+        for region in layout.get("regions", []):
+            if isinstance(region, dict) and region.get("id") == explicit_region_id:
+                return explicit_region_id
+
     best_region_id: str | None = None
     best_score = 0
     for region in layout.get("regions", []):
@@ -220,9 +240,14 @@ def _infer_region_id_for_slot(
 
 
 def _add_missing_override_slot(
-    layout: dict[str, Any], slot_id: str, content: dict[str, Any]
+    layout: dict[str, Any],
+    slot_id: str,
+    content: dict[str, Any],
+    explicit_region_id: str | None = None,
 ) -> None:
-    region_id = _infer_region_id_for_slot(layout, slot_id, content)
+    region_id = _infer_region_id_for_slot(
+        layout, slot_id, content, explicit_region_id=explicit_region_id
+    )
     if region_id is None:
         return
 
@@ -427,12 +452,11 @@ def prune_deleted_legacy_answer_slots(
     if not isinstance(deleted_slots, list):
         return overrides, False
 
-    answer_slot_ids = _answer_slot_ids(answer)
     has_single_visual_answer = (
         _answer_scalar_value(answer) is not None
         and len(_submitted_answer_slot_ids(layout, set(deleted_slots))) == 1
     )
-    if not answer_slot_ids and not has_single_visual_answer:
+    if not has_single_visual_answer:
         return overrides, False
 
     slot_kinds = _layout_slot_kinds(layout)
@@ -442,7 +466,7 @@ def prune_deleted_legacy_answer_slots(
         if not (
             isinstance(slot_id, str)
             and slot_kinds.get(slot_id) == "blank"
-            and (slot_id in answer_slot_ids or has_single_visual_answer)
+            and has_single_visual_answer
         )
     ]
     if cleaned_deleted == deleted_slots:
@@ -537,6 +561,8 @@ def prune_editor_overrides(
             changed = True
 
     retained_override_slot_ids: set[str] = set()
+    slot_regions = overrides.get("slot_regions")
+    slot_region_map = slot_regions if isinstance(slot_regions, dict) else {}
     slot_overrides = overrides.get("slots")
     if isinstance(slot_overrides, dict):
         cleaned_slots: dict[str, Any] = {}
@@ -546,7 +572,17 @@ def prune_editor_overrides(
                 continue
             if (
                 slot_id in slot_ids
-                or _infer_region_id_for_slot(layout, slot_id, patch) is not None
+                or _infer_region_id_for_slot(
+                    layout,
+                    slot_id,
+                    patch,
+                    explicit_region_id=(
+                        slot_region_map.get(slot_id)
+                        if isinstance(slot_region_map.get(slot_id), str)
+                        else None
+                    ),
+                )
+                is not None
             ):
                 patch, normalized = _normalize_slot_patch(
                     slot_kinds.get(slot_id), patch
@@ -607,6 +643,25 @@ def prune_editor_overrides(
         if cleaned_orders:
             cleaned["region_slot_orders"] = cleaned_orders
         elif region_slot_orders:
+            changed = True
+
+    if isinstance(slot_regions, dict):
+        cleaned_regions = {
+            slot_id: region_id
+            for slot_id, region_id in slot_regions.items()
+            if isinstance(slot_id, str)
+            and isinstance(region_id, str)
+            and slot_id in retained_override_slot_ids
+            and _infer_region_id_for_slot(
+                layout, slot_id, {}, explicit_region_id=region_id
+            )
+            is not None
+        }
+        if cleaned_regions:
+            cleaned["slot_regions"] = cleaned_regions
+        elif slot_regions:
+            cleaned.pop("slot_regions", None)
+        if cleaned_regions != slot_regions:
             changed = True
 
     if changed:
@@ -683,6 +738,8 @@ def apply_editor_overrides(
             for slot in layout.get("slots", [])
             if isinstance(slot, dict) and isinstance(slot.get("id"), str)
         }
+        slot_regions = overrides.get("slot_regions")
+        slot_region_map = slot_regions if isinstance(slot_regions, dict) else {}
         for slot_id, patch in slot_overrides.items():
             if (
                 isinstance(slot_id, str)
@@ -691,7 +748,17 @@ def apply_editor_overrides(
                 and isinstance(patch, dict)
                 and not _deleted_slot_matches(slot_id, deleted, deleted & slot_ids)
             ):
-                _add_missing_override_slot(layout, slot_id, patch)
+                explicit_region_id = slot_region_map.get(slot_id)
+                _add_missing_override_slot(
+                    layout,
+                    slot_id,
+                    patch,
+                    explicit_region_id=(
+                        explicit_region_id
+                        if isinstance(explicit_region_id, str)
+                        else None
+                    ),
+                )
                 slot_ids.add(slot_id)
 
         for slot in layout.get("slots", []):
@@ -708,6 +775,11 @@ def apply_editor_overrides(
                     patch,
                 )
                 patch = _prepare_text_blank_rect_override(slot, patch)
+                _drop_transform_for_absolute_geometry_override(
+                    slot.get("kind") if isinstance(slot.get("kind"), str) else None,
+                    content,
+                    patch,
+                )
                 content.update(patch)
                 _normalize_answer_input_interaction(content)
 

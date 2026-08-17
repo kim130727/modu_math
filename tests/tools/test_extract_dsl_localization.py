@@ -73,6 +73,37 @@ def test_extract_uses_stable_keys_and_skips_non_translatable_fields(tmp_path: Pa
     assert all(not key.endswith(".font_family") for key in data)
 
 
+def test_extract_skips_korean_choice_and_symbol_markers(tmp_path: Path) -> None:
+    dsl_path = tmp_path / "problem.dsl.py"
+    dsl_path.write_text(
+        '''
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot
+
+PROBLEM_ID = "p_symbol_locale"
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id=PROBLEM_ID,
+    title="Symbol Locale",
+    canvas=Canvas(width=300, height=120),
+    regions=(Region(id="region.body", role="body", slot_ids=("slot.choice", "slot.symbol", "slot.name")),),
+    slots=(
+        TextSlot(id="slot.choice", text="(\\uac00)", style_role="choice"),
+        TextSlot(id="slot.symbol", text="\\u3131", semantic_role="symbol_label"),
+        TextSlot(id="slot.name", text="\\uc2b9\\uc544"),
+    ),
+)
+'''.lstrip(),
+        encoding="utf-8",
+    )
+    out_path = tmp_path / "p_symbol_locale.locale.json"
+
+    assert main(["--dsl", str(dsl_path), "--locale", "en-US", "--out", str(out_path)]) == 0
+
+    data = json.loads(out_path.read_text(encoding="utf-8"))
+    assert "template.slots.slot.choice.text" not in data
+    assert "template.slots.slot.symbol.text" not in data
+    assert data["template.slots.slot.name.text"]["source"] == "\uc2b9\uc544"
+
+
 def test_extract_drops_stale_translation_and_obsolete_entries(tmp_path: Path) -> None:
     dsl_path = tmp_path / "problem.dsl.py"
     out_path = tmp_path / "p_localize.locale.json"

@@ -189,6 +189,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 function answerElementProps(element: RendererElement): Record<string, unknown> {
   return {
+    ...(typeof element.attributes["data-semantic-role"] === "string" ? { semantic_role: element.attributes["data-semantic-role"] } : {}),
     ...(isRecord(element.interaction) ? { interaction: element.interaction } : {}),
     ...(isRecord(element.input_style) ? { input_style: element.input_style } : {}),
   };
@@ -196,6 +197,7 @@ function answerElementProps(element: RendererElement): Record<string, unknown> {
 
 function answerContentProps(content: Record<string, unknown>): Record<string, unknown> {
   return {
+    ...(typeof content.semantic_role === "string" ? { semantic_role: content.semantic_role } : {}),
     ...(isRecord(content.interaction) ? { interaction: content.interaction } : {}),
     ...(isRecord(content.input_style) ? { input_style: content.input_style } : {}),
   };
@@ -897,7 +899,21 @@ function optionalNumberValue(value: unknown): number | undefined {
 
 function textWidthEstimate(text: string, fontSize: number, maxWidth?: number): number {
   if (typeof maxWidth === "number" && Number.isFinite(maxWidth) && maxWidth > 0) return maxWidth;
-  return Math.max(fontSize, text.length * fontSize * 0.72);
+  const longestLineWidth = Math.max(...text.split(/\n/g).map((line) => estimateLineWidth(line, fontSize)), 0);
+  return Math.max(fontSize, Math.ceil(longestLineWidth + fontSize * 0.28));
+}
+
+function estimateLineWidth(text: string, fontSize: number): number {
+  let width = 0;
+  for (const char of text) {
+    if (char === " ") width += fontSize * 0.34;
+    else if (/[\u1100-\u11ff\u3130-\u318f\uac00-\ud7af\u3400-\u9fff]/u.test(char)) width += fontSize;
+    else if (/[\u2460-\u2473\u3260-\u327b]/u.test(char)) width += fontSize;
+    else if (/[A-Z0-9]/u.test(char)) width += fontSize * 0.62;
+    else if (/[a-z]/u.test(char)) width += fontSize * 0.54;
+    else width += fontSize * 0.5;
+  }
+  return width;
 }
 
 function fittedTextBoxHeight(text: string, fontSize: number, width: number, lineHeight: number): number {

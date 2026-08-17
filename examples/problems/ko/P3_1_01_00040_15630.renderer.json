@@ -2,10 +2,53 @@
   "problem_id": "P3_1_01_00040_15630",
   "view_box": {
     "width": 300.0,
-    "height": 150.0,
+    "height": 164.0,
     "background": "#FFFFFF"
   },
   "elements": [
+    {
+      "id": "konva_1786962334798_rect_492131.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 214.8,
+        "y": 110.0,
+        "width": 57.6,
+        "height": 27.6,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.2
+      },
+      "source_ref": "konva_1786962334798_rect_492131",
+      "refs": {
+        "layout_slot_id": "konva_1786962334798_rect_492131"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "answer_key_index": 0,
+        "answer_ref": "answer.value",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222",
+        "width": 57.6,
+        "height": 27.6
+      }
+    },
     {
       "id": "slot.question.text",
       "type": "text_box",
@@ -15,14 +58,14 @@
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 14,
-        "width": 430.0,
-        "height": 22.0,
-        "max_width": 430.0,
+        "width": 276.0,
+        "height": 43.0,
+        "max_width": 276.0,
         "data-slot-kind": "text_box",
         "data-box-x": 8.0,
         "data-box-y": 12.0,
-        "data-box-width": 430.0,
-        "data-box-height": 22.0,
+        "data-box-width": 276.0,
+        "data-box-height": 43.0,
         "data-text-align": "left",
         "data-vertical-align": "top",
         "data-semantic-role": "question"
@@ -32,23 +75,6 @@
         "layout_slot_id": "slot.question"
       },
       "text": "다음 두 수의 차가 123인 것은 어느 것입니까?"
-    },
-    {
-      "id": "slot.answer.blank",
-      "type": "rect",
-      "attributes": {
-        "x": 64.0,
-        "y": 48.0,
-        "width": 120.0,
-        "height": 32.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.answer",
-      "refs": {
-        "layout_slot_id": "slot.answer"
-      }
     },
     {
       "id": "slot.choice1.text",

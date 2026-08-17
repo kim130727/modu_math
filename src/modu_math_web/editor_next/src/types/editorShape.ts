@@ -64,6 +64,7 @@ export type BaseShape = {
   locked?: boolean;
   visible?: boolean;
   sourceRegionId?: string;
+  semanticRole?: string;
   interaction?: InputInteraction;
   input_style?: InputStyle;
 };

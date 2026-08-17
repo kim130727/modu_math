@@ -23,6 +23,7 @@ from .models.base import (
     TextSlot,
 )
 from .models.objects import ShapeObject
+from .symbol_roles import infer_symbol_text_role
 from .models.templates import AuthoringSlot, DiagramTemplate, ProblemTemplate
 
 
@@ -269,8 +270,14 @@ def _normalize_slot(slot: AuthoringSlot) -> dict[str, Any]:
             content["fill"] = slot.fill
         if isinstance(slot.transform, str) and slot.transform:
             content["transform"] = slot.transform
-        if isinstance(slot.semantic_role, str) and slot.semantic_role:
-            content["semantic_role"] = slot.semantic_role
+        semantic_role = infer_symbol_text_role(
+            slot_id=slot.id,
+            text=slot.text,
+            style_role=slot.style_role,
+            semantic_role=slot.semantic_role if isinstance(slot.semantic_role, str) else None,
+        )
+        if semantic_role:
+            content["semantic_role"] = semantic_role
         return {
             "id": slot.id,
             "kind": slot.kind,
@@ -299,8 +306,15 @@ def _normalize_slot(slot: AuthoringSlot) -> dict[str, Any]:
             content["fill"] = slot.fill
         if isinstance(slot.transform, str) and slot.transform:
             content["transform"] = slot.transform
-        if isinstance(slot.semantic_role, str) and slot.semantic_role:
-            content["semantic_role"] = slot.semantic_role
+        semantic_role = infer_symbol_text_role(
+            slot_id=slot.id,
+            text=slot.text,
+            style_role=slot.style_role,
+            semantic_role=slot.semantic_role if isinstance(slot.semantic_role, str) else None,
+        )
+        if semantic_role:
+            content["semantic_role"] = semantic_role
+        _normalize_pasted_short_text_box(slot.id, content)
         return {
             "id": slot.id,
             "kind": slot.kind,
@@ -567,6 +581,59 @@ def _normalize_answer_input_interaction(slot: dict[str, Any]) -> None:
         interaction["value_type"] = "integer"
         interaction["max_length"] = 3
         interaction["auto_advance"] = False
+
+
+def _normalize_pasted_short_text_box(slot_id: str, content: dict[str, Any]) -> None:
+    if "konva_" not in slot_id or "paste" not in slot_id:
+        return
+    text = content.get("text")
+    font_size = content.get("font_size")
+    width = content.get("width")
+    height = content.get("height")
+    if not isinstance(text, str) or not text.strip():
+        return
+    stripped = text.strip()
+    if len(stripped) > 3 or any(char.isspace() for char in stripped):
+        return
+    if not isinstance(font_size, int | float) or font_size <= 0:
+        return
+    if not isinstance(width, int | float) or not isinstance(height, int | float):
+        return
+    text_width = _text_width(stripped, float(font_size))
+    target_width = max(float(font_size) * 1.05, text_width + float(font_size) * 0.3)
+    target_height = max(float(font_size) * 1.25, float(font_size) + 6.0)
+    if width > target_width * 1.6:
+        align = str(content.get("align") or "left")
+        if align == "center":
+            content["x"] = round(
+                float(content["x"]) + (float(width) - target_width) / 2, 3
+            )
+        elif align == "right":
+            content["x"] = round(float(content["x"]) + float(width) - target_width, 3)
+        content["width"] = round(target_width, 3)
+    if height > target_height * 1.05:
+        content["height"] = round(target_height, 3)
+
+
+def _text_width(text: str, font_size: float) -> float:
+    width = 0.0
+    for char in text:
+        if char.isspace():
+            width += font_size * 0.34
+        elif (
+            "\u1100" <= char <= "\u11ff"
+            or "\u3130" <= char <= "\u318f"
+            or "\uac00" <= char <= "\ud7af"
+            or "\u3400" <= char <= "\u9fff"
+        ):
+            width += font_size
+        elif char.isupper() or char.isdigit():
+            width += font_size * 0.62
+        elif char.islower():
+            width += font_size * 0.54
+        else:
+            width += font_size * 0.5
+    return width
 
 
 def _normalize_shape_object(obj: ShapeObject) -> dict[str, Any]:

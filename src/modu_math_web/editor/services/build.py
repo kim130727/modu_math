@@ -316,7 +316,11 @@ def _build_problem_artifacts(problem_id: str) -> str:
         layout, semantic.get("answer")
     )
     deleted_answer_slots.update(auto_deleted_answer_slots)
-    layout = sanitize_layout(layout, deleted_slots=deleted_answer_slots)
+    layout = sanitize_layout(
+        layout,
+        deleted_slots=deleted_answer_slots,
+        protected_slot_ids=editor_override_slot_ids,
+    )
 
     semantic, solvable = _attach_submit_slot_answers(
         layout=layout,

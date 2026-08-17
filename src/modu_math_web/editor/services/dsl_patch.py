@@ -145,6 +145,15 @@ MEASUREMENT_TOOL_HELPERS = {"compass_on_ruler_slots"}
 CANVAS_TARGETS = {"__canvas__", "canvas"}
 CANVAS_FIELDS = {"width", "height"}
 EDITOR_OVERRIDE_FIELDS = set().union(*SUPPORTED_SLOTS.values()) - {"move_dx", "move_dy"}
+FAST_ADD_OVERRIDE_KINDS = {
+    "text",
+    "text_box",
+    "circle",
+    "line",
+    "rect",
+    "image",
+    "path",
+}
 TEXT_SLOT_COMPAT_FIELDS = {
     "TextSlot": {"width", "height", "align", "valign", "line_height"},
     "TextBoxSlot": {"max_width", "anchor"},
@@ -804,6 +813,30 @@ def _save_editor_slot_override(paths: Any, target: str, fields: dict[str, Any]) 
     )
 
 
+def _save_editor_slot_region(paths: Any, target: str, region_id: str | None) -> None:
+    path = _editor_overrides_path(paths)
+    data: dict[str, Any] = {}
+    if path.exists():
+        loaded = json.loads(path.read_text(encoding="utf-8-sig"))
+        if isinstance(loaded, dict):
+            data = loaded
+
+    regions = data.setdefault("slot_regions", {})
+    if not isinstance(regions, dict):
+        regions = {}
+        data["slot_regions"] = regions
+    if region_id:
+        regions[target] = region_id
+    else:
+        regions.pop(target, None)
+    if not regions:
+        data.pop("slot_regions", None)
+    data["version"] = 1
+    path.write_text(
+        json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+
+
 def _save_editor_canvas_override(paths: Any, fields: dict[str, Any]) -> None:
     invalid = sorted(set(fields) - CANVAS_FIELDS)
     if invalid:
@@ -890,16 +923,45 @@ def _save_editor_slot_delete(paths: Any, target: str) -> None:
     slots = data.get("slots")
     if isinstance(slots, dict):
         slots.pop(target, None)
+    slot_regions = data.get("slot_regions")
+    if isinstance(slot_regions, dict):
+        slot_regions.pop(target, None)
+        if not slot_regions:
+            data.pop("slot_regions", None)
     data["version"] = 1
     path.write_text(
         json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
 
 
+def _fast_add_override_fields(
+    value: dict[str, Any],
+) -> tuple[dict[str, Any], str | None] | None:
+    kind = value.get("kind")
+    if not isinstance(kind, str) or kind not in FAST_ADD_OVERRIDE_KINDS:
+        return None
+    if kind not in SLOT_KIND_TO_CTOR:
+        raise DslPatchError(f"unsupported slot kind for add: {kind}")
+
+    content = value.get("content")
+    if not isinstance(content, dict):
+        raise DslPatchError("add patch value.content must be an object")
+    if "points" in content:
+        return None
+    invalid = sorted(set(content) - EDITOR_OVERRIDE_FIELDS)
+    if invalid:
+        raise DslPatchError(f"unsupported override field(s): {', '.join(invalid)}")
+
+    region_id = value.get("region_id")
+    if region_id is not None and not isinstance(region_id, str):
+        raise DslPatchError("add patch value.region_id must be a string")
+    return dict(content), region_id
+
+
 def _try_apply_fast_editor_overrides(
     paths: Any, patches: list[dict[str, Any]]
 ) -> list[AppliedPatch] | None:
-    actions: list[tuple[str, str, dict[str, Any] | list[Any] | None]] = []
+    actions: list[tuple[str, str, dict[str, Any] | list[Any] | None, str | None]] = []
     applied: list[AppliedPatch] = []
 
     for patch in patches:
@@ -910,7 +972,7 @@ def _try_apply_fast_editor_overrides(
             raise DslPatchError("patch target must be a non-empty string")
 
         if op == "delete":
-            actions.append((op, target, None))
+            actions.append((op, target, None, None))
             applied.append(AppliedPatch(target=target, op=op, fields=[]))
             continue
 
@@ -923,9 +985,22 @@ def _try_apply_fast_editor_overrides(
                 raise DslPatchError(
                     "layer patch requires value.region_id and value.slot_ids"
                 )
-            actions.append((op, region_id, slot_ids))
+            actions.append((op, region_id, slot_ids, None))
             applied.append(
                 AppliedPatch(target=target, op=op, fields=["region_id", "slot_ids"])
+            )
+            continue
+
+        if op == "add":
+            if not isinstance(value, dict):
+                raise DslPatchError("patch value must be an object")
+            fast_add = _fast_add_override_fields(value)
+            if fast_add is None:
+                return None
+            fields, region_id = fast_add
+            actions.append((op, target, fields, region_id))
+            applied.append(
+                AppliedPatch(target=target, op=op, fields=list(fields.keys()))
             )
             continue
 
@@ -937,7 +1012,7 @@ def _try_apply_fast_editor_overrides(
         if target in CANVAS_TARGETS:
             if not set(value).issubset(CANVAS_FIELDS):
                 return None
-            actions.append(("canvas", target, value))
+            actions.append(("canvas", target, value, None))
             applied.append(
                 AppliedPatch(target="__canvas__", op=op, fields=list(value.keys()))
             )
@@ -947,10 +1022,10 @@ def _try_apply_fast_editor_overrides(
             return None
         if not set(value).issubset(EDITOR_OVERRIDE_FIELDS):
             return None
-        actions.append((op, target, value))
+        actions.append((op, target, value, None))
         applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
 
-    for op, target, value in actions:
+    for op, target, value, region_id in actions:
         if op == "delete":
             _save_editor_slot_delete(paths, target)
         elif op == "layer":
@@ -961,6 +1036,12 @@ def _try_apply_fast_editor_overrides(
             _save_editor_canvas_override(
                 paths, value if isinstance(value, dict) else {}
             )
+        elif op == "add":
+            _clear_editor_slot_state(paths, target)
+            _save_editor_slot_override(
+                paths, target, value if isinstance(value, dict) else {}
+            )
+            _save_editor_slot_region(paths, target, region_id)
         else:
             _save_editor_slot_override(
                 paths, target, value if isinstance(value, dict) else {}
@@ -1017,6 +1098,13 @@ def _clear_editor_slot_state(paths: Any, target: str) -> None:
         changed = True
         if not slots:
             loaded.pop("slots", None)
+
+    slot_regions = loaded.get("slot_regions")
+    if isinstance(slot_regions, dict) and target in slot_regions:
+        slot_regions.pop(target, None)
+        changed = True
+        if not slot_regions:
+            loaded.pop("slot_regions", None)
 
     deleted = loaded.get("deleted_slots")
     if isinstance(deleted, list):

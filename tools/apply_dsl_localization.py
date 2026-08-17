@@ -18,6 +18,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from modu_math.dsl.exporter import _render_problem_template_source
+from modu_math.dsl.symbol_roles import is_protected_symbol_role, is_symbol_marker_text
 from modu_math_web.editor.services.dsl_format import format_dsl_source
 
 from tools.extract_dsl_localization import (
@@ -87,11 +88,15 @@ def apply_translations(
     field_name: str | None = None,
     include_needs_review: bool = False,
 ) -> Any:
+    if is_protected_locale_container(value):
+        return value
     if field_name in SKIP_FIELDS:
         return value
 
     if isinstance(value, str):
         if field_name not in TRANSLATABLE_FIELDS:
+            return value
+        if is_symbol_marker_text(value):
             return value
         translation = translation_for(
             entries,
@@ -156,6 +161,15 @@ def apply_translations(
         return replace(value, **updates) if updates else value
 
     return value
+
+
+def is_protected_locale_container(value: Any) -> bool:
+    role: Any
+    if isinstance(value, dict):
+        role = value.get("semantic_role")
+    else:
+        role = getattr(value, "semantic_role", None)
+    return is_protected_symbol_role(role if isinstance(role, str) else None)
 
 
 def localized_objects(

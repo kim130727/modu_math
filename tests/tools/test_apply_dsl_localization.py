@@ -89,3 +89,53 @@ def test_apply_skips_needs_review_by_default(tmp_path: Path) -> None:
     assert main(["--dsl", str(dsl_path), "--locale-json", str(locale_path), "--out", str(out_path)]) == 0
     module = load_dsl_module(out_path)
     assert module.PROBLEM_TEMPLATE.slots[0].text == "Add the numbers."
+
+
+def test_apply_preserves_korean_choice_and_symbol_markers(tmp_path: Path) -> None:
+    dsl_path = tmp_path / "problem.dsl.py"
+    locale_path = tmp_path / "p_symbol_locale.locale.json"
+    out_path = tmp_path / "problem.en-US.dsl.py"
+    dsl_path.write_text(
+        '''
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot
+
+PROBLEM_ID = "p_symbol_locale"
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id=PROBLEM_ID,
+    title="Symbol Locale",
+    canvas=Canvas(width=300, height=120),
+    regions=(Region(id="region.body", role="body", slot_ids=("slot.choice", "slot.symbol")),),
+    slots=(
+        TextSlot(id="slot.choice", text="(\\uac00)", style_role="choice"),
+        TextSlot(id="slot.symbol", text="\\u3131", semantic_role="symbol_label"),
+    ),
+)
+'''.lstrip(),
+        encoding="utf-8",
+    )
+    locale_path.write_text(
+        json.dumps(
+            {
+                "template.slots.slot.choice.text": {
+                    "source": "(\uac00)",
+                    "translation": "A",
+                    "status": "translated",
+                },
+                "template.slots.slot.symbol.text": {
+                    "source": "\u3131",
+                    "translation": "A",
+                    "status": "translated",
+                },
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    assert main(["--dsl", str(dsl_path), "--locale-json", str(locale_path), "--out", str(out_path)]) == 0
+
+    module = load_dsl_module(out_path)
+    assert module.PROBLEM_TEMPLATE.slots[0].text == "(\uac00)"
+    assert module.PROBLEM_TEMPLATE.slots[1].text == "\u3131"

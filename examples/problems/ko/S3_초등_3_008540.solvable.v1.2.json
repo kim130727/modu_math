@@ -30,7 +30,7 @@
   ],
   "target": {
     "ref": "answer.target",
-    "type": "matching_expression"
+    "type": "choice_number"
   },
   "method": "place_value_matching",
   "plan": [
@@ -51,7 +51,7 @@
     {
       "id": "step.3",
       "expr": "색칠한 부분 240에 대응하는 보기 찾기",
-      "value": "60 × 4"
+      "value": 3
     }
   ],
   "checks": [
@@ -64,14 +64,32 @@
     }
   ],
   "answer": {
-    "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "blanks": [
+      {
+        "id": "konva_1786962334798_rect_569404",
+        "slot_id": "konva_1786962334798_rect_569404",
+        "expected": 3,
+        "unit": ""
+      }
+    ],
+    "choices": [
+      "6 × 4",
+      "69 × 4",
+      "60 × 4",
+      "600 × 4"
+    ],
+    "answer_key": [
+      {
+        "slot_id": "konva_1786962334798_rect_569404",
+        "value": 3,
+        "unit": ""
+      }
+    ],
     "target": {
-      "type": "matching_expression",
-      "description": "색칠한 부분 240에 해당하는 실제 곱"
+      "type": "choice_number",
+      "description": "색칠한 부분 240에 해당하는 보기 번호"
     },
-    "value": "60 × 4",
+    "value": 3,
     "unit": ""
   },
   "understanding": {

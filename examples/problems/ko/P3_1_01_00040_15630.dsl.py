@@ -7,7 +7,7 @@ from modu_math.dsl import (
     Region,
     TextBoxSlot,
     TextSlot,
-)
+RectSlot)
 
 
 PROBLEM_ID = "P3_1_01_00040_15630"
@@ -26,7 +26,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.question",),
+                slot_ids=("slot.question",'konva_1786962334798_rect_492131'),
             ),
             Region(
                 id="region.choices",
@@ -42,8 +42,7 @@ def build_problem_template() -> ProblemTemplate:
                 ),
             ),
         ),
-        slots=(
-            TextBoxSlot(
+        slots=(TextBoxSlot(
                 id="slot.question",
                 prompt="차가 123인 두 수를 고르는 질문",
                 text="다음 두 수의 차가 123인 것은 어느 것입니까?",
@@ -106,8 +105,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="정답 번호",
                 answer_key="4",
                 placeholder="번",
-            ),
-        ),
+            ),RectSlot(id = 'konva_1786962334798_rect_492131', prompt = '', x = 214.8, y = 110, width = 57.6, height = 27.6, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'answer_key_index': 0, 'answer_ref': 'answer.value', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
         diagrams=(),
         groups=(),
         constraints=(),

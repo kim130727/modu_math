@@ -17,6 +17,8 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
+from modu_math.dsl.symbol_roles import is_protected_symbol_role, is_symbol_marker_text
+
 
 TRANSLATABLE_FIELDS = {
     "title",
@@ -141,6 +143,8 @@ def is_translatable_source(source: str) -> bool:
     stripped = source.strip()
     if not stripped:
         return False
+    if is_symbol_marker_text(stripped):
+        return False
     if COLOR_RE.fullmatch(stripped):
         return False
     if NUMBER_RE.fullmatch(stripped):
@@ -157,6 +161,8 @@ def extract_value(
     *,
     field_name: str | None = None,
 ) -> None:
+    if is_protected_locale_container(value):
+        return
     if field_name in SKIP_FIELDS:
         return
 
@@ -177,6 +183,15 @@ def extract_value(
 
     for child_name, child in iter_items(value):
         extract_value(child, [*path, child_name], entries, field_name=child_name)
+
+
+def is_protected_locale_container(value: Any) -> bool:
+    role: Any
+    if isinstance(value, dict):
+        role = value.get("semantic_role")
+    else:
+        role = getattr(value, "semantic_role", None)
+    return is_protected_symbol_role(role if isinstance(role, str) else None)
 
 
 def extract_localization(module: ModuleType) -> dict[str, dict[str, str]]:

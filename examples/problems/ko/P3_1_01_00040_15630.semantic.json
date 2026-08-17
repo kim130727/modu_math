@@ -11,7 +11,9 @@
       "difference"
     ],
     "question": "다음 두 수의 차가 123인 것은 어느 것입니까?",
-    "required_layout_ids": [],
+    "required_layout_ids": [
+      "konva_1786962334798_rect_492131"
+    ],
     "extraction_confidence": 1.0,
     "grade": 3,
     "semester": 1,
@@ -149,6 +151,21 @@
       405
     ],
     "target_ref": "choice.4",
-    "derived_from": "step.evaluate_choice4"
+    "derived_from": "step.evaluate_choice4",
+    "blanks": [
+      {
+        "id": "konva_1786962334798_rect_492131",
+        "slot_id": "konva_1786962334798_rect_492131",
+        "expected": 4,
+        "unit": ""
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "konva_1786962334798_rect_492131",
+        "value": 4,
+        "unit": ""
+      }
+    ]
   }
 }

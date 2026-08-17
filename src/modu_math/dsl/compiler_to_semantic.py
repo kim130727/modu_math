@@ -23,6 +23,7 @@ from .models.base import (
     TextSlot,
 )
 from .models.objects import ShapeObject
+from .symbol_roles import infer_symbol_text_role
 from .models.templates import AuthoringSlot, DiagramTemplate, ProblemTemplate
 
 
@@ -401,6 +402,14 @@ def _refs_for_slot(slot_id: str, region: Region | None) -> list[dict[str, str]]:
 def _infer_text_role(
     slot: TextSlot, region: Region | None, question_consumed: bool
 ) -> str:
+    symbol_role = infer_symbol_text_role(
+        slot_id=slot.id,
+        text=slot.text,
+        style_role=slot.style_role,
+        semantic_role=slot.semantic_role,
+    )
+    if symbol_role:
+        return symbol_role
     style = slot.style_role.lower()
     if style in {"instruction", "directive"}:
         return "instruction"

@@ -18,6 +18,7 @@ export type ShapePreset =
   | "quarterArc"
   | "rect"
   | "roundRect"
+  | "point"
   | "circle"
   | "triangle"
   | "rightTriangle"
@@ -149,6 +150,7 @@ const SHAPE_SECTIONS: ShapePaletteSection[] = [
   {
     title: "기본 도형",
     items: [
+      { preset: "point", label: "점" },
       { preset: "circle", label: "원" },
       { preset: "triangle", label: "삼각형" },
       { preset: "rightTriangle", label: "직각 삼각형" },
@@ -545,6 +547,13 @@ function ShapePresetIcon({ preset }: { preset: ShapePreset }) {
     return (
       <svg viewBox="0 0 32 24" aria-hidden="true">
         <rect x="5" y="6" width="22" height="12" rx="4" />
+      </svg>
+    );
+  }
+  if (preset === "point") {
+    return (
+      <svg viewBox="0 0 32 24" aria-hidden="true">
+        <circle cx="16" cy="12" r="4" fill="currentColor" stroke="none" />
       </svg>
     );
   }

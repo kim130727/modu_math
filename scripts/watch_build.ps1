@@ -295,7 +295,11 @@ deleted_answer_slots.update(projected_deleted_slots)
 
 layout, auto_deleted_answer_slots = prune_legacy_answer_blank_slots(layout, semantic.get("answer"))
 deleted_answer_slots.update(auto_deleted_answer_slots)
-layout = sanitize_layout(layout, deleted_slots=deleted_answer_slots)
+layout = sanitize_layout(
+    layout,
+    deleted_slots=deleted_answer_slots,
+    protected_slot_ids=editor_override_slot_ids,
+)
 semantic, solvable = attach_submit_slot_answers(layout, semantic, solvable if isinstance(solvable, dict) else None)
 semantic_answer, removed_semantic_answer_slots = normalize_answer_for_deleted_slots(
     semantic.get("answer"),
