@@ -2,7 +2,7 @@
   "problem_id": "P3_1_01_00040_15615",
   "view_box": {
     "width": 600.0,
-    "height": 172.16,
+    "height": 173.18,
     "background": "#FFFFFF"
   },
   "elements": [
@@ -10,10 +10,10 @@
       "id": "konva_1786410614957_rect_47608.rect",
       "type": "rect",
       "attributes": {
-        "x": 421.524,
-        "y": 109.303,
-        "width": 146.413,
-        "height": 46.857,
+        "x": 385.622,
+        "y": 109.795,
+        "width": 116.9,
+        "height": 46.86,
         "fill": "#ffffff",
         "stroke": "#111827",
         "stroke-width": 1.2
@@ -42,15 +42,17 @@
         "horizontal_align": "center",
         "vertical_align": "middle",
         "padding": 6,
-        "text_color": "#222222"
+        "text_color": "#222222",
+        "width": 116.9,
+        "height": 46.86
       }
     },
     {
       "id": "slot.question.text",
       "type": "text_box",
       "attributes": {
-        "x": 6.66,
-        "y": 5.654,
+        "x": 14.529,
+        "y": 4.179,
         "fill": "#202124",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 30,
@@ -58,8 +60,8 @@
         "height": 143.689,
         "max_width": 561.344,
         "data-slot-kind": "text_box",
-        "data-box-x": 6.66,
-        "data-box-y": 5.654,
+        "data-box-x": 14.529,
+        "data-box-y": 4.179,
         "data-box-width": 561.344,
         "data-box-height": 143.689,
         "data-text-align": "left",
@@ -71,6 +73,33 @@
         "layout_slot_id": "slot.question"
       },
       "text": "동화책이 두 권 있습니다. 한 권은 230쪽이고 다른 한 권은 450쪽입니다. 두 동화책의 쪽수를 더하면 모두 몇 쪽입니까?"
+    },
+    {
+      "id": "konva_1787053306854_text_2003046.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 515.098,
+        "y": 111.18,
+        "fill": "#111827",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 30,
+        "width": 38.0,
+        "height": 46.0,
+        "max_width": 38.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 515.098,
+        "data-box-y": 111.18,
+        "data-box-width": 38.0,
+        "data-box-height": 46.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25
+      },
+      "source_ref": "konva_1787053306854_text_2003046",
+      "refs": {
+        "layout_slot_id": "konva_1787053306854_text_2003046"
+      },
+      "text": "쪽"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

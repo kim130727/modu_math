@@ -2,11 +2,59 @@
   "version": 1,
   "slots": {
     "slot.question": {
-      "x": 16.823,
-      "y": 8.22
+      "x": 10.43,
+      "y": 5.761
+    },
+    "konva_1787053306854_rect_2113406": {
+      "x": 350.328,
+      "y": 146.066,
+      "width": 130.82,
+      "height": 44.36,
+      "fill": "#ffffff",
+      "stroke": "#111827",
+      "stroke_width": 1.2,
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "answer_key_index": 0,
+        "answer_ref": "answer.value",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222"
+      }
+    },
+    "konva_1787053306854_text_2123622": {
+      "text": "장",
+      "x": 490.016,
+      "y": 146.344,
+      "font_size": 30,
+      "fill": "#111827",
+      "width": 33.574,
+      "height": 46,
+      "align": "left",
+      "line_height": 1.25
     }
   },
   "deleted_slots": [
     "slot.answer"
-  ]
+  ],
+  "slot_regions": {
+    "konva_1787053306854_rect_2113406": "region.stem",
+    "konva_1787053306854_text_2123622": "region.stem"
+  }
 }

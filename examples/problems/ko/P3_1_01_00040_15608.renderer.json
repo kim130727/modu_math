@@ -1,30 +1,20 @@
 {
   "problem_id": "P3_1_01_00040_15608",
   "view_box": {
-    "width": 400.0,
-    "height": 250.0,
+    "width": 500.0,
+    "height": 220.0,
     "background": "#FFFFFF"
   },
   "elements": [
     {
       "id": "slot.question.text",
-      "type": "text_box",
+      "type": "text",
       "attributes": {
-        "x": 20.0,
-        "y": 12.0,
-        "fill": "#202124",
+        "x": 24.0,
+        "y": 28.0,
+        "fill": "#222222",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 21,
-        "width": 464.0,
-        "height": 35.0,
-        "max_width": 464.0,
-        "data-slot-kind": "text_box",
-        "data-box-x": 20.0,
-        "data-box-y": 12.0,
-        "data-box-width": 464.0,
-        "data-box-height": 35.0,
-        "data-text-align": "left",
-        "data-vertical-align": "middle"
+        "font-size": 22
       },
       "source_ref": "slot.question",
       "refs": {
@@ -33,134 +23,169 @@
       "text": "다음 중 합이 가장 큰 것은 어느 것입니까?"
     },
     {
-      "id": "slot.option_1.text",
-      "type": "text_box",
+      "id": "slot.choice_1.number.text",
+      "type": "text",
       "attributes": {
-        "x": 49.921,
-        "y": 60.514,
-        "fill": "#202124",
+        "x": 26.0,
+        "y": 62.0,
+        "fill": "#2F80C9",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 21,
-        "width": 123.0,
-        "height": 35.0,
-        "max_width": 123.0,
-        "data-slot-kind": "text_box",
-        "data-box-x": 49.921,
-        "data-box-y": 60.514,
-        "data-box-width": 123.0,
-        "data-box-height": 35.0,
-        "data-text-align": "left",
-        "data-vertical-align": "middle"
+        "font-size": 22,
+        "data-semantic-role": "choice_marker"
       },
-      "source_ref": "slot.option_1",
+      "source_ref": "slot.choice_1.number",
       "refs": {
-        "layout_slot_id": "slot.option_1"
+        "layout_slot_id": "slot.choice_1.number"
       },
-      "text": "① 530+140"
+      "text": "①"
     },
     {
-      "id": "slot.option_2.text",
-      "type": "text_box",
+      "id": "slot.choice_1.expression.text",
+      "type": "text",
       "attributes": {
-        "x": 49.921,
-        "y": 92.514,
-        "fill": "#202124",
+        "x": 55.0,
+        "y": 62.0,
+        "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 21,
-        "width": 123.0,
-        "height": 35.0,
-        "max_width": 123.0,
-        "data-slot-kind": "text_box",
-        "data-box-x": 49.921,
-        "data-box-y": 92.514,
-        "data-box-width": 123.0,
-        "data-box-height": 35.0,
-        "data-text-align": "left",
-        "data-vertical-align": "middle"
+        "font-size": 22
       },
-      "source_ref": "slot.option_2",
+      "source_ref": "slot.choice_1.expression",
       "refs": {
-        "layout_slot_id": "slot.option_2"
+        "layout_slot_id": "slot.choice_1.expression"
       },
-      "text": "② 420+220"
+      "text": "530+140"
     },
     {
-      "id": "slot.option_3.text",
-      "type": "text_box",
+      "id": "slot.choice_2.number.text",
+      "type": "text",
       "attributes": {
-        "x": 49.921,
-        "y": 124.514,
-        "fill": "#202124",
+        "x": 26.0,
+        "y": 92.0,
+        "fill": "#2F80C9",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 21,
-        "width": 123.0,
-        "height": 35.0,
-        "max_width": 123.0,
-        "data-slot-kind": "text_box",
-        "data-box-x": 49.921,
-        "data-box-y": 124.514,
-        "data-box-width": 123.0,
-        "data-box-height": 35.0,
-        "data-text-align": "left",
-        "data-vertical-align": "middle"
+        "font-size": 22,
+        "data-semantic-role": "choice_marker"
       },
-      "source_ref": "slot.option_3",
+      "source_ref": "slot.choice_2.number",
       "refs": {
-        "layout_slot_id": "slot.option_3"
+        "layout_slot_id": "slot.choice_2.number"
       },
-      "text": "③ 610+100"
+      "text": "②"
     },
     {
-      "id": "slot.option_4.text",
-      "type": "text_box",
+      "id": "slot.choice_2.expression.text",
+      "type": "text",
       "attributes": {
-        "x": 49.921,
-        "y": 156.514,
-        "fill": "#202124",
+        "x": 55.0,
+        "y": 92.0,
+        "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 21,
-        "width": 123.0,
-        "height": 35.0,
-        "max_width": 123.0,
-        "data-slot-kind": "text_box",
-        "data-box-x": 49.921,
-        "data-box-y": 156.514,
-        "data-box-width": 123.0,
-        "data-box-height": 35.0,
-        "data-text-align": "left",
-        "data-vertical-align": "middle"
+        "font-size": 22
       },
-      "source_ref": "slot.option_4",
+      "source_ref": "slot.choice_2.expression",
       "refs": {
-        "layout_slot_id": "slot.option_4"
+        "layout_slot_id": "slot.choice_2.expression"
       },
-      "text": "④ 140+550"
+      "text": "420+220"
     },
     {
-      "id": "slot.option_5.text",
-      "type": "text_box",
+      "id": "slot.choice_3.number.text",
+      "type": "text",
       "attributes": {
-        "x": 49.203,
-        "y": 186.359,
-        "fill": "#202124",
+        "x": 26.0,
+        "y": 122.0,
+        "fill": "#2F80C9",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 21,
-        "width": 180.148,
-        "height": 35.0,
-        "max_width": 180.148,
-        "data-slot-kind": "text_box",
-        "data-box-x": 49.203,
-        "data-box-y": 186.359,
-        "data-box-width": 180.148,
-        "data-box-height": 35.0,
-        "data-text-align": "left",
-        "data-vertical-align": "middle"
+        "font-size": 22,
+        "data-semantic-role": "choice_marker"
       },
-      "source_ref": "slot.option_5",
+      "source_ref": "slot.choice_3.number",
       "refs": {
-        "layout_slot_id": "slot.option_5"
+        "layout_slot_id": "slot.choice_3.number"
       },
-      "text": "⑤ 545+235"
+      "text": "③"
+    },
+    {
+      "id": "slot.choice_3.expression.text",
+      "type": "text",
+      "attributes": {
+        "x": 55.0,
+        "y": 122.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice_3.expression",
+      "refs": {
+        "layout_slot_id": "slot.choice_3.expression"
+      },
+      "text": "610+100"
+    },
+    {
+      "id": "slot.choice_4.number.text",
+      "type": "text",
+      "attributes": {
+        "x": 26.0,
+        "y": 152.0,
+        "fill": "#2F80C9",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22,
+        "data-semantic-role": "choice_marker"
+      },
+      "source_ref": "slot.choice_4.number",
+      "refs": {
+        "layout_slot_id": "slot.choice_4.number"
+      },
+      "text": "④"
+    },
+    {
+      "id": "slot.choice_4.expression.text",
+      "type": "text",
+      "attributes": {
+        "x": 55.0,
+        "y": 152.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice_4.expression",
+      "refs": {
+        "layout_slot_id": "slot.choice_4.expression"
+      },
+      "text": "140+550"
+    },
+    {
+      "id": "slot.choice_5.number.text",
+      "type": "text",
+      "attributes": {
+        "x": 26.0,
+        "y": 182.0,
+        "fill": "#2F80C9",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22,
+        "data-semantic-role": "choice_marker"
+      },
+      "source_ref": "slot.choice_5.number",
+      "refs": {
+        "layout_slot_id": "slot.choice_5.number"
+      },
+      "text": "⑤"
+    },
+    {
+      "id": "slot.choice_5.expression.text",
+      "type": "text",
+      "attributes": {
+        "x": 55.0,
+        "y": 182.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice_5.expression",
+      "refs": {
+        "layout_slot_id": "slot.choice_5.expression"
+      },
+      "text": "545+235"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

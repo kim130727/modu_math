@@ -1,4 +1,4 @@
-﻿import {
+import {
   applyLayoutPatches,
   applyLayoutPatchesAndBuild,
   buildProblem as requestBuildProblem,
@@ -5630,6 +5630,53 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       });
     }
 
+    function itemSlotBBox(item) {
+      if (!item) return null;
+      if (item.isFraction || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup || item.isCharacterGroup || item.isLayoutGroup) {
+        return itemBBox(item);
+      }
+      const el = item.el;
+      if (!el) return null;
+      const tag = el.tagName.toLowerCase();
+      if (tag === "text" && el.getAttribute("data-slot-kind") === "text_box") {
+        const x = Number(el.getAttribute("data-box-x") || el.getAttribute("x") || 0);
+        const y = Number(el.getAttribute("data-box-y") || el.getAttribute("y") || 0);
+        const w = Number(el.getAttribute("data-box-width") || el.getAttribute("width") || el.getAttribute("max_width") || 0);
+        const h = Number(el.getAttribute("data-box-height") || el.getAttribute("height") || 0);
+        return { x, y, width: w, height: h };
+      }
+      if (tag === "text") {
+        const raw = el.getBBox();
+        const anchor = el.getAttribute("text-anchor") || (el.style && el.style.textAnchor);
+        const x = Number(el.getAttribute("x") || 0);
+        if (anchor === "middle") {
+          const halfW = raw.width / 2;
+          return { x: x - halfW, y: raw.y, width: raw.width, height: raw.height, isAnchorMiddle: true, anchorX: x };
+        } else if (anchor === "end") {
+          return { x: x - raw.width, y: raw.y, width: raw.width, height: raw.height, isAnchorEnd: true, anchorX: x };
+        }
+        return raw;
+      }
+      if (tag === "rect") {
+        const x = Number(el.getAttribute("x") || 0);
+        const y = Number(el.getAttribute("y") || 0);
+        const width = Number(el.getAttribute("width") || 0);
+        const height = Number(el.getAttribute("height") || 0);
+        return { x, y, width, height };
+      }
+      if (tag === "circle") {
+        const cx = Number(el.getAttribute("cx") || 0);
+        const cy = Number(el.getAttribute("cy") || 0);
+        const r = Number(el.getAttribute("r") || 0);
+        return { x: cx - r, y: cy - r, width: 2 * r, height: 2 * r };
+      }
+      try {
+        return el.getBBox();
+      } catch (_) {
+        return null;
+      }
+    }
+
     function selectedItemsWithValues() {
       const items = [];
       for (const item of selectedSlots.values()) {
@@ -5638,11 +5685,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         if (!value) continue;
         let bbox = null;
         try {
-          if (item.isFraction || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup || item.isCharacterGroup || item.isLayoutGroup) {
-            bbox = itemBBox(item);
-          } else {
-            bbox = item.el.getBBox();
-          }
+          bbox = itemSlotBBox(item);
         } catch (_) {
           bbox = null;
         }
@@ -5697,7 +5740,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       const rights = itemsWithBox.map((i) => i.bbox.x + i.bbox.width);
       const tops = itemsWithBox.map((i) => i.bbox.y);
       const bottoms = itemsWithBox.map((i) => i.bbox.y + i.bbox.height);
-      const centersX = itemsWithBox.map((i) => i.bbox.x + i.bbox.width / 2);
+      const centersX = itemsWithBox.map((i) => (i.bbox.isAnchorMiddle ? i.bbox.anchorX : i.bbox.x + i.bbox.width / 2));
       const centersY = itemsWithBox.map((i) => i.bbox.y + i.bbox.height / 2);
 
       let targetMetric = 0;
@@ -5713,9 +5756,15 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         const b = item.bbox;
         let dx = 0;
         let dy = 0;
-        if (mode === "left") dx = targetMetric - b.x;
-        if (mode === "center") dx = targetMetric - (b.x + b.width / 2);
-        if (mode === "right") dx = targetMetric - (b.x + b.width);
+        if (mode === "left") {
+          dx = b.isAnchorMiddle ? (targetMetric + b.width / 2) - b.anchorX : (b.isAnchorEnd ? (targetMetric + b.width) - b.anchorX : targetMetric - b.x);
+        }
+        if (mode === "center") {
+          dx = b.isAnchorMiddle ? targetMetric - b.anchorX : targetMetric - (b.x + b.width / 2);
+        }
+        if (mode === "right") {
+          dx = b.isAnchorMiddle ? (targetMetric - b.width / 2) - b.anchorX : (b.isAnchorEnd ? targetMetric - b.anchorX : targetMetric - (b.x + b.width));
+        }
         if (mode === "top") dy = targetMetric - b.y;
         if (mode === "middle") dy = targetMetric - (b.y + b.height / 2);
         if (mode === "bottom") dy = targetMetric - (b.y + b.height);

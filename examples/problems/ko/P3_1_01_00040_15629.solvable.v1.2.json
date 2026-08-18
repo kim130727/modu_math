@@ -201,27 +201,27 @@
     "unit": "",
     "blanks": [
       {
-        "id": "slot.blank1",
-        "type": "number",
-        "value": 3,
+        "id": "slot.second.blank_box",
+        "slot_id": "slot.second.blank_box",
+        "expected": 3,
         "unit": ""
       },
       {
-        "id": "slot.blank2",
-        "type": "number",
-        "value": 6,
+        "id": "slot.result.blank_box",
+        "slot_id": "slot.result.blank_box",
+        "expected": 6,
         "unit": ""
       }
     ],
     "choices": [],
     "answer_key": [
       {
-        "blank_id": "slot.blank1",
+        "slot_id": "slot.second.blank_box",
         "value": 3,
         "unit": ""
       },
       {
-        "blank_id": "slot.blank2",
+        "slot_id": "slot.result.blank_box",
         "value": 6,
         "unit": ""
       }

@@ -2,7 +2,7 @@
   "problem_id": "P3_1_01_00040_15616",
   "view_box": {
     "width": 600.0,
-    "height": 177.333,
+    "height": 175.639,
     "background": "#FFFFFF"
   },
   "elements": [
@@ -10,8 +10,8 @@
       "id": "konva_1786410614957_rect_658800.rect",
       "type": "rect",
       "attributes": {
-        "x": 368.99,
-        "y": 115.338,
+        "x": 362.105,
+        "y": 110.42,
         "width": 137.801,
         "height": 45.995,
         "fill": "#ffffff",
@@ -42,7 +42,9 @@
         "horizontal_align": "center",
         "vertical_align": "middle",
         "padding": 6,
-        "text_color": "#222222"
+        "text_color": "#222222",
+        "width": 137.801,
+        "height": 45.995
       }
     },
     {
@@ -71,6 +73,33 @@
         "layout_slot_id": "slot.question"
       },
       "text": "줄넘기를 하였습니다. 주영이는 123회, 영수는 342회를 넘었습니다. 두 사람이 넘은 줄넘기는 모두 몇 회입니까?"
+    },
+    {
+      "id": "konva_1787053306854_text_2028246.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 512.639,
+        "y": 113.639,
+        "fill": "#111827",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 30,
+        "width": 35.049,
+        "height": 46.0,
+        "max_width": 35.049,
+        "data-slot-kind": "text_box",
+        "data-box-x": 512.639,
+        "data-box-y": 113.639,
+        "data-box-width": 35.049,
+        "data-box-height": 46.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25
+      },
+      "source_ref": "konva_1787053306854_text_2028246",
+      "refs": {
+        "layout_slot_id": "konva_1787053306854_text_2028246"
+      },
+      "text": "회"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

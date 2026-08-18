@@ -15,14 +15,14 @@
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 14,
-        "width": 290.0,
-        "height": 26.0,
-        "max_width": 290.0,
+        "width": 172.8,
+        "height": 43.0,
+        "max_width": 172.8,
         "data-slot-kind": "text_box",
         "data-box-x": 11.2,
         "data-box-y": 17.0,
-        "data-box-width": 290.0,
-        "data-box-height": 26.0,
+        "data-box-width": 172.8,
+        "data-box-height": 43.0,
         "data-text-align": "left",
         "data-vertical-align": "top",
         "data-semantic-role": "instruction"
@@ -70,7 +70,9 @@
         "horizontal_align": "center",
         "vertical_align": "middle",
         "padding": 6,
-        "text_color": "#222222"
+        "text_color": "#222222",
+        "width": 14.0,
+        "height": 19.0
       }
     },
     {
@@ -96,10 +98,12 @@
         "value_type": "digit",
         "max_length": 1,
         "include_in_submission": true,
-        "order": 1,
+        "order": 2,
         "group_id": "final_answer",
         "auto_advance": true,
-        "keyboard": "number"
+        "keyboard": "number",
+        "answer_key_index": 1,
+        "answer_ref": "answer_key[1]"
       },
       "input_style": {
         "font_size_mode": "auto",
@@ -110,7 +114,9 @@
         "horizontal_align": "center",
         "vertical_align": "middle",
         "padding": 6,
-        "text_color": "#222222"
+        "text_color": "#222222",
+        "width": 14.0,
+        "height": 19.0
       }
     },
     {

@@ -15,7 +15,8 @@
       "flow": "vertical",
       "slot_ids": [
         "konva_1786410614957_rect_658800",
-        "slot.question"
+        "slot.question",
+        "konva_1787053306854_text_2028246"
       ]
     }
   ],
@@ -44,8 +45,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 368.99,
-        "y": 115.338,
+        "x": 362.105,
+        "y": 110.42,
         "width": 137.801,
         "height": 45.995,
         "stroke": "#111827",
@@ -71,8 +72,26 @@
           "horizontal_align": "center",
           "vertical_align": "middle",
           "padding": 6,
-          "text_color": "#222222"
+          "text_color": "#222222",
+          "width": 137.801,
+          "height": 45.995
         }
+      }
+    },
+    {
+      "id": "konva_1787053306854_text_2028246",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "회",
+        "x": 512.639,
+        "y": 113.639,
+        "font_size": 30,
+        "fill": "#111827",
+        "width": 35.049,
+        "height": 46,
+        "align": "left",
+        "line_height": 1.25
       }
     }
   ],
@@ -82,6 +101,7 @@
   "reading_order": [
     "region.stem",
     "konva_1786410614957_rect_658800",
-    "slot.question"
+    "slot.question",
+    "konva_1787053306854_text_2028246"
   ]
 }

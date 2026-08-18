@@ -22,7 +22,10 @@
       "role": "body",
       "flow": "absolute",
       "slot_ids": [
+        "slot.calculation.2.box.ones",
         "slot.calculation.2.box.tens",
+        "slot.calculation.2.box.hundreds",
+        "slot.calculation.2.box.total",
         "slot.calculation.2.line.top",
         "slot.calculation.2.line.bottom",
         "slot.calculation.2.top",
@@ -104,6 +107,46 @@
       }
     },
     {
+      "id": "slot.calculation.2.box.ones",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 202.288,
+        "y": 169.077,
+        "width": 28.0,
+        "height": 27.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "digit",
+          "max_length": 1,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "answer_key_index": 0,
+          "answer_ref": "answer.2.ones",
+          "auto_advance": true,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 28.0,
+          "height": 27.0
+        }
+      }
+    },
+    {
       "id": "slot.calculation.2.box.tens",
       "kind": "rect",
       "prompt": "",
@@ -144,6 +187,46 @@
       }
     },
     {
+      "id": "slot.calculation.2.box.hundreds",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 172.288,
+        "y": 251.077,
+        "width": 58.0,
+        "height": 27.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "integer",
+          "max_length": 4,
+          "include_in_submission": true,
+          "order": 2,
+          "group_id": "final_answer",
+          "answer_key_index": 2,
+          "answer_ref": "answer.2.hundreds",
+          "auto_advance": false,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 58.0,
+          "height": 27.0
+        }
+      }
+    },
+    {
       "id": "slot.calculation.2.line.bottom",
       "kind": "line",
       "prompt": "",
@@ -155,6 +238,46 @@
         "stroke": "#111111",
         "stroke_width": 1.5
       }
+    },
+    {
+      "id": "slot.calculation.2.box.total",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 172.288,
+        "y": 303.077,
+        "width": 58.0,
+        "height": 29.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "integer",
+          "max_length": 4,
+          "include_in_submission": true,
+          "order": 3,
+          "group_id": "final_answer",
+          "answer_key_index": 3,
+          "answer_ref": "answer.2.total",
+          "auto_advance": false,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 58.0,
+          "height": 29.0
+        }
+      }
     }
   ],
   "groups": [],
@@ -164,7 +287,10 @@
     "region.stem",
     "slot.instruction",
     "region.calculation.2",
+    "slot.calculation.2.box.ones",
     "slot.calculation.2.box.tens",
+    "slot.calculation.2.box.hundreds",
+    "slot.calculation.2.box.total",
     "slot.calculation.2.line.top",
     "slot.calculation.2.line.bottom",
     "slot.calculation.2.top",

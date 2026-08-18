@@ -204,25 +204,64 @@
   "answer": {
     "type": "multi_numeric",
     "value": [
-      90
+      7,
+      90,
+      500,
+      597
     ],
     "unit": "",
     "values": [
-      90
+      7,
+      90,
+      500,
+      597
     ],
     "derived_from": "step.collect_answers",
     "blanks": [
+      {
+        "id": "slot.calculation.2.box.ones",
+        "slot_id": "slot.calculation.2.box.ones",
+        "expected": 7,
+        "unit": ""
+      },
       {
         "id": "slot.calculation.2.box.tens",
         "slot_id": "slot.calculation.2.box.tens",
         "expected": 90,
         "unit": ""
+      },
+      {
+        "id": "slot.calculation.2.box.hundreds",
+        "slot_id": "slot.calculation.2.box.hundreds",
+        "expected": 500,
+        "unit": ""
+      },
+      {
+        "id": "slot.calculation.2.box.total",
+        "slot_id": "slot.calculation.2.box.total",
+        "expected": 597,
+        "unit": ""
       }
     ],
     "answer_key": [
       {
+        "slot_id": "slot.calculation.2.box.ones",
+        "value": 7,
+        "unit": ""
+      },
+      {
         "slot_id": "slot.calculation.2.box.tens",
         "value": 90,
+        "unit": ""
+      },
+      {
+        "slot_id": "slot.calculation.2.box.hundreds",
+        "value": 500,
+        "unit": ""
+      },
+      {
+        "slot_id": "slot.calculation.2.box.total",
+        "value": 597,
         "unit": ""
       }
     ]

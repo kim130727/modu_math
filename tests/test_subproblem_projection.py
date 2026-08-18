@@ -1098,3 +1098,99 @@ def test_project_suffixed_subproblem_does_not_translate_protected_path_offsets()
     assert slot_by_id["slot.item_2_path"]["content"]["y"] == 0.0
     assert slot_by_id["slot.item_2_path"]["content"]["d"] == "M 280 160 L 378 160"
     assert slot_by_id["slot.item_2_value"]["content"]["x"] == 300
+
+
+def test_project_suffixed_subproblem_preserves_multiple_submit_slots_in_subproblem() -> None:
+    layout = {
+        "regions": [
+            {"id": "region.stem", "role": "stem", "slot_ids": ["slot.instruction"]},
+            {
+                "id": "region.calculation.2",
+                "role": "body",
+                "slot_ids": [
+                    "slot.calculation.2.top",
+                    "slot.calculation.2.box.ones",
+                    "slot.calculation.2.box.tens",
+                    "slot.calculation.2.box.hundreds",
+                    "slot.calculation.2.box.total",
+                ],
+            },
+        ],
+        "slots": [
+            {"id": "slot.instruction", "kind": "text", "content": {"x": 10, "y": 0}},
+            {"id": "slot.calculation.2.top", "kind": "text", "content": {"text": "386", "x": 190, "y": 90}},
+            {
+                "id": "slot.calculation.2.box.ones",
+                "kind": "rect",
+                "content": {
+                    "x": 202,
+                    "y": 169,
+                    "width": 28,
+                    "height": 27,
+                    "interaction": {"type": "input", "role": "answer", "order": 0},
+                },
+            },
+            {
+                "id": "slot.calculation.2.box.tens",
+                "kind": "rect",
+                "content": {
+                    "x": 187,
+                    "y": 210,
+                    "width": 43,
+                    "height": 27,
+                    "interaction": {"type": "input", "role": "answer", "order": 1},
+                },
+            },
+            {
+                "id": "slot.calculation.2.box.hundreds",
+                "kind": "rect",
+                "content": {
+                    "x": 172,
+                    "y": 251,
+                    "width": 58,
+                    "height": 27,
+                    "interaction": {"type": "input", "role": "answer", "order": 2},
+                },
+            },
+            {
+                "id": "slot.calculation.2.box.total",
+                "kind": "rect",
+                "content": {
+                    "x": 172,
+                    "y": 303,
+                    "width": 58,
+                    "height": 29,
+                    "interaction": {"type": "input", "role": "answer", "order": 3},
+                },
+            },
+        ],
+        "groups": [],
+    }
+    semantic = {
+        "answer": {
+            "value": [7, 90, 500, 597],
+            "values": [
+                {"value": 7, "target_ref": "answer.2.ones"},
+                {"value": 90, "target_ref": "answer.2.tens"},
+                {"value": 500, "target_ref": "answer.2.hundreds"},
+                {"value": 597, "target_ref": "answer.2.total"},
+            ],
+        }
+    }
+
+    projected_layout, projected_semantic, _, removed = project_suffixed_subproblem(
+        artifact_id="P3_1_01_00040_15598_2",
+        template_id="P3_1_01_00040_15598",
+        layout=layout,
+        semantic=semantic,
+        solvable=None,
+    )
+
+    slot_ids = {slot["id"] for slot in projected_layout["slots"]}
+    assert "slot.calculation.2.box.ones" in slot_ids
+    assert "slot.calculation.2.box.tens" in slot_ids
+    assert "slot.calculation.2.box.hundreds" in slot_ids
+    assert "slot.calculation.2.box.total" in slot_ids
+    assert not removed
+    assert projected_semantic["answer"]["value"] == [7, 90, 500, 597]
+

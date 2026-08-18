@@ -107,59 +107,6 @@
       }
     },
     {
-      "id": "slot.calculation.1.line.bottom",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 130.683,
-        "y1": 292.342,
-        "x2": 222.683,
-        "y2": 292.342,
-        "stroke": "#111111",
-        "stroke_width": 1.5
-      }
-    },
-    {
-      "id": "konva_1786192274303_paste_279482_0",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 181.833,
-        "y": 172.757,
-        "width": 20.242,
-        "height": 27.0,
-        "stroke": "#111111",
-        "stroke_width": 1.0,
-        "fill": "#ffffff",
-        "interaction": {
-          "type": "input",
-          "role": "answer",
-          "value_type": "digit",
-          "max_length": 1,
-          "include_in_submission": true,
-          "order": 0,
-          "group_id": "final_answer",
-          "answer_key_index": 0,
-          "answer_ref": "answer_key[0]",
-          "auto_advance": true,
-          "keyboard": "number"
-        },
-        "input_style": {
-          "font_size_mode": "auto",
-          "font_size_adjust": 0,
-          "min_font_size": 14,
-          "max_font_size": 52,
-          "font_weight": 700,
-          "horizontal_align": "center",
-          "vertical_align": "middle",
-          "padding": 6,
-          "text_color": "#222222",
-          "width": 20.242,
-          "height": 27.0
-        }
-      }
-    },
-    {
       "id": "slot.calculation.1.box.tens",
       "kind": "rect",
       "prompt": "",
@@ -215,7 +162,7 @@
           "type": "input",
           "role": "answer",
           "value_type": "integer",
-          "max_length": 3,
+          "max_length": 4,
           "include_in_submission": true,
           "order": 2,
           "group_id": "final_answer",
@@ -240,6 +187,19 @@
       }
     },
     {
+      "id": "slot.calculation.1.line.bottom",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 130.683,
+        "y1": 292.342,
+        "x2": 222.683,
+        "y2": 292.342,
+        "stroke": "#111111",
+        "stroke_width": 1.5
+      }
+    },
+    {
       "id": "slot.calculation.1.box.total",
       "kind": "rect",
       "prompt": "",
@@ -255,7 +215,7 @@
           "type": "input",
           "role": "answer",
           "value_type": "integer",
-          "max_length": 3,
+          "max_length": 4,
           "include_in_submission": true,
           "order": 3,
           "group_id": "final_answer",
@@ -276,6 +236,46 @@
           "text_color": "#222222",
           "width": 49.92,
           "height": 29.0
+        }
+      }
+    },
+    {
+      "id": "konva_1786192274303_paste_279482_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 181.833,
+        "y": 172.757,
+        "width": 20.242,
+        "height": 27.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "digit",
+          "max_length": 1,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "answer_key_index": 0,
+          "answer_ref": "answer_key[0]",
+          "auto_advance": true,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 20.242,
+          "height": 27.0
         }
       }
     }

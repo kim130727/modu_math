@@ -101,9 +101,19 @@ def project_suffixed_subproblem(
                 if box is not None and _box_center_in(box, target_box, margin=12.0):
                     keep_ids.add(slot_id)
 
-    ordered_submit_ids = _submit_slot_ids_for_index(slots, index)
+    target_submit_ids = {
+        slot_id
+        for slot_id in all_submit_slot_ids
+        if slot_id in target_members
+        or _identifier_problem_index(slot_id) == index
+    }
+    if not target_submit_ids:
+        target_submit_ids = _submit_slot_ids_for_index(slots, index)
+    if not target_submit_ids:
+        target_submit_ids = spatial_answer_input_ids
+
     rebound_submit_ids = _rebind_stray_ordered_submit_slots(
-        ordered_submit_ids=ordered_submit_ids,
+        ordered_submit_ids=target_submit_ids,
         target_members=target_members,
         target_box=target_box,
         slot_by_id=slot_by_id,
@@ -111,26 +121,14 @@ def project_suffixed_subproblem(
         index=index,
     )
     if rebound_submit_ids:
-        keep_ids -= ordered_submit_ids
-        ordered_submit_ids = rebound_submit_ids
+        keep_ids -= target_submit_ids
+        target_submit_ids = rebound_submit_ids
         problem_answer_ids |= rebound_submit_ids
-    if ordered_submit_ids:
-        keep_ids -= all_submit_slot_ids - ordered_submit_ids
-        keep_ids |= ordered_submit_ids
-    else:
-        rebound_spatial_ids = _rebind_stray_ordered_submit_slots(
-            ordered_submit_ids=spatial_answer_input_ids,
-            target_members=target_members,
-            target_box=target_box,
-            slot_by_id=slot_by_id,
-            answer=semantic.get("answer"),
-            index=index,
-        )
-        if rebound_spatial_ids:
-            keep_ids -= spatial_answer_input_ids
-            spatial_answer_input_ids = rebound_spatial_ids
-            problem_answer_ids |= rebound_spatial_ids
-        keep_ids |= spatial_answer_input_ids
+
+    if target_submit_ids:
+        keep_ids -= all_submit_slot_ids - target_submit_ids
+        keep_ids |= target_submit_ids
+        problem_answer_ids |= target_submit_ids
 
     text_blank_ids = _target_text_blank_ids(target_members, slot_by_id)
     if len(text_blank_ids) == len(problem_answer_ids) and text_blank_ids:
@@ -318,8 +316,10 @@ def _answer_slot_ids_for_problem(answer: Any, index: int) -> set[str]:
             if not isinstance(item, dict):
                 continue
             slot_id = item.get("slot_id") or item.get("id") or item.get("blank_id")
-            if isinstance(slot_id, str) and token in slot_id:
-                out.add(slot_id)
+            if isinstance(slot_id, str):
+                slot_index = _identifier_problem_index(slot_id)
+                if slot_index == index or token in slot_id:
+                    out.add(slot_id)
     return out
 
 
@@ -401,6 +401,8 @@ def _rebind_stray_ordered_submit_slots(
         target_refs=target_refs,
     )
     if len(replacement_ids) != len(source_slots):
+        return set()
+    if [s.get("id") for s in source_slots] == replacement_ids:
         return set()
     if not _submit_slots_should_rebind_to_targets(
         source_slots=source_slots,
