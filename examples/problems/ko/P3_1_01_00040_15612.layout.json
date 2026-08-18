@@ -14,8 +14,7 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.question",
-        "konva_1786192274303_paste_953794_0"
+        "slot.question"
       ]
     },
     {
@@ -60,7 +59,8 @@
         "x": 26.0,
         "y": 62.0,
         "font_size": 22,
-        "fill": "#2F80C9"
+        "fill": "#2F80C9",
+        "semantic_role": "choice_marker"
       }
     },
     {
@@ -86,7 +86,8 @@
         "x": 26.0,
         "y": 92.0,
         "font_size": 22,
-        "fill": "#2F80C9"
+        "fill": "#2F80C9",
+        "semantic_role": "choice_marker"
       }
     },
     {
@@ -112,7 +113,8 @@
         "x": 26.0,
         "y": 122.0,
         "font_size": 22,
-        "fill": "#2F80C9"
+        "fill": "#2F80C9",
+        "semantic_role": "choice_marker"
       }
     },
     {
@@ -138,7 +140,8 @@
         "x": 26.0,
         "y": 152.0,
         "font_size": 22,
-        "fill": "#2F80C9"
+        "fill": "#2F80C9",
+        "semantic_role": "choice_marker"
       }
     },
     {
@@ -164,7 +167,8 @@
         "x": 26.0,
         "y": 182.0,
         "font_size": 22,
-        "fill": "#2F80C9"
+        "fill": "#2F80C9",
+        "semantic_role": "choice_marker"
       }
     },
     {
@@ -179,46 +183,6 @@
         "font_size": 22,
         "fill": "#111111"
       }
-    },
-    {
-      "id": "konva_1786192274303_paste_953794_0",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "(   )",
-        "style_role": "body",
-        "x": 311.853,
-        "y": 159.18,
-        "width": 47.295,
-        "height": 35.0,
-        "align": "left",
-        "valign": "top",
-        "font_size": 21,
-        "line_height": 1.25,
-        "fill": "#202124",
-        "interaction": {
-          "type": "input",
-          "role": "answer",
-          "value_type": "digit",
-          "max_length": 1,
-          "include_in_submission": true,
-          "order": 0,
-          "group_id": "final_answer",
-          "auto_advance": true,
-          "keyboard": "number"
-        },
-        "input_style": {
-          "font_size_mode": "auto",
-          "font_size_adjust": 0,
-          "min_font_size": 14,
-          "max_font_size": 52,
-          "font_weight": 700,
-          "horizontal_align": "center",
-          "vertical_align": "middle",
-          "padding": 6,
-          "text_color": "#222222"
-        }
-      }
     }
   ],
   "groups": [],
@@ -227,7 +191,6 @@
   "reading_order": [
     "region.stem",
     "slot.question",
-    "konva_1786192274303_paste_953794_0",
     "region.choices",
     "slot.choice_1.number",
     "slot.choice_1.expression",

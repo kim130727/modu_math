@@ -3,7 +3,7 @@
   "problem_id": "P3_1_01_00040_15598_2",
   "title": "자리값별 부분합으로 덧셈하기",
   "canvas": {
-    "width": 760,
+    "width": 350,
     "height": 350,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
@@ -22,13 +22,9 @@
       "role": "body",
       "flow": "absolute",
       "slot_ids": [
-        "slot.calculation.2.box.ones",
         "slot.calculation.2.box.tens",
-        "slot.calculation.2.box.hundreds",
-        "slot.calculation.2.box.total",
         "slot.calculation.2.line.top",
         "slot.calculation.2.line.bottom",
-        "slot.calculation.2.label",
         "slot.calculation.2.top",
         "slot.calculation.2.plus",
         "slot.calculation.2.bottom"
@@ -50,27 +46,14 @@
       }
     },
     {
-      "id": "slot.calculation.2.label",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(2)",
-        "style_role": "label",
-        "x": 225.0,
-        "y": 78.0,
-        "font_size": 22,
-        "fill": "#111111"
-      }
-    },
-    {
       "id": "slot.calculation.2.top",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "386",
         "style_role": "math",
-        "x": 317.0,
-        "y": 78.0,
+        "x": 190.288,
+        "y": 90.077,
         "font_size": 25,
         "max_width": 80.0,
         "anchor": "middle",
@@ -84,8 +67,8 @@
       "content": {
         "text": "+",
         "style_role": "math",
-        "x": 270.0,
-        "y": 120.0,
+        "x": 143.288,
+        "y": 132.077,
         "font_size": 25,
         "max_width": 30.0,
         "anchor": "middle",
@@ -99,8 +82,8 @@
       "content": {
         "text": "211",
         "style_role": "math",
-        "x": 317.0,
-        "y": 120.0,
+        "x": 190.288,
+        "y": 132.077,
         "font_size": 25,
         "max_width": 80.0,
         "anchor": "middle",
@@ -112,22 +95,22 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 269.0,
-        "y1": 143.0,
-        "x2": 361.0,
-        "y2": 143.0,
+        "x1": 142.288,
+        "y1": 155.077,
+        "x2": 234.288,
+        "y2": 155.077,
         "stroke": "#111111",
         "stroke_width": 1.5
       }
     },
     {
-      "id": "slot.calculation.2.box.ones",
+      "id": "slot.calculation.2.box.tens",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 329.0,
-        "y": 157.0,
-        "width": 28.0,
+        "x": 187.288,
+        "y": 210.077,
+        "width": 43.0,
         "height": 27.0,
         "stroke": "#111111",
         "stroke_width": 1.0,
@@ -135,12 +118,14 @@
         "interaction": {
           "type": "input",
           "role": "answer",
-          "value_type": "digit",
-          "max_length": 1,
+          "value_type": "integer",
+          "max_length": 4,
           "include_in_submission": true,
-          "order": 0,
+          "order": 1,
           "group_id": "final_answer",
-          "auto_advance": true,
+          "answer_key_index": 1,
+          "answer_ref": "answer.2.tens",
+          "auto_advance": false,
           "keyboard": "number"
         },
         "input_style": {
@@ -153,37 +138,9 @@
           "vertical_align": "middle",
           "padding": 6,
           "text_color": "#222222",
-          "width": 28.0,
+          "width": 43.0,
           "height": 27.0
         }
-      }
-    },
-    {
-      "id": "slot.calculation.2.box.tens",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 314.0,
-        "y": 198.0,
-        "width": 43.0,
-        "height": 27.0,
-        "stroke": "#111111",
-        "stroke_width": 1.0,
-        "fill": "#ffffff"
-      }
-    },
-    {
-      "id": "slot.calculation.2.box.hundreds",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 299.0,
-        "y": 239.0,
-        "width": 58.0,
-        "height": 27.0,
-        "stroke": "#111111",
-        "stroke_width": 1.0,
-        "fill": "#ffffff"
       }
     },
     {
@@ -191,26 +148,12 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 269.0,
-        "y1": 278.0,
-        "x2": 361.0,
-        "y2": 278.0,
+        "x1": 142.288,
+        "y1": 290.077,
+        "x2": 234.288,
+        "y2": 290.077,
         "stroke": "#111111",
         "stroke_width": 1.5
-      }
-    },
-    {
-      "id": "slot.calculation.2.box.total",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 299.0,
-        "y": 291.0,
-        "width": 58.0,
-        "height": 29.0,
-        "stroke": "#111111",
-        "stroke_width": 1.0,
-        "fill": "#ffffff"
       }
     }
   ],
@@ -221,13 +164,9 @@
     "region.stem",
     "slot.instruction",
     "region.calculation.2",
-    "slot.calculation.2.box.ones",
     "slot.calculation.2.box.tens",
-    "slot.calculation.2.box.hundreds",
-    "slot.calculation.2.box.total",
     "slot.calculation.2.line.top",
     "slot.calculation.2.line.bottom",
-    "slot.calculation.2.label",
     "slot.calculation.2.top",
     "slot.calculation.2.plus",
     "slot.calculation.2.bottom"

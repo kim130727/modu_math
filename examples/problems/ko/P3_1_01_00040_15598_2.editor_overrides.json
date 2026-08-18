@@ -1,19 +1,8 @@
 {
-  "version": 1,
   "slots": {
-    "slot.card1.text": {
-      "x": 40
-    },
-    "slot.card5.text": {
-      "x": 76
-    },
-    "slot.card2.text": {
-      "x": 112
-    },
-    "slot.card7.text": {
-      "x": 148
-    },
-    "slot.top.blank_tens.rect": {
+    "slot.calculation.2.box.ones": {
+      "x": 202.288,
+      "y": 169.077,
       "interaction": {
         "type": "input",
         "role": "answer",
@@ -23,7 +12,7 @@
         "order": 0,
         "group_id": "final_answer",
         "answer_key_index": 0,
-        "answer_ref": "answer.top_tens",
+        "answer_ref": "answer.2.ones",
         "auto_advance": true,
         "keyboard": "number"
       },
@@ -39,7 +28,9 @@
         "text_color": "#222222"
       }
     },
-    "slot.top.blank_ones.rect": {
+    "slot.calculation.2.box.tens": {
+      "x": 187.288,
+      "y": 210.077,
       "interaction": {
         "type": "input",
         "role": "answer",
@@ -49,7 +40,7 @@
         "order": 1,
         "group_id": "final_answer",
         "answer_key_index": 1,
-        "answer_ref": "answer.top_ones",
+        "answer_ref": "answer.2.tens",
         "auto_advance": true,
         "keyboard": "number"
       },
@@ -65,7 +56,9 @@
         "text_color": "#222222"
       }
     },
-    "slot.bottom.blank_hundreds.rect": {
+    "slot.calculation.2.box.hundreds": {
+      "x": 172.288,
+      "y": 251.077,
       "interaction": {
         "type": "input",
         "role": "answer",
@@ -75,7 +68,7 @@
         "order": 2,
         "group_id": "final_answer",
         "answer_key_index": 2,
-        "answer_ref": "answer.bottom_hundreds",
+        "answer_ref": "answer.2.hundreds",
         "auto_advance": true,
         "keyboard": "number"
       },
@@ -91,7 +84,9 @@
         "text_color": "#222222"
       }
     },
-    "slot.result.blank_ones.rect": {
+    "slot.calculation.2.box.total": {
+      "x": 172.288,
+      "y": 303.077,
       "interaction": {
         "type": "input",
         "role": "answer",
@@ -101,7 +96,7 @@
         "order": 3,
         "group_id": "final_answer",
         "answer_key_index": 3,
-        "answer_ref": "answer.result_ones",
+        "answer_ref": "answer.2.total",
         "auto_advance": true,
         "keyboard": "number"
       },
@@ -117,25 +112,37 @@
         "text_color": "#222222"
       }
     },
-    "konva_1786192274303_paste_838274_0": {
-      "x": 233.153,
-      "y": 84.952,
-      "height": 37
+    "slot.calculation.2.line.top": {
+      "x1": 142.288,
+      "y1": 155.077,
+      "x2": 234.288,
+      "y2": 155.077
     },
-    "konva_1786192274303_paste_838834_0": {
-      "x": 259.662,
-      "y": 84.902,
-      "height": 37
+    "slot.calculation.2.line.bottom": {
+      "x1": 142.288,
+      "y1": 290.077,
+      "x2": 234.288,
+      "y2": 290.077
     },
-    "konva_1786192274303_paste_849762_0": {
-      "height": 37
+    "slot.calculation.2.top": {
+      "x": 190.288,
+      "y": 90.077
     },
-    "konva_1786192274303_paste_854403_0": {
-      "height": 37
+    "slot.calculation.2.plus": {
+      "x": 143.288,
+      "y": 132.077
+    },
+    "slot.calculation.2.bottom": {
+      "x": 190.288,
+      "y": 132.077
     }
   },
+  "version": 1,
+  "deleted_slots": [
+    "slot.calculation.2.label"
+  ],
   "canvas": {
-    "width": 500,
-    "height": 220
+    "width": 350,
+    "height": 350
   }
 }

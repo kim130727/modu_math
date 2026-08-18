@@ -240,8 +240,8 @@ class ContentRepository {
       solvable: solvableV13.isNotEmpty
           ? solvableV13
           : solvableV12.isEmpty
-          ? await _loadOptionalJson('$basePath.solvable.v1.1.json')
-          : solvableV12,
+              ? await _loadOptionalJson('$basePath.solvable.v1.1.json')
+              : solvableV12,
     );
   }
 
@@ -318,7 +318,7 @@ class ContentRepository {
   Future<List<ProblemSummary>> _loadBundledProblems() async {
     final rendererPaths = await _loadRendererPaths();
 
-    final problems = rendererPaths.map((rendererPath) {
+    final problems = await Future.wait(rendererPaths.map((rendererPath) {
       final filePrefix = rendererPath
           .split('/')
           .last
@@ -328,7 +328,7 @@ class ContentRepository {
           .sublist(0, rendererPath.split('/').length - 1)
           .join('/');
       return _summaryFromPrefix(path: path, filePrefix: filePrefix);
-    }).toList()
+    }))
       ..sort((a, b) =>
           _compareProblemPrefixes(a.filePrefix ?? a.id, b.filePrefix ?? b.id));
     return problems;
@@ -407,26 +407,36 @@ class ContentRepository {
     return !relativePath.contains('/');
   }
 
-  ProblemSummary _summaryFromPrefix({
+  Future<ProblemSummary> _summaryFromPrefix({
     required String path,
     required String filePrefix,
-  }) {
+  }) async {
     final grade = _gradeFromPrefix(filePrefix);
     final semester = _semesterFromPrefix(filePrefix);
     final unitNumber = _unitNumberFromPrefix(filePrefix);
     final unitTopic = _unitTopicFor(grade, semester, unitNumber);
+    final basePath = path.isEmpty ? filePrefix : '$path/$filePrefix';
+    final semantic = await _loadOptionalJson('$basePath.semantic.json');
+    final metadata = _mapAt(semantic, 'metadata');
+    final title = _summaryTitle(metadata, unitTopic);
+    final problemType = _problemTypeLabel(
+      semantic['problem_type']?.toString(),
+    );
     final raw = <String, dynamic>{
       'id': filePrefix,
       'grade': grade,
       'subject': 'math',
       'unit': '$semester학기 $unitNumber. $unitTopic',
-      'type': 'local_json_problem',
-      'title': _titleForUnit(unitTopic),
+      'type': problemType,
+      'title': title,
       'path': path,
       'filePrefix': filePrefix,
       'semester': '$semester학기',
       'unitNumber': unitNumber,
       'unitTopic': unitTopic,
+      if (semantic['problem_type'] != null)
+        'problemType': semantic['problem_type'].toString(),
+      if (metadata['topic'] != null) 'topic': metadata['topic'].toString(),
     };
     return ProblemSummary.fromJson(raw);
   }
@@ -471,6 +481,68 @@ class ContentRepository {
       '자료의 정리' => '자료 정리 문제',
       _ => '수학 문제',
     };
+  }
+
+  String _summaryTitle(Map<String, dynamic> metadata, String unitTopic) {
+    final metadataTitle = metadata['title']?.toString().trim() ?? '';
+    if (metadataTitle.isNotEmpty) {
+      return metadataTitle;
+    }
+    final topic = metadata['topic']?.toString().trim() ?? '';
+    if (topic.isNotEmpty) {
+      return topic;
+    }
+    return _titleForUnit(unitTopic);
+  }
+
+  String _problemTypeLabel(String? rawProblemType) {
+    final raw = rawProblemType?.trim() ?? '';
+    if (raw.isEmpty) {
+      return '문제';
+    }
+    if (_hasKorean(raw)) {
+      return raw.replaceAll('_', ' ');
+    }
+
+    final type = raw.toLowerCase();
+    final labels = <String>[];
+    void add(String label) {
+      if (!labels.contains(label)) {
+        labels.add(label);
+      }
+    }
+
+    if (type.contains('word')) add('문장제');
+    if (type.contains('vertical')) add('세로셈');
+    if (type.contains('base_ten')) add('수 모형');
+    if (type.contains('expression')) add('식');
+    if (type.contains('comparison') || type.contains('compare')) add('비교');
+    if (type.contains('ordering') || type.contains('order')) add('순서');
+    if (type.contains('unit')) add('단위');
+    if (type.contains('weight')) add('무게');
+    if (type.contains('capacity')) add('들이');
+    if (type.contains('circle')) add('원');
+    if (type.contains('fraction')) add('분수');
+    if (type.contains('perimeter')) add('둘레');
+    if (type.contains('route') || type.contains('distance')) add('거리');
+    if (type.contains('choice') || type.contains('selection')) add('선택형');
+    if (type.contains('blank') || type.contains('fill')) add('빈칸');
+    if (type.contains('multi')) add('여러 답');
+    if (type.contains('numeric')) add('수 답');
+    if (type.contains('stepwise') || type.contains('sequential')) add('단계형');
+    if (type.contains('addition')) add('덧셈');
+    if (type.contains('subtraction')) add('뺄셈');
+    if (type.contains('multiplication')) add('곱셈');
+    if (type.contains('division')) add('나눗셈');
+
+    if (labels.isEmpty) {
+      return raw.replaceAll('_', ' ');
+    }
+    return labels.join(' · ');
+  }
+
+  bool _hasKorean(String value) {
+    return RegExp(r'[가-힣]').hasMatch(value);
   }
 
   Future<Map<String, dynamic>> _loadJson(String assetPath) async {
@@ -633,6 +705,14 @@ class _MissingContent implements Exception {
 
   @override
   String toString() => 'Missing content: $path';
+}
+
+Map<String, dynamic> _mapAt(Map<String, dynamic> map, String key) {
+  final value = map[key];
+  if (value is Map<String, dynamic>) {
+    return value;
+  }
+  return const {};
 }
 
 int _gradeFromPrefix(String filePrefix) {

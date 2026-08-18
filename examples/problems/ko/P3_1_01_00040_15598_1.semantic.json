@@ -7,18 +7,11 @@
     "question": "□ 안에 알맞은 수를 써넣으시오.",
     "required_layout_ids": [
       "slot.calculation.1.line.top",
-      "slot.calculation.1.box.ones",
+      "konva_1786192274303_paste_279482_0",
       "slot.calculation.1.box.tens",
       "slot.calculation.1.box.hundreds",
       "slot.calculation.1.line.bottom",
-      "slot.calculation.1.box.total",
-      "slot.calculation.2.line.top",
-      "slot.calculation.2.box.ones",
-      "slot.calculation.2.box.tens",
-      "slot.calculation.2.box.hundreds",
-      "slot.calculation.2.line.bottom",
-      "slot.calculation.2.box.total",
-      "konva_1786192274303_paste_279482_0"
+      "slot.calculation.1.box.total"
     ],
     "extraction_confidence": 1.0,
     "language": "ko-KR",
@@ -38,7 +31,7 @@
       {
         "id": "answer.values",
         "type": "number_list",
-        "label": "두 덧셈의 자리별 부분합과 전체 합"
+        "label": "첫 번째 덧셈의 자리별 부분합과 전체 합"
       }
     ],
     "relations": [
@@ -53,13 +46,11 @@
     "problem_solving": {
       "understand": {
         "given_refs": [
-          "calculation.1",
-          "calculation.2"
+          "calculation.1"
         ],
         "target_ref": "answer.values",
         "condition_refs": [
-          "relation.calculation_1_expansion",
-          "relation.calculation_2_expansion"
+          "relation.calculation_1_expansion"
         ]
       },
       "plan": {
@@ -83,25 +74,64 @@
   "answer": {
     "type": "multi_numeric",
     "value": [
-      9
+      9,
+      50,
+      700,
+      759
     ],
     "unit": "",
     "values": [
-      9
+      9,
+      50,
+      700,
+      759
     ],
     "derived_from": "step.collect_answers",
     "blanks": [
       {
-        "id": "slot.calculation.1.box.ones",
-        "slot_id": "slot.calculation.1.box.ones",
+        "id": "konva_1786192274303_paste_279482_0",
+        "slot_id": "konva_1786192274303_paste_279482_0",
         "expected": 9,
+        "unit": ""
+      },
+      {
+        "id": "slot.calculation.1.box.tens",
+        "slot_id": "slot.calculation.1.box.tens",
+        "expected": 50,
+        "unit": ""
+      },
+      {
+        "id": "slot.calculation.1.box.hundreds",
+        "slot_id": "slot.calculation.1.box.hundreds",
+        "expected": 700,
+        "unit": ""
+      },
+      {
+        "id": "slot.calculation.1.box.total",
+        "slot_id": "slot.calculation.1.box.total",
+        "expected": 759,
         "unit": ""
       }
     ],
     "answer_key": [
       {
-        "slot_id": "slot.calculation.1.box.ones",
+        "slot_id": "konva_1786192274303_paste_279482_0",
         "value": 9,
+        "unit": ""
+      },
+      {
+        "slot_id": "slot.calculation.1.box.tens",
+        "value": 50,
+        "unit": ""
+      },
+      {
+        "slot_id": "slot.calculation.1.box.hundreds",
+        "value": 700,
+        "unit": ""
+      },
+      {
+        "slot_id": "slot.calculation.1.box.total",
+        "value": 759,
         "unit": ""
       }
     ]

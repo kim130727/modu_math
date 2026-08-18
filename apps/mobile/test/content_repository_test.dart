@@ -114,8 +114,10 @@ void main() {
             return http.Response.bytes(
               utf8.encode('''
               {
+                "problem_type": "numeric_answer_addition_word_problem",
                 "metadata": {
                   "title": "두 가족이 캔 고구마의 수",
+                  "topic": "세 자리 수의 덧셈",
                   "question": "모두 몇 개입니까?"
                 },
                 "answer": {"value": 507}
@@ -147,6 +149,8 @@ void main() {
       final content = await repository.loadProblem(manifest.problems.single);
 
       expect(manifest.problems.single.path, equals('examples/problems'));
+      expect(manifest.problems.single.title, equals('두 가족이 캔 고구마의 수'));
+      expect(manifest.problems.single.type, equals('문장제 · 수 답 · 덧셈'));
       expect(content.semantic, isNotEmpty);
       expect(content.renderer, isNotEmpty);
       expect(content.correctAnswer, equals('507'));
@@ -165,8 +169,10 @@ void main() {
       const prefix = 'P3_1_01_00040_00469';
       await File('${tempDir.path}/$prefix.semantic.json').writeAsString('''
       {
+        "problem_type": "multi_answer_expression_comparison",
         "metadata": {
           "title": "local title",
+          "topic": "덧셈식의 크기 비교",
           "question": "local question"
         },
         "answer": {"value": 507}
@@ -195,6 +201,8 @@ void main() {
         manifest.problems.single.path.replaceAll(r'\', '/'),
         tempDir.path.replaceAll(r'\', '/'),
       );
+      expect(manifest.problems.single.title, equals('local title'));
+      expect(manifest.problems.single.type, equals('식 · 비교 · 여러 답'));
       expect(content.semantic, isNotEmpty);
       expect(content.renderer, isNotEmpty);
       expect(content.correctAnswer, equals('507'));
@@ -213,7 +221,7 @@ void main() {
           }
           if (url.endsWith('P3_1_01_00040_00469.semantic.json')) {
             return http.Response(
-              '{"metadata": {"title": "local http"}, "answer": {"value": 507}}',
+              '{"problem_type": "multi_blank_vertical_addition", "metadata": {"title": "local http"}, "answer": {"value": 507}}',
               200,
             );
           }
@@ -241,6 +249,8 @@ void main() {
 
       expect(manifest.raw['source'], equals('local-http'));
       expect(manifest.problems.single.path, isEmpty);
+      expect(manifest.problems.single.title, equals('local http'));
+      expect(manifest.problems.single.type, equals('세로셈 · 빈칸 · 여러 답 · 덧셈'));
       expect(content.renderer, isNotEmpty);
       expect(content.correctAnswer, equals('507'));
     });
