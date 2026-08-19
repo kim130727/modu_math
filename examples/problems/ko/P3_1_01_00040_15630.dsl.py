@@ -1,13 +1,12 @@
 from __future__ import annotations
 
 from modu_math.dsl import (
-    BlankSlot,
     Canvas,
     ProblemTemplate,
     Region,
     TextBoxSlot,
     TextSlot,
-RectSlot)
+)
 
 
 PROBLEM_ID = "P3_1_01_00040_15630"
@@ -19,14 +18,16 @@ def build_problem_template() -> ProblemTemplate:
         id=PROBLEM_ID,
         title=PROBLEM_TITLE,
         canvas=Canvas(
-            width = 300, height = 150, coordinate_mode="logical",
+            width=300,
+            height=150,
+            coordinate_mode="logical",
         ),
         regions=(
             Region(
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.question",'konva_1786962334798_rect_492131'),
+                slot_ids=("slot.question",),
             ),
             Region(
                 id="region.choices",
@@ -38,16 +39,24 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.choice3",
                     "slot.choice4",
                     "slot.choice5",
-                    
                 ),
             ),
+            Region(
+                id="region.answer",
+                role="answer",
+                flow="absolute",
+                slot_ids=(),
+            ),
         ),
-        slots=(TextBoxSlot(
+        slots=(
+            TextBoxSlot(
                 id="slot.question",
                 prompt="차가 123인 두 수를 고르는 질문",
                 text="다음 두 수의 차가 123인 것은 어느 것입니까?",
                 semantic_role="question",
-                x = 8, y = 12, width=430,
+                x=8,
+                y=12,
+                width=430,
                 height=22,
                 font_size=14,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
@@ -60,7 +69,9 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="첫 번째 선택지",
                 text="① 647, 341",
                 semantic_role="choice",
-                x = 16, y = 46, font_size=14,
+                x=16,
+                y=46,
+                font_size=14,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#111111",
             ),
@@ -69,7 +80,9 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="두 번째 선택지",
                 text="② 488, 227",
                 semantic_role="choice",
-                x = 16, y = 68, font_size=14,
+                x=16,
+                y=68,
+                font_size=14,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#111111",
             ),
@@ -78,7 +91,9 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="세 번째 선택지",
                 text="③ 847, 740",
                 semantic_role="choice",
-                x = 16, y = 90, font_size=14,
+                x=16,
+                y=90,
+                font_size=14,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#111111",
             ),
@@ -87,7 +102,9 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="네 번째 선택지",
                 text="④ 528, 405",
                 semantic_role="choice",
-                x = 16, y = 112, font_size=14,
+                x=16,
+                y=112,
+                font_size=14,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#111111",
             ),
@@ -96,16 +113,13 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="다섯 번째 선택지",
                 text="⑤ 386, 223",
                 semantic_role="choice",
-                x = 16, y = 134, font_size=14,
+                x=16,
+                y=134,
+                font_size=14,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#111111",
             ),
-            BlankSlot(
-                id="slot.answer",
-                prompt="정답 번호",
-                answer_key="4",
-                placeholder="번",
-            ),RectSlot(id = 'konva_1786962334798_rect_492131', prompt = '', x = 214.8, y = 110, width = 57.6, height = 27.6, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'answer_key_index': 0, 'answer_ref': 'answer.value', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
+        ),
         diagrams=(),
         groups=(),
         constraints=(),
@@ -194,6 +208,7 @@ SEMANTIC_OVERRIDE = {
             {
                 "id": "relation.choice_differences",
                 "type": "subtraction_comparison",
+                "from_id": "choice.1",
                 "from_ids": [
                     "choice.1",
                     "choice.2",

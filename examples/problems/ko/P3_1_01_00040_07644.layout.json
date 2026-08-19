@@ -35,7 +35,7 @@
         "x": 24.101,
         "y": 12.949,
         "width": 804,
-        "height": 145.323,
+        "height": 188,
         "align": "left",
         "valign": "top",
         "font_size": 30,
@@ -53,8 +53,8 @@
         "style_role": "body",
         "x": 777.804,
         "y": 187.295,
-        "width": 98.0,
-        "height": 43.0,
+        "width": 36.4,
+        "height": 35.0,
         "align": "left",
         "valign": "top",
         "font_size": 28,
@@ -71,8 +71,8 @@
         "style_role": "body",
         "x": 397.991,
         "y": 187.624,
-        "width": 98.0,
-        "height": 43.0,
+        "width": 36.4,
+        "height": 35.0,
         "align": "left",
         "valign": "top",
         "font_size": 28,
@@ -131,13 +131,15 @@
         "interaction": {
           "type": "input",
           "role": "answer",
-          "value_type": "digit",
-          "max_length": 1,
+          "value_type": "integer",
+          "max_length": 3,
           "include_in_submission": true,
-          "order": 0,
+          "order": 2,
           "group_id": "final_answer",
-          "auto_advance": true,
-          "keyboard": "number"
+          "auto_advance": false,
+          "keyboard": "number",
+          "answer_key_index": 1,
+          "answer_ref": "quantity.50won_stamp_count"
         },
         "input_style": {
           "font_size_mode": "auto",
@@ -148,7 +150,9 @@
           "horizontal_align": "center",
           "vertical_align": "middle",
           "padding": 6,
-          "text_color": "#222222"
+          "text_color": "#222222",
+          "width": 113.254,
+          "height": 56.19
         }
       }
     },
@@ -167,12 +171,12 @@
         "interaction": {
           "type": "input",
           "role": "answer",
-          "value_type": "digit",
-          "max_length": 1,
+          "value_type": "integer",
+          "max_length": 3,
           "include_in_submission": true,
           "order": 1,
           "group_id": "final_answer",
-          "auto_advance": true,
+          "auto_advance": false,
           "keyboard": "number"
         },
         "input_style": {
@@ -184,7 +188,9 @@
           "horizontal_align": "center",
           "vertical_align": "middle",
           "padding": 6,
-          "text_color": "#222222"
+          "text_color": "#222222",
+          "width": 113.254,
+          "height": 56.19
         }
       }
     }

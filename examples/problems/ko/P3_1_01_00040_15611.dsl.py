@@ -25,6 +25,19 @@ ANSWER = {
         {"value": 1, "unit": "", "target_ref": "answer.bottom_hundreds"},
         {"value": 7, "unit": "", "target_ref": "answer.result_ones"},
     ],
+    "blanks": [
+        {"id": "slot.top.blank_tens.rect", "slot_id": "slot.top.blank_tens.rect", "expected": 5},
+        {"id": "slot.top.blank_ones.rect", "slot_id": "slot.top.blank_ones.rect", "expected": 2},
+        {"id": "slot.bottom.blank_hundreds.rect", "slot_id": "slot.bottom.blank_hundreds.rect", "expected": 1},
+        {"id": "slot.result.blank_ones.rect", "slot_id": "slot.result.blank_ones.rect", "expected": 7},
+    ],
+    "choices": [],
+    "answer_key": [
+        {"slot_id": "slot.top.blank_tens.rect", "value": 5},
+        {"slot_id": "slot.top.blank_ones.rect", "value": 2},
+        {"slot_id": "slot.bottom.blank_hundreds.rect", "value": 1},
+        {"slot_id": "slot.result.blank_ones.rect", "value": 7},
+    ],
     "target_ref": "answer.blank_digits",
     "derived_from": "step.complete_addition",
 }
@@ -327,12 +340,16 @@ SEMANTIC_OVERRIDE = {
             {
                 "id": "relation.addition",
                 "type": "sum_of",
+                "from_id": "number.first_addend",
+                "to_id": "number.sum",
                 "subject": "number.sum",
                 "objects": ["number.first_addend", "number.second_addend"],
             },
             {
                 "id": "relation.cards_used_once",
                 "type": "permutation_of",
+                "from_id": "answer.blank_digits",
+                "to_id": "set.digit_cards",
                 "subject": "answer.blank_digits",
                 "object": "set.digit_cards",
             },

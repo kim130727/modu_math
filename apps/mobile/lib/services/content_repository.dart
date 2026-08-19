@@ -190,24 +190,68 @@ class ContentRepository {
   }
 
   Future<ProblemContent> _loadProblemUncached(ProblemSummary summary) async {
+    if (source == ContentRepositorySource.localHttp) {
+      final bundle = await _tryLoadLocalHttpProblemBundle(summary);
+      if (bundle != null) {
+        return bundle;
+      }
+    }
+
     final filePrefix = summary.filePrefix ?? summary.id;
     final basePath = await _basePathForPrefix(filePrefix);
-    final semanticFuture = _loadJson('$basePath.semantic.json');
-    final rendererFuture = _loadJson('$basePath.renderer.json');
-    final layoutFuture = _loadOptionalJson('$basePath.layout.json');
-    final solvableFuture = _loadSolvable(basePath);
+    final results = await Future.wait<dynamic>([
+      _loadJson('$basePath.semantic.json'),
+      _loadJson('$basePath.renderer.json'),
+      _loadOptionalJson('$basePath.layout.json'),
+      _loadSolvable(basePath),
+    ]);
 
-    final semantic = await semanticFuture;
-    final renderer = await rendererFuture;
-    final layout = await layoutFuture;
-    final solvable = await solvableFuture;
     return ProblemContent(
       summary: summary,
-      semantic: semantic,
-      solvable: solvable,
-      layout: layout,
-      renderer: renderer,
+      semantic: results[0] as Map<String, dynamic>,
+      renderer: results[1] as Map<String, dynamic>,
+      layout: results[2] as Map<String, dynamic>,
+      solvable: results[3] as Map<String, dynamic>,
     );
+  }
+
+  Future<ProblemContent?> _tryLoadLocalHttpProblemBundle(
+    ProblemSummary summary,
+  ) async {
+    final filePrefix = summary.filePrefix ?? summary.id;
+    try {
+      final response = await _httpClient.get(
+        _localHttpUri('/api/problem-bundle/${Uri.encodeComponent(filePrefix)}'),
+      );
+      if (response.statusCode != 200) {
+        return null;
+      }
+      final decoded =
+          jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>;
+      if (decoded['ok'] != true) {
+        return null;
+      }
+      return ProblemContent(
+        summary: summary,
+        semantic: _asMap(decoded['semantic']),
+        renderer: _asMap(decoded['renderer']),
+        layout: _asMap(decoded['layout']),
+        solvable: _asMap(decoded['solvable']),
+        svg: decoded['svg']?.toString() ?? '',
+      );
+    } catch (_) {
+      return null;
+    }
+  }
+
+  static Map<String, dynamic> _asMap(dynamic value) {
+    if (value is Map<String, dynamic>) {
+      return value;
+    }
+    if (value is Map) {
+      return Map<String, dynamic>.from(value);
+    }
+    return const {};
   }
 
   String _problemCacheKey(ProblemSummary summary) {

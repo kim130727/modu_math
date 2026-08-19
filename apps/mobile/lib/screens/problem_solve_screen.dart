@@ -82,9 +82,7 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
 
   Future<ProblemContent> _loadContent() {
     final future = widget.repository.loadProblem(widget.problem);
-    unawaited(
-      future.then((_) => _preloadUpcomingProblems()).catchError((_) {}),
-    );
+    _preloadUpcomingProblems();
     return future;
   }
 
@@ -92,7 +90,7 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
     if (!_hasNextProblem) {
       return;
     }
-    final end = (widget.problemIndex + 3).clamp(0, widget.unitProblems.length);
+    final end = (widget.problemIndex + 6).clamp(0, widget.unitProblems.length);
     for (var index = widget.problemIndex + 1; index < end; index += 1) {
       unawaited(
         widget.repository

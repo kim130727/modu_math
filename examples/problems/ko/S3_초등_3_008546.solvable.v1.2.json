@@ -1,7 +1,7 @@
 {
   "schema": "modu.solvable.v1.2",
-  "problem_id": "S3_??_3_008546",
-  "problem_type": "??_??_??_??",
+  "problem_id": "S3_초등_3_008546",
+  "problem_type": "곱셈_계산_결과_비교",
   "inputs": {
     "total_ticks": 3,
     "target_label": "계산 결과가 가장 큰 기호",
@@ -77,9 +77,21 @@
   "answer": {
     "blanks": [],
     "choices": [
-      "ㄱ",
-      "ㄴ",
-      "ㄷ"
+      {
+        "id": "choice.1",
+        "label": "ㄱ",
+        "text": "18 × 50"
+      },
+      {
+        "id": "choice.2",
+        "label": "ㄴ",
+        "text": "66 × 20"
+      },
+      {
+        "id": "choice.3",
+        "label": "ㄷ",
+        "text": "42 × 30"
+      }
     ],
     "answer_key": [
       {
@@ -89,7 +101,7 @@
     ],
     "target": {
       "type": "selected_symbol",
-      "description": "?? ??? ?? ? ??? ??"
+      "description": "계산 결과가 가장 큰 기호"
     },
     "value": "ㄴ",
     "unit": ""

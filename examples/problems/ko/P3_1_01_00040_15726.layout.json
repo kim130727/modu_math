@@ -14,9 +14,7 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.instruction",
-        "slot.answer.ones",
-        "slot.answer.regrouped_hundreds"
+        "slot.instruction"
       ]
     },
     {
@@ -58,11 +56,14 @@
         "slot.question1",
         "slot.question2",
         "slot.question3",
-        "slot.question4",
-        "slot.answer.regrouped_tens",
-        "slot.answer.direct_hundreds",
-        "slot.answer.total"
+        "slot.question4"
       ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
     }
   ],
   "slots": [
@@ -495,46 +496,6 @@
         "fill": "#222222",
         "semantic_role": "subquestion"
       }
-    },
-    {
-      "id": "slot.answer.ones",
-      "kind": "blank",
-      "prompt": "(1) 낱개 모형끼리 더한 개수",
-      "content": {
-        "placeholder": "개"
-      }
-    },
-    {
-      "id": "slot.answer.regrouped_hundreds",
-      "kind": "blank",
-      "prompt": "(2) 십 모형 13개를 바꾼 백 모형의 개수",
-      "content": {
-        "placeholder": "개"
-      }
-    },
-    {
-      "id": "slot.answer.regrouped_tens",
-      "kind": "blank",
-      "prompt": "(2) 십 모형 13개를 바꾼 뒤 남는 십 모형의 개수",
-      "content": {
-        "placeholder": "개"
-      }
-    },
-    {
-      "id": "slot.answer.direct_hundreds",
-      "kind": "blank",
-      "prompt": "(3) 두 수의 백 모형끼리 더한 개수",
-      "content": {
-        "placeholder": "개"
-      }
-    },
-    {
-      "id": "slot.answer.total",
-      "kind": "blank",
-      "prompt": "(4) 262와 271의 합",
-      "content": {
-        "placeholder": ""
-      }
     }
   ],
   "groups": [],
@@ -543,8 +504,6 @@
   "reading_order": [
     "region.stem",
     "slot.instruction",
-    "slot.answer.ones",
-    "slot.answer.regrouped_hundreds",
     "region.models",
     "slot.model262.container",
     "slot.model262.hundred.1",
@@ -575,8 +534,6 @@
     "slot.question2",
     "slot.question3",
     "slot.question4",
-    "slot.answer.regrouped_tens",
-    "slot.answer.direct_hundreds",
-    "slot.answer.total"
+    "region.answer"
   ]
 }

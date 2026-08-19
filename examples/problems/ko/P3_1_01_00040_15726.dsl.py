@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from modu_math.dsl import (
-    BlankSlot,
     Canvas,
     ProblemTemplate,
     RectSlot,
@@ -109,7 +108,9 @@ def build_problem_template() -> ProblemTemplate:
         id=PROBLEM_ID,
         title=PROBLEM_TITLE,
         canvas=Canvas(
-            width = 400, height = 193, coordinate_mode="logical",
+            width=400,
+            height=193,
+            coordinate_mode="logical",
         ),
         regions=(
             Region(
@@ -138,10 +139,13 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.question2",
                     "slot.question3",
                     "slot.question4",
-                    "slot.answer.regrouped_tens",
-                    "slot.answer.direct_hundreds",
-                    "slot.answer.total",
                 ),
+            ),
+            Region(
+                id="region.answer",
+                role="answer",
+                flow="absolute",
+                slot_ids=(),
             ),
         ),
         slots=(
@@ -237,36 +241,6 @@ def build_problem_template() -> ProblemTemplate:
                 font_size=14,
                 fill="#222222",
             ),
-            BlankSlot(
-                id="slot.answer.ones",
-                prompt="(1) 낱개 모형끼리 더한 개수",
-                answer_key="3",
-                placeholder="개",
-            ),
-            BlankSlot(
-                id="slot.answer.regrouped_hundreds",
-                prompt="(2) 십 모형 13개를 바꾼 백 모형의 개수",
-                answer_key="1",
-                placeholder="개",
-            ),
-            BlankSlot(
-                id="slot.answer.regrouped_tens",
-                prompt="(2) 십 모형 13개를 바꾼 뒤 남는 십 모형의 개수",
-                answer_key="3",
-                placeholder="개",
-            ),
-            BlankSlot(
-                id="slot.answer.direct_hundreds",
-                prompt="(3) 두 수의 백 모형끼리 더한 개수",
-                answer_key="4",
-                placeholder="개",
-            ),
-            BlankSlot(
-                id="slot.answer.total",
-                prompt="(4) 262와 271의 합",
-                answer_key="533",
-                placeholder="",
-            ),
         ),
         diagrams=(),
         groups=(),
@@ -289,58 +263,15 @@ ANSWER = {
     "type": "multi_numeric",
     "value": [3, 1, 3, 4, 533],
     "unit": "",
-    "blanks": [
-        {
-            "id": "slot.answer.ones",
-            "type": "number",
-            "value": 3,
-            "unit": "개",
-        },
-        {
-            "id": "slot.answer.regrouped_hundreds",
-            "type": "number",
-            "value": 1,
-            "unit": "개",
-        },
-        {
-            "id": "slot.answer.regrouped_tens",
-            "type": "number",
-            "value": 3,
-            "unit": "개",
-        },
-        {
-            "id": "slot.answer.direct_hundreds",
-            "type": "number",
-            "value": 4,
-            "unit": "개",
-        },
-        {
-            "id": "slot.answer.total",
-            "type": "number",
-            "value": 533,
-            "unit": "",
-        },
+    "values": [
+        {"value": 3, "unit": "개", "target_ref": "quantity.ones_sum"},
+        {"value": 1, "unit": "개", "target_ref": "quantity.regrouped_hundreds"},
+        {"value": 3, "unit": "개", "target_ref": "quantity.remaining_tens"},
+        {"value": 4, "unit": "개", "target_ref": "quantity.direct_hundreds_sum"},
+        {"value": 533, "unit": "", "target_ref": "sum.total"},
     ],
-    "choices": [],
-    "answer_key": [
-        {"blank_id": "slot.answer.ones", "value": 3, "unit": "개"},
-        {
-            "blank_id": "slot.answer.regrouped_hundreds",
-            "value": 1,
-            "unit": "개",
-        },
-        {
-            "blank_id": "slot.answer.regrouped_tens",
-            "value": 3,
-            "unit": "개",
-        },
-        {
-            "blank_id": "slot.answer.direct_hundreds",
-            "value": 4,
-            "unit": "개",
-        },
-        {"blank_id": "slot.answer.total", "value": 533, "unit": ""},
-    ],
+    "target_ref": "answer.all",
+    "derived_from": "step.compose_total",
     "sentence": (
         "(1) 3개, (2) 백 모형 1개와 십 모형 3개, "
         "(3) 4개, (4) 533입니다."
@@ -443,13 +374,16 @@ SEMANTIC_OVERRIDE = {
             {
                 "id": "relation.add_ones",
                 "type": "add_same_base_ten_units",
-                "from_ids": ["model.first", "model.second"],
+                "from_id": "model.first",
                 "to_id": "quantity.ones_sum",
+                "from_ids": ["model.first", "model.second"],
                 "equation": "2+1=3",
             },
             {
                 "id": "relation.add_and_regroup_tens",
                 "type": "base_ten_regrouping",
+                "from_id": "model.first",
+                "to_id": "quantity.regrouped_hundreds",
                 "from_ids": ["model.first", "model.second"],
                 "to_ids": [
                     "quantity.regrouped_hundreds",
@@ -460,19 +394,21 @@ SEMANTIC_OVERRIDE = {
             {
                 "id": "relation.add_hundreds",
                 "type": "add_same_base_ten_units",
-                "from_ids": ["model.first", "model.second"],
+                "from_id": "model.first",
                 "to_id": "quantity.direct_hundreds_sum",
+                "from_ids": ["model.first", "model.second"],
                 "equation": "2+2=4",
             },
             {
                 "id": "relation.compose_total",
                 "type": "place_value_composition",
+                "from_id": "quantity.ones_sum",
+                "to_id": "sum.total",
                 "from_ids": [
                     "quantity.ones_sum",
                     "quantity.remaining_tens",
                     "quantity.final_hundreds",
                 ],
-                "to_id": "sum.total",
                 "equation": "(4+1)×100+3×10+3=533",
             },
         ],
@@ -603,7 +539,7 @@ SOLVABLE = {
                 "label": "십 모형의 받아올림 규칙",
                 "value": "십 모형 10개는 백 모형 1개",
                 "unit": "",
-                "source": "implicit",
+                "source": "inferred",
             },
         ],
         "unknowns": [

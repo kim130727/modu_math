@@ -19,13 +19,20 @@ class ProblemDevHandler(BaseHTTPRequestHandler):
         if parsed.path == "/api/problems":
             self._send_problem_list()
             return
+        if parsed.path.startswith("/api/problem-bundle/"):
+            self._send_problem_bundle(parsed.path.removeprefix("/api/problem-bundle/"))
+            return
         if parsed.path.startswith("/files/"):
             self._send_problem_file(parsed.path.removeprefix("/files/"))
             return
         self._send_json(
             {
                 "ok": True,
-                "endpoints": ["/api/problems", "/files/<relative-path>"],
+                "endpoints": [
+                    "/api/problems",
+                    "/api/problem-bundle/<prefix>",
+                    "/files/<relative-path>",
+                ],
             }
         )
 
@@ -46,6 +53,68 @@ class ProblemDevHandler(BaseHTTPRequestHandler):
             if path.is_file()
         )
         self._send_json({"root": str(self.root), "paths": paths})
+
+    def _send_problem_bundle(self, encoded_prefix: str) -> None:
+        prefix = unquote(encoded_prefix).replace("\\", "/").strip("/")
+        base_path = self._resolve_problem_base_path(prefix)
+        if base_path is None:
+            self.send_error(404, f"Problem prefix not found: {prefix}")
+            return
+
+        bundle: dict[str, object] = {
+            "ok": True,
+            "prefix": prefix,
+            "semantic": self._read_optional_json(base_path.with_name(f"{base_path.name}.semantic.json")),
+            "renderer": self._read_optional_json(base_path.with_name(f"{base_path.name}.renderer.json")),
+            "layout": self._read_optional_json(base_path.with_name(f"{base_path.name}.layout.json")),
+            "solvable": self._read_solvable_json(base_path),
+            "svg": self._read_optional_text(base_path.with_name(f"{base_path.name}.svg")),
+        }
+        self._send_json(bundle)
+
+    def _resolve_problem_base_path(self, prefix: str) -> Path | None:
+        direct = self.root / prefix
+        if direct.with_name(f"{direct.name}.renderer.json").is_file():
+            return direct
+
+        for candidate_name in (prefix, f"{prefix}_ko", f"{prefix}_uk"):
+            matches = list(self.root.rglob(f"{candidate_name}.renderer.json"))
+            if matches:
+                matched_file = matches[0]
+                return matched_file.with_name(matched_file.name[: -len(".renderer.json")])
+        return None
+
+    def _read_optional_json(self, file_path: Path) -> dict[str, object]:
+        if not file_path.is_file():
+            return {}
+        try:
+            return json.loads(file_path.read_text(encoding="utf-8"))
+        except Exception:
+            return {}
+
+    def _read_solvable_json(self, base_path: Path) -> dict[str, object]:
+        for candidate in (
+            "solvable.json",
+            "solvable.v1.3.json",
+            "solvable.v1.2.json",
+            "solvable.v1.1.json",
+            "solvable.v1.json",
+        ):
+            file_path = base_path.with_name(f"{base_path.name}.{candidate}")
+            if file_path.is_file():
+                try:
+                    return json.loads(file_path.read_text(encoding="utf-8"))
+                except Exception:
+                    continue
+        return {}
+
+    def _read_optional_text(self, file_path: Path) -> str:
+        if not file_path.is_file():
+            return ""
+        try:
+            return file_path.read_text(encoding="utf-8")
+        except Exception:
+            return ""
 
     def _send_problem_file(self, encoded_path: str) -> None:
         relative_path = unquote(encoded_path).replace("\\", "/")
@@ -93,6 +162,7 @@ def main() -> None:
     server = ThreadingHTTPServer((args.host, args.port), ProblemDevHandler)
     print(f"Serving {root} at http://{args.host}:{args.port}")
     print("Problem list: /api/problems")
+    print("Problem bundle: /api/problem-bundle/<prefix>")
     server.serve_forever()
 
 

@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from modu_math.dsl import (
-    BlankSlot,
     Canvas,
     ProblemTemplate,
     Region,
@@ -75,6 +74,8 @@ SEMANTIC_OVERRIDE = {
             {
                 "id": "relation.option_5_has_largest_sum",
                 "type": "maximum_of",
+                "from_id": "choice.option_5",
+                "to_id": "choice.option_1",
                 "subject": "choice.option_5",
                 "objects": [
                     "choice.option_1",
@@ -321,6 +322,12 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.choice_5.expression",
                 ),
             ),
+            Region(
+                id="region.answer",
+                role="answer",
+                flow="absolute",
+                slot_ids=(),
+            ),
         ),
         slots=(
             TextSlot(
@@ -432,12 +439,6 @@ def build_problem_template() -> ProblemTemplate:
                 y=182,
                 font_size=22,
                 fill="#111111",
-            ),
-            BlankSlot(
-                id="slot.answer",
-                prompt="답",
-                answer_key="5",
-                placeholder="번",
             ),
         ),
     )

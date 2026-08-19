@@ -1,15 +1,15 @@
 {
-  "problem_id": "S3_??_3_008546",
-  "problem_type": "??_??_??_??",
+  "problem_id": "S3_초등_3_008546",
+  "problem_type": "곱셈_계산_결과_비교",
   "metadata": {
-    "title": "?? ??? ?? ? ?? ?? ??? ?????.",
+    "title": "계산결과가 가장 큰 것을 찾아 기호를 선택하세요.",
     "tags": [
       "선택형",
       "곱셈",
       "비교"
     ],
-    "instruction": "?? ??? ?? ? ?? ?? ??? ?????.",
-    "question": "?? ??? ?? ? ?? ?? ??? ?????.",
+    "instruction": "계산결과가 가장 큰 것을 찾아 기호를 선택하세요.",
+    "question": "계산결과가 가장 큰 것을 찾아 기호를 선택하세요.",
     "required_layout_ids": [
       "slot.choice_box"
     ],
@@ -40,7 +40,20 @@
         "right": 30
       }
     ],
-    "relations": [],
+    "relations": [
+      {
+        "id": "rel.compare_1",
+        "type": "comparison",
+        "from_id": "obj.choice_b",
+        "to_id": "obj.choice_a"
+      },
+      {
+        "id": "rel.compare_2",
+        "type": "comparison",
+        "from_id": "obj.choice_b",
+        "to_id": "obj.choice_c"
+      }
+    ],
     "confidence": 1.0,
     "problem_solving": {
       "understand": {
@@ -57,7 +70,7 @@
       },
       "plan": {
         "method": "compare_products",
-        "description": "?? ??? ?? ? ??? ??"
+        "description": "계산 결과가 가장 큰 기호 찾기"
       },
       "execute": {
         "expected_operations": [
@@ -75,9 +88,21 @@
   "answer": {
     "blanks": [],
     "choices": [
-      "ㄱ",
-      "ㄴ",
-      "ㄷ"
+      {
+        "id": "choice.1",
+        "label": "ㄱ",
+        "text": "18 × 50"
+      },
+      {
+        "id": "choice.2",
+        "label": "ㄴ",
+        "text": "66 × 20"
+      },
+      {
+        "id": "choice.3",
+        "label": "ㄷ",
+        "text": "42 × 30"
+      }
     ],
     "answer_key": [
       {
@@ -85,10 +110,9 @@
         "value": "ㄴ"
       }
     ],
-    "confidence": 1.0,
     "target": {
       "type": "selected_symbol",
-      "description": "?? ??? ?? ? ??? ??"
+      "description": "계산 결과가 가장 큰 기호"
     },
     "value": "ㄴ",
     "unit": ""

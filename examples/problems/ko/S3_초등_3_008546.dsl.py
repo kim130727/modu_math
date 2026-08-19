@@ -4,8 +4,8 @@ from modu_math.dsl import Canvas, ProblemTemplate, Region, RectSlot, TextSlot
 
 def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
-        id="S3_??_3_008546",
-        title="?? ??? ?? ? ?? ?? ??? ?????.",
+        id="S3_초등_3_008546",
+        title="계산결과가 가장 큰 것을 찾아 기호를 선택하세요.",
         canvas=Canvas(width=870, height=360, coordinate_mode="logical"),
         regions=(
             Region(
@@ -13,7 +13,6 @@ def build_problem_template() -> ProblemTemplate:
                 role="stem",
                 flow="absolute",
                 slot_ids=(
-                    "slot.q.num",
                     "slot.q.text",
                     "slot.choice_box",
                     "slot.choice.1",
@@ -38,7 +37,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.q.text",
                 prompt="",
-                text="?? ??? ?? ? ?? ?? ??? ?????.",
+                text="계산결과가 가장 큰 것을 찾아 기호를 선택하세요.",
                 style_role="question",
                 x=54,
                 y=50,
@@ -97,12 +96,12 @@ def build_problem_template() -> ProblemTemplate:
 PROBLEM_TEMPLATE = build_problem_template()
 
 SEMANTIC_OVERRIDE = {
-    "problem_id": "S3_??_3_008546",
-    "problem_type": "??_??_??_??",
+    "problem_id": "S3_초등_3_008546",
+    "problem_type": "곱셈_계산_결과_비교",
     "metadata": {
         "language": "ko",
-        "question": "?? ??? ?? ? ?? ?? ??? ?????.",
-        "instruction": "?? ??? ?? ? ?? ?? ??? ?????.",
+        "question": "계산결과가 가장 큰 것을 찾아 기호를 선택하세요.",
+        "instruction": "계산결과가 가장 큰 것을 찾아 기호를 선택하세요.",
     },
     "domain": {
         "objects": [
@@ -128,7 +127,20 @@ SEMANTIC_OVERRIDE = {
                 "right": 30,
             },
         ],
-        "relations": [],
+        "relations": [
+            {
+                "id": "rel.compare_1",
+                "type": "comparison",
+                "from_id": "obj.choice_b",
+                "to_id": "obj.choice_a",
+            },
+            {
+                "id": "rel.compare_2",
+                "type": "comparison",
+                "from_id": "obj.choice_b",
+                "to_id": "obj.choice_c",
+            },
+        ],
         "problem_solving": {
             "understand": {
                 "given_refs": ["obj.choice_a", "obj.choice_b", "obj.choice_c"],
@@ -137,7 +149,7 @@ SEMANTIC_OVERRIDE = {
             },
             "plan": {
                 "method": "compare_products",
-                "description": "?? ??? ?? ? ??? ??",
+                "description": "계산 결과가 가장 큰 기호 찾기",
             },
             "execute": {"expected_operations": ["calculate_product", "compare_results"]},
             "review": {"check_methods": ["largest_value_check"]},
@@ -146,14 +158,14 @@ SEMANTIC_OVERRIDE = {
     "answer": {
         "blanks": [],
         "choices": [
-            "ㄱ",
-            "ㄴ",
-            "ㄷ",
+            {"id": "choice.1", "label": "ㄱ", "text": "18 × 50"},
+            {"id": "choice.2", "label": "ㄴ", "text": "66 × 20"},
+            {"id": "choice.3", "label": "ㄷ", "text": "42 × 30"},
         ],
         "answer_key": [{"id": "choice.2", "value": "ㄴ"}],
         "target": {
             "type": "selected_symbol",
-            "description": "?? ??? ?? ? ??? ??",
+            "description": "계산 결과가 가장 큰 기호",
         },
         "value": "ㄴ",
         "unit": "",
@@ -162,8 +174,8 @@ SEMANTIC_OVERRIDE = {
 
 SOLVABLE = {
     "schema": "modu.solvable.v1.1",
-    "problem_id": "S3_??_3_008546",
-    "problem_type": "??_??_??_??",
+    "problem_id": "S3_초등_3_008546",
+    "problem_type": "곱셈_계산_결과_비교",
     "inputs": {
         "total_ticks": 3,
         "target_label": "계산 결과가 가장 큰 기호",
@@ -197,14 +209,14 @@ SOLVABLE = {
     "answer": {
         "blanks": [],
         "choices": [
-            "ㄱ",
-            "ㄴ",
-            "ㄷ",
+            {"id": "choice.1", "label": "ㄱ", "text": "18 × 50"},
+            {"id": "choice.2", "label": "ㄴ", "text": "66 × 20"},
+            {"id": "choice.3", "label": "ㄷ", "text": "42 × 30"},
         ],
         "answer_key": [{"id": "choice.2", "value": "ㄴ"}],
         "target": {
             "type": "selected_symbol",
-            "description": "?? ??? ?? ? ??? ??",
+            "description": "계산 결과가 가장 큰 기호",
         },
         "value": "ㄴ",
         "unit": "",
@@ -215,9 +227,27 @@ SOLVABLE["schema"] = "modu.solvable.v1.2"
 SOLVABLE["understanding"] = {
     "summary": "Compute three products and select the symbol for the greatest result.",
     "facts": [
-        {"ref": "obj.choice_a", "label": "choice A", "value": "18 x 50", "unit": "", "source": "explicit"},
-        {"ref": "obj.choice_b", "label": "choice B", "value": "66 x 20", "unit": "", "source": "explicit"},
-        {"ref": "obj.choice_c", "label": "choice C", "value": "42 x 30", "unit": "", "source": "explicit"},
+        {
+            "ref": "obj.choice_a",
+            "label": "choice A",
+            "value": "18 x 50",
+            "unit": "",
+            "source": "explicit",
+        },
+        {
+            "ref": "obj.choice_b",
+            "label": "choice B",
+            "value": "66 x 20",
+            "unit": "",
+            "source": "explicit",
+        },
+        {
+            "ref": "obj.choice_c",
+            "label": "choice C",
+            "value": "42 x 30",
+            "unit": "",
+            "source": "explicit",
+        },
     ],
     "unknowns": [
         {"ref": "answer.target", "label": "symbol with greatest product", "unit": ""},

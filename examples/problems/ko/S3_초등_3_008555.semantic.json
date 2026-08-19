@@ -31,14 +31,71 @@
         "value": 500
       }
     ],
-    "relations": [],
-    "confidence": 1.0
+    "relations": [
+      {
+        "id": "rel.compare_1",
+        "type": "comparison",
+        "from_id": "obj.choice1",
+        "to_id": "obj.threshold"
+      },
+      {
+        "id": "rel.compare_2",
+        "type": "comparison",
+        "from_id": "obj.choice2",
+        "to_id": "obj.threshold"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.choice1",
+          "obj.choice2",
+          "obj.threshold"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_1",
+          "rel.compare_2"
+        ]
+      },
+      "plan": {
+        "method": "compute_and_compare",
+        "description": "각 식의 곱을 구하고 500과 비교하여 큰 식을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "calculate_product",
+          "compare_results"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "compare_with_threshold"
+        ]
+      }
+    }
   },
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
-    "confidence": 1.0,
+    "choices": [
+      {
+        "id": "choice.1",
+        "label": "1",
+        "text": "35 × 13"
+      },
+      {
+        "id": "choice.2",
+        "label": "2",
+        "text": "28 × 19"
+      }
+    ],
+    "answer_key": [
+      {
+        "id": "choice.2",
+        "value": "28 × 19"
+      }
+    ],
     "target": {
       "type": "correct_choice",
       "description": "500보다 큰 계산 결과"

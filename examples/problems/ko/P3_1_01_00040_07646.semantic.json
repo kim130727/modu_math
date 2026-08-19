@@ -4,7 +4,6 @@
   "metadata": {
     "title": "학교까지 더 먼 길 비교하기",
     "tags": [],
-    "instruction": "(소방서, 주민센터)",
     "question": "집에서 학교로 가는 길은 소방서를 거쳐 가는 것과 주민센터를 거쳐서 가는 것 두 가지입니다. 집에서 소방서까지 168m이고 소방서에서 학교까지는 726m입니다. 그리고 집에서 주민센터까지는 625m이고 주민센터에서 학교까지의 거리는 186m입니다. 소방서를 거쳐서 가는 것과 주민센터를 거쳐서 가는 것 중 어느 곳을 거쳐서 가는 것이 더 멀겠습니까?",
     "required_layout_ids": [],
     "extraction_confidence": 1.0,
@@ -90,6 +89,8 @@
       {
         "id": "relation.fire_station_route_sum",
         "type": "path_distance_sum",
+        "from_id": "place.fire_station",
+        "to_id": "place.school",
         "subject": "distance.fire_station_route",
         "via": "place.fire_station",
         "segments": [
@@ -100,6 +101,8 @@
       {
         "id": "relation.community_center_route_sum",
         "type": "path_distance_sum",
+        "from_id": "place.community_center",
+        "to_id": "place.school",
         "subject": "distance.community_center_route",
         "via": "place.community_center",
         "segments": [
@@ -110,6 +113,8 @@
       {
         "id": "relation.fire_station_route_is_farther",
         "type": "greater_than",
+        "from_id": "distance.fire_station_route",
+        "to_id": "distance.community_center_route",
         "subject": "distance.fire_station_route",
         "object": "distance.community_center_route",
         "difference": "distance.route_difference"
@@ -118,7 +123,7 @@
     "confidence": 1.0
   },
   "answer": {
-    "type": "text",
+    "type": "choice",
     "value": "소방서",
     "unit": "",
     "target_ref": "place.fire_station"

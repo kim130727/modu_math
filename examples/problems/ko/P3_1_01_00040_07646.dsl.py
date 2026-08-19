@@ -28,6 +28,12 @@ def build_problem_template() -> ProblemTemplate:
                 flow="vertical",
                 slot_ids=("slot.question",),
             ),
+            Region(
+                id="region.answer",
+                role="answer",
+                flow="absolute",
+                slot_ids=(),
+            ),
         ),
         slots=(
             TextBoxSlot(
@@ -144,6 +150,8 @@ SEMANTIC = {
             {
                 "id": "relation.fire_station_route_sum",
                 "type": "path_distance_sum",
+                "from_id": "place.fire_station",
+                "to_id": "place.school",
                 "subject": "distance.fire_station_route",
                 "via": "place.fire_station",
                 "segments": [
@@ -154,6 +162,8 @@ SEMANTIC = {
             {
                 "id": "relation.community_center_route_sum",
                 "type": "path_distance_sum",
+                "from_id": "place.community_center",
+                "to_id": "place.school",
                 "subject": "distance.community_center_route",
                 "via": "place.community_center",
                 "segments": [
@@ -164,6 +174,8 @@ SEMANTIC = {
             {
                 "id": "relation.fire_station_route_is_farther",
                 "type": "greater_than",
+                "from_id": "distance.fire_station_route",
+                "to_id": "distance.community_center_route",
                 "subject": "distance.fire_station_route",
                 "object": "distance.community_center_route",
                 "difference": "distance.route_difference",
@@ -171,7 +183,7 @@ SEMANTIC = {
         ],
     },
     "answer": {
-        "type": "text",
+        "type": "choice",
         "value": "소방서",
         "unit": "",
         "target_ref": "place.fire_station",
@@ -188,6 +200,7 @@ SOLVABLE = {
     "inputs": {
         "target_label": "학교까지 가는 두 길 중 더 먼 경로의 경유지",
         "unit": "m",
+        "options": ["소방서", "주민센터"],
         "quantities": {
             "home_to_fire_station": 168,
             "fire_station_to_school": 726,
@@ -240,7 +253,7 @@ SOLVABLE = {
     ],
     "target": {
         "ref": "place.fire_station",
-        "type": "text",
+        "type": "choice",
     },
     "method": "각 경로의 두 구간 거리를 더한 뒤 두 전체 거리를 비교합니다.",
     "plan": [
@@ -325,7 +338,7 @@ SOLVABLE = {
         },
     ],
     "answer": {
-        "type": "text",
+        "type": "choice",
         "value": "소방서",
         "unit": "",
         "target_ref": "place.fire_station",

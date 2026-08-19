@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../l10n/app_strings.dart';
@@ -62,7 +64,15 @@ class _ProblemListScreenState extends State<ProblemListScreen> {
       problems: manifest.problems,
       attempts: await widget.progressRepository.getAttempts(),
     );
+    _prewarmInitialProblems(manifest.problems);
     return _ProblemListData(manifest: manifest, summary: summary);
+  }
+
+  void _prewarmInitialProblems(List<ProblemSummary> problems) {
+    final count = problems.length.clamp(0, 3);
+    for (var i = 0; i < count; i++) {
+      unawaited(widget.repository.preloadProblem(problems[i]).catchError((_) {}));
+    }
   }
 
   @override

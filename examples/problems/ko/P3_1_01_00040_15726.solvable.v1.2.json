@@ -1,0 +1,283 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_15726",
+  "problem_type": "base_ten_model_addition_multi_answer",
+  "inputs": {
+    "target_label": "수 모형 덧셈 과정과 262+271의 결과",
+    "unit": "",
+    "quantities": {
+      "first_number": 262,
+      "second_number": 271,
+      "first_model": {
+        "hundreds": 2,
+        "tens": 6,
+        "ones": 2
+      },
+      "second_model": {
+        "hundreds": 2,
+        "tens": 7,
+        "ones": 1
+      }
+    },
+    "conditions": [
+      "같은 종류의 수 모형끼리 더합니다.",
+      "십 모형 10개는 백 모형 1개로 바꿉니다.",
+      "받아올림 전 백 모형끼리 더한 개수와 최종 합을 구분합니다."
+    ]
+  },
+  "given": [
+    {
+      "ref": "number.first",
+      "value": 262
+    },
+    {
+      "ref": "number.second",
+      "value": 271
+    },
+    {
+      "ref": "model.first",
+      "value": {
+        "hundreds": 2,
+        "tens": 6,
+        "ones": 2
+      }
+    },
+    {
+      "ref": "model.second",
+      "value": {
+        "hundreds": 2,
+        "tens": 7,
+        "ones": 1
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.all",
+    "type": "number_list"
+  },
+  "method": "같은 수 모형끼리 더한 뒤 십 모형 10개를 백 모형 1개로 받아올림하여 합을 구합니다.",
+  "understanding": {
+    "summary": "262와 271을 나타낸 수 모형을 자리별로 더하고 받아올림하여 합을 구하는 문제입니다.",
+    "facts": [
+      {
+        "ref": "model.first",
+        "label": "262의 수 모형",
+        "value": {
+          "hundreds": 2,
+          "tens": 6,
+          "ones": 2
+        },
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "model.second",
+        "label": "271의 수 모형",
+        "value": {
+          "hundreds": 2,
+          "tens": 7,
+          "ones": 1
+        },
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "rule.regroup_tens",
+        "label": "십 모형의 받아올림 규칙",
+        "value": "십 모형 10개는 백 모형 1개",
+        "unit": "",
+        "source": "inferred"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "quantity.ones_sum",
+        "label": "낱개 모형끼리 더한 개수",
+        "unit": "개",
+        "source": "unknown"
+      },
+      {
+        "ref": "quantity.regrouped_hundreds",
+        "label": "십 모형을 바꾸어 얻은 백 모형의 개수",
+        "unit": "개",
+        "source": "unknown"
+      },
+      {
+        "ref": "quantity.remaining_tens",
+        "label": "받아올림 뒤 남은 십 모형의 개수",
+        "unit": "개",
+        "source": "unknown"
+      },
+      {
+        "ref": "quantity.direct_hundreds_sum",
+        "label": "백 모형끼리 직접 더한 개수",
+        "unit": "개",
+        "source": "unknown"
+      },
+      {
+        "ref": "sum.total",
+        "label": "262와 271의 합",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "base_ten_model_addition_with_regrouping",
+      "statement": "같은 자리의 수 모형끼리 더하고 십 모형 13개 중 10개를 백 모형 1개로 바꿉니다.",
+      "symbolic": "ones:2+1=3; tens:6+7=13=1 hundred+3 tens; hundreds:2+2=4; total:(4+1) hundreds+3 tens+3 ones=533",
+      "uses": [
+        "model.first",
+        "model.second"
+      ],
+      "result": "answer.all"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.regroup_tens",
+        "type": "multiple_choice",
+        "prompt": "십 모형 13개를 바르게 바꾼 것은 무엇인가요?",
+        "choices": [
+          "백 모형 1개와 십 모형 3개",
+          "백 모형 3개와 십 모형 1개",
+          "백 모형 1개와 십 모형 13개"
+        ],
+        "answer_index": 0
+      },
+      {
+        "id": "understand.hundreds",
+        "type": "multiple_choice",
+        "prompt": "받아올림을 포함한 최종 백 모형의 수는 몇 개인가요?",
+        "choices": [
+          "4개",
+          "5개",
+          "6개"
+        ],
+        "answer_index": 1
+      }
+    ],
+    "student_restatement": {
+      "prompt": "수 모형으로 어떻게 더해야 하나요?",
+      "template": "낱개, 십, 백 모형끼리 더하고 십 모형 {regroup_count}개를 백 모형 1개로 바꿉니다.",
+      "answer": "낱개, 십, 백 모형끼리 더하고 십 모형 10개를 백 모형 1개로 바꿉니다."
+    }
+  },
+  "plan": [
+    "낱개 모형 2개와 1개를 더합니다.",
+    "십 모형 6개와 7개를 더해 13개를 만듭니다.",
+    "십 모형 13개를 백 모형 1개와 십 모형 3개로 바꿉니다.",
+    "백 모형 2개와 2개를 더한 뒤 받아올린 백 모형 1개를 합칩니다.",
+    "백 모형 5개, 십 모형 3개, 낱개 모형 3개를 수로 나타냅니다."
+  ],
+  "steps": [
+    {
+      "id": "step.add_ones",
+      "expr": "2+1",
+      "value": 3,
+      "explanation": "낱개 모형끼리 더하면 3개입니다."
+    },
+    {
+      "id": "step.add_tens",
+      "expr": "6+7",
+      "value": 13,
+      "explanation": "십 모형끼리 더하면 13개입니다."
+    },
+    {
+      "id": "step.regroup_tens",
+      "expr": "13 tens = 1 hundred + 3 tens",
+      "value": [
+        1,
+        3
+      ],
+      "explanation": "십 모형 10개를 백 모형 1개로 바꾸면 백 모형 1개와 십 모형 3개가 됩니다."
+    },
+    {
+      "id": "step.add_direct_hundreds",
+      "expr": "2+2",
+      "value": 4,
+      "explanation": "두 수에 처음부터 있던 백 모형끼리 더하면 4개입니다."
+    },
+    {
+      "id": "step.add_carried_hundred",
+      "expr": "4+1",
+      "value": 5,
+      "explanation": "백 모형 4개에 십 모형에서 바꾼 백 모형 1개를 더하면 5개입니다."
+    },
+    {
+      "id": "step.compose_total",
+      "expr": "5×100+3×10+3",
+      "value": 533,
+      "explanation": "백 모형 5개, 십 모형 3개, 낱개 모형 3개는 533입니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.first_model",
+      "expr": "2×100+6×10+2",
+      "expected": 262,
+      "actual": 262,
+      "pass": true
+    },
+    {
+      "id": "check.second_model",
+      "expr": "2×100+7×10+1",
+      "expected": 271,
+      "actual": 271,
+      "pass": true
+    },
+    {
+      "id": "check.inverse_subtraction",
+      "expr": "533-271",
+      "expected": 262,
+      "actual": 262,
+      "pass": true
+    },
+    {
+      "id": "check.column_addition",
+      "expr": "262+271",
+      "expected": 533,
+      "actual": 533,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "type": "multi_numeric",
+    "value": [
+      3,
+      1,
+      3,
+      4,
+      533
+    ],
+    "unit": "",
+    "values": [
+      {
+        "value": 3,
+        "unit": "개",
+        "target_ref": "quantity.ones_sum"
+      },
+      {
+        "value": 1,
+        "unit": "개",
+        "target_ref": "quantity.regrouped_hundreds"
+      },
+      {
+        "value": 3,
+        "unit": "개",
+        "target_ref": "quantity.remaining_tens"
+      },
+      {
+        "value": 4,
+        "unit": "개",
+        "target_ref": "quantity.direct_hundreds_sum"
+      },
+      {
+        "value": 533,
+        "unit": "",
+        "target_ref": "sum.total"
+      }
+    ],
+    "target_ref": "answer.all",
+    "derived_from": "step.compose_total",
+    "sentence": "(1) 3개, (2) 백 모형 1개와 십 모형 3개, (3) 4개, (4) 533입니다."
+  }
+}

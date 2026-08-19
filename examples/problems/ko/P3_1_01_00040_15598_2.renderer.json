@@ -26,9 +26,9 @@
       "id": "slot.calculation.2.box.ones.rect",
       "type": "rect",
       "attributes": {
-        "x": 202.288,
+        "x": 192.395,
         "y": 169.077,
-        "width": 28.0,
+        "width": 21.89,
         "height": 27.0,
         "fill": "#ffffff",
         "stroke": "#111111",
@@ -61,7 +61,7 @@
         "vertical_align": "middle",
         "padding": 6,
         "text_color": "#222222",
-        "width": 28.0,
+        "width": 21.89,
         "height": 27.0
       }
     },
@@ -69,9 +69,9 @@
       "id": "slot.calculation.2.box.tens.rect",
       "type": "rect",
       "attributes": {
-        "x": 187.288,
+        "x": 179.616,
         "y": 210.077,
-        "width": 43.0,
+        "width": 34.68,
         "height": 27.0,
         "fill": "#ffffff",
         "stroke": "#111111",
@@ -84,14 +84,14 @@
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "integer",
-        "max_length": 4,
+        "value_type": "digit",
+        "max_length": 1,
         "include_in_submission": true,
         "order": 1,
         "group_id": "final_answer",
         "answer_key_index": 1,
         "answer_ref": "answer.2.tens",
-        "auto_advance": false,
+        "auto_advance": true,
         "keyboard": "number"
       },
       "input_style": {
@@ -104,7 +104,7 @@
         "vertical_align": "middle",
         "padding": 6,
         "text_color": "#222222",
-        "width": 43.0,
+        "width": 34.68,
         "height": 27.0
       }
     },
@@ -112,9 +112,9 @@
       "id": "slot.calculation.2.box.hundreds.rect",
       "type": "rect",
       "attributes": {
-        "x": 172.288,
+        "x": 161.285,
         "y": 251.077,
-        "width": 58.0,
+        "width": 53.0,
         "height": 27.0,
         "fill": "#ffffff",
         "stroke": "#111111",
@@ -147,7 +147,7 @@
         "vertical_align": "middle",
         "padding": 6,
         "text_color": "#222222",
-        "width": 58.0,
+        "width": 53.0,
         "height": 27.0
       }
     },
@@ -155,9 +155,9 @@
       "id": "slot.calculation.2.box.total.rect",
       "type": "rect",
       "attributes": {
-        "x": 172.288,
+        "x": 159.064,
         "y": 303.077,
-        "width": 58.0,
+        "width": 55.22,
         "height": 29.0,
         "fill": "#ffffff",
         "stroke": "#111111",
@@ -190,7 +190,7 @@
         "vertical_align": "middle",
         "padding": 6,
         "text_color": "#222222",
-        "width": 58.0,
+        "width": 55.22,
         "height": 29.0
       }
     },
@@ -214,9 +214,9 @@
       "id": "slot.calculation.2.line.bottom.line",
       "type": "line",
       "attributes": {
-        "x1": 142.288,
+        "x1": 140.288,
         "y1": 290.077,
-        "x2": 234.288,
+        "x2": 232.288,
         "y2": 290.077,
         "stroke": "#111111",
         "stroke-width": 1.5
@@ -230,7 +230,7 @@
       "id": "slot.calculation.2.top.text",
       "type": "text",
       "attributes": {
-        "x": 190.288,
+        "x": 186.788,
         "y": 90.077,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
@@ -242,7 +242,7 @@
       "refs": {
         "layout_slot_id": "slot.calculation.2.top"
       },
-      "text": "386"
+      "text": "3 8 6"
     },
     {
       "id": "slot.calculation.2.plus.text",
@@ -266,7 +266,7 @@
       "id": "slot.calculation.2.bottom.text",
       "type": "text",
       "attributes": {
-        "x": 190.288,
+        "x": 188.788,
         "y": 132.077,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
@@ -278,7 +278,7 @@
       "refs": {
         "layout_slot_id": "slot.calculation.2.bottom"
       },
-      "text": "211"
+      "text": "2 1 1"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

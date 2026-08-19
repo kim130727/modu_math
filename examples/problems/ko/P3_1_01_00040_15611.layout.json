@@ -3,7 +3,7 @@
   "problem_id": "P3_1_01_00040_15611",
   "title": "숫자 카드로 덧셈식 완성하기",
   "canvas": {
-    "width": 500,
+    "width": 760,
     "height": 220,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
@@ -47,7 +47,11 @@
         "konva_1786192274303_paste_838274_0",
         "konva_1786192274303_paste_838834_0",
         "konva_1786192274303_paste_849762_0",
-        "konva_1786192274303_paste_854403_0"
+        "konva_1786192274303_paste_854403_0",
+        "slot.blank.top_tens",
+        "slot.blank.top_ones",
+        "slot.blank.bottom_hundreds",
+        "slot.blank.result_ones"
       ]
     }
   ],
@@ -86,7 +90,7 @@
       "content": {
         "text": "1",
         "style_role": "body",
-        "x": 40,
+        "x": 36.0,
         "y": 72.0,
         "font_size": 21,
         "anchor": "middle",
@@ -114,7 +118,7 @@
       "content": {
         "text": "5",
         "style_role": "body",
-        "x": 76,
+        "x": 72.0,
         "y": 72.0,
         "font_size": 21,
         "anchor": "middle",
@@ -142,7 +146,7 @@
       "content": {
         "text": "2",
         "style_role": "body",
-        "x": 112,
+        "x": 108.0,
         "y": 72.0,
         "font_size": 21,
         "anchor": "middle",
@@ -170,7 +174,7 @@
       "content": {
         "text": "7",
         "style_role": "body",
-        "x": 148,
+        "x": 144.0,
         "y": 72.0,
         "font_size": 21,
         "anchor": "middle",
@@ -209,10 +213,8 @@
           "value_type": "digit",
           "max_length": 1,
           "include_in_submission": true,
-          "order": 0,
+          "order": 1,
           "group_id": "final_answer",
-          "answer_key_index": 0,
-          "answer_ref": "answer.top_tens",
           "auto_advance": true,
           "keyboard": "number"
         },
@@ -249,10 +251,8 @@
           "value_type": "digit",
           "max_length": 1,
           "include_in_submission": true,
-          "order": 1,
+          "order": 0,
           "group_id": "final_answer",
-          "answer_key_index": 1,
-          "answer_ref": "answer.top_ones",
           "auto_advance": true,
           "keyboard": "number"
         },
@@ -305,8 +305,6 @@
           "include_in_submission": true,
           "order": 2,
           "group_id": "final_answer",
-          "answer_key_index": 2,
-          "answer_ref": "answer.bottom_hundreds",
           "auto_advance": true,
           "keyboard": "number"
         },
@@ -358,8 +356,6 @@
           "include_in_submission": true,
           "order": 3,
           "group_id": "final_answer",
-          "answer_key_index": 3,
-          "answer_ref": "answer.result_ones",
           "auto_advance": true,
           "keyboard": "number"
         },
@@ -379,16 +375,48 @@
       }
     },
     {
+      "id": "slot.blank.top_tens",
+      "kind": "blank",
+      "prompt": "첫 번째 수의 십의 자리",
+      "content": {
+        "placeholder": "숫자 카드"
+      }
+    },
+    {
+      "id": "slot.blank.top_ones",
+      "kind": "blank",
+      "prompt": "첫 번째 수의 일의 자리",
+      "content": {
+        "placeholder": "숫자 카드"
+      }
+    },
+    {
+      "id": "slot.blank.bottom_hundreds",
+      "kind": "blank",
+      "prompt": "두 번째 수의 백의 자리",
+      "content": {
+        "placeholder": "숫자 카드"
+      }
+    },
+    {
+      "id": "slot.blank.result_ones",
+      "kind": "blank",
+      "prompt": "계산 결과의 일의 자리",
+      "content": {
+        "placeholder": "숫자 카드"
+      }
+    },
+    {
       "id": "konva_1786192274303_paste_838274_0",
       "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "3",
         "style_role": "body",
-        "x": 233.153,
-        "y": 84.952,
+        "x": 234.297,
+        "y": 85.328,
         "width": 25.2,
-        "height": 37,
+        "height": 30.0,
         "align": "center",
         "valign": "top",
         "font_size": 24,
@@ -403,10 +431,10 @@
       "content": {
         "text": "5",
         "style_role": "body",
-        "x": 259.662,
-        "y": 84.902,
+        "x": 259.426,
+        "y": 84.776,
         "width": 25.2,
-        "height": 37,
+        "height": 30.0,
         "align": "center",
         "valign": "top",
         "font_size": 24,
@@ -424,7 +452,7 @@
         "x": 206.425,
         "y": 128.393,
         "width": 25.2,
-        "height": 37,
+        "height": 30.0,
         "align": "center",
         "valign": "top",
         "font_size": 24,
@@ -442,7 +470,7 @@
         "x": 232.148,
         "y": 128.475,
         "width": 30.213,
-        "height": 37,
+        "height": 30.0,
         "align": "center",
         "valign": "top",
         "font_size": 24,
@@ -477,6 +505,10 @@
     "konva_1786192274303_paste_838274_0",
     "konva_1786192274303_paste_838834_0",
     "konva_1786192274303_paste_849762_0",
-    "konva_1786192274303_paste_854403_0"
+    "konva_1786192274303_paste_854403_0",
+    "slot.blank.top_tens",
+    "slot.blank.top_ones",
+    "slot.blank.bottom_hundreds",
+    "slot.blank.result_ones"
   ]
 }

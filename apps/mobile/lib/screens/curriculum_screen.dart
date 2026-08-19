@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../app/router.dart';
@@ -31,7 +33,16 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
   @override
   void initState() {
     super.initState();
-    _manifestFuture = widget.repository.loadManifest();
+    _manifestFuture = _loadManifest();
+  }
+
+  Future<ProblemManifest> _loadManifest() async {
+    final manifest = await widget.repository.loadManifest();
+    final count = manifest.problems.length.clamp(0, 3);
+    for (var i = 0; i < count; i++) {
+      unawaited(widget.repository.preloadProblem(manifest.problems[i]).catchError((_) {}));
+    }
+    return manifest;
   }
 
   @override
@@ -48,7 +59,7 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
       return;
     }
     setState(() {
-      _manifestFuture = widget.repository.loadManifest();
+      _manifestFuture = _loadManifest();
     });
   }
 

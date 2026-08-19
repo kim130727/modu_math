@@ -16,6 +16,12 @@
       "slot_ids": [
         "slot.question"
       ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
     }
   ],
   "slots": [
@@ -26,13 +32,13 @@
       "content": {
         "text": "집에서 학교로 가는 길은 소방서를 거쳐 가는 것과 주민센터를 거쳐서 가는 것 두 가지입니다. 집에서 소방서까지 168m이고 소방서에서 학교까지는 726m입니다. 그리고 집에서 주민센터까지는 625m이고 주민센터에서 학교까지의 거리는 186m입니다. 소방서를 거쳐서 가는 것과 주민센터를 거쳐서 가는 것 중 어느 곳을 거쳐서 가는 것이 더 멀겠습니까?",
         "style_role": "body",
-        "x": 15.058,
-        "y": 11.417,
-        "width": 804,
+        "x": 48.0,
+        "y": 30.0,
+        "width": 804.0,
         "height": 278.0,
         "align": "left",
         "valign": "top",
-        "font_size": 30,
+        "font_size": 24,
         "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "line_height": 1.5,
         "fill": "#202124"
@@ -44,6 +50,7 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.question"
+    "slot.question",
+    "region.answer"
   ]
 }

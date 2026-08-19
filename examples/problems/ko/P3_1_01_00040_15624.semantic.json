@@ -67,6 +67,8 @@
       {
         "id": "relation.use_each_card_once",
         "type": "permutation_constraint",
+        "from_id": "card.digit_2",
+        "to_id": "number.largest",
         "card_ids": [
           "card.digit_2",
           "card.digit_4",
@@ -78,6 +80,8 @@
       {
         "id": "relation.largest_descending_order",
         "type": "descending_place_value_arrangement",
+        "from_id": "card.digit_6",
+        "to_id": "number.largest",
         "subject": "number.largest",
         "digit_order": [
           6,
@@ -89,6 +93,8 @@
       {
         "id": "relation.smallest_ascending_order",
         "type": "ascending_place_value_arrangement",
+        "from_id": "card.digit_2",
+        "to_id": "number.smallest",
         "subject": "number.smallest",
         "digit_order": [
           2,
@@ -100,6 +106,8 @@
       {
         "id": "relation.sum_extremes",
         "type": "sum_of",
+        "from_id": "number.largest",
+        "to_id": "quantity.sum_largest_smallest",
         "subject": "quantity.sum_largest_smallest",
         "objects": [
           "number.largest",

@@ -56,12 +56,13 @@ def build_problem_template() -> ProblemTemplate:
                 x=20,
                 y=68,
                 width=920,
-                height = 31, text="(1) 숫자 카드를 이용하여 만들 수 있는 가장 큰 세 자리 수를 쓰시오.",
+                height=31,
+                text="(1) 숫자 카드를 이용하여 만들 수 있는 가장 큰 세 자리 수를 쓰시오.",
                 font_size=18,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 align="left",
-                valign="middle",
+                valign="top",
             ),
             BlankSlot(
                 id="slot.answer1",
@@ -74,12 +75,13 @@ def build_problem_template() -> ProblemTemplate:
                 x=20,
                 y=105,
                 width=920,
-                height = 31, text="(2) 숫자 카드를 이용하여 만들 수 있는 가장 작은 세 자리 수를 쓰시오.",
+                height=31,
+                text="(2) 숫자 카드를 이용하여 만들 수 있는 가장 작은 세 자리 수를 쓰시오.",
                 font_size=18,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 align="left",
-                valign="middle",
+                valign="top",
             ),
             BlankSlot(
                 id="slot.answer2",
@@ -92,7 +94,8 @@ def build_problem_template() -> ProblemTemplate:
                 x=20,
                 y=142,
                 width=920,
-                height = 31, text=(
+                height=31,
+                text=(
                     "(3) 숫자 카드를 이용하여 만들 수 있는 가장 큰 세 자리 수와 "
                     "가장 작은 세 자리 수의 합을 구하시오."
                 ),
@@ -100,7 +103,7 @@ def build_problem_template() -> ProblemTemplate:
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 align="left",
-                valign="middle",
+                valign="top",
             ),
             BlankSlot(
                 id="slot.answer3",
@@ -239,6 +242,8 @@ SEMANTIC_OVERRIDE = {
             {
                 "id": "relation.use_each_card_once",
                 "type": "permutation_constraint",
+                "from_id": "card.digit_2",
+                "to_id": "number.largest",
                 "card_ids": [
                     "card.digit_2",
                     "card.digit_4",
@@ -250,6 +255,8 @@ SEMANTIC_OVERRIDE = {
             {
                 "id": "relation.largest_descending_order",
                 "type": "descending_place_value_arrangement",
+                "from_id": "card.digit_6",
+                "to_id": "number.largest",
                 "subject": "number.largest",
                 "digit_order": [6, 4, 2],
                 "equation": "6×100 + 4×10 + 2 = 642",
@@ -257,6 +264,8 @@ SEMANTIC_OVERRIDE = {
             {
                 "id": "relation.smallest_ascending_order",
                 "type": "ascending_place_value_arrangement",
+                "from_id": "card.digit_2",
+                "to_id": "number.smallest",
                 "subject": "number.smallest",
                 "digit_order": [2, 4, 6],
                 "equation": "2×100 + 4×10 + 6 = 246",
@@ -264,6 +273,8 @@ SEMANTIC_OVERRIDE = {
             {
                 "id": "relation.sum_extremes",
                 "type": "sum_of",
+                "from_id": "number.largest",
+                "to_id": "quantity.sum_largest_smallest",
                 "subject": "quantity.sum_largest_smallest",
                 "objects": [
                     "number.largest",
