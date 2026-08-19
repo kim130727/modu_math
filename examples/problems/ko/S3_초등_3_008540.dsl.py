@@ -235,8 +235,10 @@ def build_problem_template() -> ProblemTemplate:
             RectSlot(
                 id="slot.choice.box",
                 prompt="",
-                x = 552.236, y = 93.415, width=292,
-                height=168,
+                x=420,
+                y=110,
+                width=410,
+                height=170,
                 stroke="#F39C12",
                 stroke_width=2,
                 fill="none",
@@ -246,7 +248,9 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="",
                 text="(1) 6 × 4",
                 style_role="diagram",
-                x = 595.236, y = 154.415, font_size=28,
+                x=445,
+                y=170,
+                font_size=28,
                 fill="#111111",
             ),
             TextSlot(
@@ -254,7 +258,9 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="",
                 text="(2) 69 × 4",
                 style_role="diagram",
-                x = 710.236, y = 154.415, font_size=28,
+                x=640,
+                y=170,
+                font_size=28,
                 fill="#111111",
             ),
             TextSlot(
@@ -262,7 +268,9 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="",
                 text="(3) 60 × 4",
                 style_role="diagram",
-                x = 585.236, y = 214.415, font_size=28,
+                x=445,
+                y=240,
+                font_size=28,
                 fill="#111111",
             ),
             TextSlot(
@@ -270,7 +278,9 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="",
                 text="(4) 600 × 4",
                 style_role="diagram",
-                x = 700.236, y = 214.415, font_size=28,
+                x=640,
+                y=240,
+                font_size=28,
                 fill="#111111",
             ),
         ),
@@ -313,18 +323,17 @@ SEMANTIC_OVERRIDE = {
     "answer": {
         "blanks": [],
         "choices": [
-            {"id": "choice.1", "label": "choices", "text": "choices"},
-            {"id": "choice.2", "label": "6 × 4", "text": "6 × 4"},
-            {"id": "choice.3", "label": "69 × 4", "text": "69 × 4"},
-            {"id": "choice.4", "label": "60 × 4", "text": "60 × 4"},
-            {"id": "choice.5", "label": "600 × 4", "text": "600 × 4"}
+            {"id": "choice.1", "label": "(1)", "text": "(1) 6 × 4"},
+            {"id": "choice.2", "label": "(2)", "text": "(2) 69 × 4"},
+            {"id": "choice.3", "label": "(3)", "text": "(3) 60 × 4"},
+            {"id": "choice.4", "label": "(4)", "text": "(4) 600 × 4"},
         ],
-        "answer_key": [{"id": "choice.3", "value": "60 × 4"}],
+        "answer_key": [{"id": "choice.3", "value": "(3) 60 × 4"}],
         "target": {
             "type": "choice_value",
             "description": "색칠한 부분 240에 해당하는 보기 번호",
         },
-        "value": "60 × 4",
+        "value": "(3) 60 × 4",
         "unit": "",
     },
 }
@@ -362,18 +371,17 @@ SOLVABLE = {
     "answer": {
         "blanks": [],
         "choices": [
-            {"id": "choice.1", "label": "choices", "text": "choices"},
-            {"id": "choice.2", "label": "6 × 4", "text": "6 × 4"},
-            {"id": "choice.3", "label": "69 × 4", "text": "69 × 4"},
-            {"id": "choice.4", "label": "60 × 4", "text": "60 × 4"},
-            {"id": "choice.5", "label": "600 × 4", "text": "600 × 4"}
+            {"id": "choice.1", "label": "(1)", "text": "(1) 6 × 4"},
+            {"id": "choice.2", "label": "(2)", "text": "(2) 69 × 4"},
+            {"id": "choice.3", "label": "(3)", "text": "(3) 60 × 4"},
+            {"id": "choice.4", "label": "(4)", "text": "(4) 600 × 4"},
         ],
-        "answer_key": [{"id": "choice.3", "value": "60 × 4"}],
+        "answer_key": [{"id": "choice.3", "value": "(3) 60 × 4"}],
         "target": {
             "type": "choice_value",
             "description": "색칠한 부분 240에 해당하는 보기 번호",
         },
-        "value": "60 × 4",
+        "value": "(3) 60 × 4",
         "unit": "",
     },
 }
@@ -401,24 +409,14 @@ SOLVABLE["understanding"] = {
             "id": "understand.place_value",
             "type": "multiple_choice",
             "prompt": "What value does the digit 6 have in 869?",
-            "choices": [
-            {"id": "choice.1", "label": "choices", "text": "choices"},
-            {"id": "choice.2", "label": "6", "text": "6"},
-            {"id": "choice.3", "label": "60", "text": "60"},
-            {"id": "choice.4", "label": "600", "text": "600"}
-        ],
+            "choices": ["6", "60", "600"],
             "answer_index": 1,
         },
         {
             "id": "understand.partial_product",
             "type": "multiple_choice",
             "prompt": "Which expression gives the highlighted partial product 240?",
-            "choices": [
-            {"id": "choice.1", "label": "choices", "text": "choices"},
-            {"id": "choice.2", "label": "6 x 4", "text": "6 x 4"},
-            {"id": "choice.3", "label": "60 x 4", "text": "60 x 4"},
-            {"id": "choice.4", "label": "600 x 4", "text": "600 x 4"}
-        ],
+            "choices": ["6 x 4", "60 x 4", "600 x 4"],
             "answer_index": 1,
         },
     ],

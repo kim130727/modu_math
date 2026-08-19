@@ -24,7 +24,7 @@ class ContentRepository {
     this.githubRef = 'main',
     this.githubProblemsPath = 'examples/problems',
     this.localProblemsPath = r'..\..\examples\problems',
-    this.localHttpBaseUrl = 'http://localhost:8765',
+    this.localHttpBaseUrl = 'http://127.0.0.1:8765',
   })  : source = source ??
             (kIsWeb
                 ? ContentRepositorySource.localHttp
@@ -48,7 +48,7 @@ class ContentRepository {
 
   ContentRepository.localHttp({
     http.Client? httpClient,
-    String localHttpBaseUrl = 'http://localhost:8765',
+    String localHttpBaseUrl = 'http://127.0.0.1:8765',
   }) : this(
           source: ContentRepositorySource.localHttp,
           httpClient: httpClient,
@@ -74,6 +74,8 @@ class ContentRepository {
   final Map<String, ProblemContent> _completedProblemCache = {};
   String _activeProblemLocale = 'ko';
 
+  ProblemManifest? _cachedManifest;
+
   String get activeProblemLocale => _activeProblemLocale;
 
   set activeProblemLocale(String locale) {
@@ -82,21 +84,38 @@ class ContentRepository {
     }
     _activeProblemLocale = locale;
     _rendererPathCache = null;
+    _cachedManifest = null;
   }
 
   Future<ProblemManifest> loadManifest() async {
-    if (source == ContentRepositorySource.localHttp) {
-      final localProblems = await _loadBundledProblems();
-      return ProblemManifest(
-        version: 'local-http',
-        problems: localProblems,
-        raw: {
-          'version': 'local-http',
-          'source': 'local-http',
-          'baseUrl': localHttpBaseUrl,
-          'problems': localProblems.map((problem) => problem.raw).toList(),
-        },
-      );
+    if (_cachedManifest != null) {
+      return SynchronousFuture(_cachedManifest!);
+    }
+    final manifest = await _loadManifestUncached();
+    _cachedManifest = manifest;
+    return manifest;
+  }
+
+  bool _localHttpFailed = false;
+
+  Future<ProblemManifest> _loadManifestUncached() async {
+    if (source == ContentRepositorySource.localHttp && !_localHttpFailed) {
+      try {
+        final localProblems = await _loadBundledProblems()
+            .timeout(const Duration(milliseconds: 1500));
+        return ProblemManifest(
+          version: 'local-http',
+          problems: localProblems,
+          raw: {
+            'version': 'local-http',
+            'source': 'local-http',
+            'baseUrl': localHttpBaseUrl,
+            'problems': localProblems.map((problem) => problem.raw).toList(),
+          },
+        );
+      } catch (_) {
+        _localHttpFailed = true;
+      }
     }
 
     if (source == ContentRepositorySource.localExamples) {
@@ -129,28 +148,22 @@ class ContentRepository {
       );
     }
 
-    final bundledProblems = await _loadBundledProblems();
     final decoded = await _loadOptionalManifest();
-    if (decoded == null) {
-      return ProblemManifest(
-        version: 'examples',
-        problems: bundledProblems,
-        raw: {
-          'version': 'examples',
-          'source': 'bundled-examples',
-          'path': problemsPath,
-          'problems': bundledProblems.map((problem) => problem.raw).toList(),
-        },
-      );
+    if (decoded != null && decoded['problems'] is List) {
+      final manifest = ProblemManifest.fromJson(decoded);
+      if (manifest.problems.isNotEmpty) {
+        return manifest;
+      }
     }
-    if (bundledProblems.isEmpty) {
-      return ProblemManifest.fromJson(decoded);
-    }
+
+    final bundledProblems = await _loadBundledProblems();
     return ProblemManifest(
-      version: decoded['version']?.toString() ?? '0.1.0',
+      version: 'examples',
       problems: bundledProblems,
       raw: {
-        ...decoded,
+        'version': 'examples',
+        'source': 'bundled-examples',
+        'path': problemsPath,
         'problems': bundledProblems.map((problem) => problem.raw).toList(),
       },
     );
@@ -360,6 +373,13 @@ class ContentRepository {
   }
 
   Future<List<ProblemSummary>> _loadBundledProblems() async {
+    if (source == ContentRepositorySource.localHttp) {
+      final summaries = await _tryLoadLocalHttpProblemSummaries();
+      if (summaries != null && summaries.isNotEmpty) {
+        return summaries;
+      }
+    }
+
     final rendererPaths = await _loadRendererPaths();
 
     final problems = await Future.wait(rendererPaths.map((rendererPath) {
@@ -376,6 +396,36 @@ class ContentRepository {
       ..sort((a, b) =>
           _compareProblemPrefixes(a.filePrefix ?? a.id, b.filePrefix ?? b.id));
     return problems;
+  }
+
+  Future<List<ProblemSummary>?> _tryLoadLocalHttpProblemSummaries() async {
+    try {
+      final response = await _httpClient.get(_localHttpUri('/api/problems'));
+      if (response.statusCode != 200) {
+        return null;
+      }
+      final decoded =
+          jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>;
+      final paths = decoded['paths'];
+      if (paths is List) {
+        _rendererPathCache = paths
+            .map((path) => path.toString())
+            .where((path) => path.endsWith('.renderer.json'))
+            .map((path) => path.replaceAll(r'\', '/'))
+            .toList()
+          ..sort();
+      }
+      final problems = decoded['problems'];
+      if (problems is List && problems.isNotEmpty) {
+        return problems
+            .whereType<Map<String, dynamic>>()
+            .map(ProblemSummary.fromJson)
+            .toList()
+          ..sort((a, b) =>
+              _compareProblemPrefixes(a.filePrefix ?? a.id, b.filePrefix ?? b.id));
+      }
+    } catch (_) {}
+    return null;
   }
 
   Future<List<String>> _loadRendererPaths() async {
@@ -592,7 +642,9 @@ class ContentRepository {
   Future<Map<String, dynamic>> _loadJson(String assetPath) async {
     final source = switch (this.source) {
       ContentRepositorySource.localExamples => await loadLocalText(assetPath),
-      ContentRepositorySource.localHttp => await _loadLocalHttpText(assetPath),
+      ContentRepositorySource.localHttp => _localHttpFailed
+          ? await rootBundle.loadString(_bundledProblemPath(assetPath))
+          : await _loadLocalHttpText(assetPath),
       ContentRepositorySource.githubExamples => await _loadGithubText(
           assetPath,
         ),
