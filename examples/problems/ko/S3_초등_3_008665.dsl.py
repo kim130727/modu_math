@@ -20,7 +20,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.question"),
+                slot_ids=("slot.question",),
             ),
             Region(
                 id="region.diagram",

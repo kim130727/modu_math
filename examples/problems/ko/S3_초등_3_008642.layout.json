@@ -24,6 +24,7 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.circle",
+        "slot.note.arrow",
         "konva_1784612321567_arrow_620234",
         "slot.diameter.vertical",
         "slot.diameter.green",
@@ -32,6 +33,7 @@
         "slot.label.eunji",
         "slot.label.jina",
         "slot.label.hyeonjun",
+        "slot.note.text",
         "slot.note.text.copy6",
         "konva_1784612321567_paste_583821_0"
       ]
@@ -157,6 +159,31 @@
       }
     },
     {
+      "id": "slot.note.arrow",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 605 325 C 555 305, 545 285, 495 260 C 475 245, 450 230, 430 215",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "transform": "rotate(-390 625 327.5)"
+      }
+    },
+    {
+      "id": "slot.note.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "\n    \n        \n            \n                \n                    \n                        \n                            \n                                \n                                    지름은 모두\n                                    원의 중심을\n                                    지나요.\n                                  \n                              \n                          \n                      \n                  \n              \n          \n      \n  ",
+        "style_role": "note",
+        "x": 615.0,
+        "y": 295.0,
+        "font_size": 25
+      }
+    },
+    {
       "id": "slot.choice.box",
       "kind": "rect",
       "prompt": "",
@@ -202,7 +229,8 @@
         "x": 365.0,
         "y": 310.0,
         "font_size": 25,
-        "fill": "#111111"
+        "fill": "#111111",
+        "semantic_role": "symbol_label"
       }
     },
     {
@@ -246,6 +274,7 @@
     "slot.q1.copy5",
     "region.diagram",
     "slot.circle",
+    "slot.note.arrow",
     "konva_1784612321567_arrow_620234",
     "slot.diameter.vertical",
     "slot.diameter.green",
@@ -254,6 +283,7 @@
     "slot.label.eunji",
     "slot.label.jina",
     "slot.label.hyeonjun",
+    "slot.note.text",
     "slot.note.text.copy6",
     "konva_1784612321567_paste_583821_0",
     "region.choice",

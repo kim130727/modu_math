@@ -20,7 +20,7 @@ def build_problem_template() -> ProblemTemplate:
                 flow="absolute",
                 slot_ids=(),
             ),
-            Region(id="region.body", role="stem", flow="absolute", slot_ids="slot.body"),
+            Region(id="region.body", role="stem", flow="absolute", slot_ids=("slot.body",)),
             Region(id="region.answer", role="answer", flow="absolute", slot_ids=()),
         ),
         slots=(
@@ -75,7 +75,11 @@ SEMANTIC_OVERRIDE = {
         "objects": [
             {"id": "obj.jar", "type": "container", "name": "항아리"},
             {"id": "obj.quantity", "type": "measure_value", "value": 24},
-            {"id": "obj.unit_choices", "type": "unit_choices", "choices": ["mL", "L"]},
+            {"id": "obj.unit_choices", "type": "unit_choices", "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "mL", "text": "mL"},
+            {"id": "choice.3", "label": "L", "text": "L"}
+        ]},
         ],
         "relations": [],
         "problem_solving": {

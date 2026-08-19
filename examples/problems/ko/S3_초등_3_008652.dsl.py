@@ -186,15 +186,13 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.header",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.qnum", "slot.qtext1", "slot.qtext2"),
+                slot_ids=("slot.qtext1", "slot.qtext2"),
             ),
             Region(
                 id="region.diagram",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(
-                    *(slot.id for slot in grid_slots),
-                    "slot.circle.outer",
+                slot_ids=("slot.circle.outer",
                     "slot.circle.middle",
                     "slot.circle.inner",
                     "slot.center",
@@ -205,7 +203,6 @@ def build_problem_template() -> ProblemTemplate:
                 role="diagram",
                 flow="absolute",
                 slot_ids=(
-                    *(slot.id for slot in sunga_character),
                     *(slot.id for slot in sunga_name),
                     *(slot.id for slot in sunga_bubble),
                     *(slot.id for slot in jaewon_character),
@@ -214,10 +211,16 @@ def build_problem_template() -> ProblemTemplate:
                 ),
             ),
             Region(
+                id="region.answer",
+                role="answer",
+                flow="absolute",
+                slot_ids=(),
+            ),
+            Region(
                 id="region.footer",
                 role="note",
                 flow="absolute",
-                slot_ids=("slot.answer", "slot.explain1", "slot.explain2"),
+                slot_ids=(),
             ),
         ),
         slots=(

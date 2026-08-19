@@ -312,7 +312,13 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": ["6 × 4", "69 × 4", "60 × 4", "600 × 4"],
+        "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "6 × 4", "text": "6 × 4"},
+            {"id": "choice.3", "label": "69 × 4", "text": "69 × 4"},
+            {"id": "choice.4", "label": "60 × 4", "text": "60 × 4"},
+            {"id": "choice.5", "label": "600 × 4", "text": "600 × 4"}
+        ],
         "answer_key": [{"id": "choice.3", "value": "60 × 4"}],
         "target": {
             "type": "choice_value",
@@ -355,7 +361,13 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": ["6 × 4", "69 × 4", "60 × 4", "600 × 4"],
+        "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "6 × 4", "text": "6 × 4"},
+            {"id": "choice.3", "label": "69 × 4", "text": "69 × 4"},
+            {"id": "choice.4", "label": "60 × 4", "text": "60 × 4"},
+            {"id": "choice.5", "label": "600 × 4", "text": "600 × 4"}
+        ],
         "answer_key": [{"id": "choice.3", "value": "60 × 4"}],
         "target": {
             "type": "choice_value",
@@ -389,14 +401,24 @@ SOLVABLE["understanding"] = {
             "id": "understand.place_value",
             "type": "multiple_choice",
             "prompt": "What value does the digit 6 have in 869?",
-            "choices": ["6", "60", "600"],
+            "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "6", "text": "6"},
+            {"id": "choice.3", "label": "60", "text": "60"},
+            {"id": "choice.4", "label": "600", "text": "600"}
+        ],
             "answer_index": 1,
         },
         {
             "id": "understand.partial_product",
             "type": "multiple_choice",
             "prompt": "Which expression gives the highlighted partial product 240?",
-            "choices": ["6 x 4", "60 x 4", "600 x 4"],
+            "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "6 x 4", "text": "6 x 4"},
+            {"id": "choice.3", "label": "60 x 4", "text": "60 x 4"},
+            {"id": "choice.4", "label": "600 x 4", "text": "600 x 4"}
+        ],
             "answer_index": 1,
         },
     ],

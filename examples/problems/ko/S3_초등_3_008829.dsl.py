@@ -89,7 +89,11 @@ SEMANTIC_OVERRIDE = {
         "objects": [
             {"id": "obj.barrel", "type": "container", "name": "드럼통", "quantity": "capacity"},
             {"id": "obj.quantity", "type": "number", "value": 100},
-            {"id": "obj.units", "type": "unit_choices", "choices": ["mL", "L"]},
+            {"id": "obj.units", "type": "unit_choices", "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "mL", "text": "mL"},
+            {"id": "choice.3", "label": "L", "text": "L"}
+        ]},
         ],
         "relations": [],
         "problem_solving": {

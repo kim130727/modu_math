@@ -15,8 +15,7 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.inserted.image.1",
-        "slot.instruction",
-        "slot.body"
+        "slot.instruction"
       ]
     },
     {
@@ -29,7 +28,9 @@
       "id": "region.body",
       "role": "stem",
       "flow": "absolute",
-      "slot_ids": []
+      "slot_ids": [
+        "slot.body"
+      ]
     },
     {
       "id": "region.answer",
@@ -85,9 +86,9 @@
     "region.header",
     "slot.inserted.image.1",
     "slot.instruction",
-    "slot.body",
     "region.diagram",
     "region.body",
+    "slot.body",
     "region.answer"
   ]
 }

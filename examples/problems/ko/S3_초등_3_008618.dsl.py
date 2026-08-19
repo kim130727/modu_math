@@ -26,7 +26,6 @@ def comparison_speaker(**kwargs: Any) -> SpeakerSpec:
         speech_font_size=28,
         speech_text_dy=8,
         name_width=68,
-        name_y=242,
         name_height=34,
         name_rx=8,
         name_ry=8,
@@ -89,11 +88,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.answer",
                 role="answer",
                 flow="absolute",
-                slot_ids=(
-                    
-                    
-                    
-                ),
+                slot_ids=(),
             ),
         ),
         slots=(

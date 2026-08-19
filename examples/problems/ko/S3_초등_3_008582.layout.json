@@ -25,7 +25,17 @@
       "role": "content",
       "flow": "absolute",
       "slot_ids": [
+        "slot.person_left.body",
+        "slot.person_left.ear.left",
+        "slot.person_left.ear.right",
+        "slot.person_left.head",
+        "slot.person_left.hair.cap",
+        "slot.person_left.smile",
         "slot.name_left_box",
+        "slot.person_left.eye.left",
+        "slot.person_left.eye.right",
+        "slot.person_left.hand.left",
+        "slot.person_left.hand.right",
         "slot.name_left"
       ]
     },
@@ -34,7 +44,20 @@
       "role": "content",
       "flow": "absolute",
       "slot_ids": [
+        "slot.person_right.body",
+        "slot.person_right.ear.left",
+        "slot.person_right.ear.right",
+        "slot.person_right.head",
+        "slot.person_right.hair.cap",
+        "slot.person_right.smile",
+        "slot.person_right.glasses.left",
+        "slot.person_right.glasses.right",
         "slot.name_right_box",
+        "slot.person_right.glasses.bridge",
+        "slot.person_right.eye.left",
+        "slot.person_right.eye.right",
+        "slot.person_right.hand.left",
+        "slot.person_right.hand.right",
         "slot.name_right"
       ]
     }
@@ -51,6 +74,118 @@
         "y": 37.0,
         "font_size": 28,
         "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.person_left.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            207.0,
+            217.0
+          ],
+          [
+            277.0,
+            217.0
+          ],
+          [
+            266.0,
+            164.0
+          ],
+          [
+            218.0,
+            164.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#d28bc8"
+      }
+    },
+    {
+      "id": "slot.person_left.ear.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 211.0,
+        "cy": 125.0,
+        "r": 9.0,
+        "stroke": "none",
+        "fill": "#ffd8b3"
+      }
+    },
+    {
+      "id": "slot.person_left.ear.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 273.0,
+        "cy": 125.0,
+        "r": 9.0,
+        "stroke": "none",
+        "fill": "#ffd8b3"
+      }
+    },
+    {
+      "id": "slot.person_left.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 242.0,
+        "cy": 122.0,
+        "r": 29.0,
+        "stroke": "none",
+        "fill": "#ffd8b3"
+      }
+    },
+    {
+      "id": "slot.person_left.hair.cap",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 213.0 121.0 C 215.0 90.0, 270.0 87.0, 272.0 121.0 C 257.0 104.0, 245.0 114.0, 238.0 102.0 C 230.0 115.0, 220.0 104.0, 213.0 121.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#4b1f16"
+      }
+    },
+    {
+      "id": "slot.person_left.eye.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 232.0,
+        "cy": 128.0,
+        "r": 3.8,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.person_left.eye.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 252.0,
+        "cy": 128.0,
+        "r": 3.8,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.person_left.smile",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 234.0 140.0 Q 242.0 147.0 250.0 140.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#b76b3a",
+        "stroke_width": 1.6,
+        "fill": "none"
       }
     },
     {
@@ -83,6 +218,181 @@
       }
     },
     {
+      "id": "slot.person_left.hand.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 176.0,
+        "cy": 192.0,
+        "r": 5.0,
+        "stroke": "none",
+        "fill": "#ffd8b3"
+      }
+    },
+    {
+      "id": "slot.person_left.hand.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 316.0,
+        "cy": 192.0,
+        "r": 5.0,
+        "stroke": "none",
+        "fill": "#ffd8b3"
+      }
+    },
+    {
+      "id": "slot.person_right.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            407.0,
+            212.0
+          ],
+          [
+            477.0,
+            212.0
+          ],
+          [
+            466.0,
+            159.0
+          ],
+          [
+            418.0,
+            159.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#e85d50"
+      }
+    },
+    {
+      "id": "slot.person_right.ear.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 411.0,
+        "cy": 120.0,
+        "r": 9.0,
+        "stroke": "none",
+        "fill": "#ffd8b3"
+      }
+    },
+    {
+      "id": "slot.person_right.ear.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 473.0,
+        "cy": 120.0,
+        "r": 9.0,
+        "stroke": "none",
+        "fill": "#ffd8b3"
+      }
+    },
+    {
+      "id": "slot.person_right.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 442.0,
+        "cy": 117.0,
+        "r": 29.0,
+        "stroke": "none",
+        "fill": "#ffd8b3"
+      }
+    },
+    {
+      "id": "slot.person_right.hair.cap",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 413.0 116.0 C 415.0 85.0, 470.0 82.0, 472.0 116.0 C 457.0 99.0, 445.0 109.0, 438.0 97.0 C 430.0 110.0, 420.0 99.0, 413.0 116.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#1d1714"
+      }
+    },
+    {
+      "id": "slot.person_right.eye.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 432.0,
+        "cy": 123.0,
+        "r": 3.8,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.person_right.eye.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 452.0,
+        "cy": 123.0,
+        "r": 3.8,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.person_right.smile",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 434.0 135.0 Q 442.0 142.0 450.0 135.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#b76b3a",
+        "stroke_width": 1.6,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.person_right.glasses.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 431.0,
+        "cy": 122.0,
+        "r": 13.0,
+        "stroke": "#27b7be",
+        "stroke_width": 3.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.person_right.glasses.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 453.0,
+        "cy": 122.0,
+        "r": 13.0,
+        "stroke": "#27b7be",
+        "stroke_width": 3.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.person_right.glasses.bridge",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 441.0,
+        "y1": 122.0,
+        "x2": 443.0,
+        "y2": 122.0,
+        "stroke": "#27b7be",
+        "stroke_width": 3.0
+      }
+    },
+    {
       "id": "slot.name_right_box",
       "kind": "rect",
       "prompt": "",
@@ -109,6 +419,30 @@
         "y": 364.0,
         "font_size": 25,
         "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.person_right.hand.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 377.0,
+        "cy": 187.0,
+        "r": 5.0,
+        "stroke": "none",
+        "fill": "#ffd8b3"
+      }
+    },
+    {
+      "id": "slot.person_right.hand.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 517.0,
+        "cy": 187.0,
+        "r": 5.0,
+        "stroke": "none",
+        "fill": "#ffd8b3"
       }
     },
     {
@@ -171,10 +505,33 @@
     "konva_1783560530888_paste_4863104_0",
     "konva_1783560530888_paste_4891319_0",
     "region.left",
+    "slot.person_left.body",
+    "slot.person_left.ear.left",
+    "slot.person_left.ear.right",
+    "slot.person_left.head",
+    "slot.person_left.hair.cap",
+    "slot.person_left.smile",
     "slot.name_left_box",
+    "slot.person_left.eye.left",
+    "slot.person_left.eye.right",
+    "slot.person_left.hand.left",
+    "slot.person_left.hand.right",
     "slot.name_left",
     "region.right",
+    "slot.person_right.body",
+    "slot.person_right.ear.left",
+    "slot.person_right.ear.right",
+    "slot.person_right.head",
+    "slot.person_right.hair.cap",
+    "slot.person_right.smile",
+    "slot.person_right.glasses.left",
+    "slot.person_right.glasses.right",
     "slot.name_right_box",
+    "slot.person_right.glasses.bridge",
+    "slot.person_right.eye.left",
+    "slot.person_right.eye.right",
+    "slot.person_right.hand.left",
+    "slot.person_right.hand.right",
     "slot.name_right"
   ]
 }

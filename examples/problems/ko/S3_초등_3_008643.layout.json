@@ -21,7 +21,9 @@
       "id": "region.answer",
       "role": "answer",
       "flow": "absolute",
-      "slot_ids": []
+      "slot_ids": [
+        "slot.answer_blank"
+      ]
     },
     {
       "id": "region.explain",
@@ -84,6 +86,19 @@
         "y": 70.0,
         "font_size": 30,
         "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.answer_blank",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 72.0,
+        "y": 269.0,
+        "width": 22.0,
+        "height": 22.0,
+        "stroke": "none",
+        "fill": "none"
       }
     },
     {
@@ -417,7 +432,8 @@
         "style_role": "label",
         "x": 270.0,
         "y": 125.0,
-        "font_size": 25
+        "font_size": 25,
+        "semantic_role": "symbol_label"
       }
     },
     {
@@ -429,7 +445,8 @@
         "style_role": "label",
         "x": 270.0,
         "y": 190.0,
-        "font_size": 25
+        "font_size": 25,
+        "semantic_role": "symbol_label"
       }
     },
     {
@@ -442,7 +459,8 @@
         "x": 320.0,
         "y": 190.0,
         "font_size": 25,
-        "fill": "#111111"
+        "fill": "#111111",
+        "semantic_role": "symbol_label"
       }
     },
     {
@@ -455,7 +473,8 @@
         "x": 225.0,
         "y": 265.0,
         "font_size": 25,
-        "fill": "#111111"
+        "fill": "#111111",
+        "semantic_role": "symbol_label"
       }
     },
     {
@@ -468,7 +487,8 @@
         "x": 345.0,
         "y": 265.0,
         "font_size": 25,
-        "fill": "#111111"
+        "fill": "#111111",
+        "semantic_role": "symbol_label"
       }
     }
   ],
@@ -479,6 +499,7 @@
     "region.stem",
     "slot.qtext",
     "region.answer",
+    "slot.answer_blank",
     "region.explain",
     "region.diagram.top",
     "slot.top.circle",

@@ -39,48 +39,13 @@ def build_problem_template() -> ProblemTemplate:
             id="region.header",
             role="stem",
             flow="absolute",
-            slot_ids=(
-                "slot.graphpaper.v0",
-                "slot.graphpaper.v1",
-                "slot.graphpaper.v2",
-                "slot.graphpaper.v3",
-                "slot.graphpaper.v4",
-                "slot.graphpaper.v5",
-                "slot.graphpaper.v6",
-                "slot.graphpaper.v7",
-                "slot.graphpaper.v8",
-                "slot.graphpaper.v9",
-                "slot.graphpaper.v10",
-                "slot.graphpaper.h0",
-                "slot.graphpaper.h1",
-                "slot.graphpaper.h2",
-                "slot.graphpaper.h3",
-                "slot.graphpaper.h4",
-                "slot.graphpaper.h5",
-                "slot.graphpaper.h6",
-                "slot.graphpaper.h7",
-                "slot.graphpaper.h8",
-                "slot.graphpaper.h9",
-                "slot.graphpaper.h10",
-                "slot.q.num",
-                "slot.q.text",
-            ),
+            slot_ids=("slot.graphpaper.v0", "slot.graphpaper.v1", "slot.graphpaper.v2", "slot.graphpaper.v3", "slot.graphpaper.v4", "slot.graphpaper.v5", "slot.graphpaper.v6", "slot.graphpaper.v7", "slot.graphpaper.v8", "slot.graphpaper.v9", "slot.graphpaper.v10", "slot.graphpaper.h0", "slot.graphpaper.h1", "slot.graphpaper.h2", "slot.graphpaper.h3", "slot.graphpaper.h4", "slot.graphpaper.h5", "slot.graphpaper.h6", "slot.graphpaper.h7", "slot.graphpaper.h8", "slot.graphpaper.h9", "slot.graphpaper.h10", "slot.q.num", "slot.q.text"),
         ),
         Region(
             id="region.diagram",
             role="diagram",
             flow="absolute",
-            slot_ids=(
-                "slot.circle",
-                "slot.pt.a",
-                "slot.pt.b",
-                "slot.pt.c",
-                "slot.pt.d",
-                "slot.lb.a",
-                "slot.lb.b",
-                "slot.lb.c",
-                "slot.lb.d",
-            ),
+            slot_ids=("slot.circle", "slot.pt.a", "slot.pt.b", "slot.pt.c", "slot.pt.d", "slot.lb.a", "slot.lb.b", "slot.lb.c", "slot.lb.d"),
         ),
         Region(
             id="region.answer",
@@ -421,3 +386,33 @@ def build_problem_template() -> ProblemTemplate:
 
 
 PROBLEM_TEMPLATE = build_problem_template()
+
+
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008692",
+    "problem_type": "multiple_choice",
+    "metadata": {
+        "grade": 3,
+        "semester": 2,
+        "unit": 3,
+        "topic": "원",
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [
+            {"id": "choice.1", "label": "가", "text": "점 ㄱ"},
+            {"id": "choice.2", "label": "나", "text": "점 ㄴ"},
+            {"id": "choice.3", "label": "다", "text": "점 ㄷ"},
+            {"id": "choice.4", "label": "라", "text": "점 ㄹ"},
+        ],
+        "answer_key": [{"id": "choice.2", "value": "나"}],
+        "value": "나",
+    },
+    "domain": {
+        "objects": [{"id": "circle", "type": "shape", "name": "원"}],
+        "relations": [],
+        "facts": [],
+    },
+}
+
+SOLVABLE = SEMANTIC_OVERRIDE

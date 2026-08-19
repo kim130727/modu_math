@@ -17,9 +17,21 @@
   },
   "domain": {
     "objects": [
-      "자리값을 나타내는 숫자",
-      "곱셈 도식",
-      "객관식 선택지"
+      {
+        "id": "obj.place_value",
+        "type": "concept",
+        "name": "자리값을 나타내는 숫자"
+      },
+      {
+        "id": "obj.mul_diagram",
+        "type": "diagram",
+        "name": "곱셈 도식"
+      },
+      {
+        "id": "obj.choices",
+        "type": "choices",
+        "name": "객관식 선택지"
+      }
     ],
     "relations": [],
     "confidence": 1.0,
@@ -32,9 +44,39 @@
   },
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
-    "confidence": 1.0,
+    "choices": [
+      {
+        "id": "choice.1",
+        "label": "①",
+        "text": "10"
+      },
+      {
+        "id": "choice.2",
+        "label": "②",
+        "text": "12"
+      },
+      {
+        "id": "choice.3",
+        "label": "③",
+        "text": "100"
+      },
+      {
+        "id": "choice.4",
+        "label": "④",
+        "text": "120"
+      },
+      {
+        "id": "choice.5",
+        "label": "⑤",
+        "text": "1000"
+      }
+    ],
+    "answer_key": [
+      {
+        "id": "choice.4",
+        "value": "120"
+      }
+    ],
     "target": {
       "type": "selected_option",
       "description": "도식이 실제로 나타내는 곱의 값"

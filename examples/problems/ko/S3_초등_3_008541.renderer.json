@@ -95,7 +95,8 @@
         "y": 260.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 28
+        "font-size": 28,
+        "data-semantic-role": "symbol_label"
       },
       "source_ref": "slot.opt1",
       "refs": {
@@ -111,7 +112,8 @@
         "y": 260.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 28
+        "font-size": 28,
+        "data-semantic-role": "symbol_label"
       },
       "source_ref": "slot.opt2",
       "refs": {
@@ -127,7 +129,8 @@
         "y": 320.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 28
+        "font-size": 28,
+        "data-semantic-role": "symbol_label"
       },
       "source_ref": "slot.opt3",
       "refs": {
@@ -143,56 +146,14 @@
         "y": 315.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 28
+        "font-size": 28,
+        "data-semantic-role": "symbol_label"
       },
       "source_ref": "slot.opt4",
       "refs": {
         "layout_slot_id": "slot.opt4"
       },
       "text": "④ ㄷ ㄴ ㄱ"
-    },
-    {
-      "id": "konva_1786962334798_rect_1014341.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 800.951,
-        "y": 304.049,
-        "width": 98.33,
-        "height": 59.01,
-        "fill": "#ffffff",
-        "stroke": "#111827",
-        "stroke-width": 1.2
-      },
-      "source_ref": "konva_1786962334798_rect_1014341",
-      "refs": {
-        "layout_slot_id": "konva_1786962334798_rect_1014341"
-      },
-      "interaction": {
-        "type": "input",
-        "role": "answer",
-        "value_type": "integer",
-        "max_length": 3,
-        "include_in_submission": true,
-        "order": 0,
-        "group_id": "final_answer",
-        "answer_key_index": 0,
-        "answer_ref": "answer.value",
-        "auto_advance": false,
-        "keyboard": "number"
-      },
-      "input_style": {
-        "font_size_mode": "auto",
-        "font_size_adjust": 0,
-        "min_font_size": 14,
-        "max_font_size": 52,
-        "font_weight": 700,
-        "horizontal_align": "center",
-        "vertical_align": "middle",
-        "padding": 6,
-        "text_color": "#222222",
-        "width": 98.33,
-        "height": 59.01
-      }
     }
   ],
   "contract_version": "modu_math.renderer.v2"

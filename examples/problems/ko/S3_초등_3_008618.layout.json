@@ -27,8 +27,6 @@
         "slot.left.person.body",
         "slot.left.person.head",
         "slot.left.person.hair.cap",
-        "slot.left.person.eye.left",
-        "slot.left.person.eye.right",
         "slot.left.person.smile",
         "slot.left.person.tail.left",
         "slot.left.person.tail.right",
@@ -40,8 +38,6 @@
         "slot.mid.person.body",
         "slot.mid.person.head",
         "slot.mid.person.hair.cap",
-        "slot.mid.person.eye.left",
-        "slot.mid.person.eye.right",
         "slot.mid.person.smile",
         "slot.name.mid.box",
         "slot.right.bubble",
@@ -49,14 +45,18 @@
         "slot.right.person.body",
         "slot.right.person.head",
         "slot.right.person.hair.cap",
-        "slot.right.person.eye.left",
-        "slot.right.person.eye.right",
         "slot.right.person.smile",
         "slot.right.person.tail.left",
         "slot.right.person.tail.right",
         "slot.right.person.bow.left",
         "slot.right.person.bow.right",
         "slot.name.right.box",
+        "slot.left.person.eye.left",
+        "slot.left.person.eye.right",
+        "slot.mid.person.eye.left",
+        "slot.mid.person.eye.right",
+        "slot.right.person.eye.left",
+        "slot.right.person.eye.right",
         "slot.left.text",
         "slot.name.left.text",
         "slot.mid.text",
@@ -90,7 +90,7 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 147.0 78 C 147.0 59.28, 184.62 52.0, 246 52.0 C 307.38 52.0, 345.0 59.28, 345.0 78 C 345.0 96.72, 307.38 104.0, 246 104.0 C 184.62 104.0, 147.0 96.72, 147.0 78 Z",
+        "d": "M 27.0 133.0 C 27.0 114.28, 64.62 107.0, 126.0 107.0 C 187.38 107.0, 225.0 114.28, 225.0 133.0 C 225.0 151.72, 187.38 159.0, 126.0 159.0 C 64.62 159.0, 27.0 151.72, 27.0 133.0 Z",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#f5a000",
@@ -105,16 +105,16 @@
       "content": {
         "points": [
           [
-            237.0,
-            99.0
+            117.0,
+            154.0
           ],
           [
-            255.0,
-            99.0
+            135.0,
+            154.0
           ],
           [
-            246.0,
-            122.0
+            126.0,
+            177.0
           ]
         ],
         "stroke": "#f5a000",
@@ -129,8 +129,8 @@
       "content": {
         "text": "262÷2",
         "style_role": "math",
-        "x": 246.0,
-        "y": 86.0,
+        "x": 126.0,
+        "y": 141.0,
         "font_size": 28,
         "anchor": "middle"
       }
@@ -142,20 +142,20 @@
       "content": {
         "points": [
           [
-            218.0,
-            237.0
+            98.0,
+            292.0
           ],
           [
-            274.0,
-            237.0
+            154.0,
+            292.0
           ],
           [
-            264.0,
-            201.0
+            144.0,
+            256.0
           ],
           [
-            228.0,
-            201.0
+            108.0,
+            256.0
           ]
         ],
         "stroke": "none",
@@ -167,8 +167,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 246.0,
-        "cy": 164.0,
+        "cx": 126.0,
+        "cy": 219.0,
         "r": 28.0,
         "stroke": "none",
         "fill": "#ffd9ad"
@@ -179,7 +179,7 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 218 163 C 220 134, 271 129, 275 163 C 256 147, 234 154, 218 163 Z",
+        "d": "M 98.0 218.0 C 100.0 189.0, 151.0 184.0, 155.0 218.0 C 136.0 202.0, 114.0 209.0, 98.0 218.0 Z",
         "x": 0.0,
         "y": 0.0,
         "stroke": "none",
@@ -191,8 +191,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 236.0,
-        "cy": 168.0,
+        "cx": 116.0,
+        "cy": 223.0,
         "r": 2.3,
         "stroke": "none",
         "fill": "#2b2118"
@@ -203,8 +203,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 256.0,
-        "cy": 168.0,
+        "cx": 136.0,
+        "cy": 223.0,
         "r": 2.3,
         "stroke": "none",
         "fill": "#2b2118"
@@ -215,7 +215,7 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 239 180 Q 246 186 253 180",
+        "d": "M 119.0 235.0 Q 126.0 241.0 133.0 235.0",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#b86e39",
@@ -228,7 +228,7 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 219 161 C 194 165, 208 206, 196 212",
+        "d": "M 99.0 216.0 C 74.0 220.0, 88.0 261.0, 76.0 267.0",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#8b3f24",
@@ -241,7 +241,7 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 273 161 C 298 165, 284 206, 296 212",
+        "d": "M 153.0 216.0 C 178.0 220.0, 164.0 261.0, 176.0 267.0",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#8b3f24",
@@ -256,16 +256,16 @@
       "content": {
         "points": [
           [
-            239.0,
-            207.0
+            119.0,
+            262.0
           ],
           [
-            220.0,
-            199.0
+            100.0,
+            254.0
           ],
           [
-            232.0,
-            220.0
+            112.0,
+            275.0
           ]
         ],
         "stroke": "none",
@@ -279,16 +279,16 @@
       "content": {
         "points": [
           [
-            253.0,
-            207.0
+            133.0,
+            262.0
           ],
           [
-            272.0,
-            199.0
+            152.0,
+            254.0
           ],
           [
-            260.0,
-            220.0
+            140.0,
+            275.0
           ]
         ],
         "stroke": "none",
@@ -300,8 +300,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 212.0,
-        "y": 242.0,
+        "x": 92.0,
+        "y": 297.0,
         "width": 68.0,
         "height": 34.0,
         "stroke": "#d58cc3",
@@ -318,8 +318,8 @@
       "content": {
         "text": "소진",
         "style_role": "label",
-        "x": 246.0,
-        "y": 267.0,
+        "x": 126.0,
+        "y": 322.0,
         "font_size": 25,
         "anchor": "middle"
       }
@@ -329,7 +329,7 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 391.0 78 C 391.0 59.28, 427.1 52.0, 486 52.0 C 544.9 52.0, 581.0 59.28, 581.0 78 C 581.0 96.72, 544.9 104.0, 486 104.0 C 427.1 104.0, 391.0 96.72, 391.0 78 Z",
+        "d": "M 326.0 108.0 C 326.0 89.28, 362.1 82.0, 421.0 82.0 C 479.9 82.0, 516.0 89.28, 516.0 108.0 C 516.0 126.72, 479.9 134.0, 421.0 134.0 C 362.1 134.0, 326.0 126.72, 326.0 108.0 Z",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#f5a000",
@@ -344,16 +344,16 @@
       "content": {
         "points": [
           [
-            477.0,
-            99.0
+            412.0,
+            129.0
           ],
           [
-            495.0,
-            99.0
+            430.0,
+            129.0
           ],
           [
-            486.0,
-            122.0
+            421.0,
+            152.0
           ]
         ],
         "stroke": "#f5a000",
@@ -368,8 +368,8 @@
       "content": {
         "text": "440÷5",
         "style_role": "math",
-        "x": 486.0,
-        "y": 86.0,
+        "x": 421.0,
+        "y": 116.0,
         "font_size": 28,
         "anchor": "middle"
       }
@@ -381,20 +381,20 @@
       "content": {
         "points": [
           [
-            458.0,
-            237.0
+            393.0,
+            267.0
           ],
           [
-            514.0,
-            237.0
+            449.0,
+            267.0
           ],
           [
-            504.0,
-            201.0
+            439.0,
+            231.0
           ],
           [
-            468.0,
-            201.0
+            403.0,
+            231.0
           ]
         ],
         "stroke": "none",
@@ -406,8 +406,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 486.0,
-        "cy": 164.0,
+        "cx": 421.0,
+        "cy": 194.0,
         "r": 28.0,
         "stroke": "none",
         "fill": "#ffd9ad"
@@ -418,7 +418,7 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 458 163 C 460 134, 511 129, 515 163 C 496 147, 474 154, 458 163 Z",
+        "d": "M 393.0 193.0 C 395.0 164.0, 446.0 159.0, 450.0 193.0 C 431.0 177.0, 409.0 184.0, 393.0 193.0 Z",
         "x": 0.0,
         "y": 0.0,
         "stroke": "none",
@@ -430,8 +430,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 476.0,
-        "cy": 168.0,
+        "cx": 411.0,
+        "cy": 198.0,
         "r": 2.3,
         "stroke": "none",
         "fill": "#2b2118"
@@ -442,8 +442,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 496.0,
-        "cy": 168.0,
+        "cx": 431.0,
+        "cy": 198.0,
         "r": 2.3,
         "stroke": "none",
         "fill": "#2b2118"
@@ -454,7 +454,7 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 479 180 Q 486 186 493 180",
+        "d": "M 414.0 210.0 Q 421.0 216.0 428.0 210.0",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#b86e39",
@@ -467,8 +467,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 452.0,
-        "y": 242.0,
+        "x": 387.0,
+        "y": 272.0,
         "width": 68.0,
         "height": 34.0,
         "stroke": "#d58cc3",
@@ -485,8 +485,8 @@
       "content": {
         "text": "경수",
         "style_role": "label",
-        "x": 486.0,
-        "y": 267.0,
+        "x": 421.0,
+        "y": 297.0,
         "font_size": 25,
         "anchor": "middle"
       }
@@ -496,7 +496,7 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 629.0 78 C 629.0 59.28, 665.1 52.0, 724 52.0 C 782.9 52.0, 819.0 59.28, 819.0 78 C 819.0 96.72, 782.9 104.0, 724 104.0 C 665.1 104.0, 629.0 96.72, 629.0 78 Z",
+        "d": "M 564.0 108.0 C 564.0 89.28, 600.1 82.0, 659.0 82.0 C 717.9 82.0, 754.0 89.28, 754.0 108.0 C 754.0 126.72, 717.9 134.0, 659.0 134.0 C 600.1 134.0, 564.0 126.72, 564.0 108.0 Z",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#f5a000",
@@ -511,16 +511,16 @@
       "content": {
         "points": [
           [
-            715.0,
-            99.0
+            650.0,
+            129.0
           ],
           [
-            733.0,
-            99.0
+            668.0,
+            129.0
           ],
           [
-            724.0,
-            122.0
+            659.0,
+            152.0
           ]
         ],
         "stroke": "#f5a000",
@@ -535,8 +535,8 @@
       "content": {
         "text": "552÷6",
         "style_role": "math",
-        "x": 724.0,
-        "y": 86.0,
+        "x": 659.0,
+        "y": 116.0,
         "font_size": 28,
         "anchor": "middle"
       }
@@ -548,20 +548,20 @@
       "content": {
         "points": [
           [
-            696.0,
-            237.0
+            631.0,
+            267.0
           ],
           [
-            752.0,
-            237.0
+            687.0,
+            267.0
           ],
           [
-            742.0,
-            201.0
+            677.0,
+            231.0
           ],
           [
-            706.0,
-            201.0
+            641.0,
+            231.0
           ]
         ],
         "stroke": "none",
@@ -573,8 +573,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 724.0,
-        "cy": 164.0,
+        "cx": 659.0,
+        "cy": 194.0,
         "r": 28.0,
         "stroke": "none",
         "fill": "#ffd9ad"
@@ -585,7 +585,7 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 696 163 C 698 134, 749 129, 753 163 C 734 147, 712 154, 696 163 Z",
+        "d": "M 631.0 193.0 C 633.0 164.0, 684.0 159.0, 688.0 193.0 C 669.0 177.0, 647.0 184.0, 631.0 193.0 Z",
         "x": 0.0,
         "y": 0.0,
         "stroke": "none",
@@ -597,8 +597,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 714.0,
-        "cy": 168.0,
+        "cx": 649.0,
+        "cy": 198.0,
         "r": 2.3,
         "stroke": "none",
         "fill": "#2b2118"
@@ -609,8 +609,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 734.0,
-        "cy": 168.0,
+        "cx": 669.0,
+        "cy": 198.0,
         "r": 2.3,
         "stroke": "none",
         "fill": "#2b2118"
@@ -621,7 +621,7 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 717 180 Q 724 186 731 180",
+        "d": "M 652.0 210.0 Q 659.0 216.0 666.0 210.0",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#b86e39",
@@ -634,7 +634,7 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 697 161 C 672 165, 686 206, 674 212",
+        "d": "M 632.0 191.0 C 607.0 195.0, 621.0 236.0, 609.0 242.0",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#725442",
@@ -647,7 +647,7 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 751 161 C 776 165, 762 206, 774 212",
+        "d": "M 686.0 191.0 C 711.0 195.0, 697.0 236.0, 709.0 242.0",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#725442",
@@ -662,16 +662,16 @@
       "content": {
         "points": [
           [
-            717.0,
-            207.0
+            652.0,
+            237.0
           ],
           [
-            698.0,
-            199.0
+            633.0,
+            229.0
           ],
           [
-            710.0,
-            220.0
+            645.0,
+            250.0
           ]
         ],
         "stroke": "none",
@@ -685,16 +685,16 @@
       "content": {
         "points": [
           [
-            731.0,
-            207.0
+            666.0,
+            237.0
           ],
           [
-            750.0,
-            199.0
+            685.0,
+            229.0
           ],
           [
-            738.0,
-            220.0
+            673.0,
+            250.0
           ]
         ],
         "stroke": "none",
@@ -706,8 +706,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 690.0,
-        "y": 242.0,
+        "x": 625.0,
+        "y": 272.0,
         "width": 68.0,
         "height": 34.0,
         "stroke": "#d58cc3",
@@ -724,8 +724,8 @@
       "content": {
         "text": "태희",
         "style_role": "label",
-        "x": 724.0,
-        "y": 267.0,
+        "x": 659.0,
+        "y": 297.0,
         "font_size": 25,
         "anchor": "middle"
       }
@@ -743,8 +743,6 @@
     "slot.left.person.body",
     "slot.left.person.head",
     "slot.left.person.hair.cap",
-    "slot.left.person.eye.left",
-    "slot.left.person.eye.right",
     "slot.left.person.smile",
     "slot.left.person.tail.left",
     "slot.left.person.tail.right",
@@ -756,8 +754,6 @@
     "slot.mid.person.body",
     "slot.mid.person.head",
     "slot.mid.person.hair.cap",
-    "slot.mid.person.eye.left",
-    "slot.mid.person.eye.right",
     "slot.mid.person.smile",
     "slot.name.mid.box",
     "slot.right.bubble",
@@ -765,14 +761,18 @@
     "slot.right.person.body",
     "slot.right.person.head",
     "slot.right.person.hair.cap",
-    "slot.right.person.eye.left",
-    "slot.right.person.eye.right",
     "slot.right.person.smile",
     "slot.right.person.tail.left",
     "slot.right.person.tail.right",
     "slot.right.person.bow.left",
     "slot.right.person.bow.right",
     "slot.name.right.box",
+    "slot.left.person.eye.left",
+    "slot.left.person.eye.right",
+    "slot.mid.person.eye.left",
+    "slot.mid.person.eye.right",
+    "slot.right.person.eye.left",
+    "slot.right.person.eye.right",
     "slot.left.text",
     "slot.name.left.text",
     "slot.mid.text",

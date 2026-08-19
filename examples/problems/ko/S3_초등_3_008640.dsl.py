@@ -20,20 +20,13 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.q1", "slot.q2"),
+                slot_ids=("slot.q1",),
             ),
             Region(
                 id="region.diagram",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(
-                    "slot.circle.boundary",
-                    "slot.circle.center",
-                    "slot.circle.marker",
-                    "slot.radius.left",
-                    "slot.radius.up_right",
-                    "slot.radius.down",
-                ),
+                slot_ids=("slot.circle.boundary", "slot.circle.center", "slot.circle.marker", "slot.radius.left", "slot.radius.up_right", "slot.radius.down"),
             ),
             Region(
                 id="region.choice",
@@ -46,7 +39,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.explanation",
                 role="explanation",
                 flow="absolute",
-                slot_ids=( ),
+                slot_ids=(),
             ),
         ),
         slots=(

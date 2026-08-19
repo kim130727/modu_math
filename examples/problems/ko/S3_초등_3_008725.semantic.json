@@ -9,7 +9,6 @@
       "원의중심",
       "초등3"
     ],
-    "instruction": "보기의 중심 개수를 비교하여 정답을 고른다.",
     "question": "원의 중심의 개수가 가장 많은 모양을 고르세요.",
     "required_layout_ids": [
       "slot.choice.1.shape",
@@ -32,7 +31,8 @@
       "slot.inserted.quarterArc.1.copy1.copy3"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko"
+    "language": "ko",
+    "instruction": "보기의 중심 개수를 비교하여 정답을 고른다."
   },
   "domain": {
     "objects": [
@@ -102,7 +102,6 @@
     "blanks": [],
     "choices": [],
     "answer_key": [],
-    "confidence": 1.0,
     "target": {
       "type": "choice",
       "description": "원의 중심의 개수가 가장 많은 모양"

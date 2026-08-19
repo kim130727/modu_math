@@ -36,6 +36,7 @@
         "slot.graphpaper.h8",
         "slot.graphpaper.h9",
         "slot.graphpaper.h10",
+        "slot.q.num",
         "slot.q.text"
       ]
     },
@@ -64,6 +65,18 @@
   ],
   "slots": [
     {
+      "id": "slot.q.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "81.",
+        "style_role": "question",
+        "x": 34.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
       "id": "slot.q.text",
       "kind": "text",
       "prompt": "",
@@ -91,8 +104,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 330,
-        "cy": 193,
+        "cx": 330.0,
+        "cy": 205.0,
         "r": 5.0,
         "fill": "#e94f9a"
       }
@@ -113,9 +126,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 260,
-        "cy": 301,
-        "r": 5,
+        "cx": 270.0,
+        "cy": 295.0,
+        "r": 5.0,
         "fill": "#e94f9a"
       }
     },
@@ -124,8 +137,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 434,
-        "cy": 265,
+        "cx": 430.0,
+        "cy": 265.0,
         "r": 5.0,
         "fill": "#e94f9a"
       }
@@ -137,9 +150,10 @@
       "content": {
         "text": "ㄱ",
         "style_role": "label",
-        "x": 300,
-        "y": 185,
-        "font_size": 30
+        "x": 300.0,
+        "y": 195.0,
+        "font_size": 30,
+        "semantic_role": "symbol_label"
       }
     },
     {
@@ -151,7 +165,8 @@
         "style_role": "label",
         "x": 295.0,
         "y": 260.0,
-        "font_size": 30
+        "font_size": 30,
+        "semantic_role": "symbol_label"
       }
     },
     {
@@ -161,9 +176,10 @@
       "content": {
         "text": "ㄷ",
         "style_role": "label",
-        "x": 220,
-        "y": 305,
-        "font_size": 30
+        "x": 235.0,
+        "y": 310.0,
+        "font_size": 30,
+        "semantic_role": "symbol_label"
       }
     },
     {
@@ -175,7 +191,8 @@
         "style_role": "label",
         "x": 420.0,
         "y": 255.0,
-        "font_size": 30
+        "font_size": 30,
+        "semantic_role": "symbol_label"
       }
     },
     {
@@ -183,9 +200,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 155.0,
-        "y1": 95.0,
-        "x2": 155.0,
+        "x1": 185.0,
+        "y1": 100.0,
+        "x2": 185.0,
         "y2": 435.0,
         "stroke": "#2563eb",
         "stroke_width": 1.0
@@ -196,9 +213,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 190.0,
-        "y1": 95.0,
-        "x2": 190.0,
+        "x1": 220.0,
+        "y1": 100.0,
+        "x2": 220.0,
         "y2": 435.0,
         "stroke": "#2563eb",
         "stroke_width": 1.0
@@ -209,9 +226,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 225.0,
-        "y1": 95.0,
-        "x2": 225.0,
+        "x1": 250.0,
+        "y1": 100.0,
+        "x2": 250.0,
         "y2": 435.0,
         "stroke": "#2563eb",
         "stroke_width": 1.0
@@ -222,9 +239,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 260.0,
-        "y1": 95.0,
-        "x2": 260.0,
+        "x1": 280.0,
+        "y1": 100.0,
+        "x2": 280.0,
         "y2": 435.0,
         "stroke": "#2563eb",
         "stroke_width": 1.0
@@ -235,9 +252,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 295.0,
-        "y1": 95.0,
-        "x2": 295.0,
+        "x1": 310.0,
+        "y1": 100.0,
+        "x2": 310.0,
         "y2": 435.0,
         "stroke": "#2563eb",
         "stroke_width": 1.0
@@ -248,9 +265,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 330.0,
-        "y1": 95.0,
-        "x2": 330.0,
+        "x1": 345.0,
+        "y1": 100.0,
+        "x2": 345.0,
         "y2": 435.0,
         "stroke": "#2563eb",
         "stroke_width": 1.0
@@ -261,9 +278,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 365.0,
-        "y1": 95.0,
-        "x2": 365.0,
+        "x1": 380.0,
+        "y1": 100.0,
+        "x2": 380.0,
         "y2": 435.0,
         "stroke": "#2563eb",
         "stroke_width": 1.0
@@ -274,9 +291,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 400.0,
-        "y1": 95.0,
-        "x2": 400.0,
+        "x1": 410.0,
+        "y1": 100.0,
+        "x2": 410.0,
         "y2": 435.0,
         "stroke": "#2563eb",
         "stroke_width": 1.0
@@ -287,9 +304,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 435.0,
-        "y1": 95.0,
-        "x2": 435.0,
+        "x1": 440.0,
+        "y1": 100.0,
+        "x2": 440.0,
         "y2": 435.0,
         "stroke": "#2563eb",
         "stroke_width": 1.0
@@ -301,7 +318,7 @@
       "prompt": "",
       "content": {
         "x1": 470.0,
-        "y1": 95.0,
+        "y1": 100.0,
         "x2": 470.0,
         "y2": 435.0,
         "stroke": "#2563eb",
@@ -314,7 +331,7 @@
       "prompt": "",
       "content": {
         "x1": 505.0,
-        "y1": 95.0,
+        "y1": 100.0,
         "x2": 505.0,
         "y2": 435.0,
         "stroke": "#2563eb",
@@ -326,10 +343,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 155.0,
-        "y1": 95.0,
+        "x1": 185.0,
+        "y1": 100.0,
         "x2": 505.0,
-        "y2": 95.0,
+        "y2": 100.0,
         "stroke": "#2563eb",
         "stroke_width": 1.0
       }
@@ -339,10 +356,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 155.0,
-        "y1": 129.0,
+        "x1": 185.0,
+        "y1": 135.0,
         "x2": 505.0,
-        "y2": 129.0,
+        "y2": 135.0,
         "stroke": "#2563eb",
         "stroke_width": 1.0
       }
@@ -352,10 +369,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 155.0,
-        "y1": 163.0,
+        "x1": 185.0,
+        "y1": 165.0,
         "x2": 505.0,
-        "y2": 163.0,
+        "y2": 165.0,
         "stroke": "#2563eb",
         "stroke_width": 1.0
       }
@@ -365,10 +382,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 155.0,
-        "y1": 197.0,
+        "x1": 185.0,
+        "y1": 200.0,
         "x2": 505.0,
-        "y2": 197.0,
+        "y2": 200.0,
         "stroke": "#2563eb",
         "stroke_width": 1.0
       }
@@ -378,10 +395,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 155.0,
-        "y1": 231.0,
+        "x1": 185.0,
+        "y1": 235.0,
         "x2": 505.0,
-        "y2": 231.0,
+        "y2": 235.0,
         "stroke": "#2563eb",
         "stroke_width": 1.0
       }
@@ -391,10 +408,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 155.0,
-        "y1": 265.0,
+        "x1": 185.0,
+        "y1": 270.0,
         "x2": 505.0,
-        "y2": 265.0,
+        "y2": 270.0,
         "stroke": "#2563eb",
         "stroke_width": 1.0
       }
@@ -404,10 +421,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 155.0,
-        "y1": 299.0,
+        "x1": 185.0,
+        "y1": 305.0,
         "x2": 505.0,
-        "y2": 299.0,
+        "y2": 305.0,
         "stroke": "#2563eb",
         "stroke_width": 1.0
       }
@@ -417,10 +434,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 155.0,
-        "y1": 333.0,
+        "x1": 185.0,
+        "y1": 335.0,
         "x2": 505.0,
-        "y2": 333.0,
+        "y2": 335.0,
         "stroke": "#2563eb",
         "stroke_width": 1.0
       }
@@ -430,10 +447,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 155.0,
-        "y1": 367.0,
+        "x1": 185.0,
+        "y1": 370.0,
         "x2": 505.0,
-        "y2": 367.0,
+        "y2": 370.0,
         "stroke": "#2563eb",
         "stroke_width": 1.0
       }
@@ -443,10 +460,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 155.0,
-        "y1": 401.0,
+        "x1": 185.0,
+        "y1": 400.0,
         "x2": 505.0,
-        "y2": 401.0,
+        "y2": 400.0,
         "stroke": "#2563eb",
         "stroke_width": 1.0
       }
@@ -456,7 +473,7 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 155.0,
+        "x1": 185.0,
         "y1": 435.0,
         "x2": 505.0,
         "y2": 435.0,
@@ -492,6 +509,7 @@
     "slot.graphpaper.h8",
     "slot.graphpaper.h9",
     "slot.graphpaper.h10",
+    "slot.q.num",
     "slot.q.text",
     "region.diagram",
     "slot.circle",

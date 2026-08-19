@@ -2,7 +2,7 @@
   "problem_id": "S3_초등_3_008563",
   "view_box": {
     "width": 550.0,
-    "height": 300.0,
+    "height": 316.0,
     "background": "#FFFFFF"
   },
   "elements": [
@@ -120,6 +120,172 @@
       "source_ref": "slot.right_name_box",
       "refs": {
         "layout_slot_id": "slot.right_name_box"
+      }
+    },
+    {
+      "id": "slot.figure.left.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 165.0,
+        "y": 148.0,
+        "width": 30.0,
+        "height": 36.0,
+        "fill": "#D7A0D7",
+        "stroke": "#D7A0D7",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.figure.left.body",
+      "refs": {
+        "layout_slot_id": "slot.figure.left.body"
+      }
+    },
+    {
+      "id": "slot.figure.left.head.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 180.0,
+        "cy": 128.0,
+        "r": 28.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#F3C0AD"
+      },
+      "source_ref": "slot.figure.left.head",
+      "refs": {
+        "layout_slot_id": "slot.figure.left.head"
+      }
+    },
+    {
+      "id": "slot.figure.right.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 355.0,
+        "y": 148.0,
+        "width": 30.0,
+        "height": 36.0,
+        "fill": "#8ED7E6",
+        "stroke": "#8ED7E6",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.figure.right.body",
+      "refs": {
+        "layout_slot_id": "slot.figure.right.body"
+      }
+    },
+    {
+      "id": "slot.figure.right.head.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 370.0,
+        "cy": 128.0,
+        "r": 28.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#F3C0AD"
+      },
+      "source_ref": "slot.figure.right.head",
+      "refs": {
+        "layout_slot_id": "slot.figure.right.head"
+      }
+    },
+    {
+      "id": "slot.figure.left.mouth.line",
+      "type": "line",
+      "attributes": {
+        "x1": 173.0,
+        "y1": 138.0,
+        "x2": 187.0,
+        "y2": 138.0,
+        "stroke": "#C36A6A",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.figure.left.mouth",
+      "refs": {
+        "layout_slot_id": "slot.figure.left.mouth"
+      }
+    },
+    {
+      "id": "slot.figure.right.mouth.line",
+      "type": "line",
+      "attributes": {
+        "x1": 363.0,
+        "y1": 138.0,
+        "x2": 377.0,
+        "y2": 138.0,
+        "stroke": "#C36A6A",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.figure.right.mouth",
+      "refs": {
+        "layout_slot_id": "slot.figure.right.mouth"
+      }
+    },
+    {
+      "id": "slot.figure.left.eye1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 172.0,
+        "cy": 125.0,
+        "r": 3.5,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.figure.left.eye1",
+      "refs": {
+        "layout_slot_id": "slot.figure.left.eye1"
+      }
+    },
+    {
+      "id": "slot.figure.left.eye2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 188.0,
+        "cy": 125.0,
+        "r": 3.5,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.figure.left.eye2",
+      "refs": {
+        "layout_slot_id": "slot.figure.left.eye2"
+      }
+    },
+    {
+      "id": "slot.figure.right.eye1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 362.0,
+        "cy": 125.0,
+        "r": 3.5,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.figure.right.eye1",
+      "refs": {
+        "layout_slot_id": "slot.figure.right.eye1"
+      }
+    },
+    {
+      "id": "slot.figure.right.eye2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 378.0,
+        "cy": 125.0,
+        "r": 3.5,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.figure.right.eye2",
+      "refs": {
+        "layout_slot_id": "slot.figure.right.eye2"
       }
     },
     {

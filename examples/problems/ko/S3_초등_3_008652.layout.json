@@ -14,15 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.qtext1",
-        "slot.qtext2"
-      ]
-    },
-    {
-      "id": "region.diagram",
-      "role": "diagram",
-      "flow": "absolute",
-      "slot_ids": [
         "slot.grid.frame",
         "slot.grid.v1",
         "slot.grid.h1",
@@ -46,6 +37,23 @@
         "slot.grid.h10",
         "slot.grid.v11",
         "slot.grid.h11",
+        "slot.sunga.character.body",
+        "slot.sunga.character.ear.left",
+        "slot.sunga.character.ear.right",
+        "slot.sunga.character.head",
+        "slot.sunga.character.hair.cap",
+        "slot.sunga.character.smile",
+        "slot.sunga.character.eye.left",
+        "slot.sunga.character.eye.right",
+        "slot.qtext1",
+        "slot.qtext2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
         "slot.circle.outer",
         "slot.circle.middle",
         "slot.circle.inner",
@@ -57,14 +65,9 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.sunga.character.body",
-        "slot.sunga.character.ear.left",
-        "slot.sunga.character.ear.right",
-        "slot.sunga.character.head",
-        "slot.sunga.character.hair.cap",
-        "slot.sunga.character.smile",
         "slot.sunga.namebox",
         "slot.sunga.bubble",
+        "slot.sunga.tail",
         "slot.jaewon.character.body",
         "slot.jaewon.character.ear.left",
         "slot.jaewon.character.ear.right",
@@ -73,8 +76,7 @@
         "slot.jaewon.character.smile",
         "slot.jaewon.namebox",
         "slot.jaewon.bubble",
-        "slot.sunga.character.eye.left",
-        "slot.sunga.character.eye.right",
+        "slot.jaewon.tail",
         "slot.jaewon.character.eye.left",
         "slot.jaewon.character.eye.right",
         "slot.sunga.name",
@@ -88,6 +90,12 @@
         "slot.jaewon.text3",
         "slot.jaewon.text4"
       ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
     },
     {
       "id": "region.footer",
@@ -629,8 +637,8 @@
       "content": {
         "text": "승아",
         "style_role": "label",
-        "x": 531.967,
-        "y": 264.574,
+        "x": 530.0,
+        "y": 263.0,
         "font_size": 23,
         "anchor": "middle",
         "fill": "#333333"
@@ -646,6 +654,30 @@
         "y": 0.0,
         "stroke": "#222222",
         "stroke_width": 1.6,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.sunga.tail",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            612.0,
+            193.0
+          ],
+          [
+            631.0,
+            199.0
+          ],
+          [
+            590.0,
+            186.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 1.4,
         "fill": "#ffffff"
       }
     },
@@ -836,8 +868,8 @@
       "content": {
         "text": "재원",
         "style_role": "label",
-        "x": 531.967,
-        "y": 444.574,
+        "x": 530.0,
+        "y": 443.0,
         "font_size": 23,
         "anchor": "middle",
         "fill": "#333333"
@@ -853,6 +885,30 @@
         "y": 0.0,
         "stroke": "#222222",
         "stroke_width": 1.6,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.jaewon.tail",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            612.0,
+            375.0
+          ],
+          [
+            631.0,
+            381.0
+          ],
+          [
+            590.0,
+            370.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 1.4,
         "fill": "#ffffff"
       }
     },
@@ -914,9 +970,6 @@
   "diagrams": [],
   "reading_order": [
     "region.header",
-    "slot.qtext1",
-    "slot.qtext2",
-    "region.diagram",
     "slot.grid.frame",
     "slot.grid.v1",
     "slot.grid.h1",
@@ -940,19 +993,25 @@
     "slot.grid.h10",
     "slot.grid.v11",
     "slot.grid.h11",
-    "slot.circle.outer",
-    "slot.circle.middle",
-    "slot.circle.inner",
-    "slot.center",
-    "region.characters",
     "slot.sunga.character.body",
     "slot.sunga.character.ear.left",
     "slot.sunga.character.ear.right",
     "slot.sunga.character.head",
     "slot.sunga.character.hair.cap",
     "slot.sunga.character.smile",
+    "slot.sunga.character.eye.left",
+    "slot.sunga.character.eye.right",
+    "slot.qtext1",
+    "slot.qtext2",
+    "region.diagram",
+    "slot.circle.outer",
+    "slot.circle.middle",
+    "slot.circle.inner",
+    "slot.center",
+    "region.characters",
     "slot.sunga.namebox",
     "slot.sunga.bubble",
+    "slot.sunga.tail",
     "slot.jaewon.character.body",
     "slot.jaewon.character.ear.left",
     "slot.jaewon.character.ear.right",
@@ -961,8 +1020,7 @@
     "slot.jaewon.character.smile",
     "slot.jaewon.namebox",
     "slot.jaewon.bubble",
-    "slot.sunga.character.eye.left",
-    "slot.sunga.character.eye.right",
+    "slot.jaewon.tail",
     "slot.jaewon.character.eye.left",
     "slot.jaewon.character.eye.right",
     "slot.sunga.name",
@@ -975,6 +1033,7 @@
     "slot.jaewon.text2",
     "slot.jaewon.text3",
     "slot.jaewon.text4",
+    "region.answer",
     "region.footer"
   ]
 }

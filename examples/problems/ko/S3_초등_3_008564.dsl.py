@@ -86,7 +86,7 @@ def build_problem_template() -> ProblemTemplate:
         canvas=Canvas(width=600, height=300, coordinate_mode="logical"),
         regions=(
             Region(
-                id="region.top", role="stem", flow="absolute", slot_ids=("slot.qnum", "slot.qtext")
+                id="region.top", role="stem", flow="absolute", slot_ids=("slot.qtext",)
             ),
             Region(
                 id="region.main",
@@ -94,7 +94,6 @@ def build_problem_template() -> ProblemTemplate:
                 flow="absolute",
                 slot_ids=(
                     "slot.box",
-                    *person_slot_ids("slot.figure.left"),
                     *person_slot_ids("slot.figure.right"),
                     "slot.choice1",
                     "slot.choice2",
@@ -106,7 +105,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.note",
                 role="supporting",
                 flow="absolute",
-                slot_ids=("slot.note1", "slot.note2"),
+                slot_ids=(),
             ),
         ),
         slots=(

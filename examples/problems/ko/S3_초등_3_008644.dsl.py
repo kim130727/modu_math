@@ -58,9 +58,9 @@ def build_problem_template() -> ProblemTemplate:
         canvas=Canvas(width=746, height=537, coordinate_mode="logical"),
         regions=(
             Region(id="region.stem", role="stem", flow="absolute", slot_ids=tuple(slot.id for slot in stem_slots)),
-            Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=(tuple(slot.id for slot in diagram_slots), )),
-            Region(id="region.choices", role="choices", flow="absolute", slot_ids=(tuple(slot.id for slot in choice_slots), 'slot.choice.na.copy2')),
-            Region(id="region.answer", role="answer", flow="absolute", slot_ids=tuple(slot.id for slot in answer_slots)),
+            Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=tuple(slot.id for slot in diagram_slots)),
+            Region(id="region.choices", role="choices", flow="absolute", slot_ids=(*tuple(slot.id for slot in choice_slots), "slot.choice.na.copy2")),
+            Region(id="region.answer", role="answer", flow="absolute", slot_ids=()),
         ),
         slots=(*stem_slots, *diagram_slots, *choice_slots, *answer_slots, TextSlot(id = 'slot.choice.na.copy2', prompt = '', text = 'ㅇ', x = 385, y = 215, font_size = 20, fill = '#111111')),
         diagrams=(),
@@ -92,9 +92,9 @@ SEMANTIC_OVERRIDE = {
             {"id": "obj.segment.ba", "type": "segment", "label": "ㄴㅅ"},
         ],
         "relations": [
-            {"id": "rel.radius.na", "type": "radius", "segment": "Oㄴ"},
-            {"id": "rel.radius.da", "type": "radius", "segment": "Oㄷ"},
-            {"id": "rel.radius.ra", "type": "radius", "segment": "Oㅁ"},
+            {"id": "rel.radius.na", "type": "radius", "from_id": "obj.center.O", "to_id": "obj.segment.na", "segment": "Oㄴ"},
+            {"id": "rel.radius.da", "type": "radius", "from_id": "obj.center.O", "to_id": "obj.segment.da", "segment": "Oㄷ"},
+            {"id": "rel.radius.ra", "type": "radius", "from_id": "obj.center.O", "to_id": "obj.segment.ra", "segment": "Oㅁ"},
         ],
         "problem_solving": {
             "understand": {
@@ -112,12 +112,22 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": [
+            {"id": "choice.1", "label": "㉮", "text": "선분 ㄱㅅ"},
+            {"id": "choice.2", "label": "㉯", "text": "선분 ㅇㄴ"},
+            {"id": "choice.3", "label": "㉰", "text": "선분 ㅇㄷ"},
+            {"id": "choice.4", "label": "㉱", "text": "선분 ㅇㅁ"},
+            {"id": "choice.5", "label": "㉲", "text": "선분 ㄹㅂ"},
+            {"id": "choice.6", "label": "㉳", "text": "선분 ㄴㅅ"},
+        ],
+        "answer_key": [
+            {"id": "choice.2", "value": "㉯"},
+            {"id": "choice.3", "value": "㉰"},
+            {"id": "choice.4", "value": "㉱"},
+        ],
         "target": {
             "type": "multiple_choice_selection",
             "description": "원의 반지름인 선분을 모두 고르기",
-            "choices": ["㉯", "㉰", "㉱"],
         },
         "value": "㉯, ㉰, ㉱",
         "unit": "",
@@ -162,7 +172,12 @@ SOLVABLE = {
         "target": {
             "type": "multiple_choice_selection",
             "description": "원의 반지름인 선분을 모두 고르기",
-            "choices": ["㉯", "㉰", "㉱"],
+            "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "㉯", "text": "㉯"},
+            {"id": "choice.3", "label": "㉰", "text": "㉰"},
+            {"id": "choice.4", "label": "㉱", "text": "㉱"}
+        ],
         },
         "value": "㉯, ㉰, ㉱",
         "unit": "",

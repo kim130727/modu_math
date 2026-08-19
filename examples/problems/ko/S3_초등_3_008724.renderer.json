@@ -158,7 +158,8 @@
         "y": 245.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30
+        "font-size": 30,
+        "data-semantic-role": "symbol_label"
       },
       "source_ref": "slot.diagram.label.ga",
       "refs": {
@@ -174,7 +175,8 @@
         "y": 245.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30
+        "font-size": 30,
+        "data-semantic-role": "symbol_label"
       },
       "source_ref": "slot.diagram.label.da",
       "refs": {
@@ -190,13 +192,30 @@
         "y": 250.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30
+        "font-size": 30,
+        "data-semantic-role": "symbol_label"
       },
       "source_ref": "slot.diagram.label.ma",
       "refs": {
         "layout_slot_id": "slot.diagram.label.ma"
       },
       "text": "ㄷ"
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 25.0,
+        "y": 435.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "길이가 가장 긴 선분은 선분 ㅁㅅ이고, 원의 지름은 선분 ㄱㄷ입니다."
     },
     {
       "id": "slot.diagram.label.ma.copy10.text",
@@ -230,22 +249,6 @@
         "layout_slot_id": "slot.diagram.label.ma.copy10.copy11"
       },
       "text": "12cm"
-    },
-    {
-      "id": "slot.diagram.line_right.line",
-      "type": "line",
-      "attributes": {
-        "x1": 775.0,
-        "y1": 225.0,
-        "x2": 845.0,
-        "y2": 225.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.diagram.line_right",
-      "refs": {
-        "layout_slot_id": "slot.diagram.line_right"
-      }
     }
   ],
   "contract_version": "modu_math.renderer.v2"

@@ -126,7 +126,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.q.no", "slot.q.text"),
+                slot_ids=("slot.q.text",),
             ),
             Region(
                 id="region.diagram",
@@ -138,18 +138,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.answer",
                 role="answer",
                 flow="absolute",
-                slot_ids=("slot.answer",),
-            ),
-            Region(
-                id="region.explanation",
-                role="note",
-                flow="absolute",
-                slot_ids=(
-                    "slot.explanation.label",
-                    *(slot.id for slot in solution_diagram),
-                    "slot.explanation.text1",
-                    "slot.explanation.text2",
-                ),
+                slot_ids=(),
             ),
         ),
         slots=(

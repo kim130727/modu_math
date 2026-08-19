@@ -266,6 +266,8 @@
       {
         "id": "rel.division",
         "type": "division",
+        "from_id": "obj.dividend",
+        "to_id": "obj.divisor",
         "dividend": 69,
         "divisor": 3,
         "quotient": 23
@@ -273,6 +275,8 @@
       {
         "id": "rel.partition",
         "type": "equal_partition",
+        "from_id": "obj.dividend",
+        "to_id": "obj.options",
         "total": 69,
         "parts": 3,
         "part_value": 23
@@ -314,9 +318,39 @@
   },
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
-    "confidence": 1.0,
+    "choices": [
+      {
+        "id": "choice.1",
+        "label": "①",
+        "text": "21"
+      },
+      {
+        "id": "choice.2",
+        "label": "②",
+        "text": "22"
+      },
+      {
+        "id": "choice.3",
+        "label": "③",
+        "text": "23"
+      },
+      {
+        "id": "choice.4",
+        "label": "④",
+        "text": "24"
+      },
+      {
+        "id": "choice.5",
+        "label": "⑤",
+        "text": "25"
+      }
+    ],
+    "answer_key": [
+      {
+        "id": "choice.3",
+        "value": "23"
+      }
+    ],
     "target": {
       "type": "division_quotient",
       "description": "69 ÷ 3의 몫"

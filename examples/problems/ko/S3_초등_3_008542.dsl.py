@@ -20,31 +20,19 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.header",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.qbox", "slot.qtext"),
+                slot_ids=("slot.qtext",),
             ),
             Region(
                 id="region.options",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(
-                    "slot.house1",
-                    "slot.house1.text",
-                    "slot.house2",
-                    "slot.house2.text",
-                    "slot.house3",
-                    "slot.house3.text",
-                    "slot.house4",
-                    "slot.house4.text",
-                ),
+                slot_ids=("slot.house1", "slot.house1.text", "slot.house2", "slot.house2.text", "slot.house3", "slot.house3.text", "slot.house4", "slot.house4.text"),
             ),
             Region(
                 id="region.footer",
                 role="explanation",
                 flow="absolute",
-                slot_ids=(
-                    
-                    
-                ),
+                slot_ids=(),
             ),
         ),
         slots=(
@@ -228,7 +216,13 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": ["80 × 40", "62 × 50", "90 × 30", "43 × 60"],
+        "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "80 × 40", "text": "80 × 40"},
+            {"id": "choice.3", "label": "62 × 50", "text": "62 × 50"},
+            {"id": "choice.4", "label": "90 × 30", "text": "90 × 30"},
+            {"id": "choice.5", "label": "43 × 60", "text": "43 × 60"}
+        ],
         "answer_key": [
             {"id": "choice.1", "value": "80 × 40"},
             {"id": "choice.2", "value": "62 × 50"},
@@ -316,7 +310,13 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": ["80 × 40", "62 × 50", "90 × 30", "43 × 60"],
+        "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "80 × 40", "text": "80 × 40"},
+            {"id": "choice.3", "label": "62 × 50", "text": "62 × 50"},
+            {"id": "choice.4", "label": "90 × 30", "text": "90 × 30"},
+            {"id": "choice.5", "label": "43 × 60", "text": "43 × 60"}
+        ],
         "answer_key": [
             {"id": "choice.1", "value": "80 × 40"},
             {"id": "choice.2", "value": "62 × 50"},
@@ -355,14 +355,24 @@ SOLVABLE["understanding"] = {
             "id": "understand.threshold",
             "type": "multiple_choice",
             "prompt": "Which products are greater than 3000?",
-            "choices": ["3200 and 3100", "2700 and 2580", "3100 and 2700"],
+            "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "3200 and 3100", "text": "3200 and 3100"},
+            {"id": "choice.3", "label": "2700 and 2580", "text": "2700 and 2580"},
+            {"id": "choice.4", "label": "3100 and 2700", "text": "3100 and 2700"}
+        ],
             "answer_index": 0,
         },
         {
             "id": "understand.product_90_30",
             "type": "multiple_choice",
             "prompt": "Is 90 x 30 greater than 3000?",
-            "choices": ["Yes, because it is 3200", "No, because it is 2700", "Yes, because it is 3100"],
+            "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "Yes, because it is 3200", "text": "Yes, because it is 3200"},
+            {"id": "choice.3", "label": "No, because it is 2700", "text": "No, because it is 2700"},
+            {"id": "choice.4", "label": "Yes, because it is 3100", "text": "Yes, because it is 3100"}
+        ],
             "answer_index": 1,
         },
     ],

@@ -52,31 +52,29 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=(
-                    "slot.q.num",
-                    "slot.q.text",
-                    "slot.eq.box",
-                    "slot.eq.text",
-                    "slot.eq.blank1",
-                    "slot.eq.blank2",
-                    *speaker_group_slot_ids(speakers),                 
-                ),
+                slot_ids=("slot.q.text", "slot.eq.box", "slot.eq.text"),
+            ),
+            Region(
+                id="region.answer",
+                role="answer",
+                flow="absolute",
+                slot_ids=(),
             ),
         ),
         slots=(
-            TextSlot(
+        TextSlot(
                 id="slot.q.text",
                 prompt="",
                 text = '문제를 바르게 설명한 사람이 누구인지 찾아 선택하세요.', style_role="question",
                 x = 85, y = 50, font_size = 25),
-            RectSlot(
+        RectSlot(
                 id="slot.eq.box",
                 prompt="",
                 x = 180, y = 80, width = 380, height = 80, stroke="#75bd3a",
                 stroke_width=2,
                 fill="#eef4d8",
             ),
-            TextSlot(id="slot.eq.text", prompt="", text = '99 ÷ 8 = □ ···· □', style_role="math", x = 270, y = 130, font_size = 25),
+        TextSlot(id="slot.eq.text", prompt="", text = '99 ÷ 8 = □ ···· □', style_role="math", x = 270, y = 130, font_size = 25),
             *speaker_group_slots(speakers),
             
             

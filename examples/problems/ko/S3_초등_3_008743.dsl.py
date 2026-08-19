@@ -360,7 +360,14 @@ SOLVABLE = {
     },
     "given": [
         {"ref": "obj.figure_group", "value": {"description": "같은 모양이 반복된 도형 묶음"}},
-        {"ref": "obj.answer_choices", "value": {"choices": ["1/24", "1/12", "1/6", "1/4", "1/3"]}},
+        {"ref": "obj.answer_choices", "value": {"choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "1/24", "text": "1/24"},
+            {"id": "choice.3", "label": "1/12", "text": "1/12"},
+            {"id": "choice.4", "label": "1/6", "text": "1/6"},
+            {"id": "choice.5", "label": "1/4", "text": "1/4"},
+            {"id": "choice.6", "label": "1/3", "text": "1/3"}
+        ]}},
     ],
     "target": {"ref": "answer.target", "type": "correct_choice"},
     "method": "part_whole_matching",

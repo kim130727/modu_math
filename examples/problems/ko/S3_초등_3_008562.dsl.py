@@ -25,7 +25,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.work",
                 role="supporting",
                 flow="absolute",
-                slot_ids=("slot.work1", "slot.work2", "slot.compare"),
+                slot_ids=(),
             ),
         ),
         slots=(

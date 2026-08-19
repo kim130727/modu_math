@@ -14,10 +14,7 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.stem",
-        "slot.stem.copy1",
-        "slot.stem.copy1.copy2",
-        "slot.stem.copy1.copy3"
+        "konva_1787119425131_text_1061989"
       ]
     },
     {
@@ -51,18 +48,6 @@
     }
   ],
   "slots": [
-    {
-      "id": "slot.stem",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "원의 중심을 옮기지 않고 반지름만 다르게 하여 그린 것을 선택하세요.\n  ",
-        "style_role": "question",
-        "x": 55.0,
-        "y": 45.0,
-        "font_size": 30
-      }
-    },
     {
       "id": "slot.box",
       "kind": "rect",
@@ -195,42 +180,19 @@
       }
     },
     {
-      "id": "slot.stem.copy1",
-      "kind": "text",
+      "id": "konva_1787119425131_text_1061989",
+      "kind": "text_box",
       "prompt": "",
       "content": {
-        "text": "1.",
-        "style_role": "body",
-        "x": 110.0,
-        "y": 210.0,
+        "text": "원의 중심을 옮기지 않고 반지름만 다르게 하여 그린 것을 선택하세요.",
+        "x": 58.443,
+        "y": 25.665,
         "font_size": 30,
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.stem.copy1.copy2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "2.",
-        "style_role": "body",
-        "x": 330.0,
-        "y": 210.0,
-        "font_size": 30,
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.stem.copy1.copy3",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "3.",
-        "style_role": "body",
-        "x": 585.0,
-        "y": 210.0,
-        "font_size": 30,
-        "fill": "#111111"
+        "fill": "#111827",
+        "width": 771.388,
+        "height": 83,
+        "align": "left",
+        "line_height": 1.25
       }
     }
   ],
@@ -239,10 +201,6 @@
   "diagrams": [],
   "reading_order": [
     "region.header",
-    "slot.stem",
-    "slot.stem.copy1",
-    "slot.stem.copy1.copy2",
-    "slot.stem.copy1.copy3",
     "region.example_box",
     "slot.box",
     "slot.top.left.c1",
@@ -255,6 +213,7 @@
     "slot.top.right.o2",
     "slot.top.right.o3",
     "region.answer_explain",
-    "region.bottom_examples"
+    "region.bottom_examples",
+    "konva_1787119425131_text_1061989"
   ]
 }

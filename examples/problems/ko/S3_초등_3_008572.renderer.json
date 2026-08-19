@@ -2,7 +2,7 @@
   "problem_id": "S3_초등_3_008572",
   "view_box": {
     "width": 750.0,
-    "height": 350.0,
+    "height": 356.0,
     "background": "#FFFFFF"
   },
   "elements": [
@@ -22,22 +22,6 @@
       "refs": {
         "layout_slot_id": "box_frame"
       }
-    },
-    {
-      "id": "question.text",
-      "type": "text",
-      "attributes": {
-        "x": 66.0,
-        "y": 30.0,
-        "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 26
-      },
-      "source_ref": "question",
-      "refs": {
-        "layout_slot_id": "question"
-      },
-      "text": "계산에서 □ 안의 두 수의 곱은 실제로 얼마를 나타낼까요?"
     },
     {
       "id": "boxed_3.rect",
@@ -88,6 +72,22 @@
       "refs": {
         "layout_slot_id": "mul_bar"
       }
+    },
+    {
+      "id": "question.text",
+      "type": "text",
+      "attributes": {
+        "x": 66.0,
+        "y": 30.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "question",
+      "refs": {
+        "layout_slot_id": "question"
+      },
+      "text": "계산에서 □ 안의 두 수의 곱은 실제로 얼마를 나타낼까요?"
     },
     {
       "id": "inner_3.text",

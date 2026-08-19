@@ -58,7 +58,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.q.prefix", "slot.q.text"),
+                slot_ids=("slot.q.text",),
             ),
             Region(
                 id="region.choices",
@@ -66,18 +66,7 @@ def build_problem_template() -> ProblemTemplate:
                 flow="absolute",
                 slot_ids=tuple(slot.id for slot in (*choice1, *choice2, *choice3)),
             ),
-            Region(
-                id="region.answer",
-                role="answer",
-                flow="absolute",
-                slot_ids=(
-                    "slot.answer.label",
-                    *(slot.id for slot in answer),
-                    "slot.explanation.label",
-                    "slot.explanation.text1",
-                    "slot.explanation.text2",
-                ),
-            ),
+            Region(id="region.answer", role="answer", flow="absolute", slot_ids=()),
         ),
         slots=(
             TextSlot(

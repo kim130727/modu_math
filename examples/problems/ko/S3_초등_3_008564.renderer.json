@@ -2,10 +2,93 @@
   "problem_id": "S3_초등_3_008564",
   "view_box": {
     "width": 600.0,
-    "height": 300.0,
+    "height": 316.0,
     "background": "#FFFFFF"
   },
   "elements": [
+    {
+      "id": "slot.figure.left.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 187.5,
+        "y": 105.0,
+        "width": 30.0,
+        "height": 36.0,
+        "fill": "#D7A0D7",
+        "stroke": "#D7A0D7",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.figure.left.body",
+      "refs": {
+        "layout_slot_id": "slot.figure.left.body"
+      }
+    },
+    {
+      "id": "slot.figure.left.head.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 202.5,
+        "cy": 85.0,
+        "r": 28.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#F3C0AD"
+      },
+      "source_ref": "slot.figure.left.head",
+      "refs": {
+        "layout_slot_id": "slot.figure.left.head"
+      }
+    },
+    {
+      "id": "slot.figure.left.mouth.line",
+      "type": "line",
+      "attributes": {
+        "x1": 195.5,
+        "y1": 95.0,
+        "x2": 209.5,
+        "y2": 95.0,
+        "stroke": "#C36A6A",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.figure.left.mouth",
+      "refs": {
+        "layout_slot_id": "slot.figure.left.mouth"
+      }
+    },
+    {
+      "id": "slot.figure.left.eye1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 194.5,
+        "cy": 82.0,
+        "r": 3.5,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.figure.left.eye1",
+      "refs": {
+        "layout_slot_id": "slot.figure.left.eye1"
+      }
+    },
+    {
+      "id": "slot.figure.left.eye2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 210.5,
+        "cy": 82.0,
+        "r": 3.5,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.figure.left.eye2",
+      "refs": {
+        "layout_slot_id": "slot.figure.left.eye2"
+      }
+    },
     {
       "id": "slot.qtext.text",
       "type": "text",
@@ -69,6 +152,89 @@
       "source_ref": "slot.box",
       "refs": {
         "layout_slot_id": "slot.box"
+      }
+    },
+    {
+      "id": "slot.figure.right.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 385.0,
+        "y": 105.0,
+        "width": 30.0,
+        "height": 36.0,
+        "fill": "#8ED7E6",
+        "stroke": "#8ED7E6",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.figure.right.body",
+      "refs": {
+        "layout_slot_id": "slot.figure.right.body"
+      }
+    },
+    {
+      "id": "slot.figure.right.head.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 400.0,
+        "cy": 85.0,
+        "r": 28.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#F3C0AD"
+      },
+      "source_ref": "slot.figure.right.head",
+      "refs": {
+        "layout_slot_id": "slot.figure.right.head"
+      }
+    },
+    {
+      "id": "slot.figure.right.mouth.line",
+      "type": "line",
+      "attributes": {
+        "x1": 393.0,
+        "y1": 95.0,
+        "x2": 407.0,
+        "y2": 95.0,
+        "stroke": "#C36A6A",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.figure.right.mouth",
+      "refs": {
+        "layout_slot_id": "slot.figure.right.mouth"
+      }
+    },
+    {
+      "id": "slot.figure.right.eye1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 392.0,
+        "cy": 82.0,
+        "r": 3.5,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.figure.right.eye1",
+      "refs": {
+        "layout_slot_id": "slot.figure.right.eye1"
+      }
+    },
+    {
+      "id": "slot.figure.right.eye2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 408.0,
+        "cy": 82.0,
+        "r": 3.5,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.figure.right.eye2",
+      "refs": {
+        "layout_slot_id": "slot.figure.right.eye2"
       }
     },
     {

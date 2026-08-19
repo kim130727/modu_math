@@ -26,8 +26,8 @@
       "id": "slot.expr_box.rect",
       "type": "rect",
       "attributes": {
-        "x": 307.368,
-        "y": 73.846,
+        "x": 390.0,
+        "y": 41.0,
         "width": 186.0,
         "height": 62.0,
         "fill": "none",
@@ -43,7 +43,7 @@
       "id": "slot.left.bubble.path",
       "type": "path",
       "attributes": {
-        "d": "M 79.717 197.169 C 79.717 167.649 108.342 156.169 155.046 156.169 C 201.75 156.169 230.375 167.649 230.375 197.169 C 230.375 226.689 201.75 238.169 155.046 238.169 C 108.342 238.169 79.717 226.689 79.717 197.169 Z",
+        "d": "M 192.0 145.0 C 192.0 115.48, 216.7 104.0, 257.0 104.0 C 297.3 104.0, 322.0 115.48, 322.0 145.0 C 322.0 174.52, 297.3 186.0, 257.0 186.0 C 216.7 186.0, 192.0 174.52, 192.0 145.0 Z",
         "stroke": "#222222",
         "stroke-width": 1.6,
         "fill": "#ffffff"
@@ -54,12 +54,114 @@
       }
     },
     {
+      "id": "slot.left.tail.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            247.0,
+            180.0
+          ],
+          [
+            267.0,
+            180.0
+          ],
+          [
+            257.0,
+            225.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke-width": 1.4,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.left.tail",
+      "refs": {
+        "layout_slot_id": "slot.left.tail"
+      }
+    },
+    {
+      "id": "slot.left.person.body.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            229.0,
+            365.0
+          ],
+          [
+            285.0,
+            365.0
+          ],
+          [
+            275.0,
+            329.0
+          ],
+          [
+            239.0,
+            329.0
+          ]
+        ],
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#D7A0D7"
+      },
+      "source_ref": "slot.left.person.body",
+      "refs": {
+        "layout_slot_id": "slot.left.person.body"
+      }
+    },
+    {
+      "id": "slot.left.person.head.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 257.0,
+        "cy": 292.0,
+        "r": 28.0,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#ffd9ad"
+      },
+      "source_ref": "slot.left.person.head",
+      "refs": {
+        "layout_slot_id": "slot.left.person.head"
+      }
+    },
+    {
+      "id": "slot.left.person.hair.cap.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 229.0 291.0 C 231.0 262.0, 282.0 257.0, 286.0 291.0 C 267.0 275.0, 245.0 282.0, 229.0 291.0 Z",
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#4b1f16"
+      },
+      "source_ref": "slot.left.person.hair.cap",
+      "refs": {
+        "layout_slot_id": "slot.left.person.hair.cap"
+      }
+    },
+    {
+      "id": "slot.left.person.smile.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 250.0 308.0 Q 257.0 314.0 264.0 308.0",
+        "stroke": "#b86e39",
+        "stroke-width": 1.3,
+        "fill": "none"
+      },
+      "source_ref": "slot.left.person.smile",
+      "refs": {
+        "layout_slot_id": "slot.left.person.smile"
+      }
+    },
+    {
       "id": "slot.name.left.box.rect",
       "type": "rect",
       "attributes": {
-        "x": 238.152,
-        "y": 483.0,
-        "width": 77.708,
+        "x": 219.0,
+        "y": 363.0,
+        "width": 76.0,
         "height": 36.0,
         "fill": "#e9f7dd",
         "stroke": "#6fcf83",
@@ -76,7 +178,7 @@
       "id": "slot.right.bubble.path",
       "type": "path",
       "attributes": {
-        "d": "M 574.099 190.092 C 574.099 156.252 606.144 143.092 658.428 143.092 C 710.712 143.092 742.757 156.252 742.757 190.092 C 742.757 223.932 710.712 237.092 658.428 237.092 C 606.144 237.092 574.099 223.932 574.099 190.092 Z",
+        "d": "M 586.0 194.0 C 586.0 160.16, 614.12 147.0, 660.0 147.0 C 705.88 147.0, 734.0 160.16, 734.0 194.0 C 734.0 227.84, 705.88 241.0, 660.0 241.0 C 614.12 241.0, 586.0 227.84, 586.0 194.0 Z",
         "stroke": "#222222",
         "stroke-width": 1.6,
         "fill": "#ffffff"
@@ -87,11 +189,113 @@
       }
     },
     {
+      "id": "slot.right.tail.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            650.0,
+            235.0
+          ],
+          [
+            670.0,
+            235.0
+          ],
+          [
+            660.0,
+            277.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke-width": 1.4,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.right.tail",
+      "refs": {
+        "layout_slot_id": "slot.right.tail"
+      }
+    },
+    {
+      "id": "slot.right.person.body.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            632.0,
+            377.0
+          ],
+          [
+            688.0,
+            377.0
+          ],
+          [
+            678.0,
+            341.0
+          ],
+          [
+            642.0,
+            341.0
+          ]
+        ],
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#8ED7E6"
+      },
+      "source_ref": "slot.right.person.body",
+      "refs": {
+        "layout_slot_id": "slot.right.person.body"
+      }
+    },
+    {
+      "id": "slot.right.person.head.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 660.0,
+        "cy": 304.0,
+        "r": 28.0,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#ffd9ad"
+      },
+      "source_ref": "slot.right.person.head",
+      "refs": {
+        "layout_slot_id": "slot.right.person.head"
+      }
+    },
+    {
+      "id": "slot.right.person.hair.cap.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 632.0 303.0 C 634.0 274.0, 685.0 269.0, 689.0 303.0 C 670.0 287.0, 648.0 294.0, 632.0 303.0 Z",
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#1d1714"
+      },
+      "source_ref": "slot.right.person.hair.cap",
+      "refs": {
+        "layout_slot_id": "slot.right.person.hair.cap"
+      }
+    },
+    {
+      "id": "slot.right.person.smile.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 653.0 320.0 Q 660.0 326.0 667.0 320.0",
+        "stroke": "#b86e39",
+        "stroke-width": 1.3,
+        "fill": "none"
+      },
+      "source_ref": "slot.right.person.smile",
+      "refs": {
+        "layout_slot_id": "slot.right.person.smile"
+      }
+    },
+    {
       "id": "slot.name.right.box.rect",
       "type": "rect",
       "attributes": {
-        "x": 500.96,
-        "y": 485.0,
+        "x": 622.0,
+        "y": 363.0,
         "width": 76.0,
         "height": 36.0,
         "fill": "#e9f7dd",
@@ -106,11 +310,75 @@
       }
     },
     {
+      "id": "slot.left.person.eye.left.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 247.0,
+        "cy": 296.0,
+        "r": 2.3,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.left.person.eye.left",
+      "refs": {
+        "layout_slot_id": "slot.left.person.eye.left"
+      }
+    },
+    {
+      "id": "slot.left.person.eye.right.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 267.0,
+        "cy": 296.0,
+        "r": 2.3,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.left.person.eye.right",
+      "refs": {
+        "layout_slot_id": "slot.left.person.eye.right"
+      }
+    },
+    {
+      "id": "slot.right.person.eye.left.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 650.0,
+        "cy": 308.0,
+        "r": 2.3,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.right.person.eye.left",
+      "refs": {
+        "layout_slot_id": "slot.right.person.eye.left"
+      }
+    },
+    {
+      "id": "slot.right.person.eye.right.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 670.0,
+        "cy": 308.0,
+        "r": 2.3,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.right.person.eye.right",
+      "refs": {
+        "layout_slot_id": "slot.right.person.eye.right"
+      }
+    },
+    {
       "id": "slot.q1.text",
       "type": "text",
       "attributes": {
-        "x": 24.207,
-        "y": 49.584,
+        "x": 12.0,
+        "y": 28.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 28
@@ -125,8 +393,8 @@
       "id": "slot.expr_text.text",
       "type": "text",
       "attributes": {
-        "x": 359.368,
-        "y": 116.846,
+        "x": 442.0,
+        "y": 84.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 28
@@ -141,8 +409,8 @@
       "id": "slot.left.text.text",
       "type": "text",
       "attributes": {
-        "x": 155.721,
-        "y": 203.169,
+        "x": 257.0,
+        "y": 136.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 24,
@@ -158,8 +426,8 @@
       "id": "slot.name.left.text.text",
       "type": "text",
       "attributes": {
-        "x": 281.324,
-        "y": 510.892,
+        "x": 257.0,
+        "y": 389.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 25,
@@ -175,8 +443,8 @@
       "id": "slot.right.text.text",
       "type": "text",
       "attributes": {
-        "x": 662.694,
-        "y": 185.092,
+        "x": 660.0,
+        "y": 191.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 22,
@@ -192,8 +460,8 @@
       "id": "slot.name.right.text.text",
       "type": "text",
       "attributes": {
-        "x": 539.219,
-        "y": 510.831,
+        "x": 660.0,
+        "y": 389.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 25,

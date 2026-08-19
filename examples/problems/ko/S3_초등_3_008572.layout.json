@@ -15,35 +15,33 @@
       "flow": "absolute",
       "slot_ids": [
         "box_frame",
-        "question"
-      ]
-    },
-    {
-      "id": "main",
-      "role": "diagram",
-      "flow": "absolute",
-      "slot_ids": [
         "boxed_3",
         "boxed_4",
         "mul_bar",
+        "question",
         "inner_3",
         "inner_2",
         "inner_x",
         "inner_1",
-        "inner_4"
-      ]
-    },
-    {
-      "id": "choices",
-      "role": "diagram",
-      "flow": "absolute",
-      "slot_ids": [
+        "inner_4",
         "choice_1",
         "choice_2",
         "choice_3",
         "choice_4",
         "choice_5"
       ]
+    },
+    {
+      "id": "main",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "choices",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": []
     },
     {
       "id": "footer",
@@ -245,22 +243,22 @@
   "reading_order": [
     "header",
     "box_frame",
-    "question",
-    "main",
     "boxed_3",
     "boxed_4",
     "mul_bar",
+    "question",
     "inner_3",
     "inner_2",
     "inner_x",
     "inner_1",
     "inner_4",
-    "choices",
     "choice_1",
     "choice_2",
     "choice_3",
     "choice_4",
     "choice_5",
+    "main",
+    "choices",
     "footer"
   ]
 }

@@ -8,7 +8,7 @@ def build_problem_template() -> ProblemTemplate:
         title="색칠된 부분은 실제 어떤 수의 곱인지를 찾아 선택하세요.",
         canvas=Canvas(width=900, height=420, coordinate_mode="logical"),
         regions=(
-            Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q.text")),
+            Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q.text",)),
             Region(id="region.work", role="diagram", flow="absolute", slot_ids=()),
             Region(id="region.choice", role="choices", flow="absolute", slot_ids=()),
             Region(id="region.footer", role="footer", flow="absolute", slot_ids=()),

@@ -84,20 +84,35 @@
     }
   },
   "answer": {
-    "blanks": [
-      "slot.note1_blank",
-      "slot.note2_blank"
-    ],
+    "blanks": [],
     "choices": [
-      "ㄱㄴ",
-      "ㄷㄹ",
-      "ㅁㅂ",
-      "ㅅㅈ"
+      {
+        "id": "choice.1",
+        "label": "①",
+        "text": "ㄱㄴ"
+      },
+      {
+        "id": "choice.2",
+        "label": "②",
+        "text": "ㄷㄹ"
+      },
+      {
+        "id": "choice.3",
+        "label": "③",
+        "text": "ㅁㅂ"
+      },
+      {
+        "id": "choice.4",
+        "label": "④",
+        "text": "ㅅㅈ"
+      }
     ],
     "answer_key": [
-      3
+      {
+        "id": "choice.3",
+        "value": "ㅁㅂ"
+      }
     ],
-    "confidence": 1.0,
     "target": {
       "type": "matching_segment_name",
       "description": "두 빈칸에 공통으로 들어갈 선분 이름"

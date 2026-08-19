@@ -8,19 +8,19 @@ def build_problem_template() -> ProblemTemplate:
             id="header",
             role="stem",
             flow="absolute",
-            slot_ids=("question", "box_frame"),
+            slot_ids=(),
         ),
         Region(
             id="main",
             role="diagram",
             flow="absolute",
-            slot_ids=("boxed_3", "boxed_4", "inner_3", "inner_2", "inner_x", "inner_1", "inner_4", "mul_bar"),
+            slot_ids=(),
         ),
         Region(
             id="choices",
             role="diagram",
             flow="absolute",
-            slot_ids=("choice_1", "choice_2", "choice_3", "choice_4", "choice_5"),
+            slot_ids=(),
         ),
         Region(
             id="footer",
@@ -82,7 +82,11 @@ SEMANTIC_OVERRIDE = {
     "problem_type": "multiple_choice",
     "metadata": {"grade": 3, "subject": "수학"},
     "domain": {
-        "objects": ["자리값을 나타내는 숫자", "곱셈 도식", "객관식 선택지"],
+        "objects": [
+            {"id": "obj.place_value", "type": "concept", "name": "자리값을 나타내는 숫자"},
+            {"id": "obj.mul_diagram", "type": "diagram", "name": "곱셈 도식"},
+            {"id": "obj.choices", "type": "choices", "name": "객관식 선택지"},
+        ],
         "relations": [],
         "problem_solving": {
             "understand": "도식 속 숫자가 무엇을 나타내는지 자리값 관점에서 해석한다.",
@@ -93,8 +97,14 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": [
+            {"id": "choice.1", "label": "①", "text": "10"},
+            {"id": "choice.2", "label": "②", "text": "12"},
+            {"id": "choice.3", "label": "③", "text": "100"},
+            {"id": "choice.4", "label": "④", "text": "120"},
+            {"id": "choice.5", "label": "⑤", "text": "1000"},
+        ],
+        "answer_key": [{"id": "choice.4", "value": "120"}],
         "target": {"type": "selected_option", "description": "도식이 실제로 나타내는 곱의 값"},
         "value": 120,
         "unit": "",
@@ -136,8 +146,14 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": [
+            {"id": "choice.1", "label": "①", "text": "10"},
+            {"id": "choice.2", "label": "②", "text": "12"},
+            {"id": "choice.3", "label": "③", "text": "100"},
+            {"id": "choice.4", "label": "④", "text": "120"},
+            {"id": "choice.5", "label": "⑤", "text": "1000"},
+        ],
+        "answer_key": [{"id": "choice.4", "value": "120"}],
         "target": {"type": "selected_option", "description": "도식이 실제로 나타내는 곱의 값"},
         "value": 120,
         "unit": "",

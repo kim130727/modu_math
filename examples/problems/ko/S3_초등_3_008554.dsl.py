@@ -18,12 +18,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.answer_explanation",
                 role="explanation",
                 flow="absolute",
-                slot_ids=(
-                    "slot.answer",
-                    "slot.explain1",
-                    "slot.arrow",
-                    "slot.explain2",
-                ),
+                slot_ids=(),
             ),
         ),
         slots=(

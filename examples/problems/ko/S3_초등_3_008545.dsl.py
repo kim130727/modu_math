@@ -167,8 +167,8 @@ SEMANTIC_OVERRIDE = {
     "answer": {
         "blanks": [],
         "choices": [
-            "412 × 4",
-            "526 × 3",
+            {"id": "choice.1", "label": "①", "text": "412 × 4"},
+            {"id": "choice.2", "label": "②", "text": "526 × 3"},
         ],
         "answer_key": [{"id": "choice.2", "value": "526 × 3"}],
         "target": {
@@ -225,8 +225,8 @@ SOLVABLE = {
     "answer": {
         "blanks": [],
         "choices": [
-            "412 × 4",
-            "526 × 3",
+            {"id": "choice.1", "label": "①", "text": "412 × 4"},
+            {"id": "choice.2", "label": "②", "text": "526 × 3"},
         ],
         "answer_key": [{"id": "choice.2", "value": "526 × 3"}],
         "target": {
@@ -261,14 +261,24 @@ SOLVABLE["understanding"] = {
             "id": "understand.reference_product",
             "type": "multiple_choice",
             "prompt": "What is 789 x 2?",
-            "choices": ["1578", "1648", "1587"],
+            "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "1578", "text": "1578"},
+            {"id": "choice.3", "label": "1648", "text": "1648"},
+            {"id": "choice.4", "label": "1587", "text": "1587"}
+        ],
             "answer_index": 0,
         },
         {
             "id": "understand.same_product",
             "type": "multiple_choice",
             "prompt": "Which expression has the same product?",
-            "choices": ["412 x 4", "526 x 3", "Both choices"],
+            "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "412 x 4", "text": "412 x 4"},
+            {"id": "choice.3", "label": "526 x 3", "text": "526 x 3"},
+            {"id": "choice.4", "label": "Both choices", "text": "Both choices"}
+        ],
             "answer_index": 1,
         },
     ],

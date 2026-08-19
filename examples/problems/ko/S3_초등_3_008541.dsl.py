@@ -21,18 +21,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=(
-                    "slot.q0",
-                    "slot.q1",
-                    "slot.box",
-                    "slot.expr1",
-                    "slot.expr2",
-                    "slot.expr3",
-                    "slot.opt1",
-                    "slot.opt2",
-                    "slot.opt3",
-                    "slot.opt4",
-                ),
+                slot_ids=("slot.q1", "slot.box", "slot.expr1", "slot.expr2", "slot.expr3", "slot.opt1", "slot.opt2", "slot.opt3", "slot.opt4"),
             ),
         ),
         slots=(
@@ -275,14 +264,24 @@ SOLVABLE["understanding"] = {
             "id": "understand.compute_a",
             "type": "multiple_choice",
             "prompt": "What is 397 x 6?",
-            "choices": ["2196", "2280", "2382"],
+            "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "2196", "text": "2196"},
+            {"id": "choice.3", "label": "2280", "text": "2280"},
+            {"id": "choice.4", "label": "2382", "text": "2382"}
+        ],
             "answer_index": 2,
         },
         {
             "id": "understand.order",
             "type": "multiple_choice",
             "prompt": "Which order is greatest to least?",
-            "choices": ["A, B, C", "A, C, B", "C, A, B"],
+            "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "A, B, C", "text": "A, B, C"},
+            {"id": "choice.3", "label": "A, C, B", "text": "A, C, B"},
+            {"id": "choice.4", "label": "C, A, B", "text": "C, A, B"}
+        ],
             "answer_index": 1,
         },
     ],

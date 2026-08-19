@@ -19,11 +19,32 @@
         "konva_1783560530888_image_5374742",
         "slot.eq.bg",
         "slot.opt1.bubble",
+        "slot.opt1.tail",
+        "slot.opt1.person.body",
+        "slot.opt1.person.head",
+        "slot.opt1.person.hair.cap",
+        "slot.opt1.person.smile",
         "slot.name.opt1.box",
         "slot.opt2.bubble",
+        "slot.opt2.tail",
+        "slot.opt2.person.body",
+        "slot.opt2.person.head",
+        "slot.opt2.person.hair.cap",
+        "slot.opt2.person.smile",
         "slot.name.opt2.box",
         "slot.opt3.bubble",
+        "slot.opt3.tail",
+        "slot.opt3.person.body",
+        "slot.opt3.person.head",
+        "slot.opt3.person.hair.cap",
+        "slot.opt3.person.smile",
         "slot.name.opt3.box",
+        "slot.opt1.person.eye.left",
+        "slot.opt1.person.eye.right",
+        "slot.opt2.person.eye.left",
+        "slot.opt2.person.eye.right",
+        "slot.opt3.person.eye.left",
+        "slot.opt3.person.eye.right",
         "slot.q1",
         "slot.eq.text",
         "slot.opt1.text",
@@ -81,11 +102,35 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 138 220.5 C 138 182.7 165.55 168 210.5 168 C 255.45 168 283 182.7 283 220.5 C 283 258.3 255.45 273 210.5 273 C 165.55 273 138 258.3 138 220.5 Z",
+        "d": "M 150.0 217.5 C 150.0 179.7, 177.55 165.0, 222.5 165.0 C 267.45 165.0, 295.0 179.7, 295.0 217.5 C 295.0 255.3, 267.45 270.0, 222.5 270.0 C 177.55 270.0, 150.0 255.3, 150.0 217.5 Z",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#222222",
         "stroke_width": 1.6,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.opt1.tail",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            212.5,
+            264.0
+          ],
+          [
+            232.5,
+            264.0
+          ],
+          [
+            222.5,
+            270.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 1.4,
         "fill": "#ffffff"
       }
     },
@@ -96,11 +141,98 @@
       "content": {
         "text": "몫은\n13이야.",
         "style_role": "speech",
-        "x": 210.5,
-        "y": 211.5,
+        "x": 222.5,
+        "y": 208.5,
         "font_size": 28,
-        "anchor": "middle",
-        "fill": "#111111"
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.opt1.person.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            194.5,
+            398.0
+          ],
+          [
+            250.5,
+            398.0
+          ],
+          [
+            240.5,
+            362.0
+          ],
+          [
+            204.5,
+            362.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#D7A0D7"
+      }
+    },
+    {
+      "id": "slot.opt1.person.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 222.5,
+        "cy": 325.0,
+        "r": 28.0,
+        "stroke": "none",
+        "fill": "#ffd9ad"
+      }
+    },
+    {
+      "id": "slot.opt1.person.hair.cap",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 194.5 324.0 C 196.5 295.0, 247.5 290.0, 251.5 324.0 C 232.5 308.0, 210.5 315.0, 194.5 324.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#4b1f16"
+      }
+    },
+    {
+      "id": "slot.opt1.person.eye.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 212.5,
+        "cy": 329.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.opt1.person.eye.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 232.5,
+        "cy": 329.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.opt1.person.smile",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 215.5 341.0 Q 222.5 347.0 229.5 341.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#b86e39",
+        "stroke_width": 1.3,
+        "fill": "none"
       }
     },
     {
@@ -108,12 +240,12 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 180.5,
-        "y": 524,
-        "width": 82,
-        "height": 36,
+        "x": 181.5,
+        "y": 404.0,
+        "width": 82.0,
+        "height": 36.0,
         "stroke": "#6fcf83",
-        "stroke_width": 2,
+        "stroke_width": 2.0,
         "rx": 9.0,
         "ry": 9.0,
         "fill": "#e9f7dd"
@@ -126,15 +258,10 @@
       "content": {
         "text": "형우",
         "style_role": "label",
-        "x": 224.007,
-        "y": 552,
+        "x": 222.5,
+        "y": 430.0,
         "font_size": 25,
-        "anchor": "middle",
-        "fill": "#111111",
-        "width": 41.002,
-        "height": 31.25,
-        "align": "center",
-        "line_height": 1.2
+        "anchor": "middle"
       }
     },
     {
@@ -142,11 +269,35 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 391.996 219.5 C 391.996 181.7 419.546 167 464.496 167 C 509.446 167 536.996 181.7 536.996 219.5 C 536.996 257.3 509.446 272 464.496 272 C 419.546 272 391.996 257.3 391.996 219.5 Z",
+        "d": "M 405.0 217.5 C 405.0 179.7, 432.55 165.0, 477.5 165.0 C 522.45 165.0, 550.0 179.7, 550.0 217.5 C 550.0 255.3, 522.45 270.0, 477.5 270.0 C 432.55 270.0, 405.0 255.3, 405.0 217.5 Z",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#222222",
         "stroke_width": 1.6,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.opt2.tail",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            467.5,
+            264.0
+          ],
+          [
+            487.5,
+            264.0
+          ],
+          [
+            477.5,
+            270.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 1.4,
         "fill": "#ffffff"
       }
     },
@@ -157,11 +308,98 @@
       "content": {
         "text": "나머지는\n5보다 작아.",
         "style_role": "speech",
-        "x": 464.496,
-        "y": 214.5,
+        "x": 477.5,
+        "y": 212.5,
         "font_size": 24,
-        "anchor": "middle",
-        "fill": "#111111"
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.opt2.person.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            449.5,
+            398.0
+          ],
+          [
+            505.5,
+            398.0
+          ],
+          [
+            495.5,
+            362.0
+          ],
+          [
+            459.5,
+            362.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#8ED7E6"
+      }
+    },
+    {
+      "id": "slot.opt2.person.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 477.5,
+        "cy": 325.0,
+        "r": 28.0,
+        "stroke": "none",
+        "fill": "#ffd9ad"
+      }
+    },
+    {
+      "id": "slot.opt2.person.hair.cap",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 449.5 324.0 C 451.5 295.0, 502.5 290.0, 506.5 324.0 C 487.5 308.0, 465.5 315.0, 449.5 324.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#1d1714"
+      }
+    },
+    {
+      "id": "slot.opt2.person.eye.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 467.5,
+        "cy": 329.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.opt2.person.eye.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 487.5,
+        "cy": 329.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.opt2.person.smile",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 470.5 341.0 Q 477.5 347.0 484.5 341.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#b86e39",
+        "stroke_width": 1.3,
+        "fill": "none"
       }
     },
     {
@@ -169,12 +407,12 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 426.501,
-        "y": 524,
-        "width": 82,
-        "height": 39,
+        "x": 436.5,
+        "y": 404.0,
+        "width": 82.0,
+        "height": 36.0,
         "stroke": "#6fcf83",
-        "stroke_width": 2,
+        "stroke_width": 2.0,
         "rx": 9.0,
         "ry": 9.0,
         "fill": "#e9f7dd"
@@ -187,15 +425,10 @@
       "content": {
         "text": "희영",
         "style_role": "label",
-        "x": 470.008,
-        "y": 555.333,
+        "x": 477.5,
+        "y": 430.0,
         "font_size": 25,
-        "anchor": "middle",
-        "fill": "#111111",
-        "width": 59.008,
-        "height": 31.25,
-        "align": "center",
-        "line_height": 1.2
+        "anchor": "middle"
       }
     },
     {
@@ -203,11 +436,35 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 613.5 217.5 C 613.5 179.7 647.7 165 703.5 165 C 759.3 165 793.5 179.7 793.5 217.5 C 793.5 255.3 759.3 270 703.5 270 C 647.7 270 613.5 255.3 613.5 217.5 Z",
+        "d": "M 642.5 217.5 C 642.5 179.7, 676.7 165.0, 732.5 165.0 C 788.3 165.0, 822.5 179.7, 822.5 217.5 C 822.5 255.3, 788.3 270.0, 732.5 270.0 C 676.7 270.0, 642.5 255.3, 642.5 217.5 Z",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#222222",
         "stroke_width": 1.6,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.opt3.tail",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            722.5,
+            264.0
+          ],
+          [
+            742.5,
+            264.0
+          ],
+          [
+            732.5,
+            270.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 1.4,
         "fill": "#ffffff"
       }
     },
@@ -218,11 +475,98 @@
       "content": {
         "text": "나누어떨어지지\n않아.",
         "style_role": "speech",
-        "x": 703.5,
+        "x": 732.5,
         "y": 212.5,
         "font_size": 24,
-        "anchor": "middle",
-        "fill": "#111111"
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.opt3.person.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            704.5,
+            398.0
+          ],
+          [
+            760.5,
+            398.0
+          ],
+          [
+            750.5,
+            362.0
+          ],
+          [
+            714.5,
+            362.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#F2C66D"
+      }
+    },
+    {
+      "id": "slot.opt3.person.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 732.5,
+        "cy": 325.0,
+        "r": 28.0,
+        "stroke": "none",
+        "fill": "#ffd9ad"
+      }
+    },
+    {
+      "id": "slot.opt3.person.hair.cap",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 704.5 324.0 C 706.5 295.0, 757.5 290.0, 761.5 324.0 C 742.5 308.0, 720.5 315.0, 704.5 324.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#5b3218"
+      }
+    },
+    {
+      "id": "slot.opt3.person.eye.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 722.5,
+        "cy": 329.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.opt3.person.eye.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 742.5,
+        "cy": 329.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.opt3.person.smile",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 725.5 341.0 Q 732.5 347.0 739.5 341.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#b86e39",
+        "stroke_width": 1.3,
+        "fill": "none"
       }
     },
     {
@@ -230,12 +574,12 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 669.498,
-        "y": 523,
-        "width": 82,
-        "height": 36,
+        "x": 691.5,
+        "y": 404.0,
+        "width": 82.0,
+        "height": 36.0,
         "stroke": "#6fcf83",
-        "stroke_width": 2,
+        "stroke_width": 2.0,
         "rx": 9.0,
         "ry": 9.0,
         "fill": "#e9f7dd"
@@ -248,15 +592,10 @@
       "content": {
         "text": "성태",
         "style_role": "label",
-        "x": 707.503,
-        "y": 549,
+        "x": 732.5,
+        "y": 430.0,
         "font_size": 25,
-        "anchor": "middle",
-        "fill": "#111111",
-        "width": 55.006,
-        "height": 31.25,
-        "align": "center",
-        "line_height": 1.2
+        "anchor": "middle"
       }
     },
     {
@@ -309,11 +648,32 @@
     "konva_1783560530888_image_5374742",
     "slot.eq.bg",
     "slot.opt1.bubble",
+    "slot.opt1.tail",
+    "slot.opt1.person.body",
+    "slot.opt1.person.head",
+    "slot.opt1.person.hair.cap",
+    "slot.opt1.person.smile",
     "slot.name.opt1.box",
     "slot.opt2.bubble",
+    "slot.opt2.tail",
+    "slot.opt2.person.body",
+    "slot.opt2.person.head",
+    "slot.opt2.person.hair.cap",
+    "slot.opt2.person.smile",
     "slot.name.opt2.box",
     "slot.opt3.bubble",
+    "slot.opt3.tail",
+    "slot.opt3.person.body",
+    "slot.opt3.person.head",
+    "slot.opt3.person.hair.cap",
+    "slot.opt3.person.smile",
     "slot.name.opt3.box",
+    "slot.opt1.person.eye.left",
+    "slot.opt1.person.eye.right",
+    "slot.opt2.person.eye.left",
+    "slot.opt2.person.eye.right",
+    "slot.opt3.person.eye.left",
+    "slot.opt3.person.eye.right",
     "slot.q1",
     "slot.eq.text",
     "slot.opt1.text",

@@ -554,7 +554,7 @@
       "id": "slot.boy.bubble.path",
       "type": "path",
       "attributes": {
-        "d": "M 195 342 C 195 312 240 302 310 302 C 380 302 425 312 425 342 C 425 377 380 387 310 387 C 240 387 195 377 195 342 Z",
+        "d": "M 224.0 354.0 C 224.0 322.32, 256.3 310.0, 309.0 310.0 C 361.7 310.0, 394.0 322.32, 394.0 354.0 C 394.0 385.68, 361.7 398.0, 309.0 398.0 C 256.3 398.0, 224.0 385.68, 224.0 354.0 Z",
         "stroke": "#222222",
         "stroke-width": 1.6,
         "fill": "#ffffff"
@@ -565,25 +565,52 @@
       }
     },
     {
+      "id": "slot.boy.tail.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            299.0,
+            392.0
+          ],
+          [
+            319.0,
+            392.0
+          ],
+          [
+            309.0,
+            350.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke-width": 1.4,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.boy.tail",
+      "refs": {
+        "layout_slot_id": "slot.boy.tail"
+      }
+    },
+    {
       "id": "slot.boy.person.body.polygon",
       "type": "polygon",
       "attributes": {
         "points": [
           [
             281.0,
-            518.0
+            468.0
           ],
           [
             337.0,
-            518.0
+            468.0
           ],
           [
             327.0,
-            482.0
+            432.0
           ],
           [
             291.0,
-            482.0
+            432.0
           ]
         ],
         "stroke": "none",
@@ -600,7 +627,7 @@
       "type": "circle",
       "attributes": {
         "cx": 309.0,
-        "cy": 445.0,
+        "cy": 395.0,
         "r": 28.0,
         "stroke": "none",
         "stroke-width": 2.0,
@@ -615,7 +642,7 @@
       "id": "slot.boy.person.hair.cap.path",
       "type": "path",
       "attributes": {
-        "d": "M 281 444 C 283 415 334 410 338 444 C 319 428 297 435 281 444 Z",
+        "d": "M 281.0 394.0 C 283.0 365.0, 334.0 360.0, 338.0 394.0 C 319.0 378.0, 297.0 385.0, 281.0 394.0 Z",
         "stroke": "none",
         "stroke-width": 2.0,
         "fill": "#3B2417"
@@ -629,7 +656,7 @@
       "id": "slot.boy.person.smile.path",
       "type": "path",
       "attributes": {
-        "d": "M 302 461 Q 309 467 316 461",
+        "d": "M 302.0 411.0 Q 309.0 417.0 316.0 411.0",
         "stroke": "#b86e39",
         "stroke-width": 1.3,
         "fill": "none"
@@ -644,7 +671,7 @@
       "type": "rect",
       "attributes": {
         "x": 273.0,
-        "y": 518.0,
+        "y": 468.0,
         "width": 72.0,
         "height": 36.0,
         "fill": "#e9f7dd",
@@ -662,7 +689,7 @@
       "id": "slot.girl.bubble.path",
       "type": "path",
       "attributes": {
-        "d": "M 461.93731689453125 343.228759765625 C 461.93731689453125 300.748759765625 516.0873168945312 284.228759765625 604.4373168945312 284.228759765625 C 692.7873168945313 284.228759765625 746.9373168945312 300.748759765625 746.9373168945312 343.228759765625 C 746.9373168945312 385.708759765625 692.7873168945313 402.228759765625 604.4373168945312 402.228759765625 C 516.0873168945312 402.228759765625 461.93731689453125 385.708759765625 461.93731689453125 343.228759765625 Z",
+        "d": "M 462.5 359.0 C 462.5 316.52, 516.65 300.0, 605.0 300.0 C 693.35 300.0, 747.5 316.52, 747.5 359.0 C 747.5 401.48, 693.35 418.0, 605.0 418.0 C 516.65 418.0, 462.5 401.48, 462.5 359.0 Z",
         "stroke": "#222222",
         "stroke-width": 1.6,
         "fill": "#ffffff"
@@ -673,25 +700,52 @@
       }
     },
     {
+      "id": "slot.girl.tail.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            595.0,
+            412.0
+          ],
+          [
+            615.0,
+            412.0
+          ],
+          [
+            605.0,
+            355.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke-width": 1.4,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.girl.tail",
+      "refs": {
+        "layout_slot_id": "slot.girl.tail"
+      }
+    },
+    {
       "id": "slot.girl.person.body.polygon",
       "type": "polygon",
       "attributes": {
         "points": [
           [
             577.0,
-            533.0
+            473.0
           ],
           [
             633.0,
-            533.0
+            473.0
           ],
           [
             623.0,
-            497.0
+            437.0
           ],
           [
             587.0,
-            497.0
+            437.0
           ]
         ],
         "stroke": "none",
@@ -708,7 +762,7 @@
       "type": "circle",
       "attributes": {
         "cx": 605.0,
-        "cy": 435.0,
+        "cy": 400.0,
         "r": 28.0,
         "stroke": "none",
         "stroke-width": 2.0,
@@ -723,7 +777,7 @@
       "id": "slot.girl.person.hair.cap.path",
       "type": "path",
       "attributes": {
-        "d": "M 577 434 C 579 405 630 400 634 434 C 615 418 593 425 577 434 Z",
+        "d": "M 577.0 399.0 C 579.0 370.0, 630.0 365.0, 634.0 399.0 C 615.0 383.0, 593.0 390.0, 577.0 399.0 Z",
         "stroke": "none",
         "stroke-width": 2.0,
         "fill": "#4B260B"
@@ -737,7 +791,7 @@
       "id": "slot.girl.person.smile.path",
       "type": "path",
       "attributes": {
-        "d": "M 598 451 Q 605 457 612 451",
+        "d": "M 598.0 416.0 Q 605.0 422.0 612.0 416.0",
         "stroke": "#b86e39",
         "stroke-width": 1.3,
         "fill": "none"
@@ -751,7 +805,7 @@
       "id": "slot.girl.person.tail.left.path",
       "type": "path",
       "attributes": {
-        "d": "M 578 432 C 553 436 567 477 555 483",
+        "d": "M 578.0 397.0 C 553.0 401.0, 567.0 442.0, 555.0 448.0",
         "stroke": "#4B260B",
         "stroke-width": 7.0,
         "fill": "none"
@@ -765,7 +819,7 @@
       "id": "slot.girl.person.tail.right.path",
       "type": "path",
       "attributes": {
-        "d": "M 632 432 C 657 436 643 477 655 483",
+        "d": "M 632.0 397.0 C 657.0 401.0, 643.0 442.0, 655.0 448.0",
         "stroke": "#4B260B",
         "stroke-width": 7.0,
         "fill": "none"
@@ -782,15 +836,15 @@
         "points": [
           [
             598.0,
-            478.0
+            443.0
           ],
           [
             579.0,
-            470.0
+            435.0
           ],
           [
             591.0,
-            491.0
+            456.0
           ]
         ],
         "stroke": "none",
@@ -809,15 +863,15 @@
         "points": [
           [
             612.0,
-            478.0
+            443.0
           ],
           [
             631.0,
-            470.0
+            435.0
           ],
           [
             619.0,
-            491.0
+            456.0
           ]
         ],
         "stroke": "none",
@@ -834,7 +888,7 @@
       "type": "rect",
       "attributes": {
         "x": 569.0,
-        "y": 523.0,
+        "y": 473.0,
         "width": 72.0,
         "height": 36.0,
         "fill": "#e9f7dd",
@@ -853,7 +907,7 @@
       "type": "circle",
       "attributes": {
         "cx": 299.0,
-        "cy": 449.0,
+        "cy": 399.0,
         "r": 2.3,
         "stroke": "none",
         "stroke-width": 2.0,
@@ -869,7 +923,7 @@
       "type": "circle",
       "attributes": {
         "cx": 319.0,
-        "cy": 449.0,
+        "cy": 399.0,
         "r": 2.3,
         "stroke": "none",
         "stroke-width": 2.0,
@@ -885,7 +939,7 @@
       "type": "circle",
       "attributes": {
         "cx": 595.0,
-        "cy": 439.0,
+        "cy": 404.0,
         "r": 2.3,
         "stroke": "none",
         "stroke-width": 2.0,
@@ -901,7 +955,7 @@
       "type": "circle",
       "attributes": {
         "cx": 615.0,
-        "cy": 439.0,
+        "cy": 404.0,
         "r": 2.3,
         "stroke": "none",
         "stroke-width": 2.0,
@@ -916,11 +970,11 @@
       "id": "slot.boy.text.text",
       "type": "text",
       "attributes": {
-        "x": 310.0,
-        "y": 340.0,
+        "x": 309.0,
+        "y": 344.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 25,
+        "font-size": 23,
         "text-anchor": "middle"
       },
       "source_ref": "slot.boy.text",
@@ -933,8 +987,8 @@
       "id": "slot.name.boy.text.text",
       "type": "text",
       "attributes": {
-        "x": 309.787,
-        "y": 544.787,
+        "x": 309.0,
+        "y": 494.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 25,
@@ -950,11 +1004,11 @@
       "id": "slot.girl.text.text",
       "type": "text",
       "attributes": {
-        "x": 610.0,
-        "y": 318.0,
+        "x": 605.0,
+        "y": 333.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 25,
+        "font-size": 21,
         "text-anchor": "middle"
       },
       "source_ref": "slot.girl.text",
@@ -967,8 +1021,8 @@
       "id": "slot.name.girl.text.text",
       "type": "text",
       "attributes": {
-        "x": 606.967,
-        "y": 549.787,
+        "x": 605.0,
+        "y": 499.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 25,

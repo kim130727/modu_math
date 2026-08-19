@@ -19,24 +19,13 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=(
-                    "slot.q.text",
-                    "slot.box",
-                    "slot.box.eq1",
-                    "slot.box.eq2",
-                    "slot.box.eq3",
-                ),
+                slot_ids=("slot.q.text", "slot.box", "slot.box.eq1", "slot.box.eq2", "slot.box.eq3"),
             ),
             Region(
                 id="region.choices",
                 role="choices",
                 flow="absolute",
-                slot_ids=(
-                    "slot.choice.1",
-                    "slot.choice.2",
-                    "slot.choice.3",
-                    "slot.choice.4",
-                ),
+                slot_ids=("slot.choice.1", "slot.choice.2", "slot.choice.3", "slot.choice.4"),
             ),
             Region(
                 id="region.answer",
@@ -200,10 +189,10 @@ SEMANTIC_OVERRIDE = {
     "answer": {
         "blanks": [],
         "choices": [
-            "① ㄱ, ㄴ, ㄷ",
-            "② ㄷ, ㄴ, ㄱ",
-            "③ ㄷ, ㄱ, ㄴ",
-            "④ ㄴ, ㄱ, ㄷ",
+            {"id": "choice.1", "label": "①", "text": "ㄱ, ㄴ, ㄷ"},
+            {"id": "choice.2", "label": "②", "text": "ㄷ, ㄴ, ㄱ"},
+            {"id": "choice.3", "label": "③", "text": "ㄷ, ㄱ, ㄴ"},
+            {"id": "choice.4", "label": "④", "text": "ㄴ, ㄱ, ㄷ"},
         ],
         "answer_key": [{"id": "choice.3", "value": "③ ㄷ, ㄱ, ㄴ"}],
         "target": {
@@ -268,10 +257,10 @@ SOLVABLE = {
     "answer": {
         "blanks": [],
         "choices": [
-            "① ㄱ, ㄴ, ㄷ",
-            "② ㄷ, ㄴ, ㄱ",
-            "③ ㄷ, ㄱ, ㄴ",
-            "④ ㄴ, ㄱ, ㄷ",
+            {"id": "choice.1", "label": "①", "text": "ㄱ, ㄴ, ㄷ"},
+            {"id": "choice.2", "label": "②", "text": "ㄷ, ㄴ, ㄱ"},
+            {"id": "choice.3", "label": "③", "text": "ㄷ, ㄱ, ㄴ"},
+            {"id": "choice.4", "label": "④", "text": "ㄴ, ㄱ, ㄷ"},
         ],
         "answer_key": [{"id": "choice.3", "value": "③ ㄷ, ㄱ, ㄴ"}],
         "target": {
@@ -306,14 +295,24 @@ SOLVABLE["understanding"] = {
             "id": "understand.largest",
             "type": "multiple_choice",
             "prompt": "Which product is largest?",
-            "choices": ["4 x 28 = 112", "3 x 34 = 102", "2 x 76 = 152"],
+            "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "4 x 28 = 112", "text": "4 x 28 = 112"},
+            {"id": "choice.3", "label": "3 x 34 = 102", "text": "3 x 34 = 102"},
+            {"id": "choice.4", "label": "2 x 76 = 152", "text": "2 x 76 = 152"}
+        ],
             "answer_index": 2,
         },
         {
             "id": "understand.order",
             "type": "multiple_choice",
             "prompt": "Which order is greatest to least?",
-            "choices": ["A, B, C", "C, A, B", "C, B, A"],
+            "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "A, B, C", "text": "A, B, C"},
+            {"id": "choice.3", "label": "C, A, B", "text": "C, A, B"},
+            {"id": "choice.4", "label": "C, B, A", "text": "C, B, A"}
+        ],
             "answer_index": 1,
         },
     ],

@@ -264,14 +264,24 @@ SOLVABLE["understanding"] = {
             "id": "understand.compute_b",
             "type": "multiple_choice",
             "prompt": "What is 66 x 20?",
-            "choices": ["900", "1260", "1320"],
+            "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "900", "text": "900"},
+            {"id": "choice.3", "label": "1260", "text": "1260"},
+            {"id": "choice.4", "label": "1320", "text": "1320"}
+        ],
             "answer_index": 2,
         },
         {
             "id": "understand.greatest",
             "type": "multiple_choice",
             "prompt": "Which symbol has the greatest product?",
-            "choices": ["ㄱ", "ㄴ", "ㄷ"],
+            "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "ㄱ", "text": "ㄱ"},
+            {"id": "choice.3", "label": "ㄴ", "text": "ㄴ"},
+            {"id": "choice.4", "label": "ㄷ", "text": "ㄷ"}
+        ],
             "answer_index": 1,
         },
     ],

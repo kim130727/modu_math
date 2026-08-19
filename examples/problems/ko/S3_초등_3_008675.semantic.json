@@ -4,7 +4,6 @@
   "metadata": {
     "title": "원을 바르게 완성한 것을 선택하세요.",
     "tags": [],
-    "instruction": "정답과 해설 영역은 렌더링하지 않는다.",
     "question": "원을 바르게 완성한 것을 선택하세요.",
     "required_layout_ids": [
       "slot.choice.left.square",
@@ -20,7 +19,8 @@
       "slot.choice.right.center"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko"
+    "language": "ko",
+    "instruction": "정답과 해설 영역은 렌더링하지 않는다."
   },
   "domain": {
     "objects": [
@@ -60,7 +60,6 @@
     "blanks": [],
     "choices": [],
     "answer_key": [],
-    "confidence": 1.0,
     "target": {
       "type": "selected_picture",
       "description": "원을 바르게 완성한 그림"

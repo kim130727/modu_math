@@ -14,6 +14,11 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
+        "slot.figure.left.body",
+        "slot.figure.left.head",
+        "slot.figure.left.mouth",
+        "slot.figure.left.eye1",
+        "slot.figure.left.eye2",
         "slot.qtext"
       ]
     },
@@ -25,6 +30,11 @@
         "konva_1783560530888_image_2595778",
         "konva_1783560530888_image_2612859",
         "slot.box",
+        "slot.figure.right.body",
+        "slot.figure.right.head",
+        "slot.figure.right.mouth",
+        "slot.figure.right.eye1",
+        "slot.figure.right.eye2",
         "slot.choice1",
         "slot.choice2"
       ]
@@ -62,6 +72,126 @@
         "stroke": "#111111",
         "stroke_width": 1.5,
         "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.figure.left.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 187.5,
+        "y": 105.0,
+        "width": 30.0,
+        "height": 36.0,
+        "stroke": "#D7A0D7",
+        "rx": 10.0,
+        "ry": 10.0,
+        "fill": "#D7A0D7"
+      }
+    },
+    {
+      "id": "slot.figure.left.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 202.5,
+        "cy": 85.0,
+        "r": 28.0,
+        "fill": "#F3C0AD"
+      }
+    },
+    {
+      "id": "slot.figure.left.eye1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 194.5,
+        "cy": 82.0,
+        "r": 3.5,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.figure.left.eye2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 210.5,
+        "cy": 82.0,
+        "r": 3.5,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.figure.left.mouth",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 195.5,
+        "y1": 95.0,
+        "x2": 209.5,
+        "y2": 95.0,
+        "stroke": "#C36A6A"
+      }
+    },
+    {
+      "id": "slot.figure.right.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 385.0,
+        "y": 105.0,
+        "width": 30.0,
+        "height": 36.0,
+        "stroke": "#8ED7E6",
+        "rx": 10.0,
+        "ry": 10.0,
+        "fill": "#8ED7E6"
+      }
+    },
+    {
+      "id": "slot.figure.right.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 400.0,
+        "cy": 85.0,
+        "r": 28.0,
+        "fill": "#F3C0AD"
+      }
+    },
+    {
+      "id": "slot.figure.right.eye1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 392.0,
+        "cy": 82.0,
+        "r": 3.5,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.figure.right.eye2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 408.0,
+        "cy": 82.0,
+        "r": 3.5,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.figure.right.mouth",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 393.0,
+        "y1": 95.0,
+        "x2": 407.0,
+        "y2": 95.0,
+        "stroke": "#C36A6A"
       }
     },
     {
@@ -122,11 +252,21 @@
   "diagrams": [],
   "reading_order": [
     "region.top",
+    "slot.figure.left.body",
+    "slot.figure.left.head",
+    "slot.figure.left.mouth",
+    "slot.figure.left.eye1",
+    "slot.figure.left.eye2",
     "slot.qtext",
     "region.main",
     "konva_1783560530888_image_2595778",
     "konva_1783560530888_image_2612859",
     "slot.box",
+    "slot.figure.right.body",
+    "slot.figure.right.head",
+    "slot.figure.right.mouth",
+    "slot.figure.right.eye1",
+    "slot.figure.right.eye2",
     "slot.choice1",
     "slot.choice2",
     "region.note"

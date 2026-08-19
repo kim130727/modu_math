@@ -74,10 +74,26 @@
   "answer": {
     "blanks": [],
     "choices": [
-      "① ㄱ, ㄴ, ㄷ",
-      "② ㄷ, ㄴ, ㄱ",
-      "③ ㄷ, ㄱ, ㄴ",
-      "④ ㄴ, ㄱ, ㄷ"
+      {
+        "id": "choice.1",
+        "label": "①",
+        "text": "ㄱ, ㄴ, ㄷ"
+      },
+      {
+        "id": "choice.2",
+        "label": "②",
+        "text": "ㄷ, ㄴ, ㄱ"
+      },
+      {
+        "id": "choice.3",
+        "label": "③",
+        "text": "ㄷ, ㄱ, ㄴ"
+      },
+      {
+        "id": "choice.4",
+        "label": "④",
+        "text": "ㄴ, ㄱ, ㄷ"
+      }
     ],
     "answer_key": [
       {
@@ -85,7 +101,6 @@
         "value": "③ ㄷ, ㄱ, ㄴ"
       }
     ],
-    "confidence": 1.0,
     "target": {
       "type": "choice_order",
       "description": "계산 결과가 큰 것부터 순서대로 나열한 보기"

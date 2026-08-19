@@ -26,9 +26,9 @@
         "slot.diagram.label.ga",
         "slot.diagram.label.da",
         "slot.diagram.label.ma",
+        "slot.q2",
         "slot.diagram.label.ma.copy10",
-        "slot.diagram.label.ma.copy10.copy11",
-        "slot.diagram.line_right"
+        "slot.diagram.label.ma.copy10.copy11"
       ]
     }
   ],
@@ -89,7 +89,8 @@
         "style_role": "label",
         "x": 270.0,
         "y": 245.0,
-        "font_size": 30
+        "font_size": 30,
+        "semantic_role": "symbol_label"
       }
     },
     {
@@ -101,7 +102,8 @@
         "style_role": "label",
         "x": 515.0,
         "y": 245.0,
-        "font_size": 30
+        "font_size": 30,
+        "semantic_role": "symbol_label"
       }
     },
     {
@@ -113,6 +115,19 @@
         "style_role": "label",
         "x": 655.0,
         "y": 250.0,
+        "font_size": 30,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "길이가 가장 긴 선분은 선분 ㅁㅅ이고, 원의 지름은 선분 ㄱㄷ입니다.",
+        "style_role": "question",
+        "x": 25.0,
+        "y": 435.0,
         "font_size": 30
       }
     },
@@ -209,17 +224,6 @@
         "stroke_dasharray": "4 3",
         "transform": "rotate(0 598.67 243.89)"
       }
-    },
-    {
-      "id": "slot.diagram.line_right",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 775,
-        "y1": 225,
-        "x2": 845,
-        "y2": 225
-      }
     }
   ],
   "groups": [],
@@ -239,8 +243,8 @@
     "slot.diagram.label.ga",
     "slot.diagram.label.da",
     "slot.diagram.label.ma",
+    "slot.q2",
     "slot.diagram.label.ma.copy10",
-    "slot.diagram.label.ma.copy10.copy11",
-    "slot.diagram.line_right"
+    "slot.diagram.label.ma.copy10.copy11"
   ]
 }

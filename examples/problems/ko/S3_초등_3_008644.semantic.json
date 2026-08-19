@@ -71,16 +71,22 @@
       {
         "id": "rel.radius.na",
         "type": "radius",
+        "from_id": "obj.center.O",
+        "to_id": "obj.segment.na",
         "segment": "Oㄴ"
       },
       {
         "id": "rel.radius.da",
         "type": "radius",
+        "from_id": "obj.center.O",
+        "to_id": "obj.segment.da",
         "segment": "Oㄷ"
       },
       {
         "id": "rel.radius.ra",
         "type": "radius",
+        "from_id": "obj.center.O",
+        "to_id": "obj.segment.ra",
         "segment": "Oㅁ"
       }
     ],
@@ -118,17 +124,55 @@
   },
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
-    "confidence": 1.0,
+    "choices": [
+      {
+        "id": "choice.1",
+        "label": "㉮",
+        "text": "선분 ㄱㅅ"
+      },
+      {
+        "id": "choice.2",
+        "label": "㉯",
+        "text": "선분 ㅇㄴ"
+      },
+      {
+        "id": "choice.3",
+        "label": "㉰",
+        "text": "선분 ㅇㄷ"
+      },
+      {
+        "id": "choice.4",
+        "label": "㉱",
+        "text": "선분 ㅇㅁ"
+      },
+      {
+        "id": "choice.5",
+        "label": "㉲",
+        "text": "선분 ㄹㅂ"
+      },
+      {
+        "id": "choice.6",
+        "label": "㉳",
+        "text": "선분 ㄴㅅ"
+      }
+    ],
+    "answer_key": [
+      {
+        "id": "choice.2",
+        "value": "㉯"
+      },
+      {
+        "id": "choice.3",
+        "value": "㉰"
+      },
+      {
+        "id": "choice.4",
+        "value": "㉱"
+      }
+    ],
     "target": {
       "type": "multiple_choice_selection",
-      "description": "원의 반지름인 선분을 모두 고르기",
-      "choices": [
-        "㉯",
-        "㉰",
-        "㉱"
-      ]
+      "description": "원의 반지름인 선분을 모두 고르기"
     },
     "value": "㉯, ㉰, ㉱",
     "unit": ""

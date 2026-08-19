@@ -9,7 +9,7 @@ def build_problem_template() -> ProblemTemplate:
         title="색칠된 부분은 실제 어떤 수의 곱인지 찾아 선택하세요.",
         canvas=Canvas(width=900, height=420, coordinate_mode="logical"),
         regions=(
-            Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q.no", "slot.q.text")),
+            Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q.text",)),
             Region(id="region.work", role="diagram", flow="absolute", slot_ids=()),
             Region(id="region.choices", role="choices", flow="absolute", slot_ids=()),
             Region(id="region.footer", role="footer", flow="absolute", slot_ids=()),
@@ -120,14 +120,24 @@ SOLVABLE["understanding"] = {
             "id": "understand.place_value",
             "type": "multiple_choice",
             "prompt": "What value does the digit 2 have in 324?",
-            "choices": ["2", "20", "200"],
+            "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "2", "text": "2"},
+            {"id": "choice.3", "label": "20", "text": "20"},
+            {"id": "choice.4", "label": "200", "text": "200"}
+        ],
             "answer_index": 1,
         },
         {
             "id": "understand.partial_product",
             "type": "multiple_choice",
             "prompt": "Which expression equals the highlighted partial product 120?",
-            "choices": ["2 x 6", "20 x 6", "200 x 6"],
+            "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "2 x 6", "text": "2 x 6"},
+            {"id": "choice.3", "label": "20 x 6", "text": "20 x 6"},
+            {"id": "choice.4", "label": "200 x 6", "text": "200 x 6"}
+        ],
             "answer_index": 1,
         },
     ],

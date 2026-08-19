@@ -135,7 +135,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.diagram.top1",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(TOP1_SLOT_IDS, 'konva_1784858509254_paste_330479_0'),
+                slot_ids=(),
             ),
             Region(
                 id="region.diagram.top2",

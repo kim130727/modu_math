@@ -28,8 +28,21 @@
         "id": "obj.unit_choices",
         "type": "unit_choices",
         "choices": [
-          "mL",
-          "L"
+          {
+            "id": "choice.1",
+            "label": "choices",
+            "text": "choices"
+          },
+          {
+            "id": "choice.2",
+            "label": "mL",
+            "text": "mL"
+          },
+          {
+            "id": "choice.3",
+            "label": "L",
+            "text": "L"
+          }
         ]
       }
     ],
@@ -68,7 +81,6 @@
     "blanks": [],
     "choices": [],
     "answer_key": [],
-    "confidence": 1.0,
     "target": {
       "type": "selected_unit",
       "description": "24에 알맞은 단위"

@@ -133,14 +133,24 @@ SOLVABLE["understanding"] = {
             "id": "understand.option_products",
             "type": "multiple_choice",
             "prompt": "Which product is greater than 500?",
-            "choices": ["37 x 12 = 444", "25 x 21 = 525", "Both are greater than 500"],
+            "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "37 x 12 = 444", "text": "37 x 12 = 444"},
+            {"id": "choice.3", "label": "25 x 21 = 525", "text": "25 x 21 = 525"},
+            {"id": "choice.4", "label": "Both are greater than 500", "text": "Both are greater than 500"}
+        ],
             "answer_index": 1,
         },
         {
             "id": "understand.threshold",
             "type": "multiple_choice",
             "prompt": "Why is 25 x 21 selected?",
-            "choices": ["It equals 525, which is greater than 500", "It equals 444, which is less than 500", "It has the smaller product"],
+            "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "It equals 525, which is greater than 500", "text": "It equals 525, which is greater than 500"},
+            {"id": "choice.3", "label": "It equals 444, which is less than 500", "text": "It equals 444, which is less than 500"},
+            {"id": "choice.4", "label": "It has the smaller product", "text": "It has the smaller product"}
+        ],
             "answer_index": 0,
         },
     ],

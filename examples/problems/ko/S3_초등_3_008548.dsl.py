@@ -194,14 +194,24 @@ SOLVABLE["understanding"] = {
             "id": "understand.compute_products",
             "type": "multiple_choice",
             "prompt": "Which pair of products is correct?",
-            "choices": ["315 and 294", "294 and 315", "305 and 294"],
+            "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "315 and 294", "text": "315 and 294"},
+            {"id": "choice.3", "label": "294 and 315", "text": "294 and 315"},
+            {"id": "choice.4", "label": "305 and 294", "text": "305 and 294"}
+        ],
             "answer_index": 0,
         },
         {
             "id": "understand.larger",
             "type": "multiple_choice",
             "prompt": "Which choice has the larger product?",
-            "choices": ["choice 1", "choice 2", "same"],
+            "choices": [
+            {"id": "choice.1", "label": "choices", "text": "choices"},
+            {"id": "choice.2", "label": "choice 1", "text": "choice 1"},
+            {"id": "choice.3", "label": "choice 2", "text": "choice 2"},
+            {"id": "choice.4", "label": "same", "text": "same"}
+        ],
             "answer_index": 0,
         },
     ],
