@@ -128,6 +128,31 @@ void main() {
       '4. ÷ 4',
     ]));
   });
+
+  test('extracts choices from solvable given expressions when choices array is empty', () {
+    const content = ProblemContent(
+      summary: _summary,
+      semantic: {},
+      renderer: {},
+      solvable: {
+        'given': [
+          {
+            'ref': 'obj.left_division',
+            'value': {'expression': '24 ÷ 7'},
+          },
+          {
+            'ref': 'obj.right_division',
+            'value': {'expression': '49 ÷ 5'},
+          },
+        ],
+      },
+    );
+
+    expect(content.choices, equals([
+      '1. 24 ÷ 7',
+      '2. 49 ÷ 5',
+    ]));
+  });
 }
 
 const _summary = ProblemSummary(

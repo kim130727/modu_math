@@ -126,9 +126,17 @@ class ProblemContent {
     }
     final rendererChoices = _choicesFromRenderer();
     if (rendererChoices.isNotEmpty) {
-      return _mergeAlternatingMarkerChoices(rendererChoices);
+      return _ensureChoiceMarkers(_mergeAlternatingMarkerChoices(rendererChoices));
     }
-    return _mergeAlternatingMarkerChoices(_choicesFromSvg());
+    final svgChoices = _choicesFromSvg();
+    if (svgChoices.isNotEmpty) {
+      return _ensureChoiceMarkers(_mergeAlternatingMarkerChoices(svgChoices));
+    }
+    final givenChoices = _choicesFromSolvableGiven();
+    if (givenChoices.isNotEmpty) {
+      return _ensureChoiceMarkers(_mergeAlternatingMarkerChoices(givenChoices));
+    }
+    return const [];
   }
 
   Map<String, dynamic> get answerMap {
@@ -437,6 +445,40 @@ class ProblemContent {
     }
     return '';
   }
+
+  List<String> _choicesFromSolvableGiven() {
+    final given = solvable['given'];
+    if (given is! List || given.isEmpty) {
+      return const [];
+    }
+    final choices = <String>[];
+    for (final item in given) {
+      if (item is! Map<String, dynamic>) continue;
+      final ref = item['ref']?.toString().toLowerCase() ?? '';
+      final value = item['value'];
+
+      if (value is Map<String, dynamic>) {
+        final expr = value['expression']?.toString() ??
+            value['text']?.toString() ??
+            value['label']?.toString() ??
+            value['name']?.toString();
+        if (expr != null && expr.isNotEmpty) {
+          choices.add(sanitizeProblemText(expr.trim()));
+        }
+      } else if (value is String && value.isNotEmpty) {
+        if (ref.contains('person') ||
+            ref.contains('option') ||
+            ref.contains('choice') ||
+            ref.contains('item') ||
+            ref.contains('division') ||
+            ref.contains('expr') ||
+            ref.contains('candidate')) {
+          choices.add(sanitizeProblemText(value.trim()));
+        }
+      }
+    }
+    return choices;
+  }
 }
 
 double? _numberValue(Object? value) {
@@ -500,17 +542,17 @@ String _extractChoiceGroupKey(String identity) {
 
 List<String> _ensureChoiceMarkers(List<String> choices) {
   if (choices.isEmpty) return choices;
-  final alreadyHasMarkers = choices.every((c) => RegExp(
-        r'^(?:[①②③④⑤⑥⑦⑧⑨⑩]|\d+[.)]?|\([1-9]\)|\([가-힣]\)|[ㄱ-ㅎ가-힣][.)]?)',
-      ).hasMatch(c.trim()));
+  final markerPattern = RegExp(
+    r'^(?:[①②③④⑤⑥⑦⑧⑨⑩]|\d+[.)]|\([1-9]\)|\([가-힣]\)|\([ㄱ-ㅎ]\)|[ㄱ-ㅎ가-힣][.)])',
+  );
+  final alreadyHasMarkers =
+      choices.every((c) => markerPattern.hasMatch(c.trim()));
 
   if (alreadyHasMarkers) {
     return choices;
   }
 
-  final noneHasMarkers = !choices.any((c) => RegExp(
-        r'^(?:[①②③④⑤⑥⑦⑧⑨⑩]|\d+[.)]|\([1-9]\)|\([가-힣]\)|[ㄱ-ㅎ가-힣][.)])',
-      ).hasMatch(c.trim()));
+  final noneHasMarkers = !choices.any((c) => markerPattern.hasMatch(c.trim()));
 
   if (noneHasMarkers && choices.length <= 10) {
     return choices.indexed
