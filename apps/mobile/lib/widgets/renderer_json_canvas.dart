@@ -65,60 +65,75 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
     final height = _readDouble(viewBox['height']) ?? 426;
     final background = _readColor(viewBox['background']) ?? Colors.white;
 
+    final inputSlots = _inputSlots(
+      widget.renderer,
+      expectedAnswer: widget.expectedAnswer,
+      suppressInputs: widget.suppressInputs,
+    );
+    _ensureControllerCount(inputSlots.length);
+    final hasOperatorSlots =
+        inputSlots.any((slot) => slot.operatorOnly);
+
     return LayoutBuilder(
       builder: (context, constraints) {
+        final double maxW =
+            constraints.maxWidth.isFinite ? constraints.maxWidth : width;
+        final double maxH =
+            constraints.maxHeight.isFinite ? constraints.maxHeight : double.infinity;
+
+        final double operatorBarReservedHeight =
+            hasOperatorSlots ? 52.0 : 0.0;
+        final double availableHeight =
+            (maxH - operatorBarReservedHeight).clamp(0.0, double.infinity);
+
+        double canvasWidth = maxW;
+        double canvasHeight = canvasWidth * (height / width);
+
+        if (canvasHeight > availableHeight && availableHeight > 0) {
+          canvasHeight = availableHeight;
+          canvasWidth = canvasHeight * (width / height);
+        }
+
+        final scale = canvasWidth / width;
+
         return Center(
           child: SizedBox(
-            width: constraints.maxWidth.isFinite ? constraints.maxWidth : width,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: background,
-                border: Border.all(
-                  color: Theme.of(context).colorScheme.outlineVariant,
-                ),
-              ),
-              child: LayoutBuilder(
-                builder: (context, canvasConstraints) {
-                  final scale = canvasConstraints.maxWidth / width;
-                  final inputSlots = _inputSlots(
-                    widget.renderer,
-                    expectedAnswer: widget.expectedAnswer,
-                    suppressInputs: widget.suppressInputs,
-                  );
-                  _ensureControllerCount(inputSlots.length);
-
-                  final hasOperatorSlots =
-                      inputSlots.any((slot) => slot.operatorOnly);
-
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      AspectRatio(
-                        aspectRatio: width / height,
-                        child: Stack(
-                          clipBehavior: Clip.hardEdge,
-                          children: [
-                            Positioned.fill(
-                              child: CustomPaint(
-                                painter: RendererJsonPainter(
-                                  renderer: widget.renderer,
-                                  logicalSize: Size(width, height),
-                                ),
-                              ),
+            width: canvasWidth,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: background,
+                    border: Border.all(
+                      color: Theme.of(context).colorScheme.outlineVariant,
+                    ),
+                  ),
+                  child: SizedBox(
+                    width: canvasWidth,
+                    height: canvasHeight,
+                    child: Stack(
+                      clipBehavior: Clip.hardEdge,
+                      children: [
+                        Positioned.fill(
+                          child: CustomPaint(
+                            painter: RendererJsonPainter(
+                              renderer: widget.renderer,
+                              logicalSize: Size(width, height),
                             ),
-                            ..._textBoxLayers(widget.renderer, scale),
-                            ..._inputLayers(inputSlots, scale),
-                          ],
+                          ),
                         ),
-                      ),
-                      if (hasOperatorSlots) ...[
-                        const SizedBox(height: 10),
-                        _operatorChoiceBar(inputSlots),
+                        ..._textBoxLayers(widget.renderer, scale),
+                        ..._inputLayers(inputSlots, scale),
                       ],
-                    ],
-                  );
-                },
-              ),
+                    ),
+                  ),
+                ),
+                if (hasOperatorSlots) ...[
+                  const SizedBox(height: 10),
+                  _operatorChoiceBar(inputSlots),
+                ],
+              ],
             ),
           ),
         );

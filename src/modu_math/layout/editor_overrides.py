@@ -287,6 +287,8 @@ def _deleted_slot_matches(
     for deleted_id in deleted - exact_deleted:
         if slot_id.startswith(f"{deleted_id}."):
             return True
+        if deleted_id.startswith(f"{slot_id}."):
+            return True
     return False
 
 

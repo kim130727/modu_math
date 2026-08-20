@@ -367,4 +367,8 @@ def _sanitize_reading_order(
 def _deleted_slot_matches(slot_id: str, deleted_slots: set[str]) -> bool:
     if slot_id in deleted_slots:
         return True
-    return any(slot_id.startswith(f"{deleted}.") for deleted in deleted_slots)
+    if any(slot_id.startswith(f"{deleted}.") for deleted in deleted_slots):
+        return True
+    if any(deleted.startswith(f"{slot_id}.") for deleted in deleted_slots):
+        return True
+    return False

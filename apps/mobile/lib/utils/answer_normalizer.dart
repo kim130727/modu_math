@@ -14,18 +14,25 @@ String normalizeAnswer(String value) {
     return leadingChoice;
   }
 
-  return compact
-      .replaceAll('\uac00', '\u3131')
-      .replaceAll('\ub098', '\u3134')
-      .replaceAll('\ub2e4', '\u3137')
-      .replaceAll('\ub77c', '\u3139')
-      .replaceAll('\ub9c8', '\u3141')
-      .replaceAll('\ubc14', '\u3142')
-      .replaceAll('\uc0ac', '\u3145');
+  return compact;
 }
 
 bool isSameAnswer(String submitted, String correct) {
-  return normalizeAnswer(submitted) == normalizeAnswer(correct);
+  final normSubmitted = normalizeAnswer(submitted);
+  final normCorrect = normalizeAnswer(correct);
+  if (normSubmitted == normCorrect) {
+    return true;
+  }
+  final withoutMarker = submitted.replaceFirst(
+    RegExp(r'^(?:[①②③④⑤⑥⑦⑧⑨⑩]|\d+[.)]?|\([1-9]\)|\([가-힣]\)|[ㄱ-ㅎ가-힣][.)]?)\s*'),
+    '',
+  );
+  if (withoutMarker != submitted) {
+    if (normalizeAnswer(withoutMarker) == normCorrect) {
+      return true;
+    }
+  }
+  return false;
 }
 
 String? _leadingChoiceNumber(String value) {
@@ -43,11 +50,19 @@ String? _leadingChoiceNumber(String value) {
     '\u2466': '7',
     '\u2467': '8',
     '\u2468': '9',
-    '\u3260': '1',
-    '\u3261': '2',
-    '\u3262': '3',
-    '\u3263': '4',
-    '\u3264': '5',
+    '\u3260': '\u3131', // ㉠ -> ㄱ
+    '\u3261': '\u3134', // ㉡ -> ㄴ
+    '\u3262': '\u3137', // ㉢ -> ㄷ
+    '\u3263': '\u3139', // ㉣ -> ㄹ
+    '\u3264': '\u3141', // ㉤ -> ㅁ
+    '\u3265': '\u3142', // ㉥ -> ㅂ
+    '\u3266': '\u3145', // ㉦ -> ㅅ
+    '\u3267': '\u3147', // ㉧ -> ㅇ
+    '\u326E': '\uAC00', // ㉮ -> 가
+    '\u326F': '\uB098', // ㉯ -> 나
+    '\u3270': '\uB2E4', // ㉰ -> 다
+    '\u3271': '\uB77C', // ㉱ -> 라
+    '\u3272': '\uB9C8', // ㉲ -> 마
   };
 
   final first = value.substring(0, 1);
@@ -55,16 +70,16 @@ String? _leadingChoiceNumber(String value) {
     return circled[first];
   }
 
-  final bare = RegExp(r'^[1-9]$').firstMatch(value);
+  final bare = RegExp(r'^(?:[1-9]|[ㄱ-ㅎ]|[가-힣])$').firstMatch(value);
   if (bare != null) {
     return bare.group(0);
   }
 
-  final parenthesized = RegExp(r'^\(([1-9])\)').firstMatch(value);
+  final parenthesized = RegExp(r'^\((.+?)\)').firstMatch(value);
   if (parenthesized != null) {
     return parenthesized.group(1);
   }
 
-  final marked = RegExp(r'^([1-9])[.)]').firstMatch(value);
+  final marked = RegExp(r'^([0-9ㄱ-ㅎ가-힣])[.)]').firstMatch(value);
   return marked?.group(1);
 }

@@ -64,9 +64,19 @@ class SolvableHintService {
   const SolvableHintService();
 
   List<SolvableHint> buildHints(ProblemContent content) {
-    final diagnosticHints = _diagnosticQuestionHints(content);
-    if (diagnosticHints.isNotEmpty) {
-      return diagnosticHints;
+    final expandedAdditionHints = _expandedAdditionHints(content);
+    if (expandedAdditionHints.isNotEmpty) {
+      return expandedAdditionHints;
+    }
+
+    final wordProblemHints = _wordProblemHints(content);
+    if (wordProblemHints.isNotEmpty) {
+      return wordProblemHints;
+    }
+
+    final comparisonHints = _comparisonHints(content);
+    if (comparisonHints.isNotEmpty) {
+      return comparisonHints;
     }
 
     final authoredHints = _authoredStudentHints(content);
@@ -80,14 +90,16 @@ class SolvableHintService {
       return multiplicationPlaceValueHints;
     }
 
-    final comparisonHints = _comparisonSubproblemHints(content);
-    if (comparisonHints.isNotEmpty) {
-      return comparisonHints;
+    if (!_isWordProblem(content) && !_isComparisonProblem(content)) {
+      final columnHints = _columnAdditionHints(content);
+      if (columnHints.isNotEmpty) {
+        return columnHints;
+      }
     }
 
-    final columnHints = _columnAdditionHints(content);
-    if (columnHints.isNotEmpty) {
-      return columnHints;
+    final diagnosticHints = _diagnosticQuestionHints(content);
+    if (diagnosticHints.isNotEmpty) {
+      return diagnosticHints;
     }
 
     final planHints = _planBasedHints(content);
@@ -235,6 +247,179 @@ List<SolvableHint> _diagnosticQuestionHints(ProblemContent content) {
     );
   }
   return hints;
+}
+
+List<SolvableHint> _expandedAdditionHints(ProblemContent content) {
+  final problemType =
+      _readText(content.solvable['problem_type']).toLowerCase();
+  final relation =
+      _mapAt(_mapAt(content.solvable, 'understanding'), 'relation');
+  final relationType = relation['type']?.toString().toLowerCase() ?? '';
+  final isExpanded = problemType.contains('expanded') ||
+      problemType.contains('부분합') ||
+      relationType.contains('expanded');
+
+  if (!isExpanded) {
+    return const [];
+  }
+
+  final steps = content.solvable['steps'];
+  if (steps is! List || steps.isEmpty) {
+    return const [];
+  }
+
+  final hints = <SolvableHint>[];
+  for (var i = 0; i < steps.length; i++) {
+    final step = steps[i];
+    if (step is! Map) {
+      continue;
+    }
+    final stepId = step['id']?.toString() ?? '';
+    if (stepId.contains('collect')) {
+      continue;
+    }
+
+    final expr = _readText(step['expr']);
+    final value = step['value'];
+    final explanation = _readText(step['explanation']);
+    final level = hints.length + 1;
+
+    String title = '$level단계: 부분합 계산 ($expr)';
+    String body = explanation.isNotEmpty ? explanation : '$expr을 계산해요.';
+    String miniQ = '$expr의 값은 얼마인가요?';
+
+    if (stepId.contains('ones') || expr.contains('일의 자리')) {
+      title = '$level단계: 일의 자리 부분합 ($expr)';
+      body = '일의 자리 숫자끼리 먼저 더해요. $explanation';
+      miniQ = '첫 번째 칸에 들어갈 $expr의 값은 얼마인가요?';
+    } else if (stepId.contains('tens') || expr.contains('십의 자리')) {
+      title = '$level단계: 십의 자리 부분합 ($expr)';
+      body = '십의 자리 숫자가 나타내는 실제 값을 더해요. $explanation';
+      miniQ = '두 번째 칸에 들어갈 $expr의 값은 얼마인가요?';
+    } else if (stepId.contains('hundreds') || expr.contains('백의 자리')) {
+      title = '$level단계: 백의 자리 부분합 ($expr)';
+      body = '백의 자리 숫자가 나타내는 실제 값을 더해요. $explanation';
+      miniQ = '세 번째 칸에 들어갈 $expr의 값은 얼마인가요?';
+    } else if (stepId.contains('total') || expr.contains('전체')) {
+      title = '$level단계: 전체 합 완성하기 ($expr)';
+      body = '구한 각 자리의 부분합을 모두 더해 전체 합을 완성해요. $explanation';
+      miniQ = '마지막 칸에 들어갈 전체 합($expr)의 값은 얼마인가요?';
+    }
+
+    final int? numVal = _readInt(value);
+    if (numVal == null) {
+      continue;
+    }
+
+    final distractors = <int>[
+      numVal > 10 ? (numVal ~/ 10) : numVal + 1,
+      numVal >= 10 ? numVal * 10 : (numVal > 1 ? numVal - 1 : numVal + 2),
+    ];
+
+    hints.add(
+      SolvableHint(
+        level: level,
+        title: title,
+        body: body,
+        miniQuestion: miniQ,
+        choices: _numberChoices(numVal, distractors),
+        acceptedAnswers: ['$numVal'],
+        successMessage: '맞아요! $expr = $numVal입니다.',
+      ),
+    );
+  }
+
+  return hints;
+}
+
+List<SolvableHint> _wordProblemHints(ProblemContent content) {
+  if (!_isWordProblem(content)) {
+    return const [];
+  }
+
+  final hints = <SolvableHint>[];
+
+  final diagnosticHints = _diagnosticQuestionHints(content);
+  for (final hint in diagnosticHints) {
+    hints.add(
+      SolvableHint(
+        level: hints.length + 1,
+        title: '${hints.length + 1}단계: ${hint.title.replaceFirst(RegExp(r'^\d+단계:\s*'), '')}',
+        body: hint.body,
+        miniQuestion: hint.miniQuestion,
+        choices: hint.choices,
+        acceptedAnswers: hint.acceptedAnswers,
+        successMessage: hint.successMessage,
+      ),
+    );
+  }
+
+  final steps = content.solvable['steps'];
+  if (steps is List && steps.isNotEmpty) {
+    for (final step in steps) {
+      if (step is! Map) continue;
+      final stepId = step['id']?.toString() ?? '';
+      if (stepId.contains('collect')) continue;
+
+      final expr = _readText(step['expr']);
+      final goal = _readText(step['goal']);
+      final explanation = _readText(step['explanation']);
+      final int? numVal = _extractStepValue(step['value']);
+
+      if (expr.isEmpty || numVal == null) continue;
+
+      final level = hints.length + 1;
+      final title = goal.isNotEmpty
+          ? '$level단계: $goal ($expr)'
+          : '$level단계: $expr 계산하기';
+      final body = explanation.isNotEmpty ? explanation : '$expr을 계산해요.';
+      final miniQ = '$expr의 값은 얼마인가요?';
+
+      final distractors = <int>[
+        numVal > 10 ? (numVal - 10) : numVal + 1,
+        numVal >= 10 ? (numVal + 10) : (numVal > 1 ? numVal - 1 : numVal + 2),
+      ];
+
+      hints.add(
+        SolvableHint(
+          level: level,
+          title: title,
+          body: body,
+          miniQuestion: miniQ,
+          choices: _numberChoices(numVal, distractors),
+          acceptedAnswers: ['$numVal', '$numVal${content.summary.unit}'],
+          successMessage: '맞아요! $expr = $numVal입니다.',
+        ),
+      );
+    }
+  }
+
+  return hints;
+}
+
+bool _isWordProblem(ProblemContent content) {
+  final problemType =
+      _readText(content.solvable['problem_type']).toLowerCase();
+  final subUnit = content.summary.subUnit.toLowerCase();
+  final title = content.summary.title.toLowerCase();
+  final prompt = content.prompt;
+
+  return problemType.contains('word_problem') ||
+      problemType.contains('문장제') ||
+      subUnit.contains('문장제') ||
+      subUnit.contains('실생활') ||
+      title.contains('구슬') ||
+      title.contains('연필') ||
+      title.contains('학생') ||
+      prompt.length > 40;
+}
+
+int? _extractStepValue(Object? value) {
+  if (value is num) return value.toInt();
+  if (value is Map) {
+    return _readInt(value['count']) ?? _readInt(value['value']);
+  }
+  return _readInt(value);
 }
 
 List<SolvableHint> _multiplicationPlaceValueHints(ProblemContent content) {
@@ -421,6 +606,81 @@ List<SolvableHint> _planBasedHints(ProblemContent content) {
     );
   }
   return hints;
+}
+
+List<SolvableHint> _comparisonHints(ProblemContent content) {
+  if (!_isComparisonProblem(content)) {
+    return const [];
+  }
+
+  final subproblemHints = _comparisonSubproblemHints(content);
+  if (subproblemHints.isNotEmpty) {
+    return subproblemHints;
+  }
+
+  final diagnosticHints = _diagnosticQuestionHints(content);
+  if (diagnosticHints.isNotEmpty) {
+    return diagnosticHints;
+  }
+
+  final steps = content.solvable['steps'];
+  if (steps is List && steps.isNotEmpty) {
+    final hints = <SolvableHint>[];
+    for (final step in steps) {
+      if (step is! Map) continue;
+      final expr = _readText(step['expr']);
+      final explanation = _readText(step['explanation']);
+      final value = step['value'];
+      final level = hints.length + 1;
+
+      if (expr.isEmpty || value == null) continue;
+
+      final valStr = value.toString().trim();
+      final isOperator = valStr == '>' || valStr == '<' || valStr == '=';
+
+      if (isOperator) {
+        hints.add(
+          SolvableHint(
+            level: level,
+            title: '$level단계: 알맞은 부등호 기호 선택 ($expr)',
+            body: explanation.isNotEmpty
+                ? explanation
+                : '$expr에 알맞은 기호를 골라요.',
+            miniQuestion: '○ 안에 들어갈 알맞은 기호는 무엇인가요?',
+            choices: _textChoices(
+              valStr,
+              ['>', '=', '<'].where((s) => s != valStr).toList(),
+            ),
+            acceptedAnswers: [valStr],
+            successMessage: '정답이에요! $valStr를 선택합니다.',
+          ),
+        );
+      } else {
+        final int? numVal = _readInt(value);
+        if (numVal != null) {
+          final distractors = <int>[numVal - 10, numVal + 10];
+          hints.add(
+            SolvableHint(
+              level: level,
+              title: '$level단계: 식 계산하기 ($expr)',
+              body: explanation.isNotEmpty
+                  ? explanation
+                  : '$expr을 계산해요.',
+              miniQuestion: '$expr의 값은 얼마인가요?',
+              choices: _numberChoices(numVal, distractors),
+              acceptedAnswers: ['$numVal'],
+              successMessage: '맞아요! $expr = $numVal입니다.',
+            ),
+          );
+        }
+      }
+    }
+    if (hints.isNotEmpty) {
+      return hints;
+    }
+  }
+
+  return const [];
 }
 
 List<SolvableHint> _comparisonSubproblemHints(ProblemContent content) {
@@ -915,17 +1175,33 @@ bool _isAdditionProblem(ProblemContent content) {
 }
 
 bool _isComparisonProblem(ProblemContent content) {
+  final inputs = _mapAt(content.solvable, 'inputs');
+  final relation =
+      _mapAt(_mapAt(content.solvable, 'understanding'), 'relation');
+  final relationType = relation['type']?.toString().toLowerCase() ?? '';
   final pieces = <String>[
     content.summary.unit,
     content.summary.type,
+    content.summary.title,
+    content.summary.subUnit,
+    content.prompt,
     _readText(content.solvable['method']),
     _readText(content.solvable['problem_type']),
-    _readText(_mapAt(content.solvable['inputs'], 'answer_type')),
+    _readText(inputs['answer_type']),
+    relationType,
   ].join(' ').toLowerCase();
+
+  final hasSymbols = inputs['allowed_symbols'] is List ||
+      inputs.containsKey('left_expression') ||
+      inputs.containsKey('right_value');
+
   return pieces.contains('comparison') ||
       pieces.contains('compare') ||
       pieces.contains('비교') ||
-      pieces.contains('comparison_operator');
+      pieces.contains('크기') ||
+      pieces.contains('부등호') ||
+      pieces.contains('comparison_operator') ||
+      hasSymbols;
 }
 
 List<List<int>> _additionTermSets(ProblemContent content) {

@@ -69,6 +69,65 @@ void main() {
 
     expect(submitted, equals('80 x 4080 x 40'));
   });
+
+  test('merges alternating split marker choices into complete choice items', () {
+    const content = ProblemContent(
+      summary: _summary,
+      semantic: {},
+      renderer: {},
+      solvable: {
+        'answer': {
+          'choices': [
+            '1.',
+            '320+145',
+            '2.',
+            '300+200',
+            '3.',
+            '163+326',
+            '4.',
+            '236+362',
+            '5.',
+            '405+104',
+          ],
+        },
+      },
+    );
+
+    expect(content.choices, equals([
+      '1. 320+145',
+      '2. 300+200',
+      '3. 163+326',
+      '4. 236+362',
+      '5. 405+104',
+    ]));
+  });
+
+  test('merges grouped operator and number renderer elements into clean choices', () {
+    const content = ProblemContent(
+      summary: _summary,
+      semantic: {},
+      renderer: {
+        'elements': [
+          {'id': 'slot.choice_1_div.text', 'source_ref': 'slot.choice_1_div', 'text': '÷', 'attributes': {'x': 179.996, 'y': 140.0}},
+          {'id': 'slot.choice_1_num.text', 'source_ref': 'slot.choice_1_num', 'text': '6', 'attributes': {'x': 210.996, 'y': 140.0}},
+          {'id': 'slot.choice_2_div.text', 'source_ref': 'slot.choice_2_div', 'text': '÷', 'attributes': {'x': 367.996, 'y': 140.0}},
+          {'id': 'slot.choice_2_num.text', 'source_ref': 'slot.choice_2_num', 'text': '5', 'attributes': {'x': 396.996, 'y': 140.0}},
+          {'id': 'slot.choice_3_div.text', 'source_ref': 'slot.choice_3_div', 'text': '÷', 'attributes': {'x': 562.996, 'y': 140.0}},
+          {'id': 'slot.choice_3_num.text', 'source_ref': 'slot.choice_3_num', 'text': '9', 'attributes': {'x': 597.996, 'y': 140.0}},
+          {'id': 'slot.choice_4_div.text', 'source_ref': 'slot.choice_4_div', 'text': '÷', 'attributes': {'x': 747.996, 'y': 140.0}},
+          {'id': 'slot.choice_4_num.text', 'source_ref': 'slot.choice_4_num', 'text': '4', 'attributes': {'x': 782.996, 'y': 140.0}},
+        ],
+      },
+      solvable: {},
+    );
+
+    expect(content.choices, equals([
+      '1. ÷ 6',
+      '2. ÷ 5',
+      '3. ÷ 9',
+      '4. ÷ 4',
+    ]));
+  });
 }
 
 const _summary = ProblemSummary(

@@ -22,5 +22,14 @@ void main() {
       expect(isSameAnswer('(3) \u3137, \u3131, \u3134', '3'), isTrue);
       expect(isSameAnswer('3. \u3137, \u3131, \u3134', '3'), isTrue);
     });
+
+    test('compares Hangul consonant choice markers accurately', () {
+      expect(isSameAnswer('㉠ 16 ÷ 3', 'ㄱ'), isTrue);
+      expect(isSameAnswer('ㄱ. 16 ÷ 3', 'ㄱ'), isTrue);
+      expect(isSameAnswer('(ㄱ) 16 ÷ 3', 'ㄱ'), isTrue);
+      expect(isSameAnswer('㉡ 49 ÷ 7', 'ㄴ'), isTrue);
+      expect(isSameAnswer('ㄴ. 49 ÷ 7', 'ㄴ'), isTrue);
+      expect(isSameAnswer('ㄱ. 16 ÷ 3', 'ㄴ'), isFalse);
+    });
   });
 }

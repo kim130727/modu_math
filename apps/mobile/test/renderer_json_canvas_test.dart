@@ -1044,4 +1044,51 @@ void main() {
 
     expect(find.byType(TextField), findsNothing);
   });
+
+  testWidgets('fits height-constrained vertical canvas without overflow',
+      (tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: Center(
+            child: SizedBox(
+              width: 600,
+              height: 300,
+              child: Card(
+                margin: EdgeInsets.zero,
+                child: Padding(
+                  padding: EdgeInsets.all(12),
+                  child: RendererJsonCanvas(
+                    renderer: {
+                      'view_box': {
+                        'width': 300,
+                        'height': 260,
+                        'background': '#FFFFFF',
+                      },
+                      'elements': [
+                        {
+                          'type': 'text',
+                          'attributes': {
+                            'x': 25,
+                            'y': 28,
+                            'font-size': 24,
+                            'fill': '#111111',
+                          },
+                          'text': '다음 계산을 하시오.',
+                        },
+                      ],
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byType(RendererJsonCanvas), findsOneWidget);
+    expect(find.byType(CustomPaint), findsWidgets);
+    expect(tester.takeException(), isNull);
+  });
 }

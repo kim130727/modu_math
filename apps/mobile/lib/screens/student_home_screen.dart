@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import '../app/router.dart';
@@ -518,7 +519,7 @@ class _NextProblemCard extends StatelessWidget {
   }
 }
 
-class _UnitRail extends StatelessWidget {
+class _UnitRail extends StatefulWidget {
   const _UnitRail({
     required this.problems,
     required this.onOpenUnit,
@@ -528,10 +529,59 @@ class _UnitRail extends StatelessWidget {
   final ValueChanged<String> onOpenUnit;
 
   @override
+  State<_UnitRail> createState() => _UnitRailState();
+}
+
+class _UnitRailState extends State<_UnitRail> {
+  final ScrollController _scrollController = ScrollController();
+  bool _canScrollLeft = false;
+  bool _canScrollRight = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_updateScrollButtons);
+    WidgetsBinding.instance.addPostFrameCallback((_) => _updateScrollButtons());
+  }
+
+  void _updateScrollButtons() {
+    if (!_scrollController.hasClients) return;
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.offset;
+    final canLeft = currentScroll > 8;
+    final canRight = currentScroll < maxScroll - 8;
+    if (canLeft != _canScrollLeft || canRight != _canScrollRight) {
+      if (mounted) {
+        setState(() {
+          _canScrollLeft = canLeft;
+          _canScrollRight = canRight;
+        });
+      }
+    }
+  }
+
+  void _scroll(double delta) {
+    if (!_scrollController.hasClients) return;
+    final target = (_scrollController.offset + delta)
+        .clamp(0.0, _scrollController.position.maxScrollExtent);
+    _scrollController.animateTo(
+      target,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOutCubic,
+    );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final strings = AppStrings.of(context);
     final unitGroups = <String, List<ProblemSummary>>{};
-    for (final problem in problems) {
+    for (final problem in widget.problems) {
       unitGroups.putIfAbsent(problem.unit, () => []).add(problem);
     }
     final units = unitGroups.keys.toList()
@@ -548,28 +598,66 @@ class _UnitRail extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(strings.t('home.unitLearning'),
-            style: Theme.of(context).textTheme.titleLarge),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              strings.t('home.unitLearning'),
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            Row(
+              children: [
+                IconButton.filledTonal(
+                  icon: const Icon(Icons.chevron_left_rounded, size: 20),
+                  tooltip: '이전 단원',
+                  onPressed: _canScrollLeft ? () => _scroll(-300) : null,
+                ),
+                const SizedBox(width: 8),
+                IconButton.filledTonal(
+                  icon: const Icon(Icons.chevron_right_rounded, size: 20),
+                  tooltip: '다음 단원',
+                  onPressed: _canScrollRight ? () => _scroll(300) : null,
+                ),
+              ],
+            ),
+          ],
+        ),
         const SizedBox(height: 12),
         SizedBox(
-          height: 152,
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            itemCount: units.length,
-            separatorBuilder: (context, index) => const SizedBox(width: 12),
-            itemBuilder: (context, index) {
-              final unit = units[index];
-              final list = unitGroups[unit] ?? const [];
-              final count = list.length;
-              final subUnitsCount =
-                  list.map((p) => p.subUnit).toSet().length;
-              return _UnitTile(
-                unit: unit,
-                count: count,
-                subUnitsCount: subUnitsCount,
-                onTap: () => onOpenUnit(unit),
-              );
-            },
+          height: 168,
+          child: ScrollConfiguration(
+            behavior: ScrollConfiguration.of(context).copyWith(
+              dragDevices: {
+                PointerDeviceKind.touch,
+                PointerDeviceKind.mouse,
+                PointerDeviceKind.trackpad,
+                PointerDeviceKind.stylus,
+              },
+            ),
+            child: Scrollbar(
+              controller: _scrollController,
+              thumbVisibility: true,
+              child: ListView.separated(
+                controller: _scrollController,
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.only(bottom: 12, right: 24),
+                itemCount: units.length,
+                separatorBuilder: (context, index) => const SizedBox(width: 12),
+                itemBuilder: (context, index) {
+                  final unit = units[index];
+                  final list = unitGroups[unit] ?? const [];
+                  final count = list.length;
+                  final subUnitsCount =
+                      list.map((p) => p.subUnit).toSet().length;
+                  return _UnitTile(
+                    unit: unit,
+                    count: count,
+                    subUnitsCount: subUnitsCount,
+                    onTap: () => widget.onOpenUnit(unit),
+                  );
+                },
+              ),
+            ),
           ),
         ),
       ],

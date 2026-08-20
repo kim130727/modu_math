@@ -918,14 +918,27 @@ def _save_editor_slot_delete(paths: Any, target: str) -> None:
     if not isinstance(deleted, list):
         deleted = []
         data["deleted_slots"] = deleted
-    if target not in deleted:
-        deleted.append(target)
+
+    targets_to_delete = [target]
+    base_target = re.sub(
+        r"\.(blank|rect|text|line|path|circle|polygon|image|box|outer|inner|number|expr|expression)$",
+        "",
+        target,
+    )
+    if base_target != target and base_target.startswith("slot."):
+        targets_to_delete.append(base_target)
+
+    for t in targets_to_delete:
+        if t not in deleted:
+            deleted.append(t)
     slots = data.get("slots")
     if isinstance(slots, dict):
-        slots.pop(target, None)
+        for t in targets_to_delete:
+            slots.pop(t, None)
     slot_regions = data.get("slot_regions")
     if isinstance(slot_regions, dict):
-        slot_regions.pop(target, None)
+        for t in targets_to_delete:
+            slot_regions.pop(t, None)
         if not slot_regions:
             data.pop("slot_regions", None)
     data["version"] = 1

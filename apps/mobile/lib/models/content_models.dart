@@ -112,7 +112,7 @@ class ProblemContent {
     final answer = answerMap;
     final rawChoices = answer['choices'];
     if (rawChoices is List && rawChoices.isNotEmpty) {
-      return rawChoices.map((choice) {
+      final list = rawChoices.map((choice) {
         if (choice is Map<String, dynamic>) {
           return sanitizeProblemText(
             choice['value']?.toString() ??
@@ -122,12 +122,13 @@ class ProblemContent {
         }
         return sanitizeProblemText(choice.toString());
       }).toList();
+      return _mergeAlternatingMarkerChoices(list);
     }
     final rendererChoices = _choicesFromRenderer();
     if (rendererChoices.isNotEmpty) {
-      return rendererChoices;
+      return _mergeAlternatingMarkerChoices(rendererChoices);
     }
-    return _choicesFromSvg();
+    return _mergeAlternatingMarkerChoices(_choicesFromSvg());
   }
 
   Map<String, dynamic> get answerMap {
@@ -178,18 +179,111 @@ class ProblemContent {
   }
 
   List<String> _choicesFromSvg() {
-    final matches = RegExp(
-      r'<text[^>]*id="slot\.(?:c\d+|opt|choice)[^"]*"[^>]*>([^<]+)</text>',
-    ).allMatches(svg);
-    final choices = matches
-        .map(
-          (match) => sanitizeProblemText(
-            _decodeXmlText(match.group(1) ?? '').trim(),
-          ),
-        )
-        .where((choice) => choice.isNotEmpty)
-        .toList();
-    return _extractInlineChoices(choices) ?? choices;
+    final textPattern = RegExp(
+      r'<text\b([^>]*)>([^<]+)</text>',
+    );
+    final matches = textPattern.allMatches(svg);
+    final rawItems = <({double x, double y, String text, String groupKey})>[];
+
+    for (final match in matches) {
+      final attrs = match.group(1) ?? '';
+      final text =
+          sanitizeProblemText(_decodeXmlText(match.group(2) ?? '').trim());
+      if (text.isEmpty) continue;
+
+      final idMatch = RegExp(r'id="([^"]+)"').firstMatch(attrs);
+      final id = idMatch?.group(1)?.toLowerCase() ?? '';
+      final isChoice = id.contains('choice') ||
+          id.contains('opt') ||
+          id.contains('option') ||
+          id.contains('item') ||
+          id.contains('.c1') ||
+          id.contains('.c2') ||
+          id.contains('.c3') ||
+          id.contains('.c4') ||
+          id.contains('.c5');
+
+      final isCircledOrNumbered = RegExp(
+        r'^(?:[①②③④⑤⑥⑦⑧⑨⑩]|\([1-9]\)|\([가-힣]\)|[1-9]\.)',
+      ).hasMatch(text);
+
+      if (!isChoice && !isCircledOrNumbered) continue;
+      if (id.contains('question') ||
+          id.contains('stem') ||
+          id.contains('instruction')) continue;
+
+      final xMatch = RegExp(r'x="([0-9.-]+)"').firstMatch(attrs);
+      final yMatch = RegExp(r'y="([0-9.-]+)"').firstMatch(attrs);
+      final x = double.tryParse(xMatch?.group(1) ?? '') ?? 0;
+      final y = double.tryParse(yMatch?.group(1) ?? '') ?? 0;
+
+      final groupKey = _extractChoiceGroupKey(id);
+      rawItems.add((x: x, y: y, text: text, groupKey: groupKey));
+    }
+
+    if (rawItems.isEmpty) return const [];
+
+    rawItems.sort((a, b) {
+      final row = (a.y - b.y).abs() < 16 ? 0 : a.y.compareTo(b.y);
+      return row != 0 ? row : a.x.compareTo(b.x);
+    });
+
+    final rows = <List<({double x, double y, String text, String groupKey})>>[];
+    for (final item in rawItems) {
+      if (rows.isEmpty) {
+        rows.add([item]);
+      } else {
+        final lastRow = rows.last;
+        if ((lastRow.first.y - item.y).abs() < 16) {
+          lastRow.add(item);
+        } else {
+          rows.add([item]);
+        }
+      }
+    }
+
+    final combinedTexts = <String>[];
+    for (final row in rows) {
+      row.sort((a, b) => a.x.compareTo(b.x));
+      final mergedRow = <String>[];
+      var i = 0;
+      while (i < row.length) {
+        var current = row[i];
+        var currentText = current.text.trim();
+        while (i + 1 < row.length) {
+          final next = row[i + 1];
+          final dx = next.x - current.x;
+          final sameGroup = current.groupKey.isNotEmpty &&
+              current.groupKey == next.groupKey;
+          final isShortMarker = RegExp(
+            r'^(?:[①②③④⑤⑥⑦⑧⑨⑩]|\d+[.)]?|\([1-9]\)|\([가-힣]\)|[ㄱ-ㅎ가-힣][.)]?)$',
+          ).hasMatch(currentText);
+          final isOperator = RegExp(r'^[+\-×÷/*=<>≤≥]$').hasMatch(currentText);
+
+          if (sameGroup ||
+              (isShortMarker && dx > 0 && dx < 220) ||
+              (isOperator && dx > 0 && dx < 80) ||
+              (dx > 0 && dx < 50)) {
+            currentText = '$currentText ${next.text.trim()}';
+            current = (
+              x: next.x,
+              y: next.y,
+              text: currentText,
+              groupKey: next.groupKey.isNotEmpty ? next.groupKey : current.groupKey,
+            );
+            i++;
+          } else {
+            break;
+          }
+        }
+        mergedRow.add(currentText);
+        i++;
+      }
+      combinedTexts.addAll(mergedRow);
+    }
+
+    final inline = _extractInlineChoices(combinedTexts);
+    return inline ?? _ensureChoiceMarkers(combinedTexts);
   }
 
   List<String> _choicesFromRenderer() {
@@ -197,7 +291,7 @@ class ProblemContent {
     if (elements is! List) {
       return const [];
     }
-    final choices = <({double x, double y, String text})>[];
+    final choices = <({double x, double y, String text, String groupKey})>[];
     for (final element in elements.whereType<Map<String, dynamic>>()) {
       final identity = [
         element['id'],
@@ -205,26 +299,120 @@ class ProblemContent {
         _mapAt(element, 'refs')['layout_slot_id'],
         _mapAt(element, 'metadata')['layout_slot_id'],
       ].whereType<Object>().join(' ').toLowerCase();
-      if (!identity.contains('slot.choice')) {
-        continue;
-      }
+
+      final attributes = _mapAt(element, 'attributes');
+      final semanticRole =
+          attributes['data-semantic-role']?.toString().toLowerCase() ?? '';
+
       final text = sanitizeProblemText(element['text']?.toString() ?? '');
       if (text.isEmpty) {
         continue;
       }
-      final attributes = _mapAt(element, 'attributes');
-      choices.add((
-        x: _numberValue(attributes['x']) ?? 0,
-        y: _numberValue(attributes['y']) ?? 0,
-        text: text,
-      ));
+
+      final isChoiceIdentifier = identity.contains('slot.choice') ||
+          identity.contains('slot.opt') ||
+          identity.contains('slot.c1') ||
+          identity.contains('slot.c2') ||
+          identity.contains('slot.c3') ||
+          identity.contains('slot.c4') ||
+          identity.contains('slot.c5') ||
+          identity.contains('slot.option') ||
+          identity.contains('slot.item') ||
+          identity.contains('choice_label') ||
+          identity.contains('symbol_label') ||
+          semanticRole == 'symbol_label' ||
+          semanticRole == 'choice_marker' ||
+          semanticRole == 'choice' ||
+          semanticRole == 'option';
+
+      final isCircledOrNumbered = RegExp(
+        r'^(?:[①②③④⑤⑥⑦⑧⑨⑩]|\([1-9]\)|\([가-힣]\)|[1-9]\.)',
+      ).hasMatch(text.trim());
+
+      final isExcluded = identity.contains('instruction') ||
+          identity.contains('stem') ||
+          identity.contains('qtext') ||
+          identity.contains('question') ||
+          identity.contains('slot.q.') ||
+          identity.contains('slot.expr') ||
+          identity.contains('slot.top') ||
+          identity.contains('slot.hl') ||
+          identity.contains('slot.p1') ||
+          identity.contains('slot.p2') ||
+          identity.contains('slot.p3') ||
+          identity.contains('slot.f');
+
+      if ((isChoiceIdentifier || isCircledOrNumbered) && !isExcluded) {
+        final groupKey = _extractChoiceGroupKey(identity);
+        choices.add((
+          x: _numberValue(attributes['x']) ?? 0,
+          y: _numberValue(attributes['y']) ?? 0,
+          text: text,
+          groupKey: groupKey,
+        ));
+      }
     }
     choices.sort((a, b) {
       final row = (a.y - b.y).abs() < 16 ? 0 : a.y.compareTo(b.y);
       return row != 0 ? row : a.x.compareTo(b.x);
     });
-    final texts = choices.map((choice) => choice.text).toList();
-    return _extractInlineChoices(texts) ?? texts;
+
+    final rows = <List<({double x, double y, String text, String groupKey})>>[];
+    for (final item in choices) {
+      if (rows.isEmpty) {
+        rows.add([item]);
+      } else {
+        final lastRow = rows.last;
+        if ((lastRow.first.y - item.y).abs() < 16) {
+          lastRow.add(item);
+        } else {
+          rows.add([item]);
+        }
+      }
+    }
+
+    final combinedTexts = <String>[];
+    for (final row in rows) {
+      row.sort((a, b) => a.x.compareTo(b.x));
+      final mergedRow = <String>[];
+      var i = 0;
+      while (i < row.length) {
+        var current = row[i];
+        var currentText = current.text.trim();
+        while (i + 1 < row.length) {
+          final next = row[i + 1];
+          final dx = next.x - current.x;
+          final sameGroup = current.groupKey.isNotEmpty &&
+              current.groupKey == next.groupKey;
+          final isShortMarker = RegExp(
+            r'^(?:[①②③④⑤⑥⑦⑧⑨⑩]|\d+[.)]?|\([1-9]\)|\([가-힣]\)|[ㄱ-ㅎ가-힣][.)]?)$',
+          ).hasMatch(currentText);
+          final isOperator = RegExp(r'^[+\-×÷/*=<>≤≥]$').hasMatch(currentText);
+
+          if (sameGroup ||
+              (isShortMarker && dx > 0 && dx < 220) ||
+              (isOperator && dx > 0 && dx < 80) ||
+              (dx > 0 && dx < 50)) {
+            currentText = '$currentText ${next.text.trim()}';
+            current = (
+              x: next.x,
+              y: next.y,
+              text: currentText,
+              groupKey: next.groupKey.isNotEmpty ? next.groupKey : current.groupKey,
+            );
+            i++;
+          } else {
+            break;
+          }
+        }
+        mergedRow.add(currentText);
+        i++;
+      }
+      combinedTexts.addAll(mergedRow);
+    }
+
+    final inline = _extractInlineChoices(combinedTexts);
+    return inline ?? _ensureChoiceMarkers(combinedTexts);
   }
 
   String _rendererInstructionText() {
@@ -276,6 +464,61 @@ List<String>? _extractInlineChoices(List<String> choices) {
     }
   }
   return null;
+}
+
+List<String> _mergeAlternatingMarkerChoices(List<String> list) {
+  if (list.length < 4 || list.length.isOdd) {
+    return list;
+  }
+  var allEvensAreMarkers = true;
+  for (var i = 0; i < list.length; i += 2) {
+    final text = list[i].trim();
+    final isMarker = RegExp(
+      r'^(?:[①②③④⑤⑥⑦⑧⑨⑩]|\d+[.)]?|\([1-9]\)|\([가-힣]\)|[가-힣][.)]?)$',
+    ).hasMatch(text);
+    if (!isMarker) {
+      allEvensAreMarkers = false;
+      break;
+    }
+  }
+  if (!allEvensAreMarkers) {
+    return list;
+  }
+  final merged = <String>[];
+  for (var i = 0; i < list.length; i += 2) {
+    merged.add('${list[i].trim()} ${list[i + 1].trim()}');
+  }
+  return merged;
+}
+
+String _extractChoiceGroupKey(String identity) {
+  final match = RegExp(
+    r'(slot\.(?:choice[_\.]?\d+|opt[_\.]?\d+|c\d+|option[_\.]?\d+|item[_\.]?\d+))',
+  ).firstMatch(identity);
+  return match?.group(1) ?? '';
+}
+
+List<String> _ensureChoiceMarkers(List<String> choices) {
+  if (choices.isEmpty) return choices;
+  final alreadyHasMarkers = choices.every((c) => RegExp(
+        r'^(?:[①②③④⑤⑥⑦⑧⑨⑩]|\d+[.)]?|\([1-9]\)|\([가-힣]\)|[ㄱ-ㅎ가-힣][.)]?)',
+      ).hasMatch(c.trim()));
+
+  if (alreadyHasMarkers) {
+    return choices;
+  }
+
+  final noneHasMarkers = !choices.any((c) => RegExp(
+        r'^(?:[①②③④⑤⑥⑦⑧⑨⑩]|\d+[.)]|\([1-9]\)|\([가-힣]\)|[ㄱ-ㅎ가-힣][.)])',
+      ).hasMatch(c.trim()));
+
+  if (noneHasMarkers && choices.length <= 10) {
+    return choices.indexed
+        .map((entry) => '${entry.$1 + 1}. ${entry.$2}')
+        .toList();
+  }
+
+  return choices;
 }
 
 class SolutionStep {

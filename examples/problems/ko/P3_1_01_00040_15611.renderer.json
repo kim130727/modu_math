@@ -1,8 +1,8 @@
 {
   "problem_id": "P3_1_01_00040_15611",
   "view_box": {
-    "width": 760.0,
-    "height": 366.475,
+    "width": 500.0,
+    "height": 220.0,
     "background": "#FFFFFF"
   },
   "elements": [
@@ -180,8 +180,10 @@
         "value_type": "digit",
         "max_length": 1,
         "include_in_submission": true,
-        "order": 1,
+        "order": 0,
         "group_id": "final_answer",
+        "answer_key_index": 0,
+        "answer_ref": "answer.top_tens",
         "auto_advance": true,
         "keyboard": "number"
       },
@@ -221,8 +223,10 @@
         "value_type": "digit",
         "max_length": 1,
         "include_in_submission": true,
-        "order": 0,
+        "order": 1,
         "group_id": "final_answer",
+        "answer_key_index": 1,
+        "answer_ref": "answer.top_ones",
         "auto_advance": true,
         "keyboard": "number"
       },
@@ -264,6 +268,8 @@
         "include_in_submission": true,
         "order": 2,
         "group_id": "final_answer",
+        "answer_key_index": 2,
+        "answer_ref": "answer.bottom_hundreds",
         "auto_advance": true,
         "keyboard": "number"
       },
@@ -305,6 +311,8 @@
         "include_in_submission": true,
         "order": 3,
         "group_id": "final_answer",
+        "answer_key_index": 3,
+        "answer_ref": "answer.result_ones",
         "auto_advance": true,
         "keyboard": "number"
       },
@@ -376,19 +384,19 @@
       "id": "konva_1786192274303_paste_838274_0.text",
       "type": "text_box",
       "attributes": {
-        "x": 234.297,
-        "y": 85.328,
+        "x": 233.153,
+        "y": 84.952,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 24,
         "width": 25.2,
-        "height": 30.0,
+        "height": 37.0,
         "max_width": 25.2,
         "data-slot-kind": "text_box",
-        "data-box-x": 234.297,
-        "data-box-y": 85.328,
+        "data-box-x": 233.153,
+        "data-box-y": 84.952,
         "data-box-width": 25.2,
-        "data-box-height": 30.0,
+        "data-box-height": 37.0,
         "data-text-align": "center",
         "data-vertical-align": "top",
         "data-line-height": 1.2
@@ -403,19 +411,19 @@
       "id": "konva_1786192274303_paste_838834_0.text",
       "type": "text_box",
       "attributes": {
-        "x": 259.426,
-        "y": 84.776,
+        "x": 259.662,
+        "y": 84.902,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 24,
         "width": 25.2,
-        "height": 30.0,
+        "height": 37.0,
         "max_width": 25.2,
         "data-slot-kind": "text_box",
-        "data-box-x": 259.426,
-        "data-box-y": 84.776,
+        "data-box-x": 259.662,
+        "data-box-y": 84.902,
         "data-box-width": 25.2,
-        "data-box-height": 30.0,
+        "data-box-height": 37.0,
         "data-text-align": "center",
         "data-vertical-align": "top",
         "data-line-height": 1.2
@@ -436,13 +444,13 @@
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 24,
         "width": 25.2,
-        "height": 30.0,
+        "height": 37.0,
         "max_width": 25.2,
         "data-slot-kind": "text_box",
         "data-box-x": 206.425,
         "data-box-y": 128.393,
         "data-box-width": 25.2,
-        "data-box-height": 30.0,
+        "data-box-height": 37.0,
         "data-text-align": "center",
         "data-vertical-align": "top",
         "data-line-height": 1.2
@@ -463,13 +471,13 @@
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 24,
         "width": 30.213,
-        "height": 30.0,
+        "height": 37.0,
         "max_width": 30.213,
         "data-slot-kind": "text_box",
         "data-box-x": 232.148,
         "data-box-y": 128.475,
         "data-box-width": 30.213,
-        "data-box-height": 30.0,
+        "data-box-height": 37.0,
         "data-text-align": "center",
         "data-vertical-align": "top",
         "data-line-height": 1.2
@@ -479,74 +487,6 @@
         "layout_slot_id": "konva_1786192274303_paste_854403_0"
       },
       "text": "8"
-    },
-    {
-      "id": "slot.blank.top_tens.blank",
-      "type": "rect",
-      "attributes": {
-        "x": 64.0,
-        "y": 174.475,
-        "width": 120.0,
-        "height": 32.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.blank.top_tens",
-      "refs": {
-        "layout_slot_id": "slot.blank.top_tens"
-      }
-    },
-    {
-      "id": "slot.blank.top_ones.blank",
-      "type": "rect",
-      "attributes": {
-        "x": 64.0,
-        "y": 222.475,
-        "width": 120.0,
-        "height": 32.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.blank.top_ones",
-      "refs": {
-        "layout_slot_id": "slot.blank.top_ones"
-      }
-    },
-    {
-      "id": "slot.blank.bottom_hundreds.blank",
-      "type": "rect",
-      "attributes": {
-        "x": 64.0,
-        "y": 270.475,
-        "width": 120.0,
-        "height": 32.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.blank.bottom_hundreds",
-      "refs": {
-        "layout_slot_id": "slot.blank.bottom_hundreds"
-      }
-    },
-    {
-      "id": "slot.blank.result_ones.blank",
-      "type": "rect",
-      "attributes": {
-        "x": 64.0,
-        "y": 318.475,
-        "width": 120.0,
-        "height": 32.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.blank.result_ones",
-      "refs": {
-        "layout_slot_id": "slot.blank.result_ones"
-      }
     }
   ],
   "contract_version": "modu_math.renderer.v2"

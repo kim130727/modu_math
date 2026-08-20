@@ -141,14 +141,203 @@ void main() {
 
     expect(hints, hasLength(2));
     expect(hints[0].title, equals('1단계: 개념 확인 1'));
-    expect(hints[0].miniQuestion, equals('869에서 6은 어떤 자리의 수인가요?'));
-    expect(_correctChoice(hints[0]), equals('60'));
+    expect(hints[0].miniQuestion, equals('원의 중심에서 원 위의 한 점까지의 거리를 무엇이라고 하나요?'));
+    expect(_correctChoice(hints[0]), equals('반지름'));
 
     expect(hints[1].title, equals('2단계: 개념 확인 2'));
-    expect(hints[1].miniQuestion, equals('색칠한 부분 240에 알맞은 식은?'));
-    expect(_correctChoice(hints[1]), equals('60 × 4'));
+    expect(hints[1].miniQuestion, equals('한 원에서 그을 수 있는 반지름은 몇 개인가요?'));
+    expect(_correctChoice(hints[1]), equals('무수히 많다'));
+  });
+
+  test('builds 4 rich place-value calculation hints for expanded addition', () {
+    final hints = service.buildHints(_expandedAdditionContent);
+
+    expect(hints, hasLength(4));
+    expect(hints[0].title, equals('1단계: 일의 자리 부분합 (7 + 2)'));
+    expect(hints[0].miniQuestion, equals('첫 번째 칸에 들어갈 7 + 2의 값은 얼마인가요?'));
+    expect(_correctChoice(hints[0]), equals('9'));
+
+    expect(hints[1].title, equals('2단계: 십의 자리 부분합 (10 + 40)'));
+    expect(hints[1].miniQuestion, equals('두 번째 칸에 들어갈 10 + 40의 값은 얼마인가요?'));
+    expect(_correctChoice(hints[1]), equals('50'));
+
+    expect(hints[2].title, equals('3단계: 백의 자리 부분합 (200 + 500)'));
+    expect(hints[2].miniQuestion, equals('세 번째 칸에 들어갈 200 + 500의 값은 얼마인가요?'));
+    expect(_correctChoice(hints[2]), equals('700'));
+
+    expect(hints[3].title, equals('4단계: 전체 합 완성하기 (9 + 50 + 700)'));
+    expect(hints[3].miniQuestion, equals('마지막 칸에 들어갈 전체 합(9 + 50 + 700)의 값은 얼마인가요?'));
+    expect(_correctChoice(hints[3]), equals('759'));
+  });
+
+  test('builds 4 structured pedagogical hints for word problems', () {
+    final hints = service.buildHints(_wordProblemContent);
+
+    expect(hints, hasLength(4));
+    expect(hints[0].title, equals('1단계: 개념 확인 1'));
+    expect(hints[0].miniQuestion, equals('이 문제에서 구해야 하는 것은 무엇인가요?'));
+    expect(_correctChoice(hints[0]), equals('기영이가 처음 가지고 있던 구슬 수'));
+
+    expect(hints[1].title, equals('2단계: 개념 확인 2'));
+    expect(hints[1].miniQuestion, equals('처음 가지고 있던 구슬 수를 구하려면 어떻게 해야 하나요?'));
+    expect(_correctChoice(hints[1]), equals('120, 130, 220을 모두 더합니다.'));
+
+    expect(hints[2].title, equals('3단계: 두 사람에게 준 구슬 수를 구합니다. (120 + 130)'));
+    expect(hints[2].miniQuestion, equals('120 + 130의 값은 얼마인가요?'));
+    expect(_correctChoice(hints[2]), equals('250'));
+
+    expect(hints[3].title, equals('4단계: 처음 가지고 있던 구슬 수를 구합니다. (250 + 220)'));
+    expect(hints[3].miniQuestion, equals('250 + 220의 값은 얼마인가요?'));
+    expect(_correctChoice(hints[3]), equals('470'));
+  });
+
+  test('builds comparison hints for addition expression and number comparison', () {
+    final hints = service.buildHints(_compareAdditionAndNumberContent);
+
+    expect(hints, hasLength(2));
+    expect(hints[0].title, equals('1단계: 개념 확인 1'));
+    expect(hints[0].miniQuestion, equals('400+156의 계산 결과는 얼마인가요?'));
+    expect(_correctChoice(hints[0]), equals('556'));
+
+    expect(hints[1].title, equals('2단계: 개념 확인 2'));
+    expect(hints[1].miniQuestion, equals('556과 501의 크기를 바르게 비교한 것은 무엇인가요?'));
+    expect(_correctChoice(hints[1]), equals('556 > 501'));
   });
 }
+
+const _compareAdditionAndNumberContent = ProblemContent(
+  summary: ProblemSummary(
+    id: 'P3_1_01_00040_15610',
+    grade: 3,
+    subject: 'math',
+    unit: 'addition',
+    type: 'comparison',
+    title: '덧셈식과 수의 크기 비교',
+    path: '',
+    raw: {},
+  ),
+  semantic: {},
+  solvable: {
+    'problem_type': 'text_answer_compare_addition_expression_and_number',
+    'inputs': {
+      'left_expression': {'first': 400, 'operator': '+', 'second': 156},
+      'right_value': 501,
+      'allowed_symbols': ['>', '=', '<'],
+    },
+    'understanding': {
+      'diagnostic_questions': [
+        {
+          'id': 'understand.calculate_sum',
+          'prompt': '400+156의 계산 결과는 얼마인가요?',
+          'choices': ['456', '556', '656'],
+          'answer_index': 1,
+        },
+        {
+          'id': 'understand.compare',
+          'prompt': '556과 501의 크기를 바르게 비교한 것은 무엇인가요?',
+          'choices': ['556 > 501', '556 = 501', '556 < 501'],
+          'answer_index': 0,
+        },
+      ],
+    },
+    'steps': [
+      {'id': 'step.calculate_sum', 'expr': '400 + 156', 'value': 556},
+      {'id': 'step.compare_values', 'expr': '556 > 501', 'value': '>'},
+    ],
+    'answer': {'value': '>'},
+  },
+);
+
+const _wordProblemContent = ProblemContent(
+  summary: ProblemSummary(
+    id: 'P3_1_01_00040_15603',
+    grade: 3,
+    subject: 'math',
+    unit: 'addition',
+    type: 'word_problem',
+    title: '기영이가 처음 가지고 있던 구슬 수',
+    path: '',
+    raw: {},
+  ),
+  semantic: {},
+  solvable: {
+    'problem_type': 'numeric_answer_addition_word_problem',
+    'understanding': {
+      'diagnostic_questions': [
+        {
+          'id': 'understand.target',
+          'prompt': '이 문제에서 구해야 하는 것은 무엇인가요?',
+          'choices': [
+            '호근이에게 준 구슬 수',
+            '두 사람에게 주고 남은 구슬 수',
+            '기영이가 처음 가지고 있던 구슬 수',
+          ],
+          'answer_index': 2,
+        },
+        {
+          'id': 'understand.relation',
+          'prompt': '처음 가지고 있던 구슬 수를 구하려면 어떻게 해야 하나요?',
+          'choices': [
+            '120, 130, 220을 모두 더합니다.',
+            '220에서 120과 130을 뺍니다.',
+            '120과 130만 더합니다.',
+          ],
+          'answer_index': 0,
+        },
+      ],
+    },
+    'steps': [
+      {
+        'id': 'step.add_given_marbles',
+        'goal': '두 사람에게 준 구슬 수를 구합니다.',
+        'expr': '120 + 130',
+        'value': {'count': 250, 'unit': '개'},
+        'explanation': '120과 130을 더하면 두 사람에게 준 구슬은 250개입니다.',
+      },
+      {
+        'id': 'step.restore_initial_marbles',
+        'goal': '처음 가지고 있던 구슬 수를 구합니다.',
+        'expr': '250 + 220',
+        'value': {'count': 470, 'unit': '개'},
+        'explanation': '250개와 220개를 더하면 처음에 가지고 있던 구슬은 470개입니다.',
+      },
+    ],
+  },
+);
+
+const _expandedAdditionContent = ProblemContent(
+  summary: ProblemSummary(
+    id: 'P3_1_01_00040_15598_1',
+    grade: 3,
+    subject: 'math',
+    unit: 'addition',
+    type: 'calc',
+    title: '자리값별 부분합으로 덧셈하기',
+    path: '',
+    raw: {},
+  ),
+  semantic: {},
+  solvable: {
+    'problem_type': 'multi_numeric_answer_expanded_vertical_addition_problem',
+    'understanding': {
+      'diagnostic_questions': [
+        {
+          'id': 'understand.first_box',
+          'prompt': '각 계산의 첫 번째 작은 칸에는 무엇을 쓰나요?',
+          'choices': ['일의 자리끼리 더한 값', '십의 자리끼리 더한 값', '두 수의 전체 합'],
+          'answer_index': 0,
+        },
+      ],
+    },
+    'steps': [
+      {'id': 'step.1.ones', 'expr': '7 + 2', 'value': 9, 'explanation': '일의 자리끼리 더합니다.'},
+      {'id': 'step.1.tens', 'expr': '10 + 40', 'value': 50, 'explanation': '십의 자리 숫자가 나타내는 값을 더합니다.'},
+      {'id': 'step.1.hundreds', 'expr': '200 + 500', 'value': 700, 'explanation': '백의 자리 숫자가 나타내는 값을 더합니다.'},
+      {'id': 'step.1.total', 'expr': '9 + 50 + 700', 'value': 759, 'explanation': '세 부분합을 모두 더합니다.'},
+      {'id': 'step.collect_answers', 'expr': '[9, 50, 700, 759]', 'value': [9, 50, 700, 759]},
+    ],
+  },
+);
 
 const _multiplicationPlaceValueSummary = ProblemSummary(
   id: 'S3_초등_3_008559',
@@ -186,12 +375,12 @@ const _multiplicationPlaceValueContent = ProblemContent(
 
 const _diagnosticQuestionContent = ProblemContent(
   summary: ProblemSummary(
-    id: 'S3_초등_3_008540',
+    id: 'S3_초등_3_008636',
     grade: 3,
     subject: 'math',
-    unit: 'multiplication',
-    type: 'calc',
-    title: '색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.',
+    unit: 'geometry',
+    type: 'choice',
+    title: '원의 중심을 찾아 선택하세요.',
     path: '',
     raw: {},
   ),
@@ -201,19 +390,19 @@ const _diagnosticQuestionContent = ProblemContent(
       'diagnostic_questions': [
         {
           'id': 'q1',
-          'prompt': '869에서 6은 어떤 자리의 수인가요?',
-          'choices': ['6', '60', '600'],
+          'prompt': '원의 중심에서 원 위의 한 점까지의 거리를 무엇이라고 하나요?',
+          'choices': ['지름', '반지름', '둘레'],
           'answer_index': 1,
         },
         {
           'id': 'q2',
-          'prompt': '색칠한 부분 240에 알맞은 식은?',
-          'choices': ['6 × 4', '60 × 4', '600 × 4'],
+          'prompt': '한 원에서 그을 수 있는 반지름은 몇 개인가요?',
+          'choices': ['1개', '무수히 많다', '4개'],
           'answer_index': 1,
         },
       ],
     },
-    'answer': {'value': '(3) 60 × 4'},
+    'answer': {'value': '반지름'},
   },
 );
 

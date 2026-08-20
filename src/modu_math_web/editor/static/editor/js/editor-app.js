@@ -2117,7 +2117,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     function fallbackSlotIdFromSvgId(svgElementId) {
       if (!svgElementId) return "";
       const base = String(svgElementId)
-        .replace(/\.(text|line|rect|path|polygon|circle)$/i, "")
+        .replace(/\.(text|line|rect|path|polygon|circle|blank|box|outer|inner|number|expr|expression)$/i, "")
         .replace(/\.(image)$/i, "")
         .replace(/__(hit|proxy)$/i, "");
       if (!base || base === "selectionOverlay") return "";

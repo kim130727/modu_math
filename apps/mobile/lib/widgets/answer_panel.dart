@@ -59,26 +59,72 @@ class _AnswerPanelState extends State<AnswerPanel> {
     final choices = widget.content.choices;
     final strings = AppStrings.of(context);
     final allowsMultipleChoices = _allowsMultipleChoices(widget.content);
+    final hasVisual = widget.content.renderer.isNotEmpty ||
+        widget.content.svg.isNotEmpty;
+
+    final String titleText;
+    if (!hasVisual) {
+      titleText = widget.content.prompt;
+    } else if (choices.isNotEmpty) {
+      titleText = allowsMultipleChoices
+          ? '알맞은 정답을 모두 선택하세요'
+          : '알맞은 정답을 선택하세요';
+    } else {
+      titleText = '정답을 입력하세요';
+    }
+
+    final targetUnit = _targetUnit(widget.content);
 
     return Card(
       margin: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: const BorderSide(color: Color(0xFFE5E7EB)),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(18),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
-              widget.content.prompt,
-              style: Theme.of(context).textTheme.titleMedium,
+            Row(
+              children: [
+                Icon(
+                  choices.isNotEmpty
+                      ? Icons.check_circle_outline_rounded
+                      : Icons.edit_note_rounded,
+                  color: const Color(0xFF5C6AC4),
+                  size: 22,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    titleText,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 16),
             if (choices.isEmpty)
               TextField(
                 controller: controller,
-                style: const TextStyle(fontSize: 20),
+                style: const TextStyle(
+                    fontSize: 20, fontWeight: FontWeight.w600),
                 decoration: InputDecoration(
-                  labelText: strings.t('answer.inputLabel'),
-                  border: const OutlineInputBorder(),
+                  labelText: targetUnit != null
+                      ? '${strings.t('answer.inputLabel')} ($targetUnit)'
+                      : strings.t('answer.inputLabel'),
+                  suffixText: targetUnit,
+                  suffixStyle: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF4B5563),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
                 onChanged: widget.onAnswerChanged,
                 onSubmitted: widget.onSubmit,
@@ -226,4 +272,38 @@ class _ResultBanner extends StatelessWidget {
       ),
     );
   }
+}
+
+String? _targetUnit(ProblemContent content) {
+  final target = _mapAt(content.solvable, 'target');
+  final unit = target['unit']?.toString() ??
+      target['label']?.toString() ??
+      _mapAt(content.solvable, 'inputs')['target_unit']?.toString();
+  if (unit != null && unit.trim().isNotEmpty && unit.trim().length <= 5) {
+    return unit.trim();
+  }
+  final match =
+      RegExp(r'몇\s*([가-힣a-zA-Z]+)(?:입니까|\?|인지|인가요)').firstMatch(content.prompt);
+  if (match != null) {
+    final candidate = match.group(1);
+    if (candidate != null && candidate.isNotEmpty && candidate.length <= 4) {
+      return candidate;
+    }
+  }
+  return null;
+}
+
+Map<String, dynamic> _mapAt(Object? value, Object? key) {
+  final target = key == null
+      ? value
+      : value is Map
+          ? value[key]
+          : null;
+  if (target is Map<String, dynamic>) {
+    return target;
+  }
+  if (target is Map) {
+    return target.map((k, v) => MapEntry(k.toString(), v));
+  }
+  return const {};
 }
