@@ -121,10 +121,10 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
     );
   }
 
-  Future<void> _openUnit(String unit) async {
+  Future<void> _openUnit(String unit, {String? subUnit}) async {
     await Navigator.of(context).pushNamed(
       ModuMathRoutes.learningSession,
-      arguments: LearningSessionRouteArguments(unit: unit),
+      arguments: LearningSessionRouteArguments(unit: unit, subUnit: subUnit),
     );
     if (mounted) {
       setState(() {});
@@ -175,6 +175,8 @@ class _CurriculumHeader extends StatelessWidget {
   }
 }
 
+typedef UnitOpener = void Function(String unit, {String? subUnit});
+
 class _CurriculumSection extends StatelessWidget {
   const _CurriculumSection({
     required this.group,
@@ -184,7 +186,7 @@ class _CurriculumSection extends StatelessWidget {
 
   final _CurriculumGroup group;
   final String? initialUnit;
-  final ValueChanged<String> onOpenUnit;
+  final UnitOpener onOpenUnit;
 
   @override
   Widget build(BuildContext context) {
@@ -199,28 +201,20 @@ class _CurriculumSection extends StatelessWidget {
           }),
           style: Theme.of(context).textTheme.titleMedium,
         ),
-        const SizedBox(height: 10),
-        LayoutBuilder(
-          builder: (context, constraints) {
-            final wide = constraints.maxWidth >= 760;
-            return GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: group.units.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: wide ? 2 : 1,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                childAspectRatio: wide ? 3.1 : 3.5,
-              ),
-              itemBuilder: (context, index) {
-                final unit = group.units[index];
-                return _UnitTile(
-                  unit: unit,
-                  selected: unit.name == initialUnit,
-                  onTap: () => onOpenUnit(unit.name),
-                );
-              },
+        const SizedBox(height: 12),
+        ListView.separated(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: group.units.length,
+          separatorBuilder: (context, index) => const SizedBox(height: 12),
+          itemBuilder: (context, index) {
+            final unit = group.units[index];
+            return _UnitTile(
+              unit: unit,
+              selected: unit.name == initialUnit,
+              onTap: () => onOpenUnit(unit.name),
+              onOpenSubUnit: (subUnit) =>
+                  onOpenUnit(unit.name, subUnit: subUnit),
             );
           },
         ),
@@ -234,11 +228,13 @@ class _UnitTile extends StatelessWidget {
     required this.unit,
     required this.selected,
     required this.onTap,
+    required this.onOpenSubUnit,
   });
 
   final _CurriculumUnit unit;
   final bool selected;
   final VoidCallback onTap;
+  final ValueChanged<String> onOpenSubUnit;
 
   @override
   Widget build(BuildContext context) {
@@ -252,42 +248,85 @@ class _UnitTile extends StatelessWidget {
           width: selected ? 2 : 1,
         ),
       ),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(16),
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [
-              CircleAvatar(
-                backgroundColor:
-                    selected ? KidsPalette.sage : const Color(0xFFECEEFF),
-                foregroundColor: selected ? Colors.white : KidsPalette.sage,
-                child: Text('${unit.number}'),
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      strings.unitTitle(unit.topic),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.titleMedium,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            InkWell(
+              borderRadius: BorderRadius.circular(12),
+              onTap: onTap,
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    backgroundColor:
+                        selected ? KidsPalette.sage : const Color(0xFFECEEFF),
+                    foregroundColor:
+                        selected ? Colors.white : KidsPalette.sage,
+                    child: Text('${unit.number}'),
+                  ),
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          strings.unitTitle(unit.topic),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          strings.problemCount(unit.problemCount),
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 4),
-                    Text(
-                      strings.problemCount(unit.problemCount),
-                      style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  OutlinedButton.icon(
+                    onPressed: onTap,
+                    icon: const Icon(Icons.play_arrow_rounded, size: 18),
+                    label: const Text('전체 학습'),
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 8),
+                      side: const BorderSide(color: KidsPalette.line),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              const Icon(Icons.chevron_right, color: KidsPalette.sage),
+            ),
+            if (unit.subUnits.isNotEmpty) ...[
+              const SizedBox(height: 12),
+              const Divider(height: 1, color: KidsPalette.line),
+              const SizedBox(height: 10),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: unit.subUnits.map((subUnit) {
+                  return ActionChip(
+                    avatar: const Icon(Icons.bookmark_outline_rounded,
+                        size: 16, color: KidsPalette.sage),
+                    label: Text(
+                      '${subUnit.name} (${subUnit.problemCount})',
+                      style: const TextStyle(
+                          fontSize: 13, fontWeight: FontWeight.w600),
+                    ),
+                    backgroundColor: Colors.white,
+                    side: const BorderSide(color: KidsPalette.line),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    onPressed: () => onOpenSubUnit(subUnit.name),
+                  );
+                }).toList(),
+              ),
             ],
-          ),
+          ],
         ),
       ),
     );
@@ -315,14 +354,24 @@ class _CurriculumGroup {
     final groupedUnits = <String, List<_CurriculumUnit>>{};
     for (final entry in unitBuckets.entries) {
       final sample = entry.value.first;
-      final semester = sample.raw['semester']?.toString() ?? unknownSemester;
+      final semester = sample.semester.isNotEmpty ? sample.semester : unknownSemester;
       final groupKey = '${sample.grade}|$semester';
+
+      final subBuckets = <String, int>{};
+      for (final p in entry.value) {
+        subBuckets.update(p.subUnit, (v) => v + 1, ifAbsent: () => 1);
+      }
+      final subUnits = subBuckets.entries
+          .map((e) => _CurriculumSubUnit(name: e.key, problemCount: e.value))
+          .toList();
+
       groupedUnits.putIfAbsent(groupKey, () => []).add(
             _CurriculumUnit(
               name: entry.key,
-              number: _readInt(sample.raw['unitNumber']) ?? 0,
-              topic: sample.raw['unitTopic']?.toString() ?? entry.key,
+              number: sample.unitNumber,
+              topic: sample.unitTopic,
               problemCount: entry.value.length,
+              subUnits: subUnits,
             ),
           );
     }
@@ -349,18 +398,30 @@ class _CurriculumGroup {
   }
 }
 
+class _CurriculumSubUnit {
+  const _CurriculumSubUnit({
+    required this.name,
+    required this.problemCount,
+  });
+
+  final String name;
+  final int problemCount;
+}
+
 class _CurriculumUnit {
   const _CurriculumUnit({
     required this.name,
     required this.number,
     required this.topic,
     required this.problemCount,
+    required this.subUnits,
   });
 
   final String name;
   final int number;
   final String topic;
   final int problemCount;
+  final List<_CurriculumSubUnit> subUnits;
 }
 
 int? _readInt(Object? value) {

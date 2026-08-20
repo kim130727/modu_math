@@ -15,11 +15,13 @@ class LearningSessionScreen extends StatefulWidget {
     required this.repository,
     required this.progressRepository,
     required this.unit,
+    this.subUnit,
   });
 
   final ContentRepository repository;
   final LearningProgressRepository progressRepository;
   final String unit;
+  final String? subUnit;
 
   @override
   State<LearningSessionScreen> createState() => _LearningSessionScreenState();
@@ -57,7 +59,9 @@ class _LearningSessionScreenState extends State<LearningSessionScreen> {
     final manifest = await widget.repository.loadManifest();
     final attempts = await widget.progressRepository.getAttempts();
     final problems = manifest.problems
-        .where((problem) => problem.unit == widget.unit)
+        .where((problem) =>
+            problem.unit == widget.unit &&
+            (widget.subUnit == null || problem.subUnit == widget.subUnit))
         .toList()
       ..sort(_compareProblemSummaries);
     return _SessionData(problems: problems, attempts: attempts);
@@ -69,7 +73,11 @@ class _LearningSessionScreenState extends State<LearningSessionScreen> {
     return Scaffold(
       backgroundColor: KidsPalette.cream,
       appBar: AppBar(
-        title: Text(strings.t('session.title')),
+        title: Text(
+          widget.subUnit != null
+              ? '${strings.unitTitle(widget.unit)} · ${widget.subUnit}'
+              : strings.unitTitle(widget.unit),
+        ),
       ),
       body: SafeArea(
         child: FutureBuilder<_SessionData>(

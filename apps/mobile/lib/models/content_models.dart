@@ -63,6 +63,12 @@ class ProblemSummary {
     );
   }
 
+  String get semester => raw['semester']?.toString() ?? '1학기';
+  int get unitNumber => _readInt(raw['unitNumber']) ?? 1;
+  String get unitTopic => raw['unitTopic']?.toString() ?? unit;
+  String get subUnit =>
+      raw['subUnit']?.toString() ?? raw['subTopic']?.toString() ?? '기본 학습';
+
   String assetPath(String fileName) {
     if (filePrefix != null && filePrefix!.isNotEmpty) {
       return '$path/$filePrefix.$fileName';

@@ -534,7 +534,16 @@ class _UnitRail extends StatelessWidget {
     for (final problem in problems) {
       unitGroups.putIfAbsent(problem.unit, () => []).add(problem);
     }
-    final units = unitGroups.keys.toList()..sort();
+    final units = unitGroups.keys.toList()
+      ..sort((a, b) {
+        final aSample = unitGroups[a]!.first;
+        final bSample = unitGroups[b]!.first;
+        final semCmp = aSample.semester.compareTo(bSample.semester);
+        if (semCmp != 0) {
+          return semCmp;
+        }
+        return aSample.unitNumber.compareTo(bSample.unitNumber);
+      });
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -550,10 +559,14 @@ class _UnitRail extends StatelessWidget {
             separatorBuilder: (context, index) => const SizedBox(width: 12),
             itemBuilder: (context, index) {
               final unit = units[index];
-              final count = unitGroups[unit]?.length ?? 0;
+              final list = unitGroups[unit] ?? const [];
+              final count = list.length;
+              final subUnitsCount =
+                  list.map((p) => p.subUnit).toSet().length;
               return _UnitTile(
                 unit: unit,
                 count: count,
+                subUnitsCount: subUnitsCount,
                 onTap: () => onOpenUnit(unit),
               );
             },
@@ -568,11 +581,13 @@ class _UnitTile extends StatelessWidget {
   const _UnitTile({
     required this.unit,
     required this.count,
+    required this.subUnitsCount,
     required this.onTap,
   });
 
   final String unit;
   final int count;
+  final int subUnitsCount;
   final VoidCallback onTap;
 
   @override
@@ -596,6 +611,16 @@ class _UnitTile extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
+                if (subUnitsCount > 1) ...[
+                  const SizedBox(height: 4),
+                  Text(
+                    '소단원 $subUnitsCount개',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: KidsPalette.sage,
+                          fontWeight: FontWeight.w600,
+                        ),
+                  ),
+                ],
                 const Spacer(),
                 Row(
                   children: [

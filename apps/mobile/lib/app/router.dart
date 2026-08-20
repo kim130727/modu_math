@@ -23,9 +23,13 @@ class CurriculumRouteArguments {
 }
 
 class LearningSessionRouteArguments {
-  const LearningSessionRouteArguments({required this.unit});
+  const LearningSessionRouteArguments({
+    required this.unit,
+    this.subUnit,
+  });
 
   final String unit;
+  final String? subUnit;
 }
 
 class ModuMathRouter {
@@ -66,6 +70,7 @@ class ModuMathRouter {
                 repository: contentRepository,
                 progressRepository: progressRepository,
                 unit: sessionArguments.unit,
+                subUnit: sessionArguments.subUnit,
               ),
         ModuMathRoutes.progress => ProgressScreen(
             progressRepository: progressRepository,
