@@ -64,6 +64,22 @@ class SolvableHintService {
   const SolvableHintService();
 
   List<SolvableHint> buildHints(ProblemContent content) {
+    final diagnosticHints = _diagnosticQuestionHints(content);
+    if (diagnosticHints.isNotEmpty) {
+      return diagnosticHints;
+    }
+
+    final authoredHints = _authoredStudentHints(content);
+    if (authoredHints.isNotEmpty) {
+      return authoredHints;
+    }
+
+    final multiplicationPlaceValueHints =
+        _multiplicationPlaceValueHints(content);
+    if (multiplicationPlaceValueHints.isNotEmpty) {
+      return multiplicationPlaceValueHints;
+    }
+
     final comparisonHints = _comparisonSubproblemHints(content);
     if (comparisonHints.isNotEmpty) {
       return comparisonHints;
@@ -74,66 +90,337 @@ class SolvableHintService {
       return columnHints;
     }
 
-    final authoredHints = _authoredStudentHints(content);
-    if (authoredHints.isNotEmpty) {
-      return authoredHints;
+    final planHints = _planBasedHints(content);
+    if (planHints.isNotEmpty) {
+      return planHints;
     }
 
-    return const [
-      SolvableHint(
-        level: 1,
-        title: '1단계: 묻는 것 찾기',
-        body: '문제에서 무엇을 구해야 하는지 먼저 확인해요.',
-        miniQuestion: '무엇을 구하는 문제인가요?',
-        choices: [
-          HintChoice(label: '전체 수', isCorrect: true),
-          HintChoice(label: '처음 수'),
-          HintChoice(label: '남은 수'),
-        ],
-        acceptedAnswers: ['전체 수', '전체'],
-        successMessage: '맞아요. 구해야 하는 값을 먼저 확인하면 계산이 쉬워져요.',
-      ),
-      SolvableHint(
-        level: 2,
-        title: '2단계: 계산 방법 고르기',
-        body: '전체나 합계를 구하는 문제라면 더하기를 쓰는지 확인해요.',
-        miniQuestion: '전체를 구할 때 알맞은 계산은 무엇인가요?',
-        choices: [
-          HintChoice(label: '더하기', isCorrect: true),
-          HintChoice(label: '빼기'),
-          HintChoice(label: '비교하기'),
-        ],
-        acceptedAnswers: ['더하기', '+'],
-        successMessage: '좋아요. 이제 주어진 값을 차근차근 계산해요.',
-      ),
-      SolvableHint(
-        level: 3,
-        title: '3단계: 자리 맞춰 계산',
-        body: '오른쪽 자리부터 계산해요. 한 자리씩 보면 실수가 줄어요.',
-        miniQuestion: '계산은 어느 자리부터 시작하나요?',
-        choices: [
-          HintChoice(label: '일의 자리', isCorrect: true),
-          HintChoice(label: '십의 자리'),
-          HintChoice(label: '백의 자리'),
-        ],
-        acceptedAnswers: ['일의 자리', '일'],
-        successMessage: '맞아요. 일의 자리부터 시작해요.',
-      ),
-      SolvableHint(
-        level: 4,
-        title: '4단계: 다시 확인',
-        body: '각 자리의 답과 올림한 1을 빠뜨리지 않았는지 확인해요.',
-        miniQuestion: '마지막에 꼭 확인할 것은 무엇인가요?',
-        choices: [
-          HintChoice(label: '올림한 수를 더했는지', isCorrect: true),
-          HintChoice(label: '글자가 크게 보이는지'),
-          HintChoice(label: '문제를 한 번만 봤는지'),
-        ],
-        acceptedAnswers: ['올림', '받아올림'],
-        successMessage: '좋아요. 올림까지 확인하면 더 정확해져요.',
-      ),
-    ];
+    if (_isAdditionProblem(content)) {
+      return _additionFallbackHints;
+    }
+
+    return _generalFallbackHints(content);
   }
+}
+
+const List<SolvableHint> _additionFallbackHints = [
+  SolvableHint(
+    level: 1,
+    title: '1단계: 묻는 것 찾기',
+    body: '문제에서 무엇을 구해야 하는지 먼저 확인해요.',
+    miniQuestion: '무엇을 구하는 문제인가요?',
+    choices: [
+      HintChoice(label: '전체 수', isCorrect: true),
+      HintChoice(label: '처음 수'),
+      HintChoice(label: '남은 수'),
+    ],
+    acceptedAnswers: ['전체 수', '전체'],
+    successMessage: '맞아요. 구해야 하는 값을 먼저 확인하면 계산이 쉬워져요.',
+  ),
+  SolvableHint(
+    level: 2,
+    title: '2단계: 계산 방법 고르기',
+    body: '전체나 합계를 구하는 문제라면 더하기를 쓰는지 확인해요.',
+    miniQuestion: '전체를 구할 때 알맞은 계산은 무엇인가요?',
+    choices: [
+      HintChoice(label: '더하기', isCorrect: true),
+      HintChoice(label: '빼기'),
+      HintChoice(label: '비교하기'),
+    ],
+    acceptedAnswers: ['더하기', '+'],
+    successMessage: '좋아요. 이제 주어진 값을 차근차근 계산해요.',
+  ),
+  SolvableHint(
+    level: 3,
+    title: '3단계: 자리 맞춰 계산',
+    body: '오른쪽 자리부터 계산해요. 한 자리씩 보면 실수가 줄어요.',
+    miniQuestion: '계산은 어느 자리부터 시작하나요?',
+    choices: [
+      HintChoice(label: '일의 자리', isCorrect: true),
+      HintChoice(label: '십의 자리'),
+      HintChoice(label: '백의 자리'),
+    ],
+    acceptedAnswers: ['일의 자리', '일'],
+    successMessage: '맞아요. 일의 자리부터 시작해요.',
+  ),
+  SolvableHint(
+    level: 4,
+    title: '4단계: 다시 확인',
+    body: '각 자리의 답과 올림한 1을 빠뜨리지 않았는지 확인해요.',
+    miniQuestion: '마지막에 꼭 확인할 것은 무엇인가요?',
+    choices: [
+      HintChoice(label: '올림한 수를 더했는지', isCorrect: true),
+      HintChoice(label: '글자가 크게 보이는지'),
+      HintChoice(label: '문제를 한 번만 봤는지'),
+    ],
+    acceptedAnswers: ['올림', '받아올림'],
+    successMessage: '좋아요. 올림까지 확인하면 더 정확해져요.',
+  ),
+];
+
+List<SolvableHint> _generalFallbackHints(ProblemContent content) {
+  return const [
+    SolvableHint(
+      level: 1,
+      title: '1단계: 문제 파악하기',
+      body: '문제에서 구하고자 하는 것이 무엇인지 꼼꼼히 읽어보세요.',
+    ),
+    SolvableHint(
+      level: 2,
+      title: '2단계: 핵심 조건 찾기',
+      body: '주어진 그림이나 수식에서 필요한 단서를 찾아보세요.',
+    ),
+    SolvableHint(
+      level: 3,
+      title: '3단계: 차근차근 풀이하기',
+      body: '단계를 나누어 계산하거나 규칙을 적용해 보세요.',
+    ),
+    SolvableHint(
+      level: 4,
+      title: '4단계: 정답 검토하기',
+      body: '구한 답이 문제 조건과 맞는지 다시 한 번 확인해 보세요.',
+    ),
+  ];
+}
+
+List<SolvableHint> _diagnosticQuestionHints(ProblemContent content) {
+  final understanding = _mapAt(content.solvable, 'understanding');
+  final rawList = understanding['diagnostic_questions'] ??
+      content.solvable['diagnostic_questions'];
+  if (rawList is! List || rawList.isEmpty) {
+    return const [];
+  }
+  final hints = <SolvableHint>[];
+  for (var i = 0; i < rawList.length; i++) {
+    final item = rawList[i];
+    if (item is! Map) {
+      continue;
+    }
+    final prompt = _readText(item['prompt']);
+    if (prompt.isEmpty) {
+      continue;
+    }
+    final choicesList = item['choices'];
+    final rawChoices = choicesList is List
+        ? choicesList.map((c) => c.toString().trim()).toList()
+        : <String>[];
+    if (rawChoices.isEmpty) {
+      continue;
+    }
+
+    final answerIndex =
+        item['answer_index'] is int ? item['answer_index'] as int : 0;
+    final answerText = (answerIndex >= 0 && answerIndex < rawChoices.length)
+        ? rawChoices[answerIndex]
+        : _readText(item['answer'], fallback: rawChoices.first);
+
+    final choices = rawChoices
+        .map((choice) => HintChoice(
+              label: choice,
+              isCorrect: choice == answerText,
+            ))
+        .toList();
+
+    final level = i + 1;
+    hints.add(
+      SolvableHint(
+        level: level,
+        title: '$level단계: 개념 확인 $level',
+        body: prompt,
+        miniQuestion: prompt,
+        choices: choices,
+        acceptedAnswers: [answerText],
+        successMessage: '맞아요! $answerText입니다.',
+      ),
+    );
+  }
+  return hints;
+}
+
+List<SolvableHint> _multiplicationPlaceValueHints(ProblemContent content) {
+  if (!_isMultiplicationPlaceValueProblem(content)) {
+    return const [];
+  }
+
+  final targetExpr = _findMultiplicationTargetExpression(content);
+  if (targetExpr == null) {
+    return const [];
+  }
+
+  final match = RegExp(r'(\d+)\s*[×x*]\s*(\d+)').firstMatch(targetExpr);
+  if (match == null) {
+    return const [];
+  }
+
+  final termA = int.parse(match.group(1)!);
+  final termB = int.parse(match.group(2)!);
+
+  final int placeValue;
+  final int multiplier;
+  if (termA >= 10 || termB < 10) {
+    placeValue = termA;
+    multiplier = termB;
+  } else {
+    placeValue = termB;
+    multiplier = termA;
+  }
+
+  final firstDigit = int.parse(placeValue.toString()[0]);
+  final String placeName;
+  if (placeValue < 10) {
+    placeName = '일의 자리';
+  } else if (placeValue < 100) {
+    placeName = '십의 자리';
+  } else if (placeValue < 1000) {
+    placeName = '백의 자리';
+  } else {
+    placeName = '천의 자리';
+  }
+
+  final multiplicand = _findMultiplicand(content);
+  final product = placeValue * multiplier;
+  final multiplicandPrefix =
+      multiplicand != null ? '$multiplicand에서 ' : '';
+
+  final step1Distractors = <int>[firstDigit];
+  if (placeValue >= 100) {
+    step1Distractors.add(placeValue ~/ 10);
+  } else if (placeValue >= 10) {
+    step1Distractors.add(placeValue * 10);
+  } else {
+    step1Distractors.add(firstDigit * 10);
+  }
+
+  final step2Distractors = <int>[
+    multiplier == 4 ? 2 : (multiplier > 2 ? multiplier - 2 : multiplier + 2),
+    multiplier == 4 ? 8 : (multiplier + 4) % 9 + 1,
+  ];
+
+  final step3DistractorList = <String>[
+    '$firstDigit × $multiplier',
+    placeValue >= 100
+        ? '${placeValue ~/ 10} × $multiplier'
+        : '${placeValue * 10} × $multiplier',
+  ];
+
+  return [
+    SolvableHint(
+      level: 1,
+      title: '1단계: 색칠된 자리의 실제 값 찾기',
+      body: '$multiplicandPrefix색칠된 자리의 숫자 $firstDigit은 실제 얼마를 나타내는지 확인해요.',
+      miniQuestion: '$multiplicandPrefix숫자 $firstDigit은 실제 얼마를 나타내나요?',
+      choices: _numberChoices(placeValue, step1Distractors),
+      acceptedAnswers: ['$placeValue'],
+      successMessage: '맞아요. $firstDigit은 $placeName 숫자이므로 실제로는 $placeValue입니다.',
+    ),
+    SolvableHint(
+      level: 2,
+      title: '2단계: 곱하는 수 확인',
+      body: '색칠된 부분에 곱해지는 한 자리 수를 확인해요.',
+      miniQuestion: '곱하는 수는 얼마인가요?',
+      choices: _numberChoices(multiplier, step2Distractors),
+      acceptedAnswers: ['$multiplier'],
+      successMessage: '좋아요. 곱하는 수는 $multiplier입니다.',
+    ),
+    SolvableHint(
+      level: 3,
+      title: '3단계: 알맞은 곱셈식 완성',
+      body: '색칠된 부분($product)은 $placeValue과 $multiplier의 곱이에요.',
+      miniQuestion: '색칠된 부분을 나타내는 알맞은 곱셈식은 무엇인가요?',
+      choices: _textChoices('$placeValue × $multiplier', step3DistractorList),
+      acceptedAnswers: [
+        '$placeValue × $multiplier',
+        '$placeValue×$multiplier',
+        '$placeValue * $multiplier',
+      ],
+      successMessage: '정답이에요! 색칠된 부분은 $placeValue × $multiplier를 나타냅니다.',
+    ),
+  ];
+}
+
+bool _isMultiplicationPlaceValueProblem(ProblemContent content) {
+  final pieces = <String>[
+    content.summary.unit,
+    content.summary.type,
+    _readText(content.solvable['problem_type']),
+    _readText(content.solvable['method']),
+    content.prompt,
+    _readText(content.solvable['target']),
+    _readText(content.solvable['plan']),
+  ].join(' ').toLowerCase();
+
+  return (pieces.contains('multiplication') ||
+          pieces.contains('곱셈') ||
+          pieces.contains('세로셈')) &&
+      (pieces.contains('place_value') ||
+          pieces.contains('자리값') ||
+          pieces.contains('부분곱') ||
+          pieces.contains('색칠') ||
+          pieces.contains('어떤 수의 곱'));
+}
+
+String? _findMultiplicationTargetExpression(ProblemContent content) {
+  final candidates = <String>[
+    content.correctAnswer,
+    _readText(content.solvable['target']),
+    _readText(_mapAt(content.solvable, 'answer')['value']),
+    _readText(content.solvable['given']),
+    _readText(content.solvable['steps']),
+  ];
+
+  for (final item in candidates) {
+    final match = RegExp(r'(\d+)\s*[×x*]\s*(\d+)').firstMatch(item);
+    if (match != null) {
+      return '${match.group(1)} × ${match.group(2)}';
+    }
+  }
+  return null;
+}
+
+int? _findMultiplicand(ProblemContent content) {
+  final pieces = <String>[
+    _readText(content.solvable['given']),
+    _readText(content.solvable['steps']),
+    _readText(content.solvable['plan']),
+    content.prompt,
+  ].join(' ');
+
+  final match = RegExp(r'(\d{2,4})\s*[×x*]').firstMatch(pieces);
+  if (match != null) {
+    return int.tryParse(match.group(1)!);
+  }
+  final digitMatch = RegExp(r'(\d{3,4})의\s*\d').firstMatch(pieces);
+  if (digitMatch != null) {
+    return int.tryParse(digitMatch.group(1)!);
+  }
+  return null;
+}
+
+List<SolvableHint> _planBasedHints(ProblemContent content) {
+  final rawPlan = content.solvable['plan'];
+  if (rawPlan is! List || rawPlan.isEmpty) {
+    return const [];
+  }
+  final planItems = rawPlan
+      .map((p) => _readText(p))
+      .where((p) => p.isNotEmpty)
+      .toList();
+  if (planItems.isEmpty) {
+    return const [];
+  }
+  final hints = <SolvableHint>[];
+  for (var i = 0; i < planItems.length; i++) {
+    final level = i + 1;
+    final text = planItems[i];
+    hints.add(
+      SolvableHint(
+        level: level,
+        title: '$level단계: 풀이 안내 $level',
+        body: text,
+      ),
+    );
+  }
+  return hints;
 }
 
 List<SolvableHint> _comparisonSubproblemHints(ProblemContent content) {

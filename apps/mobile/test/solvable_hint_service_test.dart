@@ -118,7 +118,104 @@ void main() {
     expect(hints[3].miniQuestion, equals('빈칸에 들어갈 기호는 무엇인가요?'));
     expect(_correctChoice(hints[3]), equals('>'));
   });
+
+  test('builds intelligent place-value hints for multiplication partial products', () {
+    final hints = service.buildHints(_multiplicationPlaceValueContent);
+
+    expect(hints, hasLength(3));
+    expect(hints[0].title, equals('1단계: 색칠된 자리의 실제 값 찾기'));
+    expect(hints[0].miniQuestion, contains('숫자 6은 실제 얼마를 나타내나요?'));
+    expect(_correctChoice(hints[0]), equals('60'));
+
+    expect(hints[1].title, equals('2단계: 곱하는 수 확인'));
+    expect(hints[1].miniQuestion, equals('곱하는 수는 얼마인가요?'));
+    expect(_correctChoice(hints[1]), equals('4'));
+
+    expect(hints[2].title, equals('3단계: 알맞은 곱셈식 완성'));
+    expect(hints[2].miniQuestion, contains('색칠된 부분을 나타내는 알맞은 곱셈식은 무엇인가요?'));
+    expect(_correctChoice(hints[2]), equals('60 × 4'));
+  });
+
+  test('builds hints from diagnostic questions when available', () {
+    final hints = service.buildHints(_diagnosticQuestionContent);
+
+    expect(hints, hasLength(2));
+    expect(hints[0].title, equals('1단계: 개념 확인 1'));
+    expect(hints[0].miniQuestion, equals('869에서 6은 어떤 자리의 수인가요?'));
+    expect(_correctChoice(hints[0]), equals('60'));
+
+    expect(hints[1].title, equals('2단계: 개념 확인 2'));
+    expect(hints[1].miniQuestion, equals('색칠한 부분 240에 알맞은 식은?'));
+    expect(_correctChoice(hints[1]), equals('60 × 4'));
+  });
 }
+
+const _multiplicationPlaceValueSummary = ProblemSummary(
+  id: 'S3_초등_3_008559',
+  grade: 3,
+  subject: 'math',
+  unit: 'multiplication',
+  type: 'calc',
+  title: '색칠된 부분은 실제 어떤 수의 곱인지 찾아 선택하세요.',
+  path: '',
+  raw: {},
+);
+
+const _multiplicationPlaceValueContent = ProblemContent(
+  summary: _multiplicationPlaceValueSummary,
+  semantic: {},
+  solvable: {
+    'problem_type': 'multiplication_place_value_choice',
+    'given': [
+      {'ref': 'obj.target', 'value': '60 × 4'},
+    ],
+    'plan': [
+      '색칠된 부분의 자리값을 확인합니다.',
+      '762에서 6은 십의 자리 숫자이므로 실제로는 60을 뜻합니다.',
+      '색칠된 부분은 60 × 4를 나타냅니다.',
+    ],
+    'steps': [
+      {'id': 'step.1', 'expr': '762의 6 = 60', 'value': 60},
+      {'id': 'step.2', 'expr': '색칠된 부분 = 60 × 4', 'value': '60 × 4'},
+    ],
+    'answer': {
+      'value': '60 × 4',
+    },
+  },
+);
+
+const _diagnosticQuestionContent = ProblemContent(
+  summary: ProblemSummary(
+    id: 'S3_초등_3_008540',
+    grade: 3,
+    subject: 'math',
+    unit: 'multiplication',
+    type: 'calc',
+    title: '색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.',
+    path: '',
+    raw: {},
+  ),
+  semantic: {},
+  solvable: {
+    'understanding': {
+      'diagnostic_questions': [
+        {
+          'id': 'q1',
+          'prompt': '869에서 6은 어떤 자리의 수인가요?',
+          'choices': ['6', '60', '600'],
+          'answer_index': 1,
+        },
+        {
+          'id': 'q2',
+          'prompt': '색칠한 부분 240에 알맞은 식은?',
+          'choices': ['6 × 4', '60 × 4', '600 × 4'],
+          'answer_index': 1,
+        },
+      ],
+    },
+    'answer': {'value': '(3) 60 × 4'},
+  },
+);
 
 String _correctChoice(SolvableHint hint) {
   return hint.choices.singleWhere((choice) => choice.isCorrect).label;
