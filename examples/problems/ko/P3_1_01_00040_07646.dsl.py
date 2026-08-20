@@ -185,6 +185,10 @@ SEMANTIC = {
     "answer": {
         "type": "choice",
         "value": "소방서",
+        "choices": [
+            "소방서",
+            "주민센터",
+        ],
         "unit": "",
         "target_ref": "place.fire_station",
     },

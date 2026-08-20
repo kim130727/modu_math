@@ -59,7 +59,7 @@ class ContentRepository {
   static const String manifestPath = '$problemsPath/manifest.json';
   static const String grade3Path = '$problemsPath/grade3';
   static const String generatedPath = '$problemsPath/generated';
-  static const Set<String> localizedProblemLocales = {'ko', 'uk'};
+  static const Set<String> localizedProblemLocales = {'ko'};
 
   final ContentRepositorySource source;
   final http.Client _httpClient;

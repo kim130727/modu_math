@@ -131,9 +131,27 @@
     }
   ],
   "answer": {
-    "type": "text",
-    "value": ">",
+    "type": "comparison",
+    "value": [
+      ">"
+    ],
     "unit": "",
+    "values": [
+      ">"
+    ],
+    "blanks": [
+      {
+        "id": "slot.comparison.circle",
+        "slot_id": "slot.comparison.circle",
+        "expected": ">"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.comparison.circle",
+        "value": ">"
+      }
+    ],
     "target_ref": "comparison.sum_and_number",
     "derived_from": "step.compare_values"
   }

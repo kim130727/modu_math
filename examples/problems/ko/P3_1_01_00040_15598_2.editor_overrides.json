@@ -35,14 +35,14 @@
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
+        "value_type": "integer",
+        "max_length": 2,
         "include_in_submission": true,
         "order": 1,
         "group_id": "final_answer",
         "answer_key_index": 1,
         "answer_ref": "answer.2.tens",
-        "auto_advance": true,
+        "auto_advance": false,
         "keyboard": "number"
       },
       "input_style": {
@@ -64,14 +64,14 @@
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
+        "value_type": "integer",
+        "max_length": 3,
         "include_in_submission": true,
         "order": 2,
         "group_id": "final_answer",
         "answer_key_index": 2,
         "answer_ref": "answer.2.hundreds",
-        "auto_advance": true,
+        "auto_advance": false,
         "keyboard": "number"
       },
       "input_style": {
@@ -93,14 +93,14 @@
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
+        "value_type": "integer",
+        "max_length": 3,
         "include_in_submission": true,
         "order": 3,
         "group_id": "final_answer",
         "answer_key_index": 3,
         "answer_ref": "answer.2.total",
-        "auto_advance": true,
+        "auto_advance": false,
         "keyboard": "number"
       },
       "input_style": {

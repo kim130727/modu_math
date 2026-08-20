@@ -98,7 +98,11 @@ class ProblemDevHandler(BaseHTTPRequestHandler):
             return
 
         renderer_files = sorted(
-            [path for path in self.root.rglob("*.renderer.json") if path.is_file()],
+            [
+                path
+                for path in self.root.rglob("*.renderer.json")
+                if path.is_file() and not path.name.endswith("_uk.renderer.json") and "uk" not in path.parts
+            ],
             key=lambda p: p.name,
         )
 
@@ -169,7 +173,7 @@ class ProblemDevHandler(BaseHTTPRequestHandler):
         if direct.with_name(f"{direct.name}.renderer.json").is_file():
             return direct
 
-        for candidate_name in (prefix, f"{prefix}_ko", f"{prefix}_uk"):
+        for candidate_name in (prefix, f"{prefix}_ko"):
             matches = list(self.root.rglob(f"{candidate_name}.renderer.json"))
             if matches:
                 matched_file = matches[0]

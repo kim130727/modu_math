@@ -110,9 +110,9 @@ class ProblemContent {
 
   List<String> get choices {
     final answer = answerMap;
-    final rawChoices = answer['choices'];
-    if (rawChoices is List && rawChoices.isNotEmpty) {
-      final list = rawChoices.map((choice) {
+    final explicitChoices = answer['choices'];
+    if (explicitChoices is List && explicitChoices.isNotEmpty) {
+      final list = explicitChoices.map((choice) {
         if (choice is Map<String, dynamic>) {
           return sanitizeProblemText(
             choice['value']?.toString() ??
@@ -123,6 +123,38 @@ class ProblemContent {
         return sanitizeProblemText(choice.toString());
       }).toList();
       return _mergeAlternatingMarkerChoices(list);
+    }
+    if (_hasRendererAnswerInputs()) {
+      return const [];
+    }
+    final answerType = answer['type']?.toString().toLowerCase() ?? '';
+    if (answerType == 'numeric' || answerType == 'multi_numeric') {
+      return const [];
+    }
+    final rawOptions = answer['options'] ??
+        (answerType == 'choice' ? _mapAt(solvable, 'inputs')['options'] : null);
+    if (rawOptions is List && rawOptions.isNotEmpty) {
+      final list = rawOptions.map((choice) {
+        if (choice is Map<String, dynamic>) {
+          return sanitizeProblemText(
+            choice['value']?.toString() ??
+                choice['label']?.toString() ??
+                choice.toString(),
+          );
+        }
+        return sanitizeProblemText(choice.toString());
+      }).toList();
+      return _mergeAlternatingMarkerChoices(list);
+    }
+    if (_isOxJudgmentProblem) {
+      return const ['O', 'X'];
+    }
+    if (_isPersonChoiceProblem) {
+      final givenChoices = _choicesFromSolvableGiven();
+      if (givenChoices.isNotEmpty) {
+        return _ensureChoiceMarkers(
+            _mergeAlternatingMarkerChoices(givenChoices));
+      }
     }
     final rendererChoices = _choicesFromRenderer();
     if (rendererChoices.isNotEmpty) {
@@ -204,21 +236,22 @@ class ProblemContent {
       final isChoice = id.contains('choice') ||
           id.contains('opt') ||
           id.contains('option') ||
-          id.contains('item') ||
-          id.contains('.c1') ||
-          id.contains('.c2') ||
-          id.contains('.c3') ||
-          id.contains('.c4') ||
-          id.contains('.c5');
+          RegExp(r'(?:^|[._])c[1-5](?:[._]|$)').hasMatch(id);
 
       final isCircledOrNumbered = RegExp(
-        r'^(?:[①②③④⑤⑥⑦⑧⑨⑩]|\([1-9]\)|\([가-힣]\)|[1-9]\.)',
+        r'^(?:[①②③④⑤⑥⑦⑧⑨⑩㉠-㉭]|\([1-9]\)|\([가-힣]\)|\([ㄱ-ㅎ]\)|[1-9]\.)',
       ).hasMatch(text);
 
+      if (text.contains('<보기>') || text.contains('< 보기 >')) continue;
       if (!isChoice && !isCircledOrNumbered) continue;
       if (id.contains('question') ||
           id.contains('stem') ||
-          id.contains('instruction')) continue;
+          id.contains('instruction') ||
+          id.contains('given') ||
+          id.contains('example') ||
+          id.contains('options') ||
+          id.contains('card') ||
+          id.contains('result')) continue;
 
       final xMatch = RegExp(r'x="([0-9.-]+)"').firstMatch(attrs);
       final yMatch = RegExp(r'y="([0-9.-]+)"').firstMatch(attrs);
@@ -229,10 +262,34 @@ class ProblemContent {
       rawItems.add((x: x, y: y, text: text, groupKey: groupKey));
     }
 
+    final rectPattern = RegExp(r'<rect\b([^>]*)/?>');
+    final rectMatches = rectPattern.allMatches(svg);
+    for (final match in rectMatches) {
+      final attrs = match.group(1) ?? '';
+      final idMatch = RegExp(r'id="([^"]+)"').firstMatch(attrs);
+      final id = idMatch?.group(1)?.toLowerCase() ?? '';
+      final isChoiceBlank = (id.contains('choice') ||
+              id.contains('opt') ||
+              id.contains('option')) &&
+          (id.contains('blank') || id.contains('box'));
+      if (!isChoiceBlank) continue;
+      final widthMatch = RegExp(r'width="([0-9.-]+)"').firstMatch(attrs);
+      final heightMatch = RegExp(r'height="([0-9.-]+)"').firstMatch(attrs);
+      final width = double.tryParse(widthMatch?.group(1) ?? '') ?? 0;
+      final height = double.tryParse(heightMatch?.group(1) ?? '') ?? 0;
+      if (width <= 0 || width > 60 || height <= 0 || height > 60) continue;
+      final xMatch = RegExp(r'x="([0-9.-]+)"').firstMatch(attrs);
+      final yMatch = RegExp(r'y="([0-9.-]+)"').firstMatch(attrs);
+      final x = double.tryParse(xMatch?.group(1) ?? '') ?? 0;
+      final y = double.tryParse(yMatch?.group(1) ?? '') ?? 0;
+      final groupKey = _extractChoiceGroupKey(id);
+      rawItems.add((x: x, y: y, text: '□', groupKey: groupKey));
+    }
+
     if (rawItems.isEmpty) return const [];
 
     rawItems.sort((a, b) {
-      final row = (a.y - b.y).abs() < 16 ? 0 : a.y.compareTo(b.y);
+      final row = (a.y - b.y).abs() < 36 ? 0 : a.y.compareTo(b.y);
       return row != 0 ? row : a.x.compareTo(b.x);
     });
 
@@ -242,7 +299,7 @@ class ProblemContent {
         rows.add([item]);
       } else {
         final lastRow = rows.last;
-        if ((lastRow.first.y - item.y).abs() < 16) {
+        if ((lastRow.first.y - item.y).abs() < 36) {
           lastRow.add(item);
         } else {
           rows.add([item]);
@@ -264,7 +321,7 @@ class ProblemContent {
           final sameGroup = current.groupKey.isNotEmpty &&
               current.groupKey == next.groupKey;
           final isShortMarker = RegExp(
-            r'^(?:[①②③④⑤⑥⑦⑧⑨⑩]|\d+[.)]?|\([1-9]\)|\([가-힣]\)|[ㄱ-ㅎ가-힣][.)]?)$',
+            r'^(?:[①②③④⑤⑥⑦⑧⑨⑩㉠-㉭]|\d+[.)]?|\([1-9]\)|\([가-힣]\)|\([ㄱ-ㅎ]\)|[ㄱ-ㅎ가-힣][.)]?)$',
           ).hasMatch(currentText);
           final isOperator = RegExp(r'^[+\-×÷/*=<>≤≥]$').hasMatch(currentText);
 
@@ -311,21 +368,38 @@ class ProblemContent {
       final attributes = _mapAt(element, 'attributes');
       final semanticRole =
           attributes['data-semantic-role']?.toString().toLowerCase() ?? '';
+      final type = element['type']?.toString().toLowerCase() ?? '';
 
-      final text = sanitizeProblemText(element['text']?.toString() ?? '');
+      var text = sanitizeProblemText(element['text']?.toString() ?? '');
+      if (text.isEmpty && type == 'rect') {
+        final isChoiceBlank = (identity.contains('choice') ||
+                identity.contains('opt') ||
+                identity.contains('option')) &&
+            (identity.contains('blank') ||
+                identity.contains('box') ||
+                semanticRole == 'blank' ||
+                semanticRole == 'answer_blank');
+        final width = _numberValue(attributes['width']) ?? 0;
+        final height = _numberValue(attributes['height']) ?? 0;
+        if (isChoiceBlank &&
+            width > 0 &&
+            width <= 60 &&
+            height > 0 &&
+            height <= 60) {
+          text = '□';
+        }
+      }
       if (text.isEmpty) {
         continue;
       }
 
       final isChoiceIdentifier = identity.contains('slot.choice') ||
-          identity.contains('slot.opt') ||
-          identity.contains('slot.c1') ||
-          identity.contains('slot.c2') ||
-          identity.contains('slot.c3') ||
-          identity.contains('slot.c4') ||
-          identity.contains('slot.c5') ||
-          identity.contains('slot.option') ||
-          identity.contains('slot.item') ||
+          (_isPersonChoiceProblem &&
+              (identity.contains('slot.name') ||
+                  identity.contains('person_name') ||
+                  identity.contains('name.text'))) ||
+          RegExp(r'slot\.c[1-5](?:[._]|$)').hasMatch(identity) ||
+          RegExp(r'slot\.(?:choice|opt|option|v|item)[_.]?\d+').hasMatch(identity) ||
           identity.contains('choice_label') ||
           identity.contains('symbol_label') ||
           semanticRole == 'symbol_label' ||
@@ -333,14 +407,34 @@ class ProblemContent {
           semanticRole == 'choice' ||
           semanticRole == 'option';
 
+      final isPersonName = identity.contains('name') ||
+          identity.contains('person') ||
+          semanticRole.contains('name');
+
+      if (_isPersonChoiceProblem && !isPersonName) {
+        continue;
+      }
+
       final isCircledOrNumbered = RegExp(
-        r'^(?:[①②③④⑤⑥⑦⑧⑨⑩]|\([1-9]\)|\([가-힣]\)|[1-9]\.)',
+        r'^(?:[①②③④⑤⑥⑦⑧⑨⑩㉠-㉭]|\([1-9]\)|\([가-힣]\)|\([ㄱ-ㅎ]\)|[1-9]\.|[ㄱ-ㅎ가-힣]\.)',
       ).hasMatch(text.trim());
 
       final isExcluded = identity.contains('instruction') ||
           identity.contains('stem') ||
           identity.contains('qtext') ||
           identity.contains('question') ||
+          identity.contains('given') ||
+          identity.contains('example') ||
+          identity.contains('options') ||
+          identity.contains('card') ||
+          text.contains('<보기>') ||
+          text.contains('< 보기 >') ||
+          semanticRole == 'card' ||
+          semanticRole == 'given_value' ||
+          semanticRole == 'example_label' ||
+          semanticRole == 'example_result' ||
+          semanticRole == 'example_container' ||
+          semanticRole == 'addition_rule_diagram' ||
           identity.contains('slot.q.') ||
           identity.contains('slot.expr') ||
           identity.contains('slot.top') ||
@@ -361,7 +455,7 @@ class ProblemContent {
       }
     }
     choices.sort((a, b) {
-      final row = (a.y - b.y).abs() < 16 ? 0 : a.y.compareTo(b.y);
+      final row = (a.y - b.y).abs() < 36 ? 0 : a.y.compareTo(b.y);
       return row != 0 ? row : a.x.compareTo(b.x);
     });
 
@@ -371,7 +465,7 @@ class ProblemContent {
         rows.add([item]);
       } else {
         final lastRow = rows.last;
-        if ((lastRow.first.y - item.y).abs() < 16) {
+        if ((lastRow.first.y - item.y).abs() < 36) {
           lastRow.add(item);
         } else {
           rows.add([item]);
@@ -393,7 +487,7 @@ class ProblemContent {
           final sameGroup = current.groupKey.isNotEmpty &&
               current.groupKey == next.groupKey;
           final isShortMarker = RegExp(
-            r'^(?:[①②③④⑤⑥⑦⑧⑨⑩]|\d+[.)]?|\([1-9]\)|\([가-힣]\)|[ㄱ-ㅎ가-힣][.)]?)$',
+            r'^(?:[①②③④⑤⑥⑦⑧⑨⑩㉠-㉭]|\d+[.)]?|\([1-9]\)|\([가-힣]\)|\([ㄱ-ㅎ]\)|[ㄱ-ㅎ가-힣][.)]?)$',
           ).hasMatch(currentText);
           final isOperator = RegExp(r'^[+\-×÷/*=<>≤≥]$').hasMatch(currentText);
 
@@ -446,35 +540,167 @@ class ProblemContent {
     return '';
   }
 
+  bool get _isChoiceProblem {
+    final type = summary.type.toLowerCase();
+    final semanticType =
+        semantic['problem_type']?.toString().toLowerCase() ?? '';
+    final solvableType =
+        solvable['problem_type']?.toString().toLowerCase() ?? '';
+    final targetType =
+        _mapAt(solvable, 'target')['type']?.toString().toLowerCase() ?? '';
+    return type.contains('choice') ||
+        type.contains('selection') ||
+        type.contains('ordering') ||
+        semanticType.contains('choice') ||
+        semanticType.contains('selection') ||
+        semanticType.contains('ordering') ||
+        solvableType.contains('choice') ||
+        solvableType.contains('selection') ||
+        solvableType.contains('ordering') ||
+        targetType.contains('choice') ||
+        targetType.contains('selection') ||
+        targetType.contains('candidate');
+  }
+
+  bool get _isPersonChoiceProblem {
+    final targetType =
+        _mapAt(solvable, 'target')['type']?.toString().toLowerCase() ?? '';
+    final targetDesc =
+        _mapAt(solvable, 'target')['description']?.toString().toLowerCase() ??
+            '';
+    final problemType =
+        solvable['problem_type']?.toString().toLowerCase() ?? '';
+    final semanticType =
+        semantic['problem_type']?.toString().toLowerCase() ?? '';
+    final promptText = prompt.toLowerCase();
+    final titleText = summary.title.toLowerCase();
+    return targetType.contains('person') ||
+        targetDesc.contains('사람') ||
+        problemType.contains('person') ||
+        semanticType.contains('person') ||
+        promptText.contains('사람') ||
+        titleText.contains('사람');
+  }
+
+  bool get _isOxJudgmentProblem {
+    final targetType =
+        _mapAt(solvable, 'target')['type']?.toString().toLowerCase() ?? '';
+    final targetDesc =
+        _mapAt(solvable, 'target')['description']?.toString().toLowerCase() ??
+            '';
+    final problemType =
+        solvable['problem_type']?.toString().toLowerCase() ?? '';
+    final semanticType =
+        semantic['problem_type']?.toString().toLowerCase() ?? '';
+    final promptText = prompt.toLowerCase();
+    final titleText = summary.title.toLowerCase();
+    final answerVal = correctAnswer.toLowerCase().trim();
+
+    final isOxTarget = targetType.contains('ox') ||
+        targetType.contains('boolean') ||
+        targetType.contains('judgment') ||
+        targetDesc.contains('ox') ||
+        targetDesc.contains('o표') ||
+        targetDesc.contains('x표') ||
+        targetDesc.contains('o/x') ||
+        targetDesc.contains('o, x') ||
+        targetDesc.contains('o 또는 x');
+
+    final isOxProblemType = problemType.contains('judgment') ||
+        problemType.contains('ox') ||
+        problemType.contains('boolean') ||
+        semanticType.contains('judgment') ||
+        semanticType.contains('ox');
+
+    final isOxPrompt = promptText.contains('o표') ||
+        promptText.contains('x표') ||
+        promptText.contains('o, x') ||
+        promptText.contains('o / x') ||
+        promptText.contains('o 또는 x') ||
+        titleText.contains('o표') ||
+        titleText.contains('x표') ||
+        titleText.contains('o, x') ||
+        titleText.contains('o / x') ||
+        titleText.contains('o 또는 x');
+
+    final isOxAnswer = answerVal == 'o' ||
+        answerVal == 'x' ||
+        answerVal == 'o표' ||
+        answerVal == 'x표' ||
+        answerVal == '○' ||
+        answerVal == '✕';
+
+    return (isOxTarget || isOxProblemType || isOxPrompt) &&
+        (isOxAnswer || isOxPrompt);
+  }
+
+  bool _hasRendererAnswerInputs() {
+    final elements = renderer['elements'];
+    if (elements is! List) return false;
+    for (final element in elements.whereType<Map<String, dynamic>>()) {
+      final interaction = _mapAt(element, 'interaction');
+      final role = interaction['role']?.toString().toLowerCase();
+      if (role == 'answer') return true;
+      final type = element['type']?.toString();
+      if (type == 'rect' && interaction['type']?.toString() == 'input') {
+        return true;
+      }
+    }
+    return false;
+  }
+
   List<String> _choicesFromSolvableGiven() {
     final given = solvable['given'];
     if (given is! List || given.isEmpty) {
       return const [];
     }
+
+    final answer = answerMap;
+    final blanks = answer['blanks'];
+    if (blanks is List && blanks.isNotEmpty) {
+      return const [];
+    }
+    if (_hasRendererAnswerInputs() && !_isChoiceProblem) {
+      return const [];
+    }
+
     final choices = <String>[];
     for (final item in given) {
       if (item is! Map<String, dynamic>) continue;
       final ref = item['ref']?.toString().toLowerCase() ?? '';
       final value = item['value'];
 
+      final isChoiceRef = ref.contains('choice') ||
+          ref.contains('option') ||
+          ref.contains('opt') ||
+          ref.contains('div') ||
+          ref.contains('expr') ||
+          ref.contains('candidate') ||
+          ref.contains('person') ||
+          ref.contains('speaker') ||
+          ref.contains('name');
+
+      final isPersonRef = ref.contains('person') ||
+          ref.contains('speaker') ||
+          ref.contains('name');
+
+      if (_isPersonChoiceProblem && !isPersonRef) {
+        continue;
+      }
+
+      if (!isChoiceRef && !_isChoiceProblem && !_isPersonChoiceProblem) {
+        continue;
+      }
+
       if (value is Map<String, dynamic>) {
-        final expr = value['expression']?.toString() ??
-            value['text']?.toString() ??
-            value['label']?.toString() ??
-            value['name']?.toString();
-        if (expr != null && expr.isNotEmpty) {
+        final expr = value['expression']?.toString();
+        if (expr != null && expr.trim().isNotEmpty) {
           choices.add(sanitizeProblemText(expr.trim()));
         }
-      } else if (value is String && value.isNotEmpty) {
-        if (ref.contains('person') ||
-            ref.contains('option') ||
-            ref.contains('choice') ||
-            ref.contains('item') ||
-            ref.contains('division') ||
-            ref.contains('expr') ||
-            ref.contains('candidate')) {
-          choices.add(sanitizeProblemText(value.trim()));
-        }
+      } else if (value is String &&
+          value.trim().isNotEmpty &&
+          (isChoiceRef || _isPersonChoiceProblem)) {
+        choices.add(sanitizeProblemText(value.trim()));
       }
     }
     return choices;
@@ -516,7 +742,7 @@ List<String> _mergeAlternatingMarkerChoices(List<String> list) {
   for (var i = 0; i < list.length; i += 2) {
     final text = list[i].trim();
     final isMarker = RegExp(
-      r'^(?:[①②③④⑤⑥⑦⑧⑨⑩]|\d+[.)]?|\([1-9]\)|\([가-힣]\)|[가-힣][.)]?)$',
+      r'^(?:[①②③④⑤⑥⑦⑧⑨⑩㉠-㉭]|\d+[.)]?|\([1-9]\)|\([가-힣]\)|\([ㄱ-ㅎ]\)|[ㄱ-ㅎ가-힣][.)]?)$',
     ).hasMatch(text);
     if (!isMarker) {
       allEvensAreMarkers = false;
@@ -535,7 +761,7 @@ List<String> _mergeAlternatingMarkerChoices(List<String> list) {
 
 String _extractChoiceGroupKey(String identity) {
   final match = RegExp(
-    r'(slot\.(?:choice[_\.]?\d+|opt[_\.]?\d+|c\d+|option[_\.]?\d+|item[_\.]?\d+))',
+    r'(slot\.(?:choice[_\.]?\d+|opt[_\.]?\d+|c\d+|v\d+|item\d+|option[_\.]?\d+))',
   ).firstMatch(identity);
   return match?.group(1) ?? '';
 }
@@ -543,7 +769,7 @@ String _extractChoiceGroupKey(String identity) {
 List<String> _ensureChoiceMarkers(List<String> choices) {
   if (choices.isEmpty) return choices;
   final markerPattern = RegExp(
-    r'^(?:[①②③④⑤⑥⑦⑧⑨⑩]|\d+[.)]|\([1-9]\)|\([가-힣]\)|\([ㄱ-ㅎ]\)|[ㄱ-ㅎ가-힣][.)])',
+    r'^(?:[①②③④⑤⑥⑦⑧⑨⑩㉠-㉭]|\d+[.)]|\([1-9]\)|\([가-힣]\)|\([ㄱ-ㅎ]\)|[ㄱ-ㅎ가-힣][.)])',
   );
   final alreadyHasMarkers =
       choices.every((c) => markerPattern.hasMatch(c.trim()));

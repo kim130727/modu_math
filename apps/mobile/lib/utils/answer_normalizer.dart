@@ -1,13 +1,23 @@
 String normalizeAnswer(String value) {
-  final compact = value
+  var compact = value
       .trim()
       .toLowerCase()
       .replaceAll(RegExp(r'\s+'), '')
+      .replaceAll('○', 'o')
+      .replaceAll('✕', 'x')
       .replaceAll('\u00d7', '*')
       .replaceAll('\ud6de', '*')
-      .replaceAll('x', '*')
       .replaceAll('\ubc88', '')
       .replaceAll(',', '');
+
+  if (compact == 'o표' || compact == 'o') {
+    return 'o';
+  }
+  if (compact == 'x표' || compact == 'x' || compact == '*표' || compact == '*') {
+    return 'x';
+  }
+
+  compact = compact.replaceAll('x', '*');
 
   final leadingChoice = _leadingChoiceNumber(compact);
   if (leadingChoice != null) {
@@ -24,7 +34,7 @@ bool isSameAnswer(String submitted, String correct) {
     return true;
   }
   final withoutMarker = submitted.replaceFirst(
-    RegExp(r'^(?:[①②③④⑤⑥⑦⑧⑨⑩]|\d+[.)]?|\([1-9]\)|\([가-힣]\)|[ㄱ-ㅎ가-힣][.)]?)\s*'),
+    RegExp(r'^(?:[①②③④⑤⑥⑦⑧⑨⑩㉠-㉭]|\d+[.)]?|\([1-9]\)|\([가-힣]\)|\([ㄱ-ㅎ]\)|[ㄱ-ㅎ가-힣][.)]?)\s*'),
     '',
   );
   if (withoutMarker != submitted) {

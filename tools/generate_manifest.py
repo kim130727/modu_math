@@ -53,7 +53,10 @@ def _parse_prefix_numbers(file_prefix: str) -> tuple[int, int, int]:
 
 def generate():
     renderer_files = sorted(
-        [path for path in ROOT.rglob("*.renderer.json") if path.is_file()],
+        [
+            path for path in ROOT.rglob("*.renderer.json")
+            if path.is_file() and not path.name.endswith("_uk.renderer.json") and "uk" not in path.parts
+        ],
         key=lambda p: p.name,
     )
 

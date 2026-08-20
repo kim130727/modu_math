@@ -255,9 +255,15 @@ List<SolvableHint> _expandedAdditionHints(ProblemContent content) {
   final relation =
       _mapAt(_mapAt(content.solvable, 'understanding'), 'relation');
   final relationType = relation['type']?.toString().toLowerCase() ?? '';
-  final isExpanded = problemType.contains('expanded') ||
-      problemType.contains('부분합') ||
-      relationType.contains('expanded');
+  final isExpanded = (problemType.contains('expanded') ||
+          problemType.contains('place_value') ||
+          problemType.contains('decomposition') ||
+          problemType.contains('부분합') ||
+          problemType.contains('자리값') ||
+          relationType.contains('expanded') ||
+          relationType.contains('place_value') ||
+          relationType.contains('decomposition')) &&
+      !_isMultiplicationProblem(content);
 
   if (!isExpanded) {
     return const [];
@@ -284,11 +290,19 @@ List<SolvableHint> _expandedAdditionHints(ProblemContent content) {
     final explanation = _readText(step['explanation']);
     final level = hints.length + 1;
 
-    String title = '$level단계: 부분합 계산 ($expr)';
+    String title = '$level단계: 계산 ($expr)';
     String body = explanation.isNotEmpty ? explanation : '$expr을 계산해요.';
     String miniQ = '$expr의 값은 얼마인가요?';
 
-    if (stepId.contains('ones') || expr.contains('일의 자리')) {
+    if (stepId.contains('first') || (stepId.contains('decompose') && i == 0)) {
+      title = '$level단계: 첫 번째 수의 자리값 분해 ($expr)';
+      body = explanation.isNotEmpty ? explanation : '$expr에서 알맞은 자리값을 찾아요.';
+      miniQ = '첫 번째 수의 빈칸에 들어갈 자리값은 얼마인가요?';
+    } else if (stepId.contains('second') || (stepId.contains('decompose') && i == 1)) {
+      title = '$level단계: 두 번째 수의 자리값 분해 ($expr)';
+      body = explanation.isNotEmpty ? explanation : '$expr에서 알맞은 자리값을 찾아요.';
+      miniQ = '두 번째 수의 빈칸에 들어갈 자리값은 얼마인가요?';
+    } else if (stepId.contains('ones') || expr.contains('일의 자리')) {
       title = '$level단계: 일의 자리 부분합 ($expr)';
       body = '일의 자리 숫자끼리 먼저 더해요. $explanation';
       miniQ = '첫 번째 칸에 들어갈 $expr의 값은 얼마인가요?';
@@ -300,7 +314,7 @@ List<SolvableHint> _expandedAdditionHints(ProblemContent content) {
       title = '$level단계: 백의 자리 부분합 ($expr)';
       body = '백의 자리 숫자가 나타내는 실제 값을 더해요. $explanation';
       miniQ = '세 번째 칸에 들어갈 $expr의 값은 얼마인가요?';
-    } else if (stepId.contains('total') || expr.contains('전체')) {
+    } else if (stepId.contains('total') || stepId.contains('partial_sums') || expr.contains('전체')) {
       title = '$level단계: 전체 합 완성하기 ($expr)';
       body = '구한 각 자리의 부분합을 모두 더해 전체 합을 완성해요. $explanation';
       miniQ = '마지막 칸에 들어갈 전체 합($expr)의 값은 얼마인가요?';
@@ -312,8 +326,9 @@ List<SolvableHint> _expandedAdditionHints(ProblemContent content) {
     }
 
     final distractors = <int>[
-      numVal > 10 ? (numVal ~/ 10) : numVal + 1,
-      numVal >= 10 ? numVal * 10 : (numVal > 1 ? numVal - 1 : numVal + 2),
+      numVal >= 10 ? (numVal ~/ 10) : numVal + 1,
+      numVal >= 10 ? numVal + 10 : (numVal > 1 ? numVal - 1 : numVal + 2),
+      numVal >= 10 ? (numVal > 10 ? numVal - 10 : numVal * 10) : numVal * 10,
     ];
 
     hints.add(
@@ -1172,6 +1187,24 @@ bool _isAdditionProblem(ProblemContent content) {
       pieces.contains('+') ||
       pieces.contains('더하기') ||
       pieces.contains('덧셈');
+}
+
+bool _isMultiplicationProblem(ProblemContent content) {
+  final pieces = <String>[
+    content.summary.unit,
+    content.summary.type,
+    _readText(content.solvable['method']),
+    _readText(content.solvable['problem_type']),
+    _readText(content.solvable['plan']),
+    _readText(content.solvable['steps']),
+  ].join(' ').toLowerCase();
+  return pieces.contains('multiplication') ||
+      pieces.contains('multiply') ||
+      pieces.contains('times') ||
+      pieces.contains('×') ||
+      pieces.contains('*') ||
+      pieces.contains('곱하기') ||
+      pieces.contains('곱셈');
 }
 
 bool _isComparisonProblem(ProblemContent content) {
