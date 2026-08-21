@@ -1124,4 +1124,388 @@ void main() {
     expect(visible.length, 1);
     expect(visible.first['id'], 'slot.qtext.text');
   });
+
+  testWidgets('allows inputting multi-digit partial sums 7, 90, 500, 597 for 15598_2', (tester) async {
+    String emitted = '';
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 350,
+            height: 350,
+            child: RendererJsonCanvas(
+              onInputChanged: (value) => emitted = value,
+              renderer: {
+                'view_box': {'width': 350, 'height': 350, 'background': '#FFFFFF'},
+                'elements': [
+                  {
+                    'id': 'slot.calculation.2.box.ones.rect',
+                    'type': 'rect',
+                    'attributes': {'x': 192.395, 'y': 169.077, 'width': 21.89, 'height': 27.0},
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'digit',
+                      'max_length': 1,
+                      'include_in_submission': true,
+                      'order': 0,
+                    },
+                  },
+                  {
+                    'id': 'slot.calculation.2.box.tens.rect',
+                    'type': 'rect',
+                    'attributes': {'x': 179.616, 'y': 210.077, 'width': 34.68, 'height': 27.0},
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'integer',
+                      'max_length': 2,
+                      'include_in_submission': true,
+                      'order': 1,
+                    },
+                  },
+                  {
+                    'id': 'slot.calculation.2.box.hundreds.rect',
+                    'type': 'rect',
+                    'attributes': {'x': 161.285, 'y': 251.077, 'width': 53.0, 'height': 27.0},
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'integer',
+                      'max_length': 3,
+                      'include_in_submission': true,
+                      'order': 2,
+                    },
+                  },
+                  {
+                    'id': 'slot.calculation.2.box.total.rect',
+                    'type': 'rect',
+                    'attributes': {'x': 159.064, 'y': 303.077, 'width': 55.22, 'height': 29.0},
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'integer',
+                      'max_length': 3,
+                      'include_in_submission': true,
+                      'order': 3,
+                    },
+                  },
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    final textFields = find.byType(TextField);
+    expect(textFields, findsNWidgets(4));
+
+    await tester.enterText(textFields.at(0), '7');
+    await tester.enterText(textFields.at(1), '90');
+    await tester.enterText(textFields.at(2), '500');
+    await tester.enterText(textFields.at(3), '597');
+    await tester.pump();
+
+    expect(emitted, equals('790500597'));
+  });
+
+  testWidgets('renders comparison operator buttons for P3_1_01_00040_15604', (tester) async {
+    String emitted = '';
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 500,
+            height: 180,
+            child: RendererJsonCanvas(
+              expectedAnswer: '<',
+              onInputChanged: (value) => emitted = value,
+              renderer: {
+                'view_box': {'width': 500, 'height': 180, 'background': '#FFFFFF'},
+                'elements': [
+                  {
+                    'id': 'slot.comparison.circle.circle',
+                    'type': 'circle',
+                    'attributes': {'cx': 154.196, 'cy': 100.95, 'r': 16.0},
+                    'interaction': {
+                      'type': 'select',
+                      'role': 'choice',
+                      'value_type': 'comparison_operator',
+                      'choice_value': 'slot.comparison.circle',
+                      'include_in_submission': true,
+                      'order': 0,
+                    },
+                  },
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byKey(const ValueKey('operator-choice->')), findsOneWidget);
+    expect(find.byKey(const ValueKey('operator-choice-=')), findsOneWidget);
+    expect(find.byKey(const ValueKey('operator-choice-<')), findsOneWidget);
+
+    await tester.tap(find.byKey(const ValueKey('operator-choice-<')));
+    await tester.pump();
+
+    expect(emitted, equals('<'));
+  });
+
+  testWidgets('renders comparison operator buttons for P3_1_01_00040_15610', (tester) async {
+    String emitted = '';
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 400,
+            height: 180,
+            child: RendererJsonCanvas(
+              expectedAnswer: '>',
+              onInputChanged: (value) => emitted = value,
+              renderer: {
+                'view_box': {'width': 400, 'height': 150, 'background': '#FFFFFF'},
+                'elements': [
+                  {
+                    'id': 'slot.comparison.circle.circle',
+                    'type': 'circle',
+                    'attributes': {'cx': 203.458, 'cy': 81.614, 'r': 15.0},
+                    'interaction': {
+                      'type': 'select',
+                      'role': 'choice',
+                      'value_type': 'comparison_operator',
+                      'choice_value': 'slot.comparison.circle',
+                      'include_in_submission': true,
+                      'order': 0,
+                    },
+                  },
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byKey(const ValueKey('operator-choice->')), findsOneWidget);
+    expect(find.byKey(const ValueKey('operator-choice-=')), findsOneWidget);
+    expect(find.byKey(const ValueKey('operator-choice-<')), findsOneWidget);
+
+    await tester.tap(find.byKey(const ValueKey('operator-choice->')));
+    await tester.pump();
+
+    expect(emitted, equals('>'));
+  });
+
+  testWidgets('creates input slots only for answer blanks and not number cards for P3_1_01_00040_15611', (tester) async {
+    String emitted = '';
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 500,
+            height: 220,
+            child: RendererJsonCanvas(
+              onInputChanged: (value) => emitted = value,
+              renderer: {
+                'view_box': {'width': 500, 'height': 220, 'background': '#FFFFFF'},
+                'elements': [
+                  {
+                    'id': 'slot.card1.rect.rect',
+                    'type': 'rect',
+                    'attributes': {'x': 22.0, 'y': 48.0, 'width': 28.0, 'height': 32.0, 'fill': '#ffffff', 'stroke': '#111111'},
+                  },
+                  {
+                    'id': 'slot.card5.rect.rect',
+                    'type': 'rect',
+                    'attributes': {'x': 58.0, 'y': 48.0, 'width': 28.0, 'height': 32.0, 'fill': '#ffffff', 'stroke': '#111111'},
+                  },
+                  {
+                    'id': 'slot.card2.rect.rect',
+                    'type': 'rect',
+                    'attributes': {'x': 94.0, 'y': 48.0, 'width': 28.0, 'height': 32.0, 'fill': '#ffffff', 'stroke': '#111111'},
+                  },
+                  {
+                    'id': 'slot.card7.rect.rect',
+                    'type': 'rect',
+                    'attributes': {'x': 130.0, 'y': 48.0, 'width': 28.0, 'height': 32.0, 'fill': '#ffffff', 'stroke': '#111111'},
+                  },
+                  {
+                    'id': 'slot.top.blank_tens.rect.rect',
+                    'type': 'rect',
+                    'attributes': {'x': 235.0, 'y': 48.0, 'width': 22.0, 'height': 28.0, 'fill': '#ffffff', 'stroke': '#111111'},
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'digit',
+                      'max_length': 1,
+                      'include_in_submission': true,
+                      'order': 0,
+                    },
+                  },
+                  {
+                    'id': 'slot.top.blank_ones.rect.rect',
+                    'type': 'rect',
+                    'attributes': {'x': 261.0, 'y': 48.0, 'width': 22.0, 'height': 28.0, 'fill': '#ffffff', 'stroke': '#111111'},
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'digit',
+                      'max_length': 1,
+                      'include_in_submission': true,
+                      'order': 1,
+                    },
+                  },
+                  {
+                    'id': 'slot.bottom.blank_hundreds.rect.rect',
+                    'type': 'rect',
+                    'attributes': {'x': 209.0, 'y': 84.0, 'width': 22.0, 'height': 28.0, 'fill': '#ffffff', 'stroke': '#111111'},
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'digit',
+                      'max_length': 1,
+                      'include_in_submission': true,
+                      'order': 2,
+                    },
+                  },
+                  {
+                    'id': 'slot.result.blank_ones.rect.rect',
+                    'type': 'rect',
+                    'attributes': {'x': 261.0, 'y': 128.0, 'width': 22.0, 'height': 28.0, 'fill': '#ffffff', 'stroke': '#111111'},
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'digit',
+                      'max_length': 1,
+                      'include_in_submission': true,
+                      'order': 3,
+                    },
+                  },
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    final textFields = find.byType(TextField);
+    expect(textFields, findsNWidgets(4));
+
+    await tester.enterText(textFields.at(0), '5');
+    await tester.enterText(textFields.at(1), '2');
+    await tester.enterText(textFields.at(2), '1');
+    await tester.enterText(textFields.at(3), '7');
+    await tester.pump();
+
+    expect(emitted, equals('5217'));
+  });
+
+  testWidgets('allows multi-digit inputs 60, 2, 90, 7, 697 for P3_1_01_00040_15621', (tester) async {
+    String emitted = '';
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 400,
+            height: 120,
+            child: RendererJsonCanvas(
+              onInputChanged: (value) => emitted = value,
+              renderer: {
+                'view_box': {'width': 400.0, 'height': 107.746, 'background': '#FFFFFF'},
+                'elements': [
+                  {
+                    'id': 'slot.line1.blank1_box.rect',
+                    'type': 'rect',
+                    'attributes': {'x': 160.4, 'y': 33.0, 'width': 47.6, 'height': 24.0, 'fill': '#ffffff'},
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'integer',
+                      'max_length': 2,
+                      'include_in_submission': true,
+                      'order': 0,
+                    },
+                  },
+                  {
+                    'id': 'slot.line1.blank2_box.rect',
+                    'type': 'rect',
+                    'attributes': {'x': 269.0, 'y': 33.0, 'width': 28.0, 'height': 24.0, 'fill': '#ffffff'},
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'digit',
+                      'max_length': 1,
+                      'include_in_submission': true,
+                      'order': 1,
+                    },
+                  },
+                  {
+                    'id': 'slot.line2.blank3_box.rect',
+                    'type': 'rect',
+                    'attributes': {'x': 117.0, 'y': 62.0, 'width': 37.0, 'height': 24.0, 'fill': '#ffffff'},
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'integer',
+                      'max_length': 2,
+                      'include_in_submission': true,
+                      'order': 2,
+                    },
+                  },
+                  {
+                    'id': 'slot.line2.blank4_box.rect',
+                    'type': 'rect',
+                    'attributes': {'x': 166.0, 'y': 62.0, 'width': 28.0, 'height': 24.0, 'fill': '#ffffff'},
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'digit',
+                      'max_length': 1,
+                      'include_in_submission': true,
+                      'order': 3,
+                    },
+                  },
+                  {
+                    'id': 'slot.line2.blank5_box.rect',
+                    'type': 'rect',
+                    'attributes': {'x': 205.0, 'y': 62.0, 'width': 42.0, 'height': 24.0, 'fill': '#ffffff'},
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'integer',
+                      'max_length': 3,
+                      'include_in_submission': true,
+                      'order': 4,
+                    },
+                  },
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    final textFields = find.byType(TextField);
+    expect(textFields, findsNWidgets(5));
+
+    await tester.enterText(textFields.at(0), '60');
+    await tester.enterText(textFields.at(1), '2');
+    await tester.enterText(textFields.at(2), '90');
+    await tester.enterText(textFields.at(3), '7');
+    await tester.enterText(textFields.at(4), '697');
+    await tester.pump();
+
+    expect(emitted, equals('602907697'));
+  });
 }

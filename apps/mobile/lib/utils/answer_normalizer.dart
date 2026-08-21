@@ -3,14 +3,24 @@ String _cleanText(String value) {
       .trim()
       .toLowerCase()
       .replaceAll(RegExp(r'\s+'), '')
+      .replaceAll('○', 'o')
+      .replaceAll('✕', 'x')
       .replaceAll('\u00d7', '*')
       .replaceAll('\ud6de', '*')
-      .replaceAll('x', '*')
       .replaceAll('\ubc88', '')
       .replaceAll(',', '')
       .replaceAll('.', '')
       .replaceAll('(', '')
       .replaceAll(')', '');
+
+  if (text == 'o표' || text == 'o') {
+    return 'o';
+  }
+  if (text == 'x표' || text == 'x' || text == '*표' || text == '*') {
+    return 'x';
+  }
+
+  text = text.replaceAll('x', '*');
 
   const replacements = {
     '\u2460': '1',
@@ -103,7 +113,7 @@ bool isSameAnswer(String submitted, String correct) {
 String _stripLeadingChoiceMarker(String value) {
   final trimmed = value.trim();
   return trimmed.replaceFirst(
-    RegExp(r'^(?:[①②③④⑤⑥⑦⑧⑨⑩]|\(\s*[1-9]\s*\)|\(\s*[ㄱ-ㅎ가-힣]\s*\)|\d+[.)]\s*|[ㄱ-ㅎ가-힣][.)]\s*)\s*'),
+    RegExp(r'^(?:[①②③④⑤⑥⑦⑧⑨⑩㉠-㉭]|\(\s*[1-9]\s*\)|\(\s*[ㄱ-ㅎ가-힣]\s*\)|\d+[.)]\s*|[ㄱ-ㅎ가-힣][.)]\s*)\s*'),
     '',
   );
 }
@@ -208,3 +218,4 @@ String? _leadingChoiceNumber(String value) {
 
   return null;
 }
+

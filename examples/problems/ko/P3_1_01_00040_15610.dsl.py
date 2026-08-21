@@ -84,7 +84,7 @@ def build_problem_template() -> ProblemTemplate:
                 fill="#ffffff",
                 stroke="#111111",
                 stroke_width=1.5,
-            interaction = {'type': 'select', 'role': 'choice', 'value_type': 'choice', 'choice_value': 'slot.comparison.circle', 'include_in_submission': True, 'order': 0, 'group_id': 'shape_choice', 'keyboard': 'none'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}),
+            interaction = {'type': 'select', 'role': 'choice', 'value_type': 'comparison_operator', 'choice_value': 'slot.comparison.circle', 'include_in_submission': True, 'order': 0, 'group_id': 'shape_choice', 'keyboard': 'none'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'}),
             TextSlot(
                 id="slot.right.number",
                 prompt="오른쪽 수",

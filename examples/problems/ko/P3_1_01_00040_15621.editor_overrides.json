@@ -10,14 +10,14 @@
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
+        "value_type": "integer",
+        "max_length": 2,
         "include_in_submission": true,
         "order": 0,
         "group_id": "final_answer",
         "answer_key_index": 0,
         "answer_ref": "answer_key[0]",
-        "auto_advance": true,
+        "auto_advance": false,
         "keyboard": "number"
       },
       "input_style": {
@@ -62,14 +62,14 @@
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
+        "value_type": "integer",
+        "max_length": 2,
         "include_in_submission": true,
         "order": 2,
         "group_id": "final_answer",
         "answer_key_index": 2,
         "answer_ref": "answer_key[2]",
-        "auto_advance": true,
+        "auto_advance": false,
         "keyboard": "number"
       },
       "input_style": {
@@ -114,14 +114,14 @@
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
+        "value_type": "integer",
+        "max_length": 3,
         "include_in_submission": true,
         "order": 4,
         "group_id": "final_answer",
         "answer_key_index": 4,
         "answer_ref": "answer_key[4]",
-        "auto_advance": true,
+        "auto_advance": false,
         "keyboard": "number"
       },
       "input_style": {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:modu_math_app/models/content_models.dart';
 import 'package:modu_math_app/services/solvable_hint_service.dart';
 import 'package:modu_math_app/widgets/hint_panel.dart';
 
@@ -110,5 +111,70 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Problem 2 correct.'), findsOneWidget);
     expect(revealCount, equals(2));
+  });
+
+  test('builds place value decomposition addition hints for P3_1_01_00040_15621', () {
+    const service = SolvableHintService();
+    const content = ProblemContent(
+      summary: ProblemSummary(
+        id: 'P3_1_01_00040_15621',
+        grade: 3,
+        subject: 'math',
+        unit: 'addition',
+        type: 'place_value_addition_fill_blank',
+        title: '자리값을 이용한 265와 432의 덧셈',
+        path: '',
+        raw: {},
+      ),
+      solvable: {
+        'problem_type': 'place_value_addition_fill_blank',
+        'steps': [
+          {
+            'id': 'step.decompose_first',
+            'expr': '265 = 200 + 60 + 5',
+            'value': 60,
+            'explanation': '265의 십의 자리 숫자는 6이므로 십의 자리 값은 60입니다.',
+          },
+          {
+            'id': 'step.decompose_second',
+            'expr': '432 = 400 + 30 + 2',
+            'value': 2,
+            'explanation': '432의 일의 자리 값은 2입니다.',
+          },
+          {
+            'id': 'step.add_tens',
+            'expr': '60 + 30',
+            'value': 90,
+            'explanation': '두 수의 십의 자리 값을 더하면 90입니다.',
+          },
+          {
+            'id': 'step.add_ones',
+            'expr': '5 + 2',
+            'value': 7,
+            'explanation': '두 수의 일의 자리 값을 더하면 7입니다.',
+          },
+          {
+            'id': 'step.add_partial_sums',
+            'expr': '600 + 90 + 7',
+            'value': 697,
+            'explanation': '백, 십, 일의 자리 부분합을 모두 더하면 697입니다.',
+          },
+        ],
+      },
+      semantic: {},
+    );
+
+    final hints = service.buildHints(content);
+    expect(hints, hasLength(5));
+    expect(hints[0].title, contains('첫 번째 수의 자리값'));
+    expect(hints[0].acceptedAnswers, contains('60'));
+    expect(hints[1].title, contains('두 번째 수의 자리값'));
+    expect(hints[1].acceptedAnswers, contains('2'));
+    expect(hints[2].title, contains('십의 자리 부분합'));
+    expect(hints[2].acceptedAnswers, contains('90'));
+    expect(hints[3].title, contains('일의 자리 부분합'));
+    expect(hints[3].acceptedAnswers, contains('7'));
+    expect(hints[4].title, contains('전체 합 완성하기'));
+    expect(hints[4].acceptedAnswers, contains('697'));
   });
 }

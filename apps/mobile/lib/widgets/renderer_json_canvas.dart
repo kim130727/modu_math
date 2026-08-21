@@ -84,7 +84,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
             constraints.maxHeight.isFinite ? constraints.maxHeight : double.infinity;
 
         final double operatorBarReservedHeight =
-            hasOperatorSlots ? 52.0 : 0.0;
+            hasOperatorSlots ? 74.0 : 0.0;
         final double availableHeight =
             (maxH - operatorBarReservedHeight).clamp(0.0, double.infinity);
 
@@ -1426,7 +1426,9 @@ bool _looksLikeInputRect(
     return false;
   }
   final slotText = _slotIdentity(element);
-  if (slotText.contains('background') || slotText.contains('circle')) {
+  if (slotText.contains('background') ||
+      slotText.contains('circle') ||
+      slotText.contains('card')) {
     return false;
   }
   final stroke = attributes['stroke']?.toString().trim();
