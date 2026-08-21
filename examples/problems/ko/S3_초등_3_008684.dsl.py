@@ -282,8 +282,8 @@ def build_problem_template() -> ProblemTemplate:
                 id="slot.choice.frame",
                 prompt="",
                 x=25,
-                y=500,
-                width=830,
+                y=495,
+                width=880,
                 height=85,
                 fill="#ffffff",
                 stroke="#111111",
@@ -292,11 +292,11 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.choice.text",
                 prompt="",
-                text="누름 못이 꽂힌 점에서 원 위에 찍은 4개의 점까지의 길이는 모두 (같습니다, 다릅니다).",
+                text="누름 못이 꽂힌 점에서 원 위에 찍은 4개의 점까지의\n길이는 모두 ( 같습니다 , 다릅니다 ).",
                 style_role="question",
-                x=40.002,
-                y=534.014,
-                font_size=30,
+                x=45,
+                y=520,
+                font_size=24,
                 fill="#111111",
             ),
             CircleSlot(
@@ -358,8 +358,8 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["같습니다", "다릅니다"],
+        "answer_key": ["같습니다"],
         "target": {
             "type": "choice_word",
             "description": "누름 못이 꽂힌 점에서 원 위에 찍은 4개의 점까지의 길이 관계",
@@ -373,10 +373,10 @@ SOLVABLE = {
     "problem_id": "S3_초등_3_008684",
     "problem_type": "circle_radius_relation",
     "inputs": {
-        "total_ticks": 4,
-        "target_label": "같습니다, 다릅니다",
-        "target_ticks": 4,
-        "target_count": 4,
+        "total_ticks": 2,
+        "target_label": "같습니다",
+        "target_ticks": 1,
+        "target_count": 1,
         "unit": "",
     },
     "given": [
@@ -390,7 +390,7 @@ SOLVABLE = {
     "method": "circle_property",
     "plan": [
         "원의 중심에서 원 위의 점까지의 거리가 모두 같은지 확인한다.",
-        "보기 중 알맞은 말을 고른다.",
+        "보기 중 알맞은 말(같습니다)을 고른다.",
     ],
     "steps": [
         {
@@ -404,22 +404,15 @@ SOLVABLE = {
         {
             "id": "check.1",
             "expr": "중심에서 각 점까지의 거리가 동일한가",
-            "expected": "같다",
-            "actual": "같다",
-            "pass": True,
-        },
-        {
-            "id": "check.2",
-            "expr": "선택어가 보기와 일치하는가",
             "expected": "같습니다",
             "actual": "같습니다",
             "pass": True,
-        },
+        }
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["같습니다", "다릅니다"],
+        "answer_key": ["같습니다"],
         "target": {
             "type": "choice_word",
             "description": "누름 못이 꽂힌 점에서 원 위에 찍은 4개의 점까지의 길이 관계",

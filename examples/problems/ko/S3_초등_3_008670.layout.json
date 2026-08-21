@@ -14,6 +14,17 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
+        "slot.q1",
+        "slot.lb.opt1",
+        "slot.lb.opt2",
+        "konva_1787270985164_text_2406826"
+      ]
+    },
+    {
+      "id": "region.diagram.top1",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
         "slot.top1.box",
         "slot.top1.c1.r3",
         "slot.top1.c1.r1",
@@ -54,16 +65,8 @@
         "slot.top1.grid.h4",
         "slot.top1.grid.h5",
         "slot.top1.grid.h6",
-        "slot.top1.grid.h7",
-        "slot.q1",
-        "konva_1784858509254_paste_330479_0"
+        "slot.top1.grid.h7"
       ]
-    },
-    {
-      "id": "region.diagram.top1",
-      "role": "diagram",
-      "flow": "absolute",
-      "slot_ids": []
     },
     {
       "id": "region.diagram.top2",
@@ -110,7 +113,8 @@
         "slot.top2.grid.h4",
         "slot.top2.grid.h5",
         "slot.top2.grid.h6",
-        "slot.top2.grid.h7"
+        "slot.top2.grid.h7",
+        "konva_1787270985164_paste_2427020_0"
       ]
     }
   ],
@@ -120,12 +124,25 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "규칙에 따라 원을 4개 더 그리려고 합니다.",
+        "text": "규칙에 따라 원을 4개 더 그리려고 합니다.\n바르게 그린 것을 선택하세요.",
         "style_role": "question",
         "x": 35.0,
-        "y": 42.0,
+        "y": 35.0,
         "font_size": 24,
         "max_width": 560.0
+      }
+    },
+    {
+      "id": "slot.lb.opt1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1번",
+        "style_role": "body",
+        "x": 30.0,
+        "y": 180.0,
+        "font_size": 22,
+        "fill": "#111111"
       }
     },
     {
@@ -133,7 +150,7 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 70.0,
+        "x": 130,
         "y": 95.0,
         "width": 480.0,
         "height": 160.0,
@@ -147,10 +164,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 90.0,
-        "y1": 95.0,
-        "x2": 90.0,
-        "y2": 255.0,
+        "x1": 150,
+        "y1": 94.176,
+        "x2": 150,
+        "y2": 254.176,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
       }
@@ -160,9 +177,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 110.0,
+        "x1": 170,
         "y1": 95.0,
-        "x2": 110.0,
+        "x2": 170,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -173,9 +190,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 130.0,
+        "x1": 190,
         "y1": 95.0,
-        "x2": 130.0,
+        "x2": 190,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -186,9 +203,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 150.0,
+        "x1": 210,
         "y1": 95.0,
-        "x2": 150.0,
+        "x2": 210,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -199,9 +216,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 170.0,
+        "x1": 230,
         "y1": 95.0,
-        "x2": 170.0,
+        "x2": 230,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -212,9 +229,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 190.0,
+        "x1": 250,
         "y1": 95.0,
-        "x2": 190.0,
+        "x2": 250,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -225,9 +242,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 210.0,
+        "x1": 270,
         "y1": 95.0,
-        "x2": 210.0,
+        "x2": 270,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -238,9 +255,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 230.0,
+        "x1": 290,
         "y1": 95.0,
-        "x2": 230.0,
+        "x2": 290,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -251,9 +268,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 250.0,
+        "x1": 310,
         "y1": 95.0,
-        "x2": 250.0,
+        "x2": 310,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -264,9 +281,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 270.0,
+        "x1": 330,
         "y1": 95.0,
-        "x2": 270.0,
+        "x2": 330,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -277,9 +294,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 290.0,
+        "x1": 350,
         "y1": 95.0,
-        "x2": 290.0,
+        "x2": 350,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -290,9 +307,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 310.0,
+        "x1": 370,
         "y1": 95.0,
-        "x2": 310.0,
+        "x2": 370,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -303,9 +320,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 330.0,
+        "x1": 390,
         "y1": 95.0,
-        "x2": 330.0,
+        "x2": 390,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -316,9 +333,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 350.0,
+        "x1": 410,
         "y1": 95.0,
-        "x2": 350.0,
+        "x2": 410,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -329,9 +346,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 370.0,
+        "x1": 430,
         "y1": 95.0,
-        "x2": 370.0,
+        "x2": 430,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -342,9 +359,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 390.0,
+        "x1": 450,
         "y1": 95.0,
-        "x2": 390.0,
+        "x2": 450,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -355,9 +372,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 410.0,
+        "x1": 470,
         "y1": 95.0,
-        "x2": 410.0,
+        "x2": 470,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -368,9 +385,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 430.0,
+        "x1": 490,
         "y1": 95.0,
-        "x2": 430.0,
+        "x2": 490,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -381,9 +398,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 450.0,
+        "x1": 510,
         "y1": 95.0,
-        "x2": 450.0,
+        "x2": 510,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -394,9 +411,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 470.0,
+        "x1": 530,
         "y1": 95.0,
-        "x2": 470.0,
+        "x2": 530,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -407,9 +424,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 490.0,
+        "x1": 550,
         "y1": 95.0,
-        "x2": 490.0,
+        "x2": 550,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -420,9 +437,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 510.0,
+        "x1": 570,
         "y1": 95.0,
-        "x2": 510.0,
+        "x2": 570,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -433,9 +450,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 530.0,
+        "x1": 590,
         "y1": 95.0,
-        "x2": 530.0,
+        "x2": 590,
         "y2": 255.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -446,9 +463,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 70.0,
+        "x1": 130,
         "y1": 115.0,
-        "x2": 550.0,
+        "x2": 610,
         "y2": 115.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -459,9 +476,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 70.0,
+        "x1": 130,
         "y1": 135.0,
-        "x2": 550.0,
+        "x2": 610,
         "y2": 135.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -472,9 +489,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 70.0,
+        "x1": 130,
         "y1": 155.0,
-        "x2": 550.0,
+        "x2": 610,
         "y2": 155.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -485,9 +502,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 70.0,
+        "x1": 130,
         "y1": 175.0,
-        "x2": 550.0,
+        "x2": 610,
         "y2": 175.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -498,9 +515,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 70.0,
+        "x1": 130,
         "y1": 195.0,
-        "x2": 550.0,
+        "x2": 610,
         "y2": 195.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -511,9 +528,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 70.0,
+        "x1": 130,
         "y1": 215.0,
-        "x2": 550.0,
+        "x2": 610,
         "y2": 215.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -524,9 +541,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 70.0,
+        "x1": 130,
         "y1": 235.0,
-        "x2": 550.0,
+        "x2": 610,
         "y2": 235.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -537,7 +554,7 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 150.0,
+        "cx": 210,
         "cy": 175.0,
         "r": 60.0,
         "stroke": "#222222",
@@ -550,7 +567,7 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 150.0,
+        "cx": 210,
         "cy": 175.0,
         "r": 20.0,
         "stroke": "#222222",
@@ -563,7 +580,7 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 230.0,
+        "cx": 290,
         "cy": 175.0,
         "r": 60.0,
         "stroke": "#222222",
@@ -576,7 +593,7 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 230.0,
+        "cx": 290,
         "cy": 175.0,
         "r": 20.0,
         "stroke": "#222222",
@@ -589,7 +606,7 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 310.0,
+        "cx": 370,
         "cy": 175.0,
         "r": 60.0,
         "stroke": "#222222",
@@ -602,7 +619,7 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 310.0,
+        "cx": 370,
         "cy": 175.0,
         "r": 20.0,
         "stroke": "#222222",
@@ -615,7 +632,7 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 370.0,
+        "cx": 430,
         "cy": 175.0,
         "r": 60.0,
         "stroke": "#1EA7FF",
@@ -628,7 +645,7 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 370.0,
+        "cx": 430,
         "cy": 175.0,
         "r": 20.0,
         "stroke": "#1EA7FF",
@@ -641,7 +658,7 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 430.0,
+        "cx": 490,
         "cy": 175.0,
         "r": 60.0,
         "stroke": "#1EA7FF",
@@ -654,7 +671,7 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 430.0,
+        "cx": 490,
         "cy": 175.0,
         "r": 20.0,
         "stroke": "#1EA7FF",
@@ -663,11 +680,24 @@
       }
     },
     {
+      "id": "slot.lb.opt2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2번",
+        "style_role": "body",
+        "x": 30.0,
+        "y": 390.0,
+        "font_size": 22,
+        "fill": "#111111"
+      }
+    },
+    {
       "id": "slot.top2.box",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 70.0,
+        "x": 130,
         "y": 305.0,
         "width": 480.0,
         "height": 160.0,
@@ -681,9 +711,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 90.0,
+        "x1": 150,
         "y1": 305.0,
-        "x2": 90.0,
+        "x2": 150,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -694,9 +724,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 110.0,
+        "x1": 170,
         "y1": 305.0,
-        "x2": 110.0,
+        "x2": 170,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -707,9 +737,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 130.0,
+        "x1": 190,
         "y1": 305.0,
-        "x2": 130.0,
+        "x2": 190,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -720,9 +750,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 150.0,
+        "x1": 210,
         "y1": 305.0,
-        "x2": 150.0,
+        "x2": 210,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -733,9 +763,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 170.0,
+        "x1": 230,
         "y1": 305.0,
-        "x2": 170.0,
+        "x2": 230,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -746,9 +776,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 190.0,
+        "x1": 250,
         "y1": 305.0,
-        "x2": 190.0,
+        "x2": 250,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -759,9 +789,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 210.0,
+        "x1": 270,
         "y1": 305.0,
-        "x2": 210.0,
+        "x2": 270,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -772,9 +802,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 230.0,
+        "x1": 290,
         "y1": 305.0,
-        "x2": 230.0,
+        "x2": 290,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -785,9 +815,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 250.0,
+        "x1": 310,
         "y1": 305.0,
-        "x2": 250.0,
+        "x2": 310,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -798,9 +828,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 270.0,
+        "x1": 330,
         "y1": 305.0,
-        "x2": 270.0,
+        "x2": 330,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -811,9 +841,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 290.0,
+        "x1": 350,
         "y1": 305.0,
-        "x2": 290.0,
+        "x2": 350,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -824,9 +854,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 310.0,
+        "x1": 370,
         "y1": 305.0,
-        "x2": 310.0,
+        "x2": 370,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -837,9 +867,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 330.0,
+        "x1": 390,
         "y1": 305.0,
-        "x2": 330.0,
+        "x2": 390,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -850,9 +880,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 350.0,
+        "x1": 410,
         "y1": 305.0,
-        "x2": 350.0,
+        "x2": 410,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -863,9 +893,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 370.0,
+        "x1": 430,
         "y1": 305.0,
-        "x2": 370.0,
+        "x2": 430,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -876,9 +906,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 390.0,
+        "x1": 450,
         "y1": 305.0,
-        "x2": 390.0,
+        "x2": 450,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -889,9 +919,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 410.0,
+        "x1": 470,
         "y1": 305.0,
-        "x2": 410.0,
+        "x2": 470,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -902,9 +932,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 430.0,
+        "x1": 490,
         "y1": 305.0,
-        "x2": 430.0,
+        "x2": 490,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -915,9 +945,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 450.0,
+        "x1": 510,
         "y1": 305.0,
-        "x2": 450.0,
+        "x2": 510,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -928,9 +958,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 470.0,
+        "x1": 530,
         "y1": 305.0,
-        "x2": 470.0,
+        "x2": 530,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -941,9 +971,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 490.0,
+        "x1": 550,
         "y1": 305.0,
-        "x2": 490.0,
+        "x2": 550,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -954,9 +984,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 510.0,
+        "x1": 570,
         "y1": 305.0,
-        "x2": 510.0,
+        "x2": 570,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -967,9 +997,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 530.0,
+        "x1": 590,
         "y1": 305.0,
-        "x2": 530.0,
+        "x2": 590,
         "y2": 465.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -980,9 +1010,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 70.0,
+        "x1": 130,
         "y1": 325.0,
-        "x2": 550.0,
+        "x2": 610,
         "y2": 325.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -993,9 +1023,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 70.0,
+        "x1": 130,
         "y1": 345.0,
-        "x2": 550.0,
+        "x2": 610,
         "y2": 345.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -1006,9 +1036,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 70.0,
+        "x1": 130,
         "y1": 365.0,
-        "x2": 550.0,
+        "x2": 610,
         "y2": 365.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -1019,9 +1049,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 70.0,
+        "x1": 130,
         "y1": 385.0,
-        "x2": 550.0,
+        "x2": 610,
         "y2": 385.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -1032,9 +1062,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 70.0,
+        "x1": 130,
         "y1": 405.0,
-        "x2": 550.0,
+        "x2": 610,
         "y2": 405.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -1045,9 +1075,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 70.0,
+        "x1": 130,
         "y1": 425.0,
-        "x2": 550.0,
+        "x2": 610,
         "y2": 425.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -1058,9 +1088,9 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 70.0,
+        "x1": 130,
         "y1": 445.0,
-        "x2": 550.0,
+        "x2": 610,
         "y2": 445.0,
         "stroke": "#1EA7FF",
         "stroke_width": 1.0
@@ -1071,7 +1101,7 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 150.0,
+        "cx": 210,
         "cy": 385.0,
         "r": 60.0,
         "stroke": "#222222",
@@ -1084,7 +1114,7 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 150.0,
+        "cx": 210,
         "cy": 385.0,
         "r": 20.0,
         "stroke": "#222222",
@@ -1097,7 +1127,7 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 230.0,
+        "cx": 290,
         "cy": 385.0,
         "r": 60.0,
         "stroke": "#222222",
@@ -1110,7 +1140,7 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 230.0,
+        "cx": 290,
         "cy": 385.0,
         "r": 20.0,
         "stroke": "#222222",
@@ -1123,7 +1153,7 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 310.0,
+        "cx": 370,
         "cy": 385.0,
         "r": 60.0,
         "stroke": "#222222",
@@ -1136,7 +1166,7 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 310.0,
+        "cx": 370,
         "cy": 385.0,
         "r": 20.0,
         "stroke": "#222222",
@@ -1149,7 +1179,7 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 390.0,
+        "cx": 450,
         "cy": 385.0,
         "r": 60.0,
         "stroke": "#1EA7FF",
@@ -1162,7 +1192,7 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 390.0,
+        "cx": 450,
         "cy": 385.0,
         "r": 20.0,
         "stroke": "#1EA7FF",
@@ -1175,7 +1205,7 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 470.0,
+        "cx": 530,
         "cy": 385.0,
         "r": 60.0,
         "stroke": "#1EA7FF",
@@ -1188,7 +1218,7 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 470.0,
+        "cx": 530,
         "cy": 385.0,
         "r": 20.0,
         "stroke": "#1EA7FF",
@@ -1197,21 +1227,35 @@
       }
     },
     {
-      "id": "konva_1784858509254_paste_330479_0",
+      "id": "konva_1787270985164_text_2406826",
       "kind": "text_box",
       "prompt": "",
       "content": {
-        "text": "바르게 그린 것을 선택하세요.",
-        "style_role": "body",
-        "x": 37.867,
-        "y": 49.685,
-        "width": 339.0,
-        "height": 37.0,
+        "text": "1번",
+        "x": 43.332,
+        "y": 134.666,
+        "font_size": 30,
+        "fill": "#111827",
+        "width": 98,
+        "height": 46,
         "align": "left",
-        "valign": "top",
-        "font_size": 24,
-        "line_height": 1.2,
-        "fill": "#111111"
+        "line_height": 1.25
+      }
+    },
+    {
+      "id": "konva_1787270985164_paste_2427020_0",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "2번",
+        "x": 47.359,
+        "y": 345.563,
+        "font_size": 30,
+        "fill": "#111827",
+        "width": 98,
+        "height": 46,
+        "align": "left",
+        "line_height": 1.25
       }
     }
   ],
@@ -1220,6 +1264,10 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
+    "slot.q1",
+    "slot.lb.opt1",
+    "slot.lb.opt2",
+    "region.diagram.top1",
     "slot.top1.box",
     "slot.top1.c1.r3",
     "slot.top1.c1.r1",
@@ -1261,9 +1309,6 @@
     "slot.top1.grid.h5",
     "slot.top1.grid.h6",
     "slot.top1.grid.h7",
-    "slot.q1",
-    "konva_1784858509254_paste_330479_0",
-    "region.diagram.top1",
     "region.diagram.top2",
     "slot.top2.box",
     "slot.top2.c1.r3",
@@ -1305,6 +1350,8 @@
     "slot.top2.grid.h4",
     "slot.top2.grid.h5",
     "slot.top2.grid.h6",
-    "slot.top2.grid.h7"
+    "slot.top2.grid.h7",
+    "konva_1787270985164_text_2406826",
+    "konva_1787270985164_paste_2427020_0"
   ]
 }

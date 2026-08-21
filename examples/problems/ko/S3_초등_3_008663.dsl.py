@@ -4,10 +4,10 @@ from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, compass_on_
 
 ANSWER = {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": ["ㄱ", "ㄴ", "ㄷ"],
+    "answer_key": ["ㄷ"],
     "target": {"type": "correct_choice", "description": "반지름 3 cm만큼 컴퍼스를 벌린 그림"},
-    "value": "㉢",
+    "value": "ㄷ",
     "unit": "",
 }
 

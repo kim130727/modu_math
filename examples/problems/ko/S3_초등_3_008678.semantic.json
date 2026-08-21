@@ -11,9 +11,6 @@
     "question": "원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 폈더니 선이 생겼습니다. 알맞은 말을 선택하세요.",
     "required_layout_ids": [
       "slot.folded.paper",
-      "slot.folded.back_circle",
-      "slot.folded.front_circle",
-      "slot.folded.lower_mask",
       "slot.folded.edge",
       "slot.arrow.body",
       "slot.arrow.head",
@@ -22,7 +19,7 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "보이는 선택 문장만 렌더링하고 정답/해설성 하단 문장은 생략한다."
+    "instruction": "반을 접어 생긴 선분에 알맞은 말을 고른다."
   },
   "domain": {
     "objects": [
@@ -35,16 +32,6 @@
         "id": "obj.fold_line",
         "type": "line_segment",
         "description": "반을 접었다가 펴서 생긴 선분"
-      },
-      {
-        "id": "obj.choice_diameter",
-        "type": "term",
-        "text": "지름"
-      },
-      {
-        "id": "obj.choice_radius",
-        "type": "term",
-        "text": "반지름"
       }
     ],
     "relations": [
@@ -80,7 +67,7 @@
       },
       "review": {
         "check_methods": [
-          "visible_choice_only_check"
+          "definition_check"
         ]
       }
     }
@@ -88,21 +75,18 @@
   "answer": {
     "blanks": [],
     "choices": [
-      {
-        "id": "choice.diameter",
-        "value": "지름"
-      },
-      {
-        "id": "choice.radius",
-        "value": "반지름"
-      }
+      "지름",
+      "반지름"
     ],
-    "answer_key": [],
+    "answer_key": [
+      "지름"
+    ],
+    "confidence": 1.0,
     "target": {
       "type": "choice_word",
       "description": "괄호 안에 들어갈 알맞은 말"
     },
-    "value": "",
+    "value": "지름",
     "unit": ""
   }
 }

@@ -181,13 +181,13 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ"],
+        "answer_key": ["ㄹ", "ㅁ"],
         "target": {
-            "type": "non_diameter_selection",
-            "description": "원의 지름이 아닌 것 모두",
+            "type": "multiple_choice_set",
+            "description": "원의 지름이 아닌 것 모두 선택",
         },
-        "value": "ㄹ,ㅁ",
+        "value": "ㄹ, ㅁ",
         "unit": "",
     },
 }
@@ -208,7 +208,7 @@ SOLVABLE = {
         {"ref": "obj.center", "value": "center"},
         {"ref": "obj.labels", "value": ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ"]},
     ],
-    "target": {"ref": "answer.target", "type": "non_diameter_selection"},
+    "target": {"ref": "answer.target", "type": "multiple_choice_set"},
     "method": "diameter_classification",
     "plan": [
         "각 표시가 가리키는 선분이 원의 중심을 지나는지 확인한다.",
@@ -233,20 +233,20 @@ SOLVABLE = {
         {
             "id": "check.2",
             "expr": "선택된 항목이 지름이 아님",
-            "expected": True,
-            "actual": True,
+            "expected": ["ㄹ", "ㅁ"],
+            "actual": ["ㄹ", "ㅁ"],
             "pass": True,
         },
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ"],
+        "answer_key": ["ㄹ", "ㅁ"],
         "target": {
-            "type": "non_diameter_selection",
-            "description": "원의 지름이 아닌 것 모두",
+            "type": "multiple_choice_set",
+            "description": "원의 지름이 아닌 것 모두 선택",
         },
-        "value": "ㄹ,ㅁ",
+        "value": "ㄹ, ㅁ",
         "unit": "",
     },
 }

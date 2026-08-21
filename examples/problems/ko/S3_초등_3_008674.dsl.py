@@ -216,8 +216,8 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["가", "나", "다"],
+        "answer_key": ["다"],
         "target": {"type": "selected_picture", "description": "원을 바르게 완성한 그림"},
         "value": "다",
         "unit": "",
@@ -229,9 +229,9 @@ SOLVABLE = {
     "problem_id": "S3_초등_3_008674",
     "problem_type": "circle_completion_choice",
     "inputs": {
-        "total_ticks": 0,
+        "total_ticks": 3,
         "target_label": "원을 바르게 완성한 그림",
-        "target_ticks": 0,
+        "target_ticks": 1,
         "target_count": 1,
         "unit": "",
     },
@@ -243,22 +243,22 @@ SOLVABLE = {
         {
             "id": "step.1",
             "expr": "각 보기의 빨간 선과 검은 원호의 연결 상태를 비교한다.",
-            "value": "",
+            "value": "다",
         }
     ],
     "checks": [
         {
             "id": "check.1",
             "expr": "정답과 해설 문장이 렌더링되지 않는다.",
-            "expected": True,
-            "actual": True,
+            "expected": "다",
+            "actual": "다",
             "pass": True,
         }
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["가", "나", "다"],
+        "answer_key": ["다"],
         "target": {"type": "selected_picture", "description": "원을 바르게 완성한 그림"},
         "value": "다",
         "unit": "",

@@ -33,7 +33,7 @@
     "ref": "answer.target",
     "type": "choice"
   },
-  "method": "definition_check",
+  "method": "concept_recognition",
   "plan": [
     "지름의 정의를 확인한다.",
     "한 원에 그을 수 있는 지름의 개수를 판단한다.",
@@ -53,7 +53,7 @@
     {
       "id": "step.3",
       "expr": "따라서 한 원에 지름은 무수히 많이 그을 수 있다.",
-      "value": "무수히 많이"
+      "value": "무수히 많이 그을 수 있습니다."
     }
   ],
   "checks": [
@@ -74,8 +74,13 @@
   ],
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "무수히 많이 그을 수 있습니다.",
+      "3개"
+    ],
+    "answer_key": [
+      "무수히 많이 그을 수 있습니다."
+    ],
     "target": {
       "type": "choice",
       "description": "한 원에 지름을 몇 개 그을 수 있는지에 대한 알맞은 선택지"

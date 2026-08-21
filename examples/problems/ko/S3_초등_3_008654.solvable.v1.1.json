@@ -21,7 +21,7 @@
   ],
   "target": {
     "ref": "answer.target",
-    "type": "explain_same_and_different"
+    "type": "multiple_choice_group"
   },
   "method": "compare_two_figures",
   "plan": [
@@ -33,30 +33,25 @@
     {
       "id": "step.1",
       "expr": "가 그림의 원 중심 배치 확인",
-      "value": "중심이 서로 다른 위치로 옮겨진 배치"
+      "value": "가"
     },
     {
       "id": "step.2",
       "expr": "나 그림의 원 중심 배치 확인",
-      "value": "중심이 모두 같은 배치"
-    },
-    {
-      "id": "step.3",
-      "expr": "두 그림의 공통점 비교",
-      "value": "같은 격자 위에 원 3개를 겹쳐 그림"
+      "value": "나"
     }
   ],
   "checks": [
     {
       "id": "check.1",
-      "expr": "가와 나의 배치가 서로 다른가",
+      "expr": "가 그림은 중심을 옮겨가며 그렸는가",
       "expected": true,
       "actual": true,
       "pass": true
     },
     {
       "id": "check.2",
-      "expr": "나의 원들이 같은 중심을 가지는가",
+      "expr": "나 그림은 중심이 모두 같은가",
       "expected": true,
       "actual": true,
       "pass": true
@@ -64,23 +59,35 @@
   ],
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
-    "target": {
-      "type": "explain_same_and_different",
-      "description": "두 모양을 그린 규칙의 같은 점과 다른 점"
-    },
-    "value": {
-      "blanks": [],
-      "choices": [],
-      "answer_key": [],
-      "target": {
-        "type": "rule_description",
-        "description": "두 모양을 그린 규칙의 같은 점과 다른 점"
+    "choices": [
+      "가",
+      "나"
+    ],
+    "choice_groups": [
+      {
+        "label": "첫 번째 빈칸",
+        "choices": [
+          "가",
+          "나"
+        ]
       },
-      "value": "가는 원의 중심을 옮겨가며 그렸고, 나는 원의 중심을 모두 같게 그렸습니다.",
-      "unit": ""
+      {
+        "label": "두 번째 빈칸",
+        "choices": [
+          "가",
+          "나"
+        ]
+      }
+    ],
+    "answer_key": [
+      "가",
+      "나"
+    ],
+    "target": {
+      "type": "multiple_choice_group",
+      "description": "두 모양을 그린 규칙의 다른 점 완성"
     },
+    "value": "가, 나",
     "unit": ""
   }
 }

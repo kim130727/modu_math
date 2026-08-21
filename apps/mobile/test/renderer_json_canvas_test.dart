@@ -1091,4 +1091,37 @@ void main() {
     expect(find.byType(CustomPaint), findsWidgets);
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets('ignores invisible slots with fill=none and stroke=none',
+      (tester) async {
+    final elements = [
+      {
+        'id': 'slot.answer_blank.rect',
+        'type': 'rect',
+        'attributes': {
+          'x': 72.0,
+          'y': 269.0,
+          'width': 22.0,
+          'height': 22.0,
+          'fill': 'none',
+          'stroke': 'none',
+        },
+      },
+      {
+        'id': 'slot.qtext.text',
+        'type': 'text',
+        'attributes': {
+          'x': 100.0,
+          'y': 50.0,
+          'font-size': 20,
+          'fill': '#111111',
+        },
+        'text': '원의 중심을 찾아 선택해 보세요.',
+      },
+    ];
+
+    final visible = rendererVisibleElements(elements);
+    expect(visible.length, 1);
+    expect(visible.first['id'], 'slot.qtext.text');
+  });
 }

@@ -263,13 +263,13 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["ㄱ", "ㄴ", "ㄷ"],
+        "answer_key": ["ㄱ"],
         "target": {
-            "type": "선택",
+            "type": "choice",
             "description": "원의 반지름이 모두 같고 원의 중심을 옮겨 가며 그린 그림",
         },
-        "value": "㉠",
+        "value": "ㄱ",
         "unit": "",
     },
 }
@@ -293,7 +293,7 @@ SOLVABLE = {
         {"ref": "obj.option2", "value": {"property": "different_radii_moved_centers"}},
         {"ref": "obj.option3", "value": {"property": "concentric_circles"}},
     ],
-    "target": {"ref": "answer.target", "type": "선택"},
+    "target": {"ref": "answer.target", "type": "choice"},
     "method": "도형 성질 비교",
     "plan": [
         "각 보기의 원들에서 반지름이 같은지 확인한다.",
@@ -301,7 +301,7 @@ SOLVABLE = {
         "문장과 가장 잘 맞는 그림을 고른다.",
     ],
     "steps": [
-        {"id": "step.1", "expr": "보기 1의 원 관계 확인", "value": "겹쳐진 원들"},
+        {"id": "step.1", "expr": "보기 1의 원 관계 확인", "value": "반지름이 같고 중심이 이동한 원들"},
         {
             "id": "step.2",
             "expr": "보기 2의 원 관계 확인",
@@ -313,20 +313,20 @@ SOLVABLE = {
         {
             "id": "check.1",
             "expr": "문장 조건과 일치하는 보기인지 확인",
-            "expected": "반지름이 모두 같고 중심이 이동한 그림",
-            "actual": "미확정",
-            "pass": False,
+            "expected": "ㄱ",
+            "actual": "ㄱ",
+            "pass": True,
         }
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["ㄱ", "ㄴ", "ㄷ"],
+        "answer_key": ["ㄱ"],
         "target": {
-            "type": "선택",
+            "type": "choice",
             "description": "원의 반지름이 모두 같고 원의 중심을 옮겨 가며 그린 그림",
         },
-        "value": "㉠",
+        "value": "ㄱ",
         "unit": "",
     },
 }

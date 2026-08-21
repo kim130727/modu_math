@@ -171,8 +171,8 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["지름", "반지름", "중심"],
+        "answer_key": ["반지름"],
         "target": {
             "type": "circle_term",
             "description": "선분 ㄱㅇ, 선분 ㄴㅇ, 선분 ㄷㅇ에 알맞은 말",
@@ -190,14 +190,14 @@ SOLVABLE = {
         "total_ticks": 3,
         "target_label": "반지름",
         "target_ticks": 1,
-        "target_count": 3,
+        "target_count": 1,
         "unit": "",
     },
     "given": [
-        {"ref": "obj.center", "value": {"label": "O"}},
-        {"ref": "obj.segment.ga", "value": {"label": "ㄱㅇ"}},
-        {"ref": "obj.segment.na", "value": {"label": "ㄴㅇ"}},
-        {"ref": "obj.segment.da", "value": {"label": "ㄷㅇ"}},
+        {"ref": "obj.center", "value": {"label": "ㅇ"}},
+        {"ref": "obj.segment.ga", "value": {"label": "선분 ㄱㅇ"}},
+        {"ref": "obj.segment.na", "value": {"label": "선분 ㄴㅇ"}},
+        {"ref": "obj.segment.da", "value": {"label": "선분 ㄷㅇ"}},
     ],
     "target": {"ref": "answer.target", "type": "circle_term"},
     "method": "concept_identification",
@@ -208,7 +208,7 @@ SOLVABLE = {
     "steps": [
         {
             "id": "step.1",
-            "expr": "ㄱㅇ, ㄴㅇ, ㄷㅇ는 모두 원의 중심 O에서 원 위의 점으로 이어진 선분이다.",
+            "expr": "ㄱㅇ, ㄴㅇ, ㄷㅇ는 모두 원의 중심 ㅇ에서 원 위의 점으로 이어진 선분이다.",
             "value": "center_to_circle_point_segments",
         },
         {
@@ -228,8 +228,8 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["지름", "반지름", "중심"],
+        "answer_key": ["반지름"],
         "target": {
             "type": "circle_term",
             "description": "선분 ㄱㅇ, 선분 ㄴㅇ, 선분 ㄷㅇ에 알맞은 말",

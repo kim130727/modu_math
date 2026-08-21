@@ -29,11 +29,11 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.qnum",
                 prompt="",
-                text="    다음을 읽고 바르게 설명하였으면 ○표, 그렇지 않으면 ×표를 선택하세요.    ",
+                text="다음을 읽고 바르게 설명하였으면 O표, 그렇지 않으면 X표를 선택하세요.",
                 style_role="question",
                 x=10,
-                y=50,
-                font_size=30,
+                y=45,
+                font_size=28,
             ),
             CircleSlot(
                 id="slot.diagram.circle",
@@ -131,7 +131,7 @@ SEMANTIC_OVERRIDE = {
     "metadata": {
         "language": "ko",
         "question": "원의 지름을 나타내는 선분이 무엇인지 판단하는 문제",
-        "instruction": "다음을 읽고 바르게 설명하였으면 ○표, 그렇지 않으면 ×표를 하세요.",
+        "instruction": "다음을 읽고 바르게 설명하였으면 O표, 그렇지 않으면 X표를 하세요.",
     },
     "domain": {
         "objects": [
@@ -157,13 +157,13 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["O", "X"],
+        "answer_key": ["O"],
         "target": {
             "type": "ox_judgment",
             "description": "선분 ㄱㄴ이 원의 지름을 나타낸다는 설명이 맞는지",
         },
-        "value": "○",
+        "value": "O",
         "unit": "",
     },
 }
@@ -173,8 +173,8 @@ SOLVABLE = {
     "problem_id": "S3_초등_3_008686",
     "problem_type": "ox_judgment",
     "inputs": {
-        "total_ticks": 1,
-        "target_label": "선분 ㄱㄴ이 원의 지름인지 판단",
+        "total_ticks": 2,
+        "target_label": "O",
         "target_ticks": 1,
         "target_count": 1,
         "unit": "",
@@ -187,7 +187,7 @@ SOLVABLE = {
     "method": "ox_judgment",
     "plan": [
         "문장에서 선분 ㄱㄴ이 원의 지름이라고 말하는지 확인한다.",
-        "도형의 성질과 문장의 내용이 같으면 ○, 다르면 ×로 판단한다.",
+        "도형의 성질과 문장의 내용이 같으면 O, 다르면 X로 판단한다.",
     ],
     "steps": [
         {
@@ -198,27 +198,27 @@ SOLVABLE = {
         {
             "id": "step.2",
             "expr": "문장 '선분 ㄱㄴ은 원의 지름을 나타냅니다.'의 진위 판단",
-            "value": "○",
+            "value": "O",
         },
     ],
     "checks": [
         {
             "id": "check.1",
             "expr": "문장 내용이 도형의 지름 성질과 일치하는가",
-            "expected": "○",
-            "actual": "○",
+            "expected": "O",
+            "actual": "O",
             "pass": True,
         }
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["O", "X"],
+        "answer_key": ["O"],
         "target": {
             "type": "ox_judgment",
             "description": "선분 ㄱㄴ이 원의 지름을 나타낸다는 설명이 맞는지",
         },
-        "value": "○",
+        "value": "O",
         "unit": "",
     },
 }

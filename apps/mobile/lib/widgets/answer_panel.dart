@@ -29,6 +29,7 @@ class _AnswerPanelState extends State<AnswerPanel> {
   final TextEditingController controller = TextEditingController();
   int? selectedChoiceIndex;
   Set<int> selectedChoiceIndexes = {};
+  Map<int, int> selectedGroupChoices = {};
 
   @override
   void initState() {
@@ -56,6 +57,7 @@ class _AnswerPanelState extends State<AnswerPanel> {
 
   @override
   Widget build(BuildContext context) {
+    final choiceGroups = widget.content.choiceGroups;
     final choices = widget.content.choices;
     final strings = AppStrings.of(context);
     final allowsMultipleChoices = _allowsMultipleChoices(widget.content);
@@ -65,6 +67,8 @@ class _AnswerPanelState extends State<AnswerPanel> {
     final String titleText;
     if (!hasVisual) {
       titleText = widget.content.prompt;
+    } else if (choiceGroups.isNotEmpty) {
+      titleText = '각 항목에 알맞은 정답을 선택하세요';
     } else if (choices.isNotEmpty) {
       titleText = allowsMultipleChoices
           ? '알맞은 정답을 모두 선택하세요'
@@ -107,7 +111,54 @@ class _AnswerPanelState extends State<AnswerPanel> {
               ],
             ),
             const SizedBox(height: 16),
-            if (choices.isEmpty)
+            if (choiceGroups.isNotEmpty) ...[
+              for (var (groupIndex, group) in choiceGroups.indexed) ...[
+                if (group.label.isNotEmpty) ...[
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Text(
+                      group.label,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF374151),
+                      ),
+                    ),
+                  ),
+                ],
+                Wrap(
+                  spacing: 10,
+                  runSpacing: 10,
+                  children: group.choices.indexed.map((entry) {
+                    final choiceIndex = entry.$1;
+                    final choiceText = entry.$2;
+                    final selected =
+                        selectedGroupChoices[groupIndex] == choiceIndex;
+                    return ChoiceChip(
+                      selected: selected,
+                      label:
+                          Text(choiceText, style: const TextStyle(fontSize: 18)),
+                      onSelected: (isSelected) {
+                        setState(() {
+                          if (isSelected) {
+                            selectedGroupChoices[groupIndex] = choiceIndex;
+                          } else {
+                            selectedGroupChoices.remove(groupIndex);
+                          }
+                        });
+                        final combinedAnswer = _combinedGroupAnswer(
+                          choiceGroups,
+                          selectedGroupChoices,
+                        );
+                        widget.onAnswerChanged(combinedAnswer);
+                      },
+                    );
+                  }).toList(),
+                ),
+                if (groupIndex < choiceGroups.length - 1)
+                  const SizedBox(height: 16),
+              ],
+            ] else if (choices.isEmpty)
               TextField(
                 controller: controller,
                 style: const TextStyle(
@@ -172,13 +223,26 @@ class _AnswerPanelState extends State<AnswerPanel> {
             const SizedBox(height: 16),
             FilledButton(
               onPressed: () {
-                final answer = choices.isEmpty
-                    ? controller.text
-                    : allowsMultipleChoices
-                        ? _selectedChoiceAnswer(choices, selectedChoiceIndexes)
-                        : selectedChoiceIndex == null
-                            ? null
-                            : choices[selectedChoiceIndex!];
+                final String? answer;
+                if (choiceGroups.isNotEmpty) {
+                  if (selectedGroupChoices.length < choiceGroups.length) {
+                    return;
+                  }
+                  answer = _combinedGroupAnswer(
+                    choiceGroups,
+                    selectedGroupChoices,
+                  );
+                } else if (choices.isEmpty) {
+                  answer = controller.text;
+                } else if (allowsMultipleChoices) {
+                  answer =
+                      _selectedChoiceAnswer(choices, selectedChoiceIndexes);
+                } else {
+                  answer = selectedChoiceIndex == null
+                      ? null
+                      : choices[selectedChoiceIndex!];
+                }
+
                 if (answer == null || answer.trim().isEmpty) {
                   return;
                 }
@@ -202,6 +266,21 @@ class _AnswerPanelState extends State<AnswerPanel> {
       ),
     );
   }
+}
+
+String _combinedGroupAnswer(
+  List<ChoiceGroup> groups,
+  Map<int, int> selectedGroupChoices,
+) {
+  return groups.indexed
+      .map((entry) {
+        final groupIndex = entry.$1;
+        final group = entry.$2;
+        final selectedIndex = selectedGroupChoices[groupIndex];
+        return selectedIndex != null ? group.choices[selectedIndex] : '';
+      })
+      .where((s) => s.isNotEmpty)
+      .join(', ');
 }
 
 bool _allowsMultipleChoices(ProblemContent content) {

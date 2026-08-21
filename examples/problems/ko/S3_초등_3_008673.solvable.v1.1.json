@@ -23,7 +23,7 @@
   "plan": [
     "그림마다 원의 중심이 같은지 확인한다.",
     "반지름이 달라지는지 확인한다.",
-    "조건에 맞는 그림을 선택한다."
+    "조건에 맞는 그림(3번)을 선택한다."
   ],
   "steps": [
     {
@@ -39,15 +39,15 @@
     {
       "id": "step.3",
       "expr": "조건에 맞는 그림 선택",
-      "value": "정답 도형 선택"
+      "value": "3번"
     }
   ],
   "checks": [
     {
       "id": "check.1",
       "expr": "중심이 옮겨지지 않았는가",
-      "expected": true,
-      "actual": true,
+      "expected": "3번",
+      "actual": "3번",
       "pass": true
     },
     {
@@ -60,13 +60,19 @@
   ],
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "1번",
+      "2번",
+      "3번"
+    ],
+    "answer_key": [
+      "3번"
+    ],
     "target": {
       "type": "circle_diagram_selection",
       "description": "원의 중심을 옮기지 않고 반지름만 다르게 하여 그린 것"
     },
-    "value": 3,
+    "value": "3번",
     "unit": ""
   }
 }

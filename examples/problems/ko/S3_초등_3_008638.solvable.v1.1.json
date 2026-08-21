@@ -12,26 +12,27 @@
   "given": [
     {
       "ref": "obj.circle",
-      "value": {
-        "type": "circle"
-      }
+      "value": "circle"
     },
     {
       "ref": "obj.point.ga",
       "value": {
-        "label": "가"
+        "label": "ㄱ",
+        "type": "point"
       }
     },
     {
       "ref": "obj.point.na",
       "value": {
-        "label": "나"
+        "label": "ㄴ",
+        "type": "point"
       }
     },
     {
       "ref": "obj.point.da",
       "value": {
-        "label": "다"
+        "label": "ㄷ",
+        "type": "point"
       }
     }
   ],
@@ -41,25 +42,19 @@
   },
   "method": "도형식별",
   "plan": [
-    "원의 중심의 성질을 확인한다.",
-    "세 점 중 원의 중심에 해당하는 점을 찾는다."
+    "주어진 점들 중 원의 중심 위치에 해당하는 점을 고른다."
   ],
   "steps": [
     {
       "id": "step.1",
-      "expr": "원의 내부 점들 중 중심 후보를 확인한다.",
-      "value": "가/나/다 중 하나"
-    },
-    {
-      "id": "step.2",
-      "expr": "중심의 위치 성질과 비교한다.",
-      "value": "TODO"
+      "expr": "중심 후보 점 선택",
+      "value": "ㄱ"
     }
   ],
   "checks": [
     {
       "id": "check.1",
-      "expr": "중심은 원의 내부에 있고 원의 가운데에 위치한다.",
+      "expr": "점 ㄱ이 원의 중심인가",
       "expected": true,
       "actual": true,
       "pass": true
@@ -67,8 +62,14 @@
   ],
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "ㄱ",
+      "ㄴ",
+      "ㄷ"
+    ],
+    "answer_key": [
+      "ㄱ"
+    ],
     "target": {
       "type": "selected_point_label",
       "description": "원의 중심으로 선택할 점의 라벨"

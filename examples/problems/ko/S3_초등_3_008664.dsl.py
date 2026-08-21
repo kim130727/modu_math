@@ -296,8 +296,8 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ"],
+        "answer_key": ["ㅁ"],
         "target": {
             "type": "choice_label",
             "description": "원을 가장 크게 그릴 수 있는 구멍의 기호",
@@ -351,8 +351,8 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ"],
+        "answer_key": ["ㅁ"],
         "target": {
             "type": "choice_label",
             "description": "원을 가장 크게 그릴 수 있는 구멍의 기호",

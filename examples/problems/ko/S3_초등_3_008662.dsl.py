@@ -252,10 +252,15 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": [
+            "1. 선분 ㄱㄴ",
+            "2. 선분 ㄷㄹ",
+            "3. 선분 ㅁㅂ",
+            "4. 선분 ㅅㅈ",
+        ],
+        "answer_key": ["2. 선분 ㄷㄹ"],
         "target": {"type": "choice", "description": "원의 지름에 해당하는 보기"},
-        "value": "② 선분 ㄷㄹ",
+        "value": "2. 선분 ㄷㄹ",
         "unit": "",
     },
 }
@@ -273,10 +278,10 @@ SOLVABLE = {
     },
     "given": [
         {"ref": "obj.circle", "value": {"type": "circle"}},
-        {"ref": "obj.segment.gn", "value": {"label": "ㄱㄴ"}},
-        {"ref": "obj.segment.dl", "value": {"label": "ㄷㄹ"}},
-        {"ref": "obj.segment.mb", "value": {"label": "ㅁㅂ"}},
-        {"ref": "obj.segment.sj", "value": {"label": "ㅅㅈ"}},
+        {"ref": "obj.segment.gn", "value": {"label": "선분 ㄱㄴ"}},
+        {"ref": "obj.segment.dl", "value": {"label": "선분 ㄷㄹ"}},
+        {"ref": "obj.segment.mb", "value": {"label": "선분 ㅁㅂ"}},
+        {"ref": "obj.segment.sj", "value": {"label": "선분 ㅅㅈ"}},
     ],
     "target": {"ref": "answer.target", "type": "choice"},
     "method": "diagram_classification",
@@ -285,8 +290,8 @@ SOLVABLE = {
         "그 선분과 같은 표기를 가진 보기를 고른다.",
     ],
     "steps": [
-        {"id": "step.1", "expr": "중심을 지나는 선분 확인", "value": "ㄷㄹ"},
-        {"id": "step.2", "expr": "해당 보기 번호 확인", "value": 2},
+        {"id": "step.1", "expr": "중심을 지나는 선분 확인", "value": "선분 ㄷㄹ"},
+        {"id": "step.2", "expr": "해당 보기 번호 확인", "value": "2. 선분 ㄷㄹ"},
     ],
     "checks": [
         {
@@ -298,18 +303,23 @@ SOLVABLE = {
         },
         {
             "id": "check.2",
-            "expr": "선택한 보기가 ②인가",
-            "expected": 2,
-            "actual": 2,
+            "expr": "선택한 보기가 2. 선분 ㄷㄹ인가",
+            "expected": "2. 선분 ㄷㄹ",
+            "actual": "2. 선분 ㄷㄹ",
             "pass": True,
         },
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": [
+            "1. 선분 ㄱㄴ",
+            "2. 선분 ㄷㄹ",
+            "3. 선분 ㅁㅂ",
+            "4. 선분 ㅅㅈ",
+        ],
+        "answer_key": ["2. 선분 ㄷㄹ"],
         "target": {"type": "choice", "description": "원의 지름에 해당하는 보기"},
-        "value": "② 선분 ㄷㄹ",
+        "value": "2. 선분 ㄷㄹ",
         "unit": "",
     },
 }

@@ -213,8 +213,14 @@ SEMANTIC_OVERRIDE = {
         },
     },
     "answer": {
-        "type": "symbol_choice",
-        "value": "㉢",
+        "blanks": [],
+        "choices": ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ"],
+        "answer_key": ["ㄷ"],
+        "target": {
+            "type": "symbol_choice",
+            "description": "길이가 가장 긴 선분의 기호",
+        },
+        "value": "ㄷ",
         "unit": "",
     },
 }
@@ -224,12 +230,12 @@ SOLVABLE = {
     "problem_id": "S3_초등_3_008647",
     "problem_type": "geometry_comparison",
     "inputs": {
-        "target_label": "㉢",
+        "target_label": "ㄷ",
         "unit": "",
     },
     "given": [
         {"ref": "obj.circle", "value": {"type": "circle"}},
-        {"ref": "obj.segment.c", "value": {"symbol": "㉢", "property": "passes_through_center"}},
+        {"ref": "obj.segment.c", "value": {"symbol": "ㄷ", "property": "passes_through_center"}},
     ],
     "target": {"ref": "answer.target", "type": "symbol_choice"},
     "method": "compare_segments_by_circle_property",
@@ -238,13 +244,13 @@ SOLVABLE = {
         "그 선분은 지름이므로 가장 긴 선분이다.",
     ],
     "steps": [
-        {"id": "step.1", "expr": "원의 중심 O를 지나는 선분 확인", "value": "㉢"},
-        {"id": "step.2", "expr": "가장 긴 선분의 기호 선택", "value": "㉢"},
+        {"id": "step.1", "expr": "원의 중심 O를 지나는 선분 확인", "value": "ㄷ"},
+        {"id": "step.2", "expr": "가장 긴 선분의 기호 선택", "value": "ㄷ"},
     ],
     "checks": [
         {
             "id": "check.1",
-            "expr": "㉢은 원의 중심을 지나는 지름인가?",
+            "expr": "ㄷ은 원의 중심을 지나는 지름인가?",
             "expected": True,
             "actual": True,
             "pass": True,
@@ -252,10 +258,13 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
-        "type": "symbol_choice",
-        "value": "㉢",
+        "choices": ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ"],
+        "answer_key": ["ㄷ"],
+        "target": {
+            "type": "symbol_choice",
+            "description": "길이가 가장 긴 선분의 기호",
+        },
+        "value": "ㄷ",
         "unit": "",
     },
 }

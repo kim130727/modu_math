@@ -6,32 +6,32 @@
     "total_ticks": 0,
     "target_label": "가장 긴 선분",
     "target_ticks": 0,
-    "target_count": 4,
+    "target_count": 1,
     "unit": ""
   },
   "given": [
     {
       "ref": "obj.segment.gn",
       "value": {
-        "label": "ㄱㄴ"
+        "label": "선분 ㄱㄴ"
       }
     },
     {
       "ref": "obj.segment.dr",
       "value": {
-        "label": "ㄷㄹ"
+        "label": "선분 ㄷㄹ"
       }
     },
     {
       "ref": "obj.segment.mb",
       "value": {
-        "label": "ㅁㅂ"
+        "label": "선분 ㅁㅂ"
       }
     },
     {
       "ref": "obj.segment.ss",
       "value": {
-        "label": "스ㅅ"
+        "label": "선분 ㅅㅈ"
       }
     }
   ],
@@ -49,32 +49,39 @@
     {
       "id": "step.1",
       "expr": "중심을 지나는 선분 확인",
-      "value": "ㄷㄹ"
+      "value": "선분 ㄷㄹ"
     },
     {
       "id": "step.2",
       "expr": "보기와 대응",
-      "value": 2
+      "value": "2. 선분 ㄷㄹ"
     }
   ],
   "checks": [
     {
       "id": "check.1",
       "expr": "해설 문장과 선택지 일치 여부",
-      "expected": 2,
-      "actual": 2,
+      "expected": "2. 선분 ㄷㄹ",
+      "actual": "2. 선분 ㄷㄹ",
       "pass": true
     }
   ],
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "1. 선분 ㄱㄴ",
+      "2. 선분 ㄷㄹ",
+      "3. 선분 ㅁㅂ",
+      "4. 선분 ㅅㅈ"
+    ],
+    "answer_key": [
+      "2. 선분 ㄷㄹ"
+    ],
     "target": {
       "type": "choice_selection",
       "description": "길이가 가장 긴 선분"
     },
-    "value": "② 선분 ㄷㄹ",
+    "value": "2. 선분 ㄷㄹ",
     "unit": ""
   }
 }

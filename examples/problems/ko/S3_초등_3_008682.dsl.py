@@ -20,10 +20,10 @@ GRID_STEP = GRID_SIZE / GRID_CELLS
 
 ANSWER = {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
-    "target": {"type": "selected_term", "description": "지름과 반지름 중 알맞은 말"},
-    "value": "지름",
+    "choices": ["민수", "지혜"],
+    "answer_key": ["지혜"],
+    "target": {"type": "selected_person", "description": "알맞은 설명을 하는 사람"},
+    "value": "지혜",
     "unit": "",
 }
 
@@ -268,28 +268,35 @@ SOLVABLE = {
     "schema": "modu.solvable.v1.1",
     "problem_id": "S3_초등_3_008682",
     "problem_type": "geometry_construction_term_selection",
-    "inputs": {"target_label": "알맞은 말", "unit": ""},
+    "inputs": {
+        "total_ticks": 2,
+        "target_label": "지혜",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "",
+    },
     "given": [
         {"ref": "obj.large_circle", "value": {"radius_cells": 4}},
         {"ref": "obj.small_circle.left", "value": {"radius_cells": 2}},
         {"ref": "obj.small_circle.right", "value": {"radius_cells": 2}},
     ],
-    "target": {"ref": "answer.target", "type": "selected_term"},
+    "target": {"ref": "answer.target", "type": "selected_person"},
     "method": "term_matching",
     "plan": [
         "큰 원의 반지름과 작은 원의 지름을 모눈 칸 수로 확인한다.",
-        "작은 원에서 큰 원의 반지름과 같은 값을 고른다.",
+        "작은 원에서 큰 원의 반지름과 같은 값을 설명한 사람(지혜)을 고른다.",
     ],
     "steps": [
         {"id": "step.1", "expr": "큰 원의 반지름", "value": "4칸"},
         {"id": "step.2", "expr": "작은 원의 지름", "value": "4칸"},
+        {"id": "step.3", "expr": "알맞은 설명을 하는 사람 선택", "value": "지혜"},
     ],
     "checks": [
         {
             "id": "check.1",
             "expr": "작은 원의 지름이 큰 원의 반지름과 같은가",
-            "expected": True,
-            "actual": True,
+            "expected": "지혜",
+            "actual": "지혜",
             "pass": True,
         }
     ],

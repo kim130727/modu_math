@@ -91,7 +91,7 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "두 모눈 그림만 제시한다."
+    "instruction": "두 모눈 그림 중 바르게 그린 것을 고른다."
   },
   "domain": {
     "objects": [
@@ -141,13 +141,19 @@
   },
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "1번",
+      "2번"
+    ],
+    "answer_key": [
+      "2번"
+    ],
+    "confidence": 1.0,
     "target": {
       "type": "correct_choice",
       "description": "규칙에 맞게 이어 그린 그림"
     },
-    "value": 2,
+    "value": "2번",
     "unit": ""
   }
 }

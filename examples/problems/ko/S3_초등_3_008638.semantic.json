@@ -6,7 +6,6 @@
     "tags": [],
     "question": "원의 중심을 찾아 선택해 보세요.",
     "required_layout_ids": [
-      "slot.answer_blank",
       "slot.top.grid.v0",
       "slot.top.grid.v1",
       "slot.top.grid.v2",
@@ -32,7 +31,7 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "(정답)"
+    "instruction": "정답을 선택한다."
   },
   "domain": {
     "objects": [
@@ -43,17 +42,17 @@
       {
         "id": "obj.point.ga",
         "type": "point",
-        "label": "가"
+        "label": "ㄱ"
       },
       {
         "id": "obj.point.na",
         "type": "point",
-        "label": "나"
+        "label": "ㄴ"
       },
       {
         "id": "obj.point.da",
         "type": "point",
-        "label": "다"
+        "label": "ㄷ"
       }
     ],
     "relations": [],
@@ -89,8 +88,15 @@
   },
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "ㄱ",
+      "ㄴ",
+      "ㄷ"
+    ],
+    "answer_key": [
+      "ㄱ"
+    ],
+    "confidence": 1.0,
     "target": {
       "type": "selected_point_label",
       "description": "원의 중심으로 선택할 점의 라벨"

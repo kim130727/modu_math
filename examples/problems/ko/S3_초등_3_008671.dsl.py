@@ -20,31 +20,39 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.q1", "slot.q2"),
+                slot_ids=("slot.q1",),
             ),
             Region(
                 id="region.diagram",
                 role="diagram",
                 flow="absolute",
-                slot_ids=("slot.bar", "slot.tool", "slot.hole.1", "slot.hole.2", "slot.hole.3", "slot.hole.4", "slot.link.1", "slot.link.2", "slot.link.3", "slot.link.4", "slot.choice.lb.1", "slot.choice.lb.2", "slot.choice.lb.3", "slot.choice.lb.4"),
+                slot_ids=(
+                    "slot.bar",
+                    "slot.tool",
+                    "slot.hole.1",
+                    "slot.hole.2",
+                    "slot.hole.3",
+                    "slot.hole.4",
+                    "slot.link.1",
+                    "slot.link.2",
+                    "slot.link.3",
+                    "slot.link.4",
+                    "slot.choice.lb.1",
+                    "slot.choice.lb.2",
+                    "slot.choice.lb.3",
+                    "slot.choice.lb.4",
+                ),
             ),
         ),
-        slots=(TextSlot(
+        slots=(
+            TextSlot(
                 id="slot.q1",
                 prompt="",
-                text="누름 못과 띠 종이를 사용하여 원을 그리려고 합니다.",
+                text="누름 못과 띠 종이를 사용하여 원을 그리려고 합니다.\n원을 가장 크게 그리려면 어느 구멍에 연필을 꽂아야 하는지\n알맞은 기호를 선택하세요.",
                 style_role="question",
                 x=15,
-                y=41,
-                font_size=30,
-                fill="#111111",
-            ),
-            TextSlot(
-                id="slot.q2",
-                prompt="",
-                text = '원을 가장 크게 그리려면 어느 구멍에 연필을 꽂아야 하는지', style_role="question",
-                x=15,
-                y = 77.934, font_size=30,
+                y=35,
+                font_size=26,
                 fill="#111111",
             ),
             RectSlot(
@@ -187,7 +195,8 @@ def build_problem_template() -> ProblemTemplate:
                 y=290,
                 font_size=25,
                 fill="#111111",
-            ),TextBoxSlot(id = 'konva_1784858509254_paste_299959_0', prompt = '', text = '알맞은 기호를 선택하세요.', x = 16.705, y = 84.393, font_size = 30, fill = '#111111', width = 384, height = 44, align = 'left', line_height = 1.2)),
+            ),
+        ),
         diagrams=(),
         groups=(),
         constraints=(),
@@ -209,11 +218,11 @@ SEMANTIC_OVERRIDE = {
     "domain": {
         "objects": [
             {"id": "obj.tool", "type": "center_tool"},
-            {"id": "obj.hole_positions", "type": "ordered_holes", "count": 5},
+            {"id": "obj.hole_positions", "type": "ordered_holes", "count": 4},
             {
                 "id": "obj.choice_labels",
                 "type": "labels",
-                "labels": ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ"],
+                "labels": ["ㄱ", "ㄴ", "ㄷ", "ㄹ"],
             },
         ],
         "relations": [],
@@ -233,8 +242,8 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["ㄱ", "ㄴ", "ㄷ", "ㄹ"],
+        "answer_key": ["ㄹ"],
         "target": {
             "type": "choice_label",
             "description": "원을 가장 크게 그릴 수 있는 구멍의 기호",
@@ -249,16 +258,16 @@ SOLVABLE = {
     "problem_id": "S3_초등_3_008671",
     "problem_type": "choice_selection",
     "inputs": {
-        "total_ticks": 5,
-        "target_label": "ㅁ",
-        "target_ticks": 5,
+        "total_ticks": 4,
+        "target_label": "ㄹ",
+        "target_ticks": 4,
         "target_count": 1,
         "unit": "",
     },
     "given": [
         {
             "ref": "obj.hole_positions",
-            "value": {"count": 5, "labels": ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ"]},
+            "value": {"count": 4, "labels": ["ㄱ", "ㄴ", "ㄷ", "ㄹ"]},
         },
         {"ref": "obj.tool", "value": {"type": "center_tool"}},
     ],
@@ -273,9 +282,9 @@ SOLVABLE = {
         {
             "id": "step.1",
             "expr": "구멍 위치를 왼쪽에서 오른쪽으로 비교한다.",
-            "value": "ㄱ, ㄴ, ㄷ, ㄹ, ㅁ",
+            "value": "ㄱ, ㄴ, ㄷ, ㄹ",
         },
-        {"id": "step.2", "expr": "가장 멀리 있는 구멍을 고른다.", "value": "ㅁ"},
+        {"id": "step.2", "expr": "가장 멀리 있는 구멍을 고른다.", "value": "ㄹ"},
     ],
     "checks": [
         {
@@ -288,8 +297,8 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["ㄱ", "ㄴ", "ㄷ", "ㄹ"],
+        "answer_key": ["ㄹ"],
         "target": {
             "type": "choice_label",
             "description": "원을 가장 크게 그릴 수 있는 구멍의 기호",

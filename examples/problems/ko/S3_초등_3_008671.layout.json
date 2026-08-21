@@ -14,9 +14,7 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q1",
-        "slot.q2",
-        "konva_1784858509254_paste_299959_0"
+        "slot.q1"
       ]
     },
     {
@@ -47,24 +45,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다.",
+        "text": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다.\n원을 가장 크게 그리려면 어느 구멍에 연필을 꽂아야 하는지\n알맞은 기호를 선택하세요.",
         "style_role": "question",
         "x": 15.0,
-        "y": 41.0,
-        "font_size": 30,
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.q2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "원을 가장 크게 그리려면 어느 구멍에 연필을 꽂아야 하는지",
-        "style_role": "question",
-        "x": 15.0,
-        "y": 77.934,
-        "font_size": 30,
+        "y": 35.0,
+        "font_size": 26,
         "fill": "#111111"
       }
     },
@@ -250,24 +235,6 @@
         "font_size": 25,
         "fill": "#111111"
       }
-    },
-    {
-      "id": "konva_1784858509254_paste_299959_0",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "알맞은 기호를 선택하세요.",
-        "style_role": "body",
-        "x": 16.705,
-        "y": 84.393,
-        "width": 384.0,
-        "height": 44.0,
-        "align": "left",
-        "valign": "top",
-        "font_size": 30,
-        "line_height": 1.2,
-        "fill": "#111111"
-      }
     }
   ],
   "groups": [],
@@ -276,8 +243,6 @@
   "reading_order": [
     "region.stem",
     "slot.q1",
-    "slot.q2",
-    "konva_1784858509254_paste_299959_0",
     "region.diagram",
     "slot.bar",
     "slot.tool",

@@ -1,4 +1,4 @@
-import '../utils/problem_text_sanitizer.dart';
+﻿import '../utils/problem_text_sanitizer.dart';
 
 class ProblemManifest {
   const ProblemManifest({
@@ -108,7 +108,35 @@ class ProblemContent {
     return summary.title;
   }
 
+  List<ChoiceGroup> get choiceGroups {
+    final answer = answerMap;
+    final rawGroups = answer['choice_groups'];
+    if (rawGroups is List && rawGroups.isNotEmpty) {
+      return rawGroups.map((group) {
+        if (group is Map<String, dynamic>) {
+          final label = group['label']?.toString() ?? '';
+          final rawChoices = group['choices'];
+          final choices = rawChoices is List
+              ? rawChoices
+                  .map((c) => sanitizeProblemText(c.toString()))
+                  .toList()
+              : <String>[];
+          return ChoiceGroup(label: label, choices: choices);
+        } else if (group is List) {
+          final choices =
+              group.map((c) => sanitizeProblemText(c.toString())).toList();
+          return ChoiceGroup(label: '', choices: choices);
+        }
+        return const ChoiceGroup(label: '', choices: []);
+      }).where((g) => g.choices.isNotEmpty).toList();
+    }
+    return const [];
+  }
+
   List<String> get choices {
+    if (choiceGroups.isNotEmpty) {
+      return choiceGroups.expand((g) => g.choices).toList();
+    }
     final answer = answerMap;
     final rawChoices = answer['choices'];
     if (rawChoices is List && rawChoices.isNotEmpty) {
@@ -630,5 +658,16 @@ String _answerValueText(Object? value) {
 bool _looksBrokenText(String value) {
   return RegExp(r'[\u3400-\u9FFF\uFFFD]').hasMatch(value) ||
       value.contains('??') ||
-      value.contains('�');
+      value.contains('\uFFFD');
 }
+
+class ChoiceGroup {
+  const ChoiceGroup({
+    required this.label,
+    required this.choices,
+  });
+
+  final String label;
+  final List<String> choices;
+}
+

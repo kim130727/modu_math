@@ -3,8 +3,8 @@
   "problem_id": "S3_초등_3_008677",
   "problem_type": "geometry_circle_radius_selection",
   "inputs": {
-    "total_ticks": 1,
-    "target_label": "반지름",
+    "total_ticks": 3,
+    "target_label": "선분 ㅇㄴ",
     "target_ticks": 1,
     "target_count": 1,
     "unit": ""
@@ -19,13 +19,13 @@
     {
       "ref": "obj.center",
       "value": {
-        "label": "O"
+        "label": "ㅇ"
       }
     },
     {
       "ref": "obj.segment.on",
       "value": {
-        "label": "Oㄴ"
+        "label": "선분 ㅇㄴ"
       }
     }
   ],
@@ -41,33 +41,39 @@
   "steps": [
     {
       "id": "step.1",
-      "expr": "원의 중심 O와 원 위의 한 점 ㄴ을 이은 선분 확인",
-      "value": "Oㄴ"
+      "expr": "원의 중심 ㅇ와 원 위의 한 점 ㄴ을 이은 선분 확인",
+      "value": "ㅇㄴ"
     },
     {
       "id": "step.2",
       "expr": "반지름의 정의와 일치하는 보기 선택",
-      "value": "선분 Oㄴ"
+      "value": "2. 선분 ㅇㄴ"
     }
   ],
   "checks": [
     {
       "id": "check.1",
-      "expr": "중심 O에서 원 위의 점 ㄴ으로 이어지는가",
-      "expected": true,
-      "actual": true,
+      "expr": "중심 ㅇ에서 원 위의 점 ㄴ으로 이어지는가",
+      "expected": "2. 선분 ㅇㄴ",
+      "actual": "2. 선분 ㅇㄴ",
       "pass": true
     }
   ],
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "1. 선분 ㄱㄹ",
+      "2. 선분 ㅇㄴ",
+      "3. 선분 ㄷㄹ"
+    ],
+    "answer_key": [
+      "2. 선분 ㅇㄴ"
+    ],
     "target": {
       "type": "segment",
       "description": "원의 반지름을 나타내는 선분"
     },
-    "value": 2,
+    "value": "2. 선분 ㅇㄴ",
     "unit": ""
   }
 }

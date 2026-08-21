@@ -8,7 +8,7 @@
       "radius",
       "multiple_select"
     ],
-    "question": "점 O는 원의 중심입니다. 원의 반지름은 어느 선분인지 모두 선택해 보세요.",
+    "question": "점 ㅇ는 원의 중심입니다. 원의 반지름은 어느 선분인지 모두 선택해 보세요.",
     "required_layout_ids": [
       "slot.figure.circle",
       "slot.segment.ga",
@@ -21,14 +21,14 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "원의 중심 O와 원 위의 한 점을 이은 선분을 모두 고르는 문제"
+    "instruction": "원의 중심 ㅇ와 원 위의 한 점을 이은 선분을 모두 고르는 문제"
   },
   "domain": {
     "objects": [
       {
         "id": "obj.center.O",
         "type": "point",
-        "label": "O",
+        "label": "ㅇ",
         "role": "center"
       },
       {
@@ -44,17 +44,17 @@
       {
         "id": "obj.segment.na",
         "type": "segment",
-        "label": "Oㄴ"
+        "label": "ㅇㄴ"
       },
       {
         "id": "obj.segment.da",
         "type": "segment",
-        "label": "Oㄷ"
+        "label": "ㅇㄷ"
       },
       {
         "id": "obj.segment.ra",
         "type": "segment",
-        "label": "Oㅁ"
+        "label": "ㅇㅁ"
       },
       {
         "id": "obj.segment.ma",
@@ -73,21 +73,21 @@
         "type": "radius",
         "from_id": "obj.center.O",
         "to_id": "obj.segment.na",
-        "segment": "Oㄴ"
+        "segment": "ㅇㄴ"
       },
       {
         "id": "rel.radius.da",
         "type": "radius",
         "from_id": "obj.center.O",
         "to_id": "obj.segment.da",
-        "segment": "Oㄷ"
+        "segment": "ㅇㄷ"
       },
       {
         "id": "rel.radius.ra",
         "type": "radius",
         "from_id": "obj.center.O",
         "to_id": "obj.segment.ra",
-        "segment": "Oㅁ"
+        "segment": "ㅇㅁ"
       }
     ],
     "confidence": 1.0,
@@ -106,7 +106,7 @@
       },
       "plan": {
         "method": "definition_match",
-        "description": "원의 중심 O와 원 위의 한 점을 이은 선분인지 확인한다."
+        "description": "원의 중심 ㅇ와 원 위의 한 점을 이은 선분인지 확인한다."
       },
       "execute": {
         "expected_operations": [
@@ -125,56 +125,24 @@
   "answer": {
     "blanks": [],
     "choices": [
-      {
-        "id": "choice.1",
-        "label": "㉮",
-        "text": "선분 ㄱㅅ"
-      },
-      {
-        "id": "choice.2",
-        "label": "㉯",
-        "text": "선분 ㅇㄴ"
-      },
-      {
-        "id": "choice.3",
-        "label": "㉰",
-        "text": "선분 ㅇㄷ"
-      },
-      {
-        "id": "choice.4",
-        "label": "㉱",
-        "text": "선분 ㅇㅁ"
-      },
-      {
-        "id": "choice.5",
-        "label": "㉲",
-        "text": "선분 ㄹㅂ"
-      },
-      {
-        "id": "choice.6",
-        "label": "㉳",
-        "text": "선분 ㄴㅅ"
-      }
+      "가",
+      "나",
+      "다",
+      "라",
+      "마",
+      "바"
     ],
     "answer_key": [
-      {
-        "id": "choice.2",
-        "value": "㉯"
-      },
-      {
-        "id": "choice.3",
-        "value": "㉰"
-      },
-      {
-        "id": "choice.4",
-        "value": "㉱"
-      }
+      "나",
+      "다",
+      "라"
     ],
+    "confidence": 1.0,
     "target": {
       "type": "multiple_choice_selection",
       "description": "원의 반지름인 선분을 모두 고르기"
     },
-    "value": "㉯, ㉰, ㉱",
+    "value": "나, 다, 라",
     "unit": ""
   }
 }

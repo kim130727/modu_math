@@ -135,7 +135,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.diagram.top1",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(),
+                slot_ids=TOP1_SLOT_IDS,
             ),
             Region(
                 id="region.diagram.top2",
@@ -144,19 +144,40 @@ def build_problem_template() -> ProblemTemplate:
                 slot_ids=TOP2_SLOT_IDS,
             ),
         ),
-        slots=(TextSlot(
+        slots=(
+            TextSlot(
                 id="slot.q1",
                 prompt="",
-                text = '규칙에 따라 원을 4개 더 그리려고 합니다.', style_role="question",
+                text="규칙에 따라 원을 4개 더 그리려고 합니다.\n바르게 그린 것을 선택하세요.",
+                style_role="question",
                 x=35.0,
-                y=42.0,
+                y=35.0,
                 font_size=24,
                 max_width=560,
             ),
+            TextSlot(
+                id="slot.lb.opt1",
+                prompt="",
+                text="1번",
+                x=30.0,
+                y=180.0,
+                font_size=22,
+                fill="#111111",
+            ),
             *grid_slots("slot.top1", TOP1_X, TOP1_Y),
             *circle_pair_slots("slot.top1", TOP1_X, TOP1_Y, TOP1_CIRCLES),
+            TextSlot(
+                id="slot.lb.opt2",
+                prompt="",
+                text="2번",
+                x=30.0,
+                y=390.0,
+                font_size=22,
+                fill="#111111",
+            ),
             *grid_slots("slot.top2", TOP2_X, TOP2_Y),
-            *circle_pair_slots("slot.top2", TOP2_X, TOP2_Y, TOP2_CIRCLES),TextBoxSlot(id = 'konva_1784858509254_paste_330479_0', prompt = '', text = '바르게 그린 것을 선택하세요.', x = 37.867, y = 49.685, font_size = 24, fill = '#111111', width = 339, height = 37, align = 'left', line_height = 1.2)),
+            *circle_pair_slots("slot.top2", TOP2_X, TOP2_Y, TOP2_CIRCLES),
+        ),
         diagrams=(),
         groups=(),
         constraints=(),
@@ -172,7 +193,7 @@ SEMANTIC_OVERRIDE = {
     "metadata": {
         "language": "ko",
         "question": "규칙에 따라 원을 4개 더 그리려고 합니다. 바르게 그린 것을 선택하세요.",
-        "instruction": "두 모눈 그림만 제시한다.",
+        "instruction": "두 모눈 그림 중 바르게 그린 것을 고른다.",
     },
     "domain": {
         "objects": [
@@ -201,10 +222,10 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["1번", "2번"],
+        "answer_key": ["2번"],
         "target": {"type": "correct_choice", "description": "규칙에 맞게 이어 그린 그림"},
-        "value": 2,
+        "value": "2번",
         "unit": "",
     },
 }
@@ -224,32 +245,32 @@ SOLVABLE = {
         {
             "ref": "obj.rule",
             "value": {
-                "description": "첫 그림은 파란 원이 (14,4), (18,4)에 있고, 두 번째 그림은 (16,4), (20,4)에 있다."
+                "description": "첫 그림은 파란 원이 (15,4), (18,4)에 있고, 두 번째 그림은 (16,4), (20,4)에 있다."
             },
         }
     ],
     "target": {"ref": "answer.target", "type": "correct_choice"},
-    "plan": ["검은 원이 (4,4), (8,4), (12,4)에 놓였으므로 4칸 간격으로 이어지는 그림을 찾는다."],
+    "plan": ["검은 원이 (4,4), (8,4), (12,4)에 놓였으므로 4칸 간격으로 이어지는 2번 그림을 찾는다."],
     "method": "pattern_matching",
     "steps": [
         {"id": "step.1", "expr": "검은 원의 x좌표 간격 확인", "value": 4},
-        {"id": "step.2", "expr": "다음 두 위치는 (16,4), (20,4)", "value": 2},
+        {"id": "step.2", "expr": "다음 두 위치는 (16,4), (20,4)", "value": "2번"},
     ],
     "checks": [
         {
             "id": "check.1",
             "expr": "두 번째 모눈의 파란 원이 4칸 간격을 유지한다.",
-            "expected": True,
-            "actual": True,
+            "expected": "2번",
+            "actual": "2번",
             "pass": True,
         }
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["1번", "2번"],
+        "answer_key": ["2번"],
         "target": {"type": "correct_choice", "description": "규칙에 맞게 이어 그린 그림"},
-        "value": 2,
+        "value": "2번",
         "unit": "",
     },
 }

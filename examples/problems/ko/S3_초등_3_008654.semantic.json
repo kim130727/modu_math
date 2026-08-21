@@ -102,23 +102,36 @@
   },
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
-    "target": {
-      "type": "explain_same_and_different",
-      "description": "두 모양을 그린 규칙의 같은 점과 다른 점"
-    },
-    "value": {
-      "blanks": [],
-      "choices": [],
-      "answer_key": [],
-      "target": {
-        "type": "rule_description",
-        "description": "두 모양을 그린 규칙의 같은 점과 다른 점"
+    "choices": [
+      "가",
+      "나"
+    ],
+    "answer_key": [
+      "가",
+      "나"
+    ],
+    "confidence": 1.0,
+    "choice_groups": [
+      {
+        "label": "첫 번째 빈칸",
+        "choices": [
+          "가",
+          "나"
+        ]
       },
-      "value": "가는 원의 중심을 옮겨가며 그렸고, 나는 원의 중심을 모두 같게 그렸습니다.",
-      "unit": ""
+      {
+        "label": "두 번째 빈칸",
+        "choices": [
+          "가",
+          "나"
+        ]
+      }
+    ],
+    "target": {
+      "type": "multiple_choice_group",
+      "description": "두 모양을 그린 규칙의 다른 점 완성"
     },
+    "value": "가, 나",
     "unit": ""
   }
 }

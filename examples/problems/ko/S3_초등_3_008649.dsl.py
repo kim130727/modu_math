@@ -126,8 +126,8 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["지름", "반지름"],
+        "answer_key": ["지름"],
         "target": {"type": "concept_name", "description": "원을 둘로 똑같이 나누는 말"},
         "value": "지름",
         "unit": "",
@@ -165,8 +165,8 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["지름", "반지름"],
+        "answer_key": ["지름"],
         "target": {"type": "concept_name", "description": "원을 둘로 똑같이 나누는 말"},
         "value": "지름",
         "unit": "",

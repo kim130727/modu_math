@@ -3,9 +3,9 @@
   "problem_id": "S3_초등_3_008678",
   "problem_type": "circle_paper_folding_choice",
   "inputs": {
-    "total_ticks": 0,
-    "target_label": "괄호 안에 들어갈 알맞은 말",
-    "target_ticks": 0,
+    "total_ticks": 2,
+    "target_label": "지름",
+    "target_ticks": 1,
     "target_count": 1,
     "unit": ""
   },
@@ -31,42 +31,38 @@
   "method": "concept_matching",
   "plan": [
     "반으로 접었다가 폈을 때 생긴 선분을 관찰한다.",
-    "보기의 두 용어 중 알맞은 말을 고른다."
+    "보기의 두 용어 중 알맞은 말(지름)을 고른다."
   ],
   "steps": [
     {
       "id": "step.1",
-      "expr": "접힌 선분이 원을 둘로 똑같이 나누는지 확인한다.",
-      "value": ""
+      "expr": "접힌 선분이 원을 둘로 똑같이 나누는 지름인지 확인한다.",
+      "value": "지름"
     }
   ],
   "checks": [
     {
       "id": "check.1",
-      "expr": "정답과 해설 문장이 렌더링되지 않는다.",
-      "expected": true,
-      "actual": true,
+      "expr": "지름의 정의와 일치하는가",
+      "expected": "지름",
+      "actual": "지름",
       "pass": true
     }
   ],
   "answer": {
     "blanks": [],
     "choices": [
-      {
-        "id": "choice.diameter",
-        "value": "지름"
-      },
-      {
-        "id": "choice.radius",
-        "value": "반지름"
-      }
+      "지름",
+      "반지름"
     ],
-    "answer_key": [],
+    "answer_key": [
+      "지름"
+    ],
     "target": {
       "type": "choice_word",
       "description": "괄호 안에 들어갈 알맞은 말"
     },
-    "value": "",
+    "value": "지름",
     "unit": ""
   }
 }

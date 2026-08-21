@@ -4,7 +4,7 @@
   "title": "반을 접어 생긴 선분",
   "canvas": {
     "width": 940,
-    "height": 325,
+    "height": 330,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -14,8 +14,7 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.stem.1",
-        "slot.stem.2"
+        "slot.stem"
       ]
     },
     {
@@ -24,9 +23,6 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.folded.paper",
-        "slot.folded.back_circle",
-        "slot.folded.front_circle",
-        "slot.folded.lower_mask",
         "slot.arrow.head",
         "slot.opened.paper",
         "slot.folded.edge",
@@ -45,26 +41,14 @@
   ],
   "slots": [
     {
-      "id": "slot.stem.1",
+      "id": "slot.stem",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 폈더니 선이",
+        "text": "원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 폈더니\n선이 생겼습니다. 알맞은 말을 선택하세요.",
         "style_role": "question",
         "x": 35.0,
         "y": 35.0,
-        "font_size": 25
-      }
-    },
-    {
-      "id": "slot.stem.2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "생겼습니다. 알맞은 말을 선택하세요.",
-        "style_role": "question",
-        "x": 34.0,
-        "y": 70.0,
         "font_size": 25
       }
     },
@@ -73,52 +57,12 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 193.6666259765625 156.55560302734375 C 196.0266259765625 119.97560302734377 224.3466259765625 97.55560302734375 252.6666259765625 97.55560302734375 C 280.9866259765625 97.55560302734375 309.3066259765625 119.97560302734377 311.6666259765625 156.55560302734375 L 193.6666259765625 156.55560302734375 Z",
+        "d": "M 193.0 153.0 A 59.0 59.0 0 0 1 311.0 153.0 Z",
         "x": 0.0,
         "y": 0.0,
-        "stroke": "none",
+        "stroke": "#FF9AB2",
         "stroke_width": 2.0,
         "fill": "#FDE8EF"
-      }
-    },
-    {
-      "id": "slot.folded.back_circle",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 252.0,
-        "cy": 155.0,
-        "r": 60.0,
-        "stroke": "#FF9AB2",
-        "stroke_width": 1.7,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.folded.front_circle",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 252.0,
-        "cy": 160.0,
-        "r": 60.0,
-        "stroke": "#FF9AB2",
-        "stroke_width": 1.7,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.folded.lower_mask",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 171.0,
-        "y": 153.0,
-        "width": 142.0,
-        "height": 71.0,
-        "stroke": "none",
-        "stroke_width": 0.0,
-        "fill": "#FFFFFF"
       }
     },
     {
@@ -131,7 +75,7 @@
         "x2": 311.0,
         "y2": 153.0,
         "stroke": "#FF9AB2",
-        "stroke_width": 1.7
+        "stroke_width": 2.0
       }
     },
     {
@@ -139,12 +83,12 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 375.0,
-        "y1": 155.0,
+        "x1": 355.0,
+        "y1": 153.0,
         "x2": 395.0,
-        "y2": 155.0,
+        "y2": 153.0,
         "stroke": "#9AA0A6",
-        "stroke_width": 8.0
+        "stroke_width": 6.0
       }
     },
     {
@@ -154,16 +98,16 @@
       "content": {
         "points": [
           [
-            408.0,
-            157.4444580078125
+            410.0,
+            153.0
           ],
           [
-            393.0,
-            143.4444580078125
+            395.0,
+            143.0
           ],
           [
-            393.0,
-            171.4444580078125
+            395.0,
+            163.0
           ]
         ],
         "stroke": "#9AA0A6",
@@ -180,7 +124,7 @@
         "cy": 153.0,
         "r": 59.0,
         "stroke": "#FF9AB2",
-        "stroke_width": 1.7,
+        "stroke_width": 2.0,
         "fill": "#FDE8EF"
       }
     },
@@ -194,7 +138,7 @@
         "x2": 568.0,
         "y2": 153.0,
         "stroke": "#FF9AB2",
-        "stroke_width": 1.2,
+        "stroke_width": 2.0,
         "stroke_dasharray": "5 4"
       }
     },
@@ -203,10 +147,10 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "(2) 원의 지름은 원을 똑같이 (둘, 넷)(으)로 나눕니다.",
+        "text": "원의 지름은 원을 똑같이 ( 둘 , 넷 )(으)로 나눕니다.",
         "style_role": "choice",
-        "x": 36.0,
-        "y": 263.0,
+        "x": 35.0,
+        "y": 265.0,
         "font_size": 26
       }
     }
@@ -216,13 +160,9 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.stem.1",
-    "slot.stem.2",
+    "slot.stem",
     "region.diagram",
     "slot.folded.paper",
-    "slot.folded.back_circle",
-    "slot.folded.front_circle",
-    "slot.folded.lower_mask",
     "slot.arrow.head",
     "slot.opened.paper",
     "slot.folded.edge",

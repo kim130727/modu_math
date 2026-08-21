@@ -13,31 +13,29 @@
     {
       "ref": "obj.labels",
       "value": [
+        "ㄱ",
         "ㄴ",
         "ㄷ",
         "ㄹ",
-        "ㅁ",
-        "ㅂ",
-        "ㅅ",
-        "ㄱ"
+        "ㅁ"
       ]
     }
   ],
   "target": {
     "ref": "answer.target",
-    "type": "selected_labels"
+    "type": "multiple_choice_set"
   },
   "method": "center_membership_check",
   "plan": [
     "각 기호가 나타내는 선이 원의 중심을 지나는지 확인한다.",
-    "중심을 지나지 않는 기호를 지름이 아닌 것으로 고른다."
+    "중심을 지나지 않는 기호를 지름이 아닌 것으로 모두 고른다."
   ],
   "steps": [
     {
       "id": "step.1",
       "expr": "중심을 지나지 않는 선 확인",
       "value": [
-        "ㄷ",
+        "ㄹ",
         "ㅁ"
       ]
     }
@@ -47,11 +45,11 @@
       "id": "check.1",
       "expr": "선이 중심을 지나는지 여부",
       "expected": [
-        "ㄷ",
+        "ㄹ",
         "ㅁ"
       ],
       "actual": [
-        "ㄷ",
+        "ㄹ",
         "ㅁ"
       ],
       "pass": true
@@ -59,13 +57,22 @@
   ],
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "ㄱ",
+      "ㄴ",
+      "ㄷ",
+      "ㄹ",
+      "ㅁ"
+    ],
+    "answer_key": [
+      "ㄹ",
+      "ㅁ"
+    ],
     "target": {
-      "type": "selected_labels",
-      "description": "원의 지름이 아닌 기호"
+      "type": "multiple_choice_set",
+      "description": "원의 지름이 아닌 기호 모두 선택"
     },
-    "value": "㉣, ㉤",
+    "value": "ㄹ, ㅁ",
     "unit": ""
   }
 }

@@ -176,8 +176,8 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["같습니다", "다릅니다"],
+        "answer_key": ["같습니다"],
         "target": {
             "type": "multiple_choice_completion",
             "description": "한 원에서 원의 지름은 모두 (같습니다, 다릅니다).",
@@ -228,8 +228,8 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["같습니다", "다릅니다"],
+        "answer_key": ["같습니다"],
         "target": {
             "type": "multiple_choice_completion",
             "description": "한 원에서 원의 지름은 모두 (같습니다, 다릅니다).",

@@ -31,5 +31,26 @@ void main() {
       expect(isSameAnswer('ㄴ. 49 ÷ 7', 'ㄴ'), isTrue);
       expect(isSameAnswer('ㄱ. 16 ÷ 3', 'ㄴ'), isFalse);
     });
+
+    test('matches full choice text against correct answer regardless of punctuation or synonyms', () {
+      expect(isSameAnswer('1. 무수히 많이 그릴 수 있습니다', '무수히 많이 그을 수 있습니다.'), isTrue);
+      expect(isSameAnswer('1. 무수히 많이 그을 수 있습니다.', '무수히 많이 그을 수 있습니다.'), isTrue);
+      expect(isSameAnswer('무수히 많이 그을 수 있습니다', '무수히 많이 그을 수 있습니다.'), isTrue);
+      expect(isSameAnswer('2. 3개', '무수히 많이 그을 수 있습니다.'), isFalse);
+    });
+
+    test('handles multi-select Hangul syllable choice answers accurately', () {
+      expect(isSameAnswer('나, 다, 라', '나, 다, 라'), isTrue);
+      expect(isSameAnswer('㉯, ㉰, ㉱', '나, 다, 라'), isTrue);
+      expect(isSameAnswer('나다라', '나, 다, 라'), isTrue);
+      expect(isSameAnswer('가, 나', '나, 다, 라'), isFalse);
+    });
+
+    test('handles multi-group choice answers accurately', () {
+      expect(isSameAnswer('ㄴㄹ, 지름', 'ㄴㄹ, 지름'), isTrue);
+      expect(isSameAnswer('ㄴㄹ 지름', 'ㄴㄹ, 지름'), isTrue);
+      expect(isSameAnswer('ㄴㄹ지름', 'ㄴㄹ, 지름'), isTrue);
+      expect(isSameAnswer('ㄱㄹ, 지름', 'ㄴㄹ, 지름'), isFalse);
+    });
   });
 }

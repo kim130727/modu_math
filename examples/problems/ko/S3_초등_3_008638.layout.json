@@ -18,20 +18,6 @@
       ]
     },
     {
-      "id": "region.answer",
-      "role": "answer",
-      "flow": "absolute",
-      "slot_ids": [
-        "slot.answer_blank"
-      ]
-    },
-    {
-      "id": "region.explain",
-      "role": "explain",
-      "flow": "absolute",
-      "slot_ids": []
-    },
-    {
       "id": "region.diagram.top",
       "role": "diagram",
       "flow": "absolute",
@@ -64,8 +50,14 @@
       ]
     },
     {
-      "id": "region.diagram.bottom",
-      "role": "diagram",
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "region.explain",
+      "role": "explain",
       "flow": "absolute",
       "slot_ids": []
     }
@@ -82,19 +74,6 @@
         "y": 70.0,
         "font_size": 30,
         "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.answer_blank",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 72.0,
-        "y": 269.0,
-        "width": 22.0,
-        "height": 22.0,
-        "stroke": "none",
-        "fill": "none"
       }
     },
     {
@@ -370,6 +349,8 @@
         "cx": 297.0,
         "cy": 196.0,
         "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#ff3aa8"
       }
     },
@@ -381,6 +362,8 @@
         "cx": 345.0,
         "cy": 197.0,
         "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#ff3aa8"
       }
     },
@@ -392,6 +375,8 @@
         "cx": 297.0,
         "cy": 244.0,
         "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#ff3aa8"
       }
     },
@@ -441,9 +426,6 @@
   "reading_order": [
     "region.stem",
     "slot.qtext",
-    "region.answer",
-    "slot.answer_blank",
-    "region.explain",
     "region.diagram.top",
     "slot.top.circle",
     "slot.top.grid.v0",
@@ -470,6 +452,7 @@
     "slot.top.lb.ga",
     "slot.top.lb.na",
     "slot.top.lb.da",
-    "region.diagram.bottom"
+    "region.answer",
+    "region.explain"
   ]
 }

@@ -299,7 +299,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.q_text.copy1",
                 prompt="",
-                text="1.",
+                text="1번",
                 x=125,
                 y=170,
                 font_size=30,
@@ -308,7 +308,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.q_text.copy1.copy2",
                 prompt="",
-                text="2.",
+                text="2번",
                 x=360,
                 y=165,
                 font_size=30,
@@ -317,7 +317,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.q_text.copy1.copy3",
                 prompt="",
-                text="3.",
+                text="3번",
                 x=625,
                 y=175,
                 font_size=30,
@@ -371,13 +371,13 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["1번", "2번", "3번"],
+        "answer_key": ["3번"],
         "target": {
             "type": "selected_figure",
             "description": "반지름이 3 cm인 원을 그리도록 컴퍼스를 벌린 그림",
         },
-        "value": 3,
+        "value": "3번",
         "unit": "",
     },
 }
@@ -388,10 +388,10 @@ SOLVABLE = {
     "problem_type": "선택형_도형_비교",
     "inputs": {
         "total_ticks": 3,
-        "target_label": "3 cm",
+        "target_label": "3번",
         "target_ticks": 3,
         "target_count": 1,
-        "unit": "cm",
+        "unit": "",
     },
     "given": [
         {"ref": "obj.radius", "value": {"value": 3, "unit": "cm"}},
@@ -401,34 +401,34 @@ SOLVABLE = {
     "method": "visual_comparison",
     "plan": [
         "각 보기의 컴퍼스 벌림을 자의 눈금과 비교한다.",
-        "3 cm와 같은 벌림을 가진 그림을 찾는다.",
+        "3 cm와 같은 벌림을 가진 3번 그림을 찾는다.",
     ],
     "steps": [
         {
             "id": "step.1",
             "expr": "보기 1, 2, 3의 벌림 정도를 자 눈금과 비교한다.",
-            "value": "비교 수행",
+            "value": "3번의 벌림이 3 cm임",
         },
-        {"id": "step.2", "expr": "3 cm에 해당하는 보기 선택", "value": "미정"},
+        {"id": "step.2", "expr": "3 cm에 해당하는 보기 선택", "value": "3번"},
     ],
     "checks": [
         {
             "id": "check.1",
             "expr": "선택된 그림의 벌림이 3 cm와 일치하는가",
-            "expected": True,
-            "actual": False,
-            "pass": False,
+            "expected": "3번",
+            "actual": "3번",
+            "pass": True,
         }
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["1번", "2번", "3번"],
+        "answer_key": ["3번"],
         "target": {
             "type": "selected_figure",
             "description": "반지름이 3 cm인 원을 그리도록 컴퍼스를 벌린 그림",
         },
-        "value": 3,
+        "value": "3번",
         "unit": "",
     },
 }

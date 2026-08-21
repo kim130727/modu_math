@@ -60,7 +60,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.stem",
                 prompt="",
-                text="\n    \n    원의 중심을 옮기지 않고 반지름만 다르게 하여 그린 것을\n    선택하세요.\n  ",
+                text="원의 중심을 옮기지 않고 반지름만 다르게 하여 그린 것을\n선택하세요.",
                 style_role="question",
                 x=55,
                 y=45,
@@ -170,28 +170,28 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.stem.copy1",
                 prompt="",
-                text="1.",
-                x=110,
+                text="1번",
+                x=100,
                 y=210,
-                font_size=30,
+                font_size=28,
                 fill="#111111",
             ),
             TextSlot(
                 id="slot.stem.copy1.copy2",
                 prompt="",
-                text="2.",
-                x=330,
+                text="2번",
+                x=320,
                 y=210,
-                font_size=30,
+                font_size=28,
                 fill="#111111",
             ),
             TextSlot(
                 id="slot.stem.copy1.copy3",
                 prompt="",
-                text="3.",
-                x=585,
+                text="3번",
+                x=575,
                 y=210,
-                font_size=30,
+                font_size=28,
                 fill="#111111",
             ),
         ),
@@ -241,13 +241,13 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["1번", "2번", "3번"],
+        "answer_key": ["3번"],
         "target": {
             "type": "circle_diagram_selection",
             "description": "원의 중심을 옮기지 않고 반지름만 다르게 하여 그린 것",
         },
-        "value": 3,
+        "value": "3번",
         "unit": "",
     },
 }
@@ -269,7 +269,7 @@ SOLVABLE = {
     "plan": [
         "그림마다 원의 중심이 같은지 확인한다.",
         "반지름이 달라지는지 확인한다.",
-        "조건에 맞는 그림을 선택한다.",
+        "조건에 맞는 그림(3번)을 선택한다.",
     ],
     "steps": [
         {
@@ -282,14 +282,14 @@ SOLVABLE = {
             "expr": "중심이 같지 않거나 반지름 변화가 없는 그림 제외",
             "value": "후보 제외",
         },
-        {"id": "step.3", "expr": "조건에 맞는 그림 선택", "value": "정답 도형 선택"},
+        {"id": "step.3", "expr": "조건에 맞는 그림 선택", "value": "3번"},
     ],
     "checks": [
         {
             "id": "check.1",
             "expr": "중심이 옮겨지지 않았는가",
-            "expected": True,
-            "actual": True,
+            "expected": "3번",
+            "actual": "3번",
             "pass": True,
         },
         {
@@ -302,13 +302,13 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["1번", "2번", "3번"],
+        "answer_key": ["3번"],
         "target": {
             "type": "circle_diagram_selection",
             "description": "원의 중심을 옮기지 않고 반지름만 다르게 하여 그린 것",
         },
-        "value": 3,
+        "value": "3번",
         "unit": "",
     },
 }

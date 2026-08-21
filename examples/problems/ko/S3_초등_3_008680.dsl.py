@@ -192,10 +192,15 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": [
+            "1. 선분 ㅇㄱ",
+            "2. 선분 ㅇㄷ",
+            "3. 선분 ㅇㄴ",
+            "4. 선분 ㄱㄷ",
+        ],
+        "answer_key": ["4. 선분 ㄱㄷ"],
         "target": {"type": "segment_symbol", "description": "원을 똑같이 둘로 나누는 선분"},
-        "value": "ㄱㄷ",
+        "value": "4. 선분 ㄱㄷ",
         "unit": "",
     },
 }
@@ -205,10 +210,10 @@ SOLVABLE = {
     "problem_id": "S3_초등_3_008680",
     "problem_type": "choice_geometry_segment",
     "inputs": {
-        "total_ticks": 0,
-        "target_label": "원을 똑같이 둘로 나누는 선분",
-        "target_ticks": 0,
-        "target_count": 4,
+        "total_ticks": 4,
+        "target_label": "선분 ㄱㄷ",
+        "target_ticks": 1,
+        "target_count": 1,
         "unit": "",
     },
     "given": [
@@ -228,23 +233,28 @@ SOLVABLE = {
     "steps": [
         {"id": "step.1", "expr": "선분 ㄱㄷ은 중심 ㅇ을 지난다", "value": True},
         {"id": "step.2", "expr": "선분 ㄱㄷ의 양끝은 원 위의 점이다", "value": True},
-        {"id": "step.3", "expr": "원을 똑같이 둘로 나누는 선분 선택", "value": "ㄱㄷ"},
+        {"id": "step.3", "expr": "원을 똑같이 둘로 나누는 선분 선택", "value": "4. 선분 ㄱㄷ"},
     ],
     "checks": [
         {
             "id": "check.1",
             "expr": "선택한 선분이 원을 똑같이 둘로 나누는가",
-            "expected": "ㄱㄷ",
-            "actual": "ㄱㄷ",
+            "expected": "4. 선분 ㄱㄷ",
+            "actual": "4. 선분 ㄱㄷ",
             "pass": True,
         }
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": [
+            "1. 선분 ㅇㄱ",
+            "2. 선분 ㅇㄷ",
+            "3. 선분 ㅇㄴ",
+            "4. 선분 ㄱㄷ",
+        ],
+        "answer_key": ["4. 선분 ㄱㄷ"],
         "target": {"type": "segment_symbol", "description": "원을 똑같이 둘로 나누는 선분"},
-        "value": "ㄱㄷ",
+        "value": "4. 선분 ㄱㄷ",
         "unit": "",
     },
 }

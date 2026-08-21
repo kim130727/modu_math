@@ -14,7 +14,7 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "다음을 읽고 바르게 설명하였으면 ○표, 그렇지 않으면 ×표를 하세요."
+    "instruction": "다음을 읽고 바르게 설명하였으면 O표, 그렇지 않으면 X표를 하세요."
   },
   "domain": {
     "objects": [
@@ -60,13 +60,19 @@
   },
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "O",
+      "X"
+    ],
+    "answer_key": [
+      "O"
+    ],
+    "confidence": 1.0,
     "target": {
       "type": "ox_judgment",
       "description": "선분 ㄱㄴ이 원의 지름을 나타낸다는 설명이 맞는지"
     },
-    "value": "○",
+    "value": "O",
     "unit": ""
   }
 }

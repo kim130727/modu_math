@@ -4,10 +4,10 @@ from modu_math.dsl import Canvas, CircleSlot, LineSlot, ProblemTemplate, Region,
 
 ANSWER = {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
-    "target": {"type": "selected_points", "description": "컴퍼스의 침을 꽂아야 할 곳"},
-    "value": ["ㄱ", "ㄴ", "ㄷ", "ㄹ"],
+    "choices": ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ"],
+    "answer_key": ["ㄱ", "ㄴ", "ㄷ", "ㄹ"],
+    "target": {"type": "multiple_choice_set", "description": "컴퍼스의 침을 꽂아야 할 곳 모두 선택"},
+    "value": "ㄱ, ㄴ, ㄷ, ㄹ",
     "unit": "",
 }
 

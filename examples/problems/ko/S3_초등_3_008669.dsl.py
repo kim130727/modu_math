@@ -217,13 +217,13 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["ㄱ", "ㄴ", "ㄷ"],
+        "answer_key": ["ㄴ"],
         "target": {
             "type": "selected_figure",
             "description": "원의 중심을 옮기지 않고 반지름만 다르게 하여 그린 것",
         },
-        "value": "㉡",
+        "value": "ㄴ",
         "unit": "",
     },
 }
@@ -272,20 +272,20 @@ SOLVABLE = {
         {
             "id": "check.1",
             "expr": "해설과 일치하는 선택지인지 확인",
-            "expected": "선택지 2",
-            "actual": "선택지 2",
+            "expected": "ㄴ",
+            "actual": "ㄴ",
             "pass": True,
         }
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["ㄱ", "ㄴ", "ㄷ"],
+        "answer_key": ["ㄴ"],
         "target": {
             "type": "selected_figure",
             "description": "원의 중심을 옮기지 않고 반지름만 다르게 하여 그린 것",
         },
-        "value": "㉡",
+        "value": "ㄴ",
         "unit": "",
     },
 }

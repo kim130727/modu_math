@@ -132,9 +132,10 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
-        "value": 3,
+        "choices": ["1번", "2번", "3번"],
+        "answer_key": ["3번"],
+        "target": {"type": "selected_compass", "description": "3 cm가 되도록 벌린 컴퍼스 그림 번호"},
+        "value": "3번",
         "unit": "",
     },
 }
@@ -163,7 +164,7 @@ SOLVABLE = {
     "steps": [
         {"id": "step.1", "expr": "침을 0 눈금에 맞춤", "value": True},
         {"id": "step.2", "expr": "연필심을 3 눈금에 맞춤", "value": True},
-        {"id": "step.3", "expr": "3 cm 조건과 일치하는 그림 선택", "value": 3},
+        {"id": "step.3", "expr": "3 cm 조건과 일치하는 그림 선택", "value": "3번"},
     ],
     "checks": [
         {
@@ -176,9 +177,10 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
-        "value": 3,
+        "choices": ["1번", "2번", "3번"],
+        "answer_key": ["3번"],
+        "target": {"type": "selected_compass", "description": "3 cm가 되도록 벌린 컴퍼스 그림 번호"},
+        "value": "3번",
         "unit": "",
     },
 }

@@ -33,11 +33,11 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.q1",
                 prompt="",
-                text="\n다음을 읽고 바르게 설명하였으면 ○표, 그렇지 않으면 ×표를\n선택하세요.",
+                text="다음을 읽고 바르게 설명하였으면 O표, 그렇지 않으면 X표를 선택하세요.",
                 style_role="question",
                 x=25,
-                y=30,
-                font_size=30,
+                y=35,
+                font_size=28,
             ),
             CircleSlot(id="slot.circle", prompt="", cx=420, cy=220, r=90, fill="none"),
             CircleSlot(id="slot.pt.center", prompt="", cx=420, cy=220, r=5, fill="#ff2aa8"),
@@ -83,7 +83,7 @@ SEMANTIC_OVERRIDE = {
     "problem_type": "true_false_geometry",
     "metadata": {
         "language": "ko",
-        "question": "그림을 보고 설명이 맞는지 ○, ×로 판단하는 문제",
+        "question": "그림을 보고 설명이 맞는지 O, X로 판단하는 문제",
         "instruction": "원의 반지름과 관련된 설명이 그림과 일치하는지 판단한다.",
     },
     "domain": {
@@ -114,10 +114,10 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
-        "target": {"type": "truth_value", "description": "주어진 설명이 맞는지 ○ 또는 ×로 판단"},
-        "value": 1,
+        "choices": ["O", "X"],
+        "answer_key": ["O"],
+        "target": {"type": "truth_value", "description": "주어진 설명이 맞는지 O 또는 X로 판단"},
+        "value": "O",
         "unit": "",
     },
 }
@@ -126,8 +126,8 @@ SOLVABLE = {
     "problem_id": "S3_초등_3_008685",
     "problem_type": "true_false_geometry",
     "inputs": {
-        "total_ticks": 1,
-        "target_label": "○/× 판단",
+        "total_ticks": 2,
+        "target_label": "O",
         "target_ticks": 1,
         "target_count": 1,
         "unit": "",
@@ -145,23 +145,23 @@ SOLVABLE = {
     "steps": [
         {"id": "step.1", "expr": "그림의 선분은 원의 중심에서 원둘레까지 이어진다.", "value": True},
         {"id": "step.2", "expr": "중심에서 원둘레까지의 선분은 반지름이다.", "value": True},
-        {"id": "step.3", "expr": "문장은 그림과 일치한다.", "value": True},
+        {"id": "step.3", "expr": "문장은 그림과 일치하므로 O를 선택한다.", "value": "O"},
     ],
     "checks": [
         {
             "id": "check.1",
             "expr": "statement_matches_diagram",
-            "expected": True,
-            "actual": True,
+            "expected": "O",
+            "actual": "O",
             "pass": True,
         }
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
-        "target": {"type": "truth_value", "description": "주어진 설명이 맞는지 ○ 또는 ×로 판단"},
-        "value": 1,
+        "choices": ["O", "X"],
+        "answer_key": ["O"],
+        "target": {"type": "truth_value", "description": "주어진 설명이 맞는지 O 또는 X로 판단"},
+        "value": "O",
         "unit": "",
     },
 }

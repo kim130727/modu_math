@@ -157,10 +157,20 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["지름", "반지름"],
+        "choice_groups": [
+            {
+                "label": "첫 번째 빈칸",
+                "choices": ["지름", "반지름"]
+            },
+            {
+                "label": "두 번째 빈칸",
+                "choices": ["지름", "반지름"]
+            }
+        ],
+        "answer_key": ["지름", "반지름"],
         "target": {
-            "type": "choice",
+            "type": "multiple_choice_group",
             "description": "지름과 반지름의 관계를 나타내는 알맞은 것을 선택",
         },
         "value": "지름, 반지름",
@@ -176,7 +186,7 @@ SOLVABLE = {
         "total_ticks": 0,
         "target_label": "지름과 반지름의 관계",
         "target_ticks": 0,
-        "target_count": 0,
+        "target_count": 2,
         "unit": "",
     },
     "given": [
@@ -184,7 +194,7 @@ SOLVABLE = {
         {"ref": "obj.diameter", "value": {"role": "지름"}},
         {"ref": "obj.radius", "value": {"role": "반지름"}},
     ],
-    "target": {"ref": "answer.target", "type": "choice"},
+    "target": {"ref": "answer.target", "type": "multiple_choice_group"},
     "method": "개념_판별",
     "plan": [
         "그림과 해설 문장을 보고 지름과 반지름의 관계를 확인한다.",
@@ -208,10 +218,20 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["지름", "반지름"],
+        "choice_groups": [
+            {
+                "label": "첫 번째 빈칸",
+                "choices": ["지름", "반지름"]
+            },
+            {
+                "label": "두 번째 빈칸",
+                "choices": ["지름", "반지름"]
+            }
+        ],
+        "answer_key": ["지름", "반지름"],
         "target": {
-            "type": "choice",
+            "type": "multiple_choice_group",
             "description": "지름과 반지름의 관계를 나타내는 알맞은 것을 선택",
         },
         "value": "지름, 반지름",

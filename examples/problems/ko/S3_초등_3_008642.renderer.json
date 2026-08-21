@@ -23,7 +23,7 @@
       "text": "은지, 진아, 현준이가 한 원에 지름을 그은 것입니다."
     },
     {
-      "id": "slot.q1.copy5.text",
+      "id": "slot.q2.text",
       "type": "text",
       "attributes": {
         "x": 20.0,
@@ -32,11 +32,11 @@
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 30
       },
-      "source_ref": "slot.q1.copy5",
+      "source_ref": "slot.q2",
       "refs": {
-        "layout_slot_id": "slot.q1.copy5"
+        "layout_slot_id": "slot.q2"
       },
-      "text": "지름을 재어 알맞은 말을 선택하세요."
+      "text": "한 원에 지름을 몇 개 그을 수 있는지 알맞은 것을 선택하세요."
     },
     {
       "id": "slot.circle.circle",
@@ -58,29 +58,14 @@
       "id": "slot.note.arrow.path",
       "type": "path",
       "attributes": {
-        "d": "M 605 325 C 555 305, 545 285, 495 260 C 475 245, 450 230, 430 215",
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "none",
-        "transform": "rotate(-390 625 327.5)"
-      },
-      "source_ref": "slot.note.arrow",
-      "refs": {
-        "layout_slot_id": "slot.note.arrow"
-      }
-    },
-    {
-      "id": "konva_1784612321567_arrow_620234.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 399.163 326.53 L 643.163 340.02 M 643.163 340.02 L 633.003 344.24 M 643.163 340.02 L 633.533 334.71",
+        "d": "M 390.171 324.28 L 616.171 314.17 M 616.171 314.17 L 606.481 319.38 M 616.171 314.17 L 606.061 309.84",
         "stroke": "#111827",
         "stroke-width": 1.2,
         "fill": "none"
       },
-      "source_ref": "konva_1784612321567_arrow_620234",
+      "source_ref": "slot.note.arrow",
       "refs": {
-        "layout_slot_id": "konva_1784612321567_arrow_620234"
+        "layout_slot_id": "slot.note.arrow"
       }
     },
     {
@@ -119,10 +104,10 @@
       "id": "slot.diameter.purple.line",
       "type": "line",
       "attributes": {
-        "x1": 251.124,
-        "y1": 382.629,
-        "x2": 521.124,
-        "y2": 272.629,
+        "x1": 252.124,
+        "y1": 382.0,
+        "x2": 522.124,
+        "y2": 272.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -146,6 +131,34 @@
       "refs": {
         "layout_slot_id": "slot.center"
       }
+    },
+    {
+      "id": "slot.center.label.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 354.627,
+        "y": 304.704,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 32,
+        "width": 29.852,
+        "height": 47.0,
+        "max_width": 29.852,
+        "data-slot-kind": "text_box",
+        "data-box-x": 354.627,
+        "data-box-y": 304.704,
+        "data-box-width": 29.852,
+        "data-box-height": 47.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.2,
+        "data-semantic-role": "symbol_label"
+      },
+      "source_ref": "slot.center.label",
+      "refs": {
+        "layout_slot_id": "slot.center.label"
+      },
+      "text": "ㅇ"
     },
     {
       "id": "slot.label.eunji.text",
@@ -197,43 +210,10 @@
     },
     {
       "id": "slot.note.text.text",
-      "type": "text",
-      "attributes": {
-        "x": 615.0,
-        "y": 295.0,
-        "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 25
-      },
-      "source_ref": "slot.note.text",
-      "refs": {
-        "layout_slot_id": "slot.note.text"
-      },
-      "text": "\n    \n        \n            \n                \n                    \n                        \n                            \n                                \n                                    지름은 모두\n                                    원의 중심을\n                                    지나요.\n                                  \n                              \n                          \n                      \n                  \n              \n          \n      \n  "
-    },
-    {
-      "id": "slot.note.text.copy6.text",
-      "type": "text",
-      "attributes": {
-        "x": 365.0,
-        "y": 310.0,
-        "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 25,
-        "data-semantic-role": "symbol_label"
-      },
-      "source_ref": "slot.note.text.copy6",
-      "refs": {
-        "layout_slot_id": "slot.note.text.copy6"
-      },
-      "text": "ㅇ"
-    },
-    {
-      "id": "konva_1784612321567_paste_583821_0.text",
       "type": "text_box",
       "attributes": {
-        "x": 653.761,
-        "y": 299.264,
+        "x": 629.761,
+        "y": 275.264,
         "fill": "#111827",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 30,
@@ -241,17 +221,17 @@
         "height": 121.0,
         "max_width": 214.383,
         "data-slot-kind": "text_box",
-        "data-box-x": 653.761,
-        "data-box-y": 299.264,
+        "data-box-x": 629.761,
+        "data-box-y": 275.264,
         "data-box-width": 214.383,
         "data-box-height": 121.0,
         "data-text-align": "left",
         "data-vertical-align": "top",
         "data-line-height": 1.25
       },
-      "source_ref": "konva_1784612321567_paste_583821_0",
+      "source_ref": "slot.note.text",
       "refs": {
-        "layout_slot_id": "konva_1784612321567_paste_583821_0"
+        "layout_slot_id": "slot.note.text"
       },
       "text": "지름은 모두 원의 중심을 지나요."
     },
@@ -263,7 +243,7 @@
         "y": 490.0,
         "width": 760.0,
         "height": 80.0,
-        "fill": "#ffffff",
+        "fill": "none",
         "stroke": "#111111",
         "stroke-width": 1.5
       },
@@ -273,20 +253,36 @@
       }
     },
     {
-      "id": "slot.choice.text.text",
+      "id": "slot.choice.1.text",
       "type": "text",
       "attributes": {
-        "x": 90.0,
+        "x": 50.0,
         "y": 540.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 30
       },
-      "source_ref": "slot.choice.text",
+      "source_ref": "slot.choice.1",
       "refs": {
-        "layout_slot_id": "slot.choice.text"
+        "layout_slot_id": "slot.choice.1"
       },
-      "text": "(무수히 많이 그릴 수 있습니다., 3개)"
+      "text": "무수히 많이 그을 수 있습니다."
+    },
+    {
+      "id": "slot.choice.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 560.0,
+        "y": 540.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice.2",
+      "refs": {
+        "layout_slot_id": "slot.choice.2"
+      },
+      "text": "3개"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

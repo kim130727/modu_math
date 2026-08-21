@@ -190,13 +190,18 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": [
+            "1. 선분 ㄱㄹ",
+            "2. 선분 ㅇㄱ",
+            "3. 선분 ㅇㄴ",
+            "4. 선분 ㄷㄹ",
+        ],
+        "answer_key": ["1. 선분 ㄱㄹ"],
         "target": {
             "type": "selected_segment",
             "description": "원의 지름을 나타내는 선분",
         },
-        "value": 1,
+        "value": "1. 선분 ㄱㄹ",
         "unit": "",
     },
 }
@@ -206,9 +211,9 @@ SOLVABLE = {
     "problem_id": "S3_초등_3_008676",
     "problem_type": "geometry_circle_diameter",
     "inputs": {
-        "total_ticks": 0,
+        "total_ticks": 4,
         "target_label": "선분 ㄱㄹ",
-        "target_ticks": 0,
+        "target_ticks": 1,
         "target_count": 1,
         "unit": "",
     },
@@ -234,7 +239,7 @@ SOLVABLE = {
             "expr": "다른 보기들은 원의 지름 조건을 만족하지 않는다.",
             "value": True,
         },
-        {"id": "step.3", "expr": "정답 선택", "value": "선분 ㄱㄹ"},
+        {"id": "step.3", "expr": "정답 선택", "value": "1. 선분 ㄱㄹ"},
     ],
     "checks": [
         {
@@ -247,20 +252,25 @@ SOLVABLE = {
         {
             "id": "check.2",
             "expr": "답이 보기와 일치하는가?",
-            "expected": "선분 ㄱㄹ",
-            "actual": "선분 ㄱㄹ",
+            "expected": "1. 선분 ㄱㄹ",
+            "actual": "1. 선분 ㄱㄹ",
             "pass": True,
         },
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": [
+            "1. 선분 ㄱㄹ",
+            "2. 선분 ㅇㄱ",
+            "3. 선분 ㅇㄴ",
+            "4. 선분 ㄷㄹ",
+        ],
+        "answer_key": ["1. 선분 ㄱㄹ"],
         "target": {
             "type": "selected_segment",
             "description": "원의 지름을 나타내는 선분",
         },
-        "value": 1,
+        "value": "1. 선분 ㄱㄹ",
         "unit": "",
     },
 }

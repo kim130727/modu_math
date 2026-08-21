@@ -108,7 +108,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.statement",
                 prompt="",
-                text="\n    \n    길이가 가장 긴 선분은 선분 ㅁㅂ이고, 원의 지름은 선분\n    ㄷㄹ입니다.\n  ",
+                text="길이가 가장 긴 선분은 선분 ㅁㅂ이고, 원의 지름은 선분\nㄷㄹ입니다.",
                 style_role="question",
                 x=60,
                 y=340,
@@ -189,8 +189,8 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["O", "X"],
+        "answer_key": ["X"],
         "target": {"type": "truth_value", "description": "제시된 설명이 바른지 판단"},
         "value": "X",
         "unit": "",
@@ -203,7 +203,7 @@ SOLVABLE = {
     "problem_type": "true_false_geometry",
     "inputs": {
         "total_ticks": 1,
-        "target_label": "×",
+        "target_label": "X",
         "target_ticks": 1,
         "target_count": 1,
         "unit": "",
@@ -218,7 +218,7 @@ SOLVABLE = {
     "plan": [
         "그림에서 원의 중심을 지나가는 선분이 지름인지 확인한다.",
         "문장에 적힌 두 주장(가장 긴 선분, 지름)을 그림과 비교한다.",
-        "진술이 맞으면 ○, 틀리면 ×로 판단한다.",
+        "진술이 맞으면 O, 틀리면 X로 판단한다.",
     ],
     "steps": [
         {"id": "step.1", "expr": "원의 중심을 지나는 선분 확인", "value": "ㄷㄹ"},
@@ -243,8 +243,8 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["O", "X"],
+        "answer_key": ["X"],
         "target": {"type": "truth_value", "description": "제시된 설명이 바른지 판단"},
         "value": "X",
         "unit": "",

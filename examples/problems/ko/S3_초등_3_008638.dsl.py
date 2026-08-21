@@ -1,12 +1,11 @@
 from __future__ import annotations
 from modu_math.dsl import (
     Canvas,
+    CircleSlot,
+    LineSlot,
     ProblemTemplate,
     Region,
     TextSlot,
-    RectSlot,
-    LineSlot,
-    CircleSlot,
 )
 
 
@@ -52,17 +51,12 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.qtext",
             prompt="",
-            text = '원의 중심을 찾아 선택해 보세요.', style_role="question",
-            x = 105, y = 70, font_size = 30, fill = '#111111'),
-        RectSlot(
-            id="slot.answer_blank",
-            prompt="",
-            x=72.0,
-            y=269.0,
-            width=22.0,
-            height=22.0,
-            fill="none",
-            stroke="none",
+            text='원의 중심을 찾아 선택해 보세요.',
+            style_role="question",
+            x=105,
+            y=70,
+            font_size=30,
+            fill='#111111',
         ),
     ]
     slots.extend(
@@ -75,40 +69,70 @@ def build_problem_template() -> ProblemTemplate:
             CircleSlot(
                 id="slot.top.circle",
                 prompt="",
-                cx = 295, cy = 195, r = 70, fill="none",
+                cx=295,
+                cy=195,
+                r=70,
+                fill="none",
                 stroke="#333333",
                 stroke_width=1.8,
             ),
             CircleSlot(
                 id="slot.top.pt.ga",
                 prompt="",
-                cx = 297, cy = 196, r = 5, fill="#ff3aa8",
+                cx=297,
+                cy=196,
+                r=5,
+                fill="#ff3aa8",
+                stroke="#111111",
+                stroke_width=2,
             ),
             CircleSlot(
                 id="slot.top.pt.na",
                 prompt="",
-                cx = 345, cy = 197, r = 5, fill="#ff3aa8",
+                cx=345,
+                cy=197,
+                r=5,
+                fill="#ff3aa8",
+                stroke="#111111",
+                stroke_width=2,
             ),
             CircleSlot(
                 id="slot.top.pt.da",
                 prompt="",
-                cx = 297, cy = 244, r = 5, fill="#ff3aa8",
+                cx=297,
+                cy=244,
+                r=5,
+                fill="#ff3aa8",
+                stroke="#111111",
+                stroke_width=2,
             ),
             TextSlot(
                 id="slot.top.lb.ga",
                 prompt="",
-                text = 'ㄱ', style_role="label",
-                x = 265, y = 190, font_size = 25),
+                text='ㄱ',
+                style_role="label",
+                x=265,
+                y=190,
+                font_size=25,
+            ),
             TextSlot(
                 id="slot.top.lb.na",
                 prompt="",
-                text = 'ㄴ', style_role="label",
-                x = 320, y = 190, font_size = 25),
+                text='ㄴ',
+                style_role="label",
+                x=320,
+                y=190,
+                font_size=25,
+            ),
             TextSlot(
                 id="slot.top.lb.da",
                 prompt="",
-                text = 'ㄷ', style_role="label",
-                x = 300, y = 240, font_size = 25),
+                text='ㄷ',
+                style_role="label",
+                x=300,
+                y=240,
+                font_size=25,
+            ),
         ]
     )
     
@@ -124,26 +148,13 @@ def build_problem_template() -> ProblemTemplate:
                 slot_ids=("slot.qtext",),
             ),
             Region(
-                id="region.answer",
-                role="answer",
-                flow="absolute",
-                slot_ids=("slot.answer_blank",),
-            ),
-            Region(id="region.explain", role="explain", flow="absolute", slot_ids=( )),
-            Region(
                 id="region.diagram.top",
                 role="diagram",
                 flow="absolute",
                 slot_ids=tuple((s.id for s in slots if s.id.startswith("slot.top."))),
             ),
-            Region(
-                id="region.diagram.bottom",
-                role="diagram",
-                flow="absolute",
-                slot_ids=tuple(
-                    (s.id for s in slots if s.id.startswith("slot.bottom."))
-                ),
-            ),
+            Region(id="region.answer", role="answer", flow="absolute", slot_ids=()),
+            Region(id="region.explain", role="explain", flow="absolute", slot_ids=()),
         ),
         slots=tuple(slots),
         diagrams=(),
@@ -161,14 +172,14 @@ SEMANTIC_OVERRIDE = {
     "metadata": {
         "language": "ko",
         "question": "원의 중심을 찾아 선택해 보세요.",
-        "instruction": "(정답)",
+        "instruction": "정답을 선택한다.",
     },
     "domain": {
         "objects": [
             {"id": "obj.circle", "type": "circle"},
-            {"id": "obj.point.ga", "type": "point", "label": "가"},
-            {"id": "obj.point.na", "type": "point", "label": "나"},
-            {"id": "obj.point.da", "type": "point", "label": "다"},
+            {"id": "obj.point.ga", "type": "point", "label": "ㄱ"},
+            {"id": "obj.point.na", "type": "point", "label": "ㄴ"},
+            {"id": "obj.point.da", "type": "point", "label": "ㄷ"},
         ],
         "relations": [],
         "problem_solving": {
@@ -192,8 +203,8 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["ㄱ", "ㄴ", "ㄷ"],
+        "answer_key": ["ㄱ"],
         "target": {
             "type": "selected_point_label",
             "description": "원의 중심으로 선택할 점의 라벨",
@@ -215,29 +226,19 @@ SOLVABLE = {
         "unit": "",
     },
     "given": [
-        {"ref": "obj.circle", "value": {"type": "circle"}},
-        {"ref": "obj.point.ga", "value": {"label": "가"}},
-        {"ref": "obj.point.na", "value": {"label": "나"}},
-        {"ref": "obj.point.da", "value": {"label": "다"}},
+        {"ref": "obj.circle", "value": "circle"},
+        {"ref": "obj.point.ga", "value": {"label": "ㄱ", "type": "point"}},
+        {"ref": "obj.point.na", "value": {"label": "ㄴ", "type": "point"}},
+        {"ref": "obj.point.da", "value": {"label": "ㄷ", "type": "point"}},
     ],
     "target": {"ref": "answer.target", "type": "selected_point_label"},
     "method": "도형식별",
-    "plan": [
-        "원의 중심의 성질을 확인한다.",
-        "세 점 중 원의 중심에 해당하는 점을 찾는다.",
-    ],
-    "steps": [
-        {
-            "id": "step.1",
-            "expr": "원의 내부 점들 중 중심 후보를 확인한다.",
-            "value": "가/나/다 중 하나",
-        },
-        {"id": "step.2", "expr": "중심의 위치 성질과 비교한다.", "value": "TODO"},
-    ],
+    "plan": ["주어진 점들 중 원의 중심 위치에 해당하는 점을 고른다."],
+    "steps": [{"id": "step.1", "expr": "중심 후보 점 선택", "value": "ㄱ"}],
     "checks": [
         {
             "id": "check.1",
-            "expr": "중심은 원의 내부에 있고 원의 가운데에 위치한다.",
+            "expr": "점 ㄱ이 원의 중심인가",
             "expected": True,
             "actual": True,
             "pass": True,
@@ -245,8 +246,8 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["ㄱ", "ㄴ", "ㄷ"],
+        "answer_key": ["ㄱ"],
         "target": {
             "type": "selected_point_label",
             "description": "원의 중심으로 선택할 점의 라벨",

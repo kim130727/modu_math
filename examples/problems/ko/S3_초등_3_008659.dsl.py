@@ -4,8 +4,8 @@ from modu_math.dsl import Canvas, CircleSlot, LineSlot, ProblemTemplate, Region,
 
 ANSWER = {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": ["ㄱ", "ㄴ", "ㄷ", "ㄹ"],
+    "answer_key": ["ㄹ"],
     "target": {"type": "selected_point", "description": "원의 중심"},
     "value": "ㄹ",
     "unit": "",

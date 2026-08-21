@@ -82,13 +82,40 @@
   },
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "ㄱㄹ",
+      "ㄴㄹ",
+      "ㅇㄹ",
+      "지름",
+      "반지름"
+    ],
+    "answer_key": [
+      "ㄴㄹ",
+      "지름"
+    ],
+    "confidence": 1.0,
+    "choice_groups": [
+      {
+        "label": "가장 긴 선분",
+        "choices": [
+          "ㄱㄹ",
+          "ㄴㄹ",
+          "ㅇㄹ"
+        ]
+      },
+      {
+        "label": "선분의 명칭",
+        "choices": [
+          "지름",
+          "반지름"
+        ]
+      }
+    ],
     "target": {
-      "type": "선분과_원의_개념_선택",
-      "description": "길이가 가장 긴 선분과 원의 지름을 고르는 선택"
+      "type": "multiple_choice_group",
+      "description": "길이가 가장 긴 선분과 원의 지름 명칭 선택"
     },
-    "value": "가장 긴 선분 ㄴㄹ, 원의 지름",
+    "value": "ㄴㄹ, 지름",
     "unit": ""
   }
 }

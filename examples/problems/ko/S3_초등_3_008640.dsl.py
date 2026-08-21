@@ -32,7 +32,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.choice",
                 role="choice",
                 flow="absolute",
-                slot_ids=("slot.choice.box", "slot.choice.text"),
+                slot_ids=("slot.choice.box", "slot.choice.1", "slot.choice.2"),
             ),
             Region(id="region.answer", role="answer", flow="absolute", slot_ids=()),
             Region(
@@ -80,12 +80,15 @@ def build_problem_template() -> ProblemTemplate:
                 x = 110, y = 385, width = 685, height = 80, fill="none",
             ),
             TextSlot(
-                id="slot.choice.text",
+                id="slot.choice.1",
                 prompt="",
-                text = '무수히 많이 그을 수 있습니다., 3개', style_role="choice",
-                x = 190, y = 435, font_size = 30),
-            
-            
+                text = '무수히 많이 그을 수 있습니다.', style_role="choice",
+                x = 140, y = 435, font_size = 28),
+            TextSlot(
+                id="slot.choice.2",
+                prompt="",
+                text = '3개', style_role="choice",
+                x = 620, y = 435, font_size = 28),
         ),
         diagrams=(),
         groups=(),
@@ -136,8 +139,8 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["무수히 많이 그을 수 있습니다.", "3개"],
+        "answer_key": ["무수히 많이 그을 수 있습니다."],
         "target": {
             "type": "correct_choice",
             "description": "반지름은 무수히 많이 그을 수 있다.",
@@ -199,8 +202,8 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["무수히 많이 그을 수 있습니다.", "3개"],
+        "answer_key": ["무수히 많이 그을 수 있습니다."],
         "target": {
             "type": "correct_choice",
             "description": "반지름은 무수히 많이 그을 수 있다.",
