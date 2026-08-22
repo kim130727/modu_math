@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
+import 'math_keypad.dart';
 
 class AnswerPanel extends StatefulWidget {
   const AnswerPanel({
@@ -30,6 +31,7 @@ class _AnswerPanelState extends State<AnswerPanel> {
   int? selectedChoiceIndex;
   Set<int> selectedChoiceIndexes = {};
   Map<int, int> selectedGroupChoices = {};
+  bool _showKeypad = false;
 
   @override
   void initState() {
@@ -136,8 +138,31 @@ class _AnswerPanelState extends State<AnswerPanel> {
                         selectedGroupChoices[groupIndex] == choiceIndex;
                     return ChoiceChip(
                       selected: selected,
-                      label:
-                          Text(choiceText, style: const TextStyle(fontSize: 18)),
+                      labelPadding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 4,
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 6,
+                        vertical: 4,
+                      ),
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        side: BorderSide(
+                          color: selected
+                              ? const Color(0xFF5C6AC4)
+                              : const Color(0xFFD1D5DB),
+                        ),
+                      ),
+                      label: Text(
+                        choiceText,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          height: 1.3,
+                          leadingDistribution: TextLeadingDistribution.even,
+                        ),
+                      ),
                       onSelected: (isSelected) {
                         setState(() {
                           if (isSelected) {
@@ -158,7 +183,7 @@ class _AnswerPanelState extends State<AnswerPanel> {
                 if (groupIndex < choiceGroups.length - 1)
                   const SizedBox(height: 16),
               ],
-            ] else if (choices.isEmpty)
+            ] else if (choices.isEmpty) ...[
               TextField(
                 controller: controller,
                 style: const TextStyle(
@@ -173,13 +198,59 @@ class _AnswerPanelState extends State<AnswerPanel> {
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF4B5563),
                   ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _showKeypad
+                          ? Icons.keyboard_hide_rounded
+                          : Icons.dialpad_rounded,
+                      color: const Color(0xFF5C6AC4),
+                    ),
+                    tooltip: '수학 키패드',
+                    onPressed: () =>
+                        setState(() => _showKeypad = !_showKeypad),
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
                 onChanged: widget.onAnswerChanged,
                 onSubmitted: widget.onSubmit,
-              )
+              ),
+              if (_showKeypad) ...[
+                const SizedBox(height: 12),
+                MathKeypad(
+                  mode: MathKeypadMode.digits,
+                  showNextButton: false,
+                  onKeyPressed: (digit) {
+                    final current = controller.text;
+                    final next = '$current$digit';
+                    controller.text = next;
+                    controller.selection =
+                        TextSelection.collapsed(offset: next.length);
+                    widget.onAnswerChanged(next);
+                  },
+                  onBackspace: () {
+                    final current = controller.text;
+                    if (current.isNotEmpty) {
+                      final next = current.substring(0, current.length - 1);
+                      controller.text = next;
+                      controller.selection =
+                          TextSelection.collapsed(offset: next.length);
+                      widget.onAnswerChanged(next);
+                    }
+                  },
+                  onClear: () {
+                    controller.clear();
+                    widget.onAnswerChanged('');
+                  },
+                  onSubmit: () {
+                    if (controller.text.trim().isNotEmpty) {
+                      widget.onSubmit(controller.text.trim());
+                    }
+                  },
+                ),
+              ],
+            ]
             else
               Wrap(
                 spacing: 10,
@@ -192,7 +263,31 @@ class _AnswerPanelState extends State<AnswerPanel> {
                       : selectedChoiceIndex == choiceIndex;
                   return ChoiceChip(
                     selected: selected,
-                    label: Text(choice, style: const TextStyle(fontSize: 18)),
+                    labelPadding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 6,
+                      vertical: 4,
+                    ),
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      side: BorderSide(
+                        color: selected
+                            ? const Color(0xFF5C6AC4)
+                            : const Color(0xFFD1D5DB),
+                      ),
+                    ),
+                    label: Text(
+                      choice,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        height: 1.3,
+                        leadingDistribution: TextLeadingDistribution.even,
+                      ),
+                    ),
                     onSelected: (_) {
                       setState(() {
                         if (allowsMultipleChoices) {

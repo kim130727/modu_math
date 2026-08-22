@@ -400,13 +400,13 @@ SEMANTIC_OVERRIDE = {
     "answer": {
         "blanks": [],
         "choices": [
-            {"id": "choice.1", "label": "가", "text": "점 ㄱ"},
-            {"id": "choice.2", "label": "나", "text": "점 ㄴ"},
-            {"id": "choice.3", "label": "다", "text": "점 ㄷ"},
-            {"id": "choice.4", "label": "라", "text": "점 ㄹ"},
+            {"id": "choice.1", "label": "1", "text": "ㄱ", "value": "1. ㄱ"},
+            {"id": "choice.2", "label": "2", "text": "ㄴ", "value": "2. ㄴ"},
+            {"id": "choice.3", "label": "3", "text": "ㄷ", "value": "3. ㄷ"},
+            {"id": "choice.4", "label": "4", "text": "ㄹ", "value": "4. ㄹ"},
         ],
-        "answer_key": [{"id": "choice.2", "value": "나"}],
-        "value": "나",
+        "answer_key": [{"id": "choice.2", "value": "2. ㄴ"}],
+        "value": "2. ㄴ",
     },
     "domain": {
         "objects": [{"id": "circle", "type": "shape", "name": "원"}],

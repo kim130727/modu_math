@@ -1,4 +1,4 @@
-﻿import '../utils/problem_text_sanitizer.dart';
+import '../utils/problem_text_sanitizer.dart';
 
 class ProblemManifest {
   const ProblemManifest({
@@ -66,8 +66,15 @@ class ProblemSummary {
   String get semester => raw['semester']?.toString() ?? '1학기';
   int get unitNumber => _readInt(raw['unitNumber']) ?? 1;
   String get unitTopic => raw['unitTopic']?.toString() ?? unit;
-  String get subUnit =>
-      raw['subUnit']?.toString() ?? raw['subTopic']?.toString() ?? '기본 학습';
+  String get subUnit {
+    final candidate = raw['subUnit']?.toString() ??
+        raw['subTopic']?.toString() ??
+        raw['topic']?.toString();
+    if (candidate != null && candidate.trim().isNotEmpty) {
+      return candidate.trim();
+    }
+    return '기본 학습';
+  }
 
   String assetPath(String fileName) {
     if (filePrefix != null && filePrefix!.isNotEmpty) {

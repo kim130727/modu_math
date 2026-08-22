@@ -64,6 +64,11 @@ class SolvableHintService {
   const SolvableHintService();
 
   List<SolvableHint> buildHints(ProblemContent content) {
+    final hints = _buildRawHints(content);
+    return hints.map(_localizeSolvableHint).toList();
+  }
+
+  List<SolvableHint> _buildRawHints(ProblemContent content) {
     final expandedAdditionHints = _expandedAdditionHints(content);
     if (expandedAdditionHints.isNotEmpty) {
       return expandedAdditionHints;
@@ -195,6 +200,217 @@ List<SolvableHint> _generalFallbackHints(ProblemContent content) {
   ];
 }
 
+SolvableHint _localizeSolvableHint(SolvableHint hint) {
+  return SolvableHint(
+    level: hint.level,
+    title: _localizeText(hint.title),
+    body: _localizeText(hint.body),
+    miniQuestion: _localizeText(hint.miniQuestion),
+    choices: hint.choices
+        .map((c) => HintChoice(
+              label: _localizeChoice(c.label),
+              isCorrect: c.isCorrect,
+            ))
+        .toList(),
+    acceptedAnswers: hint.acceptedAnswers.map(_localizeChoice).toList(),
+    successMessage: _localizeText(hint.successMessage),
+    groupKey: hint.groupKey,
+    groupLabel: hint.groupLabel != null ? _localizeText(hint.groupLabel!) : null,
+  );
+}
+
+String _localizeText(String input) {
+  final text = input.trim();
+  if (text.isEmpty) return text;
+  final lower = text.toLowerCase();
+
+  final findMatch = RegExp(
+    r'^find\s+(.+?)\s+using the given information\.?$',
+    caseSensitive: false,
+  ).firstMatch(text);
+  if (findMatch != null) {
+    final target = findMatch.group(1)!.trim();
+    return '$target을(를) 구해요.';
+  }
+
+  if (lower == 'what should we find?' ||
+      lower == 'what does the problem ask for?' ||
+      lower == 'what are we looking for?') {
+    return '이 문제에서 구해야 하는 것은 무엇인가요?';
+  }
+  if (lower == 'how should we calculate?' ||
+      lower == 'how do we solve this?' ||
+      lower == 'what operation should we use?') {
+    return '어떻게 계산해야 할까요?';
+  }
+  if (lower == 'what is the first step?' ||
+      lower == 'what should we do first?') {
+    return '먼저 해야 할 일은 무엇인가요?';
+  }
+
+  final isGreaterMatch = RegExp(
+    r'^is\s+(.+?)\s+greater than\s+(.+?)\??$',
+    caseSensitive: false,
+  ).firstMatch(text);
+  if (isGreaterMatch != null) {
+    final expr = isGreaterMatch
+        .group(1)!
+        .trim()
+        .replaceAll('x', '×')
+        .replaceAll('*', '×');
+    final threshold = isGreaterMatch.group(2)!.trim();
+    return '$expr의 계산 결과는 $threshold보다 큰가요?';
+  }
+
+  final isLessMatch = RegExp(
+    r'^is\s+(.+?)\s+less than\s+(.+?)\??$',
+    caseSensitive: false,
+  ).firstMatch(text);
+  if (isLessMatch != null) {
+    final expr = isLessMatch
+        .group(1)!
+        .trim()
+        .replaceAll('x', '×')
+        .replaceAll('*', '×');
+    final threshold = isLessMatch.group(2)!.trim();
+    return '$expr의 계산 결과는 $threshold보다 작은가요?';
+  }
+
+  final whichGreaterMatch = RegExp(
+    r'^which\s+(?:products|expressions|values)\s+are\s+greater than\s+(.+?)\??$',
+    caseSensitive: false,
+  ).firstMatch(text);
+  if (whichGreaterMatch != null) {
+    final threshold = whichGreaterMatch.group(1)!.trim();
+    return '계산 결과가 $threshold보다 큰 것은 무엇인가요?';
+  }
+
+  final whichLessMatch = RegExp(
+    r'^which\s+(?:products|expressions|values)\s+are\s+less than\s+(.+?)\??$',
+    caseSensitive: false,
+  ).firstMatch(text);
+  if (whichLessMatch != null) {
+    final threshold = whichLessMatch.group(1)!.trim();
+    return '계산 결과가 $threshold보다 작은 것은 무엇인가요?';
+  }
+
+  final mathMatch =
+      RegExp(r'^what is\s*(.+)\?$', caseSensitive: false).firstMatch(text);
+  if (mathMatch != null) {
+    final expr = mathMatch
+        .group(1)!
+        .trim()
+        .replaceAll('x', '×')
+        .replaceAll('*', '×');
+    return '$expr의 값은 얼마일까요?';
+  }
+  if (lower.contains('greatest to least')) {
+    return '계산 결과가 큰 것부터 차례대로 나열한 것은 무엇일까요?';
+  }
+  if (lower.contains('least to greatest')) {
+    return '계산 결과가 작은 것부터 차례대로 나열한 것은 무엇일까요?';
+  }
+  if (lower.contains('which order') || lower.contains('which expression')) {
+    return '알맞은 순서나 식을 골라보세요.';
+  }
+
+  if (lower.contains('compute each') || lower.contains('calculate each')) {
+    return '각 식을 차례대로 계산해요.';
+  }
+  if (lower.contains('compare each result') ||
+      lower.contains('compare the results')) {
+    return '계산 결과를 서로 비교해요.';
+  }
+  if (lower.contains('select the') || lower.contains('choose the')) {
+    return '알맞은 식이나 보기를 골라요.';
+  }
+  if (lower.contains('find the total') ||
+      lower.contains('calculate the total')) {
+    return '전체 수를 계산해요.';
+  }
+  if (lower.contains('find the remaining') ||
+      lower.contains('calculate the remaining')) {
+    return '남은 수를 계산해요.';
+  }
+
+  return text;
+}
+
+String _localizeChoice(String choice) {
+  final text = choice.trim();
+  final lower = text.toLowerCase();
+
+  final yesBecauseMatch = RegExp(
+    r'^yes,?\s*because\s*(?:it\s+is\s*)?(.+)$',
+    caseSensitive: false,
+  ).firstMatch(text);
+  if (yesBecauseMatch != null) {
+    final reason = yesBecauseMatch.group(1)!.trim();
+    final reasonNum = int.tryParse(reason);
+    if (reasonNum != null) {
+      return '네, 계산 결과가 $reasonNum이기 때문입니다.';
+    }
+    return '네, $reason이기 때문입니다.';
+  }
+
+  final noBecauseMatch = RegExp(
+    r'^no,?\s*because\s*(?:it\s+is\s*)?(.+)$',
+    caseSensitive: false,
+  ).firstMatch(text);
+  if (noBecauseMatch != null) {
+    final reason = noBecauseMatch.group(1)!.trim();
+    final reasonNum = int.tryParse(reason);
+    if (reasonNum != null) {
+      return '아니요, 계산 결과가 $reasonNum이기 때문입니다.';
+    }
+    return '아니요, $reason이기 때문입니다.';
+  }
+
+  if (lower == 'yes') return '네';
+  if (lower == 'no') return '아니요';
+
+  final andMatch =
+      RegExp(r'^(\d+)\s+and\s+(\d+)$', caseSensitive: false).firstMatch(text);
+  if (andMatch != null) {
+    return '${andMatch.group(1)}과 ${andMatch.group(2)}';
+  }
+
+  final andExprMatch =
+      RegExp(r'(.+?)\s+and\s+(.+)', caseSensitive: false).firstMatch(text);
+  if (andExprMatch != null) {
+    return '${andExprMatch.group(1)}와 ${andExprMatch.group(2)}';
+  }
+
+  if (RegExp(r'^[A-D](\s*,\s*[A-D])+$').hasMatch(text)) {
+    return text
+        .replaceAll('A', 'ㄱ')
+        .replaceAll('B', 'ㄴ')
+        .replaceAll('C', 'ㄷ')
+        .replaceAll('D', 'ㄹ');
+  }
+
+  if (lower == 'total amount' || lower == 'total count' || lower == 'total') {
+    return '전체 수';
+  }
+  if (lower == 'remaining amount' ||
+      lower == 'remaining count' ||
+      lower == 'remaining' ||
+      lower == 'leftover') {
+    return '남은 수';
+  }
+  if (lower == 'initial amount' ||
+      lower == 'initial count' ||
+      lower == 'initial') {
+    return '처음 수';
+  }
+  if (lower == 'addition' || lower == 'add') return '더하기';
+  if (lower == 'subtraction' || lower == 'subtract') return '빼기';
+  if (lower == 'multiplication' || lower == 'multiply') return '곱하기';
+  if (lower == 'division' || lower == 'divide') return '나누기';
+
+  return text;
+}
+
 List<SolvableHint> _diagnosticQuestionHints(ProblemContent content) {
   final understanding = _mapAt(content.solvable, 'understanding');
   final rawList = understanding['diagnostic_questions'] ??
@@ -222,27 +438,33 @@ List<SolvableHint> _diagnosticQuestionHints(ProblemContent content) {
 
     final answerIndex =
         item['answer_index'] is int ? item['answer_index'] as int : 0;
-    final answerText = (answerIndex >= 0 && answerIndex < rawChoices.length)
+    final rawAnswer = (answerIndex >= 0 && answerIndex < rawChoices.length)
         ? rawChoices[answerIndex]
         : _readText(item['answer'], fallback: rawChoices.first);
 
     final choices = rawChoices
-        .map((choice) => HintChoice(
-              label: choice,
-              isCorrect: choice == answerText,
-            ))
+        .map((choice) {
+          final loc = _localizeChoice(choice);
+          return HintChoice(
+            label: loc,
+            isCorrect: choice == rawAnswer,
+          );
+        })
         .toList();
 
     final level = i + 1;
+    final localizedPrompt = _localizeText(prompt);
+    final localizedAnswer = _localizeChoice(rawAnswer);
+
     hints.add(
       SolvableHint(
         level: level,
         title: '$level단계: 개념 확인 $level',
-        body: prompt,
-        miniQuestion: prompt,
+        body: localizedPrompt,
+        miniQuestion: localizedPrompt,
         choices: choices,
-        acceptedAnswers: [answerText],
-        successMessage: '맞아요! $answerText입니다.',
+        acceptedAnswers: [localizedAnswer, rawAnswer],
+        successMessage: '맞아요! $localizedAnswer입니다.',
       ),
     );
   }
@@ -611,7 +833,7 @@ List<SolvableHint> _planBasedHints(ProblemContent content) {
   final hints = <SolvableHint>[];
   for (var i = 0; i < planItems.length; i++) {
     final level = i + 1;
-    final text = planItems[i];
+    final text = _localizeText(planItems[i]);
     hints.add(
       SolvableHint(
         level: level,
@@ -1156,15 +1378,17 @@ List<SolvableHint> _authoredStudentHints(ProblemContent content) {
     }
     final level =
         item['level'] is int ? item['level'] as int : hints.length + 1;
-    final body = _readText(item['text']);
+    final body = _localizeText(_readText(item['text']));
     if (body.isEmpty) {
       continue;
     }
+    final rawTitle = _readText(item['title'], fallback: '$level단계');
     hints.add(
       SolvableHint(
         level: level,
-        title: _readText(item['title'], fallback: '$level단계'),
+        title: _localizeText(rawTitle),
         body: _withoutAnswer(content, body),
+        miniQuestion: _localizeText(_readText(item['mini_question'])),
       ),
     );
   }

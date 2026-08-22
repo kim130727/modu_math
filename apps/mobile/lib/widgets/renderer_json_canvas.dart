@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -117,6 +118,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                     child: Stack(
                       clipBehavior: Clip.hardEdge,
                       children: [
+                        ..._imageLayers(widget.renderer, scale),
                         Positioned.fill(
                           child: CustomPaint(
                             painter: RendererJsonPainter(
@@ -894,6 +896,85 @@ List<Widget> _textBoxLayers(Map<String, dynamic> renderer, double scale) {
           ),
         ),
       ),
+    );
+  }).toList(growable: false);
+}
+
+List<Widget> _imageLayers(Map<String, dynamic> renderer, double scale) {
+  final elements = renderer['elements'];
+  if (elements is! List) {
+    return const [];
+  }
+  return rendererVisibleElements(elements)
+      .where((element) => element['type']?.toString() == 'image')
+      .map((element) {
+    final attributes = _mapAt(element, 'attributes');
+    final x = _readDouble(attributes['x']) ?? 0;
+    final y = _readDouble(attributes['y']) ?? 0;
+    final width = _readDouble(attributes['width']) ?? 0;
+    final height = _readDouble(attributes['height']) ?? 0;
+    final href = (attributes['href'] ??
+            attributes['xlink:href'] ??
+            attributes['src'] ??
+            attributes['url'] ??
+            attributes['path'] ??
+            element['href'] ??
+            element['src'] ??
+            '')
+        .toString()
+        .trim();
+
+    if (width <= 0 || height <= 0 || href.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    Widget imageWidget;
+    if (href.startsWith('data:image/')) {
+      try {
+        final commaIndex = href.indexOf(',');
+        final base64String =
+            commaIndex != -1 ? href.substring(commaIndex + 1) : href;
+        final bytes = base64Decode(
+          base64String.replaceAll('\n', '').replaceAll('\r', '').trim(),
+        );
+        imageWidget = Image.memory(
+          bytes,
+          fit: BoxFit.fill,
+          width: width * scale,
+          height: height * scale,
+          errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+        );
+      } catch (_) {
+        imageWidget = const SizedBox.shrink();
+      }
+    } else if (href.startsWith('http://') || href.startsWith('https://')) {
+      imageWidget = Image.network(
+        href,
+        fit: BoxFit.fill,
+        width: width * scale,
+        height: height * scale,
+        errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+      );
+    } else if (href.startsWith('assets/') ||
+        href.startsWith('examples/') ||
+        !href.contains(':')) {
+      imageWidget = Image.asset(
+        href,
+        fit: BoxFit.fill,
+        width: width * scale,
+        height: height * scale,
+        errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+      );
+    } else {
+      imageWidget = const SizedBox.shrink();
+    }
+
+    return Positioned(
+      left: x * scale,
+      top: y * scale,
+      width: width * scale,
+      height: height * scale,
+      child: imageWidget,
     );
   }).toList(growable: false);
 }

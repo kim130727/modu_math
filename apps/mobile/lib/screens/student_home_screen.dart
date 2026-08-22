@@ -140,8 +140,8 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                       const SizedBox(height: 22),
                       _UnitRail(
                         problems: manifest.problems,
-                        onOpenUnit: (unit) =>
-                            _openCurriculum(initialUnit: unit),
+                        onOpenUnit: (unit, {subUnit}) =>
+                            _openCurriculum(initialUnit: unit, subUnit: subUnit),
                       ),
                     ],
                   );
@@ -192,11 +192,21 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
     _refresh();
   }
 
-  Future<void> _openCurriculum({String? initialUnit}) async {
-    await Navigator.of(context).pushNamed(
-      ModuMathRoutes.curriculum,
-      arguments: CurriculumRouteArguments(initialUnit: initialUnit),
-    );
+  Future<void> _openCurriculum({String? initialUnit, String? subUnit}) async {
+    if (subUnit != null && initialUnit != null) {
+      await Navigator.of(context).pushNamed(
+        ModuMathRoutes.learningSession,
+        arguments: LearningSessionRouteArguments(
+          unit: initialUnit,
+          subUnit: subUnit,
+        ),
+      );
+    } else {
+      await Navigator.of(context).pushNamed(
+        ModuMathRoutes.curriculum,
+        arguments: CurriculumRouteArguments(initialUnit: initialUnit),
+      );
+    }
     _refresh();
   }
 }
@@ -519,6 +529,26 @@ class _NextProblemCard extends StatelessWidget {
   }
 }
 
+typedef SubUnitOpener = void Function(String unit, {String? subUnit});
+
+class _SubUnitItem {
+  const _SubUnitItem({
+    required this.unit,
+    required this.unitTopic,
+    required this.semester,
+    required this.unitNumber,
+    required this.subUnit,
+    required this.count,
+  });
+
+  final String unit;
+  final String unitTopic;
+  final String semester;
+  final int unitNumber;
+  final String subUnit;
+  final int count;
+}
+
 class _UnitRail extends StatefulWidget {
   const _UnitRail({
     required this.problems,
@@ -526,7 +556,7 @@ class _UnitRail extends StatefulWidget {
   });
 
   final List<ProblemSummary> problems;
-  final ValueChanged<String> onOpenUnit;
+  final SubUnitOpener onOpenUnit;
 
   @override
   State<_UnitRail> createState() => _UnitRailState();
@@ -580,19 +610,32 @@ class _UnitRailState extends State<_UnitRail> {
   @override
   Widget build(BuildContext context) {
     final strings = AppStrings.of(context);
-    final unitGroups = <String, List<ProblemSummary>>{};
+    final subUnitGroups = <String, List<ProblemSummary>>{};
     for (final problem in widget.problems) {
-      unitGroups.putIfAbsent(problem.unit, () => []).add(problem);
+      final key = '${problem.unit}:::${problem.subUnit}';
+      subUnitGroups.putIfAbsent(key, () => []).add(problem);
     }
-    final units = unitGroups.keys.toList()
+    final items = subUnitGroups.entries.map((entry) {
+      final sample = entry.value.first;
+      return _SubUnitItem(
+        unit: sample.unit,
+        unitTopic: sample.unitTopic,
+        semester: sample.semester,
+        unitNumber: sample.unitNumber,
+        subUnit: sample.subUnit,
+        count: entry.value.length,
+      );
+    }).toList()
       ..sort((a, b) {
-        final aSample = unitGroups[a]!.first;
-        final bSample = unitGroups[b]!.first;
-        final semCmp = aSample.semester.compareTo(bSample.semester);
+        final semCmp = a.semester.compareTo(b.semester);
         if (semCmp != 0) {
           return semCmp;
         }
-        return aSample.unitNumber.compareTo(bSample.unitNumber);
+        final unitCmp = a.unitNumber.compareTo(b.unitNumber);
+        if (unitCmp != 0) {
+          return unitCmp;
+        }
+        return a.subUnit.compareTo(b.subUnit);
       });
 
     return Column(
@@ -624,7 +667,7 @@ class _UnitRailState extends State<_UnitRail> {
         ),
         const SizedBox(height: 12),
         SizedBox(
-          height: 168,
+          height: 172,
           child: ScrollConfiguration(
             behavior: ScrollConfiguration.of(context).copyWith(
               dragDevices: {
@@ -641,19 +684,16 @@ class _UnitRailState extends State<_UnitRail> {
                 controller: _scrollController,
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.only(bottom: 12, right: 24),
-                itemCount: units.length,
+                itemCount: items.length,
                 separatorBuilder: (context, index) => const SizedBox(width: 12),
                 itemBuilder: (context, index) {
-                  final unit = units[index];
-                  final list = unitGroups[unit] ?? const [];
-                  final count = list.length;
-                  final subUnitsCount =
-                      list.map((p) => p.subUnit).toSet().length;
+                  final item = items[index];
                   return _UnitTile(
-                    unit: unit,
-                    count: count,
-                    subUnitsCount: subUnitsCount,
-                    onTap: () => widget.onOpenUnit(unit),
+                    item: item,
+                    onTap: () => widget.onOpenUnit(
+                      item.unit,
+                      subUnit: item.subUnit,
+                    ),
                   );
                 },
               ),
@@ -667,22 +707,19 @@ class _UnitRailState extends State<_UnitRail> {
 
 class _UnitTile extends StatelessWidget {
   const _UnitTile({
-    required this.unit,
-    required this.count,
-    required this.subUnitsCount,
+    required this.item,
     required this.onTap,
   });
 
-  final String unit;
-  final int count;
-  final int subUnitsCount;
+  final _SubUnitItem item;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     final strings = AppStrings.of(context);
+    final unitLabel = '${item.semester} ${item.unitNumber}. ${item.unitTopic}';
     return SizedBox(
-      width: 260,
+      width: 270,
       child: Card(
         margin: EdgeInsets.zero,
         child: InkWell(
@@ -693,31 +730,44 @@ class _UnitTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFECEEFF),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Text(
+                    strings.unitTitle(unitLabel),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      color: KidsPalette.sage,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
                 Text(
-                  strings.unitTitle(unit),
+                  item.subUnit,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
-                if (subUnitsCount > 1) ...[
-                  const SizedBox(height: 4),
-                  Text(
-                    '소단원 $subUnitsCount개',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: KidsPalette.sage,
-                          fontWeight: FontWeight.w600,
-                        ),
-                  ),
-                ],
                 const Spacer(),
                 Row(
                   children: [
                     Text(
-                      strings.t('home.problemCount', {'count': count}),
-                      style: Theme.of(context).textTheme.bodyLarge,
+                      strings.t('home.problemCount', {'count': item.count}),
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: KidsPalette.cocoaSoft,
+                            fontWeight: FontWeight.w600,
+                          ),
                     ),
                     const Spacer(),
-                    const Icon(Icons.chevron_right_rounded),
+                    const Icon(Icons.chevron_right_rounded, color: KidsPalette.sage),
                   ],
                 ),
               ],

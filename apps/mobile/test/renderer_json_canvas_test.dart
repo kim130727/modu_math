@@ -1508,4 +1508,42 @@ void main() {
 
     expect(emitted, equals('602907697'));
   });
+
+  testWidgets('renders image elements from renderer json', (tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 500,
+            height: 300,
+            child: RendererJsonCanvas(
+              renderer: {
+                'view_box': {
+                  'width': 500,
+                  'height': 300,
+                  'background': '#FFFFFF',
+                },
+                'elements': [
+                  {
+                    'type': 'image',
+                    'attributes': {
+                      'x': 50,
+                      'y': 50,
+                      'width': 100,
+                      'height': 100,
+                      'href':
+                          'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
+                    },
+                  },
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byType(RendererJsonCanvas), findsOneWidget);
+    expect(find.byType(Image), findsOneWidget);
+  });
 }

@@ -145,8 +145,11 @@ class _HintPanelState extends State<HintPanel> {
                               fontWeight: FontWeight.w800,
                             ),
                           ),
-                          const SizedBox(height: 6),
-                          Text(hint.body),
+                          if (hint.body.trim().isNotEmpty &&
+                              hint.body.trim() != hint.miniQuestion.trim()) ...[
+                            const SizedBox(height: 6),
+                            Text(hint.body),
+                          ],
                           if (hint.miniQuestion.trim().isNotEmpty &&
                               (hint.choices.isNotEmpty ||
                                   hint.acceptedAnswers.isNotEmpty)) ...[
