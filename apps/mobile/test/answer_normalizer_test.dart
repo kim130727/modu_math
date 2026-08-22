@@ -52,5 +52,17 @@ void main() {
       expect(isSameAnswer('ㄴㄹ지름', 'ㄴㄹ, 지름'), isTrue);
       expect(isSameAnswer('ㄱㄹ, 지름', 'ㄴㄹ, 지름'), isFalse);
     });
+
+    test('matches arithmetic expression against calculated value and formula choices (S3_초등_3_008578)', () {
+      expect(isSameAnswer('752 × 3', '752 × 3'), isTrue);
+      expect(isSameAnswer('752 * 3', '752 × 3'), isTrue);
+      expect(isSameAnswer('752x3', '752 × 3'), isTrue);
+      expect(isSameAnswer('3. 752 × 3', '752 × 3'), isTrue);
+      expect(isSameAnswer('3', '3. 752 × 3'), isTrue);
+      expect(isSameAnswer('2256', '752 × 3'), isTrue);
+      expect(isSameAnswer('752 × 3', '2256'), isTrue);
+      expect(isSameAnswer('328 × 8', '752 × 3'), isFalse);
+      expect(isSameAnswer('2624', '752 × 3'), isFalse);
+    });
   });
 }

@@ -1,0 +1,307 @@
+{
+  "problem_id": "P3_1_01_00040_02152",
+  "problem_type": "multi_answer_base_ten_model_addition",
+  "metadata": {
+    "title": "수 모형으로 알아보는 세 자리 수의 덧셈",
+    "tags": [],
+    "question": "병현이네 학교 도서관에 위인전이 599권, 동화책이 837권 있습니다. 모두 몇 권의 책이 있는지 수 모형으로 알아보시오.",
+    "required_layout_ids": [
+      "slot.diagram.top_box",
+      "slot.diagram.bottom_box",
+      "slot.diagram.arrow_line",
+      "slot.diagram.arrow_head",
+      "slot.model.599.h1.body",
+      "slot.model.599.h1.grid",
+      "slot.model.599.h2.body",
+      "slot.model.599.h2.grid",
+      "slot.model.599.h3.body",
+      "slot.model.599.h3.grid",
+      "slot.model.599.h4.body",
+      "slot.model.599.h4.grid",
+      "slot.model.599.h5.body",
+      "slot.model.599.h5.grid",
+      "slot.model.599.t1.body",
+      "slot.model.599.t1.grid",
+      "slot.model.599.t2.body",
+      "slot.model.599.t2.grid",
+      "slot.model.599.t3.body",
+      "slot.model.599.t3.grid",
+      "slot.model.599.t4.body",
+      "slot.model.599.t4.grid",
+      "slot.model.599.t5.body",
+      "slot.model.599.t5.grid",
+      "slot.model.599.t6.body",
+      "slot.model.599.t6.grid",
+      "slot.model.599.t7.body",
+      "slot.model.599.t7.grid",
+      "slot.model.599.t8.body",
+      "slot.model.599.t8.grid",
+      "slot.model.599.t9.body",
+      "slot.model.599.t9.grid",
+      "slot.model.599.o1.dot",
+      "slot.model.599.o2.dot",
+      "slot.model.599.o3.dot",
+      "slot.model.599.o4.dot",
+      "slot.model.599.o5.dot",
+      "slot.model.599.o6.dot",
+      "slot.model.599.o7.dot",
+      "slot.model.599.o8.dot",
+      "slot.model.599.o9.dot",
+      "slot.model.837.h1.body",
+      "slot.model.837.h1.grid",
+      "slot.model.837.h2.body",
+      "slot.model.837.h2.grid",
+      "slot.model.837.h3.body",
+      "slot.model.837.h3.grid",
+      "slot.model.837.h4.body",
+      "slot.model.837.h4.grid",
+      "slot.model.837.h5.body",
+      "slot.model.837.h5.grid",
+      "slot.model.837.h6.body",
+      "slot.model.837.h6.grid",
+      "slot.model.837.h7.body",
+      "slot.model.837.h7.grid",
+      "slot.model.837.h8.body",
+      "slot.model.837.h8.grid",
+      "slot.model.837.t1.body",
+      "slot.model.837.t1.grid",
+      "slot.model.837.t2.body",
+      "slot.model.837.t2.grid",
+      "slot.model.837.t3.body",
+      "slot.model.837.t3.grid",
+      "slot.model.837.o1.dot",
+      "slot.model.837.o2.dot",
+      "slot.model.837.o3.dot",
+      "slot.model.837.o4.dot",
+      "slot.model.837.o5.dot",
+      "slot.model.837.o6.dot",
+      "slot.model.837.o7.dot",
+      "slot.model.result.thousand1.front",
+      "slot.model.result.thousand1.top",
+      "slot.model.result.thousand1.side",
+      "slot.model.result.thousand1.front.grid",
+      "slot.model.result.thousand1.top.grid",
+      "slot.model.result.thousand1.side.grid",
+      "slot.model.result.h1.body",
+      "slot.model.result.h1.grid",
+      "slot.model.result.h2.body",
+      "slot.model.result.h2.grid",
+      "slot.model.result.h3.body",
+      "slot.model.result.h3.grid",
+      "slot.model.result.h4.body",
+      "slot.model.result.h4.grid",
+      "slot.model.result.t1.body",
+      "slot.model.result.t1.grid",
+      "slot.model.result.t2.body",
+      "slot.model.result.t2.grid",
+      "slot.model.result.t3.body",
+      "slot.model.result.t3.grid",
+      "slot.model.result.o1.dot",
+      "slot.model.result.o2.dot",
+      "slot.model.result.o3.dot",
+      "slot.model.result.o4.dot",
+      "slot.model.result.o5.dot",
+      "slot.model.result.o6.dot"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "받아올림이 두 번 있는 세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "place.school_library",
+        "type": "place",
+        "label": "병현이네 학교 도서관"
+      },
+      {
+        "id": "book.biography",
+        "type": "book_collection",
+        "label": "위인전",
+        "count": 599,
+        "unit": "권"
+      },
+      {
+        "id": "book.fairy_tale",
+        "type": "book_collection",
+        "label": "동화책",
+        "count": 837,
+        "unit": "권"
+      },
+      {
+        "id": "model.ones_before_regrouping",
+        "type": "base_ten_model_group",
+        "label": "더한 낱개 모형",
+        "place": "ones",
+        "count": 16
+      },
+      {
+        "id": "model.ones_regrouped_tens",
+        "type": "base_ten_model_group",
+        "label": "낱개 모형에서 바꾼 십 모형",
+        "place": "tens",
+        "count": 1
+      },
+      {
+        "id": "model.ones_remaining",
+        "type": "base_ten_model_group",
+        "label": "남은 낱개 모형",
+        "place": "ones",
+        "count": 6
+      },
+      {
+        "id": "model.tens_before_regrouping",
+        "type": "base_ten_model_group",
+        "label": "받아올림을 포함하여 더한 십 모형",
+        "place": "tens",
+        "count": 13
+      },
+      {
+        "id": "model.tens_regrouped_hundreds",
+        "type": "base_ten_model_group",
+        "label": "십 모형에서 바꾼 백 모형",
+        "place": "hundreds",
+        "count": 1
+      },
+      {
+        "id": "model.tens_remaining",
+        "type": "base_ten_model_group",
+        "label": "남은 십 모형",
+        "place": "tens",
+        "count": 3
+      },
+      {
+        "id": "model.hundreds_before_regrouping",
+        "type": "base_ten_model_group",
+        "label": "받아올림을 포함하여 더한 백 모형",
+        "place": "hundreds",
+        "count": 14
+      },
+      {
+        "id": "model.hundreds_regrouped_thousands",
+        "type": "base_ten_model_group",
+        "label": "백 모형에서 바꾼 천 모형",
+        "place": "thousands",
+        "count": 1
+      },
+      {
+        "id": "model.hundreds_remaining",
+        "type": "base_ten_model_group",
+        "label": "남은 백 모형",
+        "place": "hundreds",
+        "count": 4
+      },
+      {
+        "id": "book.total",
+        "type": "book_collection",
+        "label": "도서관에 있는 전체 책",
+        "count": 1436,
+        "unit": "권"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.biography_in_library",
+        "type": "located_in",
+        "subject": "book.biography",
+        "object": "place.school_library"
+      },
+      {
+        "id": "relation.fairy_tale_in_library",
+        "type": "located_in",
+        "subject": "book.fairy_tale",
+        "object": "place.school_library"
+      },
+      {
+        "id": "relation.total_books_sum",
+        "type": "sum_of",
+        "subject": "book.total",
+        "objects": [
+          "book.biography",
+          "book.fairy_tale"
+        ]
+      },
+      {
+        "id": "relation.ones_regrouping",
+        "type": "regroup",
+        "subject": "model.ones_before_regrouping",
+        "result": [
+          "model.ones_regrouped_tens",
+          "model.ones_remaining"
+        ]
+      },
+      {
+        "id": "relation.tens_regrouping",
+        "type": "regroup",
+        "subject": "model.tens_before_regrouping",
+        "result": [
+          "model.tens_regrouped_hundreds",
+          "model.tens_remaining"
+        ]
+      },
+      {
+        "id": "relation.hundreds_regrouping",
+        "type": "regroup",
+        "subject": "model.hundreds_before_regrouping",
+        "result": [
+          "model.hundreds_regrouped_thousands",
+          "model.hundreds_remaining"
+        ]
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": [
+      1,
+      6,
+      1,
+      3,
+      1,
+      4,
+      1436
+    ],
+    "unit": "",
+    "expression": "599 + 837 = 1436",
+    "items": [
+      {
+        "id": "answer.ones_to_tens",
+        "value": 1,
+        "unit": "개"
+      },
+      {
+        "id": "answer.remaining_ones",
+        "value": 6,
+        "unit": "개"
+      },
+      {
+        "id": "answer.tens_to_hundreds",
+        "value": 1,
+        "unit": "개"
+      },
+      {
+        "id": "answer.remaining_tens",
+        "value": 3,
+        "unit": "개"
+      },
+      {
+        "id": "answer.hundreds_to_thousands",
+        "value": 1,
+        "unit": "개"
+      },
+      {
+        "id": "answer.remaining_hundreds",
+        "value": 4,
+        "unit": "개"
+      },
+      {
+        "id": "answer.total_books",
+        "value": 1436,
+        "unit": "권"
+      }
+    ]
+  }
+}

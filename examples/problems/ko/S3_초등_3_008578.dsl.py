@@ -156,13 +156,19 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": [
+            {"id": "choice.1", "label": "328 × 8", "text": "328 × 8"},
+            {"id": "choice.2", "label": "524 × 5", "text": "524 × 5"},
+            {"id": "choice.3", "label": "752 × 3", "text": "752 × 3"},
+        ],
+        "answer_key": [
+            {"id": "choice.3", "value": "752 × 3"},
+        ],
         "target": {
             "type": "selected_expression",
             "description": "계산 결과가 가장 작은 곱셈식",
         },
-        "value": 2256,
+        "value": "752 × 3",
         "unit": "",
     },
 }
@@ -210,13 +216,19 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": [
+            {"id": "choice.1", "label": "328 × 8", "text": "328 × 8"},
+            {"id": "choice.2", "label": "524 × 5", "text": "524 × 5"},
+            {"id": "choice.3", "label": "752 × 3", "text": "752 × 3"},
+        ],
+        "answer_key": [
+            {"id": "choice.3", "value": "752 × 3"},
+        ],
         "target": {
             "type": "selected_expression",
             "description": "계산 결과가 가장 작은 곱셈식",
         },
-        "value": 2256,
+        "value": "752 × 3",
         "unit": "",
     },
 }

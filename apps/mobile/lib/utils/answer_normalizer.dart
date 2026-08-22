@@ -107,7 +107,42 @@ bool isSameAnswer(String submitted, String correct) {
     return true;
   }
 
+  // 4) 산술식 계산 결과와 비교 (예: submitted="752 × 3", correct="2256" 또는 submitted="2256", correct="752 × 3")
+  final subCalc = _tryEvalSimpleArithmetic(cleanWithoutSub.isNotEmpty ? cleanWithoutSub : cleanSub);
+  final corCalc = _tryEvalSimpleArithmetic(cleanWithoutCor.isNotEmpty ? cleanWithoutCor : cleanCor);
+  if (subCalc != null && corCalc != null && subCalc == corCalc) {
+    return true;
+  }
+  if (subCalc != null && (subCalc == cleanCor || subCalc == cleanWithoutCor)) {
+    return true;
+  }
+  if (corCalc != null && (corCalc == cleanSub || corCalc == cleanWithoutSub)) {
+    return true;
+  }
+
   return false;
+}
+
+String? _tryEvalSimpleArithmetic(String expr) {
+  final clean = expr.trim();
+  final match = RegExp(r'^(\d+)\s*([\*\+\-\/])\s*(\d+)$').firstMatch(clean);
+  if (match == null) return null;
+  final a = int.tryParse(match.group(1)!);
+  final op = match.group(2)!;
+  final b = int.tryParse(match.group(3)!);
+  if (a == null || b == null) return null;
+  switch (op) {
+    case '*':
+      return (a * b).toString();
+    case '+':
+      return (a + b).toString();
+    case '-':
+      return (a - b).toString();
+    case '/':
+      return b != 0 ? (a ~/ b).toString() : null;
+    default:
+      return null;
+  }
 }
 
 String _stripLeadingChoiceMarker(String value) {

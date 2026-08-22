@@ -1,0 +1,263 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_02152",
+  "problem_type": "multi_answer_base_ten_model_addition",
+  "inputs": {
+    "target_label": "수 모형을 다시 묶은 결과와 도서관의 전체 책 수",
+    "unit": "",
+    "answer_type": "mixed_integer_list",
+    "quantities": {
+      "biography_count": 599,
+      "fairy_tale_count": 837,
+      "ones_from_biographies": 9,
+      "ones_from_fairy_tales": 7,
+      "tens_from_biographies": 9,
+      "tens_from_fairy_tales": 3,
+      "hundreds_from_biographies": 5,
+      "hundreds_from_fairy_tales": 8
+    },
+    "conditions": [
+      "위인전 599권은 백 모형 5개, 십 모형 9개, 낱개 모형 9개로 나타냅니다.",
+      "동화책 837권은 백 모형 8개, 십 모형 3개, 낱개 모형 7개로 나타냅니다.",
+      "낱개 모형 10개는 십 모형 1개로 바꿉니다.",
+      "십 모형 10개는 백 모형 1개로 바꿉니다.",
+      "백 모형 10개는 천 모형 1개로 바꿉니다."
+    ]
+  },
+  "given": [
+    {
+      "ref": "book.biography",
+      "value": {
+        "count": 599,
+        "unit": "권",
+        "place_values": {
+          "hundreds": 5,
+          "tens": 9,
+          "ones": 9
+        }
+      }
+    },
+    {
+      "ref": "book.fairy_tale",
+      "value": {
+        "count": 837,
+        "unit": "권",
+        "place_values": {
+          "hundreds": 8,
+          "tens": 3,
+          "ones": 7
+        }
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.base_ten_regrouping_and_total",
+    "type": "mixed_integer_list"
+  },
+  "method": "같은 자리의 수 모형끼리 더한 뒤, 모형 10개를 바로 윗자리 모형 1개로 바꾼다.",
+  "plan": [
+    "두 수의 낱개 모형을 더하고 10개를 십 모형으로 바꾼다.",
+    "두 수의 십 모형과 낱개 자리에서 바꾼 십 모형을 더한다.",
+    "십 모형 10개를 백 모형으로 바꾼다.",
+    "두 수의 백 모형과 십의 자리에서 바꾼 백 모형을 더한다.",
+    "백 모형 10개를 천 모형으로 바꾼다.",
+    "천, 백, 십, 낱개 모형의 수를 차례대로 읽어 전체 책 수를 구한다."
+  ],
+  "steps": [
+    {
+      "id": "step.add_ones",
+      "expr": "9 + 7",
+      "value": 16,
+      "explanation": "낱개 모형 9개와 7개를 더하면 16개입니다."
+    },
+    {
+      "id": "step.regroup_ones",
+      "expr": "16 = 1 * 10 + 6",
+      "value": {
+        "tens_models": 1,
+        "ones_models": 6
+      },
+      "explanation": "낱개 모형 16개는 십 모형 1개와 낱개 모형 6개입니다."
+    },
+    {
+      "id": "step.add_tens",
+      "expr": "9 + 3 + 1",
+      "value": 13,
+      "explanation": "십 모형 9개와 3개에 낱개 자리에서 바꾼 십 모형 1개를 더하면 13개입니다."
+    },
+    {
+      "id": "step.regroup_tens",
+      "expr": "13 = 1 * 10 + 3",
+      "value": {
+        "hundreds_models": 1,
+        "tens_models": 3
+      },
+      "explanation": "십 모형 13개는 백 모형 1개와 십 모형 3개입니다."
+    },
+    {
+      "id": "step.add_hundreds",
+      "expr": "5 + 8 + 1",
+      "value": 14,
+      "explanation": "백 모형 5개와 8개에 십의 자리에서 바꾼 백 모형 1개를 더하면 14개입니다."
+    },
+    {
+      "id": "step.regroup_hundreds",
+      "expr": "14 = 1 * 10 + 4",
+      "value": {
+        "thousands_models": 1,
+        "hundreds_models": 4
+      },
+      "explanation": "백 모형 14개는 천 모형 1개와 백 모형 4개입니다."
+    },
+    {
+      "id": "step.compose_total",
+      "expr": "1000 + 400 + 30 + 6",
+      "value": 1436,
+      "explanation": "천 모형 1개, 백 모형 4개, 십 모형 3개, 낱개 모형 6개이므로 모두 1436권입니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.ones_regrouping",
+      "expr": "9 + 7 == 1 * 10 + 6",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.tens_regrouping",
+      "expr": "9 + 3 + 1 == 1 * 10 + 3",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.hundreds_regrouping",
+      "expr": "5 + 8 + 1 == 1 * 10 + 4",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check_place_value_total",
+      "expr": "1 * 1000 + 4 * 100 + 3 * 10 + 6",
+      "expected": 1436,
+      "actual": 1436,
+      "pass": true
+    },
+    {
+      "id": "check_total_addition",
+      "expr": "599 + 837",
+      "expected": 1436,
+      "actual": 1436,
+      "pass": true
+    },
+    {
+      "id": "check_inverse_operation",
+      "expr": "1436 - 837",
+      "expected": 599,
+      "actual": 599,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": [
+      1,
+      6,
+      1,
+      3,
+      1,
+      4,
+      1436
+    ],
+    "unit": "",
+    "expression": "599 + 837 = 1436",
+    "items": [
+      {
+        "id": "answer.ones_to_tens",
+        "value": 1,
+        "unit": "개"
+      },
+      {
+        "id": "answer.remaining_ones",
+        "value": 6,
+        "unit": "개"
+      },
+      {
+        "id": "answer.tens_to_hundreds",
+        "value": 1,
+        "unit": "개"
+      },
+      {
+        "id": "answer.remaining_tens",
+        "value": 3,
+        "unit": "개"
+      },
+      {
+        "id": "answer.hundreds_to_thousands",
+        "value": 1,
+        "unit": "개"
+      },
+      {
+        "id": "answer.remaining_hundreds",
+        "value": 4,
+        "unit": "개"
+      },
+      {
+        "id": "answer.total_books",
+        "value": 1436,
+        "unit": "권"
+      }
+    ]
+  },
+  "understanding": {
+    "summary": "Find 수 모형을 다시 묶은 결과와 도서관의 전체 책 수 using the given information.",
+    "facts": [
+      {
+        "ref": "book.biography",
+        "label": "biography",
+        "value": 599,
+        "unit": "권",
+        "source": "explicit"
+      },
+      {
+        "ref": "book.fairy_tale",
+        "label": "fairy tale",
+        "value": 837,
+        "unit": "권",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.base_ten_regrouping_and_total",
+        "label": "수 모형을 다시 묶은 결과와 도서관의 전체 책 수",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "같은 자리의 수 모형끼리 더한 뒤, 모형 10개를 바로 윗자리 모형 1개로 바꾼다.",
+      "statement": "두 수의 낱개 모형을 더하고 10개를 십 모형으로 바꾼다.",
+      "symbolic": "9 + 7",
+      "uses": [
+        "book.biography",
+        "book.fairy_tale"
+      ],
+      "result": "answer.base_ten_regrouping_and_total"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "biography",
+          "fairy tale",
+          "수 모형을 다시 묶은 결과와 도서관의 전체 책 수"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}
