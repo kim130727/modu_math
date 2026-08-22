@@ -1629,15 +1629,18 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       const numeratorText = cleanMathText(numerator, "1");
       const denominatorText = cleanMathText(denominator, "2");
       const base = uniqueMathBase(mixed ? "mixed_fraction" : "fraction");
-      const fontSize = 30;
-      const barWidth = 42;
-      const width = mixed ? 88 : 54;
-      const height = 72;
+      const fontSize = 24;
+      const numLen = numeratorText.length;
+      const denLen = denominatorText.length;
+      const maxDigits = Math.max(numLen, denLen);
+      const barWidth = Math.max(26, maxDigits * 13 + 8);
+      const width = mixed ? barWidth + 28 : barWidth + 8;
+      const height = 54;
       const { x, y } = selectedInsertOrigin(width, height) || defaultInsertOrigin(width, height);
-      const fractionX = mixed ? snapValue(x + 58) : snapValue(x + width / 2);
-      const numeratorY = snapValue(y + 22);
-      const barY = snapValue(y + 36);
-      const denominatorY = snapValue(y + 58);
+      const fractionX = mixed ? snapValue(x + 24 + barWidth / 2) : snapValue(x + width / 2);
+      const numeratorY = snapValue(y + 18);
+      const barY = snapValue(y + 28);
+      const denominatorY = snapValue(y + 46);
       const patches = [];
       const regionId = selectedInsertRegionId() || firstUsableRegionId();
       const withRegion = (value) => regionId ? { ...value, region_id: regionId } : value;
@@ -1650,8 +1653,8 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
             kind: "text",
             content: {
               text: wholeText,
-              x: snapValue(x + 18),
-              y: snapValue(y + 44),
+              x: snapValue(x + 12),
+              y: snapValue(y + 34),
               font_size: fontSize,
               anchor: "middle",
               style_role: "body",

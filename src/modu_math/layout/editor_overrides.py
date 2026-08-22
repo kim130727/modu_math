@@ -239,6 +239,110 @@ def _infer_region_id_for_slot(
     return None
 
 
+FRACTION_LATEX_PATTERN = re.compile(
+    r"^([+-]?\d+)?\s*\\frac\s*\{([^{}]+)\}\s*\{([^{}]+)\}$"
+)
+
+
+def _expand_fraction_override_slots(
+    slot_id: str, content: dict[str, Any]
+) -> list[dict[str, Any]] | None:
+    text = content.get("text") or content.get("latex")
+    if not isinstance(text, str):
+        return None
+    match = FRACTION_LATEX_PATTERN.match(text.strip())
+    if not match:
+        return None
+
+    whole = match.group(1)
+    num = match.group(2)
+    den = match.group(3)
+
+    box_x = float(content.get("x", 0.0))
+    box_y = float(content.get("y", 0.0))
+    box_w = float(content.get("width", 50.0))
+    box_h = float(content.get("height", 60.0))
+    font_size = int(content.get("font_size", 28))
+    fill = content.get("fill", "#111827")
+    small_font = max(16, int(round(font_size * 0.78)))
+
+    num_len = len(num)
+    den_len = len(den)
+    max_digits = max(num_len, den_len)
+    bar_width = max(26.0, max_digits * 13.0 + 8.0)
+    whole_width = (len(whole) * small_font * 0.62 + 6.0) if whole else 0.0
+    total_width = whole_width + bar_width
+
+    start_x = box_x + max(0.0, (box_w - total_width) / 2.0)
+    fraction_center_x = start_x + whole_width + bar_width / 2.0
+    center_y = box_y + box_h / 2.0
+    bar_y = center_y
+    num_y = center_y - small_font * 0.35
+    den_y = center_y + small_font * 0.95
+
+    slots = []
+    if whole:
+        whole_x = start_x + whole_width / 2.0
+        whole_y = center_y + small_font * 0.35
+        slots.append({
+            "id": f"{slot_id}.whole",
+            "kind": "text",
+            "prompt": "",
+            "content": {
+                "text": whole,
+                "x": round(whole_x, 2),
+                "y": round(whole_y, 2),
+                "font_size": small_font,
+                "anchor": "middle",
+                "fill": fill,
+                "style_role": "body",
+            },
+        })
+
+    slots.append({
+        "id": f"{slot_id}.num",
+        "kind": "text",
+        "prompt": "",
+        "content": {
+            "text": num,
+            "x": round(fraction_center_x, 2),
+            "y": round(num_y, 2),
+            "font_size": small_font,
+            "anchor": "middle",
+            "fill": fill,
+            "style_role": "body",
+        },
+    })
+    slots.append({
+        "id": f"{slot_id}.bar",
+        "kind": "line",
+        "prompt": "",
+        "content": {
+            "x1": round(fraction_center_x - bar_width / 2.0, 2),
+            "y1": round(bar_y, 2),
+            "x2": round(fraction_center_x + bar_width / 2.0, 2),
+            "y2": round(bar_y, 2),
+            "stroke": fill,
+            "stroke_width": 2.2,
+        },
+    })
+    slots.append({
+        "id": f"{slot_id}.den",
+        "kind": "text",
+        "prompt": "",
+        "content": {
+            "text": den,
+            "x": round(fraction_center_x, 2),
+            "y": round(den_y, 2),
+            "font_size": small_font,
+            "anchor": "middle",
+            "fill": fill,
+            "style_role": "body",
+        },
+    })
+    return slots
+
+
 def _add_missing_override_slot(
     layout: dict[str, Any],
     slot_id: str,
@@ -255,6 +359,33 @@ def _add_missing_override_slot(
     if not isinstance(slots, list):
         layout["slots"] = []
         slots = layout["slots"]
+
+    fraction_expanded = _expand_fraction_override_slots(slot_id, content)
+    if fraction_expanded:
+        remove_ids = {
+            s.get("id")
+            for s in slots
+            if isinstance(s, dict)
+            and isinstance(s.get("id"), str)
+            and (s.get("id") == slot_id or s.get("id").startswith(f"{slot_id}."))
+        }
+        if remove_ids:
+            _remove_slot_ids_from_layout(layout, remove_ids)
+
+        for frac_slot in fraction_expanded:
+            slots.append(frac_slot)
+            for region in layout.get("regions", []):
+                if not isinstance(region, dict) or region.get("id") != region_id:
+                    continue
+                slot_ids = region.setdefault("slot_ids", [])
+                if isinstance(slot_ids, list) and frac_slot["id"] not in slot_ids:
+                    slot_ids.append(frac_slot["id"])
+                break
+            reading_order = layout.get("reading_order")
+            if isinstance(reading_order, list) and frac_slot["id"] not in reading_order:
+                reading_order.append(frac_slot["id"])
+        return
+
     normalized_content = dict(content)
     _normalize_answer_input_interaction(normalized_content)
     slots.append(

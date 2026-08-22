@@ -288,8 +288,12 @@ export function EditorKonva() {
   }, [addShape, fitInsertBox, nextId]);
 
   const addMathShape = useCallback(
-    (latex: string, width = 260, height = 72) => {
-      const box = fitInsertBox(width, height, 48, 32);
+    (latex: string, width?: number, height?: number) => {
+      const fontSize = 30;
+      const fracSize = fractionMathSize(latex, fontSize);
+      const targetWidth = width ?? (fracSize ? fracSize.width : 260);
+      const targetHeight = height ?? (fracSize ? fracSize.height : 72);
+      const box = fitInsertBox(targetWidth, targetHeight, 48, 32);
       addShape({
         id: nextId("math"),
         type: "math",
@@ -298,7 +302,7 @@ export function EditorKonva() {
         latex,
         width: box.width,
         height: box.height,
-        fontSize: 30,
+        fontSize,
       });
     },
     [addShape, fitInsertBox, nextId],
@@ -311,11 +315,11 @@ export function EditorKonva() {
   }, [addMathShape]);
 
   const addProperFraction = useCallback(() => {
-    addMathShape("\\frac{1}{2}", 120, 84);
+    addMathShape("\\frac{1}{2}");
   }, [addMathShape]);
 
   const addMixedFraction = useCallback(() => {
-    addMathShape("1\\frac{1}{2}", 160, 84);
+    addMathShape("1\\frac{1}{2}");
   }, [addMathShape]);
 
   const addImage = useCallback(() => {
@@ -1686,8 +1690,8 @@ function applyAutoMathSizing(nextShape: Extract<EditorShape, { type: "math" }>, 
   if (!fractionSize) return nextShape;
   return {
     ...nextShape,
-    width: Math.max(nextShape.width, fractionSize.width),
-    height: Math.max(nextShape.height, fractionSize.height),
+    width: fractionSize.width,
+    height: fractionSize.height,
   };
 }
 
@@ -1695,13 +1699,13 @@ function fractionMathSize(latex: string, fontSize: number): { width: number; hei
   const match = latex.trim().match(/^([+-]?\d+)?\s*\\frac\s*\{([^{}]+)\}\s*\{([^{}]+)\}$/);
   if (!match) return null;
   const smallFont = Math.max(16, fontSize * 0.78);
-  const wholeWidth = match[1] ? Math.max(smallFont, match[1].length * smallFont * 0.62) + 8 : 0;
+  const wholeWidth = match[1] ? Math.max(smallFont, match[1].length * smallFont * 0.62) + 6 : 0;
   const numeratorWidth = Math.max(smallFont, match[2].length * smallFont * 0.62);
   const denominatorWidth = Math.max(smallFont, match[3].length * smallFont * 0.62);
-  const fractionWidth = Math.max(34, numeratorWidth, denominatorWidth) + 12;
+  const fractionWidth = Math.max(26, numeratorWidth, denominatorWidth) + 8;
   return {
-    width: Math.ceil(wholeWidth + fractionWidth + fontSize),
-    height: Math.ceil(smallFont * 2.25 + fontSize * 0.6),
+    width: Math.ceil(wholeWidth + fractionWidth + 6),
+    height: Math.ceil(smallFont * 2.25 + 6),
   };
 }
 

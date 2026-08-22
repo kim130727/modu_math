@@ -531,13 +531,12 @@ class _NextProblemCard extends StatelessWidget {
 
 typedef SubUnitOpener = void Function(String unit, {String? subUnit});
 
-class _SubUnitItem {
-  const _SubUnitItem({
+class _UnitItem {
+  const _UnitItem({
     required this.unit,
     required this.unitTopic,
     required this.semester,
     required this.unitNumber,
-    required this.subUnit,
     required this.count,
   });
 
@@ -545,7 +544,6 @@ class _SubUnitItem {
   final String unitTopic;
   final String semester;
   final int unitNumber;
-  final String subUnit;
   final int count;
 }
 
@@ -610,19 +608,17 @@ class _UnitRailState extends State<_UnitRail> {
   @override
   Widget build(BuildContext context) {
     final strings = AppStrings.of(context);
-    final subUnitGroups = <String, List<ProblemSummary>>{};
+    final unitGroups = <String, List<ProblemSummary>>{};
     for (final problem in widget.problems) {
-      final key = '${problem.unit}:::${problem.subUnit}';
-      subUnitGroups.putIfAbsent(key, () => []).add(problem);
+      unitGroups.putIfAbsent(problem.unit, () => []).add(problem);
     }
-    final items = subUnitGroups.entries.map((entry) {
+    final items = unitGroups.entries.map((entry) {
       final sample = entry.value.first;
-      return _SubUnitItem(
+      return _UnitItem(
         unit: sample.unit,
         unitTopic: sample.unitTopic,
         semester: sample.semester,
         unitNumber: sample.unitNumber,
-        subUnit: sample.subUnit,
         count: entry.value.length,
       );
     }).toList()
@@ -631,11 +627,7 @@ class _UnitRailState extends State<_UnitRail> {
         if (semCmp != 0) {
           return semCmp;
         }
-        final unitCmp = a.unitNumber.compareTo(b.unitNumber);
-        if (unitCmp != 0) {
-          return unitCmp;
-        }
-        return a.subUnit.compareTo(b.subUnit);
+        return a.unitNumber.compareTo(b.unitNumber);
       });
 
     return Column(
@@ -690,10 +682,7 @@ class _UnitRailState extends State<_UnitRail> {
                   final item = items[index];
                   return _UnitTile(
                     item: item,
-                    onTap: () => widget.onOpenUnit(
-                      item.unit,
-                      subUnit: item.subUnit,
-                    ),
+                    onTap: () => widget.onOpenUnit(item.unit),
                   );
                 },
               ),
@@ -711,15 +700,16 @@ class _UnitTile extends StatelessWidget {
     required this.onTap,
   });
 
-  final _SubUnitItem item;
+  final _UnitItem item;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     final strings = AppStrings.of(context);
-    final unitLabel = '${item.semester} ${item.unitNumber}. ${item.unitTopic}';
+    final badgeLabel = '${item.semester} ${item.unitNumber}단원';
+    final titleLabel = '${item.unitNumber}. ${item.unitTopic}';
     return SizedBox(
-      width: 270,
+      width: 260,
       child: Card(
         margin: EdgeInsets.zero,
         child: InkWell(
@@ -737,7 +727,7 @@ class _UnitTile extends StatelessWidget {
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
-                    strings.unitTitle(unitLabel),
+                    badgeLabel,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
@@ -747,9 +737,9 @@ class _UnitTile extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 10),
                 Text(
-                  item.subUnit,
+                  strings.unitTitle(titleLabel),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(

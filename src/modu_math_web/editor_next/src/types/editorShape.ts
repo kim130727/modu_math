@@ -152,6 +152,9 @@ export type MathShape = BaseShape & {
   width: number;
   height: number;
   fontSize?: number;
+  fill?: string;
+  color?: string;
+  stroke?: string;
 };
 
 export type BaseTenBlockKind = "thousand" | "hundred" | "ten" | "one";
