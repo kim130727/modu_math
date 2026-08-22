@@ -574,6 +574,47 @@ void main() {
 
       expect(content.prompt, equals('□ 안에 알맞은 수를 써넣으시오.'));
     });
+
+    test('resolves unit info accurately from folder path, metadata, or prefix', () {
+      final multiplicationProblem = ContentRepository.resolveUnitInfo(
+        path: 'examples/problems/ko/3-1/4_곱셈',
+        filePrefix: 'S3_초등_3_008578',
+        semantic: {
+          'problem_type': 'comparison_selection',
+          'metadata': {'title': '계산 결과가 가장 작은 것을 찾아 선택하세요.'},
+        },
+      );
+      expect(multiplicationProblem.grade, equals(3));
+      expect(multiplicationProblem.semester, equals(1));
+      expect(multiplicationProblem.unitNumber, equals(4));
+      expect(multiplicationProblem.unitTopic, equals('곱셈'));
+
+      final circleProblem = ContentRepository.resolveUnitInfo(
+        path: 'examples/problems/ko',
+        filePrefix: 'S3_초등_3_008692',
+        semantic: {
+          'problem_type': '도형_원의중심_선택',
+          'metadata': {'title': '원의 중심을 나타내는 기호를 선택하세요.'},
+        },
+      );
+      expect(circleProblem.grade, equals(3));
+      expect(circleProblem.semester, equals(2));
+      expect(circleProblem.unitNumber, equals(3));
+      expect(circleProblem.unitTopic, equals('원'));
+
+      final capacityProblem = ContentRepository.resolveUnitInfo(
+        path: 'examples/problems/ko/3-2/5_들이와_무게',
+        filePrefix: 'S3_초등_3_008744',
+        semantic: {
+          'problem_type': 'capacity_comparison_choice',
+          'metadata': {'title': '들이 비교'},
+        },
+      );
+      expect(capacityProblem.grade, equals(3));
+      expect(capacityProblem.semester, equals(2));
+      expect(capacityProblem.unitNumber, equals(5));
+      expect(capacityProblem.unitTopic, equals('들이와 무게'));
+    });
   });
 }
 

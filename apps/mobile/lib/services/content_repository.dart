@@ -505,16 +505,24 @@ class ContentRepository {
     required String path,
     required String filePrefix,
   }) async {
-    final grade = _gradeFromPrefix(filePrefix);
-    final semester = _semesterFromPrefix(filePrefix);
-    final unitNumber = _unitNumberFromPrefix(filePrefix);
-    final unitTopic = _unitTopicFor(grade, semester, unitNumber);
     final basePath = path.isEmpty ? filePrefix : '$path/$filePrefix';
     final semantic = await _loadOptionalJson('$basePath.semantic.json');
     final metadata = _mapAt(semantic, 'metadata');
+
+    final unitInfo = resolveUnitInfo(
+      path: path,
+      filePrefix: filePrefix,
+      semantic: semantic,
+    );
+
+    final grade = unitInfo.grade;
+    final semester = unitInfo.semester;
+    final unitNumber = unitInfo.unitNumber;
+    final unitTopic = unitInfo.unitTopic;
+
     final title = _summaryTitle(metadata, unitTopic);
     final problemType = _problemTypeLabel(
-      semantic['problem_type']?.toString(),
+      semantic?['problem_type']?.toString(),
     );
     final raw = <String, dynamic>{
       'id': filePrefix,
@@ -528,14 +536,180 @@ class ContentRepository {
       'semester': '$semester학기',
       'unitNumber': unitNumber,
       'unitTopic': unitTopic,
-      if (semantic['problem_type'] != null)
-        'problemType': semantic['problem_type'].toString(),
+      if (semantic?['problem_type'] != null)
+        'problemType': semantic!['problem_type'].toString(),
       if (metadata['topic'] != null) 'topic': metadata['topic'].toString(),
     };
     return ProblemSummary.fromJson(raw);
   }
 
-  String _unitTopicFor(int grade, int semester, int unitNumber) {
+  static ParsedUnitInfo resolveUnitInfo({
+    required String path,
+    required String filePrefix,
+    Map<String, dynamic>? semantic,
+  }) {
+    // 1. Folder path check (e.g. 3-1/1_덧셈과_뺄셈, 3-2/3_원, 들이와_무게 등)
+    final normalizedPath = path.replaceAll(r'\', '/');
+    final segments =
+        normalizedPath.split('/').where((s) => s.isNotEmpty).toList();
+
+    int? detectedGrade;
+    int? detectedSemester;
+    int? detectedUnitNumber;
+    String? detectedUnitTopic;
+
+    for (final segment in segments) {
+      if (segment == '3-1' || segment == '3_1' || segment == '1학기') {
+        detectedGrade = 3;
+        detectedSemester = 1;
+      } else if (segment == '3-2' || segment == '3_2' || segment == '2학기') {
+        detectedGrade = 3;
+        detectedSemester = 2;
+      }
+
+      final matchNumbered = RegExp(r'^(\d+)[._\s]+(.+)$').firstMatch(segment);
+      if (matchNumbered != null) {
+        final num = int.tryParse(matchNumbered.group(1)!);
+        final topicName = matchNumbered.group(2)!.replaceAll('_', ' ').trim();
+        if (num != null && num >= 1 && num <= 6) {
+          detectedUnitNumber = num;
+          detectedUnitTopic = topicName;
+        }
+      } else if (segment.contains('덧셈') ||
+          segment.contains('뺄셈') ||
+          segment.contains('평면도형') ||
+          segment.contains('나눗셈') ||
+          segment.contains('곱셈') ||
+          segment.contains('길이') ||
+          segment.contains('시간') ||
+          segment.contains('분수') ||
+          segment.contains('소수') ||
+          segment.contains('원') ||
+          segment.contains('들이') ||
+          segment.contains('무게') ||
+          segment.contains('자료')) {
+        detectedUnitTopic = segment.replaceAll('_', ' ').trim();
+      }
+    }
+
+    // 2. Metadata & problem_type & title & tags check
+    final metadata = semantic != null
+        ? _mapAt(semantic, 'metadata')
+        : const <String, dynamic>{};
+    final problemType =
+        semantic?['problem_type']?.toString().toLowerCase() ?? '';
+    final metaTitle = metadata['title']?.toString() ?? '';
+    final metaInstruction = metadata['instruction']?.toString() ?? '';
+    final metaTopic = metadata['topic']?.toString() ?? '';
+    final tags = (metadata['tags'] is List
+            ? (metadata['tags'] as List).join(' ')
+            : '')
+        .toLowerCase();
+    final metaCombined =
+        '$problemType $metaTitle $metaInstruction $metaTopic $tags'
+            .toLowerCase();
+
+    if (detectedUnitTopic == null) {
+      if (metaCombined.contains('원') ||
+          metaCombined.contains('circle') ||
+          metaCombined.contains('지름') ||
+          metaCombined.contains('반지름') ||
+          metaCombined.contains('중심') ||
+          metaCombined.contains('컴퍼스')) {
+        detectedGrade = 3;
+        detectedSemester = 2;
+        detectedUnitNumber = 3;
+        detectedUnitTopic = '원';
+      } else if (metaCombined.contains('들이') ||
+          metaCombined.contains('무게') ||
+          metaCombined.contains('capacity') ||
+          metaCombined.contains('weight') ||
+          metaCombined.contains('어림') ||
+          metaCombined.contains('저울') ||
+          metaCombined.contains('생수병') ||
+          metaCombined.contains('물병') ||
+          metaCombined.contains('리터') ||
+          metaCombined.contains('그램')) {
+        detectedGrade = 3;
+        detectedSemester = 2;
+        detectedUnitNumber = 5;
+        detectedUnitTopic = '들이와 무게';
+      } else if (metaCombined.contains('곱셈') ||
+          metaCombined.contains('multiplication') ||
+          metaCombined.contains('product')) {
+        detectedGrade = 3;
+        detectedSemester = 1;
+        detectedUnitNumber = 4;
+        detectedUnitTopic = '곱셈';
+      } else if (metaCombined.contains('나눗셈') ||
+          metaCombined.contains('division') ||
+          metaCombined.contains('remainder') ||
+          metaCombined.contains('몫') ||
+          metaCombined.contains('나머지')) {
+        detectedGrade = 3;
+        detectedSemester = 1;
+        detectedUnitNumber = 3;
+        detectedUnitTopic = '나눗셈';
+      } else if (metaCombined.contains('평면도형') ||
+          metaCombined.contains('직각') ||
+          metaCombined.contains('삼각형') ||
+          metaCombined.contains('직사각형') ||
+          metaCombined.contains('정사각형') ||
+          metaCombined.contains('geometry') ||
+          metaCombined.contains('도형')) {
+        detectedGrade = 3;
+        detectedSemester = 1;
+        detectedUnitNumber = 2;
+        detectedUnitTopic = '평면도형';
+      } else if (metaCombined.contains('분수') ||
+          metaCombined.contains('fraction') ||
+          metaCombined.contains('소수')) {
+        detectedGrade = 3;
+        detectedSemester = 1;
+        detectedUnitNumber = 6;
+        detectedUnitTopic = '분수와 소수';
+      } else if (metaCombined.contains('길이') ||
+          metaCombined.contains('시간') ||
+          metaCombined.contains('거리') ||
+          metaCombined.contains('초')) {
+        detectedGrade = 3;
+        detectedSemester = 1;
+        detectedUnitNumber = 5;
+        detectedUnitTopic = '길이와 시간';
+      } else if (metaCombined.contains('덧셈') ||
+          metaCombined.contains('뺄셈') ||
+          metaCombined.contains('addition') ||
+          metaCombined.contains('subtraction') ||
+          metaCombined.contains('세로셈') ||
+          metaCombined.contains('받아올림') ||
+          metaCombined.contains('수 모형')) {
+        detectedGrade = 3;
+        detectedSemester = 1;
+        detectedUnitNumber = 1;
+        detectedUnitTopic = '덧셈과 뺄셈';
+      }
+    }
+
+    // 3. Fallback to standard filePrefix parsing
+    final fallbackGrade = _gradeFromPrefix(filePrefix);
+    final fallbackSemester = _semesterFromPrefix(filePrefix);
+    final fallbackUnitNumber = _unitNumberFromPrefix(filePrefix);
+
+    final grade = detectedGrade ?? fallbackGrade;
+    final semester = detectedSemester ?? fallbackSemester;
+    final unitNumber = detectedUnitNumber ?? fallbackUnitNumber;
+    final unitTopic =
+        detectedUnitTopic ?? _unitTopicFor(grade, semester, unitNumber);
+
+    return ParsedUnitInfo(
+      grade: grade,
+      semester: semester,
+      unitNumber: unitNumber,
+      unitTopic: unitTopic,
+    );
+  }
+
+  static String _unitTopicFor(int grade, int semester, int unitNumber) {
     if (grade == 3 && semester == 1) {
       return switch (unitNumber) {
         1 => '덧셈과 뺄셈',
@@ -885,4 +1059,18 @@ class ProblemJsonBundle {
   final Map<String, dynamic> layout;
   final Map<String, dynamic> renderer;
   final Map<String, dynamic> solvable;
+}
+
+class ParsedUnitInfo {
+  const ParsedUnitInfo({
+    required this.grade,
+    required this.semester,
+    required this.unitNumber,
+    required this.unitTopic,
+  });
+
+  final int grade;
+  final int semester;
+  final int unitNumber;
+  final String unitTopic;
 }
