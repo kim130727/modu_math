@@ -63,6 +63,9 @@ export type BaseShape = {
   opacity?: number;
   locked?: boolean;
   visible?: boolean;
+  sourceX?: number;
+  sourceY?: number;
+  sourceTransform?: string;
   sourceRegionId?: string;
   semanticRole?: string;
   interaction?: InputInteraction;
