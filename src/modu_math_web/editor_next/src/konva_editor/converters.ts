@@ -504,9 +504,17 @@ function baseTenBlockToProblemObjects(shape: Extract<EditorShape, { type: "baseT
   const fill = shape.fill ?? "#b9dd9f";
   const topFill = shape.topFill ?? "#d2edbf";
   const sideFill = shape.sideFill ?? "#9fcd86";
-  const depth = Math.max(0, Math.min(shape.depth, shape.width * 0.55, shape.height * 0.55));
+  const depth = Math.max(0, shape.depth);
   const frontY = depth;
-  const grid = shape.kind === "one" ? 1 : 10;
+  const { cols, rows, depthCols } =
+    shape.kind === "thousand"
+      ? { cols: 10, rows: 10, depthCols: 10 }
+      : shape.kind === "hundred"
+      ? { cols: 10, rows: 10, depthCols: 1 }
+      : shape.kind === "ten"
+      ? { cols: 1, rows: 10, depthCols: 1 }
+      : { cols: 1, rows: 1, depthCols: 1 };
+
   const objects: ProblemObject[] = [
     pathObject(`${shape.id}_top`, shape.x, shape.y, shape.width + depth, depth, `M 0 ${frontY} L ${depth} 0 L ${shape.width + depth} 0 L ${shape.width} ${frontY} Z`, topFill, stroke, strokeWidth),
     pathObject(
@@ -536,21 +544,36 @@ function baseTenBlockToProblemObjects(shape: Extract<EditorShape, { type: "baseT
     },
   ];
 
-  if (grid > 1) {
-    const segments: string[] = [];
-    for (let i = 1; i < grid; i += 1) {
-      const x = (shape.width / grid) * i;
-      const y = frontY + (shape.height / grid) * i;
-      const d = (depth / grid) * i;
-      segments.push(segmentD(x, frontY, x, frontY + shape.height));
-      segments.push(segmentD(0, y, shape.width, y));
-      if (depth > 0) {
-        segments.push(segmentD(d, frontY - d, shape.width + d, frontY - d));
-        segments.push(segmentD(x, frontY, x + depth, 0));
-        segments.push(segmentD(shape.width + d, frontY - d, shape.width + d, frontY - d + shape.height));
-        segments.push(segmentD(shape.width, y, shape.width + depth, y - depth));
-      }
+  const segments: string[] = [];
+
+  // 1. Front face grid
+  for (let i = 1; i < cols; i += 1) {
+    const x = (shape.width / cols) * i;
+    segments.push(segmentD(x, frontY, x, frontY + shape.height));
+  }
+  for (let j = 1; j < rows; j += 1) {
+    const y = frontY + (shape.height / rows) * j;
+    segments.push(segmentD(0, y, shape.width, y));
+  }
+
+  // 2. Top & Side face grids
+  if (depth > 0) {
+    for (let i = 1; i < cols; i += 1) {
+      const x = (shape.width / cols) * i;
+      segments.push(segmentD(x, frontY, x + depth, 0));
     }
+    for (let k = 1; k < depthCols; k += 1) {
+      const d = (depth / depthCols) * k;
+      segments.push(segmentD(d, frontY - d, shape.width + d, frontY - d));
+      segments.push(segmentD(shape.width + d, frontY - d, shape.width + d, frontY - d + shape.height));
+    }
+    for (let j = 1; j < rows; j += 1) {
+      const y = frontY + (shape.height / rows) * j;
+      segments.push(segmentD(shape.width, y, shape.width + depth, y - depth));
+    }
+  }
+
+  if (segments.length > 0) {
     objects.push(pathObject(`${shape.id}_grid`, shape.x, shape.y, shape.width + depth, shape.height + depth, segments.join(" "), "none", stroke, 0.38));
   }
 

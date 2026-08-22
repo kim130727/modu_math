@@ -1,15 +1,13 @@
 {
-  "problem_id": "P3_1_01_00040_02151",
-  "problem_type": "multi_answer_vertical_addition",
+  "problem_id": "P3_1_01_00040_02151_2",
+  "problem_type": "vertical_addition",
   "metadata": {
-    "title": "세 자리 수의 덧셈 계산",
+    "title": "세 자리 수의 덧셈 계산 (2)",
     "tags": [],
-    "instruction": "(1)",
+    "instruction": "3 7 3",
     "question": "□ 안에 알맞은 수를 써넣으시오.",
     "required_layout_ids": [
-      "konva_1785113855579_rect_123138",
-      "konva_1785113855579_paste_146161_0",
-      "konva_1785113855579_paste_150620_0"
+      "slot.answer_box"
     ],
     "extraction_confidence": 1.0,
     "grade": 3,
@@ -21,40 +19,15 @@
   "domain": {
     "objects": [
       {
-        "id": "addition.problem_1",
-        "type": "vertical_addition",
-        "label": "첫 번째 세로셈",
-        "first_addend": 449,
-        "second_addend": 275,
-        "sum": 724
-      },
-      {
         "id": "addition.problem_2",
         "type": "vertical_addition",
-        "label": "두 번째 세로셈",
+        "label": "세로셈",
         "first_addend": 373,
         "second_addend": 468,
         "sum": 841
-      },
-      {
-        "id": "addition.problem_3",
-        "type": "vertical_addition",
-        "label": "세 번째 세로셈",
-        "first_addend": 536,
-        "second_addend": 287,
-        "sum": 823
       }
     ],
     "relations": [
-      {
-        "id": "relation.problem_1_sum",
-        "type": "sum_of",
-        "subject": "addition.problem_1",
-        "values": [
-          449,
-          275
-        ]
-      },
       {
         "id": "relation.problem_2_sum",
         "type": "sum_of",
@@ -63,41 +36,30 @@
           373,
           468
         ]
-      },
-      {
-        "id": "relation.problem_3_sum",
-        "type": "sum_of",
-        "subject": "addition.problem_3",
-        "values": [
-          536,
-          287
-        ]
       }
     ],
     "confidence": 1.0
   },
   "answer": {
-    "value": [
-      724
-    ],
-    "unit": "",
-    "values": [
-      724
-    ],
     "blanks": [
       {
-        "id": "konva_1785113855579_paste_146161_0",
-        "slot_id": "konva_1785113855579_paste_146161_0",
-        "expected": 724,
-        "unit": ""
+        "id": "slot.answer_box",
+        "slot_id": "slot.answer_box",
+        "expected": 841
       }
     ],
+    "choices": [],
     "answer_key": [
       {
-        "slot_id": "konva_1785113855579_paste_146161_0",
-        "value": 724,
-        "unit": ""
+        "slot_id": "slot.answer_box",
+        "value": 841
       }
+    ],
+    "confidence": 1.0,
+    "value": 841,
+    "unit": "",
+    "values": [
+      841
     ]
   }
 }

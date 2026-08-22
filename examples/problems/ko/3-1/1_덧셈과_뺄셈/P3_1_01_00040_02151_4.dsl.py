@@ -9,8 +9,8 @@ from modu_math.dsl import (
     TextBoxSlot,
 )
 
-PROBLEM_ID = "P3_1_01_00040_02151_2"
-PROBLEM_TITLE = "세 자리 수의 덧셈 계산 (2)"
+PROBLEM_ID = "P3_1_01_00040_02151_4"
+PROBLEM_TITLE = "세 자리 수의 덧셈 계산 (4)"
 
 
 def build_problem_template() -> ProblemTemplate:
@@ -57,7 +57,7 @@ def build_problem_template() -> ProblemTemplate:
                 y=96,
                 width=120,
                 height=40,
-                text="3 7 3",
+                text="6 5 8",
                 font_size=26,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
@@ -83,7 +83,7 @@ def build_problem_template() -> ProblemTemplate:
                 y=136,
                 width=120,
                 height=40,
-                text="4 6 8",
+                text="1 9 4",
                 font_size=26,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
@@ -138,19 +138,19 @@ def build_problem_template() -> ProblemTemplate:
 PROBLEM_TEMPLATE = build_problem_template()
 
 ANSWER = {
-    "value": 841,
+    "value": 852,
     "unit": "",
-    "values": [841],
+    "values": [852],
     "choices": [],
     "blanks": [
         {
             "id": "slot.answer_box",
             "slot_id": "slot.answer_box",
-            "expected": 841,
+            "expected": 852,
         },
     ],
     "answer_key": [
-        {"slot_id": "slot.answer_box", "value": 841},
+        {"slot_id": "slot.answer_box", "value": 852},
     ],
 }
 
@@ -171,20 +171,20 @@ SEMANTIC = {
     "domain": {
         "objects": [
             {
-                "id": "addition.problem_2",
+                "id": "addition.problem_4",
                 "type": "vertical_addition",
                 "label": "세로셈",
-                "first_addend": 373,
-                "second_addend": 468,
-                "sum": 841,
+                "first_addend": 658,
+                "second_addend": 194,
+                "sum": 852,
             },
         ],
         "relations": [
             {
-                "id": "relation.problem_2_sum",
+                "id": "relation.problem_4_sum",
                 "type": "sum_of",
-                "subject": "addition.problem_2",
-                "values": [373, 468],
+                "subject": "addition.problem_4",
+                "values": [658, 194],
             },
         ],
     },
@@ -201,8 +201,8 @@ SOLVABLE = {
         "target_label": "세로셈 계산 결과",
         "unit": "",
         "quantities": {
-            "first_addend": 373,
-            "second_addend": 468,
+            "first_addend": 658,
+            "second_addend": 194,
         },
         "conditions": [
             "일의 자리부터 차례대로 계산합니다.",
@@ -211,10 +211,10 @@ SOLVABLE = {
     },
     "given": [
         {
-            "ref": "addition.problem_2",
+            "ref": "addition.problem_4",
             "value": {
-                "first_addend": 373,
-                "second_addend": 468,
+                "first_addend": 658,
+                "second_addend": 194,
             },
         },
     ],
@@ -224,42 +224,42 @@ SOLVABLE = {
     },
     "method": "일의 자리부터 더하고 받아올림을 다음 자리 계산에 포함한다.",
     "plan": [
-        "일의 자리 3+8=11을 계산하여 1을 올리고 1을 쓴다.",
-        "십의 자리 1+7+6=14를 계산하여 1을 올리고 4를 쓴다.",
-        "백의 자리 1+3+4=8을 쓴다.",
+        "일의 자리 8+4=12를 계산하여 1을 올리고 2를 쓴다.",
+        "십의 자리 1+5+9=15를 계산하여 1을 올리고 5를 쓴다.",
+        "백의 자리 1+6+1=8을 쓴다.",
     ],
     "steps": [
         {
             "id": "step.add_numbers",
-            "expr": "373 + 468",
-            "value": 841,
-            "explanation": "373과 468을 더하면 841입니다.",
+            "expr": "658 + 194",
+            "value": 852,
+            "explanation": "658과 194를 더하면 852입니다.",
         },
     ],
     "checks": [
         {
             "id": "check.total",
-            "expr": "373 + 468",
-            "expected": 841,
-            "actual": 841,
+            "expr": "658 + 194",
+            "expected": 852,
+            "actual": 852,
             "pass": True,
         },
     ],
     "answer": ANSWER,
     "understanding": {
-        "summary": "373과 468의 합을 계산합니다.",
+        "summary": "658과 194의 합을 계산합니다.",
         "facts": [
             {
                 "ref": "first_addend",
                 "label": "첫 번째 수",
-                "value": 373,
+                "value": 658,
                 "unit": "",
                 "source": "explicit",
             },
             {
                 "ref": "second_addend",
                 "label": "두 번째 수",
-                "value": 468,
+                "value": 194,
                 "unit": "",
                 "source": "explicit",
             },
@@ -275,9 +275,9 @@ SOLVABLE = {
         "relation": {
             "type": "sum_of",
             "statement": "두 수의 합을 구합니다.",
-            "symbolic": "373 + 468",
+            "symbolic": "658 + 194",
             "uses": ["first_addend", "second_addend"],
-            "result": "841",
+            "result": "852",
         },
     },
 }

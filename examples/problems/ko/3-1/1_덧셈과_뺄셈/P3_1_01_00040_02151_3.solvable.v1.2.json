@@ -1,46 +1,20 @@
 {
   "schema": "modu.solvable.v1.2",
-  "problem_id": "P3_1_01_00040_02151",
-  "problem_type": "multi_answer_vertical_addition",
+  "problem_id": "P3_1_01_00040_02151_3",
+  "problem_type": "vertical_addition",
   "inputs": {
-    "target_label": "각 세로셈의 계산 결과",
+    "target_label": "세로셈 계산 결과",
     "unit": "",
-    "answer_type": "number_list",
     "quantities": {
-      "problem_1": {
-        "first_addend": 449,
-        "second_addend": 275
-      },
-      "problem_2": {
-        "first_addend": 373,
-        "second_addend": 468
-      },
-      "problem_3": {
-        "first_addend": 536,
-        "second_addend": 287
-      }
+      "first_addend": 536,
+      "second_addend": 287
     },
     "conditions": [
       "일의 자리부터 차례대로 계산합니다.",
-      "각 자리의 합이 10 이상이면 바로 윗자리로 1을 받아올림합니다.",
-      "각 세로셈의 계산 결과를 네모 안에 씁니다."
+      "각 자리의 합이 10 이상이면 바로 윗자리로 1을 받아올림합니다."
     ]
   },
   "given": [
-    {
-      "ref": "addition.problem_1",
-      "value": {
-        "first_addend": 449,
-        "second_addend": 275
-      }
-    },
-    {
-      "ref": "addition.problem_2",
-      "value": {
-        "first_addend": 373,
-        "second_addend": 468
-      }
-    },
     {
       "ref": "addition.problem_3",
       "value": {
@@ -50,30 +24,18 @@
     }
   ],
   "target": {
-    "ref": "answer.vertical_addition_results",
-    "type": "number_list"
+    "ref": "answer.value",
+    "type": "number"
   },
-  "method": "각 세로셈에서 일의 자리부터 더하고 받아올림을 다음 자리 계산에 포함한다.",
+  "method": "일의 자리부터 더하고 받아올림을 다음 자리 계산에 포함한다.",
   "plan": [
-    "첫 번째 세로셈 449+275를 계산한다.",
-    "두 번째 세로셈 373+468을 계산한다.",
-    "세 번째 세로셈 536+287을 계산한다."
+    "일의 자리 6+7=13을 계산하여 1을 올리고 3을 쓴다.",
+    "십의 자리 1+3+8=12를 계산하여 1을 올리고 2를 쓴다.",
+    "백의 자리 1+5+2=8을 쓴다."
   ],
   "steps": [
     {
-      "id": "step.problem_1.compose_sum",
-      "expr": "449 + 275",
-      "value": 724,
-      "explanation": "449와 275를 더하면 724입니다."
-    },
-    {
-      "id": "step.problem_2.compose_sum",
-      "expr": "373 + 468",
-      "value": 841,
-      "explanation": "373과 468을 더하면 841입니다."
-    },
-    {
-      "id": "step.problem_3.compose_sum",
+      "id": "step.add_numbers",
       "expr": "536 + 287",
       "value": 823,
       "explanation": "536과 287을 더하면 823입니다."
@@ -81,21 +43,7 @@
   ],
   "checks": [
     {
-      "id": "check.problem_1.total",
-      "expr": "449 + 275",
-      "expected": 724,
-      "actual": 724,
-      "pass": true
-    },
-    {
-      "id": "check.problem_2.total",
-      "expr": "373 + 468",
-      "expected": 841,
-      "actual": 841,
-      "pass": true
-    },
-    {
-      "id": "check.problem_3.total",
+      "id": "check.total",
       "expr": "536 + 287",
       "expected": 823,
       "actual": 823,
@@ -103,81 +51,61 @@
     }
   ],
   "answer": {
-    "value": [
-      724
-    ],
+    "value": 823,
     "unit": "",
     "values": [
-      724
+      823
     ],
+    "choices": [],
     "blanks": [
       {
-        "id": "konva_1785113855579_paste_150620_0",
-        "slot_id": "konva_1785113855579_paste_150620_0",
-        "expected": 724,
-        "unit": ""
+        "id": "slot.answer_box",
+        "slot_id": "slot.answer_box",
+        "expected": 823
       }
     ],
     "answer_key": [
       {
-        "slot_id": "konva_1785113855579_paste_150620_0",
-        "value": 724,
-        "unit": ""
+        "slot_id": "slot.answer_box",
+        "value": 823
       }
     ]
   },
   "understanding": {
-    "summary": "세 자리 수 세로셈 세 개의 합을 구합니다.",
+    "summary": "536과 287의 합을 계산합니다.",
     "facts": [
       {
-        "ref": "addition.problem_1",
-        "label": "첫 번째 세로셈",
-        "value": {
-          "first_addend": 449,
-          "second_addend": 275
-        },
+        "ref": "first_addend",
+        "label": "첫 번째 수",
+        "value": 536,
         "unit": "",
         "source": "explicit"
       },
       {
-        "ref": "addition.problem_2",
-        "label": "두 번째 세로셈",
-        "value": {
-          "first_addend": 373,
-          "second_addend": 468
-        },
-        "unit": "",
-        "source": "explicit"
-      },
-      {
-        "ref": "addition.problem_3",
-        "label": "세 번째 세로셈",
-        "value": {
-          "first_addend": 536,
-          "second_addend": 287
-        },
+        "ref": "second_addend",
+        "label": "두 번째 수",
+        "value": 287,
         "unit": "",
         "source": "explicit"
       }
     ],
     "unknowns": [
       {
-        "ref": "answer.vertical_addition_results",
-        "label": "각 세로셈의 계산 결과",
+        "ref": "answer.value",
+        "label": "계산 결과",
         "unit": "",
         "source": "unknown"
       }
     ],
     "relation": {
-      "type": "vertical_addition",
-      "statement": "세 자리 수 세로셈 세 개를 각각 계산합니다.",
-      "symbolic": "449+275, 373+468, 536+287",
+      "type": "sum_of",
+      "statement": "두 수의 합을 구합니다.",
+      "symbolic": "536 + 287",
       "uses": [
-        "addition.problem_1",
-        "addition.problem_2",
-        "addition.problem_3"
+        "first_addend",
+        "second_addend"
       ],
-      "result": "answer.vertical_addition_results"
+      "result": "823"
     }
   }
 }

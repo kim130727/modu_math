@@ -1,7 +1,7 @@
 {
   "schema": "modu.layout.v1",
-  "problem_id": "P3_1_01_00040_02151",
-  "title": "세 자리 수의 덧셈 계산",
+  "problem_id": "P3_1_01_00040_02151_2",
+  "title": "세 자리 수의 덧셈 계산 (2)",
   "canvas": {
     "width": 400,
     "height": 300,
@@ -14,25 +14,13 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "konva_1785113855579_paste_146161_0",
-        "konva_1785113315829_paste_130223_9",
+        "slot.answer_box",
+        "slot.calc_line",
         "slot.instruction",
-        "konva_1785113315829_paste_130223_6",
-        "konva_1785113315829_paste_130223_7",
-        "konva_1785113315829_paste_130223_8"
+        "slot.first_addend",
+        "slot.plus_sign",
+        "slot.second_addend"
       ]
-    },
-    {
-      "id": "region.problem_1",
-      "role": "question",
-      "flow": "absolute",
-      "slot_ids": []
-    },
-    {
-      "id": "region.problem_2",
-      "role": "question",
-      "flow": "absolute",
-      "slot_ids": []
     }
   ],
   "slots": [
@@ -44,9 +32,9 @@
         "text": "□ 안에 알맞은 수를 써넣으시오.",
         "style_role": "body",
         "x": 30.0,
-        "y": 18.0,
-        "width": 354,
-        "height": 42.0,
+        "y": 24.0,
+        "width": 340.0,
+        "height": 38.0,
         "align": "left",
         "valign": "middle",
         "font_size": 24,
@@ -55,107 +43,110 @@
       }
     },
     {
-      "id": "konva_1785113315829_paste_130223_6",
+      "id": "slot.first_addend",
       "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "3 7 3",
         "style_role": "body",
-        "x": 133.454,
-        "y": 100.51,
-        "width": 104.0,
+        "x": 120.0,
+        "y": 96.0,
+        "width": 120.0,
         "height": 40.0,
         "align": "center",
         "valign": "top",
-        "font_size": 25,
+        "font_size": 26,
+        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "line_height": 1.25,
         "fill": "#202124"
       }
     },
     {
-      "id": "konva_1785113315829_paste_130223_7",
+      "id": "slot.plus_sign",
       "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "+",
         "style_role": "body",
-        "x": 119.454,
-        "y": 136.51,
-        "width": 24.0,
+        "x": 96.0,
+        "y": 136.0,
+        "width": 30.0,
         "height": 40.0,
         "align": "center",
         "valign": "top",
-        "font_size": 25,
+        "font_size": 26,
+        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "line_height": 1.25,
         "fill": "#202124"
       }
     },
     {
-      "id": "konva_1785113315829_paste_130223_8",
+      "id": "slot.second_addend",
       "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "4 6 8",
         "style_role": "body",
-        "x": 133.454,
-        "y": 136.51,
-        "width": 104.0,
+        "x": 120.0,
+        "y": 136.0,
+        "width": 120.0,
         "height": 40.0,
         "align": "center",
         "valign": "top",
-        "font_size": 25,
+        "font_size": 26,
+        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "line_height": 1.25,
         "fill": "#202124"
       }
     },
     {
-      "id": "konva_1785113315829_paste_130223_9",
+      "id": "slot.calc_line",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 121.454,
-        "y1": 178.51,
-        "x2": 243.454,
-        "y2": 178.51,
+        "x1": 96.0,
+        "y1": 180.0,
+        "x2": 254.0,
+        "y2": 180.0,
         "stroke": "#111111",
         "stroke_width": 1.6
       }
     },
     {
-      "id": "konva_1785113855579_paste_146161_0",
+      "id": "slot.answer_box",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 133.597,
-        "y": 187.666,
-        "width": 83.828,
-        "height": 32.879,
+        "x": 120.0,
+        "y": 188.0,
+        "width": 120.0,
+        "height": 38.0,
         "stroke": "#111827",
         "stroke_width": 1.2,
         "fill": "#ffffff",
         "interaction": {
           "type": "input",
           "role": "answer",
-          "value_type": "integer",
+          "value_type": "digit",
           "max_length": 3,
           "include_in_submission": true,
           "order": 0,
           "group_id": "final_answer",
-          "answer_key_index": 0,
-          "answer_ref": "konva_1785113855579_paste_146161_0",
-          "auto_advance": false,
+          "auto_advance": true,
           "keyboard": "number"
         },
         "input_style": {
           "font_size_mode": "auto",
           "font_size_adjust": 0,
           "min_font_size": 14,
-          "max_font_size": 52,
+          "max_font_size": 32,
           "font_weight": 700,
           "horizontal_align": "center",
           "vertical_align": "middle",
-          "padding": 6,
-          "text_color": "#222222"
+          "padding": 4,
+          "text_color": "#222222",
+          "width": 120.0,
+          "height": 38.0
         }
       }
     }
@@ -165,13 +156,11 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "konva_1785113855579_paste_146161_0",
-    "konva_1785113315829_paste_130223_9",
+    "slot.answer_box",
+    "slot.calc_line",
     "slot.instruction",
-    "konva_1785113315829_paste_130223_6",
-    "konva_1785113315829_paste_130223_7",
-    "konva_1785113315829_paste_130223_8",
-    "region.problem_1",
-    "region.problem_2"
+    "slot.first_addend",
+    "slot.plus_sign",
+    "slot.second_addend"
   ]
 }

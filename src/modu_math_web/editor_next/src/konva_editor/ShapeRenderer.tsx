@@ -144,9 +144,9 @@ function BaseTenBlockRenderer({
   const frontFill = normalizeFill(shape.fill ?? "#b9dd9f");
   const topFill = normalizeFill(shape.topFill ?? "#d2edbf");
   const sideFill = normalizeFill(shape.sideFill ?? "#9fcd86");
-  const depth = Math.max(0, Math.min(shape.depth, shape.width * 0.55, shape.height * 0.55));
+  const depth = Math.max(0, shape.depth);
   const frontY = depth;
-  const grid = shape.kind === "one" ? 1 : shape.kind === "ten" ? 10 : 10;
+  const { cols, rows, depthCols } = baseTenGridCounts(shape.kind);
 
   return (
     <Group {...common}>
@@ -167,9 +167,36 @@ function BaseTenBlockRenderer({
         lineJoin="round"
       />
       <Rect x={0} y={frontY} width={shape.width} height={shape.height} fill={frontFill} stroke={stroke} strokeWidth={strokeWidth} />
-      {grid > 1 ? <BaseTenGridLines width={shape.width} height={shape.height} depth={depth} frontY={frontY} grid={grid} stroke={stroke} /> : null}
+      <BaseTenGridLines
+        width={shape.width}
+        height={shape.height}
+        depth={depth}
+        frontY={frontY}
+        cols={cols}
+        rows={rows}
+        depthCols={depthCols}
+        stroke={stroke}
+      />
     </Group>
   );
+}
+
+function baseTenGridCounts(kind: Extract<EditorShape, { type: "baseTenBlock" }>["kind"]): {
+  cols: number;
+  rows: number;
+  depthCols: number;
+} {
+  switch (kind) {
+    case "thousand":
+      return { cols: 10, rows: 10, depthCols: 10 };
+    case "hundred":
+      return { cols: 10, rows: 10, depthCols: 1 };
+    case "ten":
+      return { cols: 1, rows: 10, depthCols: 1 };
+    case "one":
+    default:
+      return { cols: 1, rows: 1, depthCols: 1 };
+  }
 }
 
 function BaseTenGridLines({
@@ -177,30 +204,108 @@ function BaseTenGridLines({
   height,
   depth,
   frontY,
-  grid,
+  cols,
+  rows,
+  depthCols,
   stroke,
 }: {
   width: number;
   height: number;
   depth: number;
   frontY: number;
-  grid: number;
+  cols: number;
+  rows: number;
+  depthCols: number;
   stroke: string;
 }) {
   const lines = [];
-  for (let i = 1; i < grid; i += 1) {
-    const x = (width / grid) * i;
-    const y = frontY + (height / grid) * i;
-    const d = (depth / grid) * i;
-    lines.push(<Line key={`front-v-${i}`} points={[x, frontY, x, frontY + height]} stroke={stroke} strokeWidth={0.38} listening={false} />);
-    lines.push(<Line key={`front-h-${i}`} points={[0, y, width, y]} stroke={stroke} strokeWidth={0.38} listening={false} />);
-    if (depth > 0) {
-      lines.push(<Line key={`top-depth-${i}`} points={[d, frontY - d, width + d, frontY - d]} stroke={stroke} strokeWidth={0.32} listening={false} />);
-      lines.push(<Line key={`top-col-${i}`} points={[x, frontY, x + depth, 0]} stroke={stroke} strokeWidth={0.32} listening={false} />);
-      lines.push(<Line key={`side-depth-${i}`} points={[width + d, frontY - d, width + d, frontY - d + height]} stroke={stroke} strokeWidth={0.32} listening={false} />);
-      lines.push(<Line key={`side-row-${i}`} points={[width, y, width + depth, y - depth]} stroke={stroke} strokeWidth={0.32} listening={false} />);
+
+  // 1. Front face grid
+  // Vertical lines on front
+  for (let i = 1; i < cols; i += 1) {
+    const x = (width / cols) * i;
+    lines.push(
+      <Line
+        key={`front-v-${i}`}
+        points={[x, frontY, x, frontY + height]}
+        stroke={stroke}
+        strokeWidth={0.38}
+        listening={false}
+      />,
+    );
+  }
+  // Horizontal lines on front
+  for (let j = 1; j < rows; j += 1) {
+    const y = frontY + (height / rows) * j;
+    lines.push(
+      <Line
+        key={`front-h-${j}`}
+        points={[0, y, width, y]}
+        stroke={stroke}
+        strokeWidth={0.38}
+        listening={false}
+      />,
+    );
+  }
+
+  // 2. Top face grid
+  if (depth > 0) {
+    // Columns running front to back on top face
+    for (let i = 1; i < cols; i += 1) {
+      const x = (width / cols) * i;
+      lines.push(
+        <Line
+          key={`top-col-${i}`}
+          points={[x, frontY, x + depth, 0]}
+          stroke={stroke}
+          strokeWidth={0.32}
+          listening={false}
+        />,
+      );
+    }
+    // Depth slices along top face
+    for (let k = 1; k < depthCols; k += 1) {
+      const d = (depth / depthCols) * k;
+      lines.push(
+        <Line
+          key={`top-depth-${k}`}
+          points={[d, frontY - d, width + d, frontY - d]}
+          stroke={stroke}
+          strokeWidth={0.32}
+          listening={false}
+        />,
+      );
+    }
+
+    // 3. Side face grid
+    // Horizontal rows on side face
+    for (let j = 1; j < rows; j += 1) {
+      const y = frontY + (height / rows) * j;
+      lines.push(
+        <Line
+          key={`side-row-${j}`}
+          points={[width, y, width + depth, y - depth]}
+          stroke={stroke}
+          strokeWidth={0.32}
+          listening={false}
+        />,
+      );
+    }
+    // Depth slices on side face
+    for (let k = 1; k < depthCols; k += 1) {
+      const d = (depth / depthCols) * k;
+      lines.push(
+        <Line
+          key={`side-depth-${k}`}
+          points={[width + d, frontY - d, width + d, frontY - d + height]}
+          stroke={stroke}
+          strokeWidth={0.32}
+          listening={false}
+        />,
+      );
     }
   }
+
   return <>{lines}</>;
 }
 

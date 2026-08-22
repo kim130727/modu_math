@@ -2,16 +2,15 @@ from __future__ import annotations
 
 from modu_math.dsl import (
     Canvas,
-    ProblemTemplate,
-    Region,
     LineSlot,
-    TextBoxSlot,
+    ProblemTemplate,
     RectSlot,
+    Region,
+    TextBoxSlot,
 )
 
-
-PROBLEM_ID = "P3_1_01_00040_02151"
-PROBLEM_TITLE = "세 자리 수의 덧셈 계산"
+PROBLEM_ID = "P3_1_01_00040_02151_3"
+PROBLEM_TITLE = "세 자리 수의 덧셈 계산 (3)"
 
 
 def build_problem_template() -> ProblemTemplate:
@@ -19,7 +18,7 @@ def build_problem_template() -> ProblemTemplate:
         id=PROBLEM_ID,
         title=PROBLEM_TITLE,
         canvas=Canvas(
-            width=600,
+            width=400,
             height=300,
             coordinate_mode="logical",
         ),
@@ -28,31 +27,23 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.instruction",'konva_1785113315829_paste_130223_0', 'konva_1785113315829_paste_130223_1', 'konva_1785113315829_paste_130223_2', 'konva_1785113315829_paste_130223_3', 'konva_1785113315829_paste_130223_4', 'konva_1785113315829_paste_130223_5', 'konva_1785113315829_paste_130223_6', 'konva_1785113315829_paste_130223_7', 'konva_1785113315829_paste_130223_8', 'konva_1785113315829_paste_130223_9', 'konva_1785113315829_paste_135339_0', 'konva_1785113315829_paste_135339_1', 'konva_1785113315829_paste_135339_2', 'konva_1785113315829_paste_135339_3', 'konva_1785113315829_paste_135339_4', 'konva_1785113855579_rect_123138', 'konva_1785113855579_paste_146161_0', 'konva_1785113855579_paste_150620_0'),
-            ),
-            Region(
-                id="region.problem_1",
-                role="question",
-                flow="absolute",
                 slot_ids=(
-                    
-                ),
-            ),
-            Region(
-                id="region.problem_2",
-                role="question",
-                flow="absolute",
-                slot_ids=(
-                    
+                    "slot.instruction",
+                    "slot.first_addend",
+                    "slot.plus_sign",
+                    "slot.second_addend",
+                    "slot.calc_line",
+                    "slot.answer_box",
                 ),
             ),
         ),
-        slots=(TextBoxSlot(
+        slots=(
+            TextBoxSlot(
                 id="slot.instruction",
                 x=30,
-                y=18,
-                width=840,
-                height=42,
+                y=24,
+                width=340,
+                height=38,
                 text="□ 안에 알맞은 수를 써넣으시오.",
                 font_size=24,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
@@ -60,52 +51,112 @@ def build_problem_template() -> ProblemTemplate:
                 align="left",
                 valign="middle",
             ),
-
-            # (1) 449 + 275
-            TextBoxSlot(id = 'konva_1785113315829_paste_130223_0', prompt = '', text = '(1)', x = 41.651, y = 73.394, font_size = 22, fill = '#202124', width = 34, height = 63, align = 'left', line_height = 1.25), TextBoxSlot(id = 'konva_1785113315829_paste_130223_1', prompt = '', text = '4 4 9', x = 79, y = 86, font_size = 25, fill = '#202124', width = 104, height = 40, align = 'center', line_height = 1.25), TextBoxSlot(id = 'konva_1785113315829_paste_130223_2', prompt = '', text = '+', x = 65, y = 122, font_size = 25, fill = '#202124', width = 24, height = 40, align = 'center', line_height = 1.25), TextBoxSlot(id = 'konva_1785113315829_paste_130223_3', prompt = '', text = '2 7 5', x = 82, y = 122, font_size = 25, fill = '#202124', width = 104, height = 40, align = 'center', line_height = 1.25), LineSlot(id = 'konva_1785113315829_paste_130223_4', prompt = '', x1 = 68.435, y1 = 164.0, x2 = 190.435, y2 = 164.0, stroke = '#111111', stroke_width = 1.6), TextBoxSlot(id = 'konva_1785113315829_paste_130223_5', prompt = '', text = '(2)', x = 212.512, y = 71.134, font_size = 22, fill = '#202124', width = 34, height = 63, align = 'left', line_height = 1.25), TextBoxSlot(id = 'konva_1785113315829_paste_130223_6', prompt = '', text = '3 7 3', x = 261.388, y = 87.435, font_size = 25, fill = '#202124', width = 104, height = 40, align = 'center', line_height = 1.25), TextBoxSlot(id = 'konva_1785113315829_paste_130223_7', prompt = '', text = '+', x = 247.388, y = 123.435, font_size = 25, fill = '#202124', width = 24, height = 40, align = 'center', line_height = 1.25), TextBoxSlot(id = 'konva_1785113315829_paste_130223_8', prompt = '', text = '4 6 8', x = 261.388, y = 123.435, font_size = 25, fill = '#202124', width = 104, height = 40, align = 'center', line_height = 1.25), LineSlot(id = 'konva_1785113315829_paste_130223_9', prompt = '', x1 = 249.388, y1 = 165.435, x2 = 371.388, y2 = 165.435, stroke = '#111111', stroke_width = 1.6), TextBoxSlot(id = 'konva_1785113315829_paste_135339_0', prompt = '', text = '(3)', x = 400.311, y = 70.746, font_size = 22, fill = '#202124', width = 34, height = 63, align = 'left', line_height = 1.25), TextBoxSlot(id = 'konva_1785113315829_paste_135339_1', prompt = '', text = '5 3 6', x = 449.187, y = 87.047, font_size = 25, fill = '#202124', width = 104, height = 40, align = 'center', line_height = 1.25), TextBoxSlot(id = 'konva_1785113315829_paste_135339_2', prompt = '', text = '+', x = 435.187, y = 123.047, font_size = 25, fill = '#202124', width = 24, height = 40, align = 'center', line_height = 1.25), TextBoxSlot(id = 'konva_1785113315829_paste_135339_3', prompt = '', text = '2 8 7', x = 449.187, y = 123.047, font_size = 25, fill = '#202124', width = 104, height = 40, align = 'center', line_height = 1.25), LineSlot(id = 'konva_1785113315829_paste_135339_4', prompt = '', x1 = 437.187, y1 = 165.047, x2 = 559.187, y2 = 165.047, stroke = '#111111', stroke_width = 1.6), RectSlot(id = 'konva_1785113855579_rect_123138', prompt = '', x = 81.789, y = 172.11, width = 83.828, height = 32.879, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2), RectSlot(id = 'konva_1785113855579_paste_146161_0', prompt = '', x = 261.531, y = 174.591, width = 83.828, height = 32.879, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2), RectSlot(id = 'konva_1785113855579_paste_150620_0', prompt = '', x = 447.861, y = 174.921, width = 83.828, height = 32.879, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2)),
+            TextBoxSlot(
+                id="slot.first_addend",
+                x=120,
+                y=96,
+                width=120,
+                height=40,
+                text="5 3 6",
+                font_size=26,
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
+                fill="#202124",
+                align="center",
+                line_height=1.25,
+            ),
+            TextBoxSlot(
+                id="slot.plus_sign",
+                x=96,
+                y=136,
+                width=30,
+                height=40,
+                text="+",
+                font_size=26,
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
+                fill="#202124",
+                align="center",
+                line_height=1.25,
+            ),
+            TextBoxSlot(
+                id="slot.second_addend",
+                x=120,
+                y=136,
+                width=120,
+                height=40,
+                text="2 8 7",
+                font_size=26,
+                font_family='"Poor Story", "Noto Sans KR", sans-serif',
+                fill="#202124",
+                align="center",
+                line_height=1.25,
+            ),
+            LineSlot(
+                id="slot.calc_line",
+                x1=96.0,
+                y1=180.0,
+                x2=254.0,
+                y2=180.0,
+                stroke="#111111",
+                stroke_width=1.6,
+            ),
+            RectSlot(
+                id="slot.answer_box",
+                x=120.0,
+                y=188.0,
+                width=120.0,
+                height=38.0,
+                fill="#ffffff",
+                stroke="#111827",
+                stroke_width=1.2,
+                interaction={
+                    "type": "input",
+                    "role": "answer",
+                    "value_type": "digit",
+                    "max_length": 3,
+                    "include_in_submission": True,
+                    "order": 0,
+                    "group_id": "final_answer",
+                    "auto_advance": True,
+                    "keyboard": "number",
+                },
+                input_style={
+                    "font_size_mode": "auto",
+                    "font_size_adjust": 0,
+                    "min_font_size": 14,
+                    "max_font_size": 32,
+                    "font_weight": 700,
+                    "horizontal_align": "center",
+                    "vertical_align": "middle",
+                    "padding": 4,
+                    "text_color": "#222222",
+                },
+            ),
+        ),
     )
 
 
 PROBLEM_TEMPLATE = build_problem_template()
 
-
 ANSWER = {
-    "value": [724, 841, 823],
+    "value": 823,
     "unit": "",
-    "values": [724, 841, 823],
+    "values": [823],
+    "choices": [],
     "blanks": [
         {
-            "id": "konva_1785113855579_rect_123138",
-            "slot_id": "konva_1785113855579_rect_123138",
-            "expected": 724,
-        },
-        {
-            "id": "konva_1785113855579_paste_146161_0",
-            "slot_id": "konva_1785113855579_paste_146161_0",
-            "expected": 841,
-        },
-        {
-            "id": "konva_1785113855579_paste_150620_0",
-            "slot_id": "konva_1785113855579_paste_150620_0",
+            "id": "slot.answer_box",
+            "slot_id": "slot.answer_box",
             "expected": 823,
         },
     ],
     "answer_key": [
-        {"slot_id": "konva_1785113855579_rect_123138", "value": 724},
-        {"slot_id": "konva_1785113855579_paste_146161_0", "value": 841},
-        {"slot_id": "konva_1785113855579_paste_150620_0", "value": 823},
+        {"slot_id": "slot.answer_box", "value": 823},
     ],
 }
 
-ADDITIONS = [
-    ("addition.problem_1", "첫 번째 세로셈", 449, 275, 724),
-    ("addition.problem_2", "두 번째 세로셈", 373, 468, 841),
-    ("addition.problem_3", "세 번째 세로셈", 536, 287, 823),
-]
-
 SEMANTIC = {
     "problem_id": PROBLEM_ID,
-    "problem_type": "multi_answer_vertical_addition",
+    "problem_type": "vertical_addition",
     "metadata": {
         "title": PROBLEM_TITLE,
         "grade": 3,
@@ -114,31 +165,27 @@ SEMANTIC = {
         "topic": "세 자리 수의 덧셈 계산",
         "language": "ko-KR",
         "required_layout_ids": [
-            "konva_1785113855579_rect_123138",
-            "konva_1785113855579_paste_146161_0",
-            "konva_1785113855579_paste_150620_0",
+            "slot.answer_box",
         ],
     },
     "domain": {
         "objects": [
             {
-                "id": item[0],
+                "id": "addition.problem_3",
                 "type": "vertical_addition",
-                "label": item[1],
-                "first_addend": item[2],
-                "second_addend": item[3],
-                "sum": item[4],
-            }
-            for item in ADDITIONS
+                "label": "세로셈",
+                "first_addend": 536,
+                "second_addend": 287,
+                "sum": 823,
+            },
         ],
         "relations": [
             {
-                "id": f"relation.problem_{index}_sum",
+                "id": "relation.problem_3_sum",
                 "type": "sum_of",
-                "subject": item[0],
-                "values": [item[2], item[3]],
-            }
-            for index, item in enumerate(ADDITIONS, start=1)
+                "subject": "addition.problem_3",
+                "values": [536, 287],
+            },
         ],
     },
     "answer": ANSWER,
@@ -149,61 +196,88 @@ SEMANTIC_OVERRIDE = SEMANTIC
 SOLVABLE = {
     "schema": "modu.solvable.v1.2",
     "problem_id": PROBLEM_ID,
-    "problem_type": "multi_answer_vertical_addition",
+    "problem_type": "vertical_addition",
     "inputs": {
-        "target_label": "각 세로셈의 계산 결과",
+        "target_label": "세로셈 계산 결과",
         "unit": "",
-        "answer_type": "number_list",
         "quantities": {
-            "problem_1": {"first_addend": 449, "second_addend": 275},
-            "problem_2": {"first_addend": 373, "second_addend": 468},
-            "problem_3": {"first_addend": 536, "second_addend": 287},
+            "first_addend": 536,
+            "second_addend": 287,
         },
         "conditions": [
             "일의 자리부터 차례대로 계산합니다.",
             "각 자리의 합이 10 이상이면 바로 윗자리로 1을 받아올림합니다.",
-            "각 세로셈의 계산 결과를 네모 안에 씁니다.",
         ],
     },
     "given": [
-        {"ref": item[0], "value": {"first_addend": item[2], "second_addend": item[3]}}
-        for item in ADDITIONS
+        {
+            "ref": "addition.problem_3",
+            "value": {
+                "first_addend": 536,
+                "second_addend": 287,
+            },
+        },
     ],
-    "target": {"ref": "answer.vertical_addition_results", "type": "number_list"},
-    "method": "각 세로셈에서 일의 자리부터 더하고 받아올림을 다음 자리 계산에 포함한다.",
+    "target": {
+        "ref": "answer.value",
+        "type": "number",
+    },
+    "method": "일의 자리부터 더하고 받아올림을 다음 자리 계산에 포함한다.",
     "plan": [
-        "첫 번째 세로셈 449+275를 계산한다.",
-        "두 번째 세로셈 373+468을 계산한다.",
-        "세 번째 세로셈 536+287을 계산한다.",
+        "일의 자리 6+7=13을 계산하여 1을 올리고 3을 쓴다.",
+        "십의 자리 1+3+8=12를 계산하여 1을 올리고 2를 쓴다.",
+        "백의 자리 1+5+2=8을 쓴다.",
     ],
     "steps": [
-        {"id": "step.problem_1.compose_sum", "expr": "449 + 275", "value": 724, "explanation": "449와 275를 더하면 724입니다."},
-        {"id": "step.problem_2.compose_sum", "expr": "373 + 468", "value": 841, "explanation": "373과 468을 더하면 841입니다."},
-        {"id": "step.problem_3.compose_sum", "expr": "536 + 287", "value": 823, "explanation": "536과 287을 더하면 823입니다."},
+        {
+            "id": "step.add_numbers",
+            "expr": "536 + 287",
+            "value": 823,
+            "explanation": "536과 287을 더하면 823입니다.",
+        },
     ],
     "checks": [
-        {"id": "check.problem_1.total", "expr": "449 + 275", "expected": 724, "actual": 724, "pass": True},
-        {"id": "check.problem_2.total", "expr": "373 + 468", "expected": 841, "actual": 841, "pass": True},
-        {"id": "check.problem_3.total", "expr": "536 + 287", "expected": 823, "actual": 823, "pass": True},
+        {
+            "id": "check.total",
+            "expr": "536 + 287",
+            "expected": 823,
+            "actual": 823,
+            "pass": True,
+        },
     ],
     "answer": ANSWER,
     "understanding": {
-        "summary": "세 자리 수 세로셈 세 개의 합을 구합니다.",
+        "summary": "536과 287의 합을 계산합니다.",
         "facts": [
-            {"ref": item[0], "label": item[1], "value": {"first_addend": item[2], "second_addend": item[3]}, "unit": "", "source": "explicit"}
-            for item in ADDITIONS
+            {
+                "ref": "first_addend",
+                "label": "첫 번째 수",
+                "value": 536,
+                "unit": "",
+                "source": "explicit",
+            },
+            {
+                "ref": "second_addend",
+                "label": "두 번째 수",
+                "value": 287,
+                "unit": "",
+                "source": "explicit",
+            },
         ],
         "unknowns": [
-            {"ref": "answer.vertical_addition_results", "label": "각 세로셈의 계산 결과", "unit": "", "source": "unknown"}
+            {
+                "ref": "answer.value",
+                "label": "계산 결과",
+                "unit": "",
+                "source": "unknown",
+            },
         ],
         "relation": {
-            "type": "vertical_addition",
-            "statement": "세 자리 수 세로셈 세 개를 각각 계산합니다.",
-            "symbolic": "449+275, 373+468, 536+287",
-            "uses": ["addition.problem_1", "addition.problem_2", "addition.problem_3"],
-            "result": "answer.vertical_addition_results",
+            "type": "sum_of",
+            "statement": "두 수의 합을 구합니다.",
+            "symbolic": "536 + 287",
+            "uses": ["first_addend", "second_addend"],
+            "result": "823",
         },
     },
 }
-
-SEMANTIC_ANSWER = SOLVABLE["answer"]

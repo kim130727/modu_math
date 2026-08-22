@@ -1,5 +1,5 @@
 {
-  "problem_id": "P3_1_01_00040_02151",
+  "problem_id": "P3_1_01_00040_02151_3",
   "view_box": {
     "width": 400.0,
     "height": 300.0,
@@ -7,60 +7,60 @@
   },
   "elements": [
     {
-      "id": "konva_1785113855579_paste_150620_0.rect",
+      "id": "slot.answer_box.rect",
       "type": "rect",
       "attributes": {
-        "x": 135.074,
-        "y": 202.462,
-        "width": 83.828,
-        "height": 32.879,
+        "x": 120.0,
+        "y": 188.0,
+        "width": 120.0,
+        "height": 38.0,
         "fill": "#ffffff",
         "stroke": "#111827",
         "stroke-width": 1.2
       },
-      "source_ref": "konva_1785113855579_paste_150620_0",
+      "source_ref": "slot.answer_box",
       "refs": {
-        "layout_slot_id": "konva_1785113855579_paste_150620_0"
+        "layout_slot_id": "slot.answer_box"
       },
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "integer",
+        "value_type": "digit",
         "max_length": 3,
         "include_in_submission": true,
         "order": 0,
         "group_id": "final_answer",
-        "answer_key_index": 0,
-        "answer_ref": "konva_1785113855579_paste_150620_0",
-        "auto_advance": false,
+        "auto_advance": true,
         "keyboard": "number"
       },
       "input_style": {
         "font_size_mode": "auto",
         "font_size_adjust": 0,
         "min_font_size": 14,
-        "max_font_size": 52,
+        "max_font_size": 32,
         "font_weight": 700,
         "horizontal_align": "center",
         "vertical_align": "middle",
-        "padding": 6,
-        "text_color": "#222222"
+        "padding": 4,
+        "text_color": "#222222",
+        "width": 120.0,
+        "height": 38.0
       }
     },
     {
-      "id": "konva_1785113315829_paste_135339_4.line",
+      "id": "slot.calc_line.line",
       "type": "line",
       "attributes": {
-        "x1": 124.4,
-        "y1": 192.588,
-        "x2": 246.4,
-        "y2": 192.588,
+        "x1": 96.0,
+        "y1": 180.0,
+        "x2": 254.0,
+        "y2": 180.0,
         "stroke": "#111111",
         "stroke-width": 1.6
       },
-      "source_ref": "konva_1785113315829_paste_135339_4",
+      "source_ref": "slot.calc_line",
       "refs": {
-        "layout_slot_id": "konva_1785113315829_paste_135339_4"
+        "layout_slot_id": "slot.calc_line"
       }
     },
     {
@@ -68,18 +68,18 @@
       "type": "text_box",
       "attributes": {
         "x": 30.0,
-        "y": 18.0,
+        "y": 24.0,
         "fill": "#202124",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 24,
-        "width": 354.0,
-        "height": 42.0,
-        "max_width": 354.0,
+        "width": 340.0,
+        "height": 38.0,
+        "max_width": 340.0,
         "data-slot-kind": "text_box",
         "data-box-x": 30.0,
-        "data-box-y": 18.0,
-        "data-box-width": 354.0,
-        "data-box-height": 42.0,
+        "data-box-y": 24.0,
+        "data-box-width": 340.0,
+        "data-box-height": 38.0,
         "data-text-align": "left",
         "data-vertical-align": "middle"
       },
@@ -90,83 +90,83 @@
       "text": "□ 안에 알맞은 수를 써넣으시오."
     },
     {
-      "id": "konva_1785113315829_paste_135339_1.text",
+      "id": "slot.first_addend.text",
       "type": "text_box",
       "attributes": {
-        "x": 136.4,
-        "y": 114.588,
+        "x": 120.0,
+        "y": 96.0,
         "fill": "#202124",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 25,
-        "width": 104.0,
+        "font-size": 26,
+        "width": 120.0,
         "height": 40.0,
-        "max_width": 104.0,
+        "max_width": 120.0,
         "data-slot-kind": "text_box",
-        "data-box-x": 136.4,
-        "data-box-y": 114.588,
-        "data-box-width": 104.0,
+        "data-box-x": 120.0,
+        "data-box-y": 96.0,
+        "data-box-width": 120.0,
         "data-box-height": 40.0,
         "data-text-align": "center",
         "data-vertical-align": "top",
         "data-line-height": 1.25
       },
-      "source_ref": "konva_1785113315829_paste_135339_1",
+      "source_ref": "slot.first_addend",
       "refs": {
-        "layout_slot_id": "konva_1785113315829_paste_135339_1"
+        "layout_slot_id": "slot.first_addend"
       },
       "text": "5 3 6"
     },
     {
-      "id": "konva_1785113315829_paste_135339_2.text",
+      "id": "slot.plus_sign.text",
       "type": "text_box",
       "attributes": {
-        "x": 122.4,
-        "y": 150.588,
+        "x": 96.0,
+        "y": 136.0,
         "fill": "#202124",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 25,
-        "width": 24.0,
+        "font-size": 26,
+        "width": 30.0,
         "height": 40.0,
-        "max_width": 24.0,
+        "max_width": 30.0,
         "data-slot-kind": "text_box",
-        "data-box-x": 122.4,
-        "data-box-y": 150.588,
-        "data-box-width": 24.0,
+        "data-box-x": 96.0,
+        "data-box-y": 136.0,
+        "data-box-width": 30.0,
         "data-box-height": 40.0,
         "data-text-align": "center",
         "data-vertical-align": "top",
         "data-line-height": 1.25
       },
-      "source_ref": "konva_1785113315829_paste_135339_2",
+      "source_ref": "slot.plus_sign",
       "refs": {
-        "layout_slot_id": "konva_1785113315829_paste_135339_2"
+        "layout_slot_id": "slot.plus_sign"
       },
       "text": "+"
     },
     {
-      "id": "konva_1785113315829_paste_135339_3.text",
+      "id": "slot.second_addend.text",
       "type": "text_box",
       "attributes": {
-        "x": 136.4,
-        "y": 150.588,
+        "x": 120.0,
+        "y": 136.0,
         "fill": "#202124",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 25,
-        "width": 104.0,
+        "font-size": 26,
+        "width": 120.0,
         "height": 40.0,
-        "max_width": 104.0,
+        "max_width": 120.0,
         "data-slot-kind": "text_box",
-        "data-box-x": 136.4,
-        "data-box-y": 150.588,
-        "data-box-width": 104.0,
+        "data-box-x": 120.0,
+        "data-box-y": 136.0,
+        "data-box-width": 120.0,
         "data-box-height": 40.0,
         "data-text-align": "center",
         "data-vertical-align": "top",
         "data-line-height": 1.25
       },
-      "source_ref": "konva_1785113315829_paste_135339_3",
+      "source_ref": "slot.second_addend",
       "refs": {
-        "layout_slot_id": "konva_1785113315829_paste_135339_3"
+        "layout_slot_id": "slot.second_addend"
       },
       "text": "2 8 7"
     }
