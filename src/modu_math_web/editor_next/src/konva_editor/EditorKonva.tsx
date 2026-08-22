@@ -21,6 +21,8 @@ import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
 import { JsonImportExport } from "./JsonImportExport";
 import { KonvaStage, type CanvasPoint } from "./KonvaStage";
 import { KonvaToolbar, type ShapePreset } from "./KonvaToolbar";
+import { KidAvatarMakerModal } from "./avatar/KidAvatarMakerModal";
+import type { AvatarConfig } from "./avatar/avatarParts";
 import { PropertyPanel } from "./PropertyPanel";
 import type { AnswerBindingOption } from "./PropertyPanel";
 import { TutorFlowPanel } from "./TutorFlowPanel";
@@ -47,6 +49,7 @@ export function EditorKonva() {
   const [drawingPreset, setDrawingPreset] = useState<ShapePreset | null>(null);
   const [problemListVersion, setProblemListVersion] = useState(0);
   const [activeSidePanel, setActiveSidePanel] = useState<SidePanelTab>("properties");
+  const [isAvatarModalOpen, setAvatarModalOpen] = useState(false);
   const [activeTutorStepId, setActiveTutorStepId] = useState<string | null>(null);
   const [activeTutorFrameIndex, setActiveTutorFrameIndex] = useState(0);
   const [activeTutorOverlayIndex, setActiveTutorOverlayIndex] = useState<number | null>(null);
@@ -355,6 +358,86 @@ export function EditorKonva() {
       }
     },
     [addShape, fitInsertBox, nextId],
+  );
+
+  const handleInsertAvatar = useCallback(
+    (avatarConfig: AvatarConfig, svgDataUrl: string) => {
+      const targetWidth = 140;
+      const targetHeight = 150;
+      const box = fitInsertBox(targetWidth, targetHeight, 24, 24);
+      const avatarId = nextId("avatar");
+
+      const newShapes: EditorShape[] = [
+        {
+          id: avatarId,
+          type: "image",
+          x: box.x,
+          y: box.y,
+          src: svgDataUrl,
+          width: targetWidth,
+          height: targetHeight,
+          preserveAspectRatio: "xMidYMid meet",
+        },
+      ];
+
+      if (avatarConfig.hasSpeechBubble && avatarConfig.speechText) {
+        const text = avatarConfig.speechText;
+        const fontSize = 15;
+        const bubbleWidth = Math.max(130, autoTextWidth(text, fontSize) + 36);
+        const bubbleHeight = 58;
+
+        let bubbleX = box.x + targetWidth + 10;
+        let bubbleY = box.y + 10;
+        if (avatarConfig.bubblePosition === "top-left") {
+          bubbleX = Math.max(20, box.x - bubbleWidth - 10);
+          bubbleY = Math.max(20, box.y - 15);
+        } else if (avatarConfig.bubblePosition === "top-right") {
+          bubbleX = box.x + targetWidth - 10;
+          bubbleY = Math.max(20, box.y - 25);
+        }
+
+        const calloutId = nextId("bubble");
+        const textId = nextId("text");
+
+        newShapes.push({
+          id: calloutId,
+          type: "path",
+          shapePreset: "calloutRound",
+          x: bubbleX,
+          y: bubbleY,
+          width: bubbleWidth,
+          height: bubbleHeight,
+          fill: "#ffffff",
+          stroke: "#1e293b",
+          strokeWidth: 2,
+          d: pathForShapePreset("calloutRound"),
+        });
+
+        newShapes.push({
+          id: textId,
+          type: "text",
+          x: bubbleX + 10,
+          y: bubbleY + 10,
+          width: bubbleWidth - 20,
+          height: bubbleHeight - 20,
+          text,
+          fontSize,
+          fontFamily: KONVA_PREVIEW_FONT_FAMILY,
+          fill: "#1e293b",
+          align: "center",
+          lineHeight: 1.25,
+          sourceKind: "text",
+        });
+      }
+
+      setDocument((prev) => ({
+        ...prev,
+        shapes: [...prev.shapes, ...newShapes],
+      }));
+      setSelectedShapeIds([avatarId]);
+      setMessage(`어린이 캐릭터(${avatarConfig.gender === "boy" ? "남아" : "여아"})를 캔버스에 삽입했습니다.`);
+    },
+    [fitInsertBox, nextId],
   );
 
   const addTable = useCallback(() => {
@@ -762,6 +845,7 @@ export function EditorKonva() {
         hasSelection={selectedShapeIds.length > 0}
         hasAnswerSlotCandidate={selectedAnswerSlotShapeIds.length > 0}
         onInsertShape={insertShape}
+        onOpenAvatarMaker={() => setAvatarModalOpen(true)}
         onAddMath={addMath}
         onAddProperFraction={addProperFraction}
         onAddMixedFraction={addMixedFraction}
@@ -780,6 +864,11 @@ export function EditorKonva() {
         onSaveAndBuild={saveAndBuildCurrentProblem}
         onBuild={buildCurrentProblem}
         onNewFile={createNewProblem}
+      />
+      <KidAvatarMakerModal
+        isOpen={isAvatarModalOpen}
+        onClose={() => setAvatarModalOpen(false)}
+        onInsertAvatar={handleInsertAvatar}
       />
       <input
         ref={imageFileInputRef}
