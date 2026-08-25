@@ -8,6 +8,7 @@ import type {
   ProblemObject,
   TableObject,
 } from "../types/problem";
+import { parseFractionLatex } from "../konva_editor/converters";
 import { offsetPathData } from "./pathData";
 
 export function problemJsonToLayoutPatches(base: ProblemJson, next: ProblemJson): LayoutPatch[] {
@@ -240,19 +241,20 @@ function addValue(object: ProblemObject): Record<string, unknown> {
 }
 
 function mathTextFields(object: MathTextObject, includeBoxSize: boolean): Record<string, unknown> {
+  const isFraction = Boolean(parseFractionLatex(object.props.latex || object.props.text));
   const fontSize = object.props.fontSize;
   const width = object.props.width ?? 280;
   const textAlign = object.props.textAlign ?? "left";
   const anchorX = textAlign === "center" ? object.x + width / 2 : textAlign === "right" ? object.x + width : object.x;
   const fields: Record<string, unknown> = {
-    text: object.props.text,
+    text: object.props.latex || object.props.text,
     x: round(anchorX),
     y: round(object.y + fontSize),
     font_size: round(fontSize),
     fill: object.props.color ?? "#111111",
   };
 
-  if (includeBoxSize) {
+  if (includeBoxSize || isFraction) {
     fields.x = round(object.x);
     fields.y = round(object.y);
     fields.width = round(width);

@@ -23,27 +23,7 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.model262.container",
-        "slot.model262.hundred.1",
-        "slot.model262.hundred.2",
-        "slot.model262.ten.1",
-        "slot.model262.ten.2",
-        "slot.model262.ten.3",
-        "slot.model262.ten.4",
-        "slot.model262.ten.5",
-        "slot.model262.ten.6",
-        "slot.model262.one.1",
-        "slot.model262.one.2",
         "slot.model271.container",
-        "slot.model271.hundred.1",
-        "slot.model271.hundred.2",
-        "slot.model271.ten.1",
-        "slot.model271.ten.2",
-        "slot.model271.ten.3",
-        "slot.model271.ten.4",
-        "slot.model271.ten.5",
-        "slot.model271.ten.6",
-        "slot.model271.ten.7",
-        "slot.model271.one.1",
         "slot.model262.label",
         "slot.model271.label"
       ]
@@ -75,7 +55,7 @@
         "text": "262+271을 수 모형으로 알아보시오.",
         "style_role": "body",
         "x": 20.0,
-        "y": 14.0,
+        "y": 18,
         "font_size": 14,
         "fill": "#222222",
         "semantic_role": "instruction"
@@ -88,162 +68,12 @@
       "content": {
         "x": 20.0,
         "y": 24.0,
-        "width": 143.0,
+        "width": 176.49,
         "height": 62.0,
         "stroke": "#e36b72",
         "stroke_width": 1.0,
         "fill": "#ffffff",
         "semantic_role": "model_container"
-      }
-    },
-    {
-      "id": "slot.model262.hundred.1",
-      "kind": "rect",
-      "prompt": "백 모형",
-      "content": {
-        "x": 32.0,
-        "y": 37.0,
-        "width": 34.0,
-        "height": 34.0,
-        "stroke": "#557260",
-        "stroke_width": 1.0,
-        "fill": "#dcead5",
-        "semantic_role": "hundred_block"
-      }
-    },
-    {
-      "id": "slot.model262.hundred.2",
-      "kind": "rect",
-      "prompt": "백 모형",
-      "content": {
-        "x": 71.0,
-        "y": 37.0,
-        "width": 34.0,
-        "height": 34.0,
-        "stroke": "#557260",
-        "stroke_width": 1.0,
-        "fill": "#dcead5",
-        "semantic_role": "hundred_block"
-      }
-    },
-    {
-      "id": "slot.model262.ten.1",
-      "kind": "rect",
-      "prompt": "십 모형",
-      "content": {
-        "x": 112.0,
-        "y": 37.0,
-        "width": 5.0,
-        "height": 34.0,
-        "stroke": "#54758b",
-        "stroke_width": 1.0,
-        "fill": "#d7e8f2",
-        "semantic_role": "ten_rod"
-      }
-    },
-    {
-      "id": "slot.model262.ten.2",
-      "kind": "rect",
-      "prompt": "십 모형",
-      "content": {
-        "x": 120.0,
-        "y": 37.0,
-        "width": 5.0,
-        "height": 34.0,
-        "stroke": "#54758b",
-        "stroke_width": 1.0,
-        "fill": "#d7e8f2",
-        "semantic_role": "ten_rod"
-      }
-    },
-    {
-      "id": "slot.model262.ten.3",
-      "kind": "rect",
-      "prompt": "십 모형",
-      "content": {
-        "x": 128.0,
-        "y": 37.0,
-        "width": 5.0,
-        "height": 34.0,
-        "stroke": "#54758b",
-        "stroke_width": 1.0,
-        "fill": "#d7e8f2",
-        "semantic_role": "ten_rod"
-      }
-    },
-    {
-      "id": "slot.model262.ten.4",
-      "kind": "rect",
-      "prompt": "십 모형",
-      "content": {
-        "x": 136.0,
-        "y": 37.0,
-        "width": 5.0,
-        "height": 34.0,
-        "stroke": "#54758b",
-        "stroke_width": 1.0,
-        "fill": "#d7e8f2",
-        "semantic_role": "ten_rod"
-      }
-    },
-    {
-      "id": "slot.model262.ten.5",
-      "kind": "rect",
-      "prompt": "십 모형",
-      "content": {
-        "x": 144.0,
-        "y": 37.0,
-        "width": 5.0,
-        "height": 34.0,
-        "stroke": "#54758b",
-        "stroke_width": 1.0,
-        "fill": "#d7e8f2",
-        "semantic_role": "ten_rod"
-      }
-    },
-    {
-      "id": "slot.model262.ten.6",
-      "kind": "rect",
-      "prompt": "십 모형",
-      "content": {
-        "x": 152.0,
-        "y": 37.0,
-        "width": 5.0,
-        "height": 34.0,
-        "stroke": "#54758b",
-        "stroke_width": 1.0,
-        "fill": "#d7e8f2",
-        "semantic_role": "ten_rod"
-      }
-    },
-    {
-      "id": "slot.model262.one.1",
-      "kind": "rect",
-      "prompt": "낱개 모형",
-      "content": {
-        "x": 162.0,
-        "y": 61.0,
-        "width": 5.0,
-        "height": 5.0,
-        "stroke": "#9a5f63",
-        "stroke_width": 1.0,
-        "fill": "#f2d8d8",
-        "semantic_role": "one_block"
-      }
-    },
-    {
-      "id": "slot.model262.one.2",
-      "kind": "rect",
-      "prompt": "낱개 모형",
-      "content": {
-        "x": 162.0,
-        "y": 68.0,
-        "width": 5.0,
-        "height": 5.0,
-        "stroke": "#9a5f63",
-        "stroke_width": 1.0,
-        "fill": "#f2d8d8",
-        "semantic_role": "one_block"
       }
     },
     {
@@ -253,8 +83,8 @@
       "content": {
         "text": "262",
         "style_role": "body",
-        "x": 96.0,
-        "y": 90.0,
+        "x": 100.785,
+        "y": 97.173,
         "font_size": 12,
         "anchor": "middle",
         "fill": "#222222",
@@ -266,164 +96,14 @@
       "kind": "rect",
       "prompt": "271의 수 모형을 묶는 영역",
       "content": {
-        "x": 188.0,
+        "x": 204,
         "y": 24.0,
-        "width": 141.0,
+        "width": 178.32,
         "height": 62.0,
         "stroke": "#e36b72",
         "stroke_width": 1.0,
         "fill": "#ffffff",
         "semantic_role": "model_container"
-      }
-    },
-    {
-      "id": "slot.model271.hundred.1",
-      "kind": "rect",
-      "prompt": "백 모형",
-      "content": {
-        "x": 190.0,
-        "y": 37.0,
-        "width": 34.0,
-        "height": 34.0,
-        "stroke": "#557260",
-        "stroke_width": 1.0,
-        "fill": "#dcead5",
-        "semantic_role": "hundred_block"
-      }
-    },
-    {
-      "id": "slot.model271.hundred.2",
-      "kind": "rect",
-      "prompt": "백 모형",
-      "content": {
-        "x": 229.0,
-        "y": 37.0,
-        "width": 34.0,
-        "height": 34.0,
-        "stroke": "#557260",
-        "stroke_width": 1.0,
-        "fill": "#dcead5",
-        "semantic_role": "hundred_block"
-      }
-    },
-    {
-      "id": "slot.model271.ten.1",
-      "kind": "rect",
-      "prompt": "십 모형",
-      "content": {
-        "x": 270.0,
-        "y": 37.0,
-        "width": 5.0,
-        "height": 34.0,
-        "stroke": "#54758b",
-        "stroke_width": 1.0,
-        "fill": "#d7e8f2",
-        "semantic_role": "ten_rod"
-      }
-    },
-    {
-      "id": "slot.model271.ten.2",
-      "kind": "rect",
-      "prompt": "십 모형",
-      "content": {
-        "x": 278.0,
-        "y": 37.0,
-        "width": 5.0,
-        "height": 34.0,
-        "stroke": "#54758b",
-        "stroke_width": 1.0,
-        "fill": "#d7e8f2",
-        "semantic_role": "ten_rod"
-      }
-    },
-    {
-      "id": "slot.model271.ten.3",
-      "kind": "rect",
-      "prompt": "십 모형",
-      "content": {
-        "x": 286.0,
-        "y": 37.0,
-        "width": 5.0,
-        "height": 34.0,
-        "stroke": "#54758b",
-        "stroke_width": 1.0,
-        "fill": "#d7e8f2",
-        "semantic_role": "ten_rod"
-      }
-    },
-    {
-      "id": "slot.model271.ten.4",
-      "kind": "rect",
-      "prompt": "십 모형",
-      "content": {
-        "x": 294.0,
-        "y": 37.0,
-        "width": 5.0,
-        "height": 34.0,
-        "stroke": "#54758b",
-        "stroke_width": 1.0,
-        "fill": "#d7e8f2",
-        "semantic_role": "ten_rod"
-      }
-    },
-    {
-      "id": "slot.model271.ten.5",
-      "kind": "rect",
-      "prompt": "십 모형",
-      "content": {
-        "x": 302.0,
-        "y": 37.0,
-        "width": 5.0,
-        "height": 34.0,
-        "stroke": "#54758b",
-        "stroke_width": 1.0,
-        "fill": "#d7e8f2",
-        "semantic_role": "ten_rod"
-      }
-    },
-    {
-      "id": "slot.model271.ten.6",
-      "kind": "rect",
-      "prompt": "십 모형",
-      "content": {
-        "x": 310.0,
-        "y": 37.0,
-        "width": 5.0,
-        "height": 34.0,
-        "stroke": "#54758b",
-        "stroke_width": 1.0,
-        "fill": "#d7e8f2",
-        "semantic_role": "ten_rod"
-      }
-    },
-    {
-      "id": "slot.model271.ten.7",
-      "kind": "rect",
-      "prompt": "십 모형",
-      "content": {
-        "x": 318.0,
-        "y": 37.0,
-        "width": 5.0,
-        "height": 34.0,
-        "stroke": "#54758b",
-        "stroke_width": 1.0,
-        "fill": "#d7e8f2",
-        "semantic_role": "ten_rod"
-      }
-    },
-    {
-      "id": "slot.model271.one.1",
-      "kind": "rect",
-      "prompt": "낱개 모형",
-      "content": {
-        "x": 328.0,
-        "y": 61.0,
-        "width": 5.0,
-        "height": 5.0,
-        "stroke": "#9a5f63",
-        "stroke_width": 1.0,
-        "fill": "#f2d8d8",
-        "semantic_role": "one_block"
       }
     },
     {
@@ -433,8 +113,8 @@
       "content": {
         "text": "271",
         "style_role": "body",
-        "x": 254.0,
-        "y": 90.0,
+        "x": 301.742,
+        "y": 102.433,
         "font_size": 12,
         "anchor": "middle",
         "fill": "#222222",
@@ -506,27 +186,7 @@
     "slot.instruction",
     "region.models",
     "slot.model262.container",
-    "slot.model262.hundred.1",
-    "slot.model262.hundred.2",
-    "slot.model262.ten.1",
-    "slot.model262.ten.2",
-    "slot.model262.ten.3",
-    "slot.model262.ten.4",
-    "slot.model262.ten.5",
-    "slot.model262.ten.6",
-    "slot.model262.one.1",
-    "slot.model262.one.2",
     "slot.model271.container",
-    "slot.model271.hundred.1",
-    "slot.model271.hundred.2",
-    "slot.model271.ten.1",
-    "slot.model271.ten.2",
-    "slot.model271.ten.3",
-    "slot.model271.ten.4",
-    "slot.model271.ten.5",
-    "slot.model271.ten.6",
-    "slot.model271.ten.7",
-    "slot.model271.one.1",
     "slot.model262.label",
     "slot.model271.label",
     "region.questions",

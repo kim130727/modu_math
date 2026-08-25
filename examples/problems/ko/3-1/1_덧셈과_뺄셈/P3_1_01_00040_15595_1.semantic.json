@@ -27,15 +27,6 @@
         ]
       },
       {
-        "id": "calculation.2",
-        "type": "addition_expression",
-        "label": "두 번째 덧셈",
-        "addends": [
-          394,
-          205
-        ]
-      },
-      {
         "id": "answer.calculation_1",
         "type": "unknown_number",
         "label": "첫 번째 계산의 답"
@@ -57,12 +48,6 @@
         "type": "sum_result",
         "subject": "answer.calculation_1",
         "object": "calculation.1"
-      },
-      {
-        "id": "relation.calculation_2_sum",
-        "type": "sum_result",
-        "subject": "answer.calculation_2",
-        "object": "calculation.2"
       }
     ],
     "confidence": 1.0,

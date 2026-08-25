@@ -51,22 +51,14 @@
       }
     },
     {
-      "id": "slot.answer_1",
-      "kind": "blank",
-      "prompt": "379와 855의 합",
-      "content": {
-        "placeholder": ""
-      }
-    },
-    {
       "id": "slot.addend_2_1",
       "kind": "text",
       "prompt": "두 번째 덧셈의 위 수 654",
       "content": {
-        "text": "654",
+        "text": "6 5 4",
         "style_role": "body",
-        "x": 197.902,
-        "y": 113.541,
+        "x": 192.502,
+        "y": 103.147,
         "font_size": 28,
         "anchor": "end",
         "fill": "#111111"
@@ -79,8 +71,8 @@
       "content": {
         "text": "+",
         "style_role": "body",
-        "x": 132.902,
-        "y": 160.541,
+        "x": 114.902,
+        "y": 146.549,
         "font_size": 28,
         "anchor": "middle",
         "fill": "#111111"
@@ -91,10 +83,10 @@
       "kind": "text",
       "prompt": "두 번째 덧셈의 아래 수 758",
       "content": {
-        "text": "758",
+        "text": "7 5 8",
         "style_role": "body",
-        "x": 197.902,
-        "y": 160.541,
+        "x": 191.302,
+        "y": 146.149,
         "font_size": 28,
         "anchor": "end",
         "fill": "#111111"
@@ -105,28 +97,12 @@
       "kind": "line",
       "prompt": "두 번째 세로셈의 계산선",
       "content": {
-        "x1": 112.902,
-        "y1": 176.541,
-        "x2": 209.902,
-        "y2": 176.541,
+        "x1": 94.902,
+        "y1": 162.549,
+        "x2": 191.902,
+        "y2": 162.549,
         "stroke": "#111111",
         "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.answer_2",
-      "kind": "blank",
-      "prompt": "654와 758의 합",
-      "content": {
-        "placeholder": ""
-      }
-    },
-    {
-      "id": "slot.answer_3",
-      "kind": "blank",
-      "prompt": "296과 758의 합",
-      "content": {
-        "placeholder": ""
       }
     },
     {
@@ -134,8 +110,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 113.562,
-        "y": 192.004,
+        "x": 95.562,
+        "y": 178.012,
         "width": 92.919,
         "height": 33.237,
         "stroke": "#111827",
@@ -145,7 +121,7 @@
           "type": "input",
           "role": "answer",
           "value_type": "integer",
-          "max_length": 3,
+          "max_length": 4,
           "include_in_submission": true,
           "order": 1,
           "group_id": "final_answer",
@@ -163,46 +139,22 @@
           "horizontal_align": "center",
           "vertical_align": "middle",
           "padding": 6,
-          "text_color": "#222222"
+          "text_color": "#222222",
+          "width": 92.919,
+          "height": 33.237
         }
       }
     }
   ],
   "groups": [
     {
-      "id": "group.problem_1",
-      "role": "vertical_addition",
-      "member_ids": [
-        "slot.label_1",
-        "slot.addend_1_1",
-        "slot.plus_1",
-        "slot.addend_1_2",
-        "slot.line_1",
-        "slot.answer_1"
-      ]
-    },
-    {
       "id": "group.problem_2",
       "role": "vertical_addition",
       "member_ids": [
-        "slot.label_2",
         "slot.addend_2_1",
         "slot.plus_2",
         "slot.addend_2_2",
-        "slot.line_2",
-        "slot.answer_2"
-      ]
-    },
-    {
-      "id": "group.problem_3",
-      "role": "vertical_addition",
-      "member_ids": [
-        "slot.label_3",
-        "slot.addend_3_1",
-        "slot.plus_3",
-        "slot.addend_3_2",
-        "slot.line_3",
-        "slot.answer_3"
+        "slot.line_2"
       ]
     }
   ],

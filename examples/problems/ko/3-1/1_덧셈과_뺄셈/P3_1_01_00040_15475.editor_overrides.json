@@ -56,15 +56,15 @@
       "font_size": 22,
       "fill": "#111827",
       "anchor": "middle",
-      "y": 132.385
+      "y": 134.385
     },
     "slot.table.r1c2": {
       "text": "위인전",
-      "x": 204.672,
+      "x": 205.82,
       "font_size": 22,
       "fill": "#111827",
       "anchor": "middle",
-      "y": 134.68
+      "y": 134.385
     },
     "slot.table.r1c3": {
       "text": "동화책",
@@ -72,7 +72,7 @@
       "font_size": 22,
       "fill": "#111827",
       "anchor": "middle",
-      "y": 132.385
+      "y": 134.385
     },
     "slot.table.r1c4": {
       "text": "그림책",
@@ -80,7 +80,7 @@
       "font_size": 22,
       "fill": "#111827",
       "anchor": "middle",
-      "y": 132.385
+      "y": 134.385
     },
     "slot.table.r1c5": {
       "text": "참고서",
@@ -88,7 +88,7 @@
       "font_size": 22,
       "fill": "#111827",
       "anchor": "middle",
-      "y": 132.385
+      "y": 134.385
     },
     "slot.table.r2c1": {
       "text": "수(권)",
@@ -96,7 +96,7 @@
       "font_size": 22,
       "fill": "#111827",
       "anchor": "middle",
-      "y": 177.385
+      "y": 179.385
     },
     "slot.table.r2c2": {
       "text": "324",
@@ -104,7 +104,7 @@
       "font_size": 22,
       "fill": "#111827",
       "anchor": "middle",
-      "y": 177.385
+      "y": 179.385
     },
     "slot.table.r2c3": {
       "text": "210",
@@ -112,7 +112,7 @@
       "font_size": 22,
       "fill": "#111827",
       "anchor": "middle",
-      "y": 177.385
+      "y": 179.385
     },
     "slot.table.r2c4": {
       "text": "103",
@@ -120,7 +120,7 @@
       "font_size": 22,
       "fill": "#111827",
       "anchor": "middle",
-      "y": 177.385
+      "y": 179.385
     },
     "slot.table.r2c5": {
       "text": "101",
@@ -128,18 +128,22 @@
       "font_size": 22,
       "fill": "#111827",
       "anchor": "middle",
-      "y": 177.385
+      "y": 179.385
     },
     "konva_1785217709470_rect_5785318": {
+      "x": 658.67,
+      "y": 150.0,
+      "width": 126.029,
+      "height": 44.355,
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
+        "value_type": "integer",
+        "max_length": 3,
         "include_in_submission": true,
         "order": 0,
         "group_id": "final_answer",
-        "auto_advance": true,
+        "auto_advance": false,
         "keyboard": "number"
       },
       "input_style": {
@@ -151,7 +155,9 @@
         "horizontal_align": "center",
         "vertical_align": "middle",
         "padding": 6,
-        "text_color": "#222222"
+        "text_color": "#222222",
+        "width": 126.029,
+        "height": 44.355
       }
     },
     "konva_1786319433892_text_228561": {
@@ -159,6 +165,8 @@
       "y": 22.169
     },
     "konva_1785217709470_text_5795606": {
+      "x": 797.809,
+      "y": 150.5,
       "width": 36.191
     }
   }

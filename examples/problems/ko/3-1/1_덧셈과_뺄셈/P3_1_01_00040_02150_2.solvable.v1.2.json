@@ -24,13 +24,6 @@
   },
   "given": [
     {
-      "ref": "addition.problem_1",
-      "value": {
-        "first_addend": 326,
-        "second_addend": 297
-      }
-    },
-    {
       "ref": "addition.problem_2",
       "value": {
         "first_addend": 458,
@@ -50,30 +43,6 @@
     "두 번째 세로셈의 받아올림한 수와 결과를 쓴다."
   ],
   "steps": [
-    {
-      "id": "step.problem_1.add_ones",
-      "expr": "6 + 7",
-      "value": 13,
-      "explanation": "첫 번째 세로셈의 일의 자리에서 6과 7을 더하면 13이므로 3을 쓰고 1을 받아올림합니다."
-    },
-    {
-      "id": "step.problem_1.add_tens",
-      "expr": "2 + 9 + 1",
-      "value": 12,
-      "explanation": "십의 자리에서 2와 9에 받아올림한 1을 더하면 12이므로 2를 쓰고 1을 받아올림합니다."
-    },
-    {
-      "id": "step.problem_1.add_hundreds",
-      "expr": "3 + 2 + 1",
-      "value": 6,
-      "explanation": "백의 자리에서 3과 2에 받아올림한 1을 더하면 6입니다."
-    },
-    {
-      "id": "step.problem_1.compose_sum",
-      "expr": "326 + 297",
-      "value": 623,
-      "explanation": "첫 번째 세로셈의 결과는 623입니다."
-    },
     {
       "id": "step.problem_2.add_ones",
       "expr": "8 + 6",
@@ -101,27 +70,6 @@
   ],
   "checks": [
     {
-      "id": "check.problem_1.ones",
-      "expr": "6 + 7",
-      "expected": 13,
-      "actual": 13,
-      "pass": true
-    },
-    {
-      "id": "check.problem_1.tens",
-      "expr": "2 + 9 + 1",
-      "expected": 12,
-      "actual": 12,
-      "pass": true
-    },
-    {
-      "id": "check.problem_1.total",
-      "expr": "326 + 297",
-      "expected": 623,
-      "actual": 623,
-      "pass": true
-    },
-    {
       "id": "check.problem_2.ones",
       "expr": "8 + 6",
       "expected": 14,
@@ -143,13 +91,6 @@
       "pass": true
     },
     {
-      "id": "check.problem_1.inverse",
-      "expr": "623 - 297",
-      "expected": 326,
-      "actual": 326,
-      "pass": true
-    },
-    {
       "id": "check.problem_2.inverse",
       "expr": "814 - 356",
       "expected": 458,
@@ -159,93 +100,73 @@
   ],
   "answer": {
     "value": [
-      1,
-      1,
-      6,
       2,
-      3
+      3,
+      1,
+      1,
+      4
     ],
     "unit": "",
     "values": [
-      1,
-      1,
-      6,
       2,
-      3
+      3,
+      1,
+      1,
+      4
     ],
     "blanks": [
       {
         "id": "konva_1785110879232_paste_1394809_0",
         "slot_id": "konva_1785110879232_paste_1394809_0",
-        "expected": 1,
-        "unit": ""
+        "expected": 2
       },
       {
         "id": "konva_1785110879232_paste_1394809_1",
         "slot_id": "konva_1785110879232_paste_1394809_1",
-        "expected": 1,
-        "unit": ""
+        "expected": 3
       },
       {
         "id": "konva_1785110879232_paste_1394809_2",
         "slot_id": "konva_1785110879232_paste_1394809_2",
-        "expected": 6,
-        "unit": ""
+        "expected": 1
       },
       {
         "id": "konva_1785110879232_paste_1406874_1",
         "slot_id": "konva_1785110879232_paste_1406874_1",
-        "expected": 2,
-        "unit": ""
+        "expected": 1
       },
       {
         "id": "konva_1785110879232_paste_1406874_2",
         "slot_id": "konva_1785110879232_paste_1406874_2",
-        "expected": 3,
-        "unit": ""
+        "expected": 4
       }
     ],
     "answer_key": [
       {
         "slot_id": "konva_1785110879232_paste_1394809_0",
-        "value": 1,
-        "unit": ""
+        "value": 2
       },
       {
         "slot_id": "konva_1785110879232_paste_1394809_1",
-        "value": 1,
-        "unit": ""
+        "value": 3
       },
       {
         "slot_id": "konva_1785110879232_paste_1394809_2",
-        "value": 6,
-        "unit": ""
+        "value": 1
       },
       {
         "slot_id": "konva_1785110879232_paste_1406874_1",
-        "value": 2,
-        "unit": ""
+        "value": 1
       },
       {
         "slot_id": "konva_1785110879232_paste_1406874_2",
-        "value": 3,
-        "unit": ""
+        "value": 4
       }
     ]
   },
   "understanding": {
     "summary": "Find 두 세로셈의 받아올림한 수와 계산 결과 using the given information.",
     "facts": [
-      {
-        "ref": "addition.problem_1",
-        "label": "problem 1",
-        "value": {
-          "first_addend": 326,
-          "second_addend": 297
-        },
-        "unit": "",
-        "source": "explicit"
-      },
       {
         "ref": "addition.problem_2",
         "label": "problem 2",

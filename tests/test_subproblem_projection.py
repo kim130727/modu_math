@@ -1194,3 +1194,117 @@ def test_project_suffixed_subproblem_preserves_multiple_submit_slots_in_subprobl
     assert not removed
     assert projected_semantic["answer"]["value"] == [7, 90, 500, 597]
 
+
+def test_project_suffixed_subproblem_preserves_multiple_answer_boxes_and_carries() -> None:
+    layout = {
+        "regions": [
+            {"id": "region.stem", "role": "stem", "slot_ids": ["slot.instruction"]},
+            {
+                "id": "region.problem_1",
+                "role": "question",
+                "slot_ids": [
+                    "slot.problem_1_first_addend",
+                    "slot.problem_1_second_addend",
+                    "slot.problem_1_line",
+                ],
+            },
+            {
+                "id": "region.problem_2",
+                "role": "question",
+                "slot_ids": [
+                    "slot.problem_2_first_addend",
+                    "slot.problem_2_second_addend",
+                    "slot.problem_2_line",
+                ],
+            },
+        ],
+        "slots": [
+            {"id": "slot.instruction", "kind": "text_box", "content": {"x": 30, "y": 18, "width": 840, "height": 42}},
+            {"id": "slot.problem_1_first_addend", "kind": "text_box", "content": {"x": 130, "y": 93, "width": 116, "height": 40}},
+            {"id": "slot.problem_1_second_addend", "kind": "text_box", "content": {"x": 130, "y": 137, "width": 116, "height": 40}},
+            {"id": "slot.problem_1_line", "kind": "text_box", "content": {"x": 72, "y": 173, "width": 145, "height": 22}},
+            {"id": "slot.problem_2_first_addend", "kind": "text_box", "content": {"x": 400, "y": 93, "width": 116, "height": 40}},
+            {"id": "slot.problem_2_second_addend", "kind": "text_box", "content": {"x": 400, "y": 137, "width": 116, "height": 40}},
+            {"id": "slot.problem_2_line", "kind": "text_box", "content": {"x": 340, "y": 173, "width": 145, "height": 22}},
+            # Problem 1 answer boxes: 2 carry boxes on top, 3 sum boxes on bottom
+            {"id": "box.p1.carry1", "kind": "rect", "content": {"x": 145, "y": 67, "width": 25, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 0}}},
+            {"id": "box.p1.carry2", "kind": "rect", "content": {"x": 118, "y": 67, "width": 25, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 1}}},
+            {"id": "box.p1.sum1", "kind": "rect", "content": {"x": 166, "y": 196, "width": 25, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 2}}},
+            {"id": "box.p1.sum2", "kind": "rect", "content": {"x": 140, "y": 196, "width": 25, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 3}}},
+            {"id": "box.p1.sum3", "kind": "rect", "content": {"x": 113, "y": 196, "width": 25, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 4}}},
+            # Problem 2 answer boxes: 2 carry boxes on top, 3 sum boxes on bottom
+            {"id": "box.p2.carry1", "kind": "rect", "content": {"x": 412, "y": 67, "width": 25, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 5}}},
+            {"id": "box.p2.carry2", "kind": "rect", "content": {"x": 385, "y": 67, "width": 25, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 6}}},
+            {"id": "box.p2.sum1", "kind": "rect", "content": {"x": 435, "y": 196, "width": 25, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 7}}},
+            {"id": "box.p2.sum2", "kind": "rect", "content": {"x": 408, "y": 196, "width": 25, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 8}}},
+            {"id": "box.p2.sum3", "kind": "rect", "content": {"x": 381, "y": 196, "width": 25, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 9}}},
+        ],
+        "groups": [],
+    }
+    semantic = {
+        "answer": {
+            "value": [1, 1, 3, 2, 6, 1, 1, 4, 1, 8],
+            "blanks": [
+                {"slot_id": "box.p1.carry1", "expected": 1},
+                {"slot_id": "box.p1.carry2", "expected": 1},
+                {"slot_id": "box.p1.sum1", "expected": 3},
+                {"slot_id": "box.p1.sum2", "expected": 2},
+                {"slot_id": "box.p1.sum3", "expected": 6},
+                {"slot_id": "box.p2.carry1", "expected": 1},
+                {"slot_id": "box.p2.carry2", "expected": 1},
+                {"slot_id": "box.p2.sum1", "expected": 4},
+                {"slot_id": "box.p2.sum2", "expected": 1},
+                {"slot_id": "box.p2.sum3", "expected": 8},
+            ],
+            "answer_key": [
+                {"slot_id": "box.p1.carry1", "value": 1},
+                {"slot_id": "box.p1.carry2", "value": 1},
+                {"slot_id": "box.p1.sum1", "value": 3},
+                {"slot_id": "box.p1.sum2", "value": 2},
+                {"slot_id": "box.p1.sum3", "value": 6},
+                {"slot_id": "box.p2.carry1", "value": 1},
+                {"slot_id": "box.p2.carry2", "value": 1},
+                {"slot_id": "box.p2.sum1", "value": 4},
+                {"slot_id": "box.p2.sum2", "value": 1},
+                {"slot_id": "box.p2.sum3", "value": 8},
+            ],
+        }
+    }
+
+    # Project subproblem 1
+    proj_layout1, proj_semantic1, _, removed1 = project_suffixed_subproblem(
+        artifact_id="P3_1_01_00040_02150_1",
+        template_id="P3_1_01_00040_02150",
+        layout=layout,
+        semantic=semantic,
+        solvable=None,
+    )
+    p1_slot_ids = {s["id"] for s in proj_layout1["slots"]}
+    assert "box.p1.carry1" in p1_slot_ids
+    assert "box.p1.carry2" in p1_slot_ids
+    assert "box.p1.sum1" in p1_slot_ids
+    assert "box.p1.sum2" in p1_slot_ids
+    assert "box.p1.sum3" in p1_slot_ids
+    assert "box.p2.carry1" not in p1_slot_ids
+    assert "box.p2.sum1" not in p1_slot_ids
+    assert proj_semantic1["answer"]["value"] == [1, 1, 3, 2, 6]
+
+    # Project subproblem 2
+    proj_layout2, proj_semantic2, _, removed2 = project_suffixed_subproblem(
+        artifact_id="P3_1_01_00040_02150_2",
+        template_id="P3_1_01_00040_02150",
+        layout=layout,
+        semantic=semantic,
+        solvable=None,
+    )
+    p2_slot_ids = {s["id"] for s in proj_layout2["slots"]}
+    assert "box.p2.carry1" in p2_slot_ids
+    assert "box.p2.carry2" in p2_slot_ids
+    assert "box.p2.sum1" in p2_slot_ids
+    assert "box.p2.sum2" in p2_slot_ids
+    assert "box.p2.sum3" in p2_slot_ids
+    assert "box.p1.carry1" not in p2_slot_ids
+    assert "box.p1.sum1" not in p2_slot_ids
+    assert proj_semantic2["answer"]["value"] == [1, 1, 4, 1, 8]
+
+

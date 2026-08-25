@@ -3,7 +3,7 @@ import { Circle, Group, Image as KonvaImage, Line, Path, Rect, Text } from "reac
 import type Konva from "konva";
 import type { EditorShape } from "../types/editorShape";
 import { connectorPathData } from "./connectorGeometry";
-import { estimateWrappedTextHeight, normalizedTextBoxHeight, normalizedTextBoxWidth } from "./converters";
+import { estimateWrappedTextHeight, normalizedTextBoxHeight, normalizedTextBoxWidth, parseFractionLatex, type FractionLatex } from "./converters";
 import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
 import { renderLatexToSvgDataUrl } from "./latexRenderer";
 import { pathDataForShape } from "./shapeGeometry";

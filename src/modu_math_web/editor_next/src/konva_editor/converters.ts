@@ -4,6 +4,22 @@ import { connectorToPathObject } from "./connectorGeometry";
 import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
 import { inferAdjustableShapePreset, pathDataForShape } from "./shapeGeometry";
 
+export interface FractionLatex {
+  whole?: string;
+  numerator: string;
+  denominator: string;
+}
+
+export function parseFractionLatex(latex: string): FractionLatex | null {
+  const match = latex.trim().match(/^([+-]?\d+)?\s*\\frac\s*\{([^{}]+)\}\s*\{([^{}]+)\}$/);
+  if (!match) return null;
+  return {
+    whole: match[1] || undefined,
+    numerator: match[2],
+    denominator: match[3],
+  };
+}
+
 export function problemJsonToEditorDocument(problem: ProblemJson): EditorShapeDocument {
   return {
     id: problem.id,
@@ -44,6 +60,32 @@ function problemObjectToEditorShape(object: ProblemObject, canvas: ProblemCanvas
       const width = isTextBox || needsAlignmentBox ? normalizedTextBoxWidth(text, fontSize, sourceWidth, textAlign, maxWidth) : undefined;
       const fittedHeight = fittedTextHeight(text, fontSize, width ?? estimateTextWidth(text, fontSize), lineHeight);
 
+      const fraction = parseFractionLatex(text);
+      if (fraction || (typeof object.props.latex === "string" && object.props.latex.includes("\\frac"))) {
+        const latex = object.props.latex || text;
+        return [
+          applySvgTransform(
+            {
+              id: object.id,
+              type: "math",
+              x: object.x,
+              y: object.y,
+              latex,
+              fontSize,
+              fill: "none",
+              color: object.props.color ?? "#111827",
+              width: object.props.width ?? 60,
+              height: object.props.height ?? 60,
+              ...regionProps,
+              ...semanticProps,
+              ...answerProps,
+              visible: true,
+            },
+            stringProp(object.props.transform),
+          ),
+        ];
+      }
+
       return [
         applySvgTransform(
           {
@@ -69,7 +111,6 @@ function problemObjectToEditorShape(object: ProblemObject, canvas: ProblemCanvas
         ),
       ];
     }
-    case "basic_shape":
       if (object.props.shape === "ellipse") {
         return [
           applySvgTransform(
@@ -527,12 +568,15 @@ function baseTenBlockToProblemObjects(shape: Extract<EditorShape, { type: "baseT
   const topFill = shape.topFill ?? "#d2edbf";
   const sideFill = shape.sideFill ?? "#9fcd86";
   const depth = Math.max(0, shape.depth);
+
+  if (shape.kind === "hundred") {
+    return hundredUnitCubeObjects(shape, fill, topFill, sideFill, stroke, strokeWidth, depth);
+  }
+
   const frontY = depth;
   const { cols, rows, depthCols } =
     shape.kind === "thousand"
       ? { cols: 10, rows: 10, depthCols: 10 }
-      : shape.kind === "hundred"
-      ? { cols: 10, rows: 10, depthCols: 1 }
       : shape.kind === "ten"
       ? { cols: 1, rows: 10, depthCols: 1 }
       : { cols: 1, rows: 1, depthCols: 1 };
@@ -597,6 +641,75 @@ function baseTenBlockToProblemObjects(shape: Extract<EditorShape, { type: "baseT
 
   if (segments.length > 0) {
     objects.push(pathObject(`${shape.id}_grid`, shape.x, shape.y, shape.width + depth, shape.height + depth, segments.join(" "), "none", stroke, 0.38));
+  }
+
+  return objects;
+}
+
+function hundredUnitCubeObjects(
+  shape: Extract<EditorShape, { type: "baseTenBlock" }>,
+  fill: string,
+  topFill: string,
+  sideFill: string,
+  stroke: string,
+  strokeWidth: number,
+  depth: number,
+): ProblemObject[] {
+  const cols = 10;
+  const rows = 10;
+  const cellWidth = shape.width / cols;
+  const cellHeight = shape.height / rows;
+  const cubeDepth = Math.max(0, Math.min(depth, cellWidth, cellHeight));
+  const objects: ProblemObject[] = [];
+
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const id = `${shape.id}_cube_${row + 1}_${col + 1}`;
+      const x = shape.x + col * cellWidth;
+      const y = shape.y + cubeDepth + row * cellHeight;
+      objects.push(
+        pathObject(
+          `${id}_top`,
+          x,
+          y - cubeDepth,
+          cellWidth + cubeDepth,
+          cubeDepth,
+          `M 0 ${roundForTransform(cubeDepth)} L ${roundForTransform(cubeDepth)} 0 L ${roundForTransform(cellWidth + cubeDepth)} 0 L ${roundForTransform(
+            cellWidth,
+          )} ${roundForTransform(cubeDepth)} Z`,
+          topFill,
+          stroke,
+          strokeWidth,
+        ),
+        pathObject(
+          `${id}_side`,
+          x + cellWidth,
+          y - cubeDepth,
+          cubeDepth,
+          cellHeight + cubeDepth,
+          `M 0 ${roundForTransform(cubeDepth)} L ${roundForTransform(cubeDepth)} 0 L ${roundForTransform(cubeDepth)} ${roundForTransform(
+            cellHeight,
+          )} L 0 ${roundForTransform(cellHeight + cubeDepth)} Z`,
+          sideFill,
+          stroke,
+          strokeWidth,
+        ),
+        {
+          id: `${id}_front`,
+          type: "basic_shape",
+          x,
+          y,
+          props: {
+            shape: "rectangle",
+            width: cellWidth,
+            height: cellHeight,
+            fill,
+            stroke,
+            strokeWidth,
+          },
+        },
+      );
+    }
   }
 
   return objects;

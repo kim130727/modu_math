@@ -1431,7 +1431,7 @@ function baseTenBlockDimensions(kind: BaseTenBlockKind): { width: number; height
     case "thousand":
       return { width: 120, height: 120, depth: 42 };
     case "hundred":
-      return { width: 96, height: 96, depth: 20 };
+      return { width: 96, height: 96, depth: 9.6 };
     case "ten":
       return { width: 16, height: 112, depth: 7 };
     case "one":

@@ -1238,57 +1238,40 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
 
     function addHundredModelPatches(patches, base, x, y, withRegion) {
       const size = 82;
-      const depth = 18;
+      const depth = size / 10;
       const stroke = "#1d6fa3";
       const frontFill = "#5cc6ee";
       const topFill = "#94dcf6";
       const sideFill = "#35abd8";
-      const grid = "#1d6fa3";
       const step = size / 10;
-      const dstep = depth / 10;
-      const frontSegments = [];
-      const topSegments = [];
-      const sideSegments = [];
-      for (let i = 1; i < 10; i += 1) {
-        const offset = step * i;
-        const doffset = dstep * i;
-        frontSegments.push([x + offset, y + depth, x + offset, y + depth + size]);
-        frontSegments.push([x, y + depth + offset, x + size, y + depth + offset]);
-        topSegments.push([x + doffset, y + depth - doffset, x + size + doffset, y + depth - doffset]);
-        topSegments.push([x + offset, y + depth, x + offset + depth, y]);
-        sideSegments.push([x + size + doffset, y + depth - doffset, x + size + doffset, y + depth + size - doffset]);
-        sideSegments.push([x + size, y + depth + offset, x + size + depth, y + offset]);
+      for (let row = 0; row < 10; row += 1) {
+        for (let col = 0; col < 10; col += 1) {
+          const cx = snapValue(x + col * step);
+          const cy = snapValue(y + depth + row * step);
+          const cube = `${base}.cube.${row + 1}.${col + 1}`;
+          patches.push({
+            target: `${cube}.top`,
+            op: "add",
+            value: withRegion({
+              kind: "polygon",
+              content: polygonContent([[cx, cy], [cx + depth, cy - depth], [cx + step + depth, cy - depth], [cx + step, cy]], topFill, stroke, 0.9),
+            }),
+          });
+          patches.push({
+            target: `${cube}.side`,
+            op: "add",
+            value: withRegion({
+              kind: "polygon",
+              content: polygonContent([[cx + step, cy], [cx + step + depth, cy - depth], [cx + step + depth, cy + step - depth], [cx + step, cy + step]], sideFill, stroke, 0.9),
+            }),
+          });
+          patches.push({
+            target: `${cube}.front`,
+            op: "add",
+            value: withRegion({ kind: "rect", content: { x: cx, y: cy, width: step, height: step, fill: frontFill, stroke, stroke_width: 0.9 } }),
+          });
+        }
       }
-      patches.push({
-        target: `${base}.front`,
-        op: "add",
-        value: withRegion({ kind: "rect", content: { x, y: snapValue(y + depth), width: size, height: size, fill: frontFill, stroke, stroke_width: 1.2 } }),
-      });
-      patches.push({
-        target: `${base}.top`,
-        op: "add",
-        value: withRegion({ kind: "polygon", content: polygonContent([[x, y + depth], [x + depth, y], [x + size + depth, y], [x + size, y + depth]], topFill, stroke, 1) }),
-      });
-      patches.push({
-        target: `${base}.side`,
-        op: "add",
-        value: withRegion({ kind: "polygon", content: polygonContent([[x + size, y + depth], [x + size + depth, y], [x + size + depth, y + size], [x + size, y + size + depth]], sideFill, stroke, 1) }),
-      });
-      patches.push({
-        target: `${base}.front.grid`,
-        op: "add",
-        value: withRegion({ kind: "path", content: { d: pathFromSegments(frontSegments), fill: "none", stroke: grid, stroke_width: 0.55 } }),
-      });
-      patches.push({
-        target: `${base}.top.grid`,
-        op: "add",
-        value: withRegion({ kind: "path", content: { d: pathFromSegments(topSegments), fill: "none", stroke: grid, stroke_width: 0.45 } }),
-      });
-      patches.push({
-        target: `${base}.side.grid`,
-        op: "add",
-        value: withRegion({ kind: "path", content: { d: pathFromSegments(sideSegments), fill: "none", stroke: grid, stroke_width: 0.45 } }),
-      });
     }
 
     function addTenModelPatches(patches, base, x, y, withRegion) {
