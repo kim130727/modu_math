@@ -221,7 +221,6 @@ function BaseTenGridLines({
   const lines = [];
 
   // 1. Front face grid
-  // Vertical lines on front
   for (let i = 1; i < cols; i += 1) {
     const x = (width / cols) * i;
     lines.push(
@@ -234,7 +233,6 @@ function BaseTenGridLines({
       />,
     );
   }
-  // Horizontal lines on front
   for (let j = 1; j < rows; j += 1) {
     const y = frontY + (height / rows) * j;
     lines.push(
@@ -250,7 +248,6 @@ function BaseTenGridLines({
 
   // 2. Top face grid
   if (depth > 0) {
-    // Columns running front to back on top face
     for (let i = 1; i < cols; i += 1) {
       const x = (width / cols) * i;
       lines.push(
@@ -263,7 +260,6 @@ function BaseTenGridLines({
         />,
       );
     }
-    // Depth slices along top face
     for (let k = 1; k < depthCols; k += 1) {
       const d = (depth / depthCols) * k;
       lines.push(
@@ -278,7 +274,6 @@ function BaseTenGridLines({
     }
 
     // 3. Side face grid
-    // Horizontal rows on side face
     for (let j = 1; j < rows; j += 1) {
       const y = frontY + (height / rows) * j;
       lines.push(
@@ -291,7 +286,6 @@ function BaseTenGridLines({
         />,
       );
     }
-    // Depth slices on side face
     for (let k = 1; k < depthCols; k += 1) {
       const d = (depth / depthCols) * k;
       lines.push(
@@ -365,12 +359,6 @@ function MathShapeRenderer({ shape, common }: { shape: Extract<EditorShape, { ty
   );
 }
 
-interface FractionLatex {
-  whole?: string;
-  numerator: string;
-  denominator: string;
-}
-
 function FractionShapeRenderer({
   shape,
   fraction,
@@ -436,16 +424,6 @@ function FractionShapeRenderer({
       />
     </Group>
   );
-}
-
-function parseFractionLatex(latex: string): FractionLatex | null {
-  const match = latex.trim().match(/^([+-]?\d+)?\s*\\frac\s*\{([^{}]+)\}\s*\{([^{}]+)\}$/);
-  if (!match) return null;
-  return {
-    whole: match[1],
-    numerator: match[2],
-    denominator: match[3],
-  };
 }
 
 function estimatePlainTextWidth(text: string, fontSize: number): number {

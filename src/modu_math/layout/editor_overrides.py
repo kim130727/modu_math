@@ -877,22 +877,34 @@ def apply_editor_overrides(
             if (
                 isinstance(slot_id, str)
                 and slot_id
-                and slot_id not in slot_ids
                 and isinstance(patch, dict)
                 and not _deleted_slot_matches(slot_id, deleted, deleted & slot_ids)
             ):
-                explicit_region_id = slot_region_map.get(slot_id)
-                _add_missing_override_slot(
-                    layout,
-                    slot_id,
-                    patch,
-                    explicit_region_id=(
-                        explicit_region_id
-                        if isinstance(explicit_region_id, str)
-                        else None
-                    ),
-                )
-                slot_ids.add(slot_id)
+                if slot_id not in slot_ids:
+                    explicit_region_id = slot_region_map.get(slot_id)
+                    _add_missing_override_slot(
+                        layout,
+                        slot_id,
+                        patch,
+                        explicit_region_id=(
+                            explicit_region_id
+                            if isinstance(explicit_region_id, str)
+                            else None
+                        ),
+                    )
+                    slot_ids.add(slot_id)
+                elif _expand_fraction_override_slots(slot_id, patch):
+                    explicit_region_id = slot_region_map.get(slot_id)
+                    _add_missing_override_slot(
+                        layout,
+                        slot_id,
+                        patch,
+                        explicit_region_id=(
+                            explicit_region_id
+                            if isinstance(explicit_region_id, str)
+                            else None
+                        ),
+                    )
 
         for slot in layout.get("slots", []):
             if not isinstance(slot, dict):
