@@ -1,0 +1,80 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008638",
+  "problem_type": "도형_원의중심_선택",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "원의 중심",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle",
+      "value": "circle"
+    },
+    {
+      "ref": "obj.point.ga",
+      "value": {
+        "label": "ㄱ",
+        "type": "point"
+      }
+    },
+    {
+      "ref": "obj.point.na",
+      "value": {
+        "label": "ㄴ",
+        "type": "point"
+      }
+    },
+    {
+      "ref": "obj.point.da",
+      "value": {
+        "label": "ㄷ",
+        "type": "point"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_point_label"
+  },
+  "method": "도형식별",
+  "plan": [
+    "주어진 점들 중 원의 중심 위치에 해당하는 점을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "중심 후보 점 선택",
+      "value": "ㄱ"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "점 ㄱ이 원의 중심인가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "ㄱ",
+      "ㄴ",
+      "ㄷ"
+    ],
+    "answer_key": [
+      "ㄱ"
+    ],
+    "target": {
+      "type": "selected_point_label",
+      "description": "원의 중심으로 선택할 점의 라벨"
+    },
+    "value": "ㄱ",
+    "unit": ""
+  }
+}

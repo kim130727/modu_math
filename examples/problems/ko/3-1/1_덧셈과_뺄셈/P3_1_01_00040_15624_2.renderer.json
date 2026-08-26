@@ -1,0 +1,107 @@
+{
+  "problem_id": "P3_1_01_00040_15624",
+  "view_box": {
+    "width": 650.0,
+    "height": 400.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.instruction.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 27.368,
+        "y": 45.653,
+        "fill": "#202124",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 30,
+        "width": 585.67,
+        "height": 176.0,
+        "max_width": 585.67,
+        "data-slot-kind": "text_box",
+        "data-box-x": 27.368,
+        "data-box-y": 45.653,
+        "data-box-width": 585.67,
+        "data-box-height": 176.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.4
+      },
+      "source_ref": "slot.instruction",
+      "refs": {
+        "layout_slot_id": "slot.instruction"
+      },
+      "text": "2, 4, 6의 숫자 카드를 한 번씩만 사용하여 세 자리 수를 만들려고 합니다. 만들 수 있는 가장 큰 수와 가장 작은 수의 합을 구하려고 할 때 물음에 답하시오."
+    },
+    {
+      "id": "slot.question2.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 27.967,
+        "y": 221.022,
+        "fill": "#202124",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 30,
+        "width": 507.062,
+        "height": 83.0,
+        "max_width": 507.062,
+        "data-slot-kind": "text_box",
+        "data-box-x": 27.967,
+        "data-box-y": 221.022,
+        "data-box-width": 507.062,
+        "data-box-height": 83.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top"
+      },
+      "source_ref": "slot.question2",
+      "refs": {
+        "layout_slot_id": "slot.question2"
+      },
+      "text": "[문제] 숫자 카드를 이용하여 만들 수 있는 가장 작은 세 자리 수를 쓰시오."
+    },
+    {
+      "id": "konva_1787620377264_paste_49380_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 457.039,
+        "y": 317.451,
+        "width": 160.56,
+        "height": 57.15,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.2
+      },
+      "source_ref": "konva_1787620377264_paste_49380_0",
+      "refs": {
+        "layout_slot_id": "konva_1787620377264_paste_49380_0"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "integer",
+        "max_length": 3,
+        "include_in_submission": true,
+        "order": 2,
+        "group_id": "final_answer",
+        "answer_key_index": 1,
+        "answer_ref": "answer_key[1]",
+        "auto_advance": false,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222",
+        "width": 160.56,
+        "height": 57.15
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

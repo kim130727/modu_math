@@ -203,7 +203,63 @@ void main() {
     expect(hints[1].miniQuestion, equals('556과 501의 크기를 바르게 비교한 것은 무엇인가요?'));
     expect(_correctChoice(hints[1]), equals('556 > 501'));
   });
+
+  test('localizes English diagnostic questions and choices into Korean', () {
+    final hints = service.buildHints(_englishDiagnosticQuestionContent);
+
+    expect(hints, hasLength(2));
+    expect(hints[0].title, equals('1단계: 개념 확인 1'));
+    expect(hints[0].miniQuestion, equals('계산 결과가 3000보다 큰 것은 무엇인가요?'));
+    expect(_correctChoice(hints[0]), equals('3200과 3100'));
+
+    expect(hints[1].title, equals('2단계: 개념 확인 2'));
+    expect(hints[1].miniQuestion, equals('90 × 30의 계산 결과는 3000보다 큰가요?'));
+    expect(_correctChoice(hints[1]), equals('아니요, 계산 결과가 2700이기 때문입니다.'));
+  });
 }
+
+const _englishDiagnosticQuestionContent = ProblemContent(
+  summary: ProblemSummary(
+    id: 'S3_초등_3_008542',
+    grade: 3,
+    subject: 'math',
+    unit: 'multiplication',
+    type: 'comparison_selection',
+    title: '계산 결과가 3000보다 큰 곱셈식',
+    path: '',
+    raw: {},
+  ),
+  semantic: {},
+  solvable: {
+    'problem_type': 'comparison_selection',
+    'understanding': {
+      'diagnostic_questions': [
+        {
+          'id': 'understand.threshold',
+          'type': 'multiple_choice',
+          'prompt': 'Which products are greater than 3000?',
+          'choices': [
+            '3200 and 3100',
+            '2700 and 2580',
+            '3100 and 2700',
+          ],
+          'answer_index': 0,
+        },
+        {
+          'id': 'understand.product_90_30',
+          'type': 'multiple_choice',
+          'prompt': 'Is 90 x 30 greater than 3000?',
+          'choices': [
+            'Yes, because it is 3200',
+            'No, because it is 2700',
+            'Yes, because it is 3100',
+          ],
+          'answer_index': 1,
+        },
+      ],
+    },
+  },
+);
 
 const _compareAdditionAndNumberContent = ProblemContent(
   summary: ProblemSummary(

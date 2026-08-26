@@ -381,6 +381,23 @@ print("build_ok")
     if ($LASTEXITCODE -ne 0) {
         throw "Build failed (exit code: $LASTEXITCODE)"
     }
+    
+    # Sync generated artifacts to Flutter assets build directories
+    $dslDir = [System.IO.Path]::GetDirectoryName($DslPath)
+    $relDir = $dslDir.Substring($RepoRoot.Length).TrimStart('\', '/')
+    $baseName = [System.IO.Path]::GetFileNameWithoutExtension($DslPath).Replace(".dsl", "")
+    $destDirs = @(
+        (Join-Path $RepoRoot "apps\mobile\build\flutter_assets\$relDir"),
+        (Join-Path $RepoRoot "apps\mobile\build\unit_test_assets\$relDir")
+    )
+    foreach ($dest in $destDirs) {
+        if (Test-Path $dest) {
+            Get-ChildItem -Path $dslDir -Filter "$baseName.*" | ForEach-Object {
+                Copy-Item -Path $_.FullName -Destination $dest -Force
+            }
+        }
+    }
+
     Write-Host "[watch_build] Build complete." -ForegroundColor Green
 }
 

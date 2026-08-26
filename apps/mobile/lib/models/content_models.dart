@@ -66,8 +66,15 @@ class ProblemSummary {
   String get semester => raw['semester']?.toString() ?? '1학기';
   int get unitNumber => _readInt(raw['unitNumber']) ?? 1;
   String get unitTopic => raw['unitTopic']?.toString() ?? unit;
-  String get subUnit =>
-      raw['subUnit']?.toString() ?? raw['subTopic']?.toString() ?? '기본 학습';
+  String get subUnit {
+    final candidate = raw['subUnit']?.toString() ??
+        raw['subTopic']?.toString() ??
+        raw['topic']?.toString();
+    if (candidate != null && candidate.trim().isNotEmpty) {
+      return candidate.trim();
+    }
+    return '기본 학습';
+  }
 
   String assetPath(String fileName) {
     if (filePrefix != null && filePrefix!.isNotEmpty) {
@@ -108,7 +115,35 @@ class ProblemContent {
     return summary.title;
   }
 
+  List<ChoiceGroup> get choiceGroups {
+    final answer = answerMap;
+    final rawGroups = answer['choice_groups'];
+    if (rawGroups is List && rawGroups.isNotEmpty) {
+      return rawGroups.map((group) {
+        if (group is Map<String, dynamic>) {
+          final label = group['label']?.toString() ?? '';
+          final rawChoices = group['choices'];
+          final choices = rawChoices is List
+              ? rawChoices
+                  .map((c) => sanitizeProblemText(c.toString()))
+                  .toList()
+              : <String>[];
+          return ChoiceGroup(label: label, choices: choices);
+        } else if (group is List) {
+          final choices =
+              group.map((c) => sanitizeProblemText(c.toString())).toList();
+          return ChoiceGroup(label: '', choices: choices);
+        }
+        return const ChoiceGroup(label: '', choices: []);
+      }).where((g) => g.choices.isNotEmpty).toList();
+    }
+    return const [];
+  }
+
   List<String> get choices {
+    if (choiceGroups.isNotEmpty) {
+      return choiceGroups.expand((g) => g.choices).toList();
+    }
     final answer = answerMap;
     final explicitChoices = answer['choices'];
     if (explicitChoices is List && explicitChoices.isNotEmpty) {
@@ -856,5 +891,16 @@ String _answerValueText(Object? value) {
 bool _looksBrokenText(String value) {
   return RegExp(r'[\u3400-\u9FFF\uFFFD]').hasMatch(value) ||
       value.contains('??') ||
-      value.contains('�');
+      value.contains('\uFFFD');
 }
+
+class ChoiceGroup {
+  const ChoiceGroup({
+    required this.label,
+    required this.choices,
+  });
+
+  final String label;
+  final List<String> choices;
+}
+

@@ -63,6 +63,9 @@ export type BaseShape = {
   opacity?: number;
   locked?: boolean;
   visible?: boolean;
+  sourceX?: number;
+  sourceY?: number;
+  sourceTransform?: string;
   sourceRegionId?: string;
   semanticRole?: string;
   interaction?: InputInteraction;
@@ -152,6 +155,9 @@ export type MathShape = BaseShape & {
   width: number;
   height: number;
   fontSize?: number;
+  fill?: string;
+  color?: string;
+  stroke?: string;
 };
 
 export type BaseTenBlockKind = "thousand" | "hundred" | "ten" | "one";

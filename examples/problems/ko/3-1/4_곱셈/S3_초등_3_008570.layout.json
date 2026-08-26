@@ -1,0 +1,119 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008570",
+  "title": "계산 결과가 가장 큰 것의 기호를 선택하세요.",
+  "canvas": {
+    "width": 700,
+    "height": 300,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.top",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.qtext"
+      ]
+    },
+    {
+      "id": "region.main",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.choice1",
+        "slot.choice2",
+        "slot.choice3"
+      ]
+    },
+    {
+      "id": "region.note",
+      "role": "supporting",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qtext",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "계산 결과가 가장 큰 것의 기호를 선택하세요.",
+        "style_role": "question",
+        "x": 86.245,
+        "y": 63.566,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 79.857,
+        "y": 104.73,
+        "width": 520.0,
+        "height": 110.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠ 512 × 3",
+        "style_role": "diagram",
+        "x": 114.857,
+        "y": 179.73,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡ 35 × 29",
+        "style_role": "body",
+        "x": 264.857,
+        "y": 179.73,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉢ 16 × 90",
+        "style_role": "diagram",
+        "x": 422.86,
+        "y": 180.73,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.top",
+    "slot.qtext",
+    "region.main",
+    "slot.box",
+    "slot.choice1",
+    "slot.choice2",
+    "slot.choice3",
+    "region.note"
+  ]
+}

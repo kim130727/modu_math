@@ -1,0 +1,323 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_02152",
+  "title": "수 모형으로 알아보는 세 자리 수의 덧셈",
+  "canvas": {
+    "width": 900,
+    "height": 650,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.top_box",
+        "slot.diagram.bottom_box",
+        "slot.model_legend",
+        "slot.first_number_label",
+        "slot.first_number_models",
+        "slot.second_number_label",
+        "slot.second_number_models",
+        "slot.combine_arrow",
+        "slot.regrouped_models"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer_1",
+        "slot.answer_2",
+        "slot.answer_3",
+        "slot.answer_4"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "병현이네 학교 도서관에 위인전이 599권, 동화책이 837권 있습니다. 모두 몇 권의 책이 있는지 수 모형으로 알아보시오.",
+        "style_role": "body",
+        "x": 28.0,
+        "y": 18.0,
+        "width": 844.0,
+        "height": 66.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 22,
+        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.diagram.top_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 35.0,
+        "y": 110.911,
+        "width": 243.16,
+        "height": 89.17,
+        "stroke": "#6f6f6f",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.bottom_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 41.459,
+        "y": 243.318,
+        "width": 405.0,
+        "height": 112.0,
+        "stroke": "#6f6f6f",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.model_legend",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "천 모형  ▰     백 모형  ▣     십 모형  ▮     낱개 모형  ●",
+        "style_role": "body",
+        "x": 30.0,
+        "y": 98.0,
+        "width": 840.0,
+        "height": 38.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 19,
+        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "fill": "#4B5563",
+        "transform": "translate(1000 0)"
+      }
+    },
+    {
+      "id": "slot.first_number_label",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "599",
+        "style_role": "body",
+        "x": 30.0,
+        "y": 146.0,
+        "width": 90.0,
+        "height": 43,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 28,
+        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "transform": "translate(1000 0)"
+      }
+    },
+    {
+      "id": "slot.first_number_models",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "백 모형 5개     십 모형 9개     낱개 모형 9개",
+        "style_role": "body",
+        "x": 125.0,
+        "y": 140.0,
+        "width": 730.0,
+        "height": 54.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 22,
+        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "transform": "translate(1000 0)"
+      }
+    },
+    {
+      "id": "slot.second_number_label",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "+ 837",
+        "style_role": "body",
+        "x": 30.0,
+        "y": 204.0,
+        "width": 90.0,
+        "height": 43,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 28,
+        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "transform": "translate(1000 0)"
+      }
+    },
+    {
+      "id": "slot.second_number_models",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "백 모형 8개     십 모형 3개     낱개 모형 7개",
+        "style_role": "body",
+        "x": 125.0,
+        "y": 198.0,
+        "width": 730.0,
+        "height": 54.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 22,
+        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "transform": "translate(1000 0)"
+      }
+    },
+    {
+      "id": "slot.combine_arrow",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "↓  같은 자리의 수 모형끼리 더하고 10개씩 묶어 윗자리로 바꿉니다.",
+        "style_role": "body",
+        "x": 30.0,
+        "y": 266.0,
+        "width": 840.0,
+        "height": 52.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 21,
+        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "fill": "#4B5563",
+        "transform": "translate(1000 0)"
+      }
+    },
+    {
+      "id": "slot.regrouped_models",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "천 모형 1개     백 모형 4개     십 모형 3개     낱개 모형 6개",
+        "style_role": "body",
+        "x": 30.0,
+        "y": 326.0,
+        "width": 840.0,
+        "height": 62.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "transform": "translate(1000 0)"
+      }
+    },
+    {
+      "id": "slot.answer_1",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(1) 낱개 모형끼리 더하면 십 모형 (   )개와 낱개 모형 (   )개입니다.",
+        "style_role": "body",
+        "x": 28.0,
+        "y": 470.0,
+        "width": 844.0,
+        "height": 61.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 21,
+        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.answer_2",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(2) 십 모형끼리 더하면 백 모형 (   )개와 십 모형 (   )개입니다.",
+        "style_role": "body",
+        "x": 28.0,
+        "y": 516.0,
+        "width": 844.0,
+        "height": 61.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 21,
+        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.answer_3",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(3) 백 모형끼리 더하면 천 모형 (   )개와 백 모형 (   )개입니다.",
+        "style_role": "body",
+        "x": 28.0,
+        "y": 562.0,
+        "width": 844.0,
+        "height": 61.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 21,
+        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.answer_4",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(4) 도서관의 책 수는 모두 (     )권입니다.",
+        "style_role": "body",
+        "x": 28.0,
+        "y": 608.0,
+        "width": 844.0,
+        "height": 42.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 21,
+        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "fill": "#202124"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "region.diagram",
+    "slot.diagram.top_box",
+    "slot.diagram.bottom_box",
+    "slot.model_legend",
+    "slot.first_number_label",
+    "slot.first_number_models",
+    "slot.second_number_label",
+    "slot.second_number_models",
+    "slot.combine_arrow",
+    "slot.regrouped_models",
+    "region.answer",
+    "slot.answer_1",
+    "slot.answer_2",
+    "slot.answer_3",
+    "slot.answer_4"
+  ]
+}

@@ -1,0 +1,2380 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008663",
+  "title": "반지름이 3 cm인 원을 그릴 수 있도록 컴퍼스를 벌린 것",
+  "canvas": {
+    "width": 920,
+    "height": 380,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q.text1",
+        "slot.q.text2",
+        "slot.q.text2.copy1",
+        "slot.q.text2.copy2",
+        "slot.q.text2.copy3"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice1.ruler.body",
+        "slot.choice1.compass.head",
+        "slot.choice1.compass.knob",
+        "slot.choice1.compass.clamp",
+        "slot.choice1.compass.pencil.body",
+        "slot.choice1.compass.pencil.tip",
+        "slot.choice2.ruler.body",
+        "slot.choice2.compass.head",
+        "slot.choice2.compass.knob",
+        "slot.choice2.compass.clamp",
+        "slot.choice2.compass.pencil.body",
+        "slot.choice2.compass.pencil.tip",
+        "slot.choice3.ruler.body",
+        "slot.choice3.compass.head",
+        "slot.choice3.compass.knob",
+        "slot.choice3.compass.clamp",
+        "slot.choice3.compass.pencil.body",
+        "slot.choice3.compass.pencil.tip",
+        "slot.choice1.ruler.top",
+        "slot.choice1.ruler.tick.00",
+        "slot.choice1.ruler.tick.01",
+        "slot.choice1.ruler.tick.02",
+        "slot.choice1.ruler.tick.03",
+        "slot.choice1.ruler.tick.04",
+        "slot.choice1.ruler.tick.05",
+        "slot.choice1.ruler.tick.06",
+        "slot.choice1.ruler.tick.07",
+        "slot.choice1.ruler.tick.08",
+        "slot.choice1.ruler.tick.09",
+        "slot.choice1.ruler.tick.10",
+        "slot.choice1.ruler.tick.11",
+        "slot.choice1.ruler.tick.12",
+        "slot.choice1.ruler.tick.13",
+        "slot.choice1.ruler.tick.14",
+        "slot.choice1.ruler.tick.15",
+        "slot.choice1.ruler.tick.16",
+        "slot.choice1.ruler.tick.17",
+        "slot.choice1.ruler.tick.18",
+        "slot.choice1.ruler.tick.19",
+        "slot.choice1.ruler.tick.20",
+        "slot.choice1.ruler.tick.21",
+        "slot.choice1.ruler.tick.22",
+        "slot.choice1.ruler.tick.23",
+        "slot.choice1.ruler.tick.24",
+        "slot.choice1.ruler.tick.25",
+        "slot.choice1.ruler.tick.26",
+        "slot.choice1.ruler.tick.27",
+        "slot.choice1.ruler.tick.28",
+        "slot.choice1.ruler.tick.29",
+        "slot.choice1.ruler.tick.30",
+        "slot.choice1.compass.leg.left.outer",
+        "slot.choice1.compass.leg.left.inner",
+        "slot.choice1.compass.leg.right.outer",
+        "slot.choice1.compass.leg.right.inner",
+        "slot.choice1.compass.bar.left",
+        "slot.choice1.compass.needle.tip",
+        "slot.choice2.ruler.top",
+        "slot.choice2.ruler.tick.00",
+        "slot.choice2.ruler.tick.01",
+        "slot.choice2.ruler.tick.02",
+        "slot.choice2.ruler.tick.03",
+        "slot.choice2.ruler.tick.04",
+        "slot.choice2.ruler.tick.05",
+        "slot.choice2.ruler.tick.06",
+        "slot.choice2.ruler.tick.07",
+        "slot.choice2.ruler.tick.08",
+        "slot.choice2.ruler.tick.09",
+        "slot.choice2.ruler.tick.10",
+        "slot.choice2.ruler.tick.11",
+        "slot.choice2.ruler.tick.12",
+        "slot.choice2.ruler.tick.13",
+        "slot.choice2.ruler.tick.14",
+        "slot.choice2.ruler.tick.15",
+        "slot.choice2.ruler.tick.16",
+        "slot.choice2.ruler.tick.17",
+        "slot.choice2.ruler.tick.18",
+        "slot.choice2.ruler.tick.19",
+        "slot.choice2.ruler.tick.20",
+        "slot.choice2.ruler.tick.21",
+        "slot.choice2.ruler.tick.22",
+        "slot.choice2.ruler.tick.23",
+        "slot.choice2.ruler.tick.24",
+        "slot.choice2.ruler.tick.25",
+        "slot.choice2.ruler.tick.26",
+        "slot.choice2.ruler.tick.27",
+        "slot.choice2.ruler.tick.28",
+        "slot.choice2.ruler.tick.29",
+        "slot.choice2.ruler.tick.30",
+        "slot.choice2.compass.leg.left.outer",
+        "slot.choice2.compass.leg.left.inner",
+        "slot.choice2.compass.leg.right.outer",
+        "slot.choice2.compass.leg.right.inner",
+        "slot.choice2.compass.bar.left",
+        "slot.choice2.compass.needle.tip",
+        "slot.choice3.ruler.top",
+        "slot.choice3.ruler.tick.00",
+        "slot.choice3.ruler.tick.01",
+        "slot.choice3.ruler.tick.02",
+        "slot.choice3.ruler.tick.03",
+        "slot.choice3.ruler.tick.04",
+        "slot.choice3.ruler.tick.05",
+        "slot.choice3.ruler.tick.06",
+        "slot.choice3.ruler.tick.07",
+        "slot.choice3.ruler.tick.08",
+        "slot.choice3.ruler.tick.09",
+        "slot.choice3.ruler.tick.10",
+        "slot.choice3.ruler.tick.11",
+        "slot.choice3.ruler.tick.12",
+        "slot.choice3.ruler.tick.13",
+        "slot.choice3.ruler.tick.14",
+        "slot.choice3.ruler.tick.15",
+        "slot.choice3.ruler.tick.16",
+        "slot.choice3.ruler.tick.17",
+        "slot.choice3.ruler.tick.18",
+        "slot.choice3.ruler.tick.19",
+        "slot.choice3.ruler.tick.20",
+        "slot.choice3.ruler.tick.21",
+        "slot.choice3.ruler.tick.22",
+        "slot.choice3.ruler.tick.23",
+        "slot.choice3.ruler.tick.24",
+        "slot.choice3.ruler.tick.25",
+        "slot.choice3.ruler.tick.26",
+        "slot.choice3.ruler.tick.27",
+        "slot.choice3.ruler.tick.28",
+        "slot.choice3.ruler.tick.29",
+        "slot.choice3.ruler.tick.30",
+        "slot.choice3.compass.leg.left.outer",
+        "slot.choice3.compass.leg.left.inner",
+        "slot.choice3.compass.leg.right.outer",
+        "slot.choice3.compass.leg.right.inner",
+        "slot.choice3.compass.bar.left",
+        "slot.choice3.compass.needle.tip",
+        "slot.choice1.compass.hinge",
+        "slot.choice2.compass.hinge",
+        "slot.choice3.compass.hinge",
+        "slot.choice1.ruler.label.0",
+        "slot.choice1.ruler.label.1",
+        "slot.choice1.ruler.label.2",
+        "slot.choice1.ruler.label.3",
+        "slot.choice2.ruler.label.0",
+        "slot.choice2.ruler.label.1",
+        "slot.choice2.ruler.label.2",
+        "slot.choice2.ruler.label.3",
+        "slot.choice3.ruler.label.0",
+        "slot.choice3.ruler.label.1",
+        "slot.choice3.ruler.label.2",
+        "slot.choice3.ruler.label.3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.text1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다음 중 반지름이 3 cm인 원을 그릴 수 있도록 컴퍼스를 바르게 벌린 것",
+        "style_role": "question",
+        "x": 38.77,
+        "y": 51.115,
+        "font_size": 25
+      }
+    },
+    {
+      "id": "slot.q.text2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "을 선택하세요.",
+        "style_role": "question",
+        "x": 37.508,
+        "y": 90.131,
+        "font_size": 25
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 227.672,
+        "y": 273.23,
+        "width": 93.0,
+        "height": 32.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.2,
+        "fill": "#DDF6FF"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.top",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 227.672,
+        "y1": 281.23,
+        "x2": 320.672,
+        "y2": 281.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.1
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.00",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 227.672,
+        "y1": 281.23,
+        "x2": 227.672,
+        "y2": 293.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.01",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 230.772,
+        "y1": 281.23,
+        "x2": 230.772,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.02",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 233.872,
+        "y1": 281.23,
+        "x2": 233.872,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.03",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 236.972,
+        "y1": 281.23,
+        "x2": 236.972,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.04",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 240.072,
+        "y1": 281.23,
+        "x2": 240.072,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.05",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 243.172,
+        "y1": 281.23,
+        "x2": 243.172,
+        "y2": 290.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.85
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.06",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 246.272,
+        "y1": 281.23,
+        "x2": 246.272,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.07",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 249.372,
+        "y1": 281.23,
+        "x2": 249.372,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.08",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 252.472,
+        "y1": 281.23,
+        "x2": 252.472,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.09",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 255.572,
+        "y1": 281.23,
+        "x2": 255.572,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 258.672,
+        "y1": 281.23,
+        "x2": 258.672,
+        "y2": 293.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.11",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 261.772,
+        "y1": 281.23,
+        "x2": 261.772,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.12",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 264.872,
+        "y1": 281.23,
+        "x2": 264.872,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.13",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 267.972,
+        "y1": 281.23,
+        "x2": 267.972,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.14",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 271.072,
+        "y1": 281.23,
+        "x2": 271.072,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.15",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 274.172,
+        "y1": 281.23,
+        "x2": 274.172,
+        "y2": 290.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.85
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.16",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 277.272,
+        "y1": 281.23,
+        "x2": 277.272,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.17",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 280.372,
+        "y1": 281.23,
+        "x2": 280.372,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.18",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 283.472,
+        "y1": 281.23,
+        "x2": 283.472,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.19",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 286.572,
+        "y1": 281.23,
+        "x2": 286.572,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.20",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 289.672,
+        "y1": 281.23,
+        "x2": 289.672,
+        "y2": 293.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.21",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 292.772,
+        "y1": 281.23,
+        "x2": 292.772,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.22",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 295.872,
+        "y1": 281.23,
+        "x2": 295.872,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.23",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 298.972,
+        "y1": 281.23,
+        "x2": 298.972,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.24",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 302.072,
+        "y1": 281.23,
+        "x2": 302.072,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.25",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 305.172,
+        "y1": 281.23,
+        "x2": 305.172,
+        "y2": 290.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.85
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.26",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 308.272,
+        "y1": 281.23,
+        "x2": 308.272,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.27",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 311.372,
+        "y1": 281.23,
+        "x2": 311.372,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.28",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 314.472,
+        "y1": 281.23,
+        "x2": 314.472,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.29",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 317.572,
+        "y1": 281.23,
+        "x2": 317.572,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.30",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 320.672,
+        "y1": 281.23,
+        "x2": 320.672,
+        "y2": 293.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.label.0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "label",
+        "x": 227.672,
+        "y": 297.23,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.label.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "label",
+        "x": 258.672,
+        "y": 297.23,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.label.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "label",
+        "x": 289.672,
+        "y": 297.23,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.label.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "label",
+        "x": 320.672,
+        "y": 297.23,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.leg.left.outer",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 241.992,
+        "y1": 180.59,
+        "x2": 227.672,
+        "y2": 265.87,
+        "stroke": "#42474B",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice1.compass.leg.left.inner",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 246.592,
+        "y1": 180.59,
+        "x2": 232.272,
+        "y2": 265.87,
+        "stroke": "#C7DCE3",
+        "stroke_width": 3.0
+      }
+    },
+    {
+      "id": "slot.choice1.compass.leg.right.outer",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 249.352,
+        "y1": 180.59,
+        "x2": 258.672,
+        "y2": 261.27,
+        "stroke": "#42474B",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice1.compass.leg.right.inner",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 244.752,
+        "y1": 180.59,
+        "x2": 253.152,
+        "y2": 249.31,
+        "stroke": "#C7DCE3",
+        "stroke_width": 3.0
+      }
+    },
+    {
+      "id": "slot.choice1.compass.hinge",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 245.672,
+        "cy": 173.23,
+        "r": 5.5200000000000005,
+        "stroke": "#42474B",
+        "stroke_width": 1.0,
+        "fill": "#AEB4B7"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.head",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 241.072,
+        "y": 157.59,
+        "width": 9.200000000000001,
+        "height": 16.560000000000002,
+        "stroke": "#42474B",
+        "stroke_width": 1.0,
+        "rx": 1.84,
+        "ry": 1.84,
+        "fill": "#8B9195"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.knob",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 243.832,
+        "y": 145.63,
+        "width": 3.68,
+        "height": 11.040000000000001,
+        "stroke": "#42474B",
+        "stroke_width": 0.8,
+        "fill": "#7F8589"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.bar.left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 234.152,
+        "y1": 232.519,
+        "x2": 254.382,
+        "y2": 235.298,
+        "stroke": "#6D7378",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice1.compass.clamp",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 252.232,
+        "y": 236.43,
+        "width": 12.88,
+        "height": 7.36,
+        "stroke": "#42474B",
+        "stroke_width": 0.8,
+        "fill": "#6D7378"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.pencil.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 255.912,
+        "y": 194.11,
+        "width": 5.5200000000000005,
+        "height": 69.0,
+        "stroke": "#879036",
+        "stroke_width": 0.9,
+        "fill": "#A9B84B"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.pencil.tip",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            254.072,
+            262.19
+          ],
+          [
+            263.272,
+            262.19
+          ],
+          [
+            258.672,
+            274.15
+          ]
+        ],
+        "stroke": "#9E7130",
+        "stroke_width": 0.8,
+        "fill": "#E8B55D"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.needle.tip",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 227.672,
+        "y1": 258.51,
+        "x2": 227.672,
+        "y2": 273.23,
+        "stroke": "#42474B",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 447.672,
+        "y": 273.23,
+        "width": 93.0,
+        "height": 32.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.2,
+        "fill": "#DDF6FF"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.top",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 447.672,
+        "y1": 281.23,
+        "x2": 540.672,
+        "y2": 281.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.1
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.00",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 447.672,
+        "y1": 281.23,
+        "x2": 447.672,
+        "y2": 293.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.01",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 450.772,
+        "y1": 281.23,
+        "x2": 450.772,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.02",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 453.872,
+        "y1": 281.23,
+        "x2": 453.872,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.03",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 456.972,
+        "y1": 281.23,
+        "x2": 456.972,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.04",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 460.072,
+        "y1": 281.23,
+        "x2": 460.072,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.05",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 463.172,
+        "y1": 281.23,
+        "x2": 463.172,
+        "y2": 290.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.85
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.06",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 466.272,
+        "y1": 281.23,
+        "x2": 466.272,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.07",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 469.372,
+        "y1": 281.23,
+        "x2": 469.372,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.08",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 472.472,
+        "y1": 281.23,
+        "x2": 472.472,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.09",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 475.572,
+        "y1": 281.23,
+        "x2": 475.572,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 478.672,
+        "y1": 281.23,
+        "x2": 478.672,
+        "y2": 293.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.11",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 481.772,
+        "y1": 281.23,
+        "x2": 481.772,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.12",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 484.872,
+        "y1": 281.23,
+        "x2": 484.872,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.13",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 487.972,
+        "y1": 281.23,
+        "x2": 487.972,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.14",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 491.072,
+        "y1": 281.23,
+        "x2": 491.072,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.15",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 494.172,
+        "y1": 281.23,
+        "x2": 494.172,
+        "y2": 290.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.85
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.16",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 497.272,
+        "y1": 281.23,
+        "x2": 497.272,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.17",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 500.372,
+        "y1": 281.23,
+        "x2": 500.372,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.18",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 503.472,
+        "y1": 281.23,
+        "x2": 503.472,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.19",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 506.572,
+        "y1": 281.23,
+        "x2": 506.572,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.20",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 509.672,
+        "y1": 281.23,
+        "x2": 509.672,
+        "y2": 293.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.21",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 512.772,
+        "y1": 281.23,
+        "x2": 512.772,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.22",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 515.872,
+        "y1": 281.23,
+        "x2": 515.872,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.23",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 518.972,
+        "y1": 281.23,
+        "x2": 518.972,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.24",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 522.072,
+        "y1": 281.23,
+        "x2": 522.072,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.25",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 525.172,
+        "y1": 281.23,
+        "x2": 525.172,
+        "y2": 290.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.85
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.26",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 528.272,
+        "y1": 281.23,
+        "x2": 528.272,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.27",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 531.372,
+        "y1": 281.23,
+        "x2": 531.372,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.28",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 534.472,
+        "y1": 281.23,
+        "x2": 534.472,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.29",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 537.572,
+        "y1": 281.23,
+        "x2": 537.572,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.30",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 540.672,
+        "y1": 281.23,
+        "x2": 540.672,
+        "y2": 293.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.label.0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "label",
+        "x": 447.672,
+        "y": 297.23,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.label.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "label",
+        "x": 478.672,
+        "y": 297.23,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.label.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "label",
+        "x": 509.672,
+        "y": 297.23,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.label.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "label",
+        "x": 540.672,
+        "y": 297.23,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.leg.left.outer",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 476.992,
+        "y1": 180.59,
+        "x2": 447.672,
+        "y2": 265.87,
+        "stroke": "#42474B",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice2.compass.leg.left.inner",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 481.592,
+        "y1": 180.59,
+        "x2": 452.272,
+        "y2": 265.87,
+        "stroke": "#C7DCE3",
+        "stroke_width": 3.0
+      }
+    },
+    {
+      "id": "slot.choice2.compass.leg.right.outer",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 484.352,
+        "y1": 180.59,
+        "x2": 509.672,
+        "y2": 261.27,
+        "stroke": "#42474B",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice2.compass.leg.right.inner",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 479.752,
+        "y1": 180.59,
+        "x2": 504.152,
+        "y2": 249.31,
+        "stroke": "#C7DCE3",
+        "stroke_width": 3.0
+      }
+    },
+    {
+      "id": "slot.choice2.compass.hinge",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 480.672,
+        "cy": 173.23,
+        "r": 5.5200000000000005,
+        "stroke": "#42474B",
+        "stroke_width": 1.0,
+        "fill": "#AEB4B7"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.head",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 476.072,
+        "y": 157.59,
+        "width": 9.200000000000001,
+        "height": 16.560000000000002,
+        "stroke": "#42474B",
+        "stroke_width": 1.0,
+        "rx": 1.84,
+        "ry": 1.84,
+        "fill": "#8B9195"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.knob",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 478.832,
+        "y": 145.63,
+        "width": 3.68,
+        "height": 11.040000000000001,
+        "stroke": "#42474B",
+        "stroke_width": 0.8,
+        "fill": "#7F8589"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.bar.left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 459.552,
+        "y1": 232.519,
+        "x2": 500.102,
+        "y2": 235.298,
+        "stroke": "#6D7378",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice2.compass.clamp",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 503.232,
+        "y": 236.43,
+        "width": 12.88,
+        "height": 7.36,
+        "stroke": "#42474B",
+        "stroke_width": 0.8,
+        "fill": "#6D7378"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.pencil.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 506.912,
+        "y": 194.11,
+        "width": 5.5200000000000005,
+        "height": 69.0,
+        "stroke": "#879036",
+        "stroke_width": 0.9,
+        "fill": "#A9B84B"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.pencil.tip",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            505.072,
+            262.19
+          ],
+          [
+            514.272,
+            262.19
+          ],
+          [
+            509.672,
+            274.15
+          ]
+        ],
+        "stroke": "#9E7130",
+        "stroke_width": 0.8,
+        "fill": "#E8B55D"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.needle.tip",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 447.672,
+        "y1": 258.51,
+        "x2": 447.672,
+        "y2": 273.23,
+        "stroke": "#42474B",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 669.672,
+        "y": 273.23,
+        "width": 93.0,
+        "height": 32.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.2,
+        "fill": "#DDF6FF"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.top",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 669.672,
+        "y1": 281.23,
+        "x2": 762.672,
+        "y2": 281.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.1
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.00",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 669.672,
+        "y1": 281.23,
+        "x2": 669.672,
+        "y2": 293.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.01",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 672.772,
+        "y1": 281.23,
+        "x2": 672.772,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.02",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 675.872,
+        "y1": 281.23,
+        "x2": 675.872,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.03",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 678.972,
+        "y1": 281.23,
+        "x2": 678.972,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.04",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 682.072,
+        "y1": 281.23,
+        "x2": 682.072,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.05",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 685.172,
+        "y1": 281.23,
+        "x2": 685.172,
+        "y2": 290.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.85
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.06",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 688.272,
+        "y1": 281.23,
+        "x2": 688.272,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.07",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 691.372,
+        "y1": 281.23,
+        "x2": 691.372,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.08",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 694.472,
+        "y1": 281.23,
+        "x2": 694.472,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.09",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 697.572,
+        "y1": 281.23,
+        "x2": 697.572,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 700.672,
+        "y1": 281.23,
+        "x2": 700.672,
+        "y2": 293.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.11",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 703.772,
+        "y1": 281.23,
+        "x2": 703.772,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.12",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 706.872,
+        "y1": 281.23,
+        "x2": 706.872,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.13",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 709.972,
+        "y1": 281.23,
+        "x2": 709.972,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.14",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 713.072,
+        "y1": 281.23,
+        "x2": 713.072,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.15",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 716.172,
+        "y1": 281.23,
+        "x2": 716.172,
+        "y2": 290.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.85
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.16",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 719.272,
+        "y1": 281.23,
+        "x2": 719.272,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.17",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 722.372,
+        "y1": 281.23,
+        "x2": 722.372,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.18",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 725.472,
+        "y1": 281.23,
+        "x2": 725.472,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.19",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 728.572,
+        "y1": 281.23,
+        "x2": 728.572,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.20",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 731.672,
+        "y1": 281.23,
+        "x2": 731.672,
+        "y2": 293.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.21",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 734.772,
+        "y1": 281.23,
+        "x2": 734.772,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.22",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 737.872,
+        "y1": 281.23,
+        "x2": 737.872,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.23",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 740.972,
+        "y1": 281.23,
+        "x2": 740.972,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.24",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 744.072,
+        "y1": 281.23,
+        "x2": 744.072,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.25",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 747.172,
+        "y1": 281.23,
+        "x2": 747.172,
+        "y2": 290.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.85
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.26",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 750.272,
+        "y1": 281.23,
+        "x2": 750.272,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.27",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 753.372,
+        "y1": 281.23,
+        "x2": 753.372,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.28",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 756.472,
+        "y1": 281.23,
+        "x2": 756.472,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.29",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 759.572,
+        "y1": 281.23,
+        "x2": 759.572,
+        "y2": 287.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.30",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 762.672,
+        "y1": 281.23,
+        "x2": 762.672,
+        "y2": 293.23,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.label.0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "label",
+        "x": 669.672,
+        "y": 297.23,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.label.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "label",
+        "x": 700.672,
+        "y": 297.23,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.label.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "label",
+        "x": 731.672,
+        "y": 297.23,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.label.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "label",
+        "x": 762.672,
+        "y": 297.23,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.leg.left.outer",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 713.992,
+        "y1": 180.59,
+        "x2": 669.672,
+        "y2": 265.87,
+        "stroke": "#42474B",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice3.compass.leg.left.inner",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 718.592,
+        "y1": 180.59,
+        "x2": 674.272,
+        "y2": 265.87,
+        "stroke": "#C7DCE3",
+        "stroke_width": 3.0
+      }
+    },
+    {
+      "id": "slot.choice3.compass.leg.right.outer",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 721.352,
+        "y1": 180.59,
+        "x2": 762.672,
+        "y2": 261.27,
+        "stroke": "#42474B",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice3.compass.leg.right.inner",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 716.752,
+        "y1": 180.59,
+        "x2": 757.152,
+        "y2": 249.31,
+        "stroke": "#C7DCE3",
+        "stroke_width": 3.0
+      }
+    },
+    {
+      "id": "slot.choice3.compass.hinge",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 717.672,
+        "cy": 173.23,
+        "r": 5.5200000000000005,
+        "stroke": "#42474B",
+        "stroke_width": 1.0,
+        "fill": "#AEB4B7"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.head",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 713.072,
+        "y": 157.59,
+        "width": 9.200000000000001,
+        "height": 16.560000000000002,
+        "stroke": "#42474B",
+        "stroke_width": 1.0,
+        "rx": 1.84,
+        "ry": 1.84,
+        "fill": "#8B9195"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.knob",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 715.832,
+        "y": 145.63,
+        "width": 3.68,
+        "height": 11.040000000000001,
+        "stroke": "#42474B",
+        "stroke_width": 0.8,
+        "fill": "#7F8589"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.bar.left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 686.952,
+        "y1": 232.519,
+        "x2": 747.822,
+        "y2": 235.298,
+        "stroke": "#6D7378",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice3.compass.clamp",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 756.232,
+        "y": 236.43,
+        "width": 12.88,
+        "height": 7.36,
+        "stroke": "#42474B",
+        "stroke_width": 0.8,
+        "fill": "#6D7378"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.pencil.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 759.912,
+        "y": 194.11,
+        "width": 5.5200000000000005,
+        "height": 69.0,
+        "stroke": "#879036",
+        "stroke_width": 0.9,
+        "fill": "#A9B84B"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.pencil.tip",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            758.072,
+            262.19
+          ],
+          [
+            767.272,
+            262.19
+          ],
+          [
+            762.672,
+            274.15
+          ]
+        ],
+        "stroke": "#9E7130",
+        "stroke_width": 0.8,
+        "fill": "#E8B55D"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.needle.tip",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 669.672,
+        "y1": 258.51,
+        "x2": 669.672,
+        "y2": 273.23,
+        "stroke": "#42474B",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.q.text2.copy1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠",
+        "style_role": "body",
+        "x": 186.672,
+        "y": 198.23,
+        "font_size": 25,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q.text2.copy2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡",
+        "style_role": "body",
+        "x": 421.672,
+        "y": 198.23,
+        "font_size": 25,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q.text2.copy3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉢",
+        "style_role": "body",
+        "x": 651.672,
+        "y": 198.23,
+        "font_size": 25,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q.text1",
+    "slot.q.text2",
+    "slot.q.text2.copy1",
+    "slot.q.text2.copy2",
+    "slot.q.text2.copy3",
+    "region.choices",
+    "slot.choice1.ruler.body",
+    "slot.choice1.compass.head",
+    "slot.choice1.compass.knob",
+    "slot.choice1.compass.clamp",
+    "slot.choice1.compass.pencil.body",
+    "slot.choice1.compass.pencil.tip",
+    "slot.choice2.ruler.body",
+    "slot.choice2.compass.head",
+    "slot.choice2.compass.knob",
+    "slot.choice2.compass.clamp",
+    "slot.choice2.compass.pencil.body",
+    "slot.choice2.compass.pencil.tip",
+    "slot.choice3.ruler.body",
+    "slot.choice3.compass.head",
+    "slot.choice3.compass.knob",
+    "slot.choice3.compass.clamp",
+    "slot.choice3.compass.pencil.body",
+    "slot.choice3.compass.pencil.tip",
+    "slot.choice1.ruler.top",
+    "slot.choice1.ruler.tick.00",
+    "slot.choice1.ruler.tick.01",
+    "slot.choice1.ruler.tick.02",
+    "slot.choice1.ruler.tick.03",
+    "slot.choice1.ruler.tick.04",
+    "slot.choice1.ruler.tick.05",
+    "slot.choice1.ruler.tick.06",
+    "slot.choice1.ruler.tick.07",
+    "slot.choice1.ruler.tick.08",
+    "slot.choice1.ruler.tick.09",
+    "slot.choice1.ruler.tick.10",
+    "slot.choice1.ruler.tick.11",
+    "slot.choice1.ruler.tick.12",
+    "slot.choice1.ruler.tick.13",
+    "slot.choice1.ruler.tick.14",
+    "slot.choice1.ruler.tick.15",
+    "slot.choice1.ruler.tick.16",
+    "slot.choice1.ruler.tick.17",
+    "slot.choice1.ruler.tick.18",
+    "slot.choice1.ruler.tick.19",
+    "slot.choice1.ruler.tick.20",
+    "slot.choice1.ruler.tick.21",
+    "slot.choice1.ruler.tick.22",
+    "slot.choice1.ruler.tick.23",
+    "slot.choice1.ruler.tick.24",
+    "slot.choice1.ruler.tick.25",
+    "slot.choice1.ruler.tick.26",
+    "slot.choice1.ruler.tick.27",
+    "slot.choice1.ruler.tick.28",
+    "slot.choice1.ruler.tick.29",
+    "slot.choice1.ruler.tick.30",
+    "slot.choice1.compass.leg.left.outer",
+    "slot.choice1.compass.leg.left.inner",
+    "slot.choice1.compass.leg.right.outer",
+    "slot.choice1.compass.leg.right.inner",
+    "slot.choice1.compass.bar.left",
+    "slot.choice1.compass.needle.tip",
+    "slot.choice2.ruler.top",
+    "slot.choice2.ruler.tick.00",
+    "slot.choice2.ruler.tick.01",
+    "slot.choice2.ruler.tick.02",
+    "slot.choice2.ruler.tick.03",
+    "slot.choice2.ruler.tick.04",
+    "slot.choice2.ruler.tick.05",
+    "slot.choice2.ruler.tick.06",
+    "slot.choice2.ruler.tick.07",
+    "slot.choice2.ruler.tick.08",
+    "slot.choice2.ruler.tick.09",
+    "slot.choice2.ruler.tick.10",
+    "slot.choice2.ruler.tick.11",
+    "slot.choice2.ruler.tick.12",
+    "slot.choice2.ruler.tick.13",
+    "slot.choice2.ruler.tick.14",
+    "slot.choice2.ruler.tick.15",
+    "slot.choice2.ruler.tick.16",
+    "slot.choice2.ruler.tick.17",
+    "slot.choice2.ruler.tick.18",
+    "slot.choice2.ruler.tick.19",
+    "slot.choice2.ruler.tick.20",
+    "slot.choice2.ruler.tick.21",
+    "slot.choice2.ruler.tick.22",
+    "slot.choice2.ruler.tick.23",
+    "slot.choice2.ruler.tick.24",
+    "slot.choice2.ruler.tick.25",
+    "slot.choice2.ruler.tick.26",
+    "slot.choice2.ruler.tick.27",
+    "slot.choice2.ruler.tick.28",
+    "slot.choice2.ruler.tick.29",
+    "slot.choice2.ruler.tick.30",
+    "slot.choice2.compass.leg.left.outer",
+    "slot.choice2.compass.leg.left.inner",
+    "slot.choice2.compass.leg.right.outer",
+    "slot.choice2.compass.leg.right.inner",
+    "slot.choice2.compass.bar.left",
+    "slot.choice2.compass.needle.tip",
+    "slot.choice3.ruler.top",
+    "slot.choice3.ruler.tick.00",
+    "slot.choice3.ruler.tick.01",
+    "slot.choice3.ruler.tick.02",
+    "slot.choice3.ruler.tick.03",
+    "slot.choice3.ruler.tick.04",
+    "slot.choice3.ruler.tick.05",
+    "slot.choice3.ruler.tick.06",
+    "slot.choice3.ruler.tick.07",
+    "slot.choice3.ruler.tick.08",
+    "slot.choice3.ruler.tick.09",
+    "slot.choice3.ruler.tick.10",
+    "slot.choice3.ruler.tick.11",
+    "slot.choice3.ruler.tick.12",
+    "slot.choice3.ruler.tick.13",
+    "slot.choice3.ruler.tick.14",
+    "slot.choice3.ruler.tick.15",
+    "slot.choice3.ruler.tick.16",
+    "slot.choice3.ruler.tick.17",
+    "slot.choice3.ruler.tick.18",
+    "slot.choice3.ruler.tick.19",
+    "slot.choice3.ruler.tick.20",
+    "slot.choice3.ruler.tick.21",
+    "slot.choice3.ruler.tick.22",
+    "slot.choice3.ruler.tick.23",
+    "slot.choice3.ruler.tick.24",
+    "slot.choice3.ruler.tick.25",
+    "slot.choice3.ruler.tick.26",
+    "slot.choice3.ruler.tick.27",
+    "slot.choice3.ruler.tick.28",
+    "slot.choice3.ruler.tick.29",
+    "slot.choice3.ruler.tick.30",
+    "slot.choice3.compass.leg.left.outer",
+    "slot.choice3.compass.leg.left.inner",
+    "slot.choice3.compass.leg.right.outer",
+    "slot.choice3.compass.leg.right.inner",
+    "slot.choice3.compass.bar.left",
+    "slot.choice3.compass.needle.tip",
+    "slot.choice1.compass.hinge",
+    "slot.choice2.compass.hinge",
+    "slot.choice3.compass.hinge",
+    "slot.choice1.ruler.label.0",
+    "slot.choice1.ruler.label.1",
+    "slot.choice1.ruler.label.2",
+    "slot.choice1.ruler.label.3",
+    "slot.choice2.ruler.label.0",
+    "slot.choice2.ruler.label.1",
+    "slot.choice2.ruler.label.2",
+    "slot.choice2.ruler.label.3",
+    "slot.choice3.ruler.label.0",
+    "slot.choice3.ruler.label.1",
+    "slot.choice3.ruler.label.2",
+    "slot.choice3.ruler.label.3"
+  ]
+}

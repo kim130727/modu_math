@@ -50,6 +50,7 @@ export type ShapePreset =
 type ToolName =
   | "newFile"
   | "shapes"
+  | "avatar"
   | "math"
   | "properFraction"
   | "mixedFraction"
@@ -72,6 +73,7 @@ interface KonvaToolbarProps {
   hasSelection: boolean;
   hasAnswerSlotCandidate: boolean;
   onInsertShape: (preset: ShapePreset) => void;
+  onOpenAvatarMaker: () => void;
   onAddMath: () => void;
   onAddProperFraction: () => void;
   onAddMixedFraction: () => void;
@@ -241,6 +243,17 @@ function ToolbarIcon({ name }: { name: ToolName }) {
           <rect x="4" y="5" width="7" height="7" rx="1" />
           <circle cx="16.5" cy="8.5" r="3.5" />
           <path d="M5 19h14l-4-6-3 4-2-3Z" />
+        </svg>
+      );
+    case "avatar":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="8" r="4.5" />
+          <path d="M7.8 7.5c.5-2.2 2.2-3.5 4.2-3.5 2.5 0 4.2 1.5 4.2 4-1-1-2.5-1.2-4-.8-1.5.4-2.5 1.5-3 2" />
+          <path d="M5 20c0-3.5 3.1-6 7-6s7 2.5 7 6" />
+          <circle cx="10.5" cy="8.5" r="0.6" fill="currentColor" />
+          <circle cx="13.5" cy="8.5" r="0.6" fill="currentColor" />
+          <path d="M11 10.5c.5.5 1.5.5 2 0" />
         </svg>
       );
     case "math":
@@ -453,6 +466,7 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
       <IconButton label="Proper fraction" icon="properFraction" onClick={props.onAddProperFraction} />
       <IconButton label="Mixed fraction" icon="mixedFraction" onClick={props.onAddMixedFraction} />
       <IconButton label="Text" icon="text" onClick={props.onAddText} />
+      <IconButton label="어린이 캐릭터" icon="avatar" onClick={props.onOpenAvatarMaker} />
       <IconButton label="Image" icon="image" onClick={props.onAddImage} />
       <IconButton label="Table" icon="table" onClick={props.onAddTable} />
       <IconButton label="Graph Paper" icon="graphPaper" onClick={props.onAddGraphPaper} />

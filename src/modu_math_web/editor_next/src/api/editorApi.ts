@@ -289,17 +289,200 @@ export function problemDetailToCanonicalProblem(detail: ProblemDetailResponse): 
   const renderer = detail.renderer;
   const canvas = renderer?.canvas ?? layout?.canvas ?? { width: 1280, height: 720 };
   const slotRegions = slotRegionMap(layout);
+
+  let objects: ProblemObject[] = [];
+  if (renderer?.elements?.length) {
+    const { objects: fracObjects, consumedSlotIds: fracConsumed } = rendererElementsToFractionObjects(
+      detail.problem_id,
+      renderer.elements,
+      slotRegions,
+    );
+    const remaining = renderer.elements.filter((el) => !fracConsumed.has(sourceId(el)));
+    objects = [
+      ...fracObjects,
+      ...remaining.flatMap((element) => rendererElementToProblemObject(detail.problem_id, element, slotRegions.get(sourceId(element)))),
+    ];
+  } else if (layout?.slots?.length) {
+    const { objects: fracObjects, consumedSlotIds: fracConsumed } = layoutSlotsToFractionObjects(
+      detail.problem_id,
+      layout.slots,
+      slotRegions,
+    );
+    const remaining = layout.slots.filter((s) => !fracConsumed.has(s.id));
+    objects = [
+      ...fracObjects,
+      ...remaining.flatMap((slot) => layoutSlotToProblemObject(detail.problem_id, slot, slotRegions.get(slot.id))),
+    ];
+  }
+
   return {
     id: detail.problem_id,
     title: layout?.title ?? detail.problem_id,
     canvas,
-    // Keep table parts as individual editable shapes for now. The custom TableShape
-    // prototype is useful for whole-table semantics, but it blocks practical cell
-    // and divider editing until we add a dedicated in-shape interaction model.
-    objects: renderer?.elements?.length
-      ? renderer.elements.flatMap((element) => rendererElementToProblemObject(detail.problem_id, element, slotRegions.get(sourceId(element))))
-      : (layout?.slots ?? []).flatMap((slot) => layoutSlotToProblemObject(detail.problem_id, slot, slotRegions.get(slot.id))),
+    objects,
   };
+}
+
+function fractionBaseFromSlotId(slotId: string): string | null {
+  const match = slotId.match(/^(.*)\.(num|den|bar|whole)(\..*)?$/);
+  return match ? match[1] : null;
+}
+
+function rendererElementsToFractionObjects(
+  problemId: string,
+  elements: RendererElement[],
+  slotRegions: Map<string, string>,
+): { objects: ProblemObject[]; consumedSlotIds: Set<string> } {
+  const groups = new Map<string, RendererElement[]>();
+  for (const element of elements) {
+    const slotId = sourceId(element);
+    const base = fractionBaseFromSlotId(slotId);
+    if (!base) continue;
+    const group = groups.get(base) ?? [];
+    group.push(element);
+    groups.set(base, group);
+  }
+
+  const consumedSlotIds = new Set<string>();
+  const objects: ProblemObject[] = [];
+  for (const [base, group] of groups) {
+    const numEl = group.find((el) => sourceId(el).includes(".num"));
+    const denEl = group.find((el) => sourceId(el).includes(".den"));
+    const barEl = group.find((el) => sourceId(el).includes(".bar"));
+    const wholeEl = group.find((el) => sourceId(el).includes(".whole"));
+    if (!numEl || !denEl || !barEl) continue;
+
+    const wholeText = wholeEl ? stringValue(wholeEl.text, "") : "";
+    const numText = stringValue(numEl.text, "");
+    const denText = stringValue(denEl.text, "");
+    const latex = `${wholeText}\\frac{${numText}}{${denText}}`;
+    const fontSize = numberValue(numEl.attributes["font-size"], 28);
+    const color = stringValue(numEl.attributes.fill, "#111827");
+    const barX1 = numberValue(barEl.attributes.x1, 0);
+    const barX2 = numberValue(barEl.attributes.x2, barX1 + 30);
+    const barY = numberValue(barEl.attributes.y1, 0);
+    const minBarX = Math.min(barX1, barX2);
+    const maxBarX = Math.max(barX1, barX2);
+    const smallFont = Math.max(16, fontSize * 0.78);
+    const numLen = numText.length || 1;
+    const denLen = denText.length || 1;
+    const wholeLen = wholeText.length;
+    const fractionWidth = Math.max(26, Math.max(numLen, denLen) * smallFont * 0.62 + 8);
+    const wholeWidth = wholeLen ? wholeLen * smallFont * 0.62 + 6 : 0;
+    const totalContentWidth = wholeWidth + fractionWidth;
+
+    let leftX: number;
+    if (wholeEl) {
+      const wholeAttrX = numberValue(wholeEl.attributes.x, minBarX - wholeWidth);
+      leftX = Math.min(minBarX - wholeWidth, wholeAttrX - wholeWidth / 2);
+    } else {
+      leftX = minBarX - 3;
+    }
+    const width = Math.max(totalContentWidth + 6, maxBarX - leftX + 4);
+    const height = Math.max(50, Math.round(fontSize * 2.2));
+    const y = Math.round(barY - height / 2);
+    const x = Math.round(leftX);
+
+    objects.push({
+      id: base,
+      type: "math_text",
+      x,
+      y,
+      props: {
+        latex,
+        text: latex,
+        fontSize,
+        width,
+        height,
+        color,
+        textAlign: "center",
+        lineHeight: 1.25,
+        sourceKind: "text_box",
+        sourceRegionId: slotRegions.get(base) || slotRegions.get(sourceId(numEl)),
+      },
+    });
+
+    for (const el of group) consumedSlotIds.add(sourceId(el));
+  }
+  return { objects, consumedSlotIds };
+}
+
+function layoutSlotsToFractionObjects(
+  problemId: string,
+  slots: LayoutSlot[],
+  slotRegions: Map<string, string>,
+): { objects: ProblemObject[]; consumedSlotIds: Set<string> } {
+  const groups = new Map<string, LayoutSlot[]>();
+  for (const slot of slots) {
+    const base = fractionBaseFromSlotId(slot.id);
+    if (!base) continue;
+    const group = groups.get(base) ?? [];
+    group.push(slot);
+    groups.set(base, group);
+  }
+
+  const consumedSlotIds = new Set<string>();
+  const objects: ProblemObject[] = [];
+  for (const [base, group] of groups) {
+    const numSlot = group.find((s) => s.id.includes(".num"));
+    const denSlot = group.find((s) => s.id.includes(".den"));
+    const barSlot = group.find((s) => s.id.includes(".bar"));
+    const wholeSlot = group.find((s) => s.id.includes(".whole"));
+    if (!numSlot || !denSlot || !barSlot) continue;
+
+    const wholeText = wholeSlot ? stringValue(wholeSlot.content.text, "") : "";
+    const numText = stringValue(numSlot.content.text, "");
+    const denText = stringValue(denSlot.content.text, "");
+    const latex = `${wholeText}\\frac{${numText}}{${denText}}`;
+    const fontSize = numberValue(numSlot.content.font_size, 28);
+    const color = stringValue(numSlot.content.fill, "#111827");
+    const barX1 = numberValue(barSlot.content.x1, 0);
+    const barX2 = numberValue(barSlot.content.x2, barX1 + 30);
+    const barY = numberValue(barSlot.content.y1, 0);
+    const minBarX = Math.min(barX1, barX2);
+    const maxBarX = Math.max(barX1, barX2);
+    const smallFont = Math.max(16, fontSize * 0.78);
+    const numLen = numText.length || 1;
+    const denLen = denText.length || 1;
+    const wholeLen = wholeText.length;
+    const fractionWidth = Math.max(26, Math.max(numLen, denLen) * smallFont * 0.62 + 8);
+    const wholeWidth = wholeLen ? wholeLen * smallFont * 0.62 + 6 : 0;
+    const totalContentWidth = wholeWidth + fractionWidth;
+
+    let leftX: number;
+    if (wholeSlot) {
+      const wholeAttrX = numberValue(wholeSlot.content.x, minBarX - wholeWidth);
+      leftX = Math.min(minBarX - wholeWidth, wholeAttrX - wholeWidth / 2);
+    } else {
+      leftX = minBarX - 3;
+    }
+    const width = Math.max(totalContentWidth + 6, maxBarX - leftX + 4);
+    const height = Math.max(50, Math.round(fontSize * 2.2));
+    const y = Math.round(barY - height / 2);
+    const x = Math.round(leftX);
+
+    objects.push({
+      id: base,
+      type: "math_text",
+      x,
+      y,
+      props: {
+        latex,
+        text: latex,
+        fontSize,
+        width,
+        height,
+        color,
+        textAlign: "center",
+        lineHeight: 1.25,
+        sourceKind: "text_box",
+        sourceRegionId: slotRegions.get(base) || slotRegions.get(numSlot.id),
+      },
+    });
+
+    for (const s of group) consumedSlotIds.add(s.id);
+  }
+  return { objects, consumedSlotIds };
 }
 
 function slotRegionMap(layout: LayoutDocument | null): Map<string, string> {

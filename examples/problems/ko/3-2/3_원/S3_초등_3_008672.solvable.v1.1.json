@@ -1,0 +1,85 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008672",
+  "problem_type": "circle_terms_choice",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "반지름",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.center",
+      "value": {
+        "label": "ㅇ"
+      }
+    },
+    {
+      "ref": "obj.segment.ga",
+      "value": {
+        "label": "선분 ㄱㅇ"
+      }
+    },
+    {
+      "ref": "obj.segment.na",
+      "value": {
+        "label": "선분 ㄴㅇ"
+      }
+    },
+    {
+      "ref": "obj.segment.da",
+      "value": {
+        "label": "선분 ㄷㅇ"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "circle_term"
+  },
+  "method": "concept_identification",
+  "plan": [
+    "중심과 원 위의 점을 잇는 선분의 이름을 찾는다.",
+    "보기 중 해당하는 말을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "ㄱㅇ, ㄴㅇ, ㄷㅇ는 모두 원의 중심 ㅇ에서 원 위의 점으로 이어진 선분이다.",
+      "value": "center_to_circle_point_segments"
+    },
+    {
+      "id": "step.2",
+      "expr": "원의 중심과 원 위의 한 점을 잇는 선분의 이름은 반지름이다.",
+      "value": "반지름"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "정의와 일치하는가",
+      "expected": "반지름",
+      "actual": "반지름",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "지름",
+      "반지름",
+      "중심"
+    ],
+    "answer_key": [
+      "반지름"
+    ],
+    "target": {
+      "type": "circle_term",
+      "description": "선분 ㄱㅇ, 선분 ㄴㅇ, 선분 ㄷㅇ에 알맞은 말"
+    },
+    "value": "반지름",
+    "unit": ""
+  }
+}

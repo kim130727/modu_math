@@ -1,0 +1,111 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_02151_1",
+  "problem_type": "vertical_addition",
+  "inputs": {
+    "target_label": "세로셈 계산 결과",
+    "unit": "",
+    "quantities": {
+      "first_addend": 449,
+      "second_addend": 275
+    },
+    "conditions": [
+      "일의 자리부터 차례대로 계산합니다.",
+      "각 자리의 합이 10 이상이면 바로 윗자리로 1을 받아올림합니다."
+    ]
+  },
+  "given": [
+    {
+      "ref": "addition.problem_1",
+      "value": {
+        "first_addend": 449,
+        "second_addend": 275
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.value",
+    "type": "number"
+  },
+  "method": "일의 자리부터 더하고 받아올림을 다음 자리 계산에 포함한다.",
+  "plan": [
+    "일의 자리 9+5=14를 계산하여 1을 올리고 4를 쓴다.",
+    "십의 자리 1+4+7=12를 계산하여 1을 올리고 2를 쓴다.",
+    "백의 자리 1+4+2=7을 쓴다."
+  ],
+  "steps": [
+    {
+      "id": "step.add_numbers",
+      "expr": "449 + 275",
+      "value": 724,
+      "explanation": "449와 275를 더하면 724입니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.total",
+      "expr": "449 + 275",
+      "expected": 724,
+      "actual": 724,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 724,
+    "unit": "",
+    "values": [
+      724
+    ],
+    "choices": [],
+    "blanks": [
+      {
+        "id": "slot.answer_box",
+        "slot_id": "slot.answer_box",
+        "expected": 724
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer_box",
+        "value": 724
+      }
+    ]
+  },
+  "understanding": {
+    "summary": "449와 275의 합을 계산합니다.",
+    "facts": [
+      {
+        "ref": "first_addend",
+        "label": "첫 번째 수",
+        "value": 449,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "second_addend",
+        "label": "두 번째 수",
+        "value": 275,
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.value",
+        "label": "계산 결과",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "sum_of",
+      "statement": "두 수의 합을 구합니다.",
+      "symbolic": "449 + 275",
+      "uses": [
+        "first_addend",
+        "second_addend"
+      ],
+      "result": "724"
+    }
+  }
+}

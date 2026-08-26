@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
+import 'math_keypad.dart';
 
 class AnswerPanel extends StatefulWidget {
   const AnswerPanel({
@@ -29,6 +30,8 @@ class _AnswerPanelState extends State<AnswerPanel> {
   final TextEditingController controller = TextEditingController();
   int? selectedChoiceIndex;
   Set<int> selectedChoiceIndexes = {};
+  Map<int, int> selectedGroupChoices = {};
+  bool _showKeypad = false;
 
   @override
   void initState() {
@@ -56,6 +59,7 @@ class _AnswerPanelState extends State<AnswerPanel> {
 
   @override
   Widget build(BuildContext context) {
+    final choiceGroups = widget.content.choiceGroups;
     final choices = widget.content.choices;
     final strings = AppStrings.of(context);
     final allowsMultipleChoices = _allowsMultipleChoices(widget.content);
@@ -65,6 +69,8 @@ class _AnswerPanelState extends State<AnswerPanel> {
     final String titleText;
     if (!hasVisual) {
       titleText = widget.content.prompt;
+    } else if (choiceGroups.isNotEmpty) {
+      titleText = '각 항목에 알맞은 정답을 선택하세요';
     } else if (choices.isNotEmpty) {
       titleText = allowsMultipleChoices
           ? '알맞은 정답을 모두 선택하세요'
@@ -107,7 +113,77 @@ class _AnswerPanelState extends State<AnswerPanel> {
               ],
             ),
             const SizedBox(height: 16),
-            if (choices.isEmpty)
+            if (choiceGroups.isNotEmpty) ...[
+              for (var (groupIndex, group) in choiceGroups.indexed) ...[
+                if (group.label.isNotEmpty) ...[
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Text(
+                      group.label,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF374151),
+                      ),
+                    ),
+                  ),
+                ],
+                Wrap(
+                  spacing: 10,
+                  runSpacing: 10,
+                  children: group.choices.indexed.map((entry) {
+                    final choiceIndex = entry.$1;
+                    final choiceText = entry.$2;
+                    final selected =
+                        selectedGroupChoices[groupIndex] == choiceIndex;
+                    return ChoiceChip(
+                      selected: selected,
+                      labelPadding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 4,
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 6,
+                        vertical: 4,
+                      ),
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        side: BorderSide(
+                          color: selected
+                              ? const Color(0xFF5C6AC4)
+                              : const Color(0xFFD1D5DB),
+                        ),
+                      ),
+                      label: Text(
+                        choiceText,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          height: 1.3,
+                          leadingDistribution: TextLeadingDistribution.even,
+                        ),
+                      ),
+                      onSelected: (isSelected) {
+                        setState(() {
+                          if (isSelected) {
+                            selectedGroupChoices[groupIndex] = choiceIndex;
+                          } else {
+                            selectedGroupChoices.remove(groupIndex);
+                          }
+                        });
+                        final combinedAnswer = _combinedGroupAnswer(
+                          choiceGroups,
+                          selectedGroupChoices,
+                        );
+                        widget.onAnswerChanged(combinedAnswer);
+                      },
+                    );
+                  }).toList(),
+                ),
+                if (groupIndex < choiceGroups.length - 1)
+                  const SizedBox(height: 16),
+              ],
+            ] else if (choices.isEmpty) ...[
               TextField(
                 controller: controller,
                 style: const TextStyle(
@@ -122,13 +198,59 @@ class _AnswerPanelState extends State<AnswerPanel> {
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF4B5563),
                   ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _showKeypad
+                          ? Icons.keyboard_hide_rounded
+                          : Icons.dialpad_rounded,
+                      color: const Color(0xFF5C6AC4),
+                    ),
+                    tooltip: '수학 키패드',
+                    onPressed: () =>
+                        setState(() => _showKeypad = !_showKeypad),
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
                 onChanged: widget.onAnswerChanged,
                 onSubmitted: widget.onSubmit,
-              )
+              ),
+              if (_showKeypad) ...[
+                const SizedBox(height: 12),
+                MathKeypad(
+                  mode: MathKeypadMode.digits,
+                  showNextButton: false,
+                  onKeyPressed: (digit) {
+                    final current = controller.text;
+                    final next = '$current$digit';
+                    controller.text = next;
+                    controller.selection =
+                        TextSelection.collapsed(offset: next.length);
+                    widget.onAnswerChanged(next);
+                  },
+                  onBackspace: () {
+                    final current = controller.text;
+                    if (current.isNotEmpty) {
+                      final next = current.substring(0, current.length - 1);
+                      controller.text = next;
+                      controller.selection =
+                          TextSelection.collapsed(offset: next.length);
+                      widget.onAnswerChanged(next);
+                    }
+                  },
+                  onClear: () {
+                    controller.clear();
+                    widget.onAnswerChanged('');
+                  },
+                  onSubmit: () {
+                    if (controller.text.trim().isNotEmpty) {
+                      widget.onSubmit(controller.text.trim());
+                    }
+                  },
+                ),
+              ],
+            ]
             else
               Wrap(
                 spacing: 10,
@@ -141,7 +263,31 @@ class _AnswerPanelState extends State<AnswerPanel> {
                       : selectedChoiceIndex == choiceIndex;
                   return ChoiceChip(
                     selected: selected,
-                    label: Text(choice, style: const TextStyle(fontSize: 18)),
+                    labelPadding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 6,
+                      vertical: 4,
+                    ),
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      side: BorderSide(
+                        color: selected
+                            ? const Color(0xFF5C6AC4)
+                            : const Color(0xFFD1D5DB),
+                      ),
+                    ),
+                    label: Text(
+                      choice,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        height: 1.3,
+                        leadingDistribution: TextLeadingDistribution.even,
+                      ),
+                    ),
                     onSelected: (_) {
                       setState(() {
                         if (allowsMultipleChoices) {
@@ -172,13 +318,26 @@ class _AnswerPanelState extends State<AnswerPanel> {
             const SizedBox(height: 16),
             FilledButton(
               onPressed: () {
-                final answer = choices.isEmpty
-                    ? controller.text
-                    : allowsMultipleChoices
-                        ? _selectedChoiceAnswer(choices, selectedChoiceIndexes)
-                        : selectedChoiceIndex == null
-                            ? null
-                            : choices[selectedChoiceIndex!];
+                final String? answer;
+                if (choiceGroups.isNotEmpty) {
+                  if (selectedGroupChoices.length < choiceGroups.length) {
+                    return;
+                  }
+                  answer = _combinedGroupAnswer(
+                    choiceGroups,
+                    selectedGroupChoices,
+                  );
+                } else if (choices.isEmpty) {
+                  answer = controller.text;
+                } else if (allowsMultipleChoices) {
+                  answer =
+                      _selectedChoiceAnswer(choices, selectedChoiceIndexes);
+                } else {
+                  answer = selectedChoiceIndex == null
+                      ? null
+                      : choices[selectedChoiceIndex!];
+                }
+
                 if (answer == null || answer.trim().isEmpty) {
                   return;
                 }
@@ -202,6 +361,21 @@ class _AnswerPanelState extends State<AnswerPanel> {
       ),
     );
   }
+}
+
+String _combinedGroupAnswer(
+  List<ChoiceGroup> groups,
+  Map<int, int> selectedGroupChoices,
+) {
+  return groups.indexed
+      .map((entry) {
+        final groupIndex = entry.$1;
+        final group = entry.$2;
+        final selectedIndex = selectedGroupChoices[groupIndex];
+        return selectedIndex != null ? group.choices[selectedIndex] : '';
+      })
+      .where((s) => s.isNotEmpty)
+      .join(', ');
 }
 
 bool _allowsMultipleChoices(ProblemContent content) {

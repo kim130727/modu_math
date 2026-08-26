@@ -1,0 +1,171 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_02158",
+  "title": "세 자리 수의 덧셈 계산",
+  "canvas": {
+    "width": 300,
+    "height": 170,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.instruction"
+      ]
+    },
+    {
+      "id": "region.problems",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "konva_1785806283023_paste_316206_0",
+        "slot.line_2",
+        "slot.addend_2_1",
+        "slot.plus_2",
+        "slot.addend_2_2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text_box",
+      "prompt": "네 개의 세 자리 수 덧셈을 계산하라는 안내",
+      "content": {
+        "text": "다음을 계산하세요.",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 6.0,
+        "width": 146.164,
+        "height": 52,
+        "align": "left",
+        "valign": "top",
+        "font_size": 18,
+        "line_height": 1.2,
+        "fill": "#111111",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.addend_2_1",
+      "kind": "text",
+      "prompt": "두 번째 덧셈의 위 수 479",
+      "content": {
+        "text": "4 7 9",
+        "style_role": "body",
+        "x": 171.738,
+        "y": 67.918,
+        "font_size": 21,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.plus_2",
+      "kind": "text",
+      "prompt": "두 번째 덧셈 기호",
+      "content": {
+        "text": "+",
+        "style_role": "body",
+        "x": 108.738,
+        "y": 95.918,
+        "font_size": 21,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.addend_2_2",
+      "kind": "text",
+      "prompt": "두 번째 덧셈의 아래 수 837",
+      "content": {
+        "text": "8 3 7",
+        "style_role": "body",
+        "x": 171.738,
+        "y": 95.918,
+        "font_size": 21,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.line_2",
+      "kind": "line",
+      "prompt": "두 번째 세로셈의 계산선",
+      "content": {
+        "x1": 116.738,
+        "y1": 107.918,
+        "x2": 177.738,
+        "y2": 107.918,
+        "stroke": "#111111",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "konva_1785806283023_paste_316206_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 112.824,
+        "y": 120.456,
+        "width": 68.042,
+        "height": 34.212,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "integer",
+          "max_length": 4,
+          "include_in_submission": true,
+          "order": 1,
+          "group_id": "final_answer",
+          "auto_advance": false,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 68.042,
+          "height": 34.212
+        }
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "group.problem_2",
+      "role": "vertical_addition",
+      "member_ids": [
+        "slot.addend_2_1",
+        "slot.plus_2",
+        "slot.addend_2_2",
+        "slot.line_2"
+      ]
+    }
+  ],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.instruction",
+    "region.problems",
+    "konva_1785806283023_paste_316206_0",
+    "slot.line_2",
+    "slot.addend_2_1",
+    "slot.plus_2",
+    "slot.addend_2_2"
+  ]
+}

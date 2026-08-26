@@ -1092,6 +1092,39 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
+  testWidgets('ignores invisible slots with fill=none and stroke=none',
+      (tester) async {
+    final elements = [
+      {
+        'id': 'slot.answer_blank.rect',
+        'type': 'rect',
+        'attributes': {
+          'x': 72.0,
+          'y': 269.0,
+          'width': 22.0,
+          'height': 22.0,
+          'fill': 'none',
+          'stroke': 'none',
+        },
+      },
+      {
+        'id': 'slot.qtext.text',
+        'type': 'text',
+        'attributes': {
+          'x': 100.0,
+          'y': 50.0,
+          'font-size': 20,
+          'fill': '#111111',
+        },
+        'text': '원의 중심을 찾아 선택해 보세요.',
+      },
+    ];
+
+    final visible = rendererVisibleElements(elements);
+    expect(visible.length, 1);
+    expect(visible.first['id'], 'slot.qtext.text');
+  });
+
   testWidgets('allows inputting multi-digit partial sums 7, 90, 500, 597 for 15598_2', (tester) async {
     String emitted = '';
 
@@ -1474,5 +1507,43 @@ void main() {
     await tester.pump();
 
     expect(emitted, equals('602907697'));
+  });
+
+  testWidgets('renders image elements from renderer json', (tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 500,
+            height: 300,
+            child: RendererJsonCanvas(
+              renderer: {
+                'view_box': {
+                  'width': 500,
+                  'height': 300,
+                  'background': '#FFFFFF',
+                },
+                'elements': [
+                  {
+                    'type': 'image',
+                    'attributes': {
+                      'x': 50,
+                      'y': 50,
+                      'width': 100,
+                      'height': 100,
+                      'href':
+                          'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
+                    },
+                  },
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byType(RendererJsonCanvas), findsOneWidget);
+    expect(find.byType(Image), findsOneWidget);
   });
 }

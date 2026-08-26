@@ -1,0 +1,111 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_02151_3",
+  "problem_type": "vertical_addition",
+  "inputs": {
+    "target_label": "세로셈 계산 결과",
+    "unit": "",
+    "quantities": {
+      "first_addend": 536,
+      "second_addend": 287
+    },
+    "conditions": [
+      "일의 자리부터 차례대로 계산합니다.",
+      "각 자리의 합이 10 이상이면 바로 윗자리로 1을 받아올림합니다."
+    ]
+  },
+  "given": [
+    {
+      "ref": "addition.problem_3",
+      "value": {
+        "first_addend": 536,
+        "second_addend": 287
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.value",
+    "type": "number"
+  },
+  "method": "일의 자리부터 더하고 받아올림을 다음 자리 계산에 포함한다.",
+  "plan": [
+    "일의 자리 6+7=13을 계산하여 1을 올리고 3을 쓴다.",
+    "십의 자리 1+3+8=12를 계산하여 1을 올리고 2를 쓴다.",
+    "백의 자리 1+5+2=8을 쓴다."
+  ],
+  "steps": [
+    {
+      "id": "step.add_numbers",
+      "expr": "536 + 287",
+      "value": 823,
+      "explanation": "536과 287을 더하면 823입니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.total",
+      "expr": "536 + 287",
+      "expected": 823,
+      "actual": 823,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 823,
+    "unit": "",
+    "values": [
+      823
+    ],
+    "choices": [],
+    "blanks": [
+      {
+        "id": "slot.answer_box",
+        "slot_id": "slot.answer_box",
+        "expected": 823
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer_box",
+        "value": 823
+      }
+    ]
+  },
+  "understanding": {
+    "summary": "536과 287의 합을 계산합니다.",
+    "facts": [
+      {
+        "ref": "first_addend",
+        "label": "첫 번째 수",
+        "value": 536,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "second_addend",
+        "label": "두 번째 수",
+        "value": 287,
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.value",
+        "label": "계산 결과",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "sum_of",
+      "statement": "두 수의 합을 구합니다.",
+      "symbolic": "536 + 287",
+      "uses": [
+        "first_addend",
+        "second_addend"
+      ],
+      "result": "823"
+    }
+  }
+}

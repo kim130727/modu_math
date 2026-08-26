@@ -512,14 +512,10 @@ class FractionSlotsUpdater(cst.CSTTransformer):
         if id_prefix != self.target_prefix:
             return updated_node
 
-        invalid = sorted(set(self.fields) - FRACTION_MOVE_FIELDS)
-        if invalid:
-            raise DslPatchError(
-                f"unsupported field(s) for fraction_slots: {', '.join(invalid)}"
-            )
-
         move_dx = float(self.fields.get("move_dx", 0.0))
         move_dy = float(self.fields.get("move_dy", 0.0))
+        if move_dx == 0.0 and move_dy == 0.0:
+            return updated_node
 
         args = list(updated_node.args)
         kw_to_index: dict[str, int] = {}
@@ -577,14 +573,10 @@ class FractionPartsMoveUpdater(cst.CSTTransformer):
         ):
             return updated_node
 
-        invalid = sorted(set(self.fields) - FRACTION_MOVE_FIELDS)
-        if invalid:
-            raise DslPatchError(
-                f"unsupported field(s) for fraction parts: {', '.join(invalid)}"
-            )
-
         dx = float(self.fields.get("move_dx", 0.0))
         dy = float(self.fields.get("move_dy", 0.0))
+        if dx == 0.0 and dy == 0.0:
+            return updated_node
         args = list(updated_node.args)
         if _shift_slot_call_args(args, slot_type, dx, dy):
             self.updated = True

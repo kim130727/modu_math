@@ -98,7 +98,7 @@ def project_suffixed_subproblem(
                 continue
             if _slot_kind(slot) in {"rect", "circle", "path", "line"}:
                 box = _slot_box(slot)
-                if box is not None and _box_center_in(box, target_box, margin=12.0):
+                if box is not None and _answer_input_near_target_box(box, target_box):
                     keep_ids.add(slot_id)
 
     target_submit_ids = {
@@ -107,8 +107,13 @@ def project_suffixed_subproblem(
         if slot_id in target_members
         or _identifier_problem_index(slot_id) == index
     }
+    if protected_slot_ids & all_submit_slot_ids:
+        target_submit_ids |= protected_slot_ids & all_submit_slot_ids
     if not target_submit_ids:
-        target_submit_ids = _submit_slot_ids_for_index(slots, index)
+        if len(spatial_answer_input_ids) > 1:
+            target_submit_ids = spatial_answer_input_ids
+        else:
+            target_submit_ids = _submit_slot_ids_for_index(slots, index)
     if not target_submit_ids:
         target_submit_ids = spatial_answer_input_ids
 
@@ -126,7 +131,7 @@ def project_suffixed_subproblem(
         problem_answer_ids |= rebound_submit_ids
 
     if target_submit_ids:
-        keep_ids -= all_submit_slot_ids - target_submit_ids
+        keep_ids -= (all_submit_slot_ids - target_submit_ids) - protected_slot_ids
         keep_ids |= target_submit_ids
         problem_answer_ids |= target_submit_ids
 
@@ -545,10 +550,12 @@ def _answer_input_near_target_box(
     cx = (box[0] + box[2]) / 2
     cy = (box[1] + box[3]) / 2
     target_width = max(1.0, target_box[2] - target_box[0])
+    target_height = max(1.0, target_box[3] - target_box[1])
     horizontal_margin = max(36.0, target_width * 0.45)
+    vertical_margin = max(80.0, target_height * 0.45)
     return (
         target_box[0] - horizontal_margin <= cx <= target_box[2] + horizontal_margin
-        and target_box[1] - 12.0 <= cy <= target_box[3] + 80.0
+        and target_box[1] - vertical_margin <= cy <= target_box[3] + vertical_margin
     )
 
 

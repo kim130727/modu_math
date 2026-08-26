@@ -1,0 +1,76 @@
+{
+  "problem_id": "S3_초등_3_008569",
+  "view_box": {
+    "width": 650.0,
+    "height": 300.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.qtext.text",
+      "type": "text",
+      "attributes": {
+        "x": 96.764,
+        "y": 69.905,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.qtext",
+      "refs": {
+        "layout_slot_id": "slot.qtext"
+      },
+      "text": "계산 결과가 더 큰 것을 선택하세요."
+    },
+    {
+      "id": "slot.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 39.765,
+        "y": 112.905,
+        "width": 520.0,
+        "height": 110.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.box",
+      "refs": {
+        "layout_slot_id": "slot.box"
+      }
+    },
+    {
+      "id": "slot.choice1.text",
+      "type": "text",
+      "attributes": {
+        "x": 124.765,
+        "y": 180.905,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice1",
+      "refs": {
+        "layout_slot_id": "slot.choice1"
+      },
+      "text": "42 × 70"
+    },
+    {
+      "id": "slot.choice2.text",
+      "type": "text",
+      "attributes": {
+        "x": 339.765,
+        "y": 180.905,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice2",
+      "refs": {
+        "layout_slot_id": "slot.choice2"
+      },
+      "text": "69 × 30"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

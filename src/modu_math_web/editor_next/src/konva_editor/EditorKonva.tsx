@@ -21,6 +21,8 @@ import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
 import { JsonImportExport } from "./JsonImportExport";
 import { KonvaStage, type CanvasPoint } from "./KonvaStage";
 import { KonvaToolbar, type ShapePreset } from "./KonvaToolbar";
+import { KidAvatarMakerModal } from "./avatar/KidAvatarMakerModal";
+import type { AvatarConfig } from "./avatar/avatarParts";
 import { PropertyPanel } from "./PropertyPanel";
 import type { AnswerBindingOption } from "./PropertyPanel";
 import { TutorFlowPanel } from "./TutorFlowPanel";
@@ -47,6 +49,7 @@ export function EditorKonva() {
   const [drawingPreset, setDrawingPreset] = useState<ShapePreset | null>(null);
   const [problemListVersion, setProblemListVersion] = useState(0);
   const [activeSidePanel, setActiveSidePanel] = useState<SidePanelTab>("properties");
+  const [isAvatarModalOpen, setAvatarModalOpen] = useState(false);
   const [activeTutorStepId, setActiveTutorStepId] = useState<string | null>(null);
   const [activeTutorFrameIndex, setActiveTutorFrameIndex] = useState(0);
   const [activeTutorOverlayIndex, setActiveTutorOverlayIndex] = useState<number | null>(null);
@@ -288,8 +291,12 @@ export function EditorKonva() {
   }, [addShape, fitInsertBox, nextId]);
 
   const addMathShape = useCallback(
-    (latex: string, width = 260, height = 72) => {
-      const box = fitInsertBox(width, height, 48, 32);
+    (latex: string, width?: number, height?: number) => {
+      const fontSize = 30;
+      const fracSize = fractionMathSize(latex, fontSize);
+      const targetWidth = width ?? (fracSize ? fracSize.width : 260);
+      const targetHeight = height ?? (fracSize ? fracSize.height : 72);
+      const box = fitInsertBox(targetWidth, targetHeight, 48, 32);
       addShape({
         id: nextId("math"),
         type: "math",
@@ -298,7 +305,7 @@ export function EditorKonva() {
         latex,
         width: box.width,
         height: box.height,
-        fontSize: 30,
+        fontSize,
       });
     },
     [addShape, fitInsertBox, nextId],
@@ -311,11 +318,11 @@ export function EditorKonva() {
   }, [addMathShape]);
 
   const addProperFraction = useCallback(() => {
-    addMathShape("\\frac{1}{2}", 120, 84);
+    addMathShape("\\frac{1}{2}");
   }, [addMathShape]);
 
   const addMixedFraction = useCallback(() => {
-    addMathShape("1\\frac{1}{2}", 160, 84);
+    addMathShape("1\\frac{1}{2}");
   }, [addMathShape]);
 
   const addImage = useCallback(() => {
@@ -351,6 +358,86 @@ export function EditorKonva() {
       }
     },
     [addShape, fitInsertBox, nextId],
+  );
+
+  const handleInsertAvatar = useCallback(
+    (avatarConfig: AvatarConfig, svgDataUrl: string) => {
+      const targetWidth = 140;
+      const targetHeight = 150;
+      const box = fitInsertBox(targetWidth, targetHeight, 24, 24);
+      const avatarId = nextId("avatar");
+
+      const newShapes: EditorShape[] = [
+        {
+          id: avatarId,
+          type: "image",
+          x: box.x,
+          y: box.y,
+          src: svgDataUrl,
+          width: targetWidth,
+          height: targetHeight,
+          preserveAspectRatio: "xMidYMid meet",
+        },
+      ];
+
+      if (avatarConfig.hasSpeechBubble && avatarConfig.speechText) {
+        const text = avatarConfig.speechText;
+        const fontSize = 15;
+        const bubbleWidth = Math.max(130, autoTextWidth(text, fontSize) + 36);
+        const bubbleHeight = 58;
+
+        let bubbleX = box.x + targetWidth + 10;
+        let bubbleY = box.y + 10;
+        if (avatarConfig.bubblePosition === "top-left") {
+          bubbleX = Math.max(20, box.x - bubbleWidth - 10);
+          bubbleY = Math.max(20, box.y - 15);
+        } else if (avatarConfig.bubblePosition === "top-right") {
+          bubbleX = box.x + targetWidth - 10;
+          bubbleY = Math.max(20, box.y - 25);
+        }
+
+        const calloutId = nextId("bubble");
+        const textId = nextId("text");
+
+        newShapes.push({
+          id: calloutId,
+          type: "path",
+          shapePreset: "calloutRound",
+          x: bubbleX,
+          y: bubbleY,
+          width: bubbleWidth,
+          height: bubbleHeight,
+          fill: "#ffffff",
+          stroke: "#1e293b",
+          strokeWidth: 2,
+          d: pathForShapePreset("calloutRound"),
+        });
+
+        newShapes.push({
+          id: textId,
+          type: "text",
+          x: bubbleX + 10,
+          y: bubbleY + 10,
+          width: bubbleWidth - 20,
+          height: bubbleHeight - 20,
+          text,
+          fontSize,
+          fontFamily: KONVA_PREVIEW_FONT_FAMILY,
+          fill: "#1e293b",
+          align: "center",
+          lineHeight: 1.25,
+          sourceKind: "text",
+        });
+      }
+
+      setDocument((prev) => ({
+        ...prev,
+        shapes: [...prev.shapes, ...newShapes],
+      }));
+      setSelectedShapeIds([avatarId]);
+      setMessage(`어린이 캐릭터(${avatarConfig.gender === "boy" ? "남아" : "여아"})를 캔버스에 삽입했습니다.`);
+    },
+    [fitInsertBox, nextId],
   );
 
   const addTable = useCallback(() => {
@@ -758,6 +845,7 @@ export function EditorKonva() {
         hasSelection={selectedShapeIds.length > 0}
         hasAnswerSlotCandidate={selectedAnswerSlotShapeIds.length > 0}
         onInsertShape={insertShape}
+        onOpenAvatarMaker={() => setAvatarModalOpen(true)}
         onAddMath={addMath}
         onAddProperFraction={addProperFraction}
         onAddMixedFraction={addMixedFraction}
@@ -776,6 +864,11 @@ export function EditorKonva() {
         onSaveAndBuild={saveAndBuildCurrentProblem}
         onBuild={buildCurrentProblem}
         onNewFile={createNewProblem}
+      />
+      <KidAvatarMakerModal
+        isOpen={isAvatarModalOpen}
+        onClose={() => setAvatarModalOpen(false)}
+        onInsertAvatar={handleInsertAvatar}
       />
       <input
         ref={imageFileInputRef}
@@ -1335,11 +1428,11 @@ function createBaseTenBlockShape(
 
 function baseTenBlockDimensions(kind: BaseTenBlockKind): { width: number; height: number; depth: number } {
   switch (kind) {
-    case "thousand":
-      return { width: 120, height: 120, depth: 84.85 };
-    case "hundred":
-      return { width: 120, height: 120, depth: 8.5 };
-    case "ten":
+      case "thousand":
+        return { width: 120, height: 120, depth: 84.85 };
+      case "hundred":
+        return { width: 120, height: 120, depth: 8.5 };
+      case "ten":
       return { width: 12, height: 120, depth: 8.5 };
     case "one":
       return { width: 24, height: 24, depth: 16.97 };
@@ -1707,8 +1800,8 @@ function applyAutoMathSizing(nextShape: Extract<EditorShape, { type: "math" }>, 
   if (!fractionSize) return nextShape;
   return {
     ...nextShape,
-    width: Math.max(nextShape.width, fractionSize.width),
-    height: Math.max(nextShape.height, fractionSize.height),
+    width: fractionSize.width,
+    height: fractionSize.height,
   };
 }
 
@@ -1716,13 +1809,13 @@ function fractionMathSize(latex: string, fontSize: number): { width: number; hei
   const match = latex.trim().match(/^([+-]?\d+)?\s*\\frac\s*\{([^{}]+)\}\s*\{([^{}]+)\}$/);
   if (!match) return null;
   const smallFont = Math.max(16, fontSize * 0.78);
-  const wholeWidth = match[1] ? Math.max(smallFont, match[1].length * smallFont * 0.62) + 8 : 0;
+  const wholeWidth = match[1] ? Math.max(smallFont, match[1].length * smallFont * 0.62) + 6 : 0;
   const numeratorWidth = Math.max(smallFont, match[2].length * smallFont * 0.62);
   const denominatorWidth = Math.max(smallFont, match[3].length * smallFont * 0.62);
-  const fractionWidth = Math.max(34, numeratorWidth, denominatorWidth) + 12;
+  const fractionWidth = Math.max(26, numeratorWidth, denominatorWidth) + 8;
   return {
-    width: Math.ceil(wholeWidth + fractionWidth + fontSize),
-    height: Math.ceil(smallFont * 2.25 + fontSize * 0.6),
+    width: Math.ceil(wholeWidth + fractionWidth + 6),
+    height: Math.ceil(smallFont * 2.25 + 6),
   };
 }
 

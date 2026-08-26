@@ -1,0 +1,262 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008647",
+  "title": "원 안의 선분 중 길이가 가장 긴 선분 찾기",
+  "canvas": {
+    "width": 960,
+    "height": 360,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q.text"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.top.circle",
+        "slot.diagram.top.segment.a",
+        "slot.diagram.top.segment.b",
+        "slot.diagram.top.segment.c",
+        "slot.diagram.top.segment.d",
+        "slot.diagram.top.segment.e",
+        "slot.diagram.top.center.dot",
+        "slot.diagram.top.center.label",
+        "slot.diagram.top.label.a.text",
+        "slot.diagram.top.label.b.text",
+        "slot.diagram.top.label.c.text",
+        "slot.diagram.top.label.d.text",
+        "slot.diagram.top.label.e.text"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원 안의 선분 중 길이가 가장 긴 선분을 찾아 기호를 선택하세요.",
+        "style_role": "question",
+        "x": 75.0,
+        "y": 31.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.diagram.top.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 478.0,
+        "cy": 185.0,
+        "r": 96.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.top.segment.a",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 478.0,
+        "y1": 281.0,
+        "x2": 383.21,
+        "y2": 187.87,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.top.segment.b",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 478.0,
+        "y1": 281.0,
+        "x2": 420.4,
+        "y2": 110.12,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.top.segment.c",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 478.0,
+        "y1": 281.0,
+        "x2": 478.0,
+        "y2": 89.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.top.segment.d",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 478.0,
+        "y1": 281.0,
+        "x2": 535.6,
+        "y2": 110.12,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.top.segment.e",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 478.0,
+        "y1": 281.0,
+        "x2": 574.43,
+        "y2": 183.15,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.top.center.dot",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "●",
+        "style_role": "label",
+        "x": 473.197,
+        "y": 190.574,
+        "font_size": 12,
+        "anchor": "middle",
+        "fill": "#E11A86"
+      }
+    },
+    {
+      "id": "slot.diagram.top.center.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "O",
+        "style_role": "label",
+        "x": 483.852,
+        "y": 176.836,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.diagram.top.label.a.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 340.18,
+        "y": 221.885,
+        "font_size": 22,
+        "anchor": "middle",
+        "fill": "#555555",
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.diagram.top.label.b.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 399.097,
+        "y": 115.423,
+        "font_size": 22,
+        "anchor": "middle",
+        "fill": "#555555",
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.diagram.top.label.c.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 548.967,
+        "y": 70.197,
+        "font_size": 22,
+        "anchor": "middle",
+        "fill": "#555555",
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.diagram.top.label.d.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 655.559,
+        "y": 109.915,
+        "font_size": 22,
+        "anchor": "middle",
+        "fill": "#555555",
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.diagram.top.label.e.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅁ",
+        "style_role": "label",
+        "x": 668.049,
+        "y": 198.279,
+        "font_size": 22,
+        "anchor": "middle",
+        "fill": "#555555",
+        "semantic_role": "symbol_label"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q.text",
+    "region.diagram",
+    "slot.diagram.top.circle",
+    "slot.diagram.top.segment.a",
+    "slot.diagram.top.segment.b",
+    "slot.diagram.top.segment.c",
+    "slot.diagram.top.segment.d",
+    "slot.diagram.top.segment.e",
+    "slot.diagram.top.center.dot",
+    "slot.diagram.top.center.label",
+    "slot.diagram.top.label.a.text",
+    "slot.diagram.top.label.b.text",
+    "slot.diagram.top.label.c.text",
+    "slot.diagram.top.label.d.text",
+    "slot.diagram.top.label.e.text",
+    "region.answer"
+  ]
+}

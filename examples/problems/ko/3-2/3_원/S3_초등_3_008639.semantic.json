@@ -1,0 +1,76 @@
+{
+  "problem_id": "S3_초등_3_008639",
+  "problem_type": "multiple_choice_geometry",
+  "metadata": {
+    "title": "한 원의 반지름의 성질을 묻는 보기 선택형 문제",
+    "tags": [],
+    "question": "한 원의 반지름의 성질을 묻는 보기 선택형 문제",
+    "required_layout_ids": [
+      "slot.circle.boundary",
+      "slot.circle.center",
+      "slot.circle.marker",
+      "slot.radius.left",
+      "slot.radius.up_right",
+      "slot.radius.down",
+      "slot.choice.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "알맞은 말을 선택한다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.radius_set",
+        "type": "radius_set",
+        "count": 3
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.radius_set"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.radius_of_circle",
+          "rel.radius_equality"
+        ]
+      },
+      "plan": {
+        "method": "geometry_property_recognition",
+        "description": "한 원에서 반지름의 성질을 확인한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_radius",
+          "compare_lengths"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "property_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "multiple_choice_selection",
+      "description": "한 원에서 원의 반지름들은 모두 ( 같습니다, 다릅니다 )."
+    },
+    "value": "같습니다",
+    "unit": ""
+  }
+}

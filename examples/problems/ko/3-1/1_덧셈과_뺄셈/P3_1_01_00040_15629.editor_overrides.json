@@ -1,0 +1,62 @@
+{
+  "deleted_slots": [
+    "slot.blank1",
+    "slot.blank2"
+  ],
+  "version": 1,
+  "slots": {
+    "slot.instruction": {
+      "width": 172.8,
+      "height": 43,
+      "x": 13.2,
+      "y": 10.204
+    },
+    "slot.result.blank_box": {
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 2,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number",
+        "answer_key_index": 1,
+        "answer_ref": "answer_key[1]"
+      },
+      "x": 88.8,
+      "y": 102.993
+    },
+    "slot.second.blank_box": {
+      "x": 102.8,
+      "y": 73.993
+    },
+    "slot.rule": {
+      "x1": 63.8,
+      "y1": 96.993,
+      "x2": 131.8,
+      "y2": 96.993
+    },
+    "slot.first_number": {
+      "x": 90.8,
+      "y": 65.993
+    },
+    "slot.plus": {
+      "x": 70.8,
+      "y": 88.993
+    },
+    "slot.second.hundreds": {
+      "x": 90.8,
+      "y": 88.993
+    },
+    "slot.second.ones": {
+      "x": 119.8,
+      "y": 88.993
+    },
+    "slot.result.tens_ones": {
+      "x": 105.8,
+      "y": 117.993
+    }
+  }
+}

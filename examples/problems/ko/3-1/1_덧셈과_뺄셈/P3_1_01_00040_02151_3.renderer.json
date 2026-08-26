@@ -1,0 +1,175 @@
+{
+  "problem_id": "P3_1_01_00040_02151_3",
+  "view_box": {
+    "width": 400.0,
+    "height": 300.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.answer_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 120.0,
+        "y": 188.0,
+        "width": 120.0,
+        "height": 38.0,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.answer_box",
+      "refs": {
+        "layout_slot_id": "slot.answer_box"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 3,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": true,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 32,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 4,
+        "text_color": "#222222",
+        "width": 120.0,
+        "height": 38.0
+      }
+    },
+    {
+      "id": "slot.calc_line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 96.0,
+        "y1": 180.0,
+        "x2": 254.0,
+        "y2": 180.0,
+        "stroke": "#111111",
+        "stroke-width": 1.6
+      },
+      "source_ref": "slot.calc_line",
+      "refs": {
+        "layout_slot_id": "slot.calc_line"
+      }
+    },
+    {
+      "id": "slot.instruction.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 30.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 24,
+        "width": 340.0,
+        "height": 38.0,
+        "max_width": 340.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 30.0,
+        "data-box-y": 24.0,
+        "data-box-width": 340.0,
+        "data-box-height": 38.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.instruction",
+      "refs": {
+        "layout_slot_id": "slot.instruction"
+      },
+      "text": "□ 안에 알맞은 수를 써넣으시오."
+    },
+    {
+      "id": "slot.first_addend.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 120.0,
+        "y": 96.0,
+        "fill": "#202124",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 26,
+        "width": 120.0,
+        "height": 40.0,
+        "max_width": 120.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 120.0,
+        "data-box-y": 96.0,
+        "data-box-width": 120.0,
+        "data-box-height": 40.0,
+        "data-text-align": "center",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25
+      },
+      "source_ref": "slot.first_addend",
+      "refs": {
+        "layout_slot_id": "slot.first_addend"
+      },
+      "text": "5 3 6"
+    },
+    {
+      "id": "slot.plus_sign.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 96.0,
+        "y": 136.0,
+        "fill": "#202124",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 26,
+        "width": 30.0,
+        "height": 40.0,
+        "max_width": 30.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 96.0,
+        "data-box-y": 136.0,
+        "data-box-width": 30.0,
+        "data-box-height": 40.0,
+        "data-text-align": "center",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25
+      },
+      "source_ref": "slot.plus_sign",
+      "refs": {
+        "layout_slot_id": "slot.plus_sign"
+      },
+      "text": "+"
+    },
+    {
+      "id": "slot.second_addend.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 120.0,
+        "y": 136.0,
+        "fill": "#202124",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 26,
+        "width": 120.0,
+        "height": 40.0,
+        "max_width": 120.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 120.0,
+        "data-box-y": 136.0,
+        "data-box-width": 120.0,
+        "data-box-height": 40.0,
+        "data-text-align": "center",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25
+      },
+      "source_ref": "slot.second_addend",
+      "refs": {
+        "layout_slot_id": "slot.second_addend"
+      },
+      "text": "2 8 7"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

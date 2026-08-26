@@ -3,7 +3,7 @@ import { Circle, Group, Image as KonvaImage, Line, Path, Rect, Text } from "reac
 import type Konva from "konva";
 import type { EditorShape } from "../types/editorShape";
 import { connectorPathData } from "./connectorGeometry";
-import { estimateWrappedTextHeight, normalizedTextBoxHeight, normalizedTextBoxWidth } from "./converters";
+import { estimateWrappedTextHeight, normalizedTextBoxHeight, normalizedTextBoxWidth, parseFractionLatex, type FractionLatex } from "./converters";
 import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
 import { renderLatexToSvgDataUrl } from "./latexRenderer";
 import { pathDataForShape } from "./shapeGeometry";
@@ -196,7 +196,6 @@ function normalizedBaseTenDepth(
   const unitDepth = Math.min(cellWidth, cellHeight) / Math.SQRT2;
   return Math.max(0, unitDepth * grid.depthSegments);
 }
-
 function BaseTenGridLines({
   width,
   height,
@@ -260,7 +259,7 @@ function MathShapeRenderer({ shape, common }: { shape: Extract<EditorShape, { ty
   const image = useRenderedLatexImage(shape.latex, !fraction);
 
   if (fraction) {
-    return <FractionShapeRenderer fraction={fraction} common={common} fontSize={fontSize} width={shape.width} height={shape.height} />;
+    return <FractionShapeRenderer shape={shape} fraction={fraction} common={common} fontSize={fontSize} width={shape.width} height={shape.height} />;
   }
 
   if (image) {
@@ -291,31 +290,28 @@ function MathShapeRenderer({ shape, common }: { shape: Extract<EditorShape, { ty
   );
 }
 
-interface FractionLatex {
-  whole?: string;
-  numerator: string;
-  denominator: string;
-}
-
 function FractionShapeRenderer({
+  shape,
   fraction,
   common,
   fontSize,
   width,
   height,
 }: {
+  shape: Extract<EditorShape, { type: "math" }>;
   fraction: FractionLatex;
   common: Record<string, unknown>;
   fontSize: number;
   width: number;
   height: number;
 }) {
+  const color = shape.color ?? "#111827";
   const smallFont = Math.max(16, fontSize * 0.78);
   const numeratorWidth = estimatePlainTextWidth(fraction.numerator, smallFont);
   const denominatorWidth = estimatePlainTextWidth(fraction.denominator, smallFont);
-  const fractionWidth = Math.max(34, numeratorWidth, denominatorWidth) + 12;
+  const fractionWidth = Math.max(26, numeratorWidth, denominatorWidth) + 8;
   const fractionHeight = smallFont * 2.25;
-  const wholeWidth = fraction.whole ? estimatePlainTextWidth(fraction.whole, smallFont) + 8 : 0;
+  const wholeWidth = fraction.whole ? estimatePlainTextWidth(fraction.whole, smallFont) + 6 : 0;
   const contentWidth = wholeWidth + fractionWidth;
   const contentHeight = Math.max(fractionHeight, fontSize * 1.2);
   const startX = Math.max(0, (width - contentWidth) / 2);
@@ -325,7 +321,7 @@ function FractionShapeRenderer({
 
   return (
     <Group {...common}>
-      <Rect width={width} height={height} fill="#ffffff" />
+      {shape.fill && shape.fill !== "none" ? <Rect width={width} height={height} fill={normalizeFill(shape.fill)} /> : null}
       {fraction.whole ? (
         <Text
           x={startX}
@@ -333,7 +329,7 @@ function FractionShapeRenderer({
           text={fraction.whole}
           fontSize={smallFont}
           fontFamily={KONVA_PREVIEW_FONT_FAMILY}
-          fill="#111827"
+          fill={color}
         />
       ) : null}
       <Text
@@ -343,10 +339,10 @@ function FractionShapeRenderer({
         text={fraction.numerator}
         fontSize={smallFont}
         fontFamily={KONVA_PREVIEW_FONT_FAMILY}
-        fill="#111827"
+        fill={color}
         align="center"
       />
-      <Line points={[fractionX, lineY, fractionX + fractionWidth, lineY]} stroke="#111827" strokeWidth={1.6} />
+      <Line points={[fractionX, lineY, fractionX + fractionWidth, lineY]} stroke={color} strokeWidth={2.2} />
       <Text
         x={fractionX}
         y={lineY + 4}
@@ -354,21 +350,11 @@ function FractionShapeRenderer({
         text={fraction.denominator}
         fontSize={smallFont}
         fontFamily={KONVA_PREVIEW_FONT_FAMILY}
-        fill="#111827"
+        fill={color}
         align="center"
       />
     </Group>
   );
-}
-
-function parseFractionLatex(latex: string): FractionLatex | null {
-  const match = latex.trim().match(/^([+-]?\d+)?\s*\\frac\s*\{([^{}]+)\}\s*\{([^{}]+)\}$/);
-  if (!match) return null;
-  return {
-    whole: match[1],
-    numerator: match[2],
-    denominator: match[3],
-  };
 }
 
 function estimatePlainTextWidth(text: string, fontSize: number): number {

@@ -69,3 +69,75 @@ def test_circle_fold_sequence_slots_compiles_to_layout_slots() -> None:
     assert slots["slot.fold.stage3.fold_line"]["kind"] == "line"
     assert slots["slot.fold.stage5.center"]["kind"] == "circle"
     assert "slot.fold.arrow1.body" in slots
+
+
+def test_fraction_override_expands_into_slots() -> None:
+    from modu_math.layout.editor_overrides import apply_editor_overrides
+
+    base_layout = {
+        "id": "p_frac_test",
+        "canvas": {"width": 640, "height": 360},
+        "regions": [{"id": "region.stem", "role": "stem", "slot_ids": []}],
+        "slots": [],
+    }
+    overrides = {
+        "version": 1,
+        "slots": {
+            "slot.math.frac": {
+                "text": "\\frac{13}{11}",
+                "x": 200.0,
+                "y": 150.0,
+                "width": 60.0,
+                "height": 60.0,
+                "font_size": 28,
+            }
+        },
+        "slot_regions": {"slot.math.frac": "region.stem"},
+    }
+
+    result = apply_editor_overrides(base_layout, overrides)
+    slots = {s["id"]: s for s in result["slots"]}
+
+    assert "slot.math.frac.num" in slots
+    assert "slot.math.frac.bar" in slots
+    assert "slot.math.frac.den" in slots
+    assert slots["slot.math.frac.num"]["content"]["text"] == "13"
+    assert slots["slot.math.frac.den"]["content"]["text"] == "11"
+    assert slots["slot.math.frac.bar"]["kind"] == "line"
+
+
+def test_mixed_fraction_override_expands_into_slots() -> None:
+    from modu_math.layout.editor_overrides import apply_editor_overrides
+
+    base_layout = {
+        "id": "p_mixed_frac_test",
+        "canvas": {"width": 640, "height": 360},
+        "regions": [{"id": "region.stem", "role": "stem", "slot_ids": []}],
+        "slots": [],
+    }
+    overrides = {
+        "version": 1,
+        "slots": {
+            "slot.math.mixed": {
+                "text": "7\\frac{3}{10}",
+                "x": 300.0,
+                "y": 200.0,
+                "width": 80.0,
+                "height": 60.0,
+                "font_size": 30,
+            }
+        },
+        "slot_regions": {"slot.math.mixed": "region.stem"},
+    }
+
+    result = apply_editor_overrides(base_layout, overrides)
+    slots = {s["id"]: s for s in result["slots"]}
+
+    assert "slot.math.mixed.whole" in slots
+    assert "slot.math.mixed.num" in slots
+    assert "slot.math.mixed.bar" in slots
+    assert "slot.math.mixed.den" in slots
+    assert slots["slot.math.mixed.whole"]["content"]["text"] == "7"
+    assert slots["slot.math.mixed.num"]["content"]["text"] == "3"
+    assert slots["slot.math.mixed.den"]["content"]["text"] == "10"
+

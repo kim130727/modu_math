@@ -4,6 +4,22 @@ import { connectorToPathObject } from "./connectorGeometry";
 import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
 import { inferAdjustableShapePreset, pathDataForShape } from "./shapeGeometry";
 
+export interface FractionLatex {
+  whole?: string;
+  numerator: string;
+  denominator: string;
+}
+
+export function parseFractionLatex(latex: string): FractionLatex | null {
+  const match = latex.trim().match(/^([+-]?\d+)?\s*\\frac\s*\{([^{}]+)\}\s*\{([^{}]+)\}$/);
+  if (!match) return null;
+  return {
+    whole: match[1] || undefined,
+    numerator: match[2],
+    denominator: match[3],
+  };
+}
+
 export function problemJsonToEditorDocument(problem: ProblemJson): EditorShapeDocument {
   return {
     id: problem.id,
@@ -44,8 +60,34 @@ function problemObjectToEditorShape(object: ProblemObject, canvas: ProblemCanvas
       const width = isTextBox || needsAlignmentBox ? normalizedTextBoxWidth(text, fontSize, sourceWidth, textAlign, maxWidth) : undefined;
       const fittedHeight = fittedTextHeight(text, fontSize, width ?? estimateTextWidth(text, fontSize), lineHeight);
 
+      const fraction = parseFractionLatex(text);
+      if (fraction || (typeof object.props.latex === "string" && object.props.latex.includes("\\frac"))) {
+        const latex = object.props.latex || text;
+        return [
+          applySvgTransform(
+            {
+              id: object.id,
+              type: "math",
+              x: object.x,
+              y: object.y,
+              latex,
+              fontSize,
+              fill: "none",
+              color: object.props.color ?? "#111827",
+              width: object.props.width ?? 60,
+              height: object.props.height ?? 60,
+              ...regionProps,
+              ...semanticProps,
+              ...answerProps,
+              visible: true,
+            },
+            stringProp(object.props.transform),
+          ),
+        ];
+      }
+
       return [
-        applySvgRotateTransform(
+        applySvgTransform(
           {
           id: object.id,
           type: "text",
@@ -72,7 +114,7 @@ function problemObjectToEditorShape(object: ProblemObject, canvas: ProblemCanvas
     case "basic_shape":
       if (object.props.shape === "ellipse") {
         return [
-          applySvgRotateTransform(
+          applySvgTransform(
             {
             id: object.id,
             type: "circle",
@@ -93,7 +135,7 @@ function problemObjectToEditorShape(object: ProblemObject, canvas: ProblemCanvas
       }
       if (object.props.shape === "line") {
         return [
-          applySvgRotateTransform(
+          applySvgTransform(
             {
             id: object.id,
             type: "line",
@@ -112,7 +154,7 @@ function problemObjectToEditorShape(object: ProblemObject, canvas: ProblemCanvas
         ];
       }
       return [
-        applySvgRotateTransform(
+        applySvgTransform(
           {
           id: object.id,
           type: "rect",
@@ -143,7 +185,7 @@ function problemObjectToEditorShape(object: ProblemObject, canvas: ProblemCanvas
       ];
     case "image":
       return [
-        applySvgRotateTransform(
+        applySvgTransform(
           {
           id: object.id,
           type: "image",
@@ -184,7 +226,7 @@ function problemObjectToEditorShape(object: ProblemObject, canvas: ProblemCanvas
         ];
       }
       return [
-        applySvgRotateTransform(
+        applySvgTransform(
           {
           id: object.id,
           type: "path",
@@ -269,7 +311,19 @@ function recordProp(value: unknown): Record<string, unknown> | undefined {
   return value && typeof value === "object" && !Array.isArray(value) ? (value as Record<string, unknown>) : undefined;
 }
 
-function applySvgRotateTransform<T extends EditorShape>(shape: T, transform: string | undefined): T {
+function applySvgTransform<T extends EditorShape>(shape: T, transform: string | undefined): T {
+  const translate = parseSvgTranslate(transform);
+  if (translate) {
+    return {
+      ...shape,
+      x: shape.x + translate.dx,
+      y: shape.y + translate.dy,
+      sourceX: shape.x,
+      sourceY: shape.y,
+      sourceTransform: transform,
+    };
+  }
+
   const rotate = parseSvgRotate(transform);
   if (!rotate) return shape;
   return {
@@ -280,6 +334,16 @@ function applySvgRotateTransform<T extends EditorShape>(shape: T, transform: str
     offsetX: rotate.cx - shape.x,
     offsetY: rotate.cy - shape.y,
   };
+}
+
+function parseSvgTranslate(transform: string | undefined): { dx: number; dy: number } | null {
+  if (!transform) return null;
+  const number = "[-+]?(?:\\d*\\.\\d+|\\d+)(?:e[-+]?\\d+)?";
+  const match = transform.match(new RegExp(`^\\s*translate\\(\\s*(${number})(?:[\\s,]+(${number}))?\\s*\\)\\s*$`, "i"));
+  if (!match) return null;
+  const dx = Number(match[1]);
+  const dy = match[2] === undefined ? 0 : Number(match[2]);
+  return Number.isFinite(dx) && Number.isFinite(dy) ? { dx, dy } : null;
 }
 
 function parseSvgRotate(transform: string | undefined): { angle: number; cx: number; cy: number } | null {
@@ -618,14 +682,31 @@ function segmentD(x1: number, y1: number, x2: number, y2: number): string {
 }
 
 function shapeBaseX(shape: EditorShape): number {
+  const translated = translatedSourceBase(shape);
+  if (translated) return translated.x;
   return shape.x - (shape.offsetX ?? 0);
 }
 
 function shapeBaseY(shape: EditorShape): number {
+  const translated = translatedSourceBase(shape);
+  if (translated) return translated.y;
   return shape.y - (shape.offsetY ?? 0);
 }
 
+function translatedSourceBase(shape: EditorShape): { x: number; y: number } | null {
+  if (typeof shape.sourceX !== "number" || typeof shape.sourceY !== "number" || !Number.isFinite(shape.sourceX) || !Number.isFinite(shape.sourceY)) {
+    return null;
+  }
+  const translate = parseSvgTranslate(shape.sourceTransform);
+  if (!translate) return null;
+  return {
+    x: shape.sourceX + (shape.x - (shape.sourceX + translate.dx)),
+    y: shape.sourceY + (shape.y - (shape.sourceY + translate.dy)),
+  };
+}
+
 function transformProps(shape: EditorShape): { transform?: string } {
+  if (shape.sourceTransform) return { transform: shape.sourceTransform };
   const rotation = shape.rotation ?? 0;
   if (!rotation) return {};
   return { transform: `rotate(${roundForTransform(rotation)} ${roundForTransform(shape.x)} ${roundForTransform(shape.y)})` };

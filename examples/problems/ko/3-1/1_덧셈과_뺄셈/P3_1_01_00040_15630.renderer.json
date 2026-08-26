@@ -1,0 +1,123 @@
+{
+  "problem_id": "P3_1_01_00040_15630",
+  "view_box": {
+    "width": 300.0,
+    "height": 150.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 12.8,
+        "y": 11.6,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 14,
+        "width": 276.0,
+        "height": 43.0,
+        "max_width": 276.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 12.8,
+        "data-box-y": 11.6,
+        "data-box-width": 276.0,
+        "data-box-height": 43.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-semantic-role": "question"
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "다음 두 수의 차가 123인 것은 어느 것입니까?"
+    },
+    {
+      "id": "slot.choice1.text",
+      "type": "text",
+      "attributes": {
+        "x": 49.6,
+        "y": 65.189,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 14,
+        "data-semantic-role": "choice"
+      },
+      "source_ref": "slot.choice1",
+      "refs": {
+        "layout_slot_id": "slot.choice1"
+      },
+      "text": "① 647, 341"
+    },
+    {
+      "id": "slot.choice2.text",
+      "type": "text",
+      "attributes": {
+        "x": 49.6,
+        "y": 87.189,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 14,
+        "data-semantic-role": "choice"
+      },
+      "source_ref": "slot.choice2",
+      "refs": {
+        "layout_slot_id": "slot.choice2"
+      },
+      "text": "② 488, 227"
+    },
+    {
+      "id": "slot.choice3.text",
+      "type": "text",
+      "attributes": {
+        "x": 49.6,
+        "y": 109.189,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 14,
+        "data-semantic-role": "choice"
+      },
+      "source_ref": "slot.choice3",
+      "refs": {
+        "layout_slot_id": "slot.choice3"
+      },
+      "text": "③ 847, 740"
+    },
+    {
+      "id": "slot.choice4.text",
+      "type": "text",
+      "attributes": {
+        "x": 160.4,
+        "y": 65.227,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 14,
+        "data-semantic-role": "choice"
+      },
+      "source_ref": "slot.choice4",
+      "refs": {
+        "layout_slot_id": "slot.choice4"
+      },
+      "text": "④ 528, 405"
+    },
+    {
+      "id": "slot.choice5.text",
+      "type": "text",
+      "attributes": {
+        "x": 160.4,
+        "y": 87.227,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 14,
+        "data-semantic-role": "choice"
+      },
+      "source_ref": "slot.choice5",
+      "refs": {
+        "layout_slot_id": "slot.choice5"
+      },
+      "text": "⑤ 386, 223"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

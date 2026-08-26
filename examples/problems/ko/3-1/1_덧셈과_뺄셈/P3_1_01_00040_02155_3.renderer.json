@@ -1,0 +1,145 @@
+{
+  "problem_id": "P3_1_01_00040_02155",
+  "view_box": {
+    "width": 300.0,
+    "height": 250.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.instruction.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 24.0,
+        "y": 18.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 25,
+        "width": 260.0,
+        "height": 38.0,
+        "max_width": 260.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 24.0,
+        "data-box-y": 18.0,
+        "data-box-width": 260.0,
+        "data-box-height": 38.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.2,
+        "data-semantic-role": "instruction"
+      },
+      "source_ref": "slot.instruction",
+      "refs": {
+        "layout_slot_id": "slot.instruction"
+      },
+      "text": "다음을 계산하세요."
+    },
+    {
+      "id": "konva_1785110879232_paste_2071031_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 107.038,
+        "y": 177.87,
+        "width": 92.919,
+        "height": 33.237,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.2
+      },
+      "source_ref": "konva_1785110879232_paste_2071031_0",
+      "refs": {
+        "layout_slot_id": "konva_1785110879232_paste_2071031_0"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "include_in_submission": true,
+        "order": 2,
+        "group_id": "final_answer",
+        "answer_key_index": 2,
+        "answer_ref": "answer_key[2]",
+        "value_type": "integer",
+        "max_length": 4,
+        "auto_advance": false
+      },
+      "input_style": {
+        "width": 92.919,
+        "height": 33.237,
+        "font_size": 32,
+        "font_size_mode": "auto",
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "text_color": "#222222"
+      }
+    },
+    {
+      "id": "slot.line_3.line",
+      "type": "line",
+      "attributes": {
+        "x1": 107.282,
+        "y1": 164.185,
+        "x2": 204.282,
+        "y2": 164.185,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.line_3",
+      "refs": {
+        "layout_slot_id": "slot.line_3"
+      }
+    },
+    {
+      "id": "slot.addend_3_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 197.682,
+        "y": 101.984,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 28,
+        "text-anchor": "end"
+      },
+      "source_ref": "slot.addend_3_1",
+      "refs": {
+        "layout_slot_id": "slot.addend_3_1"
+      },
+      "text": "2 9 6"
+    },
+    {
+      "id": "slot.plus_3.text",
+      "type": "text",
+      "attributes": {
+        "x": 127.282,
+        "y": 148.185,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 28,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.plus_3",
+      "refs": {
+        "layout_slot_id": "slot.plus_3"
+      },
+      "text": "+"
+    },
+    {
+      "id": "slot.addend_3_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 197.682,
+        "y": 148.984,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 28,
+        "text-anchor": "end"
+      },
+      "source_ref": "slot.addend_3_2",
+      "refs": {
+        "layout_slot_id": "slot.addend_3_2"
+      },
+      "text": "7 5 8"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

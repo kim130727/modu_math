@@ -1,0 +1,237 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15629",
+  "title": "431과 세 자리 수의 덧셈 빈칸 채우기",
+  "canvas": {
+    "width": 200,
+    "height": 150,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.instruction"
+      ]
+    },
+    {
+      "id": "region.vertical_addition",
+      "role": "work",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.second.blank_box",
+        "slot.result.blank_box",
+        "slot.rule",
+        "slot.first_number",
+        "slot.plus",
+        "slot.second.hundreds",
+        "slot.second.ones",
+        "slot.result.tens_ones"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text_box",
+      "prompt": "빈칸에 알맞은 수를 쓰라는 안내",
+      "content": {
+        "text": "□ 안에 알맞은 수를 써넣으시오.",
+        "style_role": "body",
+        "x": 13.2,
+        "y": 10.204,
+        "width": 172.8,
+        "height": 43,
+        "align": "left",
+        "valign": "top",
+        "font_size": 14,
+        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "fill": "#111111",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.first_number",
+      "kind": "text",
+      "prompt": "첫 번째 수 431",
+      "content": {
+        "text": "4  3  1",
+        "style_role": "body",
+        "x": 90.8,
+        "y": 65.993,
+        "font_size": 15,
+        "fill": "#111111",
+        "semantic_role": "given_number"
+      }
+    },
+    {
+      "id": "slot.plus",
+      "kind": "text",
+      "prompt": "덧셈 기호",
+      "content": {
+        "text": "+",
+        "style_role": "body",
+        "x": 70.8,
+        "y": 88.993,
+        "font_size": 15,
+        "fill": "#111111",
+        "semantic_role": "operator"
+      }
+    },
+    {
+      "id": "slot.second.hundreds",
+      "kind": "text",
+      "prompt": "두 번째 수의 백의 자리 숫자 2",
+      "content": {
+        "text": "2",
+        "style_role": "body",
+        "x": 90.8,
+        "y": 88.993,
+        "font_size": 15,
+        "fill": "#111111",
+        "semantic_role": "given_digit"
+      }
+    },
+    {
+      "id": "slot.second.blank_box",
+      "kind": "rect",
+      "prompt": "두 번째 수의 십의 자리 숫자를 쓰는 첫 번째 빈칸",
+      "content": {
+        "x": 102.8,
+        "y": 73.993,
+        "width": 14.0,
+        "height": 19.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#ffffff",
+        "semantic_role": "answer_blank",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "digit",
+          "max_length": 1,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "auto_advance": true,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 14.0,
+          "height": 19.0
+        }
+      }
+    },
+    {
+      "id": "slot.second.ones",
+      "kind": "text",
+      "prompt": "두 번째 수의 일의 자리 숫자 1",
+      "content": {
+        "text": "1",
+        "style_role": "body",
+        "x": 119.8,
+        "y": 88.993,
+        "font_size": 15,
+        "fill": "#111111",
+        "semantic_role": "given_digit"
+      }
+    },
+    {
+      "id": "slot.rule",
+      "kind": "line",
+      "prompt": "덧셈 계산선",
+      "content": {
+        "x1": 63.8,
+        "y1": 96.993,
+        "x2": 131.8,
+        "y2": 96.993,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "semantic_role": "calculation_rule"
+      }
+    },
+    {
+      "id": "slot.result.blank_box",
+      "kind": "rect",
+      "prompt": "합의 백의 자리 숫자를 쓰는 두 번째 빈칸",
+      "content": {
+        "x": 88.8,
+        "y": 102.993,
+        "width": 14.0,
+        "height": 19.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#ffffff",
+        "semantic_role": "answer_blank",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "digit",
+          "max_length": 1,
+          "include_in_submission": true,
+          "order": 2,
+          "group_id": "final_answer",
+          "auto_advance": true,
+          "keyboard": "number",
+          "answer_key_index": 1,
+          "answer_ref": "answer_key[1]"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 14.0,
+          "height": 19.0
+        }
+      }
+    },
+    {
+      "id": "slot.result.tens_ones",
+      "kind": "text",
+      "prompt": "합의 십의 자리와 일의 자리 숫자 62",
+      "content": {
+        "text": "6  2",
+        "style_role": "body",
+        "x": 105.8,
+        "y": 117.993,
+        "font_size": 15,
+        "fill": "#111111",
+        "semantic_role": "result_digits"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.instruction",
+    "region.vertical_addition",
+    "slot.second.blank_box",
+    "slot.result.blank_box",
+    "slot.rule",
+    "slot.first_number",
+    "slot.plus",
+    "slot.second.hundreds",
+    "slot.second.ones",
+    "slot.result.tens_ones"
+  ]
+}

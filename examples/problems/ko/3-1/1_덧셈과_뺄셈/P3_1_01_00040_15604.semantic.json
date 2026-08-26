@@ -1,0 +1,102 @@
+{
+  "problem_id": "P3_1_01_00040_15604",
+  "problem_type": "text_answer_compare_addition_sums",
+  "metadata": {
+    "title": "두 덧셈 결과의 크기 비교",
+    "tags": [],
+    "question": "크기를 비교하여 ○ 안에 >, <, =를 알맞게 써넣으시오.",
+    "required_layout_ids": [
+      "slot.left.line",
+      "slot.comparison.circle",
+      "slot.right.line"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈과 크기 비교",
+    "language": "ko-KR",
+    "instruction": "두 덧셈의 결과를 비교하여 알맞은 기호를 고릅니다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "number.left_addend_1",
+        "type": "number",
+        "label": "왼쪽 첫 번째 수",
+        "value": 450
+      },
+      {
+        "id": "number.left_addend_2",
+        "type": "number",
+        "label": "왼쪽 두 번째 수",
+        "value": 146
+      },
+      {
+        "id": "quantity.left_sum",
+        "type": "derived_number",
+        "label": "왼쪽 덧셈의 결과",
+        "value": 596
+      },
+      {
+        "id": "number.right_addend_1",
+        "type": "number",
+        "label": "오른쪽 첫 번째 수",
+        "value": 347
+      },
+      {
+        "id": "number.right_addend_2",
+        "type": "number",
+        "label": "오른쪽 두 번째 수",
+        "value": 250
+      },
+      {
+        "id": "quantity.right_sum",
+        "type": "derived_number",
+        "label": "오른쪽 덧셈의 결과",
+        "value": 597
+      },
+      {
+        "id": "comparison.left_sum_right_sum",
+        "type": "comparison_symbol",
+        "label": "두 덧셈 결과의 비교 기호",
+        "value": "<"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.left_addition",
+        "type": "sum_of",
+        "subject": "quantity.left_sum",
+        "objects": [
+          "number.left_addend_1",
+          "number.left_addend_2"
+        ]
+      },
+      {
+        "id": "relation.right_addition",
+        "type": "sum_of",
+        "subject": "quantity.right_sum",
+        "objects": [
+          "number.right_addend_1",
+          "number.right_addend_2"
+        ]
+      },
+      {
+        "id": "relation.compare_sums",
+        "type": "less_than",
+        "left": "quantity.left_sum",
+        "right": "quantity.right_sum",
+        "result": "comparison.left_sum_right_sum"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "text",
+    "value": "<",
+    "unit": "",
+    "target_ref": "comparison.left_sum_right_sum",
+    "derived_from": "step.compare_sums"
+  }
+}

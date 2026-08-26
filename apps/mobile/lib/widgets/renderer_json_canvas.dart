@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -115,6 +118,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                     child: Stack(
                       clipBehavior: Clip.hardEdge,
                       children: [
+                        ..._imageLayers(widget.renderer, scale),
                         Positioned.fill(
                           child: CustomPaint(
                             painter: RendererJsonPainter(
@@ -577,23 +581,37 @@ class RendererJsonPainter extends CustomPainter {
     );
     final radius = _readDouble(attributes['r']) ?? 0;
     final fill = _readColor(attributes['fill']);
-    final stroke = _readColor(attributes['stroke']) ?? Colors.black;
+    final strokeAttr = attributes['stroke']?.toString().trim().toLowerCase();
+    final stroke = strokeAttr == 'none'
+        ? null
+        : (_readColor(attributes['stroke']) ?? (strokeAttr == null ? null : Colors.black));
     final strokeWidth = _readDouble(attributes['stroke-width']) ?? 1;
 
     if (fill != null) {
       canvas.drawCircle(center, radius, Paint()..color = fill);
     }
-    canvas.drawCircle(
-      center,
-      radius,
-      Paint()
-        ..color = stroke
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = strokeWidth,
-    );
+    if (stroke != null && strokeWidth > 0) {
+      canvas.drawCircle(
+        center,
+        radius,
+        Paint()
+          ..color = stroke
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = strokeWidth,
+      );
+    }
   }
 
   void _paintLine(Canvas canvas, Map<String, dynamic> attributes) {
+    final strokeAttr = attributes['stroke']?.toString().trim().toLowerCase();
+    if (strokeAttr == 'none') {
+      return;
+    }
+    final stroke = _readColor(attributes['stroke']) ?? Colors.black;
+    final strokeWidth = _readDouble(attributes['stroke-width']) ?? 1;
+    if (strokeWidth <= 0) {
+      return;
+    }
     final start = Offset(
       _readDouble(attributes['x1']) ?? 0,
       _readDouble(attributes['y1']) ?? 0,
@@ -603,8 +621,8 @@ class RendererJsonPainter extends CustomPainter {
       _readDouble(attributes['y2']) ?? 0,
     );
     final paint = Paint()
-      ..color = _readColor(attributes['stroke']) ?? Colors.black
-      ..strokeWidth = _readDouble(attributes['stroke-width']) ?? 1
+      ..color = stroke
+      ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round;
     final dashArray = _readDashArray(attributes['stroke-dasharray']);
     if (dashArray == null) {
@@ -612,6 +630,34 @@ class RendererJsonPainter extends CustomPainter {
       return;
     }
     _drawDashedLine(canvas, start, end, paint, dashArray);
+  }
+
+  void _paintRect(Canvas canvas, Map<String, dynamic> attributes) {
+    final rect = Rect.fromLTWH(
+      _readDouble(attributes['x']) ?? 0,
+      _readDouble(attributes['y']) ?? 0,
+      _readDouble(attributes['width']) ?? 0,
+      _readDouble(attributes['height']) ?? 0,
+    );
+    final fill = _readColor(attributes['fill']);
+    final strokeAttr = attributes['stroke']?.toString().trim().toLowerCase();
+    final stroke = strokeAttr == 'none'
+        ? null
+        : (_readColor(attributes['stroke']) ?? (strokeAttr == null ? null : Colors.black));
+    final strokeWidth = _readDouble(attributes['stroke-width']) ?? 1;
+
+    if (fill != null) {
+      canvas.drawRect(rect, Paint()..color = fill);
+    }
+    if (stroke != null && strokeWidth > 0) {
+      canvas.drawRect(
+        rect,
+        Paint()
+          ..color = stroke
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = strokeWidth,
+      );
+    }
   }
 
   void _drawDashedLine(
@@ -645,29 +691,6 @@ class RendererJsonPainter extends CustomPainter {
       dashIndex += 1;
       draw = !draw;
     }
-  }
-
-  void _paintRect(Canvas canvas, Map<String, dynamic> attributes) {
-    final rect = Rect.fromLTWH(
-      _readDouble(attributes['x']) ?? 0,
-      _readDouble(attributes['y']) ?? 0,
-      _readDouble(attributes['width']) ?? 0,
-      _readDouble(attributes['height']) ?? 0,
-    );
-    final fill = _readColor(attributes['fill']);
-    final stroke = _readColor(attributes['stroke']) ?? Colors.black;
-    final strokeWidth = _readDouble(attributes['stroke-width']) ?? 1;
-
-    if (fill != null) {
-      canvas.drawRect(rect, Paint()..color = fill);
-    }
-    canvas.drawRect(
-      rect,
-      Paint()
-        ..color = stroke
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = strokeWidth,
-    );
   }
 
   void _paintPolygon(Canvas canvas, Map<String, dynamic> attributes) {
@@ -720,12 +743,19 @@ class RendererJsonPainter extends CustomPainter {
     }
   }
 
+  String _normalizeRenderText(String text) {
+    var trimmed = text.replaceAll(RegExp(r'^[\r\n]+|[\r\n]+$'), '');
+    final lines = trimmed.split('\n').map((l) => l.trimRight()).toList();
+    return lines.join('\n');
+  }
+
   void _paintText(
     Canvas canvas,
     Map<String, dynamic> element,
     Map<String, dynamic> attributes,
   ) {
-    final text = element['text']?.toString() ?? '';
+    final rawText = element['text']?.toString() ?? '';
+    final text = _normalizeRenderText(rawText);
     final fontSize = _readDouble(attributes['font-size']) ?? 18;
     final fill = _readColor(attributes['fill']) ?? Colors.black;
     final painter = TextPainter(
@@ -735,11 +765,10 @@ class RendererJsonPainter extends CustomPainter {
           color: fill,
           fontSize: fontSize,
           fontWeight: FontWeight.w600,
-          height: 1,
+          height: 1.25,
         ),
       ),
       textDirection: TextDirection.ltr,
-      maxLines: 3,
     )..layout(maxWidth: _readDouble(attributes['max_width']) ?? 860);
 
     final baseline =
@@ -871,6 +900,85 @@ List<Widget> _textBoxLayers(Map<String, dynamic> renderer, double scale) {
   }).toList(growable: false);
 }
 
+List<Widget> _imageLayers(Map<String, dynamic> renderer, double scale) {
+  final elements = renderer['elements'];
+  if (elements is! List) {
+    return const [];
+  }
+  return rendererVisibleElements(elements)
+      .where((element) => element['type']?.toString() == 'image')
+      .map((element) {
+    final attributes = _mapAt(element, 'attributes');
+    final x = _readDouble(attributes['x']) ?? 0;
+    final y = _readDouble(attributes['y']) ?? 0;
+    final width = _readDouble(attributes['width']) ?? 0;
+    final height = _readDouble(attributes['height']) ?? 0;
+    final href = (attributes['href'] ??
+            attributes['xlink:href'] ??
+            attributes['src'] ??
+            attributes['url'] ??
+            attributes['path'] ??
+            element['href'] ??
+            element['src'] ??
+            '')
+        .toString()
+        .trim();
+
+    if (width <= 0 || height <= 0 || href.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    Widget imageWidget;
+    if (href.startsWith('data:image/')) {
+      try {
+        final commaIndex = href.indexOf(',');
+        final base64String =
+            commaIndex != -1 ? href.substring(commaIndex + 1) : href;
+        final bytes = base64Decode(
+          base64String.replaceAll('\n', '').replaceAll('\r', '').trim(),
+        );
+        imageWidget = Image.memory(
+          bytes,
+          fit: BoxFit.fill,
+          width: width * scale,
+          height: height * scale,
+          errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+        );
+      } catch (_) {
+        imageWidget = const SizedBox.shrink();
+      }
+    } else if (href.startsWith('http://') || href.startsWith('https://')) {
+      imageWidget = Image.network(
+        href,
+        fit: BoxFit.fill,
+        width: width * scale,
+        height: height * scale,
+        errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+      );
+    } else if (href.startsWith('assets/') ||
+        href.startsWith('examples/') ||
+        !href.contains(':')) {
+      imageWidget = Image.asset(
+        href,
+        fit: BoxFit.fill,
+        width: width * scale,
+        height: height * scale,
+        errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+      );
+    } else {
+      imageWidget = const SizedBox.shrink();
+    }
+
+    return Positioned(
+      left: x * scale,
+      top: y * scale,
+      width: width * scale,
+      height: height * scale,
+      child: imageWidget,
+    );
+  }).toList(growable: false);
+}
+
 List<_InputSlot> _inputSlots(
   Map<String, dynamic> renderer, {
   String expectedAnswer = '',
@@ -996,7 +1104,26 @@ List<Map<String, dynamic>> rendererVisibleElements(List<dynamic> elements) {
       .where(
         (element) => !_isLegacyAnswerBlankInsideTextBox(element, typedElements),
       )
+      .where(
+        (element) => !_isPureInvisibleSlot(element),
+      )
       .toList(growable: false);
+}
+
+bool _isPureInvisibleSlot(Map<String, dynamic> element) {
+  final type = element['type']?.toString();
+  if (type != 'rect' && type != 'circle' && type != 'line') {
+    return false;
+  }
+  if (_mapAt(element, 'interaction').isNotEmpty) {
+    return false;
+  }
+  final attributes = _mapAt(element, 'attributes');
+  final fill = attributes['fill']?.toString().trim().toLowerCase();
+  final stroke = attributes['stroke']?.toString().trim().toLowerCase();
+  final isFillNone = fill == null || fill.isEmpty || fill == 'none';
+  final isStrokeNone = stroke == 'none';
+  return isFillNone && isStrokeNone;
 }
 
 bool _isLegacyAnswerBlankInsideTextBox(
@@ -1088,24 +1215,48 @@ Path? _parseSvgPath(String data) {
     }
     switch (command) {
       case 'M':
+      case 'm':
+        final isRelative = command == 'm';
         final x = nextNumber();
         final y = nextNumber();
         if (x == null || y == null) {
           return path;
         }
-        current = Offset(x, y);
+        current = isRelative ? Offset(current.dx + x, current.dy + y) : Offset(x, y);
         start = current;
-        path.moveTo(x, y);
-        command = 'L';
+        path.moveTo(current.dx, current.dy);
+        command = isRelative ? 'l' : 'L';
       case 'L':
+      case 'l':
+        final isRelative = command == 'l';
         final x = nextNumber();
         final y = nextNumber();
         if (x == null || y == null) {
           return path;
         }
-        current = Offset(x, y);
-        path.lineTo(x, y);
+        current = isRelative ? Offset(current.dx + x, current.dy + y) : Offset(x, y);
+        path.lineTo(current.dx, current.dy);
+      case 'H':
+      case 'h':
+        final isRelative = command == 'h';
+        final x = nextNumber();
+        if (x == null) {
+          return path;
+        }
+        current = Offset(isRelative ? current.dx + x : x, current.dy);
+        path.lineTo(current.dx, current.dy);
+      case 'V':
+      case 'v':
+        final isRelative = command == 'v';
+        final y = nextNumber();
+        if (y == null) {
+          return path;
+        }
+        current = Offset(current.dx, isRelative ? current.dy + y : y);
+        path.lineTo(current.dx, current.dy);
       case 'C':
+      case 'c':
+        final isRelative = command == 'c';
         final x1 = nextNumber();
         final y1 = nextNumber();
         final x2 = nextNumber();
@@ -1115,8 +1266,55 @@ Path? _parseSvgPath(String data) {
         if ([x1, y1, x2, y2, x3, y3].any((value) => value == null)) {
           return path;
         }
-        current = Offset(x3!, y3!);
-        path.cubicTo(x1!, y1!, x2!, y2!, x3, y3);
+        final p1 = isRelative ? Offset(current.dx + x1!, current.dy + y1!) : Offset(x1!, y1!);
+        final p2 = isRelative ? Offset(current.dx + x2!, current.dy + y2!) : Offset(x2!, y2!);
+        final p3 = isRelative ? Offset(current.dx + x3!, current.dy + y3!) : Offset(x3!, y3!);
+        current = p3;
+        path.cubicTo(p1.dx, p1.dy, p2.dx, p2.dy, p3.dx, p3.dy);
+      case 'Q':
+      case 'q':
+        final isRelative = command == 'q';
+        final x1 = nextNumber();
+        final y1 = nextNumber();
+        final x2 = nextNumber();
+        final y2 = nextNumber();
+        if ([x1, y1, x2, y2].any((value) => value == null)) {
+          return path;
+        }
+        final p1 = isRelative ? Offset(current.dx + x1!, current.dy + y1!) : Offset(x1!, y1!);
+        final p2 = isRelative ? Offset(current.dx + x2!, current.dy + y2!) : Offset(x2!, y2!);
+        current = p2;
+        path.quadraticBezierTo(p1.dx, p1.dy, p2.dx, p2.dy);
+      case 'A':
+      case 'a':
+        final isRelative = command == 'a';
+        final rx = nextNumber();
+        final ry = nextNumber();
+        final xAxisRotation = nextNumber();
+        final largeArcFlag = nextNumber();
+        final sweepFlag = nextNumber();
+        final targetX = nextNumber();
+        final targetY = nextNumber();
+        if (rx == null ||
+            ry == null ||
+            xAxisRotation == null ||
+            largeArcFlag == null ||
+            sweepFlag == null ||
+            targetX == null ||
+            targetY == null) {
+          return path;
+        }
+        final endX = isRelative ? current.dx + targetX : targetX;
+        final endY = isRelative ? current.dy + targetY : targetY;
+        final end = Offset(endX, endY);
+        path.arcToPoint(
+          end,
+          radius: Radius.elliptical(rx.abs(), ry.abs()),
+          rotation: xAxisRotation * (math.pi / 180.0),
+          largeArc: largeArcFlag != 0,
+          clockwise: sweepFlag != 0,
+        );
+        current = end;
       case 'Z':
       case 'z':
         path.close();
@@ -1142,13 +1340,13 @@ Rect? _pathBounds(String? data) {
 }
 
 List<String> _svgPathTokens(String data) {
-  return RegExp(r'[MLCZmlcz]|[-+]?(?:\d*\.\d+|\d+)(?:[eE][-+]?\d+)?')
+  return RegExp(r'[MLHVCAQZmlhvcaqz]|[-+]?(?:\d*\.\d+|\d+)(?:[eE][-+]?\d+)?')
       .allMatches(data)
       .map((match) => match.group(0)!)
       .toList(growable: false);
 }
 
-bool _isPathCommand(String token) => RegExp(r'^[MLCZmlcz]$').hasMatch(token);
+bool _isPathCommand(String token) => RegExp(r'^[MLHVCAQZmlhvcaqz]$').hasMatch(token);
 
 void _applyExpectedAnswerLength(List<_InputSlot> slots, String expectedAnswer) {
   final answerLength = expectedAnswer.characters.length;

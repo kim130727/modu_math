@@ -44,7 +44,15 @@ String sanitizeProblemText(String value) {
 }
 
 String sanitizeProblemSvg(String value) {
-  return _wrapLongSvgText(sanitizeProblemText(value));
+  // Strip dummy transparent rects (e.g. fill="none" stroke="none")
+  final stripped = value.replaceAll(
+    RegExp(
+      r'<rect\b[^>]*(?:fill="none"[^>]*stroke="none"|stroke="none"[^>]*fill="none")[^>]*\/>',
+      caseSensitive: false,
+    ),
+    '',
+  );
+  return _wrapLongSvgText(sanitizeProblemText(stripped));
 }
 
 String _wrapLongSvgText(String svg) {

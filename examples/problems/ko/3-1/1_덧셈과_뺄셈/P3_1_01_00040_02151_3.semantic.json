@@ -1,0 +1,65 @@
+{
+  "problem_id": "P3_1_01_00040_02151_3",
+  "problem_type": "vertical_addition",
+  "metadata": {
+    "title": "세 자리 수의 덧셈 계산 (3)",
+    "tags": [],
+    "instruction": "5 3 6",
+    "question": "□ 안에 알맞은 수를 써넣으시오.",
+    "required_layout_ids": [
+      "slot.answer_box"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈 계산",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "addition.problem_3",
+        "type": "vertical_addition",
+        "label": "세로셈",
+        "first_addend": 536,
+        "second_addend": 287,
+        "sum": 823
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.problem_3_sum",
+        "type": "sum_of",
+        "subject": "addition.problem_3",
+        "values": [
+          536,
+          287
+        ]
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer_box",
+        "slot_id": "slot.answer_box",
+        "expected": 823
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer_box",
+        "value": 823
+      }
+    ],
+    "confidence": 1.0,
+    "value": 823,
+    "unit": "",
+    "values": [
+      823
+    ]
+  }
+}

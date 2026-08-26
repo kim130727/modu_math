@@ -1,0 +1,391 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008644",
+  "title": "원의 반지름 고르기",
+  "canvas": {
+    "width": 746,
+    "height": 537,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question.line1"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.figure.circle",
+        "slot.segment.ga",
+        "slot.segment.na_to_sa",
+        "slot.segment.la_ba",
+        "slot.segment.o_na",
+        "slot.segment.o_da",
+        "slot.segment.o_ma",
+        "slot.center.dot",
+        "slot.label.giyeok",
+        "slot.label.siot",
+        "slot.label.bieup",
+        "slot.label.nieun",
+        "slot.label.mieum",
+        "slot.label.digeut",
+        "slot.label.rieul",
+        "slot.label.ieung"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.ga",
+        "slot.choice.na",
+        "slot.choice.da",
+        "slot.choice.ra",
+        "slot.choice.ma",
+        "slot.choice.ba"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question.line1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "점 ㅇ는 원의 중심입니다. 원의 반지름은 어느 선분인지 모두 선택해 보세요.",
+        "style_role": "question",
+        "x": 40.0,
+        "y": 50.0,
+        "font_size": 25
+      }
+    },
+    {
+      "id": "slot.figure.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 380.0,
+        "cy": 190.0,
+        "r": 90.0,
+        "stroke": "#333333",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.segment.ga",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 328.4,
+        "y1": 116.3,
+        "x2": 431.6,
+        "y2": 116.3,
+        "stroke": "#333333",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.segment.na_to_sa",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 298.4,
+        "y1": 152.0,
+        "x2": 431.6,
+        "y2": 116.3,
+        "stroke": "#333333",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.segment.la_ba",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 425.0,
+        "y1": 267.9,
+        "x2": 464.6,
+        "y2": 159.2,
+        "stroke": "#333333",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.segment.o_na",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 380.0,
+        "y1": 190.0,
+        "x2": 298.4,
+        "y2": 152.0,
+        "stroke": "#333333",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.segment.o_da",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 380.0,
+        "y1": 190.0,
+        "x2": 328.4,
+        "y2": 263.7,
+        "stroke": "#333333",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.segment.o_ma",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 380.0,
+        "y1": 190.0,
+        "x2": 470.0,
+        "y2": 190.0,
+        "stroke": "#333333",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.center.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 380.0,
+        "cy": 190.0,
+        "r": 5.0,
+        "stroke": "#ec2aa0",
+        "stroke_width": 1.0,
+        "fill": "#ec2aa0"
+      }
+    },
+    {
+      "id": "slot.label.giyeok",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 315.0,
+        "y": 105.0,
+        "font_size": 20,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.label.siot",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅅ",
+        "style_role": "label",
+        "x": 440.0,
+        "y": 110.0,
+        "font_size": 20,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.label.bieup",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅂ",
+        "style_role": "label",
+        "x": 475.0,
+        "y": 155.0,
+        "font_size": 20,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.label.nieun",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 275.0,
+        "y": 155.0,
+        "font_size": 20,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.label.mieum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅁ",
+        "style_role": "label",
+        "x": 480.0,
+        "y": 196.0,
+        "font_size": 20,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.label.digeut",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 310.0,
+        "y": 285.0,
+        "font_size": 20,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.label.rieul",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 428.0,
+        "y": 290.0,
+        "font_size": 20,
+        "fill": "#111111",
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.label.ieung",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅇ",
+        "style_role": "label",
+        "x": 382.0,
+        "y": 215.0,
+        "font_size": 20,
+        "fill": "#111111",
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.choice.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉮ 선분 ㄱㅅ",
+        "style_role": "choice",
+        "x": 90.0,
+        "y": 340.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.choice.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉯ 선분 ㅇㄴ",
+        "style_role": "choice",
+        "x": 325.0,
+        "y": 340.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.choice.da",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉰ 선분 ㅇㄷ",
+        "style_role": "choice",
+        "x": 555.0,
+        "y": 340.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.choice.ra",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉱ 선분 ㅇㅁ",
+        "style_role": "choice",
+        "x": 90.0,
+        "y": 400.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.choice.ma",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉲ 선분 ㄹㅂ",
+        "style_role": "choice",
+        "x": 325.0,
+        "y": 400.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.choice.ba",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉳ 선분 ㄴㅅ",
+        "style_role": "choice",
+        "x": 555.0,
+        "y": 400.0,
+        "font_size": 22
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question.line1",
+    "region.diagram",
+    "slot.figure.circle",
+    "slot.segment.ga",
+    "slot.segment.na_to_sa",
+    "slot.segment.la_ba",
+    "slot.segment.o_na",
+    "slot.segment.o_da",
+    "slot.segment.o_ma",
+    "slot.center.dot",
+    "slot.label.giyeok",
+    "slot.label.siot",
+    "slot.label.bieup",
+    "slot.label.nieun",
+    "slot.label.mieum",
+    "slot.label.digeut",
+    "slot.label.rieul",
+    "slot.label.ieung",
+    "region.choices",
+    "slot.choice.ga",
+    "slot.choice.na",
+    "slot.choice.da",
+    "slot.choice.ra",
+    "slot.choice.ma",
+    "slot.choice.ba",
+    "region.answer"
+  ]
+}

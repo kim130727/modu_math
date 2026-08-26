@@ -1,0 +1,387 @@
+{
+  "problem_id": "S3_초등_3_008644",
+  "view_box": {
+    "width": 746.0,
+    "height": 537.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.question.line1.text",
+      "type": "text",
+      "attributes": {
+        "x": 40.0,
+        "y": 50.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 25
+      },
+      "source_ref": "slot.question.line1",
+      "refs": {
+        "layout_slot_id": "slot.question.line1"
+      },
+      "text": "점 ㅇ는 원의 중심입니다. 원의 반지름은 어느 선분인지 모두 선택해 보세요."
+    },
+    {
+      "id": "slot.figure.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 380.0,
+        "cy": 190.0,
+        "r": 90.0,
+        "stroke": "#333333",
+        "stroke-width": 1.5,
+        "fill": "none"
+      },
+      "source_ref": "slot.figure.circle",
+      "refs": {
+        "layout_slot_id": "slot.figure.circle"
+      }
+    },
+    {
+      "id": "slot.segment.ga.line",
+      "type": "line",
+      "attributes": {
+        "x1": 328.4,
+        "y1": 116.3,
+        "x2": 431.6,
+        "y2": 116.3,
+        "stroke": "#333333",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.segment.ga",
+      "refs": {
+        "layout_slot_id": "slot.segment.ga"
+      }
+    },
+    {
+      "id": "slot.segment.na_to_sa.line",
+      "type": "line",
+      "attributes": {
+        "x1": 298.4,
+        "y1": 152.0,
+        "x2": 431.6,
+        "y2": 116.3,
+        "stroke": "#333333",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.segment.na_to_sa",
+      "refs": {
+        "layout_slot_id": "slot.segment.na_to_sa"
+      }
+    },
+    {
+      "id": "slot.segment.la_ba.line",
+      "type": "line",
+      "attributes": {
+        "x1": 425.0,
+        "y1": 267.9,
+        "x2": 464.6,
+        "y2": 159.2,
+        "stroke": "#333333",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.segment.la_ba",
+      "refs": {
+        "layout_slot_id": "slot.segment.la_ba"
+      }
+    },
+    {
+      "id": "slot.segment.o_na.line",
+      "type": "line",
+      "attributes": {
+        "x1": 380.0,
+        "y1": 190.0,
+        "x2": 298.4,
+        "y2": 152.0,
+        "stroke": "#333333",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.segment.o_na",
+      "refs": {
+        "layout_slot_id": "slot.segment.o_na"
+      }
+    },
+    {
+      "id": "slot.segment.o_da.line",
+      "type": "line",
+      "attributes": {
+        "x1": 380.0,
+        "y1": 190.0,
+        "x2": 328.4,
+        "y2": 263.7,
+        "stroke": "#333333",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.segment.o_da",
+      "refs": {
+        "layout_slot_id": "slot.segment.o_da"
+      }
+    },
+    {
+      "id": "slot.segment.o_ma.line",
+      "type": "line",
+      "attributes": {
+        "x1": 380.0,
+        "y1": 190.0,
+        "x2": 470.0,
+        "y2": 190.0,
+        "stroke": "#333333",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.segment.o_ma",
+      "refs": {
+        "layout_slot_id": "slot.segment.o_ma"
+      }
+    },
+    {
+      "id": "slot.center.dot.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 380.0,
+        "cy": 190.0,
+        "r": 5.0,
+        "stroke": "#ec2aa0",
+        "stroke-width": 1.0,
+        "fill": "#ec2aa0"
+      },
+      "source_ref": "slot.center.dot",
+      "refs": {
+        "layout_slot_id": "slot.center.dot"
+      }
+    },
+    {
+      "id": "slot.label.giyeok.text",
+      "type": "text",
+      "attributes": {
+        "x": 315.0,
+        "y": 105.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 20,
+        "data-semantic-role": "symbol_label"
+      },
+      "source_ref": "slot.label.giyeok",
+      "refs": {
+        "layout_slot_id": "slot.label.giyeok"
+      },
+      "text": "ㄱ"
+    },
+    {
+      "id": "slot.label.siot.text",
+      "type": "text",
+      "attributes": {
+        "x": 440.0,
+        "y": 110.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 20,
+        "data-semantic-role": "symbol_label"
+      },
+      "source_ref": "slot.label.siot",
+      "refs": {
+        "layout_slot_id": "slot.label.siot"
+      },
+      "text": "ㅅ"
+    },
+    {
+      "id": "slot.label.bieup.text",
+      "type": "text",
+      "attributes": {
+        "x": 475.0,
+        "y": 155.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 20,
+        "data-semantic-role": "symbol_label"
+      },
+      "source_ref": "slot.label.bieup",
+      "refs": {
+        "layout_slot_id": "slot.label.bieup"
+      },
+      "text": "ㅂ"
+    },
+    {
+      "id": "slot.label.nieun.text",
+      "type": "text",
+      "attributes": {
+        "x": 275.0,
+        "y": 155.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 20,
+        "data-semantic-role": "symbol_label"
+      },
+      "source_ref": "slot.label.nieun",
+      "refs": {
+        "layout_slot_id": "slot.label.nieun"
+      },
+      "text": "ㄴ"
+    },
+    {
+      "id": "slot.label.mieum.text",
+      "type": "text",
+      "attributes": {
+        "x": 480.0,
+        "y": 196.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 20,
+        "data-semantic-role": "symbol_label"
+      },
+      "source_ref": "slot.label.mieum",
+      "refs": {
+        "layout_slot_id": "slot.label.mieum"
+      },
+      "text": "ㅁ"
+    },
+    {
+      "id": "slot.label.digeut.text",
+      "type": "text",
+      "attributes": {
+        "x": 310.0,
+        "y": 285.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 20,
+        "data-semantic-role": "symbol_label"
+      },
+      "source_ref": "slot.label.digeut",
+      "refs": {
+        "layout_slot_id": "slot.label.digeut"
+      },
+      "text": "ㄷ"
+    },
+    {
+      "id": "slot.label.rieul.text",
+      "type": "text",
+      "attributes": {
+        "x": 428.0,
+        "y": 290.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 20,
+        "data-semantic-role": "symbol_label"
+      },
+      "source_ref": "slot.label.rieul",
+      "refs": {
+        "layout_slot_id": "slot.label.rieul"
+      },
+      "text": "ㄹ"
+    },
+    {
+      "id": "slot.label.ieung.text",
+      "type": "text",
+      "attributes": {
+        "x": 382.0,
+        "y": 215.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 20,
+        "data-semantic-role": "symbol_label"
+      },
+      "source_ref": "slot.label.ieung",
+      "refs": {
+        "layout_slot_id": "slot.label.ieung"
+      },
+      "text": "ㅇ"
+    },
+    {
+      "id": "slot.choice.ga.text",
+      "type": "text",
+      "attributes": {
+        "x": 90.0,
+        "y": 340.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice.ga",
+      "refs": {
+        "layout_slot_id": "slot.choice.ga"
+      },
+      "text": "㉮ 선분 ㄱㅅ"
+    },
+    {
+      "id": "slot.choice.na.text",
+      "type": "text",
+      "attributes": {
+        "x": 325.0,
+        "y": 340.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice.na",
+      "refs": {
+        "layout_slot_id": "slot.choice.na"
+      },
+      "text": "㉯ 선분 ㅇㄴ"
+    },
+    {
+      "id": "slot.choice.da.text",
+      "type": "text",
+      "attributes": {
+        "x": 555.0,
+        "y": 340.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice.da",
+      "refs": {
+        "layout_slot_id": "slot.choice.da"
+      },
+      "text": "㉰ 선분 ㅇㄷ"
+    },
+    {
+      "id": "slot.choice.ra.text",
+      "type": "text",
+      "attributes": {
+        "x": 90.0,
+        "y": 400.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice.ra",
+      "refs": {
+        "layout_slot_id": "slot.choice.ra"
+      },
+      "text": "㉱ 선분 ㅇㅁ"
+    },
+    {
+      "id": "slot.choice.ma.text",
+      "type": "text",
+      "attributes": {
+        "x": 325.0,
+        "y": 400.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice.ma",
+      "refs": {
+        "layout_slot_id": "slot.choice.ma"
+      },
+      "text": "㉲ 선분 ㄹㅂ"
+    },
+    {
+      "id": "slot.choice.ba.text",
+      "type": "text",
+      "attributes": {
+        "x": 555.0,
+        "y": 400.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice.ba",
+      "refs": {
+        "layout_slot_id": "slot.choice.ba"
+      },
+      "text": "㉳ 선분 ㄴㅅ"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

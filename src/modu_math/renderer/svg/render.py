@@ -254,6 +254,11 @@ def _element_to_svg_lines(element: RenderElement, depth: int = 1) -> list[str]:
         attrs["xlink:href"] = attrs["href"]
         attrs_str = _attrs_to_str(attrs)
     if tag in {"rect", "circle", "line", "polygon", "path", "image"}:
+        fill_val = str(attrs.get("fill", "")).strip().lower()
+        stroke_val = str(attrs.get("stroke", "")).strip().lower()
+        stroke_w = attrs.get("stroke-width", attrs.get("stroke_width", 1))
+        if tag != "image" and fill_val == "none" and (stroke_val == "none" or stroke_val == "" or stroke_w == 0):
+            return []
         return [f"{indent}<{tag} {attrs_str} />"]
     return [f"{indent}<!-- Unsupported element type: {escape(tag)} -->"]
 
