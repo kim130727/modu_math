@@ -1,0 +1,416 @@
+{
+  "problem_id": "P3_1_01_00040_02152",
+  "view_box": {
+    "width": 700.0,
+    "height": 700.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 28.0,
+        "y": 18.0,
+        "fill": "#202124",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 22,
+        "width": 641.541,
+        "height": 66.0,
+        "max_width": 641.541,
+        "data-slot-kind": "text_box",
+        "data-box-x": 28.0,
+        "data-box-y": 18.0,
+        "data-box-width": 641.541,
+        "data-box-height": 66.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.25
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "병현이네 학교 도서관에 위인전이 599권, 동화책이 837권 있습니다. 모두 몇 권의 책이 있는지 수 모형으로 알아보시오."
+    },
+    {
+      "id": "slot.diagram.top_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": -11.386,
+        "y": 311.419,
+        "width": 622.24,
+        "height": 212.0,
+        "fill": "#ffffff",
+        "stroke": "#6f6f6f",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.top_box",
+      "refs": {
+        "layout_slot_id": "slot.diagram.top_box"
+      }
+    },
+    {
+      "id": "slot.diagram.bottom_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 34.041,
+        "y": 338.327,
+        "width": 618.36,
+        "height": 81.87,
+        "fill": "#ffffff",
+        "stroke": "#6f6f6f",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.bottom_box",
+      "refs": {
+        "layout_slot_id": "slot.diagram.bottom_box"
+      }
+    },
+    {
+      "id": "konva_1787748561815_base_ten_hundred_132923_top.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 53.853 129.684 L 58.132 125.405 L 118.645 125.405 L 114.366 129.684 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787748561815_base_ten_hundred_132923_top",
+      "refs": {
+        "layout_slot_id": "konva_1787748561815_base_ten_hundred_132923_top"
+      }
+    },
+    {
+      "id": "konva_1787748561815_base_ten_hundred_132923_side.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 114.366 129.684 L 118.645 125.405 L 118.645 185.918 L 114.366 190.197 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787748561815_base_ten_hundred_132923_side",
+      "refs": {
+        "layout_slot_id": "konva_1787748561815_base_ten_hundred_132923_side"
+      }
+    },
+    {
+      "id": "konva_1787748561815_base_ten_hundred_132923_front.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 53.853,
+        "y": 129.684,
+        "width": 60.513,
+        "height": 60.513,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787748561815_base_ten_hundred_132923_front",
+      "refs": {
+        "layout_slot_id": "konva_1787748561815_base_ten_hundred_132923_front"
+      }
+    },
+    {
+      "id": "konva_1787748561815_base_ten_hundred_132923_grid.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 59.904 129.684 L 59.904 190.197 M 59.904 129.684 L 64.183 125.405 M 65.956 129.684 L 65.956 190.197 M 65.956 129.684 L 70.235 125.405 M 72.007 129.684 L 72.007 190.197 M 72.007 129.684 L 76.286 125.405 M 78.058 129.684 L 78.058 190.197 M 78.058 129.684 L 82.337 125.405 M 84.109 129.684 L 84.109 190.197 M 84.109 129.684 L 88.388 125.405 M 90.161 129.684 L 90.161 190.197 M 90.161 129.684 L 94.44 125.405 M 96.212 129.684 L 96.212 190.197 M 96.212 129.684 L 100.491 125.405 M 102.263 129.684 L 102.263 190.197 M 102.263 129.684 L 106.542 125.405 M 108.315 129.684 L 108.315 190.197 M 108.315 129.684 L 112.594 125.405 M 53.853 135.735 L 114.366 135.735 M 114.366 135.735 L 118.645 131.456 M 53.853 141.787 L 114.366 141.787 M 114.366 141.787 L 118.645 137.508 M 53.853 147.838 L 114.366 147.838 M 114.366 147.838 L 118.645 143.559 M 53.853 153.889 L 114.366 153.889 M 114.366 153.889 L 118.645 149.61 M 53.853 159.94 L 114.366 159.94 M 114.366 159.94 L 118.645 155.661 M 53.853 165.992 L 114.366 165.992 M 114.366 165.992 L 118.645 161.713 M 53.853 172.043 L 114.366 172.043 M 114.366 172.043 L 118.645 167.764 M 53.853 178.094 L 114.366 178.094 M 114.366 178.094 L 118.645 173.815 M 53.853 184.146 L 114.366 184.146 M 114.366 184.146 L 118.645 179.867",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.38,
+        "fill": "none"
+      },
+      "source_ref": "konva_1787748561815_base_ten_hundred_132923_grid",
+      "refs": {
+        "layout_slot_id": "konva_1787748561815_base_ten_hundred_132923_grid"
+      }
+    },
+    {
+      "id": "konva_1787748561815_base_ten_hundred_143467_top.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 213.336 132.334 L 217.678 127.991 L 279.085 127.991 L 274.743 132.334 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787748561815_base_ten_hundred_143467_top",
+      "refs": {
+        "layout_slot_id": "konva_1787748561815_base_ten_hundred_143467_top"
+      }
+    },
+    {
+      "id": "konva_1787748561815_base_ten_hundred_143467_side.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 274.743 132.334 L 279.085 127.991 L 279.085 189.399 L 274.743 193.741 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787748561815_base_ten_hundred_143467_side",
+      "refs": {
+        "layout_slot_id": "konva_1787748561815_base_ten_hundred_143467_side"
+      }
+    },
+    {
+      "id": "konva_1787748561815_base_ten_hundred_143467_front.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 213.336,
+        "y": 132.334,
+        "width": 61.407,
+        "height": 61.407,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787748561815_base_ten_hundred_143467_front",
+      "refs": {
+        "layout_slot_id": "konva_1787748561815_base_ten_hundred_143467_front"
+      }
+    },
+    {
+      "id": "konva_1787748561815_base_ten_hundred_143467_grid.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 219.477 132.333 L 219.477 193.74 M 219.477 132.333 L 223.819 127.991 M 225.617 132.333 L 225.617 193.74 M 225.617 132.333 L 229.96 127.991 M 231.758 132.333 L 231.758 193.74 M 231.758 132.333 L 236.1 127.991 M 237.899 132.333 L 237.899 193.74 M 237.899 132.333 L 242.241 127.991 M 244.04 132.333 L 244.04 193.74 M 244.04 132.333 L 248.382 127.991 M 250.18 132.333 L 250.18 193.74 M 250.18 132.333 L 254.522 127.991 M 256.321 132.333 L 256.321 193.74 M 256.321 132.333 L 260.663 127.991 M 262.462 132.333 L 262.462 193.74 M 262.462 132.333 L 266.804 127.991 M 268.602 132.333 L 268.602 193.74 M 268.602 132.333 L 272.945 127.991 M 213.336 138.474 L 274.743 138.474 M 274.743 138.474 L 279.085 134.132 M 213.336 144.615 L 274.743 144.615 M 274.743 144.615 L 279.085 140.272 M 213.336 150.755 L 274.743 150.755 M 274.743 150.755 L 279.085 146.413 M 213.336 156.896 L 274.743 156.896 M 274.743 156.896 L 279.085 152.554 M 213.336 163.037 L 274.743 163.037 M 274.743 163.037 L 279.085 158.695 M 213.336 169.177 L 274.743 169.177 M 274.743 169.177 L 279.085 164.835 M 213.336 175.318 L 274.743 175.318 M 274.743 175.318 L 279.085 170.976 M 213.336 181.459 L 274.743 181.459 M 274.743 181.459 L 279.085 177.117 M 213.336 187.6 L 274.743 187.6 M 274.743 187.6 L 279.085 183.257",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.38,
+        "fill": "none"
+      },
+      "source_ref": "konva_1787748561815_base_ten_hundred_143467_grid",
+      "refs": {
+        "layout_slot_id": "konva_1787748561815_base_ten_hundred_143467_grid"
+      }
+    },
+    {
+      "id": "konva_1787748561815_base_ten_hundred_144379_top.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 134.026 131.986 L 138.02 127.991 L 194.506 127.991 L 190.512 131.986 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787748561815_base_ten_hundred_144379_top",
+      "refs": {
+        "layout_slot_id": "konva_1787748561815_base_ten_hundred_144379_top"
+      }
+    },
+    {
+      "id": "konva_1787748561815_base_ten_hundred_144379_side.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 190.512 131.986 L 194.506 127.991 L 194.506 184.477 L 190.512 188.472 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787748561815_base_ten_hundred_144379_side",
+      "refs": {
+        "layout_slot_id": "konva_1787748561815_base_ten_hundred_144379_side"
+      }
+    },
+    {
+      "id": "konva_1787748561815_base_ten_hundred_144379_front.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 134.026,
+        "y": 131.986,
+        "width": 56.486,
+        "height": 56.486,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787748561815_base_ten_hundred_144379_front",
+      "refs": {
+        "layout_slot_id": "konva_1787748561815_base_ten_hundred_144379_front"
+      }
+    },
+    {
+      "id": "konva_1787748561815_base_ten_hundred_144379_grid.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 139.675 131.985 L 139.675 188.471 M 139.675 131.985 L 143.669 127.991 M 145.323 131.985 L 145.323 188.471 M 145.323 131.985 L 149.317 127.991 M 150.972 131.985 L 150.972 188.471 M 150.972 131.985 L 154.966 127.991 M 156.62 131.985 L 156.62 188.471 M 156.62 131.985 L 160.615 127.991 M 162.269 131.985 L 162.269 188.471 M 162.269 131.985 L 166.263 127.991 M 167.918 131.985 L 167.918 188.471 M 167.918 131.985 L 171.912 127.991 M 173.566 131.985 L 173.566 188.471 M 173.566 131.985 L 177.56 127.991 M 179.215 131.985 L 179.215 188.471 M 179.215 131.985 L 183.209 127.991 M 184.863 131.985 L 184.863 188.471 M 184.863 131.985 L 188.858 127.991 M 134.026 137.634 L 190.512 137.634 M 190.512 137.634 L 194.506 133.64 M 134.026 143.282 L 190.512 143.282 M 190.512 143.282 L 194.506 139.288 M 134.026 148.931 L 190.512 148.931 M 190.512 148.931 L 194.506 144.937 M 134.026 154.58 L 190.512 154.58 M 190.512 154.58 L 194.506 150.585 M 134.026 160.228 L 190.512 160.228 M 190.512 160.228 L 194.506 156.234 M 134.026 165.877 L 190.512 165.877 M 190.512 165.877 L 194.506 161.883 M 134.026 171.525 L 190.512 171.525 M 190.512 171.525 L 194.506 167.531 M 134.026 177.174 L 190.512 177.174 M 190.512 177.174 L 194.506 173.18 M 134.026 182.823 L 190.512 182.823 M 190.512 182.823 L 194.506 178.828",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.38,
+        "fill": "none"
+      },
+      "source_ref": "konva_1787748561815_base_ten_hundred_144379_grid",
+      "refs": {
+        "layout_slot_id": "konva_1787748561815_base_ten_hundred_144379_grid"
+      }
+    },
+    {
+      "id": "konva_1787748561815_base_ten_ten_233731_top.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 303.316 133.839 L 308.302 128.853 L 315.352 128.853 L 310.367 133.839 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787748561815_base_ten_ten_233731_top",
+      "refs": {
+        "layout_slot_id": "konva_1787748561815_base_ten_ten_233731_top"
+      }
+    },
+    {
+      "id": "konva_1787748561815_base_ten_ten_233731_side.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 310.367 133.839 L 315.352 128.853 L 315.352 199.359 L 310.367 204.344 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787748561815_base_ten_ten_233731_side",
+      "refs": {
+        "layout_slot_id": "konva_1787748561815_base_ten_ten_233731_side"
+      }
+    },
+    {
+      "id": "konva_1787748561815_base_ten_ten_233731_front.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 303.316,
+        "y": 133.839,
+        "width": 7.051,
+        "height": 70.505,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787748561815_base_ten_ten_233731_front",
+      "refs": {
+        "layout_slot_id": "konva_1787748561815_base_ten_ten_233731_front"
+      }
+    },
+    {
+      "id": "konva_1787748561815_base_ten_ten_233731_grid.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 303.316 140.889 L 310.367 140.889 M 310.367 140.889 L 315.352 135.904 M 303.316 147.94 L 310.367 147.94 M 310.367 147.94 L 315.352 142.954 M 303.316 154.99 L 310.367 154.99 M 310.367 154.99 L 315.352 150.005 M 303.316 162.041 L 310.367 162.041 M 310.367 162.041 L 315.352 157.055 M 303.316 169.091 L 310.367 169.091 M 310.367 169.091 L 315.352 164.106 M 303.316 176.142 L 310.367 176.142 M 310.367 176.142 L 315.352 171.156 M 303.316 183.192 L 310.367 183.192 M 310.367 183.192 L 315.352 178.207 M 303.316 190.243 L 310.367 190.243 M 310.367 190.243 L 315.352 185.257 M 303.316 197.293 L 310.367 197.293 M 310.367 197.293 L 315.352 192.308",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.38,
+        "fill": "none"
+      },
+      "source_ref": "konva_1787748561815_base_ten_ten_233731_grid",
+      "refs": {
+        "layout_slot_id": "konva_1787748561815_base_ten_ten_233731_grid"
+      }
+    },
+    {
+      "id": "slot.answer_1.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 28.0,
+        "y": 470.0,
+        "fill": "#202124",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 21,
+        "width": 637.301,
+        "height": 61.0,
+        "max_width": 637.301,
+        "data-slot-kind": "text_box",
+        "data-box-x": 28.0,
+        "data-box-y": 470.0,
+        "data-box-width": 637.301,
+        "data-box-height": 61.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.25
+      },
+      "source_ref": "slot.answer_1",
+      "refs": {
+        "layout_slot_id": "slot.answer_1"
+      },
+      "text": "(1) 낱개 모형끼리 더하면 십 모형 (        )개와 낱개 모형 (         )개입니다."
+    },
+    {
+      "id": "slot.answer_2.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 28.0,
+        "y": 516.0,
+        "fill": "#202124",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 21,
+        "width": 607.158,
+        "height": 61.0,
+        "max_width": 607.158,
+        "data-slot-kind": "text_box",
+        "data-box-x": 28.0,
+        "data-box-y": 516.0,
+        "data-box-width": 607.158,
+        "data-box-height": 61.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.25
+      },
+      "source_ref": "slot.answer_2",
+      "refs": {
+        "layout_slot_id": "slot.answer_2"
+      },
+      "text": "(2) 십 모형끼리 더하면 백 모형 (         )개와 십 모형 (          )개입니다."
+    },
+    {
+      "id": "slot.answer_3.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 28.0,
+        "y": 562.0,
+        "fill": "#202124",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 21,
+        "width": 611.464,
+        "height": 61.0,
+        "max_width": 611.464,
+        "data-slot-kind": "text_box",
+        "data-box-x": 28.0,
+        "data-box-y": 562.0,
+        "data-box-width": 611.464,
+        "data-box-height": 61.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.25
+      },
+      "source_ref": "slot.answer_3",
+      "refs": {
+        "layout_slot_id": "slot.answer_3"
+      },
+      "text": "(3) 백 모형끼리 더하면 천 모형 (         )개와 백 모형 (           )개입니다."
+    },
+    {
+      "id": "slot.answer_4.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 28.0,
+        "y": 608.0,
+        "fill": "#202124",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-size": 21,
+        "width": 482.278,
+        "height": 42.0,
+        "max_width": 482.278,
+        "data-slot-kind": "text_box",
+        "data-box-x": 28.0,
+        "data-box-y": 608.0,
+        "data-box-width": 482.278,
+        "data-box-height": 42.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.25
+      },
+      "source_ref": "slot.answer_4",
+      "refs": {
+        "layout_slot_id": "slot.answer_4"
+      },
+      "text": "(4) 도서관의 책 수는 모두 (          )권입니다."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

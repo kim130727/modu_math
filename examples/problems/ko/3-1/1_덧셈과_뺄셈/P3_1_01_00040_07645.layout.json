@@ -3,7 +3,7 @@
   "problem_id": "P3_1_01_00040_07645",
   "title": "미정이가 읽는 동화책의 전체 쪽수",
   "canvas": {
-    "width": 900,
+    "width": 800,
     "height": 230,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
@@ -28,10 +28,10 @@
       "content": {
         "text": "미정이는 어제 동화책을 처음부터 119쪽까지 읽었더니 167쪽이 남았습니다. 미정이가 읽는 동화책의 전체 쪽수를 구하시오.",
         "style_role": "body",
-        "x": 20.872,
-        "y": 19.623,
-        "width": 804,
-        "height": 100.323,
+        "x": 16.938,
+        "y": 9.787,
+        "width": 763.128,
+        "height": 143,
         "align": "left",
         "valign": "top",
         "font_size": 30,
@@ -47,10 +47,10 @@
       "content": {
         "text": "쪽",
         "style_role": "body",
-        "x": 682.441,
-        "y": 152.675,
-        "width": 98.0,
-        "height": 43.0,
+        "x": 681.785,
+        "y": 144.298,
+        "width": 36.4,
+        "height": 43,
         "align": "left",
         "valign": "top",
         "font_size": 28,
@@ -63,8 +63,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 553.732,
-        "y": 145.57,
+        "x": 553.076,
+        "y": 137.193,
         "width": 114.33,
         "height": 57.266,
         "stroke": "#111827",
@@ -73,12 +73,12 @@
         "interaction": {
           "type": "input",
           "role": "answer",
-          "value_type": "digit",
-          "max_length": 1,
+          "value_type": "integer",
+          "max_length": 3,
           "include_in_submission": true,
           "order": 0,
           "group_id": "final_answer",
-          "auto_advance": true,
+          "auto_advance": false,
           "keyboard": "number"
         },
         "input_style": {
@@ -90,7 +90,9 @@
           "horizontal_align": "center",
           "vertical_align": "middle",
           "padding": 6,
-          "text_color": "#222222"
+          "text_color": "#222222",
+          "width": 114.33,
+          "height": 57.266
         }
       }
     }

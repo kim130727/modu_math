@@ -3,8 +3,8 @@
   "problem_id": "P3_1_01_00040_15602",
   "title": "사진첩에 있는 사진의 수",
   "canvas": {
-    "width": 960,
-    "height": 180,
+    "width": 600,
+    "height": 200,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -28,10 +28,10 @@
       "content": {
         "text": "동윤이의 사진첩에는 527장의 가족 사진과 315장의 친구 사진이 있습니다. 사진은 모두 몇 장입니까?",
         "style_role": "body",
-        "x": 25.671,
-        "y": 15.132,
-        "width": 860.0,
-        "height": 83.0,
+        "x": 22.72,
+        "y": 11.689,
+        "width": 527.934,
+        "height": 121,
         "align": "left",
         "valign": "top",
         "font_size": 30,
@@ -44,8 +44,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 624.696,
-        "y": 105.509,
+        "x": 321.253,
+        "y": 119.968,
         "width": 153.819,
         "height": 58.755,
         "stroke": "#111827",
@@ -54,12 +54,12 @@
         "interaction": {
           "type": "input",
           "role": "answer",
-          "value_type": "digit",
-          "max_length": 1,
+          "value_type": "integer",
+          "max_length": 3,
           "include_in_submission": true,
           "order": 0,
           "group_id": "final_answer",
-          "auto_advance": true,
+          "auto_advance": false,
           "keyboard": "number"
         },
         "input_style": {
@@ -71,7 +71,9 @@
           "horizontal_align": "center",
           "vertical_align": "middle",
           "padding": 6,
-          "text_color": "#222222"
+          "text_color": "#222222",
+          "width": 153.819,
+          "height": 58.755
         }
       }
     },
@@ -82,10 +84,10 @@
       "content": {
         "text": "장",
         "style_role": "body",
-        "x": 793.34,
-        "y": 112.243,
-        "width": 77.331,
-        "height": 46.0,
+        "x": 486.455,
+        "y": 128.669,
+        "width": 39.0,
+        "height": 37.5,
         "align": "left",
         "valign": "top",
         "font_size": 30,

@@ -1,7 +1,7 @@
 {
   "problem_id": "P3_1_01_00040_15596",
   "view_box": {
-    "width": 960.0,
+    "width": 600.0,
     "height": 210.0,
     "background": "#FFFFFF"
   },
@@ -10,8 +10,8 @@
       "id": "konva_1785806283023_rect_564409.rect",
       "type": "rect",
       "attributes": {
-        "x": 688.499,
-        "y": 124.822,
+        "x": 382.991,
+        "y": 129.642,
         "width": 180.0,
         "height": 62.893,
         "fill": "#ffffff",
@@ -25,12 +25,12 @@
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
+        "value_type": "integer",
+        "max_length": 3,
         "include_in_submission": true,
         "order": 0,
         "group_id": "final_answer",
-        "auto_advance": true,
+        "auto_advance": false,
         "keyboard": "number"
       },
       "input_style": {
@@ -42,26 +42,28 @@
         "horizontal_align": "center",
         "vertical_align": "middle",
         "padding": 6,
-        "text_color": "#222222"
+        "text_color": "#222222",
+        "width": 180.0,
+        "height": 62.893
       }
     },
     {
       "id": "konva_1785806283023_text_640138.text",
       "type": "text_box",
       "attributes": {
-        "x": 28.427,
-        "y": 20.65,
+        "x": 18.099,
+        "y": 13.765,
         "fill": "#111827",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
         "font-size": 30,
-        "width": 860.0,
-        "height": 83.0,
-        "max_width": 860.0,
+        "width": 534.918,
+        "height": 121.0,
+        "max_width": 534.918,
         "data-slot-kind": "text_box",
-        "data-box-x": 28.427,
-        "data-box-y": 20.65,
-        "data-box-width": 860.0,
-        "data-box-height": 83.0,
+        "data-box-x": 18.099,
+        "data-box-y": 13.765,
+        "data-box-width": 534.918,
+        "data-box-height": 121.0,
         "data-text-align": "left",
         "data-vertical-align": "top",
         "data-line-height": 1.25

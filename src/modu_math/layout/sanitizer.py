@@ -147,6 +147,12 @@ def _separate_top_text_from_following_slots(
     if top_text_bottom is None:
         return
 
+    protected_prefixes = {
+        prefix
+        for slot_id in protected_slot_ids
+        if (prefix := _cohesive_slot_prefix(slot_id)) is not None
+    }
+
     margin = 8.0
     clear_y = top_text_bottom + margin
     candidates: list[tuple[dict[str, Any], tuple[float, float, float, float]]] = []
@@ -154,8 +160,11 @@ def _separate_top_text_from_following_slots(
         if _is_top_text_slot(slot):
             continue
         slot_id = slot.get("id")
-        if isinstance(slot_id, str) and slot_id in protected_slot_ids:
-            continue
+        if isinstance(slot_id, str):
+            if slot_id in protected_slot_ids:
+                continue
+            if any(slot_id.startswith(p) for p in protected_prefixes):
+                continue
         box = _slot_box(slot)
         if box is None:
             continue
@@ -169,6 +178,7 @@ def _separate_top_text_from_following_slots(
         prefix
         for slot, _ in candidates
         if (prefix := _cohesive_slot_prefix(slot.get("id"))) is not None
+        and prefix not in protected_prefixes
     }
     min_y = min(box[1] for _, box in candidates)
     max_bottom = max(box[1] + box[3] for _, box in candidates)

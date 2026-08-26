@@ -101,21 +101,29 @@ def project_suffixed_subproblem(
                 if box is not None and _answer_input_near_target_box(box, target_box):
                     keep_ids.add(slot_id)
 
-    target_submit_ids = {
+    target_submit_ids = (protected_slot_ids & all_submit_slot_ids) or {
         slot_id
         for slot_id in all_submit_slot_ids
         if slot_id in target_members
         or _identifier_problem_index(slot_id) == index
     }
-    if protected_slot_ids & all_submit_slot_ids:
-        target_submit_ids |= protected_slot_ids & all_submit_slot_ids
     if not target_submit_ids:
+        ordered_ids = _submit_slot_ids_for_index(slots, index)
         if len(spatial_answer_input_ids) > 1:
             target_submit_ids = spatial_answer_input_ids
+        elif len(spatial_answer_input_ids) == 1:
+            single_slot_id = next(iter(spatial_answer_input_ids))
+            single_slot = slot_by_id.get(single_slot_id)
+            single_order = _submit_slot_order(single_slot) if isinstance(single_slot, dict) else None
+            expected_order = index - 1
+            if single_order is not None and single_order != expected_order and ordered_ids:
+                target_submit_ids = ordered_ids
+            else:
+                target_submit_ids = spatial_answer_input_ids
+        elif ordered_ids:
+            target_submit_ids = ordered_ids
         else:
-            target_submit_ids = _submit_slot_ids_for_index(slots, index)
-    if not target_submit_ids:
-        target_submit_ids = spatial_answer_input_ids
+            target_submit_ids = spatial_answer_input_ids
 
     rebound_submit_ids = _rebind_stray_ordered_submit_slots(
         ordered_submit_ids=target_submit_ids,
@@ -131,7 +139,7 @@ def project_suffixed_subproblem(
         problem_answer_ids |= rebound_submit_ids
 
     if target_submit_ids:
-        keep_ids -= (all_submit_slot_ids - target_submit_ids) - protected_slot_ids
+        keep_ids -= (all_submit_slot_ids - target_submit_ids - protected_slot_ids)
         keep_ids |= target_submit_ids
         problem_answer_ids |= target_submit_ids
 

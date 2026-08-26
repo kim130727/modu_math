@@ -3,8 +3,8 @@
   "problem_id": "P3_1_01_00040_15603",
   "title": "기영이가 처음 가지고 있던 구슬 수",
   "canvas": {
-    "width": 900,
-    "height": 210,
+    "width": 600,
+    "height": 250,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -28,10 +28,10 @@
       "content": {
         "text": "기영이가 가지고 있던 구슬 중 120개를 호근이에게 주고, 형우에게 130개를 주었더니 남은 구슬은 220개가 되었습니다. 기영이가 처음에 가지고 있던 구슬은 몇 개입니까?",
         "style_role": "body",
-        "x": 19.815,
-        "y": 17.201,
-        "width": 860.0,
-        "height": 121.0,
+        "x": 16.126,
+        "y": 20.89,
+        "width": 554.59,
+        "height": 196,
         "align": "left",
         "valign": "top",
         "font_size": 30,
@@ -46,8 +46,8 @@
       "content": {
         "text": "개",
         "style_role": "body",
-        "x": 783.913,
-        "y": 141.352,
+        "x": 523.503,
+        "y": 188.073,
         "width": 42.273,
         "height": 46.0,
         "align": "left",
@@ -62,8 +62,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 644.172,
-        "y": 134.03,
+        "x": 383.762,
+        "y": 180.751,
         "width": 126.484,
         "height": 53.323,
         "stroke": "#111827",
@@ -72,12 +72,12 @@
         "interaction": {
           "type": "input",
           "role": "answer",
-          "value_type": "digit",
-          "max_length": 1,
+          "value_type": "integer",
+          "max_length": 3,
           "include_in_submission": true,
           "order": 0,
           "group_id": "final_answer",
-          "auto_advance": true,
+          "auto_advance": false,
           "keyboard": "number"
         },
         "input_style": {
@@ -89,7 +89,9 @@
           "horizontal_align": "center",
           "vertical_align": "middle",
           "padding": 6,
-          "text_color": "#222222"
+          "text_color": "#222222",
+          "width": 126.484,
+          "height": 53.323
         }
       }
     }

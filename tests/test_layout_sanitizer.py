@@ -205,13 +205,69 @@ def test_sanitize_layout_preserves_editor_moved_slot_near_top_text() -> None:
                     "y": 121.508,
                     "width": 918.492,
                     "height": 83,
-                    "font_size": 30,
+                },
+            },
+        ],
+    }
+    sanitized = sanitize_layout(layout, protected_slot_ids={"slot.question1"})
+    by_id = {slot["id"]: slot for slot in sanitized["slots"]}
+
+    assert by_id["slot.question1"]["content"]["y"] == 121.508
+
+
+def test_sanitize_layout_does_not_shift_table_when_table_is_protected() -> None:
+    layout = {
+        "canvas": {"width": 850, "height": 260},
+        "slots": [
+            {
+                "id": "slot.question",
+                "kind": "text_box",
+                "content": {
+                    "text": "다음은 지희네 반 학급 문고의 책의 수를 조사한 것입니다.",
+                    "x": 25.924,
+                    "y": 22.169,
+                    "width": 674.552,
+                    "height": 121.0,
+                },
+            },
+            {
+                "id": "slot.table.outer",
+                "kind": "rect",
+                "content": {
+                    "x": 25.82,
+                    "y": 104.385,
+                    "width": 600,
+                    "height": 90,
+                },
+            },
+            {
+                "id": "slot.table.h1",
+                "kind": "line",
+                "content": {
+                    "x1": 25.82,
+                    "y1": 149.385,
+                    "x2": 625.82,
+                    "y2": 149.385,
+                },
+            },
+            {
+                "id": "slot.table.r1c1",
+                "kind": "text",
+                "content": {
+                    "text": "책 종류",
+                    "x": 85.82,
+                    "y": 136.385,
+                    "font_size": 22,
+                    "max_width": 110,
                 },
             },
         ],
     }
 
-    sanitized = sanitize_layout(layout, protected_slot_ids={"slot.question1"})
+    sanitized = sanitize_layout(layout, protected_slot_ids={"slot.table.outer"})
     by_id = {slot["id"]: slot for slot in sanitized["slots"]}
 
-    assert by_id["slot.question1"]["content"]["y"] == 121.508
+    assert by_id["slot.table.outer"]["content"]["y"] == 104.385
+    assert by_id["slot.table.h1"]["content"]["y1"] == 149.385
+    assert by_id["slot.table.r1c1"]["content"]["y"] == 136.385
+

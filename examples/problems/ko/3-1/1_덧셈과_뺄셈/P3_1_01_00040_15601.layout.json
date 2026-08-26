@@ -3,7 +3,7 @@
   "problem_id": "P3_1_01_00040_15601",
   "title": "동민이의 우표 수",
   "canvas": {
-    "width": 900,
+    "width": 600,
     "height": 180,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
@@ -28,8 +28,8 @@
       "content": {
         "text": "장",
         "style_role": "body",
-        "x": 806.532,
-        "y": 114.194,
+        "x": 524.729,
+        "y": 117.883,
         "width": 51.495,
         "height": 46.0,
         "align": "left",
@@ -46,10 +46,10 @@
       "content": {
         "text": "동민이가 가지고 있는 우표책에는 327장의 외국 우표와 321장의 한국 우표가 있습니다. 우표는 모두 몇 장입니까?",
         "style_role": "body",
-        "x": 19.815,
-        "y": 10.735,
-        "width": 860.0,
-        "height": 83.0,
+        "x": 17.848,
+        "y": 7.784,
+        "width": 528.033,
+        "height": 121,
         "align": "left",
         "valign": "top",
         "font_size": 30,
@@ -62,8 +62,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 612.713,
-        "y": 107.579,
+        "x": 330.91,
+        "y": 111.268,
         "width": 180.0,
         "height": 54.616,
         "stroke": "#111827",
@@ -72,12 +72,12 @@
         "interaction": {
           "type": "input",
           "role": "answer",
-          "value_type": "digit",
-          "max_length": 1,
+          "value_type": "integer",
+          "max_length": 3,
           "include_in_submission": true,
           "order": 0,
           "group_id": "final_answer",
-          "auto_advance": true,
+          "auto_advance": false,
           "keyboard": "number"
         },
         "input_style": {
@@ -89,7 +89,9 @@
           "horizontal_align": "center",
           "vertical_align": "middle",
           "padding": 6,
-          "text_color": "#222222"
+          "text_color": "#222222",
+          "width": 180.0,
+          "height": 54.616
         }
       }
     }

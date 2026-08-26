@@ -1195,116 +1195,142 @@ def test_project_suffixed_subproblem_preserves_multiple_submit_slots_in_subprobl
     assert projected_semantic["answer"]["value"] == [7, 90, 500, 597]
 
 
-def test_project_suffixed_subproblem_preserves_multiple_answer_boxes_and_carries() -> None:
+def test_project_suffixed_subproblem_preserves_multi_answer_slots_with_protected_overrides() -> None:
     layout = {
         "regions": [
             {"id": "region.stem", "role": "stem", "slot_ids": ["slot.instruction"]},
-            {
-                "id": "region.problem_1",
-                "role": "question",
-                "slot_ids": [
-                    "slot.problem_1_first_addend",
-                    "slot.problem_1_second_addend",
-                    "slot.problem_1_line",
-                ],
-            },
-            {
-                "id": "region.problem_2",
-                "role": "question",
-                "slot_ids": [
-                    "slot.problem_2_first_addend",
-                    "slot.problem_2_second_addend",
-                    "slot.problem_2_line",
-                ],
-            },
+            {"id": "region.problem_1", "role": "question", "slot_ids": ["slot.p1_addend1", "slot.p1_addend2"]},
+            {"id": "region.problem_2", "role": "question", "slot_ids": ["slot.p2_addend1", "slot.p2_addend2"]},
         ],
         "slots": [
             {"id": "slot.instruction", "kind": "text_box", "content": {"x": 30, "y": 18, "width": 840, "height": 42}},
-            {"id": "slot.problem_1_first_addend", "kind": "text_box", "content": {"x": 130, "y": 93, "width": 116, "height": 40}},
-            {"id": "slot.problem_1_second_addend", "kind": "text_box", "content": {"x": 130, "y": 137, "width": 116, "height": 40}},
-            {"id": "slot.problem_1_line", "kind": "text_box", "content": {"x": 72, "y": 173, "width": 145, "height": 22}},
-            {"id": "slot.problem_2_first_addend", "kind": "text_box", "content": {"x": 400, "y": 93, "width": 116, "height": 40}},
-            {"id": "slot.problem_2_second_addend", "kind": "text_box", "content": {"x": 400, "y": 137, "width": 116, "height": 40}},
-            {"id": "slot.problem_2_line", "kind": "text_box", "content": {"x": 340, "y": 173, "width": 145, "height": 22}},
-            # Problem 1 answer boxes: 2 carry boxes on top, 3 sum boxes on bottom
-            {"id": "box.p1.carry1", "kind": "rect", "content": {"x": 145, "y": 67, "width": 25, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 0}}},
-            {"id": "box.p1.carry2", "kind": "rect", "content": {"x": 118, "y": 67, "width": 25, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 1}}},
-            {"id": "box.p1.sum1", "kind": "rect", "content": {"x": 166, "y": 196, "width": 25, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 2}}},
-            {"id": "box.p1.sum2", "kind": "rect", "content": {"x": 140, "y": 196, "width": 25, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 3}}},
-            {"id": "box.p1.sum3", "kind": "rect", "content": {"x": 113, "y": 196, "width": 25, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 4}}},
-            # Problem 2 answer boxes: 2 carry boxes on top, 3 sum boxes on bottom
-            {"id": "box.p2.carry1", "kind": "rect", "content": {"x": 412, "y": 67, "width": 25, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 5}}},
-            {"id": "box.p2.carry2", "kind": "rect", "content": {"x": 385, "y": 67, "width": 25, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 6}}},
-            {"id": "box.p2.sum1", "kind": "rect", "content": {"x": 435, "y": 196, "width": 25, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 7}}},
-            {"id": "box.p2.sum2", "kind": "rect", "content": {"x": 408, "y": 196, "width": 25, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 8}}},
-            {"id": "box.p2.sum3", "kind": "rect", "content": {"x": 381, "y": 196, "width": 25, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 9}}},
+            {"id": "slot.p1_addend1", "kind": "text_box", "content": {"x": 129, "y": 93, "width": 116, "height": 40}},
+            {"id": "slot.p1_addend2", "kind": "text_box", "content": {"x": 129, "y": 137, "width": 116, "height": 40}},
+            {"id": "slot.p2_addend1", "kind": "text_box", "content": {"x": 397, "y": 91, "width": 116, "height": 40}},
+            {"id": "slot.p2_addend2", "kind": "text_box", "content": {"x": 397, "y": 135, "width": 116, "height": 40}},
+            {
+                "id": "konva_p1_carry_1",
+                "kind": "rect",
+                "content": {"x": 144, "y": 67, "width": 24, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 0}},
+            },
+            {
+                "id": "konva_p1_sum_1",
+                "kind": "rect",
+                "content": {"x": 166, "y": 196, "width": 24, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 1}},
+            },
+            {
+                "id": "konva_p2_carry_1",
+                "kind": "rect",
+                "content": {"x": 411, "y": 63, "width": 24, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 2}},
+            },
+            {
+                "id": "konva_p2_sum_1",
+                "kind": "rect",
+                "content": {"x": 434, "y": 193, "width": 24, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 3}},
+            },
         ],
         "groups": [],
     }
     semantic = {
         "answer": {
-            "value": [1, 1, 3, 2, 6, 1, 1, 4, 1, 8],
+            "value": [1, 3, 1, 4],
             "blanks": [
-                {"slot_id": "box.p1.carry1", "expected": 1},
-                {"slot_id": "box.p1.carry2", "expected": 1},
-                {"slot_id": "box.p1.sum1", "expected": 3},
-                {"slot_id": "box.p1.sum2", "expected": 2},
-                {"slot_id": "box.p1.sum3", "expected": 6},
-                {"slot_id": "box.p2.carry1", "expected": 1},
-                {"slot_id": "box.p2.carry2", "expected": 1},
-                {"slot_id": "box.p2.sum1", "expected": 4},
-                {"slot_id": "box.p2.sum2", "expected": 1},
-                {"slot_id": "box.p2.sum3", "expected": 8},
+                {"id": "konva_p1_carry_1", "slot_id": "konva_p1_carry_1", "expected": 1},
+                {"id": "konva_p1_sum_1", "slot_id": "konva_p1_sum_1", "expected": 3},
+                {"id": "konva_p2_carry_1", "slot_id": "konva_p2_carry_1", "expected": 1},
+                {"id": "konva_p2_sum_1", "slot_id": "konva_p2_sum_1", "expected": 4},
             ],
             "answer_key": [
-                {"slot_id": "box.p1.carry1", "value": 1},
-                {"slot_id": "box.p1.carry2", "value": 1},
-                {"slot_id": "box.p1.sum1", "value": 3},
-                {"slot_id": "box.p1.sum2", "value": 2},
-                {"slot_id": "box.p1.sum3", "value": 6},
-                {"slot_id": "box.p2.carry1", "value": 1},
-                {"slot_id": "box.p2.carry2", "value": 1},
-                {"slot_id": "box.p2.sum1", "value": 4},
-                {"slot_id": "box.p2.sum2", "value": 1},
-                {"slot_id": "box.p2.sum3", "value": 8},
+                {"slot_id": "konva_p1_carry_1", "value": 1},
+                {"slot_id": "konva_p1_sum_1", "value": 3},
+                {"slot_id": "konva_p2_carry_1", "value": 1},
+                {"slot_id": "konva_p2_sum_1", "value": 4},
+            ],
+        }
+    }
+    protected_slots = {"konva_p1_carry_1", "konva_p1_sum_1", "slot.p1_addend1", "slot.p1_addend2"}
+
+    projected_layout, projected_semantic, _, removed = project_suffixed_subproblem(
+        artifact_id="P3_1_01_00040_02150_1",
+        template_id="P3_1_01_00040_02150",
+        layout=layout,
+        semantic=semantic,
+        solvable=None,
+        protected_slot_ids=protected_slots,
+    )
+
+    slot_ids = {slot["id"] for slot in projected_layout["slots"]}
+    assert "konva_p1_carry_1" in slot_ids
+    assert "konva_p1_sum_1" in slot_ids
+    assert "konva_p2_carry_1" not in slot_ids
+    assert "konva_p2_sum_1" not in slot_ids
+    assert removed == {"slot.p2_addend1", "slot.p2_addend2", "konva_p2_carry_1", "konva_p2_sum_1"}
+    assert projected_semantic["answer"]["value"] == [1, 3]
+    assert [b["slot_id"] for b in projected_semantic["answer"]["blanks"]] == ["konva_p1_carry_1", "konva_p1_sum_1"]
+
+
+def test_project_suffixed_subproblem_captures_carry_boxes_above_operands() -> None:
+    layout = {
+        "regions": [
+            {"id": "region.stem", "role": "stem", "slot_ids": ["slot.instruction"]},
+            {"id": "region.problem_1", "role": "question", "slot_ids": ["slot.p1_addend1", "slot.p1_addend2"]},
+            {"id": "region.problem_2", "role": "question", "slot_ids": ["slot.p2_addend1", "slot.p2_addend2"]},
+        ],
+        "slots": [
+            {"id": "slot.instruction", "kind": "text_box", "content": {"x": 30, "y": 18, "width": 840, "height": 42}},
+            {"id": "slot.p1_addend1", "kind": "text_box", "content": {"x": 129, "y": 93, "width": 116, "height": 40}},
+            {"id": "slot.p1_addend2", "kind": "text_box", "content": {"x": 129, "y": 137, "width": 116, "height": 40}},
+            {"id": "slot.p2_addend1", "kind": "text_box", "content": {"x": 397, "y": 91, "width": 116, "height": 40}},
+            {"id": "slot.p2_addend2", "kind": "text_box", "content": {"x": 397, "y": 135, "width": 116, "height": 40}},
+            # Carry box at y=60 (33px above addend1 at y=93)
+            {
+                "id": "konva_p1_carry_top",
+                "kind": "rect",
+                "content": {"x": 144, "y": 60, "width": 24, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 0}},
+            },
+            # Sum box at y=196 (below addends)
+            {
+                "id": "konva_p1_sum_bot",
+                "kind": "rect",
+                "content": {"x": 166, "y": 196, "width": 24, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 1}},
+            },
+            # Problem 2 carry box
+            {
+                "id": "konva_p2_carry_top",
+                "kind": "rect",
+                "content": {"x": 411, "y": 60, "width": 24, "height": 25, "interaction": {"type": "input", "role": "answer", "order": 2}},
+            },
+        ],
+        "groups": [],
+    }
+    semantic = {
+        "answer": {
+            "value": [1, 3, 1],
+            "blanks": [
+                {"id": "konva_p1_carry_top", "slot_id": "konva_p1_carry_top", "expected": 1},
+                {"id": "konva_p1_sum_bot", "slot_id": "konva_p1_sum_bot", "expected": 3},
+                {"id": "konva_p2_carry_top", "slot_id": "konva_p2_carry_top", "expected": 1},
+            ],
+            "answer_key": [
+                {"slot_id": "konva_p1_carry_top", "value": 1},
+                {"slot_id": "konva_p1_sum_bot", "value": 3},
+                {"slot_id": "konva_p2_carry_top", "value": 1},
             ],
         }
     }
 
-    # Project subproblem 1
-    proj_layout1, proj_semantic1, _, removed1 = project_suffixed_subproblem(
+    projected_layout, projected_semantic, _, removed = project_suffixed_subproblem(
         artifact_id="P3_1_01_00040_02150_1",
         template_id="P3_1_01_00040_02150",
         layout=layout,
         semantic=semantic,
         solvable=None,
     )
-    p1_slot_ids = {s["id"] for s in proj_layout1["slots"]}
-    assert "box.p1.carry1" in p1_slot_ids
-    assert "box.p1.carry2" in p1_slot_ids
-    assert "box.p1.sum1" in p1_slot_ids
-    assert "box.p1.sum2" in p1_slot_ids
-    assert "box.p1.sum3" in p1_slot_ids
-    assert "box.p2.carry1" not in p1_slot_ids
-    assert "box.p2.sum1" not in p1_slot_ids
-    assert proj_semantic1["answer"]["value"] == [1, 1, 3, 2, 6]
 
-    # Project subproblem 2
-    proj_layout2, proj_semantic2, _, removed2 = project_suffixed_subproblem(
-        artifact_id="P3_1_01_00040_02150_2",
-        template_id="P3_1_01_00040_02150",
-        layout=layout,
-        semantic=semantic,
-        solvable=None,
-    )
-    p2_slot_ids = {s["id"] for s in proj_layout2["slots"]}
-    assert "box.p2.carry1" in p2_slot_ids
-    assert "box.p2.carry2" in p2_slot_ids
-    assert "box.p2.sum1" in p2_slot_ids
-    assert "box.p2.sum2" in p2_slot_ids
-    assert "box.p2.sum3" in p2_slot_ids
-    assert "box.p1.carry1" not in p2_slot_ids
-    assert "box.p1.sum1" not in p2_slot_ids
-    assert proj_semantic2["answer"]["value"] == [1, 1, 4, 1, 8]
+    slot_ids = {slot["id"] for slot in projected_layout["slots"]}
+    assert "konva_p1_carry_top" in slot_ids
+    assert "konva_p1_sum_bot" in slot_ids
+    assert "konva_p2_carry_top" not in slot_ids
+    assert projected_semantic["answer"]["value"] == [1, 3]
 
 
