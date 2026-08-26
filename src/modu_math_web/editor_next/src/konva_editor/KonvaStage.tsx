@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Circle, Layer, Line, Path, Rect, Stage, Text, Transformer } from "react-konva";
 import type Konva from "konva";
 import type { TutorRendererOverlay } from "../api/editorApi";
-import type { ConnectorShape, EditorShape, LineShape } from "../types/editorShape";
+import type { BaseTenBlockKind, ConnectorShape, EditorShape, LineShape } from "../types/editorShape";
 import { scalePathData } from "../utils/pathData";
 import { connectorArrowForPreset, connectorBounds, connectorControl, connectorEnd, connectorKindForPreset, connectorPathData, connectorStart } from "./connectorGeometry";
 import { estimateTextWidth, normalizedTextBoxHeight, normalizedTextBoxWidth } from "./converters";
@@ -843,7 +843,8 @@ function shapeBounds(shape: EditorShape): CanvasRect {
     return { x: shape.x, y: shape.y, width: shape.width, height: shape.height };
   }
   if (shape.type === "baseTenBlock") {
-    return { x: shape.x, y: shape.y, width: shape.width + shape.depth, height: shape.height + shape.depth };
+    const depth = naturalBaseTenDepth(shape);
+    return { x: shape.x, y: shape.y, width: shape.width + depth, height: shape.height + depth };
   }
   return { x: shape.x, y: shape.y, width: shape.width, height: shape.height };
 }
@@ -1018,9 +1019,30 @@ function drawingEndPoint(shape: EditorShape): CanvasPoint {
     return { x: shape.x + shape.width, y: shape.y + shape.height };
   }
   if (shape.type === "baseTenBlock") {
-    return { x: shape.x + shape.width + shape.depth, y: shape.y + shape.height + shape.depth };
+    const depth = naturalBaseTenDepth(shape);
+    return { x: shape.x + shape.width + depth, y: shape.y + shape.height + depth };
   }
   return { x: shape.x, y: shape.y };
+}
+
+function naturalBaseTenDepth(shape: Extract<EditorShape, { type: "baseTenBlock" }>): number {
+  const grid = baseTenGridSpec(shape.kind);
+  const cellWidth = shape.width / grid.cols;
+  const cellHeight = shape.height / grid.rows;
+  return Math.max(0, (Math.min(cellWidth, cellHeight) / Math.SQRT2) * grid.depthSegments);
+}
+
+function baseTenGridSpec(kind: BaseTenBlockKind): { rows: number; cols: number; depthSegments: number } {
+  switch (kind) {
+    case "thousand":
+      return { rows: 10, cols: 10, depthSegments: 10 };
+    case "hundred":
+      return { rows: 10, cols: 10, depthSegments: 1 };
+    case "ten":
+      return { rows: 10, cols: 1, depthSegments: 1 };
+    case "one":
+      return { rows: 1, cols: 1, depthSegments: 1 };
+  }
 }
 
 function LineEndpointHandles({

@@ -504,9 +504,9 @@ function baseTenBlockToProblemObjects(shape: Extract<EditorShape, { type: "baseT
   const fill = shape.fill ?? "#b9dd9f";
   const topFill = shape.topFill ?? "#d2edbf";
   const sideFill = shape.sideFill ?? "#9fcd86";
-  const depth = Math.max(0, Math.min(shape.depth, shape.width * 0.55, shape.height * 0.55));
+  const grid = baseTenGridSpec(shape.kind);
+  const depth = normalizedBaseTenDepth(shape, grid);
   const frontY = depth;
-  const grid = shape.kind === "one" ? 1 : 10;
   const objects: ProblemObject[] = [
     pathObject(`${shape.id}_top`, shape.x, shape.y, shape.width + depth, depth, `M 0 ${frontY} L ${depth} 0 L ${shape.width + depth} 0 L ${shape.width} ${frontY} Z`, topFill, stroke, strokeWidth),
     pathObject(
@@ -536,25 +536,54 @@ function baseTenBlockToProblemObjects(shape: Extract<EditorShape, { type: "baseT
     },
   ];
 
-  if (grid > 1) {
+  if (grid.rows > 1 || grid.cols > 1 || grid.depthSegments > 1) {
     const segments: string[] = [];
-    for (let i = 1; i < grid; i += 1) {
-      const x = (shape.width / grid) * i;
-      const y = frontY + (shape.height / grid) * i;
-      const d = (depth / grid) * i;
+    for (let i = 1; i < grid.cols; i += 1) {
+      const x = (shape.width / grid.cols) * i;
       segments.push(segmentD(x, frontY, x, frontY + shape.height));
+      if (depth > 0) {
+        segments.push(segmentD(x, frontY, x + depth, 0));
+      }
+    }
+    for (let i = 1; i < grid.rows; i += 1) {
+      const y = frontY + (shape.height / grid.rows) * i;
       segments.push(segmentD(0, y, shape.width, y));
       if (depth > 0) {
-        segments.push(segmentD(d, frontY - d, shape.width + d, frontY - d));
-        segments.push(segmentD(x, frontY, x + depth, 0));
-        segments.push(segmentD(shape.width + d, frontY - d, shape.width + d, frontY - d + shape.height));
         segments.push(segmentD(shape.width, y, shape.width + depth, y - depth));
       }
+    }
+    for (let i = 1; i < grid.depthSegments; i += 1) {
+      const d = (depth / grid.depthSegments) * i;
+      segments.push(segmentD(d, frontY - d, shape.width + d, frontY - d));
+      segments.push(segmentD(shape.width + d, frontY - d, shape.width + d, frontY - d + shape.height));
     }
     objects.push(pathObject(`${shape.id}_grid`, shape.x, shape.y, shape.width + depth, shape.height + depth, segments.join(" "), "none", stroke, 0.38));
   }
 
   return objects;
+}
+
+function baseTenGridSpec(kind: Extract<EditorShape, { type: "baseTenBlock" }>["kind"]): { rows: number; cols: number; depthSegments: number } {
+  switch (kind) {
+    case "thousand":
+      return { rows: 10, cols: 10, depthSegments: 10 };
+    case "hundred":
+      return { rows: 10, cols: 10, depthSegments: 1 };
+    case "ten":
+      return { rows: 10, cols: 1, depthSegments: 1 };
+    case "one":
+      return { rows: 1, cols: 1, depthSegments: 1 };
+  }
+}
+
+function normalizedBaseTenDepth(
+  shape: Extract<EditorShape, { type: "baseTenBlock" }>,
+  grid: { rows: number; cols: number; depthSegments: number },
+): number {
+  const cellWidth = shape.width / grid.cols;
+  const cellHeight = shape.height / grid.rows;
+  const unitDepth = Math.min(cellWidth, cellHeight) / Math.SQRT2;
+  return Math.max(0, unitDepth * grid.depthSegments);
 }
 
 function pathObject(

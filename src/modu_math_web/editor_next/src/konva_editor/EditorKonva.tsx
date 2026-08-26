@@ -1336,13 +1336,13 @@ function createBaseTenBlockShape(
 function baseTenBlockDimensions(kind: BaseTenBlockKind): { width: number; height: number; depth: number } {
   switch (kind) {
     case "thousand":
-      return { width: 120, height: 120, depth: 42 };
+      return { width: 120, height: 120, depth: 84.85 };
     case "hundred":
-      return { width: 96, height: 96, depth: 20 };
+      return { width: 120, height: 120, depth: 8.5 };
     case "ten":
-      return { width: 16, height: 112, depth: 7 };
+      return { width: 12, height: 120, depth: 8.5 };
     case "one":
-      return { width: 28, height: 28, depth: 10 };
+      return { width: 24, height: 24, depth: 16.97 };
   }
 }
 
@@ -1406,9 +1406,30 @@ function shapeBoundsForScaling(shape: EditorShape): { x: number; y: number; widt
     };
   }
   if (shape.type === "baseTenBlock") {
-    return { x: shape.x, y: shape.y, width: shape.width + shape.depth, height: shape.height + shape.depth };
+    const depth = naturalBaseTenDepth(shape);
+    return { x: shape.x, y: shape.y, width: shape.width + depth, height: shape.height + depth };
   }
   return { x: shape.x, y: shape.y, width: shape.width, height: shape.height };
+}
+
+function naturalBaseTenDepth(shape: Extract<EditorShape, { type: "baseTenBlock" }>): number {
+  const grid = baseTenGridSpec(shape.kind);
+  const cellWidth = shape.width / grid.cols;
+  const cellHeight = shape.height / grid.rows;
+  return Math.max(0, (Math.min(cellWidth, cellHeight) / Math.SQRT2) * grid.depthSegments);
+}
+
+function baseTenGridSpec(kind: BaseTenBlockKind): { rows: number; cols: number; depthSegments: number } {
+  switch (kind) {
+    case "thousand":
+      return { rows: 10, cols: 10, depthSegments: 10 };
+    case "hundred":
+      return { rows: 10, cols: 10, depthSegments: 1 };
+    case "ten":
+      return { rows: 10, cols: 1, depthSegments: 1 };
+    case "one":
+      return { rows: 1, cols: 1, depthSegments: 1 };
+  }
 }
 
 function scaleShapeAround(shape: EditorShape, originX: number, originY: number, scale: number): EditorShape {

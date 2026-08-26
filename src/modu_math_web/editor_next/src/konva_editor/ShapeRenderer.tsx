@@ -144,9 +144,9 @@ function BaseTenBlockRenderer({
   const frontFill = normalizeFill(shape.fill ?? "#b9dd9f");
   const topFill = normalizeFill(shape.topFill ?? "#d2edbf");
   const sideFill = normalizeFill(shape.sideFill ?? "#9fcd86");
-  const depth = Math.max(0, Math.min(shape.depth, shape.width * 0.55, shape.height * 0.55));
+  const grid = baseTenGridSpec(shape.kind);
+  const depth = normalizedBaseTenDepth(shape, grid);
   const frontY = depth;
-  const grid = shape.kind === "one" ? 1 : shape.kind === "ten" ? 10 : 10;
 
   return (
     <Group {...common}>
@@ -167,9 +167,34 @@ function BaseTenBlockRenderer({
         lineJoin="round"
       />
       <Rect x={0} y={frontY} width={shape.width} height={shape.height} fill={frontFill} stroke={stroke} strokeWidth={strokeWidth} />
-      {grid > 1 ? <BaseTenGridLines width={shape.width} height={shape.height} depth={depth} frontY={frontY} grid={grid} stroke={stroke} /> : null}
+      {grid.rows > 1 || grid.cols > 1 || grid.depthSegments > 1 ? (
+        <BaseTenGridLines width={shape.width} height={shape.height} depth={depth} frontY={frontY} grid={grid} stroke={stroke} />
+      ) : null}
     </Group>
   );
+}
+
+function baseTenGridSpec(kind: Extract<EditorShape, { type: "baseTenBlock" }>["kind"]): { rows: number; cols: number; depthSegments: number } {
+  switch (kind) {
+    case "thousand":
+      return { rows: 10, cols: 10, depthSegments: 10 };
+    case "hundred":
+      return { rows: 10, cols: 10, depthSegments: 1 };
+    case "ten":
+      return { rows: 10, cols: 1, depthSegments: 1 };
+    case "one":
+      return { rows: 1, cols: 1, depthSegments: 1 };
+  }
+}
+
+function normalizedBaseTenDepth(
+  shape: Extract<EditorShape, { type: "baseTenBlock" }>,
+  grid: { rows: number; cols: number; depthSegments: number },
+): number {
+  const cellWidth = shape.width / grid.cols;
+  const cellHeight = shape.height / grid.rows;
+  const unitDepth = Math.min(cellWidth, cellHeight) / Math.SQRT2;
+  return Math.max(0, unitDepth * grid.depthSegments);
 }
 
 function BaseTenGridLines({
@@ -184,22 +209,28 @@ function BaseTenGridLines({
   height: number;
   depth: number;
   frontY: number;
-  grid: number;
+  grid: { rows: number; cols: number; depthSegments: number };
   stroke: string;
 }) {
   const lines = [];
-  for (let i = 1; i < grid; i += 1) {
-    const x = (width / grid) * i;
-    const y = frontY + (height / grid) * i;
-    const d = (depth / grid) * i;
+  for (let i = 1; i < grid.cols; i += 1) {
+    const x = (width / grid.cols) * i;
     lines.push(<Line key={`front-v-${i}`} points={[x, frontY, x, frontY + height]} stroke={stroke} strokeWidth={0.38} listening={false} />);
+    if (depth > 0) {
+      lines.push(<Line key={`top-col-${i}`} points={[x, frontY, x + depth, 0]} stroke={stroke} strokeWidth={0.32} listening={false} />);
+    }
+  }
+  for (let i = 1; i < grid.rows; i += 1) {
+    const y = frontY + (height / grid.rows) * i;
     lines.push(<Line key={`front-h-${i}`} points={[0, y, width, y]} stroke={stroke} strokeWidth={0.38} listening={false} />);
     if (depth > 0) {
-      lines.push(<Line key={`top-depth-${i}`} points={[d, frontY - d, width + d, frontY - d]} stroke={stroke} strokeWidth={0.32} listening={false} />);
-      lines.push(<Line key={`top-col-${i}`} points={[x, frontY, x + depth, 0]} stroke={stroke} strokeWidth={0.32} listening={false} />);
-      lines.push(<Line key={`side-depth-${i}`} points={[width + d, frontY - d, width + d, frontY - d + height]} stroke={stroke} strokeWidth={0.32} listening={false} />);
       lines.push(<Line key={`side-row-${i}`} points={[width, y, width + depth, y - depth]} stroke={stroke} strokeWidth={0.32} listening={false} />);
     }
+  }
+  for (let i = 1; i < grid.depthSegments; i += 1) {
+    const d = (depth / grid.depthSegments) * i;
+    lines.push(<Line key={`top-depth-${i}`} points={[d, frontY - d, width + d, frontY - d]} stroke={stroke} strokeWidth={0.32} listening={false} />);
+    lines.push(<Line key={`side-depth-${i}`} points={[width + d, frontY - d, width + d, frontY - d + height]} stroke={stroke} strokeWidth={0.32} listening={false} />);
   }
   return <>{lines}</>;
 }

@@ -548,12 +548,12 @@ function baseTenScalePatch(shape: Extract<EditorShape, { type: "baseTenBlock" }>
 function baseTenBaseDimensions(kind: Extract<EditorShape, { type: "baseTenBlock" }>["kind"]): { width: number; height: number; depth: number } {
   switch (kind) {
     case "thousand":
-      return { width: 120, height: 120, depth: 42 };
+      return { width: 120, height: 120, depth: 84.85 };
     case "hundred":
-      return { width: 96, height: 96, depth: 20 };
+      return { width: 120, height: 120, depth: 8.5 };
     case "ten":
-      return { width: 16, height: 112, depth: 7 };
+      return { width: 12, height: 120, depth: 8.5 };
     case "one":
-      return { width: 28, height: 28, depth: 10 };
+      return { width: 24, height: 24, depth: 16.97 };
   }
 }
