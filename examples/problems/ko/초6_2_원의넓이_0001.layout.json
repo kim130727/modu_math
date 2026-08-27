@@ -1,0 +1,58 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "circle_area_0001",
+  "title": "Circle radius helper guard",
+  "canvas": {
+    "width": 720,
+    "height": 420,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.radius_10_arc",
+        "slot.radius_10_line"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.radius_10_line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 250.0,
+        "y1": 120.0,
+        "x2": 250.0,
+        "y2": 260.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.radius_10_arc",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 248 130 Q 292 190 252 250",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.diagram",
+    "slot.radius_10_arc",
+    "slot.radius_10_line"
+  ]
+}

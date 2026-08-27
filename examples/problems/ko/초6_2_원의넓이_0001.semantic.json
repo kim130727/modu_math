@@ -1,0 +1,75 @@
+{
+  "problem_id": "circle_area_0001",
+  "problem_type": "diagram_problem",
+  "metadata": {
+    "title": "Circle radius helper guard",
+    "tags": [],
+    "required_layout_ids": [
+      "slot.radius_10_line",
+      "slot.radius_10_arc"
+    ],
+    "extraction_confidence": 1.0
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.radius_10_arc",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 248 130 Q 292 190 252 250",
+          "stroke": "#111111",
+          "stroke_width": 2.0,
+          "stroke_dasharray": null,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.radius_10_arc"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.radius_10_line",
+        "type": "line_slot",
+        "properties": {
+          "x1": 250.0,
+          "y1": 120.0,
+          "x2": 250.0,
+          "y2": 260.0,
+          "stroke": "#111111",
+          "stroke_width": 2.0,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.radius_10_line"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0
+  }
+}

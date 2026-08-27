@@ -724,7 +724,7 @@ def _layout_artifact_path(paths: Any):
     return paths.base_dir / f"{paths.artifact_base}.layout.json"
 
 
-def _slot_kind_from_layout_artifact(paths: Any, target: str) -> str | None:
+def _load_layout_artifact(paths: Any) -> dict[str, Any] | None:
     path = _layout_artifact_path(paths)
     if not path.exists():
         return None
@@ -732,7 +732,28 @@ def _slot_kind_from_layout_artifact(paths: Any, target: str) -> str | None:
         loaded = json.loads(path.read_text(encoding="utf-8-sig"))
     except (OSError, json.JSONDecodeError):
         return None
-    if not isinstance(loaded, dict):
+    return loaded if isinstance(loaded, dict) else None
+
+
+def _default_editor_region_id(paths: Any) -> str | None:
+    layout = _load_layout_artifact(paths)
+    if not layout:
+        return None
+    first_region_id: str | None = None
+    for region in layout.get("regions", []):
+        if not isinstance(region, dict) or not isinstance(region.get("id"), str):
+            continue
+        region_id = region["id"]
+        if first_region_id is None:
+            first_region_id = region_id
+        if region.get("role") == "diagram" or region_id == "region.diagram":
+            return region_id
+    return first_region_id
+
+
+def _slot_kind_from_layout_artifact(paths: Any, target: str) -> str | None:
+    loaded = _load_layout_artifact(paths)
+    if loaded is None:
         return None
     for slot in loaded.get("slots", []):
         if (
@@ -1046,7 +1067,9 @@ def _try_apply_fast_editor_overrides(
             _save_editor_slot_override(
                 paths, target, value if isinstance(value, dict) else {}
             )
-            _save_editor_slot_region(paths, target, region_id)
+            _save_editor_slot_region(
+                paths, target, region_id or _default_editor_region_id(paths)
+            )
         else:
             _save_editor_slot_override(
                 paths, target, value if isinstance(value, dict) else {}
