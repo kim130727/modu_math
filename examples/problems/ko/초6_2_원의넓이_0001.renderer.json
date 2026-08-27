@@ -1,0 +1,41 @@
+{
+  "problem_id": "circle_area_0001",
+  "view_box": {
+    "width": 720.0,
+    "height": 420.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.radius_10_arc.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 248 130 Q 292 190 252 250",
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.radius_10_arc",
+      "refs": {
+        "layout_slot_id": "slot.radius_10_arc"
+      }
+    },
+    {
+      "id": "slot.radius_10_line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 250.0,
+        "y1": 120.0,
+        "x2": 250.0,
+        "y2": 260.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.radius_10_line",
+      "refs": {
+        "layout_slot_id": "slot.radius_10_line"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

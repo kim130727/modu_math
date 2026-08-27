@@ -201,6 +201,31 @@ def _override_is_answer_slot(slot_id: str, content: dict[str, Any]) -> bool:
     )
 
 
+EDITOR_INSERTED_SLOT_PATTERN = re.compile(
+    r"^konva_\d+_(?:avatar|image|bubble|text|math|rect|circle|line|path)_\d+$"
+)
+
+
+def _default_region_id_for_inserted_slot(layout: dict[str, Any]) -> str | None:
+    first_region_id: str | None = None
+    for region in layout.get("regions", []):
+        if not isinstance(region, dict) or not isinstance(region.get("id"), str):
+            continue
+        region_id = region["id"]
+        if first_region_id is None:
+            first_region_id = region_id
+        if region.get("role") == "diagram" or region_id == "region.diagram":
+            return region_id
+    return first_region_id
+
+
+def _is_editor_inserted_visual_slot(slot_id: str, content: dict[str, Any]) -> bool:
+    inferred_kind = _infer_override_slot_kind(content)
+    if inferred_kind in {"image", "path"}:
+        return True
+    return bool(EDITOR_INSERTED_SLOT_PATTERN.match(slot_id))
+
+
 def _infer_region_id_for_slot(
     layout: dict[str, Any],
     slot_id: str,
@@ -236,6 +261,8 @@ def _infer_region_id_for_slot(
         ]
         if len(region_ids) == 1:
             return region_ids[0]
+    if content is not None and _is_editor_inserted_visual_slot(slot_id, content):
+        return _default_region_id_for_inserted_slot(layout)
     return None
 
 

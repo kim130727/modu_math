@@ -1204,6 +1204,75 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     assert "slots" not in overrides
 
 
+def test_fast_layout_patch_add_records_default_region_for_inserted_avatar(
+    tmp_path: Path,
+) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import Canvas, ProblemTemplate, Region
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="p_fast_avatar",
+    title="fast avatar",
+    canvas=Canvas(width=300, height=200),
+    regions=(Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=()),),
+    slots=(),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+    (problem_dir / "problem.layout.json").write_text(
+        json.dumps(
+            {
+                "canvas": {"width": 300, "height": 200},
+                "regions": [
+                    {
+                        "id": "region.diagram",
+                        "role": "diagram",
+                        "slot_ids": [],
+                    }
+                ],
+                "slots": [],
+                "reading_order": [],
+            },
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+
+    payload = {
+        "fast": True,
+        "patches": [
+            {
+                "target": "konva_100_avatar_200",
+                "op": "add",
+                "value": {
+                    "kind": "image",
+                    "content": {
+                        "href": "data:image/svg+xml;base64,AAAA",
+                        "x": 10,
+                        "y": 20,
+                        "width": 80,
+                        "height": 90,
+                    },
+                },
+            }
+        ],
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    overrides = json.loads(
+        (problem_dir / "problem.editor_overrides.json").read_text(encoding="utf-8")
+    )
+    assert overrides["slot_regions"] == {
+        "konva_100_avatar_200": "region.diagram"
+    }
+
+
 def test_layout_patch_adds_table_slots_and_imports(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """
@@ -2444,6 +2513,73 @@ def test_prune_editor_overrides_drops_unanchored_single_region_text_slot() -> No
     assert changed is True
     assert "slots" not in cleaned
     assert cleaned["region_slot_orders"] == {"region.process": ["slot.stage2.top"]}
+
+
+def test_prune_editor_overrides_keeps_unanchored_inserted_avatar_assets() -> None:
+    layout = {
+        "regions": [
+            {"id": "region.stem", "role": "stem", "slot_ids": ["slot.question"]},
+            {
+                "id": "region.diagram",
+                "role": "diagram",
+                "slot_ids": [],
+            },
+        ],
+        "slots": [
+            {
+                "id": "slot.question",
+                "kind": "text",
+                "content": {"text": "Prompt", "x": 10, "y": 20},
+            },
+        ],
+        "reading_order": ["slot.question"],
+    }
+    overrides = {
+        "slots": {
+            "konva_100_avatar_200": {
+                "href": "data:image/svg+xml;base64,AAAA",
+                "x": 120,
+                "y": 40,
+                "width": 140,
+                "height": 150,
+            },
+            "konva_100_bubble_201": {
+                "d": "M 10 10 L 120 10 L 120 50 L 10 50 Z",
+                "fill": "#ffffff",
+                "stroke": "#1e293b",
+                "stroke_width": 2,
+            },
+            "konva_100_text_202": {
+                "text": "Hello",
+                "x": 24,
+                "y": 22,
+                "width": 90,
+                "height": 32,
+                "font_size": 15,
+            },
+        },
+        "version": 1,
+    }
+
+    cleaned, changed = prune_editor_overrides(layout, overrides)
+
+    assert changed is False
+    assert cleaned == overrides
+    applied = apply_editor_overrides(layout, cleaned)
+    slot_ids = {slot["id"] for slot in applied["slots"]}
+    assert {
+        "konva_100_avatar_200",
+        "konva_100_bubble_201",
+        "konva_100_text_202",
+    }.issubset(slot_ids)
+    diagram_region = next(
+        region for region in applied["regions"] if region["id"] == "region.diagram"
+    )
+    assert diagram_region["slot_ids"] == [
+        "konva_100_avatar_200",
+        "konva_100_bubble_201",
+        "konva_100_text_202",
+    ]
 
 
 def test_prune_editor_overrides_keeps_missing_single_region_answer_slot() -> None:
