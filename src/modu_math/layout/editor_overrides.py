@@ -16,6 +16,12 @@ def _text_width(text: str, font_size: float) -> float:
             or "\u3130" <= char <= "\u318f"
             or "\uac00" <= char <= "\ud7af"
             or "\u3400" <= char <= "\u9fff"
+            or "\u2000" <= char <= "\u23ff"
+            or "\u2460" <= char <= "\u24ff"
+            or "\u2500" <= char <= "\u27bf"
+            or "\u3000" <= char <= "\u33ff"
+            or "\u3260" <= char <= "\u327b"
+            or "\uff00" <= char <= "\uffef"
         ):
             width += font_size
         elif char.isupper() or char.isdigit():

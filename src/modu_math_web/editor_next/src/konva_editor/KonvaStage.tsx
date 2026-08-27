@@ -85,9 +85,15 @@ export function KonvaStage({
 
   useEffect(() => {
     let cancelled = false;
-    void document.fonts?.load(KONVA_PREVIEW_FONT_LOAD_SPEC).then(() => {
-      if (!cancelled) setFontLoadRevision((revision) => revision + 1);
-    });
+    if (document.fonts) {
+      void Promise.allSettled([
+        document.fonts.load(KONVA_PREVIEW_FONT_LOAD_SPEC),
+        document.fonts.load('30px "Noto Sans KR"'),
+        document.fonts.ready,
+      ]).then(() => {
+        if (!cancelled) setFontLoadRevision((revision) => revision + 1);
+      });
+    }
     return () => {
       cancelled = true;
     };

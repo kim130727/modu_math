@@ -717,11 +717,13 @@ function roundForTransform(value: number): number {
 }
 
 export function estimateTextWidth(text: string, fontSize: number): number {
-  return Math.max(80, estimateLineWidth(text, fontSize));
+  const longestLineWidth = Math.max(...text.split(/\n/g).map((line) => estimateLineWidth(line, fontSize)), 0);
+  return Math.max(fontSize, Math.ceil(longestLineWidth + fontSize * 0.28));
 }
 
 export function fittedTextWidth(text: string, fontSize: number): number {
-  return Math.max(12, Math.ceil(estimateLineWidth(text, fontSize) + fontSize * 0.28));
+  const longestLineWidth = Math.max(...text.split(/\n/g).map((line) => estimateLineWidth(line, fontSize)), 0);
+  return Math.max(12, Math.ceil(longestLineWidth + fontSize * 0.28));
 }
 
 export function normalizedTextBoxWidth(text: string, fontSize: number, width?: number, align = "left", maxWidth?: number): number {
@@ -768,7 +770,7 @@ function estimateLineWidth(text: string, fontSize: number): number {
   for (const char of text) {
     if (char === " ") width += fontSize * 0.34;
     else if (/[\u1100-\u11ff\u3130-\u318f\uac00-\ud7af\u3400-\u9fff]/u.test(char)) width += fontSize;
-    else if (/[\u2460-\u2473\u3260-\u327b]/u.test(char)) width += fontSize;
+    else if (/[\u2000-\u23ff\u2460-\u24ff\u2500-\u27bf\u3000-\u33ff\u3260-\u327b\uff00-\uffef]/u.test(char)) width += fontSize;
     else if (/[A-Z0-9]/u.test(char)) width += fontSize * 0.62;
     else if (/[a-z]/u.test(char)) width += fontSize * 0.54;
     else width += fontSize * 0.5;
