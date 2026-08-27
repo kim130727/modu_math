@@ -1,11 +1,11 @@
 {
   "problem_id": "S3_초등_3_008604",
-  "problem_type": "diagram_problem",
+  "problem_type": "division_reasoning_multiple_choice",
   "metadata": {
     "title": "문제를 바르게 설명한 사람의 이름을 선택하세요.",
     "tags": [],
-    "instruction": "67 ÷ 5",
-    "question": "문제를 바르게 설명한 사람의 이름을 선택하세요.",
+    "instruction": "문제를 바르게 설명한 사람의 이름을 선택하세요.",
+    "question": "67 ÷ 5의 결과를 바르게 설명한 사람을 고르는 문제",
     "required_layout_ids": [
       "slot.expr_box",
       "slot.left.bubble",
@@ -27,656 +27,78 @@
       "slot.right.person.smile",
       "slot.name.right.box"
     ],
-    "extraction_confidence": 1.0
+    "extraction_confidence": 1.0,
+    "language": "ko"
   },
   "domain": {
     "objects": [
       {
-        "id": "slot.expr_box",
-        "type": "rect_slot",
-        "properties": {
-          "x": 300,
-          "y": 70,
-          "width": 186,
-          "height": 62,
-          "stroke": "#F4A340",
-          "stroke_width": 2,
-          "rx": null,
-          "ry": null,
-          "fill": "none",
-          "semantic_role": null
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.expr_box"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "layout_required": true,
-        "confidence": 1.0
+        "id": "obj.dividend",
+        "type": "number",
+        "value": 67
       },
       {
-        "id": "slot.expr_text",
-        "type": "instruction",
-        "properties": {
-          "text": "67 ÷ 5"
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.expr_text"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "confidence": 1.0
+        "id": "obj.divisor",
+        "type": "number",
+        "value": 5
       },
       {
-        "id": "slot.left.bubble",
-        "type": "path_slot",
-        "properties": {
-          "d": "M 145.0 195.0 C 145.0 165.48, 173.5 154.0, 220.0 154.0 C 266.5 154.0, 295.0 165.48, 295.0 195.0 C 295.0 224.52, 266.5 236.0, 220.0 236.0 C 173.5 236.0, 145.0 224.52, 145.0 195.0 Z",
-          "stroke": "#222222",
-          "stroke_width": 1.6,
-          "stroke_dasharray": null,
-          "fill": "#ffffff",
-          "semantic_role": null
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.left.bubble"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "layout_required": true,
-        "confidence": 1.0
+        "id": "obj.speaker.left",
+        "type": "person",
+        "name": "현태"
       },
       {
-        "id": "slot.left.person.body",
-        "type": "polygon_slot",
-        "properties": {
-          "points": [
-            [
-              192.0,
-              413.0
-            ],
-            [
-              248.0,
-              413.0
-            ],
-            [
-              238.0,
-              377.0
-            ],
-            [
-              202.0,
-              377.0
-            ]
-          ],
-          "stroke": "none",
-          "stroke_width": null,
-          "fill": "#D7A0D7",
-          "semantic_role": null
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.left.person.body"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "layout_required": true,
-        "confidence": 1.0
-      },
-      {
-        "id": "slot.left.person.eye.left",
-        "type": "circle_slot",
-        "properties": {
-          "cx": 210.0,
-          "cy": 344.0,
-          "r": 2.3,
-          "stroke": "none",
-          "stroke_width": null,
-          "fill": "#2b2118",
-          "semantic_role": null
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.left.person.eye.left"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "layout_required": true,
-        "confidence": 1.0
-      },
-      {
-        "id": "slot.left.person.eye.right",
-        "type": "circle_slot",
-        "properties": {
-          "cx": 230.0,
-          "cy": 344.0,
-          "r": 2.3,
-          "stroke": "none",
-          "stroke_width": null,
-          "fill": "#2b2118",
-          "semantic_role": null
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.left.person.eye.right"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "layout_required": true,
-        "confidence": 1.0
-      },
-      {
-        "id": "slot.left.person.hair.cap",
-        "type": "path_slot",
-        "properties": {
-          "d": "M 192.0 339.0 C 194.0 310.0, 245.0 305.0, 249.0 339.0 C 230.0 323.0, 208.0 330.0, 192.0 339.0 Z",
-          "stroke": "none",
-          "stroke_width": null,
-          "stroke_dasharray": null,
-          "fill": "#4b1f16",
-          "semantic_role": null
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.left.person.hair.cap"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "layout_required": true,
-        "confidence": 1.0
-      },
-      {
-        "id": "slot.left.person.head",
-        "type": "circle_slot",
-        "properties": {
-          "cx": 220.0,
-          "cy": 340.0,
-          "r": 28,
-          "stroke": "none",
-          "stroke_width": null,
-          "fill": "#ffd9ad",
-          "semantic_role": null
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.left.person.head"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "layout_required": true,
-        "confidence": 1.0
-      },
-      {
-        "id": "slot.left.person.smile",
-        "type": "path_slot",
-        "properties": {
-          "d": "M 213.0 356.0 Q 220.0 362.0 227.0 356.0",
-          "stroke": "#b86e39",
-          "stroke_width": 1.3,
-          "stroke_dasharray": null,
-          "fill": "none",
-          "semantic_role": null
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.left.person.smile"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "layout_required": true,
-        "confidence": 1.0
-      },
-      {
-        "id": "slot.left.tail",
-        "type": "polygon_slot",
-        "properties": {
-          "points": [
-            [
-              210.0,
-              230.0
-            ],
-            [
-              230.0,
-              230.0
-            ],
-            [
-              220.0,
-              270.0
-            ]
-          ],
-          "stroke": "#222222",
-          "stroke_width": 1.4,
-          "fill": "#ffffff",
-          "semantic_role": null
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.left.tail"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "layout_required": true,
-        "confidence": 1.0
-      },
-      {
-        "id": "slot.left.text",
-        "type": "instruction",
-        "properties": {
-          "text": "몫은 13이야."
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.left.text"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "confidence": 1.0
-      },
-      {
-        "id": "slot.name.left.box",
-        "type": "rect_slot",
-        "properties": {
-          "x": 180.0,
-          "y": 480.0,
-          "width": 80.0,
-          "height": 36.0,
-          "stroke": "#6fcf83",
-          "stroke_width": 2,
-          "rx": 9,
-          "ry": 9,
-          "fill": "#e9f7dd",
-          "semantic_role": null
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.name.left.box"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "layout_required": true,
-        "confidence": 1.0
-      },
-      {
-        "id": "slot.name.left.text",
-        "type": "instruction",
-        "properties": {
-          "text": "현태"
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.name.left.text"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "confidence": 1.0
-      },
-      {
-        "id": "slot.name.right.box",
-        "type": "rect_slot",
-        "properties": {
-          "x": 525.0,
-          "y": 480.0,
-          "width": 80.0,
-          "height": 36.0,
-          "stroke": "#6fcf83",
-          "stroke_width": 2,
-          "rx": 9,
-          "ry": 9,
-          "fill": "#e9f7dd",
-          "semantic_role": null
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.name.right.box"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "layout_required": true,
-        "confidence": 1.0
-      },
-      {
-        "id": "slot.name.right.text",
-        "type": "instruction",
-        "properties": {
-          "text": "은수"
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.name.right.text"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "confidence": 1.0
-      },
-      {
-        "id": "slot.q1",
-        "type": "question",
-        "properties": {
-          "text": "문제를 바르게 설명한 사람의 이름을 선택하세요."
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.q1"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "confidence": 1.0
-      },
-      {
-        "id": "slot.right.bubble",
-        "type": "path_slot",
-        "properties": {
-          "d": "M 477.5 195.0 C 477.5 161.16, 510.75 148.0, 565.0 148.0 C 619.25 148.0, 652.5 161.16, 652.5 195.0 C 652.5 228.84, 619.25 242.0, 565.0 242.0 C 510.75 242.0, 477.5 228.84, 477.5 195.0 Z",
-          "stroke": "#222222",
-          "stroke_width": 1.6,
-          "stroke_dasharray": null,
-          "fill": "#ffffff",
-          "semantic_role": null
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.right.bubble"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "layout_required": true,
-        "confidence": 1.0
-      },
-      {
-        "id": "slot.right.person.body",
-        "type": "polygon_slot",
-        "properties": {
-          "points": [
-            [
-              537.0,
-              413.0
-            ],
-            [
-              593.0,
-              413.0
-            ],
-            [
-              583.0,
-              377.0
-            ],
-            [
-              547.0,
-              377.0
-            ]
-          ],
-          "stroke": "none",
-          "stroke_width": null,
-          "fill": "#8ED7E6",
-          "semantic_role": null
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.right.person.body"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "layout_required": true,
-        "confidence": 1.0
-      },
-      {
-        "id": "slot.right.person.eye.left",
-        "type": "circle_slot",
-        "properties": {
-          "cx": 555.0,
-          "cy": 344.0,
-          "r": 2.3,
-          "stroke": "none",
-          "stroke_width": null,
-          "fill": "#2b2118",
-          "semantic_role": null
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.right.person.eye.left"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "layout_required": true,
-        "confidence": 1.0
-      },
-      {
-        "id": "slot.right.person.eye.right",
-        "type": "circle_slot",
-        "properties": {
-          "cx": 575.0,
-          "cy": 344.0,
-          "r": 2.3,
-          "stroke": "none",
-          "stroke_width": null,
-          "fill": "#2b2118",
-          "semantic_role": null
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.right.person.eye.right"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "layout_required": true,
-        "confidence": 1.0
-      },
-      {
-        "id": "slot.right.person.hair.cap",
-        "type": "path_slot",
-        "properties": {
-          "d": "M 537.0 339.0 C 539.0 310.0, 590.0 305.0, 594.0 339.0 C 575.0 323.0, 553.0 330.0, 537.0 339.0 Z",
-          "stroke": "none",
-          "stroke_width": null,
-          "stroke_dasharray": null,
-          "fill": "#1d1714",
-          "semantic_role": null
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.right.person.hair.cap"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "layout_required": true,
-        "confidence": 1.0
-      },
-      {
-        "id": "slot.right.person.head",
-        "type": "circle_slot",
-        "properties": {
-          "cx": 565.0,
-          "cy": 340.0,
-          "r": 28,
-          "stroke": "none",
-          "stroke_width": null,
-          "fill": "#ffd9ad",
-          "semantic_role": null
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.right.person.head"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "layout_required": true,
-        "confidence": 1.0
-      },
-      {
-        "id": "slot.right.person.smile",
-        "type": "path_slot",
-        "properties": {
-          "d": "M 558.0 356.0 Q 565.0 362.0 572.0 356.0",
-          "stroke": "#b86e39",
-          "stroke_width": 1.3,
-          "stroke_dasharray": null,
-          "fill": "none",
-          "semantic_role": null
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.right.person.smile"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "layout_required": true,
-        "confidence": 1.0
-      },
-      {
-        "id": "slot.right.tail",
-        "type": "polygon_slot",
-        "properties": {
-          "points": [
-            [
-              555.0,
-              236.0
-            ],
-            [
-              575.0,
-              236.0
-            ],
-            [
-              565.0,
-              270.0
-            ]
-          ],
-          "stroke": "#222222",
-          "stroke_width": 1.4,
-          "fill": "#ffffff",
-          "semantic_role": null
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.right.tail"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "layout_required": true,
-        "confidence": 1.0
-      },
-      {
-        "id": "slot.right.text",
-        "type": "instruction",
-        "properties": {
-          "text": "나머지는 0으로\n나누어떨어져."
-        },
-        "refs": [
-          {
-            "kind": "slot",
-            "id": "slot.right.text"
-          },
-          {
-            "kind": "region",
-            "id": "region.stem"
-          }
-        ],
-        "confidence": 1.0
+        "id": "obj.speaker.right",
+        "type": "person",
+        "name": "은수"
       }
     ],
     "relations": [],
-    "confidence": 1.0
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.dividend",
+          "obj.divisor",
+          "obj.speaker.left",
+          "obj.speaker.right"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.division",
+          "rel.left_statement",
+          "rel.right_statement"
+        ]
+      },
+      "plan": {
+        "method": "division_reasoning",
+        "description": "나눗셈의 몫과 나머지 설명이 맞는지 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "interpret_quotient_statement",
+          "interpret_remainder_statement",
+          "compare_with_division_result"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "statement_match_check",
+          "division_consistency_check"
+        ]
+      }
+    }
   },
   "answer": {
     "blanks": [],
     "choices": [],
     "answer_key": [],
-    "confidence": 1.0
+    "confidence": 1.0,
+    "target": {
+      "type": "person_name",
+      "description": "문제를 바르게 설명한 사람의 이름"
+    },
+    "value": "현태",
+    "unit": ""
   }
 }

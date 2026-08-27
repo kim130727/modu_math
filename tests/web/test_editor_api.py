@@ -2582,6 +2582,83 @@ def test_prune_editor_overrides_keeps_unanchored_inserted_avatar_assets() -> Non
     ]
 
 
+def test_prune_editor_overrides_preserves_inserted_avatar() -> None:
+    layout = {
+        "regions": [
+            {
+                "id": "region.stem",
+                "role": "stem",
+                "slot_ids": [
+                    "slot.q1",
+                    "slot.left.bubble",
+                    "slot.left.person.body",
+                    "slot.left.person.head",
+                    "slot.left.person.hair.cap",
+                    "slot.left.person.smile",
+                ],
+            },
+        ],
+        "slots": [
+            {
+                "id": "slot.q1",
+                "kind": "text",
+                "content": {"text": "Question", "x": 10, "y": 20},
+            },
+            {
+                "id": "slot.left.bubble",
+                "kind": "path",
+                "content": {"d": "M 10 10", "x": 10, "y": 10},
+            },
+            {
+                "id": "slot.left.person.body",
+                "kind": "polygon",
+                "content": {"points": [[0, 0], [10, 0], [10, 10], [0, 10]]},
+            },
+            {
+                "id": "slot.left.person.head",
+                "kind": "circle",
+                "content": {"cx": 50, "cy": 50, "r": 20},
+            },
+            {
+                "id": "slot.left.person.hair.cap",
+                "kind": "path",
+                "content": {"d": "M 0 0", "x": 0, "y": 0},
+            },
+            {
+                "id": "slot.left.person.smile",
+                "kind": "path",
+                "content": {"d": "M 0 0", "x": 0, "y": 0},
+            },
+        ],
+        "reading_order": ["slot.q1"],
+    }
+    overrides = {
+        "slots": {
+            "konva_100_avatar_200": {
+                "href": "data:image/svg+xml;base64,AAAA",
+                "x": 120,
+                "y": 40,
+                "width": 140,
+                "height": 150,
+            },
+        },
+        "slot_regions": {
+            "konva_100_avatar_200": "region.stem",
+        },
+        "version": 1,
+    }
+
+    cleaned, changed = prune_editor_overrides(layout, overrides)
+
+    assert "slots" in cleaned and "konva_100_avatar_200" in cleaned["slots"]
+    assert "slot_regions" in cleaned and "konva_100_avatar_200" in cleaned["slot_regions"]
+    applied = apply_editor_overrides(layout, cleaned)
+    slot_ids = {slot["id"] for slot in applied["slots"]}
+    assert "konva_100_avatar_200" in slot_ids
+    assert "slot.left.person.head" in slot_ids
+    assert "slot.left.person.body" in slot_ids
+
+
 def test_prune_editor_overrides_keeps_missing_single_region_answer_slot() -> None:
     layout = {
         "regions": [

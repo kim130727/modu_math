@@ -512,41 +512,55 @@ class FractionSlotsUpdater(cst.CSTTransformer):
         if id_prefix != self.target_prefix:
             return updated_node
 
+        args = list(updated_node.args)
+        changed = False
+
+        if "font_size" in self.fields:
+            _replace_or_append_arg(args, "font_size", int(self.fields["font_size"]))
+            changed = True
+        if "fill" in self.fields:
+            _replace_or_append_arg(args, "fill", self.fields["fill"])
+            _replace_or_append_arg(
+                args, "stroke", self.fields.get("stroke", self.fields["fill"])
+            )
+            changed = True
+
         move_dx = float(self.fields.get("move_dx", 0.0))
         move_dy = float(self.fields.get("move_dy", 0.0))
-        if move_dx == 0.0 and move_dy == 0.0:
-            return updated_node
+        if move_dx != 0.0 or move_dy != 0.0:
+            kw_to_index: dict[str, int] = {}
+            for idx, arg in enumerate(args):
+                if arg.keyword:
+                    kw_to_index[arg.keyword.value] = idx
 
-        args = list(updated_node.args)
-        kw_to_index: dict[str, int] = {}
-        for idx, arg in enumerate(args):
-            if arg.keyword:
-                kw_to_index[arg.keyword.value] = idx
+            required = ("x", "numerator_y", "bar_y", "denominator_y")
+            missing = [name for name in required if name not in kw_to_index]
+            if missing:
+                raise DslPatchError(
+                    f"fraction_slots missing required arg(s): {', '.join(missing)}"
+                )
 
-        required = ("x", "numerator_y", "bar_y", "denominator_y")
-        missing = [name for name in required if name not in kw_to_index]
-        if missing:
-            raise DslPatchError(
-                f"fraction_slots missing required arg(s): {', '.join(missing)}"
-            )
+            def _replace_numeric_arg(name: str, delta: float) -> None:
+                idx = kw_to_index[name]
+                original = args[idx]
+                args[idx] = cst.Arg(
+                    keyword=cst.Name(name),
+                    value=_shift_numeric_expr(original.value, delta),
+                )
 
-        def _replace_numeric_arg(name: str, delta: float) -> None:
-            idx = kw_to_index[name]
-            original = args[idx]
-            args[idx] = cst.Arg(
-                keyword=cst.Name(name), value=_shift_numeric_expr(original.value, delta)
-            )
+            _replace_numeric_arg("x", move_dx)
+            _replace_numeric_arg("numerator_y", move_dy)
+            _replace_numeric_arg("bar_y", move_dy)
+            _replace_numeric_arg("denominator_y", move_dy)
+            changed = True
 
-        _replace_numeric_arg("x", move_dx)
-        _replace_numeric_arg("numerator_y", move_dy)
-        _replace_numeric_arg("bar_y", move_dy)
-        _replace_numeric_arg("denominator_y", move_dy)
-
-        self.updated = True
-        return updated_node.with_changes(args=tuple(args))
+        if changed:
+            self.updated = True
+            return updated_node.with_changes(args=tuple(args))
+        return updated_node
 
 
-class FractionPartsMoveUpdater(cst.CSTTransformer):
+class FractionPartsUpdater(cst.CSTTransformer):
     def __init__(self, target_prefix: str, fields: dict[str, Any]):
         self.target_prefix = target_prefix
         self.fields = fields
@@ -573,12 +587,27 @@ class FractionPartsMoveUpdater(cst.CSTTransformer):
         ):
             return updated_node
 
+        args = list(updated_node.args)
+        changed = False
+
+        if "font_size" in self.fields and slot_type in {"TextSlot", "TextBoxSlot"}:
+            _replace_or_append_arg(args, "font_size", int(self.fields["font_size"]))
+            changed = True
+        if "fill" in self.fields:
+            if slot_type in {"TextSlot", "TextBoxSlot"}:
+                _replace_or_append_arg(args, "fill", self.fields["fill"])
+                changed = True
+            elif slot_type == "LineSlot":
+                _replace_or_append_arg(args, "stroke", self.fields["fill"])
+                changed = True
+
         dx = float(self.fields.get("move_dx", 0.0))
         dy = float(self.fields.get("move_dy", 0.0))
-        if dx == 0.0 and dy == 0.0:
-            return updated_node
-        args = list(updated_node.args)
-        if _shift_slot_call_args(args, slot_type, dx, dy):
+        if dx != 0.0 or dy != 0.0:
+            if _shift_slot_call_args(args, slot_type, dx, dy):
+                changed = True
+
+        if changed:
             self.updated = True
             return updated_node.with_changes(args=tuple(args))
         return updated_node
@@ -2276,7 +2305,7 @@ def apply_layout_patches(
             )
             continue
 
-        frac_parts_updater = FractionPartsMoveUpdater(
+        frac_parts_updater = FractionPartsUpdater(
             target_prefix=frac_prefix, fields=value
         )
         transformed = transformed.visit(frac_parts_updater)

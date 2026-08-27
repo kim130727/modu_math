@@ -210,6 +210,9 @@ def _override_is_answer_slot(slot_id: str, content: dict[str, Any]) -> bool:
 EDITOR_INSERTED_SLOT_PATTERN = re.compile(
     r"^konva_\d+_(?:avatar|image|bubble|text|math|rect|circle|line|path)_\d+$"
 )
+EDITOR_AVATAR_SLOT_PATTERN = re.compile(
+    r"^konva_\d+_avatar_\d+$"
+)
 
 
 def _default_region_id_for_inserted_slot(layout: dict[str, Any]) -> str | None:
@@ -225,7 +228,9 @@ def _default_region_id_for_inserted_slot(layout: dict[str, Any]) -> str | None:
     return first_region_id
 
 
-def _is_editor_inserted_visual_slot(slot_id: str, content: dict[str, Any]) -> bool:
+def _is_editor_inserted_visual_slot(
+    slot_id: str, content: dict[str, Any], layout: dict[str, Any] | None = None
+) -> bool:
     inferred_kind = _infer_override_slot_kind(content)
     if inferred_kind in {"image", "path"}:
         return True
@@ -267,7 +272,9 @@ def _infer_region_id_for_slot(
         ]
         if len(region_ids) == 1:
             return region_ids[0]
-    if content is not None and _is_editor_inserted_visual_slot(slot_id, content):
+    if content is not None and _is_editor_inserted_visual_slot(
+        slot_id, content, layout=layout
+    ):
         return _default_region_id_for_inserted_slot(layout)
     return None
 
@@ -278,9 +285,38 @@ FRACTION_LATEX_PATTERN = re.compile(
 
 
 def _expand_fraction_override_slots(
-    slot_id: str, content: dict[str, Any]
+    slot_id: str, content: dict[str, Any], layout: dict[str, Any] | None = None
 ) -> list[dict[str, Any]] | None:
     text = content.get("text") or content.get("latex")
+    num_slot = None
+    den_slot = None
+    whole_slot = None
+    bar_slot = None
+
+    if not isinstance(text, str) and layout is not None:
+        slots_by_id = {
+            s.get("id"): s
+            for s in layout.get("slots", [])
+            if isinstance(s, dict) and isinstance(s.get("id"), str)
+        }
+        num_slot = slots_by_id.get(f"{slot_id}.num")
+        den_slot = slots_by_id.get(f"{slot_id}.den")
+        whole_slot = slots_by_id.get(f"{slot_id}.whole")
+        bar_slot = slots_by_id.get(f"{slot_id}.bar")
+        if num_slot and den_slot:
+            num_content = num_slot.get("content", {})
+            den_content = den_slot.get("content", {})
+            num_val = num_content.get("text", "")
+            den_val = den_content.get("text", "")
+            whole_val = (
+                whole_slot.get("content", {}).get("text", "") if whole_slot else ""
+            )
+            text = (
+                f"{whole_val}\\frac{{{num_val}}}{{{den_val}}}"
+                if whole_val
+                else f"\\frac{{{num_val}}}{{{den_val}}}"
+            )
+
     if not isinstance(text, str):
         return None
     match = FRACTION_LATEX_PATTERN.match(text.strip())
@@ -291,88 +327,121 @@ def _expand_fraction_override_slots(
     num = match.group(2)
     den = match.group(3)
 
-    box_x = float(content.get("x", 0.0))
-    box_y = float(content.get("y", 0.0))
+    default_font_size = 28
+    if num_slot and isinstance(num_slot.get("content"), dict):
+        default_font_size = num_slot["content"].get("font_size", 28)
+
+    font_size = int(content.get("font_size", default_font_size))
+    fill = content.get("fill") or (
+        num_slot.get("content", {}).get("fill")
+        if num_slot and isinstance(num_slot.get("content"), dict)
+        else "#111827"
+    )
+
+    box_x = content.get("x")
+    box_y = content.get("y")
     box_w = float(content.get("width", 50.0))
     box_h = float(content.get("height", 60.0))
-    font_size = int(content.get("font_size", 28))
-    fill = content.get("fill", "#111827")
-    small_font = max(16, int(round(font_size * 0.78)))
+
+    if box_x is None or box_y is None:
+        if bar_slot and isinstance(bar_slot.get("content"), dict):
+            bar_c = bar_slot["content"]
+            bx1 = float(bar_c.get("x1", 0))
+            bx2 = float(bar_c.get("x2", 0))
+            by = float(bar_c.get("y1", 0))
+            if box_x is None:
+                box_x = min(bx1, bx2)
+            if box_y is None:
+                box_y = by - box_h / 2.0
+        else:
+            box_x = float(box_x or 0.0)
+            box_y = float(box_y or 0.0)
+    else:
+        box_x = float(box_x)
+        box_y = float(box_y)
 
     num_len = len(num)
     den_len = len(den)
     max_digits = max(num_len, den_len)
-    bar_width = max(26.0, max_digits * 13.0 + 8.0)
-    whole_width = (len(whole) * small_font * 0.62 + 6.0) if whole else 0.0
+    bar_width = max(26.0, max_digits * font_size * 0.62 + 8.0)
+    whole_width = (len(whole) * font_size * 0.62 + 6.0) if whole else 0.0
     total_width = whole_width + bar_width
 
     start_x = box_x + max(0.0, (box_w - total_width) / 2.0)
     fraction_center_x = start_x + whole_width + bar_width / 2.0
     center_y = box_y + box_h / 2.0
     bar_y = center_y
-    num_y = center_y - small_font * 0.35
-    den_y = center_y + small_font * 0.95
+    num_y = center_y - font_size * 0.35
+    den_y = center_y + font_size * 0.95
 
     slots = []
     if whole:
         whole_x = start_x + whole_width / 2.0
-        whole_y = center_y + small_font * 0.35
-        slots.append({
-            "id": f"{slot_id}.whole",
+        whole_y = center_y + font_size * 0.35
+        slots.append(
+            {
+                "id": f"{slot_id}.whole",
+                "kind": "text",
+                "prompt": "",
+                "content": {
+                    "text": whole,
+                    "x": round(whole_x, 2),
+                    "y": round(whole_y, 2),
+                    "font_size": font_size,
+                    "anchor": "middle",
+                    "fill": fill,
+                    "style_role": "body",
+                },
+            }
+        )
+
+    slots.append(
+        {
+            "id": f"{slot_id}.num",
             "kind": "text",
             "prompt": "",
             "content": {
-                "text": whole,
-                "x": round(whole_x, 2),
-                "y": round(whole_y, 2),
-                "font_size": small_font,
+                "text": num,
+                "x": round(fraction_center_x, 2),
+                "y": round(num_y, 2),
+                "font_size": font_size,
                 "anchor": "middle",
                 "fill": fill,
                 "style_role": "body",
             },
-        })
-
-    slots.append({
-        "id": f"{slot_id}.num",
-        "kind": "text",
-        "prompt": "",
-        "content": {
-            "text": num,
-            "x": round(fraction_center_x, 2),
-            "y": round(num_y, 2),
-            "font_size": small_font,
-            "anchor": "middle",
-            "fill": fill,
-            "style_role": "body",
-        },
-    })
-    slots.append({
-        "id": f"{slot_id}.bar",
-        "kind": "line",
-        "prompt": "",
-        "content": {
-            "x1": round(fraction_center_x - bar_width / 2.0, 2),
-            "y1": round(bar_y, 2),
-            "x2": round(fraction_center_x + bar_width / 2.0, 2),
-            "y2": round(bar_y, 2),
-            "stroke": fill,
-            "stroke_width": 2.2,
-        },
-    })
-    slots.append({
-        "id": f"{slot_id}.den",
-        "kind": "text",
-        "prompt": "",
-        "content": {
-            "text": den,
-            "x": round(fraction_center_x, 2),
-            "y": round(den_y, 2),
-            "font_size": small_font,
-            "anchor": "middle",
-            "fill": fill,
-            "style_role": "body",
-        },
-    })
+        }
+    )
+    slots.append(
+        {
+            "id": f"{slot_id}.bar",
+            "kind": "line",
+            "prompt": "",
+            "content": {
+                "x1": round(fraction_center_x - bar_width / 2.0, 2),
+                "y1": round(bar_y, 2),
+                "x2": round(fraction_center_x + bar_width / 2.0, 2),
+                "y2": round(bar_y, 2),
+                "stroke": fill,
+                "stroke_width": 2.2,
+            },
+        }
+    )
+    slots.append(
+        {
+            "id": f"{slot_id}.den",
+            "kind": "text",
+            "prompt": "",
+            "content": {
+                "text": den,
+                "x": round(fraction_center_x, 2),
+                "y": round(den_y, 2),
+                "font_size": font_size,
+                "anchor": "middle",
+                "fill": fill,
+                "style_role": "body",
+            },
+        }
+    )
     return slots
 
 
@@ -393,17 +462,24 @@ def _add_missing_override_slot(
         layout["slots"] = []
         slots = layout["slots"]
 
-    fraction_expanded = _expand_fraction_override_slots(slot_id, content)
+    fraction_expanded = _expand_fraction_override_slots(
+        slot_id, content, layout=layout
+    )
     if fraction_expanded:
         remove_ids = {
             s.get("id")
-            for s in slots
+            for s in layout.get("slots", [])
             if isinstance(s, dict)
             and isinstance(s.get("id"), str)
             and (s.get("id") == slot_id or s.get("id").startswith(f"{slot_id}."))
         }
         if remove_ids:
             _remove_slot_ids_from_layout(layout, remove_ids)
+
+        slots = layout.setdefault("slots", [])
+        if not isinstance(slots, list):
+            layout["slots"] = []
+            slots = layout["slots"]
 
         for frac_slot in fraction_expanded:
             slots.append(frac_slot)
@@ -415,7 +491,10 @@ def _add_missing_override_slot(
                     slot_ids.append(frac_slot["id"])
                 break
             reading_order = layout.get("reading_order")
-            if isinstance(reading_order, list) and frac_slot["id"] not in reading_order:
+            if (
+                isinstance(reading_order, list)
+                and frac_slot["id"] not in reading_order
+            ):
                 reading_order.append(frac_slot["id"])
         return
 
@@ -926,7 +1005,9 @@ def apply_editor_overrides(
                         ),
                     )
                     slot_ids.add(slot_id)
-                elif _expand_fraction_override_slots(slot_id, patch):
+                elif _expand_fraction_override_slots(
+                    slot_id, patch, layout=layout
+                ):
                     explicit_region_id = slot_region_map.get(slot_id)
                     _add_missing_override_slot(
                         layout,
