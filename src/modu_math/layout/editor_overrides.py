@@ -426,7 +426,8 @@ def _expand_fraction_override_slots(
         fraction_center_x = start_x + whole_width + bar_width / 2.0
         bar_x1 = start_x + whole_width
         bar_x2 = start_x + whole_width + bar_width
-        center_y = box_y + box_h / 2.0
+        effective_box_h = min(box_h, max(50.0, font_size * 2.4))
+        center_y = box_y + effective_box_h / 2.0
         bar_y = center_y
         num_y = center_y - font_size * 0.35
         den_y = center_y + font_size * 0.95
@@ -449,7 +450,8 @@ def _expand_fraction_override_slots(
         fraction_center_x = start_x + whole_width + bar_width / 2.0
         bar_x1 = start_x + whole_width
         bar_x2 = start_x + whole_width + bar_width
-        center_y = box_y + box_h / 2.0
+        effective_box_h = min(box_h, max(50.0, font_size * 2.4))
+        center_y = box_y + effective_box_h / 2.0
         bar_y = center_y
         num_y = center_y - font_size * 0.35
         den_y = center_y + font_size * 0.95
