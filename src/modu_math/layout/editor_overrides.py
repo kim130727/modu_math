@@ -530,8 +530,6 @@ def _deleted_slot_matches(
     for deleted_id in deleted - exact_deleted:
         if slot_id.startswith(f"{deleted_id}."):
             return True
-        if deleted_id.startswith(f"{slot_id}."):
-            return True
     return False
 
 
@@ -852,7 +850,7 @@ def prune_editor_overrides(
                     )
                 )
                 normalized = normalized or text_spacing_normalized
-                if slot_kinds.get(slot_id) == "text_box":
+                if slot_kinds.get(slot_id) == "text_box" or "width" in patch:
                     patch, text_normalized = _normalize_text_box_height(
                         base_content, patch
                     )
@@ -1029,16 +1027,37 @@ def apply_editor_overrides(
                 continue
             content = slot.get("content")
             if isinstance(content, dict):
+                current_kind = (
+                    slot.get("kind") if isinstance(slot.get("kind"), str) else None
+                )
                 patch, _ = _normalize_slot_patch(
-                    slot.get("kind") if isinstance(slot.get("kind"), str) else None,
+                    current_kind,
                     patch,
                 )
                 patch = _prepare_text_blank_rect_override(slot, patch)
                 _drop_transform_for_absolute_geometry_override(
-                    slot.get("kind") if isinstance(slot.get("kind"), str) else None,
+                    current_kind,
                     content,
                     patch,
                 )
+                if (
+                    current_kind == "text"
+                    and str(content.get("text", "")).strip() != "□"
+                    and ("width" in patch or patch.get("kind") == "text_box")
+                ):
+                    slot["kind"] = "text_box"
+                elif patch.get("kind") in {
+                    "text",
+                    "text_box",
+                    "rect",
+                    "circle",
+                    "line",
+                    "polygon",
+                    "image",
+                    "path",
+                    "blank",
+                }:
+                    slot["kind"] = patch["kind"]
                 content.update(patch)
                 _normalize_answer_input_interaction(content)
 

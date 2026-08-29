@@ -1773,7 +1773,12 @@ function applyAutoTextSizing(nextShape: Extract<EditorShape, { type: "text" }>, 
   ) {
     return nextShape;
   }
-  if (nextShape.sourceKind === "text_box") {
+  const isTextBox =
+    nextShape.sourceKind === "text_box" ||
+    (typeof nextShape.width === "number" &&
+      nextShape.width > 0 &&
+      (nextShape.width !== previousShape.width || nextShape.width !== autoTextWidth(nextShape.text, nextShape.fontSize)));
+  if (isTextBox) {
     const width = normalizedTextBoxWidth(
       nextShape.text,
       nextShape.fontSize,
@@ -1782,6 +1787,7 @@ function applyAutoTextSizing(nextShape: Extract<EditorShape, { type: "text" }>, 
     );
     return {
       ...nextShape,
+      sourceKind: "text_box",
       width,
       height: fittedTextHeight(nextShape.text, nextShape.fontSize, width, nextShape.lineHeight ?? 1.25),
     };

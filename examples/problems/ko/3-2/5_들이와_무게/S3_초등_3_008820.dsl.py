@@ -2,13 +2,14 @@ from __future__ import annotations
 from modu_math.dsl import (
     Canvas,
     CircleSlot,
+    ImageSlot,
     LineSlot,
     PathSlot,
     ProblemTemplate,
     RectSlot,
     Region,
+    TextBoxSlot,
     TextSlot,
-    ImageSlot,
 )
 
 
@@ -22,7 +23,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.q1", "slot.q2", "slot.inserted.image.1"),
+                slot_ids=("slot.q1", "slot.inserted.image.1"),
             ),
             Region(
                 id="region.diagram",
@@ -33,33 +34,19 @@ def build_problem_template() -> ProblemTemplate:
             Region(id="region.answer", role="answer", flow="absolute", slot_ids=()),
         ),
         slots=(
-            TextSlot(
+            TextBoxSlot(
                 id="slot.q1",
                 prompt="",
-                text="㉮ 그릇, ㉯ 그릇, ㉰ 그릇에 물을 가득 채운 후 모양과 같은 그릇",
+                text="㉮ 그릇, ㉯ 그릇, ㉰ 그릇에 물을 가득 채운 후 모양과 같은 그릇에 옮겨 담았습니다. 그림과 같이 물을 채웠을 때 ㉮ 그릇, ㉯ 그릇, ㉰ 그릇 중 들이가 가장 적은 것은 어느 것인지 선택하세요. ",
                 style_role="question",
                 x=35,
-                y=45,
+                y=40,
+                width=780,
+                height=110,
                 font_size=28,
+                align="left",
+                line_height=1.25,
                 fill="#111111",
-            ),
-            TextSlot(
-                id="slot.q2",
-                prompt="",
-                text="에 옮겨 담았습니다. 그림과 같이 물을 채웠을 때 ㉮ 그릇, ㉯ 그릇, ",
-                style_role="question",
-                x=35,
-                y=80,
-                font_size=28,
-            ),
-            TextSlot(
-                id="slot.q3",
-                prompt="",
-                text="㉰ 그릇 중 들이가 가장 적은 것은 어느 것인지 선택하세요.",
-                style_role="question",
-                x=35,
-                y=115,
-                font_size=28,
             ),
             TextSlot(
                 id="slot.option.text",

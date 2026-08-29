@@ -134,7 +134,9 @@ function updateValue(baseObject: ProblemObject, object: ProblemObject): Record<s
   switch (object.type) {
     case "math_text": {
       const isTextBoxTarget =
-        baseObject.type === "math_text" ? baseObject.props.sourceKind === "text_box" : object.props.sourceKind === "text_box";
+        (baseObject.type === "math_text" && baseObject.props.sourceKind === "text_box") ||
+        object.props.sourceKind === "text_box" ||
+        typeof object.props.width === "number";
       return mathTextFields(object, isTextBoxTarget);
     }
     case "basic_shape":
@@ -261,6 +263,9 @@ function mathTextFields(object: MathTextObject, includeBoxSize: boolean): Record
     fields.height = round(object.props.height ?? Math.max(24, fontSize * 1.25));
     fields.align = textAlign;
     fields.line_height = object.props.lineHeight ?? 1.25;
+    if (object.props.sourceKind === "text_box") {
+      fields.kind = "text_box";
+    }
   } else {
     if (textAlign !== "left") {
       fields.anchor = textAlign === "center" ? "middle" : "end";

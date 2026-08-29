@@ -36,9 +36,14 @@ class TextSlot(SlotBase):
     style_role: str = "body"
     x: float | None = None
     y: float | None = None
+    width: float | None = None
+    height: float | None = None
     font_size: int | None = None
     max_width: float | None = None
     font_family: str | None = None
+    align: Literal["left", "center", "right"] | None = None
+    valign: Literal["top", "middle", "bottom"] | None = None
+    line_height: float | None = None
     anchor: str | None = None
     fill: str | None = None
     transform: str | None = None

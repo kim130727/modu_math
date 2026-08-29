@@ -21,9 +21,14 @@ SUPPORTED_SLOTS = {
         "text",
         "x",
         "y",
+        "width",
+        "height",
         "font_size",
         "max_width",
         "font_family",
+        "align",
+        "valign",
+        "line_height",
         "anchor",
         "fill",
         "style_role",
@@ -155,7 +160,7 @@ FAST_ADD_OVERRIDE_KINDS = {
     "path",
 }
 TEXT_SLOT_COMPAT_FIELDS = {
-    "TextSlot": {"width", "height", "align", "valign", "line_height"},
+    "TextSlot": set(),
     "TextBoxSlot": {"max_width", "anchor"},
 }
 SLOT_COMPAT_FIELDS = {
@@ -420,6 +425,17 @@ class SlotUpdater(cst.CSTTransformer):
                 return updated_node.with_changes(args=tuple(args))
             return updated_node
 
+        converted_func = None
+        if slot_type == "TextSlot" and (
+            "width" in self.fields
+            or "height" in self.fields
+            or "align" in self.fields
+            or "line_height" in self.fields
+        ):
+            converted_func = cst.Name("TextBoxSlot")
+            slot_type = "TextBoxSlot"
+            self.converted_to_textbox = True
+
         allowed = SUPPORTED_SLOTS[slot_type]
         fields = _compatible_slot_fields(slot_type, self.fields)
         invalid = sorted(set(fields) - allowed)
@@ -450,6 +466,8 @@ class SlotUpdater(cst.CSTTransformer):
                 args.append(replacement)
 
         self.updated = True
+        if converted_func is not None:
+            return updated_node.with_changes(func=converted_func, args=tuple(args))
         return updated_node.with_changes(args=tuple(args))
 
 
@@ -1124,7 +1142,6 @@ def _clear_editor_slot_delete(paths: Any, target: str) -> None:
         return (
             target == deleted_id
             or target.startswith(f"{deleted_id}.")
-            or deleted_id.startswith(f"{target}.")
         )
 
     cleaned = [slot_id for slot_id in deleted if not conflicts(slot_id)]
@@ -1172,7 +1189,6 @@ def _clear_editor_slot_state(paths: Any, target: str) -> None:
             return (
                 target == deleted_id
                 or target.startswith(f"{deleted_id}.")
-                or deleted_id.startswith(f"{target}.")
             )
 
         cleaned = [slot_id for slot_id in deleted if not conflicts(slot_id)]
@@ -2275,6 +2291,8 @@ def apply_layout_patches(
         updater = SlotUpdater(target=target, fields=value)
         transformed = transformed.visit(updater)
         if updater.updated:
+            if getattr(updater, "converted_to_textbox", False):
+                transformed = _ensure_dsl_import(transformed, "TextBoxSlot")
             _clear_editor_slot_override_fields(paths, target, value.keys())
             applied.append(
                 AppliedPatch(target=target, op=op, fields=list(value.keys()))

@@ -397,7 +397,10 @@ def _compile_slots(
             element_type = "text"
             if isinstance(content.get("max_width"), int | float):
                 attributes["max_width"] = float(content["max_width"])
-            if kind == "text_box":
+            is_text_box = kind == "text_box" or (
+                text.strip() != "□" and isinstance(content.get("width"), int | float)
+            )
+            if is_text_box:
                 box_width = (
                     float(content["width"])
                     if isinstance(content.get("width"), int | float)
@@ -442,7 +445,7 @@ def _compile_slots(
                     text=text,
                 )
             )
-            if kind == "text_box":
+            if is_text_box:
                 y = max(y, ty + box_height + 40.0)
             elif isinstance(content.get("y"), int | float):
                 y = max(y, ty + font_size + 24.0)

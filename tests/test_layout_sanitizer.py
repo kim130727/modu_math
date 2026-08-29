@@ -271,3 +271,35 @@ def test_sanitize_layout_does_not_shift_table_when_table_is_protected() -> None:
     assert by_id["slot.table.h1"]["content"]["y1"] == 149.385
     assert by_id["slot.table.r1c1"]["content"]["y"] == 136.385
 
+
+def test_sanitize_layout_deleting_copy_slot_preserves_base_slot() -> None:
+    layout = {
+        "canvas": {"width": 960, "height": 520},
+        "regions": [
+            {
+                "id": "region.header",
+                "role": "stem",
+                "slot_ids": ["slot.q_text", "slot.q_text.copy1"],
+            }
+        ],
+        "slots": [
+            {
+                "id": "slot.q_text",
+                "kind": "text",
+                "content": {"text": "질문 본문", "x": 50, "y": 80, "font_size": 30},
+            },
+            {
+                "id": "slot.q_text.copy1",
+                "kind": "text",
+                "content": {"text": "두번째 줄", "x": 50, "y": 120, "font_size": 30},
+            },
+        ],
+    }
+
+    sanitized = sanitize_layout(layout, deleted_slots={"slot.q_text.copy1"})
+    remaining_ids = [slot["id"] for slot in sanitized["slots"]]
+
+    assert remaining_ids == ["slot.q_text"]
+    assert sanitized["regions"][0]["slot_ids"] == ["slot.q_text"]
+
+

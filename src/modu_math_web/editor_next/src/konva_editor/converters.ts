@@ -51,7 +51,7 @@ function problemObjectToEditorShape(object: ProblemObject, canvas: ProblemCanvas
     case "math_text": {
       const text = object.props.latex || object.props.text;
       const fontSize = object.props.fontSize;
-      const isTextBox = object.props.sourceKind === "text_box";
+      const isTextBox = object.props.sourceKind === "text_box" || (typeof object.props.width === "number" && object.props.width > 0);
       const textAlign = object.props.textAlign ?? "left";
       const lineHeight = object.props.lineHeight ?? 1.25;
       const needsAlignmentBox = textAlign !== "left";
@@ -101,7 +101,7 @@ function problemObjectToEditorShape(object: ProblemObject, canvas: ProblemCanvas
           height: isTextBox ? normalizedTextBoxHeight(text, fontSize, width ?? estimateTextWidth(text, fontSize), object.props.height, lineHeight) : undefined,
           align: textAlign,
           lineHeight,
-          sourceKind: object.props.sourceKind ?? "text",
+          sourceKind: isTextBox ? "text_box" : (object.props.sourceKind ?? "text"),
           ...regionProps,
           ...semanticProps,
           ...answerProps,
@@ -389,15 +389,16 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
           },
         },
       ];
-    case "text":
-      const sourceKind = shape.sourceKind ?? (shape.width ? "text_box" : "text");
+    case "text": {
+      const isTextBox = shape.sourceKind === "text_box" || (typeof shape.width === "number" && shape.width > 0);
+      const sourceKind = isTextBox ? "text_box" : (shape.sourceKind ?? "text");
       const lineHeight = shape.lineHeight ?? 1.25;
       const width =
-        sourceKind === "text_box" && typeof shape.width === "number"
+        isTextBox && typeof shape.width === "number"
           ? normalizedTextBoxWidth(shape.text, shape.fontSize, shape.width, shape.align ?? "left")
           : shape.width;
       const height =
-        sourceKind === "text_box" && typeof width === "number"
+        isTextBox && typeof width === "number"
           ? normalizedTextBoxHeight(shape.text, shape.fontSize, width, shape.height, lineHeight)
           : shape.height;
       return [
@@ -424,6 +425,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
           },
         },
       ];
+    }
     case "rect":
       return [
         {
@@ -729,11 +731,8 @@ export function fittedTextWidth(text: string, fontSize: number): number {
 export function normalizedTextBoxWidth(text: string, fontSize: number, width?: number, align = "left", maxWidth?: number): number {
   const fittedWidth = fittedTextWidth(text, fontSize);
   const capped = (value: number) => Math.max(24, Math.min(value, maxWidth ?? value));
-  if (typeof width !== "number" || !Number.isFinite(width)) return capped(fittedWidth);
-  if (!text.trim() || align !== "left" || text.includes("\n")) return capped(width);
-  if (maxWidth !== undefined && width > maxWidth) return capped(width);
-  const suspiciouslyWide = width > Math.max(fittedWidth * 2.2, fittedWidth + fontSize * 2.5);
-  return suspiciouslyWide ? capped(fittedWidth) : capped(width);
+  if (typeof width !== "number" || !Number.isFinite(width) || width <= 0) return capped(fittedWidth);
+  return capped(width);
 }
 
 function maxTextBoxWidthWithinCanvas(x: number, canvasWidth: number): number {

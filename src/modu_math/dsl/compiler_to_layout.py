@@ -258,10 +258,20 @@ def _normalize_slot(slot: AuthoringSlot) -> dict[str, Any]:
             content["x"] = float(slot.x)
         if slot.y is not None:
             content["y"] = float(slot.y)
+        if slot.width is not None:
+            content["width"] = float(slot.width)
+        if slot.height is not None:
+            content["height"] = float(slot.height)
         if slot.font_size is not None:
             content["font_size"] = int(slot.font_size)
         if slot.max_width is not None:
             content["max_width"] = float(slot.max_width)
+        if slot.align is not None:
+            content["align"] = slot.align
+        if slot.valign is not None:
+            content["valign"] = slot.valign
+        if slot.line_height is not None:
+            content["line_height"] = float(slot.line_height)
         if isinstance(slot.font_family, str) and slot.font_family:
             content["font_family"] = slot.font_family
         if isinstance(slot.anchor, str) and slot.anchor:
@@ -278,9 +288,10 @@ def _normalize_slot(slot: AuthoringSlot) -> dict[str, Any]:
         )
         if semantic_role:
             content["semantic_role"] = semantic_role
+        slot_kind = "text_box" if slot.width is not None or slot.kind == "text_box" else "text"
         return {
             "id": slot.id,
-            "kind": slot.kind,
+            "kind": slot_kind,
             "prompt": slot.prompt or "",
             "content": content,
         }
