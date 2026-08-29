@@ -288,7 +288,7 @@ def _normalize_slot(slot: AuthoringSlot) -> dict[str, Any]:
         )
         if semantic_role:
             content["semantic_role"] = semantic_role
-        slot_kind = "text_box" if slot.width is not None or slot.kind == "text_box" else "text"
+        slot_kind = "text_box" if slot.kind == "text_box" or isinstance(slot, TextBoxSlot) else "text"
         return {
             "id": slot.id,
             "kind": slot_kind,

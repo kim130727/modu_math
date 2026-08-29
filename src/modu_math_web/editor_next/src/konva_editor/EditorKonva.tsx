@@ -1773,11 +1773,7 @@ function applyAutoTextSizing(nextShape: Extract<EditorShape, { type: "text" }>, 
   ) {
     return nextShape;
   }
-  const isTextBox =
-    nextShape.sourceKind === "text_box" ||
-    (typeof nextShape.width === "number" &&
-      nextShape.width > 0 &&
-      (nextShape.width !== previousShape.width || nextShape.width !== autoTextWidth(nextShape.text, nextShape.fontSize)));
+  const isTextBox = nextShape.sourceKind === "text_box";
   if (isTextBox) {
     const width = normalizedTextBoxWidth(
       nextShape.text,
@@ -1815,10 +1811,20 @@ function fractionMathSize(latex: string, fontSize: number): { width: number; hei
   const match = latex.trim().match(/^([+-]?\d+)?\s*\\frac\s*\{([^{}]+)\}\s*\{([^{}]+)\}$/);
   if (!match) return null;
   const smallFont = Math.max(16, fontSize * 0.78);
-  const wholeWidth = match[1] ? Math.max(smallFont, match[1].length * smallFont * 0.62) + 6 : 0;
-  const numeratorWidth = Math.max(smallFont, match[2].length * smallFont * 0.62);
-  const denominatorWidth = Math.max(smallFont, match[3].length * smallFont * 0.62);
-  const fractionWidth = Math.max(26, numeratorWidth, denominatorWidth) + 8;
+  const estimateWidth = (text: string, font: number) => {
+    let w = 0;
+    for (const ch of text) {
+      w += (ch === "1" || ch === "l" || ch === "i" || ch === "." || ch === ",") ? font * 0.36 : font * 0.58;
+    }
+    return Math.max(font * 0.36, w);
+  };
+  const wholeText = match[1] || "";
+  const numText = match[2] || "";
+  const denText = match[3] || "";
+  const wholeWidth = wholeText ? estimateWidth(wholeText, fontSize) + Math.max(3, Math.round(fontSize * 0.15)) : 0;
+  const numeratorWidth = estimateWidth(numText, smallFont);
+  const denominatorWidth = estimateWidth(denText, smallFont);
+  const fractionWidth = Math.max(18, Math.max(numeratorWidth, denominatorWidth) + smallFont * 0.35);
   return {
     width: Math.ceil(wholeWidth + fractionWidth + 6),
     height: Math.ceil(smallFont * 2.25 + 6),

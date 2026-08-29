@@ -16,6 +16,7 @@ from .dsl_format import format_dsl_source
 from .problems import resolve_problem_paths
 
 SLOT_METADATA_FIELDS = {"interaction", "input_style"}
+BASE_SLOT_FIELDS = {"id", "prompt", "semantic_role"}
 SUPPORTED_SLOTS = {
     "TextSlot": {
         "text",
@@ -149,7 +150,11 @@ CANDIDATE_POINT_HELPERS = {"_candidate_slots"}
 MEASUREMENT_TOOL_HELPERS = {"compass_on_ruler_slots"}
 CANVAS_TARGETS = {"__canvas__", "canvas"}
 CANVAS_FIELDS = {"width", "height"}
-EDITOR_OVERRIDE_FIELDS = set().union(*SUPPORTED_SLOTS.values()) - {"move_dx", "move_dy"}
+EDITOR_OVERRIDE_FIELDS = (
+    set().union(*SUPPORTED_SLOTS.values())
+    | BASE_SLOT_FIELDS
+    | {"kind"}
+) - {"move_dx", "move_dy"}
 FAST_ADD_OVERRIDE_KINDS = {
     "text",
     "text_box",
@@ -160,8 +165,8 @@ FAST_ADD_OVERRIDE_KINDS = {
     "path",
 }
 TEXT_SLOT_COMPAT_FIELDS = {
-    "TextSlot": set(),
-    "TextBoxSlot": {"max_width", "anchor"},
+    "TextSlot": {"kind"},
+    "TextBoxSlot": {"max_width", "anchor", "kind"},
 }
 SLOT_COMPAT_FIELDS = {
     **TEXT_SLOT_COMPAT_FIELDS,
@@ -394,8 +399,10 @@ def _shift_numeric_expr(expr: cst.BaseExpression, delta: float) -> cst.BaseExpre
 class SlotUpdater(cst.CSTTransformer):
     def __init__(self, target: str, fields: dict[str, Any]):
         self.target = target
-        self.fields = fields
+        self.fields = dict(fields)
         self.updated = False
+        self.converted_to_textbox = False
+        self.converted_to_text = False
 
     def leave_Call(
         self, original_node: cst.Call, updated_node: cst.Call
@@ -426,17 +433,42 @@ class SlotUpdater(cst.CSTTransformer):
             return updated_node
 
         converted_func = None
+        target_kind = self.fields.get("kind")
         if slot_type == "TextSlot" and (
-            "width" in self.fields
-            or "height" in self.fields
-            or "align" in self.fields
-            or "line_height" in self.fields
+            target_kind == "text_box"
+            or (
+                "width" in self.fields
+                and "height" in self.fields
+                and ("align" in self.fields or "line_height" in self.fields)
+            )
         ):
             converted_func = cst.Name("TextBoxSlot")
             slot_type = "TextBoxSlot"
             self.converted_to_textbox = True
+            if "align" not in self.fields:
+                anchor_arg = _keyword_arg(original_node, "anchor")
+                if anchor_arg is not None and isinstance(
+                    anchor_arg.value, cst.SimpleString
+                ):
+                    try:
+                        anchor_val = cst.parse_expression(
+                            anchor_arg.value.value
+                        ).evaluated_value
+                        align_map = {
+                            "start": "left",
+                            "middle": "center",
+                            "end": "right",
+                        }
+                        if anchor_val in align_map:
+                            self.fields["align"] = align_map[anchor_val]
+                    except Exception:
+                        pass
+        elif slot_type == "TextBoxSlot" and target_kind == "text":
+            converted_func = cst.Name("TextSlot")
+            slot_type = "TextSlot"
+            self.converted_to_text = True
 
-        allowed = SUPPORTED_SLOTS[slot_type]
+        allowed = SUPPORTED_SLOTS[slot_type] | BASE_SLOT_FIELDS
         fields = _compatible_slot_fields(slot_type, self.fields)
         invalid = sorted(set(fields) - allowed)
         if invalid:
@@ -444,8 +476,14 @@ class SlotUpdater(cst.CSTTransformer):
                 f"unsupported field(s) for {slot_type}: {', '.join(invalid)}"
             )
 
-        args = list(updated_node.args)
+        args = [
+            arg
+            for arg in updated_node.args
+            if not (arg.keyword and arg.keyword.value not in allowed)
+        ]
         for field_name, field_value in fields.items():
+            if field_name == "kind":
+                continue
             if field_value is None:
                 args = [
                     arg
@@ -472,13 +510,9 @@ class SlotUpdater(cst.CSTTransformer):
 
 
 def _compatible_slot_fields(slot_type: str, fields: dict[str, Any]) -> dict[str, Any]:
-    """Drop known compatibility fields before updating an existing slot."""
-    allowed = SUPPORTED_SLOTS[slot_type]
-    invalid = set(fields) - allowed
-    removable = SLOT_COMPAT_FIELDS.get(slot_type, set())
-    if invalid and invalid.issubset(removable):
-        return {name: value for name, value in fields.items() if name not in invalid}
-    return fields
+    """Drop known compatibility fields before updating or creating a slot."""
+    removable = SLOT_COMPAT_FIELDS.get(slot_type, set()) | {"kind"}
+    return {name: value for name, value in fields.items() if name not in removable}
 
 
 class CanvasUpdater(cst.CSTTransformer):
@@ -1043,6 +1077,9 @@ def _try_apply_fast_editor_overrides(
         value = patch.get("value")
         if not isinstance(target, str) or not target:
             raise DslPatchError("patch target must be a non-empty string")
+
+        if op in {"group", "ungroup"}:
+            return None
 
         if op == "delete":
             actions.append((op, target, None, None))
@@ -1927,6 +1964,113 @@ def _region_with_appended_slot_id(region_call: cst.Call, slot_id: str) -> cst.Ca
     return region_call.with_changes(args=tuple(region_args))
 
 
+def _group_call_from_value(group_id: str, value: dict[str, Any]) -> cst.Call:
+    member_ids = value.get("member_ids")
+    if not isinstance(member_ids, list) or len(member_ids) < 2:
+        raise DslPatchError("group patch requires at least two member_ids")
+    clean_member_ids: list[str] = []
+    for member_id in member_ids:
+        if not isinstance(member_id, str) or not member_id:
+            raise DslPatchError("group member_ids must be non-empty strings")
+        if member_id not in clean_member_ids:
+            clean_member_ids.append(member_id)
+    role = value.get("role", "custom")
+    if role not in {"question_block", "diagram_block", "answer_block", "custom"}:
+        raise DslPatchError("unsupported group role")
+    return cst.Call(
+        func=cst.Name("Group"),
+        args=(
+            cst.Arg(keyword=cst.Name("id"), value=_arg_value_to_cst(group_id)),
+            cst.Arg(
+                keyword=cst.Name("member_ids"),
+                value=_arg_value_to_cst(tuple(clean_member_ids)),
+            ),
+            cst.Arg(keyword=cst.Name("role"), value=_arg_value_to_cst(role)),
+        ),
+    )
+
+
+class GroupAddTransformer(cst.CSTTransformer):
+    def __init__(self, target: str, value: dict[str, Any]):
+        self.target = target
+        self.value = value
+        self.added_group = False
+
+    def leave_Call(
+        self, original_node: cst.Call, updated_node: cst.Call
+    ) -> cst.BaseExpression:
+        if _call_name(original_node) != "ProblemTemplate":
+            return updated_node
+
+        args = list(updated_node.args)
+        groups_idx = _keyword_index(args, "groups")
+        group_call = _group_call_from_value(self.target, self.value)
+
+        if groups_idx is None:
+            args.append(
+                cst.Arg(
+                    keyword=cst.Name("groups"),
+                    value=cst.Tuple(elements=(cst.Element(group_call),)),
+                )
+            )
+            self.added_group = True
+            return updated_node.with_changes(args=tuple(args))
+
+        groups_arg = args[groups_idx]
+        if isinstance(groups_arg.value, cst.Tuple):
+            for element in groups_arg.value.elements:
+                value = element.value
+                if (
+                    isinstance(value, cst.Call)
+                    and _call_name(value) == "Group"
+                    and (id_arg := _keyword_arg(value, "id")) is not None
+                    and _string_literal_value(id_arg.value) == self.target
+                ):
+                    raise DslPatchError(f"target group already exists: {self.target}")
+        args[groups_idx] = groups_arg.with_changes(
+            value=_tuple_with_appended_value(groups_arg.value, group_call)
+        )
+        self.added_group = True
+        return updated_node.with_changes(args=tuple(args))
+
+
+class GroupDeleteTransformer(cst.CSTTransformer):
+    def __init__(self, target: str):
+        self.target = target
+        self.deleted_group = False
+
+    def leave_Call(
+        self, original_node: cst.Call, updated_node: cst.Call
+    ) -> cst.BaseExpression:
+        if _call_name(original_node) != "ProblemTemplate":
+            return updated_node
+
+        args = list(updated_node.args)
+        groups_idx = _keyword_index(args, "groups")
+        if groups_idx is None or not isinstance(args[groups_idx].value, cst.Tuple):
+            return updated_node
+
+        next_elements: list[cst.Element] = []
+        for element in args[groups_idx].value.elements:
+            value = element.value
+            if (
+                isinstance(value, cst.Call)
+                and _call_name(value) == "Group"
+                and (id_arg := _keyword_arg(value, "id")) is not None
+                and _string_literal_value(id_arg.value) == self.target
+            ):
+                self.deleted_group = True
+                continue
+            next_elements.append(element)
+
+        if not self.deleted_group:
+            return updated_node
+        args[groups_idx] = args[groups_idx].with_changes(
+            value=args[groups_idx].value.with_changes(elements=tuple(next_elements))
+        )
+        return updated_node.with_changes(args=tuple(args))
+
+
 class SlotAddTransformer(cst.CSTTransformer):
     def __init__(self, target: str, value: dict[str, Any]):
         self.target = target
@@ -2160,6 +2304,14 @@ def apply_layout_patches(
             )
             continue
 
+        if op == "ungroup":
+            deleter = GroupDeleteTransformer(target=target)
+            transformed = transformed.visit(deleter)
+            if not deleter.deleted_group:
+                raise DslPatchError(f"target group not found: {target}")
+            applied.append(AppliedPatch(target=target, op=op, fields=[]))
+            continue
+
         if not isinstance(value, dict):
             raise DslPatchError("patch value must be an object")
 
@@ -2176,9 +2328,22 @@ def apply_layout_patches(
             )
             continue
 
+        if op == "group":
+            if not isinstance(value, dict):
+                raise DslPatchError("group patch value must be an object")
+            adder = GroupAddTransformer(target=target, value=value)
+            transformed = transformed.visit(adder)
+            if not adder.added_group:
+                raise DslPatchError("ProblemTemplate not found")
+            transformed = _ensure_dsl_import(transformed, "Group")
+            applied.append(
+                AppliedPatch(target=target, op=op, fields=list(value.keys()))
+            )
+            continue
+
         if op != "update":
             raise DslPatchError(
-                "only 'add', 'update', 'delete', and 'layer' ops are supported"
+                "only 'add', 'update', 'delete', 'layer', 'group', and 'ungroup' ops are supported"
             )
 
         if target in CANVAS_TARGETS:
@@ -2293,6 +2458,8 @@ def apply_layout_patches(
         if updater.updated:
             if getattr(updater, "converted_to_textbox", False):
                 transformed = _ensure_dsl_import(transformed, "TextBoxSlot")
+            if getattr(updater, "converted_to_text", False):
+                transformed = _ensure_dsl_import(transformed, "TextSlot")
             _clear_editor_slot_override_fields(paths, target, value.keys())
             applied.append(
                 AppliedPatch(target=target, op=op, fields=list(value.keys()))

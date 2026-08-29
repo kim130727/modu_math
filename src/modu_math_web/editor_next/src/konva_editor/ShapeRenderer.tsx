@@ -290,6 +290,18 @@ function MathShapeRenderer({ shape, common }: { shape: Extract<EditorShape, { ty
   );
 }
 
+function estimateMathDigitWidth(text: string, fontSize: number): number {
+  let width = 0;
+  for (const ch of text) {
+    if (ch === "1" || ch === "l" || ch === "i" || ch === "." || ch === ",") {
+      width += fontSize * 0.36;
+    } else {
+      width += fontSize * 0.58;
+    }
+  }
+  return Math.max(fontSize * 0.36, width);
+}
+
 function FractionShapeRenderer({
   shape,
   fraction,
@@ -307,11 +319,13 @@ function FractionShapeRenderer({
 }) {
   const color = shape.color ?? "#111827";
   const smallFont = Math.max(16, fontSize * 0.78);
-  const numeratorWidth = estimatePlainTextWidth(fraction.numerator, smallFont);
-  const denominatorWidth = estimatePlainTextWidth(fraction.denominator, smallFont);
-  const fractionWidth = Math.max(26, numeratorWidth, denominatorWidth) + 8;
+  const numeratorWidth = estimateMathDigitWidth(fraction.numerator, smallFont);
+  const denominatorWidth = estimateMathDigitWidth(fraction.denominator, smallFont);
+  const fractionWidth = Math.max(18, Math.max(numeratorWidth, denominatorWidth) + smallFont * 0.35);
   const fractionHeight = smallFont * 2.25;
-  const wholeWidth = fraction.whole ? estimatePlainTextWidth(fraction.whole, smallFont) + 6 : 0;
+  const wholeTextWidth = fraction.whole ? estimateMathDigitWidth(fraction.whole, fontSize) : 0;
+  const gap = fraction.whole ? Math.max(3, Math.round(fontSize * 0.15)) : 0;
+  const wholeWidth = fraction.whole ? wholeTextWidth + gap : 0;
   const contentWidth = wholeWidth + fractionWidth;
   const contentHeight = Math.max(fractionHeight, fontSize * 1.2);
   const startX = Math.max(0, (width - contentWidth) / 2);
@@ -325,9 +339,9 @@ function FractionShapeRenderer({
       {fraction.whole ? (
         <Text
           x={startX}
-          y={startY + (contentHeight - smallFont) / 2}
+          y={startY + (contentHeight - fontSize) / 2}
           text={fraction.whole}
-          fontSize={smallFont}
+          fontSize={fontSize}
           fontFamily={KONVA_PREVIEW_FONT_FAMILY}
           fill={color}
         />

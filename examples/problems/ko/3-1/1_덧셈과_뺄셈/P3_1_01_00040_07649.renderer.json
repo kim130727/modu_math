@@ -25,12 +25,12 @@
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
+        "value_type": "integer",
+        "max_length": 3,
         "include_in_submission": true,
         "order": 0,
         "group_id": "final_answer",
-        "auto_advance": true,
+        "auto_advance": false,
         "keyboard": "number"
       },
       "input_style": {
@@ -42,7 +42,9 @@
         "horizontal_align": "center",
         "vertical_align": "middle",
         "padding": 6,
-        "text_color": "#222222"
+        "text_color": "#222222",
+        "width": 131.555,
+        "height": 45.431
       }
     },
     {
@@ -53,15 +55,15 @@
         "y": 47.215,
         "fill": "#202124",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 28,
+        "font-size": 30,
         "width": 804.0,
-        "height": 176.0,
+        "height": 188.0,
         "max_width": 804.0,
         "data-slot-kind": "text_box",
         "data-box-x": 44.77,
         "data-box-y": 47.215,
         "data-box-width": 804.0,
-        "data-box-height": 176.0,
+        "data-box-height": 188.0,
         "data-text-align": "left",
         "data-vertical-align": "top",
         "data-line-height": 1.5
@@ -79,7 +81,7 @@
         "x": 738.732,
         "y": 178.358,
         "fill": "#111827",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
         "font-size": 28,
         "width": 98.0,
         "height": 43.0,

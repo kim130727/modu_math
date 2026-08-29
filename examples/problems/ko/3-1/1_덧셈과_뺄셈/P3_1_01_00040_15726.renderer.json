@@ -2,19 +2,29 @@
   "problem_id": "P3_1_01_00040_15726",
   "view_box": {
     "width": 400.0,
-    "height": 215.0,
+    "height": 193.0,
     "background": "#FFFFFF"
   },
   "elements": [
     {
       "id": "slot.instruction.text",
-      "type": "text",
+      "type": "text_box",
       "attributes": {
-        "x": 20.0,
-        "y": 18.0,
+        "x": 9.474,
+        "y": 2.697,
         "fill": "#222222",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
         "font-size": 14,
+        "width": 272.0,
+        "height": 26.0,
+        "max_width": 272.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 9.474,
+        "data-box-y": 2.697,
+        "data-box-width": 272.0,
+        "data-box-height": 26.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
         "data-semantic-role": "instruction"
       },
       "source_ref": "slot.instruction",
@@ -27,8 +37,8 @@
       "id": "slot.model262.container.rect",
       "type": "rect",
       "attributes": {
-        "x": 20.0,
-        "y": 24.0,
+        "x": 13.78,
+        "y": 24.478,
         "width": 176.49,
         "height": 62.0,
         "fill": "#ffffff",
@@ -61,13 +71,23 @@
     },
     {
       "id": "slot.model262.label.text",
-      "type": "text",
+      "type": "text_box",
       "attributes": {
-        "x": 100.785,
-        "y": 97.173,
+        "x": 94.006,
+        "y": 91.389,
         "fill": "#222222",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 12,
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 16,
+        "width": 44.964,
+        "height": 28.0,
+        "max_width": 44.964,
+        "data-slot-kind": "text_box",
+        "data-box-x": 94.006,
+        "data-box-y": 91.389,
+        "data-box-width": 44.964,
+        "data-box-height": 28.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
         "text-anchor": "middle",
         "data-semantic-role": "number_label"
       },
@@ -79,13 +99,23 @@
     },
     {
       "id": "slot.model271.label.text",
-      "type": "text",
+      "type": "text_box",
       "attributes": {
-        "x": 301.742,
-        "y": 102.433,
+        "x": 290.178,
+        "y": 89.476,
         "fill": "#222222",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 12,
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 16,
+        "width": 34.492,
+        "height": 28.0,
+        "max_width": 34.492,
+        "data-slot-kind": "text_box",
+        "data-box-x": 290.178,
+        "data-box-y": 89.476,
+        "data-box-width": 34.492,
+        "data-box-height": 28.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
         "text-anchor": "middle",
         "data-semantic-role": "number_label"
       },
@@ -96,14 +126,1162 @@
       "text": "271"
     },
     {
-      "id": "slot.question1.text",
-      "type": "text",
+      "id": "konva_1787984681327_base_ten_hundred_554082_top.path",
+      "type": "path",
       "attributes": {
-        "x": 20.0,
-        "y": 119.0,
+        "d": "M 26.659 38.766 L 29.049 36.376 L 62.853 36.376 L 60.462 38.766 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787984681327_base_ten_hundred_554082_top",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_base_ten_hundred_554082_top"
+      }
+    },
+    {
+      "id": "konva_1787984681327_base_ten_hundred_554082_side.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 60.462 38.766 L 62.853 36.376 L 62.853 70.179 L 60.462 72.569 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787984681327_base_ten_hundred_554082_side",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_base_ten_hundred_554082_side"
+      }
+    },
+    {
+      "id": "konva_1787984681327_base_ten_hundred_554082_front.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 26.659,
+        "y": 38.766,
+        "width": 33.803,
+        "height": 33.803,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787984681327_base_ten_hundred_554082_front",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_base_ten_hundred_554082_front"
+      }
+    },
+    {
+      "id": "konva_1787984681327_base_ten_hundred_554082_grid.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 30.039 38.766 L 30.039 72.57 M 30.039 38.766 L 32.43 36.376 M 33.42 38.766 L 33.42 72.57 M 33.42 38.766 L 35.81 36.376 M 36.8 38.766 L 36.8 72.57 M 36.8 38.766 L 39.19 36.376 M 40.18 38.766 L 40.18 72.57 M 40.18 38.766 L 42.571 36.376 M 43.561 38.766 L 43.561 72.57 M 43.561 38.766 L 45.951 36.376 M 46.941 38.766 L 46.941 72.57 M 46.941 38.766 L 49.331 36.376 M 50.321 38.766 L 50.321 72.57 M 50.321 38.766 L 52.712 36.376 M 53.702 38.766 L 53.702 72.57 M 53.702 38.766 L 56.092 36.376 M 57.082 38.766 L 57.082 72.57 M 57.082 38.766 L 59.472 36.376 M 26.659 42.147 L 60.462 42.147 M 60.462 42.147 L 62.853 39.756 M 26.659 45.527 L 60.462 45.527 M 60.462 45.527 L 62.853 43.137 M 26.659 48.907 L 60.462 48.907 M 60.462 48.907 L 62.853 46.517 M 26.659 52.288 L 60.462 52.288 M 60.462 52.288 L 62.853 49.897 M 26.659 55.668 L 60.462 55.668 M 60.462 55.668 L 62.853 53.278 M 26.659 59.048 L 60.462 59.048 M 60.462 59.048 L 62.853 56.658 M 26.659 62.429 L 60.462 62.429 M 60.462 62.429 L 62.853 60.038 M 26.659 65.809 L 60.462 65.809 M 60.462 65.809 L 62.853 63.419 M 26.659 69.189 L 60.462 69.189 M 60.462 69.189 L 62.853 66.799",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.38,
+        "fill": "none"
+      },
+      "source_ref": "konva_1787984681327_base_ten_hundred_554082_grid",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_base_ten_hundred_554082_grid"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_575063_0_top.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 65.97 39.334 L 68.36 36.944 L 102.164 36.944 L 99.773 39.334 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787984681327_paste_575063_0_top",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_575063_0_top"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_575063_0_side.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 99.773 39.334 L 102.164 36.944 L 102.164 70.748 L 99.773 73.138 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787984681327_paste_575063_0_side",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_575063_0_side"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_575063_0_front.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 65.97,
+        "y": 39.334,
+        "width": 33.803,
+        "height": 33.803,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787984681327_paste_575063_0_front",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_575063_0_front"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_575063_0_grid.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 69.35 39.334 L 69.35 73.138 M 69.35 39.334 L 71.741 36.944 M 72.731 39.334 L 72.731 73.138 M 72.731 39.334 L 75.121 36.944 M 76.111 39.334 L 76.111 73.138 M 76.111 39.334 L 78.501 36.944 M 79.491 39.334 L 79.491 73.138 M 79.491 39.334 L 81.882 36.944 M 82.872 39.334 L 82.872 73.138 M 82.872 39.334 L 85.262 36.944 M 86.252 39.334 L 86.252 73.138 M 86.252 39.334 L 88.642 36.944 M 89.632 39.334 L 89.632 73.138 M 89.632 39.334 L 92.023 36.944 M 93.013 39.334 L 93.013 73.138 M 93.013 39.334 L 95.403 36.944 M 96.393 39.334 L 96.393 73.138 M 96.393 39.334 L 98.783 36.944 M 65.97 42.715 L 99.773 42.715 M 99.773 42.715 L 102.164 40.324 M 65.97 46.095 L 99.773 46.095 M 99.773 46.095 L 102.164 43.705 M 65.97 49.475 L 99.773 49.475 M 99.773 49.475 L 102.164 47.085 M 65.97 52.856 L 99.773 52.856 M 99.773 52.856 L 102.164 50.465 M 65.97 56.236 L 99.773 56.236 M 99.773 56.236 L 102.164 53.846 M 65.97 59.616 L 99.773 59.616 M 99.773 59.616 L 102.164 57.226 M 65.97 62.997 L 99.773 62.997 M 99.773 62.997 L 102.164 60.606 M 65.97 66.377 L 99.773 66.377 M 99.773 66.377 L 102.164 63.987 M 65.97 69.757 L 99.773 69.757 M 99.773 69.757 L 102.164 67.367",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.38,
+        "fill": "none"
+      },
+      "source_ref": "konva_1787984681327_paste_575063_0_grid",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_575063_0_grid"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_581387_0_top.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 208.63 38.468 L 211.021 36.078 L 244.824 36.078 L 242.434 38.468 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787984681327_paste_581387_0_top",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_581387_0_top"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_581387_0_side.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 242.434 38.468 L 244.824 36.078 L 244.824 69.881 L 242.434 72.272 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787984681327_paste_581387_0_side",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_581387_0_side"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_581387_0_front.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 208.63,
+        "y": 38.468,
+        "width": 33.803,
+        "height": 33.803,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787984681327_paste_581387_0_front",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_581387_0_front"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_581387_0_grid.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 212.01 38.468 L 212.01 72.272 M 212.01 38.468 L 214.401 36.078 M 215.391 38.468 L 215.391 72.272 M 215.391 38.468 L 217.781 36.078 M 218.771 38.468 L 218.771 72.272 M 218.771 38.468 L 221.161 36.078 M 222.151 38.468 L 222.151 72.272 M 222.151 38.468 L 224.542 36.078 M 225.532 38.468 L 225.532 72.272 M 225.532 38.468 L 227.922 36.078 M 228.912 38.468 L 228.912 72.272 M 228.912 38.468 L 231.302 36.078 M 232.292 38.468 L 232.292 72.272 M 232.292 38.468 L 234.683 36.078 M 235.673 38.468 L 235.673 72.272 M 235.673 38.468 L 238.063 36.078 M 239.053 38.468 L 239.053 72.272 M 239.053 38.468 L 241.443 36.078 M 208.63 41.849 L 242.433 41.849 M 242.433 41.849 L 244.824 39.458 M 208.63 45.229 L 242.433 45.229 M 242.433 45.229 L 244.824 42.839 M 208.63 48.609 L 242.433 48.609 M 242.433 48.609 L 244.824 46.219 M 208.63 51.99 L 242.433 51.99 M 242.433 51.99 L 244.824 49.599 M 208.63 55.37 L 242.433 55.37 M 242.433 55.37 L 244.824 52.98 M 208.63 58.75 L 242.433 58.75 M 242.433 58.75 L 244.824 56.36 M 208.63 62.131 L 242.433 62.131 M 242.433 62.131 L 244.824 59.74 M 208.63 65.511 L 242.433 65.511 M 242.433 65.511 L 244.824 63.121 M 208.63 68.891 L 242.433 68.891 M 242.433 68.891 L 244.824 66.501",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.38,
+        "fill": "none"
+      },
+      "source_ref": "konva_1787984681327_paste_581387_0_grid",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_581387_0_grid"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_596048_0_top.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 247.941 39.037 L 250.332 36.647 L 284.135 36.647 L 281.745 39.037 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787984681327_paste_596048_0_top",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_596048_0_top"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_596048_0_side.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 281.745 39.037 L 284.135 36.647 L 284.135 70.45 L 281.745 72.84 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787984681327_paste_596048_0_side",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_596048_0_side"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_596048_0_front.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 247.941,
+        "y": 39.037,
+        "width": 33.803,
+        "height": 33.803,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787984681327_paste_596048_0_front",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_596048_0_front"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_596048_0_grid.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 251.321 39.037 L 251.321 72.841 M 251.321 39.037 L 253.712 36.647 M 254.702 39.037 L 254.702 72.841 M 254.702 39.037 L 257.092 36.647 M 258.082 39.037 L 258.082 72.841 M 258.082 39.037 L 260.472 36.647 M 261.462 39.037 L 261.462 72.841 M 261.462 39.037 L 263.853 36.647 M 264.843 39.037 L 264.843 72.841 M 264.843 39.037 L 267.233 36.647 M 268.223 39.037 L 268.223 72.841 M 268.223 39.037 L 270.613 36.647 M 271.603 39.037 L 271.603 72.841 M 271.603 39.037 L 273.994 36.647 M 274.984 39.037 L 274.984 72.841 M 274.984 39.037 L 277.374 36.647 M 278.364 39.037 L 278.364 72.841 M 278.364 39.037 L 280.754 36.647 M 247.941 42.418 L 281.744 42.418 M 281.744 42.418 L 284.135 40.027 M 247.941 45.798 L 281.744 45.798 M 281.744 45.798 L 284.135 43.408 M 247.941 49.178 L 281.744 49.178 M 281.744 49.178 L 284.135 46.788 M 247.941 52.559 L 281.744 52.559 M 281.744 52.559 L 284.135 50.168 M 247.941 55.939 L 281.744 55.939 M 281.744 55.939 L 284.135 53.549 M 247.941 59.319 L 281.744 59.319 M 281.744 59.319 L 284.135 56.929 M 247.941 62.7 L 281.744 62.7 M 281.744 62.7 L 284.135 60.309 M 247.941 66.08 L 281.744 66.08 M 281.744 66.08 L 284.135 63.69 M 247.941 69.46 L 281.744 69.46 M 281.744 69.46 L 284.135 67.07",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.38,
+        "fill": "none"
+      },
+      "source_ref": "konva_1787984681327_paste_596048_0_grid",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_596048_0_grid"
+      }
+    },
+    {
+      "id": "konva_1787984681327_base_ten_ten_646842_top.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 105.574 40.463 L 107.857 38.18 L 113.857 38.18 L 111.574 40.463 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787984681327_base_ten_ten_646842_top",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_base_ten_ten_646842_top"
+      }
+    },
+    {
+      "id": "konva_1787984681327_base_ten_ten_646842_side.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 111.574 40.463 L 113.857 38.18 L 113.857 70.465 L 111.574 72.748 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787984681327_base_ten_ten_646842_side",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_base_ten_ten_646842_side"
+      }
+    },
+    {
+      "id": "konva_1787984681327_base_ten_ten_646842_front.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 105.574,
+        "y": 40.463,
+        "width": 6.0,
+        "height": 32.286,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787984681327_base_ten_ten_646842_front",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_base_ten_ten_646842_front"
+      }
+    },
+    {
+      "id": "konva_1787984681327_base_ten_ten_646842_grid.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 105.574 43.691 L 111.574 43.691 M 111.574 43.691 L 113.857 41.409 M 105.574 46.92 L 111.574 46.92 M 111.574 46.92 L 113.857 44.637 M 105.574 50.149 L 111.574 50.149 M 111.574 50.149 L 113.857 47.866 M 105.574 53.377 L 111.574 53.377 M 111.574 53.377 L 113.857 51.094 M 105.574 56.606 L 111.574 56.606 M 111.574 56.606 L 113.857 54.323 M 105.574 59.834 L 111.574 59.834 M 111.574 59.834 L 113.857 57.551 M 105.574 63.063 L 111.574 63.063 M 111.574 63.063 L 113.857 60.78 M 105.574 66.291 L 111.574 66.291 M 111.574 66.291 L 113.857 64.008 M 105.574 69.52 L 111.574 69.52 M 111.574 69.52 L 113.857 67.237",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.38,
+        "fill": "none"
+      },
+      "source_ref": "konva_1787984681327_base_ten_ten_646842_grid",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_base_ten_ten_646842_grid"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_751850_0.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 115.133 40.553 L 117.416 38.27 L 123.416 38.27 L 121.133 40.553 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787984681327_paste_751850_0",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_751850_0"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_751850_1.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 121.133 40.553 L 123.416 38.27 L 123.416 70.555 L 121.133 72.838 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787984681327_paste_751850_1",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_751850_1"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_751850_2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 115.133,
+        "y": 40.553,
+        "width": 6.0,
+        "height": 32.286,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787984681327_paste_751850_2",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_751850_2"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_751850_3.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 115.133 43.781 L 121.133 43.781 M 121.133 43.781 L 123.416 41.499 M 115.133 47.01 L 121.133 47.01 M 121.133 47.01 L 123.416 44.727 M 115.133 50.239 L 121.133 50.239 M 121.133 50.239 L 123.416 47.956 M 115.133 53.467 L 121.133 53.467 M 121.133 53.467 L 123.416 51.184 M 115.133 56.696 L 121.133 56.696 M 121.133 56.696 L 123.416 54.413 M 115.133 59.924 L 121.133 59.924 M 121.133 59.924 L 123.416 57.641 M 115.133 63.153 L 121.133 63.153 M 121.133 63.153 L 123.416 60.87 M 115.133 66.381 L 121.133 66.381 M 121.133 66.381 L 123.416 64.098 M 115.133 69.61 L 121.133 69.61 M 121.133 69.61 L 123.416 67.327",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.38,
+        "fill": "none"
+      },
+      "source_ref": "konva_1787984681327_paste_751850_3",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_751850_3"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_776564_0.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 125.574 40.463 L 127.857 38.18 L 133.857 38.18 L 131.574 40.463 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787984681327_paste_776564_0",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_776564_0"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_776564_1.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 131.574 40.463 L 133.857 38.18 L 133.857 70.465 L 131.574 72.748 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787984681327_paste_776564_1",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_776564_1"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_776564_2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 125.574,
+        "y": 40.463,
+        "width": 6.0,
+        "height": 32.286,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787984681327_paste_776564_2",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_776564_2"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_776564_3.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 125.574 43.691 L 131.574 43.691 M 131.574 43.691 L 133.857 41.409 M 125.574 46.92 L 131.574 46.92 M 131.574 46.92 L 133.857 44.637 M 125.574 50.149 L 131.574 50.149 M 131.574 50.149 L 133.857 47.866 M 125.574 53.377 L 131.574 53.377 M 131.574 53.377 L 133.857 51.094 M 125.574 56.606 L 131.574 56.606 M 131.574 56.606 L 133.857 54.323 M 125.574 59.834 L 131.574 59.834 M 131.574 59.834 L 133.857 57.551 M 125.574 63.063 L 131.574 63.063 M 131.574 63.063 L 133.857 60.78 M 125.574 66.291 L 131.574 66.291 M 131.574 66.291 L 133.857 64.008 M 125.574 69.52 L 131.574 69.52 M 131.574 69.52 L 133.857 67.237",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.38,
+        "fill": "none"
+      },
+      "source_ref": "konva_1787984681327_paste_776564_3",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_776564_3"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_776564_4.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 135.133 40.553 L 137.416 38.27 L 143.416 38.27 L 141.133 40.553 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787984681327_paste_776564_4",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_776564_4"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_776564_5.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 141.133 40.553 L 143.416 38.27 L 143.416 70.555 L 141.133 72.838 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787984681327_paste_776564_5",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_776564_5"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_776564_6.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 135.133,
+        "y": 40.553,
+        "width": 6.0,
+        "height": 32.286,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787984681327_paste_776564_6",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_776564_6"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_776564_7.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 135.133 43.781 L 141.133 43.781 M 141.133 43.781 L 143.416 41.499 M 135.133 47.01 L 141.133 47.01 M 141.133 47.01 L 143.416 44.727 M 135.133 50.239 L 141.133 50.239 M 141.133 50.239 L 143.416 47.956 M 135.133 53.467 L 141.133 53.467 M 141.133 53.467 L 143.416 51.184 M 135.133 56.696 L 141.133 56.696 M 141.133 56.696 L 143.416 54.413 M 135.133 59.924 L 141.133 59.924 M 141.133 59.924 L 143.416 57.641 M 135.133 63.153 L 141.133 63.153 M 141.133 63.153 L 143.416 60.87 M 135.133 66.381 L 141.133 66.381 M 141.133 66.381 L 143.416 64.098 M 135.133 69.61 L 141.133 69.61 M 141.133 69.61 L 143.416 67.327",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.38,
+        "fill": "none"
+      },
+      "source_ref": "konva_1787984681327_paste_776564_7",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_776564_7"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_785905_0.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 145.574 40.463 L 147.857 38.18 L 153.857 38.18 L 151.574 40.463 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787984681327_paste_785905_0",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_785905_0"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_785905_1.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 151.574 40.463 L 153.857 38.18 L 153.857 70.465 L 151.574 72.748 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787984681327_paste_785905_1",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_785905_1"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_785905_2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 145.574,
+        "y": 40.463,
+        "width": 6.0,
+        "height": 32.286,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787984681327_paste_785905_2",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_785905_2"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_785905_3.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 145.574 43.691 L 151.574 43.691 M 151.574 43.691 L 153.857 41.409 M 145.574 46.92 L 151.574 46.92 M 151.574 46.92 L 153.857 44.637 M 145.574 50.149 L 151.574 50.149 M 151.574 50.149 L 153.857 47.866 M 145.574 53.377 L 151.574 53.377 M 151.574 53.377 L 153.857 51.094 M 145.574 56.606 L 151.574 56.606 M 151.574 56.606 L 153.857 54.323 M 145.574 59.834 L 151.574 59.834 M 151.574 59.834 L 153.857 57.551 M 145.574 63.063 L 151.574 63.063 M 151.574 63.063 L 153.857 60.78 M 145.574 66.291 L 151.574 66.291 M 151.574 66.291 L 153.857 64.008 M 145.574 69.52 L 151.574 69.52 M 151.574 69.52 L 153.857 67.237",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.38,
+        "fill": "none"
+      },
+      "source_ref": "konva_1787984681327_paste_785905_3",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_785905_3"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_785905_4.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 155.133 40.553 L 157.416 38.27 L 163.416 38.27 L 161.133 40.553 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787984681327_paste_785905_4",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_785905_4"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_785905_5.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 161.133 40.553 L 163.416 38.27 L 163.416 70.555 L 161.133 72.838 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787984681327_paste_785905_5",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_785905_5"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_785905_6.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 155.133,
+        "y": 40.553,
+        "width": 6.0,
+        "height": 32.286,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787984681327_paste_785905_6",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_785905_6"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_785905_7.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 155.133 43.781 L 161.133 43.781 M 161.133 43.781 L 163.416 41.499 M 155.133 47.01 L 161.133 47.01 M 161.133 47.01 L 163.416 44.727 M 155.133 50.239 L 161.133 50.239 M 161.133 50.239 L 163.416 47.956 M 155.133 53.467 L 161.133 53.467 M 161.133 53.467 L 163.416 51.184 M 155.133 56.696 L 161.133 56.696 M 161.133 56.696 L 163.416 54.413 M 155.133 59.924 L 161.133 59.924 M 161.133 59.924 L 163.416 57.641 M 155.133 63.153 L 161.133 63.153 M 161.133 63.153 L 163.416 60.87 M 155.133 66.381 L 161.133 66.381 M 161.133 66.381 L 163.416 64.098 M 155.133 69.61 L 161.133 69.61 M 161.133 69.61 L 163.416 67.327",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.38,
+        "fill": "none"
+      },
+      "source_ref": "konva_1787984681327_paste_785905_7",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_785905_7"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_0.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 287.468 39.597 L 289.751 37.314 L 295.751 37.314 L 293.468 39.597 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787984681327_paste_797809_0",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_0"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_1.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 293.468 39.597 L 295.751 37.314 L 295.751 69.599 L 293.468 71.882 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787984681327_paste_797809_1",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_1"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 287.468,
+        "y": 39.597,
+        "width": 6.0,
+        "height": 32.286,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787984681327_paste_797809_2",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_2"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_3.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 287.468 42.825 L 293.468 42.825 M 293.468 42.825 L 295.751 40.543 M 287.468 46.054 L 293.468 46.054 M 293.468 46.054 L 295.751 43.771 M 287.468 49.283 L 293.468 49.283 M 293.468 49.283 L 295.751 47 M 287.468 52.511 L 293.468 52.511 M 293.468 52.511 L 295.751 50.228 M 287.468 55.74 L 293.468 55.74 M 293.468 55.74 L 295.751 53.457 M 287.468 58.968 L 293.468 58.968 M 293.468 58.968 L 295.751 56.685 M 287.468 62.197 L 293.468 62.197 M 293.468 62.197 L 295.751 59.914 M 287.468 65.425 L 293.468 65.425 M 293.468 65.425 L 295.751 63.142 M 287.468 68.654 L 293.468 68.654 M 293.468 68.654 L 295.751 66.371",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.38,
+        "fill": "none"
+      },
+      "source_ref": "konva_1787984681327_paste_797809_3",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_3"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_4.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 297.028 39.687 L 299.311 37.404 L 305.311 37.404 L 303.028 39.687 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787984681327_paste_797809_4",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_4"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_5.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 303.028 39.687 L 305.311 37.404 L 305.311 69.689 L 303.028 71.972 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787984681327_paste_797809_5",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_5"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_6.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 297.028,
+        "y": 39.687,
+        "width": 6.0,
+        "height": 32.286,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787984681327_paste_797809_6",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_6"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_7.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 297.028 42.915 L 303.028 42.915 M 303.028 42.915 L 305.311 40.633 M 297.028 46.144 L 303.028 46.144 M 303.028 46.144 L 305.311 43.861 M 297.028 49.373 L 303.028 49.373 M 303.028 49.373 L 305.311 47.09 M 297.028 52.601 L 303.028 52.601 M 303.028 52.601 L 305.311 50.318 M 297.028 55.83 L 303.028 55.83 M 303.028 55.83 L 305.311 53.547 M 297.028 59.058 L 303.028 59.058 M 303.028 59.058 L 305.311 56.775 M 297.028 62.287 L 303.028 62.287 M 303.028 62.287 L 305.311 60.004 M 297.028 65.515 L 303.028 65.515 M 303.028 65.515 L 305.311 63.232 M 297.028 68.744 L 303.028 68.744 M 303.028 68.744 L 305.311 66.461",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.38,
+        "fill": "none"
+      },
+      "source_ref": "konva_1787984681327_paste_797809_7",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_7"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_8.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 307.468 39.597 L 309.751 37.314 L 315.751 37.314 L 313.468 39.597 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787984681327_paste_797809_8",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_8"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_9.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 313.468 39.597 L 315.751 37.314 L 315.751 69.599 L 313.468 71.882 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787984681327_paste_797809_9",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_9"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_10.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 307.468,
+        "y": 39.597,
+        "width": 6.0,
+        "height": 32.286,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787984681327_paste_797809_10",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_10"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_11.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 307.468 42.825 L 313.468 42.825 M 313.468 42.825 L 315.751 40.543 M 307.468 46.054 L 313.468 46.054 M 313.468 46.054 L 315.751 43.771 M 307.468 49.283 L 313.468 49.283 M 313.468 49.283 L 315.751 47 M 307.468 52.511 L 313.468 52.511 M 313.468 52.511 L 315.751 50.228 M 307.468 55.74 L 313.468 55.74 M 313.468 55.74 L 315.751 53.457 M 307.468 58.968 L 313.468 58.968 M 313.468 58.968 L 315.751 56.685 M 307.468 62.197 L 313.468 62.197 M 313.468 62.197 L 315.751 59.914 M 307.468 65.425 L 313.468 65.425 M 313.468 65.425 L 315.751 63.142 M 307.468 68.654 L 313.468 68.654 M 313.468 68.654 L 315.751 66.371",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.38,
+        "fill": "none"
+      },
+      "source_ref": "konva_1787984681327_paste_797809_11",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_11"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_12.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 317.028 39.687 L 319.311 37.404 L 325.311 37.404 L 323.028 39.687 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787984681327_paste_797809_12",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_12"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_13.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 323.028 39.687 L 325.311 37.404 L 325.311 69.689 L 323.028 71.972 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787984681327_paste_797809_13",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_13"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_14.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 317.028,
+        "y": 39.687,
+        "width": 6.0,
+        "height": 32.286,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787984681327_paste_797809_14",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_14"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_15.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 317.028 42.915 L 323.028 42.915 M 323.028 42.915 L 325.311 40.633 M 317.028 46.144 L 323.028 46.144 M 323.028 46.144 L 325.311 43.861 M 317.028 49.373 L 323.028 49.373 M 323.028 49.373 L 325.311 47.09 M 317.028 52.601 L 323.028 52.601 M 323.028 52.601 L 325.311 50.318 M 317.028 55.83 L 323.028 55.83 M 323.028 55.83 L 325.311 53.547 M 317.028 59.058 L 323.028 59.058 M 323.028 59.058 L 325.311 56.775 M 317.028 62.287 L 323.028 62.287 M 323.028 62.287 L 325.311 60.004 M 317.028 65.515 L 323.028 65.515 M 323.028 65.515 L 325.311 63.232 M 317.028 68.744 L 323.028 68.744 M 323.028 68.744 L 325.311 66.461",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.38,
+        "fill": "none"
+      },
+      "source_ref": "konva_1787984681327_paste_797809_15",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_15"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_16.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 327.468 39.597 L 329.751 37.314 L 335.751 37.314 L 333.468 39.597 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787984681327_paste_797809_16",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_16"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_17.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 333.468 39.597 L 335.751 37.314 L 335.751 69.599 L 333.468 71.882 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787984681327_paste_797809_17",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_17"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_18.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 327.468,
+        "y": 39.597,
+        "width": 6.0,
+        "height": 32.286,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787984681327_paste_797809_18",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_18"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_19.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 327.468 42.825 L 333.468 42.825 M 333.468 42.825 L 335.751 40.543 M 327.468 46.054 L 333.468 46.054 M 333.468 46.054 L 335.751 43.771 M 327.468 49.283 L 333.468 49.283 M 333.468 49.283 L 335.751 47 M 327.468 52.511 L 333.468 52.511 M 333.468 52.511 L 335.751 50.228 M 327.468 55.74 L 333.468 55.74 M 333.468 55.74 L 335.751 53.457 M 327.468 58.968 L 333.468 58.968 M 333.468 58.968 L 335.751 56.685 M 327.468 62.197 L 333.468 62.197 M 333.468 62.197 L 335.751 59.914 M 327.468 65.425 L 333.468 65.425 M 333.468 65.425 L 335.751 63.142 M 327.468 68.654 L 333.468 68.654 M 333.468 68.654 L 335.751 66.371",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.38,
+        "fill": "none"
+      },
+      "source_ref": "konva_1787984681327_paste_797809_19",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_19"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_20.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 337.028 39.687 L 339.311 37.404 L 345.311 37.404 L 343.028 39.687 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787984681327_paste_797809_20",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_20"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_21.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 343.028 39.687 L 345.311 37.404 L 345.311 69.689 L 343.028 71.972 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787984681327_paste_797809_21",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_21"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_22.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 337.028,
+        "y": 39.687,
+        "width": 6.0,
+        "height": 32.286,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787984681327_paste_797809_22",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_22"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_797809_23.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 337.028 42.915 L 343.028 42.915 M 343.028 42.915 L 345.311 40.633 M 337.028 46.144 L 343.028 46.144 M 343.028 46.144 L 345.311 43.861 M 337.028 49.373 L 343.028 49.373 M 343.028 49.373 L 345.311 47.09 M 337.028 52.601 L 343.028 52.601 M 343.028 52.601 L 345.311 50.318 M 337.028 55.83 L 343.028 55.83 M 343.028 55.83 L 345.311 53.547 M 337.028 59.058 L 343.028 59.058 M 343.028 59.058 L 345.311 56.775 M 337.028 62.287 L 343.028 62.287 M 343.028 62.287 L 345.311 60.004 M 337.028 65.515 L 343.028 65.515 M 343.028 65.515 L 345.311 63.232 M 337.028 68.744 L 343.028 68.744 M 343.028 68.744 L 345.311 66.461",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.38,
+        "fill": "none"
+      },
+      "source_ref": "konva_1787984681327_paste_797809_23",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_797809_23"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_806015_0.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 347.511 40.165 L 349.794 37.882 L 355.794 37.882 L 353.511 40.165 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787984681327_paste_806015_0",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_806015_0"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_806015_1.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 353.511 40.165 L 355.794 37.882 L 355.794 70.167 L 353.511 72.45 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787984681327_paste_806015_1",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_806015_1"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_806015_2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 347.511,
+        "y": 40.165,
+        "width": 6.0,
+        "height": 32.286,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787984681327_paste_806015_2",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_806015_2"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_806015_3.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 347.511 43.393 L 353.511 43.393 M 353.511 43.393 L 355.794 41.111 M 347.511 46.622 L 353.511 46.622 M 353.511 46.622 L 355.794 44.339 M 347.511 49.851 L 353.511 49.851 M 353.511 49.851 L 355.794 47.568 M 347.511 53.079 L 353.511 53.079 M 353.511 53.079 L 355.794 50.796 M 347.511 56.308 L 353.511 56.308 M 353.511 56.308 L 355.794 54.025 M 347.511 59.536 L 353.511 59.536 M 353.511 59.536 L 355.794 57.253 M 347.511 62.765 L 353.511 62.765 M 353.511 62.765 L 355.794 60.482 M 347.511 65.993 L 353.511 65.993 M 353.511 65.993 L 355.794 63.71 M 347.511 69.222 L 353.511 69.222 M 353.511 69.222 L 355.794 66.939",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.38,
+        "fill": "none"
+      },
+      "source_ref": "konva_1787984681327_paste_806015_3",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_806015_3"
+      }
+    },
+    {
+      "id": "konva_1787984681327_base_ten_one_824962_top.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 167.515 43.052 L 171.758 38.809 L 177.758 38.809 L 173.515 43.052 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787984681327_base_ten_one_824962_top",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_base_ten_one_824962_top"
+      }
+    },
+    {
+      "id": "konva_1787984681327_base_ten_one_824962_side.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 173.515 43.052 L 177.758 38.809 L 177.758 44.809 L 173.515 49.052 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787984681327_base_ten_one_824962_side",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_base_ten_one_824962_side"
+      }
+    },
+    {
+      "id": "konva_1787984681327_base_ten_one_824962_front.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 167.515,
+        "y": 43.052,
+        "width": 6.0,
+        "height": 6.0,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787984681327_base_ten_one_824962_front",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_base_ten_one_824962_front"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_834896_0_top.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 167.592 56.053 L 171.834 51.811 L 177.834 51.811 L 173.592 56.053 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787984681327_paste_834896_0_top",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_834896_0_top"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_834896_0_side.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 173.592 56.053 L 177.834 51.811 L 177.834 57.811 L 173.592 62.053 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787984681327_paste_834896_0_side",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_834896_0_side"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_834896_0_front.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 167.592,
+        "y": 56.053,
+        "width": 6.0,
+        "height": 6.0,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787984681327_paste_834896_0_front",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_834896_0_front"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_838522_0_top.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 362.443 43.373 L 366.686 39.13 L 372.686 39.13 L 368.443 43.373 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#d2edbf"
+      },
+      "source_ref": "konva_1787984681327_paste_838522_0_top",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_838522_0_top"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_838522_0_side.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 368.443 43.373 L 372.686 39.13 L 372.686 45.13 L 368.443 49.373 Z",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8,
+        "fill": "#9fcd86"
+      },
+      "source_ref": "konva_1787984681327_paste_838522_0_side",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_838522_0_side"
+      }
+    },
+    {
+      "id": "konva_1787984681327_paste_838522_0_front.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 362.443,
+        "y": 43.373,
+        "width": 6.0,
+        "height": 6.0,
+        "fill": "#b9dd9f",
+        "stroke": "#7ea86f",
+        "stroke-width": 0.8
+      },
+      "source_ref": "konva_1787984681327_paste_838522_0_front",
+      "refs": {
+        "layout_slot_id": "konva_1787984681327_paste_838522_0_front"
+      }
+    },
+    {
+      "id": "slot.question1.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 14.258,
+        "y": 112.651,
         "fill": "#222222",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 14,
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 15,
+        "width": 230.507,
+        "height": 46.0,
+        "max_width": 230.507,
+        "data-slot-kind": "text_box",
+        "data-box-x": 14.258,
+        "data-box-y": 112.651,
+        "data-box-width": 230.507,
+        "data-box-height": 46.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
         "data-semantic-role": "subquestion"
       },
       "source_ref": "slot.question1",
@@ -114,13 +1292,23 @@
     },
     {
       "id": "slot.question2.text",
-      "type": "text",
+      "type": "text_box",
       "attributes": {
-        "x": 20.0,
-        "y": 141.0,
+        "x": 14.737,
+        "y": 133.304,
         "fill": "#222222",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
         "font-size": 14,
+        "width": 372.612,
+        "height": 43.0,
+        "max_width": 372.612,
+        "data-slot-kind": "text_box",
+        "data-box-x": 14.737,
+        "data-box-y": 133.304,
+        "data-box-width": 372.612,
+        "data-box-height": 43.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
         "data-semantic-role": "subquestion"
       },
       "source_ref": "slot.question2",
@@ -131,13 +1319,23 @@
     },
     {
       "id": "slot.question3.text",
-      "type": "text",
+      "type": "text_box",
       "attributes": {
-        "x": 20.0,
-        "y": 163.0,
+        "x": 14.694,
+        "y": 151.522,
         "fill": "#222222",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
         "font-size": 14,
+        "width": 272.0,
+        "height": 26.0,
+        "max_width": 272.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 14.694,
+        "data-box-y": 151.522,
+        "data-box-width": 272.0,
+        "data-box-height": 26.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
         "data-semantic-role": "subquestion"
       },
       "source_ref": "slot.question3",
@@ -148,13 +1346,23 @@
     },
     {
       "id": "slot.question4.text",
-      "type": "text",
+      "type": "text_box",
       "attributes": {
-        "x": 20.0,
-        "y": 185.0,
+        "x": 14.651,
+        "y": 169.829,
         "fill": "#222222",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
         "font-size": 14,
+        "width": 272.0,
+        "height": 26.0,
+        "max_width": 272.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 14.651,
+        "data-box-y": 169.829,
+        "data-box-width": 272.0,
+        "data-box-height": 26.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
         "data-semantic-role": "subquestion"
       },
       "source_ref": "slot.question4",

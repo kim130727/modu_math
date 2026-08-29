@@ -19,8 +19,6 @@
         "slot.table.v2",
         "slot.table.h1",
         "slot.table.h2",
-        "slot.q1",
-        "slot.q2",
         "slot.table.r1c1",
         "slot.table.r1c2",
         "slot.table.r1c3",
@@ -31,7 +29,8 @@
         "slot.table.r3c2",
         "slot.table.r3c3",
         "slot.tbl.c1t",
-        "slot.tbl.note"
+        "slot.tbl.note",
+        "konva_1787984681327_text_1752987"
       ]
     },
     {
@@ -48,30 +47,6 @@
     }
   ],
   "slots": [
-    {
-      "id": "slot.q1",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "수경이와 현준이가 물을 마셨습니다. 마시기 전과 마신 후의 물의 양은",
-        "style_role": "question",
-        "x": 18.0,
-        "y": 40.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.q2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "다음과 같습니다. 누가 물을 더 많이 마셨나요?",
-        "style_role": "question",
-        "x": 18.0,
-        "y": 85.0,
-        "font_size": 28
-      }
-    },
     {
       "id": "slot.tbl.c1t",
       "kind": "text",
@@ -92,7 +67,7 @@
         "text": "( 수경 , 현준 )",
         "style_role": "note",
         "x": 349.0,
-        "y": 389.0,
+        "y": 404.0,
         "font_size": 28,
         "fill": "#111111"
       }
@@ -103,7 +78,7 @@
       "prompt": "",
       "content": {
         "x": 95.0,
-        "y": 140.0,
+        "y": 153.957,
         "width": 630.0,
         "height": 205.0,
         "stroke": "#111827",
@@ -117,9 +92,9 @@
       "prompt": "",
       "content": {
         "x1": 325.0,
-        "y1": 140.0,
+        "y1": 153.957,
         "x2": 325.0,
-        "y2": 345.0,
+        "y2": 358.957,
         "stroke": "#111827",
         "stroke_width": 1.0
       }
@@ -130,9 +105,9 @@
       "prompt": "",
       "content": {
         "x1": 515.0,
-        "y1": 140.0,
+        "y1": 153.957,
         "x2": 515.0,
-        "y2": 345.0,
+        "y2": 358.957,
         "stroke": "#111827",
         "stroke_width": 1.0
       }
@@ -143,9 +118,9 @@
       "prompt": "",
       "content": {
         "x1": 95.0,
-        "y1": 205.0,
+        "y1": 218.957,
         "x2": 725.0,
-        "y2": 205.0,
+        "y2": 218.957,
         "stroke": "#111827",
         "stroke_width": 1.0
       }
@@ -156,9 +131,9 @@
       "prompt": "",
       "content": {
         "x1": 95.0,
-        "y1": 275.0,
+        "y1": 288.957,
         "x2": 725.0,
-        "y2": 275.0,
+        "y2": 288.957,
         "stroke": "#111827",
         "stroke_width": 1.0
       }
@@ -171,7 +146,7 @@
         "text": "",
         "style_role": "table",
         "x": 210.0,
-        "y": 185.0,
+        "y": 198.957,
         "font_size": 28,
         "max_width": 210.0,
         "anchor": "middle",
@@ -186,7 +161,7 @@
         "text": "수경",
         "style_role": "table",
         "x": 420.0,
-        "y": 185.0,
+        "y": 198.957,
         "font_size": 28,
         "max_width": 170.0,
         "anchor": "middle",
@@ -201,7 +176,7 @@
         "text": "현준",
         "style_role": "table",
         "x": 620.0,
-        "y": 185.0,
+        "y": 198.957,
         "font_size": 28,
         "max_width": 190.0,
         "anchor": "middle",
@@ -216,7 +191,7 @@
         "text": "마시기 전",
         "style_role": "table",
         "x": 210.0,
-        "y": 255.0,
+        "y": 268.957,
         "font_size": 28,
         "max_width": 210.0,
         "anchor": "middle",
@@ -231,7 +206,7 @@
         "text": "2L 500mL",
         "style_role": "table",
         "x": 420.0,
-        "y": 255.0,
+        "y": 268.957,
         "font_size": 28,
         "max_width": 170.0,
         "anchor": "middle",
@@ -246,7 +221,7 @@
         "text": "2L",
         "style_role": "table",
         "x": 620.0,
-        "y": 255.0,
+        "y": 268.957,
         "font_size": 28,
         "max_width": 190.0,
         "anchor": "middle",
@@ -261,7 +236,7 @@
         "text": "마신 후",
         "style_role": "table",
         "x": 210.0,
-        "y": 325.0,
+        "y": 338.957,
         "font_size": 28,
         "max_width": 210.0,
         "anchor": "middle",
@@ -276,7 +251,7 @@
         "text": "2L 100mL",
         "style_role": "table",
         "x": 420.0,
-        "y": 325.0,
+        "y": 338.957,
         "font_size": 28,
         "max_width": 170.0,
         "anchor": "middle",
@@ -291,11 +266,28 @@
         "text": "1L 400mL",
         "style_role": "table",
         "x": 620.0,
-        "y": 325.0,
+        "y": 338.957,
         "font_size": 28,
         "max_width": 190.0,
         "anchor": "middle",
         "fill": "#111827"
+      }
+    },
+    {
+      "id": "konva_1787984681327_text_1752987",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "수경이와 현준이가 물을 마셨습니다. 마시기 전과 마신 후의 물의 양은 다음과 같습니다. 누가 물을 더 많이 마셨나요?",
+        "x": 54.196,
+        "y": 24.957,
+        "font_size": 30,
+        "fill": "#111827",
+        "width": 720.292,
+        "height": 121,
+        "align": "left",
+        "line_height": 1.25,
+        "kind": "text_box"
       }
     }
   ],
@@ -309,8 +301,6 @@
     "slot.table.v2",
     "slot.table.h1",
     "slot.table.h2",
-    "slot.q1",
-    "slot.q2",
     "slot.table.r1c1",
     "slot.table.r1c2",
     "slot.table.r1c3",
@@ -323,6 +313,7 @@
     "slot.tbl.c1t",
     "slot.tbl.note",
     "region.table",
-    "region.foot"
+    "region.foot",
+    "konva_1787984681327_text_1752987"
   ]
 }

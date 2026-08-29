@@ -161,6 +161,10 @@ def _separate_top_text_from_following_slots(
             continue
         slot_id = slot.get("id")
         if isinstance(slot_id, str):
+            if slot_id.startswith("konva_"):
+                continue
+            if is_submitted_answer_slot(slot):
+                continue
             if slot_id in protected_slot_ids:
                 continue
             if any(slot_id.startswith(p) for p in protected_prefixes):
@@ -299,6 +303,11 @@ def _shift_content_y(content: dict[str, Any], dy: float) -> None:
 def _cohesive_slot_prefix(slot_id: Any) -> str | None:
     if not isinstance(slot_id, str):
         return None
+    if slot_id.startswith("konva_"):
+        prefix, _, _ = slot_id.rpartition("_")
+        if prefix:
+            return prefix + "_"
+        return slot_id
     parts = slot_id.split(".")
     if len(parts) >= 3 and parts[0] == "slot":
         return f"{parts[0]}.{parts[1]}."

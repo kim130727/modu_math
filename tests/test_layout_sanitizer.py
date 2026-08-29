@@ -303,3 +303,50 @@ def test_sanitize_layout_deleting_copy_slot_preserves_base_slot() -> None:
     assert sanitized["regions"][0]["slot_ids"] == ["slot.q_text"]
 
 
+def test_sanitize_layout_preserves_konva_and_answer_input_positions() -> None:
+    layout = {
+        "canvas": {"width": 700, "height": 220},
+        "slots": [
+            {
+                "id": "slot.question",
+                "kind": "text_box",
+                "content": {
+                    "text": "긴 문제 텍스트 본문입니다.",
+                    "x": 38.0,
+                    "y": 21.0,
+                    "width": 582.852,
+                    "height": 158.0,
+                },
+            },
+            {
+                "id": "konva_1785110879232_paste_783799_0",
+                "kind": "rect",
+                "content": {
+                    "x": 480.752,
+                    "y": 150.474,
+                    "width": 78.73,
+                    "height": 41.989,
+                    "interaction": {"type": "input", "role": "answer"},
+                },
+            },
+            {
+                "id": "konva_1785110879232_paste_783799_1",
+                "kind": "text_box",
+                "content": {
+                    "text": "장",
+                    "x": 574.594,
+                    "y": 152.133,
+                    "width": 31.2,
+                    "height": 46.0,
+                },
+            },
+        ],
+    }
+
+    sanitized = sanitize_layout(layout)
+    by_id = {slot["id"]: slot for slot in sanitized["slots"]}
+
+    assert by_id["konva_1785110879232_paste_783799_0"]["content"]["y"] == 150.474
+    assert by_id["konva_1785110879232_paste_783799_1"]["content"]["y"] == 152.133
+
+

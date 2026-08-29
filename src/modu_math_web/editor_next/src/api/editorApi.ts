@@ -364,17 +364,25 @@ function rendererElementsToFractionObjects(
     const minBarX = Math.min(barX1, barX2);
     const maxBarX = Math.max(barX1, barX2);
     const smallFont = Math.max(16, fontSize * 0.78);
-    const numLen = numText.length || 1;
-    const denLen = denText.length || 1;
-    const wholeLen = wholeText.length;
-    const fractionWidth = Math.max(26, Math.max(numLen, denLen) * smallFont * 0.62 + 8);
-    const wholeWidth = wholeLen ? wholeLen * smallFont * 0.62 + 6 : 0;
+    const estimateWidth = (text: string, font: number) => {
+      let w = 0;
+      for (const ch of text) {
+        w += (ch === "1" || ch === "l" || ch === "i" || ch === "." || ch === ",") ? font * 0.36 : font * 0.58;
+      }
+      return Math.max(font * 0.36, w);
+    };
+    const numWidth = estimateWidth(numText, smallFont);
+    const denWidth = estimateWidth(denText, smallFont);
+    const fractionWidth = Math.max(18, Math.max(numWidth, denWidth) + smallFont * 0.35);
+    const wholeTextWidth = wholeText ? estimateWidth(wholeText, fontSize) : 0;
+    const gap = wholeText ? Math.max(3, Math.round(fontSize * 0.15)) : 0;
+    const wholeWidth = wholeText ? wholeTextWidth + gap : 0;
     const totalContentWidth = wholeWidth + fractionWidth;
 
     let leftX: number;
     if (wholeEl) {
       const wholeAttrX = numberValue(wholeEl.attributes.x, minBarX - wholeWidth);
-      leftX = Math.min(minBarX - wholeWidth, wholeAttrX - wholeWidth / 2);
+      leftX = Math.min(minBarX - wholeWidth, wholeAttrX - wholeTextWidth / 2);
     } else {
       leftX = minBarX - 3;
     }
@@ -442,17 +450,25 @@ function layoutSlotsToFractionObjects(
     const minBarX = Math.min(barX1, barX2);
     const maxBarX = Math.max(barX1, barX2);
     const smallFont = Math.max(16, fontSize * 0.78);
-    const numLen = numText.length || 1;
-    const denLen = denText.length || 1;
-    const wholeLen = wholeText.length;
-    const fractionWidth = Math.max(26, Math.max(numLen, denLen) * smallFont * 0.62 + 8);
-    const wholeWidth = wholeLen ? wholeLen * smallFont * 0.62 + 6 : 0;
+    const estimateWidth = (text: string, font: number) => {
+      let w = 0;
+      for (const ch of text) {
+        w += (ch === "1" || ch === "l" || ch === "i" || ch === "." || ch === ",") ? font * 0.36 : font * 0.58;
+      }
+      return Math.max(font * 0.36, w);
+    };
+    const numWidth = estimateWidth(numText, smallFont);
+    const denWidth = estimateWidth(denText, smallFont);
+    const fractionWidth = Math.max(18, Math.max(numWidth, denWidth) + smallFont * 0.35);
+    const wholeTextWidth = wholeText ? estimateWidth(wholeText, fontSize) : 0;
+    const gap = wholeText ? Math.max(3, Math.round(fontSize * 0.15)) : 0;
+    const wholeWidth = wholeText ? wholeTextWidth + gap : 0;
     const totalContentWidth = wholeWidth + fractionWidth;
 
     let leftX: number;
     if (wholeSlot) {
       const wholeAttrX = numberValue(wholeSlot.content.x, minBarX - wholeWidth);
-      leftX = Math.min(minBarX - wholeWidth, wholeAttrX - wholeWidth / 2);
+      leftX = Math.min(minBarX - wholeWidth, wholeAttrX - wholeTextWidth / 2);
     } else {
       leftX = minBarX - 3;
     }

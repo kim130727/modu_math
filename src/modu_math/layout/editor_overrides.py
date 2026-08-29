@@ -83,6 +83,68 @@ def _normalize_text_box_height(
     return normalized, True
 
 
+def _normalize_text_slot_override(
+    base_content: dict[str, Any], patch: dict[str, Any]
+) -> tuple[dict[str, Any], bool]:
+    """Normalize overrides targeting a plain TextSlot so text-box metadata does not corrupt text anchors."""
+    if not isinstance(base_content, dict) or not isinstance(patch, dict):
+        return patch, False
+
+    text = patch.get("text", base_content.get("text"))
+    if isinstance(text, str) and "\n" in text:
+        return patch, False
+
+    anchor = base_content.get("anchor")
+    has_box_props = (
+        patch.get("kind") == "text_box"
+        or "width" in patch
+        or "height" in patch
+        or "align" in patch
+        or "valign" in patch
+    )
+    if not has_box_props:
+        return patch, False
+
+    normalized = dict(patch)
+    changed = False
+
+    font_size = float(
+        normalized.get("font_size") or base_content.get("font_size") or 21
+    )
+    x = normalized.get("x")
+    y = normalized.get("y")
+    width = normalized.get("width")
+
+    if anchor in {"middle", "end"}:
+        if isinstance(y, (int, float)) and (
+            "height" in normalized
+            or "width" in normalized
+            or normalized.get("kind") == "text_box"
+        ):
+            normalized["y"] = round(float(y) + font_size, 3)
+            changed = True
+
+        if isinstance(x, (int, float)) and isinstance(width, (int, float)):
+            if anchor == "middle":
+                normalized["x"] = round(float(x) + float(width) / 2, 3)
+            elif anchor == "end":
+                normalized["x"] = round(float(x) + float(width), 3)
+            changed = True
+    elif anchor == "start" or anchor is None:
+        if isinstance(y, (int, float)) and (
+            "height" in normalized or normalized.get("kind") == "text_box"
+        ):
+            normalized["y"] = round(float(y) + font_size, 3)
+            changed = True
+
+    for field in ("kind", "width", "height", "align", "valign", "line_height"):
+        if field in normalized:
+            normalized.pop(field, None)
+            changed = True
+
+    return normalized, changed
+
+
 def _normalize_answer_input_interaction(content: dict[str, Any]) -> None:
     interaction = content.get("interaction")
     if not isinstance(interaction, dict):
@@ -284,6 +346,11 @@ FRACTION_LATEX_PATTERN = re.compile(
 )
 
 
+def _estimate_math_text_width(text: str, font_size: float) -> float:
+    width = sum(font_size * (0.36 if ch in "1li.,: " else 0.58) for ch in text)
+    return max(font_size * 0.36, width)
+
+
 def _expand_fraction_override_slots(
     slot_id: str, content: dict[str, Any], layout: dict[str, Any] | None = None
 ) -> list[dict[str, Any]] | None:
@@ -338,46 +405,59 @@ def _expand_fraction_override_slots(
         else "#111827"
     )
 
+    small_font = max(14, int(round(font_size * 0.78)))
+    num_width = _estimate_math_text_width(num, small_font)
+    den_width = _estimate_math_text_width(den, small_font)
+    bar_width = max(18.0, max(num_width, den_width) + small_font * 0.35)
+    whole_text_width = _estimate_math_text_width(whole, font_size) if whole else 0.0
+    gap = max(3.0, round(font_size * 0.15, 1)) if whole else 0.0
+    whole_width = (whole_text_width + gap) if whole else 0.0
+    total_width = whole_width + bar_width
+
     box_x = content.get("x")
     box_y = content.get("y")
     box_w = float(content.get("width", 50.0))
     box_h = float(content.get("height", 60.0))
 
-    if box_x is None or box_y is None:
-        if bar_slot and isinstance(bar_slot.get("content"), dict):
-            bar_c = bar_slot["content"]
-            bx1 = float(bar_c.get("x1", 0))
-            bx2 = float(bar_c.get("x2", 0))
-            by = float(bar_c.get("y1", 0))
-            if box_x is None:
-                box_x = min(bx1, bx2)
-            if box_y is None:
-                box_y = by - box_h / 2.0
-        else:
-            box_x = float(box_x or 0.0)
-            box_y = float(box_y or 0.0)
-    else:
+    if box_x is not None and box_y is not None:
         box_x = float(box_x)
         box_y = float(box_y)
-
-    num_len = len(num)
-    den_len = len(den)
-    max_digits = max(num_len, den_len)
-    bar_width = max(26.0, max_digits * font_size * 0.62 + 8.0)
-    whole_width = (len(whole) * font_size * 0.62 + 6.0) if whole else 0.0
-    total_width = whole_width + bar_width
-
-    start_x = box_x + max(0.0, (box_w - total_width) / 2.0)
-    fraction_center_x = start_x + whole_width + bar_width / 2.0
-    center_y = box_y + box_h / 2.0
-    bar_y = center_y
-    num_y = center_y - font_size * 0.35
-    den_y = center_y + font_size * 0.95
+        start_x = box_x + max(0.0, (box_w - total_width) / 2.0)
+        fraction_center_x = start_x + whole_width + bar_width / 2.0
+        bar_x1 = start_x + whole_width
+        bar_x2 = start_x + whole_width + bar_width
+        center_y = box_y + box_h / 2.0
+        bar_y = center_y
+        num_y = center_y - font_size * 0.35
+        den_y = center_y + font_size * 0.95
+        whole_x = start_x + whole_text_width / 2.0
+        whole_y = center_y + font_size * 0.35
+    elif bar_slot and isinstance(bar_slot.get("content"), dict):
+        bar_c = bar_slot["content"]
+        bar_x1 = float(bar_c.get("x1", 0.0))
+        bar_x2 = float(bar_c.get("x2", bar_x1 + bar_width))
+        bar_y = float(bar_c.get("y1", 0.0))
+        fraction_center_x = (bar_x1 + bar_x2) / 2.0
+        num_y = float(num_slot.get("content", {}).get("y", bar_y - font_size * 0.35)) if num_slot else bar_y - font_size * 0.35
+        den_y = float(den_slot.get("content", {}).get("y", bar_y + font_size * 0.95)) if den_slot else bar_y + font_size * 0.95
+        whole_x = float(whole_slot.get("content", {}).get("x", bar_x1 - gap - whole_text_width / 2.0)) if whole_slot else bar_x1 - gap - whole_text_width / 2.0
+        whole_y = float(whole_slot.get("content", {}).get("y", bar_y + font_size * 0.35)) if whole_slot else bar_y + font_size * 0.35
+    else:
+        box_x = float(box_x or 0.0)
+        box_y = float(box_y or 0.0)
+        start_x = box_x + max(0.0, (box_w - total_width) / 2.0)
+        fraction_center_x = start_x + whole_width + bar_width / 2.0
+        bar_x1 = start_x + whole_width
+        bar_x2 = start_x + whole_width + bar_width
+        center_y = box_y + box_h / 2.0
+        bar_y = center_y
+        num_y = center_y - font_size * 0.35
+        den_y = center_y + font_size * 0.95
+        whole_x = start_x + whole_text_width / 2.0
+        whole_y = center_y + font_size * 0.35
 
     slots = []
     if whole:
-        whole_x = start_x + whole_width / 2.0
-        whole_y = center_y + font_size * 0.35
         slots.append(
             {
                 "id": f"{slot_id}.whole",
@@ -417,9 +497,9 @@ def _expand_fraction_override_slots(
             "kind": "line",
             "prompt": "",
             "content": {
-                "x1": round(fraction_center_x - bar_width / 2.0, 2),
+                "x1": round(bar_x1, 2),
                 "y1": round(bar_y, 2),
-                "x2": round(fraction_center_x + bar_width / 2.0, 2),
+                "x2": round(bar_x2, 2),
                 "y2": round(bar_y, 2),
                 "stroke": fill,
                 "stroke_width": 2.2,
@@ -849,7 +929,11 @@ def prune_editor_overrides(
                         base_content, patch
                     )
                 )
-                normalized = normalized or text_spacing_normalized
+                if slot_kinds.get(slot_id) == "text":
+                    patch, text_slot_normalized = _normalize_text_slot_override(
+                        base_content, patch
+                    )
+                    normalized = normalized or text_slot_normalized
                 if slot_kinds.get(slot_id) == "text_box" or "width" in patch:
                     patch, text_normalized = _normalize_text_box_height(
                         base_content, patch
@@ -1034,19 +1118,15 @@ def apply_editor_overrides(
                     current_kind,
                     patch,
                 )
+                if current_kind == "text":
+                    patch, _ = _normalize_text_slot_override(content, patch)
                 patch = _prepare_text_blank_rect_override(slot, patch)
                 _drop_transform_for_absolute_geometry_override(
                     current_kind,
                     content,
                     patch,
                 )
-                if (
-                    current_kind == "text"
-                    and str(content.get("text", "")).strip() != "□"
-                    and ("width" in patch or patch.get("kind") == "text_box")
-                ):
-                    slot["kind"] = "text_box"
-                elif patch.get("kind") in {
+                if patch.get("kind") in {
                     "text",
                     "text_box",
                     "rect",

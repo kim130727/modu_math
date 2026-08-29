@@ -3,7 +3,7 @@
   "problem_id": "P3_1_01_00040_15612",
   "title": "합이 가장 큰 식 찾기",
   "canvas": {
-    "width": 500,
+    "width": 400,
     "height": 220,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
@@ -38,20 +38,23 @@
   "slots": [
     {
       "id": "slot.question",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "다음 중 합이 가장 큰 것은 어느 것입니까?",
         "style_role": "question",
-        "x": 24.0,
-        "y": 28.0,
+        "x": 21.608,
+        "y": 17.838,
         "font_size": 22,
-        "fill": "#222222"
+        "fill": "#222222",
+        "height": 63,
+        "kind": "text_box",
+        "width": 379.656
       }
     },
     {
       "id": "slot.choice_1.number",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "①",
@@ -60,12 +63,14 @@
         "y": 62.0,
         "font_size": 22,
         "fill": "#2F80C9",
-        "semantic_role": "choice_marker"
+        "semantic_role": "choice_marker",
+        "height": 36,
+        "kind": "text_box"
       }
     },
     {
       "id": "slot.choice_1.expression",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "320+145",
@@ -73,115 +78,137 @@
         "x": 55.0,
         "y": 62.0,
         "font_size": 22,
-        "fill": "#111111"
+        "fill": "#111111",
+        "height": 36,
+        "kind": "text_box"
       }
     },
     {
       "id": "slot.choice_2.number",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "②",
         "style_role": "choice_label",
         "x": 26.0,
-        "y": 92.0,
+        "y": 98.217,
         "font_size": 22,
         "fill": "#2F80C9",
-        "semantic_role": "choice_marker"
+        "semantic_role": "choice_marker",
+        "height": 36,
+        "kind": "text_box"
       }
     },
     {
       "id": "slot.choice_2.expression",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "300+200",
         "style_role": "choice",
         "x": 55.0,
-        "y": 92.0,
+        "y": 98.217,
         "font_size": 22,
-        "fill": "#111111"
+        "fill": "#111111",
+        "height": 36,
+        "kind": "text_box"
       }
     },
     {
       "id": "slot.choice_3.number",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "③",
         "style_role": "choice_label",
         "x": 26.0,
-        "y": 122.0,
+        "y": 136.824,
         "font_size": 22,
         "fill": "#2F80C9",
-        "semantic_role": "choice_marker"
+        "semantic_role": "choice_marker",
+        "height": 36,
+        "kind": "text_box"
       }
     },
     {
       "id": "slot.choice_3.expression",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "163+326",
         "style_role": "choice",
         "x": 55.0,
-        "y": 122.0,
+        "y": 136.824,
         "font_size": 22,
-        "fill": "#111111"
+        "fill": "#111111",
+        "height": 36,
+        "kind": "text_box"
       }
     },
     {
       "id": "slot.choice_4.number",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "④",
         "style_role": "choice_label",
-        "x": 26.0,
-        "y": 152.0,
+        "x": 183.416,
+        "y": 61.143,
         "font_size": 22,
         "fill": "#2F80C9",
-        "semantic_role": "choice_marker"
+        "semantic_role": "choice_marker",
+        "height": 36,
+        "kind": "text_box",
+        "width": 200.584
       }
     },
     {
       "id": "slot.choice_4.expression",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "236+362",
         "style_role": "choice",
-        "x": 55.0,
-        "y": 152.0,
+        "x": 212.416,
+        "y": 61.622,
         "font_size": 22,
-        "fill": "#111111"
+        "fill": "#111111",
+        "height": 36,
+        "kind": "text_box",
+        "width": 171.584
       }
     },
     {
       "id": "slot.choice_5.number",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "⑤",
         "style_role": "choice_label",
-        "x": 26.0,
-        "y": 182.0,
+        "x": 183.416,
+        "y": 97.36,
         "font_size": 22,
         "fill": "#2F80C9",
-        "semantic_role": "choice_marker"
+        "semantic_role": "choice_marker",
+        "height": 36,
+        "kind": "text_box",
+        "width": 200.584
       }
     },
     {
       "id": "slot.choice_5.expression",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "405+104",
         "style_role": "choice",
-        "x": 55.0,
-        "y": 182.0,
+        "x": 212.416,
+        "y": 97.36,
         "font_size": 22,
-        "fill": "#111111"
+        "fill": "#111111",
+        "height": 36,
+        "kind": "text_box",
+        "width": 171.584
       }
     }
   ],

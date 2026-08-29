@@ -3,8 +3,8 @@
   "problem_id": "S3_초등_3_008612",
   "title": "다음 나눗셈이 나누어떨어지는지 판단하기",
   "canvas": {
-    "width": 700,
-    "height": 300,
+    "width": 600,
+    "height": 250,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -15,9 +15,8 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.expr.box",
-        "slot.q.text",
         "slot.expr.text",
-        "slot.q.text.copy2"
+        "konva_1787986616699_text_1441474"
       ]
     },
     {
@@ -35,25 +34,12 @@
   ],
   "slots": [
     {
-      "id": "slot.q.text",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "다음 나눗셈이 나누어떨어지면 O표,",
-        "style_role": "question",
-        "x": 75.0,
-        "y": 55.0,
-        "font_size": 30,
-        "max_width": 810.0
-      }
-    },
-    {
       "id": "slot.expr.box",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 230.0,
-        "y": 140.0,
+        "x": 160.502,
+        "y": 122.426,
         "width": 190.0,
         "height": 80.0
       }
@@ -65,23 +51,26 @@
       "content": {
         "text": "28 ÷ 3",
         "style_role": "choice",
-        "x": 280.0,
-        "y": 190.0,
+        "x": 210.502,
+        "y": 172.426,
         "font_size": 30
       }
     },
     {
-      "id": "slot.q.text.copy2",
-      "kind": "text",
+      "id": "konva_1787986616699_text_1441474",
+      "kind": "text_box",
       "prompt": "",
       "content": {
-        "text": "나누어떨어지지 않으면 X표를 선택하세요.",
-        "style_role": "body",
-        "x": 75.0,
-        "y": 100.0,
+        "text": "다음 나눗셈이 나누어떨어지면 O표, 나누어떨어지지 않으면 X표를 선택하세요.",
+        "x": 34.01,
+        "y": 16.538,
         "font_size": 30,
-        "max_width": 810.0,
-        "fill": "#111111"
+        "fill": "#111827",
+        "width": 523.397,
+        "height": 121,
+        "align": "left",
+        "line_height": 1.25,
+        "kind": "text_box"
       }
     }
   ],
@@ -91,10 +80,9 @@
   "reading_order": [
     "region.stem",
     "slot.expr.box",
-    "slot.q.text",
     "slot.expr.text",
-    "slot.q.text.copy2",
     "region.choice",
-    "region.explanation"
+    "region.explanation",
+    "konva_1787986616699_text_1441474"
   ]
 }

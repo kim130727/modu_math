@@ -90,6 +90,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     let sourceDslSlotIdCache = { dsl: null, ids: null };
     let rendererSlotRefCache = { rendererText: null, byElementId: null };
     let layoutGroupCache = { layoutText: null, groups: null, byMember: null };
+    let manualUngroupedGroupBases = new Set();
     let selectedTableCells = [];
     let snapEnabled = true;
     let collapsedProblemFolders = new Set();
@@ -1076,6 +1077,43 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       return regionId ? { ...value, region_id: regionId } : value;
     }
 
+    function blockLayerSlotId(slotId) {
+      return /^slot\.graphpaper(?:_\d+)?(?:\.|$)/.test(slotId)
+        || /^slot\.figure\.base_ten_[^.]+_\d+(?:\.|$)/.test(slotId)
+        || /^slot\.figure\.(?:bar_model|tick_bar)_\d+(?:\.|$)/.test(slotId);
+    }
+
+    function shapeBelowBlocksLayerPatch(slotIds, regionId = null) {
+      const ids = Array.from(new Set((slotIds || []).filter(Boolean)));
+      if (!ids.length) return null;
+      const layoutText = document.getElementById("layoutView")?.value || "";
+      if (!layoutText.trim()) return null;
+      let layout = null;
+      try {
+        layout = JSON.parse(layoutText);
+      } catch (_) {
+        return null;
+      }
+      for (const region of layout.regions || []) {
+        if (!region || !Array.isArray(region.slot_ids)) continue;
+        if (regionId && region.id !== regionId) continue;
+        const currentOrder = [...region.slot_ids, ...ids.filter((id) => !region.slot_ids.includes(id))];
+        const firstBlockIndex = currentOrder.findIndex((id) => blockLayerSlotId(id) && !ids.includes(id));
+        if (firstBlockIndex < 0) continue;
+        const withoutInserted = currentOrder.filter((id) => !ids.includes(id));
+        const insertAt = withoutInserted.findIndex((id) => blockLayerSlotId(id));
+        if (insertAt < 0) continue;
+        const nextOrder = [...withoutInserted.slice(0, insertAt), ...ids, ...withoutInserted.slice(insertAt)];
+        if (nextOrder.join("\u0001") === currentOrder.join("\u0001")) continue;
+        return {
+          target: "__layer__",
+          op: "layer",
+          value: { region_id: region.id || regionId || firstUsableRegionId() || "region.diagram", slot_ids: nextOrder },
+        };
+      }
+      return null;
+    }
+
     function compositeShapePatches(def) {
       const desiredWidth = Number(def.w || def.sourceWidth || 80);
       const desiredHeight = Number(def.h || def.sourceHeight || desiredWidth);
@@ -1626,14 +1664,22 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       const denominatorText = cleanMathText(denominator, "2");
       const base = uniqueMathBase(mixed ? "mixed_fraction" : "fraction");
       const fontSize = 24;
-      const numLen = numeratorText.length;
-      const denLen = denominatorText.length;
-      const maxDigits = Math.max(numLen, denLen);
-      const barWidth = Math.max(26, maxDigits * 13 + 8);
-      const width = mixed ? barWidth + 28 : barWidth + 8;
+      const estimateWidth = (text, font) => {
+        let w = 0;
+        for (const ch of text) {
+          w += (ch === "1" || ch === "l" || ch === "i" || ch === "." || ch === ",") ? font * 0.36 : font * 0.58;
+        }
+        return Math.max(font * 0.36, w);
+      };
+      const numWidth = estimateWidth(numeratorText, fontSize * 0.8);
+      const denWidth = estimateWidth(denominatorText, fontSize * 0.8);
+      const barWidth = Math.max(18, Math.max(numWidth, denWidth) + 6);
+      const wholeTextWidth = mixed ? estimateWidth(wholeText, fontSize) : 0;
+      const gap = mixed ? 4 : 0;
+      const width = mixed ? Math.ceil(wholeTextWidth + gap + barWidth) : barWidth;
       const height = 54;
       const { x, y } = selectedInsertOrigin(width, height) || defaultInsertOrigin(width, height);
-      const fractionX = mixed ? snapValue(x + 24 + barWidth / 2) : snapValue(x + width / 2);
+      const fractionX = mixed ? snapValue(x + wholeTextWidth + gap + barWidth / 2) : snapValue(x + width / 2);
       const numeratorY = snapValue(y + 18);
       const barY = snapValue(y + 28);
       const denominatorY = snapValue(y + 46);
@@ -1918,11 +1964,16 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       if (def.kind === "composite") {
         if (!currentProblemId) throw new Error("문제를 먼저 여세요.");
         const { base, patches } = compositeShapePatches(def);
-        await commitPatches(patches, `${def.label || "교구"} 삽입 완료`);
+        const layerPatch = shapeBelowBlocksLayerPatch(patches.map((patch) => patch.target), patches[0]?.value?.region_id || null);
+        await commitPatches(layerPatch ? [...patches, layerPatch] : patches, `${def.label || "교구"} 삽입 완료`);
         restoreSelection(patches.length ? [patches[0].target] : []);
         return;
       }
-      await insertSlot(uniqueInsertedSlotId(def.id), shapePayload(def), def.label || "도형");
+      const slotId = uniqueInsertedSlotId(def.id);
+      const value = shapePayload(def);
+      const layerPatch = shapeBelowBlocksLayerPatch([slotId], value.region_id || null);
+      await commitPatches(layerPatch ? [{ target: slotId, op: "add", value }, layerPatch] : [{ target: slotId, op: "add", value }], `${def.label || "도형"} 삽입 완료`);
+      restoreSelection([slotId]);
     }
 
     function beginDrawShape(def) {
@@ -2010,7 +2061,9 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         },
       });
       try {
-        await insertSlot(slotId, value, local.def.label || "도형");
+        const layerPatch = shapeBelowBlocksLayerPatch([slotId], value.region_id || null);
+        await commitPatches(layerPatch ? [{ target: slotId, op: "add", value }, layerPatch] : [{ target: slotId, op: "add", value }], `${local.def.label || "도형"} 삽입 완료`);
+        restoreSelection([slotId]);
       } catch (e) {
         setStatus(String(e), false);
       }
@@ -2329,6 +2382,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     function collectTableGroupSlotIds(slotId) {
       const base = tableBaseFromSlotId(slotId);
       if (!base) return null;
+      if (manualUngroupedGroupBases.has(base)) return null;
       const svg = document.getElementById("svgPreview").querySelector("svg");
       if (!svg) return null;
       const layoutIds = tableLayoutSlotIds();
@@ -2344,6 +2398,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     function collectGraphPaperGroupSlotIds(slotId) {
       const base = graphPaperBaseFromSlotId(slotId);
       if (!base) return null;
+      if (manualUngroupedGroupBases.has(base)) return null;
       const svg = document.getElementById("svgPreview").querySelector("svg");
       if (!svg) return null;
       const out = [];
@@ -2378,6 +2433,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     function collectFigureGroupSlotIds(slotId) {
       const base = figureBaseFromSlotId(slotId);
       if (!base) return null;
+      if (manualUngroupedGroupBases.has(base)) return null;
       const svg = document.getElementById("svgPreview").querySelector("svg");
       if (!svg) return null;
       const out = [];
@@ -2391,6 +2447,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     function collectCharacterGroupSlotIds(slotId) {
       const info = characterGroupInfoFromSlotId(slotId);
       if (!info) return null;
+      if (manualUngroupedGroupBases.has(info.base)) return null;
       const svg = document.getElementById("svgPreview").querySelector("svg");
       if (!svg) return null;
       const out = [];
@@ -2414,6 +2471,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     function collectPaperFoldGroupSlotIds(slotId) {
       const base = paperFoldBaseFromSlotId(slotId);
       if (!base) return null;
+      if (manualUngroupedGroupBases.has(base)) return null;
       const svg = document.getElementById("svgPreview").querySelector("svg");
       if (!svg) return null;
       const out = [];
@@ -2427,6 +2485,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     function collectGeneratedHelperGroupSlotIds(slotId) {
       const base = generatedHelperBaseFromSlotId(slotId);
       if (!base) return null;
+      if (manualUngroupedGroupBases.has(base)) return null;
       const svg = document.getElementById("svgPreview").querySelector("svg");
       if (!svg) return null;
       const out = [];
@@ -2440,6 +2499,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     function collectMeasurementToolGroupSlotIds(slotId) {
       const base = measurementToolBaseFromSlotId(slotId);
       if (!base) return null;
+      if (manualUngroupedGroupBases.has(base)) return null;
       const svg = document.getElementById("svgPreview").querySelector("svg");
       if (!svg) return null;
       const out = [];
@@ -2968,14 +3028,38 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       return true;
     }
 
+    function shapeFormatEntries({ includeLines = true } = {}) {
+      const entries = [];
+      const seen = new Set();
+      for (const item of selectedSlots.values()) {
+        if (!item || item.isCanvas || item.isFraction) continue;
+        const nodes = item.elements && item.elements.length ? item.elements : [item.el];
+        for (const node of nodes) {
+          if (!node) continue;
+          const tag = node.tagName.toLowerCase();
+          const fillable = ["rect", "circle", "path", "polygon"].includes(tag);
+          const strokable = fillable || tag === "line";
+          if (!strokable || (!includeLines && tag === "line")) continue;
+          const slotId = slotIdFromElement(node);
+          if (!slotId || seen.has(`${slotId}\u0001${tag}`)) continue;
+          seen.add(`${slotId}\u0001${tag}`);
+          entries.push({
+            item,
+            el: node,
+            slotId,
+            slotIds: slotIdsFromElement(node).length ? slotIdsFromElement(node) : [slotId],
+            tag,
+            fillable,
+            strokable,
+          });
+        }
+      }
+      return entries;
+    }
+
     function selectedShapeFormatItem() {
-      if (selectedSlots.size !== 1) return null;
-      const item = Array.from(selectedSlots.values())[0];
-      if (!item || item.isCanvas || item.isFraction || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup || item.isCharacterGroup || item.isLayoutGroup) return null;
-      if (!item.el) return null;
-      const tag = item.el.tagName.toLowerCase();
-      if (!["rect", "circle", "line", "path", "polygon"].includes(tag)) return null;
-      return item;
+      const entries = shapeFormatEntries();
+      return entries.length === 1 ? entries[0] : null;
     }
 
     function validHexColor(value) {
@@ -3005,13 +3089,12 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         }
       }
       selectedTableCells = [];
-      const item = selectedShapeFormatItem();
-      if (!item) return false;
-      item.slotIds = slotIds.length ? slotIds : [slotId];
+      const entries = shapeFormatEntries();
+      if (!entries.length) return false;
       updateSelectionHandles();
       updateTextEditControls();
 
-      const value = readSlotPatchValue(item.el) || {};
+      const value = readSlotPatchValue(entries[0].el) || {};
       const fillInput = document.getElementById("shapeFillColorInput");
       if (fillInput && validHexColor(value.fill)) fillInput.value = value.fill;
       const strokeInput = document.getElementById("shapeStrokeColorInput");
@@ -3021,15 +3104,24 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     }
 
     async function applyShapeFormatPatch(stylePatch, label) {
-      const item = selectedShapeFormatItem();
-      if (!item) throw new Error("도형을 먼저 선택하세요.");
-      const value = { ...(readSlotPatchValue(item.el) || {}), ...stylePatch };
-      const before = [{ slotId: item.slotId, value: readSlotPatchValue(item.el) || {} }];
-      applyPatchValueToElement(item.el, value);
+      const wantsFill = Object.prototype.hasOwnProperty.call(stylePatch || {}, "fill");
+      const entries = shapeFormatEntries({ includeLines: !wantsFill });
+      if (!entries.length) throw new Error("색을 적용할 도형이나 선을 선택하세요.");
+      const before = [];
+      const after = [];
+      const patches = [];
+      for (const entry of entries) {
+        const current = readSlotPatchValue(entry.el) || {};
+        const value = { ...current, ...stylePatch };
+        before.push({ slotId: entry.slotId, value: JSON.parse(JSON.stringify(current)) });
+        applyPatchValueToElement(entry.el, value);
+        after.push({ slotId: entry.slotId, value: JSON.parse(JSON.stringify(value)) });
+        for (const target of entry.slotIds || [entry.slotId]) {
+          patches.push({ target, op: "update", value });
+        }
+      }
       updateSelectionHandles();
-      const targets = item.slotIds || [item.slotId];
-      await commitPatches(targets.map((target) => ({ target, op: "update", value })), `${label} 적용 완료`);
-      const after = [{ slotId: item.slotId, value: JSON.parse(JSON.stringify(value)) }];
+      await commitPatches(patches, `${label} 적용 완료`);
       if (!historyBusy) pushHistory(before, after, label);
     }
 
@@ -3038,16 +3130,14 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         await applyTableCellFill(fill);
         return;
       }
-      const item = selectedShapeFormatItem();
-      if (!item) throw new Error("도형을 먼저 선택하세요.");
-      if (item.el.tagName.toLowerCase() === "line") throw new Error("선에는 채우기를 적용할 수 없습니다.");
+      if (!shapeFormatEntries({ includeLines: false }).length) throw new Error("채우기를 적용할 도형을 선택하세요.");
       await applyShapeFormatPatch({ fill }, "채우기");
     }
 
     async function applyShapeStroke(stroke) {
-      const item = selectedShapeFormatItem();
-      if (!item) throw new Error("도형 또는 선을 먼저 선택하세요.");
-      const current = readSlotPatchValue(item.el) || {};
+      const entries = shapeFormatEntries();
+      if (!entries.length) throw new Error("선 색을 적용할 도형이나 선을 선택하세요.");
+      const current = readSlotPatchValue(entries[0].el) || {};
       const strokeWidth = Number(current.stroke_width);
       await applyShapeFormatPatch({
         stroke,
@@ -3056,9 +3146,11 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     }
 
     function selectedStrokeOrDefault() {
-      const item = selectedShapeFormatItem();
-      const current = item ? (readSlotPatchValue(item.el) || {}) : {};
-      return validHexColor(current.stroke) ? current.stroke : DEFAULT_SHAPE_STYLE.stroke;
+      for (const entry of shapeFormatEntries()) {
+        const current = readSlotPatchValue(entry.el) || {};
+        if (validHexColor(current.stroke)) return current.stroke;
+      }
+      return DEFAULT_SHAPE_STYLE.stroke;
     }
 
     function renderShapeFormatSwatches() {
@@ -4996,8 +5088,17 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       return next;
     }
 
+    function layerModeLabel(mode) {
+      if (mode === "front") return "맨 앞으로 가져오기";
+      if (mode === "back") return "맨 뒤로 보내기";
+      if (mode === "forward") return "앞으로 가져오기";
+      if (mode === "backward") return "뒤로 보내기";
+      return "레이어 조정";
+    }
+
     async function layerSelected(mode) {
       const selectedIds = selectedLayerSlotIds();
+      const label = layerModeLabel(mode);
       if (!selectedIds.length) throw new Error("레이어를 조정할 요소를 선택하세요.");
       const layoutText = document.getElementById("layoutView")?.value || "";
       if (!layoutText.trim()) throw new Error("layout 정보를 찾지 못했습니다. 먼저 build 하세요.");
@@ -5017,11 +5118,12 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         });
       }
       if (!patches.length) {
-        setStatus("레이어 순서를 바꿀 수 있는 선택이 없습니다.", false);
+        setStatus(`${label}: 바꿀 수 있는 레이어 순서가 없습니다.`, false);
         return;
       }
       document.getElementById("layoutView").value = JSON.stringify(layout, null, 2);
-      await commitPatches(patches, `레이어 조정 완료: ${mode}`, true);
+      await commitPatches(patches, `${label} 완료`, true);
+      return;
     }
 
     function selectedCopyItems() {
@@ -5944,6 +6046,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       currentProblemId = trimmed;
       resetState();
       clearCommandHistory();
+      manualUngroupedGroupBases = new Set();
       setState({ problemId: trimmed, loading: true, error: null });
       document.getElementById("selectedProblem").textContent = trimmed;
       const detail = await withApiErrors(() => requestProblemDetail(trimmed));
@@ -6008,6 +6111,82 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       renderArtifacts(data.artifacts || null);
       renderLog(data.build?.stdout || "", data.build?.stderr || "");
       setStatus("패치 + 빌드 완료", true);
+    }
+
+    function selectedMemberSlotIds() {
+      const out = [];
+      for (const item of selectedSlots.values()) {
+        if (!item || item.isCanvas) continue;
+        const ids = item.slotIds && item.slotIds.length ? item.slotIds : [item.slotId];
+        for (const id of ids) {
+          if (id && !out.includes(id)) out.push(id);
+        }
+      }
+      return out;
+    }
+
+    function uniqueLayoutGroupId() {
+      const used = new Set(layoutGroups().groups.map((group) => group.id));
+      for (let i = 1; i < 10000; i += 1) {
+        const candidate = i === 1 ? "group.editor" : `group.editor_${i}`;
+        if (!used.has(candidate)) return candidate;
+      }
+      return `group.editor_${Date.now()}`;
+    }
+
+    async function groupSelectedSlots() {
+      if (selectedSlots.size < 2) throw new Error("Select at least 2 items to group.");
+      const memberIds = selectedMemberSlotIds();
+      if (memberIds.length < 2) throw new Error("Select at least 2 items to group.");
+      const groupId = uniqueLayoutGroupId();
+      await commitPatches(
+        [{ target: groupId, op: "group", value: { member_ids: memberIds, role: "custom" } }],
+        `Grouped: ${memberIds.length} items`,
+        true
+      );
+      restoreSelection([memberIds[0]]);
+    }
+
+    function autoGroupBaseFromSlotId(slotId) {
+      return figureBaseFromSlotId(slotId)
+        || characterGroupBaseFromSlotId(slotId)
+        || tableBaseFromSlotId(slotId)
+        || graphPaperBaseFromSlotId(slotId)
+        || paperFoldBaseFromSlotId(slotId)
+        || measurementToolBaseFromSlotId(slotId)
+        || generatedHelperBaseFromSlotId(slotId);
+    }
+
+    async function ungroupSelectedSlots() {
+      if (!selectedSlots.size) throw new Error("Select a group to ungroup.");
+      const patches = [];
+      const reselectionIds = [];
+      for (const item of selectedSlots.values()) {
+        if (!item || item.isCanvas) continue;
+        const memberIds = item.slotIds && item.slotIds.length ? item.slotIds : [item.slotId];
+        if (item.isLayoutGroup) {
+          patches.push({ target: item.slotId, op: "ungroup" });
+        }
+        if (item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup || item.isCharacterGroup || item.isLayoutGroup) {
+          for (const memberId of memberIds) {
+            const base = autoGroupBaseFromSlotId(memberId);
+            if (base) manualUngroupedGroupBases.add(base);
+            if (memberId && !reselectionIds.includes(memberId)) reselectionIds.push(memberId);
+          }
+        }
+      }
+      if (!patches.length && !reselectionIds.length) throw new Error("The selected item is not a group.");
+      if (patches.length) {
+        await commitPatches(patches, `Ungrouped: ${patches.length} group(s)`, true);
+      }
+      clearSelection();
+      for (const slotId of reselectionIds) {
+        const el = findElementBySlotId(slotId);
+        if (el) setSelectedElement(el, slotId, true);
+      }
+      updateSelectionHandles();
+      updateTextEditControls();
+      setStatus(`Ungrouped: ${reselectionIds.length || patches.length} item(s)`, true);
     }
 
     async function deleteSelectedSlots() {
@@ -6473,6 +6652,8 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     document.getElementById("sendBackwardBtn").onclick = async () => { try { await layerSelected("backward"); } catch (e) { setStatus(String(e), false); } };
     document.getElementById("undoBtn").onclick = async () => { try { await undoAction(); } catch (e) { setStatus(String(e), false); } };
     document.getElementById("redoBtn").onclick = async () => { try { await redoAction(); } catch (e) { setStatus(String(e), false); } };
+    document.getElementById("groupBtn").onclick = async () => { try { await groupSelectedSlots(); } catch (e) { setStatus(String(e), false); } };
+    document.getElementById("ungroupBtn").onclick = async () => { try { await ungroupSelectedSlots(); } catch (e) { setStatus(String(e), false); } };
     document.getElementById("deleteBtn").onclick = async () => {
       try { await deleteSelectedSlots(); }
       catch (e) { setStatus(String(e), false); }
@@ -6509,6 +6690,20 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       if ((ev.ctrlKey || ev.metaKey) && (ev.key.toLowerCase() === "y" || (ev.shiftKey && ev.key.toLowerCase() === "z"))) {
         ev.preventDefault();
         redoAction().catch((e) => setStatus(String(e), false));
+        return;
+      }
+      if ((ev.ctrlKey || ev.metaKey) && ev.key.toLowerCase() === "g") {
+        ev.preventDefault();
+        const task = ev.shiftKey ? ungroupSelectedSlots() : groupSelectedSlots();
+        task.catch((e) => setStatus(String(e), false));
+        return;
+      }
+      if ((ev.ctrlKey || ev.metaKey) && (ev.key === "]" || ev.key === "[")) {
+        ev.preventDefault();
+        const mode = ev.key === "]"
+          ? (ev.shiftKey ? "front" : "forward")
+          : (ev.shiftKey ? "back" : "backward");
+        layerSelected(mode).catch((e) => setStatus(String(e), false));
         return;
       }
       if ((ev.ctrlKey || ev.metaKey) && !ev.shiftKey && ev.key.toLowerCase() === "c") {

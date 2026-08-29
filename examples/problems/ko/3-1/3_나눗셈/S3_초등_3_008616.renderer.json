@@ -2,7 +2,7 @@
   "problem_id": "S3_초등_3_008616",
   "view_box": {
     "width": 872.0,
-    "height": 650.0,
+    "height": 600.0,
     "background": "#FFFFFF"
   },
   "elements": [
@@ -10,8 +10,8 @@
       "id": "slot.eq.box.rect",
       "type": "rect",
       "attributes": {
-        "x": 180.0,
-        "y": 80.0,
+        "x": 200.861,
+        "y": 98.764,
         "width": 380.0,
         "height": 80.0,
         "fill": "#eef4d8",
@@ -27,7 +27,7 @@
       "id": "slot.left.bubble.path",
       "type": "path",
       "attributes": {
-        "d": "M 81.0 251.0 C 81.0 221.48, 114.82 210.0, 170.0 210.0 C 225.18 210.0, 259.0 221.48, 259.0 251.0 C 259.0 280.52, 225.18 292.0, 170.0 292.0 C 114.82 292.0, 81.0 280.52, 81.0 251.0 Z",
+        "d": "M 59.096 269.679 C 59.096 232.715 101.444 218.34 170.538 218.34 C 239.633 218.34 281.981 232.715 281.981 269.679 C 281.981 306.642 239.633 321.017 170.538 321.017 C 101.444 321.017 59.096 306.642 59.096 269.679 Z",
         "stroke": "#222222",
         "stroke-width": 1.6,
         "fill": "#ffffff"
@@ -38,195 +38,11 @@
       }
     },
     {
-      "id": "slot.left.tail.polygon",
-      "type": "polygon",
-      "attributes": {
-        "points": [
-          [
-            160.0,
-            286.0
-          ],
-          [
-            180.0,
-            286.0
-          ],
-          [
-            170.0,
-            307.0
-          ]
-        ],
-        "stroke": "#222222",
-        "stroke-width": 1.4,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.left.tail",
-      "refs": {
-        "layout_slot_id": "slot.left.tail"
-      }
-    },
-    {
-      "id": "slot.left.person.body.polygon",
-      "type": "polygon",
-      "attributes": {
-        "points": [
-          [
-            142.0,
-            435.0
-          ],
-          [
-            198.0,
-            435.0
-          ],
-          [
-            188.0,
-            399.0
-          ],
-          [
-            152.0,
-            399.0
-          ]
-        ],
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#f5ae12"
-      },
-      "source_ref": "slot.left.person.body",
-      "refs": {
-        "layout_slot_id": "slot.left.person.body"
-      }
-    },
-    {
-      "id": "slot.left.person.head.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 170.0,
-        "cy": 362.0,
-        "r": 28.0,
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#ffd9ad"
-      },
-      "source_ref": "slot.left.person.head",
-      "refs": {
-        "layout_slot_id": "slot.left.person.head"
-      }
-    },
-    {
-      "id": "slot.left.person.hair.cap.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 142.0 361.0 C 144.0 332.0, 195.0 327.0, 199.0 361.0 C 180.0 345.0, 158.0 352.0, 142.0 361.0 Z",
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#c77816"
-      },
-      "source_ref": "slot.left.person.hair.cap",
-      "refs": {
-        "layout_slot_id": "slot.left.person.hair.cap"
-      }
-    },
-    {
-      "id": "slot.left.person.smile.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 163.0 378.0 Q 170.0 384.0 177.0 378.0",
-        "stroke": "#b86e39",
-        "stroke-width": 1.3,
-        "fill": "none"
-      },
-      "source_ref": "slot.left.person.smile",
-      "refs": {
-        "layout_slot_id": "slot.left.person.smile"
-      }
-    },
-    {
-      "id": "slot.left.person.tail.left.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 143.0 359.0 C 118.0 363.0, 132.0 404.0, 120.0 410.0",
-        "stroke": "#c77816",
-        "stroke-width": 7.0,
-        "fill": "none"
-      },
-      "source_ref": "slot.left.person.tail.left",
-      "refs": {
-        "layout_slot_id": "slot.left.person.tail.left"
-      }
-    },
-    {
-      "id": "slot.left.person.tail.right.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 197.0 359.0 C 222.0 363.0, 208.0 404.0, 220.0 410.0",
-        "stroke": "#c77816",
-        "stroke-width": 7.0,
-        "fill": "none"
-      },
-      "source_ref": "slot.left.person.tail.right",
-      "refs": {
-        "layout_slot_id": "slot.left.person.tail.right"
-      }
-    },
-    {
-      "id": "slot.left.person.bow.left.polygon",
-      "type": "polygon",
-      "attributes": {
-        "points": [
-          [
-            163.0,
-            405.0
-          ],
-          [
-            144.0,
-            397.0
-          ],
-          [
-            156.0,
-            418.0
-          ]
-        ],
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.left.person.bow.left",
-      "refs": {
-        "layout_slot_id": "slot.left.person.bow.left"
-      }
-    },
-    {
-      "id": "slot.left.person.bow.right.polygon",
-      "type": "polygon",
-      "attributes": {
-        "points": [
-          [
-            177.0,
-            405.0
-          ],
-          [
-            196.0,
-            397.0
-          ],
-          [
-            184.0,
-            418.0
-          ]
-        ],
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.left.person.bow.right",
-      "refs": {
-        "layout_slot_id": "slot.left.person.bow.right"
-      }
-    },
-    {
       "id": "slot.name.left.box.rect",
       "type": "rect",
       "attributes": {
-        "x": 134.5,
-        "y": 423.0,
+        "x": 135.543,
+        "y": 478.25,
         "width": 71.0,
         "height": 36.0,
         "fill": "#e9f7dd",
@@ -244,7 +60,7 @@
       "id": "slot.mid.bubble.path",
       "type": "path",
       "attributes": {
-        "d": "M 322.0 250.0 C 322.0 220.48, 355.82 209.0, 411.0 209.0 C 466.18 209.0, 500.0 220.48, 500.0 250.0 C 500.0 279.52, 466.18 291.0, 411.0 291.0 C 355.82 291.0, 322.0 279.52, 322.0 250.0 Z",
+        "d": "M 313.656 269.052 C 313.656 231.819 356.312 217.34 425.91 217.34 C 495.507 217.34 538.164 231.819 538.164 269.052 C 538.164 306.285 495.507 320.765 425.91 320.765 C 356.312 320.765 313.656 306.285 313.656 269.052 Z",
         "stroke": "#222222",
         "stroke-width": 1.6,
         "fill": "#ffffff"
@@ -255,167 +71,11 @@
       }
     },
     {
-      "id": "slot.mid.tail.polygon",
-      "type": "polygon",
-      "attributes": {
-        "points": [
-          [
-            401.0,
-            285.0
-          ],
-          [
-            421.0,
-            285.0
-          ],
-          [
-            411.0,
-            305.0
-          ]
-        ],
-        "stroke": "#222222",
-        "stroke-width": 1.4,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.mid.tail",
-      "refs": {
-        "layout_slot_id": "slot.mid.tail"
-      }
-    },
-    {
-      "id": "slot.mid.person.body.polygon",
-      "type": "polygon",
-      "attributes": {
-        "points": [
-          [
-            383.0,
-            434.0
-          ],
-          [
-            439.0,
-            434.0
-          ],
-          [
-            429.0,
-            398.0
-          ],
-          [
-            393.0,
-            398.0
-          ]
-        ],
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#f5ae12"
-      },
-      "source_ref": "slot.mid.person.body",
-      "refs": {
-        "layout_slot_id": "slot.mid.person.body"
-      }
-    },
-    {
-      "id": "slot.mid.person.head.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 411.0,
-        "cy": 361.0,
-        "r": 28.0,
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#ffd9ad"
-      },
-      "source_ref": "slot.mid.person.head",
-      "refs": {
-        "layout_slot_id": "slot.mid.person.head"
-      }
-    },
-    {
-      "id": "slot.mid.person.hair.cap.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 383.0 360.0 C 385.0 331.0, 436.0 326.0, 440.0 360.0 C 421.0 344.0, 399.0 351.0, 383.0 360.0 Z",
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#4c3a25"
-      },
-      "source_ref": "slot.mid.person.hair.cap",
-      "refs": {
-        "layout_slot_id": "slot.mid.person.hair.cap"
-      }
-    },
-    {
-      "id": "slot.mid.person.smile.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 404.0 377.0 Q 411.0 383.0 418.0 377.0",
-        "stroke": "#b86e39",
-        "stroke-width": 1.3,
-        "fill": "none"
-      },
-      "source_ref": "slot.mid.person.smile",
-      "refs": {
-        "layout_slot_id": "slot.mid.person.smile"
-      }
-    },
-    {
-      "id": "slot.mid.person.bow.left.polygon",
-      "type": "polygon",
-      "attributes": {
-        "points": [
-          [
-            404.0,
-            404.0
-          ],
-          [
-            385.0,
-            396.0
-          ],
-          [
-            397.0,
-            417.0
-          ]
-        ],
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#5da6df"
-      },
-      "source_ref": "slot.mid.person.bow.left",
-      "refs": {
-        "layout_slot_id": "slot.mid.person.bow.left"
-      }
-    },
-    {
-      "id": "slot.mid.person.bow.right.polygon",
-      "type": "polygon",
-      "attributes": {
-        "points": [
-          [
-            418.0,
-            404.0
-          ],
-          [
-            437.0,
-            396.0
-          ],
-          [
-            425.0,
-            417.0
-          ]
-        ],
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#5da6df"
-      },
-      "source_ref": "slot.mid.person.bow.right",
-      "refs": {
-        "layout_slot_id": "slot.mid.person.bow.right"
-      }
-    },
-    {
       "id": "slot.name.mid.box.rect",
       "type": "rect",
       "attributes": {
-        "x": 375.0,
-        "y": 423.0,
+        "x": 377.603,
+        "y": 475.123,
         "width": 72.0,
         "height": 36.0,
         "fill": "#e9f7dd",
@@ -433,7 +93,7 @@
       "id": "slot.right.bubble.path",
       "type": "path",
       "attributes": {
-        "d": "M 559.0 251.0 C 559.0 221.48, 593.2 210.0, 649.0 210.0 C 704.8 210.0, 739.0 221.48, 739.0 251.0 C 739.0 280.52, 704.8 292.0, 649.0 292.0 C 593.2 292.0, 559.0 280.52, 559.0 251.0 Z",
+        "d": "M 555.871 266.007 C 555.871 230.936 595.709 217.297 660.71 217.297 C 725.709 217.297 765.548 230.936 765.548 266.007 C 765.548 301.078 725.709 314.717 660.71 314.717 C 595.709 314.717 555.871 301.078 555.871 266.007 Z",
         "stroke": "#222222",
         "stroke-width": 1.6,
         "fill": "#ffffff"
@@ -444,167 +104,11 @@
       }
     },
     {
-      "id": "slot.right.tail.polygon",
-      "type": "polygon",
-      "attributes": {
-        "points": [
-          [
-            639.0,
-            286.0
-          ],
-          [
-            659.0,
-            286.0
-          ],
-          [
-            649.0,
-            307.0
-          ]
-        ],
-        "stroke": "#222222",
-        "stroke-width": 1.4,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.right.tail",
-      "refs": {
-        "layout_slot_id": "slot.right.tail"
-      }
-    },
-    {
-      "id": "slot.right.person.body.polygon",
-      "type": "polygon",
-      "attributes": {
-        "points": [
-          [
-            621.0,
-            435.0
-          ],
-          [
-            677.0,
-            435.0
-          ],
-          [
-            667.0,
-            399.0
-          ],
-          [
-            631.0,
-            399.0
-          ]
-        ],
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#c9648f"
-      },
-      "source_ref": "slot.right.person.body",
-      "refs": {
-        "layout_slot_id": "slot.right.person.body"
-      }
-    },
-    {
-      "id": "slot.right.person.head.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 649.0,
-        "cy": 362.0,
-        "r": 28.0,
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#ffd9ad"
-      },
-      "source_ref": "slot.right.person.head",
-      "refs": {
-        "layout_slot_id": "slot.right.person.head"
-      }
-    },
-    {
-      "id": "slot.right.person.hair.cap.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 621.0 361.0 C 623.0 332.0, 674.0 327.0, 678.0 361.0 C 659.0 345.0, 637.0 352.0, 621.0 361.0 Z",
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#9d4136"
-      },
-      "source_ref": "slot.right.person.hair.cap",
-      "refs": {
-        "layout_slot_id": "slot.right.person.hair.cap"
-      }
-    },
-    {
-      "id": "slot.right.person.smile.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 642.0 378.0 Q 649.0 384.0 656.0 378.0",
-        "stroke": "#b86e39",
-        "stroke-width": 1.3,
-        "fill": "none"
-      },
-      "source_ref": "slot.right.person.smile",
-      "refs": {
-        "layout_slot_id": "slot.right.person.smile"
-      }
-    },
-    {
-      "id": "slot.right.person.bow.left.polygon",
-      "type": "polygon",
-      "attributes": {
-        "points": [
-          [
-            642.0,
-            405.0
-          ],
-          [
-            623.0,
-            397.0
-          ],
-          [
-            635.0,
-            418.0
-          ]
-        ],
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#e33f83"
-      },
-      "source_ref": "slot.right.person.bow.left",
-      "refs": {
-        "layout_slot_id": "slot.right.person.bow.left"
-      }
-    },
-    {
-      "id": "slot.right.person.bow.right.polygon",
-      "type": "polygon",
-      "attributes": {
-        "points": [
-          [
-            656.0,
-            405.0
-          ],
-          [
-            675.0,
-            397.0
-          ],
-          [
-            663.0,
-            418.0
-          ]
-        ],
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#e33f83"
-      },
-      "source_ref": "slot.right.person.bow.right",
-      "refs": {
-        "layout_slot_id": "slot.right.person.bow.right"
-      }
-    },
-    {
       "id": "slot.name.right.box.rect",
       "type": "rect",
       "attributes": {
-        "x": 614.0,
-        "y": 423.0,
+        "x": 623.388,
+        "y": 471.995,
         "width": 70.0,
         "height": 36.0,
         "fill": "#e9f7dd",
@@ -619,110 +123,14 @@
       }
     },
     {
-      "id": "slot.left.person.eye.left.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 160.0,
-        "cy": 366.0,
-        "r": 2.3,
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#2b2118"
-      },
-      "source_ref": "slot.left.person.eye.left",
-      "refs": {
-        "layout_slot_id": "slot.left.person.eye.left"
-      }
-    },
-    {
-      "id": "slot.left.person.eye.right.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 180.0,
-        "cy": 366.0,
-        "r": 2.3,
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#2b2118"
-      },
-      "source_ref": "slot.left.person.eye.right",
-      "refs": {
-        "layout_slot_id": "slot.left.person.eye.right"
-      }
-    },
-    {
-      "id": "slot.mid.person.eye.left.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 401.0,
-        "cy": 365.0,
-        "r": 2.3,
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#2b2118"
-      },
-      "source_ref": "slot.mid.person.eye.left",
-      "refs": {
-        "layout_slot_id": "slot.mid.person.eye.left"
-      }
-    },
-    {
-      "id": "slot.mid.person.eye.right.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 421.0,
-        "cy": 365.0,
-        "r": 2.3,
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#2b2118"
-      },
-      "source_ref": "slot.mid.person.eye.right",
-      "refs": {
-        "layout_slot_id": "slot.mid.person.eye.right"
-      }
-    },
-    {
-      "id": "slot.right.person.eye.left.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 639.0,
-        "cy": 366.0,
-        "r": 2.3,
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#2b2118"
-      },
-      "source_ref": "slot.right.person.eye.left",
-      "refs": {
-        "layout_slot_id": "slot.right.person.eye.left"
-      }
-    },
-    {
-      "id": "slot.right.person.eye.right.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 659.0,
-        "cy": 366.0,
-        "r": 2.3,
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#2b2118"
-      },
-      "source_ref": "slot.right.person.eye.right",
-      "refs": {
-        "layout_slot_id": "slot.right.person.eye.right"
-      }
-    },
-    {
       "id": "slot.q.text.text",
       "type": "text",
       "attributes": {
         "x": 85.0,
-        "y": 50.0,
+        "y": 55.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 25
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 30
       },
       "source_ref": "slot.q.text",
       "refs": {
@@ -734,11 +142,11 @@
       "id": "slot.eq.text.text",
       "type": "text",
       "attributes": {
-        "x": 270.0,
-        "y": 130.0,
+        "x": 247.052,
+        "y": 148.552,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 25
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 30
       },
       "source_ref": "slot.eq.text",
       "refs": {
@@ -750,11 +158,11 @@
       "id": "slot.left.text.text",
       "type": "text",
       "attributes": {
-        "x": 170.0,
-        "y": 242.0,
+        "x": 171.751,
+        "y": 261.552,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 24,
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 30,
         "text-anchor": "middle"
       },
       "source_ref": "slot.left.text",
@@ -767,10 +175,10 @@
       "id": "slot.name.left.text.text",
       "type": "text",
       "attributes": {
-        "x": 170.0,
-        "y": 449.0,
+        "x": 168.957,
+        "y": 506.336,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
         "font-size": 25,
         "text-anchor": "middle"
       },
@@ -784,11 +192,11 @@
       "id": "slot.mid.text.text",
       "type": "text",
       "attributes": {
-        "x": 411.0,
-        "y": 241.0,
+        "x": 427.397,
+        "y": 260.552,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 24,
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 30,
         "text-anchor": "middle"
       },
       "source_ref": "slot.mid.text",
@@ -801,10 +209,10 @@
       "id": "slot.name.mid.text.text",
       "type": "text",
       "attributes": {
-        "x": 411.0,
-        "y": 449.0,
+        "x": 412.56,
+        "y": 502.165,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
         "font-size": 25,
         "text-anchor": "middle"
       },
@@ -818,11 +226,11 @@
       "id": "slot.right.text.text",
       "type": "text",
       "attributes": {
-        "x": 649.0,
-        "y": 242.0,
+        "x": 665.07,
+        "y": 254.255,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 24,
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 30,
         "text-anchor": "middle"
       },
       "source_ref": "slot.right.text",
@@ -835,10 +243,10 @@
       "id": "slot.name.right.text.text",
       "type": "text",
       "attributes": {
-        "x": 649.0,
-        "y": 449.0,
+        "x": 659.431,
+        "y": 500.08,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
         "font-size": 25,
         "text-anchor": "middle"
       },
@@ -847,6 +255,54 @@
         "layout_slot_id": "slot.name.right.text"
       },
       "text": "슬기"
+    },
+    {
+      "id": "konva_1787986616699_avatar_1657234.image",
+      "type": "image",
+      "attributes": {
+        "x": 102.105,
+        "y": 317.76,
+        "width": 140.0,
+        "height": 150.0,
+        "href": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20width%3D%22200%22%20height%3D%22200%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3Cstyle%3E%0A%20%20%20%20%20%20.notion-line%20%7B%20stroke%3A%20%231e293b%3B%20stroke-width%3A%202.8%3B%20stroke-linecap%3A%20round%3B%20stroke-linejoin%3A%20round%3B%20fill%3A%20none%3B%20%7D%0A%20%20%20%20%20%20.notion-fill%20%7B%20fill%3A%20%231e293b%3B%20%7D%0A%20%20%20%20%3C%2Fstyle%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%0A%20%20%20%20%20%20%20%20%3C!--%20Girl%20High%20Ponytail%20(Behind)%20--%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%20132%2042%20C%20154%2030%2C%20180%2040%2C%20178%2072%20C%20176%2096%2C%20160%20110%2C%20150%20112%20C%20156%2092%2C%20162%2068%2C%20140%2052%20Z%22%20fill%3D%22%2378350f%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.8%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cellipse%20cx%3D%22136%22%20cy%3D%2246%22%20rx%3D%224.5%22%20ry%3D%225.5%22%20fill%3D%22%23f43f5e%22%20%2F%3E%0A%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Pointing%20Pose%3A%20Left%20arm%20down%2C%20Right%20arm%20pointing%20up-right%20--%3E%0A%20%20%20%20%20%20%20%20%3C!--%20Left%20Arm%20%26%20Hand%20--%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%2072%20134%20C%2062%20148%2C%2058%20170%2C%2060%20186%22%20stroke%3D%22%23fb923c%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%2072%20134%20C%2062%20148%2C%2058%20170%2C%2060%20186%22%20class%3D%22notion-line%22%20stroke-width%3D%222.6%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2260%22%20cy%3D%22186%22%20r%3D%226.5%22%20fill%3D%22%236c432b%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.4%22%20%2F%3E%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%3C!--%20Torso%20%2F%20Shirt%20--%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2068%20195%20C%2066%20156%2C%2074%20132%2C%2092%20130%20L%20108%20130%20C%20126%20132%2C%20134%20156%2C%20132%20195%20Z%22%20fill%3D%22%23fb923c%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.8%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%0A%20%20%20%20%20%20%3C!--%20Girl%20Rounded%20Peter-Pan%20Collar%20--%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%2088%20132%20C%2092%20142%2C%2098%20142%2C%20100%20138%20C%20102%20142%2C%20108%20142%2C%20112%20132%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22100%22%20cy%3D%22146%22%20r%3D%222%22%20fill%3D%22%231e293b%22%20%2F%3E%0A%20%20%20%20%0A%20%20%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Right%20Arm%20with%20natural%20sleeve%20--%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%20128%20134%20C%20144%20138%2C%20156%20132%2C%20164%20122%22%20stroke%3D%22%23fb923c%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%20128%20134%20C%20144%20138%2C%20156%20132%2C%20164%20122%22%20class%3D%22notion-line%22%20stroke-width%3D%222.6%22%20%2F%3E%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Pointing%20Hand%20--%3E%0A%20%20%20%20%20%20%20%20%3Cg%20transform%3D%22translate(158%2C%20108)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cellipse%20cx%3D%226%22%20cy%3D%2214%22%20rx%3D%226.5%22%20ry%3D%225.5%22%20fill%3D%22%236c432b%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.4%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%3Crect%20x%3D%223%22%20y%3D%220%22%20width%3D%225.5%22%20height%3D%2215%22%20rx%3D%222.8%22%20fill%3D%22%236c432b%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.2%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%0A%0A%20%20%20%20%3C!--%20Neck%20--%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2092%20120%20L%2092%20133%20L%20108%20133%20L%20108%20120%20Z%22%20fill%3D%22%236c432b%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.6%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%0A%20%20%20%20%3C!--%20Ears%20(Natural%20attached%20curves%20with%20inner%20crease)%20--%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2064%2078%20C%2055%2078%2C%2055%2092%2C%2064%2092%22%20fill%3D%22%236c432b%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%20%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2063%2082%20C%2060%2084%2C%2060%2086%2C%2063%2088%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%221.8%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20%2F%3E%0A%20%20%20%20%0A%20%20%20%20%3Cpath%20d%3D%22M%20136%2078%20C%20145%2078%2C%20145%2092%2C%20136%2092%22%20fill%3D%22%236c432b%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%20%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%20137%2082%20C%20140%2084%2C%20140%2086%2C%20137%2088%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%221.8%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20%2F%3E%0A%0A%20%20%20%20%3C!--%20Head%20%2F%20Face%20Contour%20(Slightly%20softer%20curve%20for%20girl%2C%20sturdy%20for%20boy)%20--%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2063%2076%20C%2063%2046%2C%20137%2046%2C%20137%2076%20C%20137%20106%2C%20126%20124%2C%20100%20124%20C%2074%20124%2C%2063%20106%2C%2063%2076%20Z%22%20fill%3D%22%236c432b%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.8%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%0A%20%20%20%20%3C!--%20Cheerful%20Soft%20Blush%20--%3E%0A%20%20%20%20%3Cellipse%20cx%3D%2274%22%20cy%3D%2294%22%20rx%3D%225.5%22%20ry%3D%223.5%22%20fill%3D%22%23881337%22%20opacity%3D%220.65%22%20%2F%3E%0A%20%20%20%20%3Cellipse%20cx%3D%22126%22%20cy%3D%2294%22%20rx%3D%225.5%22%20ry%3D%223.5%22%20fill%3D%22%23881337%22%20opacity%3D%220.65%22%20%2F%3E%0A%20%20%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Gentle%20%26%20Bright%20Eyes%20--%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%2074%2069%20Q%2082%2065%2090%2070%22%20class%3D%22notion-line%22%20stroke-width%3D%222.0%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%20110%2070%20Q%20118%2065%20126%2069%22%20class%3D%22notion-line%22%20stroke-width%3D%222.0%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%3Cellipse%20cx%3D%2282%22%20cy%3D%2283%22%20rx%3D%224.5%22%20ry%3D%225.8%22%20fill%3D%22%231e293b%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2280.5%22%20cy%3D%2281%22%20r%3D%221.8%22%20fill%3D%22%23ffffff%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%3Cellipse%20cx%3D%22118%22%20cy%3D%2283%22%20rx%3D%224.5%22%20ry%3D%225.8%22%20fill%3D%22%231e293b%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%22116.5%22%20cy%3D%2281%22%20r%3D%221.8%22%20fill%3D%22%23ffffff%22%20%2F%3E%0A%20%20%20%20%20%20%0A%3Cpath%20d%3D%22M%2099%2087%20Q%20102%2091%2099%2094%22%20class%3D%22notion-line%22%20stroke-width%3D%222.2%22%20%2F%3E%0A%0A%20%20%20%20%20%20%20%20%3Cellipse%20cx%3D%22100%22%20cy%3D%22106%22%20rx%3D%224.5%22%20ry%3D%225.5%22%20fill%3D%22%23fb7185%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.4%22%20%2F%3E%0A%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Girl%20Bangs%20%26%20Top%20Hair%20--%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%2057%2076%20C%2054%2038%2C%2076%2026%2C%20100%2026%20C%20124%2026%2C%20146%2038%2C%20143%2076%20C%20137%2068%2C%20128%2064%2C%20116%2068%20C%20104%2072%2C%2094%2065%2C%2082%2066%20C%2070%2067%2C%2063%2071%2C%2057%2076%20Z%22%20fill%3D%22%2378350f%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.8%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Hair%20Ribbon%20Bow%20--%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20points%3D%22124%2C52%20134%2C46%20134%2C58%22%20fill%3D%22%23f43f5e%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20points%3D%22144%2C52%20134%2C46%20134%2C58%22%20fill%3D%22%23f43f5e%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%22134%22%20cy%3D%2252%22%20r%3D%223%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%221.8%22%20%2F%3E%0A%20%20%20%20%20%20%0A%3C%2Fsvg%3E",
+        "preserveAspectRatio": "xMidYMid meet"
+      },
+      "source_ref": "konva_1787986616699_avatar_1657234",
+      "refs": {
+        "layout_slot_id": "konva_1787986616699_avatar_1657234"
+      }
+    },
+    {
+      "id": "konva_1787986616699_avatar_1664418.image",
+      "type": "image",
+      "attributes": {
+        "x": 340.44,
+        "y": 314.632,
+        "width": 140.0,
+        "height": 150.0,
+        "href": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20width%3D%22200%22%20height%3D%22200%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3Cstyle%3E%0A%20%20%20%20%20%20.notion-line%20%7B%20stroke%3A%20%231e293b%3B%20stroke-width%3A%202.8%3B%20stroke-linecap%3A%20round%3B%20stroke-linejoin%3A%20round%3B%20fill%3A%20none%3B%20%7D%0A%20%20%20%20%20%20.notion-fill%20%7B%20fill%3A%20%231e293b%3B%20%7D%0A%20%20%20%20%3C%2Fstyle%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Thinking%20Pose%3A%20Left%20arm%20down%2C%20Right%20arm%20supporting%20chin%20--%3E%0A%20%20%20%20%20%20%20%20%3C!--%20Left%20Arm%20%26%20Hand%20--%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%2072%20134%20C%2062%20148%2C%2058%20170%2C%2060%20186%22%20stroke%3D%22%23fb923c%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%2072%20134%20C%2062%20148%2C%2058%20170%2C%2060%20186%22%20class%3D%22notion-line%22%20stroke-width%3D%222.6%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2260%22%20cy%3D%22186%22%20r%3D%226.5%22%20fill%3D%22%23fed7aa%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.4%22%20%2F%3E%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%3C!--%20Torso%20%2F%20Shirt%20--%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2068%20195%20C%2066%20156%2C%2074%20132%2C%2092%20130%20L%20108%20130%20C%20126%20132%2C%20134%20156%2C%20132%20195%20Z%22%20fill%3D%22%23fb923c%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.8%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%0A%20%20%20%20%20%20%3C!--%20Boy%20Polo%20Collar%20--%3E%0A%20%20%20%20%20%20%3Cpolygon%20points%3D%2292%2C130%20100%2C140%2096%2C146%2088%2C132%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpolygon%20points%3D%22108%2C130%20100%2C140%20104%2C146%20112%2C132%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%0A%20%20%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Right%20Arm%20bending%20up%20to%20chin%20--%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%20128%20134%20C%20140%20148%2C%20134%20162%2C%20122%20138%20C%20118%20128%2C%20114%20120%2C%20112%20118%22%20stroke%3D%22%23fb923c%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%20128%20134%20C%20140%20148%2C%20134%20162%2C%20122%20138%20C%20118%20128%2C%20114%20120%2C%20112%20118%22%20class%3D%22notion-line%22%20stroke-width%3D%222.6%22%20%2F%3E%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Hand%20gently%20on%20cheek%2Fchin%20--%3E%0A%20%20%20%20%20%20%20%20%3Cellipse%20cx%3D%22110%22%20cy%3D%22118%22%20rx%3D%226%22%20ry%3D%225%22%20fill%3D%22%23fed7aa%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.4%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%20107%20115%20C%20109%20112%2C%20113%20113%2C%20112%20119%22%20class%3D%22notion-line%22%20stroke-width%3D%221.8%22%20%2F%3E%0A%20%20%20%20%20%20%0A%0A%20%20%20%20%3C!--%20Neck%20--%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2092%20120%20L%2092%20133%20L%20108%20133%20L%20108%20120%20Z%22%20fill%3D%22%23fed7aa%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.6%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%0A%20%20%20%20%3C!--%20Ears%20(Natural%20attached%20curves%20with%20inner%20crease)%20--%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2064%2078%20C%2055%2078%2C%2055%2092%2C%2064%2092%22%20fill%3D%22%23fed7aa%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%20%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2063%2082%20C%2060%2084%2C%2060%2086%2C%2063%2088%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%221.8%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20%2F%3E%0A%20%20%20%20%0A%20%20%20%20%3Cpath%20d%3D%22M%20136%2078%20C%20145%2078%2C%20145%2092%2C%20136%2092%22%20fill%3D%22%23fed7aa%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%20%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%20137%2082%20C%20140%2084%2C%20140%2086%2C%20137%2088%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%221.8%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20%2F%3E%0A%0A%20%20%20%20%3C!--%20Head%20%2F%20Face%20Contour%20(Slightly%20softer%20curve%20for%20girl%2C%20sturdy%20for%20boy)%20--%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2063%2076%20C%2063%2046%2C%20137%2046%2C%20137%2076%20C%20137%20106%2C%20126%20124%2C%20100%20124%20C%2074%20124%2C%2063%20106%2C%2063%2076%20Z%22%20fill%3D%22%23fed7aa%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.8%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%0A%20%20%20%20%3C!--%20Cheerful%20Soft%20Blush%20--%3E%0A%20%20%20%20%3Cellipse%20cx%3D%2274%22%20cy%3D%2294%22%20rx%3D%225.5%22%20ry%3D%223.5%22%20fill%3D%22%23fb7185%22%20opacity%3D%220.65%22%20%2F%3E%0A%20%20%20%20%3Cellipse%20cx%3D%22126%22%20cy%3D%2294%22%20rx%3D%225.5%22%20ry%3D%223.5%22%20fill%3D%22%23fb7185%22%20opacity%3D%220.65%22%20%2F%3E%0A%20%20%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Round%20Curious%20Eyes%20--%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%2076%2069%20Q%2083%2066%2090%2070%22%20class%3D%22notion-line%22%20stroke-width%3D%222.6%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%20110%2070%20Q%20117%2066%20124%2069%22%20class%3D%22notion-line%22%20stroke-width%3D%222.6%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2283%22%20cy%3D%2284%22%20r%3D%225%22%20fill%3D%22%231e293b%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2281%22%20cy%3D%2282%22%20r%3D%221.8%22%20fill%3D%22%23ffffff%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%22117%22%20cy%3D%2284%22%20r%3D%225%22%20fill%3D%22%231e293b%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%22115%22%20cy%3D%2282%22%20r%3D%221.8%22%20fill%3D%22%23ffffff%22%20%2F%3E%0A%20%20%20%20%20%20%0A%3Cpath%20d%3D%22M%2099%2087%20Q%20102%2091%2099%2094%22%20class%3D%22notion-line%22%20stroke-width%3D%222.2%22%20%2F%3E%0A%0A%20%20%20%20%20%20%20%20%3Cellipse%20cx%3D%22100%22%20cy%3D%22106%22%20rx%3D%224.5%22%20ry%3D%225.5%22%20fill%3D%22%23f43f5e%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.4%22%20%2F%3E%0A%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Boy%20Dandy%20Side-part%20--%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%2058%2076%20C%2056%2042%2C%2085%2028%2C%20116%2029%20C%20142%2030%2C%20146%2054%2C%20143%2078%20C%20137%2070%2C%20131%2066%2C%20122%2066%20C%20110%2066%2C%20102%2073%2C%2091%2067%20C%2082%2062%2C%2073%2070%2C%2060%2076%20Z%22%20fill%3D%22%23facc15%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.8%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Star%20Pin%20--%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20points%3D%2268%2C54%2070%2C60%2076%2C60%2071%2C64%2073%2C70%2068%2C66%2063%2C70%2065%2C64%2060%2C60%2066%2C60%22%20fill%3D%22%23facc15%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%20%20%0A%3C%2Fsvg%3E",
+        "preserveAspectRatio": "xMidYMid meet"
+      },
+      "source_ref": "konva_1787986616699_avatar_1664418",
+      "refs": {
+        "layout_slot_id": "konva_1787986616699_avatar_1664418"
+      }
+    },
+    {
+      "id": "konva_1787986616699_avatar_1679610.image",
+      "type": "image",
+      "attributes": {
+        "x": 587.129,
+        "y": 312.548,
+        "width": 140.0,
+        "height": 150.0,
+        "href": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20width%3D%22200%22%20height%3D%22200%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3Cstyle%3E%0A%20%20%20%20%20%20.notion-line%20%7B%20stroke%3A%20%231e293b%3B%20stroke-width%3A%202.8%3B%20stroke-linecap%3A%20round%3B%20stroke-linejoin%3A%20round%3B%20fill%3A%20none%3B%20%7D%0A%20%20%20%20%20%20.notion-fill%20%7B%20fill%3A%20%231e293b%3B%20%7D%0A%20%20%20%20%3C%2Fstyle%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%0A%20%20%20%20%20%20%20%20%3C!--%20Girl%20High%20Ponytail%20(Behind)%20--%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%20132%2042%20C%20154%2030%2C%20180%2040%2C%20178%2072%20C%20176%2096%2C%20160%20110%2C%20150%20112%20C%20156%2092%2C%20162%2068%2C%20140%2052%20Z%22%20fill%3D%22%231e293b%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.8%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cellipse%20cx%3D%22136%22%20cy%3D%2246%22%20rx%3D%224.5%22%20ry%3D%225.5%22%20fill%3D%22%23f43f5e%22%20%2F%3E%0A%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Pencil%20Pose%3A%20Left%20arm%20down%2C%20Right%20arm%20holding%20pencil%20to%20the%20side%20--%3E%0A%20%20%20%20%20%20%20%20%3C!--%20Left%20Arm%20%26%20Hand%20--%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%2072%20134%20C%2062%20148%2C%2058%20170%2C%2060%20186%22%20stroke%3D%22%23a855f7%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%2072%20134%20C%2062%20148%2C%2058%20170%2C%2060%20186%22%20class%3D%22notion-line%22%20stroke-width%3D%222.6%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2260%22%20cy%3D%22186%22%20r%3D%226.5%22%20fill%3D%22%23ffedd5%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.4%22%20%2F%3E%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%3C!--%20Torso%20%2F%20Shirt%20--%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2068%20195%20C%2066%20156%2C%2074%20132%2C%2092%20130%20L%20108%20130%20C%20126%20132%2C%20134%20156%2C%20132%20195%20Z%22%20fill%3D%22%23a855f7%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.8%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%0A%20%20%20%20%20%20%3C!--%20Girl%20Rounded%20Peter-Pan%20Collar%20--%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%2088%20132%20C%2092%20142%2C%2098%20142%2C%20100%20138%20C%20102%20142%2C%20108%20142%2C%20112%20132%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22100%22%20cy%3D%22146%22%20r%3D%222%22%20fill%3D%22%231e293b%22%20%2F%3E%0A%20%20%20%20%0A%20%20%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Right%20Arm%20Bending%20to%20Side%20holding%20pencil%20(Safe%20angle%20away%20from%20face)%20--%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%20128%20134%20C%20142%20146%2C%20150%20162%2C%20144%20175%22%20stroke%3D%22%23a855f7%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%20128%20134%20C%20142%20146%2C%20150%20162%2C%20144%20175%22%20class%3D%22notion-line%22%20stroke-width%3D%222.6%22%20%2F%3E%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Cute%20Big%20Pencil%20tilted%20safely%20at%20side%20(angle%2035%20deg%20to%20the%20right)%20--%3E%0A%20%20%20%20%20%20%20%20%3Cg%20transform%3D%22rotate(35%20152%20155)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3Crect%20x%3D%22146%22%20y%3D%22118%22%20width%3D%2210%22%20height%3D%2238%22%20fill%3D%22%23facc15%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.2%22%20rx%3D%221%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cpolygon%20points%3D%22146%2C118%20156%2C118%20151%2C104%22%20fill%3D%22%23fde047%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.2%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cpolygon%20points%3D%22149%2C110%20153%2C110%20151%2C104%22%20fill%3D%22%231e293b%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%3C!--%20Eraser%20--%3E%0A%20%20%20%20%20%20%20%20%20%20%3Crect%20x%3D%22146%22%20y%3D%22156%22%20width%3D%2210%22%20height%3D%227%22%20fill%3D%22%23f43f5e%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.2%22%20rx%3D%222%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cline%20x1%3D%22146%22%20y1%3D%22156%22%20x2%3D%22156%22%20y2%3D%22156%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%221.8%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Right%20Hand%20gripping%20pencil%20at%20side%20--%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%22148%22%20cy%3D%22168%22%20r%3D%227%22%20fill%3D%22%23ffedd5%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.4%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%20144%20165%20C%20148%20163%2C%20152%20166%2C%20150%20170%22%20class%3D%22notion-line%22%20stroke-width%3D%222%22%20%2F%3E%0A%20%20%20%20%20%20%0A%0A%20%20%20%20%3C!--%20Neck%20--%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2092%20120%20L%2092%20133%20L%20108%20133%20L%20108%20120%20Z%22%20fill%3D%22%23ffedd5%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.6%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%0A%20%20%20%20%3C!--%20Ears%20(Natural%20attached%20curves%20with%20inner%20crease)%20--%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2064%2078%20C%2055%2078%2C%2055%2092%2C%2064%2092%22%20fill%3D%22%23ffedd5%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%20%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2063%2082%20C%2060%2084%2C%2060%2086%2C%2063%2088%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%221.8%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20%2F%3E%0A%20%20%20%20%0A%20%20%20%20%3Cpath%20d%3D%22M%20136%2078%20C%20145%2078%2C%20145%2092%2C%20136%2092%22%20fill%3D%22%23ffedd5%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%20%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%20137%2082%20C%20140%2084%2C%20140%2086%2C%20137%2088%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%221.8%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20%2F%3E%0A%0A%20%20%20%20%3C!--%20Head%20%2F%20Face%20Contour%20(Slightly%20softer%20curve%20for%20girl%2C%20sturdy%20for%20boy)%20--%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2063%2076%20C%2063%2046%2C%20137%2046%2C%20137%2076%20C%20137%20106%2C%20126%20124%2C%20100%20124%20C%2074%20124%2C%2063%20106%2C%2063%2076%20Z%22%20fill%3D%22%23ffedd5%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.8%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%0A%20%20%20%20%3C!--%20Cheerful%20Soft%20Blush%20--%3E%0A%20%20%20%20%3Cellipse%20cx%3D%2274%22%20cy%3D%2294%22%20rx%3D%225.5%22%20ry%3D%223.5%22%20fill%3D%22%23fda4af%22%20opacity%3D%220.65%22%20%2F%3E%0A%20%20%20%20%3Cellipse%20cx%3D%22126%22%20cy%3D%2294%22%20rx%3D%225.5%22%20ry%3D%223.5%22%20fill%3D%22%23fda4af%22%20opacity%3D%220.65%22%20%2F%3E%0A%20%20%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Gentle%20%26%20Bright%20Eyes%20--%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%2074%2069%20Q%2082%2065%2090%2070%22%20class%3D%22notion-line%22%20stroke-width%3D%222.0%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%20110%2070%20Q%20118%2065%20126%2069%22%20class%3D%22notion-line%22%20stroke-width%3D%222.0%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%3Cellipse%20cx%3D%2282%22%20cy%3D%2283%22%20rx%3D%224.5%22%20ry%3D%225.8%22%20fill%3D%22%231e293b%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2280.5%22%20cy%3D%2281%22%20r%3D%221.8%22%20fill%3D%22%23ffffff%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%3Cellipse%20cx%3D%22118%22%20cy%3D%2283%22%20rx%3D%224.5%22%20ry%3D%225.8%22%20fill%3D%22%231e293b%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%22116.5%22%20cy%3D%2281%22%20r%3D%221.8%22%20fill%3D%22%23ffffff%22%20%2F%3E%0A%20%20%20%20%20%20%0A%3Cpath%20d%3D%22M%2099%2087%20Q%20102%2091%2099%2094%22%20class%3D%22notion-line%22%20stroke-width%3D%222.2%22%20%2F%3E%0A%0A%20%20%20%20%20%20%20%20%3Cellipse%20cx%3D%22100%22%20cy%3D%22106%22%20rx%3D%224.5%22%20ry%3D%225.5%22%20fill%3D%22%23fb7185%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.4%22%20%2F%3E%0A%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Girl%20Bangs%20%26%20Top%20Hair%20--%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%2057%2076%20C%2054%2038%2C%2076%2026%2C%20100%2026%20C%20124%2026%2C%20146%2038%2C%20143%2076%20C%20137%2068%2C%20128%2064%2C%20116%2068%20C%20104%2072%2C%2094%2065%2C%2082%2066%20C%2070%2067%2C%2063%2071%2C%2057%2076%20Z%22%20fill%3D%22%231e293b%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.8%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Star%20Pin%20--%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20points%3D%2268%2C54%2070%2C60%2076%2C60%2071%2C64%2073%2C70%2068%2C66%2063%2C70%2065%2C64%2060%2C60%2066%2C60%22%20fill%3D%22%23facc15%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%20%20%0A%3C%2Fsvg%3E",
+        "preserveAspectRatio": "xMidYMid meet"
+      },
+      "source_ref": "konva_1787986616699_avatar_1679610",
+      "refs": {
+        "layout_slot_id": "konva_1787986616699_avatar_1679610"
+      }
     }
   ],
   "contract_version": "modu_math.renderer.v2"

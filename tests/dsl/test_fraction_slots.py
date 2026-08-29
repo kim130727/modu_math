@@ -142,6 +142,48 @@ def test_mixed_fraction_override_expands_into_slots() -> None:
     assert slots["slot.math.mixed.den"]["content"]["text"] == "10"
 
 
+def test_mixed_fraction_one_and_three_elevenths_compact_gap() -> None:
+    from modu_math.layout.editor_overrides import apply_editor_overrides
+
+    base_layout = {
+        "id": "p_mixed_frac_11_test",
+        "canvas": {"width": 500, "height": 200},
+        "regions": [{"id": "region.stem", "role": "stem", "slot_ids": []}],
+        "slots": [],
+    }
+    overrides = {
+        "version": 1,
+        "slots": {
+            "slot.math.mixed": {
+                "text": "1\\frac{3}{11}",
+                "x": 100.0,
+                "y": 100.0,
+                "width": 60.0,
+                "height": 60.0,
+                "font_size": 28,
+            }
+        },
+        "slot_regions": {"slot.math.mixed": "region.stem"},
+    }
+
+    result = apply_editor_overrides(base_layout, overrides)
+    slots = {s["id"]: s for s in result["slots"]}
+
+    whole_content = slots["slot.math.mixed.whole"]["content"]
+    bar_content = slots["slot.math.mixed.bar"]["content"]
+    num_content = slots["slot.math.mixed.num"]["content"]
+
+    # Whole text "1" center x, bar starts at x1
+    whole_x = whole_content["x"]
+    bar_x1 = bar_content["x1"]
+    num_x = num_content["x"]
+
+    # The gap between whole number center and bar start should be compact (<= 12px)
+    assert bar_x1 - whole_x <= 12.0
+    # The gap between whole number center and numerator center should be compact (<= 25px)
+    assert num_x - whole_x <= 25.0
+
+
 def test_fraction_override_without_text_expands_from_existing_slots() -> None:
     from modu_math.layout.editor_overrides import apply_editor_overrides
 

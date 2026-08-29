@@ -108,7 +108,22 @@
     "type": "numeric",
     "value": 306,
     "unit": "자루",
-    "target_ref": "quantity.total_pencil_count"
+    "target_ref": "quantity.total_pencil_count",
+    "blanks": [
+      {
+        "id": "konva_1785217709470_rect_5648815",
+        "slot_id": "konva_1785217709470_rect_5648815",
+        "expected": 306,
+        "unit": "자루"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "konva_1785217709470_rect_5648815",
+        "value": 306,
+        "unit": "자루"
+      }
+    ]
   },
   "understanding": {
     "summary": "3학년 남학생과 여학생의 수를 더해 전체 학생 수를 구한 다음, 모든 학생에게 2자루씩 줄 때 필요한 연필 수를 구하는 문제입니다.",

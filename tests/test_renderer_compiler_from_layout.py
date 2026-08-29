@@ -246,10 +246,120 @@ def test_compile_renderer_places_blank_after_text_box_bottom() -> None:
     )
 
     assert blank["attributes"]["y"] >= question_bottom + 12
-    assert (
-        renderer["view_box"]["height"]
-        >= blank["attributes"]["y"] + blank["attributes"]["height"]
+    assert renderer["view_box"]["height"] == layout["canvas"]["height"]
+
+
+def test_compile_renderer_preserves_canvas_view_box_when_content_overflows() -> None:
+    layout = {
+        "problem_id": "fixed_canvas_example_0001",
+        "canvas": {"width": 400, "height": 120, "background": "#ffffff"},
+        "regions": [
+            {
+                "id": "region.main",
+                "role": "diagram",
+                "flow": "absolute",
+                "slot_ids": ["slot.low"],
+            }
+        ],
+        "slots": [
+            {
+                "id": "slot.low",
+                "kind": "rect",
+                "prompt": "",
+                "content": {
+                    "x": 20,
+                    "y": 100,
+                    "width": 80,
+                    "height": 40,
+                    "fill": "none",
+                    "stroke": "#111111",
+                },
+            }
+        ],
+        "diagrams": [],
+    }
+
+    renderer = compile_renderer_json(layout)
+
+    assert renderer["view_box"]["width"] == 400
+    assert renderer["view_box"]["height"] == 120
+
+
+def test_compile_renderer_uses_authored_blank_geometry() -> None:
+    layout = {
+        "problem_id": "sized_blank_example_0001",
+        "canvas": {"width": 400, "height": 180, "background": "#ffffff"},
+        "regions": [
+            {
+                "id": "region.answer",
+                "role": "answer",
+                "flow": "absolute",
+                "slot_ids": ["slot.answer"],
+            }
+        ],
+        "slots": [
+            {
+                "id": "slot.answer",
+                "kind": "blank",
+                "prompt": "",
+                "content": {
+                    "placeholder": "",
+                    "x": 210,
+                    "y": 94,
+                    "width": 172,
+                    "height": 58,
+                    "fill": "#f8fafc",
+                    "stroke": "#111827",
+                    "stroke_width": 1.2,
+                },
+            }
+        ],
+        "diagrams": [],
+    }
+
+    renderer = compile_renderer_json(layout)
+    validate_renderer_json(renderer)
+
+    blank = next(
+        element
+        for element in renderer["elements"]
+        if element["id"] == "slot.answer.blank"
     )
+    assert blank["attributes"]["x"] == 210.0
+    assert blank["attributes"]["y"] == 94.0
+    assert blank["attributes"]["width"] == 172.0
+    assert blank["attributes"]["height"] == 58.0
+
+
+def test_compile_renderer_skips_unplaced_contract_only_blank() -> None:
+    layout = {
+        "problem_id": "contract_only_blank_example_0001",
+        "canvas": {"width": 320, "height": 180},
+        "regions": [
+            {
+                "id": "region.diagram",
+                "role": "diagram",
+                "flow": "absolute",
+                "slot_ids": ["slot.visible"],
+            }
+        ],
+        "slots": [
+            {
+                "id": "slot.visible",
+                "kind": "text",
+                "content": {"text": "□", "x": 80, "y": 90, "font_size": 28},
+            },
+            {
+                "id": "answer.contract",
+                "kind": "blank",
+                "content": {"answer_key": "7", "placeholder": ""},
+            },
+        ],
+    }
+
+    renderer = compile_renderer_json(layout)
+
+    assert any(element["id"] == "slot.visible.text" for element in renderer["elements"])
 
 
 def test_compile_renderer_uses_authored_blank_geometry() -> None:
@@ -356,3 +466,121 @@ def test_compile_renderer_keeps_region_blank_without_authored_geometry() -> None
     renderer = compile_renderer_json(layout)
 
     assert any(element["id"] == "slot.answer.blank" for element in renderer["elements"])
+
+
+def test_apply_editor_overrides_preserves_text_slot_middle_anchor() -> None:
+    from modu_math.layout.editor_overrides import (
+        apply_editor_overrides,
+        prune_editor_overrides,
+    )
+
+    layout = {
+        "problem_id": "card_text_anchor_0001",
+        "canvas": {"width": 500, "height": 220},
+        "slots": [
+            {
+                "id": "slot.card1.text",
+                "kind": "text",
+                "content": {
+                    "text": "1",
+                    "x": 36,
+                    "y": 72,
+                    "font_size": 21,
+                    "anchor": "middle",
+                    "fill": "#111111",
+                },
+            }
+        ],
+    }
+
+    overrides = {
+        "version": 1,
+        "slots": {
+            "slot.card1.text": {
+                "x": 78.132,
+                "y": 76.105,
+                "width": 24,
+                "height": 34.25,
+                "kind": "text_box",
+            }
+        },
+    }
+
+    pruned_overrides, _ = prune_editor_overrides(layout, overrides)
+    applied_layout = apply_editor_overrides(layout, pruned_overrides)
+    renderer = compile_renderer_json(applied_layout)
+
+    slot_card1 = next(
+        slot for slot in applied_layout["slots"] if slot["id"] == "slot.card1.text"
+    )
+    assert slot_card1["kind"] == "text"
+    assert slot_card1["content"]["anchor"] == "middle"
+    assert slot_card1["content"]["x"] == 90.132
+    assert slot_card1["content"]["y"] == 97.105
+
+    el = next(
+        element
+        for element in renderer["elements"]
+        if element["id"] == "slot.card1.text.text"
+    )
+    assert el["type"] == "text"
+    assert el["attributes"]["text-anchor"] == "middle"
+    assert el["attributes"]["x"] == 90.132
+    assert el["attributes"]["y"] == 97.105
+
+
+def test_apply_editor_overrides_preserves_plain_text_slot_no_wrapping() -> None:
+    from modu_math.layout.editor_overrides import (
+        apply_editor_overrides,
+        prune_editor_overrides,
+    )
+    from modu_math.renderer.svg.render import render_svg
+
+    layout = {
+        "problem_id": "question_text_no_wrap_0001",
+        "canvas": {"width": 500, "height": 200},
+        "slots": [
+            {
+                "id": "slot.qtext",
+                "kind": "text",
+                "content": {
+                    "text": "계산 결과가 500보다 큰 것을 선택하세요.",
+                    "x": 20,
+                    "y": 35,
+                    "font_size": 28,
+                    "fill": "#111827",
+                },
+            }
+        ],
+    }
+
+    overrides = {
+        "version": 1,
+        "slots": {
+            "slot.qtext": {
+                "height": 42,
+                "kind": "text_box",
+            }
+        },
+    }
+
+    pruned_overrides, _ = prune_editor_overrides(layout, overrides)
+    applied_layout = apply_editor_overrides(layout, pruned_overrides)
+    renderer = compile_renderer_json(applied_layout)
+
+    slot_qtext = next(
+        slot for slot in applied_layout["slots"] if slot["id"] == "slot.qtext"
+    )
+    assert slot_qtext["kind"] == "text"
+    assert "height" not in slot_qtext["content"]
+
+    el = next(
+        element
+        for element in renderer["elements"]
+        if element["id"] == "slot.qtext.text"
+    )
+    assert el["type"] == "text"
+
+    svg = render_svg(renderer)
+    assert "<tspan" not in svg
+    assert "계산 결과가 500보다 큰 것을 선택하세요." in svg

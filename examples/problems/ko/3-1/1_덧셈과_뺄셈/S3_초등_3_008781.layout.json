@@ -15,8 +15,7 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.inserted.image.1",
-        "slot.q1",
-        "slot.q1.copy1"
+        "konva_1787984681327_text_1825051"
       ]
     },
     {
@@ -44,19 +43,6 @@
     }
   ],
   "slots": [
-    {
-      "id": "slot.q1",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "고구마, 옥수수, 감자 한 개의 무게를 비교하려고 합니다.",
-        "style_role": "question",
-        "x": 17.0,
-        "y": 38.0,
-        "font_size": 28,
-        "fill": "#111111"
-      }
-    },
     {
       "id": "slot.opt.1",
       "kind": "text",
@@ -110,19 +96,6 @@
       }
     },
     {
-      "id": "slot.q1.copy1",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "무거운 것부터 순서대로 쓴 것을 고르세요.",
-        "style_role": "body",
-        "x": 17.0,
-        "y": 83.0,
-        "font_size": 28,
-        "fill": "#111111"
-      }
-    },
-    {
       "id": "slot.inserted.image.1",
       "kind": "image",
       "prompt": "",
@@ -134,6 +107,23 @@
         "height": 195.0,
         "preserve_aspect_ratio": "xMidYMid meet"
       }
+    },
+    {
+      "id": "konva_1787984681327_text_1825051",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "고구마, 옥수수, 감자 한 개의 무게를 비교하려고 합니다. 무거운 것부터 순서대로 쓴 것을 고르세요.",
+        "x": 43.335,
+        "y": 16.192,
+        "font_size": 30,
+        "fill": "#111827",
+        "width": 825.713,
+        "height": 83,
+        "align": "left",
+        "line_height": 1.25,
+        "kind": "text_box"
+      }
     }
   ],
   "groups": [],
@@ -142,14 +132,13 @@
   "reading_order": [
     "region.stem",
     "slot.inserted.image.1",
-    "slot.q1",
-    "slot.q1.copy1",
     "region.diagram",
     "region.options",
     "slot.opt.1",
     "slot.opt.2",
     "slot.opt.3",
     "slot.opt.4",
-    "region.answer"
+    "region.answer",
+    "konva_1787984681327_text_1825051"
   ]
 }

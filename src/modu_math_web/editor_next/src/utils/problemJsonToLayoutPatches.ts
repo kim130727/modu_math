@@ -134,9 +134,8 @@ function updateValue(baseObject: ProblemObject, object: ProblemObject): Record<s
   switch (object.type) {
     case "math_text": {
       const isTextBoxTarget =
-        (baseObject.type === "math_text" && baseObject.props.sourceKind === "text_box") ||
         object.props.sourceKind === "text_box" ||
-        typeof object.props.width === "number";
+        (baseObject.type === "math_text" && baseObject.props.sourceKind === "text_box");
       return mathTextFields(object, isTextBoxTarget);
     }
     case "basic_shape":

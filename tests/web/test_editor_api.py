@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -488,6 +489,65 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     assert 'd="M 1 2 L 11 2 L 1 12 Z"' not in updated
 
 
+def test_layout_patch_groups_and_ungroups_slots(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    problem_dir = _write_problem(
+        tmp_path,
+        "0001",
+        """
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="p",
+    title="p",
+    canvas=Canvas(width=100, height=100),
+    regions=(Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=("slot.a", "slot.b")),),
+    slots=(
+        TextSlot(id="slot.a", text="A", x=10, y=20),
+        TextSlot(id="slot.b", text="B", x=40, y=20),
+    ),
+)
+""".lstrip(),
+    )
+
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(
+            {
+                "patches": [
+                    {
+                        "target": "group.editor",
+                        "op": "group",
+                        "value": {
+                            "member_ids": ["slot.a", "slot.b"],
+                            "role": "custom",
+                        },
+                    }
+                ]
+            }
+        ),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    grouped = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "Group" in grouped
+    assert 'id="group.editor"' in grouped
+    assert 'member_ids=("slot.a", "slot.b")' in grouped
+
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps({"patches": [{"target": "group.editor", "op": "ungroup"}]}),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    ungrouped = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert 'id="group.editor"' not in ungrouped
+    assert "slot.a" in ungrouped
+    assert "slot.b" in ungrouped
+
+
 def test_build_endpoint_generates_artifacts_without_shell_script(
     tmp_path: Path,
 ) -> None:
@@ -789,6 +849,297 @@ SLOTS = (
     assert "height=110.0" in updated
     assert "x=35.0" in updated
     assert "y=45.0" in updated
+
+
+def test_layout_patch_updates_anchored_textslot_without_converting_to_textbox(
+    tmp_path: Path,
+) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="P3_1_01_00040_02155_2",
+    title="테스트",
+    canvas=Canvas(width=760, height=250),
+    regions=(Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=("slot.addend_2_1", "slot.label_1")),),
+    slots=(
+        TextSlot(id="slot.label_1", text="(1)", prompt="번호", x=40.0, y=88.0, font_size=24, anchor="start", fill="#111111"),
+        TextSlot(id="slot.addend_2_1", text="654", prompt="위 수", x=396.0, y=88.0, font_size=28, anchor="end", fill="#111111"),
+    ),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "02155_2", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.addend_2_1",
+                "op": "update",
+                "value": {
+                    "text": "789",
+                    "x": 400.0,
+                    "y": 90.0,
+                    "font_size": 30,
+                },
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/02155_2/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert 'text="789"' in updated
+    assert "x=400.0" in updated
+    assert "y=90.0" in updated
+    assert "font_size=30" in updated
+    assert 'anchor="end"' in updated
+    assert "TextSlot" in updated
+
+    # Verify building problem succeeds without any errors
+    spec = importlib.util.spec_from_file_location(
+        "test_dsl", problem_dir / "problem.dsl.py"
+    )
+    assert spec and spec.loader
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    assert mod.PROBLEM_TEMPLATE is not None
+
+
+def test_layout_patch_converts_anchored_textslot_to_textbox_cleanly_without_invalid_kwargs(
+    tmp_path: Path,
+) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="P3_1_01_00040_02155_2",
+    title="테스트",
+    canvas=Canvas(width=760, height=250),
+    regions=(Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=("slot.addend_2_1",)),),
+    slots=(
+        TextSlot(id="slot.addend_2_1", text="654", prompt="위 수", x=396.0, y=88.0, font_size=28, anchor="end", fill="#111111"),
+    ),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "02155_2", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.addend_2_1",
+                "op": "update",
+                "value": {
+                    "width": 100.0,
+                    "height": 40.0,
+                    "align": "right",
+                    "kind": "text_box",
+                },
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/02155_2/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "TextBoxSlot" in updated
+    assert 'anchor="end"' not in updated
+    assert "width=100.0" in updated
+    assert "height=40.0" in updated
+    assert 'align="right"' in updated
+
+    # Verify building problem succeeds without any errors
+    spec = importlib.util.spec_from_file_location(
+        "test_dsl_tb", problem_dir / "problem.dsl.py"
+    )
+    assert spec and spec.loader
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    assert mod.PROBLEM_TEMPLATE is not None
+
+
+def test_layout_patch_and_build_p3_1_01_00040_02155_3(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="P3_1_01_00040_02155_3",
+    title="세 자리 수의 덧셈 계산",
+    canvas=Canvas(width=760, height=250),
+    regions=(Region(id="region.problems", role="diagram", flow="absolute", slot_ids=("slot.label_3", "slot.addend_3_1", "slot.plus_3", "slot.addend_3_2")),),
+    slots=(
+        TextSlot(id="slot.label_3", text="(3)", prompt="세 번째 계산 번호", x=480, y=88, font_size=24, anchor="start", fill="#111111"),
+        TextSlot(id="slot.addend_3_1", text="296", prompt="세 번째 덧셈의 위 수 296", x=616, y=88, font_size=28, anchor="end", fill="#111111"),
+        TextSlot(id="slot.plus_3", text="+", prompt="세 번째 덧셈 기호", x=551, y=135, font_size=28, anchor="middle", fill="#111111"),
+        TextSlot(id="slot.addend_3_2", text="758", prompt="세 번째 덧셈의 아래 수 758", x=616, y=135, font_size=28, anchor="end", fill="#111111"),
+    ),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "02155_3", dsl_text)
+
+    # Patch multiple text slots like in the web editor
+    payload = {
+        "patches": [
+            {
+                "target": "slot.addend_3_1",
+                "op": "update",
+                "value": {
+                    "text": "300",
+                    "x": 620.0,
+                    "y": 90.0,
+                },
+            },
+            {
+                "target": "slot.plus_3",
+                "op": "update",
+                "value": {
+                    "x": 555.0,
+                    "y": 138.0,
+                },
+            },
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/02155_3/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert 'text="300"' in updated
+    assert "x=620.0" in updated
+    assert 'anchor="end"' in updated
+    assert "x=555.0" in updated
+    assert 'anchor="middle"' in updated
+
+    # Build and verify no errors
+    spec = importlib.util.spec_from_file_location(
+        "test_dsl_02155_3", problem_dir / "problem.dsl.py"
+    )
+    assert spec and spec.loader
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    assert mod.PROBLEM_TEMPLATE is not None
+
+
+def test_layout_patch_and_build_p3_1_01_00040_15612_with_textboxslot_kind(
+    tmp_path: Path,
+) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextBoxSlot
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="P3_1_01_00040_15612",
+    title="합이 가장 큰 식 찾기",
+    canvas=Canvas(width=900, height=220),
+    regions=(Region(id="region.stem", role="stem", flow="absolute", slot_ids=("konva_1786192274303_paste_953794_0",)),),
+    slots=(
+        TextBoxSlot(id="konva_1786192274303_paste_953794_0", text="(   )", x=311.853, y=159.18, font_size=21, fill="#202124", width=47.295, height=35.0, align="left", line_height=1.25),
+    ),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "15612", dsl_text)
+
+    # Patch with kind: "text_box" (as sent by Konva/web editor)
+    payload = {
+        "patches": [
+            {
+                "target": "konva_1786192274303_paste_953794_0",
+                "op": "update",
+                "value": {
+                    "kind": "text_box",
+                    "text": "(   )",
+                    "x": 320.0,
+                    "y": 160.0,
+                    "width": 50.0,
+                    "height": 36.0,
+                    "font_size": 22,
+                    "fill": "#202124",
+                    "align": "left",
+                    "line_height": 1.25,
+                },
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/15612/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "TextBoxSlot" in updated
+    assert "x=320.0" in updated
+    assert "y=160.0" in updated
+    assert "width=50.0" in updated
+    assert "height=36.0" in updated
+    assert "kind=" not in updated
+
+    # Build and verify no errors
+    spec = importlib.util.spec_from_file_location(
+        "test_dsl_15612", problem_dir / "problem.dsl.py"
+    )
+    assert spec and spec.loader
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    assert mod.PROBLEM_TEMPLATE is not None
+
+
+def test_layout_patch_saves_override_for_helper_generated_slot_p3_1_01_00040_15726(
+    tmp_path: Path,
+) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot
+
+def _helper_slots(prefix: str):
+    return (TextSlot(id=f"slot.{prefix}.label", text="262", x=96, y=90, font_size=12, anchor="middle"),)
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="P3_1_01_00040_15726",
+    title="수 모형",
+    canvas=Canvas(width=400, height=200),
+    regions=(Region(id="region.models", role="diagram", flow="absolute", slot_ids=("slot.model262.label",)),),
+    slots=(*_helper_slots("model262"),),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "15726", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.model262.label",
+                "op": "update",
+                "value": {
+                    "kind": "text",
+                    "x": 100.0,
+                    "y": 95.0,
+                    "font_size": 14,
+                },
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/15726/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+    assert response.status_code == 200
+    override_file = problem_dir / "problem.editor_overrides.json"
+    assert override_file.exists()
+    override_data = json.loads(override_file.read_text(encoding="utf-8"))
+    assert "slot.model262.label" in override_data.get("slots", {})
+    assert override_data["slots"]["slot.model262.label"]["x"] == 100.0
+    assert override_data["slots"]["slot.model262.label"]["y"] == 95.0
 
 
 def test_layout_patch_updates_rectslot_size_fields(tmp_path: Path) -> None:
@@ -2972,6 +3323,58 @@ def test_layout_patch_layer_order_falls_back_to_editor_overrides(
     assert overrides["region_slot_orders"]["region.diagram"] == [
         "slot.back",
         "slot.front",
+    ]
+
+
+def test_layout_patch_layer_order_updates_problem_layout(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    problem_dir = _write_problem(
+        tmp_path,
+        "0001",
+        """
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="p",
+    title="p",
+    canvas=Canvas(width=100, height=100),
+    regions=(Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=("slot.a", "slot.b", "slot.c")),),
+    slots=(
+        TextSlot(id="slot.a", text="A", x=10, y=20),
+        TextSlot(id="slot.b", text="B", x=30, y=20),
+        TextSlot(id="slot.c", text="C", x=50, y=20),
+    ),
+)
+""".lstrip(),
+    )
+
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(
+            {
+                "patches": [
+                    {
+                        "target": "__layer__",
+                        "op": "layer",
+                        "value": {
+                            "region_id": "region.diagram",
+                            "slot_ids": ["slot.c", "slot.a", "slot.b"],
+                        },
+                    }
+                ]
+            }
+        ),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    overrides = json.loads(
+        (problem_dir / "problem.editor_overrides.json").read_text(encoding="utf-8")
+    )
+    assert overrides["region_slot_orders"]["region.diagram"] == [
+        "slot.c",
+        "slot.a",
+        "slot.b",
     ]
 
 

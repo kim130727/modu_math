@@ -51,7 +51,7 @@ function problemObjectToEditorShape(object: ProblemObject, canvas: ProblemCanvas
     case "math_text": {
       const text = object.props.latex || object.props.text;
       const fontSize = object.props.fontSize;
-      const isTextBox = object.props.sourceKind === "text_box" || (typeof object.props.width === "number" && object.props.width > 0);
+      const isTextBox = object.props.sourceKind === "text_box";
       const textAlign = object.props.textAlign ?? "left";
       const lineHeight = object.props.lineHeight ?? 1.25;
       const needsAlignmentBox = textAlign !== "left";
@@ -390,7 +390,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
         },
       ];
     case "text": {
-      const isTextBox = shape.sourceKind === "text_box" || (typeof shape.width === "number" && shape.width > 0);
+      const isTextBox = shape.sourceKind === "text_box";
       const sourceKind = isTextBox ? "text_box" : (shape.sourceKind ?? "text");
       const lineHeight = shape.lineHeight ?? 1.25;
       const width =
