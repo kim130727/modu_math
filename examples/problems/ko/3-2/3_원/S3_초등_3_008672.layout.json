@@ -38,8 +38,7 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q1",
-        "slot.q1.copy2"
+        "konva_1787989612052_text_78339"
       ]
     },
     {
@@ -57,8 +56,8 @@
       "content": {
         "text": "알맞은 말을 선택해 보시오.",
         "style_role": "question",
-        "x": 34.0,
-        "y": 32.0,
+        "x": 79.215,
+        "y": 40.368,
         "font_size": 28
       }
     },
@@ -125,8 +124,8 @@
         "text": "ㄱ",
         "style_role": "label",
         "x": 235.0,
-        "y": 120.0,
-        "font_size": 20,
+        "y": 130,
+        "font_size": 30,
         "semantic_role": "symbol_label"
       }
     },
@@ -138,8 +137,8 @@
         "text": "ㄴ",
         "style_role": "label",
         "x": 450.0,
-        "y": 300.0,
-        "font_size": 20,
+        "y": 310,
+        "font_size": 30,
         "semantic_role": "symbol_label"
       }
     },
@@ -151,21 +150,9 @@
         "text": "ㄷ",
         "style_role": "label",
         "x": 475.0,
-        "y": 95.0,
-        "font_size": 20,
+        "y": 105,
+        "font_size": 30,
         "semantic_role": "symbol_label"
-      }
-    },
-    {
-      "id": "slot.q1",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "모두 원의 (지름, 반지름, 중심)입니다.    ",
-        "style_role": "question",
-        "x": 55.0,
-        "y": 395.0,
-        "font_size": 30
       }
     },
     {
@@ -176,23 +163,27 @@
         "text": "ㅇ",
         "style_role": "body",
         "x": 350.0,
-        "y": 205.0,
-        "font_size": 20,
+        "y": 215,
+        "font_size": 30,
         "fill": "#111111",
         "semantic_role": "symbol_label"
       }
     },
     {
-      "id": "slot.q1.copy2",
-      "kind": "text",
+      "id": "konva_1787989612052_text_78339",
+      "kind": "text_box",
       "prompt": "",
       "content": {
-        "text": "        선분 ㄱㅇ, 선분 ㄴㅇ, 선분 ㄷㅇ은",
-        "style_role": "body",
-        "x": 55.0,
-        "y": 355.0,
+        "text": "선분 ㄱㅇ, 선분 ㄴㅇ, 선분 ㄷㅇ은 모두 원의 (지름, 반지름, 중심)입니다.  ",
+        "x": 92.833,
+        "y": 342.589,
         "font_size": 30,
-        "fill": "#111111"
+        "fill": "#111827",
+        "width": 499.115,
+        "height": 121,
+        "align": "left",
+        "line_height": 1.25,
+        "kind": "text_box"
       }
     }
   ],
@@ -213,8 +204,7 @@
     "slot.lb.da",
     "slot.lb.ga.copy1",
     "region.question",
-    "slot.q1",
-    "slot.q1.copy2",
-    "region.answer"
+    "region.answer",
+    "konva_1787989612052_text_78339"
   ]
 }

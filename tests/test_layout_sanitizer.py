@@ -350,3 +350,46 @@ def test_sanitize_layout_preserves_konva_and_answer_input_positions() -> None:
     assert by_id["konva_1785110879232_paste_783799_1"]["content"]["y"] == 152.133
 
 
+def test_sanitize_layout_preserves_copied_slots_and_protected_slots_when_parent_prefix_deleted() -> None:
+    layout = {
+        "regions": [
+            {
+                "id": "region.stem",
+                "role": "stem",
+                "slot_ids": [
+                    "slot.q1",
+                    "slot.q1.copy2",
+                    "slot.q1.copy2.copy3",
+                    "slot.q1.copy2.copy3.copy4",
+                    "slot.q1.copy2.copy3.copy5",
+                ],
+            }
+        ],
+        "slots": [
+            {"id": "slot.q1", "kind": "text", "content": {"text": "Q line 1"}},
+            {"id": "slot.q1.copy2", "kind": "text", "content": {"text": "Q line 2"}},
+            {"id": "slot.q1.copy2.copy3", "kind": "text", "content": {"text": "㉠"}},
+            {"id": "slot.q1.copy2.copy3.copy4", "kind": "text", "content": {"text": "㉡"}},
+            {"id": "slot.q1.copy2.copy3.copy5", "kind": "text", "content": {"text": "㉢"}},
+        ],
+    }
+
+    sanitized = sanitize_layout(
+        layout,
+        deleted_slots={"slot.q1", "slot.q1.copy2"},
+        protected_slot_ids={
+            "slot.q1.copy2.copy3",
+            "slot.q1.copy2.copy3.copy4",
+            "slot.q1.copy2.copy3.copy5",
+        },
+    )
+
+    remaining_ids = [slot["id"] for slot in sanitized["slots"]]
+    assert remaining_ids == [
+        "slot.q1.copy2.copy3",
+        "slot.q1.copy2.copy3.copy4",
+        "slot.q1.copy2.copy3.copy5",
+    ]
+
+
+

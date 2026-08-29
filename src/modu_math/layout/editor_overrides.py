@@ -611,7 +611,25 @@ def _deleted_slot_matches(
         return True
     for deleted_id in deleted - exact_deleted:
         if slot_id.startswith(f"{deleted_id}."):
-            return True
+            suffix = slot_id[len(deleted_id) + 1 :]
+            if suffix in {
+                "num",
+                "den",
+                "bar",
+                "whole",
+                "box",
+                "text",
+                "rect",
+                "line",
+                "circle",
+                "label",
+                "left",
+                "right",
+                "middle",
+                "inner",
+                "outer",
+            }:
+                return True
     return False
 
 

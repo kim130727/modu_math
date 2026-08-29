@@ -25,7 +25,11 @@ def sanitize_layout(
         if not isinstance(slot, dict):
             continue
         slot_id = slot.get("id")
-        if isinstance(slot_id, str) and _deleted_slot_matches(slot_id, deleted_slots):
+        if (
+            isinstance(slot_id, str)
+            and slot_id not in protected_slot_ids
+            and _deleted_slot_matches(slot_id, deleted_slots)
+        ):
             continue
         content = slot.get("content")
         if isinstance(content, dict) and is_submitted_answer_slot(slot):
@@ -386,6 +390,25 @@ def _sanitize_reading_order(
 def _deleted_slot_matches(slot_id: str, deleted_slots: set[str]) -> bool:
     if slot_id in deleted_slots:
         return True
-    if any(slot_id.startswith(f"{deleted}.") for deleted in deleted_slots):
-        return True
+    for deleted in deleted_slots:
+        if slot_id.startswith(f"{deleted}."):
+            suffix = slot_id[len(deleted) + 1 :]
+            if suffix in {
+                "num",
+                "den",
+                "bar",
+                "whole",
+                "box",
+                "text",
+                "rect",
+                "line",
+                "circle",
+                "label",
+                "left",
+                "right",
+                "middle",
+                "inner",
+                "outer",
+            }:
+                return True
     return False
