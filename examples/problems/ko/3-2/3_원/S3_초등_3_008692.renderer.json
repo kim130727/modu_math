@@ -1,21 +1,54 @@
 {
   "problem_id": "S3_초등_3_008692",
   "view_box": {
-    "width": 680.0,
-    "height": 480.0,
+    "width": 720.0,
+    "height": 440.0,
     "background": "#FFFFFF"
   },
   "elements": [
     {
+      "id": "slot.header.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 35.0,
+        "y": 35.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.header.text",
+      "refs": {
+        "layout_slot_id": "slot.header.text"
+      },
+      "text": "원의 중심을 찾아 기호를 선택해 보세요."
+    },
+    {
+      "id": "slot.circle.outer.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 360.0,
+        "cy": 240.0,
+        "r": 120.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.circle.outer",
+      "refs": {
+        "layout_slot_id": "slot.circle.outer"
+      }
+    },
+    {
       "id": "slot.graphpaper.v0.line",
       "type": "line",
       "attributes": {
-        "x1": 185.0,
-        "y1": 100.0,
-        "x2": 185.0,
-        "y2": 435.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 210.0,
+        "y1": 90.0,
+        "x2": 210.0,
+        "y2": 390.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.v0",
       "refs": {
@@ -26,12 +59,13 @@
       "id": "slot.graphpaper.v1.line",
       "type": "line",
       "attributes": {
-        "x1": 220.0,
-        "y1": 100.0,
-        "x2": 220.0,
-        "y2": 435.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 240.0,
+        "y1": 90.0,
+        "x2": 240.0,
+        "y2": 390.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.v1",
       "refs": {
@@ -42,12 +76,13 @@
       "id": "slot.graphpaper.v2.line",
       "type": "line",
       "attributes": {
-        "x1": 250.0,
-        "y1": 100.0,
-        "x2": 250.0,
-        "y2": 435.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 270.0,
+        "y1": 90.0,
+        "x2": 270.0,
+        "y2": 390.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.v2",
       "refs": {
@@ -58,12 +93,13 @@
       "id": "slot.graphpaper.v3.line",
       "type": "line",
       "attributes": {
-        "x1": 280.0,
-        "y1": 100.0,
-        "x2": 280.0,
-        "y2": 435.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 300.0,
+        "y1": 90.0,
+        "x2": 300.0,
+        "y2": 390.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.v3",
       "refs": {
@@ -74,12 +110,13 @@
       "id": "slot.graphpaper.v4.line",
       "type": "line",
       "attributes": {
-        "x1": 310.0,
-        "y1": 100.0,
-        "x2": 310.0,
-        "y2": 435.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 330.0,
+        "y1": 90.0,
+        "x2": 330.0,
+        "y2": 390.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.v4",
       "refs": {
@@ -90,12 +127,13 @@
       "id": "slot.graphpaper.v5.line",
       "type": "line",
       "attributes": {
-        "x1": 345.0,
-        "y1": 100.0,
-        "x2": 345.0,
-        "y2": 435.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 360.0,
+        "y1": 90.0,
+        "x2": 360.0,
+        "y2": 390.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.v5",
       "refs": {
@@ -106,12 +144,13 @@
       "id": "slot.graphpaper.v6.line",
       "type": "line",
       "attributes": {
-        "x1": 380.0,
-        "y1": 100.0,
-        "x2": 380.0,
-        "y2": 435.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 390.0,
+        "y1": 90.0,
+        "x2": 390.0,
+        "y2": 390.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.v6",
       "refs": {
@@ -122,12 +161,13 @@
       "id": "slot.graphpaper.v7.line",
       "type": "line",
       "attributes": {
-        "x1": 410.0,
-        "y1": 100.0,
-        "x2": 410.0,
-        "y2": 435.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 420.0,
+        "y1": 90.0,
+        "x2": 420.0,
+        "y2": 390.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.v7",
       "refs": {
@@ -138,12 +178,13 @@
       "id": "slot.graphpaper.v8.line",
       "type": "line",
       "attributes": {
-        "x1": 440.0,
-        "y1": 100.0,
-        "x2": 440.0,
-        "y2": 435.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 450.0,
+        "y1": 90.0,
+        "x2": 450.0,
+        "y2": 390.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.v8",
       "refs": {
@@ -154,12 +195,13 @@
       "id": "slot.graphpaper.v9.line",
       "type": "line",
       "attributes": {
-        "x1": 470.0,
-        "y1": 100.0,
-        "x2": 470.0,
-        "y2": 435.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 480.0,
+        "y1": 90.0,
+        "x2": 480.0,
+        "y2": 390.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.v9",
       "refs": {
@@ -170,12 +212,13 @@
       "id": "slot.graphpaper.v10.line",
       "type": "line",
       "attributes": {
-        "x1": 505.0,
-        "y1": 100.0,
-        "x2": 505.0,
-        "y2": 435.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 510.0,
+        "y1": 90.0,
+        "x2": 510.0,
+        "y2": 390.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.v10",
       "refs": {
@@ -186,12 +229,13 @@
       "id": "slot.graphpaper.h0.line",
       "type": "line",
       "attributes": {
-        "x1": 185.0,
-        "y1": 100.0,
-        "x2": 505.0,
-        "y2": 100.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 210.0,
+        "y1": 90.0,
+        "x2": 510.0,
+        "y2": 90.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.h0",
       "refs": {
@@ -202,12 +246,13 @@
       "id": "slot.graphpaper.h1.line",
       "type": "line",
       "attributes": {
-        "x1": 185.0,
-        "y1": 135.0,
-        "x2": 505.0,
-        "y2": 135.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 210.0,
+        "y1": 120.0,
+        "x2": 510.0,
+        "y2": 120.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.h1",
       "refs": {
@@ -218,12 +263,13 @@
       "id": "slot.graphpaper.h2.line",
       "type": "line",
       "attributes": {
-        "x1": 185.0,
-        "y1": 165.0,
-        "x2": 505.0,
-        "y2": 165.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 210.0,
+        "y1": 150.0,
+        "x2": 510.0,
+        "y2": 150.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.h2",
       "refs": {
@@ -234,12 +280,13 @@
       "id": "slot.graphpaper.h3.line",
       "type": "line",
       "attributes": {
-        "x1": 185.0,
-        "y1": 200.0,
-        "x2": 505.0,
-        "y2": 200.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 210.0,
+        "y1": 180.0,
+        "x2": 510.0,
+        "y2": 180.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.h3",
       "refs": {
@@ -250,12 +297,13 @@
       "id": "slot.graphpaper.h4.line",
       "type": "line",
       "attributes": {
-        "x1": 185.0,
-        "y1": 235.0,
-        "x2": 505.0,
-        "y2": 235.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 210.0,
+        "y1": 210.0,
+        "x2": 510.0,
+        "y2": 210.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.h4",
       "refs": {
@@ -266,12 +314,13 @@
       "id": "slot.graphpaper.h5.line",
       "type": "line",
       "attributes": {
-        "x1": 185.0,
-        "y1": 270.0,
-        "x2": 505.0,
-        "y2": 270.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 210.0,
+        "y1": 240.0,
+        "x2": 510.0,
+        "y2": 240.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.h5",
       "refs": {
@@ -282,12 +331,13 @@
       "id": "slot.graphpaper.h6.line",
       "type": "line",
       "attributes": {
-        "x1": 185.0,
-        "y1": 305.0,
-        "x2": 505.0,
-        "y2": 305.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 210.0,
+        "y1": 270.0,
+        "x2": 510.0,
+        "y2": 270.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.h6",
       "refs": {
@@ -298,12 +348,13 @@
       "id": "slot.graphpaper.h7.line",
       "type": "line",
       "attributes": {
-        "x1": 185.0,
-        "y1": 335.0,
-        "x2": 505.0,
-        "y2": 335.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 210.0,
+        "y1": 300.0,
+        "x2": 510.0,
+        "y2": 300.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.h7",
       "refs": {
@@ -314,12 +365,13 @@
       "id": "slot.graphpaper.h8.line",
       "type": "line",
       "attributes": {
-        "x1": 185.0,
-        "y1": 370.0,
-        "x2": 505.0,
-        "y2": 370.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 210.0,
+        "y1": 330.0,
+        "x2": 510.0,
+        "y2": 330.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.h8",
       "refs": {
@@ -330,12 +382,13 @@
       "id": "slot.graphpaper.h9.line",
       "type": "line",
       "attributes": {
-        "x1": 185.0,
-        "y1": 400.0,
-        "x2": 505.0,
-        "y2": 400.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 210.0,
+        "y1": 360.0,
+        "x2": 510.0,
+        "y2": 360.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.h9",
       "refs": {
@@ -346,12 +399,13 @@
       "id": "slot.graphpaper.h10.line",
       "type": "line",
       "attributes": {
-        "x1": 185.0,
-        "y1": 435.0,
-        "x2": 505.0,
-        "y2": 435.0,
-        "stroke": "#2563eb",
-        "stroke-width": 1.0
+        "x1": 210.0,
+        "y1": 390.0,
+        "x2": 510.0,
+        "y2": 390.0,
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "4 3"
       },
       "source_ref": "slot.graphpaper.h10",
       "refs": {
@@ -359,182 +413,134 @@
       }
     },
     {
-      "id": "slot.q.num.text",
+      "id": "slot.pt.ga.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 360.0,
+        "cy": 180.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#d81b60"
+      },
+      "source_ref": "slot.pt.ga",
+      "refs": {
+        "layout_slot_id": "slot.pt.ga"
+      }
+    },
+    {
+      "id": "slot.pt.na.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 360.0,
+        "cy": 240.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#d81b60"
+      },
+      "source_ref": "slot.pt.na",
+      "refs": {
+        "layout_slot_id": "slot.pt.na"
+      }
+    },
+    {
+      "id": "slot.pt.da.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 300.0,
+        "cy": 300.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#d81b60"
+      },
+      "source_ref": "slot.pt.da",
+      "refs": {
+        "layout_slot_id": "slot.pt.da"
+      }
+    },
+    {
+      "id": "slot.pt.ra.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 450.0,
+        "cy": 240.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#d81b60"
+      },
+      "source_ref": "slot.pt.ra",
+      "refs": {
+        "layout_slot_id": "slot.pt.ra"
+      }
+    },
+    {
+      "id": "slot.lb.ga.text",
       "type": "text",
       "attributes": {
-        "x": 34.0,
-        "y": 28.0,
+        "x": 338.0,
+        "y": 172.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.q.num",
-      "refs": {
-        "layout_slot_id": "slot.q.num"
-      },
-      "text": "81."
-    },
-    {
-      "id": "slot.q.text.text",
-      "type": "text",
-      "attributes": {
-        "x": 35.0,
-        "y": 75.0,
-        "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30
-      },
-      "source_ref": "slot.q.text",
-      "refs": {
-        "layout_slot_id": "slot.q.text"
-      },
-      "text": "원의 중심을 찾아 기호를 선택해 보세요."
-    },
-    {
-      "id": "slot.circle.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 330.0,
-        "cy": 265.0,
-        "r": 135.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "none"
-      },
-      "source_ref": "slot.circle",
-      "refs": {
-        "layout_slot_id": "slot.circle"
-      }
-    },
-    {
-      "id": "slot.pt.a.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 330.0,
-        "cy": 205.0,
-        "r": 5.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#e94f9a"
-      },
-      "source_ref": "slot.pt.a",
-      "refs": {
-        "layout_slot_id": "slot.pt.a"
-      }
-    },
-    {
-      "id": "slot.pt.b.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 330.0,
-        "cy": 265.0,
-        "r": 5.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#e94f9a"
-      },
-      "source_ref": "slot.pt.b",
-      "refs": {
-        "layout_slot_id": "slot.pt.b"
-      }
-    },
-    {
-      "id": "slot.pt.c.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 270.0,
-        "cy": 295.0,
-        "r": 5.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#e94f9a"
-      },
-      "source_ref": "slot.pt.c",
-      "refs": {
-        "layout_slot_id": "slot.pt.c"
-      }
-    },
-    {
-      "id": "slot.pt.d.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 430.0,
-        "cy": 265.0,
-        "r": 5.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#e94f9a"
-      },
-      "source_ref": "slot.pt.d",
-      "refs": {
-        "layout_slot_id": "slot.pt.d"
-      }
-    },
-    {
-      "id": "slot.lb.a.text",
-      "type": "text",
-      "attributes": {
-        "x": 300.0,
-        "y": 195.0,
-        "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30,
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 22,
         "data-semantic-role": "symbol_label"
       },
-      "source_ref": "slot.lb.a",
+      "source_ref": "slot.lb.ga",
       "refs": {
-        "layout_slot_id": "slot.lb.a"
+        "layout_slot_id": "slot.lb.ga"
       },
       "text": "ㄱ"
     },
     {
-      "id": "slot.lb.b.text",
+      "id": "slot.lb.na.text",
       "type": "text",
       "attributes": {
-        "x": 295.0,
-        "y": 260.0,
+        "x": 338.0,
+        "y": 232.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30,
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 22,
         "data-semantic-role": "symbol_label"
       },
-      "source_ref": "slot.lb.b",
+      "source_ref": "slot.lb.na",
       "refs": {
-        "layout_slot_id": "slot.lb.b"
+        "layout_slot_id": "slot.lb.na"
       },
       "text": "ㄴ"
     },
     {
-      "id": "slot.lb.c.text",
+      "id": "slot.lb.da.text",
       "type": "text",
       "attributes": {
-        "x": 235.0,
-        "y": 310.0,
+        "x": 278.0,
+        "y": 292.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30,
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 22,
         "data-semantic-role": "symbol_label"
       },
-      "source_ref": "slot.lb.c",
+      "source_ref": "slot.lb.da",
       "refs": {
-        "layout_slot_id": "slot.lb.c"
+        "layout_slot_id": "slot.lb.da"
       },
       "text": "ㄷ"
     },
     {
-      "id": "slot.lb.d.text",
+      "id": "slot.lb.ra.text",
       "type": "text",
       "attributes": {
-        "x": 420.0,
-        "y": 255.0,
+        "x": 460.0,
+        "y": 232.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30,
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 22,
         "data-semantic-role": "symbol_label"
       },
-      "source_ref": "slot.lb.d",
+      "source_ref": "slot.lb.ra",
       "refs": {
-        "layout_slot_id": "slot.lb.d"
+        "layout_slot_id": "slot.lb.ra"
       },
       "text": "ㄹ"
     }

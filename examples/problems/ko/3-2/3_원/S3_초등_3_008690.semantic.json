@@ -1,19 +1,19 @@
 {
   "problem_id": "S3_초등_3_008690",
-  "problem_type": "도형_원",
+  "problem_type": "geometry_circle_classification",
   "metadata": {
     "title": "원의 반지름과 지름",
     "tags": [],
     "question": "원의 반지름과 지름을 나타내는 선분을 각각 찾아 기호를 선택해 보세요.",
     "required_layout_ids": [
       "slot.circle.outer",
-      "slot.diagram.center",
-      "slot.diagram.radius1",
-      "slot.diagram.diameter",
-      "slot.diagram.arc3",
-      "slot.inserted.arc.1.copy5.copy7",
-      "slot.inserted.arc.1.copy5.copy7.copy8",
-      "slot.inserted.arc.1.copy5.copy7.copy9"
+      "slot.line.diameter",
+      "slot.line.radius",
+      "slot.line.chord",
+      "slot.arc.ga",
+      "slot.arc.na",
+      "slot.arc.da",
+      "slot.pt.center"
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
@@ -24,6 +24,10 @@
       {
         "id": "obj.circle",
         "type": "circle"
+      },
+      {
+        "id": "obj.center",
+        "type": "center"
       },
       {
         "id": "obj.segment.ga",
@@ -47,6 +51,7 @@
       "understand": {
         "given_refs": [
           "obj.circle",
+          "obj.center",
           "obj.segment.ga",
           "obj.segment.na",
           "obj.segment.da"
@@ -58,7 +63,7 @@
         ]
       },
       "plan": {
-        "method": "도형 분류",
+        "method": "visual_classification",
         "description": "원 안의 선분을 보고 반지름과 지름에 해당하는 기호를 고른다."
       },
       "execute": {
@@ -76,13 +81,21 @@
   },
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "ㄱ",
+      "ㄴ",
+      "ㄷ"
+    ],
+    "answer_key": [
+      "ㄴ",
+      "ㄱ"
+    ],
+    "confidence": 1.0,
     "target": {
       "type": "symbol_selection",
       "description": "원의 반지름과 지름에 해당하는 기호"
     },
-    "value": 0,
+    "value": "ㄴ, ㄱ",
     "unit": ""
   }
 }

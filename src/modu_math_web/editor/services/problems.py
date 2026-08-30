@@ -351,6 +351,122 @@ def _display_problem_id(alias: str, relative_id: str) -> str:
     return f"{alias}/{relative_id}" if alias else relative_id
 
 
+def _manifest_path_for_root(root: Path) -> Path:
+    return root / "manifest.json"
+
+
+def _manifest_relative_path(value: str, root: Path) -> Path:
+    path = Path(value)
+    if path.is_absolute():
+        return path
+
+    base_dir_path = (Path(settings.BASE_DIR) / path).resolve()
+    if base_dir_path.exists():
+        return base_dir_path
+
+    value_parts = PurePosixPath(value.replace("\\", "/")).parts
+    root_name = root.name
+    if root_name in value_parts:
+        idx = value_parts.index(root_name)
+        return root.parent / PurePosixPath(*value_parts[idx:])
+
+    return root / path
+
+
+def _resolve_manifest_problem_paths(
+    safe_problem_id: str,
+    *,
+    alias: str,
+    relative_id: str,
+    root: Path,
+) -> ProblemPaths | None:
+    if alias or "/" in relative_id:
+        return None
+
+    manifest_path = _manifest_path_for_root(root)
+    if not manifest_path.exists():
+        return None
+
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8-sig"))
+    except Exception:
+        return None
+
+    entries = manifest.get("problems") if isinstance(manifest, dict) else manifest
+    if not isinstance(entries, list):
+        return None
+
+    matches: list[ProblemPaths] = []
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        manifest_id = entry.get("id")
+        file_prefix = entry.get("filePrefix") or manifest_id
+        entry_path = entry.get("path")
+        if relative_id not in {manifest_id, file_prefix}:
+            continue
+        if not isinstance(file_prefix, str) or not isinstance(entry_path, str):
+            continue
+
+        base_dir = _manifest_relative_path(entry_path, root).resolve()
+        dsl_path = (base_dir / f"{file_prefix}.dsl.py").resolve()
+        if dsl_path != root and root not in dsl_path.parents:
+            continue
+        if not dsl_path.exists() or not dsl_path.is_file():
+            continue
+
+        rel = dsl_path.relative_to(root).as_posix()
+        matches.append(
+            ProblemPaths(
+                problem_id=_display_problem_id(alias, rel),
+                root_alias=alias,
+                root_dir=root,
+                base_dir=dsl_path.parent,
+                dsl_path=dsl_path,
+                artifact_base=file_prefix,
+            )
+        )
+
+    if len(matches) == 1:
+        return matches[0]
+    if len(matches) > 1:
+        raise FileNotFoundError(f"ambiguous problem alias in manifest: {safe_problem_id}")
+    return None
+
+
+def _resolve_unique_basename_problem_paths(
+    safe_problem_id: str,
+    *,
+    alias: str,
+    relative_id: str,
+    root: Path,
+) -> ProblemPaths | None:
+    if alias or "/" in relative_id:
+        return None
+
+    candidates = sorted(root.rglob(f"{relative_id}.dsl.py"))
+    candidates = [
+        candidate.resolve()
+        for candidate in candidates
+        if candidate.is_file() and (candidate.resolve() == root or root in candidate.resolve().parents)
+    ]
+    if len(candidates) == 1:
+        dsl_path = candidates[0]
+        artifact_base = dsl_path.name[: -len(".dsl.py")]
+        rel = dsl_path.relative_to(root).as_posix()
+        return ProblemPaths(
+            problem_id=_display_problem_id(alias, rel),
+            root_alias=alias,
+            root_dir=root,
+            base_dir=dsl_path.parent,
+            dsl_path=dsl_path,
+            artifact_base=artifact_base,
+        )
+    if len(candidates) > 1:
+        raise FileNotFoundError(f"ambiguous problem alias by file name: {safe_problem_id}")
+    return None
+
+
 def _language_problem_metadata(relative_id: str) -> tuple[str | None, str | None]:
     parts = PurePosixPath(relative_id).parts
     if not parts or parts[0] not in LANGUAGE_PROBLEM_FOLDERS:
@@ -417,6 +533,24 @@ def resolve_problem_paths(problem_id: str) -> ProblemPaths:
             dsl_path=file_target,
             artifact_base=artifact_base,
         )
+
+    manifest_paths = _resolve_manifest_problem_paths(
+        safe_problem_id,
+        alias=alias,
+        relative_id=relative_id,
+        root=root,
+    )
+    if manifest_paths is not None:
+        return manifest_paths
+
+    basename_paths = _resolve_unique_basename_problem_paths(
+        safe_problem_id,
+        alias=alias,
+        relative_id=relative_id,
+        root=root,
+    )
+    if basename_paths is not None:
+        return basename_paths
 
     raise FileNotFoundError(f"problem not found: {safe_problem_id}")
 

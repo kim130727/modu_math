@@ -5,10 +5,26 @@
   "inputs": {
     "target_label": "원의 지름",
     "choices": [
-      "ㄱㄴ",
-      "ㄷㄹ",
-      "ㅁㅂ",
-      "ㅅㅈ"
+      {
+        "id": "choice.1",
+        "label": "①",
+        "text": "ㄱㄴ"
+      },
+      {
+        "id": "choice.2",
+        "label": "②",
+        "text": "ㄷㄹ"
+      },
+      {
+        "id": "choice.3",
+        "label": "③",
+        "text": "ㅁㅂ"
+      },
+      {
+        "id": "choice.4",
+        "label": "④",
+        "text": "ㅅㅈ"
+      }
     ],
     "unit": ""
   },
@@ -63,18 +79,34 @@
     }
   ],
   "answer": {
-    "blanks": [
-      "slot.note1_blank",
-      "slot.note2_blank"
-    ],
+    "blanks": [],
     "choices": [
-      "ㄱㄴ",
-      "ㄷㄹ",
-      "ㅁㅂ",
-      "ㅅㅈ"
+      {
+        "id": "choice.1",
+        "label": "①",
+        "text": "ㄱㄴ"
+      },
+      {
+        "id": "choice.2",
+        "label": "②",
+        "text": "ㄷㄹ"
+      },
+      {
+        "id": "choice.3",
+        "label": "③",
+        "text": "ㅁㅂ"
+      },
+      {
+        "id": "choice.4",
+        "label": "④",
+        "text": "ㅅㅈ"
+      }
     ],
     "answer_key": [
-      3
+      {
+        "id": "choice.3",
+        "value": "ㅁㅂ"
+      }
     ],
     "target": {
       "type": "matching_segment_name",

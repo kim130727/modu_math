@@ -1,9 +1,9 @@
 {
   "schema": "modu.solvable.v1.1",
   "problem_id": "S3_초등_3_008692",
-  "problem_type": "도형_원의중심_선택",
+  "problem_type": "multiple_choice",
   "inputs": {
-    "total_ticks": 1,
+    "total_ticks": 4,
     "target_label": "원의 중심을 나타내는 기호",
     "target_ticks": 1,
     "target_count": 1,
@@ -11,62 +11,70 @@
   },
   "given": [
     {
-      "ref": "obj.circle",
+      "ref": "obj.pt.ga",
       "value": {
-        "type": "circle"
+        "symbol": "ㄱ"
       }
     },
     {
-      "ref": "obj.center_candidate",
+      "ref": "obj.pt.na",
       "value": {
         "symbol": "ㄴ"
+      }
+    },
+    {
+      "ref": "obj.pt.da",
+      "value": {
+        "symbol": "ㄷ"
+      }
+    },
+    {
+      "ref": "obj.pt.ra",
+      "value": {
+        "symbol": "ㄹ"
       }
     }
   ],
   "target": {
     "ref": "answer.target",
-    "type": "symbol_choice"
+    "type": "symbol_selection"
   },
-  "method": "도형에서 중심점 식별",
+  "method": "visual_identification",
   "plan": [
-    "원의 가운데에 있는 후보 점을 찾는다.",
-    "그 점과 연결된 기호를 선택한다."
+    "모눈종이 위 원에서 상하좌우 거리가 같은 중심점을 찾는다."
   ],
   "steps": [
     {
       "id": "step.1",
-      "expr": "원의 중심에 해당하는 후보를 찾는다",
+      "expr": "원의 중심에 해당하는 기호를 찾는다.",
       "value": "ㄴ"
     }
   ],
   "checks": [
     {
       "id": "check.1",
-      "expr": "선택한 기호가 원의 중심과 대응하는가",
-      "expected": "ㄴ",
-      "actual": "ㄴ",
+      "expr": "점 ㄴ이 원의 중심인가",
+      "expected": true,
+      "actual": true,
       "pass": true
     }
   ],
   "answer": {
     "blanks": [],
     "choices": [
-      "1. ㄱ",
-      "2. ㄴ",
-      "3. ㄷ",
-      "4. ㄹ"
+      "ㄱ",
+      "ㄴ",
+      "ㄷ",
+      "ㄹ"
     ],
     "answer_key": [
-      {
-        "id": "choice.2",
-        "value": "2. ㄴ"
-      }
+      "ㄴ"
     ],
     "target": {
-      "type": "multiple_choice",
+      "type": "symbol_selection",
       "description": "원의 중심을 나타내는 기호"
     },
-    "value": "2. ㄴ",
+    "value": "ㄴ",
     "unit": ""
   }
 }

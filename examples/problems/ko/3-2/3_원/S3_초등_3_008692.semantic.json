@@ -4,13 +4,8 @@
   "metadata": {
     "title": "원의 중심을 찾아 기호를 선택해 보세요",
     "tags": [],
-    "question": "81.",
+    "question": "원의 중심을 찾아 기호를 선택해 보세요.",
     "required_layout_ids": [
-      "slot.circle",
-      "slot.pt.a",
-      "slot.pt.b",
-      "slot.pt.c",
-      "slot.pt.d",
       "slot.graphpaper.v0",
       "slot.graphpaper.v1",
       "slot.graphpaper.v2",
@@ -32,60 +27,93 @@
       "slot.graphpaper.h7",
       "slot.graphpaper.h8",
       "slot.graphpaper.h9",
-      "slot.graphpaper.h10"
+      "slot.graphpaper.h10",
+      "slot.circle.outer",
+      "slot.pt.ga",
+      "slot.pt.na",
+      "slot.pt.da",
+      "slot.pt.ra"
     ],
     "extraction_confidence": 1.0,
-    "grade": 3,
-    "semester": 2,
-    "unit": 3,
-    "topic": "원"
+    "language": "ko",
+    "instruction": "원의 중심을 찾아 기호를 선택해 보세요."
   },
   "domain": {
     "objects": [
       {
-        "id": "circle",
-        "type": "shape",
-        "name": "원"
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.pt.ga",
+        "type": "point",
+        "symbol": "ㄱ"
+      },
+      {
+        "id": "obj.pt.na",
+        "type": "point",
+        "symbol": "ㄴ"
+      },
+      {
+        "id": "obj.pt.da",
+        "type": "point",
+        "symbol": "ㄷ"
+      },
+      {
+        "id": "obj.pt.ra",
+        "type": "point",
+        "symbol": "ㄹ"
       }
     ],
     "relations": [],
     "confidence": 1.0,
-    "facts": []
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.pt.ga",
+          "obj.pt.na",
+          "obj.pt.da",
+          "obj.pt.ra"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.center"
+        ]
+      },
+      "plan": {
+        "method": "visual_identification",
+        "description": "모눈종이에서 원의 중심 위치에 해당하는 점을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_center_point"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "grid_distance_check"
+        ]
+      }
+    }
   },
   "answer": {
     "blanks": [],
     "choices": [
-      {
-        "id": "choice.1",
-        "label": "1",
-        "text": "ㄱ",
-        "value": "1. ㄱ"
-      },
-      {
-        "id": "choice.2",
-        "label": "2",
-        "text": "ㄴ",
-        "value": "2. ㄴ"
-      },
-      {
-        "id": "choice.3",
-        "label": "3",
-        "text": "ㄷ",
-        "value": "3. ㄷ"
-      },
-      {
-        "id": "choice.4",
-        "label": "4",
-        "text": "ㄹ",
-        "value": "4. ㄹ"
-      }
+      "ㄱ",
+      "ㄴ",
+      "ㄷ",
+      "ㄹ"
     ],
     "answer_key": [
-      {
-        "id": "choice.2",
-        "value": "2. ㄴ"
-      }
+      "ㄴ"
     ],
-    "value": "2. ㄴ"
+    "confidence": 1.0,
+    "target": {
+      "type": "symbol_selection",
+      "description": "원의 중심을 나타내는 기호"
+    },
+    "value": "ㄴ",
+    "unit": ""
   }
 }

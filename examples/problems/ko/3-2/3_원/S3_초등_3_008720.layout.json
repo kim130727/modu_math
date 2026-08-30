@@ -3,7 +3,7 @@
   "problem_id": "S3_초등_3_008720",
   "title": "원의 크기와 구멍 선택",
   "canvas": {
-    "width": 952,
+    "width": 700,
     "height": 344,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
@@ -15,13 +15,12 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.pin_base",
-        "slot.q1",
-        "slot.q2",
         "slot.lb2_text.copy5",
         "slot.lb2_text",
         "slot.lb3_text",
         "slot.lb4_text",
-        "slot.lb5_text"
+        "slot.lb5_text",
+        "konva_1788083991421_text_2123303"
       ]
     },
     {
@@ -46,36 +45,12 @@
   ],
   "slots": [
     {
-      "id": "slot.q1",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 작게 그",
-        "style_role": "question",
-        "x": 16.0,
-        "y": 34.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.q2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택해 보세요.",
-        "style_role": "question",
-        "x": 16.0,
-        "y": 72.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.bar",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 212.0,
-        "y": 164.0,
+        "x": 126.97,
+        "y": 183.856,
         "width": 425.0,
         "height": 40.0,
         "stroke": "#7AD7D7",
@@ -88,8 +63,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 267.0,
-        "cy": 185.0,
+        "cx": 181.97,
+        "cy": 204.856,
         "r": 10.0,
         "fill": "#A8B0B6"
       }
@@ -99,8 +74,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 275.0,
-        "y": 175.0,
+        "x": 189.97,
+        "y": 194.856,
         "width": 10.0,
         "height": 5.0,
         "stroke": "#7E8790",
@@ -113,8 +88,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 335.0,
-        "cy": 185.0,
+        "cx": 249.97,
+        "cy": 204.856,
         "r": 5.0,
         "stroke": "#6E6E6E",
         "stroke_width": 1.0,
@@ -126,8 +101,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 390.0,
-        "cy": 185.0,
+        "cx": 304.97,
+        "cy": 204.856,
         "r": 5.0,
         "stroke": "#6E6E6E",
         "stroke_width": 1.0,
@@ -139,8 +114,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 450.0,
-        "cy": 185.0,
+        "cx": 364.97,
+        "cy": 204.856,
         "r": 5.0,
         "stroke": "#6E6E6E",
         "stroke_width": 1.0,
@@ -152,8 +127,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 510.0,
-        "cy": 185.0,
+        "cx": 424.97,
+        "cy": 204.856,
         "r": 5.0,
         "stroke": "#6E6E6E",
         "stroke_width": 1.0,
@@ -165,8 +140,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 570.0,
-        "cy": 185.0,
+        "cx": 484.97,
+        "cy": 204.856,
         "r": 5.0,
         "stroke": "#6E6E6E",
         "stroke_width": 1.0,
@@ -178,10 +153,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 335.0,
-        "y1": 190.0,
-        "x2": 335.0,
-        "y2": 235.0,
+        "x1": 249.97,
+        "y1": 209.856,
+        "x2": 249.97,
+        "y2": 254.856,
         "stroke": "#FF4FA0",
         "stroke_width": 1.4
       }
@@ -191,10 +166,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 390.0,
-        "y1": 190.0,
-        "x2": 390.0,
-        "y2": 235.0,
+        "x1": 304.97,
+        "y1": 209.856,
+        "x2": 304.97,
+        "y2": 254.856,
         "stroke": "#FF4FA0",
         "stroke_width": 1.4
       }
@@ -204,10 +179,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 450.0,
-        "y1": 190.0,
-        "x2": 450.0,
-        "y2": 235.0,
+        "x1": 364.97,
+        "y1": 209.856,
+        "x2": 364.97,
+        "y2": 254.856,
         "stroke": "#FF4FA0",
         "stroke_width": 1.4
       }
@@ -217,10 +192,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 510.0,
-        "y1": 190.0,
-        "x2": 510.0,
-        "y2": 235.0,
+        "x1": 424.97,
+        "y1": 209.856,
+        "x2": 424.97,
+        "y2": 254.856,
         "stroke": "#FF4FA0",
         "stroke_width": 1.4
       }
@@ -230,10 +205,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 570.0,
-        "y1": 190.0,
-        "x2": 570.0,
-        "y2": 235.0,
+        "x1": 484.97,
+        "y1": 209.856,
+        "x2": 484.97,
+        "y2": 254.856,
         "stroke": "#FF4FA0",
         "stroke_width": 1.4
       }
@@ -245,8 +220,8 @@
       "content": {
         "text": "ㄴ",
         "style_role": "label",
-        "x": 380.0,
-        "y": 270.0,
+        "x": 294.97,
+        "y": 289.856,
         "font_size": 30,
         "semantic_role": "symbol_label"
       }
@@ -258,8 +233,8 @@
       "content": {
         "text": "ㄷ",
         "style_role": "label",
-        "x": 440.0,
-        "y": 270.0,
+        "x": 354.97,
+        "y": 289.856,
         "font_size": 30,
         "semantic_role": "symbol_label"
       }
@@ -271,8 +246,8 @@
       "content": {
         "text": "ㄹ",
         "style_role": "label",
-        "x": 495.0,
-        "y": 270.0,
+        "x": 409.97,
+        "y": 289.856,
         "font_size": 30,
         "semantic_role": "symbol_label"
       }
@@ -284,8 +259,8 @@
       "content": {
         "text": "ㅁ",
         "style_role": "label",
-        "x": 555.0,
-        "y": 270.0,
+        "x": 469.97,
+        "y": 289.856,
         "font_size": 30,
         "semantic_role": "symbol_label"
       }
@@ -297,11 +272,28 @@
       "content": {
         "text": "ㄱ",
         "style_role": "body",
-        "x": 320.0,
-        "y": 270.0,
+        "x": 234.97,
+        "y": 289.856,
         "font_size": 30,
         "fill": "#111111",
         "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "konva_1788083991421_text_2123303",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 작게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택해 보세요.",
+        "x": 29.357,
+        "y": 15.682,
+        "font_size": 30,
+        "fill": "#111827",
+        "width": 639.866,
+        "height": 121,
+        "align": "left",
+        "line_height": 1.25,
+        "kind": "text_box"
       }
     }
   ],
@@ -311,8 +303,6 @@
   "reading_order": [
     "region.stem",
     "slot.pin_base",
-    "slot.q1",
-    "slot.q2",
     "slot.lb2_text.copy5",
     "slot.lb2_text",
     "slot.lb3_text",
@@ -330,6 +320,7 @@
     "slot.hole2",
     "slot.hole3",
     "slot.hole4",
-    "slot.hole5"
+    "slot.hole5",
+    "konva_1788083991421_text_2123303"
   ]
 }

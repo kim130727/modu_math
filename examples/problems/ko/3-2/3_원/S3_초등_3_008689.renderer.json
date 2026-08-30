@@ -1,98 +1,34 @@
 {
   "problem_id": "S3_초등_3_008689",
   "view_box": {
-    "width": 960.0,
-    "height": 426.0,
+    "width": 720.0,
+    "height": 420.0,
     "background": "#FFFFFF"
   },
   "elements": [
     {
-      "id": "slot.inserted.arc.1.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 250 235 A 70 20 0 0 1 385 235",
-        "stroke": "#111827",
-        "stroke-width": 1.5,
-        "fill": "#ffffff",
-        "transform": "rotate(90 317.5 231.32)",
-        "stroke-dasharray": "10 6"
-      },
-      "source_ref": "slot.inserted.arc.1",
-      "refs": {
-        "layout_slot_id": "slot.inserted.arc.1"
-      }
-    },
-    {
-      "id": "slot.inserted.arc.1.copy5.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 375 207 A 45 20 0 0 1 475 207",
-        "stroke": "#111827",
-        "stroke-width": 1.5,
-        "fill": "#ffffff",
-        "transform": "rotate(-40 418 199)",
-        "stroke-dasharray": "10 6"
-      },
-      "source_ref": "slot.inserted.arc.1.copy5",
-      "refs": {
-        "layout_slot_id": "slot.inserted.arc.1.copy5"
-      }
-    },
-    {
-      "id": "slot.inserted.arc.1.copy6.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 290 250 A 105 30 0 0 1 495 250",
-        "stroke": "#111827",
-        "stroke-width": 1.5,
-        "fill": "#ffffff",
-        "transform": "rotate(-220 392.5 242.17)",
-        "stroke-dasharray": "10 6"
-      },
-      "source_ref": "slot.inserted.arc.1.copy6",
-      "refs": {
-        "layout_slot_id": "slot.inserted.arc.1.copy6"
-      }
-    },
-    {
-      "id": "slot.q1.text",
+      "id": "slot.header.text.text",
       "type": "text",
       "attributes": {
-        "x": 65.0,
-        "y": 40.0,
+        "x": 35.0,
+        "y": 35.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 26
       },
-      "source_ref": "slot.q1",
+      "source_ref": "slot.header.text",
       "refs": {
-        "layout_slot_id": "slot.q1"
+        "layout_slot_id": "slot.header.text"
       },
-      "text": "        원의 반지름과 지름을 나타내는 선분을 각각 찾아      "
-    },
-    {
-      "id": "slot.q1.copy6.text",
-      "type": "text",
-      "attributes": {
-        "x": 65.0,
-        "y": 85.0,
-        "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30
-      },
-      "source_ref": "slot.q1.copy6",
-      "refs": {
-        "layout_slot_id": "slot.q1.copy6"
-      },
-      "text": "기호를 선택해       보세요      "
+      "text": "원의 반지름과 지름을 나타내는 선분을 각각 찾아 기호를 선택해 보세요."
     },
     {
       "id": "slot.circle.outer.circle",
       "type": "circle",
       "attributes": {
-        "cx": 390.0,
-        "cy": 235.0,
-        "r": 105.0,
+        "cx": 360.0,
+        "cy": 205.0,
+        "r": 100.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "none"
@@ -103,44 +39,89 @@
       }
     },
     {
-      "id": "slot.line.a.line",
-      "type": "line",
+      "id": "slot.arc.ga.path",
+      "type": "path",
       "attributes": {
-        "x1": 315.0,
-        "y1": 160.0,
-        "x2": 310.0,
-        "y2": 305.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
+        "d": "M 310 282 Q 285 205 310 128",
+        "stroke": "#0284c7",
+        "stroke-width": 1.5,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
       },
-      "source_ref": "slot.line.a",
+      "source_ref": "slot.arc.ga",
       "refs": {
-        "layout_slot_id": "slot.line.a"
+        "layout_slot_id": "slot.arc.ga"
       }
     },
     {
-      "id": "slot.line.c.line",
+      "id": "slot.arc.na.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 315 285 Q 338 185 405 125",
+        "stroke": "#0284c7",
+        "stroke-width": 1.5,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.arc.na",
+      "refs": {
+        "layout_slot_id": "slot.arc.na"
+      }
+    },
+    {
+      "id": "slot.arc.da.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 363 200 Q 400 178 405 125",
+        "stroke": "#0284c7",
+        "stroke-width": 1.5,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.arc.da",
+      "refs": {
+        "layout_slot_id": "slot.arc.da"
+      }
+    },
+    {
+      "id": "slot.line.chord.line",
       "type": "line",
       "attributes": {
-        "x1": 470.0,
-        "y1": 165.0,
+        "x1": 310.0,
+        "y1": 292.0,
         "x2": 310.0,
-        "y2": 305.0,
+        "y2": 118.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
-      "source_ref": "slot.line.c",
+      "source_ref": "slot.line.chord",
       "refs": {
-        "layout_slot_id": "slot.line.c"
+        "layout_slot_id": "slot.line.chord"
+      }
+    },
+    {
+      "id": "slot.line.diameter.line",
+      "type": "line",
+      "attributes": {
+        "x1": 310.0,
+        "y1": 292.0,
+        "x2": 410.0,
+        "y2": 118.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.line.diameter",
+      "refs": {
+        "layout_slot_id": "slot.line.diameter"
       }
     },
     {
       "id": "slot.pt.center.circle",
       "type": "circle",
       "attributes": {
-        "cx": 390.0,
-        "cy": 235.0,
-        "r": 5.0,
+        "cx": 360.0,
+        "cy": 205.0,
+        "r": 4.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#d81b60"
@@ -154,11 +135,11 @@
       "id": "slot.lb.o.text",
       "type": "text",
       "attributes": {
-        "x": 400.0,
-        "y": 245.0,
+        "x": 362.0,
+        "y": 222.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 20,
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 18,
         "data-semantic-role": "symbol_label"
       },
       "source_ref": "slot.lb.o",
@@ -171,68 +152,65 @@
       "id": "slot.lb.ga.text",
       "type": "text",
       "attributes": {
-        "x": 330.0,
-        "y": 235.0,
+        "x": 275.0,
+        "y": 213.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 25,
-        "data-semantic-role": "symbol_label"
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 24
       },
       "source_ref": "slot.lb.ga",
       "refs": {
         "layout_slot_id": "slot.lb.ga"
       },
-      "text": "ㄱ"
+      "text": "㉠"
     },
     {
       "id": "slot.lb.na.text",
       "type": "text",
       "attributes": {
-        "x": 400.0,
-        "y": 280.0,
+        "x": 332.998,
+        "y": 177.843,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 25,
-        "data-semantic-role": "symbol_label"
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 24
       },
       "source_ref": "slot.lb.na",
       "refs": {
         "layout_slot_id": "slot.lb.na"
       },
-      "text": "ㄴ"
+      "text": "㉡"
     },
     {
       "id": "slot.lb.da.text",
       "type": "text",
       "attributes": {
-        "x": 390.0,
-        "y": 180.0,
+        "x": 403.575,
+        "y": 186.313,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 25,
-        "data-semantic-role": "symbol_label"
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 24
       },
       "source_ref": "slot.lb.da",
       "refs": {
         "layout_slot_id": "slot.lb.da"
       },
-      "text": "ㄷ"
+      "text": "㉢"
     },
     {
       "id": "slot.choice.text",
       "type": "text",
       "attributes": {
-        "x": 60.0,
-        "y": 380.0,
+        "x": 90.0,
+        "y": 375.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 28
       },
       "source_ref": "slot.choice",
       "refs": {
         "layout_slot_id": "slot.choice"
       },
-      "text": "원의 반지름 ( ㄱ , ㄴ , ㄷ ), 원의 지름 ( ㄱ , ㄴ , ㄷ )"
+      "text": "원의 반지름 ( ㉠ , ㉡ , ㉢ ), 원의 지름 ( ㉠ , ㉡ , ㉢ )"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

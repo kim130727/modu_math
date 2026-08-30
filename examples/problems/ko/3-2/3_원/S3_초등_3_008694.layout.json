@@ -26,8 +26,6 @@
         "slot.line.ㅁㄷ",
         "slot.line.ㅇㅅ",
         "slot.pt.ㅇ",
-        "slot.q1",
-        "slot.q2",
         "slot.q3",
         "slot.pt.ㄱ",
         "slot.pt.ㄴ",
@@ -50,35 +48,12 @@
         "slot.pt.ㅇ.label",
         "slot.table.cell7",
         "slot.table.cell8",
-        "slot.blank.label"
+        "slot.blank.label",
+        "konva_1788083991421_text_1519470"
       ]
     }
   ],
   "slots": [
-    {
-      "id": "slot.q1",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "    지름을 나타내는 선분을 찾아 길이를 재어 보고, 알 수 있는 점을 ",
-        "style_role": "question",
-        "x": 10.0,
-        "y": 70.0,
-        "font_size": 30
-      }
-    },
-    {
-      "id": "slot.q2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "쓰려고 합니다. ㉠, ㉡, ㉢에 들어갈 알맞은 것을 고르세요.",
-        "style_role": "question",
-        "x": 10.0,
-        "y": 115.0,
-        "font_size": 30
-      }
-    },
     {
       "id": "slot.circle",
       "kind": "circle",
@@ -153,8 +128,8 @@
         "text": "ㅇ",
         "style_role": "label",
         "x": 435.0,
-        "y": 310.0,
-        "font_size": 25,
+        "y": 315,
+        "font_size": 30,
         "semantic_role": "symbol_label"
       }
     },
@@ -166,8 +141,8 @@
         "text": "ㄱ",
         "style_role": "label",
         "x": 469.0,
-        "y": 155.0,
-        "font_size": 25,
+        "y": 160,
+        "font_size": 30,
         "semantic_role": "symbol_label"
       }
     },
@@ -179,8 +154,8 @@
         "text": "ㄴ",
         "style_role": "label",
         "x": 370.0,
-        "y": 195.0,
-        "font_size": 25,
+        "y": 200,
+        "font_size": 30,
         "semantic_role": "symbol_label"
       }
     },
@@ -192,8 +167,8 @@
         "text": "ㄷ",
         "style_role": "label",
         "x": 330.0,
-        "y": 305.0,
-        "font_size": 25,
+        "y": 310,
+        "font_size": 30,
         "semantic_role": "symbol_label"
       }
     },
@@ -205,8 +180,8 @@
         "text": "ㄹ",
         "style_role": "label",
         "x": 375.0,
-        "y": 405.0,
-        "font_size": 25,
+        "y": 410,
+        "font_size": 30,
         "semantic_role": "symbol_label"
       }
     },
@@ -218,8 +193,8 @@
         "text": "ㅁ",
         "style_role": "label",
         "x": 565.0,
-        "y": 405.0,
-        "font_size": 25,
+        "y": 410,
+        "font_size": 30,
         "semantic_role": "symbol_label"
       }
     },
@@ -231,8 +206,8 @@
         "text": "ㅅ",
         "style_role": "label",
         "x": 550.0,
-        "y": 180.0,
-        "font_size": 25,
+        "y": 185,
+        "font_size": 30,
         "semantic_role": "symbol_label"
       }
     },
@@ -298,8 +273,8 @@
       "content": {
         "text": "지름",
         "style_role": "table",
-        "x": 247.5,
-        "y": 473.0,
+        "x": 248.387,
+        "y": 472.113,
         "font_size": 30,
         "anchor": "middle"
       }
@@ -350,8 +325,8 @@
       "content": {
         "text": "길이(cm)",
         "style_role": "table",
-        "x": 247.5,
-        "y": 516.0,
+        "x": 244.84,
+        "y": 516,
         "font_size": 30,
         "anchor": "middle"
       }
@@ -498,10 +473,27 @@
         "text": "ㅂ",
         "style_role": "body",
         "x": 610.0,
-        "y": 305.0,
-        "font_size": 25,
+        "y": 310,
+        "font_size": 30,
         "fill": "#111111",
         "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "konva_1788083991421_text_1519470",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "지름을 나타내는 선분을 찾아 길이를 재어 보고, 알 수 있는 점을 쓰려고 합니다. ㉠, ㉡, ㉢에 들어갈 알맞은 것을 고르세요.",
+        "x": 47.473,
+        "y": 20.851,
+        "font_size": 30,
+        "fill": "#111827",
+        "width": 772.711,
+        "height": 121,
+        "align": "left",
+        "line_height": 1.25,
+        "kind": "text_box"
       }
     }
   ],
@@ -522,8 +514,6 @@
     "slot.line.ㅁㄷ",
     "slot.line.ㅇㅅ",
     "slot.pt.ㅇ",
-    "slot.q1",
-    "slot.q2",
     "slot.q3",
     "slot.pt.ㄱ",
     "slot.pt.ㄴ",
@@ -546,6 +536,7 @@
     "slot.pt.ㅇ.label",
     "slot.table.cell7",
     "slot.table.cell8",
-    "slot.blank.label"
+    "slot.blank.label",
+    "konva_1788083991421_text_1519470"
   ]
 }

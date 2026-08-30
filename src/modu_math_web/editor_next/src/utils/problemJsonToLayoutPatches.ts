@@ -181,11 +181,15 @@ function updateValue(baseObject: ProblemObject, object: ProblemObject): Record<s
 
 function addValue(object: ProblemObject): Record<string, unknown> {
   switch (object.type) {
-    case "math_text":
+    case "math_text": {
+      const isTextBox =
+        object.props.sourceKind === "text_box" ||
+        Boolean(parseFractionLatex(object.props.latex || object.props.text));
       return {
-        kind: "text_box",
-        content: mathTextFields(object, true),
+        kind: isTextBox ? "text_box" : "text",
+        content: mathTextFields(object, isTextBox),
       };
+    }
     case "basic_shape":
       if (object.props.shape === "line") {
         return {

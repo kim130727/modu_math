@@ -326,6 +326,7 @@ function FractionShapeRenderer({
   const wholeTextWidth = fraction.whole ? estimateMathDigitWidth(fraction.whole, fontSize) : 0;
   const gap = fraction.whole ? Math.max(3, Math.round(fontSize * 0.15)) : 0;
   const wholeWidth = fraction.whole ? wholeTextWidth + gap : 0;
+  const contentWidth = wholeWidth + fractionWidth;
   const contentHeight = Math.max(fractionHeight, fontSize * 1.2);
   const startX = Math.max(0, (width - contentWidth) / 2);
   const effectiveHeight = Math.min(height, Math.max(50, fontSize * 2.4));

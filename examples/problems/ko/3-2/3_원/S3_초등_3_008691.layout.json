@@ -3,8 +3,8 @@
   "problem_id": "S3_초등_3_008691",
   "title": "원의 반지름과 지름",
   "canvas": {
-    "width": 950,
-    "height": 410,
+    "width": 720,
+    "height": 420,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -14,14 +14,7 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.inserted.arc.1.copy5.copy7.copy10",
-        "slot.inserted.arc.1.copy5.copy7.copy10.copy11",
-        "slot.inserted.arc.1.copy5.copy7.copy10.copy11.copy12",
-        "slot.qtext1",
-        "slot.lb.da_text.copy1",
-        "slot.lb.ga_text",
-        "slot.lb.na_text",
-        "slot.lb.da_text"
+        "slot.header.text"
       ]
     },
     {
@@ -29,11 +22,18 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.circle",
-        "slot.line.c",
-        "slot.line.j",
-        "slot.line.k",
-        "slot.pt.center"
+        "slot.circle.outer",
+        "slot.arc.ga",
+        "slot.arc.na",
+        "slot.arc.da",
+        "slot.line.chord",
+        "slot.line.diameter",
+        "slot.line.radius",
+        "slot.pt.center",
+        "slot.lb.o",
+        "slot.lb.ga",
+        "slot.lb.na",
+        "slot.lb.da"
       ]
     },
     {
@@ -45,70 +45,117 @@
       ]
     },
     {
-      "id": "region.footer",
-      "role": "footer",
+      "id": "region.answer",
+      "role": "answer",
       "flow": "absolute",
       "slot_ids": []
     }
   ],
   "slots": [
     {
-      "id": "slot.qtext1",
+      "id": "slot.header.text",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "원의 반지름과 지름을 나타내는 선분을 각각 찾아 보세요.",
+        "text": "원의 반지름과 지름을 나타내는 선분을 각각 찾아 기호를 선택해 보세요.",
         "style_role": "question",
-        "x": 40.0,
+        "x": 35.0,
         "y": 35.0,
-        "font_size": 28,
-        "fill": "#111111"
+        "font_size": 26
       }
     },
     {
-      "id": "slot.circle",
+      "id": "slot.circle.outer",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 385.0,
-        "cy": 210.0,
-        "r": 125.0,
+        "cx": 360.0,
+        "cy": 205.0,
+        "r": 100.0,
         "stroke": "#111111",
         "stroke_width": 2.0,
         "fill": "none"
       }
     },
     {
-      "id": "slot.line.c",
+      "id": "slot.line.chord",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 385.0,
-        "y1": 210.0,
-        "x2": 510.0,
-        "y2": 210.0
+        "x1": 360.0,
+        "y1": 105.0,
+        "x2": 275.0,
+        "y2": 155.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
-      "id": "slot.line.j",
+      "id": "slot.line.diameter",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 385.0,
-        "y1": 85.0,
-        "x2": 385.0,
-        "y2": 335.0
+        "x1": 360.0,
+        "y1": 105.0,
+        "x2": 360.0,
+        "y2": 305.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
-      "id": "slot.line.k",
+      "id": "slot.line.radius",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 265.0,
-        "y1": 170.0,
-        "x2": 385.0,
-        "y2": 85.0
+        "x1": 360.0,
+        "y1": 205.0,
+        "x2": 460.0,
+        "y2": 205.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.arc.ga",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 355 110 Q 305 120 280 155",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0284c7",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.arc.na",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 355 110 Q 338 205 355 300",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0284c7",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.arc.da",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 365 200 Q 410 178 455 200",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0284c7",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
@@ -116,52 +163,63 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 385.0,
-        "cy": 210.0,
-        "r": 5.0,
-        "fill": "#ff4da6"
+        "cx": 360.0,
+        "cy": 205.0,
+        "r": 4.0,
+        "fill": "#d81b60"
       }
     },
     {
-      "id": "slot.lb.ga_text",
+      "id": "slot.lb.o",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "ㄱ",
+        "text": "ㅇ",
+        "style_role": "label",
+        "x": 362.0,
+        "y": 222.0,
+        "font_size": 18,
+        "fill": "#111111",
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.lb.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠",
         "style_role": "label",
         "x": 305.0,
-        "y": 125.0,
-        "font_size": 20,
-        "fill": "#111111",
-        "semantic_role": "symbol_label"
+        "y": 130.0,
+        "font_size": 24,
+        "fill": "#111111"
       }
     },
     {
-      "id": "slot.lb.na_text",
+      "id": "slot.lb.na",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "ㄴ",
+        "text": "㉡",
         "style_role": "label",
-        "x": 330.0,
-        "y": 215.0,
-        "font_size": 20,
-        "fill": "#111111",
-        "semantic_role": "symbol_label"
+        "x": 332.0,
+        "y": 210.0,
+        "font_size": 24,
+        "fill": "#111111"
       }
     },
     {
-      "id": "slot.lb.da_text",
+      "id": "slot.lb.da",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "ㄷ",
+        "text": "㉢",
         "style_role": "label",
-        "x": 435.0,
-        "y": 180.0,
-        "font_size": 20,
-        "fill": "#111111",
-        "semantic_role": "symbol_label"
+        "x": 408.0,
+        "y": 182.0,
+        "font_size": 24,
+        "fill": "#111111"
       }
     },
     {
@@ -169,70 +227,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "원의 반지름 (ㄱ, ㄴ, ㄷ), 원의 지름 (ㄱ, ㄴ, ㄷ)",
+        "text": "원의 반지름 ( ㉠ , ㉡ , ㉢ ), 원의 지름 ( ㉠ , ㉡ , ㉢ )",
         "style_role": "question",
-        "x": 70.0,
-        "y": 390.0,
-        "font_size": 30
-      }
-    },
-    {
-      "id": "slot.lb.da_text.copy1",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "ㅇ",
-        "style_role": "body",
-        "x": 365.0,
-        "y": 205.0,
-        "font_size": 20,
-        "fill": "#111111",
-        "semantic_role": "symbol_label"
-      }
-    },
-    {
-      "id": "slot.inserted.arc.1.copy5.copy7.copy10",
-      "kind": "path",
-      "prompt": "",
-      "content": {
-        "d": "M 245 135 A 65 10 0 0 1 390 135",
-        "x": 0.0,
-        "y": 0.0,
-        "stroke": "#111827",
-        "stroke_width": 1.5,
-        "stroke_dasharray": "10 6",
-        "fill": "#ffffff",
-        "transform": "rotate(-395 317.5 121.06)"
-      }
-    },
-    {
-      "id": "slot.inserted.arc.1.copy5.copy7.copy10.copy11",
-      "kind": "path",
-      "prompt": "",
-      "content": {
-        "d": "M 202 176 A 110 25 0 0 1 442 176",
-        "x": 0.0,
-        "y": 0.0,
-        "stroke": "#111827",
-        "stroke_width": 1.5,
-        "stroke_dasharray": "10 6",
-        "fill": "#ffffff",
-        "transform": "rotate(-450 369.5 162.06)"
-      }
-    },
-    {
-      "id": "slot.inserted.arc.1.copy5.copy7.copy10.copy11.copy12",
-      "kind": "path",
-      "prompt": "",
-      "content": {
-        "d": "M 390 205 A 50 10 0 0 1 510 205",
-        "x": 0.0,
-        "y": 0.0,
-        "stroke": "#111827",
-        "stroke_width": 1.5,
-        "stroke_dasharray": "10 6",
-        "fill": "#ffffff",
-        "transform": "rotate(-360 512 192.05)"
+        "x": 90.0,
+        "y": 375.0,
+        "font_size": 28
       }
     }
   ],
@@ -241,22 +240,22 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.inserted.arc.1.copy5.copy7.copy10",
-    "slot.inserted.arc.1.copy5.copy7.copy10.copy11",
-    "slot.inserted.arc.1.copy5.copy7.copy10.copy11.copy12",
-    "slot.qtext1",
-    "slot.lb.da_text.copy1",
-    "slot.lb.ga_text",
-    "slot.lb.na_text",
-    "slot.lb.da_text",
+    "slot.header.text",
     "region.diagram",
-    "slot.circle",
-    "slot.line.c",
-    "slot.line.j",
-    "slot.line.k",
+    "slot.circle.outer",
+    "slot.arc.ga",
+    "slot.arc.na",
+    "slot.arc.da",
+    "slot.line.chord",
+    "slot.line.diameter",
+    "slot.line.radius",
     "slot.pt.center",
+    "slot.lb.o",
+    "slot.lb.ga",
+    "slot.lb.na",
+    "slot.lb.da",
     "region.choice",
     "slot.choice",
-    "region.footer"
+    "region.answer"
   ]
 }

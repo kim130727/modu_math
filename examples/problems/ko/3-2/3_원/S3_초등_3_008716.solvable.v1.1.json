@@ -1,19 +1,19 @@
 {
   "schema": "modu.solvable.v1.1",
   "problem_id": "S3_초등_3_008716",
-  "problem_type": "도형의 성질_원",
+  "problem_type": "multiple_choice",
   "inputs": {
-    "total_ticks": 1,
-    "target_label": "틀린 설명",
-    "target_ticks": 4,
-    "target_count": 5,
+    "total_ticks": 5,
+    "target_label": "도형에 대한 설명으로 틀린 것",
+    "target_ticks": 1,
+    "target_count": 1,
     "unit": ""
   },
   "given": [
     {
       "ref": "obj.center",
       "value": {
-        "label": "O"
+        "symbol": "ㅇ"
       }
     },
     {
@@ -35,7 +35,7 @@
       }
     },
     {
-      "ref": "obj.segment_ro",
+      "ref": "obj.segment_lo",
       "value": {
         "type": "radius"
       }
@@ -43,60 +43,68 @@
   ],
   "target": {
     "ref": "answer.target",
-    "type": "incorrect_statement"
+    "type": "multiple_choice"
   },
-  "method": "원의 성질 확인",
+  "method": "property_verification",
   "plan": [
-    "원의 중심, 지름, 반지름의 관계를 확인한다.",
+    "원의 중심, 지름, 반지름의 성질을 확인한다.",
     "보기 문장 중 원의 성질과 맞지 않는 것을 찾는다."
   ],
   "steps": [
     {
       "id": "step.1",
-      "expr": "원의 중심은 점 O",
+      "expr": "원의 중심은 점 ㅇ (참)",
       "value": true
     },
     {
       "id": "step.2",
-      "expr": "선분 ㄴㄹ은 지름",
+      "expr": "선분 ㄴㄹ은 지름 (참)",
       "value": true
     },
     {
       "id": "step.3",
-      "expr": "선분 ㄴO은 반지름",
+      "expr": "선분 ㄴㅇ은 반지름 (참)",
       "value": true
     },
     {
       "id": "step.4",
-      "expr": "가장 긴 선분은 선분 ㄱㄹ",
-      "value": false
+      "expr": "가장 긴 선분은 선분 ㄴㄹ(지름)이므로 선분 ㄱㄹ은 거짓",
+      "value": "4"
     }
   ],
   "checks": [
     {
       "id": "check.1",
-      "expr": "지름은 반지름보다 길다",
+      "expr": "가장 긴 선분은 지름인가",
       "expected": true,
       "actual": true,
       "pass": true
     },
     {
       "id": "check.2",
-      "expr": "틀린 보기는 ④",
-      "expected": 4,
-      "actual": 4,
+      "expr": "틀린 보기는 4번인가",
+      "expected": "4",
+      "actual": "4",
       "pass": true
     }
   ],
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "answer_key": [
+      "4"
+    ],
     "target": {
-      "type": "incorrect_statement",
+      "type": "multiple_choice",
       "description": "도형에 대한 설명으로 틀린 것"
     },
-    "value": 4,
+    "value": "4",
     "unit": ""
   }
 }

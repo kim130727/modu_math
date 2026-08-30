@@ -3,8 +3,8 @@
   "problem_id": "S3_초등_3_008714",
   "title": "원의 중심",
   "canvas": {
-    "width": 944,
-    "height": 376,
+    "width": 720,
+    "height": 420,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -14,9 +14,7 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q1",
-        "slot.q2",
-        "slot.q3"
+        "slot.header.text"
       ]
     },
     {
@@ -24,221 +22,259 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.circle",
-        "slot.tool",
+        "slot.circle.outer",
+        "slot.tool.strip",
+        "slot.pencil.body",
+        "slot.pencil.tip",
+        "slot.pencil.lead",
         "slot.pencil.eraser",
-        "slot.tool.dot1",
-        "slot.tool.dot2",
-        "slot.tool.dot3",
-        "slot.tool.dot4"
+        "slot.hole.1",
+        "slot.hole.2",
+        "slot.hole.3",
+        "slot.hole.4",
+        "slot.pin.base",
+        "slot.pin.dot"
       ]
     },
     {
-      "id": "region.footer",
-      "role": "footer",
+      "id": "region.choice",
+      "role": "choice",
       "flow": "absolute",
       "slot_ids": [
-        "slot.inserted.pencil.1.eraser",
-        "slot.inserted.pencil.1.body",
-        "slot.inserted.pencil.1.tip",
-        "slot.inserted.circle.1"
+        "slot.choice"
       ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
     }
   ],
   "slots": [
     {
-      "id": "slot.q1",
+      "id": "slot.header.text",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "그림과 같이 띠 종이를 이용하여 원을 그릴 때, 누름 못이 꽂혔던 점을  ",
+        "text": "그림과 같이 띠 종이를 이용하여 원을 그릴 때, 누름 못이 꽂혔던 점을 무엇이라고 할까요?",
         "style_role": "question",
-        "x": 20.0,
-        "y": 42.0,
-        "font_size": 30
+        "x": 35.0,
+        "y": 35.0,
+        "font_size": 26
       }
     },
     {
-      "id": "slot.q2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "무엇이라고 할까요?",
-        "style_role": "question",
-        "x": 15.0,
-        "y": 90.0,
-        "font_size": 30
-      }
-    },
-    {
-      "id": "slot.circle",
+      "id": "slot.circle.outer",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 365.0,
-        "cy": 180.0,
-        "r": 100.0,
+        "cx": 320.0,
+        "cy": 210.0,
+        "r": 90.0,
         "stroke": "#111111",
         "stroke_width": 2.0,
         "fill": "none"
       }
     },
     {
-      "id": "slot.tool",
+      "id": "slot.tool.strip",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 345.0,
-        "y": 168.0,
-        "width": 150.0,
-        "height": 25.0,
-        "stroke": "#111111",
+        "x": 305.0,
+        "y": 198.0,
+        "width": 135.0,
+        "height": 24.0,
+        "stroke": "#0284c7",
         "stroke_width": 1.5,
-        "fill": "none"
+        "rx": 4.0,
+        "ry": 4.0,
+        "fill": "#f0f9ff"
       }
     },
     {
-      "id": "slot.tool.dot1",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "•",
-        "style_role": "diagram",
-        "x": 385.0,
-        "y": 187.0,
-        "font_size": 20,
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.tool.dot2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "•",
-        "style_role": "diagram",
-        "x": 405.0,
-        "y": 187.0,
-        "font_size": 20,
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.tool.dot3",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "•",
-        "style_role": "diagram",
-        "x": 425.0,
-        "y": 187.0,
-        "font_size": 20,
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.tool.dot4",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "•",
-        "style_role": "diagram",
-        "x": 445.0,
-        "y": 187.0,
-        "font_size": 20,
-        "max_width": 135.0,
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.pencil.eraser",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 483.0,
-        "y1": 134.0,
-        "x2": 488.0,
-        "y2": 139.0
-      }
-    },
-    {
-      "id": "slot.q3",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "원의 ( 중심 , 반지름 , 지름 )",
-        "style_role": "question",
-        "x": 35.0,
-        "y": 325.0,
-        "font_size": 30
-      }
-    },
-    {
-      "id": "slot.inserted.circle.1",
+      "id": "slot.pin.base",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 366.0,
-        "cy": 181.0,
-        "r": 5.0,
-        "stroke": "#111827",
+        "cx": 320.0,
+        "cy": 210.0,
+        "r": 6.0,
+        "stroke": "#334155",
         "stroke_width": 1.5,
-        "fill": "#6b7280"
+        "fill": "#64748b"
       }
     },
     {
-      "id": "slot.inserted.pencil.1.eraser",
-      "kind": "rect",
+      "id": "slot.pin.dot",
+      "kind": "circle",
       "prompt": "",
       "content": {
-        "x": 455.0,
-        "y": 65.0,
-        "width": 10.0,
-        "height": 15.0,
-        "stroke": "#b98160",
-        "stroke_width": 1.0,
-        "fill": "#d9a27f",
-        "transform": "rotate(5 460 70)"
+        "cx": 320.0,
+        "cy": 210.0,
+        "r": 2.5,
+        "fill": "#0f172a"
       }
     },
     {
-      "id": "slot.inserted.pencil.1.body",
-      "kind": "rect",
+      "id": "slot.hole.1",
+      "kind": "circle",
       "prompt": "",
       "content": {
-        "x": 450.0,
-        "y": 80.0,
-        "width": 10.0,
-        "height": 85.0,
-        "stroke": "#ee7777",
-        "stroke_width": 1.0,
-        "fill": "#ffb5b5",
-        "transform": "rotate(5 455 122.5)"
+        "cx": 345.0,
+        "cy": 210.0,
+        "r": 2.5,
+        "fill": "#334155"
       }
     },
     {
-      "id": "slot.inserted.pencil.1.tip",
+      "id": "slot.hole.2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 370.0,
+        "cy": 210.0,
+        "r": 2.5,
+        "fill": "#334155"
+      }
+    },
+    {
+      "id": "slot.hole.3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 395.0,
+        "cy": 210.0,
+        "r": 2.5,
+        "fill": "#334155"
+      }
+    },
+    {
+      "id": "slot.hole.4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 410.0,
+        "cy": 210.0,
+        "r": 3.0,
+        "fill": "#334155"
+      }
+    },
+    {
+      "id": "slot.pencil.body",
       "kind": "polygon",
       "prompt": "",
       "content": {
         "points": [
           [
-            442.0,
-            160.0
+            411.0,
+            195.0
           ],
           [
-            457.0,
-            160.0
+            419.0,
+            198.0
           ],
           [
-            452.0,
-            174.0
+            435.0,
+            151.0
+          ],
+          [
+            428.0,
+            148.0
           ]
         ],
-        "stroke": "#c49b62",
+        "stroke": "#e11d48",
         "stroke_width": 1.0,
-        "fill": "#e6c08b",
-        "transform": "rotate(130 449.5 167)"
+        "fill": "#fb7185"
+      }
+    },
+    {
+      "id": "slot.pencil.tip",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            410.0,
+            210.0
+          ],
+          [
+            411.0,
+            195.0
+          ],
+          [
+            419.0,
+            198.0
+          ]
+        ],
+        "stroke": "#ea580c",
+        "stroke_width": 1.0,
+        "fill": "#fed7aa"
+      }
+    },
+    {
+      "id": "slot.pencil.lead",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            410.0,
+            210.0
+          ],
+          [
+            410.5,
+            204.0
+          ],
+          [
+            413.0,
+            205.0
+          ]
+        ],
+        "stroke": "#0f172a",
+        "stroke_width": 1.0,
+        "fill": "#1e293b"
+      }
+    },
+    {
+      "id": "slot.pencil.eraser",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            428.0,
+            148.0
+          ],
+          [
+            435.0,
+            151.0
+          ],
+          [
+            439.0,
+            142.0
+          ],
+          [
+            431.0,
+            139.0
+          ]
+        ],
+        "stroke": "#92400e",
+        "stroke_width": 1.0,
+        "fill": "#d97706"
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 ( 중심 , 반지름 , 지름 )",
+        "style_role": "question",
+        "x": 180.0,
+        "y": 365.0,
+        "font_size": 28
       }
     }
   ],
@@ -247,21 +283,22 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.q1",
-    "slot.q2",
-    "slot.q3",
+    "slot.header.text",
     "region.diagram",
-    "slot.circle",
-    "slot.tool",
+    "slot.circle.outer",
+    "slot.tool.strip",
+    "slot.pencil.body",
+    "slot.pencil.tip",
+    "slot.pencil.lead",
     "slot.pencil.eraser",
-    "slot.tool.dot1",
-    "slot.tool.dot2",
-    "slot.tool.dot3",
-    "slot.tool.dot4",
-    "region.footer",
-    "slot.inserted.pencil.1.eraser",
-    "slot.inserted.pencil.1.body",
-    "slot.inserted.pencil.1.tip",
-    "slot.inserted.circle.1"
+    "slot.hole.1",
+    "slot.hole.2",
+    "slot.hole.3",
+    "slot.hole.4",
+    "slot.pin.base",
+    "slot.pin.dot",
+    "region.choice",
+    "slot.choice",
+    "region.answer"
   ]
 }

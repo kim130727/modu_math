@@ -529,6 +529,51 @@ def test_apply_editor_overrides_preserves_text_slot_middle_anchor() -> None:
     assert el["attributes"]["y"] == 97.105
 
 
+def test_apply_editor_overrides_keeps_center_dot_on_circle_center() -> None:
+    from modu_math.layout.editor_overrides import apply_editor_overrides
+
+    layout = {
+        "problem_id": "circle_center_dot_0001",
+        "canvas": {"width": 500, "height": 360},
+        "slots": [
+            {
+                "id": "slot.diagram.top.circle",
+                "kind": "circle",
+                "content": {"cx": 478.0, "cy": 185.0, "r": 96.0},
+            },
+            {
+                "id": "slot.diagram.top.center.dot",
+                "kind": "text",
+                "content": {
+                    "text": "●",
+                    "x": 473.0,
+                    "y": 190.0,
+                    "font_size": 12,
+                    "anchor": "middle",
+                    "fill": "#E11A86",
+                },
+            },
+        ],
+    }
+    overrides = {
+        "version": 1,
+        "slots": {
+            "slot.diagram.top.circle": {"cx": 337.0, "cy": 235.5},
+            "slot.diagram.top.center.dot": {"x": 310.0, "y": 260.0},
+        },
+    }
+
+    applied = apply_editor_overrides(layout, overrides)
+    dot = next(
+        slot
+        for slot in applied["slots"]
+        if slot["id"] == "slot.diagram.top.center.dot"
+    )
+
+    assert dot["content"]["x"] == 337.0
+    assert dot["content"]["y"] == 239.5
+
+
 def test_apply_editor_overrides_preserves_plain_text_slot_no_wrapping() -> None:
     from modu_math.layout.editor_overrides import (
         apply_editor_overrides,

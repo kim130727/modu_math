@@ -1,9 +1,9 @@
 {
   "schema": "modu.solvable.v1.1",
   "problem_id": "S3_초등_3_008714",
-  "problem_type": "용어_선택",
+  "problem_type": "term_selection",
   "inputs": {
-    "total_ticks": 1,
+    "total_ticks": 3,
     "target_label": "누름 못이 꽂혔던 점의 이름",
     "target_ticks": 1,
     "target_count": 1,
@@ -40,18 +40,18 @@
   "plan": [
     "그림 속 누름 못이 꽂힌 점의 용어를 해설과 대응시켜 찾는다."
   ],
-  "method": "용어_대응",
+  "method": "term_identification",
   "steps": [
     {
       "id": "step.1",
-      "expr": "그림의 누름 못이 꽂힌 점과 해설의 의미를 대응한다.",
+      "expr": "그림의 누름 못이 꽂힌 점은 원의 중심이다.",
       "value": "중심"
     }
   ],
   "checks": [
     {
       "id": "check.1",
-      "expr": "해설 문장과 답이 일치하는지 확인한다.",
+      "expr": "누름 못이 꽂힌 점이 중심인가",
       "expected": "중심",
       "actual": "중심",
       "pass": true
@@ -59,8 +59,14 @@
   ],
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "중심",
+      "반지름",
+      "지름"
+    ],
+    "answer_key": [
+      "중심"
+    ],
     "target": {
       "type": "term",
       "description": "누름 못이 꽂혔던 점의 이름"

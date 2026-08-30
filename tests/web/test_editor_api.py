@@ -4,6 +4,7 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+from urllib.parse import quote
 
 import django
 import pytest
@@ -193,6 +194,56 @@ def test_detail_reads_dsl_and_missing_artifact_is_null(tmp_path: Path) -> None:
     assert body["dsl"] == dsl_text
     assert body["semantic"] is None
     assert body["solvable"] is None
+
+
+def test_detail_resolves_manifest_short_id_to_nested_dsl_file(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    problems_root = tmp_path / "examples" / "problems"
+    problem_dir = problems_root / "ko" / "3-1" / "1_덧셈과_뺄셈"
+    problem_dir.mkdir(parents=True, exist_ok=True)
+    dsl_path = problem_dir / "S3_초등_3_008730.dsl.py"
+    dsl_text = "PROBLEM_TEMPLATE = None\n"
+    dsl_path.write_text(dsl_text, encoding="utf-8")
+    (problem_dir / "S3_초등_3_008730.layout.json").write_text(
+        json.dumps({"problem_id": "S3_초등_3_008730"}),
+        encoding="utf-8",
+    )
+    (problem_dir / "S3_초등_3_008730.svg").write_text(
+        "<svg></svg>",
+        encoding="utf-8",
+    )
+    (problems_root / "manifest.json").write_text(
+        json.dumps(
+            {
+                "problems": [
+                    {
+                        "id": "S3_초등_3_008730",
+                        "path": "examples/problems/ko/3-1/1_덧셈과_뺄셈",
+                        "filePrefix": "S3_초등_3_008730",
+                    }
+                ]
+            },
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+
+    response = client.get(f"/api/editor/problems/{quote('S3_초등_3_008730')}/")
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["problem_id"] == "ko/3-1/1_덧셈과_뺄셈/S3_초등_3_008730.dsl.py"
+    assert body["dsl"] == dsl_text
+    assert body["layout"] == {"problem_id": "S3_초등_3_008730"}
+    assert body["svg_url"] is not None
+
+    asset_problem_id = quote(body["problem_id"], safe="")
+    asset_response = client.get(f"{body['svg_url']}")
+    assert asset_response.status_code == 200
+    explicit_asset_response = client.get(
+        f"/api/editor/assets/{asset_problem_id}/S3_%EC%B4%88%EB%93%B1_3_008730.svg"
+    )
+    assert explicit_asset_response.status_code == 200
 
 
 def test_list_and_detail_include_golden_dsl_files(tmp_path: Path) -> None:
@@ -2672,6 +2723,54 @@ def test_apply_editor_overrides_infers_missing_text_box_slot_when_box_fields_exi
     assert added["kind"] == "text_box"
     assert added["content"]["y"] == 58.0
     assert added["content"]["height"] == 48.0
+
+
+def test_prune_editor_overrides_recovers_inserted_plain_text_from_text_box_metadata() -> (
+    None
+):
+    layout = {
+        "regions": [
+            {"id": "region.stem", "role": "stem", "slot_ids": ["slot.prompt"]},
+        ],
+        "slots": [
+            {"id": "slot.prompt", "kind": "text", "content": {"text": "Prompt"}},
+        ],
+        "reading_order": ["region.stem", "slot.prompt"],
+    }
+    slot_id = "konva_1788083991421_text_492324"
+    overrides = {
+        "slot_regions": {slot_id: "region.stem"},
+        "slots": {
+            slot_id: {
+                "text": "Long inserted stem",
+                "x": 26.5,
+                "y": 9.0,
+                "width": 860.0,
+                "height": 83.0,
+                "align": "left",
+                "line_height": 1.25,
+                "font_size": 30,
+            }
+        },
+    }
+
+    pruned, changed = prune_editor_overrides(layout, overrides)
+    assert changed is True
+    assert pruned is not None
+    content = pruned["slots"][slot_id]
+    assert content["kind"] == "text"
+    assert content["y"] == 39.0
+    assert "width" not in content
+    assert "height" not in content
+
+    apply_editor_overrides(layout, pruned)
+
+    added = next(slot for slot in layout["slots"] if slot["id"] == slot_id)
+    assert added["kind"] == "text"
+    assert added["content"]["y"] == 39.0
+    assert "width" not in added["content"]
+    assert "height" not in added["content"]
+    assert slot_id in layout["regions"][0]["slot_ids"]
 
 
 def test_apply_editor_overrides_infers_missing_path_slot_when_d_field_exists() -> None:

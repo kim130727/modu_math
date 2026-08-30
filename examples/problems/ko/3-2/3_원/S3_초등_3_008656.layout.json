@@ -49,11 +49,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "\n    \n    원의 지름이 아닌 것을 찾아 기호를 모두\n    선택하세요.  \n  ",
+        "text": "원의 지름이 아닌 것을 찾아 기호를 모두 선택하세요.",
         "style_role": "question",
-        "x": 63.574,
-        "y": 43.918,
-        "font_size": 30
+        "x": 40.0,
+        "y": 40.0,
+        "font_size": 28
       }
     },
     {
@@ -61,9 +61,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 315.0,
-        "cy": 245.0,
-        "r": 115.0,
+        "cx": 360.0,
+        "cy": 240.0,
+        "r": 105.0,
         "fill": "none"
       }
     },
@@ -72,8 +72,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 315.0,
-        "cy": 245.0,
+        "cx": 360.0,
+        "cy": 240.0,
         "r": 5.0,
         "fill": "#d81b60"
       }
@@ -83,10 +83,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 315.0,
-        "y1": 130.0,
-        "x2": 315.0,
-        "y2": 360.0,
+        "x1": 360.0,
+        "y1": 135.0,
+        "x2": 360.0,
+        "y2": 345.0,
         "stroke": "#111111",
         "stroke_width": 2.0
       }
@@ -96,10 +96,12 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 200.0,
-        "y1": 245.0,
-        "x2": 430.0,
-        "y2": 245.0
+        "x1": 255.0,
+        "y1": 240.0,
+        "x2": 465.0,
+        "y2": 240.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
@@ -107,21 +109,12 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 225.0,
-        "y1": 175.0,
-        "x2": 405.0,
-        "y2": 315.0
-      }
-    },
-    {
-      "id": "slot.line.d3",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 355.0,
-        "y1": 355.0,
-        "x2": 410.0,
-        "y2": 180.0
+        "x1": 285.0,
+        "y1": 165.0,
+        "x2": 435.0,
+        "y2": 315.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
@@ -129,61 +122,25 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 220.0,
-        "y1": 310.0,
-        "x2": 370.0,
-        "y2": 145.0
+        "x1": 275.0,
+        "y1": 305.0,
+        "x2": 425.0,
+        "y2": 150.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
-      "id": "slot.lb.ㄴ",
-      "kind": "text",
+      "id": "slot.line.d3",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "text": "㉡",
-        "style_role": "label",
-        "x": 190.0,
-        "y": 165.0,
-        "font_size": 30,
-        "max_width": 590.0
-      }
-    },
-    {
-      "id": "slot.lb.ㄷ",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "㉢",
-        "style_role": "label",
-        "x": 300.0,
-        "y": 110.0,
-        "font_size": 30
-      }
-    },
-    {
-      "id": "slot.lb.ㄹ",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "㉣",
-        "style_role": "label",
-        "x": 380.0,
-        "y": 130.0,
-        "font_size": 30,
-        "max_width": 590.0
-      }
-    },
-    {
-      "id": "slot.lb.ㅁ",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "㉤",
-        "style_role": "label",
-        "x": 420.0,
-        "y": 160.0,
-        "font_size": 30,
-        "max_width": 590.0
+        "x1": 400.0,
+        "y1": 340.0,
+        "x2": 445.0,
+        "y2": 180.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
@@ -193,10 +150,57 @@
       "content": {
         "text": "㉠",
         "style_role": "label",
-        "x": 150.0,
-        "y": 260.0,
-        "font_size": 30,
-        "max_width": 590.0
+        "x": 215.0,
+        "y": 248.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.lb.ㄴ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡",
+        "style_role": "label",
+        "x": 255.0,
+        "y": 160.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.lb.ㄷ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉢",
+        "style_role": "label",
+        "x": 347.0,
+        "y": 120.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.lb.ㄹ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉣",
+        "style_role": "label",
+        "x": 435.0,
+        "y": 145.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.lb.ㅁ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉤",
+        "style_role": "label",
+        "x": 455.0,
+        "y": 185.0,
+        "font_size": 26
       }
     }
   ],

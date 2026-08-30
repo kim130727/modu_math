@@ -1,18 +1,23 @@
 {
   "problem_id": "S3_초등_3_008714",
-  "problem_type": "용어_선택",
+  "problem_type": "term_selection",
   "metadata": {
     "title": "원의 중심",
     "tags": [],
     "question": "그림과 같이 띠 종이를 이용하여 원을 그릴 때, 누름 못이 꽂혔던 점을 무엇이라고 할까요?",
     "required_layout_ids": [
-      "slot.circle",
-      "slot.tool",
-      "slot.pencil.eraser",
-      "slot.inserted.circle.1",
-      "slot.inserted.pencil.1.eraser",
-      "slot.inserted.pencil.1.body",
-      "slot.inserted.pencil.1.tip"
+      "slot.circle.outer",
+      "slot.tool.strip",
+      "slot.pin.base",
+      "slot.pin.dot",
+      "slot.hole.1",
+      "slot.hole.2",
+      "slot.hole.3",
+      "slot.hole.4",
+      "slot.pencil.body",
+      "slot.pencil.tip",
+      "slot.pencil.lead",
+      "slot.pencil.eraser"
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
@@ -54,27 +59,32 @@
         ]
       },
       "plan": {
-        "method": "용어_대응",
+        "method": "term_identification",
         "description": "그림 속 누름 못이 꽂힌 점과 원의 용어를 대응시킨다."
       },
       "execute": {
         "expected_operations": [
-          "용어_식별",
-          "그림_해석"
+          "identify_center_point"
         ]
       },
       "review": {
         "check_methods": [
-          "해설_문장_일치",
-          "용어_의미_확인"
+          "definition_check"
         ]
       }
     }
   },
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "중심",
+      "반지름",
+      "지름"
+    ],
+    "answer_key": [
+      "중심"
+    ],
+    "confidence": 1.0,
     "target": {
       "type": "term",
       "description": "누름 못이 꽂혔던 점의 이름"

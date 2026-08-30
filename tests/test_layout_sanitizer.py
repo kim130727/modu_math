@@ -392,4 +392,120 @@ def test_sanitize_layout_preserves_copied_slots_and_protected_slots_when_parent_
     ]
 
 
+def test_sanitize_layout_preserves_diagram_cohesion_and_does_not_shift_labels_independently() -> None:
+    layout = {
+        "canvas": {"width": 720, "height": 400},
+        "regions": [
+            {
+                "id": "region.diagram",
+                "role": "diagram",
+                "slot_ids": [
+                    "slot.circle.outer",
+                    "slot.line.v",
+                    "slot.lb.ㄷ",
+                ],
+            }
+        ],
+        "slots": [
+            {
+                "id": "slot.header",
+                "kind": "text_box",
+                "content": {
+                    "text": "원의 지름이 아닌 것을 찾아 기호를 모두 선택하세요.",
+                    "x": 38.0,
+                    "y": 23.0,
+                    "width": 580.0,
+                    "height": 83.0,
+                },
+            },
+            {
+                "id": "slot.circle.outer",
+                "kind": "circle",
+                "content": {"cx": 315.0, "cy": 245.0, "r": 115.0},
+            },
+            {
+                "id": "slot.line.v",
+                "kind": "line",
+                "content": {"x1": 315.0, "y1": 130.0, "x2": 315.0, "y2": 360.0},
+            },
+            {
+                "id": "slot.lb.ㄷ",
+                "kind": "text",
+                "content": {"text": "㉢", "x": 300.0, "y": 110.0, "font_size": 30},
+            },
+        ],
+    }
+
+    sanitized = sanitize_layout(layout)
+    by_id = {slot["id"]: slot for slot in sanitized["slots"]}
+
+    # If the diagram shifts because of collision, all elements in region.diagram must shift by the same amount
+    circle_cy = by_id["slot.circle.outer"]["content"]["cy"]
+    line_y1 = by_id["slot.line.v"]["content"]["y1"]
+    label_y = by_id["slot.lb.ㄷ"]["content"]["y"]
+
+    # Difference between line top (130) and circle center (245) is 115
+    assert circle_cy - line_y1 == 115.0
+    # Difference between label_y (110) and line_y1 (130) is -20 (relative alignment preserved!)
+    assert label_y - line_y1 == -20.0
+
+
+def test_sanitize_layout_preserves_diagram_when_editor_override_exists_in_diagram() -> None:
+    layout = {
+        "canvas": {"width": 720, "height": 400},
+        "regions": [
+            {
+                "id": "region.diagram",
+                "role": "diagram",
+                "slot_ids": [
+                    "slot.circle.outer",
+                    "slot.line.v",
+                    "slot.lb.ㄷ",
+                    "konva_custom_text",
+                ],
+            }
+        ],
+        "slots": [
+            {
+                "id": "slot.header",
+                "kind": "text_box",
+                "content": {
+                    "text": "Header question",
+                    "x": 38.0,
+                    "y": 23.0,
+                    "width": 580.0,
+                    "height": 83.0,
+                },
+            },
+            {
+                "id": "slot.circle.outer",
+                "kind": "circle",
+                "content": {"cx": 315.0, "cy": 245.0, "r": 115.0},
+            },
+            {
+                "id": "slot.line.v",
+                "kind": "line",
+                "content": {"x1": 315.0, "y1": 130.0, "x2": 315.0, "y2": 360.0},
+            },
+            {
+                "id": "slot.lb.ㄷ",
+                "kind": "text",
+                "content": {"text": "㉢", "x": 300.0, "y": 110.0, "font_size": 30},
+            },
+            {
+                "id": "konva_custom_text",
+                "kind": "text_box",
+                "content": {"text": "Custom", "x": 50.0, "y": 50.0, "width": 100.0, "height": 30.0},
+            },
+        ],
+    }
+
+    sanitized = sanitize_layout(layout, protected_slot_ids={"konva_custom_text"})
+    by_id = {slot["id"]: slot for slot in sanitized["slots"]}
+
+    assert by_id["slot.lb.ㄷ"]["content"]["y"] == 110.0
+    assert by_id["slot.circle.outer"]["content"]["cy"] == 245.0
+
+
+
 

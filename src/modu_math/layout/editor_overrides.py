@@ -205,6 +205,47 @@ def _drop_transform_for_absolute_geometry_override(
         content.pop("transform", None)
 
 
+def _center_dot_y(cy: float, font_size: float) -> float:
+    return round(cy + font_size / 3.0, 3)
+
+
+def _sync_center_dot_text_slots(layout: dict[str, Any]) -> None:
+    slots = layout.get("slots")
+    if not isinstance(slots, list):
+        return
+
+    slots_by_id = {
+        slot.get("id"): slot
+        for slot in slots
+        if isinstance(slot, dict) and isinstance(slot.get("id"), str)
+    }
+    for slot_id, slot in slots_by_id.items():
+        if not isinstance(slot_id, str) or not slot_id.endswith(".center.dot"):
+            continue
+        if slot.get("kind") != "text":
+            continue
+        content = slot.get("content")
+        if not isinstance(content, dict) or content.get("text") != "●":
+            continue
+
+        circle_slot = slots_by_id.get(f"{slot_id[: -len('.center.dot')]}.circle")
+        if not isinstance(circle_slot, dict) or circle_slot.get("kind") != "circle":
+            continue
+        circle_content = circle_slot.get("content")
+        if not isinstance(circle_content, dict):
+            continue
+        cx = circle_content.get("cx")
+        cy = circle_content.get("cy")
+        if not isinstance(cx, (int, float)) or not isinstance(cy, (int, float)):
+            continue
+
+        font_size = content.get("font_size")
+        if not isinstance(font_size, (int, float)) or font_size <= 0:
+            font_size = 12.0
+        content["x"] = round(float(cx), 3)
+        content["y"] = _center_dot_y(float(cy), float(font_size))
+
+
 def _is_answer_slot_id(slot_id: str) -> bool:
     return (
         slot_id == "slot.answer" or slot_id.endswith(".answer") or ".answer." in slot_id
@@ -275,6 +316,45 @@ EDITOR_INSERTED_SLOT_PATTERN = re.compile(
 EDITOR_AVATAR_SLOT_PATTERN = re.compile(
     r"^konva_\d+_avatar_\d+$"
 )
+
+
+def _normalize_inserted_plain_text_override(
+    slot_id: str, patch: dict[str, Any], *, has_explicit_region: bool = False
+) -> tuple[dict[str, Any], bool]:
+    if (
+        not has_explicit_region
+        or not EDITOR_INSERTED_SLOT_PATTERN.match(slot_id)
+        or "_text_" not in slot_id
+        or patch.get("kind") == "text_box"
+    ):
+        return patch, False
+
+    text = patch.get("text")
+    if not isinstance(text, str) or "\n" in text:
+        return patch, False
+    if _override_is_answer_slot(slot_id, patch):
+        return patch, False
+
+    has_box_props = (
+        "width" in patch
+        or "height" in patch
+        or "align" in patch
+        or "valign" in patch
+        or "line_height" in patch
+    )
+    if not has_box_props:
+        return patch, False
+
+    normalized = dict(patch)
+    font_size = normalized.get("font_size")
+    y = normalized.get("y")
+    if isinstance(font_size, (int, float)) and isinstance(y, (int, float)):
+        normalized["y"] = round(float(y) + float(font_size), 3)
+
+    for field in ("width", "height", "align", "valign", "line_height"):
+        normalized.pop(field, None)
+    normalized["kind"] = "text"
+    return normalized, normalized != patch
 
 
 def _default_region_id_for_inserted_slot(layout: dict[str, Any]) -> str | None:
@@ -533,6 +613,9 @@ def _add_missing_override_slot(
     content: dict[str, Any],
     explicit_region_id: str | None = None,
 ) -> None:
+    content, _ = _normalize_inserted_plain_text_override(
+        slot_id, content, has_explicit_region=explicit_region_id is not None
+    )
     region_id = _infer_region_id_for_slot(
         layout, slot_id, content, explicit_region_id=explicit_region_id
     )
@@ -585,7 +668,7 @@ def _add_missing_override_slot(
     slots.append(
         {
             "id": slot_id,
-            "kind": _infer_override_slot_kind(content),
+            "kind": _infer_override_slot_kind(normalized_content),
             "prompt": "",
             "content": normalized_content,
         }
@@ -927,9 +1010,18 @@ def prune_editor_overrides(
                 )
                 is not None
             ):
+                explicit_region_id = slot_region_map.get(slot_id)
+                patch, inserted_text_normalized = (
+                    _normalize_inserted_plain_text_override(
+                        slot_id,
+                        patch,
+                        has_explicit_region=isinstance(explicit_region_id, str),
+                    )
+                )
                 patch, normalized = _normalize_slot_patch(
                     slot_kinds.get(slot_id), patch
                 )
+                normalized = normalized or inserted_text_normalized
                 base_slot = next(
                     (
                         slot
@@ -1134,10 +1226,20 @@ def apply_editor_overrides(
                 current_kind = (
                     slot.get("kind") if isinstance(slot.get("kind"), str) else None
                 )
+                explicit_region_id = slot_region_map.get(slot_id)
+                patch, inserted_text_normalized = (
+                    _normalize_inserted_plain_text_override(
+                        slot_id,
+                        patch,
+                        has_explicit_region=isinstance(explicit_region_id, str),
+                    )
+                )
                 patch, _ = _normalize_slot_patch(
                     current_kind,
                     patch,
                 )
+                if inserted_text_normalized and current_kind == "text_box":
+                    current_kind = "text"
                 if current_kind == "text":
                     patch, _ = _normalize_text_slot_override(content, patch)
                 patch = _prepare_text_blank_rect_override(slot, patch)
@@ -1165,5 +1267,7 @@ def apply_editor_overrides(
     canvas = layout.get("canvas")
     if isinstance(canvas, dict) and isinstance(canvas_override, dict):
         canvas.update(canvas_override)
+
+    _sync_center_dot_text_slots(layout)
 
     return layout
