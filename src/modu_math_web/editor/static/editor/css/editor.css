@@ -223,11 +223,11 @@
       display: none;
       z-index: 2;
     }
-    .shape-format-menu {
+    .shape-format-menu,
+    .selection-context-menu {
       position: fixed;
       z-index: 12;
       display: none;
-      min-width: 226px;
       border: 1px solid #b7bdc7;
       border-radius: 4px;
       background: #ffffff;
@@ -236,8 +236,47 @@
       color: #1f2937;
       font-size: 12px;
     }
-    .shape-format-menu.open {
+    .shape-format-menu {
+      min-width: 226px;
+    }
+    .selection-context-menu {
+      z-index: 13;
+      min-width: 190px;
+      padding: 6px;
+    }
+    .shape-format-menu.open,
+    .selection-context-menu.open {
       display: block;
+    }
+    .selection-context-menu button {
+      display: block;
+      width: 100%;
+      min-height: 30px;
+      border: 0;
+      border-radius: 3px;
+      background: transparent;
+      padding: 6px 10px;
+      text-align: left;
+      color: #111827;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .selection-context-menu button:hover:not(:disabled),
+    .selection-context-menu button:focus-visible:not(:disabled) {
+      background: #eef2ff;
+      outline: none;
+    }
+    .selection-context-menu button:disabled {
+      color: #94a3b8;
+      cursor: default;
+    }
+    .selection-context-separator {
+      height: 1px;
+      margin: 5px 2px;
+      background: #e2e8f0;
+    }
+    .selection-context-separator[hidden] {
+      display: none;
     }
     .shape-format-title {
       padding: 2px 4px 7px;
