@@ -68,6 +68,8 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     let selectedSlots = new Map();
     let selectedSlotId = null;
     let selectedElement = null;
+    let lastSelectionContextTarget = null;
+    let lastSelectionContextPoint = null;
     let keyboardCommitTimer = null;
     let undoStack = [];
     let redoStack = [];
@@ -3012,17 +3014,32 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       document.getElementById("shapeFormatMenu")?.classList.remove("open");
     }
 
-    function positionShapeFormatMenu(ev) {
-      const menu = document.getElementById("shapeFormatMenu");
+    function hideSelectionContextMenu() {
+      document.getElementById("selectionContextMenu")?.classList.remove("open");
+    }
+
+    function hideContextMenus() {
+      hideShapeFormatMenu();
+      hideSelectionContextMenu();
+    }
+
+    function positionFloatingMenu(menu, clientX, clientY, fallbackWidth, fallbackHeight) {
       if (!menu) return false;
       menu.classList.add("open");
       const margin = 8;
-      const width = menu.offsetWidth || 226;
-      const height = menu.offsetHeight || 150;
-      const left = Math.min(Math.max(margin, ev.clientX), window.innerWidth - width - margin);
-      const top = Math.min(Math.max(margin, ev.clientY), window.innerHeight - height - margin);
+      const width = menu.offsetWidth || fallbackWidth;
+      const height = menu.offsetHeight || fallbackHeight;
+      const left = Math.min(Math.max(margin, clientX), window.innerWidth - width - margin);
+      const top = Math.min(Math.max(margin, clientY), window.innerHeight - height - margin);
       menu.style.left = `${left}px`;
       menu.style.top = `${top}px`;
+      return true;
+    }
+
+    function positionShapeFormatMenu(ev) {
+      const menu = document.getElementById("shapeFormatMenu");
+      if (!menu) return false;
+      positionFloatingMenu(menu, ev.clientX, ev.clientY, 226, 150);
       ev.preventDefault();
       ev.stopPropagation();
       return true;
@@ -3066,12 +3083,82 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       return /^#[0-9a-fA-F]{6}$/.test(String(value || ""));
     }
 
-    function openShapeFormatMenu(ev, el) {
+    function selectedItemContainsSlot(slotId) {
+      const base = selectableGroupBaseFromSlotId(slotId);
+      for (const [key, item] of selectedSlots.entries()) {
+        if (key === slotId || key === base || item.slotId === slotId || item.slotId === base) return true;
+        if (Array.isArray(item.slotIds) && item.slotIds.includes(slotId)) return true;
+      }
+      return false;
+    }
+
+    function selectedItemIsGroup(item) {
+      return !!(item && (
+        item.isLayoutGroup || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup
+        || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup || item.isCharacterGroup
+      ));
+    }
+
+    function selectionHasGroup() {
+      for (const item of selectedSlots.values()) {
+        if (selectedItemIsGroup(item)) return true;
+      }
+      return false;
+    }
+
+    function setContextMenuButtonState(id, enabled) {
+      const btn = document.getElementById(id);
+      if (btn) btn.disabled = !enabled;
+    }
+
+    function openSelectionContextMenu(ev, el) {
       const rawId = el.getAttribute("id");
       const slotIds = slotIdsFromElement(el);
       const slotId = slotIds[0] || fallbackSlotIdFromSvgId(rawId);
       if (!slotId) return false;
-      setSelectedElement(el, slotId, false);
+      if (!selectedItemContainsSlot(slotId)) {
+        setSelectedElement(el, slotId, false);
+      } else {
+        updateSelectionHandles();
+        updateTextEditControls();
+      }
+      selectedTableCells = [];
+      const layerIds = selectedLayerSlotIds();
+      const memberIds = selectedMemberSlotIds();
+      const canGroup = selectedSlots.size >= 2 && memberIds.length >= 2;
+      const canUngroup = selectionHasGroup();
+      const canLayer = layerIds.length > 0;
+      const canFormat = shapeFormatEntries().length > 0;
+      const hasMenuAction = canGroup || canUngroup || canLayer || canFormat;
+      if (!hasMenuAction) return false;
+
+      setContextMenuButtonState("contextGroupBtn", canGroup);
+      setContextMenuButtonState("contextUngroupBtn", canUngroup);
+      setContextMenuButtonState("contextBringFrontBtn", canLayer);
+      setContextMenuButtonState("contextBringForwardBtn", canLayer);
+      setContextMenuButtonState("contextSendBackwardBtn", canLayer);
+      setContextMenuButtonState("contextSendBackBtn", canLayer);
+      setContextMenuButtonState("contextShapeFormatBtn", canFormat);
+      document.getElementById("contextShapeFormatBtn")?.toggleAttribute("hidden", !canFormat);
+      document.getElementById("contextShapeFormatSep")?.toggleAttribute("hidden", !canFormat);
+
+      hideShapeFormatMenu();
+      lastSelectionContextTarget = el;
+      lastSelectionContextPoint = { clientX: ev.clientX, clientY: ev.clientY };
+      const menu = document.getElementById("selectionContextMenu");
+      if (!positionFloatingMenu(menu, ev.clientX, ev.clientY, 190, 260)) return false;
+      ev.preventDefault();
+      ev.stopPropagation();
+      return true;
+    }
+
+    function openShapeFormatMenu(ev, el, preserveSelection = false) {
+      const rawId = el.getAttribute("id");
+      const slotIds = slotIdsFromElement(el);
+      const slotId = slotIds[0] || fallbackSlotIdFromSvgId(rawId);
+      if (!slotId) return false;
+      hideSelectionContextMenu();
+      if (!preserveSelection) setSelectedElement(el, slotId, false);
       const tableItem = selectedSlots.size === 1 ? Array.from(selectedSlots.values())[0] : null;
       if (tableItem && tableItem.isTableGroup) {
         const svg = document.getElementById("svgPreview").querySelector("svg");
@@ -5625,8 +5712,9 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         const target = ev.target;
         const proxyTarget = target instanceof SVGElement ? target.__slotProxyTarget : null;
         const matched = matchingSlotElementAtPoint(svg, ev.clientX, ev.clientY) || proxyTarget;
+        if (matched && openSelectionContextMenu(ev, matched)) return;
         if (matched && openShapeFormatMenu(ev, matched)) return;
-        hideShapeFormatMenu();
+        hideContextMenus();
       },
 
         onDoubleClick(ev) {
@@ -6530,10 +6618,37 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     }
     document.getElementById("shapeGallery").addEventListener("click", (ev) => ev.stopPropagation());
     document.getElementById("shapeFormatMenu").addEventListener("click", (ev) => ev.stopPropagation());
+    document.getElementById("selectionContextMenu").addEventListener("click", (ev) => ev.stopPropagation());
     document.addEventListener("click", () => {
       document.getElementById("shapeGallery")?.classList.remove("open");
-      hideShapeFormatMenu();
+      hideContextMenus();
     });
+    function bindContextCommand(id, action) {
+      document.getElementById(id).onclick = async () => {
+        try {
+          hideSelectionContextMenu();
+          await action();
+        } catch (e) { setStatus(String(e), false); }
+      };
+    }
+    bindContextCommand("contextGroupBtn", groupSelectedSlots);
+    bindContextCommand("contextUngroupBtn", ungroupSelectedSlots);
+    bindContextCommand("contextBringFrontBtn", () => layerSelected("front"));
+    bindContextCommand("contextBringForwardBtn", () => layerSelected("forward"));
+    bindContextCommand("contextSendBackwardBtn", () => layerSelected("backward"));
+    bindContextCommand("contextSendBackBtn", () => layerSelected("back"));
+    document.getElementById("contextShapeFormatBtn").onclick = () => {
+      const target = lastSelectionContextTarget || selectedElement;
+      const point = lastSelectionContextPoint || { clientX: window.innerWidth / 2, clientY: window.innerHeight / 2 };
+      hideSelectionContextMenu();
+      if (!target) return;
+      openShapeFormatMenu({
+        clientX: point.clientX,
+        clientY: point.clientY,
+        preventDefault() {},
+        stopPropagation() {},
+      }, target, true);
+    };
     document.getElementById("shapeApplyFillBtn").onclick = async () => {
       try {
         await applyShapeFill(document.getElementById("shapeFillColorInput").value || "#ffffff");
