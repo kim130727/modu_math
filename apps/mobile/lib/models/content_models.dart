@@ -216,6 +216,20 @@ class ProblemContent {
 
   String get correctAnswer {
     final answer = answerMap;
+    if (choiceGroups.isNotEmpty) {
+      final value = answer['value'];
+      if (value is String && value.isNotEmpty) {
+        return sanitizeProblemText(value);
+      }
+      final key = answer['answer_key'];
+      if (key is List && key.isNotEmpty) {
+        return key
+            .map(_answerValueText)
+            .map(sanitizeProblemText)
+            .where((v) => v.isNotEmpty)
+            .join(', ');
+      }
+    }
     final key = answer['answer_key'];
     if (key is List && key.isNotEmpty) {
       final values = key
@@ -286,7 +300,9 @@ class ProblemContent {
           id.contains('example') ||
           id.contains('options') ||
           id.contains('card') ||
-          id.contains('result')) continue;
+          id.contains('result')) {
+        continue;
+      }
 
       final xMatch = RegExp(r'x="([0-9.-]+)"').firstMatch(attrs);
       final yMatch = RegExp(r'y="([0-9.-]+)"').firstMatch(attrs);
@@ -773,18 +789,27 @@ List<String> _mergeAlternatingMarkerChoices(List<String> list) {
   if (list.length < 4 || list.length.isOdd) {
     return list;
   }
+  final markerPattern = RegExp(
+    r'^(?:[①②③④⑤⑥⑦⑧⑨⑩㉠-㉭]|\d+[.)]?|\([1-9]\)|\([가-힣]\)|\([ㄱ-ㅎ]\)|[ㄱ-ㅎ가-힣][.)]?)$',
+  );
   var allEvensAreMarkers = true;
   for (var i = 0; i < list.length; i += 2) {
     final text = list[i].trim();
-    final isMarker = RegExp(
-      r'^(?:[①②③④⑤⑥⑦⑧⑨⑩㉠-㉭]|\d+[.)]?|\([1-9]\)|\([가-힣]\)|\([ㄱ-ㅎ]\)|[ㄱ-ㅎ가-힣][.)]?)$',
-    ).hasMatch(text);
-    if (!isMarker) {
+    if (!markerPattern.hasMatch(text)) {
       allEvensAreMarkers = false;
       break;
     }
   }
   if (!allEvensAreMarkers) {
+    return list;
+  }
+  // A list such as [ㄱ, ㄴ, ㄷ, ㄹ] contains four complete symbolic choices.
+  // Merge only when every odd item is actual choice content, not another
+  // standalone marker.
+  final oddsContainOnlyChoiceContent = list.indexed
+      .where((entry) => entry.$1.isOdd)
+      .every((entry) => !markerPattern.hasMatch(entry.$2.trim()));
+  if (!oddsContainOnlyChoiceContent) {
     return list;
   }
   final merged = <String>[];

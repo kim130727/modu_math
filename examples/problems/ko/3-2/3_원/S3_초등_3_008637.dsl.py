@@ -307,11 +307,11 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["ㄱ", "ㄴ", "ㄷ"],
+        "answer_key": ["ㄴ"],
         "target": {
-            "type": "selected_label",
-            "description": "원의 중심으로 선택한 점의 자모",
+            "type": "choice",
+            "description": "원의 중심 선택(ㄱ, ㄴ, ㄷ)",
         },
         "value": "ㄴ",
         "unit": "",
@@ -327,28 +327,52 @@ SOLVABLE = {
         "target_label": "ㄴ",
         "target_ticks": 1,
         "target_count": 1,
-        "unit": "",
+        "unit": ""
     },
     "given": [
-        {"ref": "obj.circle", "value": "circle"},
-        {"ref": "obj.point_left", "value": {"label": "ㄱ"}},
-        {"ref": "obj.point_center", "value": {"label": "ㄴ"}},
-        {"ref": "obj.point_right", "value": {"label": "ㄷ"}},
+        {
+            "ref": "obj.circle",
+            "value": "circle"
+        },
+        {
+            "ref": "obj.point_left",
+            "value": {
+                "label": "ㄱ"
+            }
+        },
+        {
+            "ref": "obj.point_center",
+            "value": {
+                "label": "ㄴ"
+            }
+        },
+        {
+            "ref": "obj.point_right",
+            "value": {
+                "label": "ㄷ"
+            }
+        }
     ],
-    "target": {"ref": "answer.target", "type": "selected_label"},
+    "target": {
+        "ref": "answer.target",
+        "type": "choice"
+    },
     "method": "center_identification",
-    "plan": ["원의 중심에 해당하는 점을 찾는다.", "그 점의 자모 라벨을 선택한다."],
+    "plan": [
+        "원의 중심에 해당하는 점을 찾는다.",
+        "그 점의 자모 라벨을 선택한다."
+    ],
     "steps": [
         {
             "id": "step.1",
             "expr": "가운데 점이 원의 중심 후보인지 확인한다.",
-            "value": "ㄴ",
+            "value": "ㄴ"
         },
         {
             "id": "step.2",
             "expr": "정답 표기와 일치하는 라벨을 선택한다.",
-            "value": "ㄴ",
-        },
+            "value": "ㄴ"
+        }
     ],
     "checks": [
         {
@@ -356,18 +380,24 @@ SOLVABLE = {
             "expr": "선택한 라벨이 원의 중심에 해당하는가",
             "expected": "ㄴ",
             "actual": "ㄴ",
-            "pass": True,
+            "pass": true
         }
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": [
+            "ㄱ",
+            "ㄴ",
+            "ㄷ"
+        ],
+        "answer_key": [
+            "ㄴ"
+        ],
         "target": {
-            "type": "selected_label",
-            "description": "원의 중심으로 선택한 점의 자모",
+            "type": "choice",
+            "description": "원의 중심 선택(ㄱ, ㄴ, ㄷ)"
         },
         "value": "ㄴ",
-        "unit": "",
-    },
+        "unit": ""
+    }
 }

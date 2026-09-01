@@ -73,14 +73,36 @@
   },
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "L",
+      "mL"
+    ],
+    "answer_key": [
+      "L",
+      "mL"
+    ],
     "confidence": 1.0,
     "target": {
-      "type": "unit_matching",
-      "description": "주스병과 우유갑에 알맞은 단위"
+      "type": "multiple_choice_group",
+      "description": "주스병과 약병에 알맞은 단위"
     },
-    "value": "주스병: L, 우유갑: mL",
-    "unit": ""
+    "value": "L, mL",
+    "unit": "",
+    "choice_groups": [
+      {
+        "label": "주스병",
+        "choices": [
+          "L",
+          "mL"
+        ]
+      },
+      {
+        "label": "약병",
+        "choices": [
+          "L",
+          "mL"
+        ]
+      }
+    ]
   }
 }

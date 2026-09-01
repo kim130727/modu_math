@@ -947,8 +947,8 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["9/7", "1 3/7"],
+        "answer_key": ["1 3/7"],
         "target": {"type": "larger_length_color", "description": "더 긴 털실의 색"},
         "value": 0,
         "unit": "",
@@ -988,8 +988,8 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["9/7", "1 3/7"],
+        "answer_key": ["1 3/7"],
         "target": {"type": "larger_length_color", "description": "더 긴 털실의 색"},
         "value": 0,
         "unit": "",

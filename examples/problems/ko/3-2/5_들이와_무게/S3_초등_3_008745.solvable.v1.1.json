@@ -25,7 +25,7 @@
   ],
   "target": {
     "ref": "answer.target",
-    "type": "choice_selection"
+    "type": "multiple_choice_group"
   },
   "method": "same_container_rule_check",
   "plan": [
@@ -62,13 +62,35 @@
   ],
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "가 물병",
+      "나 물병"
+    ],
+    "answer_key": [
+      "나 물병",
+      "나 물병"
+    ],
     "target": {
-      "type": "choice_selection",
+      "type": "multiple_choice_group",
       "description": "옮겨 담은 물의 높이가 더 높은 것과 들이가 더 많은 것"
     },
-    "value": "나 물병",
-    "unit": ""
+    "value": "나 물병, 나 물병",
+    "unit": "",
+    "choice_groups": [
+      {
+        "label": "(1)번 문제",
+        "choices": [
+          "가 물병",
+          "나 물병"
+        ]
+      },
+      {
+        "label": "(2)번 문제",
+        "choices": [
+          "가 물병",
+          "나 물병"
+        ]
+      }
+    ]
   }
 }

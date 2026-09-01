@@ -28,7 +28,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.q1",
                 prompt="",
-                text="㉮ 물병에 물을 가득 채운 후 ㉯ 물병에 옮겨 담았습니다.",
+                text="가 물병에 물을 가득 채운 후 나 물병에 옮겨 담았습니다.",
                 style_role="question",
                 x=20,
                 y=49,
@@ -48,7 +48,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.choice",
                 prompt="",
-                text="( ㉮ 물병, ㉯ 물병 )",
+                text="( 가 물병, 나 물병 )",
                 style_role="choice",
                 x=335,
                 y=427,
@@ -85,8 +85,8 @@ SEMANTIC_OVERRIDE = {
     },
     "domain": {
         "objects": [
-            {"id": "obj.bottle_a", "type": "bottle", "label": "ㄱ"},
-            {"id": "obj.bottle_b", "type": "bottle", "label": "ㄴ"},
+            {"id": "obj.bottle_a", "type": "bottle", "label": "가"},
+            {"id": "obj.bottle_b", "type": "bottle", "label": "나"},
         ],
         "relations": [],
         "problem_solving": {
@@ -107,8 +107,8 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["가 물병", "나 물병"],
+        "answer_key": ["나 물병"],
         "target": {"type": "choice", "description": "더 많은 들이의 물병"},
         "value": 0,
         "unit": "",
@@ -121,42 +121,42 @@ SOLVABLE = {
     "problem_type": "comparison_capacity_selection",
     "inputs": {
         "total_ticks": 0,
-        "target_label": "ㄴ 물병",
+        "target_label": "나 물병",
         "target_ticks": 0,
         "target_count": 1,
         "unit": "",
     },
     "given": [
-        {"ref": "obj.bottle_a", "value": {"label": "ㄱ"}},
-        {"ref": "obj.bottle_b", "value": {"label": "ㄴ"}},
+        {"ref": "obj.bottle_a", "value": {"label": "가"}},
+        {"ref": "obj.bottle_b", "value": {"label": "나"}},
     ],
     "target": {"ref": "answer.target", "type": "choice"},
     "method": "visual_comparison",
     "plan": [
-        "그림에서 ㄱ 물병의 물이 ㄴ 물병에 옮겨 담긴 상태를 확인한다.",
-        "ㄴ 물병이 가득 차지 않았는지 살펴 더 큰 들이의 병을 고른다.",
+        "그림에서 가 물병의 물이 나 물병에 옮겨 담긴 상태를 확인한다.",
+        "나 물병이 가득 차지 않았는지 살펴 더 큰 들이의 병을 고른다.",
     ],
     "steps": [
         {
             "id": "step.1",
-            "expr": "ㄱ 물병의 물을 ㄴ 물병에 옮겨 담은 상태를 확인",
-            "value": "ㄴ 물병이 가득 차지 않음",
+            "expr": "가 물병의 물을 나 물병에 옮겨 담은 상태를 확인",
+            "value": "나 물병이 가득 차지 않음",
         },
-        {"id": "step.2", "expr": "더 많은 들이의 물병 선택", "value": "ㄴ 물병"},
+        {"id": "step.2", "expr": "더 많은 들이의 물병 선택", "value": "나 물병"},
     ],
     "checks": [
         {
             "id": "check.1",
             "expr": "해설과 선택이 일치하는가",
-            "expected": "ㄴ 물병",
-            "actual": "ㄴ 물병",
+            "expected": "나 물병",
+            "actual": "나 물병",
             "pass": True,
         }
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["가 물병", "나 물병"],
+        "answer_key": ["나 물병"],
         "target": {"type": "choice", "description": "더 많은 들이의 물병"},
         "value": 0,
         "unit": "",

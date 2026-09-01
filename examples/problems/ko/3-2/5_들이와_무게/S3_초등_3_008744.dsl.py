@@ -131,8 +131,8 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["가 물병", "나 물병"],
+        "answer_key": ["나 물병"],
         "target": {"type": "choice", "description": "들이가 더 많은 물병 고르기"},
         "value": 0,
         "unit": "",
@@ -195,8 +195,8 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["가 물병", "나 물병"],
+        "answer_key": ["나 물병"],
         "target": {"type": "choice", "description": "들이가 더 많은 물병 고르기"},
         "value": 0,
         "unit": "",

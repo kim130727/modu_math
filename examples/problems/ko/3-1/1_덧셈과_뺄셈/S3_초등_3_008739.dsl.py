@@ -406,8 +406,8 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["서점", "은행", "학교"],
+        "answer_key": ["은행"],
         "target": {"type": "nearest_place", "description": "집에서 가장 가까운 곳"},
         "value": 0,
         "unit": "",
@@ -453,8 +453,8 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["서점", "은행", "학교"],
+        "answer_key": ["은행"],
         "target": {"type": "nearest_place", "description": "집에서 가장 가까운 곳"},
         "value": 0,
         "unit": "",

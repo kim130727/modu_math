@@ -21,7 +21,7 @@
   ],
   "target": {
     "ref": "answer.target",
-    "type": "selected_words"
+    "type": "multiple_choice_group"
   },
   "method": "concept_selection",
   "plan": [
@@ -46,13 +46,37 @@
   ],
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "2개",
+      "셀 수 없이 많이",
+      "같습니다",
+      "다릅니다"
+    ],
+    "answer_key": [
+      "셀 수 없이 많이",
+      "같습니다"
+    ],
     "target": {
-      "type": "selected_words",
-      "description": "한 원에는 반지름을 ( 2개만 , 무수히 많이 ) 그을 수 있고 그 길이는 모두 ( 같습니다, 다릅니다 )."
+      "type": "multiple_choice_group",
+      "description": "지름의 개수와 길이 관계"
     },
-    "value": "무수히 많이, 같습니다",
-    "unit": ""
+    "value": "셀 수 없이 많이, 같습니다",
+    "unit": "",
+    "choice_groups": [
+      {
+        "label": "지름의 개수",
+        "choices": [
+          "2개",
+          "셀 수 없이 많이"
+        ]
+      },
+      {
+        "label": "지름의 길이",
+        "choices": [
+          "같습니다",
+          "다릅니다"
+        ]
+      }
+    ]
   }
 }

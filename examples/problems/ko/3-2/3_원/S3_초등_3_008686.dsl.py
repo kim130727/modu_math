@@ -157,11 +157,11 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": ["O", "X"],
-        "answer_key": ["O"],
-        "target": {
-            "type": "ox_judgment",
-            "description": "선분 ㄱㄴ이 원의 지름을 나타낸다는 설명이 맞는지",
+        "choices": ["○", "X"],
+        "answer_key": ["○"],
+        "target": {"type": "choice", "description": "바른 설명 여부 선택(○, X)"},
+        "value": "○",
+        "unit": "",
         },
         "value": "O",
         "unit": "",
@@ -212,11 +212,11 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": ["O", "X"],
-        "answer_key": ["O"],
-        "target": {
-            "type": "ox_judgment",
-            "description": "선분 ㄱㄴ이 원의 지름을 나타낸다는 설명이 맞는지",
+        "choices": ["○", "X"],
+        "answer_key": ["○"],
+        "target": {"type": "choice", "description": "바른 설명 여부 선택(○, X)"},
+        "value": "○",
+        "unit": "",
         },
         "value": "O",
         "unit": "",

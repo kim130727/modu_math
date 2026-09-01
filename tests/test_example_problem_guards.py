@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 import re
 from pathlib import Path
 from types import ModuleType
@@ -59,3 +60,27 @@ def test_circle_area_0001_radius_helper_path_keeps_semantic_id_and_position() ->
     svg = render_svg(compile_renderer_json(layout))
     assert 'id="slot.radius_10_arc.path"' in svg
     assert "konva_1783766230573_paste_122425_0" not in svg
+
+
+def test_circle_center_008667_renderer_keeps_label_r_next_to_its_point() -> None:
+    renderer_path = next(
+        Path("examples/problems/ko").glob("**/S3_초등_3_008667.renderer.json")
+    )
+    renderer = json.loads(renderer_path.read_text(encoding="utf-8"))
+    elements = renderer["elements"]
+
+    point_r = next(
+        element
+        for element in elements
+        if element.get("source_ref") == "slot.diagram.pt.r"
+    )
+    label_r = next(
+        element
+        for element in elements
+        if element.get("source_ref") == "slot.diagram.lb.r"
+    )
+
+    assert label_r["text"] == "ㄹ"
+    assert label_r["attributes"]["data-semantic-role"] == "symbol_label"
+    assert abs(label_r["attributes"]["x"] - point_r["attributes"]["cx"]) <= 20
+    assert abs(label_r["attributes"]["y"] - point_r["attributes"]["cy"]) <= 20

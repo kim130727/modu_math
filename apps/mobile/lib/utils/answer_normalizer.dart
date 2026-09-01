@@ -120,7 +120,38 @@ bool isSameAnswer(String submitted, String correct) {
     return true;
   }
 
+  // 5) 용기/물체 접미사 및 한글 라벨 정규화 비교 (예: "가 병" vs "가", "가 물병" vs "가 병", "ㄱ" vs "가 병")
+  final canonSub = _canonicalLabel(cleanWithoutSub.isNotEmpty ? cleanWithoutSub : cleanSub);
+  final canonCor = _canonicalLabel(cleanWithoutCor.isNotEmpty ? cleanWithoutCor : cleanCor);
+  if (canonSub.isNotEmpty && canonSub == canonCor) {
+    return true;
+  }
+
   return false;
+}
+
+String _stripContainerSuffix(String text) {
+  var s = text.trim();
+  const suffixes = ['물병', '주전자', '그릇', '상자', '도형', '병', '컵'];
+  for (final suf in suffixes) {
+    if (s.endsWith(suf) && s.length > suf.length) {
+      s = s.substring(0, s.length - suf.length).trim();
+      break;
+    }
+  }
+  return s;
+}
+
+String _canonicalLabel(String text) {
+  var s = _stripContainerSuffix(text);
+  const map = {
+    'ㄱ': '가',
+    'ㄴ': '나',
+    'ㄷ': '다',
+    'ㄹ': '라',
+    'ㅁ': '마',
+  };
+  return map[s] ?? s;
 }
 
 String? _tryEvalSimpleArithmetic(String expr) {

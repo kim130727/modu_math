@@ -4,13 +4,13 @@ from modu_math.dsl import Canvas, CircleSlot, PathSlot, ProblemTemplate, Region,
 
 ANSWER = {
     "blanks": [],
-    "choices": ["승아", "재원"],
-    "answer_key": ["승아"],
+    "choices": ["중심", "반지름"],
+    "answer_key": ["반지름"],
     "target": {
-        "type": "student_choice",
-        "description": "규칙을 설명한 친구 선택",
+        "type": "choice",
+        "description": "같은 점에 들어갈 알맞은 말(중심, 반지름)",
     },
-    "value": "승아",
+    "value": "반지름",
     "unit": "",
 }
 
@@ -258,12 +258,13 @@ SOLVABLE = {
             "value": {"centers": [[3, 3], [3, 3], [3, 3]], "radii": [1, 2, 3]},
         },
     ],
-    "target": {"ref": "answer.target", "type": "rule_description"},
+    "target": {"ref": "answer.target", "type": "choice"},
     "method": "figure_comparison",
     "plan": [
         "가의 원들의 중심과 반지름을 확인한다.",
         "나의 원들의 중심과 반지름을 확인한다.",
         "두 그림의 같은 점과 다른 점을 비교한다.",
+        "같은 점 문장의 괄호 안에 들어갈 알맞은 말을 고른다.",
     ],
     "steps": [
         {
@@ -276,7 +277,7 @@ SOLVABLE = {
             "expr": "나: 중심 (3,3)으로 모두 같고, 반지름 1,2,3",
             "value": "same_center_radii_increase",
         },
-        {"id": "step.3", "expr": "같은 점과 다른 점 정리", "value": "same_radii_different_centers"},
+        {"id": "step.3", "expr": "같은 점과 다른 점 정리", "value": "반지름"},
     ],
     "checks": [
         {

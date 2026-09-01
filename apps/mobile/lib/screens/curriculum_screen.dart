@@ -761,10 +761,3 @@ class _CurriculumUnit {
   final int problemCount;
   final List<_CurriculumSubUnit> subUnits;
 }
-
-int? _readInt(Object? value) {
-  if (value is int) {
-    return value;
-  }
-  return int.tryParse(value?.toString() ?? '');
-}

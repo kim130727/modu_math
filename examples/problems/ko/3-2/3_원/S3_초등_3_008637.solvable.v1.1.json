@@ -35,7 +35,7 @@
   ],
   "target": {
     "ref": "answer.target",
-    "type": "selected_label"
+    "type": "choice"
   },
   "method": "center_identification",
   "plan": [
@@ -65,11 +65,17 @@
   ],
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "ㄱ",
+      "ㄴ",
+      "ㄷ"
+    ],
+    "answer_key": [
+      "ㄴ"
+    ],
     "target": {
-      "type": "selected_label",
-      "description": "원의 중심으로 선택한 점의 자모"
+      "type": "choice",
+      "description": "원의 중심 선택(ㄱ, ㄴ, ㄷ)"
     },
     "value": "ㄴ",
     "unit": ""

@@ -103,10 +103,10 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
-        "target": {"type": "truth_judgment", "description": "문장이 바른지 ○/×로 판단하기"},
-        "value": 0,
+        "choices": ["○", "X"],
+        "answer_key": ["X"],
+        "target": {"type": "choice", "description": "바른 설명 여부 선택(○, X)"},
+        "value": "X",
         "unit": "",
     },
 }
@@ -137,10 +137,10 @@ SOLVABLE = {
     "checks": [{"id": "check.1", "expr": "7-4=3", "expected": 3, "actual": 3, "pass": True}],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
-        "target": {"type": "truth_judgment", "description": "문장이 바른지 ○/×로 판단하기"},
-        "value": 0,
+        "choices": ["○", "X"],
+        "answer_key": ["X"],
+        "target": {"type": "choice", "description": "바른 설명 여부 선택(○, X)"},
+        "value": "X",
         "unit": "",
     },
 }

@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, unnecessary_const
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:modu_math_app/widgets/renderer_json_canvas.dart';
 
@@ -50,6 +52,109 @@ void main() {
       contains('PoorStory'),
     );
     expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+      'preserves authored text box lines when Flutter font metrics are wider',
+      (tester) async {
+    const prompt = '누름 못과 띠 종이를 사용하여 원을 그리려고 합니다.\n'
+        '원을 가장 크게 그리려면 어느 구멍에 연필을 꽂아야 하는지\n'
+        '알맞은 기호를 선택하세요.';
+
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 800,
+            height: 360,
+            child: RendererJsonCanvas(
+              renderer: {
+                'view_box': {
+                  'width': 800,
+                  'height': 360,
+                  'background': '#FFFFFF',
+                },
+                'elements': [
+                  {
+                    'id': 'slot.q1.text',
+                    'type': 'text_box',
+                    'attributes': {
+                      'x': 40.837,
+                      'y': 26.215,
+                      'width': 641.397,
+                      'height': 188.0,
+                      'font-size': 30,
+                      'data-text-align': 'left',
+                      'data-vertical-align': 'top',
+                      'data-line-height': 1.2,
+                    },
+                    'text': prompt,
+                  },
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    final textFinder = find.text(prompt);
+    expect(textFinder, findsOneWidget);
+    expect(tester.widget<Text>(textFinder).softWrap, isFalse);
+    final paragraph = tester.renderObject<RenderParagraph>(textFinder);
+    final renderedLineTops = paragraph
+        .getBoxesForSelection(
+          const TextSelection(baseOffset: 0, extentOffset: prompt.length),
+        )
+        .map((box) => box.top.round())
+        .toSet();
+    expect(renderedLineTops, hasLength(3));
+    expect(
+      find.ancestor(of: textFinder, matching: find.byType(FittedBox)),
+      findsOneWidget,
+    );
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('keeps automatic wrapping for text boxes without authored lines',
+      (tester) async {
+    const prompt = '자동 줄바꿈이 필요한 한 줄 원문입니다.';
+
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 240,
+            height: 120,
+            child: RendererJsonCanvas(
+              renderer: {
+                'view_box': {'width': 240, 'height': 120},
+                'elements': [
+                  {
+                    'type': 'text_box',
+                    'attributes': {
+                      'x': 10,
+                      'y': 10,
+                      'width': 100,
+                      'height': 80,
+                      'font-size': 24,
+                    },
+                    'text': prompt,
+                  },
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    final textFinder = find.text(prompt);
+    expect(tester.widget<Text>(textFinder).softWrap, isTrue);
+    expect(
+      find.ancestor(of: textFinder, matching: find.byType(FittedBox)),
+      findsNothing,
+    );
   });
 
   testWidgets('overlays input fields on empty square rects', (tester) async {
@@ -1125,7 +1230,9 @@ void main() {
     expect(visible.first['id'], 'slot.qtext.text');
   });
 
-  testWidgets('allows inputting multi-digit partial sums 7, 90, 500, 597 for 15598_2', (tester) async {
+  testWidgets(
+      'allows inputting multi-digit partial sums 7, 90, 500, 597 for 15598_2',
+      (tester) async {
     String emitted = '';
 
     await tester.pumpWidget(
@@ -1137,12 +1244,21 @@ void main() {
             child: RendererJsonCanvas(
               onInputChanged: (value) => emitted = value,
               renderer: {
-                'view_box': {'width': 350, 'height': 350, 'background': '#FFFFFF'},
+                'view_box': {
+                  'width': 350,
+                  'height': 350,
+                  'background': '#FFFFFF'
+                },
                 'elements': [
                   {
                     'id': 'slot.calculation.2.box.ones.rect',
                     'type': 'rect',
-                    'attributes': {'x': 192.395, 'y': 169.077, 'width': 21.89, 'height': 27.0},
+                    'attributes': {
+                      'x': 192.395,
+                      'y': 169.077,
+                      'width': 21.89,
+                      'height': 27.0
+                    },
                     'interaction': {
                       'type': 'input',
                       'role': 'answer',
@@ -1155,7 +1271,12 @@ void main() {
                   {
                     'id': 'slot.calculation.2.box.tens.rect',
                     'type': 'rect',
-                    'attributes': {'x': 179.616, 'y': 210.077, 'width': 34.68, 'height': 27.0},
+                    'attributes': {
+                      'x': 179.616,
+                      'y': 210.077,
+                      'width': 34.68,
+                      'height': 27.0
+                    },
                     'interaction': {
                       'type': 'input',
                       'role': 'answer',
@@ -1168,7 +1289,12 @@ void main() {
                   {
                     'id': 'slot.calculation.2.box.hundreds.rect',
                     'type': 'rect',
-                    'attributes': {'x': 161.285, 'y': 251.077, 'width': 53.0, 'height': 27.0},
+                    'attributes': {
+                      'x': 161.285,
+                      'y': 251.077,
+                      'width': 53.0,
+                      'height': 27.0
+                    },
                     'interaction': {
                       'type': 'input',
                       'role': 'answer',
@@ -1181,7 +1307,12 @@ void main() {
                   {
                     'id': 'slot.calculation.2.box.total.rect',
                     'type': 'rect',
-                    'attributes': {'x': 159.064, 'y': 303.077, 'width': 55.22, 'height': 29.0},
+                    'attributes': {
+                      'x': 159.064,
+                      'y': 303.077,
+                      'width': 55.22,
+                      'height': 29.0
+                    },
                     'interaction': {
                       'type': 'input',
                       'role': 'answer',
@@ -1211,7 +1342,8 @@ void main() {
     expect(emitted, equals('790500597'));
   });
 
-  testWidgets('renders comparison operator buttons for P3_1_01_00040_15604', (tester) async {
+  testWidgets('renders comparison operator buttons for P3_1_01_00040_15604',
+      (tester) async {
     String emitted = '';
 
     await tester.pumpWidget(
@@ -1224,7 +1356,11 @@ void main() {
               expectedAnswer: '<',
               onInputChanged: (value) => emitted = value,
               renderer: {
-                'view_box': {'width': 500, 'height': 180, 'background': '#FFFFFF'},
+                'view_box': {
+                  'width': 500,
+                  'height': 180,
+                  'background': '#FFFFFF'
+                },
                 'elements': [
                   {
                     'id': 'slot.comparison.circle.circle',
@@ -1257,7 +1393,8 @@ void main() {
     expect(emitted, equals('<'));
   });
 
-  testWidgets('renders comparison operator buttons for P3_1_01_00040_15610', (tester) async {
+  testWidgets('renders comparison operator buttons for P3_1_01_00040_15610',
+      (tester) async {
     String emitted = '';
 
     await tester.pumpWidget(
@@ -1270,7 +1407,11 @@ void main() {
               expectedAnswer: '>',
               onInputChanged: (value) => emitted = value,
               renderer: {
-                'view_box': {'width': 400, 'height': 150, 'background': '#FFFFFF'},
+                'view_box': {
+                  'width': 400,
+                  'height': 150,
+                  'background': '#FFFFFF'
+                },
                 'elements': [
                   {
                     'id': 'slot.comparison.circle.circle',
@@ -1303,7 +1444,9 @@ void main() {
     expect(emitted, equals('>'));
   });
 
-  testWidgets('creates input slots only for answer blanks and not number cards for P3_1_01_00040_15611', (tester) async {
+  testWidgets(
+      'creates input slots only for answer blanks and not number cards for P3_1_01_00040_15611',
+      (tester) async {
     String emitted = '';
 
     await tester.pumpWidget(
@@ -1315,32 +1458,71 @@ void main() {
             child: RendererJsonCanvas(
               onInputChanged: (value) => emitted = value,
               renderer: {
-                'view_box': {'width': 500, 'height': 220, 'background': '#FFFFFF'},
+                'view_box': {
+                  'width': 500,
+                  'height': 220,
+                  'background': '#FFFFFF'
+                },
                 'elements': [
                   {
                     'id': 'slot.card1.rect.rect',
                     'type': 'rect',
-                    'attributes': {'x': 22.0, 'y': 48.0, 'width': 28.0, 'height': 32.0, 'fill': '#ffffff', 'stroke': '#111111'},
+                    'attributes': {
+                      'x': 22.0,
+                      'y': 48.0,
+                      'width': 28.0,
+                      'height': 32.0,
+                      'fill': '#ffffff',
+                      'stroke': '#111111'
+                    },
                   },
                   {
                     'id': 'slot.card5.rect.rect',
                     'type': 'rect',
-                    'attributes': {'x': 58.0, 'y': 48.0, 'width': 28.0, 'height': 32.0, 'fill': '#ffffff', 'stroke': '#111111'},
+                    'attributes': {
+                      'x': 58.0,
+                      'y': 48.0,
+                      'width': 28.0,
+                      'height': 32.0,
+                      'fill': '#ffffff',
+                      'stroke': '#111111'
+                    },
                   },
                   {
                     'id': 'slot.card2.rect.rect',
                     'type': 'rect',
-                    'attributes': {'x': 94.0, 'y': 48.0, 'width': 28.0, 'height': 32.0, 'fill': '#ffffff', 'stroke': '#111111'},
+                    'attributes': {
+                      'x': 94.0,
+                      'y': 48.0,
+                      'width': 28.0,
+                      'height': 32.0,
+                      'fill': '#ffffff',
+                      'stroke': '#111111'
+                    },
                   },
                   {
                     'id': 'slot.card7.rect.rect',
                     'type': 'rect',
-                    'attributes': {'x': 130.0, 'y': 48.0, 'width': 28.0, 'height': 32.0, 'fill': '#ffffff', 'stroke': '#111111'},
+                    'attributes': {
+                      'x': 130.0,
+                      'y': 48.0,
+                      'width': 28.0,
+                      'height': 32.0,
+                      'fill': '#ffffff',
+                      'stroke': '#111111'
+                    },
                   },
                   {
                     'id': 'slot.top.blank_tens.rect.rect',
                     'type': 'rect',
-                    'attributes': {'x': 235.0, 'y': 48.0, 'width': 22.0, 'height': 28.0, 'fill': '#ffffff', 'stroke': '#111111'},
+                    'attributes': {
+                      'x': 235.0,
+                      'y': 48.0,
+                      'width': 22.0,
+                      'height': 28.0,
+                      'fill': '#ffffff',
+                      'stroke': '#111111'
+                    },
                     'interaction': {
                       'type': 'input',
                       'role': 'answer',
@@ -1353,7 +1535,14 @@ void main() {
                   {
                     'id': 'slot.top.blank_ones.rect.rect',
                     'type': 'rect',
-                    'attributes': {'x': 261.0, 'y': 48.0, 'width': 22.0, 'height': 28.0, 'fill': '#ffffff', 'stroke': '#111111'},
+                    'attributes': {
+                      'x': 261.0,
+                      'y': 48.0,
+                      'width': 22.0,
+                      'height': 28.0,
+                      'fill': '#ffffff',
+                      'stroke': '#111111'
+                    },
                     'interaction': {
                       'type': 'input',
                       'role': 'answer',
@@ -1366,7 +1555,14 @@ void main() {
                   {
                     'id': 'slot.bottom.blank_hundreds.rect.rect',
                     'type': 'rect',
-                    'attributes': {'x': 209.0, 'y': 84.0, 'width': 22.0, 'height': 28.0, 'fill': '#ffffff', 'stroke': '#111111'},
+                    'attributes': {
+                      'x': 209.0,
+                      'y': 84.0,
+                      'width': 22.0,
+                      'height': 28.0,
+                      'fill': '#ffffff',
+                      'stroke': '#111111'
+                    },
                     'interaction': {
                       'type': 'input',
                       'role': 'answer',
@@ -1379,7 +1575,14 @@ void main() {
                   {
                     'id': 'slot.result.blank_ones.rect.rect',
                     'type': 'rect',
-                    'attributes': {'x': 261.0, 'y': 128.0, 'width': 22.0, 'height': 28.0, 'fill': '#ffffff', 'stroke': '#111111'},
+                    'attributes': {
+                      'x': 261.0,
+                      'y': 128.0,
+                      'width': 22.0,
+                      'height': 28.0,
+                      'fill': '#ffffff',
+                      'stroke': '#111111'
+                    },
                     'interaction': {
                       'type': 'input',
                       'role': 'answer',
@@ -1409,7 +1612,9 @@ void main() {
     expect(emitted, equals('5217'));
   });
 
-  testWidgets('allows multi-digit inputs 60, 2, 90, 7, 697 for P3_1_01_00040_15621', (tester) async {
+  testWidgets(
+      'allows multi-digit inputs 60, 2, 90, 7, 697 for P3_1_01_00040_15621',
+      (tester) async {
     String emitted = '';
 
     await tester.pumpWidget(
@@ -1421,12 +1626,22 @@ void main() {
             child: RendererJsonCanvas(
               onInputChanged: (value) => emitted = value,
               renderer: {
-                'view_box': {'width': 400.0, 'height': 107.746, 'background': '#FFFFFF'},
+                'view_box': {
+                  'width': 400.0,
+                  'height': 107.746,
+                  'background': '#FFFFFF'
+                },
                 'elements': [
                   {
                     'id': 'slot.line1.blank1_box.rect',
                     'type': 'rect',
-                    'attributes': {'x': 160.4, 'y': 33.0, 'width': 47.6, 'height': 24.0, 'fill': '#ffffff'},
+                    'attributes': {
+                      'x': 160.4,
+                      'y': 33.0,
+                      'width': 47.6,
+                      'height': 24.0,
+                      'fill': '#ffffff'
+                    },
                     'interaction': {
                       'type': 'input',
                       'role': 'answer',
@@ -1439,7 +1654,13 @@ void main() {
                   {
                     'id': 'slot.line1.blank2_box.rect',
                     'type': 'rect',
-                    'attributes': {'x': 269.0, 'y': 33.0, 'width': 28.0, 'height': 24.0, 'fill': '#ffffff'},
+                    'attributes': {
+                      'x': 269.0,
+                      'y': 33.0,
+                      'width': 28.0,
+                      'height': 24.0,
+                      'fill': '#ffffff'
+                    },
                     'interaction': {
                       'type': 'input',
                       'role': 'answer',
@@ -1452,7 +1673,13 @@ void main() {
                   {
                     'id': 'slot.line2.blank3_box.rect',
                     'type': 'rect',
-                    'attributes': {'x': 117.0, 'y': 62.0, 'width': 37.0, 'height': 24.0, 'fill': '#ffffff'},
+                    'attributes': {
+                      'x': 117.0,
+                      'y': 62.0,
+                      'width': 37.0,
+                      'height': 24.0,
+                      'fill': '#ffffff'
+                    },
                     'interaction': {
                       'type': 'input',
                       'role': 'answer',
@@ -1465,7 +1692,13 @@ void main() {
                   {
                     'id': 'slot.line2.blank4_box.rect',
                     'type': 'rect',
-                    'attributes': {'x': 166.0, 'y': 62.0, 'width': 28.0, 'height': 24.0, 'fill': '#ffffff'},
+                    'attributes': {
+                      'x': 166.0,
+                      'y': 62.0,
+                      'width': 28.0,
+                      'height': 24.0,
+                      'fill': '#ffffff'
+                    },
                     'interaction': {
                       'type': 'input',
                       'role': 'answer',
@@ -1478,7 +1711,13 @@ void main() {
                   {
                     'id': 'slot.line2.blank5_box.rect',
                     'type': 'rect',
-                    'attributes': {'x': 205.0, 'y': 62.0, 'width': 42.0, 'height': 24.0, 'fill': '#ffffff'},
+                    'attributes': {
+                      'x': 205.0,
+                      'y': 62.0,
+                      'width': 42.0,
+                      'height': 24.0,
+                      'fill': '#ffffff'
+                    },
                     'interaction': {
                       'type': 'input',
                       'role': 'answer',
@@ -1534,6 +1773,36 @@ void main() {
                       'href':
                           'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
                     },
+          testWidgets('renders svg data URI avatar image elements from web editor',
+      (tester) async {
+    const avatarSvgDataUri =
+        'data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20width%3D%22200%22%20height%3D%22200%22%3E%3Ccircle%20cx%3D%22100%22%20cy%3D%22100%22%20r%3D%2250%22%20fill%3D%22red%22%2F%3E%3C%2Fsvg%3E';
+
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 500,
+            height: 300,
+            child: RendererJsonCanvas(
+              renderer: {
+                'view_box': {
+                  'width': 500,
+                  'height': 300,
+                  'background': '#FFFFFF',
+                },
+                'elements': [
+                  {
+                    'id': 'konva_avatar.image',
+                    'type': 'image',
+                    'attributes': {
+                      'x': 50,
+                      'y': 50,
+                      'width': 140,
+                      'height': 150,
+                      'href': avatarSvgDataUri,
+                      'preserveAspectRatio': 'xMidYMid meet',
+                    },
                   },
                 ],
               },
@@ -1544,6 +1813,70 @@ void main() {
     );
 
     expect(find.byType(RendererJsonCanvas), findsOneWidget);
-    expect(find.byType(Image), findsOneWidget);
+    expect(find.byType(SvgPicture), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('renders dashed grid path and circle elements without errors',
+      (tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 500,
+            height: 300,
+            child: RendererJsonCanvas(
+              renderer: {
+                'view_box': {
+                  'width': 500,
+                  'height': 300,
+                  'background': '#FFFFFF',
+                },
+                'elements': [
+                  {
+                    'id': 'grid.v1.path',
+                    'type': 'path',
+                    'attributes': {
+                      'd': 'M 100 50 L 100 250',
+                      'stroke': '#37C7FF',
+                      'stroke-width': 1.0,
+                      'fill': 'none',
+                      'stroke-dasharray': '4 3',
+                    },
+                  },
+                  {
+                    'id': 'circle.r1.circle',
+                    'type': 'circle',
+                    'attributes': {
+                      'cx': 100,
+                      'cy': 150,
+                      'r': 50,
+                      'stroke': '#444444',
+                      'stroke-width': 1.4,
+                      'fill': 'none',
+                    },
+                  },
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byType(RendererJsonCanvas), findsOneWidget);
+    expect(find.byType(CustomPaint), findsWidgets);
+    expect(tester.takeException(), isNull);
+  });
+}           },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byType(RendererJsonCanvas), findsOneWidget);
+    expect(find.byType(CustomPaint), findsWidgets);
+    expect(tester.takeException(), isNull);
   });
 }

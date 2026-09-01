@@ -104,10 +104,11 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
-        "target": {"type": "selected_words", "description": "문장 괄호 안에서 알맞은 말"},
-        "value": "무수히 많이, 같습니다",
+        "choices": ["2개", "셀 수 없이 많이", "같습니다", "다릅니다"],
+        "choice_groups": [{"label": "지름의 개수", "choices": ["2개", "셀 수 없이 많이"]}, {"label": "지름의 길이", "choices": ["같습니다", "다릅니다"]}],
+        "answer_key": ["셀 수 없이 많이", "같습니다"],
+        "target": {"type": "multiple_choice_group", "description": "지름의 개수와 길이 관계"},
+        "value": "셀 수 없이 많이, 같습니다",
         "unit": "",
     },
 }
@@ -142,10 +143,11 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
-        "target": {"type": "selected_words", "description": "문장 괄호 안에서 알맞은 말"},
-        "value": "무수히 많이, 같습니다",
+        "choices": ["2개", "셀 수 없이 많이", "같습니다", "다릅니다"],
+        "choice_groups": [{"label": "지름의 개수", "choices": ["2개", "셀 수 없이 많이"]}, {"label": "지름의 길이", "choices": ["같습니다", "다릅니다"]}],
+        "answer_key": ["셀 수 없이 많이", "같습니다"],
+        "target": {"type": "multiple_choice_group", "description": "지름의 개수와 길이 관계"},
+        "value": "셀 수 없이 많이, 같습니다",
         "unit": "",
     },
 }
