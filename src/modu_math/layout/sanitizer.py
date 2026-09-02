@@ -94,6 +94,9 @@ def sanitize_answer_input_content(content: dict[str, Any]) -> None:
     if isinstance(height, int | float):
         input_style.setdefault("height", round(float(height), 3))
     input_style.setdefault("font_size_mode", "auto")
+    input_style.setdefault("font_size_adjust", 0)
+    input_style.setdefault("min_font_size", 14)
+    input_style.setdefault("max_font_size", 52)
     input_style.setdefault("font_weight", 700)
     input_style.setdefault("horizontal_align", "center")
     input_style.setdefault("vertical_align", "middle")

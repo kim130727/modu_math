@@ -33,19 +33,57 @@ class _AnswerPanelState extends State<AnswerPanel> {
   Map<int, int> selectedGroupChoices = {};
   bool _showKeypad = false;
 
+  /// Returns a human-readable version of [raw] by splitting it into segments
+  /// whose lengths match the answer_key values in [content].
+  /// e.g. "4341131" with answer_key values ["434","1131"] → "434 / 1131"
+  /// Falls back to [raw] unchanged if the lengths don't match or there is only
+  /// one segment.
+  static String _formatAnswerDraft(String raw, ProblemContent content) {
+    if (raw.isEmpty) return raw;
+
+    final answerMap = content.answerMap;
+    final key = answerMap['answer_key'];
+    if (key is! List || key.length < 2) return raw;
+
+    // Collect per-blank string lengths from the answer_key values.
+    final segments = <String>[];
+    for (final entry in key) {
+      final v = entry is Map ? (entry['value'] ?? entry['expected']) : entry;
+      if (v == null) return raw;
+      segments.add(v.toString().trim());
+    }
+
+    // All segments equal → single repeated answer (e.g. carry digits); display as-is.
+    if (segments.toSet().length == 1) return raw;
+
+    // Try to reconstruct the raw string from segment lengths.
+    int cursor = 0;
+    final parts = <String>[];
+    for (final seg in segments) {
+      final len = seg.length;
+      if (cursor + len > raw.length) return raw; // mismatch – fall back
+      parts.add(raw.substring(cursor, cursor + len));
+      cursor += len;
+    }
+    if (cursor != raw.length) return raw; // leftover chars – fall back
+
+    return parts.join(' / ');
+  }
+
   @override
   void initState() {
     super.initState();
-    controller.text = widget.answerDraft;
+    controller.text = _formatAnswerDraft(widget.answerDraft, widget.content);
   }
 
   @override
   void didUpdateWidget(covariant AnswerPanel oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.answerDraft == controller.text) {
+    final formatted = _formatAnswerDraft(widget.answerDraft, widget.content);
+    if (formatted == controller.text) {
       return;
     }
-    controller.text = widget.answerDraft;
+    controller.text = formatted;
     controller.selection = TextSelection.collapsed(
       offset: controller.text.length,
     );

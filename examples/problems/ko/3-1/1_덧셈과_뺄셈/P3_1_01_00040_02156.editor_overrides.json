@@ -1,5 +1,9 @@
 {
   "version": 1,
+  "canvas": {
+    "width": 600,
+    "height": 250
+  },
   "deleted_slots": [
     "answer.stage1.carry",
     "answer.stage1.ones",
@@ -24,10 +28,6 @@
     "slot.stage3.answer_tens",
     "slot.stage3.answer_ones"
   ],
-  "canvas": {
-    "width": 600,
-    "height": 250
-  },
   "slots": {
     "slot.stage1.line": {
       "x1": 37,
@@ -60,7 +60,7 @@
       "font_size": 23,
       "fill": "#202124",
       "width": 497.091,
-      "height": 37,
+      "height": 66.0,
       "align": "left",
       "line_height": 1.25
     },
@@ -154,7 +154,170 @@
     },
     "konva_1785217709470_paste_267045_0": {
       "x": 511.622,
-      "y": 208.625
+      "y": 208.625,
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 10,
+        "group_id": "final_answer",
+        "answer_key_index": 10,
+        "answer_ref": "answer_key[10]",
+        "auto_advance": true,
+        "keyboard": "number"
+      }
+    },
+    "konva_1786191666134_paste_302497_0": {
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 8,
+        "group_id": "final_answer",
+        "answer_key_index": 8,
+        "answer_ref": "answer_key[8]",
+        "auto_advance": true,
+        "keyboard": "number"
+      }
+    },
+    "konva_1786191666134_paste_302969_0": {
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 9,
+        "group_id": "final_answer",
+        "answer_key_index": 9,
+        "answer_ref": "answer_key[9]",
+        "auto_advance": true,
+        "keyboard": "number"
+      }
+    },
+    "konva_1786191666134_paste_324114_0": {
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 7,
+        "group_id": "final_answer",
+        "answer_key_index": 6,
+        "answer_ref": "answer_key[6]",
+        "auto_advance": true,
+        "keyboard": "number"
+      }
+    },
+    "konva_1786191666134_paste_324114_1": {
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 6,
+        "group_id": "final_answer",
+        "answer_key_index": 7,
+        "answer_ref": "answer_key[7]",
+        "auto_advance": true,
+        "keyboard": "number"
+      }
+    },
+    "konva_1786191666134_paste_332458_0": {
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 3,
+        "group_id": "final_answer",
+        "answer_key_index": 2,
+        "answer_ref": "answer_key[2]",
+        "auto_advance": true,
+        "keyboard": "number"
+      }
+    },
+    "konva_1786191666134_paste_332458_1": {
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 2,
+        "group_id": "final_answer",
+        "answer_key_index": 3,
+        "answer_ref": "answer_key[3]",
+        "auto_advance": true,
+        "keyboard": "number"
+      }
+    },
+    "konva_1786191666134_paste_348706_0": {
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "answer_key_index": 0,
+        "answer_ref": "answer_key[0]",
+        "auto_advance": true,
+        "keyboard": "number"
+      }
+    },
+    "konva_1786191666134_paste_366802_0": {
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 5,
+        "group_id": "final_answer",
+        "answer_key_index": 5,
+        "answer_ref": "answer_key[5]",
+        "auto_advance": true,
+        "keyboard": "number"
+      }
+    },
+    "konva_1786191666134_paste_366802_1": {
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 4,
+        "group_id": "final_answer",
+        "answer_key_index": 4,
+        "answer_ref": "answer_key[4]",
+        "auto_advance": true,
+        "keyboard": "number"
+      }
+    },
+    "konva_1786191666134_paste_373586_0": {
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "include_in_submission": true,
+        "order": 1,
+        "group_id": "final_answer",
+        "answer_key_index": 1,
+        "answer_ref": "answer_key[1]",
+        "auto_advance": true,
+        "keyboard": "number"
+      }
     }
   }
 }
