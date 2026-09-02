@@ -177,4 +177,72 @@ void main() {
     expect(hints[4].title, contains('전체 합 완성하기'));
     expect(hints[4].acceptedAnswers, contains('697'));
   });
+
+  test('builds base-ten model hints for P3_1_01_00040_15726', () {
+    const service = SolvableHintService();
+    const content = ProblemContent(
+      summary: ProblemSummary(
+        id: 'P3_1_01_00040_15726',
+        grade: 3,
+        subject: 'math',
+        unit: '덧셈과 뺄셈',
+        type: 'base_ten_model_addition_multi_answer',
+        title: '수 모형으로 알아보는 262와 271의 합',
+        path: '',
+        raw: {},
+      ),
+      renderer: {},
+      semantic: {
+        'metadata': {
+          'title': '수 모형으로 알아보는 262와 271의 합',
+          'instruction': '262+271을 수 모형으로 알아보시오.',
+          'question': '(1) 낱개 모형끼리 더하면 몇 개입니까?\n(2) 십 모형끼리 더한 것은 백 모형 몇 개와 십 모형 몇 개가 됩니까?\n(3) 백 모형끼리 더하면 몇 개입니까?\n(4) 262+271은 얼마입니까?',
+        },
+      },
+      solvable: {
+        'problem_type': 'base_ten_model_addition_multi_answer',
+        'understanding': {
+          'diagnostic_questions': [
+            {
+              'id': 'understand.regroup_tens',
+              'prompt': '십 모형 13개를 바르게 바꾼 것은 무엇인가요?',
+              'choices': [
+                '백 모형 1개와 십 모형 3개',
+                '백 모형 3개와 십 모형 1개',
+                '백 모형 1개와 십 모형 13개',
+              ],
+              'answer_index': 0,
+            },
+          ],
+        },
+        'steps': [
+          {
+            'id': 'step.add_ones',
+            'expr': '2+1',
+            'value': 3,
+            'explanation': '낱개 모형끼리 더하면 3개입니다.',
+          },
+          {
+            'id': 'step.add_direct_hundreds',
+            'expr': '2+2',
+            'value': 4,
+            'explanation': '두 수에 처음부터 있던 백 모형끼리 더하면 4개입니다.',
+          },
+          {
+            'id': 'step.compose_total',
+            'expr': '5×100+3×10+3',
+            'value': 533,
+            'explanation': '백 모형 5개, 십 모형 3개, 낱개 모형 3개는 533입니다.',
+          },
+        ],
+      },
+    );
+
+    final hints = service.buildHints(content);
+    expect(hints, isNotEmpty);
+    expect(hints[0].miniQuestion, contains('십 모형 13개를 바르게 바꾼 것은 무엇인가요?'));
+    expect(hints[0].choices.first.label, equals('백 모형 1개와 십 모형 3개'));
+    expect(hints[1].title, contains('낱개 모형끼리 더하기'));
+    expect(hints[1].acceptedAnswers, contains('3'));
+  });
 }

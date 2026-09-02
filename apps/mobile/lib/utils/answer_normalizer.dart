@@ -132,6 +132,12 @@ bool isSameAnswer(String submitted, String correct) {
     return true;
   }
 
+  // 7) 다중 선택형 보기 마커/내용 비교 (예: submitted="2. 565. 70" vs correct="25" 또는 "2 / 5")
+  if (_matchesMultipleChoiceSelections(submitted, correct) ||
+      _matchesMultipleChoiceSelections(correct, submitted)) {
+    return true;
+  }
+
   return false;
 }
 
@@ -209,6 +215,82 @@ bool _matchesUnorderedTokens(String submitted, String correct) {
           return true;
         }
       }
+    }
+  }
+
+  return false;
+}
+
+class _ExtractedChoiceItem {
+  final String marker;
+  final String content;
+  _ExtractedChoiceItem(this.marker, this.content);
+}
+
+List<_ExtractedChoiceItem> _extractMultipleChoiceTokens(String input) {
+  final items = <_ExtractedChoiceItem>[];
+  if (RegExp(r'[/,;|\n]').hasMatch(input)) {
+    final parts = input
+        .split(RegExp(r'[/,;|\n]+'))
+        .map((p) => p.trim())
+        .where((p) => p.isNotEmpty);
+    for (final part in parts) {
+      final marker = _extractLeadingChoiceMarker(part);
+      final body = _stripLeadingChoiceMarker(part);
+      if (marker != null || body != part) {
+        items.add(_ExtractedChoiceItem(marker ?? '', _cleanText(body)));
+      }
+    }
+    if (items.length >= 2) return items;
+  }
+
+  final pattern = RegExp(
+    r'(?:^|(?<=\S|\b))([①②③④⑤⑥⑦⑧⑨⑩㉠-㉭]|(?:\b|^)([1-9]|10)[.)]\s*|(?:\b|^)\(([1-9]|10|[ㄱ-ㅎ가-힣])\)\s*)([^\d\s①②③④⑤⑥⑦⑧⑨⑩㉠-㉭]+|\d+)?',
+  );
+  for (final match in pattern.allMatches(input)) {
+    final fullMarker = match.group(1) ?? '';
+    final marker =
+        _extractLeadingChoiceMarker(fullMarker) ?? _cleanText(fullMarker);
+    final content = _cleanText(match.group(4) ?? '');
+    if (marker.isNotEmpty) {
+      items.add(_ExtractedChoiceItem(marker, content));
+    }
+  }
+  return items;
+}
+
+bool _matchesMultipleChoiceSelections(String submitted, String correct) {
+  final items = _extractMultipleChoiceTokens(submitted);
+  if (items.length < 2) return false;
+
+  final markers = items.map((i) => i.marker).where((m) => m.isNotEmpty).toList();
+  final contents = items.map((i) => i.content).where((c) => c.isNotEmpty).toList();
+  final cleanCor = _cleanText(correct);
+  final corTokens = _extractMultiTokens(correct);
+
+  if (markers.isNotEmpty) {
+    final joinedMarkers = markers.join();
+    if (joinedMarkers == cleanCor ||
+        _isPermutationConcatenation(markers, cleanCor)) {
+      return true;
+    }
+    if (corTokens.isNotEmpty &&
+        Set.from(markers).containsAll(corTokens) &&
+        Set.from(corTokens).containsAll(markers)) {
+      return true;
+    }
+  }
+
+  if (contents.isNotEmpty) {
+    final joinedContents = contents.join();
+    if (joinedContents == cleanCor ||
+        _isPermutationConcatenation(contents, cleanCor)) {
+      return true;
+    }
+    if (corTokens.isNotEmpty &&
+        Set.from(contents).containsAll(corTokens) &&
+        Set.from(corTokens).containsAll(contents)) {
+      return true;
     }
   }
 

@@ -27,12 +27,12 @@ void main() {
     await tester.tap(find.text('62 x 50'));
     await tester.pumpAndSettle();
 
-    expect(draft, equals('80 x 4062 x 50'));
+    expect(draft, equals('80 x 40 / 62 x 50'));
 
     await tester.tap(find.byType(FilledButton));
     await tester.pumpAndSettle();
 
-    expect(submitted, equals('80 x 4062 x 50'));
+    expect(submitted, equals('80 x 40 / 62 x 50'));
   });
 
   testWidgets('allows selecting duplicate choice labels independently',
@@ -68,7 +68,7 @@ void main() {
     await tester.tap(find.byType(FilledButton));
     await tester.pumpAndSettle();
 
-    expect(submitted, equals('80 x 4080 x 40'));
+    expect(submitted, equals('80 x 40 / 80 x 40'));
   });
 
   testWidgets('allows selecting choice groups for multi-question problems',
@@ -247,7 +247,7 @@ void main() {
         .widgetList<ChoiceChip>(find.byType(ChoiceChip))
         .where((chip) => chip.selected);
     expect(selectedChips, hasLength(4));
-    expect(draft, equals('ㄱㄴㄷㄹ'));
+    expect(draft, equals('ㄱ / ㄴ / ㄷ / ㄹ'));
   });
 
   test('provides comparison operator choices >, =, < for comparison problems (P3_1_01_00040_15604, P3_1_01_00040_00471_1)', () {
@@ -2014,6 +2014,195 @@ void main() {
     expect(isSameAnswer(content.choices[1], '2'), isTrue);
     expect(isSameAnswer('28x19', content.correctAnswer), isTrue);
     expect(isSameAnswer('1. 35 × 13', content.correctAnswer), isFalse);
+  });
+
+  test('extracts Hangul symbol choices for choice_symbol problems (S3_초등_3_008780)', () {
+    const content = ProblemContent(
+      summary: ProblemSummary(
+        id: 'S3_초등_3_008780',
+        grade: 3,
+        subject: 'math',
+        unit: '들이와 무게',
+        type: 'compare_capacity_addition',
+        title: '계산하여 들이가 더 많은 것의 기호를 선택하세요',
+        path: '',
+        raw: {},
+      ),
+      semantic: {
+        'metadata': {'instruction': '계산하여 들이가 더 많은 것의 기호를 선택하세요.'},
+        'domain': {
+          'objects': [
+            {'id': 'obj.choice_a', 'type': 'expression', 'description': '4200 mL + 1400 mL'},
+            {'id': 'obj.choice_b', 'type': 'expression', 'description': '2 L 800 mL + 3 L 300 mL'},
+          ],
+        },
+        'answer': {
+          'target': {'type': 'choice_symbol', 'description': '들이가 더 많은 것의 기호'},
+          'value': 'ㄴ',
+        },
+      },
+      renderer: {},
+      solvable: {
+        'target': {'type': 'choice_symbol'},
+        'answer': {'value': 'ㄴ'},
+      },
+    );
+
+    expect(content.choices, equals(['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ']));
+    expect(isSameAnswer(content.choices[1], content.correctAnswer), isTrue);
+  });
+
+  test('extracts circled Hangul symbol choices for incorrect_weight_statement (S3_초등_3_008782)', () {
+    const content = ProblemContent(
+      summary: ProblemSummary(
+        id: 'S3_초등_3_008782',
+        grade: 3,
+        subject: 'math',
+        unit: '들이와 무게',
+        type: 'unit_conversion_mcq',
+        title: '무게의 단위를 잘못 나타낸 것을 찾아 기호를 선택하세요.',
+        path: '',
+        raw: {},
+      ),
+      semantic: {
+        'metadata': {'instruction': '보기 중 옳지 않은 단위를 고르기'},
+        'domain': {
+          'objects': [
+            {'id': 'obj.choice.1', 'symbol': '㉠', 'expression': '3 kg 40 g = 3040 g'},
+            {'id': 'obj.choice.2', 'symbol': '㉡', 'expression': '4000 kg = 4 t'},
+            {'id': 'obj.choice.3', 'symbol': '㉢', 'expression': '2 kg 700 g = 2070 g'},
+          ],
+        },
+        'answer': {
+          'target': {'type': 'incorrect_weight_statement'},
+          'value': '㉢',
+        },
+      },
+      renderer: {},
+      solvable: {},
+    );
+
+    expect(content.choices, equals(['㉠', '㉡', '㉢']));
+    expect(isSameAnswer(content.choices[2], content.correctAnswer), isTrue);
+    expect(isSameAnswer('ㄷ', content.correctAnswer), isTrue);
+  });
+
+  test('matches multi-choice selection of options 2 and 5 for S3_초등_3_008605', () {
+    const content = ProblemContent(
+      summary: ProblemSummary(
+        id: 'S3_초등_3_008605',
+        grade: 3,
+        subject: 'math',
+        unit: '나눗셈',
+        type: 'multiple_choice_divisibility',
+        title: '3으로 나누어떨어지는 수가 아닌 것',
+        path: '',
+        raw: {},
+      ),
+      renderer: {
+        'elements': [
+          {'id': 'slot.c1', 'type': 'text', 'text': '① 27'},
+          {'id': 'slot.c2', 'type': 'text', 'text': '② 56'},
+          {'id': 'slot.c3', 'type': 'text', 'text': '③ 84'},
+          {'id': 'slot.c4', 'type': 'text', 'text': '④ 63'},
+          {'id': 'slot.c5', 'type': 'text', 'text': '⑤ 70'},
+        ],
+      },
+      semantic: {
+        'answer': {
+          'target': {'type': 'selected_choices'},
+          'value': [2, 5],
+        },
+      },
+      solvable: {},
+    );
+
+    expect(
+      content.choices,
+      equals(['1. 27', '2. 56', '3. 84', '4. 63', '5. 70']),
+    );
+    expect(content.correctAnswer, equals('25'));
+    expect(isSameAnswer('2. 56 / 5. 70', content.correctAnswer), isTrue);
+    expect(isSameAnswer('2. 56, 5. 70', content.correctAnswer), isTrue);
+    expect(isSameAnswer('2, 5', content.correctAnswer), isTrue);
+    expect(isSameAnswer('5, 2', content.correctAnswer), isTrue);
+    expect(isSameAnswer('2. 56 / 3. 84', content.correctAnswer), isFalse);
+  });
+
+  test('resolves division expression and matches choice 3 for S3_초등_3_008621', () {
+    const content = ProblemContent(
+      summary: ProblemSummary(
+        id: 'S3_초등_3_008621',
+        grade: 3,
+        subject: 'math',
+        unit: '나눗셈',
+        type: 'multiple_choice',
+        title: '몫이 다른 하나를 찾아 선택하세요.',
+        path: '',
+        raw: {},
+      ),
+      renderer: {
+        'elements': [
+          {'id': 'slot.opt1', 'type': 'text', 'text': '24 ÷ 2'},
+          {'id': 'slot.opt2', 'type': 'text', 'text': '48 ÷ 4'},
+          {'id': 'slot.opt3', 'type': 'text', 'text': '77 ÷ 7'},
+        ],
+      },
+      semantic: {
+        'domain': {
+          'objects': [
+            {'id': 'obj.opt1', 'type': 'division_expression', 'expression': '24 ÷ 2'},
+            {'id': 'obj.opt2', 'type': 'division_expression', 'expression': '48 ÷ 4'},
+            {'id': 'obj.opt3', 'type': 'division_expression', 'expression': '77 ÷ 7'},
+          ],
+        },
+        'answer': {
+          'target': {'type': 'selected_option'},
+          'value': 77,
+        },
+      },
+      solvable: {},
+    );
+
+    expect(
+      content.choices,
+      equals(['1. 24 ÷ 2', '2. 48 ÷ 4', '3. 77 ÷ 7']),
+    );
+    expect(content.correctAnswer, equals('77 ÷ 7'));
+    expect(isSameAnswer('3. 77 ÷ 7', content.correctAnswer), isTrue);
+    expect(isSameAnswer(content.choices[2], content.correctAnswer), isTrue);
+    expect(isSameAnswer('77÷7', content.correctAnswer), isTrue);
+    expect(isSameAnswer('1. 24 ÷ 2', content.correctAnswer), isFalse);
+  });
+
+  test('renders juice bottle and milk carton labels for S3_초등_3_008755', () {
+    const content = ProblemContent(
+      summary: ProblemSummary(
+        id: 'S3_초등_3_008755',
+        grade: 3,
+        subject: 'math',
+        unit: '덧셈과 뺄셈',
+        type: 'unit_choice',
+        title: '주스병과 우유갑의 단위 선택',
+        path: '',
+        raw: {},
+      ),
+      renderer: {},
+      semantic: {
+        'answer': {
+          'choice_groups': [
+            {'label': '주스병', 'choices': ['L', 'mL']},
+            {'label': '우유갑', 'choices': ['L', 'mL']},
+          ],
+          'value': 'L, mL',
+        },
+      },
+      solvable: {},
+    );
+
+    expect(content.choiceGroups.length, equals(2));
+    expect(content.choiceGroups[0].label, equals('주스병'));
+    expect(content.choiceGroups[1].label, equals('우유갑'));
   });
 }
 

@@ -202,6 +202,9 @@ class ProblemContent {
         _ensureChoiceMarkers(_mergeAlternatingMarkerChoices(svgChoices)),
       );
     }
+    if (_isHangulSymbolChoiceProblem) {
+      return _hangulSymbolChoices;
+    }
     final givenChoices = _choicesFromSolvableGiven();
     if (givenChoices.isNotEmpty) {
       return _sortChoicesByLeadingMarker(
@@ -258,7 +261,28 @@ class ProblemContent {
     if (value is List) {
       return sanitizeProblemText(value.map(_answerValueText).join());
     }
-    return sanitizeProblemText(value?.toString() ?? '');
+    final rawVal = value?.toString().trim() ?? '';
+    if (rawVal.isNotEmpty) {
+      final domainObjects = _mapAt(semantic, 'domain')['objects'];
+      if (domainObjects is List && domainObjects.isNotEmpty) {
+        for (final obj in domainObjects) {
+          if (obj is Map) {
+            final expr =
+                (obj['expression'] ?? obj['text'])?.toString().trim() ?? '';
+            if (expr.isNotEmpty &&
+                (expr.startsWith('$rawVal ') ||
+                    expr.startsWith('$rawVal÷') ||
+                    expr.startsWith('$rawVal*') ||
+                    expr.startsWith('$rawVal×') ||
+                    expr.startsWith('$rawVal+') ||
+                    expr.startsWith('$rawVal-'))) {
+              return sanitizeProblemText(expr);
+            }
+          }
+        }
+      }
+    }
+    return sanitizeProblemText(rawVal);
   }
 
   List<SolutionStep> get steps {
@@ -770,6 +794,81 @@ class ProblemContent {
     }
     const markers = ['①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧', '⑨', '⑩'];
     return markers.take(count.clamp(2, 10)).toList();
+  }
+
+  bool get _isHangulSymbolChoiceProblem {
+    final answer = answerMap;
+    final val = answer['value']?.toString().trim() ?? '';
+    const hangulSymbols = {
+      'ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ',
+      '㉠', '㉡', '㉢', '㉣', '㉤', '㉥', '㉦', '㉧', '㉨', '㉩',
+    };
+    if (hangulSymbols.contains(val)) {
+      return true;
+    }
+
+    final target = _mapAt(solvable, 'target').isNotEmpty
+        ? _mapAt(solvable, 'target')
+        : _mapAt(answer, 'target');
+    final targetType = target['type']?.toString().toLowerCase() ?? '';
+    final targetDesc = (target['description'] ??
+            _mapAt(solvable, 'inputs')['target_label'] ??
+            '')
+        .toString();
+
+    if (targetType.contains('symbol') ||
+        targetType.contains('choice_label') ||
+        targetDesc.contains('기호') ||
+        prompt.contains('기호')) {
+      if (hangulSymbols.contains(val)) return true;
+      final domainObjects = _mapAt(semantic, 'domain')['objects'];
+      if (domainObjects is List && domainObjects.isNotEmpty) {
+        for (final obj in domainObjects) {
+          if (obj is Map) {
+            final sym =
+                (obj['symbol'] ?? obj['label'])?.toString().trim() ?? '';
+            if (hangulSymbols.contains(sym)) return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
+
+  List<String> get _hangulSymbolChoices {
+    final domainObjects = _mapAt(semantic, 'domain')['objects'];
+    final collected = <String>[];
+    bool isCircled = false;
+
+    if (domainObjects is List && domainObjects.isNotEmpty) {
+      for (final obj in domainObjects) {
+        if (obj is Map) {
+          final sym =
+              (obj['symbol'] ?? obj['label'])?.toString().trim() ?? '';
+          if (sym.isNotEmpty) {
+            if (RegExp(r'^[㉠-㉭]$').hasMatch(sym)) {
+              isCircled = true;
+              if (!collected.contains(sym)) collected.add(sym);
+            } else if (RegExp(r'^[ㄱ-ㅎ]$').hasMatch(sym)) {
+              if (!collected.contains(sym)) collected.add(sym);
+            }
+          }
+        }
+      }
+    }
+
+    final answerVal = answerMap['value']?.toString().trim() ?? '';
+    if (RegExp(r'^[㉠-㉭]$').hasMatch(answerVal)) {
+      isCircled = true;
+    }
+
+    if (collected.length >= 2) {
+      return collected;
+    }
+
+    const plainMarkers = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ'];
+    const circledMarkers = ['㉠', '㉡', '㉢', '㉣'];
+    return isCircled ? circledMarkers : plainMarkers;
   }
 
   bool get hasRendererAnswerInputs {

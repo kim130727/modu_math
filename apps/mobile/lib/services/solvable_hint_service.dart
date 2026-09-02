@@ -69,6 +69,11 @@ class SolvableHintService {
   }
 
   List<SolvableHint> _buildRawHints(ProblemContent content) {
+    final baseTenModelHints = _baseTenModelHints(content);
+    if (baseTenModelHints.isNotEmpty) {
+      return baseTenModelHints;
+    }
+
     final expandedAdditionHints = _expandedAdditionHints(content);
     if (expandedAdditionHints.isNotEmpty) {
       return expandedAdditionHints;
@@ -564,6 +569,134 @@ List<SolvableHint> _expandedAdditionHints(ProblemContent content) {
         successMessage: '맞아요! $expr = $numVal입니다.',
       ),
     );
+  }
+
+  return hints;
+}
+
+List<SolvableHint> _baseTenModelHints(ProblemContent content) {
+  final problemType =
+      (content.semantic['problem_type'] ?? content.solvable['problem_type'] ?? '')
+          .toString()
+          .toLowerCase();
+  final title = content.summary.title.toLowerCase();
+  final prompt = content.prompt.toLowerCase();
+  final isBaseTen = problemType.contains('base_ten_model') ||
+      title.contains('수 모형') ||
+      prompt.contains('수 모형');
+
+  if (!isBaseTen) {
+    return const [];
+  }
+
+  final hints = <SolvableHint>[];
+
+  final diagnosticHints = _diagnosticQuestionHints(content);
+  for (final hint in diagnosticHints) {
+    hints.add(
+      SolvableHint(
+        level: hints.length + 1,
+        title: '${hints.length + 1}단계: ${hint.title.replaceFirst(RegExp(r'^\d+단계:\s*'), '')}',
+        body: hint.body,
+        miniQuestion: hint.miniQuestion,
+        choices: hint.choices,
+        acceptedAnswers: hint.acceptedAnswers,
+        successMessage: hint.successMessage,
+      ),
+    );
+  }
+
+  final steps = content.solvable['steps'];
+  if (steps is List && steps.isNotEmpty) {
+    for (final step in steps) {
+      if (step is! Map) continue;
+      final stepId = step['id']?.toString() ?? '';
+      final expr = _readText(step['expr']);
+      final explanation = _readText(step['explanation']);
+      final val = step['value'];
+
+      String stepTitle = '';
+      String miniQ = '';
+      List<String> accepted = [];
+      List<HintChoice> choices = [];
+
+      if (stepId.contains('add_ones') || stepId.contains('ones')) {
+        stepTitle = '낱개 모형끼리 더하기 ($expr)';
+        miniQ = '낱개 모형끼리 더한 개수($expr)는 몇 개인가요?';
+      } else if (stepId.contains('regroup_tens') || stepId.contains('regroup')) {
+        stepTitle = '십 모형 묶어 백 모형으로 바꾸기 ($expr)';
+        miniQ = explanation.isNotEmpty ? explanation : '십 모형을 묶어 백 모형으로 바꾸어 보세요.';
+      } else if (stepId.contains('add_direct_hundreds') || stepId.contains('direct_hundreds')) {
+        stepTitle = '백 모형끼리 직접 더하기 ($expr)';
+        miniQ = '원래 있던 백 모형끼리 더한 개수($expr)는 몇 개인가요?';
+      } else if (stepId.contains('add_tens') || stepId.contains('tens')) {
+        stepTitle = '십 모형끼리 더하기 ($expr)';
+        miniQ = '십 모형끼리 더한 개수($expr)는 몇 개인가요?';
+      } else if (stepId.contains('add_carried_hundred') || stepId.contains('carried')) {
+        stepTitle = '받아올린 백 모형 합치기 ($expr)';
+        miniQ = '받아올린 모형을 합친 백 모형의 개수($expr)는 몇 개인가요?';
+      } else if (stepId.contains('compose_total') || stepId.contains('total')) {
+        stepTitle = '전체 합 완성하기';
+        miniQ = '수 모형으로 구한 최종 합($expr)은 얼마인가요?';
+      } else {
+        continue;
+      }
+
+      if (val is int || (val is String && int.tryParse(val) != null)) {
+        final intNum = _readInt(val)!;
+        accepted = ['$intNum', '$intNum개'];
+        final distractors = <int>[
+          intNum >= 10 ? intNum ~/ 10 : intNum + 1,
+          intNum >= 10 ? intNum + 10 : (intNum > 1 ? intNum - 1 : intNum + 2),
+          intNum >= 10 ? (intNum > 10 ? intNum - 10 : intNum * 10) : intNum * 10,
+        ];
+        choices = _numberChoices(intNum, distractors);
+      } else if (val is List && val.length == 2) {
+        accepted = ['${val[0]} / ${val[1]}', '백 모형 ${val[0]}개와 십 모형 ${val[1]}개', '${val[0]}', '${val[1]}'];
+        choices = [
+          HintChoice(label: '백 모형 ${val[0]}개와 십 모형 ${val[1]}개', isCorrect: true),
+          HintChoice(label: '백 모형 ${val[1]}개와 십 모형 ${val[0]}개'),
+          HintChoice(label: '백 모형 ${val[0]}개와 십 모형 ${val[0] + val[1]}개'),
+        ];
+      } else {
+        continue;
+      }
+
+      if (hints.any((h) => h.body == explanation || h.title.contains(stepTitle))) {
+        continue;
+      }
+
+      hints.add(
+        SolvableHint(
+          level: hints.length + 1,
+          title: '${hints.length + 1}단계: $stepTitle',
+          body: explanation.isNotEmpty ? explanation : '$expr을 계산해요.',
+          miniQuestion: miniQ,
+          choices: choices,
+          acceptedAnswers: accepted,
+          successMessage: '맞아요! $explanation',
+        ),
+      );
+    }
+  }
+
+  if (hints.isEmpty) {
+    final plan = content.solvable['plan'];
+    if (plan is List) {
+      for (var i = 0; i < plan.length; i++) {
+        final planItem = _readText(plan[i]);
+        if (planItem.isNotEmpty) {
+          hints.add(
+            SolvableHint(
+              level: i + 1,
+              title: '${i + 1}단계: 수 모형 확인하기',
+              body: planItem,
+              miniQuestion: '$planItem 순서대로 확인해 보세요.',
+            ),
+          );
+        }
+      }
+    }
   }
 
   return hints;

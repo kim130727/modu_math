@@ -594,7 +594,7 @@ String _selectedChoiceAnswer(List<String> choices, Set<int> selectedIndexes) {
   return choices.indexed
       .where((entry) => selectedIndexes.contains(entry.$1))
       .map((entry) => entry.$2)
-      .join();
+      .join(' / ');
 }
 
 class _ResultBanner extends StatelessWidget {
