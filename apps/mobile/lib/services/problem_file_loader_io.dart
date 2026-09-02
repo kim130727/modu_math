@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 Future<List<String>> loadLocalRendererPaths(String rootPath) async {
   final root = Directory(rootPath);
@@ -26,6 +27,14 @@ Future<String> loadLocalText(String path) async {
     throw MissingLocalContent(path);
   }
   return file.readAsString();
+}
+
+Future<Uint8List> loadLocalBytes(String path) async {
+  final file = File(path);
+  if (!await file.exists()) {
+    throw MissingLocalContent(path);
+  }
+  return file.readAsBytes();
 }
 
 String _normalizePath(String path) {

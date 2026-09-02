@@ -1,9 +1,16 @@
+import 'dart:typed_data';
+
 Future<List<String>> loadLocalRendererPaths(String rootPath) {
   throw UnsupportedError(
       'Local problem files are not available on this platform.');
 }
 
 Future<String> loadLocalText(String path) {
+  throw UnsupportedError(
+      'Local problem files are not available on this platform.');
+}
+
+Future<Uint8List> loadLocalBytes(String path) {
   throw UnsupportedError(
       'Local problem files are not available on this platform.');
 }

@@ -79,5 +79,43 @@ void main() {
       expect(isSameAnswer('나 물병', '나 병'), isTrue);
       expect(isSameAnswer('나', '나 물병'), isTrue);
     });
+
+    test('matches commutative multi-numeric addends regardless of order (P3_1_01_00040_15472)', () {
+      expect(isSameAnswer('415 / 334', '334 / 415'), isTrue);
+      expect(isSameAnswer('415 / 334', '334415'), isTrue);
+      expect(isSameAnswer('415, 334', '334, 415'), isTrue);
+      expect(isSameAnswer('415 334', '334 415'), isTrue);
+      expect(isSameAnswer('415334', '334415'), isTrue);
+      expect(isSameAnswer('334 / 415', '334415'), isTrue);
+      expect(isSameAnswer('415 / 325', '334 / 415'), isFalse);
+    });
+
+    test('matches expanded vertical addition partial sums (P3_1_01_00040_15598_1, P3_1_01_00040_15598_2)', () {
+      expect(isSameAnswer('9 / 50 / 700 / 759', '950700759'), isTrue);
+      expect(isSameAnswer('9, 50, 700, 759', '950700759'), isTrue);
+      expect(isSameAnswer('9 50 700 759', '950700759'), isTrue);
+      expect(isSameAnswer('950700759', '950700759'), isTrue);
+      expect(isSameAnswer('9 / 50 / 700 / 759', '9 / 50 / 700 / 759'), isTrue);
+
+      expect(isSameAnswer('7 / 90 / 500 / 597', '790500597'), isTrue);
+      expect(isSameAnswer('7, 90, 500, 597', '790500597'), isTrue);
+      expect(isSameAnswer('7 90 500 597', '790500597'), isTrue);
+      expect(isSameAnswer('790500597', '790500597'), isTrue);
+      expect(isSameAnswer('7 / 90 / 500 / 597', '7 / 90 / 500 / 597'), isTrue);
+    });
+
+    test('matches multi-blank partial sums and sequential addition answers (P3_1_01_00040_15621, P3_1_01_00040_02159, P3_1_01_00040_07644)', () {
+      expect(isSameAnswer('60 / 2 / 90 / 7 / 697', '602907697'), isTrue);
+      expect(isSameAnswer('60, 2, 90, 7, 697', '602907697'), isTrue);
+      expect(isSameAnswer('434 / 1131', '4341131'), isTrue);
+      expect(isSameAnswer('11 / 9', '119'), isTrue);
+      expect(isSameAnswer('7 / 9', '79'), isTrue);
+      expect(isSameAnswer('4 / 7', '47'), isTrue);
+      expect(isSameAnswer('5 / 2 / 1 / 7', '5217'), isTrue);
+      expect(isSameAnswer('5, 2, 1, 7', '5217'), isTrue);
+      expect(isSameAnswer('5 2 1 7', '5217'), isTrue);
+      expect(isSameAnswer('5217', '5217'), isTrue);
+      expect(isSameAnswer('5 / 2 / 1 / 7', '5, 2, 1, 7'), isTrue);
+    });
   });
 }

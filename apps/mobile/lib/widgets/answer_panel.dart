@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
+import '../utils/answer_normalizer.dart';
 import 'math_keypad.dart';
 
 class AnswerPanel extends StatefulWidget {
@@ -28,10 +29,55 @@ class AnswerPanel extends StatefulWidget {
 
 class _AnswerPanelState extends State<AnswerPanel> {
   final TextEditingController controller = TextEditingController();
+  final List<TextEditingController> multiControllers = [];
   int? selectedChoiceIndex;
   Set<int> selectedChoiceIndexes = {};
   Map<int, int> selectedGroupChoices = {};
   bool _showKeypad = false;
+
+  void _syncMultiControllers() {
+    final fields = widget.content.multiAnswerFields;
+    if (fields.isEmpty) {
+      if (multiControllers.isNotEmpty) {
+        for (final c in multiControllers) {
+          c.dispose();
+        }
+        multiControllers.clear();
+      }
+      return;
+    }
+    while (multiControllers.length < fields.length) {
+      multiControllers.add(TextEditingController());
+    }
+    while (multiControllers.length > fields.length) {
+      multiControllers.removeLast().dispose();
+    }
+    final tokens = _extractTokensFromFormattedInput(widget.answerDraft);
+    if (tokens.isNotEmpty) {
+      for (var i = 0; i < fields.length; i++) {
+        final token = i < tokens.length ? tokens[i] : '';
+        if (multiControllers[i].text != token) {
+          multiControllers[i].text = token;
+        }
+      }
+    }
+  }
+
+  static List<String> _extractTokensFromFormattedInput(String raw) {
+    final trimmed = raw.trim();
+    if (trimmed.isEmpty) return const [];
+    if (RegExp(r'[/,;|\s]').hasMatch(trimmed)) {
+      final tokens = trimmed
+          .split(RegExp(r'[/,;|\s]+'))
+          .map((t) => t.trim())
+          .where((t) => t.isNotEmpty)
+          .toList();
+      if (tokens.length > 1) {
+        return tokens;
+      }
+    }
+    return const [];
+  }
 
   /// Returns a human-readable version of [raw] by splitting it into segments
   /// whose lengths match the answer_key values in [content].
@@ -40,6 +86,7 @@ class _AnswerPanelState extends State<AnswerPanel> {
   /// one segment.
   static String _formatAnswerDraft(String raw, ProblemContent content) {
     if (raw.isEmpty) return raw;
+    if (raw.contains('/') || raw.contains(',')) return raw;
 
     final answerMap = content.answerMap;
     final key = answerMap['answer_key'];
@@ -70,15 +117,40 @@ class _AnswerPanelState extends State<AnswerPanel> {
     return parts.join(' / ');
   }
 
+  void _syncSelectedChoice() {
+    final choices = widget.content.choices;
+    if (choices.isNotEmpty && widget.answerDraft.isNotEmpty) {
+      final draft = widget.answerDraft.trim();
+      var idx = choices.indexOf(draft);
+      if (idx < 0) {
+        for (var i = 0; i < choices.length; i++) {
+          if (isSameAnswer(choices[i], draft)) {
+            idx = i;
+            break;
+          }
+        }
+      }
+      if (idx >= 0 && selectedChoiceIndex != idx) {
+        selectedChoiceIndex = idx;
+      }
+    } else if (widget.answerDraft.isEmpty && selectedChoiceIndex != null) {
+      selectedChoiceIndex = null;
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     controller.text = _formatAnswerDraft(widget.answerDraft, widget.content);
+    _syncSelectedChoice();
+    _syncMultiControllers();
   }
 
   @override
   void didUpdateWidget(covariant AnswerPanel oldWidget) {
     super.didUpdateWidget(oldWidget);
+    _syncSelectedChoice();
+    _syncMultiControllers();
     final formatted = _formatAnswerDraft(widget.answerDraft, widget.content);
     if (formatted == controller.text) {
       return;
@@ -92,6 +164,9 @@ class _AnswerPanelState extends State<AnswerPanel> {
   @override
   void dispose() {
     controller.dispose();
+    for (final c in multiControllers) {
+      c.dispose();
+    }
     super.dispose();
   }
 
@@ -101,8 +176,9 @@ class _AnswerPanelState extends State<AnswerPanel> {
     final choices = widget.content.choices;
     final strings = AppStrings.of(context);
     final allowsMultipleChoices = _allowsMultipleChoices(widget.content);
-    final hasVisual = widget.content.renderer.isNotEmpty ||
-        widget.content.svg.isNotEmpty;
+    final hasVisual =
+        widget.content.renderer.isNotEmpty || widget.content.svg.isNotEmpty;
+    final hasRendererAnswerInputs = widget.content.hasRendererAnswerInputs;
 
     final String titleText;
     if (!hasVisual) {
@@ -110,9 +186,11 @@ class _AnswerPanelState extends State<AnswerPanel> {
     } else if (choiceGroups.isNotEmpty) {
       titleText = '각 항목에 알맞은 정답을 선택하세요';
     } else if (choices.isNotEmpty) {
-      titleText = allowsMultipleChoices
-          ? '알맞은 정답을 모두 선택하세요'
-          : '알맞은 정답을 선택하세요';
+      titleText = allowsMultipleChoices ? '알맞은 정답을 모두 선택하세요' : '알맞은 정답을 선택하세요';
+    } else if (hasRendererAnswerInputs) {
+      titleText = '문제의 빈칸에 정답을 입력하세요';
+    } else if (widget.content.multiAnswerFields.isNotEmpty) {
+      titleText = '각 물음에 알맞은 정답을 입력하세요';
     } else {
       titleText = '정답을 입력하세요';
     }
@@ -222,74 +300,144 @@ class _AnswerPanelState extends State<AnswerPanel> {
                   const SizedBox(height: 16),
               ],
             ] else if (choices.isEmpty) ...[
-              TextField(
-                controller: controller,
-                style: const TextStyle(
-                    fontSize: 20, fontWeight: FontWeight.w600),
-                decoration: InputDecoration(
-                  labelText: targetUnit != null
-                      ? '${strings.t('answer.inputLabel')} ($targetUnit)'
-                      : strings.t('answer.inputLabel'),
-                  suffixText: targetUnit,
-                  suffixStyle: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF4B5563),
+              if (widget.content.hasMultipleRendererAnswerInputs)
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 12,
                   ),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _showKeypad
-                          ? Icons.keyboard_hide_rounded
-                          : Icons.dialpad_rounded,
-                      color: const Color(0xFF5C6AC4),
-                    ),
-                    tooltip: '수학 키패드',
-                    onPressed: () =>
-                        setState(() => _showKeypad = !_showKeypad),
-                  ),
-                  border: OutlineInputBorder(
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFF5F7FF),
                     borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: const Color(0xFFD9DFFF)),
                   ),
+                  child: const Row(
+                    children: [
+                      Icon(
+                        Icons.touch_app_outlined,
+                        color: Color(0xFF5C6AC4),
+                        size: 21,
+                      ),
+                      SizedBox(width: 10),
+                      Expanded(
+                        child: Text(
+                          '왼쪽 문제의 빈칸을 순서대로 입력한 뒤 정답을 확인하세요.',
+                          style: TextStyle(
+                            color: Color(0xFF4B5563),
+                            fontSize: 15,
+                            height: 1.4,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              else if (widget.content.multiAnswerFields.isNotEmpty) ...[
+                for (final (i, field) in widget.content.multiAnswerFields.indexed) ...[
+                  TextField(
+                    key: ValueKey('multi-input-field-$i'),
+                    controller: multiControllers[i],
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    decoration: InputDecoration(
+                      labelText: field.unit.isNotEmpty
+                          ? '${field.label} (${field.unit})'
+                          : field.label,
+                      suffixText: field.unit.isNotEmpty ? field.unit : null,
+                      suffixStyle: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF4B5563),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 12,
+                      ),
+                    ),
+                    onChanged: (text) {
+                      final combined = multiControllers
+                          .map((c) => c.text.trim())
+                          .join(' / ');
+                      widget.onAnswerChanged(combined);
+                    },
+                  ),
+                  if (i < widget.content.multiAnswerFields.length - 1)
+                    const SizedBox(height: 12),
+                ],
+              ] else ...[
+                TextField(
+                  controller: controller,
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.w600),
+                  decoration: InputDecoration(
+                    labelText: targetUnit != null
+                        ? '${strings.t('answer.inputLabel')} ($targetUnit)'
+                        : strings.t('answer.inputLabel'),
+                    suffixText: targetUnit,
+                    suffixStyle: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF4B5563),
+                    ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _showKeypad
+                            ? Icons.keyboard_hide_rounded
+                            : Icons.dialpad_rounded,
+                        color: const Color(0xFF5C6AC4),
+                      ),
+                      tooltip: '수학 키패드',
+                      onPressed: () =>
+                          setState(() => _showKeypad = !_showKeypad),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  onChanged: widget.onAnswerChanged,
+                  onSubmitted: widget.onSubmit,
                 ),
-                onChanged: widget.onAnswerChanged,
-                onSubmitted: widget.onSubmit,
-              ),
-              if (_showKeypad) ...[
-                const SizedBox(height: 12),
-                MathKeypad(
-                  mode: MathKeypadMode.digits,
-                  showNextButton: false,
-                  onKeyPressed: (digit) {
-                    final current = controller.text;
-                    final next = '$current$digit';
-                    controller.text = next;
-                    controller.selection =
-                        TextSelection.collapsed(offset: next.length);
-                    widget.onAnswerChanged(next);
-                  },
-                  onBackspace: () {
-                    final current = controller.text;
-                    if (current.isNotEmpty) {
-                      final next = current.substring(0, current.length - 1);
+                if (_showKeypad) ...[
+                  const SizedBox(height: 12),
+                  MathKeypad(
+                    mode: MathKeypadMode.digits,
+                    showNextButton: false,
+                    onKeyPressed: (digit) {
+                      final current = controller.text;
+                      final next = '$current$digit';
                       controller.text = next;
                       controller.selection =
                           TextSelection.collapsed(offset: next.length);
                       widget.onAnswerChanged(next);
-                    }
-                  },
-                  onClear: () {
-                    controller.clear();
-                    widget.onAnswerChanged('');
-                  },
-                  onSubmit: () {
-                    if (controller.text.trim().isNotEmpty) {
-                      widget.onSubmit(controller.text.trim());
-                    }
-                  },
-                ),
+                    },
+                    onBackspace: () {
+                      final current = controller.text;
+                      if (current.isNotEmpty) {
+                        final next = current.substring(0, current.length - 1);
+                        controller.text = next;
+                        controller.selection =
+                            TextSelection.collapsed(offset: next.length);
+                        widget.onAnswerChanged(next);
+                      }
+                    },
+                    onClear: () {
+                      controller.clear();
+                      widget.onAnswerChanged('');
+                    },
+                    onSubmit: () {
+                      if (controller.text.trim().isNotEmpty) {
+                        widget.onSubmit(controller.text.trim());
+                      }
+                    },
+                  ),
+                ],
               ],
-            ]
-            else
+            ] else
               Wrap(
                 spacing: 10,
                 runSpacing: 10,
@@ -366,7 +514,15 @@ class _AnswerPanelState extends State<AnswerPanel> {
                     selectedGroupChoices,
                   );
                 } else if (choices.isEmpty) {
-                  answer = controller.text;
+                  if (widget.content.hasMultipleRendererAnswerInputs) {
+                    answer = widget.answerDraft;
+                  } else if (widget.content.multiAnswerFields.isNotEmpty) {
+                    answer = multiControllers
+                        .map((c) => c.text.trim())
+                        .join(' / ');
+                  } else {
+                    answer = controller.text;
+                  }
                 } else if (allowsMultipleChoices) {
                   answer =
                       _selectedChoiceAnswer(choices, selectedChoiceIndexes);

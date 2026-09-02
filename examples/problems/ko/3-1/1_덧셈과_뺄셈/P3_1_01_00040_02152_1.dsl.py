@@ -21,6 +21,53 @@ def _rect_slot(id: str, x: float, y: float, width: float, height: float, fill: s
     return RectSlot(id=id, x=x, y=y, width=width, height=height, fill=fill, stroke=stroke, stroke_width=stroke_width)
 
 
+def _answer_input_slot(
+    id: str,
+    x: float,
+    y: float,
+    width: float,
+    *,
+    order: int,
+    max_length: int = 1,
+) -> RectSlot:
+    return RectSlot(
+        id=id,
+        x=x,
+        y=y,
+        width=width,
+        height=38,
+        rx=6,
+        ry=6,
+        fill="#ffffff",
+        stroke="#5C6AC4",
+        stroke_width=1.6,
+        prompt="숫자를 입력하세요.",
+        interaction={
+            "type": "input",
+            "role": "answer",
+            "value_type": "digit" if max_length == 1 else "integer",
+            "max_length": max_length,
+            "keyboard": "number",
+            "include_in_submission": True,
+            "order": order,
+            "group_id": "final_answer",
+            "answer_key_index": order,
+            "answer_ref": f"answer_key[{order}]",
+            "auto_advance": max_length == 1,
+        },
+        input_style={
+            "font_size_mode": "auto",
+            "min_font_size": 16,
+            "max_font_size": 28,
+            "font_weight": 700,
+            "horizontal_align": "center",
+            "vertical_align": "middle",
+            "padding": 3,
+            "text_color": "#202124",
+        },
+    )
+
+
 def _segments_path(segments: list[tuple[float, float, float, float]]) -> str:
     return " ".join(f"M {x1:g} {y1:g} L {x2:g} {y2:g}" for x1, y1, x2, y2 in segments)
 
@@ -190,6 +237,13 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.answer_2",
                     "slot.answer_3",
                     "slot.answer_4",
+                    "slot.answer.ones_to_tens",
+                    "slot.answer.remaining_ones",
+                    "slot.answer.tens_to_hundreds",
+                    "slot.answer.remaining_tens",
+                    "slot.answer.hundreds_to_thousands",
+                    "slot.answer.remaining_hundreds",
+                    "slot.answer.total_books",
                 ),
             ),
         ),
@@ -321,8 +375,11 @@ def build_problem_template() -> ProblemTemplate:
                 y=470,
                 width=844,
                 height = 61, text=(
-                    "(1) 낱개 모형끼리 더하면 십 모형 (   )개와 "
-                    "낱개 모형 (   )개입니다."
+                    "(1) 낱개 모형끼리 더하면 십 모형 "
+                    "      "
+                    "개와 낱개 모형 "
+                    "      "
+                    "개입니다."
                 ),
                 font_size=21,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
@@ -336,8 +393,11 @@ def build_problem_template() -> ProblemTemplate:
                 y=516,
                 width=844,
                 height = 61, text=(
-                    "(2) 십 모형끼리 더하면 백 모형 (   )개와 "
-                    "십 모형 (   )개입니다."
+                    "(2) 십 모형끼리 더하면 백 모형 "
+                    "      "
+                    "개와 십 모형 "
+                    "      "
+                    "개입니다."
                 ),
                 font_size=21,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
@@ -351,8 +411,11 @@ def build_problem_template() -> ProblemTemplate:
                 y=562,
                 width=844,
                 height = 61, text=(
-                    "(3) 백 모형끼리 더하면 천 모형 (   )개와 "
-                    "백 모형 (   )개입니다."
+                    "(3) 백 모형끼리 더하면 천 모형 "
+                    "      "
+                    "개와 백 모형 "
+                    "      "
+                    "개입니다."
                 ),
                 font_size=21,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
@@ -366,12 +429,33 @@ def build_problem_template() -> ProblemTemplate:
                 y=608,
                 width=844,
                 height=42,
-                text="(4) 도서관의 책 수는 모두 (     )권입니다.",
+                text="(4) 도서관의 책 수는 모두 " "        " "권입니다.",
                 font_size=21,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 align="left",
                 valign="middle",
+            ),
+            _answer_input_slot(
+                "slot.answer.ones_to_tens", 384, 482, 46, order=0
+            ),
+            _answer_input_slot(
+                "slot.answer.remaining_ones", 598, 482, 46, order=1
+            ),
+            _answer_input_slot(
+                "slot.answer.tens_to_hundreds", 363, 528, 46, order=2
+            ),
+            _answer_input_slot(
+                "slot.answer.remaining_tens", 553, 528, 46, order=3
+            ),
+            _answer_input_slot(
+                "slot.answer.hundreds_to_thousands", 365, 574, 46, order=4
+            ),
+            _answer_input_slot(
+                "slot.answer.remaining_hundreds", 555, 574, 46, order=5
+            ),
+            _answer_input_slot(
+                "slot.answer.total_books", 310, 604, 62, order=6, max_length=4
             ),
         ),
     )

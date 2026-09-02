@@ -119,23 +119,26 @@ class ProblemContent {
     final answer = answerMap;
     final rawGroups = answer['choice_groups'];
     if (rawGroups is List && rawGroups.isNotEmpty) {
-      return rawGroups.map((group) {
-        if (group is Map<String, dynamic>) {
-          final label = group['label']?.toString() ?? '';
-          final rawChoices = group['choices'];
-          final choices = rawChoices is List
-              ? rawChoices
-                  .map((c) => sanitizeProblemText(c.toString()))
-                  .toList()
-              : <String>[];
-          return ChoiceGroup(label: label, choices: choices);
-        } else if (group is List) {
-          final choices =
-              group.map((c) => sanitizeProblemText(c.toString())).toList();
-          return ChoiceGroup(label: '', choices: choices);
-        }
-        return const ChoiceGroup(label: '', choices: []);
-      }).where((g) => g.choices.isNotEmpty).toList();
+      return rawGroups
+          .map((group) {
+            if (group is Map<String, dynamic>) {
+              final label = group['label']?.toString() ?? '';
+              final rawChoices = group['choices'];
+              final choices = rawChoices is List
+                  ? rawChoices
+                      .map((c) => sanitizeProblemText(c.toString()))
+                      .toList()
+                  : <String>[];
+              return ChoiceGroup(label: label, choices: choices);
+            } else if (group is List) {
+              final choices =
+                  group.map((c) => sanitizeProblemText(c.toString())).toList();
+              return ChoiceGroup(label: '', choices: choices);
+            }
+            return const ChoiceGroup(label: '', choices: []);
+          })
+          .where((g) => g.choices.isNotEmpty)
+          .toList();
     }
     return const [];
   }
@@ -144,22 +147,21 @@ class ProblemContent {
     if (choiceGroups.isNotEmpty) {
       return choiceGroups.expand((g) => g.choices).toList();
     }
+    if (_isComparisonOperatorProblem) {
+      return const ['>', '=', '<'];
+    }
     final answer = answerMap;
     final explicitChoices = answer['choices'];
     if (explicitChoices is List && explicitChoices.isNotEmpty) {
-      final list = explicitChoices.map((choice) {
-        if (choice is Map<String, dynamic>) {
-          return sanitizeProblemText(
-            choice['value']?.toString() ??
-                choice['label']?.toString() ??
-                choice.toString(),
-          );
-        }
-        return sanitizeProblemText(choice.toString());
-      }).toList();
-      return _mergeAlternatingMarkerChoices(list);
+      final list = explicitChoices.map(_choiceText).toList();
+      return _sortChoicesByLeadingMarker(
+        _mergeAlternatingMarkerChoices(list),
+      );
     }
-    if (_hasRendererAnswerInputs()) {
+    if (_isNumberedOptionChoiceProblem) {
+      return _numberedOptionChoices;
+    }
+    if (hasRendererAnswerInputs) {
       return const [];
     }
     final answerType = answer['type']?.toString().toLowerCase() ?? '';
@@ -169,17 +171,12 @@ class ProblemContent {
     final rawOptions = answer['options'] ??
         (answerType == 'choice' ? _mapAt(solvable, 'inputs')['options'] : null);
     if (rawOptions is List && rawOptions.isNotEmpty) {
-      final list = rawOptions.map((choice) {
-        if (choice is Map<String, dynamic>) {
-          return sanitizeProblemText(
-            choice['value']?.toString() ??
-                choice['label']?.toString() ??
-                choice.toString(),
-          );
-        }
-        return sanitizeProblemText(choice.toString());
-      }).toList();
-      return _mergeAlternatingMarkerChoices(list);
+      final list = rawOptions.map(_choiceText).toList();
+      return _sortChoicesByLeadingMarker(
+        _ensureChoiceMarkers(
+          _mergeAlternatingMarkerChoices(list),
+        ),
+      );
     }
     if (_isOxJudgmentProblem) {
       return const ['O', 'X'];
@@ -193,15 +190,23 @@ class ProblemContent {
     }
     final rendererChoices = _choicesFromRenderer();
     if (rendererChoices.isNotEmpty) {
-      return _ensureChoiceMarkers(_mergeAlternatingMarkerChoices(rendererChoices));
+      return _sortChoicesByLeadingMarker(
+        _ensureChoiceMarkers(
+          _mergeAlternatingMarkerChoices(rendererChoices),
+        ),
+      );
     }
     final svgChoices = _choicesFromSvg();
     if (svgChoices.isNotEmpty) {
-      return _ensureChoiceMarkers(_mergeAlternatingMarkerChoices(svgChoices));
+      return _sortChoicesByLeadingMarker(
+        _ensureChoiceMarkers(_mergeAlternatingMarkerChoices(svgChoices)),
+      );
     }
     final givenChoices = _choicesFromSolvableGiven();
     if (givenChoices.isNotEmpty) {
-      return _ensureChoiceMarkers(_mergeAlternatingMarkerChoices(givenChoices));
+      return _sortChoicesByLeadingMarker(
+        _ensureChoiceMarkers(_mergeAlternatingMarkerChoices(givenChoices)),
+      );
     }
     return const [];
   }
@@ -369,8 +374,8 @@ class ProblemContent {
         while (i + 1 < row.length) {
           final next = row[i + 1];
           final dx = next.x - current.x;
-          final sameGroup = current.groupKey.isNotEmpty &&
-              current.groupKey == next.groupKey;
+          final sameGroup =
+              current.groupKey.isNotEmpty && current.groupKey == next.groupKey;
           final isShortMarker = RegExp(
             r'^(?:[①②③④⑤⑥⑦⑧⑨⑩㉠-㉭]|\d+[.)]?|\([1-9]\)|\([가-힣]\)|\([ㄱ-ㅎ]\)|[ㄱ-ㅎ가-힣][.)]?)$',
           ).hasMatch(currentText);
@@ -385,7 +390,8 @@ class ProblemContent {
               x: next.x,
               y: next.y,
               text: currentText,
-              groupKey: next.groupKey.isNotEmpty ? next.groupKey : current.groupKey,
+              groupKey:
+                  next.groupKey.isNotEmpty ? next.groupKey : current.groupKey,
             );
             i++;
           } else {
@@ -450,7 +456,8 @@ class ProblemContent {
                   identity.contains('person_name') ||
                   identity.contains('name.text'))) ||
           RegExp(r'slot\.c[1-5](?:[._]|$)').hasMatch(identity) ||
-          RegExp(r'slot\.(?:choice|opt|option|v|item)[_.]?\d+').hasMatch(identity) ||
+          RegExp(r'slot\.(?:choice|opt|option|v|item)[_.]?\d+')
+              .hasMatch(identity) ||
           identity.contains('choice_label') ||
           identity.contains('symbol_label') ||
           semanticRole == 'symbol_label' ||
@@ -535,8 +542,8 @@ class ProblemContent {
         while (i + 1 < row.length) {
           final next = row[i + 1];
           final dx = next.x - current.x;
-          final sameGroup = current.groupKey.isNotEmpty &&
-              current.groupKey == next.groupKey;
+          final sameGroup =
+              current.groupKey.isNotEmpty && current.groupKey == next.groupKey;
           final isShortMarker = RegExp(
             r'^(?:[①②③④⑤⑥⑦⑧⑨⑩㉠-㉭]|\d+[.)]?|\([1-9]\)|\([가-힣]\)|\([ㄱ-ㅎ]\)|[ㄱ-ㅎ가-힣][.)]?)$',
           ).hasMatch(currentText);
@@ -551,7 +558,8 @@ class ProblemContent {
               x: next.x,
               y: next.y,
               text: currentText,
-              groupKey: next.groupKey.isNotEmpty ? next.groupKey : current.groupKey,
+              groupKey:
+                  next.groupKey.isNotEmpty ? next.groupKey : current.groupKey,
             );
             i++;
           } else {
@@ -685,7 +693,86 @@ class ProblemContent {
         (isOxAnswer || isOxPrompt);
   }
 
-  bool _hasRendererAnswerInputs() {
+  bool get _isComparisonOperatorProblem {
+    final answer = answerMap;
+    final value = answer['value'];
+    if (value == '>' ||
+        value == '<' ||
+        value == '=' ||
+        (value is List &&
+            value.length == 1 &&
+            (value.first == '>' || value.first == '<' || value.first == '='))) {
+      return true;
+    }
+    final answerType = answer['type']?.toString().toLowerCase() ?? '';
+    if (answerType == 'comparison_operator') {
+      return true;
+    }
+    final metadataMap = _mapAt(semantic, 'metadata');
+    final question = (metadataMap['question'] ?? prompt).toString();
+    if (question.contains('○') &&
+        (question.contains('>') ||
+            question.contains('<') ||
+            question.contains('='))) {
+      return true;
+    }
+    final problemType =
+        (semantic['problem_type'] ?? '').toString().toLowerCase();
+    if (problemType.contains('comparison') || problemType.contains('compare')) {
+      final correct = correctAnswer.trim();
+      if (correct == '>' || correct == '<' || correct == '=') {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  bool get _isNumberedOptionChoiceProblem {
+    final answer = answerMap;
+    final targetLabel =
+        (_mapAt(solvable, 'inputs')['target_label'] ?? '').toString();
+    final targetType =
+        (_mapAt(solvable, 'target')['type'] ?? '').toString().toLowerCase();
+    final value = answer['value'];
+    final isIntVal = value is int ||
+        (value is String &&
+            int.tryParse(value) != null &&
+            int.parse(value) >= 1 &&
+            int.parse(value) <= 10);
+
+    if (targetLabel.contains('번호') ||
+        targetType == 'choice_number' ||
+        targetType == 'choice_order') {
+      return true;
+    }
+    if (targetType == 'choice' && isIntVal) {
+      return true;
+    }
+    return false;
+  }
+
+  List<String> get _numberedOptionChoices {
+    final rawOptions = answerMap['options'] ??
+        (_mapAt(solvable, 'inputs')['options']);
+    int count = 5;
+    if (rawOptions is List && rawOptions.isNotEmpty) {
+      count = rawOptions.length;
+    } else {
+      final domainObjects = _mapAt(semantic, 'domain')['objects'];
+      if (domainObjects is List && domainObjects.isNotEmpty) {
+        final choiceObjs = domainObjects
+            .where((obj) =>
+                obj is Map &&
+                obj['id']?.toString().contains('choice') == true)
+            .toList();
+        if (choiceObjs.isNotEmpty) count = choiceObjs.length;
+      }
+    }
+    const markers = ['①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧', '⑨', '⑩'];
+    return markers.take(count.clamp(2, 10)).toList();
+  }
+
+  bool get hasRendererAnswerInputs {
     final elements = renderer['elements'];
     if (elements is! List) return false;
     for (final element in elements.whereType<Map<String, dynamic>>()) {
@@ -700,6 +787,93 @@ class ProblemContent {
     return false;
   }
 
+  bool get hasMultipleRendererAnswerInputs {
+    final answerMap = this.answerMap;
+    final answerKey = answerMap['answer_key'];
+    if (answerKey is List && answerKey.length >= 2) {
+      return true;
+    }
+    final elements = renderer['elements'];
+    if (elements is! List) return false;
+    int count = 0;
+    for (final element in elements.whereType<Map<String, dynamic>>()) {
+      final interaction = _mapAt(element, 'interaction');
+      final role = interaction['role']?.toString().toLowerCase();
+      final type = element['type']?.toString();
+      if (role == 'answer' ||
+          (type == 'rect' && interaction['type']?.toString() == 'input')) {
+        count++;
+      }
+    }
+    return count >= 2;
+  }
+
+  List<AnswerInputField> get multiAnswerFields {
+    if (hasRendererAnswerInputs || choices.isNotEmpty) return const [];
+
+    final answer = answerMap;
+    final answerValues = answer['values'];
+    final unknowns =
+        _mapAt(solvable, 'inputs')['unknowns'] ?? solvable['unknowns'];
+
+    if (answerValues is List && answerValues.length >= 2) {
+      final fields = <AnswerInputField>[];
+      for (var i = 0; i < answerValues.length; i++) {
+        final valEntry = answerValues[i];
+        final unit =
+            (valEntry is Map ? valEntry['unit'] : null)?.toString() ?? '';
+        final targetRef =
+            (valEntry is Map ? valEntry['target_ref'] : null)?.toString() ?? '';
+
+        String label = '';
+        if (unknowns is List) {
+          for (final unk in unknowns) {
+            if (unk is Map && (unk['ref'] == targetRef)) {
+              label = unk['label']?.toString() ?? '';
+              break;
+            }
+          }
+        }
+        if (label.isEmpty) {
+          label = '문제 (${i + 1})';
+        }
+        fields.add(AnswerInputField(
+          id: 'field_$i',
+          label: label,
+          unit: unit,
+        ));
+      }
+      return fields;
+    }
+
+    if (unknowns is List && unknowns.length >= 2) {
+      final fields = <AnswerInputField>[];
+      for (var i = 0; i < unknowns.length; i++) {
+        final unk = unknowns[i];
+        if (unk is Map) {
+          fields.add(AnswerInputField(
+            id: 'field_$i',
+            label: unk['label']?.toString() ?? '문제 (${i + 1})',
+            unit: unk['unit']?.toString() ?? '',
+          ));
+        }
+      }
+      return fields;
+    }
+
+    final val = answer['value'];
+    if (val is List && val.length >= 2) {
+      return val.indexed.map((entry) {
+        return AnswerInputField(
+          id: 'field_${entry.$1}',
+          label: '문제 (${entry.$1 + 1})',
+        );
+      }).toList();
+    }
+
+    return const [];
+  }
+
   List<String> _choicesFromSolvableGiven() {
     final given = solvable['given'];
     if (given is! List || given.isEmpty) {
@@ -711,7 +885,7 @@ class ProblemContent {
     if (blanks is List && blanks.isNotEmpty) {
       return const [];
     }
-    if (_hasRendererAnswerInputs() && !_isChoiceProblem) {
+    if (hasRendererAnswerInputs && !_isChoiceProblem) {
       return const [];
     }
 
@@ -756,6 +930,81 @@ class ProblemContent {
     }
     return choices;
   }
+}
+
+String _choiceText(Object? choice) {
+  if (choice is! Map) {
+    return sanitizeProblemText(choice?.toString() ?? '');
+  }
+
+  final text = choice['text']?.toString().trim() ?? '';
+  final label = choice['label']?.toString().trim() ?? '';
+  final expression = choice['expression']?.toString().trim() ?? '';
+  final number = choice['number']?.toString().trim() ?? '';
+  final value = choice['value']?.toString().trim() ?? '';
+
+  final mainText = text.isNotEmpty
+      ? text
+      : expression.isNotEmpty
+          ? expression
+          : value.isNotEmpty
+              ? value
+              : '';
+
+  final marker = label.isNotEmpty
+      ? label
+      : number.isNotEmpty
+          ? number
+          : '';
+
+  if (mainText.isNotEmpty) {
+    final trimmedMain = mainText.trim();
+    bool alreadyHasMarker = false;
+    if (marker.isNotEmpty) {
+      if (trimmedMain == marker) {
+        alreadyHasMarker = true;
+      } else if (RegExp(r'^[0-9]+$').hasMatch(marker)) {
+        alreadyHasMarker = trimmedMain.startsWith('$marker.') ||
+            trimmedMain.startsWith('$marker)') ||
+            trimmedMain.startsWith('($marker)') ||
+            trimmedMain.startsWith('$marker ');
+      } else if (RegExp(r'^[①②③④⑤⑥⑦⑧⑨⑩㉠-㉭]$').hasMatch(marker)) {
+        alreadyHasMarker = trimmedMain.startsWith(marker);
+      } else if (RegExp(r'^\([1-9]\)$').hasMatch(marker)) {
+        alreadyHasMarker = trimmedMain.startsWith(marker);
+      } else {
+        alreadyHasMarker = trimmedMain.startsWith('$marker.') ||
+            trimmedMain.startsWith('$marker)') ||
+            trimmedMain.startsWith('($marker)') ||
+            trimmedMain.startsWith('$marker ');
+      }
+    }
+
+    if (marker.isNotEmpty &&
+        !alreadyHasMarker &&
+        marker.toLowerCase() != 'choices') {
+      if (RegExp(r'^[0-9]+$').hasMatch(marker)) {
+        return sanitizeProblemText('$marker. $mainText');
+      } else if (RegExp(r'^[①②③④⑤⑥⑦⑧⑨⑩㉠-㉭]$').hasMatch(marker)) {
+        return sanitizeProblemText('$marker $mainText');
+      } else if (RegExp(r'^\([1-9]\)$').hasMatch(marker)) {
+        return sanitizeProblemText('$marker $mainText');
+      } else {
+        return sanitizeProblemText('$marker. $mainText');
+      }
+    }
+    return sanitizeProblemText(mainText);
+  }
+
+  if (marker.isNotEmpty) {
+    return sanitizeProblemText(marker);
+  }
+
+  if (value.isNotEmpty) {
+    return sanitizeProblemText(value);
+  }
+
+  return sanitizeProblemText(choice.toString());
 }
 
 double? _numberValue(Object? value) {
@@ -849,6 +1098,62 @@ List<String> _ensureChoiceMarkers(List<String> choices) {
   return choices;
 }
 
+int? _extractLeadingMarkerNumber(String s) {
+  final trimmed = s.trim();
+  if (trimmed.isEmpty) return null;
+  const circledMap = {
+    '①': 1, '②': 2, '③': 3, '④': 4, '⑤': 5,
+    '⑥': 6, '⑦': 7, '⑧': 8, '⑨': 9, '⑩': 10,
+    '㉠': 1, '㉡': 2, '㉢': 3, '㉣': 4, '㉤': 5,
+    '㉥': 6, '㉦': 7, '㉧': 8, '㉨': 9, '㉩': 10,
+    '가': 1, '나': 2, '다': 3, '라': 4, '마': 5,
+    '바': 6, '사': 7, '아': 8, '자': 9, '차': 10,
+    'ㄱ': 1, 'ㄴ': 2, 'ㄷ': 3, 'ㄹ': 4, 'ㅁ': 5,
+    'ㅂ': 6, 'ㅅ': 7, 'ㅇ': 8, 'ㅈ': 9, 'ㅊ': 10,
+  };
+  final firstChar = trimmed[0];
+  if (circledMap.containsKey(firstChar)) {
+    if (trimmed.length == 1 ||
+        trimmed[1] == ' ' ||
+        trimmed[1] == '.' ||
+        trimmed[1] == ')') {
+      return circledMap[firstChar];
+    }
+  }
+  final match = RegExp(
+    r'^(?:(?:\(([1-9]|10|[가-힣]|[ㄱ-ㅎ])\))|([1-9]|10)[.)]|([①②③④⑤⑥⑦⑧⑨⑩㉠-㉭]))',
+  ).firstMatch(trimmed);
+  if (match != null) {
+    final numStr = match.group(2);
+    if (numStr != null) {
+      return int.tryParse(numStr);
+    }
+    final parenStr = match.group(1);
+    if (parenStr != null) {
+      if (circledMap.containsKey(parenStr)) return circledMap[parenStr];
+      return int.tryParse(parenStr);
+    }
+    final cStr = match.group(3);
+    if (cStr != null && circledMap.containsKey(cStr)) {
+      return circledMap[cStr];
+    }
+  }
+  return null;
+}
+
+List<String> _sortChoicesByLeadingMarker(List<String> choices) {
+  if (choices.length < 2) return choices;
+  final markers = choices.map(_extractLeadingMarkerNumber).toList();
+  final nonNullMarkers = markers.whereType<int>().toList();
+  if (nonNullMarkers.length == choices.length &&
+      nonNullMarkers.toSet().length == choices.length) {
+    final indexed = choices.indexed.toList();
+    indexed.sort((a, b) => markers[a.$1]!.compareTo(markers[b.$1]!));
+    return indexed.map((e) => e.$2).toList();
+  }
+  return choices;
+}
+
 class SolutionStep {
   const SolutionStep({
     required this.id,
@@ -929,3 +1234,16 @@ class ChoiceGroup {
   final List<String> choices;
 }
 
+class AnswerInputField {
+  const AnswerInputField({
+    required this.id,
+    required this.label,
+    this.unit = '',
+    this.placeholder = '',
+  });
+
+  final String id;
+  final String label;
+  final String unit;
+  final String placeholder;
+}

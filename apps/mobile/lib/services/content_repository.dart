@@ -72,6 +72,7 @@ class ContentRepository {
   List<String>? _rendererPathCache;
   final Map<String, Future<ProblemContent>> _problemCache = {};
   final Map<String, ProblemContent> _completedProblemCache = {};
+  final Map<String, Future<Uint8List>> _problemAssetCache = {};
   String _activeProblemLocale = 'ko';
 
   ProblemManifest? _cachedManifest;
@@ -202,6 +203,109 @@ class ContentRepository {
     await loadProblem(summary);
   }
 
+  /// Loads an image referenced relative to a problem's renderer file.
+  ///
+  /// Renderer JSON intentionally stores portable sibling paths such as
+  /// `problem_inserted.image.1.png`. The repository owns the source-specific
+  /// resolution so the same renderer works for bundled assets, the local dev
+  /// server, GitHub, and local files.
+  Future<Uint8List> loadProblemAsset(
+    ProblemSummary summary,
+    String relativePath,
+  ) {
+    final assetPath = _resolveProblemAssetPath(summary.path, relativePath);
+    final cacheKey = '${source.name}|$assetPath';
+    return _problemAssetCache.putIfAbsent(
+      cacheKey,
+      () => _loadProblemBytes(assetPath),
+    );
+  }
+
+  Future<Uint8List> _loadProblemBytes(String path) async {
+    switch (source) {
+      case ContentRepositorySource.localExamples:
+        return loadLocalBytes(path);
+      case ContentRepositorySource.localHttp:
+        if (_localHttpFailed) {
+          return _loadBundledBytes(path);
+        }
+        try {
+          final serverPath = _serverRelativeProblemPath(path);
+          final response = await _httpClient.get(
+            _localHttpUri('/files/${Uri.encodeComponent(serverPath)}'),
+          );
+          if (response.statusCode == 404) {
+            throw _MissingContent(path);
+          }
+          if (response.statusCode != 200) {
+            throw StateError(
+              'Local problem server asset load failed: '
+              '${response.statusCode} $path',
+            );
+          }
+          return response.bodyBytes;
+        } on _MissingContent {
+          rethrow;
+        } on Object {
+          return _loadBundledBytes(path);
+        }
+      case ContentRepositorySource.githubExamples:
+        final response = await _httpClient.get(_githubRawUri(path));
+        if (response.statusCode == 404) {
+          throw _MissingContent(path);
+        }
+        if (response.statusCode != 200) {
+          throw StateError(
+            'GitHub problem asset load failed: ${response.statusCode} $path',
+          );
+        }
+        return response.bodyBytes;
+      case ContentRepositorySource.bundledAssets:
+        return _loadBundledBytes(path);
+    }
+  }
+
+  Future<Uint8List> _loadBundledBytes(String path) async {
+    final data = await rootBundle.load(_bundledProblemPath(path));
+    return data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+  }
+
+  String _resolveProblemAssetPath(String basePath, String relativePath) {
+    final href = relativePath.replaceAll(r'\', '/').trim();
+    if (href.isEmpty ||
+        href.startsWith('/') ||
+        Uri.tryParse(href)?.hasScheme == true) {
+      throw ArgumentError.value(
+        relativePath,
+        'relativePath',
+        'Expected a relative renderer asset path.',
+      );
+    }
+
+    final normalizedBase = basePath.replaceAll(r'\', '/');
+    final hasLeadingSlash = normalizedBase.startsWith('/');
+    final segments = <String>[];
+    for (final segment in '$normalizedBase/$href'.split('/')) {
+      if (segment.isEmpty || segment == '.') {
+        continue;
+      }
+      if (segment == '..') {
+        if (segments.isEmpty) {
+          throw ArgumentError.value(
+            relativePath,
+            'relativePath',
+            'Renderer asset path escapes the content root.',
+          );
+        }
+        segments.removeLast();
+        continue;
+      }
+      segments.add(segment);
+    }
+    final resolved = segments.join('/');
+    return hasLeadingSlash ? '/$resolved' : resolved;
+  }
+
   Future<ProblemContent> _loadProblemUncached(ProblemSummary summary) async {
     if (source == ContentRepositorySource.localHttp) {
       final bundle = await _tryLoadLocalHttpProblemBundle(summary);
@@ -211,7 +315,10 @@ class ContentRepository {
     }
 
     final filePrefix = summary.filePrefix ?? summary.id;
-    final basePath = await _basePathForPrefix(filePrefix);
+    final basePath = await _basePathForPrefix(
+      filePrefix,
+      hintPath: summary.path,
+    );
     final results = await Future.wait<dynamic>([
       _loadJson('$basePath.semantic.json'),
       _loadJson('$basePath.renderer.json'),
@@ -291,6 +398,7 @@ class ContentRepository {
     final solvableV12 = await solvableV12Future;
     return ProblemJsonBundle(
       filePrefix: filePrefix,
+      basePath: basePath,
       semantic: await semanticFuture,
       layout: await layoutFuture,
       renderer: await rendererFuture,
@@ -335,22 +443,34 @@ class ContentRepository {
     return const {};
   }
 
-  Future<String> _basePathForPrefix(String filePrefix) async {
+  Future<String> _basePathForPrefix(
+    String filePrefix, {
+    String? hintPath,
+  }) async {
     final rendererPaths = await _loadRendererPaths();
     final baseFilePrefix = _baseProblemPrefix(filePrefix);
     final localizedFilePrefix = _localizedFilePrefix(filePrefix);
     final rendererPath =
         _findRendererPath(rendererPaths, localizedFilePrefix) ??
-            _findRendererPath(rendererPaths, baseFilePrefix) ??
             _findRendererPath(rendererPaths, filePrefix) ??
+            _findRendererPath(rendererPaths, baseFilePrefix) ??
+            _findRendererPathWithVariantFallback(rendererPaths, filePrefix) ??
             '';
-    if (rendererPath.isEmpty) {
-      return '$problemsPath/$localizedFilePrefix';
+    if (rendererPath.isNotEmpty) {
+      return rendererPath.substring(
+        0,
+        rendererPath.length - '.renderer.json'.length,
+      );
     }
-    return rendererPath.substring(
-      0,
-      rendererPath.length - '.renderer.json'.length,
-    );
+    if (hintPath != null && hintPath.isNotEmpty) {
+      final normalized =
+          hintPath.replaceAll(r'\', '/').replaceAll(RegExp(r'/+$'), '');
+      return '$normalized/$filePrefix';
+    }
+    final locale = localizedProblemLocales.contains(activeProblemLocale)
+        ? activeProblemLocale
+        : 'ko';
+    return '$problemsPath/$locale/$filePrefix';
   }
 
   String? _findRendererPath(List<String> rendererPaths, String filePrefix) {
@@ -360,6 +480,24 @@ class ContentRepository {
           path == '$problemsPath/$filePrefix.renderer.json') {
         return path;
       }
+    }
+    return null;
+  }
+
+  String? _findRendererPathWithVariantFallback(
+    List<String> rendererPaths,
+    String filePrefix,
+  ) {
+    final subMatch = RegExp(r'^(.*)_(\d+)$').firstMatch(filePrefix);
+    if (subMatch != null) {
+      final base = subMatch.group(1)!;
+      final fallback1 = _findRendererPath(rendererPaths, '${base}_1');
+      if (fallback1 != null) return fallback1;
+      final fallbackBase = _findRendererPath(rendererPaths, base);
+      if (fallbackBase != null) return fallbackBase;
+    } else {
+      final fallback1 = _findRendererPath(rendererPaths, '${filePrefix}_1');
+      if (fallback1 != null) return fallback1;
     }
     return null;
   }
@@ -421,8 +559,8 @@ class ContentRepository {
             .whereType<Map<String, dynamic>>()
             .map(ProblemSummary.fromJson)
             .toList()
-          ..sort((a, b) =>
-              _compareProblemPrefixes(a.filePrefix ?? a.id, b.filePrefix ?? b.id));
+          ..sort((a, b) => _compareProblemPrefixes(
+              a.filePrefix ?? a.id, b.filePrefix ?? b.id));
       }
     } catch (_) {}
     return null;
@@ -601,10 +739,9 @@ class ContentRepository {
     final metaTitle = metadata['title']?.toString() ?? '';
     final metaInstruction = metadata['instruction']?.toString() ?? '';
     final metaTopic = metadata['topic']?.toString() ?? '';
-    final tags = (metadata['tags'] is List
-            ? (metadata['tags'] as List).join(' ')
-            : '')
-        .toLowerCase();
+    final tags =
+        (metadata['tags'] is List ? (metadata['tags'] as List).join(' ') : '')
+            .toLowerCase();
     final metaCombined =
         '$problemType $metaTitle $metaInstruction $metaTopic $tags'
             .toLowerCase();
@@ -1048,6 +1185,7 @@ List<String> _tokenizeForNaturalSort(String value) {
 class ProblemJsonBundle {
   const ProblemJsonBundle({
     required this.filePrefix,
+    required this.basePath,
     required this.semantic,
     required this.layout,
     required this.renderer,
@@ -1055,6 +1193,7 @@ class ProblemJsonBundle {
   });
 
   final String filePrefix;
+  final String basePath;
   final Map<String, dynamic> semantic;
   final Map<String, dynamic> layout;
   final Map<String, dynamic> renderer;

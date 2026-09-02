@@ -127,7 +127,108 @@ bool isSameAnswer(String submitted, String correct) {
     return true;
   }
 
+  // 6) 다중 입력 / 덧셈 항 순서 무관 비교 (예: "415 / 334" vs "334 / 415", "415334" vs "334415", "415, 334" vs "334415")
+  if (_matchesUnorderedTokens(submitted, correct)) {
+    return true;
+  }
+
   return false;
+}
+
+List<String> _extractMultiTokens(String value) {
+  final trimmed = value.trim();
+  if (RegExp(r'[/,;|\s]').hasMatch(trimmed)) {
+    final parts = trimmed
+        .split(RegExp(r'[/,;|\s]+'))
+        .map(_cleanText)
+        .where((p) => p.isNotEmpty)
+        .toList();
+    if (parts.length > 1) {
+      return parts;
+    }
+  }
+  return [];
+}
+
+bool _isPermutationConcatenation(List<String> tokens, String raw) {
+  final totalLen = tokens.fold<int>(0, (sum, t) => sum + t.length);
+  if (totalLen != raw.length) return false;
+
+  bool helper(List<String> remaining, String currentRaw) {
+    if (remaining.isEmpty) return currentRaw.isEmpty;
+    for (var i = 0; i < remaining.length; i++) {
+      final token = remaining[i];
+      if (currentRaw.startsWith(token)) {
+        final nextRemaining = List<String>.from(remaining)..removeAt(i);
+        final nextRaw = currentRaw.substring(token.length);
+        if (helper(nextRemaining, nextRaw)) return true;
+      }
+    }
+    return false;
+  }
+
+  return helper(tokens, raw);
+}
+
+bool _matchesUnorderedTokens(String submitted, String correct) {
+  final subTokens = _extractMultiTokens(submitted);
+  final corTokens = _extractMultiTokens(correct);
+
+  // Both have delimiters (e.g. "415 / 334" vs "334 / 415" or "415, 334" vs "334, 415")
+  if (subTokens.isNotEmpty && corTokens.isNotEmpty) {
+    if (subTokens.length == corTokens.length) {
+      final s = List<String>.from(subTokens)..sort();
+      final c = List<String>.from(corTokens)..sort();
+      if (_listsEqual(s, c)) return true;
+    }
+  }
+
+  // submitted has delimiters, correct is concatenated (e.g. "415 / 334" vs "334415")
+  if (subTokens.isNotEmpty && corTokens.isEmpty) {
+    if (_isPermutationConcatenation(subTokens, _cleanText(correct))) {
+      return true;
+    }
+  }
+
+  // correct has delimiters, submitted is concatenated (e.g. "415334" vs "334 / 415")
+  if (corTokens.isNotEmpty && subTokens.isEmpty) {
+    if (_isPermutationConcatenation(corTokens, _cleanText(submitted))) {
+      return true;
+    }
+  }
+
+  // Both are raw concatenated strings (e.g. "415334" vs "334415")
+  final cleanSub = _cleanText(submitted);
+  final cleanCor = _cleanText(correct);
+  if (cleanSub.length == cleanCor.length && cleanSub.length >= 4) {
+    for (var chunkSize = 2; chunkSize <= cleanSub.length ~/ 2; chunkSize++) {
+      if (cleanSub.length % chunkSize == 0) {
+        final subChunks = _toChunks(cleanSub, chunkSize)..sort();
+        final corChunks = _toChunks(cleanCor, chunkSize)..sort();
+        if (_listsEqual(subChunks, corChunks)) {
+          return true;
+        }
+      }
+    }
+  }
+
+  return false;
+}
+
+List<String> _toChunks(String s, int size) {
+  final chunks = <String>[];
+  for (var i = 0; i < s.length; i += size) {
+    chunks.add(s.substring(i, i + size));
+  }
+  return chunks;
+}
+
+bool _listsEqual(List<String> a, List<String> b) {
+  if (a.length != b.length) return false;
+  for (var i = 0; i < a.length; i++) {
+    if (a[i] != b[i]) return false;
+  }
+  return true;
 }
 
 String _stripContainerSuffix(String text) {

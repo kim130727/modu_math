@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, unnecessary_const
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -1773,7 +1775,71 @@ void main() {
                       'href':
                           'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
                     },
-          testWidgets('renders svg data URI avatar image elements from web editor',
+                  },
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byType(RendererJsonCanvas), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('loads relative renderer images through the content resolver',
+      (tester) async {
+    const href = 'S3_problem_inserted.image.1.png';
+    const png =
+        'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
+    final requests = <String>[];
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 500,
+            height: 300,
+            child: RendererJsonCanvas(
+              imageCacheKey: 'problem-directory',
+              imageLoader: (path) async {
+                requests.add(path);
+                return base64Decode(png);
+              },
+              renderer: const {
+                'view_box': {'width': 500, 'height': 300},
+                'elements': [
+                  {
+                    'type': 'image',
+                    'attributes': {
+                      'x': 50,
+                      'y': 50,
+                      'width': 100,
+                      'height': 100,
+                      'href': href,
+                    },
+                  },
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+    await tester.pump();
+
+    expect(requests, equals(const [href]));
+    expect(
+      find.byWidgetPredicate(
+        (widget) => widget is Image && widget.image is MemoryImage,
+      ),
+      findsOneWidget,
+    );
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('renders svg data URI avatar image elements from web editor',
       (tester) async {
     const avatarSvgDataUri =
         'data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20width%3D%22200%22%20height%3D%22200%22%3E%3Ccircle%20cx%3D%22100%22%20cy%3D%22100%22%20r%3D%2250%22%20fill%3D%22red%22%2F%3E%3C%2Fsvg%3E';
@@ -1868,15 +1934,412 @@ void main() {
     expect(find.byType(CustomPaint), findsWidgets);
     expect(tester.takeException(), isNull);
   });
-}           },
+
+  testWidgets(
+      'syncs slash-separated input tokens into multi-slot controllers without slashes (P3_1_01_00040_15598_1)',
+      (tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 350,
+            height: 350,
+            child: RendererJsonCanvas(
+              inputValue: '9 / 50 / 700 / 759',
+              renderer: {
+                'view_box': {
+                  'width': 350,
+                  'height': 350,
+                  'background': '#FFFFFF'
+                },
+                'elements': [
+                  {
+                    'id': 'slot.1',
+                    'type': 'rect',
+                    'attributes': {
+                      'x': 100,
+                      'y': 50,
+                      'width': 30,
+                      'height': 30,
+                      'fill': '#ffffff'
+                    },
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'digit',
+                      'max_length': 1,
+                      'include_in_submission': true,
+                      'order': 0,
+                    },
+                  },
+                  {
+                    'id': 'slot.2',
+                    'type': 'rect',
+                    'attributes': {
+                      'x': 100,
+                      'y': 90,
+                      'width': 40,
+                      'height': 30,
+                      'fill': '#ffffff'
+                    },
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'integer',
+                      'max_length': 2,
+                      'include_in_submission': true,
+                      'order': 1,
+                    },
+                  },
+                  {
+                    'id': 'slot.3',
+                    'type': 'rect',
+                    'attributes': {
+                      'x': 100,
+                      'y': 130,
+                      'width': 50,
+                      'height': 30,
+                      'fill': '#ffffff'
+                    },
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'integer',
+                      'max_length': 4,
+                      'include_in_submission': true,
+                      'order': 2,
+                    },
+                  },
+                  {
+                    'id': 'slot.4',
+                    'type': 'rect',
+                    'attributes': {
+                      'x': 100,
+                      'y': 170,
+                      'width': 50,
+                      'height': 30,
+                      'fill': '#ffffff'
+                    },
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'integer',
+                      'max_length': 4,
+                      'include_in_submission': true,
+                      'order': 3,
+                    },
+                  },
+                ],
+              },
             ),
           ),
         ),
       ),
     );
 
-    expect(find.byType(RendererJsonCanvas), findsOneWidget);
-    expect(find.byType(CustomPaint), findsWidgets);
-    expect(tester.takeException(), isNull);
+    final textFields = find.byType(TextField);
+    expect(textFields, findsNWidgets(4));
+
+    final tf0 = tester.widget<TextField>(textFields.at(0));
+    final tf1 = tester.widget<TextField>(textFields.at(1));
+    final tf2 = tester.widget<TextField>(textFields.at(2));
+    final tf3 = tester.widget<TextField>(textFields.at(3));
+
+    expect(tf0.controller?.text, equals('9'));
+    expect(tf1.controller?.text, equals('50'));
+    expect(tf2.controller?.text, equals('700'));
+    expect(tf3.controller?.text, equals('759'));
+  });
+
+  testWidgets(
+      'syncs slash-separated input tokens into 4 digit slots without slashes (P3_1_01_00040_15611)',
+      (tester) async {
+    var value = '5 / 2 / 1 / 7';
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 500,
+            height: 220,
+            child: RendererJsonCanvas(
+              inputValue: value,
+              expectedAnswer: '5217',
+              onInputChanged: (next) => value = next,
+              renderer: {
+                'view_box': {
+                  'width': 500,
+                  'height': 220,
+                  'background': '#FFFFFF'
+                },
+                'elements': [
+                  {
+                    'id': 'slot.top.blank_tens.rect.rect',
+                    'type': 'rect',
+                    'attributes': {
+                      'x': 287,
+                      'y': 73,
+                      'width': 22,
+                      'height': 28,
+                      'fill': '#ffffff'
+                    },
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'digit',
+                      'max_length': 1,
+                      'include_in_submission': true,
+                      'order': 0,
+                    },
+                  },
+                  {
+                    'id': 'slot.top.blank_ones.rect.rect',
+                    'type': 'rect',
+                    'attributes': {
+                      'x': 313,
+                      'y': 73,
+                      'width': 22,
+                      'height': 28,
+                      'fill': '#ffffff'
+                    },
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'digit',
+                      'max_length': 1,
+                      'include_in_submission': true,
+                      'order': 1,
+                    },
+                  },
+                  {
+                    'id': 'slot.bottom.blank_hundreds.rect.rect',
+                    'type': 'rect',
+                    'attributes': {
+                      'x': 261,
+                      'y': 109,
+                      'width': 22,
+                      'height': 28,
+                      'fill': '#ffffff'
+                    },
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'digit',
+                      'max_length': 1,
+                      'include_in_submission': true,
+                      'order': 2,
+                    },
+                  },
+                  {
+                    'id': 'slot.result.blank_ones.rect.rect',
+                    'type': 'rect',
+                    'attributes': {
+                      'x': 313,
+                      'y': 153,
+                      'width': 22,
+                      'height': 28,
+                      'fill': '#ffffff'
+                    },
+                    'interaction': {
+                      'type': 'input',
+                      'role': 'answer',
+                      'value_type': 'digit',
+                      'max_length': 1,
+                      'include_in_submission': true,
+                      'order': 3,
+                    },
+                  },
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    final textFields = find.byType(TextField);
+    expect(textFields, findsNWidgets(4));
+
+    final tf0 = tester.widget<TextField>(textFields.at(0));
+    final tf1 = tester.widget<TextField>(textFields.at(1));
+    final tf2 = tester.widget<TextField>(textFields.at(2));
+    final tf3 = tester.widget<TextField>(textFields.at(3));
+
+    expect(tf0.controller?.text, equals('5'));
+    expect(tf1.controller?.text, equals('2'));
+    expect(tf2.controller?.text, equals('1'));
+    expect(tf3.controller?.text, equals('7'));
+  });
+
+  testWidgets(
+      'allows typing directly into 5 canvas slots sequentially without delimiter corruption (P3_1_01_00040_15621)',
+      (tester) async {
+    var value = '';
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 400,
+            height: 120,
+            child: StatefulBuilder(
+              builder: (context, setState) {
+                return RendererJsonCanvas(
+                  inputValue: value,
+                  expectedAnswer: '602907697',
+                  onInputChanged: (next) {
+                    setState(() {
+                      value = next;
+                    });
+                  },
+                  renderer: {
+                    'view_box': {
+                      'width': 400,
+                      'height': 120,
+                      'background': '#FFFFFF'
+                    },
+                    'elements': [
+                      {
+                        'id': 'slot.line1.blank1_box.rect',
+                        'type': 'rect',
+                        'attributes': {
+                          'x': 160,
+                          'y': 33,
+                          'width': 48,
+                          'height': 24,
+                          'fill': '#ffffff'
+                        },
+                        'interaction': {
+                          'type': 'input',
+                          'role': 'answer',
+                          'value_type': 'integer',
+                          'max_length': 2,
+                          'include_in_submission': true,
+                          'order': 0,
+                        },
+                      },
+                      {
+                        'id': 'slot.line1.blank2_box.rect',
+                        'type': 'rect',
+                        'attributes': {
+                          'x': 324,
+                          'y': 33,
+                          'width': 30,
+                          'height': 24,
+                          'fill': '#ffffff'
+                        },
+                        'interaction': {
+                          'type': 'input',
+                          'role': 'answer',
+                          'value_type': 'integer',
+                          'max_length': 1,
+                          'include_in_submission': true,
+                          'order': 1,
+                        },
+                      },
+                      {
+                        'id': 'slot.line2.blank1_box.rect',
+                        'type': 'rect',
+                        'attributes': {
+                          'x': 180,
+                          'y': 63,
+                          'width': 48,
+                          'height': 24,
+                          'fill': '#ffffff'
+                        },
+                        'interaction': {
+                          'type': 'input',
+                          'role': 'answer',
+                          'value_type': 'integer',
+                          'max_length': 2,
+                          'include_in_submission': true,
+                          'order': 2,
+                        },
+                      },
+                      {
+                        'id': 'slot.line2.blank2_box.rect',
+                        'type': 'rect',
+                        'attributes': {
+                          'x': 250,
+                          'y': 63,
+                          'width': 30,
+                          'height': 24,
+                          'fill': '#ffffff'
+                        },
+                        'interaction': {
+                          'type': 'input',
+                          'role': 'answer',
+                          'value_type': 'integer',
+                          'max_length': 1,
+                          'include_in_submission': true,
+                          'order': 3,
+                        },
+                      },
+                      {
+                        'id': 'slot.line2.blank3_box.rect',
+                        'type': 'rect',
+                        'attributes': {
+                          'x': 300,
+                          'y': 63,
+                          'width': 54,
+                          'height': 24,
+                          'fill': '#ffffff'
+                        },
+                        'interaction': {
+                          'type': 'input',
+                          'role': 'answer',
+                          'value_type': 'integer',
+                          'max_length': 3,
+                          'include_in_submission': true,
+                          'order': 4,
+                        },
+                      },
+                    ],
+                  },
+                );
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    final slot0 = find.byKey(const ValueKey('renderer-input-slot-0'));
+    final slot1 = find.byKey(const ValueKey('renderer-input-slot-1'));
+    final slot2 = find.byKey(const ValueKey('renderer-input-slot-2'));
+    final slot3 = find.byKey(const ValueKey('renderer-input-slot-3'));
+    final slot4 = find.byKey(const ValueKey('renderer-input-slot-4'));
+
+    await tester.enterText(slot0, '60');
+    await tester.pumpAndSettle();
+    expect(value, equals('60'));
+
+    await tester.enterText(slot1, '2');
+    await tester.pumpAndSettle();
+    expect(value, equals('602'));
+
+    await tester.enterText(slot2, '90');
+    await tester.pumpAndSettle();
+    expect(value, equals('60290'));
+
+    await tester.enterText(slot3, '7');
+    await tester.pumpAndSettle();
+    expect(value, equals('602907'));
+
+    await tester.enterText(slot4, '697');
+    await tester.pumpAndSettle();
+    expect(value, equals('602907697'));
+
+    final tf0 = tester.widget<TextField>(slot0);
+    final tf1 = tester.widget<TextField>(slot1);
+    final tf2 = tester.widget<TextField>(slot2);
+    final tf3 = tester.widget<TextField>(slot3);
+    final tf4 = tester.widget<TextField>(slot4);
+
+    expect(tf0.controller?.text, equals('60'));
+    expect(tf1.controller?.text, equals('2'));
+    expect(tf2.controller?.text, equals('90'));
+    expect(tf3.controller?.text, equals('7'));
+    expect(tf4.controller?.text, equals('697'));
   });
 }

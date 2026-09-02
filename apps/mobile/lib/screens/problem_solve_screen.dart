@@ -149,6 +149,7 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
             builder: (context, constraints) {
               final wide = constraints.maxWidth >= 960;
               final problemViewer = _ProblemVisual(
+                repository: widget.repository,
                 content: content,
                 answerDraft: answerDraft,
                 onAnswerChanged: _updateAnswerDraft,
@@ -492,11 +493,13 @@ class _ProblemControls extends StatelessWidget {
 
 class _ProblemVisual extends StatelessWidget {
   const _ProblemVisual({
+    required this.repository,
     required this.content,
     required this.answerDraft,
     required this.onAnswerChanged,
   });
 
+  final ContentRepository repository;
   final ProblemContent content;
   final String answerDraft;
   final ValueChanged<String> onAnswerChanged;
@@ -511,6 +514,9 @@ class _ProblemVisual extends StatelessWidget {
           padding: const EdgeInsets.all(12),
           child: RendererJsonCanvas(
             renderer: content.renderer,
+            imageLoader: (href) =>
+                repository.loadProblemAsset(content.summary, href),
+            imageCacheKey: content.summary.path,
             inputValue: answerDraft,
             expectedAnswer: content.correctAnswer,
             suppressInputs: content.choices.isNotEmpty,

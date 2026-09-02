@@ -145,10 +145,54 @@ def generate():
         REPO / "apps" / "mobile" / "build" / "unit_test_assets" / "examples" / "problems" / "manifest.json",
     ]
     for dest in dest_paths:
-        if dest.parent.exists():
-            shutil.copyfile(manifest_path, dest)
-            print(f"Copied manifest to {dest}")
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(manifest_path, dest)
+        print(f"Copied manifest to {dest}")
+
+
+def verify() -> bool:
+    manifest_path = ROOT / "manifest.json"
+    if not manifest_path.is_file():
+        print(f"Error: {manifest_path} not found.")
+        return False
+
+    data = json.loads(manifest_path.read_text(encoding="utf-8"))
+    problems = data.get("problems", [])
+    errors = []
+
+    for item in problems:
+        prefix = item.get("filePrefix") or item.get("id")
+        rel_path = item.get("path", "")
+        base_dir = REPO / rel_path if rel_path else ROOT
+        renderer_file = base_dir / f"{prefix}.renderer.json"
+        semantic_file = base_dir / f"{prefix}.semantic.json"
+
+        if not renderer_file.is_file():
+            # Check if any renderer with this prefix exists anywhere in ROOT
+            found = list(ROOT.rglob(f"{prefix}.renderer.json"))
+            if not found:
+                errors.append(f"Missing renderer: {prefix} (expected at {renderer_file})")
+
+        if not semantic_file.is_file():
+            found = list(ROOT.rglob(f"{prefix}.semantic.json"))
+            if not found:
+                errors.append(f"Missing semantic: {prefix} (expected at {semantic_file})")
+
+    if errors:
+        print(f"Verification failed with {len(errors)} errors:")
+        for err in errors[:20]:
+            print(f"  - {err}")
+        return False
+
+    print(f"Verification passed: All {len(problems)} problems have valid assets.")
+    return True
 
 
 if __name__ == "__main__":
-    generate()
+    import sys
+    if "--verify" in sys.argv:
+        if not verify():
+            sys.exit(1)
+    else:
+        generate()
+        verify()

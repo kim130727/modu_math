@@ -132,6 +132,7 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
                         child: TabBarView(
                           children: [
                             _RenderTab(
+                              repository: widget.repository,
                               bundle: bundle,
                               content: content,
                               tutorPanel: TutorChatPanel(
@@ -201,8 +202,9 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
         unit: type,
         type: type,
         title: metadata['title']?.toString() ?? bundle.filePrefix,
-        path:
-            '${ContentRepository.problemsPath}/${widget.repository.activeProblemLocale}',
+        path: bundle.basePath.contains('/')
+            ? bundle.basePath.substring(0, bundle.basePath.lastIndexOf('/'))
+            : '',
         filePrefix: bundle.filePrefix,
         raw: bundle.semantic,
       ),
@@ -502,11 +504,13 @@ class _StudioTabs extends StatelessWidget {
 
 class _RenderTab extends StatelessWidget {
   const _RenderTab({
+    required this.repository,
     required this.bundle,
     required this.content,
     required this.tutorPanel,
   });
 
+  final ContentRepository repository;
   final ProblemJsonBundle bundle;
   final ProblemContent content;
   final Widget tutorPanel;
@@ -514,6 +518,7 @@ class _RenderTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _RenderTabBody(
+      repository: repository,
       bundle: bundle,
       content: content,
       tutorPanel: tutorPanel,
@@ -523,11 +528,13 @@ class _RenderTab extends StatelessWidget {
 
 class _RenderTabBody extends StatelessWidget {
   const _RenderTabBody({
+    required this.repository,
     required this.bundle,
     required this.content,
     required this.tutorPanel,
   });
 
+  final ContentRepository repository;
   final ProblemJsonBundle bundle;
   final ProblemContent content;
   final Widget tutorPanel;
@@ -550,6 +557,9 @@ class _RenderTabBody extends StatelessWidget {
                 child: _CanvasShell(
                   child: RendererJsonCanvas(
                     renderer: bundle.renderer,
+                    imageLoader: (href) =>
+                        repository.loadProblemAsset(content.summary, href),
+                    imageCacheKey: content.summary.path,
                     expectedAnswer: content.correctAnswer,
                   ),
                 ),

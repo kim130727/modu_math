@@ -2,7 +2,7 @@
   "problem_id": "P3_1_01_00040_02152",
   "view_box": {
     "width": 800.0,
-    "height": 662.0,
+    "height": 650.0,
     "background": "#FFFFFF"
   },
   "elements": [
@@ -4078,6 +4078,321 @@
       }
     },
     {
+      "id": "slot.answer.ones_to_tens.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 384.0,
+        "y": 482.0,
+        "width": 46.0,
+        "height": 38.0,
+        "fill": "#ffffff",
+        "stroke": "#5C6AC4",
+        "stroke-width": 1.6,
+        "rx": 6.0,
+        "ry": 6.0
+      },
+      "source_ref": "slot.answer.ones_to_tens",
+      "refs": {
+        "layout_slot_id": "slot.answer.ones_to_tens"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "keyboard": "number",
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "answer_key_index": 0,
+        "answer_ref": "answer_key[0]",
+        "auto_advance": true
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "min_font_size": 16,
+        "max_font_size": 28,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 3,
+        "text_color": "#202124",
+        "width": 46.0,
+        "height": 38.0,
+        "font_size_adjust": 0
+      }
+    },
+    {
+      "id": "slot.answer.remaining_ones.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 598.0,
+        "y": 482.0,
+        "width": 46.0,
+        "height": 38.0,
+        "fill": "#ffffff",
+        "stroke": "#5C6AC4",
+        "stroke-width": 1.6,
+        "rx": 6.0,
+        "ry": 6.0
+      },
+      "source_ref": "slot.answer.remaining_ones",
+      "refs": {
+        "layout_slot_id": "slot.answer.remaining_ones"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "keyboard": "number",
+        "include_in_submission": true,
+        "order": 1,
+        "group_id": "final_answer",
+        "answer_key_index": 1,
+        "answer_ref": "answer_key[1]",
+        "auto_advance": true
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "min_font_size": 16,
+        "max_font_size": 28,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 3,
+        "text_color": "#202124",
+        "width": 46.0,
+        "height": 38.0,
+        "font_size_adjust": 0
+      }
+    },
+    {
+      "id": "slot.answer.tens_to_hundreds.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 363.0,
+        "y": 528.0,
+        "width": 46.0,
+        "height": 38.0,
+        "fill": "#ffffff",
+        "stroke": "#5C6AC4",
+        "stroke-width": 1.6,
+        "rx": 6.0,
+        "ry": 6.0
+      },
+      "source_ref": "slot.answer.tens_to_hundreds",
+      "refs": {
+        "layout_slot_id": "slot.answer.tens_to_hundreds"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "keyboard": "number",
+        "include_in_submission": true,
+        "order": 2,
+        "group_id": "final_answer",
+        "answer_key_index": 2,
+        "answer_ref": "answer_key[2]",
+        "auto_advance": true
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "min_font_size": 16,
+        "max_font_size": 28,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 3,
+        "text_color": "#202124",
+        "width": 46.0,
+        "height": 38.0,
+        "font_size_adjust": 0
+      }
+    },
+    {
+      "id": "slot.answer.remaining_tens.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 553.0,
+        "y": 528.0,
+        "width": 46.0,
+        "height": 38.0,
+        "fill": "#ffffff",
+        "stroke": "#5C6AC4",
+        "stroke-width": 1.6,
+        "rx": 6.0,
+        "ry": 6.0
+      },
+      "source_ref": "slot.answer.remaining_tens",
+      "refs": {
+        "layout_slot_id": "slot.answer.remaining_tens"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "keyboard": "number",
+        "include_in_submission": true,
+        "order": 3,
+        "group_id": "final_answer",
+        "answer_key_index": 3,
+        "answer_ref": "answer_key[3]",
+        "auto_advance": true
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "min_font_size": 16,
+        "max_font_size": 28,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 3,
+        "text_color": "#202124",
+        "width": 46.0,
+        "height": 38.0,
+        "font_size_adjust": 0
+      }
+    },
+    {
+      "id": "slot.answer.hundreds_to_thousands.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 365.0,
+        "y": 574.0,
+        "width": 46.0,
+        "height": 38.0,
+        "fill": "#ffffff",
+        "stroke": "#5C6AC4",
+        "stroke-width": 1.6,
+        "rx": 6.0,
+        "ry": 6.0
+      },
+      "source_ref": "slot.answer.hundreds_to_thousands",
+      "refs": {
+        "layout_slot_id": "slot.answer.hundreds_to_thousands"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "keyboard": "number",
+        "include_in_submission": true,
+        "order": 4,
+        "group_id": "final_answer",
+        "answer_key_index": 4,
+        "answer_ref": "answer_key[4]",
+        "auto_advance": true
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "min_font_size": 16,
+        "max_font_size": 28,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 3,
+        "text_color": "#202124",
+        "width": 46.0,
+        "height": 38.0,
+        "font_size_adjust": 0
+      }
+    },
+    {
+      "id": "slot.answer.remaining_hundreds.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 555.0,
+        "y": 574.0,
+        "width": 46.0,
+        "height": 38.0,
+        "fill": "#ffffff",
+        "stroke": "#5C6AC4",
+        "stroke-width": 1.6,
+        "rx": 6.0,
+        "ry": 6.0
+      },
+      "source_ref": "slot.answer.remaining_hundreds",
+      "refs": {
+        "layout_slot_id": "slot.answer.remaining_hundreds"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "digit",
+        "max_length": 1,
+        "keyboard": "number",
+        "include_in_submission": true,
+        "order": 5,
+        "group_id": "final_answer",
+        "answer_key_index": 5,
+        "answer_ref": "answer_key[5]",
+        "auto_advance": true
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "min_font_size": 16,
+        "max_font_size": 28,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 3,
+        "text_color": "#202124",
+        "width": 46.0,
+        "height": 38.0,
+        "font_size_adjust": 0
+      }
+    },
+    {
+      "id": "slot.answer.total_books.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 310.0,
+        "y": 604.0,
+        "width": 62.0,
+        "height": 38.0,
+        "fill": "#ffffff",
+        "stroke": "#5C6AC4",
+        "stroke-width": 1.6,
+        "rx": 6.0,
+        "ry": 6.0
+      },
+      "source_ref": "slot.answer.total_books",
+      "refs": {
+        "layout_slot_id": "slot.answer.total_books"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "integer",
+        "max_length": 4,
+        "keyboard": "number",
+        "include_in_submission": true,
+        "order": 6,
+        "group_id": "final_answer",
+        "answer_key_index": 6,
+        "answer_ref": "answer_key[6]",
+        "auto_advance": false
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "min_font_size": 16,
+        "max_font_size": 28,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 3,
+        "text_color": "#202124",
+        "width": 62.0,
+        "height": 38.0,
+        "font_size_adjust": 0
+      }
+    },
+    {
       "id": "slot.answer_1.text",
       "type": "text_box",
       "attributes": {
@@ -4101,7 +4416,7 @@
       "refs": {
         "layout_slot_id": "slot.answer_1"
       },
-      "text": "(1) 낱개 모형끼리 더하면 십 모형 (   )개와 낱개 모형 (   )개입니다."
+      "text": "(1) 낱개 모형끼리 더하면 십 모형       개와 낱개 모형       개입니다."
     },
     {
       "id": "slot.answer_2.text",
@@ -4127,7 +4442,7 @@
       "refs": {
         "layout_slot_id": "slot.answer_2"
       },
-      "text": "(2) 십 모형끼리 더하면 백 모형 (   )개와 십 모형 (   )개입니다."
+      "text": "(2) 십 모형끼리 더하면 백 모형       개와 십 모형       개입니다."
     },
     {
       "id": "slot.answer_3.text",
@@ -4153,7 +4468,7 @@
       "refs": {
         "layout_slot_id": "slot.answer_3"
       },
-      "text": "(3) 백 모형끼리 더하면 천 모형 (   )개와 백 모형 (   )개입니다."
+      "text": "(3) 백 모형끼리 더하면 천 모형       개와 백 모형       개입니다."
     },
     {
       "id": "slot.answer_4.text",
@@ -4179,7 +4494,7 @@
       "refs": {
         "layout_slot_id": "slot.answer_4"
       },
-      "text": "(4) 도서관의 책 수는 모두 (     )권입니다."
+      "text": "(4) 도서관의 책 수는 모두         권입니다."
     }
   ],
   "contract_version": "modu_math.renderer.v2"

@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+typedef RendererImageLoader = Future<Uint8List> Function(String relativePath);
+
 class RendererJsonCanvas extends StatefulWidget {
   const RendererJsonCanvas({
     super.key,
@@ -13,6 +15,8 @@ class RendererJsonCanvas extends StatefulWidget {
     this.inputValue = '',
     this.expectedAnswer = '',
     this.suppressInputs = false,
+    this.imageLoader,
+    this.imageCacheKey,
     this.onInputChanged,
   });
 
@@ -20,6 +24,8 @@ class RendererJsonCanvas extends StatefulWidget {
   final String inputValue;
   final String expectedAnswer;
   final bool suppressInputs;
+  final RendererImageLoader? imageLoader;
+  final Object? imageCacheKey;
   final ValueChanged<String>? onInputChanged;
 
   @override
@@ -31,6 +37,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
   String inputSignature = '';
   String? lastEmittedInputValue;
   int? activeOperatorSlotIndex;
+  final Map<String, Future<Uint8List>> _imageFutures = {};
 
   @override
   void initState() {
@@ -43,6 +50,10 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.renderer != widget.renderer) {
       activeOperatorSlotIndex = null;
+    }
+    if (oldWidget.renderer != widget.renderer ||
+        oldWidget.imageCacheKey != widget.imageCacheKey) {
+      _imageFutures.clear();
     }
     final inputChangedFromThisCanvas =
         widget.inputValue == lastEmittedInputValue &&
@@ -118,7 +129,13 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                     child: Stack(
                       clipBehavior: Clip.hardEdge,
                       children: [
-                        ..._imageLayers(widget.renderer, scale),
+                        ..._imageLayers(
+                          widget.renderer,
+                          scale,
+                          loadRelativeImage: widget.imageLoader == null
+                              ? null
+                              : _loadRelativeImage,
+                        ),
                         Positioned.fill(
                           child: CustomPaint(
                             painter: RendererJsonPainter(
@@ -145,6 +162,13 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
     );
   }
 
+  Future<Uint8List> _loadRelativeImage(String href) {
+    return _imageFutures.putIfAbsent(
+      href,
+      () => widget.imageLoader!(href),
+    );
+  }
+
   List<Widget> _inputLayers(List<_InputSlot> slots, double scale) {
     final colorScheme = Theme.of(context).colorScheme;
     return slots.indexed.map((entry) {
@@ -152,6 +176,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
       final slot = entry.$2;
       final rect = slot.rect;
       final fontSize = _inputFontSize(slot, scale);
+      final fontWeight = _inputFontWeight(slot);
       final maxLength = slot.maxLength;
       final inset = (2 * scale).clamp(1.0, 3.0);
       if (slot.operatorOnly) {
@@ -161,12 +186,13 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
           scale: scale,
           inset: inset,
           fontSize: fontSize,
+          fontWeight: fontWeight,
         );
       }
       final textColor = slot.drawPlaceholderBehind
           ? Colors.transparent
           : colorScheme.onSurface;
-      return Positioned(
+      final layer = Positioned(
         left: rect.left * scale + inset,
         top: rect.top * scale + inset,
         width: rect.width * scale - inset * 2,
@@ -182,7 +208,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                     textAlign: TextAlign.center,
                     style: _problemTextStyle(
                       color: colorScheme.onSurface,
-                      fontSize: (rect.height * 0.86 * scale).clamp(18.0, 52.0),
+                      fontSize: fontSize,
                       fontWeight: FontWeight.w500,
                       height: 1,
                     ),
@@ -190,6 +216,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                 ),
               ),
             TextField(
+              key: ValueKey('renderer-input-slot-$index'),
               controller: inputControllers[index],
               textAlign: TextAlign.center,
               textAlignVertical: TextAlignVertical.center,
@@ -204,7 +231,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
               style: _problemTextStyle(
                 color: textColor,
                 fontSize: fontSize,
-                fontWeight: FontWeight.w800,
+                fontWeight: fontWeight,
                 height: 1,
               ),
               cursorHeight: fontSize,
@@ -223,7 +250,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                 hintStyle: _problemTextStyle(
                   color: colorScheme.onSurface,
                   fontSize: fontSize,
-                  fontWeight: FontWeight.w800,
+                  fontWeight: fontWeight,
                   height: 1,
                 ),
                 counterText: '',
@@ -253,7 +280,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                     style: _problemTextStyle(
                       color: colorScheme.onSurface,
                       fontSize: fontSize,
-                      fontWeight: FontWeight.w800,
+                      fontWeight: fontWeight,
                       height: 1,
                     ),
                   ),
@@ -261,6 +288,11 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
               ),
           ],
         ),
+      );
+      return _transformedPositionedLayer(
+        layer: layer,
+        transform: slot.transform,
+        scale: scale,
       );
     }).toList(growable: false);
   }
@@ -271,6 +303,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
     required double scale,
     required double inset,
     required double fontSize,
+    required FontWeight fontWeight,
   }) {
     final colorScheme = Theme.of(context).colorScheme;
     final rect = slot.rect;
@@ -280,7 +313,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
           suppressInputs: widget.suppressInputs,
         )) ==
         index;
-    return Positioned(
+    final layer = Positioned(
       left: rect.left * scale + inset,
       top: rect.top * scale + inset,
       width: rect.width * scale - inset * 2,
@@ -311,8 +344,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                       textAlign: TextAlign.center,
                       style: _problemTextStyle(
                         color: colorScheme.onSurface,
-                        fontSize:
-                            (rect.height * 0.86 * scale).clamp(18.0, 52.0),
+                        fontSize: fontSize,
                         fontWeight: FontWeight.w500,
                         height: 1,
                       ),
@@ -325,7 +357,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                     style: _problemTextStyle(
                       color: colorScheme.onSurface,
                       fontSize: fontSize,
-                      fontWeight: FontWeight.w800,
+                      fontWeight: fontWeight,
                       height: 1,
                     ),
                   ),
@@ -335,6 +367,11 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
           ),
         ),
       ),
+    );
+    return _transformedPositionedLayer(
+      layer: layer,
+      transform: slot.transform,
+      scale: scale,
     );
   }
 
@@ -423,13 +460,93 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
     }
     inputSignature = signature;
     _ensureControllerCount(slots.length);
-    final chars = widget.inputValue.characters.toList();
-    for (var i = 0; i < inputControllers.length; i += 1) {
-      final value = _inputValueForController(slots, chars, i);
-      if (inputControllers[i].text != value) {
-        inputControllers[i].text = value;
+
+    final answerIndexes = slots.indexed
+        .where((entry) => entry.$2.contributesToAnswer)
+        .map((entry) => entry.$1)
+        .toList();
+    final targetIndexes = answerIndexes.isEmpty
+        ? List<int>.generate(slots.length, (i) => i)
+        : answerIndexes;
+
+    final tokens = _extractTokensFromFormattedInput(widget.inputValue);
+    if (tokens.isNotEmpty) {
+      for (var pos = 0; pos < targetIndexes.length; pos++) {
+        final ctrlIdx = targetIndexes[pos];
+        final val = pos < tokens.length ? tokens[pos] : '';
+        if (inputControllers[ctrlIdx].text != val) {
+          inputControllers[ctrlIdx].text = val;
+        }
+      }
+      return;
+    }
+
+    final cleanValue = widget.inputValue.replaceAll(RegExp(r'[/,;|\s]+'), '');
+    if (cleanValue.isEmpty) {
+      for (final ctrl in inputControllers) {
+        if (ctrl.text.isNotEmpty) ctrl.text = '';
+      }
+      return;
+    }
+
+    final targetSlots = targetIndexes.map((i) => slots[i]).toList();
+    final sliceLengths = _inferSlotSliceLengths(
+      targetSlots,
+      cleanValue,
+      widget.expectedAnswer,
+    );
+
+    int cursor = 0;
+    for (var pos = 0; pos < targetIndexes.length; pos++) {
+      final ctrlIdx = targetIndexes[pos];
+      final len = pos < sliceLengths.length ? sliceLengths[pos] : 0;
+      final val = cursor + len <= cleanValue.length
+          ? cleanValue.substring(cursor, cursor + len)
+          : (cursor < cleanValue.length ? cleanValue.substring(cursor) : '');
+      cursor += len;
+      if (inputControllers[ctrlIdx].text != val) {
+        inputControllers[ctrlIdx].text = val;
       }
     }
+  }
+
+  List<int> _inferSlotSliceLengths(
+    List<_InputSlot> slots,
+    String cleanValue,
+    String expectedAnswer,
+  ) {
+    if (slots.isEmpty) return const [];
+    if (slots.length == 1) return [cleanValue.length];
+
+    final totalMaxLen = slots.fold<int>(0, (sum, s) => sum + s.maxLength);
+    if (totalMaxLen == cleanValue.length) {
+      return slots.map((s) => s.maxLength).toList();
+    }
+
+    final lengths = <int>[];
+    int remaining = cleanValue.length;
+    for (final slot in slots) {
+      final take = slot.maxLength.clamp(0, remaining);
+      lengths.add(take);
+      remaining -= take;
+    }
+    return lengths;
+  }
+
+  List<String> _extractTokensFromFormattedInput(String raw) {
+    final trimmed = raw.trim();
+    if (trimmed.isEmpty) return const [];
+    if (RegExp(r'[/,;|\s]').hasMatch(trimmed)) {
+      final tokens = trimmed
+          .split(RegExp(r'[/,;|\s]+'))
+          .map((t) => t.trim())
+          .where((t) => t.isNotEmpty)
+          .toList();
+      if (tokens.length > 1) {
+        return tokens;
+      }
+    }
+    return const [];
   }
 
   void _ensureControllerCount(int count) {
@@ -454,6 +571,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
     final indexes = answerIndexes.isEmpty
         ? List<int>.generate(inputControllers.length, (index) => index)
         : answerIndexes;
+
     return indexes.map((index) => inputControllers[index].text).join().trim();
   }
 
@@ -497,31 +615,6 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
     });
     widget.onInputChanged?.call(nextValue);
   }
-
-  String _inputValueForController(
-    List<_InputSlot> slots,
-    List<String> chars,
-    int controllerIndex,
-  ) {
-    final answerIndexes = slots.indexed
-        .where((entry) => entry.$2.contributesToAnswer)
-        .map((entry) => entry.$1)
-        .toList();
-    if (answerIndexes.isEmpty) {
-      final start = slots
-          .take(controllerIndex)
-          .fold<int>(0, (total, slot) => total + slot.maxLength);
-      return _sliceCharacters(chars, start, slots[controllerIndex].maxLength);
-    }
-    final answerPosition = answerIndexes.indexOf(controllerIndex);
-    if (answerPosition < 0) {
-      return '';
-    }
-    final start = answerIndexes
-        .take(answerPosition)
-        .fold<int>(0, (total, index) => total + slots[index].maxLength);
-    return _sliceCharacters(chars, start, slots[controllerIndex].maxLength);
-  }
 }
 
 class RendererJsonPainter extends CustomPainter {
@@ -558,6 +651,11 @@ class RendererJsonPainter extends CustomPainter {
   void _paintElement(Canvas canvas, Map<String, dynamic> element) {
     final type = element['type']?.toString();
     final attributes = _mapAt(element, 'attributes');
+    canvas
+      ..save()
+      ..transform(
+        rendererElementTransform(attributes['transform']).storage,
+      );
     switch (type) {
       case 'circle':
         _paintCircle(canvas, attributes);
@@ -572,6 +670,7 @@ class RendererJsonPainter extends CustomPainter {
       case 'text':
         _paintText(canvas, element, attributes);
     }
+    canvas.restore();
   }
 
   void _paintCircle(Canvas canvas, Map<String, dynamic> attributes) {
@@ -935,7 +1034,7 @@ List<Widget> _textBoxLayers(Map<String, dynamic> renderer, double scale) {
       ),
     );
 
-    return Positioned(
+    final layer = Positioned(
       left: x * scale,
       top: y * scale,
       width: width * scale,
@@ -953,6 +1052,11 @@ List<Widget> _textBoxLayers(Map<String, dynamic> renderer, double scale) {
         ),
       ),
     );
+    return _transformedPositionedLayer(
+      layer: layer,
+      transform: attributes['transform'],
+      scale: scale,
+    );
   }).toList(growable: false);
 }
 
@@ -966,7 +1070,11 @@ String _normalizeTextBoxText(String text) {
   return trimmed.split('\n').map((line) => line.trimRight()).join('\n');
 }
 
-List<Widget> _imageLayers(Map<String, dynamic> renderer, double scale) {
+List<Widget> _imageLayers(
+  Map<String, dynamic> renderer,
+  double scale, {
+  RendererImageLoader? loadRelativeImage,
+}) {
   final elements = renderer['elements'];
   if (elements is! List) {
     return const [];
@@ -1007,10 +1115,7 @@ List<Widget> _imageLayers(Map<String, dynamic> renderer, double scale) {
           if (isBase64) {
             svgString = utf8.decode(
               base64Decode(
-                dataPart
-                    .replaceAll('\n', '')
-                    .replaceAll('\r', '')
-                    .trim(),
+                dataPart.replaceAll('\n', '').replaceAll('\r', '').trim(),
               ),
             );
           } else {
@@ -1030,6 +1135,14 @@ List<Widget> _imageLayers(Map<String, dynamic> renderer, double scale) {
           imageWidget = SvgPicture.network(
             href,
             fit: BoxFit.contain,
+            width: width * scale,
+            height: height * scale,
+          );
+        } else if (loadRelativeImage != null && !_isRootAssetPath(href)) {
+          imageWidget = _deferredRendererImage(
+            href: href,
+            future: loadRelativeImage(href),
+            isSvg: true,
             width: width * scale,
             height: height * scale,
           );
@@ -1074,6 +1187,14 @@ List<Widget> _imageLayers(Map<String, dynamic> renderer, double scale) {
         height: height * scale,
         errorBuilder: (_, __, ___) => const SizedBox.shrink(),
       );
+    } else if (loadRelativeImage != null && !_isRootAssetPath(href)) {
+      imageWidget = _deferredRendererImage(
+        href: href,
+        future: loadRelativeImage(href),
+        isSvg: false,
+        width: width * scale,
+        height: height * scale,
+      );
     } else if (href.startsWith('assets/') ||
         href.startsWith('examples/') ||
         !href.contains(':')) {
@@ -1088,14 +1209,57 @@ List<Widget> _imageLayers(Map<String, dynamic> renderer, double scale) {
       imageWidget = const SizedBox.shrink();
     }
 
-    return Positioned(
+    final layer = Positioned(
       left: x * scale,
       top: y * scale,
       width: width * scale,
       height: height * scale,
       child: imageWidget,
     );
+    return _transformedPositionedLayer(
+      layer: layer,
+      transform: attributes['transform'],
+      scale: scale,
+    );
   }).toList(growable: false);
+}
+
+bool _isRootAssetPath(String href) {
+  return href.startsWith('assets/') || href.startsWith('examples/');
+}
+
+Widget _deferredRendererImage({
+  required String href,
+  required Future<Uint8List> future,
+  required bool isSvg,
+  required double width,
+  required double height,
+}) {
+  return FutureBuilder<Uint8List>(
+    key: ValueKey('renderer-image:$href'),
+    future: future,
+    builder: (context, snapshot) {
+      final bytes = snapshot.data;
+      if (bytes == null || bytes.isEmpty) {
+        return const SizedBox.shrink();
+      }
+      if (isSvg) {
+        return SvgPicture.memory(
+          bytes,
+          fit: BoxFit.contain,
+          width: width,
+          height: height,
+        );
+      }
+      return Image.memory(
+        bytes,
+        fit: BoxFit.fill,
+        width: width,
+        height: height,
+        errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+      );
+    },
+  );
 }
 
 List<_InputSlot> _inputSlots(
@@ -1132,6 +1296,8 @@ List<_InputSlot> _inputSlots(
           autoAdvance: _autoAdvanceForInput(element),
           order: _orderForInput(element),
           placeholder: _placeholderForInput(element),
+          transform: attributes['transform']?.toString() ?? '',
+          inputStyle: _mapAt(element, 'input_style'),
         ),
       );
       continue;
@@ -1157,6 +1323,8 @@ List<_InputSlot> _inputSlots(
           autoAdvance: _autoAdvanceForInput(element),
           order: _orderForInput(element),
           placeholder: _placeholderForInput(element),
+          transform: attributes['transform']?.toString() ?? '',
+          inputStyle: _mapAt(element, 'input_style'),
         ),
       );
       continue;
@@ -1165,7 +1333,8 @@ List<_InputSlot> _inputSlots(
       if (!_looksLikeInputPath(element)) {
         continue;
       }
-      final rect = _pathBounds(_mapAt(element, 'attributes')['d']?.toString());
+      final attributes = _mapAt(element, 'attributes');
+      final rect = _pathBounds(attributes['d']?.toString());
       if (rect == null || rect.isEmpty) {
         continue;
       }
@@ -1180,6 +1349,8 @@ List<_InputSlot> _inputSlots(
           autoAdvance: _autoAdvanceForInput(element),
           order: _orderForInput(element),
           placeholder: _placeholderForInput(element),
+          transform: attributes['transform']?.toString() ?? '',
+          inputStyle: _mapAt(element, 'input_style'),
         ),
       );
       continue;
@@ -1208,6 +1379,8 @@ List<_InputSlot> _inputSlots(
         autoAdvance: _autoAdvanceForInput(element),
         order: _orderForInput(element),
         placeholder: _placeholderForInput(element),
+        transform: attributes['transform']?.toString() ?? '',
+        inputStyle: _mapAt(element, 'input_style'),
       ),
     );
   }
@@ -1288,25 +1461,32 @@ bool _isLegacyAnswerBlankInsideTextBox(
 
 Rect? _elementRect(Map<String, dynamic> element) {
   final attributes = _mapAt(element, 'attributes');
+  Rect? rect;
   if (element['type']?.toString() == 'path') {
     final bounds = _pathBounds(attributes['d']?.toString());
     if (bounds != null) {
-      return bounds;
+      rect = bounds;
     }
   }
-  final x =
-      _readDouble(attributes['x']) ?? _readDouble(attributes['data-box-x']);
-  final y =
-      _readDouble(attributes['y']) ?? _readDouble(attributes['data-box-y']);
-  final width = _readDouble(attributes['width']) ??
-      _readDouble(attributes['data-box-width']) ??
-      _readDouble(attributes['max_width']);
-  final height = _readDouble(attributes['height']) ??
-      _readDouble(attributes['data-box-height']);
-  if (x == null || y == null || width == null || height == null) {
-    return null;
+  if (rect == null) {
+    final x =
+        _readDouble(attributes['x']) ?? _readDouble(attributes['data-box-x']);
+    final y =
+        _readDouble(attributes['y']) ?? _readDouble(attributes['data-box-y']);
+    final width = _readDouble(attributes['width']) ??
+        _readDouble(attributes['data-box-width']) ??
+        _readDouble(attributes['max_width']);
+    final height = _readDouble(attributes['height']) ??
+        _readDouble(attributes['data-box-height']);
+    if (x == null || y == null || width == null || height == null) {
+      return null;
+    }
+    rect = Rect.fromLTWH(x, y, width, height);
   }
-  return Rect.fromLTWH(x, y, width, height);
+  return MatrixUtils.transformRect(
+    rendererElementTransform(attributes['transform']),
+    rect,
+  );
 }
 
 Path? _parseSvgPath(String data) {
@@ -1719,12 +1899,40 @@ bool _autoAdvanceForInput(Map<String, dynamic> element) {
 }
 
 double _inputFontSize(_InputSlot slot, double scale) {
-  final ratio = slot.operatorOnly
-      ? 0.58
-      : slot.maxLength > 1
-          ? 0.52
-          : 0.72;
-  return (slot.rect.height * ratio * scale).clamp(16.0, 52.0);
+  final style = slot.inputStyle;
+  final authoredSize = _readDouble(style['font_size']);
+  final minSize = _readDouble(style['min_font_size']);
+  final maxSize = _readDouble(style['max_font_size']);
+  final adjustment = _readDouble(style['font_size_adjust']) ?? 0;
+  final padding = (_readDouble(style['padding']) ?? 3).clamp(0.0, 24.0);
+
+  // Renderer dimensions and authored font sizes are logical coordinates. The
+  // old implementation clamped the scaled result to 52 physical pixels, so
+  // answer text stopped growing while the surrounding problem text continued
+  // to scale. Fit in logical space first, then scale once with the canvas.
+  final heightLimit = slot.rect.height * (slot.operatorOnly ? 0.72 : 0.84);
+  final availableWidth = math.max(1.0, slot.rect.width - padding * 2);
+  final characterWidthRatio = slot.digitsOnly ? 0.56 : 0.62;
+  final widthLimit =
+      availableWidth / (math.max(1, slot.maxLength) * characterWidthRatio);
+  final fitLimit = math.min(heightLimit, widthLimit);
+
+  var logicalSize = (authoredSize ?? heightLimit) + adjustment;
+  if (maxSize != null) {
+    logicalSize = math.min(logicalSize, maxSize);
+  }
+  if (minSize != null) {
+    logicalSize = math.max(logicalSize, math.min(minSize, fitLimit));
+  }
+  logicalSize = logicalSize.clamp(1.0, math.max(1.0, fitLimit));
+  return logicalSize * scale;
+}
+
+FontWeight _inputFontWeight(_InputSlot slot) {
+  final value = _readInt(slot.inputStyle['font_weight']);
+  if (value == null) return FontWeight.w800;
+  final index = ((value / 100).round() - 1).clamp(0, 8);
+  return FontWeight.values[index];
 }
 
 int? _orderForInput(Map<String, dynamic> element) {
@@ -1766,6 +1974,8 @@ class _InputSlot {
     required this.autoAdvance,
     required this.order,
     required this.placeholder,
+    required this.transform,
+    required this.inputStyle,
   });
 
   final Rect rect;
@@ -1777,12 +1987,14 @@ class _InputSlot {
   final bool autoAdvance;
   final int? order;
   final String? placeholder;
+  final String transform;
+  final Map<String, dynamic> inputStyle;
 
   bool get drawPlaceholderBehind =>
       operatorOnly && placeholder != null && placeholder!.isNotEmpty;
 
   String get signature =>
-      '$id:${rect.left},${rect.top},${rect.width},${rect.height}:$maxLength:$order:$placeholder';
+      '$id:${rect.left},${rect.top},${rect.width},${rect.height}:$maxLength:$order:$placeholder:$transform';
 
   _InputSlot copyWith({int? maxLength}) {
     return _InputSlot(
@@ -1795,8 +2007,116 @@ class _InputSlot {
       autoAdvance: autoAdvance,
       order: order,
       placeholder: placeholder,
+      transform: transform,
+      inputStyle: inputStyle,
     );
   }
+}
+
+Widget _transformedPositionedLayer({
+  required Widget layer,
+  required Object? transform,
+  required double scale,
+}) {
+  final raw = transform?.toString().trim() ?? '';
+  if (raw.isEmpty) {
+    return layer;
+  }
+  return Positioned.fill(
+    child: Transform(
+      alignment: Alignment.topLeft,
+      transform: rendererElementTransform(raw, coordinateScale: scale),
+      transformHitTests: true,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [layer],
+      ),
+    ),
+  );
+}
+
+@visibleForTesting
+Matrix4 rendererElementTransform(
+  Object? rawTransform, {
+  double coordinateScale = 1,
+}) {
+  final result = Matrix4.identity();
+  final raw = rawTransform?.toString().trim() ?? '';
+  if (raw.isEmpty) {
+    return result;
+  }
+
+  final operationPattern = RegExp(r'([a-zA-Z]+)\s*\(([^)]*)\)');
+  final numberPattern = RegExp(
+    r'[-+]?(?:\d*\.\d+|\d+\.?)(?:[eE][-+]?\d+)?',
+  );
+
+  for (final match in operationPattern.allMatches(raw)) {
+    final operation = match.group(1)!.toLowerCase();
+    final values = numberPattern
+        .allMatches(match.group(2) ?? '')
+        .map((number) => double.tryParse(number.group(0)!))
+        .whereType<double>()
+        .toList(growable: false);
+    Matrix4? next;
+
+    switch (operation) {
+      case 'translate':
+        if (values.isNotEmpty) {
+          next = Matrix4.translationValues(
+            values[0] * coordinateScale,
+            (values.length > 1 ? values[1] : 0) * coordinateScale,
+            0,
+          );
+        }
+      case 'scale':
+        if (values.isNotEmpty) {
+          next = Matrix4.diagonal3Values(
+            values[0],
+            values.length > 1 ? values[1] : values[0],
+            1,
+          );
+        }
+      case 'rotate':
+        if (values.isNotEmpty) {
+          final rotation = Matrix4.rotationZ(values[0] * math.pi / 180);
+          if (values.length >= 3) {
+            final cx = values[1] * coordinateScale;
+            final cy = values[2] * coordinateScale;
+            next = Matrix4.translationValues(cx, cy, 0)
+              ..multiply(rotation)
+              ..multiply(Matrix4.translationValues(-cx, -cy, 0));
+          } else {
+            next = rotation;
+          }
+        }
+      case 'skewx':
+        if (values.isNotEmpty) {
+          next = Matrix4.identity()
+            ..setEntry(0, 1, math.tan(values[0] * math.pi / 180));
+        }
+      case 'skewy':
+        if (values.isNotEmpty) {
+          next = Matrix4.identity()
+            ..setEntry(1, 0, math.tan(values[0] * math.pi / 180));
+        }
+      case 'matrix':
+        if (values.length >= 6) {
+          next = Matrix4.identity()
+            ..setEntry(0, 0, values[0])
+            ..setEntry(1, 0, values[1])
+            ..setEntry(0, 1, values[2])
+            ..setEntry(1, 1, values[3])
+            ..setEntry(0, 3, values[4] * coordinateScale)
+            ..setEntry(1, 3, values[5] * coordinateScale);
+        }
+    }
+
+    if (next != null) {
+      result.multiply(next);
+    }
+  }
+  return result;
 }
 
 Map<String, dynamic> _mapAt(Map<String, dynamic> map, String key) {
@@ -1819,14 +2139,6 @@ int? _readInt(Object? value) {
     return value;
   }
   return int.tryParse(value?.toString() ?? '');
-}
-
-String _sliceCharacters(List<String> chars, int start, int length) {
-  if (start >= chars.length) {
-    return '';
-  }
-  final end = (start + length).clamp(0, chars.length);
-  return chars.sublist(start, end).join();
 }
 
 List<double>? _readDashArray(Object? value) {

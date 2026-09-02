@@ -37,6 +37,25 @@ void main() {
       expect(content.correctAnswer, isNotEmpty);
     });
 
+    test('loads sibling image assets referenced by renderer JSON', () async {
+      final repository = ContentRepository.bundledAssets();
+      final manifest = await repository.loadManifest();
+      final summary = manifest.problems.firstWhere(
+        (problem) => problem.id == 'S3_초등_3_008739',
+      );
+      final content = await repository.loadProblem(summary);
+      final imageElement = (content.renderer['elements'] as List)
+          .whereType<Map<String, dynamic>>()
+          .firstWhere((element) => element['type'] == 'image');
+      final attributes = imageElement['attributes'] as Map<String, dynamic>;
+      final href = attributes['href'] as String;
+
+      expect(href, equals('S3_초등_3_008739_inserted.image.1.png'));
+      final bytes = await repository.loadProblemAsset(summary, href);
+      expect(bytes, isNotEmpty);
+      expect(bytes.take(8), equals(const [137, 80, 78, 71, 13, 10, 26, 10]));
+    });
+
     test('extracts duplicate slot answer key maps as one final answer',
         () async {
       final repository = ContentRepository.bundledAssets();
@@ -575,7 +594,8 @@ void main() {
       expect(content.prompt, equals('□ 안에 알맞은 수를 써넣으시오.'));
     });
 
-    test('resolves unit info accurately from folder path, metadata, or prefix', () {
+    test('resolves unit info accurately from folder path, metadata, or prefix',
+        () {
       final multiplicationProblem = ContentRepository.resolveUnitInfo(
         path: 'examples/problems/ko/3-1/4_곱셈',
         filePrefix: 'S3_초등_3_008578',
@@ -614,6 +634,31 @@ void main() {
       expect(capacityProblem.semester, equals(2));
       expect(capacityProblem.unitNumber, equals(5));
       expect(capacityProblem.unitTopic, equals('들이와 무게'));
+    });
+
+    test(
+        'resolves sub-problem variant suffix with fallback (P3_1_01_00040_02152_2)',
+        () async {
+      final repository = ContentRepository.bundledAssets();
+      final summary = _summaryWithPrefix('P3_1_01_00040_02152_2');
+
+      final content = await repository.loadProblem(summary);
+
+      expect(content.semantic, isNotEmpty);
+      expect(content.renderer, isNotEmpty);
+      expect(content.prompt, contains('병현이네 학교 도서관'));
+    });
+
+    test('validates that every problem in bundled manifest can be loaded',
+        () async {
+      final repository = ContentRepository.bundledAssets();
+      final manifest = await repository.loadManifest();
+
+      expect(manifest.problems.length, greaterThanOrEqualTo(300));
+      for (final problem in manifest.problems) {
+        expect(problem.id, isNotEmpty);
+        expect(problem.filePrefix, isNotEmpty);
+      }
     });
   });
 }
