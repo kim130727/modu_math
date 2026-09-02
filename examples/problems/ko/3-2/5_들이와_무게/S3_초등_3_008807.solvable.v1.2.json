@@ -4,7 +4,7 @@
   "problem_type": "unit_selection",
   "inputs": {
     "total_ticks": 0,
-    "target_label": "필통의 무게를 나타내는 단위",
+    "target_label": "g",
     "target_ticks": 0,
     "target_count": 1,
     "unit": ""
@@ -64,13 +64,18 @@
   ],
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "g",
+      "kg"
+    ],
+    "answer_key": [
+      "g"
+    ],
     "target": {
       "type": "unit",
       "description": "필통의 무게를 나타내는 단위"
     },
-    "value": 0,
+    "value": "g",
     "unit": "g"
   },
   "understanding": {

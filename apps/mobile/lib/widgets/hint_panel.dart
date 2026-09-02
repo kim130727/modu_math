@@ -108,7 +108,7 @@ class _HintPanelState extends State<HintPanel> {
               const SizedBox(height: 12),
             ],
             FilledButton.icon(
-              onPressed: canRevealMore && activeGroup != null
+              onPressed: canRevealMore
                   ? () => _revealNext(activeGroup)
                   : null,
               icon: const Icon(Icons.visibility_outlined),

@@ -101,11 +101,11 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
-        "target": {
-            "type": "symbol_judgment",
-            "description": "제시된 방법이 높이 비교 방법으로 바른지 판단하기",
+        "choices": ["○", "X"],
+        "answer_key": ["X"],
+        "target": {"type": "symbol_judgment", "description": "제시된 방법이 높이 비교 방법으로 바른지 판단하기"},
+        "value": "X",
+        "unit": "",
         },
         "value": 0,
         "unit": "",
@@ -156,11 +156,11 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
-        "target": {
-            "type": "symbol_judgment",
-            "description": "제시된 방법이 높이 비교 방법으로 바른지 판단하기",
+        "choices": ["○", "X"],
+        "answer_key": ["X"],
+        "target": {"type": "symbol_judgment", "description": "제시된 방법이 높이 비교 방법으로 바른지 판단하기"},
+        "value": "X",
+        "unit": "",
         },
         "value": 0,
         "unit": "",

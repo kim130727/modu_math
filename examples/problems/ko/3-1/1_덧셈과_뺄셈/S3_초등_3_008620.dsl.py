@@ -120,8 +120,8 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["268 ÷ 5", "402 ÷ 4", "397 ÷ 6"],
+        "answer_key": ["402 ÷ 4"],
         "target": {"type": "selected_expression", "description": "70보다 큰 것"},
         "value": None,
         "unit": "",
@@ -163,8 +163,8 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["268 ÷ 5", "402 ÷ 4", "397 ÷ 6"],
+        "answer_key": ["402 ÷ 4"],
         "target": {"type": "selected_expression", "description": "70보다 큰 것"},
         "value": None,
         "unit": "",

@@ -71,6 +71,64 @@ void main() {
     expect(submitted, equals('80 x 4080 x 40'));
   });
 
+  testWidgets('allows selecting choice groups for multi-question problems',
+      (tester) async {
+    var submitted = '';
+
+    const choiceGroupContent = ProblemContent(
+      summary: _summary,
+      semantic: {},
+      renderer: {},
+      solvable: {
+        'answer': {
+          'choice_groups': [
+            {
+              'label': '(1)번 문제',
+              'choices': ['가 물병', '나 물병'],
+            },
+            {
+              'label': '(2)번 문제',
+              'choices': ['가 물병', '나 물병'],
+            },
+          ],
+          'choices': ['가 물병', '나 물병'],
+          'answer_key': ['나 물병', '나 물병'],
+          'value': '나 물병, 나 물병',
+          'target': {'type': 'multiple_choice_group'},
+        },
+      },
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: AnswerPanel(
+            content: choiceGroupContent,
+            answerDraft: '',
+            isCorrect: null,
+            onAnswerChanged: (_) {},
+            onSubmit: (value) => submitted = value,
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('(1)번 문제'), findsOneWidget);
+    expect(find.text('(2)번 문제'), findsOneWidget);
+    expect(find.text('가 물병'), findsNWidgets(2));
+    expect(find.text('나 물병'), findsNWidgets(2));
+
+    await tester.tap(find.text('나 물병').at(0));
+    await tester.tap(find.text('나 물병').at(1));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byType(FilledButton));
+    await tester.pumpAndSettle();
+
+    expect(submitted, equals('나 물병, 나 물병'));
+    expect(isSameAnswer(submitted, choiceGroupContent.correctAnswer), isTrue);
+  });
+
   test('merges alternating split marker choices into complete choice items', () {
     const content = ProblemContent(
       summary: _summary,
@@ -101,6 +159,92 @@ void main() {
       '4. 236+362',
       '5. 405+104',
     ]));
+  });
+
+  test('keeps standalone Hangul symbol choices separate for 008659', () {
+    expect(_pointChoiceContent.choices, equals(['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ']));
+  });
+
+  testWidgets('renders 008659 symbols as four mutually exclusive choices',
+      (tester) async {
+    var draft = '';
+    var submitted = '';
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: AnswerPanel(
+            content: _pointChoiceContent,
+            answerDraft: '',
+            isCorrect: null,
+            onAnswerChanged: (value) => draft = value,
+            onSubmit: (value) => submitted = value,
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byType(ChoiceChip), findsNWidgets(4));
+    for (final symbol in ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ']) {
+      expect(find.text(symbol), findsOneWidget);
+    }
+
+    await tester.tap(find.text('ㄱ'));
+    await tester.tap(find.text('ㄹ'));
+    await tester.pumpAndSettle();
+
+    final selectedChips = tester
+        .widgetList<ChoiceChip>(find.byType(ChoiceChip))
+        .where((chip) => chip.selected);
+    expect(selectedChips, hasLength(1));
+    expect(draft, equals('ㄹ'));
+
+    await tester.tap(find.byType(FilledButton));
+    await tester.pumpAndSettle();
+    expect(submitted, equals('ㄹ'));
+  });
+
+  test('keeps all six standalone Hangul symbol choices separate for 008658',
+      () {
+    expect(
+      _compassCenterChoiceContent.choices,
+      equals(['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ']),
+    );
+  });
+
+  testWidgets('renders 008658 symbols as six independent multi-select choices',
+      (tester) async {
+    var draft = '';
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: AnswerPanel(
+            content: _compassCenterChoiceContent,
+            answerDraft: '',
+            isCorrect: null,
+            onAnswerChanged: (value) => draft = value,
+            onSubmit: (_) {},
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byType(ChoiceChip), findsNWidgets(6));
+    for (final symbol in ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ']) {
+      expect(find.text(symbol), findsOneWidget);
+    }
+
+    for (final symbol in ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ']) {
+      await tester.tap(find.text(symbol));
+    }
+    await tester.pumpAndSettle();
+
+    final selectedChips = tester
+        .widgetList<ChoiceChip>(find.byType(ChoiceChip))
+        .where((chip) => chip.selected);
+    expect(selectedChips, hasLength(4));
+    expect(draft, equals('ㄱㄴㄷㄹ'));
   });
 
   test('merges grouped operator and number renderer elements into clean choices', () {
@@ -885,6 +1029,52 @@ const _duplicateChoiceContent = ProblemContent(
         {'id': 'choice.2', 'value': '80 x 40'},
       ],
       'target': {'type': 'multiple_choice_values'},
+    },
+  },
+);
+
+const _pointChoiceContent = ProblemContent(
+  summary: ProblemSummary(
+    id: 'S3_초등_3_008659',
+    grade: 3,
+    subject: 'math',
+    unit: '원',
+    type: 'diagram_choice',
+    title: '원의 중심 찾기',
+    path: '',
+    raw: {},
+  ),
+  semantic: {},
+  renderer: {},
+  solvable: {
+    'answer': {
+      'choices': ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ'],
+      'answer_key': ['ㄹ'],
+      'target': {'type': 'selected_point'},
+      'value': 'ㄹ',
+    },
+  },
+);
+
+const _compassCenterChoiceContent = ProblemContent(
+  summary: ProblemSummary(
+    id: 'S3_초등_3_008658',
+    grade: 3,
+    subject: 'math',
+    unit: '원',
+    type: 'geometry_compass_centers',
+    title: '컴퍼스의 침을 꽂을 곳 찾기',
+    path: '',
+    raw: {},
+  ),
+  semantic: {},
+  renderer: {},
+  solvable: {
+    'answer': {
+      'choices': ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ'],
+      'answer_key': ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ'],
+      'target': {'type': 'multiple_choice_set'},
+      'value': 'ㄱ, ㄴ, ㄷ, ㄹ',
     },
   },
 );

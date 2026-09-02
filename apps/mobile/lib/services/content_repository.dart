@@ -522,7 +522,7 @@ class ContentRepository {
 
     final title = _summaryTitle(metadata, unitTopic);
     final problemType = _problemTypeLabel(
-      semantic?['problem_type']?.toString(),
+      semantic['problem_type']?.toString(),
     );
     final raw = <String, dynamic>{
       'id': filePrefix,
@@ -536,8 +536,8 @@ class ContentRepository {
       'semester': '$semester학기',
       'unitNumber': unitNumber,
       'unitTopic': unitTopic,
-      if (semantic?['problem_type'] != null)
-        'problemType': semantic!['problem_type'].toString(),
+      if (semantic['problem_type'] != null)
+        'problemType': semantic['problem_type'].toString(),
       if (metadata['topic'] != null) 'topic': metadata['topic'].toString(),
     };
     return ProblemSummary.fromJson(raw);

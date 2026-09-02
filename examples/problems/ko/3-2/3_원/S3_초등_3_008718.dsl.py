@@ -199,13 +199,13 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["ㄱ", "ㄴ", "ㄷ", "ㄹ"],
+        "answer_key": ["ㄷ"],
         "target": {
             "type": "choice_symbol",
             "description": "원의 중심을 옮겨 가며 그린 모양이 아닌 보기의 기호",
         },
-        "value": 0,
+        "value": "ㄷ",
         "unit": "",
     },
 }
@@ -249,13 +249,13 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["ㄱ", "ㄴ", "ㄷ", "ㄹ"],
+        "answer_key": ["ㄷ"],
         "target": {
             "type": "choice_symbol",
             "description": "원의 중심을 옮겨 가며 그린 모양이 아닌 보기의 기호",
         },
-        "value": 0,
+        "value": "ㄷ",
         "unit": "",
     },
 }

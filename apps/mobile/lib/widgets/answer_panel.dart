@@ -423,9 +423,7 @@ bool _allowsMultipleChoices(ProblemContent content) {
       ? target['type']?.toString().toLowerCase()
       : null;
   if (targetType != null &&
-      (targetType.contains('multiple') ||
-          targetType.contains('multi') ||
-          targetType.contains('selected_'))) {
+      (targetType.contains('multiple') || targetType.contains('multi'))) {
     return true;
   }
   final answerKey = answer['answer_key'];

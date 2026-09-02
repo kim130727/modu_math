@@ -4,7 +4,7 @@
   "problem_type": "truth_evaluation",
   "inputs": {
     "total_ticks": 4,
-    "target_label": "바르게 이야기한 사람",
+    "target_label": "해원",
     "target_ticks": 1,
     "target_count": 1,
     "unit": ""
@@ -93,13 +93,19 @@
   ],
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "경호",
+      "해원",
+      "동주"
+    ],
+    "answer_key": [
+      "해원"
+    ],
     "target": {
       "type": "correct_speaker",
       "description": "바르게 이야기한 사람"
     },
-    "value": 0,
+    "value": "해원",
     "unit": ""
   },
   "understanding": {

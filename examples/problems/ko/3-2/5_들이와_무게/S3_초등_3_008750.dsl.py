@@ -41,7 +41,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.q1",
                 prompt="",
-                text="㉮ 병과 ㉯ 병에 물을 가득 채운 후 높이와 크기가 같은 그릇에 옮겨 담았",
+                text="가 병과 나 병에 물을 가득 채운 후 높이와 크기가 같은 그릇에 옮겨 담았",
                 style_role="question",
                 x=14.0,
                 y=28.0,
@@ -68,7 +68,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.choice",
                 prompt="",
-                text="( ㉮ 병 , ㉯ 병 )",
+                text="( 가 병 , 나 병 )",
                 style_role="answer_choice",
                 x=372,
                 y=420,
@@ -142,8 +142,8 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["가 병", "나 병"],
+        "answer_key": ["가 병"],
         "target": {"type": "choice", "description": "들이가 더 적은 병"},
         "value": 0,
         "unit": "",
@@ -202,8 +202,8 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["가 병", "나 병"],
+        "answer_key": ["가 병"],
         "target": {"type": "choice", "description": "들이가 더 적은 병"},
         "value": 0,
         "unit": "",

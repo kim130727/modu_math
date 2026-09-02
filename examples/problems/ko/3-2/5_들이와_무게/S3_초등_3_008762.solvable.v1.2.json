@@ -25,7 +25,7 @@
   ],
   "target": {
     "ref": "answer.target",
-    "type": "lighter_object"
+    "type": "choice"
   },
   "method": "visual_comparison",
   "plan": [
@@ -61,11 +61,16 @@
   ],
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "연필",
+      "풀"
+    ],
+    "answer_key": [
+      "연필"
+    ],
     "target": {
-      "type": "lighter_object",
-      "description": "더 가벼운 것"
+      "type": "choice",
+      "description": "더 가벼운 것 선택(연필, 풀)"
     },
     "value": "연필",
     "unit": ""

@@ -508,11 +508,11 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
-        "target": {
-            "type": "true_false_choice",
-            "description": "그린 규칙이 바르게 설명되었는지에 대한 선택",
+        "choices": ["○", "X"],
+        "answer_key": ["X"],
+        "target": {"type": "choice", "description": "규칙에 맞는지 여부 선택(○, X)"},
+        "value": "X",
+        "unit": "",
         },
         "value": 0,
         "unit": "",
@@ -573,11 +573,11 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
-        "target": {
-            "type": "true_false_choice",
-            "description": "그린 규칙이 바르게 설명되었는지에 대한 선택",
+        "choices": ["○", "X"],
+        "answer_key": ["X"],
+        "target": {"type": "choice", "description": "규칙에 맞는지 여부 선택(○, X)"},
+        "value": "X",
+        "unit": "",
         },
         "value": 0,
         "unit": "",

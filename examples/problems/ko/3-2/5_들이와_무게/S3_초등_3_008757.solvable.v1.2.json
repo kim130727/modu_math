@@ -4,7 +4,7 @@
   "problem_type": "들이_비교와_어림",
   "inputs": {
     "total_ticks": 0,
-    "target_label": "간장병의 들이와 500 mL 생수병의 들이 비교",
+    "target_label": "많습니다, 2 L",
     "target_ticks": 0,
     "target_count": 2,
     "unit": "mL/L"
@@ -70,13 +70,26 @@
   "answer": {
     "blanks": [],
     "choices": [],
-    "answer_key": [],
+    "answer_key": [
+      "많습니다",
+      "2 L"
+    ],
     "target": {
       "type": "choice_selection",
       "description": "간장병의 들이 비교 결과와 어림한 단위를 고른다"
     },
-    "value": "많습니다. 2L",
-    "unit": ""
+    "value": "많습니다, 2 L",
+    "unit": "",
+    "choice_groups": [
+      [
+        "많습니다",
+        "적습니다"
+      ],
+      [
+        "2 mL",
+        "2 L"
+      ]
+    ]
   },
   "understanding": {
     "summary": "Find 간장병의 들이와 500 mL 생수병의 들이 비교 using the given information.",

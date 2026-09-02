@@ -64,5 +64,20 @@ void main() {
       expect(isSameAnswer('328 × 8', '752 × 3'), isFalse);
       expect(isSameAnswer('2624', '752 × 3'), isFalse);
     });
+
+    test('matches container and bottle comparison labels flexibly (S3_초등_3_008750)', () {
+      expect(isSameAnswer('가 병', '가 병'), isTrue);
+      expect(isSameAnswer('가', '가 병'), isTrue);
+      expect(isSameAnswer('가병', '가 병'), isTrue);
+      expect(isSameAnswer('가 병', '가 물병'), isTrue);
+      expect(isSameAnswer('가 물병', '가 병'), isTrue);
+      expect(isSameAnswer('㉮', '가 병'), isTrue);
+      expect(isSameAnswer('㉮ 병', '가 병'), isTrue);
+      expect(isSameAnswer('ㄱ', '가 병'), isTrue);
+      expect(isSameAnswer('나 병', '가 병'), isFalse);
+      expect(isSameAnswer('나', '가 병'), isFalse);
+      expect(isSameAnswer('나 물병', '나 병'), isTrue);
+      expect(isSameAnswer('나', '나 물병'), isTrue);
+    });
   });
 }

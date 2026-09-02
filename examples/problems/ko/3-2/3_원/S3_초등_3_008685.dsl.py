@@ -114,10 +114,10 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": ["O", "X"],
-        "answer_key": ["O"],
-        "target": {"type": "truth_value", "description": "주어진 설명이 맞는지 O 또는 X로 판단"},
-        "value": "O",
+        "choices": ["○", "X"],
+        "answer_key": ["○"],
+        "target": {"type": "choice", "description": "바른 설명 여부 선택(○, X)"},
+        "value": "○",
         "unit": "",
     },
 }
@@ -158,10 +158,10 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": ["O", "X"],
-        "answer_key": ["O"],
-        "target": {"type": "truth_value", "description": "주어진 설명이 맞는지 O 또는 X로 판단"},
-        "value": "O",
+        "choices": ["○", "X"],
+        "answer_key": ["○"],
+        "target": {"type": "choice", "description": "바른 설명 여부 선택(○, X)"},
+        "value": "○",
         "unit": "",
     },
 }

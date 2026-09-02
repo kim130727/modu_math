@@ -3,6 +3,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RendererJsonCanvas extends StatefulWidget {
@@ -74,18 +75,17 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
       suppressInputs: widget.suppressInputs,
     );
     _ensureControllerCount(inputSlots.length);
-    final hasOperatorSlots =
-        inputSlots.any((slot) => slot.operatorOnly);
+    final hasOperatorSlots = inputSlots.any((slot) => slot.operatorOnly);
 
     return LayoutBuilder(
       builder: (context, constraints) {
         final double maxW =
             constraints.maxWidth.isFinite ? constraints.maxWidth : width;
-        final double maxH =
-            constraints.maxHeight.isFinite ? constraints.maxHeight : double.infinity;
+        final double maxH = constraints.maxHeight.isFinite
+            ? constraints.maxHeight
+            : double.infinity;
 
-        final double operatorBarReservedHeight =
-            hasOperatorSlots ? 74.0 : 0.0;
+        final double operatorBarReservedHeight = hasOperatorSlots ? 74.0 : 0.0;
         final double availableHeight =
             (maxH - operatorBarReservedHeight).clamp(0.0, double.infinity);
 
@@ -584,21 +584,26 @@ class RendererJsonPainter extends CustomPainter {
     final strokeAttr = attributes['stroke']?.toString().trim().toLowerCase();
     final stroke = strokeAttr == 'none'
         ? null
-        : (_readColor(attributes['stroke']) ?? (strokeAttr == null ? null : Colors.black));
+        : (_readColor(attributes['stroke']) ??
+            (strokeAttr == null ? null : Colors.black));
     final strokeWidth = _readDouble(attributes['stroke-width']) ?? 1;
 
     if (fill != null) {
       canvas.drawCircle(center, radius, Paint()..color = fill);
     }
     if (stroke != null && strokeWidth > 0) {
-      canvas.drawCircle(
-        center,
-        radius,
-        Paint()
-          ..color = stroke
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = strokeWidth,
-      );
+      final paint = Paint()
+        ..color = stroke
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = strokeWidth;
+      final dashArray = _readDashArray(attributes['stroke-dasharray']);
+      if (dashArray != null && dashArray.isNotEmpty) {
+        final path = Path()
+          ..addOval(Rect.fromCircle(center: center, radius: radius));
+        _drawDashedPath(canvas, path, paint, dashArray);
+      } else {
+        canvas.drawCircle(center, radius, paint);
+      }
     }
   }
 
@@ -625,7 +630,7 @@ class RendererJsonPainter extends CustomPainter {
       ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round;
     final dashArray = _readDashArray(attributes['stroke-dasharray']);
-    if (dashArray == null) {
+    if (dashArray == null || dashArray.isEmpty) {
       canvas.drawLine(start, end, paint);
       return;
     }
@@ -643,20 +648,25 @@ class RendererJsonPainter extends CustomPainter {
     final strokeAttr = attributes['stroke']?.toString().trim().toLowerCase();
     final stroke = strokeAttr == 'none'
         ? null
-        : (_readColor(attributes['stroke']) ?? (strokeAttr == null ? null : Colors.black));
+        : (_readColor(attributes['stroke']) ??
+            (strokeAttr == null ? null : Colors.black));
     final strokeWidth = _readDouble(attributes['stroke-width']) ?? 1;
 
     if (fill != null) {
       canvas.drawRect(rect, Paint()..color = fill);
     }
     if (stroke != null && strokeWidth > 0) {
-      canvas.drawRect(
-        rect,
-        Paint()
-          ..color = stroke
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = strokeWidth,
-      );
+      final paint = Paint()
+        ..color = stroke
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = strokeWidth;
+      final dashArray = _readDashArray(attributes['stroke-dasharray']);
+      if (dashArray != null && dashArray.isNotEmpty) {
+        final path = Path()..addRect(rect);
+        _drawDashedPath(canvas, path, paint, dashArray);
+      } else {
+        canvas.drawRect(rect, paint);
+      }
     }
   }
 
@@ -693,6 +703,35 @@ class RendererJsonPainter extends CustomPainter {
     }
   }
 
+  void _drawDashedPath(
+    Canvas canvas,
+    Path path,
+    Paint paint,
+    List<double> dashArray,
+  ) {
+    if (dashArray.isEmpty) {
+      canvas.drawPath(path, paint);
+      return;
+    }
+    for (final metric in path.computeMetrics()) {
+      var travelled = 0.0;
+      var dashIndex = 0;
+      var draw = true;
+      while (travelled < metric.length) {
+        final segmentLength = dashArray[dashIndex % dashArray.length];
+        final nextTravelled =
+            (travelled + segmentLength).clamp(0.0, metric.length);
+        if (draw) {
+          final extracted = metric.extractPath(travelled, nextTravelled);
+          canvas.drawPath(extracted, paint);
+        }
+        travelled = nextTravelled;
+        dashIndex += 1;
+        draw = !draw;
+      }
+    }
+  }
+
   void _paintPolygon(Canvas canvas, Map<String, dynamic> attributes) {
     final path = rendererPolygonPath(attributes['points']);
     if (path == null) {
@@ -706,15 +745,18 @@ class RendererJsonPainter extends CustomPainter {
       canvas.drawPath(path, Paint()..color = fill);
     }
     if (stroke != null && strokeWidth > 0) {
-      canvas.drawPath(
-        path,
-        Paint()
-          ..color = stroke
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = strokeWidth
-          ..strokeCap = StrokeCap.round
-          ..strokeJoin = StrokeJoin.round,
-      );
+      final paint = Paint()
+        ..color = stroke
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = strokeWidth
+        ..strokeCap = StrokeCap.round
+        ..strokeJoin = StrokeJoin.round;
+      final dashArray = _readDashArray(attributes['stroke-dasharray']);
+      if (dashArray != null && dashArray.isNotEmpty) {
+        _drawDashedPath(canvas, path, paint, dashArray);
+      } else {
+        canvas.drawPath(path, paint);
+      }
     }
   }
 
@@ -731,15 +773,18 @@ class RendererJsonPainter extends CustomPainter {
       canvas.drawPath(path, Paint()..color = fill);
     }
     if (stroke != null && strokeWidth > 0) {
-      canvas.drawPath(
-        path,
-        Paint()
-          ..color = stroke
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = strokeWidth
-          ..strokeCap = StrokeCap.round
-          ..strokeJoin = StrokeJoin.round,
-      );
+      final paint = Paint()
+        ..color = stroke
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = strokeWidth
+        ..strokeCap = StrokeCap.round
+        ..strokeJoin = StrokeJoin.round;
+      final dashArray = _readDashArray(attributes['stroke-dasharray']);
+      if (dashArray != null && dashArray.isNotEmpty) {
+        _drawDashedPath(canvas, path, paint, dashArray);
+      } else {
+        canvas.drawPath(path, paint);
+      }
     }
   }
 
@@ -873,6 +918,22 @@ List<Widget> _textBoxLayers(Map<String, dynamic> renderer, double scale) {
       horizontal: align,
       vertical: attributes['data-vertical-align'],
     );
+    final text = _normalizeTextBoxText(element['text']?.toString() ?? '');
+    final textWidget = Text(
+      text,
+      textAlign: align,
+      // Renderer JSON line breaks are layout instructions, not merely word
+      // wrapping hints. Keeping those lines atomic prevents Flutter's font
+      // metrics from introducing an extra line compared with the source SVG.
+      softWrap: !text.contains('\n'),
+      overflow: TextOverflow.clip,
+      style: _problemTextStyle(
+        color: _readColor(attributes['fill']) ?? Colors.black,
+        fontSize: fontSize * scale,
+        fontWeight: FontWeight.w600,
+        height: lineHeight,
+      ),
+    );
 
     return Positioned(
       left: x * scale,
@@ -882,22 +943,27 @@ List<Widget> _textBoxLayers(Map<String, dynamic> renderer, double scale) {
       child: ClipRect(
         child: Align(
           alignment: verticalAlign,
-          child: Text(
-            element['text']?.toString() ?? '',
-            textAlign: align,
-            softWrap: true,
-            overflow: TextOverflow.clip,
-            style: _problemTextStyle(
-              color: _readColor(attributes['fill']) ?? Colors.black,
-              fontSize: fontSize * scale,
-              fontWeight: FontWeight.w600,
-              height: lineHeight,
-            ),
-          ),
+          child: text.contains('\n')
+              ? FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: verticalAlign,
+                  child: textWidget,
+                )
+              : textWidget,
         ),
       ),
     );
   }).toList(growable: false);
+}
+
+String _normalizeTextBoxText(String text) {
+  final normalizedNewlines =
+      text.replaceAll('\r\n', '\n').replaceAll('\r', '\n');
+  final trimmed = normalizedNewlines.replaceAll(
+    RegExp(r'^[\n]+|[\n]+$'),
+    '',
+  );
+  return trimmed.split('\n').map((line) => line.trimRight()).join('\n');
 }
 
 List<Widget> _imageLayers(Map<String, dynamic> renderer, double scale) {
@@ -929,7 +995,60 @@ List<Widget> _imageLayers(Map<String, dynamic> renderer, double scale) {
     }
 
     Widget imageWidget;
-    if (href.startsWith('data:image/')) {
+    if (href.startsWith('data:image/svg+xml') ||
+        href.toLowerCase().contains('.svg')) {
+      try {
+        if (href.startsWith('data:image/svg+xml')) {
+          final commaIndex = href.indexOf(',');
+          final dataPart =
+              commaIndex != -1 ? href.substring(commaIndex + 1) : href;
+          final isBase64 = href.contains(';base64');
+          String svgString;
+          if (isBase64) {
+            svgString = utf8.decode(
+              base64Decode(
+                dataPart
+                    .replaceAll('\n', '')
+                    .replaceAll('\r', '')
+                    .trim(),
+              ),
+            );
+          } else {
+            try {
+              svgString = Uri.decodeComponent(dataPart);
+            } catch (_) {
+              svgString = dataPart;
+            }
+          }
+          imageWidget = SvgPicture.string(
+            svgString,
+            fit: BoxFit.contain,
+            width: width * scale,
+            height: height * scale,
+          );
+        } else if (href.startsWith('http://') || href.startsWith('https://')) {
+          imageWidget = SvgPicture.network(
+            href,
+            fit: BoxFit.contain,
+            width: width * scale,
+            height: height * scale,
+          );
+        } else if (href.startsWith('assets/') ||
+            href.startsWith('examples/') ||
+            !href.contains(':')) {
+          imageWidget = SvgPicture.asset(
+            href,
+            fit: BoxFit.contain,
+            width: width * scale,
+            height: height * scale,
+          );
+        } else {
+          imageWidget = const SizedBox.shrink();
+        }
+      } catch (_) {
+        imageWidget = const SizedBox.shrink();
+      }
+    } else if (href.startsWith('data:image/')) {
       try {
         final commaIndex = href.indexOf(',');
         final base64String =
@@ -1222,7 +1341,8 @@ Path? _parseSvgPath(String data) {
         if (x == null || y == null) {
           return path;
         }
-        current = isRelative ? Offset(current.dx + x, current.dy + y) : Offset(x, y);
+        current =
+            isRelative ? Offset(current.dx + x, current.dy + y) : Offset(x, y);
         start = current;
         path.moveTo(current.dx, current.dy);
         command = isRelative ? 'l' : 'L';
@@ -1234,7 +1354,8 @@ Path? _parseSvgPath(String data) {
         if (x == null || y == null) {
           return path;
         }
-        current = isRelative ? Offset(current.dx + x, current.dy + y) : Offset(x, y);
+        current =
+            isRelative ? Offset(current.dx + x, current.dy + y) : Offset(x, y);
         path.lineTo(current.dx, current.dy);
       case 'H':
       case 'h':
@@ -1266,9 +1387,15 @@ Path? _parseSvgPath(String data) {
         if ([x1, y1, x2, y2, x3, y3].any((value) => value == null)) {
           return path;
         }
-        final p1 = isRelative ? Offset(current.dx + x1!, current.dy + y1!) : Offset(x1!, y1!);
-        final p2 = isRelative ? Offset(current.dx + x2!, current.dy + y2!) : Offset(x2!, y2!);
-        final p3 = isRelative ? Offset(current.dx + x3!, current.dy + y3!) : Offset(x3!, y3!);
+        final p1 = isRelative
+            ? Offset(current.dx + x1!, current.dy + y1!)
+            : Offset(x1!, y1!);
+        final p2 = isRelative
+            ? Offset(current.dx + x2!, current.dy + y2!)
+            : Offset(x2!, y2!);
+        final p3 = isRelative
+            ? Offset(current.dx + x3!, current.dy + y3!)
+            : Offset(x3!, y3!);
         current = p3;
         path.cubicTo(p1.dx, p1.dy, p2.dx, p2.dy, p3.dx, p3.dy);
       case 'Q':
@@ -1281,8 +1408,12 @@ Path? _parseSvgPath(String data) {
         if ([x1, y1, x2, y2].any((value) => value == null)) {
           return path;
         }
-        final p1 = isRelative ? Offset(current.dx + x1!, current.dy + y1!) : Offset(x1!, y1!);
-        final p2 = isRelative ? Offset(current.dx + x2!, current.dy + y2!) : Offset(x2!, y2!);
+        final p1 = isRelative
+            ? Offset(current.dx + x1!, current.dy + y1!)
+            : Offset(x1!, y1!);
+        final p2 = isRelative
+            ? Offset(current.dx + x2!, current.dy + y2!)
+            : Offset(x2!, y2!);
         current = p2;
         path.quadraticBezierTo(p1.dx, p1.dy, p2.dx, p2.dy);
       case 'A':
@@ -1346,7 +1477,8 @@ List<String> _svgPathTokens(String data) {
       .toList(growable: false);
 }
 
-bool _isPathCommand(String token) => RegExp(r'^[MLHVCAQZmlhvcaqz]$').hasMatch(token);
+bool _isPathCommand(String token) =>
+    RegExp(r'^[MLHVCAQZmlhvcaqz]$').hasMatch(token);
 
 void _applyExpectedAnswerLength(List<_InputSlot> slots, String expectedAnswer) {
   final answerLength = expectedAnswer.characters.length;

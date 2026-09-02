@@ -31,7 +31,7 @@
   ],
   "target": {
     "ref": "answer.target",
-    "type": "selection"
+    "type": "multiple_choice_group"
   },
   "method": "balance_scale_comparison",
   "plan": [
@@ -82,14 +82,36 @@
   ],
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "사과",
+      "배"
+    ],
+    "answer_key": [
+      "배",
+      "배"
+    ],
     "target": {
-      "type": "selection",
+      "type": "multiple_choice_group",
       "description": "(1), (2)에 들어갈 알맞은 말"
     },
     "value": "배, 배",
-    "unit": ""
+    "unit": "",
+    "choice_groups": [
+      {
+        "label": "(1)번",
+        "choices": [
+          "사과",
+          "배"
+        ]
+      },
+      {
+        "label": "(2)번",
+        "choices": [
+          "사과",
+          "배"
+        ]
+      }
+    ]
   },
   "understanding": {
     "summary": "Find 알맞은 말 선택 using the given information.",
