@@ -1,0 +1,77 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008540",
+  "problem_type": "multiple_choice_multiplication_place_value",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "색칠한 부분",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.multiple",
+      "value": "869 × 4"
+    },
+    {
+      "ref": "obj.highlighted_value",
+      "value": "240"
+    },
+    {
+      "ref": "obj.choice_set",
+      "value": [
+        "6 × 4",
+        "69 × 4",
+        "60 × 4",
+        "600 × 4"
+      ]
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "matching_expression"
+  },
+  "method": "place_value_matching",
+  "plan": [
+    "색칠한 부분이 나타내는 자리값을 해설 문장과 함께 확인한다.",
+    "보기 중 같은 수식을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "869에서 6은 60을 나타낸다",
+      "value": "60"
+    },
+    {
+      "id": "step.2",
+      "expr": "60 × 4",
+      "value": 240
+    },
+    {
+      "id": "step.3",
+      "expr": "색칠한 부분 240에 대응하는 보기 찾기",
+      "value": "60 × 4"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "60 × 4 = 240",
+      "expected": 240,
+      "actual": 240,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "matching_expression",
+      "description": "색칠한 부분 240에 해당하는 실제 곱"
+    },
+    "value": "60 × 4",
+    "unit": ""
+  }
+}

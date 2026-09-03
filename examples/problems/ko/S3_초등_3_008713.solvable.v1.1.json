@@ -1,0 +1,62 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008713",
+  "problem_type": "sequence_ordering",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "정답 선택지",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.step.g1",
+      "value": "ㄱ"
+    },
+    {
+      "ref": "obj.step.g2",
+      "value": "ㄴ"
+    },
+    {
+      "ref": "obj.step.g3",
+      "value": "ㄷ"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_number"
+  },
+  "method": "sequence_matching",
+  "plan": [
+    "해설의 순서를 따라 올바른 단계 배열을 확인한다.",
+    "해당 순서와 같은 선택지를 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "ㄴ → ㄷ → ㄱ",
+      "value": 2
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택지 ② = ㄴ, ㄷ, ㄱ",
+      "expected": 2,
+      "actual": 2,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_number",
+      "description": "원 그리기 순서의 정답 선택지"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

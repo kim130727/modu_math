@@ -1,0 +1,68 @@
+{
+  "problem_id": "S3_초등_3_008541",
+  "problem_type": "multiple_choice_ordering",
+  "metadata": {
+    "title": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오",
+    "tags": [],
+    "instruction": "보기에서 계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
+    "question": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
+    "required_layout_ids": [
+      "slot.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.a",
+        "type": "expression",
+        "label": "ㄱ",
+        "operation": "397 × 6"
+      },
+      {
+        "id": "obj.b",
+        "type": "expression",
+        "label": "ㄴ",
+        "operation": "549 × 4"
+      },
+      {
+        "id": "obj.c",
+        "type": "expression",
+        "label": "ㄷ",
+        "operation": "456 × 5"
+      },
+      {
+        "id": "obj.option2",
+        "type": "choice",
+        "label": "②",
+        "sequence": [
+          "ㄱ",
+          "ㄷ",
+          "ㄴ"
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.order",
+        "type": "descending_order",
+        "from_id": "obj.a",
+        "to_id": "obj.b"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice_number",
+      "description": "계산 결과가 큰 것부터 차례대로 나열한 보기 번호"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}
