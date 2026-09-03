@@ -7,6 +7,15 @@ $ErrorActionPreference = "Stop"
 $RepoRoot = Split-Path -Parent $PSScriptRoot
 $MobileRoot = Join-Path $RepoRoot "apps/mobile"
 
+function Ensure-MobileJunction {
+    $target = Join-Path $RepoRoot "examples"
+    $link = Join-Path $MobileRoot "examples"
+    if (-not (Test-Path -LiteralPath $link)) {
+        Write-Host "Creating junction: $link -> $target" -ForegroundColor Cyan
+        New-Item -ItemType Junction -Path $link -Target $target | Out-Null
+    }
+}
+
 function Invoke-PythonTests {
     Push-Location $RepoRoot
     try {
@@ -18,6 +27,7 @@ function Invoke-PythonTests {
 }
 
 function Invoke-FlutterAnalyze {
+    Ensure-MobileJunction
     Push-Location $MobileRoot
     try {
         flutter analyze
@@ -28,6 +38,7 @@ function Invoke-FlutterAnalyze {
 }
 
 function Invoke-FlutterTests {
+    Ensure-MobileJunction
     Push-Location $MobileRoot
     try {
         flutter test

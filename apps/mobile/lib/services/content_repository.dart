@@ -59,7 +59,14 @@ class ContentRepository {
   static const String manifestPath = '$problemsPath/manifest.json';
   static const String grade3Path = '$problemsPath/grade3';
   static const String generatedPath = '$problemsPath/generated';
-  static const Set<String> localizedProblemLocales = {'ko'};
+  static const Set<String> localizedProblemLocales = {
+    'ko',
+    'en',
+    'zh',
+    'ja',
+    'km',
+    'uk',
+  };
 
   final ContentRepositorySource source;
   final http.Client _httpClient;
@@ -538,7 +545,8 @@ class ContentRepository {
 
   Future<List<ProblemSummary>?> _tryLoadLocalHttpProblemSummaries() async {
     try {
-      final response = await _httpClient.get(_localHttpUri('/api/problems'));
+      final response = await _httpClient
+          .get(_localHttpUri('/api/problems?locale=$activeProblemLocale'));
       if (response.statusCode != 200) {
         return null;
       }
@@ -1011,7 +1019,8 @@ class ContentRepository {
   }
 
   Future<List<String>> _loadLocalHttpRendererPaths() async {
-    final response = await _httpClient.get(_localHttpUri('/api/problems'));
+    final response = await _httpClient
+        .get(_localHttpUri('/api/problems?locale=$activeProblemLocale'));
     if (response.statusCode != 200) {
       throw StateError(
         'Local problem server list load failed: ${response.statusCode}',

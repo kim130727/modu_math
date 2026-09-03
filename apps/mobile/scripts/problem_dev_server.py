@@ -6,7 +6,7 @@ import mimetypes
 import re
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import unquote, urlparse
+from urllib.parse import parse_qs, unquote, urlparse
 
 
 DEFAULT_ROOT = Path(__file__).resolve().parents[3] / "examples" / "problems"
@@ -58,12 +58,14 @@ def _parse_prefix_numbers(file_prefix: str) -> tuple[int, int, int]:
 
 class ProblemDevHandler(BaseHTTPRequestHandler):
     root: Path
-    _cached_manifest: dict[str, object] | None = None
+    _cached_manifests: dict[str, dict[str, object]] = {}
 
     def do_GET(self) -> None:
         parsed = urlparse(self.path)
         if parsed.path == "/api/problems":
-            self._send_problem_list()
+            query = parse_qs(parsed.query)
+            locale = query.get("locale", ["ko"])[0]
+            self._send_problem_list(locale)
             return
         if parsed.path.startswith("/api/problem-bundle/"):
             self._send_problem_bundle(parsed.path.removeprefix("/api/problem-bundle/"))
@@ -92,19 +94,26 @@ class ProblemDevHandler(BaseHTTPRequestHandler):
         self.send_response(204)
         self.end_headers()
 
-    def _send_problem_list(self) -> None:
-        if ProblemDevHandler._cached_manifest is not None:
-            self._send_json(ProblemDevHandler._cached_manifest)
+    def _send_problem_list(self, locale: str = "ko") -> None:
+        if locale in ProblemDevHandler._cached_manifests:
+            self._send_json(ProblemDevHandler._cached_manifests[locale])
             return
 
-        renderer_files = sorted(
-            [
-                path
-                for path in self.root.rglob("*.renderer.json")
-                if path.is_file() and not path.name.endswith("_uk.renderer.json") and "uk" not in path.parts
-            ],
-            key=lambda p: p.name,
-        )
+        locale_dir = self.root / locale
+        if locale_dir.is_dir():
+            renderer_files = sorted(
+                [p for p in locale_dir.glob("*.renderer.json") if p.is_file()],
+                key=lambda p: p.name,
+            )
+        else:
+            renderer_files = sorted(
+                [
+                    path
+                    for path in self.root.rglob("*.renderer.json")
+                    if path.is_file()
+                ],
+                key=lambda p: p.name,
+            )
 
         paths = [path.relative_to(self.root).as_posix() for path in renderer_files]
         problems: list[dict[str, object]] = []
