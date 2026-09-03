@@ -39,13 +39,13 @@ def build_problem_template() -> ProblemTemplate:
             id="region.stem",
             role="stem",
             flow="absolute",
-            slot_ids=("slot.q1", "slot.q2", "slot.q3", "slot.inserted.image.1"),
+            slot_ids=("slot.question", "slot.inserted.image.1"),
         ),
         Region(
             id="region.diagram",
             role="diagram",
             flow="absolute",
-            slot_ids=(),
+            slot_ids=("slot.label.a", "slot.label.b"),
         ),
         Region(
             id="region.choice",
@@ -61,40 +61,50 @@ def build_problem_template() -> ProblemTemplate:
         ),
     )
     slots = (
-        TextSlot(
-            id="slot.q1",
+        TextBoxSlot(
+            id="slot.question",
             prompt="",
             text=(
-                "After filling Bottles A and B with water, pour the water into containers of the same "
-                "shape and size"
+                "Bottles A and B were filled with water, and the water was poured into containers of "
+                "the same shape and size. Compare the capacities of Bottles A and B using the water "
+                "levels shown. Choose the correct words."
             ),
             style_role="question",
-            x=16,
-            y=52,
-            font_size=28,
-            fill="#111111",
+            x=66.684,
+            y=17.307,
+            width=825.55,
+            height=158,
+            font_size=30,
+            line_height=1.25,
+            fill="#111827",
         ),
-        TextSlot(
-            id="slot.q2",
-            prompt="",
-            text=(
-                "poured the water. To compare the capacities of Bottles A and B when filled as shown "
-                "in the picture"
-            ),
-            style_role="question",
-            x=16,
-            y=86,
-            font_size=28,
-            fill="#111111",
+        TextBoxSlot(
+            id="slot.label.a",
+            prompt=None,
+            text="A",
+            style_role="body",
+            x=118.359,
+            y=176.832,
+            width=48.067,
+            height=46,
+            font_size=30,
+            line_height=1.25,
+            fill="#111827",
+            semantic_role="symbol_label",
         ),
-        TextSlot(
-            id="slot.q3",
-            prompt="",
-            text="we will compare them. Choose the correct words.",
-            style_role="question",
-            x=16.0,
-            y=120.0,
-            font_size=28,
+        TextBoxSlot(
+            id="slot.label.b",
+            prompt=None,
+            text="B",
+            style_role="body",
+            x=685.632,
+            y=194.047,
+            width=51.512,
+            height=46,
+            font_size=30,
+            line_height=1.25,
+            fill="#111827",
+            semantic_role="symbol_label",
         ),
         TextSlot(
             id="slot.choice.1",
@@ -151,8 +161,8 @@ SEMANTIC_OVERRIDE = {
     "problem_type": "비교",
     "metadata": {
         "language": "ko",
-        "question": "가 물병과 나 물병의 들이를 비교하는 문제",
-        "instruction": "알맞은 말을 선택하세요.",
+        "question": "Compare the capacities of Bottles A and B.",
+        "instruction": "Choose the correct words.",
     },
     "domain": {
         "objects": [

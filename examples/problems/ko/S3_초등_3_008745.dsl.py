@@ -1,5 +1,5 @@
 from __future__ import annotations
-from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot, ImageSlot
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextBoxSlot, TextSlot, RectSlot, ImageSlot
 
 
 def build_problem_template() -> ProblemTemplate:
@@ -12,13 +12,13 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.q1", "slot.q2", "slot.q3", "slot.inserted.image.1"),
+                slot_ids=("slot.question", "slot.inserted.image.1"),
             ),
             Region(
                 id="region.diagram",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(),
+                slot_ids=("slot.label.a", "slot.label.b"),
             ),
             Region(
                 id="region.choice",
@@ -29,34 +29,49 @@ def build_problem_template() -> ProblemTemplate:
             Region(id="region.answer", role="answer", flow="absolute", slot_ids=()),
         ),
         slots=(
-            TextSlot(
-                id="slot.q1",
+            TextBoxSlot(
+                id="slot.question",
                 prompt="",
-                text="㉮ 물병과 ㉯ 물병에 물을 가득 채운 후 모양과 크기가 같은 그릇에 옮겨",
+                text=(
+                    "㉮ 물병과 ㉯ 물병에 물을 가득 채운 후 모양과 크기가 같은 그릇에 옮겨 담았습니다. "
+                    "그림과 같이 물을 채웠을 때에 ㉮ 물병과 ㉯ 물병의 들이를 비교하려고 합니다. "
+                    "알맞은 말을 선택하세요."
+                ),
                 style_role="question",
-                x=16,
-                y=52,
-                font_size=28,
-                fill="#111111",
+                x=66.684,
+                y=17.307,
+                width=825.55,
+                height=158,
+                font_size=30,
+                fill="#111827",
+                align="left",
+                line_height=1.25,
             ),
-            TextSlot(
-                id="slot.q2",
-                prompt="",
-                text="담았습니다. 그림과 같이 물을 채웠을 때에 ㉮ 물병과 ㉯ 물병의 들이를 비교하",
-                style_role="question",
-                x=16,
-                y=86,
-                font_size=28,
-                fill="#111111",
+            TextBoxSlot(
+                id="slot.label.a",
+                text="㉮",
+                x=118.359,
+                y=176.832,
+                width=48.067,
+                height=46,
+                font_size=30,
+                fill="#111827",
+                align="left",
+                line_height=1.25,
+                semantic_role="symbol_label",
             ),
-            TextSlot(
-                id="slot.q3",
-                prompt="",
-                text="려고 합니다. 알맞은 말을 선택하세요.",
-                style_role="question",
-                x=16.0,
-                y=120.0,
-                font_size=28,
+            TextBoxSlot(
+                id="slot.label.b",
+                text="㉯",
+                x=685.632,
+                y=194.047,
+                width=51.512,
+                height=46,
+                font_size=30,
+                fill="#111827",
+                align="left",
+                line_height=1.25,
+                semantic_role="symbol_label",
             ),
             TextSlot(
                 id="slot.choice.1",

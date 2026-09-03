@@ -155,9 +155,9 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.mul.869",
                 prompt="",
-                text="8 6 9",
+                text="8   6   9",
                 style_role="diagram",
-                x=218.0,
+                x=220.0,
                 y=120.0,
                 font_size=28,
                 fill="#111111",
@@ -185,7 +185,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.mul.36",
                 prompt="",
-                text="3 6",
+                text="3   6",
                 style_role="diagram",
                 x=253.0,
                 y=202.0,
@@ -206,7 +206,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.mul.240",
                 prompt="",
-                text="2 4 0",
+                text="2   4   0",
                 style_role="diagram",
                 x=218.0,
                 y=250.0,
@@ -216,7 +216,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.mul.3200",
                 prompt="",
-                text="3 2 0 0",
+                text="3   2   0   0",
                 style_role="diagram",
                 x=184.0,
                 y=288.0,
@@ -226,7 +226,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.mul.3476",
                 prompt="",
-                text="3 4 7 6",
+                text="3   4   7   6",
                 style_role="diagram",
                 x=184.0,
                 y=334.0,

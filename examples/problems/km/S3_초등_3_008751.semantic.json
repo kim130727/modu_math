@@ -4,30 +4,30 @@
   "metadata": {
     "title": "ប្រៀបធៀបដបទឹកនិងដបទឹកដោះគោ",
     "tags": [],
-    "question": "물병과 우유병의 높이를 비교하려고 합니다. 두 병의 높이를 비교하는 방법을 바르게 설명했으면 ○표, 그렇지 않으면 ×를 선택하세요.",
+    "instruction": "សម្រេចថាវិធីប្រៀបធៀបនេះត្រឹមត្រូវឬអត់។",
+    "question": "យើងចង់ប្រៀបធៀបកម្ពស់ដបទឹក និងដបទឹកដោះគោ។ ប្រសិនបើវិធីប្រៀបធៀបកម្ពស់ដបទាំងពីរត្រឹមត្រូវ សូមជ្រើស ○ បើមិនត្រឹមត្រូវ សូមជ្រើស ×។",
     "required_layout_ids": [
       "slot.inserted.image.1"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko",
-    "instruction": "비교 방법의 타당성을 판단한다."
+    "language": "ko"
   },
   "domain": {
     "objects": [
       {
         "id": "obj.bottle_water",
         "type": "container",
-        "name": "물병"
+        "name": "ដបទឹក"
       },
       {
         "id": "obj.bottle_milk",
         "type": "container",
-        "name": "우유병"
+        "name": "ដបទឹកដោះគោ"
       },
       {
         "id": "obj.speech",
         "type": "statement",
-        "content": "물병에 물을 가득 채운 후 우유병에 옮겨 담아 보면 돼."
+        "content": "បំពេញទឹកក្នុងដបទឹកឱ្យពេញ រួចចាក់ទឹកទៅក្នុងដបទឹកដោះគោ។"
       }
     ],
     "relations": [],

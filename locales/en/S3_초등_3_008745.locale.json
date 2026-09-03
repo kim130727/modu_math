@@ -1,72 +1,58 @@
 {
-    "semantic.domain.objects.obj.bottle.ga.label":  {
-                                                        "source":  "가 물병",
-                                                        "translation":  "Bottle A",
-                                                        "status":  "translated"
-                                                    },
-    "semantic.domain.objects.obj.bottle.na.label":  {
-                                                        "source":  "나 물병",
-                                                        "translation":  "Bottle B",
-                                                        "status":  "translated"
-                                                    },
-    "semantic.domain.objects.obj.container.left.label":  {
-                                                             "source":  "왼쪽 그릇",
-                                                             "translation":  "Left container",
-                                                             "status":  "translated"
-                                                         },
-    "semantic.domain.objects.obj.container.right.label":  {
-                                                              "source":  "오른쪽 그릇",
-                                                              "translation":  "Right container",
-                                                              "status":  "translated"
-                                                          },
-    "semantic.domain.problem_solving.plan.method":  {
-                                                        "source":  "same_container_height_comparison",
-                                                        "translation":  "same_container_height_comparison",
-                                                        "status":  "translated"
-                                                    },
-    "solvable.method":  {
-                            "source":  "same_container_rule_check",
-                            "translation":  "same_container_rule_check",
-                            "status":  "translated"
-                        },
-    "solvable.plan.0":  {
-                            "source":  "같은 모양과 크기의 그릇에 옮겨 담은 물의 높이를 비교한다.",
-                            "translation":  "Compare the heights of the water poured into containers of the same shape and size.",
-                            "status":  "translated"
-                        },
-    "solvable.plan.1":  {
-                            "source":  "물의 높이가 더 높은 쪽의 들이가 더 많다고 판단한다.",
-                            "translation":  "Conclude that the side with the higher water level has the greater capacity.",
-                            "status":  "translated"
-                        },
-    "template.slots.slot.choice.1.text":  {
-                                              "source":  "(1) 옮겨 담은 물의 높이가 더 높은 것은 ( ㉮ 물병, ㉯ 물병)입니다.",
-                                              "translation":  "(1) The bottle whose poured water level is higher is (Bottle A, Bottle B).",
-                                              "status":  "translated"
-                                          },
-    "template.slots.slot.choice.2.text":  {
-                                              "source":  "(2) 들이가 더 많은 것은 ( ㉮ 물병, ㉯ 물병)입니다.",
-                                              "translation":  "(2) The bottle with the greater capacity is (Bottle A, Bottle B).",
-                                              "status":  "translated"
-                                          },
-    "template.slots.slot.q1.text":  {
-                                        "source":  "㉮ 물병과 ㉯ 물병에 물을 가득 채운 후 모양과 크기가 같은 그릇에 옮겨",
-                                        "translation":  "After filling Bottles A and B with water, pour the water into containers of the same shape and size",
-                                        "status":  "translated"
-                                    },
-    "template.slots.slot.q2.text":  {
-                                        "source":  "담았습니다. 그림과 같이 물을 채웠을 때에 ㉮ 물병과 ㉯ 물병의 들이를 비교하",
-                                        "translation":  "poured the water. To compare the capacities of Bottles A and B when filled as shown in the picture",
-                                        "status":  "translated"
-                                    },
-    "template.slots.slot.q3.text":  {
-                                        "source":  "려고 합니다. 알맞은 말을 선택하세요.",
-                                        "translation":  "we will compare them. Choose the correct words.",
-                                        "status":  "translated"
-                                    },
-    "template.title":  {
-                           "source":  "들이 비교",
-                           "translation":  "Comparing capacity",
-                           "status":  "translated"
-                       }
+  "semantic.domain.objects.obj.bottle.ga.label": {
+    "source": "가 물병",
+    "translation": "Bottle A"
+  },
+  "semantic.domain.objects.obj.bottle.na.label": {
+    "source": "나 물병",
+    "translation": "Bottle B"
+  },
+  "semantic.domain.objects.obj.container.left.label": {
+    "source": "왼쪽 그릇",
+    "translation": "Left container"
+  },
+  "semantic.domain.objects.obj.container.right.label": {
+    "source": "오른쪽 그릇",
+    "translation": "Right container"
+  },
+  "semantic.domain.problem_solving.plan.method": {
+    "source": "same_container_height_comparison",
+    "translation": "same_container_height_comparison"
+  },
+  "semantic.metadata.instruction": {
+    "source": "알맞은 말을 선택하세요.",
+    "translation": "Choose the correct words."
+  },
+  "semantic.metadata.question": {
+    "source": "가 물병과 나 물병의 들이를 비교하는 문제",
+    "translation": "Compare the capacities of Bottles A and B."
+  },
+  "solvable.method": {
+    "source": "same_container_rule_check",
+    "translation": "same_container_rule_check"
+  },
+  "solvable.plan.0": {
+    "source": "같은 모양과 크기의 그릇에 옮겨 담은 물의 높이를 비교한다.",
+    "translation": "Compare the heights of the water poured into containers of the same shape and size."
+  },
+  "solvable.plan.1": {
+    "source": "물의 높이가 더 높은 쪽의 들이가 더 많다고 판단한다.",
+    "translation": "Conclude that the side with the higher water level has the greater capacity."
+  },
+  "template.slots.slot.choice.1.text": {
+    "source": "(1) 옮겨 담은 물의 높이가 더 높은 것은 ( ㉮ 물병, ㉯ 물병)입니다.",
+    "translation": "(1) The bottle whose poured water level is higher is (Bottle A, Bottle B)."
+  },
+  "template.slots.slot.choice.2.text": {
+    "source": "(2) 들이가 더 많은 것은 ( ㉮ 물병, ㉯ 물병)입니다.",
+    "translation": "(2) The bottle with the greater capacity is (Bottle A, Bottle B)."
+  },
+  "template.slots.slot.question.text": {
+    "source": "㉮ 물병과 ㉯ 물병에 물을 가득 채운 후 모양과 크기가 같은 그릇에 옮겨 담았습니다. 그림과 같이 물을 채웠을 때에 ㉮ 물병과 ㉯ 물병의 들이를 비교하려고 합니다. 알맞은 말을 선택하세요.",
+    "translation": "Bottles A and B were filled with water, and the water was poured into containers of the same shape and size. Compare the capacities of Bottles A and B using the water levels shown. Choose the correct words."
+  },
+  "template.title": {
+    "source": "들이 비교",
+    "translation": "Comparing capacity"
+  }
 }

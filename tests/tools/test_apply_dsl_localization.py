@@ -173,8 +173,8 @@ def test_apply_localizes_solution_values_without_changing_identifiers() -> None:
     source = {
         "id": "slot.ㄱ",
         "label": "ㄱ",
-        "value": "선분 ㄱㄴ",
-        "expected": "ㄷㄹ",
+        "value": "선분 ㄱㄴ / ㉠㉡ / ㈀㈁",
+        "expected": "ㄷㄹ / ㉢㉣ / ㈂㈃",
     }
 
     localized = apply_translations(source, {}, ["semantic"], locale="en")
@@ -182,6 +182,6 @@ def test_apply_localizes_solution_values_without_changing_identifiers() -> None:
     assert localized == {
         "id": "slot.ㄱ",
         "label": "A",
-        "value": "선분 AB",
-        "expected": "CD",
+        "value": "선분 AB / AB / AB",
+        "expected": "CD / CD / CD",
     }

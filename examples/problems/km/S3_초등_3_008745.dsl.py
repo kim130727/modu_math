@@ -39,13 +39,13 @@ def build_problem_template() -> ProblemTemplate:
             id="region.stem",
             role="stem",
             flow="absolute",
-            slot_ids=("slot.q1", "slot.q2", "slot.q3", "slot.inserted.image.1"),
+            slot_ids=("slot.question", "slot.inserted.image.1"),
         ),
         Region(
             id="region.diagram",
             role="diagram",
             flow="absolute",
-            slot_ids=(),
+            slot_ids=("slot.label.a", "slot.label.b"),
         ),
         Region(
             id="region.choice",
@@ -61,39 +61,55 @@ def build_problem_template() -> ProblemTemplate:
         ),
     )
     slots = (
-        TextSlot(
-            id="slot.q1",
+        TextBoxSlot(
+            id="slot.question",
             prompt="",
-            text="បន្ទាប់ពីបំពេញទឹកក្នុងដប ㉮ និង ㉯ សូមចាក់ទៅក្នុងធុងដែលមានរាងនិងទំហំដូចគ្នា",
+            text=(
+                "បន្ទាប់ពីបំពេញទឹកក្នុងដប ក និង ខ ពេញហើយ ទឹកត្រូវបានចាក់ទៅក្នុងធុងដែលមានរាង "
+                "និងទំហំដូចគ្នា។ ប្រៀបធៀបចំណុះរបស់ដប ក និង ខ តាមកម្ពស់ទឹកដែលបង្ហាញក្នុងរូប "
+                "ហើយជ្រើសពាក្យត្រឹមត្រូវ។"
+            ),
             style_role="question",
-            x=16,
-            y=52,
-            font_size=28,
-            fill="#111111",
+            x=66.684,
+            y=17.307,
+            width=825.55,
+            height=158,
+            font_size=30,
+            line_height=1.25,
+            fill="#111827",
         ),
-        TextSlot(
-            id="slot.q2",
-            prompt="",
-            text="បានចាក់ទឹក។ ដើម្បីប្រៀបធៀបចំណុះដប ㉮ និង ㉯ ដែលមានទឹកដូចក្នុងរូប",
-            style_role="question",
-            x=16,
-            y=86,
-            font_size=28,
-            fill="#111111",
+        TextBoxSlot(
+            id="slot.label.a",
+            prompt=None,
+            text="ក",
+            style_role="body",
+            x=118.359,
+            y=176.832,
+            width=48.067,
+            height=46,
+            font_size=30,
+            line_height=1.25,
+            fill="#111827",
+            semantic_role="symbol_label",
         ),
-        TextSlot(
-            id="slot.q3",
-            prompt="",
-            text="សូមជ្រើសពាក្យត្រឹមត្រូវ។",
-            style_role="question",
-            x=16.0,
-            y=120.0,
-            font_size=28,
+        TextBoxSlot(
+            id="slot.label.b",
+            prompt=None,
+            text="ខ",
+            style_role="body",
+            x=685.632,
+            y=194.047,
+            width=51.512,
+            height=46,
+            font_size=30,
+            line_height=1.25,
+            fill="#111827",
+            semantic_role="symbol_label",
         ),
         TextSlot(
             id="slot.choice.1",
             prompt="",
-            text="(1) ដបដែលទឹកចាក់ផ្ទេរមានកម្ពស់ខ្ពស់ជាងគឺ (ដប ㉮, ដប ㉯)។",
+            text="(1) ដបដែលទឹកចាក់ផ្ទេរមានកម្ពស់ខ្ពស់ជាងគឺ (ដប ក, ដប ខ)។",
             style_role="question",
             x=36,
             y=402,
@@ -103,7 +119,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.choice.2",
             prompt="",
-            text="(2) ដបដែលមានចំណុះច្រើនជាងគឺ (ដប ㉮, ដប ㉯)។",
+            text="(2) ដបដែលមានចំណុះច្រើនជាងគឺ (ដប ក, ដប ខ)។",
             style_role="question",
             x=36,
             y=448,
@@ -145,13 +161,13 @@ SEMANTIC_OVERRIDE = {
     "problem_type": "비교",
     "metadata": {
         "language": "ko",
-        "question": "가 물병과 나 물병의 들이를 비교하는 문제",
-        "instruction": "알맞은 말을 선택하세요.",
+        "question": "ប្រៀបធៀបចំណុះរបស់ដប ក និង ខ។",
+        "instruction": "ជ្រើសពាក្យត្រឹមត្រូវ។",
     },
     "domain": {
         "objects": [
-            {"id": "obj.bottle.ga", "type": "물병", "label": "ដប ㉮"},
-            {"id": "obj.bottle.na", "type": "물병", "label": "ដប ㉯"},
+            {"id": "obj.bottle.ga", "type": "물병", "label": "ដប ក"},
+            {"id": "obj.bottle.na", "type": "물병", "label": "ដប ខ"},
             {
                 "id": "obj.container.left",
                 "type": "그릇",

@@ -13,17 +13,18 @@
       "id": "region.stem",
       "role": "stem",
       "flow": "absolute",
-      "slot_ids": []
+      "slot_ids": [
+        "slot.question"
+      ]
     },
     {
       "id": "region.diagram",
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "konva_1788399809477_image_1065658",
-        "konva_1788399809477_text_1078378",
-        "konva_1788399809477_text_1084923",
-        "konva_1788399809477_text_1125898"
+        "slot.label.a",
+        "slot.label.b",
+        "konva_1788399809477_image_1065658"
       ]
     },
     {
@@ -44,11 +45,67 @@
   ],
   "slots": [
     {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "បន្ទាប់ពីបំពេញទឹកក្នុងដប ក និង ខ ពេញហើយ ទឹកត្រូវបានចាក់ទៅក្នុងធុងដែលមានរាង និងទំហំដូចគ្នា។ ប្រៀបធៀបចំណុះរបស់ដប ក និង ខ តាមកម្ពស់ទឹកដែលបង្ហាញក្នុងរូប ហើយជ្រើសពាក្យត្រឹមត្រូវ។",
+        "style_role": "question",
+        "x": 66.684,
+        "y": 17.307,
+        "width": 825.55,
+        "height": 158.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 24,
+        "line_height": 1.25,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.label.a",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "ក",
+        "style_role": "body",
+        "x": 118.359,
+        "y": 176.832,
+        "width": 48.067,
+        "height": 46.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 30,
+        "line_height": 1.25,
+        "fill": "#111827",
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.label.b",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "ខ",
+        "style_role": "body",
+        "x": 685.632,
+        "y": 194.047,
+        "width": 51.512,
+        "height": 46.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 30,
+        "line_height": 1.25,
+        "fill": "#111827",
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
       "id": "slot.choice.1",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "(1) ដបដែលទឹកចាក់ផ្ទេរមានកម្ពស់ខ្ពស់ជាងគឺ (ដប ㉮, ដប ㉯)។",
+        "text": "(1) ដបដែលទឹកចាក់ផ្ទេរមានកម្ពស់ខ្ពស់ជាងគឺ (ដប ក, ដប ខ)។",
         "style_role": "question",
         "x": 36.0,
         "y": 402,
@@ -61,7 +118,7 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "(2) ដបដែលមានចំណុះច្រើនជាងគឺ (ដប ㉮, ដប ㉯)។",
+        "text": "(2) ដបដែលមានចំណុះច្រើនជាងគឺ (ដប ក, ដប ខ)។",
         "style_role": "question",
         "x": 36.0,
         "y": 448,
@@ -81,54 +138,6 @@
         "height": 218.75,
         "preserve_aspect_ratio": "xMidYMid meet"
       }
-    },
-    {
-      "id": "konva_1788399809477_text_1078378",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "x": 118.359,
-        "y": 176.832,
-        "font_size": 30,
-        "fill": "#111827",
-        "width": 48.067,
-        "height": 46,
-        "align": "left",
-        "line_height": 1.25,
-        "kind": "text_box"
-      }
-    },
-    {
-      "id": "konva_1788399809477_text_1084923",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "x": 685.632,
-        "y": 194.047,
-        "font_size": 30,
-        "fill": "#111827",
-        "width": 51.512,
-        "height": 46,
-        "align": "left",
-        "line_height": 1.25,
-        "kind": "text_box"
-      }
-    },
-    {
-      "id": "konva_1788399809477_text_1125898",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "x": 66.684,
-        "y": 17.307,
-        "font_size": 30,
-        "fill": "#111827",
-        "width": 825.55,
-        "height": 158,
-        "align": "left",
-        "line_height": 1.25,
-        "kind": "text_box"
-      }
     }
   ],
   "groups": [],
@@ -136,14 +145,14 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
+    "slot.question",
     "region.diagram",
+    "slot.label.a",
+    "slot.label.b",
     "region.choice",
     "slot.choice.1",
     "slot.choice.2",
     "region.answer",
-    "konva_1788399809477_image_1065658",
-    "konva_1788399809477_text_1078378",
-    "konva_1788399809477_text_1084923",
-    "konva_1788399809477_text_1125898"
+    "konva_1788399809477_image_1065658"
   ]
 }

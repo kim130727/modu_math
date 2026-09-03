@@ -90,7 +90,8 @@ def _attrs_to_str(attrs: dict[str, Any]) -> str:
 def _text_unit_width(ch: str, font_size: float) -> float:
     if ch.isspace():
         return font_size * 0.35
-    if ord(ch) < 128:
+    code = ord(ch)
+    if code < 128 or (0x00A0 <= code <= 0x02AF) or (0x0370 <= code <= 0x052F):
         return font_size * 0.58
     return font_size * 0.92
 

@@ -122,6 +122,19 @@ def slot_map(layout: dict[str, Any]) -> dict[str, dict[str, Any]]:
     }
 
 
+def is_language_independent_text_patch(source_text: str, localized_text: str) -> bool:
+    if not isinstance(source_text, str) or not isinstance(localized_text, str):
+        return False
+    # 1. Spacing / formatting adjustment of identical content
+    if re.sub(r"\s+", "", source_text) == re.sub(r"\s+", "", localized_text):
+        return True
+    # 2. Purely mathematical / numeric text (digits, math symbols, punctuation, spaces)
+    math_symbols = set("0123456789+-*/=×÷()_.,%#: \t\n")
+    if set(source_text).issubset(math_symbols) and set(localized_text).issubset(math_symbols):
+        return True
+    return False
+
+
 def merge_non_text_slot_patch(source_patch: dict[str, Any], localized_content: dict[str, Any]) -> dict[str, Any]:
     patch: dict[str, Any] = {}
     for key, value in source_patch.items():
@@ -129,14 +142,16 @@ def merge_non_text_slot_patch(source_patch: dict[str, Any], localized_content: d
             continue
         patch[key] = deepcopy(value)
     for key in TEXT_FIELDS:
-        if key in localized_content:
-            patch[key] = localized_content[key]
-        elif key in source_patch:
-            # Editor-inserted slots do not exist in the localized DSL layout.
-            # Keep their source text as a visible fallback instead of creating
-            # an empty text box. An existing localized override can still
-            # replace this value below.
-            patch[key] = deepcopy(source_patch[key])
+        if key in source_patch:
+            source_val = source_patch[key]
+            localized_val = localized_content.get(key)
+            if localized_val is not None:
+                if is_language_independent_text_patch(str(source_val), str(localized_val)):
+                    patch[key] = deepcopy(source_val)
+                else:
+                    patch[key] = localized_val
+            else:
+                patch[key] = deepcopy(source_val)
     return patch
 
 

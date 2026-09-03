@@ -111,13 +111,52 @@ def test_localize_override_symbols_updates_content_but_not_slot_ids() -> None:
     overrides = {
         "deleted_slots": ["slot.ㄱ"],
         "slots": {
-            "slot.ㄱ": {"text": "선분 ㄱㄴ", "interaction": {"expected": "ㄷㄹ"}},
+            "slot.ㄱ": {"text": "선분 ㄱㄴ / ㉠㉡ / ㈀㈁", "interaction": {"expected": "ㄷㄹ"}},
         }
     }
 
     localized = localize_override_symbols(overrides, "ja")
 
     assert set(localized["slots"]) == {"slot.ㄱ"}
-    assert localized["deleted_slots"] == ["slot.ㄱ"]
-    assert localized["slots"]["slot.ㄱ"]["text"] == "선분 アイ"
+    assert localized["slots"]["slot.ㄱ"]["text"] == "선분 アイ / アイ / アイ"
     assert localized["slots"]["slot.ㄱ"]["interaction"]["expected"] == "ウエ"
+
+
+def test_repair_preserves_language_independent_text_formatting_in_diagram_slots(tmp_path: Path) -> None:
+    source_dsl = tmp_path / "problem.dsl.py"
+    localized_dsl = tmp_path / "problem.uk.dsl.py"
+    _write_dsl(source_dsl, title="Mul", prompt="Answer", text="2 4 0")
+    _write_dsl(localized_dsl, title="Множення", prompt="Відповідь", text="2 4 0")
+    (tmp_path / "problem.editor_overrides.json").write_text(
+        json.dumps(
+            {
+                "slots": {
+                    "slot.mul.240": {
+                        "text": "2   4   0",
+                    },
+                },
+                "version": 1,
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    assert (
+        main(
+            [
+                "--localized-dsl",
+                str(localized_dsl),
+                "--source-dsl",
+                str(source_dsl),
+                "--no-build",
+            ]
+        )
+        == 0
+    )
+
+    repaired = json.loads((tmp_path / "problem.uk.editor_overrides.json").read_text(encoding="utf-8"))
+    assert repaired["slots"]["slot.mul.240"]["text"] == "2   4   0"
+

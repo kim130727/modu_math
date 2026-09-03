@@ -1,4 +1,4 @@
-﻿    :root {
+    :root {
       --bg: #f4f6f8;
       --panel: #ffffff;
       --text: #111827;
@@ -89,6 +89,14 @@
       font-family: Consolas, monospace;
     }
     textarea { min-height: 180px; }
+    #textEditInput {
+      min-height: 54px;
+      height: 54px;
+      resize: vertical;
+      font-family: inherit;
+      font-size: 13px;
+      line-height: 1.4;
+    }
     .grid { display: grid; grid-template-columns: 1fr; gap: 10px; min-height: 420px; }
     .svg-box {
       border: 1px solid var(--line);

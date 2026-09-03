@@ -14,12 +14,11 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q3",
-        "slot.q4",
-        "konva_1787799027145_text_3812936",
+        "slot.question",
+        "slot.speech",
+        "slot.label.water",
+        "slot.label.milk",
         "konva_1787799027145_avatar_3850312",
-        "konva_1787799027145_text_3914696",
-        "konva_1787799027145_text_3923656",
         "konva_1787799027145_image_3938908",
         "konva_1787799027145_calloutRect_3958975"
       ]
@@ -27,44 +26,75 @@
   ],
   "slots": [
     {
-      "id": "slot.q3",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "Ми хочемо порівняти пляшку для води й молочну пляшку. Спосіб порівняння двох пляшок",
-        "style_role": "question",
-        "x": 66.0,
-        "y": 39.0,
-        "font_size": 28,
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.q4",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "Якщо спосіб пояснено правильно, виберіть ○, інакше — ×.",
-        "style_role": "question",
-        "x": 67.0,
-        "y": 81.0,
-        "font_size": 28,
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "konva_1787799027145_text_3812936",
+      "id": "slot.question",
       "kind": "text_box",
       "prompt": "",
       "content": {
+        "text": "Ми хочемо порівняти висоту пляшки для води й пляшки для молока. Якщо спосіб порівняння їхньої висоти правильний, виберіть ○, інакше — ×.",
+        "style_role": "question",
+        "x": 66.0,
+        "y": 5.0,
+        "width": 820.0,
+        "height": 92.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 20,
+        "line_height": 1.25,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.speech",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "Наповни пляшку для води, а потім перелий воду в пляшку для молока.",
+        "style_role": "body",
         "x": 570.546,
         "y": 113.817,
-        "font_size": 30,
-        "fill": "#111827",
         "width": 309.474,
-        "height": 121,
+        "height": 121.0,
         "align": "left",
-        "line_height": 1.25
+        "valign": "top",
+        "font_size": 20,
+        "line_height": 1.25,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.label.water",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "Пляшка для води",
+        "style_role": "label",
+        "x": 81.431,
+        "y": 281.256,
+        "width": 98.0,
+        "height": 46.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 14,
+        "line_height": 1.25,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.label.milk",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "Пляшка для молока",
+        "style_role": "label",
+        "x": 199.492,
+        "y": 285.875,
+        "width": 108.0,
+        "height": 60.5,
+        "align": "left",
+        "valign": "top",
+        "font_size": 14,
+        "line_height": 1.25,
+        "fill": "#111827"
       }
     },
     {
@@ -78,36 +108,6 @@
         "width": 181.59,
         "height": 194.56,
         "preserve_aspect_ratio": "xMidYMid meet"
-      }
-    },
-    {
-      "id": "konva_1787799027145_text_3914696",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "x": 81.431,
-        "y": 281.256,
-        "font_size": 30,
-        "fill": "#111827",
-        "width": 98,
-        "height": 46,
-        "align": "left",
-        "line_height": 1.25
-      }
-    },
-    {
-      "id": "konva_1787799027145_text_3923656",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "x": 199.492,
-        "y": 285.875,
-        "font_size": 30,
-        "fill": "#111827",
-        "width": 108,
-        "height": 46,
-        "align": "left",
-        "line_height": 1.25
       }
     },
     {
@@ -140,12 +140,11 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.q3",
-    "slot.q4",
-    "konva_1787799027145_text_3812936",
+    "slot.question",
+    "slot.speech",
+    "slot.label.water",
+    "slot.label.milk",
     "konva_1787799027145_avatar_3850312",
-    "konva_1787799027145_text_3914696",
-    "konva_1787799027145_text_3923656",
     "konva_1787799027145_image_3938908",
     "konva_1787799027145_calloutRect_3958975"
   ]

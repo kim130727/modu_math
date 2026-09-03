@@ -26,7 +26,6 @@
         "slot.q21",
         "slot.q22",
         "slot.q23",
-        "slot.q2",
         "slot.q27",
         "slot.q28",
         "slot.q29",
@@ -41,7 +40,8 @@
         "slot.math.fraction_1.den",
         "slot.math.fraction_2.num",
         "slot.math.fraction_2.bar",
-        "slot.math.fraction_2.den"
+        "slot.math.fraction_2.den",
+        "konva_1788404905943_text_67970"
       ]
     },
     {
@@ -54,18 +54,6 @@
     }
   ],
   "slots": [
-    {
-      "id": "slot.q2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "Спустіться драбиною: якщо місце прибуття правильне, поставте ○, якщо ні — ×.",
-        "style_role": "question",
-        "x": 35.0,
-        "y": 105.0,
-        "font_size": 30
-      }
-    },
     {
       "id": "slot.q9",
       "kind": "rect",
@@ -191,10 +179,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 213.0,
+        "x": 212.0,
         "y": 425.0,
-        "width": 110.0,
-        "height": 45.0,
+        "width": 126.0,
+        "height": 56.0,
         "stroke": "#111111",
         "stroke_width": 1.5,
         "fill": "#ffffff"
@@ -205,10 +193,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 370.0,
+        "x": 362.0,
         "y": 425.0,
-        "width": 100.0,
-        "height": 45.0,
+        "width": 126.0,
+        "height": 56.0,
         "stroke": "#111111",
         "stroke_width": 1.5,
         "fill": "#ffffff"
@@ -219,10 +207,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 517.0,
+        "x": 512.0,
         "y": 425.0,
-        "width": 100.0,
-        "height": 45.0,
+        "width": 126.0,
+        "height": 56.0,
         "stroke": "#111111",
         "stroke_width": 1.5,
         "fill": "#ffffff"
@@ -230,40 +218,52 @@
     },
     {
       "id": "slot.q27",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
-        "text": "Неправильний дріб",
+        "text": "Неправильний\nдріб",
         "style_role": "label",
-        "x": 230.0,
-        "y": 455.0,
-        "font_size": 30,
+        "x": 212.0,
+        "y": 425.0,
+        "width": 126.0,
+        "height": 56.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 18,
         "fill": "#111111"
       }
     },
     {
       "id": "slot.q28",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
-        "text": "Неправильний дріб",
+        "text": "Неправильний\nдріб",
         "style_role": "label",
-        "x": 380.0,
-        "y": 455.0,
-        "font_size": 30,
+        "x": 362.0,
+        "y": 425.0,
+        "width": 126.0,
+        "height": 56.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 18,
         "fill": "#111111"
       }
     },
     {
       "id": "slot.q29",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
-        "text": "Правильний дріб",
+        "text": "Правильний\nдріб",
         "style_role": "label",
-        "x": 530.0,
-        "y": 455.0,
-        "font_size": 30,
+        "x": 512.0,
+        "y": 425.0,
+        "width": 126.0,
+        "height": 56.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 18,
         "fill": "#111111"
       }
     },
@@ -274,9 +274,10 @@
       "content": {
         "text": "(○, ×)",
         "style_role": "label",
-        "x": 222.0,
-        "y": 512.0,
-        "font_size": 30,
+        "x": 275.0,
+        "y": 525.0,
+        "font_size": 28,
+        "anchor": "middle",
         "fill": "#111111"
       }
     },
@@ -287,9 +288,10 @@
       "content": {
         "text": "(○, ×)",
         "style_role": "label",
-        "x": 372.0,
-        "y": 512.0,
-        "font_size": 30,
+        "x": 425.0,
+        "y": 525.0,
+        "font_size": 28,
+        "anchor": "middle",
         "fill": "#111111"
       }
     },
@@ -300,9 +302,10 @@
       "content": {
         "text": "(○, ×)",
         "style_role": "label",
-        "x": 522.0,
-        "y": 512.0,
-        "font_size": 30,
+        "x": 575.0,
+        "y": 525.0,
+        "font_size": 28,
+        "anchor": "middle",
         "fill": "#111111"
       }
     },
@@ -440,6 +443,23 @@
         "fill": "#111827",
         "style_role": "body"
       }
+    },
+    {
+      "id": "konva_1788404905943_text_67970",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "Спустіться драбиною: якщо місце прибуття правильне, поставте ○, якщо ні — ×.",
+        "x": 57.545,
+        "y": 51.236,
+        "font_size": 30,
+        "fill": "#111827",
+        "width": 784.291,
+        "height": 80,
+        "align": "left",
+        "line_height": 1.2,
+        "kind": "text_box"
+      }
     }
   ],
   "groups": [],
@@ -459,7 +479,6 @@
     "slot.q21",
     "slot.q22",
     "slot.q23",
-    "slot.q2",
     "slot.q27",
     "slot.q28",
     "slot.q29",
@@ -476,6 +495,7 @@
     "slot.math.fraction_1.den",
     "slot.math.fraction_2.num",
     "slot.math.fraction_2.bar",
-    "slot.math.fraction_2.den"
+    "slot.math.fraction_2.den",
+    "konva_1788404905943_text_67970"
   ]
 }

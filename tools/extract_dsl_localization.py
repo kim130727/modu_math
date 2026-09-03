@@ -39,6 +39,8 @@ TRANSLATABLE_FIELDS = {
     "goal",
     "question",
     "instruction",
+    "name",
+    "content",
 }
 
 SKIP_FIELDS = {

@@ -7,46 +7,41 @@
   },
   "elements": [
     {
-      "id": "slot.q3.text",
-      "type": "text",
+      "id": "slot.question.text",
+      "type": "text_box",
       "attributes": {
         "x": 66.0,
-        "y": 39.0,
+        "y": 5.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 28
+        "font-size": 21,
+        "width": 820.0,
+        "height": 92.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 66.0,
+        "data-box-y": 5.0,
+        "data-box-width": 820.0,
+        "data-box-height": 92.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25
       },
-      "source_ref": "slot.q3",
+      "source_ref": "slot.question",
       "refs": {
-        "layout_slot_id": "slot.q3"
+        "layout_slot_id": "slot.question"
       },
-      "text": "យើងចង់ប្រៀបធៀបដបទឹកនិងដបទឹកដោះគោ។ វិធីប្រៀបធៀបដបទាំងពីរ"
+      "text": "យើងចង់ប្រៀបធៀបកម្ពស់ដបទឹក និងដបទឹកដោះគោ។ ប្រសិនបើវិធីប្រៀបធៀបកម្ពស់ដបទាំងពីរត្រឹមត្រូវ សូមជ្រើស ○ បើមិនត្រឹមត្រូវ សូមជ្រើស ×។"
     },
     {
-      "id": "slot.q4.text",
-      "type": "text",
-      "attributes": {
-        "x": 67.0,
-        "y": 81.0,
-        "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.q4",
-      "refs": {
-        "layout_slot_id": "slot.q4"
-      },
-      "text": "បើវិធីពន្យល់ត្រឹមត្រូវ ជ្រើស ○ បើមិនត្រឹមត្រូវ ជ្រើស ×។"
-    },
-    {
-      "id": "konva_1787799027145_text_3812936.text",
+      "id": "slot.speech.text",
       "type": "text_box",
       "attributes": {
         "x": 570.546,
         "y": 113.817,
         "fill": "#111827",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 30,
+        "font-size": 24,
         "width": 309.474,
         "height": 121.0,
         "max_width": 309.474,
@@ -59,11 +54,65 @@
         "data-vertical-align": "top",
         "data-line-height": 1.25
       },
-      "source_ref": "konva_1787799027145_text_3812936",
+      "source_ref": "slot.speech",
       "refs": {
-        "layout_slot_id": "konva_1787799027145_text_3812936"
+        "layout_slot_id": "slot.speech"
       },
-      "text": ""
+      "text": "បំពេញទឹកក្នុងដបទឹកឱ្យពេញ រួចចាក់ទឹកទៅក្នុងដបទឹកដោះគោ។"
+    },
+    {
+      "id": "slot.label.water.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 81.431,
+        "y": 281.256,
+        "fill": "#111827",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 21,
+        "width": 98.0,
+        "height": 46.0,
+        "max_width": 98.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 81.431,
+        "data-box-y": 281.256,
+        "data-box-width": 98.0,
+        "data-box-height": 46.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25
+      },
+      "source_ref": "slot.label.water",
+      "refs": {
+        "layout_slot_id": "slot.label.water"
+      },
+      "text": "ដបទឹក"
+    },
+    {
+      "id": "slot.label.milk.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 199.492,
+        "y": 285.875,
+        "fill": "#111827",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 18,
+        "width": 108.0,
+        "height": 46.0,
+        "max_width": 108.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 199.492,
+        "data-box-y": 285.875,
+        "data-box-width": 108.0,
+        "data-box-height": 46.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25
+      },
+      "source_ref": "slot.label.milk",
+      "refs": {
+        "layout_slot_id": "slot.label.milk"
+      },
+      "text": "ដបទឹកដោះគោ"
     },
     {
       "id": "konva_1787799027145_avatar_3850312.image",
@@ -80,60 +129,6 @@
       "refs": {
         "layout_slot_id": "konva_1787799027145_avatar_3850312"
       }
-    },
-    {
-      "id": "konva_1787799027145_text_3914696.text",
-      "type": "text_box",
-      "attributes": {
-        "x": 81.431,
-        "y": 281.256,
-        "fill": "#111827",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 30,
-        "width": 98.0,
-        "height": 46.0,
-        "max_width": 98.0,
-        "data-slot-kind": "text_box",
-        "data-box-x": 81.431,
-        "data-box-y": 281.256,
-        "data-box-width": 98.0,
-        "data-box-height": 46.0,
-        "data-text-align": "left",
-        "data-vertical-align": "top",
-        "data-line-height": 1.25
-      },
-      "source_ref": "konva_1787799027145_text_3914696",
-      "refs": {
-        "layout_slot_id": "konva_1787799027145_text_3914696"
-      },
-      "text": ""
-    },
-    {
-      "id": "konva_1787799027145_text_3923656.text",
-      "type": "text_box",
-      "attributes": {
-        "x": 199.492,
-        "y": 285.875,
-        "fill": "#111827",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 30,
-        "width": 108.0,
-        "height": 46.0,
-        "max_width": 108.0,
-        "data-slot-kind": "text_box",
-        "data-box-x": 199.492,
-        "data-box-y": 285.875,
-        "data-box-width": 108.0,
-        "data-box-height": 46.0,
-        "data-text-align": "left",
-        "data-vertical-align": "top",
-        "data-line-height": 1.25
-      },
-      "source_ref": "konva_1787799027145_text_3923656",
-      "refs": {
-        "layout_slot_id": "konva_1787799027145_text_3923656"
-      },
-      "text": ""
     },
     {
       "id": "konva_1787799027145_image_3938908.image",

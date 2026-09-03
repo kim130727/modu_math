@@ -7,63 +7,112 @@
   },
   "elements": [
     {
-      "id": "slot.q3.text",
-      "type": "text",
+      "id": "slot.question.text",
+      "type": "text_box",
       "attributes": {
         "x": 66.0,
-        "y": 39.0,
+        "y": 5.0,
         "fill": "#111111",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 28
+        "font-size": 30,
+        "width": 820.0,
+        "height": 121.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 66.0,
+        "data-box-y": 5.0,
+        "data-box-width": 820.0,
+        "data-box-height": 121.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25
       },
-      "source_ref": "slot.q3",
+      "source_ref": "slot.question",
       "refs": {
-        "layout_slot_id": "slot.q3"
+        "layout_slot_id": "slot.question"
       },
-      "text": "We want to compare a water bottle and a milk bottle. The method for comparing the two bottles"
+      "text": "We want to compare the heights of a water bottle and a milk bottle. Choose ○ if the method for comparing their heights is correct; otherwise, choose ×."
     },
     {
-      "id": "slot.q4.text",
-      "type": "text",
-      "attributes": {
-        "x": 67.0,
-        "y": 81.0,
-        "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.q4",
-      "refs": {
-        "layout_slot_id": "slot.q4"
-      },
-      "text": "Choose ○ if the method is explained correctly; otherwise choose ×."
-    },
-    {
-      "id": "konva_1787799027145_text_3812936.text",
+      "id": "slot.speech.text",
       "type": "text_box",
       "attributes": {
         "x": 570.546,
         "y": 113.817,
         "fill": "#111827",
         "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 30,
+        "font-size": 25,
         "width": 309.474,
-        "height": 121.0,
+        "height": 133.0,
         "max_width": 309.474,
         "data-slot-kind": "text_box",
         "data-box-x": 570.546,
         "data-box-y": 113.817,
         "data-box-width": 309.474,
-        "data-box-height": 121.0,
+        "data-box-height": 133.0,
         "data-text-align": "left",
         "data-vertical-align": "top",
         "data-line-height": 1.25
       },
-      "source_ref": "konva_1787799027145_text_3812936",
+      "source_ref": "slot.speech",
       "refs": {
-        "layout_slot_id": "konva_1787799027145_text_3812936"
+        "layout_slot_id": "slot.speech"
       },
-      "text": ""
+      "text": "Fill the water bottle with water, then pour the water into the milk bottle."
+    },
+    {
+      "id": "slot.label.water.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 39.828,
+        "y": 286.875,
+        "fill": "#111827",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 28,
+        "width": 149.722,
+        "height": 78.0,
+        "max_width": 149.722,
+        "data-slot-kind": "text_box",
+        "data-box-x": 39.828,
+        "data-box-y": 286.875,
+        "data-box-width": 149.722,
+        "data-box-height": 78.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25
+      },
+      "source_ref": "slot.label.water",
+      "refs": {
+        "layout_slot_id": "slot.label.water"
+      },
+      "text": "Water bottle"
+    },
+    {
+      "id": "slot.label.milk.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 199.492,
+        "y": 285.875,
+        "fill": "#111827",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 28,
+        "width": 108.0,
+        "height": 78.0,
+        "max_width": 108.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 199.492,
+        "data-box-y": 285.875,
+        "data-box-width": 108.0,
+        "data-box-height": 78.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25
+      },
+      "source_ref": "slot.label.milk",
+      "refs": {
+        "layout_slot_id": "slot.label.milk"
+      },
+      "text": "Milk bottle"
     },
     {
       "id": "konva_1787799027145_avatar_3850312.image",
@@ -80,60 +129,6 @@
       "refs": {
         "layout_slot_id": "konva_1787799027145_avatar_3850312"
       }
-    },
-    {
-      "id": "konva_1787799027145_text_3914696.text",
-      "type": "text_box",
-      "attributes": {
-        "x": 81.431,
-        "y": 281.256,
-        "fill": "#111827",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 30,
-        "width": 98.0,
-        "height": 46.0,
-        "max_width": 98.0,
-        "data-slot-kind": "text_box",
-        "data-box-x": 81.431,
-        "data-box-y": 281.256,
-        "data-box-width": 98.0,
-        "data-box-height": 46.0,
-        "data-text-align": "left",
-        "data-vertical-align": "top",
-        "data-line-height": 1.25
-      },
-      "source_ref": "konva_1787799027145_text_3914696",
-      "refs": {
-        "layout_slot_id": "konva_1787799027145_text_3914696"
-      },
-      "text": ""
-    },
-    {
-      "id": "konva_1787799027145_text_3923656.text",
-      "type": "text_box",
-      "attributes": {
-        "x": 199.492,
-        "y": 285.875,
-        "fill": "#111827",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 30,
-        "width": 108.0,
-        "height": 46.0,
-        "max_width": 108.0,
-        "data-slot-kind": "text_box",
-        "data-box-x": 199.492,
-        "data-box-y": 285.875,
-        "data-box-width": 108.0,
-        "data-box-height": 46.0,
-        "data-text-align": "left",
-        "data-vertical-align": "top",
-        "data-line-height": 1.25
-      },
-      "source_ref": "konva_1787799027145_text_3923656",
-      "refs": {
-        "layout_slot_id": "konva_1787799027145_text_3923656"
-      },
-      "text": ""
     },
     {
       "id": "konva_1787799027145_image_3938908.image",

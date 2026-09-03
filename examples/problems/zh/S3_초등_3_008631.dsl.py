@@ -305,7 +305,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.top.rod.1.front",
             prompt=None,
-            x=209.0,
+            x=209,
             y=75.6,
             width=10.8,
             height=80.0,
@@ -332,7 +332,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.1.cell.1",
             prompt=None,
-            x1=209.0,
+            x1=209,
             y1=83.6,
             x2=219.8,
             y2=83.6,
@@ -342,7 +342,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.1.cell.2",
             prompt=None,
-            x1=209.0,
+            x1=209,
             y1=91.6,
             x2=219.8,
             y2=91.6,
@@ -352,7 +352,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.1.cell.3",
             prompt=None,
-            x1=209.0,
+            x1=209,
             y1=99.6,
             x2=219.8,
             y2=99.6,
@@ -362,7 +362,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.1.cell.4",
             prompt=None,
-            x1=209.0,
+            x1=209,
             y1=107.6,
             x2=219.8,
             y2=107.6,
@@ -372,7 +372,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.1.cell.5",
             prompt=None,
-            x1=209.0,
+            x1=209,
             y1=115.6,
             x2=219.8,
             y2=115.6,
@@ -382,7 +382,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.1.cell.6",
             prompt=None,
-            x1=209.0,
+            x1=209,
             y1=123.6,
             x2=219.8,
             y2=123.6,
@@ -392,7 +392,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.1.cell.7",
             prompt=None,
-            x1=209.0,
+            x1=209,
             y1=131.6,
             x2=219.8,
             y2=131.6,
@@ -402,7 +402,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.1.cell.8",
             prompt=None,
-            x1=209.0,
+            x1=209,
             y1=139.6,
             x2=219.8,
             y2=139.6,
@@ -412,7 +412,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.1.cell.9",
             prompt=None,
-            x1=209.0,
+            x1=209,
             y1=147.6,
             x2=219.8,
             y2=147.6,
@@ -422,7 +422,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.top.rod.2.front",
             prompt=None,
-            x=235.0,
+            x=235,
             y=75.6,
             width=10.8,
             height=80.0,
@@ -449,7 +449,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.2.cell.1",
             prompt=None,
-            x1=235.0,
+            x1=235,
             y1=83.6,
             x2=245.8,
             y2=83.6,
@@ -459,7 +459,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.2.cell.2",
             prompt=None,
-            x1=235.0,
+            x1=235,
             y1=91.6,
             x2=245.8,
             y2=91.6,
@@ -469,7 +469,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.2.cell.3",
             prompt=None,
-            x1=235.0,
+            x1=235,
             y1=99.6,
             x2=245.8,
             y2=99.6,
@@ -479,7 +479,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.2.cell.4",
             prompt=None,
-            x1=235.0,
+            x1=235,
             y1=107.6,
             x2=245.8,
             y2=107.6,
@@ -489,7 +489,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.2.cell.5",
             prompt=None,
-            x1=235.0,
+            x1=235,
             y1=115.6,
             x2=245.8,
             y2=115.6,
@@ -499,7 +499,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.2.cell.6",
             prompt=None,
-            x1=235.0,
+            x1=235,
             y1=123.6,
             x2=245.8,
             y2=123.6,
@@ -509,7 +509,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.2.cell.7",
             prompt=None,
-            x1=235.0,
+            x1=235,
             y1=131.6,
             x2=245.8,
             y2=131.6,
@@ -519,7 +519,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.2.cell.8",
             prompt=None,
-            x1=235.0,
+            x1=235,
             y1=139.6,
             x2=245.8,
             y2=139.6,
@@ -529,7 +529,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.2.cell.9",
             prompt=None,
-            x1=235.0,
+            x1=235,
             y1=147.6,
             x2=245.8,
             y2=147.6,
@@ -539,7 +539,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.top.rod.3.front",
             prompt=None,
-            x=261.0,
+            x=261,
             y=75.6,
             width=10.8,
             height=80.0,
@@ -571,7 +571,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.3.cell.1",
             prompt=None,
-            x1=261.0,
+            x1=261,
             y1=83.6,
             x2=271.8,
             y2=83.6,
@@ -581,7 +581,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.3.cell.2",
             prompt=None,
-            x1=261.0,
+            x1=261,
             y1=91.6,
             x2=271.8,
             y2=91.6,
@@ -591,7 +591,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.3.cell.3",
             prompt=None,
-            x1=261.0,
+            x1=261,
             y1=99.6,
             x2=271.8,
             y2=99.6,
@@ -601,7 +601,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.3.cell.4",
             prompt=None,
-            x1=261.0,
+            x1=261,
             y1=107.6,
             x2=271.8,
             y2=107.6,
@@ -611,7 +611,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.3.cell.5",
             prompt=None,
-            x1=261.0,
+            x1=261,
             y1=115.6,
             x2=271.8,
             y2=115.6,
@@ -621,7 +621,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.3.cell.6",
             prompt=None,
-            x1=261.0,
+            x1=261,
             y1=123.6,
             x2=271.8,
             y2=123.6,
@@ -631,7 +631,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.3.cell.7",
             prompt=None,
-            x1=261.0,
+            x1=261,
             y1=131.6,
             x2=271.8,
             y2=131.6,
@@ -641,7 +641,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.3.cell.8",
             prompt=None,
-            x1=261.0,
+            x1=261,
             y1=139.6,
             x2=271.8,
             y2=139.6,
@@ -651,7 +651,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.3.cell.9",
             prompt=None,
-            x1=261.0,
+            x1=261,
             y1=147.6,
             x2=271.8,
             y2=147.6,
@@ -661,7 +661,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.top.rod.4.front",
             prompt=None,
-            x=287.0,
+            x=287,
             y=75.6,
             width=10.8,
             height=80.0,
@@ -693,7 +693,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.4.cell.1",
             prompt=None,
-            x1=287.0,
+            x1=287,
             y1=83.6,
             x2=297.8,
             y2=83.6,
@@ -703,7 +703,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.4.cell.2",
             prompt=None,
-            x1=287.0,
+            x1=287,
             y1=91.6,
             x2=297.8,
             y2=91.6,
@@ -713,7 +713,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.4.cell.3",
             prompt=None,
-            x1=287.0,
+            x1=287,
             y1=99.6,
             x2=297.8,
             y2=99.6,
@@ -723,7 +723,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.4.cell.4",
             prompt=None,
-            x1=287.0,
+            x1=287,
             y1=107.6,
             x2=297.8,
             y2=107.6,
@@ -733,7 +733,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.4.cell.5",
             prompt=None,
-            x1=287.0,
+            x1=287,
             y1=115.6,
             x2=297.8,
             y2=115.6,
@@ -743,7 +743,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.4.cell.6",
             prompt=None,
-            x1=287.0,
+            x1=287,
             y1=123.6,
             x2=297.8,
             y2=123.6,
@@ -753,7 +753,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.4.cell.7",
             prompt=None,
-            x1=287.0,
+            x1=287,
             y1=131.6,
             x2=297.8,
             y2=131.6,
@@ -763,7 +763,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.4.cell.8",
             prompt=None,
-            x1=287.0,
+            x1=287,
             y1=139.6,
             x2=297.8,
             y2=139.6,
@@ -773,7 +773,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.4.cell.9",
             prompt=None,
-            x1=287.0,
+            x1=287,
             y1=147.6,
             x2=297.8,
             y2=147.6,
@@ -783,7 +783,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.top.rod.5.front",
             prompt=None,
-            x=313.0,
+            x=313,
             y=75.6,
             width=10.8,
             height=80.0,
@@ -815,7 +815,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.5.cell.1",
             prompt=None,
-            x1=313.0,
+            x1=313,
             y1=83.6,
             x2=323.8,
             y2=83.6,
@@ -825,7 +825,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.5.cell.2",
             prompt=None,
-            x1=313.0,
+            x1=313,
             y1=91.6,
             x2=323.8,
             y2=91.6,
@@ -835,7 +835,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.5.cell.3",
             prompt=None,
-            x1=313.0,
+            x1=313,
             y1=99.6,
             x2=323.8,
             y2=99.6,
@@ -845,7 +845,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.5.cell.4",
             prompt=None,
-            x1=313.0,
+            x1=313,
             y1=107.6,
             x2=323.8,
             y2=107.6,
@@ -855,7 +855,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.5.cell.5",
             prompt=None,
-            x1=313.0,
+            x1=313,
             y1=115.6,
             x2=323.8,
             y2=115.6,
@@ -865,7 +865,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.5.cell.6",
             prompt=None,
-            x1=313.0,
+            x1=313,
             y1=123.6,
             x2=323.8,
             y2=123.6,
@@ -875,7 +875,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.5.cell.7",
             prompt=None,
-            x1=313.0,
+            x1=313,
             y1=131.6,
             x2=323.8,
             y2=131.6,
@@ -885,7 +885,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.5.cell.8",
             prompt=None,
-            x1=313.0,
+            x1=313,
             y1=139.6,
             x2=323.8,
             y2=139.6,
@@ -895,7 +895,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.5.cell.9",
             prompt=None,
-            x1=313.0,
+            x1=313,
             y1=147.6,
             x2=323.8,
             y2=147.6,
@@ -905,7 +905,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.top.rod.6.front",
             prompt=None,
-            x=339.0,
+            x=339,
             y=75.6,
             width=10.8,
             height=80.0,
@@ -937,7 +937,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.6.cell.1",
             prompt=None,
-            x1=339.0,
+            x1=339,
             y1=83.6,
             x2=349.8,
             y2=83.6,
@@ -947,7 +947,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.6.cell.2",
             prompt=None,
-            x1=339.0,
+            x1=339,
             y1=91.6,
             x2=349.8,
             y2=91.6,
@@ -957,7 +957,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.6.cell.3",
             prompt=None,
-            x1=339.0,
+            x1=339,
             y1=99.6,
             x2=349.8,
             y2=99.6,
@@ -967,7 +967,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.6.cell.4",
             prompt=None,
-            x1=339.0,
+            x1=339,
             y1=107.6,
             x2=349.8,
             y2=107.6,
@@ -977,7 +977,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.6.cell.5",
             prompt=None,
-            x1=339.0,
+            x1=339,
             y1=115.6,
             x2=349.8,
             y2=115.6,
@@ -987,7 +987,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.6.cell.6",
             prompt=None,
-            x1=339.0,
+            x1=339,
             y1=123.6,
             x2=349.8,
             y2=123.6,
@@ -997,7 +997,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.6.cell.7",
             prompt=None,
-            x1=339.0,
+            x1=339,
             y1=131.6,
             x2=349.8,
             y2=131.6,
@@ -1007,7 +1007,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.6.cell.8",
             prompt=None,
-            x1=339.0,
+            x1=339,
             y1=139.6,
             x2=349.8,
             y2=139.6,
@@ -1017,7 +1017,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.top.rod.6.cell.9",
             prompt=None,
-            x1=339.0,
+            x1=339,
             y1=147.6,
             x2=349.8,
             y2=147.6,
@@ -1027,7 +1027,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.top.cube.1.front",
             prompt=None,
-            x=364.0,
+            x=364,
             y=76.95,
             width=11.0,
             height=11.0,
@@ -1054,7 +1054,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.top.cube.2.front",
             prompt=None,
-            x=364.0,
+            x=364,
             y=96.95,
             width=11.0,
             height=11.0,
@@ -1081,7 +1081,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.top.cube.3.front",
             prompt=None,
-            x=364.0,
+            x=364,
             y=116.95,
             width=11.0,
             height=11.0,
@@ -1108,7 +1108,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.top.cube.4.front",
             prompt=None,
-            x=364.0,
+            x=364,
             y=136.95,
             width=11.0,
             height=11.0,
@@ -1135,7 +1135,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.top.cube.5.front",
             prompt=None,
-            x=364.0,
+            x=364,
             y=156.95,
             width=11.0,
             height=11.0,
@@ -1162,7 +1162,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.top.cube.6.front",
             prompt=None,
-            x=389.0,
+            x=389,
             y=92.95,
             width=11.0,
             height=11.0,
@@ -1189,7 +1189,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.top.cube.7.front",
             prompt=None,
-            x=389.0,
+            x=389,
             y=112.95,
             width=11.0,
             height=11.0,
@@ -1216,7 +1216,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.top.cube.8.front",
             prompt=None,
-            x=389.0,
+            x=389,
             y=132.95,
             width=11.0,
             height=11.0,
@@ -1243,7 +1243,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.top.cube.9.front",
             prompt=None,
-            x=389.0,
+            x=389,
             y=152.95,
             width=11.0,
             height=11.0,
@@ -1280,11 +1280,7 @@ def build_problem_template() -> ProblemTemplate:
         PolygonSlot(
             id="slot.arrow.head",
             prompt=None,
-            points=(
-                (300.9399108886719, 200.32200622558594),
-                (326.9399108886719, 200.32200622558594),
-                (313.9399108886719, 215.32200622558594),
-            ),
+            points=((300.94, 200.32), (326.94, 200.32), (313.94, 215.32)),
             stroke="#8a8a8a",
             stroke_width=1,
             fill="#8a8a8a",
@@ -1292,8 +1288,8 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.group1.box",
             prompt=None,
-            x=135.0,
-            y=230.0,
+            x=135,
+            y=230,
             width=98,
             height=126,
             stroke="#1d6fa3",
@@ -1303,7 +1299,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.group1.rod.1.front",
             prompt=None,
-            x=153.0,
+            x=153,
             y=245.825,
             width=11.475000000000001,
             height=85.0,
@@ -1340,7 +1336,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group1.rod.1.cell.1",
             prompt=None,
-            x1=153.0,
+            x1=153,
             y1=254.325,
             x2=164.475,
             y2=254.325,
@@ -1350,7 +1346,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group1.rod.1.cell.2",
             prompt=None,
-            x1=153.0,
+            x1=153,
             y1=262.825,
             x2=164.475,
             y2=262.825,
@@ -1360,7 +1356,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group1.rod.1.cell.3",
             prompt=None,
-            x1=153.0,
+            x1=153,
             y1=271.325,
             x2=164.475,
             y2=271.325,
@@ -1370,7 +1366,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group1.rod.1.cell.4",
             prompt=None,
-            x1=153.0,
+            x1=153,
             y1=279.825,
             x2=164.475,
             y2=279.825,
@@ -1380,7 +1376,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group1.rod.1.cell.5",
             prompt=None,
-            x1=153.0,
+            x1=153,
             y1=288.325,
             x2=164.475,
             y2=288.325,
@@ -1390,7 +1386,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group1.rod.1.cell.6",
             prompt=None,
-            x1=153.0,
+            x1=153,
             y1=296.825,
             x2=164.475,
             y2=296.825,
@@ -1400,7 +1396,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group1.rod.1.cell.7",
             prompt=None,
-            x1=153.0,
+            x1=153,
             y1=305.325,
             x2=164.475,
             y2=305.325,
@@ -1410,7 +1406,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group1.rod.1.cell.8",
             prompt=None,
-            x1=153.0,
+            x1=153,
             y1=313.825,
             x2=164.475,
             y2=313.825,
@@ -1420,7 +1416,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group1.rod.1.cell.9",
             prompt=None,
-            x1=153.0,
+            x1=153,
             y1=322.325,
             x2=164.475,
             y2=322.325,
@@ -1430,7 +1426,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.group1.rod.2.front",
             prompt=None,
-            x=178.0,
+            x=178,
             y=245.825,
             width=11.475000000000001,
             height=85.0,
@@ -1467,7 +1463,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group1.rod.2.cell.1",
             prompt=None,
-            x1=178.0,
+            x1=178,
             y1=254.325,
             x2=189.475,
             y2=254.325,
@@ -1477,7 +1473,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group1.rod.2.cell.2",
             prompt=None,
-            x1=178.0,
+            x1=178,
             y1=262.825,
             x2=189.475,
             y2=262.825,
@@ -1487,7 +1483,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group1.rod.2.cell.3",
             prompt=None,
-            x1=178.0,
+            x1=178,
             y1=271.325,
             x2=189.475,
             y2=271.325,
@@ -1497,7 +1493,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group1.rod.2.cell.4",
             prompt=None,
-            x1=178.0,
+            x1=178,
             y1=279.825,
             x2=189.475,
             y2=279.825,
@@ -1507,7 +1503,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group1.rod.2.cell.5",
             prompt=None,
-            x1=178.0,
+            x1=178,
             y1=288.325,
             x2=189.475,
             y2=288.325,
@@ -1517,7 +1513,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group1.rod.2.cell.6",
             prompt=None,
-            x1=178.0,
+            x1=178,
             y1=296.825,
             x2=189.475,
             y2=296.825,
@@ -1527,7 +1523,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group1.rod.2.cell.7",
             prompt=None,
-            x1=178.0,
+            x1=178,
             y1=305.325,
             x2=189.475,
             y2=305.325,
@@ -1537,7 +1533,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group1.rod.2.cell.8",
             prompt=None,
-            x1=178.0,
+            x1=178,
             y1=313.825,
             x2=189.475,
             y2=313.825,
@@ -1547,7 +1543,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group1.rod.2.cell.9",
             prompt=None,
-            x1=178.0,
+            x1=178,
             y1=322.325,
             x2=189.475,
             y2=322.325,
@@ -1557,7 +1553,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.group1.cube.1.front",
             prompt=None,
-            x=209.0,
+            x=209,
             y=246.95,
             width=11,
             height=11,
@@ -1584,7 +1580,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.group1.cube.2.front",
             prompt=None,
-            x=209.0,
+            x=209,
             y=267.95,
             width=11,
             height=11,
@@ -1611,7 +1607,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.group1.cube.3.front",
             prompt=None,
-            x=209.0,
+            x=209,
             y=288.95,
             width=11,
             height=11,
@@ -1638,8 +1634,8 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.group2.box",
             prompt=None,
-            x=275.0,
-            y=230.0,
+            x=275,
+            y=230,
             width=98,
             height=126,
             stroke="#1d6fa3",
@@ -1649,7 +1645,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.group2.rod.1.front",
             prompt=None,
-            x=293.0,
+            x=293,
             y=245.825,
             width=11.475000000000001,
             height=85.0,
@@ -1676,7 +1672,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group2.rod.1.cell.1",
             prompt=None,
-            x1=293.0,
+            x1=293,
             y1=254.325,
             x2=304.475,
             y2=254.325,
@@ -1686,7 +1682,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group2.rod.1.cell.2",
             prompt=None,
-            x1=293.0,
+            x1=293,
             y1=262.825,
             x2=304.475,
             y2=262.825,
@@ -1696,7 +1692,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group2.rod.1.cell.3",
             prompt=None,
-            x1=293.0,
+            x1=293,
             y1=271.325,
             x2=304.475,
             y2=271.325,
@@ -1706,7 +1702,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group2.rod.1.cell.4",
             prompt=None,
-            x1=293.0,
+            x1=293,
             y1=279.825,
             x2=304.475,
             y2=279.825,
@@ -1716,7 +1712,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group2.rod.1.cell.5",
             prompt=None,
-            x1=293.0,
+            x1=293,
             y1=288.325,
             x2=304.475,
             y2=288.325,
@@ -1726,7 +1722,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group2.rod.1.cell.6",
             prompt=None,
-            x1=293.0,
+            x1=293,
             y1=296.825,
             x2=304.475,
             y2=296.825,
@@ -1736,7 +1732,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group2.rod.1.cell.7",
             prompt=None,
-            x1=293.0,
+            x1=293,
             y1=305.325,
             x2=304.475,
             y2=305.325,
@@ -1746,7 +1742,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group2.rod.1.cell.8",
             prompt=None,
-            x1=293.0,
+            x1=293,
             y1=313.825,
             x2=304.475,
             y2=313.825,
@@ -1756,7 +1752,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group2.rod.1.cell.9",
             prompt=None,
-            x1=293.0,
+            x1=293,
             y1=322.325,
             x2=304.475,
             y2=322.325,
@@ -1766,7 +1762,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.group2.rod.2.front",
             prompt=None,
-            x=318.0,
+            x=318,
             y=245.825,
             width=11.475000000000001,
             height=85.0,
@@ -1793,7 +1789,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group2.rod.2.cell.1",
             prompt=None,
-            x1=318.0,
+            x1=318,
             y1=254.325,
             x2=329.475,
             y2=254.325,
@@ -1803,7 +1799,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group2.rod.2.cell.2",
             prompt=None,
-            x1=318.0,
+            x1=318,
             y1=262.825,
             x2=329.475,
             y2=262.825,
@@ -1813,7 +1809,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group2.rod.2.cell.3",
             prompt=None,
-            x1=318.0,
+            x1=318,
             y1=271.325,
             x2=329.475,
             y2=271.325,
@@ -1823,7 +1819,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group2.rod.2.cell.4",
             prompt=None,
-            x1=318.0,
+            x1=318,
             y1=279.825,
             x2=329.475,
             y2=279.825,
@@ -1833,7 +1829,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group2.rod.2.cell.5",
             prompt=None,
-            x1=318.0,
+            x1=318,
             y1=288.325,
             x2=329.475,
             y2=288.325,
@@ -1843,7 +1839,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group2.rod.2.cell.6",
             prompt=None,
-            x1=318.0,
+            x1=318,
             y1=296.825,
             x2=329.475,
             y2=296.825,
@@ -1853,7 +1849,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group2.rod.2.cell.7",
             prompt=None,
-            x1=318.0,
+            x1=318,
             y1=305.325,
             x2=329.475,
             y2=305.325,
@@ -1863,7 +1859,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group2.rod.2.cell.8",
             prompt=None,
-            x1=318.0,
+            x1=318,
             y1=313.825,
             x2=329.475,
             y2=313.825,
@@ -1873,7 +1869,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group2.rod.2.cell.9",
             prompt=None,
-            x1=318.0,
+            x1=318,
             y1=322.325,
             x2=329.475,
             y2=322.325,
@@ -1883,7 +1879,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.group2.cube.1.front",
             prompt=None,
-            x=349.0,
+            x=349,
             y=246.95,
             width=11,
             height=11,
@@ -1910,7 +1906,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.group2.cube.2.front",
             prompt=None,
-            x=349.0,
+            x=349,
             y=267.95,
             width=11,
             height=11,
@@ -1937,7 +1933,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.group2.cube.3.front",
             prompt=None,
-            x=349.0,
+            x=349,
             y=288.95,
             width=11,
             height=11,
@@ -1964,8 +1960,8 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.group3.box",
             prompt=None,
-            x=420.0,
-            y=230.0,
+            x=420,
+            y=230,
             width=98,
             height=126,
             stroke="#1d6fa3",
@@ -1975,7 +1971,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.group3.rod.1.front",
             prompt=None,
-            x=438.0,
+            x=438,
             y=245.825,
             width=11.475000000000001,
             height=85.0,
@@ -2002,7 +1998,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group3.rod.1.cell.1",
             prompt=None,
-            x1=438.0,
+            x1=438,
             y1=254.325,
             x2=449.475,
             y2=254.325,
@@ -2012,7 +2008,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group3.rod.1.cell.2",
             prompt=None,
-            x1=438.0,
+            x1=438,
             y1=262.825,
             x2=449.475,
             y2=262.825,
@@ -2022,7 +2018,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group3.rod.1.cell.3",
             prompt=None,
-            x1=438.0,
+            x1=438,
             y1=271.325,
             x2=449.475,
             y2=271.325,
@@ -2032,7 +2028,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group3.rod.1.cell.4",
             prompt=None,
-            x1=438.0,
+            x1=438,
             y1=279.825,
             x2=449.475,
             y2=279.825,
@@ -2042,7 +2038,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group3.rod.1.cell.5",
             prompt=None,
-            x1=438.0,
+            x1=438,
             y1=288.325,
             x2=449.475,
             y2=288.325,
@@ -2052,7 +2048,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group3.rod.1.cell.6",
             prompt=None,
-            x1=438.0,
+            x1=438,
             y1=296.825,
             x2=449.475,
             y2=296.825,
@@ -2062,7 +2058,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group3.rod.1.cell.7",
             prompt=None,
-            x1=438.0,
+            x1=438,
             y1=305.325,
             x2=449.475,
             y2=305.325,
@@ -2072,7 +2068,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group3.rod.1.cell.8",
             prompt=None,
-            x1=438.0,
+            x1=438,
             y1=313.825,
             x2=449.475,
             y2=313.825,
@@ -2082,7 +2078,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group3.rod.1.cell.9",
             prompt=None,
-            x1=438.0,
+            x1=438,
             y1=322.325,
             x2=449.475,
             y2=322.325,
@@ -2092,7 +2088,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.group3.rod.2.front",
             prompt=None,
-            x=463.0,
+            x=463,
             y=245.825,
             width=11.475000000000001,
             height=85.0,
@@ -2119,7 +2115,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group3.rod.2.cell.1",
             prompt=None,
-            x1=463.0,
+            x1=463,
             y1=254.325,
             x2=474.475,
             y2=254.325,
@@ -2129,7 +2125,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group3.rod.2.cell.2",
             prompt=None,
-            x1=463.0,
+            x1=463,
             y1=262.825,
             x2=474.475,
             y2=262.825,
@@ -2139,7 +2135,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group3.rod.2.cell.3",
             prompt=None,
-            x1=463.0,
+            x1=463,
             y1=271.325,
             x2=474.475,
             y2=271.325,
@@ -2149,7 +2145,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group3.rod.2.cell.4",
             prompt=None,
-            x1=463.0,
+            x1=463,
             y1=279.825,
             x2=474.475,
             y2=279.825,
@@ -2159,7 +2155,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group3.rod.2.cell.5",
             prompt=None,
-            x1=463.0,
+            x1=463,
             y1=288.325,
             x2=474.475,
             y2=288.325,
@@ -2169,7 +2165,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group3.rod.2.cell.6",
             prompt=None,
-            x1=463.0,
+            x1=463,
             y1=296.825,
             x2=474.475,
             y2=296.825,
@@ -2179,7 +2175,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group3.rod.2.cell.7",
             prompt=None,
-            x1=463.0,
+            x1=463,
             y1=305.325,
             x2=474.475,
             y2=305.325,
@@ -2189,7 +2185,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group3.rod.2.cell.8",
             prompt=None,
-            x1=463.0,
+            x1=463,
             y1=313.825,
             x2=474.475,
             y2=313.825,
@@ -2199,7 +2195,7 @@ def build_problem_template() -> ProblemTemplate:
         LineSlot(
             id="slot.figure.group3.rod.2.cell.9",
             prompt=None,
-            x1=463.0,
+            x1=463,
             y1=322.325,
             x2=474.475,
             y2=322.325,
@@ -2209,7 +2205,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.group3.cube.1.front",
             prompt=None,
-            x=494.0,
+            x=494,
             y=246.95,
             width=11,
             height=11,
@@ -2236,7 +2232,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.group3.cube.2.front",
             prompt=None,
-            x=494.0,
+            x=494,
             y=267.95,
             width=11,
             height=11,
@@ -2263,7 +2259,7 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="slot.figure.group3.cube.3.front",
             prompt=None,
-            x=494.0,
+            x=494,
             y=288.95,
             width=11,
             height=11,

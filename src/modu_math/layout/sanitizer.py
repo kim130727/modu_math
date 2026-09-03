@@ -145,167 +145,29 @@ def _clamp_box_content_to_canvas(
         input_style["height"] = round(clean_height, 3)
 
 
-def _separate_top_text_from_following_slots(
-    slots: list[dict[str, Any]],
-    canvas_box: tuple[float, float] | None,
-    *,
-    regions: list[dict[str, Any]] | None = None,
-    groups: list[dict[str, Any]] | None = None,
-    protected_slot_ids: set[str],
-) -> None:
-    if canvas_box is None:
-        return
-    _, canvas_height = canvas_box
-    top_text_bottom = _top_text_bottom(slots)
-    if top_text_bottom is None:
-        return
-
-    slot_id_to_slot = {
-        slot["id"]: slot
-        for slot in slots
-        if isinstance(slot, dict) and isinstance(slot.get("id"), str)
-    }
-
-    parent: dict[str, str] = {}
-
-    def find(s: str) -> str:
-        parent.setdefault(s, s)
-        if parent[s] != s:
-            parent[s] = find(parent[s])
-        return parent[s]
-
-    def union(a: str, b: str) -> None:
-        root_a = find(a)
-        root_b = find(b)
-        if root_a != root_b:
-            parent[root_a] = root_b
-
-    # Cluster by region (non-stem/header)
-    if isinstance(regions, list):
-        for region in regions:
-            if not isinstance(region, dict):
-                continue
-            role = region.get("role")
-            region_id = str(region.get("id") or "")
-            if role == "stem" or "header" in region_id:
-                continue
-            r_slots = [
-                s
-                for s in region.get("slot_ids", [])
-                if isinstance(s, str) and s in slot_id_to_slot
-            ]
-            for i in range(1, len(r_slots)):
-                union(r_slots[0], r_slots[i])
-
-    # Cluster by group
-    if isinstance(groups, list):
-        for group in groups:
-            if not isinstance(group, dict):
-                continue
-            members = [
-                s
-                for s in group.get("member_ids", [])
-                if isinstance(s, str) and s in slot_id_to_slot
-            ]
-            for i in range(1, len(members)):
-                union(members[0], members[i])
-
-    # Cluster by compound prefixes (e.g. table, graphpaper, konva)
-    prefix_to_slots: dict[str, list[str]] = {}
-    for slot_id in slot_id_to_slot:
-        prefix = _cohesive_slot_prefix(slot_id)
+def _cohesive_slot_prefix(slot_id: Any) -> str | None:
+    if not isinstance(slot_id, str):
+        return None
+    if slot_id.startswith("konva_"):
+        prefix, _, _ = slot_id.rpartition("_")
         if prefix:
-            prefix_to_slots.setdefault(prefix, []).append(slot_id)
-    for p_slots in prefix_to_slots.values():
-        for i in range(1, len(p_slots)):
-            union(p_slots[0], p_slots[i])
-
-    clusters_by_root: dict[str, list[dict[str, Any]]] = {}
-    for slot_id, slot in slot_id_to_slot.items():
-        root = find(slot_id)
-        clusters_by_root.setdefault(root, []).append(slot)
-
-    margin = 8.0
-    clear_y = top_text_bottom + margin
-
-    colliding_clusters: list[list[dict[str, Any]]] = []
-
-    for cluster in clusters_by_root.values():
-        if any(_is_top_text_slot(s) for s in cluster):
-            continue
-
-        is_cluster_protected = False
-        for s in cluster:
-            sid = s.get("id")
-            if (
-                sid in protected_slot_ids
-                or (isinstance(sid, str) and sid.startswith("konva_"))
-                or is_submitted_answer_slot(s)
-            ):
-                is_cluster_protected = True
-                break
-        if is_cluster_protected:
-            continue
-
-        cluster_collides = False
-        for s in cluster:
-            box = _slot_box(s)
-            if box is None:
-                continue
-            _, y, _, height = box
-            if y < clear_y and y + height > top_text_bottom:
-                cluster_collides = True
-                break
-
-        if cluster_collides:
-            colliding_clusters.append(cluster)
-
-    if not colliding_clusters:
-        return
-
-    boxes: list[tuple[float, float, float, float]] = []
-    all_colliding_slots: list[dict[str, Any]] = []
-    for cluster in colliding_clusters:
-        for s in cluster:
-            all_colliding_slots.append(s)
-            box = _slot_box(s)
-            if box is not None:
-                boxes.append(box)
-
-    if not boxes:
-        return
-
-    min_y = min(b[1] for b in boxes)
-    max_bottom = max(b[1] + b[3] for b in boxes)
-    dy = clear_y - min_y
-    if dy <= 0:
-        return
-    bottom_limit = canvas_height - margin
-    if max_bottom + dy > bottom_limit:
-        dy = max(0.0, bottom_limit - max_bottom)
-    if dy <= 0:
-        return
-
-    shifted_ids: set[str] = set()
-    for s in all_colliding_slots:
-        sid = s.get("id")
-        if not isinstance(sid, str) or sid in shifted_ids:
-            continue
-        shifted_ids.add(sid)
-        content = s.get("content")
-        if isinstance(content, dict):
-            _shift_content_y(content, dy)
+            return prefix + "_"
+        return slot_id
+    parts = slot_id.split(".")
+    if len(parts) >= 3 and parts[0] == "slot":
+        return f"{parts[0]}.{parts[1]}."
+    return None
 
 
-def _top_text_bottom(slots: list[dict[str, Any]]) -> float | None:
-    bottoms: list[float] = []
-    for slot in slots:
-        if not _is_top_text_slot(slot):
-            continue
-        box = _slot_box(slot)
-        if box is not None:
-            bottoms.append(box[1] + box[3])
-    return max(bottoms) if bottoms else None
+def is_submitted_answer_slot(slot: dict[str, Any]) -> bool:
+    content = slot.get("content")
+    interaction = content.get("interaction") if isinstance(content, dict) else None
+    return (
+        isinstance(interaction, dict)
+        and interaction.get("type") == "input"
+        and interaction.get("role") == "answer"
+        and interaction.get("include_in_submission") is not False
+    )
 
 
 def _is_top_text_slot(slot: dict[str, Any]) -> bool:
@@ -366,7 +228,39 @@ def _slot_box(slot: dict[str, Any]) -> tuple[float, float, float, float] | None:
         if all(isinstance(value, int | float) for value in (cx, cy, r)):
             radius = float(r)
             return (float(cx) - radius, float(cy) - radius, radius * 2, radius * 2)
+    if kind == "polygon":
+        points = content.get("points")
+        if isinstance(points, (list, tuple)) and points:
+            xs = [
+                float(pt[0])
+                for pt in points
+                if isinstance(pt, (list, tuple))
+                and len(pt) >= 2
+                and isinstance(pt[0], (int, float))
+            ]
+            ys = [
+                float(pt[1])
+                for pt in points
+                if isinstance(pt, (list, tuple))
+                and len(pt) >= 2
+                and isinstance(pt[1], (int, float))
+            ]
+            if xs and ys:
+                min_x, max_x = min(xs), max(xs)
+                min_y, max_y = min(ys), max(ys)
+                return (min_x, min_y, max_x - min_x, max_y - min_y)
     return None
+
+
+def _top_text_bottom(slots: list[dict[str, Any]]) -> float | None:
+    bottoms: list[float] = []
+    for slot in slots:
+        if not _is_top_text_slot(slot):
+            continue
+        box = _slot_box(slot)
+        if box is not None:
+            bottoms.append(box[1] + box[3])
+    return max(bottoms) if bottoms else None
 
 
 def _shift_content_y(content: dict[str, Any], dy: float) -> None:
@@ -374,6 +268,16 @@ def _shift_content_y(content: dict[str, Any], dy: float) -> None:
         value = content.get(key)
         if isinstance(value, int | float):
             content[key] = round(float(value) + dy, 3)
+    points = content.get("points")
+    if isinstance(points, (list, tuple)):
+        content["points"] = [
+            [round(float(pt[0]), 3), round(float(pt[1]) + dy, 3)]
+            if isinstance(pt, (list, tuple))
+            and len(pt) >= 2
+            and isinstance(pt[1], (int, float))
+            else pt
+            for pt in points
+        ]
     input_style = content.get("input_style")
     if isinstance(input_style, dict):
         y = input_style.get("y")
@@ -381,29 +285,166 @@ def _shift_content_y(content: dict[str, Any], dy: float) -> None:
             input_style["y"] = round(float(y) + dy, 3)
 
 
-def _cohesive_slot_prefix(slot_id: Any) -> str | None:
-    if not isinstance(slot_id, str):
-        return None
-    if slot_id.startswith("konva_"):
-        prefix, _, _ = slot_id.rpartition("_")
+def _separate_top_text_from_following_slots(
+    slots: list[dict[str, Any]],
+    canvas_box: tuple[float, float] | None,
+    *,
+    regions: list[dict[str, Any]] | None = None,
+    groups: list[dict[str, Any]] | None = None,
+    protected_slot_ids: set[str],
+) -> None:
+    if canvas_box is None:
+        return
+    _, canvas_height = canvas_box
+    top_text_bottom = _top_text_bottom(slots)
+    if top_text_bottom is None:
+        return
+
+    slot_id_to_slot = {
+        slot["id"]: slot
+        for slot in slots
+        if isinstance(slot, dict) and isinstance(slot.get("id"), str)
+    }
+
+    parent: dict[str, str] = {}
+    absolute_region_slot_ids: set[str] = set()
+
+    def find(s: str) -> str:
+        parent.setdefault(s, s)
+        if parent[s] != s:
+            parent[s] = find(parent[s])
+        return parent[s]
+
+    def union(a: str, b: str) -> None:
+        root_a = find(a)
+        root_b = find(b)
+        if root_a != root_b:
+            parent[root_a] = root_b
+
+    # Cluster by region (non-stem/header)
+    if isinstance(regions, list):
+        for region in regions:
+            if not isinstance(region, dict):
+                continue
+            role = region.get("role")
+            region_id = str(region.get("id") or "")
+            if role == "stem" or "header" in region_id:
+                continue
+            r_slots = [
+                s
+                for s in region.get("slot_ids", [])
+                if isinstance(s, str) and s in slot_id_to_slot
+            ]
+            # Absolute regions are explicitly authored coordinate systems.
+            # Text localization must fit inside its own box instead of moving
+            # an entire diagram and invalidating all of its calibrated geometry.
+            if region.get("flow") == "absolute" or role in {"diagram", "choices", "answer"}:
+                absolute_region_slot_ids.update(r_slots)
+            for i in range(1, len(r_slots)):
+                union(r_slots[0], r_slots[i])
+
+    # Cluster by group
+    if isinstance(groups, list):
+        for group in groups:
+            if not isinstance(group, dict):
+                continue
+            members = [
+                s
+                for s in group.get("member_ids", [])
+                if isinstance(s, str) and s in slot_id_to_slot
+            ]
+            for i in range(1, len(members)):
+                union(members[0], members[i])
+
+    # Cluster by compound prefixes (e.g. table, graphpaper, konva)
+    prefix_to_slots: dict[str, list[str]] = {}
+    for slot_id in slot_id_to_slot:
+        prefix = _cohesive_slot_prefix(slot_id)
         if prefix:
-            return prefix + "_"
-        return slot_id
-    parts = slot_id.split(".")
-    if len(parts) >= 3 and parts[0] == "slot":
-        return f"{parts[0]}.{parts[1]}."
-    return None
+            prefix_to_slots.setdefault(prefix, []).append(slot_id)
+    for p_slots in prefix_to_slots.values():
+        for i in range(1, len(p_slots)):
+            union(p_slots[0], p_slots[i])
+
+    clusters_by_root: dict[str, list[dict[str, Any]]] = {}
+    for slot_id, slot in slot_id_to_slot.items():
+        root = find(slot_id)
+        clusters_by_root.setdefault(root, []).append(slot)
+
+    margin = 8.0
+    clear_y = top_text_bottom + margin
+
+    colliding_clusters: list[list[dict[str, Any]]] = []
+
+    for cluster in clusters_by_root.values():
+        if any(_is_top_text_slot(s) for s in cluster):
+            continue
+
+        is_cluster_protected = False
+        for s in cluster:
+            sid = s.get("id")
+            if (
+                sid in protected_slot_ids
+                or sid in absolute_region_slot_ids
+                or (isinstance(sid, str) and sid.startswith("konva_"))
+                or is_submitted_answer_slot(s)
+            ):
+                is_cluster_protected = True
+                break
+        if is_cluster_protected:
+            continue
+
+        cluster_collides = False
+        for s in cluster:
+            box = _slot_box(s)
+            if box is None:
+                continue
+            _, y, _, height = box
+            if y < clear_y and y + height > top_text_bottom:
+                cluster_collides = True
+                break
+
+        if cluster_collides:
+            colliding_clusters.append(cluster)
+
+    if not colliding_clusters:
+        return
+
+    boxes: list[tuple[float, float, float, float]] = []
+    all_colliding_slots: list[dict[str, Any]] = []
+    for cluster in colliding_clusters:
+        for s in cluster:
+            all_colliding_slots.append(s)
+            box = _slot_box(s)
+            if box is not None:
+                boxes.append(box)
+
+    if not boxes:
+        return
+
+    min_y = min(b[1] for b in boxes)
+    max_bottom = max(b[1] + b[3] for b in boxes)
+    dy = clear_y - min_y
+    if dy <= 0:
+        return
+    bottom_limit = canvas_height - margin
+    if max_bottom + dy > bottom_limit:
+        dy = max(0.0, bottom_limit - max_bottom)
+    if dy <= 0:
+        return
+
+    shifted_ids: set[str] = set()
+    for s in all_colliding_slots:
+        sid = s.get("id")
+        if not isinstance(sid, str) or sid in shifted_ids:
+            continue
+        shifted_ids.add(sid)
+        content = s.get("content")
+        if isinstance(content, dict):
+            _shift_content_y(content, dy)
 
 
-def is_submitted_answer_slot(slot: dict[str, Any]) -> bool:
-    content = slot.get("content")
-    interaction = content.get("interaction") if isinstance(content, dict) else None
-    return (
-        isinstance(interaction, dict)
-        and interaction.get("type") == "input"
-        and interaction.get("role") == "answer"
-        and interaction.get("include_in_submission") is not False
-    )
+
 
 
 def _sanitize_regions(value: Any, slot_ids: set[str]) -> list[dict[str, Any]]:

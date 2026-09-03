@@ -39,29 +39,70 @@ def build_problem_template() -> ProblemTemplate:
             id="region.stem",
             role="stem",
             flow="absolute",
-            slot_ids=("slot.q3", "slot.q4", "slot.inserted.image.1"),
+            slot_ids=(
+                "slot.question",
+                "slot.inserted.image.1",
+                "slot.speech",
+                "slot.label.water",
+                "slot.label.milk",
+            ),
         ),
     )
     slots = (
-        TextSlot(
-            id="slot.q3",
+        TextBoxSlot(
+            id="slot.question",
             prompt="",
-            text="Ми хочемо порівняти пляшку для води й молочну пляшку. Спосіб порівняння двох пляшок",
+            text=(
+                "Ми хочемо порівняти висоту пляшки для води й пляшки для молока. Якщо спосіб "
+                "порівняння їхньої висоти правильний, виберіть ○, інакше — ×."
+            ),
             style_role="question",
             x=66,
-            y=39,
+            y=5,
+            width=820,
+            height=92,
             font_size=28,
+            line_height=1.25,
             fill="#111111",
         ),
-        TextSlot(
-            id="slot.q4",
+        TextBoxSlot(
+            id="slot.speech",
             prompt="",
-            text="Якщо спосіб пояснено правильно, виберіть ○, інакше — ×.",
-            style_role="question",
-            x=67,
-            y=81,
-            font_size=28,
-            fill="#111111",
+            text="Наповни пляшку для води, а потім перелий воду в пляшку для молока.",
+            style_role="body",
+            x=570.546,
+            y=113.817,
+            width=309.474,
+            height=121,
+            font_size=30,
+            line_height=1.25,
+            fill="#111827",
+        ),
+        TextBoxSlot(
+            id="slot.label.water",
+            prompt="",
+            text="Пляшка для води",
+            style_role="label",
+            x=81.431,
+            y=281.256,
+            width=98,
+            height=46,
+            font_size=30,
+            line_height=1.25,
+            fill="#111827",
+        ),
+        TextBoxSlot(
+            id="slot.label.milk",
+            prompt="",
+            text="Пляшка для молока",
+            style_role="label",
+            x=199.492,
+            y=285.875,
+            width=108,
+            height=46,
+            font_size=30,
+            line_height=1.25,
+            fill="#111827",
         ),
         ImageSlot(
             id="slot.inserted.image.1",
@@ -98,18 +139,18 @@ SEMANTIC_OVERRIDE = {
     "problem_type": "판단형",
     "metadata": {
         "language": "ko",
-        "question": "물병과 우유병의 높이를 비교하려고 합니다. 두 병의 높이를 비교하는 방법을 바르게 설명했으면 ○표, 그렇지 않으면 ×를 "
-        "선택하세요.",
-        "instruction": "비교 방법의 타당성을 판단한다.",
+        "question": "Ми хочемо порівняти висоту пляшки для води й пляшки для молока. Якщо "
+        "спосіб порівняння їхньої висоти правильний, виберіть ○, інакше — ×.",
+        "instruction": "Визначте, чи правильний спосіб порівняння.",
     },
     "domain": {
         "objects": [
-            {"id": "obj.bottle_water", "type": "container", "name": "물병"},
-            {"id": "obj.bottle_milk", "type": "container", "name": "우유병"},
+            {"id": "obj.bottle_water", "type": "container", "name": "Пляшка для води"},
+            {"id": "obj.bottle_milk", "type": "container", "name": "Пляшка для молока"},
             {
                 "id": "obj.speech",
                 "type": "statement",
-                "content": "물병에 물을 가득 채운 후 우유병에 옮겨 담아 보면 돼.",
+                "content": "Наповни пляшку для води, а потім перелий воду в пляшку для " "молока.",
             },
         ],
         "relations": [],

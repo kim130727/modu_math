@@ -450,6 +450,55 @@ def test_sanitize_layout_preserves_diagram_cohesion_and_does_not_shift_labels_in
     assert label_y - line_y1 == -20.0
 
 
+def test_sanitize_layout_does_not_move_authored_absolute_diagram() -> None:
+    layout = {
+        "canvas": {"width": 720, "height": 590},
+        "regions": [
+            {
+                "id": "region.stem",
+                "role": "stem",
+                "flow": "absolute",
+                "slot_ids": ["slot.question"],
+            },
+            {
+                "id": "region.diagram",
+                "role": "diagram",
+                "flow": "absolute",
+                "slot_ids": ["slot.model.box", "slot.model.rod"],
+            },
+        ],
+        "slots": [
+            {
+                "id": "slot.question",
+                "kind": "text_box",
+                "content": {
+                    "text": "수 모형을 보고 알맞은 수를 고르세요.",
+                    "x": 62.0,
+                    "y": 7.0,
+                    "width": 620.0,
+                    "height": 60.0,
+                },
+            },
+            {
+                "id": "slot.model.box",
+                "kind": "rect",
+                "content": {"x": 190.0, "y": 55.0, "width": 245.0, "height": 125.0},
+            },
+            {
+                "id": "slot.model.rod",
+                "kind": "rect",
+                "content": {"x": 209.0, "y": 72.0, "width": 10.8, "height": 80.0},
+            },
+        ],
+    }
+
+    sanitized = sanitize_layout(layout)
+    by_id = {slot["id"]: slot for slot in sanitized["slots"]}
+
+    assert by_id["slot.model.box"]["content"]["y"] == 55.0
+    assert by_id["slot.model.rod"]["content"]["y"] == 72.0
+
+
 def test_sanitize_layout_preserves_diagram_when_editor_override_exists_in_diagram() -> None:
     layout = {
         "canvas": {"width": 720, "height": 400},
@@ -492,6 +541,9 @@ def test_sanitize_layout_preserves_diagram_when_editor_override_exists_in_diagra
                 "kind": "text",
                 "content": {"text": "㉢", "x": 300.0, "y": 110.0, "font_size": 30},
             },
+
+
+
             {
                 "id": "konva_custom_text",
                 "kind": "text_box",
@@ -507,5 +559,76 @@ def test_sanitize_layout_preserves_diagram_when_editor_override_exists_in_diagra
     assert by_id["slot.circle.outer"]["content"]["cy"] == 245.0
 
 
+def test_sanitize_layout_shifts_polygons_synchronously_with_other_shapes() -> None:
+    layout = {
+        "canvas": {"width": 720.0, "height": 590.0},
+        "regions": [
+            {"id": "region.stem", "role": "stem", "slot_ids": ["slot.top.text"]},
+            {"id": "region.content", "role": "content", "slot_ids": ["slot.rect", "slot.poly"]},
+        ],
+        "slots": [
+            {
+                "id": "slot.top.text",
+                "kind": "text_box",
+                "content": {"text": "Question", "x": 30.0, "y": 10.0, "width": 600.0, "height": 60.0},
+            },
+            {
+                "id": "slot.rect",
+                "kind": "rect",
+                "content": {"x": 100.0, "y": 55.0, "width": 80.0, "height": 80.0},
+            },
+            {
+                "id": "slot.poly",
+                "kind": "polygon",
+                "content": {"points": [[100.0, 55.0], [140.0, 45.0], [180.0, 55.0]]},
+            },
+        ],
+    }
+
+    sanitized = sanitize_layout(layout)
+    by_id = {slot["id"]: slot for slot in sanitized["slots"]}
+
+    # Top text bottom is 70.0. clear_y = 78.0.
+    # min_y of cluster was 45.0 (from polygon).
+    # dy = 78.0 - 45.0 = 33.0.
+    assert by_id["slot.rect"]["content"]["y"] == 55.0 + 33.0
+    assert by_id["slot.poly"]["content"]["points"] == [
+        [100.0, 55.0 + 33.0],
+        [140.0, 45.0 + 33.0],
+        [180.0, 55.0 + 33.0],
+    ]
 
 
+def test_sanitize_layout_protects_diagram_and_absolute_regions_from_text_shifts() -> None:
+    layout = {
+        "canvas": {"width": 720.0, "height": 590.0},
+        "regions": [
+            {"id": "region.stem", "role": "stem", "flow": "absolute", "slot_ids": ["slot.q.text"]},
+            {"id": "region.diagram", "role": "diagram", "flow": "absolute", "slot_ids": ["slot.diag.rect", "slot.diag.poly"]},
+        ],
+        "slots": [
+            {
+                "id": "slot.q.text",
+                "kind": "text_box",
+                "content": {"text": "Long multi-line question", "x": 50.0, "y": 10.0, "width": 620.0, "height": 60.0},
+            },
+            {
+                "id": "slot.diag.rect",
+                "kind": "rect",
+                "content": {"x": 190.0, "y": 55.0, "width": 245.0, "height": 125.0},
+            },
+            {
+                "id": "slot.diag.poly",
+                "kind": "polygon",
+                "content": {"points": [[209.0, 75.6], [212.6, 72.0], [223.4, 72.0], [219.8, 75.6]]},
+            },
+        ],
+    }
+
+    sanitized = sanitize_layout(layout)
+    by_id = {slot["id"]: slot for slot in sanitized["slots"]}
+
+    # Diagram must NOT be shifted by text expansion because role="diagram" and flow="absolute"
+    assert by_id["slot.diag.rect"]["content"]["y"] == 55.0
+    assert by_id["slot.diag.poly"]["content"]["points"][0][1] == 75.6
+    assert by_id["slot.diag.poly"]["content"]["points"][1][1] == 72.0

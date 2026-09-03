@@ -1,72 +1,58 @@
 {
-    "semantic.domain.objects.obj.bottle.ga.label":  {
-                                                        "source":  "가 물병",
-                                                        "translation":  "ដប ㉮",
-                                                        "status":  "translated"
-                                                    },
-    "semantic.domain.objects.obj.bottle.na.label":  {
-                                                        "source":  "나 물병",
-                                                        "translation":  "ដប ㉯",
-                                                        "status":  "translated"
-                                                    },
-    "semantic.domain.objects.obj.container.left.label":  {
-                                                             "source":  "왼쪽 그릇",
-                                                             "translation":  "ធុងខាងឆ្វេង",
-                                                             "status":  "translated"
-                                                         },
-    "semantic.domain.objects.obj.container.right.label":  {
-                                                              "source":  "오른쪽 그릇",
-                                                              "translation":  "ធុងខាងស្តាំ",
-                                                              "status":  "translated"
-                                                          },
-    "semantic.domain.problem_solving.plan.method":  {
-                                                        "source":  "same_container_height_comparison",
-                                                        "translation":  "same_container_height_comparison",
-                                                        "status":  "translated"
-                                                    },
-    "solvable.method":  {
-                            "source":  "same_container_rule_check",
-                            "translation":  "same_container_rule_check",
-                            "status":  "translated"
-                        },
-    "solvable.plan.0":  {
-                            "source":  "같은 모양과 크기의 그릇에 옮겨 담은 물의 높이를 비교한다.",
-                            "translation":  "ប្រៀបធៀបកម្ពស់ទឹកដែលចាក់ទៅក្នុងធុងមានរាងនិងទំហំដូចគ្នា។",
-                            "status":  "translated"
-                        },
-    "solvable.plan.1":  {
-                            "source":  "물의 높이가 더 높은 쪽의 들이가 더 많다고 판단한다.",
-                            "translation":  "សន្និដ្ឋានថាដែលមានកម្រិតទឹកខ្ពស់ជាង មានចំណុះច្រើនជាង។",
-                            "status":  "translated"
-                        },
-    "template.slots.slot.choice.1.text":  {
-                                              "source":  "(1) 옮겨 담은 물의 높이가 더 높은 것은 ( ㉮ 물병, ㉯ 물병)입니다.",
-                                              "translation":  "(1) ដបដែលទឹកចាក់ផ្ទេរមានកម្ពស់ខ្ពស់ជាងគឺ (ដប ㉮, ដប ㉯)។",
-                                              "status":  "translated"
-                                          },
-    "template.slots.slot.choice.2.text":  {
-                                              "source":  "(2) 들이가 더 많은 것은 ( ㉮ 물병, ㉯ 물병)입니다.",
-                                              "translation":  "(2) ដបដែលមានចំណុះច្រើនជាងគឺ (ដប ㉮, ដប ㉯)។",
-                                              "status":  "translated"
-                                          },
-    "template.slots.slot.q1.text":  {
-                                        "source":  "㉮ 물병과 ㉯ 물병에 물을 가득 채운 후 모양과 크기가 같은 그릇에 옮겨",
-                                        "translation":  "បន្ទាប់ពីបំពេញទឹកក្នុងដប ㉮ និង ㉯ សូមចាក់ទៅក្នុងធុងដែលមានរាងនិងទំហំដូចគ្នា",
-                                        "status":  "translated"
-                                    },
-    "template.slots.slot.q2.text":  {
-                                        "source":  "담았습니다. 그림과 같이 물을 채웠을 때에 ㉮ 물병과 ㉯ 물병의 들이를 비교하",
-                                        "translation":  "បានចាក់ទឹក។ ដើម្បីប្រៀបធៀបចំណុះដប ㉮ និង ㉯ ដែលមានទឹកដូចក្នុងរូប",
-                                        "status":  "translated"
-                                    },
-    "template.slots.slot.q3.text":  {
-                                        "source":  "려고 합니다. 알맞은 말을 선택하세요.",
-                                        "translation":  "សូមជ្រើសពាក្យត្រឹមត្រូវ។",
-                                        "status":  "translated"
-                                    },
-    "template.title":  {
-                           "source":  "들이 비교",
-                           "translation":  "ការប្រៀបធៀបចំណុះ",
-                           "status":  "translated"
-                       }
+  "semantic.domain.objects.obj.bottle.ga.label": {
+    "source": "가 물병",
+    "translation": "ដប ㉮"
+  },
+  "semantic.domain.objects.obj.bottle.na.label": {
+    "source": "나 물병",
+    "translation": "ដប ㉯"
+  },
+  "semantic.domain.objects.obj.container.left.label": {
+    "source": "왼쪽 그릇",
+    "translation": "ធុងខាងឆ្វេង"
+  },
+  "semantic.domain.objects.obj.container.right.label": {
+    "source": "오른쪽 그릇",
+    "translation": "ធុងខាងស្តាំ"
+  },
+  "semantic.domain.problem_solving.plan.method": {
+    "source": "same_container_height_comparison",
+    "translation": "same_container_height_comparison"
+  },
+  "semantic.metadata.instruction": {
+    "source": "알맞은 말을 선택하세요.",
+    "translation": "ជ្រើសពាក្យត្រឹមត្រូវ។"
+  },
+  "semantic.metadata.question": {
+    "source": "가 물병과 나 물병의 들이를 비교하는 문제",
+    "translation": "ប្រៀបធៀបចំណុះរបស់ដប ក និង ខ។"
+  },
+  "solvable.method": {
+    "source": "same_container_rule_check",
+    "translation": "same_container_rule_check"
+  },
+  "solvable.plan.0": {
+    "source": "같은 모양과 크기의 그릇에 옮겨 담은 물의 높이를 비교한다.",
+    "translation": "ប្រៀបធៀបកម្ពស់ទឹកដែលចាក់ទៅក្នុងធុងមានរាងនិងទំហំដូចគ្នា។"
+  },
+  "solvable.plan.1": {
+    "source": "물의 높이가 더 높은 쪽의 들이가 더 많다고 판단한다.",
+    "translation": "សន្និដ្ឋានថាដែលមានកម្រិតទឹកខ្ពស់ជាង មានចំណុះច្រើនជាង។"
+  },
+  "template.slots.slot.choice.1.text": {
+    "source": "(1) 옮겨 담은 물의 높이가 더 높은 것은 ( ㉮ 물병, ㉯ 물병)입니다.",
+    "translation": "(1) ដបដែលទឹកចាក់ផ្ទេរមានកម្ពស់ខ្ពស់ជាងគឺ (ដប ㉮, ដប ㉯)។"
+  },
+  "template.slots.slot.choice.2.text": {
+    "source": "(2) 들이가 더 많은 것은 ( ㉮ 물병, ㉯ 물병)입니다.",
+    "translation": "(2) ដបដែលមានចំណុះច្រើនជាងគឺ (ដប ㉮, ដប ㉯)។"
+  },
+  "template.slots.slot.question.text": {
+    "source": "㉮ 물병과 ㉯ 물병에 물을 가득 채운 후 모양과 크기가 같은 그릇에 옮겨 담았습니다. 그림과 같이 물을 채웠을 때에 ㉮ 물병과 ㉯ 물병의 들이를 비교하려고 합니다. 알맞은 말을 선택하세요.",
+    "translation": "បន្ទាប់ពីបំពេញទឹកក្នុងដប ក និង ខ ពេញហើយ ទឹកត្រូវបានចាក់ទៅក្នុងធុងដែលមានរាង និងទំហំដូចគ្នា។ ប្រៀបធៀបចំណុះរបស់ដប ក និង ខ តាមកម្ពស់ទឹកដែលបង្ហាញក្នុងរូប ហើយជ្រើសពាក្យត្រឹមត្រូវ។"
+  },
+  "template.title": {
+    "source": "들이 비교",
+    "translation": "ការប្រៀបធៀបចំណុះ"
+  }
 }

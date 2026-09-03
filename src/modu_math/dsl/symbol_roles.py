@@ -8,6 +8,9 @@ PROTECTED_SYMBOL_ROLES = {"symbol_label", "choice_marker"}
 _HANGUL_CHOICE_MARKERS = "가나다라마바사아자차카타파하"
 _JAMO_CHOICE_MARKERS = "ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ"
 _CIRCLED_JAMO_MARKERS = "㉠㉡㉢㉣㉤㉥㉦㉧㉨㉩㉪㉫㉬㉭"
+_CIRCLED_HANGUL_MARKERS = "㉮㉯㉰㉱㉲㉳㉴㉵㉶㉷㉸㉹㉺㉻"
+_PARENTHESIZED_JAMO_MARKERS = "㈀㈁㈂㈃㈄㈅㈆㈇㈈㈉㈊㈋㈌㈍"
+_PARENTHESIZED_HANGUL_MARKERS = "㈎㈏㈐㈑㈒㈓㈔㈕㈖㈗㈘㈙㈚㈛"
 _CIRCLED_CHOICE_MARKERS = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳"
 _LOCALIZED_JAMO_MARKERS = {
     "en": "ABCDEFGHIJKLMN",
@@ -19,6 +22,10 @@ _LOCALIZED_JAMO_MARKERS = {
 _MARKER_CHARS = (
     re.escape(_HANGUL_CHOICE_MARKERS)
     + re.escape(_JAMO_CHOICE_MARKERS)
+    + re.escape(_CIRCLED_JAMO_MARKERS)
+    + re.escape(_CIRCLED_HANGUL_MARKERS)
+    + re.escape(_PARENTHESIZED_JAMO_MARKERS)
+    + re.escape(_PARENTHESIZED_HANGUL_MARKERS)
     + re.escape(_CIRCLED_CHOICE_MARKERS)
 )
 _MARKER_TOKEN_RE = re.compile(
@@ -49,11 +56,12 @@ def is_protected_symbol_role(role: str | None) -> bool:
 
 
 def localize_jamo_markers(text: str, locale: str) -> str:
-    """Replace Korean compatibility-jamo labels with locale-standard labels.
+    """Replace Korean choice-label symbols with locale-standard labels.
 
-    Circled choice numbers remain unchanged because they are already language
-    neutral. Hangul syllables are also left alone so ordinary Korean words
-    cannot be altered accidentally.
+    Compatibility jamo and their circled/parenthesized forms are normalized to
+    the target language's marker sequence. Circled numbers remain unchanged
+    because they are language neutral. Plain Hangul syllables are deliberately
+    left alone so ordinary Korean words cannot be altered accidentally.
     """
     language = re.split(r"[-_]", locale, maxsplit=1)[0].lower()
     localized = _LOCALIZED_JAMO_MARKERS.get(language)
@@ -61,6 +69,9 @@ def localize_jamo_markers(text: str, locale: str) -> str:
         return text
     marker_map = str.maketrans(_JAMO_CHOICE_MARKERS, localized)
     marker_map.update(str.maketrans(_CIRCLED_JAMO_MARKERS, localized))
+    marker_map.update(str.maketrans(_CIRCLED_HANGUL_MARKERS, localized))
+    marker_map.update(str.maketrans(_PARENTHESIZED_JAMO_MARKERS, localized))
+    marker_map.update(str.maketrans(_PARENTHESIZED_HANGUL_MARKERS, localized))
     return text.translate(marker_map)
 
 

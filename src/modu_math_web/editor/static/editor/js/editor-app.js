@@ -4784,7 +4784,15 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       }
       input.disabled = false;
       button.disabled = false;
-      input.value = item.el.textContent || "";
+      const rawText = item.el.getAttribute("data-raw-text");
+      if (rawText !== null && rawText !== undefined) {
+        input.value = rawText;
+      } else {
+        const tspans = Array.from(item.el.querySelectorAll("tspan"));
+        input.value = tspans.length
+          ? tspans.map((node) => node.textContent || "").join("\n")
+          : (item.el.textContent || "");
+      }
     }
 
     async function commitInspectorFields() {
@@ -4918,8 +4926,31 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       applyStyleAttrs();
       if (tag === "text") {
         if (value.text !== undefined) {
-          el.textContent = String(value.text);
-          el.removeAttribute("data-raw-text");
+          const textStr = String(value.text);
+          const lines = textStr.split("\n");
+          if (lines.length > 1) {
+            el.textContent = "";
+            el.setAttribute("data-raw-text", textStr);
+            const isTextBox = el.getAttribute("data-slot-kind") === "text_box";
+            const fontSize = Number(el.getAttribute("font-size") || 28);
+            const lineStep = fontSize * Number(el.getAttribute("data-line-height") || 1.2);
+            const baseX = Number(el.getAttribute("x") || 0);
+            const baseY = Number(el.getAttribute("y") || 0);
+            lines.forEach((lineText, idx) => {
+              const tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+              tspan.textContent = lineText;
+              tspan.setAttribute("x", String(baseX));
+              if (isTextBox) {
+                tspan.setAttribute("y", String(baseY + idx * lineStep));
+              } else {
+                tspan.setAttribute("dy", idx === 0 ? "0" : "1.2em");
+              }
+              el.appendChild(tspan);
+            });
+          } else {
+            el.textContent = textStr;
+            el.removeAttribute("data-raw-text");
+          }
         }
         if (el.getAttribute("data-slot-kind") === "text_box") {
           const boxX = value.x !== undefined ? Number(value.x) : Number(el.getAttribute("data-box-x") || 0);
@@ -4930,10 +4961,19 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
           el.setAttribute("data-box-y", String(boxY));
           el.setAttribute("data-box-width", String(boxWidth));
           el.setAttribute("data-box-height", String(boxHeight));
-          el.setAttribute("x", String(textBoxTextX(el, boxX, boxWidth)));
+          const textX = textBoxTextX(el, boxX, boxWidth);
+          el.setAttribute("x", String(textX));
           if (value.y !== undefined) el.setAttribute("y", String(boxY + Number(el.getAttribute("font-size") || 28)));
+          for (const tspan of el.querySelectorAll("tspan")) {
+            tspan.setAttribute("x", String(textX));
+          }
         } else {
-          if (value.x !== undefined) el.setAttribute("x", String(value.x));
+          if (value.x !== undefined) {
+            el.setAttribute("x", String(value.x));
+            for (const tspan of el.querySelectorAll("tspan")) {
+              tspan.setAttribute("x", String(value.x));
+            }
+          }
           if (value.y !== undefined) el.setAttribute("y", String(value.y));
         }
         if (value.font_size !== undefined) el.setAttribute("font-size", String(value.font_size));
@@ -6702,10 +6742,11 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       catch (e) { setStatus(String(e), false); }
     };
     document.getElementById("textEditInput").addEventListener("keydown", async (ev) => {
-      if (ev.key !== "Enter") return;
-      ev.preventDefault();
-      try { await updateSelectedText(); }
-      catch (e) { setStatus(String(e), false); }
+      if (ev.key === "Enter" && (ev.ctrlKey || ev.metaKey)) {
+        ev.preventDefault();
+        try { await updateSelectedText(); }
+        catch (e) { setStatus(String(e), false); }
+      }
     });
     document.getElementById("fontDecreaseBtn").onclick = async () => {
       try { await nudgeSelectedFontSize(-2); }

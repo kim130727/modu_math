@@ -39,13 +39,13 @@ def build_problem_template() -> ProblemTemplate:
             id="region.stem",
             role="stem",
             flow="absolute",
-            slot_ids=("slot.q1", "slot.q2", "slot.q3", "slot.inserted.image.1"),
+            slot_ids=("slot.question", "slot.inserted.image.1"),
         ),
         Region(
             id="region.diagram",
             role="diagram",
             flow="absolute",
-            slot_ids=(),
+            slot_ids=("slot.label.a", "slot.label.b"),
         ),
         Region(
             id="region.choice",
@@ -61,39 +61,55 @@ def build_problem_template() -> ProblemTemplate:
         ),
     )
     slots = (
-        TextSlot(
-            id="slot.q1",
+        TextBoxSlot(
+            id="slot.question",
             prompt="",
-            text="Наповнивши пляшки ㉮ і ㉯ водою, перелити її в посудини однакової форми й розміру",
+            text=(
+                "Пляшки А і Б наповнили водою, а потім перелили воду в посудини однакової форми й "
+                "розміру. Порівняйте місткість пляшок А і Б за рівнями води на малюнку. Виберіть "
+                "правильні слова."
+            ),
             style_role="question",
-            x=16,
-            y=52,
-            font_size=28,
-            fill="#111111",
+            x=66.684,
+            y=17.307,
+            width=825.55,
+            height=158,
+            font_size=30,
+            line_height=1.25,
+            fill="#111827",
         ),
-        TextSlot(
-            id="slot.q2",
-            prompt="",
-            text="перелили воду. Щоб порівняти місткість пляшок ㉮ і ㉯, наповнених як на малюнку",
-            style_role="question",
-            x=16,
-            y=86,
-            font_size=28,
-            fill="#111111",
+        TextBoxSlot(
+            id="slot.label.a",
+            prompt=None,
+            text="А",
+            style_role="body",
+            x=118.359,
+            y=176.832,
+            width=48.067,
+            height=46,
+            font_size=30,
+            line_height=1.25,
+            fill="#111827",
+            semantic_role="symbol_label",
         ),
-        TextSlot(
-            id="slot.q3",
-            prompt="",
-            text="потрібно вибрати правильні слова.",
-            style_role="question",
-            x=16.0,
-            y=120.0,
-            font_size=28,
+        TextBoxSlot(
+            id="slot.label.b",
+            prompt=None,
+            text="Б",
+            style_role="body",
+            x=685.632,
+            y=194.047,
+            width=51.512,
+            height=46,
+            font_size=30,
+            line_height=1.25,
+            fill="#111827",
+            semantic_role="symbol_label",
         ),
         TextSlot(
             id="slot.choice.1",
             prompt="",
-            text="(1) Вищий рівень перелитої води має (пляшка ㉮, пляшка ㉯).",
+            text="(1) Вищий рівень перелитої води має (пляшка А, пляшка Б).",
             style_role="question",
             x=36,
             y=402,
@@ -103,7 +119,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.choice.2",
             prompt="",
-            text="(2) Більшу місткість має (пляшка ㉮, пляшка ㉯).",
+            text="(2) Більшу місткість має (пляшка А, пляшка Б).",
             style_role="question",
             x=36,
             y=448,
@@ -145,13 +161,13 @@ SEMANTIC_OVERRIDE = {
     "problem_type": "비교",
     "metadata": {
         "language": "ko",
-        "question": "가 물병과 나 물병의 들이를 비교하는 문제",
-        "instruction": "알맞은 말을 선택하세요.",
+        "question": "Порівняйте місткість пляшок А і Б.",
+        "instruction": "Виберіть правильні слова.",
     },
     "domain": {
         "objects": [
-            {"id": "obj.bottle.ga", "type": "물병", "label": "Пляшка ㉮"},
-            {"id": "obj.bottle.na", "type": "물병", "label": "Пляшка ㉯"},
+            {"id": "obj.bottle.ga", "type": "물병", "label": "Пляшка А"},
+            {"id": "obj.bottle.na", "type": "물병", "label": "Пляшка Б"},
             {
                 "id": "obj.container.left",
                 "type": "그릇",

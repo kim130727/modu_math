@@ -37,7 +37,7 @@ SEMANTIC_OVERRIDE = {{
     }},
     "domain": {{
         "objects": [
-            {{"id": "object.apple", "type": "countable_object", "label": "apple", "unit": "piece"}},
+            {{"id": "object.apple", "type": "countable_object", "label": "apple", "name": "Apple", "content": "A red apple", "unit": "piece"}},
         ],
     }},
     "answer": {{"value": 5, "unit": "piece"}},
@@ -70,6 +70,8 @@ def test_extract_uses_stable_keys_and_skips_non_translatable_fields(tmp_path: Pa
         "translation": "",
     }
     assert data["semantic.domain.objects.object.apple.label"]["source"] == "apple"
+    assert data["semantic.domain.objects.object.apple.name"]["source"] == "Apple"
+    assert data["semantic.domain.objects.object.apple.content"]["source"] == "A red apple"
     assert data["semantic.metadata.question"]["source"] == "Which number belongs in the box?"
     assert data["semantic.metadata.instruction"]["source"] == "Choose one answer."
     assert data["solvable.steps.step.add.goal"]["source"] == "Find the total."
@@ -91,10 +93,12 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     id=PROBLEM_ID,
     title="Symbol Locale",
     canvas=Canvas(width=300, height=120),
-    regions=(Region(id="region.body", role="body", slot_ids=("slot.choice", "slot.symbol", "slot.name")),),
+    regions=(Region(id="region.body", role="body", slot_ids=("slot.choice", "slot.symbol", "slot.circled", "slot.parenthesized", "slot.name")),),
     slots=(
         TextSlot(id="slot.choice", text="(\\uac00)", style_role="choice"),
         TextSlot(id="slot.symbol", text="\\u3131", semantic_role="symbol_label"),
+        TextSlot(id="slot.circled", text="\\u3260\\u3261\\u3262"),
+        TextSlot(id="slot.parenthesized", text="\\u3200\\u3201\\u3202"),
         TextSlot(id="slot.name", text="\\uc2b9\\uc544"),
     ),
 )
@@ -108,6 +112,8 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     data = json.loads(out_path.read_text(encoding="utf-8"))
     assert "template.slots.slot.choice.text" not in data
     assert "template.slots.slot.symbol.text" not in data
+    assert "template.slots.slot.circled.text" not in data
+    assert "template.slots.slot.parenthesized.text" not in data
     assert data["template.slots.slot.name.text"]["source"] == "\uc2b9\uc544"
 
 

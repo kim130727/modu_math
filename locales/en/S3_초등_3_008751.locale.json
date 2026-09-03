@@ -1,37 +1,58 @@
 {
-    "semantic.domain.problem_solving.plan.method":  {
-                                                        "source":  "판단하기",
-                                                        "translation":  "Decide",
-                                                        "status":  "translated"
-                                                    },
-    "solvable.method":  {
-                            "source":  "판단하기",
-                            "translation":  "Decide",
-                            "status":  "translated"
-                        },
-    "solvable.plan.0":  {
-                            "source":  "제시된 설명이 높이 비교 방법인지 확인한다.",
-                            "translation":  "Check whether the given explanation is a valid height-comparison method.",
-                            "status":  "translated"
-                        },
-    "solvable.plan.1":  {
-                            "source":  "문장이 비교의 목적에 맞는지 판단한다.",
-                            "translation":  "Decide whether the statement is suitable for the comparison.",
-                            "status":  "translated"
-                        },
-    "template.slots.slot.q3.text":  {
-                                        "source":  "물병과 우유병의 높이를 비교하려고 합니다. 두 병의 높이를 비교하는",
-                                        "translation":  "We want to compare a water bottle and a milk bottle. The method for comparing the two bottles",
-                                        "status":  "translated"
-                                    },
-    "template.slots.slot.q4.text":  {
-                                        "source":  "방법을 바르게 설명했으면 ○표, 그렇지 않으면 ×를 선택하세요.",
-                                        "translation":  "Choose ○ if the method is explained correctly; otherwise choose ×.",
-                                        "status":  "translated"
-                                    },
-    "template.title":  {
-                           "source":  "물병과 우유병의 높이 비교",
-                           "translation":  "Comparing a water bottle and a milk bottle",
-                           "status":  "translated"
-                       }
+  "semantic.domain.objects.obj.bottle_milk.name": {
+    "source": "우유병",
+    "translation": "Milk bottle"
+  },
+  "semantic.domain.objects.obj.bottle_water.name": {
+    "source": "물병",
+    "translation": "Water bottle"
+  },
+  "semantic.domain.objects.obj.speech.content": {
+    "source": "물병에 물을 가득 채운 후 우유병에 옮겨 담아 보면 돼.",
+    "translation": "Fill the water bottle with water, then pour the water into the milk bottle."
+  },
+  "semantic.domain.problem_solving.plan.method": {
+    "source": "판단하기",
+    "translation": "Decide"
+  },
+  "semantic.metadata.instruction": {
+    "source": "비교 방법의 타당성을 판단한다.",
+    "translation": "Decide whether the comparison method is valid."
+  },
+  "semantic.metadata.question": {
+    "source": "물병과 우유병의 높이를 비교하려고 합니다. 두 병의 높이를 비교하는 방법을 바르게 설명했으면 ○표, 그렇지 않으면 ×를 선택하세요.",
+    "translation": "We want to compare the heights of a water bottle and a milk bottle. Choose ○ if the method for comparing their heights is correct; otherwise, choose ×."
+  },
+  "solvable.method": {
+    "source": "판단하기",
+    "translation": "Decide"
+  },
+  "solvable.plan.0": {
+    "source": "제시된 설명이 높이 비교 방법인지 확인한다.",
+    "translation": "Check whether the given explanation is a valid height-comparison method."
+  },
+  "solvable.plan.1": {
+    "source": "문장이 비교의 목적에 맞는지 판단한다.",
+    "translation": "Decide whether the statement is suitable for the comparison."
+  },
+  "template.slots.slot.label.milk.text": {
+    "source": "우유병",
+    "translation": "Milk bottle"
+  },
+  "template.slots.slot.label.water.text": {
+    "source": "물병",
+    "translation": "Water bottle"
+  },
+  "template.slots.slot.question.text": {
+    "source": "물병과 우유병의 높이를 비교하려고 합니다. 두 병의 높이를 비교하는 방법을 바르게 설명했으면 ○표, 그렇지 않으면 ×를 선택하세요.",
+    "translation": "We want to compare the heights of a water bottle and a milk bottle. Choose ○ if the method for comparing their heights is correct; otherwise, choose ×."
+  },
+  "template.slots.slot.speech.text": {
+    "source": "물병에 물을 가득 채운 후 우유병에 옮겨 담아보면 돼",
+    "translation": "Fill the water bottle with water, then pour the water into the milk bottle."
+  },
+  "template.title": {
+    "source": "물병과 우유병의 높이 비교",
+    "translation": "Comparing a water bottle and a milk bottle"
+  }
 }

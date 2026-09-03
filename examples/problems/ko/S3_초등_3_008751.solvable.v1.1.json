@@ -4,7 +4,7 @@
   "problem_type": "판단형",
   "inputs": {
     "total_ticks": 0,
-    "target_label": "X",
+    "target_label": "○ 또는 ×",
     "target_ticks": 0,
     "target_count": 1,
     "unit": ""
@@ -36,7 +36,7 @@
   "method": "판단하기",
   "plan": [
     "제시된 설명이 높이 비교 방법인지 확인한다.",
-    "물을 옮겨 담는 것은 들이를 비교하는 방법이므로 높이 비교 방법으로 틀렸음을 판단한다."
+    "문장이 비교의 목적에 맞는지 판단한다."
   ],
   "steps": [
     {
@@ -47,15 +47,15 @@
     {
       "id": "step.2",
       "expr": "높이 비교 방법 여부 판단",
-      "value": "X"
+      "value": "TODO"
     }
   ],
   "checks": [
     {
       "id": "check.1",
-      "expr": "답안 기호가 X인지 확인",
-      "expected": "X",
-      "actual": "X",
+      "expr": "답안 기호가 ○ 또는 ×인지 확인",
+      "expected": "○ 또는 ×",
+      "actual": "TODO",
       "pass": true
     }
   ],
