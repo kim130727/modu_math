@@ -7,6 +7,33 @@
   },
   "elements": [
     {
+      "id": "slot.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 37.211,
+        "y": 23.106,
+        "fill": "#111827",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 30,
+        "width": 717.416,
+        "height": 158.0,
+        "max_width": 717.416,
+        "data-slot-kind": "text_box",
+        "data-box-x": 37.211,
+        "data-box-y": 23.106,
+        "data-box-width": 717.416,
+        "data-box-height": 158.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "Use a pushpin and a strip of paper to draw a circle. Choose the label of the hole where the pencil should be inserted to draw the largest circle."
+    },
+    {
       "id": "slot.bar.rect",
       "type": "rect",
       "attributes": {
@@ -213,7 +240,7 @@
       "refs": {
         "layout_slot_id": "slot.choice.lb.1"
       },
-      "text": "㉠"
+      "text": "A"
     },
     {
       "id": "slot.choice.lb.2.text",
@@ -229,7 +256,7 @@
       "refs": {
         "layout_slot_id": "slot.choice.lb.2"
       },
-      "text": "㉡"
+      "text": "B"
     },
     {
       "id": "slot.choice.lb.3.text",
@@ -245,7 +272,7 @@
       "refs": {
         "layout_slot_id": "slot.choice.lb.3"
       },
-      "text": "㉢"
+      "text": "C"
     },
     {
       "id": "slot.choice.lb.4.text",
@@ -261,7 +288,7 @@
       "refs": {
         "layout_slot_id": "slot.choice.lb.4"
       },
-      "text": "㉣"
+      "text": "D"
     },
     {
       "id": "slot.choice.lb.5.text",
@@ -277,34 +304,7 @@
       "refs": {
         "layout_slot_id": "slot.choice.lb.5"
       },
-      "text": "㉤"
-    },
-    {
-      "id": "konva_1787989612052_text_440147.text",
-      "type": "text_box",
-      "attributes": {
-        "x": 37.211,
-        "y": 23.106,
-        "fill": "#111827",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 30,
-        "width": 717.416,
-        "height": 158.0,
-        "max_width": 717.416,
-        "data-slot-kind": "text_box",
-        "data-box-x": 37.211,
-        "data-box-y": 23.106,
-        "data-box-width": 717.416,
-        "data-box-height": 158.0,
-        "data-text-align": "left",
-        "data-vertical-align": "top",
-        "data-line-height": 1.25
-      },
-      "source_ref": "konva_1787989612052_text_440147",
-      "refs": {
-        "layout_slot_id": "konva_1787989612052_text_440147"
-      },
-      "text": ""
+      "text": "E"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from tools.repair_localized_editor_artifacts import main
+from tools.repair_localized_editor_artifacts import localize_override_symbols, main
 
 
 def _write_dsl(path: Path, *, title: str, prompt: str, text: str) -> None:
@@ -68,6 +68,14 @@ def test_repair_copies_answer_interaction_without_overwriting_translation(tmp_pa
                         },
                         "input_style": {"font_size_mode": "auto"},
                     },
+                    "slot.inserted": {
+                        "text": "Inserted editor text",
+                        "x": 10,
+                        "y": 80,
+                        "width": 180,
+                        "height": 28,
+                        "kind": "text_box",
+                    },
                 },
                 "version": 1,
             },
@@ -96,3 +104,20 @@ def test_repair_copies_answer_interaction_without_overwriting_translation(tmp_pa
     assert repaired["slots"]["slot.question"]["font_size"] < 24
     assert repaired["slots"]["slot.answer"]["interaction"]["role"] == "answer"
     assert repaired["slots"]["slot.answer"]["input_style"]["font_size_mode"] == "auto"
+    assert repaired["slots"]["slot.inserted"]["text"] == "Inserted editor text"
+
+
+def test_localize_override_symbols_updates_content_but_not_slot_ids() -> None:
+    overrides = {
+        "deleted_slots": ["slot.ㄱ"],
+        "slots": {
+            "slot.ㄱ": {"text": "선분 ㄱㄴ", "interaction": {"expected": "ㄷㄹ"}},
+        }
+    }
+
+    localized = localize_override_symbols(overrides, "ja")
+
+    assert set(localized["slots"]) == {"slot.ㄱ"}
+    assert localized["deleted_slots"] == ["slot.ㄱ"]
+    assert localized["slots"]["slot.ㄱ"]["text"] == "선분 アイ"
+    assert localized["slots"]["slot.ㄱ"]["interaction"]["expected"] == "ウエ"

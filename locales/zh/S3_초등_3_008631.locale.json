@@ -1,42 +1,38 @@
 {
-    "semantic.domain.problem_solving.plan.method":  {
-                                                        "source":  "division_value_selection",
-                                                        "translation":  "division_value_selection",
-                                                        "status":  "translated"
-                                                    },
-    "solvable.method":  {
-                            "source":  "division_value_selection",
-                            "translation":  "division_value_selection",
-                            "status":  "translated"
-                        },
-    "solvable.plan.0":  {
-                            "source":  "69를 3으로 나눈 몫을 구한다.",
-                            "translation":  "求69除以3的商。",
-                            "status":  "translated"
-                        },
-    "solvable.plan.1":  {
-                            "source":  "보기 중 계산 결과와 같은 수를 찾는다.",
-                            "translation":  "在选项中找出与计算结果相同的数。",
-                            "status":  "translated"
-                        },
-    "template.slots.slot.equation.text":  {
-                                              "source":  "69 ÷ 3 =",
-                                              "translation":  "69 ÷ 3 =",
-                                              "status":  "translated"
-                                          },
-    "template.slots.slot.question.prefix.text":  {
-                                                     "source":  "수 모형을 보고",
-                                                     "translation":  "观察数位模型",
-                                                     "status":  "translated"
-                                                 },
-    "template.slots.slot.question.suffix.text":  {
-                                                     "source":  "안에 알맞은 수를 고르세요.",
-                                                     "translation":  "请在方框中选择正确的数。",
-                                                     "status":  "translated"
-                                                 },
-    "template.title":  {
-                           "source":  "수 모형을 보고 알맞은 수 고르기",
-                           "translation":  "看数位模型选择正确的数",
-                           "status":  "translated"
-                       }
+  "semantic.domain.problem_solving.plan.method": {
+    "source": "division_value_selection",
+    "translation": "division_value_selection"
+  },
+  "semantic.metadata.instruction": {
+    "source": "69를 3묶음으로 나눈 수 모형을 보고 69 ÷ 3의 몫을 고르는 문제",
+    "translation": "观察把69平均分成3组的数位模型，选择69 ÷ 3的商。"
+  },
+  "semantic.metadata.question": {
+    "source": "수 모형을 보고 ☐ 안에 알맞은 수를 고르세요",
+    "translation": "观察数位模型，选择应填入☐中的数"
+  },
+  "solvable.method": {
+    "source": "division_value_selection",
+    "translation": "division_value_selection"
+  },
+  "solvable.plan.0": {
+    "source": "69를 3으로 나눈 몫을 구한다.",
+    "translation": "求69除以3的商。"
+  },
+  "solvable.plan.1": {
+    "source": "보기 중 계산 결과와 같은 수를 찾는다.",
+    "translation": "在选项中找出与计算结果相同的数。"
+  },
+  "template.slots.slot.equation.text": {
+    "source": "69 ÷ 3 =",
+    "translation": "69 ÷ 3 ="
+  },
+  "template.slots.slot.question.prefix.text": {
+    "source": "수 모형을 보고 ☐ 안에 알맞은 수를 고르세요",
+    "translation": "观察数位模型，选择应填入☐中的数"
+  },
+  "template.title": {
+    "source": "수 모형을 보고 알맞은 수 고르기",
+    "translation": "看数位模型选择正确的数"
+  }
 }

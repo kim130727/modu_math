@@ -13,7 +13,9 @@
       "id": "region.stem",
       "role": "stem",
       "flow": "absolute",
-      "slot_ids": []
+      "slot_ids": [
+        "slot.question"
+      ]
     },
     {
       "id": "region.diagram",
@@ -36,12 +38,29 @@
         "slot.choice.lb.2",
         "slot.choice.lb.3",
         "slot.choice.lb.4",
-        "slot.choice.lb.5",
-        "konva_1787989612052_text_440147"
+        "slot.choice.lb.5"
       ]
     }
   ],
   "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "យើងនឹងគូររង្វង់ដោយប្រើម្ជុលចុច និងបន្ទះក្រដាស។ ដើម្បីគូររង្វង់ធំបំផុត សូមជ្រើសនិមិត្តសញ្ញារបស់រន្ធដែលត្រូវដាក់ខ្មៅដៃ។",
+        "style_role": "question",
+        "x": 37.211,
+        "y": 23.106,
+        "width": 717.416,
+        "height": 158.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 25,
+        "line_height": 1.25,
+        "fill": "#111827"
+      }
+    },
     {
       "id": "slot.bar",
       "kind": "rect",
@@ -191,7 +210,7 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "㉠",
+        "text": "ក",
         "style_role": "label",
         "x": 262.0,
         "y": 290.0,
@@ -204,7 +223,7 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "㉡",
+        "text": "ខ",
         "style_role": "label",
         "x": 327.0,
         "y": 290.0,
@@ -217,7 +236,7 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "㉢",
+        "text": "គ",
         "style_role": "label",
         "x": 387.0,
         "y": 290.0,
@@ -230,7 +249,7 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "㉣",
+        "text": "ឃ",
         "style_role": "label",
         "x": 447.0,
         "y": 290.0,
@@ -243,7 +262,7 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "㉤",
+        "text": "ង",
         "style_role": "label",
         "x": 513.0,
         "y": 290.0,
@@ -263,22 +282,6 @@
         "stroke_width": 1.0,
         "fill": "#6b7280"
       }
-    },
-    {
-      "id": "konva_1787989612052_text_440147",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "x": 37.211,
-        "y": 23.106,
-        "font_size": 30,
-        "fill": "#111827",
-        "width": 717.416,
-        "height": 158,
-        "align": "left",
-        "line_height": 1.25,
-        "kind": "text_box"
-      }
     }
   ],
   "groups": [],
@@ -286,6 +289,7 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
+    "slot.question",
     "region.diagram",
     "slot.bar",
     "slot.hole.5.copy13",
@@ -303,7 +307,6 @@
     "slot.choice.lb.2",
     "slot.choice.lb.3",
     "slot.choice.lb.4",
-    "slot.choice.lb.5",
-    "konva_1787989612052_text_440147"
+    "slot.choice.lb.5"
   ]
 }

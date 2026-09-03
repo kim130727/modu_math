@@ -18,7 +18,11 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from modu_math.dsl.exporter import _render_problem_template_source
-from modu_math.dsl.symbol_roles import is_protected_symbol_role, is_symbol_marker_text
+from modu_math.dsl.symbol_roles import (
+    is_protected_symbol_role,
+    is_symbol_marker_text,
+    localize_jamo_markers,
+)
 from modu_math_web.editor.services.dsl_format import format_dsl_source
 
 from tools.extract_dsl_localization import (
@@ -29,6 +33,20 @@ from tools.extract_dsl_localization import (
     problem_id_from,
     source_hash,
 )
+
+
+IDENTIFIER_FIELDS = {
+    "id",
+    "type",
+    "ref",
+    "schema",
+    "problem_id",
+    "problem_type",
+    "font_family",
+    "uses",
+    "from_id",
+    "to_id",
+}
 
 
 def read_locale(path: Path) -> dict[str, dict[str, str]]:
@@ -85,26 +103,32 @@ def apply_translations(
     entries: dict[str, dict[str, str]],
     path: list[str],
     *,
+    locale: str,
     field_name: str | None = None,
     include_needs_review: bool = False,
+    symbols_only: bool = False,
 ) -> Any:
-    if is_protected_locale_container(value):
+    if field_name in IDENTIFIER_FIELDS:
         return value
-    if field_name in SKIP_FIELDS:
-        return value
+    if is_protected_locale_container(value) or field_name in SKIP_FIELDS:
+        symbols_only = True
 
     if isinstance(value, str):
+        localized_source = localize_jamo_markers(value, locale)
+        if symbols_only:
+            return localized_source
         if field_name not in TRANSLATABLE_FIELDS:
-            return value
+            return localized_source
         if is_symbol_marker_text(value):
-            return value
+            return localized_source
         translation = translation_for(
             entries,
             ".".join(path),
             value,
             include_needs_review=include_needs_review,
         )
-        return translation if translation is not None else value
+        localized = translation if translation is not None else value
+        return localize_jamo_markers(localized, locale)
 
     if isinstance(value, (int, float, bool)) or value is None:
         return value
@@ -115,8 +139,10 @@ def apply_translations(
                 item,
                 entries,
                 [*path, object_id(item) or str(index)],
+                locale=locale,
                 field_name=field_name,
                 include_needs_review=include_needs_review,
+                symbols_only=symbols_only,
             )
             for index, item in enumerate(value)
         ]
@@ -127,8 +153,10 @@ def apply_translations(
                 item,
                 entries,
                 [*path, object_id(item) or str(index)],
+                locale=locale,
                 field_name=field_name,
                 include_needs_review=include_needs_review,
+                symbols_only=symbols_only,
             )
             for index, item in enumerate(value)
         )
@@ -139,8 +167,10 @@ def apply_translations(
                 child,
                 entries,
                 [*path, key],
+                locale=locale,
                 field_name=key,
                 include_needs_review=include_needs_review,
+                symbols_only=symbols_only,
             )
             for key, child in value.items()
         }
@@ -153,8 +183,10 @@ def apply_translations(
                 child,
                 entries,
                 [*path, field.name],
+                locale=locale,
                 field_name=field.name,
                 include_needs_review=include_needs_review,
+                symbols_only=symbols_only,
             )
             if updated is not child and updated != child:
                 updates[field.name] = updated
@@ -176,6 +208,7 @@ def localized_objects(
     module: ModuleType,
     entries: dict[str, dict[str, str]],
     *,
+    locale: str,
     include_needs_review: bool,
 ) -> tuple[Any, dict[str, Any] | None, dict[str, Any] | None]:
     template = getattr(module, "PROBLEM_TEMPLATE", None)
@@ -186,6 +219,7 @@ def localized_objects(
         template,
         entries,
         ["template"],
+        locale=locale,
         include_needs_review=include_needs_review,
     )
 
@@ -198,6 +232,7 @@ def localized_objects(
             semantic,
             entries,
             ["semantic"],
+            locale=locale,
             include_needs_review=include_needs_review,
         )
 
@@ -208,6 +243,7 @@ def localized_objects(
             solvable,
             entries,
             ["solvable"],
+            locale=locale,
             include_needs_review=include_needs_review,
         )
 
@@ -285,6 +321,7 @@ def main(argv: list[str] | None = None) -> int:
     template, semantic, solvable = localized_objects(
         module,
         entries,
+        locale=locale,
         include_needs_review=args.include_needs_review,
     )
     source = render_localized_source(

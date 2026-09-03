@@ -39,7 +39,7 @@ def build_problem_template() -> ProblemTemplate:
             id="region.stem",
             role="stem",
             flow="absolute",
-            slot_ids=("slot.question.prefix", "slot.inline_blank", "slot.question.suffix"),
+            slot_ids=("slot.question.prefix",),
         ),
         Region(
             id="region.diagram",
@@ -279,34 +279,17 @@ def build_problem_template() -> ProblemTemplate:
         ),
     )
     slots = (
-        TextSlot(
+        TextBoxSlot(
             id="slot.question.prefix",
             prompt=None,
-            text="មើលគំរូចំនួន",
+            text="មើលគំរូចំនួន ហើយជ្រើសចំនួនដែលត្រូវដាក់ក្នុង ☐",
             style_role="question",
             x=62,
-            y=29,
-            font_size=25,
-        ),
-        RectSlot(
-            id="slot.inline_blank",
-            prompt=None,
-            x=233,
             y=7,
-            width=27,
-            height=27,
-            stroke="#111111",
-            stroke_width=1.0,
-            fill="none",
-        ),
-        TextSlot(
-            id="slot.question.suffix",
-            prompt=None,
-            text="ជ្រើសចំនួនត្រឹមត្រូវដាក់ក្នុងប្រអប់។",
-            style_role="question",
-            x=269,
-            y=29,
+            width=620,
+            height=60,
             font_size=25,
+            line_height=1.15,
         ),
         RectSlot(
             id="slot.top.box",
@@ -2444,8 +2427,8 @@ SEMANTIC_OVERRIDE = {
     "problem_type": "multiple_choice_division",
     "metadata": {
         "language": "ko",
-        "question": "수 모형을 보고 □ 안에 알맞은 수를 고르세요.",
-        "instruction": "69를 3묶음으로 나눈 수 모형을 보고 69 ÷ 3의 몫을 고르는 문제",
+        "question": "មើលគំរូចំនួន ហើយជ្រើសចំនួនដែលត្រូវដាក់ក្នុង ☐",
+        "instruction": "មើលគំរូចំនួនដែលបែងចែក 69 ជា 3 ក្រុមស្មើគ្នា ហើយជ្រើសផលចែកនៃ 69 ÷ 3។",
     },
     "domain": {
         "objects": [

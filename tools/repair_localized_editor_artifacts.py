@@ -18,6 +18,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from modu_math.dsl import compile_problem_template_to_layout
+from modu_math.dsl.symbol_roles import localize_jamo_markers
 from modu_math.layout.editor_overrides import apply_editor_overrides
 from modu_math.renderer.svg.render import _wrap_text
 from modu_math_web.editor.services.build import run_problem_build
@@ -30,6 +31,16 @@ LOCALE_SUFFIX_RE = re.compile(
 TEXT_FIELDS = {"text", "prompt", "placeholder"}
 TEXT_BOX_KINDS = {"text_box"}
 MIN_FONT_SIZE = 14
+OVERRIDE_IDENTIFIER_FIELDS = {
+    "id",
+    "ref",
+    "font_family",
+    "asset_key",
+    "src",
+    "href",
+    "deleted_slots",
+    "region_slot_orders",
+}
 
 
 def read_json(path: Path) -> dict[str, Any] | None:
@@ -47,6 +58,28 @@ def write_json(path: Path, payload: dict[str, Any]) -> bool:
         return False
     path.write_text(text, encoding="utf-8", newline="\n")
     return True
+
+
+def localize_override_symbols(value: Any, locale: str, *, field_name: str | None = None) -> Any:
+    if field_name in OVERRIDE_IDENTIFIER_FIELDS:
+        return deepcopy(value)
+    if isinstance(value, str):
+        return localize_jamo_markers(value, locale)
+    if isinstance(value, list):
+        return [localize_override_symbols(item, locale, field_name=field_name) for item in value]
+    if isinstance(value, dict):
+        return {
+            key: localize_override_symbols(child, locale, field_name=key)
+            for key, child in value.items()
+        }
+    return value
+
+
+def locale_for_localized_dsl(path: Path) -> str:
+    match = LOCALE_SUFFIX_RE.match(path.name)
+    if match:
+        return match.group("locale")
+    return path.parent.name
 
 
 def infer_source_dsl(localized_dsl: Path, explicit_source: Path | None = None) -> Path:
@@ -98,6 +131,12 @@ def merge_non_text_slot_patch(source_patch: dict[str, Any], localized_content: d
     for key in TEXT_FIELDS:
         if key in localized_content:
             patch[key] = localized_content[key]
+        elif key in source_patch:
+            # Editor-inserted slots do not exist in the localized DSL layout.
+            # Keep their source text as a visible fallback instead of creating
+            # an empty text box. An existing localized override can still
+            # replace this value below.
+            patch[key] = deepcopy(source_patch[key])
     return patch
 
 
@@ -252,6 +291,7 @@ def repair_localized_artifacts(
         existing_localized_overrides=existing_localized_overrides,
         localized_layout=localized_layout,
     )
+    overrides = localize_override_symbols(overrides, locale_for_localized_dsl(localized_dsl))
     fitted_text_boxes = fit_text_boxes(overrides, localized_layout)
 
     out_path = localized_override_path

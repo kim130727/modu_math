@@ -187,7 +187,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.option.1",
             prompt="",
-            text="ㄱ",
+            text="A",
             style_role="answer_choice",
             x=65,
             y=105,
@@ -197,7 +197,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.option.2",
             prompt="",
-            text="② ㄴ, ㄷ, ㄱ",
+            text="② B, C, A",
             style_role="answer_choice",
             x=280,
             y=335,
@@ -207,7 +207,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.option.3",
             prompt="",
-            text="③ ㄷ, ㄱ, ㄴ",
+            text="③ C, A, B",
             style_role="answer_choice",
             x=525,
             y=335,
@@ -217,7 +217,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.option.4",
             prompt="",
-            text="④ ㄱ, ㄷ, ㄴ",
+            text="④ A, C, B",
             style_role="answer_choice",
             x=25,
             y=375,
@@ -227,7 +227,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.option.5",
             prompt="",
-            text="⑤ ㄴ, ㄱ, ㄷ",
+            text="⑤ B, A, C",
             style_role="answer_choice",
             x=280,
             y=375,
@@ -237,7 +237,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.option.1.copy1",
             prompt="",
-            text="① ㄱ, ㄴ, ㄷ",
+            text="① A, B, C",
             style_role="body",
             x=25,
             y=332,
@@ -247,7 +247,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.option.1.copy2",
             prompt="",
-            text="ㄴ",
+            text="B",
             style_role="body",
             x=300,
             y=110,
@@ -257,7 +257,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.option.1.copy3",
             prompt="",
-            text="ㄷ",
+            text="C",
             style_role="body",
             x=495,
             y=115,
@@ -794,9 +794,9 @@ SEMANTIC_OVERRIDE = {
     },
     "domain": {
         "objects": [
-            {"id": "obj.step.g1", "type": "procedure_step", "name": "ㄱ"},
-            {"id": "obj.step.g2", "type": "procedure_step", "name": "ㄴ"},
-            {"id": "obj.step.g3", "type": "procedure_step", "name": "ㄷ"},
+            {"id": "obj.step.g1", "type": "procedure_step", "name": "A"},
+            {"id": "obj.step.g2", "type": "procedure_step", "name": "B"},
+            {"id": "obj.step.g3", "type": "procedure_step", "name": "C"},
         ],
         "relations": [],
         "problem_solving": {
@@ -837,9 +837,9 @@ SOLVABLE = {
         "unit": "",
     },
     "given": [
-        {"ref": "obj.step.g1", "value": "ㄱ"},
-        {"ref": "obj.step.g2", "value": "ㄴ"},
-        {"ref": "obj.step.g3", "value": "ㄷ"},
+        {"ref": "obj.step.g1", "value": "A"},
+        {"ref": "obj.step.g2", "value": "B"},
+        {"ref": "obj.step.g3", "value": "C"},
     ],
     "target": {"ref": "answer.target", "type": "choice_number"},
     "method": "sequence_matching",
@@ -847,9 +847,9 @@ SOLVABLE = {
         "Follow the explanation to verify the correct sequence of steps.",
         "Find the choice that matches the order.",
     ],
-    "steps": [{"id": "step.1", "expr": "ㄴ → ㄷ → ㄱ", "value": 2}],
+    "steps": [{"id": "step.1", "expr": "B → C → A", "value": 2}],
     "checks": [
-        {"id": "check.1", "expr": "선택지 ② = ㄴ, ㄷ, ㄱ", "expected": 2, "actual": 2, "pass": True}
+        {"id": "check.1", "expr": "선택지 ② = B, C, A", "expected": 2, "actual": 2, "pass": True}
     ],
     "answer": {
         "blanks": [],

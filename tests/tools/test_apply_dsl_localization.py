@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from tools.apply_dsl_localization import main
+from tools.apply_dsl_localization import apply_translations, main
 from tools.extract_dsl_localization import load_dsl_module
 from tests.tools.test_extract_dsl_localization import _write_dsl
 
@@ -86,12 +86,26 @@ def test_apply_skips_needs_review_by_default(tmp_path: Path) -> None:
     data["template.slots.slot.question.text"]["status"] = "needs_review"
     locale_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-    assert main(["--dsl", str(dsl_path), "--locale-json", str(locale_path), "--out", str(out_path)]) == 0
+    assert (
+        main(
+            [
+                "--dsl",
+                str(dsl_path),
+                "--locale-json",
+                str(locale_path),
+                "--locale",
+                "en-US",
+                "--out",
+                str(out_path),
+            ]
+        )
+        == 0
+    )
     module = load_dsl_module(out_path)
     assert module.PROBLEM_TEMPLATE.slots[0].text == "Add the numbers."
 
 
-def test_apply_preserves_korean_choice_and_symbol_markers(tmp_path: Path) -> None:
+def test_apply_localizes_korean_jamo_symbol_markers(tmp_path: Path) -> None:
     dsl_path = tmp_path / "problem.dsl.py"
     locale_path = tmp_path / "p_symbol_locale.locale.json"
     out_path = tmp_path / "problem.en-US.dsl.py"
@@ -134,8 +148,40 @@ PROBLEM_TEMPLATE = ProblemTemplate(
         encoding="utf-8",
     )
 
-    assert main(["--dsl", str(dsl_path), "--locale-json", str(locale_path), "--out", str(out_path)]) == 0
+    assert (
+        main(
+            [
+                "--dsl",
+                str(dsl_path),
+                "--locale-json",
+                str(locale_path),
+                "--locale",
+                "en-US",
+                "--out",
+                str(out_path),
+            ]
+        )
+        == 0
+    )
 
     module = load_dsl_module(out_path)
     assert module.PROBLEM_TEMPLATE.slots[0].text == "(\uac00)"
-    assert module.PROBLEM_TEMPLATE.slots[1].text == "\u3131"
+    assert module.PROBLEM_TEMPLATE.slots[1].text == "A"
+
+
+def test_apply_localizes_solution_values_without_changing_identifiers() -> None:
+    source = {
+        "id": "slot.ㄱ",
+        "label": "ㄱ",
+        "value": "선분 ㄱㄴ",
+        "expected": "ㄷㄹ",
+    }
+
+    localized = apply_translations(source, {}, ["semantic"], locale="en")
+
+    assert localized == {
+        "id": "slot.ㄱ",
+        "label": "A",
+        "value": "선분 AB",
+        "expected": "CD",
+    }

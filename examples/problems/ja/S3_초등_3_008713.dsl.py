@@ -187,7 +187,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.option.1",
             prompt="",
-            text="ㄱ",
+            text="ア",
             style_role="answer_choice",
             x=65,
             y=105,
@@ -197,7 +197,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.option.2",
             prompt="",
-            text="② ㄴ, ㄷ, ㄱ",
+            text="② イ, ウ, ア",
             style_role="answer_choice",
             x=280,
             y=335,
@@ -207,7 +207,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.option.3",
             prompt="",
-            text="③ ㄷ, ㄱ, ㄴ",
+            text="③ ウ, ア, イ",
             style_role="answer_choice",
             x=525,
             y=335,
@@ -217,7 +217,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.option.4",
             prompt="",
-            text="④ ㄱ, ㄷ, ㄴ",
+            text="④ ア, ウ, イ",
             style_role="answer_choice",
             x=25,
             y=375,
@@ -227,7 +227,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.option.5",
             prompt="",
-            text="⑤ ㄴ, ㄱ, ㄷ",
+            text="⑤ イ, ア, ウ",
             style_role="answer_choice",
             x=280,
             y=375,
@@ -237,7 +237,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.option.1.copy1",
             prompt="",
-            text="① ㄱ, ㄴ, ㄷ",
+            text="① ア, イ, ウ",
             style_role="body",
             x=25,
             y=332,
@@ -247,7 +247,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.option.1.copy2",
             prompt="",
-            text="ㄴ",
+            text="イ",
             style_role="body",
             x=300,
             y=110,
@@ -257,7 +257,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.option.1.copy3",
             prompt="",
-            text="ㄷ",
+            text="ウ",
             style_role="body",
             x=495,
             y=115,
@@ -794,9 +794,9 @@ SEMANTIC_OVERRIDE = {
     },
     "domain": {
         "objects": [
-            {"id": "obj.step.g1", "type": "procedure_step", "name": "ㄱ"},
-            {"id": "obj.step.g2", "type": "procedure_step", "name": "ㄴ"},
-            {"id": "obj.step.g3", "type": "procedure_step", "name": "ㄷ"},
+            {"id": "obj.step.g1", "type": "procedure_step", "name": "ア"},
+            {"id": "obj.step.g2", "type": "procedure_step", "name": "イ"},
+            {"id": "obj.step.g3", "type": "procedure_step", "name": "ウ"},
         ],
         "relations": [],
         "problem_solving": {
@@ -837,16 +837,16 @@ SOLVABLE = {
         "unit": "",
     },
     "given": [
-        {"ref": "obj.step.g1", "value": "ㄱ"},
-        {"ref": "obj.step.g2", "value": "ㄴ"},
-        {"ref": "obj.step.g3", "value": "ㄷ"},
+        {"ref": "obj.step.g1", "value": "ア"},
+        {"ref": "obj.step.g2", "value": "イ"},
+        {"ref": "obj.step.g3", "value": "ウ"},
     ],
     "target": {"ref": "answer.target", "type": "choice_number"},
     "method": "sequence_matching",
     "plan": ["解説の順序に従って正しい手順を確認します。", "その順序と同じ選択肢を探します。"],
-    "steps": [{"id": "step.1", "expr": "ㄴ → ㄷ → ㄱ", "value": 2}],
+    "steps": [{"id": "step.1", "expr": "イ → ウ → ア", "value": 2}],
     "checks": [
-        {"id": "check.1", "expr": "선택지 ② = ㄴ, ㄷ, ㄱ", "expected": 2, "actual": 2, "pass": True}
+        {"id": "check.1", "expr": "선택지 ② = イ, ウ, ア", "expected": 2, "actual": 2, "pass": True}
     ],
     "answer": {
         "blanks": [],

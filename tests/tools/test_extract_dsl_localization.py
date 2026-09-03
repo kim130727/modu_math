@@ -29,7 +29,12 @@ PROBLEM_TEMPLATE = ProblemTemplate(
 SEMANTIC_OVERRIDE = {{
     "problem_id": PROBLEM_ID,
     "problem_type": "addition",
-    "metadata": {{"subject": "Math", "topic": "Addition"}},
+    "metadata": {{
+        "subject": "Math",
+        "topic": "Addition",
+        "question": "Which number belongs in the box?",
+        "instruction": "Choose one answer.",
+    }},
     "domain": {{
         "objects": [
             {{"id": "object.apple", "type": "countable_object", "label": "apple", "unit": "piece"}},
@@ -65,6 +70,8 @@ def test_extract_uses_stable_keys_and_skips_non_translatable_fields(tmp_path: Pa
         "translation": "",
     }
     assert data["semantic.domain.objects.object.apple.label"]["source"] == "apple"
+    assert data["semantic.metadata.question"]["source"] == "Which number belongs in the box?"
+    assert data["semantic.metadata.instruction"]["source"] == "Choose one answer."
     assert data["solvable.steps.step.add.goal"]["source"] == "Find the total."
     assert data["solvable.inputs.conditions.0"]["source"] == "There are 2 apples."
     assert "template.slots.0.text" not in data

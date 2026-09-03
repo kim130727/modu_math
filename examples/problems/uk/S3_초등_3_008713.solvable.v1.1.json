@@ -12,15 +12,15 @@
   "given": [
     {
       "ref": "obj.step.g1",
-      "value": "ㄱ"
+      "value": "А"
     },
     {
       "ref": "obj.step.g2",
-      "value": "ㄴ"
+      "value": "Б"
     },
     {
       "ref": "obj.step.g3",
-      "value": "ㄷ"
+      "value": "В"
     }
   ],
   "target": {
@@ -35,14 +35,14 @@
   "steps": [
     {
       "id": "step.1",
-      "expr": "ㄴ → ㄷ → ㄱ",
+      "expr": "Б → В → А",
       "value": 2
     }
   ],
   "checks": [
     {
       "id": "check.1",
-      "expr": "선택지 ② = ㄴ, ㄷ, ㄱ",
+      "expr": "선택지 ② = Б, В, А",
       "expected": 2,
       "actual": 2,
       "pass": true

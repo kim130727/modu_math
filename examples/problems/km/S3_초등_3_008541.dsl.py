@@ -77,7 +77,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.expr1",
             prompt="",
-            text="ㄱ. 397 × 6",
+            text="ក. 397 × 6",
             style_role="body",
             x=201.019,
             y=170,
@@ -87,7 +87,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.expr2",
             prompt="",
-            text="ㄴ. 549 × 4",
+            text="ខ. 549 × 4",
             style_role="body",
             x=411.019,
             y=170,
@@ -97,7 +97,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.expr3",
             prompt="",
-            text="ㄷ. 456 × 5",
+            text="គ. 456 × 5",
             style_role="body",
             x=641.019,
             y=170,
@@ -107,7 +107,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.opt1",
             prompt="",
-            text="① ㄱ ㄴ ㄷ",
+            text="① ក ខ គ",
             style_role="body",
             x=161.019,
             y=260,
@@ -117,7 +117,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.opt2",
             prompt="",
-            text="② ㄱ ㄷ ㄴ",
+            text="② ក គ ខ",
             style_role="body",
             x=531.019,
             y=260,
@@ -127,7 +127,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.opt3",
             prompt="",
-            text="③ ㄴ ㄷ ㄱ",
+            text="③ ខ គ ក",
             style_role="body",
             x=161.019,
             y=320,
@@ -137,7 +137,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.opt4",
             prompt="",
-            text="④ ㄷ ㄴ ㄱ",
+            text="④ គ ខ ក",
             style_role="body",
             x=531.019,
             y=315,
@@ -174,10 +174,10 @@ SEMANTIC_OVERRIDE = {
     },
     "domain": {
         "objects": [
-            {"id": "obj.a", "type": "expression", "label": "ㄱ", "operation": "397 × 6"},
-            {"id": "obj.b", "type": "expression", "label": "ㄴ", "operation": "549 × 4"},
-            {"id": "obj.c", "type": "expression", "label": "ㄷ", "operation": "456 × 5"},
-            {"id": "obj.option2", "type": "choice", "label": "②", "sequence": ["ㄱ", "ㄷ", "ㄴ"]},
+            {"id": "obj.a", "type": "expression", "label": "ក", "operation": "397 × 6"},
+            {"id": "obj.b", "type": "expression", "label": "ខ", "operation": "549 × 4"},
+            {"id": "obj.c", "type": "expression", "label": "គ", "operation": "456 × 5"},
+            {"id": "obj.option2", "type": "choice", "label": "②", "sequence": ["ក", "គ", "ខ"]},
         ],
         "relations": [
             {"id": "rel.order", "type": "descending_order", "from_id": "obj.a", "to_id": "obj.b"}
@@ -210,9 +210,9 @@ SOLVABLE = {
         "unit": "",
     },
     "given": [
-        {"ref": "obj.a", "value": {"label": "ㄱ", "expr": "397 × 6"}},
-        {"ref": "obj.b", "value": {"label": "ㄴ", "expr": "549 × 4"}},
-        {"ref": "obj.c", "value": {"label": "ㄷ", "expr": "456 × 5"}},
+        {"ref": "obj.a", "value": {"label": "ក", "expr": "397 × 6"}},
+        {"ref": "obj.b", "value": {"label": "ខ", "expr": "549 × 4"}},
+        {"ref": "obj.c", "value": {"label": "គ", "expr": "456 × 5"}},
     ],
     "target": {"ref": "answer.target", "type": "choice_number"},
     "method": "compare_results_descending",
@@ -221,7 +221,7 @@ SOLVABLE = {
         {"id": "step.1", "expr": "397 × 6", "value": 2382},
         {"id": "step.2", "expr": "549 × 4", "value": 2196},
         {"id": "step.3", "expr": "456 × 5", "value": 2280},
-        {"id": "step.4", "expr": "2382 > 2280 > 2196", "value": "ㄱ, ㄷ, ㄴ"},
+        {"id": "step.4", "expr": "2382 > 2280 > 2196", "value": "ក, គ, ខ"},
         {"id": "step.5", "expr": "보기 대조", "value": "②"},
     ],
     "checks": [
@@ -235,8 +235,8 @@ SOLVABLE = {
         {
             "id": "check.2",
             "expr": "보기 ②의 순서",
-            "expected": "ㄱ, ㄷ, ㄴ",
-            "actual": "ㄱ, ㄷ, ㄴ",
+            "expected": "ក, គ, ខ",
+            "actual": "ក, គ, ខ",
             "pass": True,
         },
     ],

@@ -8,6 +8,7 @@ from modu_math.dsl import (
     ProblemTemplate,
     RectSlot,
     Region,
+    TextBoxSlot,
     TextSlot,
 )
 
@@ -222,9 +223,17 @@ def build_problem_template() -> ProblemTemplate:
         
     )
     stem_slots = (
-        TextSlot(id="slot.question.prefix", text="수 모형을 보고", style_role="question", x=62, y=29, font_size=25),
-        RectSlot(id="slot.inline_blank", x = 233, y = 7, width=27, height=27, fill="none", stroke="#111111", stroke_width=1.0),
-        TextSlot(id="slot.question.suffix", text="안에 알맞은 수를 고르세요.", style_role="question", x = 269, y = 29, font_size=25),
+        TextBoxSlot(
+            id="slot.question.prefix",
+            text="수 모형을 보고 ☐ 안에 알맞은 수를 고르세요",
+            style_role="question",
+            x=62,
+            y=7,
+            width=620,
+            height=60,
+            font_size=25,
+            line_height=1.15,
+        ),
     )
     all_slots = (*stem_slots, *diagram_slots, *choice_slots, *answer_slots)
 
@@ -253,7 +262,7 @@ SEMANTIC_OVERRIDE = {
     "problem_type": "multiple_choice_division",
     "metadata": {
         "language": "ko",
-        "question": "수 모형을 보고 □ 안에 알맞은 수를 고르세요.",
+        "question": "수 모형을 보고 ☐ 안에 알맞은 수를 고르세요",
         "instruction": "69를 3묶음으로 나눈 수 모형을 보고 69 ÷ 3의 몫을 고르는 문제",
     },
     "domain": {

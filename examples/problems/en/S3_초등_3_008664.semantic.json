@@ -4,8 +4,7 @@
   "metadata": {
     "title": "Choose the hole that makes the largest circle",
     "tags": [],
-    "instruction": "구멍의 기호를 선택하시오.",
-    "question": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택하는 문제이다.",
+    "question": "Use a pushpin and a strip of paper to draw a circle. Choose the label of the hole where the pencil should be inserted to draw the largest circle.",
     "required_layout_ids": [
       "slot.bar",
       "slot.hole.1",
@@ -22,6 +21,7 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
+    "instruction": "Choose the label of the hole.",
     "points": 5
   },
   "domain": {
@@ -39,11 +39,11 @@
         "id": "obj.choice_labels",
         "type": "labels",
         "labels": [
-          "ㄱ",
-          "ㄴ",
-          "ㄷ",
-          "ㄹ",
-          "ㅁ"
+          "A",
+          "B",
+          "C",
+          "D",
+          "E"
         ]
       }
     ],
@@ -80,20 +80,20 @@
   "answer": {
     "blanks": [],
     "choices": [
-      "ㄱ",
-      "ㄴ",
-      "ㄷ",
-      "ㄹ",
-      "ㅁ"
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
     ],
     "answer_key": [
-      "ㅁ"
+      "E"
     ],
     "target": {
       "type": "choice_label",
       "description": "원을 가장 크게 그릴 수 있는 구멍의 기호"
     },
-    "value": "ㅁ",
+    "value": "E",
     "unit": ""
   }
 }

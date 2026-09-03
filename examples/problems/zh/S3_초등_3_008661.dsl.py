@@ -137,7 +137,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.giyeok",
             prompt="",
-            text="ㄱ",
+            text="甲",
             style_role="label",
             x=195,
             y=120,
@@ -146,7 +146,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.nieun",
             prompt="",
-            text="ㄴ",
+            text="乙",
             style_role="label",
             x=420,
             y=120,
@@ -155,7 +155,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.digeut",
             prompt="",
-            text="ㄷ",
+            text="丙",
             style_role="label",
             x=180,
             y=175,
@@ -164,7 +164,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.rieul",
             prompt="",
-            text="ㄹ",
+            text="丁",
             style_role="label",
             x=435,
             y=175,
@@ -173,7 +173,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.mieum",
             prompt="",
-            text="ㅁ",
+            text="戊",
             style_role="label",
             x=190,
             y=215,
@@ -182,7 +182,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.bieup",
             prompt="",
-            text="ㅂ",
+            text="己",
             style_role="label",
             x=430,
             y=215,
@@ -191,7 +191,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.sieut1",
             prompt="",
-            text="ㅈ",
+            text="壬",
             style_role="label",
             x=410,
             y=245,
@@ -200,7 +200,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.sieut2",
             prompt="",
-            text="ㅅ",
+            text="庚",
             style_role="label",
             x=200,
             y=250,
@@ -217,7 +217,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.opt1",
             prompt="",
-            text="① 线段ㄱㄴ",
+            text="① 线段甲乙",
             style_role="choice",
             x=50,
             y=325,
@@ -226,7 +226,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.opt2",
             prompt="",
-            text="② 线段ㄷㄹ",
+            text="② 线段丙丁",
             style_role="choice",
             x=240,
             y=325,
@@ -235,7 +235,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.opt3",
             prompt="",
-            text="③ 线段ㅁㅂ",
+            text="③ 线段戊己",
             style_role="choice",
             x=420,
             y=325,
@@ -244,7 +244,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.opt4",
             prompt="",
-            text="④ 线段ㅅㅈ",
+            text="④ 线段庚壬",
             style_role="choice",
             x=50,
             y=370,
@@ -281,10 +281,10 @@ SEMANTIC_OVERRIDE = {
     "domain": {
         "objects": [
             {"id": "obj.circle", "type": "circle"},
-            {"id": "obj.segment.gn", "type": "segment", "label": "ㄱㄴ"},
-            {"id": "obj.segment.dr", "type": "segment", "label": "ㄷㄹ"},
-            {"id": "obj.segment.mb", "type": "segment", "label": "ㅁㅂ"},
-            {"id": "obj.segment.ss", "type": "segment", "label": "ㅅㅅ"},
+            {"id": "obj.segment.gn", "type": "segment", "label": "甲乙"},
+            {"id": "obj.segment.dr", "type": "segment", "label": "丙丁"},
+            {"id": "obj.segment.mb", "type": "segment", "label": "戊己"},
+            {"id": "obj.segment.ss", "type": "segment", "label": "庚庚"},
             {"id": "obj.center_mark", "type": "mark", "description": "작은 원/점 표시"},
         ],
         "relations": [],
@@ -313,10 +313,10 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": ["1. 선분 ㄱㄴ", "2. 선분 ㄷㄹ", "3. 선분 ㅁㅂ", "4. 선분 ㅅㅈ"],
-        "answer_key": ["2. 선분 ㄷㄹ"],
+        "choices": ["1. 선분 甲乙", "2. 선분 丙丁", "3. 선분 戊己", "4. 선분 庚壬"],
+        "answer_key": ["2. 선분 丙丁"],
         "target": {"type": "choice_selection", "description": "길이가 가장 긴 선분"},
-        "value": "2. 선분 ㄷㄹ",
+        "value": "2. 선분 丙丁",
         "unit": "",
     },
 }
@@ -335,33 +335,33 @@ SOLVABLE = {
         "unit": "",
     },
     "given": [
-        {"ref": "obj.segment.gn", "value": {"label": "선분 ㄱㄴ"}},
-        {"ref": "obj.segment.dr", "value": {"label": "선분 ㄷㄹ"}},
-        {"ref": "obj.segment.mb", "value": {"label": "선분 ㅁㅂ"}},
-        {"ref": "obj.segment.ss", "value": {"label": "선분 ㅅㅈ"}},
+        {"ref": "obj.segment.gn", "value": {"label": "선분 甲乙"}},
+        {"ref": "obj.segment.dr", "value": {"label": "선분 丙丁"}},
+        {"ref": "obj.segment.mb", "value": {"label": "선분 戊己"}},
+        {"ref": "obj.segment.ss", "value": {"label": "선분 庚壬"}},
     ],
     "target": {"ref": "answer.target", "type": "choice_selection"},
     "method": "visual_comparison",
     "plan": ["比较圆内的四条线段。", "找出经过圆心的线段。", "选择与该线段对应的编号。"],
     "steps": [
-        {"id": "step.1", "expr": "중심을 지나는 선분 확인", "value": "선분 ㄷㄹ"},
-        {"id": "step.2", "expr": "보기와 대응", "value": "2. 선분 ㄷㄹ"},
+        {"id": "step.1", "expr": "중심을 지나는 선분 확인", "value": "선분 丙丁"},
+        {"id": "step.2", "expr": "보기와 대응", "value": "2. 선분 丙丁"},
     ],
     "checks": [
         {
             "id": "check.1",
             "expr": "해설 문장과 선택지 일치 여부",
-            "expected": "2. 선분 ㄷㄹ",
-            "actual": "2. 선분 ㄷㄹ",
+            "expected": "2. 선분 丙丁",
+            "actual": "2. 선분 丙丁",
             "pass": True,
         }
     ],
     "answer": {
         "blanks": [],
-        "choices": ["1. 선분 ㄱㄴ", "2. 선분 ㄷㄹ", "3. 선분 ㅁㅂ", "4. 선분 ㅅㅈ"],
-        "answer_key": ["2. 선분 ㄷㄹ"],
+        "choices": ["1. 선분 甲乙", "2. 선분 丙丁", "3. 선분 戊己", "4. 선분 庚壬"],
+        "answer_key": ["2. 선분 丙丁"],
         "target": {"type": "choice_selection", "description": "길이가 가장 긴 선분"},
-        "value": "2. 선분 ㄷㄹ",
+        "value": "2. 선분 丙丁",
         "unit": "",
     },
 }

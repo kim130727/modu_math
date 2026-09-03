@@ -3,6 +3,7 @@ from modu_math.dsl import (
     Canvas,
     ProblemTemplate,
     Region,
+    TextBoxSlot,
     TextSlot,
     RectSlot,
     CircleSlot,
@@ -21,7 +22,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.q1", "slot.q2.copy1", "slot.q2.copy1.copy2"),
+                slot_ids=("slot.question",),
             ),
             Region(
                 id="region.diagram",
@@ -49,15 +50,22 @@ def build_problem_template() -> ProblemTemplate:
             ),
         ),
         slots=(
-            TextSlot(
-                id="slot.q1",
+            TextBoxSlot(
+                id="slot.question",
                 prompt="",
-                text="누름 못과 띠 종이를 사용하여 원을 그리려고 합니다.",
+                text=(
+                    "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. "
+                    "원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택해 보세요."
+                ),
                 style_role="question",
-                x=15,
-                y=41,
+                x=37.211,
+                y=23.106,
+                width=717.416,
+                height=158,
                 font_size=30,
-                fill="#111111",
+                fill="#111827",
+                align="left",
+                line_height=1.25,
             ),
             RectSlot(
                 id="slot.bar",
@@ -218,26 +226,6 @@ def build_problem_template() -> ProblemTemplate:
                 x=513,
                 y=290,
                 font_size=25,
-                fill="#111111",
-            ),
-            TextSlot(
-                id="slot.q2.copy1",
-                prompt="",
-                text="        원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는",
-                x=14,
-                y=85,
-                font_size=30,
-                max_width=830,
-                fill="#111111",
-            ),
-            TextSlot(
-                id="slot.q2.copy1.copy2",
-                prompt="",
-                text="구멍의 기호를 선택해 보세요.  ",
-                x=13,
-                y=130,
-                font_size=30,
-                max_width=830,
                 fill="#111111",
             ),
             CircleSlot(

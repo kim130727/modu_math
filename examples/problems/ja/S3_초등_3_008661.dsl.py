@@ -137,7 +137,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.giyeok",
             prompt="",
-            text="ㄱ",
+            text="ア",
             style_role="label",
             x=195,
             y=120,
@@ -146,7 +146,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.nieun",
             prompt="",
-            text="ㄴ",
+            text="イ",
             style_role="label",
             x=420,
             y=120,
@@ -155,7 +155,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.digeut",
             prompt="",
-            text="ㄷ",
+            text="ウ",
             style_role="label",
             x=180,
             y=175,
@@ -164,7 +164,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.rieul",
             prompt="",
-            text="ㄹ",
+            text="エ",
             style_role="label",
             x=435,
             y=175,
@@ -173,7 +173,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.mieum",
             prompt="",
-            text="ㅁ",
+            text="オ",
             style_role="label",
             x=190,
             y=215,
@@ -182,7 +182,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.bieup",
             prompt="",
-            text="ㅂ",
+            text="カ",
             style_role="label",
             x=430,
             y=215,
@@ -191,7 +191,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.sieut1",
             prompt="",
-            text="ㅈ",
+            text="ケ",
             style_role="label",
             x=410,
             y=245,
@@ -200,7 +200,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.sieut2",
             prompt="",
-            text="ㅅ",
+            text="キ",
             style_role="label",
             x=200,
             y=250,
@@ -217,7 +217,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.opt1",
             prompt="",
-            text="① 線分ㄱㄴ",
+            text="① 線分アイ",
             style_role="choice",
             x=50,
             y=325,
@@ -226,7 +226,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.opt2",
             prompt="",
-            text="② 線分ㄷㄹ",
+            text="② 線分ウエ",
             style_role="choice",
             x=240,
             y=325,
@@ -235,7 +235,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.opt3",
             prompt="",
-            text="③ 線分ㅁㅂ",
+            text="③ 線分オカ",
             style_role="choice",
             x=420,
             y=325,
@@ -244,7 +244,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.opt4",
             prompt="",
-            text="④ 線分ㅅㅈ",
+            text="④ 線分キケ",
             style_role="choice",
             x=50,
             y=370,
@@ -281,10 +281,10 @@ SEMANTIC_OVERRIDE = {
     "domain": {
         "objects": [
             {"id": "obj.circle", "type": "circle"},
-            {"id": "obj.segment.gn", "type": "segment", "label": "ㄱㄴ"},
-            {"id": "obj.segment.dr", "type": "segment", "label": "ㄷㄹ"},
-            {"id": "obj.segment.mb", "type": "segment", "label": "ㅁㅂ"},
-            {"id": "obj.segment.ss", "type": "segment", "label": "ㅅㅅ"},
+            {"id": "obj.segment.gn", "type": "segment", "label": "アイ"},
+            {"id": "obj.segment.dr", "type": "segment", "label": "ウエ"},
+            {"id": "obj.segment.mb", "type": "segment", "label": "オカ"},
+            {"id": "obj.segment.ss", "type": "segment", "label": "キキ"},
             {"id": "obj.center_mark", "type": "mark", "description": "작은 원/점 표시"},
         ],
         "relations": [],
@@ -313,10 +313,10 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": ["1. 선분 ㄱㄴ", "2. 선분 ㄷㄹ", "3. 선분 ㅁㅂ", "4. 선분 ㅅㅈ"],
-        "answer_key": ["2. 선분 ㄷㄹ"],
+        "choices": ["1. 선분 アイ", "2. 선분 ウエ", "3. 선분 オカ", "4. 선분 キケ"],
+        "answer_key": ["2. 선분 ウエ"],
         "target": {"type": "choice_selection", "description": "길이가 가장 긴 선분"},
-        "value": "2. 선분 ㄷㄹ",
+        "value": "2. 선분 ウエ",
         "unit": "",
     },
 }
@@ -335,10 +335,10 @@ SOLVABLE = {
         "unit": "",
     },
     "given": [
-        {"ref": "obj.segment.gn", "value": {"label": "선분 ㄱㄴ"}},
-        {"ref": "obj.segment.dr", "value": {"label": "선분 ㄷㄹ"}},
-        {"ref": "obj.segment.mb", "value": {"label": "선분 ㅁㅂ"}},
-        {"ref": "obj.segment.ss", "value": {"label": "선분 ㅅㅈ"}},
+        {"ref": "obj.segment.gn", "value": {"label": "선분 アイ"}},
+        {"ref": "obj.segment.dr", "value": {"label": "선분 ウエ"}},
+        {"ref": "obj.segment.mb", "value": {"label": "선분 オカ"}},
+        {"ref": "obj.segment.ss", "value": {"label": "선분 キケ"}},
     ],
     "target": {"ref": "answer.target", "type": "choice_selection"},
     "method": "visual_comparison",
@@ -348,24 +348,24 @@ SOLVABLE = {
         "その線分に当たる番号を選びます。",
     ],
     "steps": [
-        {"id": "step.1", "expr": "중심을 지나는 선분 확인", "value": "선분 ㄷㄹ"},
-        {"id": "step.2", "expr": "보기와 대응", "value": "2. 선분 ㄷㄹ"},
+        {"id": "step.1", "expr": "중심을 지나는 선분 확인", "value": "선분 ウエ"},
+        {"id": "step.2", "expr": "보기와 대응", "value": "2. 선분 ウエ"},
     ],
     "checks": [
         {
             "id": "check.1",
             "expr": "해설 문장과 선택지 일치 여부",
-            "expected": "2. 선분 ㄷㄹ",
-            "actual": "2. 선분 ㄷㄹ",
+            "expected": "2. 선분 ウエ",
+            "actual": "2. 선분 ウエ",
             "pass": True,
         }
     ],
     "answer": {
         "blanks": [],
-        "choices": ["1. 선분 ㄱㄴ", "2. 선분 ㄷㄹ", "3. 선분 ㅁㅂ", "4. 선분 ㅅㅈ"],
-        "answer_key": ["2. 선분 ㄷㄹ"],
+        "choices": ["1. 선분 アイ", "2. 선분 ウエ", "3. 선분 オカ", "4. 선분 キケ"],
+        "answer_key": ["2. 선분 ウエ"],
         "target": {"type": "choice_selection", "description": "길이가 가장 긴 선분"},
-        "value": "2. 선분 ㄷㄹ",
+        "value": "2. 선분 ウエ",
         "unit": "",
     },
 }

@@ -39,7 +39,7 @@ def build_problem_template() -> ProblemTemplate:
             id="region.stem",
             role="stem",
             flow="absolute",
-            slot_ids=("slot.q1", "slot.q2.copy1", "slot.q2.copy1.copy2"),
+            slot_ids=("slot.question",),
         ),
         Region(
             id="region.diagram",
@@ -67,15 +67,21 @@ def build_problem_template() -> ProblemTemplate:
         ),
     )
     slots = (
-        TextSlot(
-            id="slot.q1",
+        TextBoxSlot(
+            id="slot.question",
             prompt="",
-            text="We are going to draw a circle using a pushpin and a paper strip.",
+            text=(
+                "Use a pushpin and a strip of paper to draw a circle. Choose the label of the hole "
+                "where the pencil should be inserted to draw the largest circle."
+            ),
             style_role="question",
-            x=15,
-            y=41,
+            x=37.211,
+            y=23.106,
+            width=717.416,
+            height=158,
             font_size=30,
-            fill="#111111",
+            line_height=1.25,
+            fill="#111827",
         ),
         RectSlot(
             id="slot.bar",
@@ -191,7 +197,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.choice.lb.1",
             prompt="",
-            text="㉠",
+            text="A",
             style_role="label",
             x=262,
             y=290,
@@ -201,7 +207,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.choice.lb.2",
             prompt="",
-            text="㉡",
+            text="B",
             style_role="label",
             x=327,
             y=290,
@@ -211,7 +217,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.choice.lb.3",
             prompt="",
-            text="㉢",
+            text="C",
             style_role="label",
             x=387,
             y=290,
@@ -221,7 +227,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.choice.lb.4",
             prompt="",
-            text="㉣",
+            text="D",
             style_role="label",
             x=447,
             y=290,
@@ -231,33 +237,11 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.choice.lb.5",
             prompt="",
-            text="㉤",
+            text="E",
             style_role="label",
             x=513,
             y=290,
             font_size=25,
-            fill="#111111",
-        ),
-        TextSlot(
-            id="slot.q2.copy1",
-            prompt="",
-            text="The hole in which to insert the pencil to draw the largest possible circle",
-            style_role="body",
-            x=14,
-            y=85,
-            font_size=30,
-            max_width=830,
-            fill="#111111",
-        ),
-        TextSlot(
-            id="slot.q2.copy1.copy2",
-            prompt="",
-            text="Choose the symbol for the hole.",
-            style_role="body",
-            x=13,
-            y=130,
-            font_size=30,
-            max_width=830,
             fill="#111111",
         ),
         CircleSlot(
@@ -295,16 +279,17 @@ SEMANTIC_OVERRIDE = {
     "problem_type": "choice_selection",
     "metadata": {
         "language": "ko",
-        "question": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택하는 "
-        "문제이다.",
-        "instruction": "구멍의 기호를 선택하시오.",
+        "question": "Use a pushpin and a strip of paper to draw a circle. Choose the label "
+        "of the hole where the pencil should be inserted to draw the largest "
+        "circle.",
+        "instruction": "Choose the label of the hole.",
         "points": 5,
     },
     "domain": {
         "objects": [
             {"id": "obj.tool", "type": "center_tool"},
             {"id": "obj.hole_positions", "type": "ordered_holes", "count": 5},
-            {"id": "obj.choice_labels", "type": "labels", "labels": ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ"]},
+            {"id": "obj.choice_labels", "type": "labels", "labels": ["A", "B", "C", "D", "E"]},
         ],
         "relations": [],
         "problem_solving": {
@@ -323,13 +308,13 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ"],
-        "answer_key": ["ㅁ"],
+        "choices": ["A", "B", "C", "D", "E"],
+        "answer_key": ["E"],
         "target": {
             "type": "choice_label",
             "description": "원을 가장 크게 그릴 수 있는 구멍의 기호",
         },
-        "value": "ㅁ",
+        "value": "E",
         "unit": "",
     },
 }
@@ -342,16 +327,13 @@ SOLVABLE = {
     "problem_type": "choice_selection",
     "inputs": {
         "total_ticks": 5,
-        "target_label": "ㅁ",
+        "target_label": "E",
         "target_ticks": 5,
         "target_count": 1,
         "unit": "",
     },
     "given": [
-        {
-            "ref": "obj.hole_positions",
-            "value": {"count": 5, "labels": ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ"]},
-        },
+        {"ref": "obj.hole_positions", "value": {"count": 5, "labels": ["A", "B", "C", "D", "E"]}},
         {"ref": "obj.tool", "value": {"type": "center_tool"}},
     ],
     "target": {"ref": "answer.target", "type": "choice_label"},
@@ -365,28 +347,28 @@ SOLVABLE = {
         {
             "id": "step.1",
             "expr": "구멍 위치를 왼쪽에서 오른쪽으로 비교한다.",
-            "value": "ㄱ, ㄴ, ㄷ, ㄹ, ㅁ",
+            "value": "A, B, C, D, E",
         },
-        {"id": "step.2", "expr": "가장 멀리 있는 구멍을 고른다.", "value": "ㅁ"},
+        {"id": "step.2", "expr": "가장 멀리 있는 구멍을 고른다.", "value": "E"},
     ],
     "checks": [
         {
             "id": "check.1",
             "expr": "가장 먼 위치가 마지막 구멍인지 확인한다.",
-            "expected": "ㅁ",
-            "actual": "ㅁ",
+            "expected": "E",
+            "actual": "E",
             "pass": True,
         }
     ],
     "answer": {
         "blanks": [],
-        "choices": ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ"],
-        "answer_key": ["ㅁ"],
+        "choices": ["A", "B", "C", "D", "E"],
+        "answer_key": ["E"],
         "target": {
             "type": "choice_label",
             "description": "원을 가장 크게 그릴 수 있는 구멍의 기호",
         },
-        "value": "ㅁ",
+        "value": "E",
         "unit": "",
     },
 }
