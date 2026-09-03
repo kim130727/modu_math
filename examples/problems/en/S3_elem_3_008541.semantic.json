@@ -1,0 +1,67 @@
+{
+  "problem_id": "S3_elem_3_008541",
+  "problem_type": "multiple_choice_ordering",
+  "metadata": {
+    "title": "Choose the option that lists the results from greatest to least",
+    "tags": [],
+    "instruction": "Choose the option that lists the results from greatest to least",
+    "question": "Choose the option that lists the results from greatest to least",
+    "required_layout_ids": [
+      "slot.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.a",
+        "type": "expression",
+        "label": "A",
+        "operation": "397 × 6"
+      },
+      {
+        "id": "obj.b",
+        "type": "expression",
+        "label": "B",
+        "operation": "549 × 4"
+      },
+      {
+        "id": "obj.c",
+        "type": "expression",
+        "label": "C",
+        "operation": "456 × 5"
+      },
+      {
+        "id": "obj.option2",
+        "type": "choice",
+        "label": "②",
+        "sequence": [
+          "A",
+          "C",
+          "B"
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.order",
+        "type": "descending_order",
+        "from_id": "obj.a",
+        "to_id": "obj.b"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_number",
+      "description": "Option number listing calculation results from greatest to least"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

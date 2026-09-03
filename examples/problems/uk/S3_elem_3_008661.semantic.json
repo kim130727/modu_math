@@ -1,0 +1,105 @@
+{
+  "problem_id": "S3_elem_3_008661",
+  "problem_type": "geometry_segment_comparison",
+  "metadata": {
+    "title": "Який відрізок найдовший?",
+    "tags": [],
+    "question": "Який відрізок найдовший?",
+    "required_layout_ids": [
+      "slot.circle.outer",
+      "slot.circle.center",
+      "slot.line.top",
+      "slot.line.middle1",
+      "slot.line.middle2",
+      "slot.line.bottom",
+      "slot.dot.center"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "Який відрізок найдовший?"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.segment.gn",
+        "type": "segment",
+        "label": "АБ"
+      },
+      {
+        "id": "obj.segment.dr",
+        "type": "segment",
+        "label": "ВГ"
+      },
+      {
+        "id": "obj.segment.mb",
+        "type": "segment",
+        "label": "ҐД"
+      },
+      {
+        "id": "obj.segment.ss",
+        "type": "segment",
+        "label": "ЕЕ"
+      },
+      {
+        "id": "obj.center_mark",
+        "type": "mark",
+        "description": "Маленьке коло/крапка"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.segment.gn",
+          "obj.segment.dr",
+          "obj.segment.mb",
+          "obj.segment.ss"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.dr_passes_center",
+          "rel.max_length"
+        ]
+      },
+      "plan": {
+        "method": "visual_comparison",
+        "description": "Знайдіть відрізок, що проходить через центр, і виберіть його з варіантів."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_center_passing_segment",
+          "match_with_choice"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "compare_with_printed_explanation"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "1. Відрізок АБ",
+      "2. Відрізок ВГ",
+      "3. Відрізок ҐД",
+      "4. Відрізок ЕЖ"
+    ],
+    "answer_key": [
+      "2. Відрізок ВГ"
+    ],
+    "target": {
+      "type": "choice_selection",
+      "description": "Найдовший відрізок"
+    },
+    "value": "2. Відрізок ВГ",
+    "unit": ""
+  }
+}

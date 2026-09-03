@@ -973,10 +973,10 @@ void main() {
     expect(content.choices, isEmpty);
   });
 
-  test('extracts choice blank square box for S3_초등_3_008588', () {
+  test('extracts choice blank square box for S3_elem_3_008588', () {
     final content = ProblemContent(
       summary: const ProblemSummary(
-        id: 'S3_초등_3_008588',
+        id: 'S3_elem_3_008588',
         grade: 3,
         subject: 'math',
         unit: 'division',
@@ -1104,10 +1104,10 @@ void main() {
     );
   });
 
-  test('extracts person names as choices for S3_초등_3_008590', () {
+  test('extracts person names as choices for S3_elem_3_008590', () {
     final content = ProblemContent(
       summary: const ProblemSummary(
-        id: 'S3_초등_3_008590',
+        id: 'S3_elem_3_008590',
         grade: 3,
         subject: 'math',
         unit: 'division',
@@ -1194,10 +1194,10 @@ void main() {
     );
   });
 
-  test('extracts choice blank square box for S3_초등_3_008592', () {
+  test('extracts choice blank square box for S3_elem_3_008592', () {
     final content = ProblemContent(
       summary: const ProblemSummary(
-        id: 'S3_초등_3_008592',
+        id: 'S3_elem_3_008592',
         grade: 3,
         subject: 'math',
         unit: 'division',
@@ -1370,11 +1370,11 @@ void main() {
   });
 
   test(
-      'extracts circled hangul consonant and blank square box for S3_초등_3_008601',
+      'extracts circled hangul consonant and blank square box for S3_elem_3_008601',
       () {
     final content = ProblemContent(
       summary: const ProblemSummary(
-        id: 'S3_초등_3_008601',
+        id: 'S3_elem_3_008601',
         grade: 3,
         subject: 'math',
         unit: 'division',
@@ -1498,10 +1498,10 @@ void main() {
     );
   });
 
-  test('extracts choices with expressions for S3_초등_3_008603', () {
+  test('extracts choices with expressions for S3_elem_3_008603', () {
     final content = ProblemContent(
       summary: const ProblemSummary(
-        id: 'S3_초등_3_008603',
+        id: 'S3_elem_3_008603',
         grade: 3,
         subject: 'math',
         unit: 'division',
@@ -1564,10 +1564,10 @@ void main() {
     expect(isSameAnswer('ㄴ. 92 ÷ 4', content.correctAnswer), isTrue);
   });
 
-  test('extracts person names as choices for S3_초등_3_008604', () {
+  test('extracts person names as choices for S3_elem_3_008604', () {
     final content = ProblemContent(
       summary: const ProblemSummary(
-        id: 'S3_초등_3_008604',
+        id: 'S3_elem_3_008604',
         grade: 3,
         subject: 'math',
         unit: 'division',
@@ -1647,10 +1647,10 @@ void main() {
     expect(isSameAnswer('1. 현태', content.correctAnswer), isTrue);
   });
 
-  test('extracts person names as choices for S3_초등_3_008608', () {
+  test('extracts person names as choices for S3_elem_3_008608', () {
     final content = ProblemContent(
       summary: const ProblemSummary(
-        id: 'S3_초등_3_008608',
+        id: 'S3_elem_3_008608',
         grade: 3,
         subject: 'math',
         unit: 'division',
@@ -1750,11 +1750,11 @@ void main() {
     expect(isSameAnswer('2. 성환', content.correctAnswer), isTrue);
   });
 
-  test('creates O and X choices for divisibility judgment in S3_초등_3_008612',
+  test('creates O and X choices for divisibility judgment in S3_elem_3_008612',
       () {
     final content = ProblemContent(
       summary: const ProblemSummary(
-        id: 'S3_초등_3_008612',
+        id: 'S3_elem_3_008612',
         grade: 3,
         subject: 'math',
         unit: 'division',
@@ -1975,10 +1975,10 @@ void main() {
     expect(isSameAnswer(submittedAnswer, content.correctAnswer), isTrue);
   });
 
-  test('formats choices with number labels and expressions (S3_초등_3_008555)', () {
+  test('formats choices with number labels and expressions (S3_elem_3_008555)', () {
     const content = ProblemContent(
       summary: ProblemSummary(
-        id: 'S3_초등_3_008555',
+        id: 'S3_elem_3_008555',
         grade: 3,
         subject: 'math',
         unit: '덧셈과 뺄셈',
@@ -2016,10 +2016,10 @@ void main() {
     expect(isSameAnswer('1. 35 × 13', content.correctAnswer), isFalse);
   });
 
-  test('extracts Hangul symbol choices for choice_symbol problems (S3_초등_3_008780)', () {
+  test('extracts Hangul symbol choices for choice_symbol problems (S3_elem_3_008780)', () {
     const content = ProblemContent(
       summary: ProblemSummary(
-        id: 'S3_초등_3_008780',
+        id: 'S3_elem_3_008780',
         grade: 3,
         subject: 'math',
         unit: '들이와 무게',
@@ -2052,10 +2052,10 @@ void main() {
     expect(isSameAnswer(content.choices[1], content.correctAnswer), isTrue);
   });
 
-  test('extracts circled Hangul symbol choices for incorrect_weight_statement (S3_초등_3_008782)', () {
+  test('extracts circled Hangul symbol choices for incorrect_weight_statement (S3_elem_3_008782)', () {
     const content = ProblemContent(
       summary: ProblemSummary(
-        id: 'S3_초등_3_008782',
+        id: 'S3_elem_3_008782',
         grade: 3,
         subject: 'math',
         unit: '들이와 무게',
@@ -2087,10 +2087,10 @@ void main() {
     expect(isSameAnswer('ㄷ', content.correctAnswer), isTrue);
   });
 
-  test('matches multi-choice selection of options 2 and 5 for S3_초등_3_008605', () {
+  test('matches multi-choice selection of options 2 and 5 for S3_elem_3_008605', () {
     const content = ProblemContent(
       summary: ProblemSummary(
-        id: 'S3_초등_3_008605',
+        id: 'S3_elem_3_008605',
         grade: 3,
         subject: 'math',
         unit: '나눗셈',
@@ -2129,10 +2129,10 @@ void main() {
     expect(isSameAnswer('2. 56 / 3. 84', content.correctAnswer), isFalse);
   });
 
-  test('resolves division expression and matches choice 3 for S3_초등_3_008621', () {
+  test('resolves division expression and matches choice 3 for S3_elem_3_008621', () {
     const content = ProblemContent(
       summary: ProblemSummary(
-        id: 'S3_초등_3_008621',
+        id: 'S3_elem_3_008621',
         grade: 3,
         subject: 'math',
         unit: '나눗셈',
@@ -2175,10 +2175,10 @@ void main() {
     expect(isSameAnswer('1. 24 ÷ 2', content.correctAnswer), isFalse);
   });
 
-  test('renders juice bottle and milk carton labels for S3_초등_3_008755', () {
+  test('renders juice bottle and milk carton labels for S3_elem_3_008755', () {
     const content = ProblemContent(
       summary: ProblemSummary(
-        id: 'S3_초등_3_008755',
+        id: 'S3_elem_3_008755',
         grade: 3,
         subject: 'math',
         unit: '덧셈과 뺄셈',
@@ -2251,7 +2251,7 @@ const _duplicateChoiceContent = ProblemContent(
 
 const _pointChoiceContent = ProblemContent(
   summary: ProblemSummary(
-    id: 'S3_초등_3_008659',
+    id: 'S3_elem_3_008659',
     grade: 3,
     subject: 'math',
     unit: '원',
@@ -2274,7 +2274,7 @@ const _pointChoiceContent = ProblemContent(
 
 const _compassCenterChoiceContent = ProblemContent(
   summary: ProblemSummary(
-    id: 'S3_초등_3_008658',
+    id: 'S3_elem_3_008658',
     grade: 3,
     subject: 'math',
     unit: '원',

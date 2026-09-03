@@ -59,7 +59,7 @@ class _LearningReportScreenState extends State<LearningReportScreen> {
           ]),
           builder: (context, snapshot) {
             if (snapshot.connectionState != ConnectionState.done) {
-              return const OnsemLoadingIndicator(label: '학습 기록을 정리하고 있어요');
+              return const OnsemLoadingIndicator(labelKey: 'report.loading');
             }
 
             if (snapshot.hasError) {

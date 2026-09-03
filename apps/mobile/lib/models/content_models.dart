@@ -66,6 +66,19 @@ class ProblemSummary {
   String get semester => raw['semester']?.toString() ?? '1학기';
   int get unitNumber => _readInt(raw['unitNumber']) ?? 1;
   String get unitTopic => raw['unitTopic']?.toString() ?? unit;
+  String get domain {
+    final rawDomain = raw['domain']?.toString();
+    if (rawDomain != null && rawDomain.isNotEmpty) {
+      return rawDomain;
+    }
+    return switch (unitTopic) {
+      '덧셈과 뺄셈' || '나눗셈' || '곱셈' || '분수와 소수' || '분수' => '수와 연산',
+      '평면도형' || '원' => '도형',
+      '길이와 시간' || '들이와 무게' => '측정',
+      '자료의 정리' => '자료와 가능성',
+      _ => '수학 개념',
+    };
+  }
   String get subUnit {
     final candidate = raw['subUnit']?.toString() ??
         raw['subTopic']?.toString() ??

@@ -1,0 +1,81 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008728",
+  "problem_type": "fraction_description_choice",
+  "inputs": {
+    "total_ticks": 7,
+    "target_label": "អ្នកដែលបានពិពណ៌នារូបភាពត្រឹមត្រូវ",
+    "target_ticks": 3,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.colored_part",
+      "value": {
+        "description": "ផ្នែកផាត់ពណ៌",
+        "fraction": "3/7"
+      }
+    },
+    {
+      "ref": "obj.uncolored_part",
+      "value": {
+        "description": "ផ្នែកមិនផាត់ពណ៌",
+        "fraction": "4/7"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "person_selection"
+  },
+  "method": "fraction_description_matching",
+  "plan": [
+    "ប្រៀបធៀបផ្នែកដែលបានដាក់ពណ៌និងមិនបានដាក់ពណ៌ជាមួយការពណ៌នាប្រភាគ។",
+    "រកមនុស្សដែលការពណ៌នាក្នុងប្រអប់សន្ទនាត្រូវនឹងរូប។"
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "ផ្នែកផាត់ពណ៌ ↔ 3/7",
+      "value": "ជីនគ្យង់"
+    },
+    {
+      "id": "step.2",
+      "expr": "ផ្នែកមិនផាត់ពណ៌ ↔ 4/7",
+      "value": "ហ្យុនជីន"
+    },
+    {
+      "id": "step.3",
+      "expr": "ជ្រើសរើសពាក្យដែលត្រូវនឹងរូបភាព",
+      "value": "ជីនគ្យង់"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "ពិនិត្យមើលថាតើផ្នែកផាត់ពណ៌ជា 3 ក្នុងចំណោម 7 ក្រុមឬទេ",
+      "expected": "3/7",
+      "actual": "3/7",
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "ពិនិត្យមើលថាតើផ្នែកមិនផាត់ពណ៌ជា 4 ក្នុងចំណោម 7 ក្រុមឬទេ",
+      "expected": "4/7",
+      "actual": "4/7",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "person_selection",
+      "description": "អ្នកដែលបានពិពណ៌នារូបភាពត្រឹមត្រូវ"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

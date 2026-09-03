@@ -1,0 +1,108 @@
+{
+  "problem_id": "S3_elem_3_008745",
+  "problem_type": "Comparison",
+  "metadata": {
+    "title": "Comparing capacity",
+    "tags": [],
+    "question": "Compare the capacities of Bottles A and B.",
+    "required_layout_ids": [
+      "slot.inserted.image.1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "Choose the correct words."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.bottle.ga",
+        "type": "Water bottle",
+        "label": "Bottle A"
+      },
+      {
+        "id": "obj.bottle.na",
+        "type": "Water bottle",
+        "label": "Bottle B"
+      },
+      {
+        "id": "obj.container.left",
+        "type": "Container",
+        "label": "Left container",
+        "same_shape_as": "obj.container.right",
+        "same_size_as": "obj.container.right"
+      },
+      {
+        "id": "obj.container.right",
+        "type": "Container",
+        "label": "Right container",
+        "same_shape_as": "obj.container.left",
+        "same_size_as": "obj.container.left"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.bottle.ga",
+          "obj.bottle.na",
+          "obj.container.left",
+          "obj.container.right"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare.height",
+          "rel.compare.capacity"
+        ]
+      },
+      "plan": {
+        "method": "same_container_height_comparison",
+        "description": "Compare the water level in identical containers to judge capacity."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_water_heights",
+          "infer_capacity_relation"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "same_container_rule_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "Bottle A",
+      "Bottle B"
+    ],
+    "choice_groups": [
+      {
+        "label": "Question (1)",
+        "choices": [
+          "Bottle A",
+          "Bottle B"
+        ]
+      },
+      {
+        "label": "Question (2)",
+        "choices": [
+          "Bottle A",
+          "Bottle B"
+        ]
+      }
+    ],
+    "answer_key": [
+      "Bottle B",
+      "Bottle B"
+    ],
+    "target": {
+      "type": "multiple_choice_group",
+      "description": "Higher water level and greater capacity"
+    },
+    "value": "Bottle B, Bottle B",
+    "unit": ""
+  }
+}

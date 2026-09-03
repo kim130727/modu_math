@@ -1,0 +1,96 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008745",
+  "problem_type": "比较",
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "甲水瓶, 乙水瓶",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.bottle.ga",
+      "value": {
+        "label": "甲水瓶"
+      }
+    },
+    {
+      "ref": "obj.bottle.na",
+      "value": {
+        "label": "乙水瓶"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "multiple_choice_group"
+  },
+  "method": "same_container_rule_check",
+  "plan": [
+    "比较倒入相同形状和大小容器中的水面高度。",
+    "判断水面较高的一方容量更大。"
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "图中右边容器的水位更高",
+      "value": "乙水瓶"
+    },
+    {
+      "id": "step.2",
+      "expr": "在相同的容器中，水面较高的一侧容量更大",
+      "value": "乙水瓶"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "确认是否在相同形状和大小的容器中比较",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "确认选择的答案是否与图中的高度比较一致",
+      "expected": "乙水瓶",
+      "actual": "乙水瓶",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "甲水瓶",
+      "乙水瓶"
+    ],
+    "choice_groups": [
+      {
+        "label": "第(1)题",
+        "choices": [
+          "甲水瓶",
+          "乙水瓶"
+        ]
+      },
+      {
+        "label": "第(2)题",
+        "choices": [
+          "甲水瓶",
+          "乙水瓶"
+        ]
+      }
+    ],
+    "answer_key": [
+      "乙水瓶",
+      "乙水瓶"
+    ],
+    "target": {
+      "type": "multiple_choice_group",
+      "description": "倒入的水位更高且容量更大"
+    },
+    "value": "乙水瓶, 乙水瓶",
+    "unit": ""
+  }
+}

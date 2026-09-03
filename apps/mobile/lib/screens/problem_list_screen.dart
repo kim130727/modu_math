@@ -96,7 +96,8 @@ class _ProblemListScreenState extends State<ProblemListScreen> {
         future: dataFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState != ConnectionState.done) {
-            return const OnsemLoadingIndicator(label: '문제 목록을 모으고 있어요');
+            return const OnsemLoadingIndicator(
+                labelKey: 'problemList.loading');
           }
           if (snapshot.hasError) {
             return Center(

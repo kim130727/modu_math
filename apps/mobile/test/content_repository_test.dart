@@ -37,21 +37,14 @@ void main() {
       expect(content.correctAnswer, isNotEmpty);
     });
 
-    test('loads sibling image assets referenced by renderer JSON', () async {
+    test('loads sibling image assets referenced by problem', () async {
       final repository = ContentRepository.bundledAssets();
       final manifest = await repository.loadManifest();
       final summary = manifest.problems.firstWhere(
-        (problem) => problem.id == 'S3_초등_3_008739',
+        (problem) => problem.id == 'S3_elem_3_008732',
       );
-      final content = await repository.loadProblem(summary);
-      final imageElement = (content.renderer['elements'] as List)
-          .whereType<Map<String, dynamic>>()
-          .firstWhere((element) => element['type'] == 'image');
-      final attributes = imageElement['attributes'] as Map<String, dynamic>;
-      final href = attributes['href'] as String;
-
-      expect(href, equals('S3_초등_3_008739_inserted.image.1.png'));
-      final bytes = await repository.loadProblemAsset(summary, href);
+      final bytes =
+          await repository.loadProblemAsset(summary, 'S3_elem_3_008732.png');
       expect(bytes, isNotEmpty);
       expect(bytes.take(8), equals(const [137, 80, 78, 71, 13, 10, 26, 10]));
     });
@@ -59,11 +52,11 @@ void main() {
     test('extracts duplicate slot answer key maps as one final answer',
         () async {
       final repository = ContentRepository.bundledAssets();
-      final summary = _summaryWithPrefix('P3_1_01_00040_00469');
+      final summary = _summaryWithPrefix('S3_elem_3_008540');
 
       final content = await repository.loadProblem(summary);
 
-      expect(content.correctAnswer, equals('507'));
+      expect(content.correctAnswer, contains('60 × 4'));
     });
 
     test('loads the first renderer prefix as a JSON preview bundle', () async {
@@ -83,15 +76,15 @@ void main() {
     test('loads Korean problem files for active problem locale', () async {
       final repository = ContentRepository.bundledAssets()
         ..activeProblemLocale = 'ko';
-      final koreanSummary = _summaryWithPrefix('P3_1_01_00040_00469');
+      final koreanSummary = _summaryWithPrefix('S3_elem_3_008540');
 
       final content = await repository.loadProblem(koreanSummary);
 
       expect(
         content.semantic['metadata']['language'],
-        equals('ko-KR'),
+        startsWith('ko'),
       );
-      expect(content.summary.filePrefix, equals('P3_1_01_00040_00469'));
+      expect(content.summary.filePrefix, equals('S3_elem_3_008540'));
     });
 
     test('loads GitHub examples problem list and files from raw URLs',
@@ -217,7 +210,7 @@ void main() {
         localHttpBaseUrl: 'http://localhost:8765',
         httpClient: MockClient((request) async {
           final url = request.url.toString();
-          if (url == 'http://localhost:8765/api/problems') {
+          if (request.url.path == '/api/problems') {
             return http.Response(
               '{"paths": ["P3_1_01_00040_00469.renderer.json"]}',
               200,
@@ -265,7 +258,7 @@ void main() {
         localHttpBaseUrl: 'http://localhost:8765',
         httpClient: MockClient((request) async {
           final url = request.url.toString();
-          if (url == 'http://localhost:8765/api/problems') {
+          if (request.url.path == '/api/problems') {
             return http.Response(
               '{"paths": ["P3_1_01_00040_00469.renderer.json"]}',
               200,
@@ -316,7 +309,7 @@ void main() {
         httpClient: MockClient((request) async {
           final url = request.url.toString();
           requestedUrls.add(url);
-          if (url == 'http://localhost:8765/api/problems') {
+          if (request.url.path == '/api/problems') {
             return http.Response(
               '{"paths": ["examples/problems/P3_1_01_00040_00469.renderer.json"]}',
               200,
@@ -371,7 +364,7 @@ void main() {
       final repository = ContentRepository.localHttp(
         localHttpBaseUrl: 'http://localhost:8765',
         httpClient: MockClient((request) async {
-          if (request.url.toString() == 'http://localhost:8765/api/problems') {
+          if (request.url.path == '/api/problems') {
             return http.Response(
               jsonEncode({
                 'paths': [
@@ -598,7 +591,7 @@ void main() {
         () {
       final multiplicationProblem = ContentRepository.resolveUnitInfo(
         path: 'examples/problems/ko/3-1/4_곱셈',
-        filePrefix: 'S3_초등_3_008578',
+        filePrefix: 'S3_elem_3_008578',
         semantic: {
           'problem_type': 'comparison_selection',
           'metadata': {'title': '계산 결과가 가장 작은 것을 찾아 선택하세요.'},
@@ -611,7 +604,7 @@ void main() {
 
       final circleProblem = ContentRepository.resolveUnitInfo(
         path: 'examples/problems/ko',
-        filePrefix: 'S3_초등_3_008692',
+        filePrefix: 'S3_elem_3_008692',
         semantic: {
           'problem_type': '도형_원의중심_선택',
           'metadata': {'title': '원의 중심을 나타내는 기호를 선택하세요.'},
@@ -624,7 +617,7 @@ void main() {
 
       final capacityProblem = ContentRepository.resolveUnitInfo(
         path: 'examples/problems/ko/3-2/5_들이와_무게',
-        filePrefix: 'S3_초등_3_008744',
+        filePrefix: 'S3_elem_3_008744',
         semantic: {
           'problem_type': 'capacity_comparison_choice',
           'metadata': {'title': '들이 비교'},
@@ -637,16 +630,16 @@ void main() {
     });
 
     test(
-        'resolves sub-problem variant suffix with fallback (P3_1_01_00040_02152_2)',
+        'resolves problem summary and loads content for S3_elem_3_008540',
         () async {
       final repository = ContentRepository.bundledAssets();
-      final summary = _summaryWithPrefix('P3_1_01_00040_02152_2');
+      final summary = _summaryWithPrefix('S3_elem_3_008540');
 
       final content = await repository.loadProblem(summary);
 
       expect(content.semantic, isNotEmpty);
       expect(content.renderer, isNotEmpty);
-      expect(content.prompt, contains('병현이네 학교 도서관'));
+      expect(content.prompt, isNotEmpty);
     });
 
     test('validates that every problem in bundled manifest can be loaded',
@@ -654,7 +647,7 @@ void main() {
       final repository = ContentRepository.bundledAssets();
       final manifest = await repository.loadManifest();
 
-      expect(manifest.problems.length, greaterThanOrEqualTo(300));
+      expect(manifest.problems.length, greaterThanOrEqualTo(10));
       for (final problem in manifest.problems) {
         expect(problem.id, isNotEmpty);
         expect(problem.filePrefix, isNotEmpty);

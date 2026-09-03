@@ -1,0 +1,108 @@
+{
+  "problem_id": "S3_elem_3_008745",
+  "problem_type": "ការប្រៀបធៀប",
+  "metadata": {
+    "title": "ការប្រៀបធៀបចំណុះ",
+    "tags": [],
+    "question": "ប្រៀបធៀបចំណុះរបស់ដប ក និង ខ។",
+    "required_layout_ids": [
+      "slot.inserted.image.1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "ជ្រើសពាក្យត្រឹមត្រូវ។"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.bottle.ga",
+        "type": "ដបទឹក",
+        "label": "ដប ក"
+      },
+      {
+        "id": "obj.bottle.na",
+        "type": "ដបទឹក",
+        "label": "ដប ខ"
+      },
+      {
+        "id": "obj.container.left",
+        "type": "ធុង",
+        "label": "ធុងខាងឆ្វេង",
+        "same_shape_as": "obj.container.right",
+        "same_size_as": "obj.container.right"
+      },
+      {
+        "id": "obj.container.right",
+        "type": "ធុង",
+        "label": "ធុងខាងស្តាំ",
+        "same_shape_as": "obj.container.left",
+        "same_size_as": "obj.container.left"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.bottle.ga",
+          "obj.bottle.na",
+          "obj.container.left",
+          "obj.container.right"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare.height",
+          "rel.compare.capacity"
+        ]
+      },
+      "plan": {
+        "method": "same_container_height_comparison",
+        "description": "ប្រៀបធៀបកម្ពស់ទឹកក្នុងធុងរាងនិងទំហំដូចគ្នាដើម្បីវិនិច្ឆ័យចំណុះ។"
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_water_heights",
+          "infer_capacity_relation"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "same_container_rule_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "ដប ក",
+      "ដប ខ"
+    ],
+    "choice_groups": [
+      {
+        "label": "សំណួរ (1)",
+        "choices": [
+          "ដប ក",
+          "ដប ខ"
+        ]
+      },
+      {
+        "label": "សំណួរ (2)",
+        "choices": [
+          "ដប ក",
+          "ដប ខ"
+        ]
+      }
+    ],
+    "answer_key": [
+      "ដប ខ",
+      "ដប ខ"
+    ],
+    "target": {
+      "type": "multiple_choice_group",
+      "description": "កម្រិតទឹកខ្ពស់ជាងនិងចំណុះច្រើនជាង"
+    },
+    "value": "ដប ខ, ដប ខ",
+    "unit": ""
+  }
+}

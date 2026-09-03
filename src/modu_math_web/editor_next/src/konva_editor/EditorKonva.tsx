@@ -24,7 +24,7 @@ import { KonvaToolbar, type ShapePreset } from "./KonvaToolbar";
 import { KidAvatarMakerModal } from "./avatar/KidAvatarMakerModal";
 import type { AvatarConfig } from "./avatar/avatarParts";
 import { PropertyPanel } from "./PropertyPanel";
-import type { AnswerBindingOption } from "./PropertyPanel";
+import { answerChoicesFromArtifacts, inferAnswerPresentationMode, type AnswerBindingOption } from "./answerReview";
 import { TutorFlowPanel } from "./TutorFlowPanel";
 import { TutorPreviewPanel } from "./TutorPreviewPanel";
 
@@ -47,6 +47,7 @@ export function EditorKonva() {
   const [message, setMessage] = useState("Loaded sample problem in Konva editor.");
   const [saveStatus, setSaveStatus] = useState<SaveStatus>("saved");
   const [drawingPreset, setDrawingPreset] = useState<ShapePreset | null>(null);
+  const [answerReviewMode, setAnswerReviewMode] = useState(false);
   const [problemListVersion, setProblemListVersion] = useState(0);
   const [activeSidePanel, setActiveSidePanel] = useState<SidePanelTab>("properties");
   const [isAvatarModalOpen, setAvatarModalOpen] = useState(false);
@@ -70,6 +71,14 @@ export function EditorKonva() {
   const answerBindingOptions = useMemo(
     () => answerOptionsFromArtifacts(previewArtifacts.solvable, previewArtifacts.semantic),
     [previewArtifacts.semantic, previewArtifacts.solvable],
+  );
+  const answerPresentationMode = useMemo(
+    () => inferAnswerPresentationMode(document.shapes, previewArtifacts.semantic, previewArtifacts.solvable),
+    [document.shapes, previewArtifacts.semantic, previewArtifacts.solvable],
+  );
+  const answerChoiceReviews = useMemo(
+    () => answerChoicesFromArtifacts(previewArtifacts.semantic, previewArtifacts.solvable, answerBindingOptions),
+    [answerBindingOptions, previewArtifacts.semantic, previewArtifacts.solvable],
   );
   const effectiveTutorFlow = draftTutorFlow ?? previewArtifacts.renderer?.tutor_flow ?? [];
   const activeTutorFrames = useMemo(() => {
@@ -844,6 +853,8 @@ export function EditorKonva() {
       <KonvaToolbar
         hasSelection={selectedShapeIds.length > 0}
         hasAnswerSlotCandidate={selectedAnswerSlotShapeIds.length > 0}
+        answerReviewMode={answerReviewMode}
+        onAnswerReviewModeChange={setAnswerReviewMode}
         onInsertShape={insertShape}
         onOpenAvatarMaker={() => setAvatarModalOpen(true)}
         onAddMath={addMath}
@@ -898,6 +909,10 @@ export function EditorKonva() {
             tutorOverlays={activeTutorOverlays}
             activeTutorOverlayIndex={activeTutorOverlayIndex}
             drawingPreset={drawingPreset}
+            answerReviewMode={answerReviewMode}
+            answerOptions={answerBindingOptions}
+            answerChoices={answerChoiceReviews}
+            answerPresentationMode={answerPresentationMode}
             onSelectShapes={setSelectedShapeIds}
             onChangeShapes={updateShapes}
             onConvertShapesToAnswer={(ids) => setAnswerSlotState(ids, true)}

@@ -90,7 +90,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
           ]),
           builder: (context, snapshot) {
             if (snapshot.connectionState != ConnectionState.done) {
-              return const OnsemLoadingIndicator(label: '오늘의 문제를 고르고 있어요');
+              return const OnsemLoadingIndicator(labelKey: 'home.loading');
             }
 
             if (snapshot.hasError) {
@@ -508,14 +508,16 @@ class _NextProblemCard extends StatelessWidget {
             Text(
               problem == null
                   ? strings.t('home.todayProblem')
-                  : strings.unitTitle(problem!.unit),
+                  : '${strings.domainTitle(problem!.unitTopic)} · ${strings.unitTitle(problem!.unitTopic)}',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: 6),
             Text(
-              problem?.title ?? strings.t('home.recommendationLoading'),
+              problem == null
+                  ? strings.t('home.recommendationLoading')
+                  : strings.problemTitleById(problem!.id, problem!.title),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -644,13 +646,13 @@ class _UnitRailState extends State<_UnitRail> {
               children: [
                 IconButton.filledTonal(
                   icon: const Icon(Icons.chevron_left_rounded, size: 20),
-                  tooltip: '이전 단원',
+                  tooltip: strings.t('home.prevUnit'),
                   onPressed: _canScrollLeft ? () => _scroll(-300) : null,
                 ),
                 const SizedBox(width: 8),
                 IconButton.filledTonal(
                   icon: const Icon(Icons.chevron_right_rounded, size: 20),
-                  tooltip: '다음 단원',
+                  tooltip: strings.t('home.nextUnit'),
                   onPressed: _canScrollRight ? () => _scroll(300) : null,
                 ),
               ],
@@ -706,8 +708,8 @@ class _UnitTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final strings = AppStrings.of(context);
-    final badgeLabel = '${item.semester} ${item.unitNumber}단원';
-    final titleLabel = '${item.unitNumber}. ${item.unitTopic}';
+    final badgeLabel = strings.domainTitle(item.unitTopic);
+    final titleLabel = strings.unitTitle(item.unitTopic);
     return SizedBox(
       width: 260,
       child: Card(
@@ -739,7 +741,7 @@ class _UnitTile extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  strings.unitTitle(titleLabel),
+                  titleLabel,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(

@@ -1,0 +1,78 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008751",
+  "problem_type": "判断型",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "○ 或 ×",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.bottle_water",
+      "value": {
+        "name": "水瓶"
+      }
+    },
+    {
+      "ref": "obj.bottle_milk",
+      "value": {
+        "name": "牛奶瓶"
+      }
+    },
+    {
+      "ref": "obj.speech",
+      "value": {
+        "content": "把水瓶装满水后倒入牛奶瓶里看就行。"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "symbol_judgment"
+  },
+  "method": "判断",
+  "plan": [
+    "确认给出的说明是否是正确的高度比较方法。",
+    "判断句子是否符合比较目的。"
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "确认提出的方法",
+      "value": "把水瓶装满水后倒入牛奶瓶里看就行。"
+    },
+    {
+      "id": "step.2",
+      "expr": "判断是否为比较高度的方法",
+      "value": "TODO"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "确认答案符号是否为○或×",
+      "expected": "○ 或 ×",
+      "actual": "TODO",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "○",
+      "X"
+    ],
+    "answer_key": [
+      "X"
+    ],
+    "target": {
+      "type": "symbol_judgment",
+      "description": "判断提出的方法作为高度比较方法是否正确"
+    },
+    "value": "X",
+    "unit": ""
+  }
+}

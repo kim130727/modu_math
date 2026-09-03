@@ -84,7 +84,7 @@ class _LearningSessionScreenState extends State<LearningSessionScreen> {
           future: _sessionFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState != ConnectionState.done) {
-              return const OnsemLoadingIndicator(label: '학습 순서를 정리하고 있어요');
+              return const OnsemLoadingIndicator(labelKey: 'session.loading');
             }
             if (snapshot.hasError) {
               return Center(

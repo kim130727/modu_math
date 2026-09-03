@@ -97,7 +97,7 @@ class RecommendationService {
         recommendations.add(
           RecommendedProblem(
             problem: problem,
-            reason: '오늘 새로 도전하는 3학년 수학 개념 문제입니다.',
+            reason: '오늘 새로 도전하는 수학 개념 문제입니다.',
             tag: '오늘의 도전',
           ),
         );

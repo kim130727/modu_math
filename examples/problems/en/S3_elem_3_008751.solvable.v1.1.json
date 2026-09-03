@@ -1,0 +1,78 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008751",
+  "problem_type": "Judgment",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "○ or ×",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.bottle_water",
+      "value": {
+        "name": "Water bottle"
+      }
+    },
+    {
+      "ref": "obj.bottle_milk",
+      "value": {
+        "name": "Milk bottle"
+      }
+    },
+    {
+      "ref": "obj.speech",
+      "value": {
+        "content": "Fill the water bottle completely, then pour it into the milk bottle."
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "symbol_judgment"
+  },
+  "method": "Decide",
+  "plan": [
+    "Check whether the given explanation is a valid height-comparison method.",
+    "Decide whether the statement is suitable for the comparison."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "Check presented method",
+      "value": "Fill the water bottle completely, then pour it into the milk bottle."
+    },
+    {
+      "id": "step.2",
+      "expr": "Judge whether it is a valid height comparison method",
+      "value": "TODO"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "Check if answer symbol is ○ or ×",
+      "expected": "○ or ×",
+      "actual": "TODO",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "○",
+      "X"
+    ],
+    "answer_key": [
+      "X"
+    ],
+    "target": {
+      "type": "symbol_judgment",
+      "description": "Judge if proposed method correctly compares height"
+    },
+    "value": "X",
+    "unit": ""
+  }
+}

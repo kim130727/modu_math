@@ -1,0 +1,104 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008732",
+  "problem_type": "Класифікація дробів",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "Позначка ○/×",
+    "target_ticks": 3,
+    "target_count": 3,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.frac1",
+      "value": {
+        "numerator": 2,
+        "denominator": 8
+      }
+    },
+    {
+      "ref": "obj.frac2",
+      "value": {
+        "numerator": 9,
+        "denominator": 10
+      }
+    },
+    {
+      "ref": "obj.frac3",
+      "value": {
+        "numerator": 4,
+        "denominator": 4
+      }
+    },
+    {
+      "ref": "obj.label1",
+      "value": {
+        "name": "Неправильний дріб"
+      }
+    },
+    {
+      "ref": "obj.label2",
+      "value": {
+        "name": "Неправильний дріб"
+      }
+    },
+    {
+      "ref": "obj.label3",
+      "value": {
+        "name": "Правильний дріб"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "Позначка ○/×"
+  },
+  "method": "classification_check",
+  "plan": [
+    "Зіставте кінцеву позначку кожного дробу з класифікацією на екрані.",
+    "Запишіть показане позначення відповіді без змін."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "2/8 → Неправильний дріб",
+      "value": "Неправильний дріб"
+    },
+    {
+      "id": "step.2",
+      "expr": "9/10 → Неправильний дріб",
+      "value": "Неправильний дріб"
+    },
+    {
+      "id": "step.3",
+      "expr": "4/4 → Правильний дріб",
+      "value": "Правильний дріб"
+    },
+    {
+      "id": "step.4",
+      "expr": "Перевірка відображеної позначки відповіді",
+      "value": "○, ×, ○"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "Перевірка відповідності відображеної відповіді поясненню",
+      "expected": "○, ×, ○",
+      "actual": "○, ×, ○",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "Позначка ○/×",
+      "description": "Позначення істинності чи хибності місця прибуття драбинки"
+    },
+    "value": "○, ×, ○",
+    "unit": ""
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008664",
+  "problem_type": "choice_selection",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "Ґ",
+    "target_ticks": 5,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.hole_positions",
+      "value": {
+        "count": 5,
+        "labels": [
+          "А",
+          "Б",
+          "В",
+          "Г",
+          "Ґ"
+        ]
+      }
+    },
+    {
+      "ref": "obj.tool",
+      "value": {
+        "type": "center_tool"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_label"
+  },
+  "method": "compare_hole_distances",
+  "plan": [
+    "Порівняйте розташування отворів.",
+    "Знайдіть отвір, найдальший від кнопки до грифеля олівця.",
+    "Запишіть позначення відповідного отвору як відповідь."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "Порівняйте розташування отворів зліва направо.",
+      "value": "А, Б, В, Г, Ґ"
+    },
+    {
+      "id": "step.2",
+      "expr": "Виберіть найвіддаленіший отвір.",
+      "value": "Ґ"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "Перевірте, чи найвіддаленіша позиція є останнім отвором.",
+      "expected": "Ґ",
+      "actual": "Ґ",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "А",
+      "Б",
+      "В",
+      "Г",
+      "Ґ"
+    ],
+    "answer_key": [
+      "Ґ"
+    ],
+    "target": {
+      "type": "choice_label",
+      "description": "Позначка отвору, що малює найбільше коло"
+    },
+    "value": "Ґ",
+    "unit": ""
+  }
+}

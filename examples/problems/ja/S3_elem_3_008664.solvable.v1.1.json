@@ -1,0 +1,83 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008664",
+  "problem_type": "choice_selection",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "オ",
+    "target_ticks": 5,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.hole_positions",
+      "value": {
+        "count": 5,
+        "labels": [
+          "ア",
+          "イ",
+          "ウ",
+          "エ",
+          "オ"
+        ]
+      }
+    },
+    {
+      "ref": "obj.tool",
+      "value": {
+        "type": "center_tool"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_label"
+  },
+  "method": "compare_hole_distances",
+  "plan": [
+    "穴の位置を比べます。",
+    "画びょうと鉛筆の芯の間が最も遠くなる穴を探します。",
+    "その穴に対応する記号を答えにします。"
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "穴の位置を左から右へ比較します。",
+      "value": "ア, イ, ウ, エ, オ"
+    },
+    {
+      "id": "step.2",
+      "expr": "最も遠い穴を選びます。",
+      "value": "オ"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "最も遠い位置が最後の穴か確認します。",
+      "expected": "オ",
+      "actual": "オ",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "ア",
+      "イ",
+      "ウ",
+      "エ",
+      "オ"
+    ],
+    "answer_key": [
+      "オ"
+    ],
+    "target": {
+      "type": "choice_label",
+      "description": "最も大きな円を描ける穴の記号"
+    },
+    "value": "オ",
+    "unit": ""
+  }
+}

@@ -6,10 +6,18 @@ import type { BaseTenBlockKind, ConnectorShape, EditorShape, LineShape } from ".
 import { scalePathData } from "../utils/pathData";
 import { connectorArrowForPreset, connectorBounds, connectorControl, connectorEnd, connectorKindForPreset, connectorPathData, connectorStart } from "./connectorGeometry";
 import { estimateTextWidth, normalizedTextBoxHeight, normalizedTextBoxWidth } from "./converters";
-import { KONVA_PREVIEW_FONT_LOAD_SPEC } from "./fonts";
+import { KONVA_PREVIEW_FONT_FAMILY, KONVA_PREVIEW_FONT_LOAD_SPEC } from "./fonts";
 import { ShapeRenderer } from "./ShapeRenderer";
 import { adjustableShapePoint } from "./shapeGeometry";
 import type { ShapePreset } from "./KonvaToolbar";
+import {
+  answerSlotReviews,
+  type AnswerBindingOption,
+  type AnswerBindingStatus,
+  type AnswerChoiceReview,
+  type AnswerPresentationMode,
+  type AnswerSlotReview,
+} from "./answerReview";
 
 interface KonvaStageProps {
   width: number;
@@ -19,6 +27,10 @@ interface KonvaStageProps {
   tutorOverlays?: TutorRendererOverlay[];
   activeTutorOverlayIndex?: number | null;
   drawingPreset?: ShapePreset | null;
+  answerReviewMode?: boolean;
+  answerOptions?: AnswerBindingOption[];
+  answerChoices?: AnswerChoiceReview[];
+  answerPresentationMode?: AnswerPresentationMode;
   onSelectShapes: (ids: string[]) => void;
   onChangeShapes: (shapes: EditorShape[]) => void;
   onConvertShapesToAnswer?: (ids: string[]) => void;
@@ -38,6 +50,10 @@ export function KonvaStage({
   tutorOverlays = [],
   activeTutorOverlayIndex = null,
   drawingPreset = null,
+  answerReviewMode = false,
+  answerOptions = [],
+  answerChoices = [],
+  answerPresentationMode = "panel_input",
   onSelectShapes,
   onChangeShapes,
   onConvertShapesToAnswer,
@@ -137,6 +153,7 @@ export function KonvaStage({
   const offsetY = Math.max(20, (stageHeight - height * scale) / 2);
   const selectedIdSet = new Set(selectedShapeIds);
   const renderedShapes = [...shapes].sort(compareRenderOrder);
+  const answerReviews = answerReviewMode ? answerSlotReviews(shapes, answerOptions) : new Map<string, AnswerSlotReview>();
   const shapesById = new Map(shapes.map((shape) => [shape.id, shape]));
   const selectedLine =
     selectedShapeIds.length === 1
@@ -410,7 +427,16 @@ export function KonvaStage({
               onContextMenu={(event) => openShapeContextMenu(shape, event)}
             />
           ))}
-          {renderedShapes.map((shape) => (shape.interaction ? <AnswerSlotOverlay key={`${shape.id}.answer-overlay`} shape={shape} /> : null))}
+          {renderedShapes.map((shape) =>
+            shape.interaction ? (
+              <AnswerSlotOverlay
+                key={`${shape.id}.answer-overlay`}
+                shape={shape}
+                review={answerReviews.get(shape.id)}
+                reviewMode={answerReviewMode}
+              />
+            ) : null,
+          )}
           <TutorOverlayLayer
             overlays={tutorOverlays}
             shapesById={shapesById}
@@ -510,6 +536,10 @@ export function KonvaStage({
           ) : null}
         </Layer>
       </Stage>
+      {answerReviewMode && answerPresentationMode === "panel_input" ? (
+        <AnswerPanelPreview answerOptions={answerOptions} />
+      ) : null}
+      {answerReviewMode && answerPresentationMode === "choice" ? <AnswerChoicePanelPreview choices={answerChoices} /> : null}
       {editingTutorLabel ? (
         <textarea
           ref={tutorTextEditorRef}
@@ -729,9 +759,76 @@ function TutorHighlight({ shape }: { shape: EditorShape }) {
   );
 }
 
-function AnswerSlotOverlay({ shape }: { shape: EditorShape }) {
+function AnswerSlotOverlay({
+  shape,
+  review,
+  reviewMode,
+}: {
+  shape: EditorShape;
+  review?: AnswerSlotReview;
+  reviewMode: boolean;
+}) {
   const bounds = paddedRect(shapeBounds(shape), 5);
   if (!shape.interaction) return null;
+  if (reviewMode && review) {
+    const colors = answerReviewColors(review.status);
+    const isChoice = shape.interaction.role === "choice";
+    const value = isChoice ? "정답" : review.option?.value ?? "미연결";
+    const fontSize = calculateAnswerPreviewFontSize(shape, value);
+    const badgeText = `답 ${review.displayOrder}`;
+    const badgeWidth = Math.max(38, badgeText.length * 10 + 12);
+    return (
+      <>
+        <Rect
+          x={bounds.x}
+          y={bounds.y}
+          width={bounds.width}
+          height={bounds.height}
+          stroke={colors.stroke}
+          strokeWidth={2}
+          dash={review.status === "inferred" ? [6, 4] : undefined}
+          fill={colors.fill}
+          cornerRadius={4}
+          listening={false}
+        />
+        <Text
+          x={bounds.x}
+          y={bounds.y + Math.max(0, (bounds.height - fontSize * 1.15) / 2)}
+          width={bounds.width}
+          height={Math.max(bounds.height, fontSize * 1.2)}
+          text={value}
+          fontFamily={KONVA_PREVIEW_FONT_FAMILY}
+          fontSize={fontSize}
+          fontStyle="bold"
+          fill={colors.text}
+          align="center"
+          verticalAlign="middle"
+          listening={false}
+        />
+        <Rect
+          x={bounds.x}
+          y={bounds.y - 22}
+          width={badgeWidth}
+          height={20}
+          fill={colors.stroke}
+          cornerRadius={5}
+          listening={false}
+        />
+        <Text
+          x={bounds.x}
+          y={bounds.y - 19}
+          width={badgeWidth}
+          text={badgeText}
+          fontFamily={KONVA_PREVIEW_FONT_FAMILY}
+          fontSize={11}
+          fontStyle="bold"
+          fill="#ffffff"
+          align="center"
+          listening={false}
+        />
+      </>
+    );
+  }
   return (
     <Rect
       x={bounds.x}
@@ -747,11 +844,11 @@ function AnswerSlotOverlay({ shape }: { shape: EditorShape }) {
   );
 }
 
-function calculateAnswerPreviewFontSize(shape: EditorShape): number {
+function calculateAnswerPreviewFontSize(shape: EditorShape, answerValue = ""): number {
   const bounds = shapeBounds(shape);
   const style = shape.input_style;
   if (style?.font_size_mode === "fixed" && typeof style.font_size === "number") return Math.round(style.font_size);
-  const maxLength = Math.max(1, shape.interaction?.max_length ?? (shape.interaction?.value_type === "integer" ? 3 : 1));
+  const maxLength = Math.max(1, answerValue.length, shape.interaction?.max_length ?? (shape.interaction?.value_type === "integer" ? 3 : 1));
   const padding = style?.padding ?? 6;
   const availableWidth = Math.max(1, bounds.width - padding * 2);
   const availableHeight = Math.max(1, bounds.height - padding * 2);
@@ -759,6 +856,48 @@ function calculateAnswerPreviewFontSize(shape: EditorShape): number {
   const byWidth = availableWidth / maxLength / characterWidthRatio(shape.interaction?.value_type);
   const adjusted = Math.min(byHeight, byWidth) + (style?.font_size_adjust ?? 0);
   return Math.round(clamp(adjusted, style?.min_font_size ?? 14, style?.max_font_size ?? 52));
+}
+
+function answerReviewColors(status: AnswerBindingStatus): { stroke: string; fill: string; text: string } {
+  if (status === "connected") return { stroke: "#16a34a", fill: "rgba(34, 197, 94, 0.14)", text: "#166534" };
+  if (status === "inferred") return { stroke: "#d97706", fill: "rgba(245, 158, 11, 0.16)", text: "#92400e" };
+  return { stroke: "#dc2626", fill: "rgba(239, 68, 68, 0.14)", text: "#991b1b" };
+}
+
+function AnswerPanelPreview({ answerOptions }: { answerOptions: AnswerBindingOption[] }) {
+  return (
+    <aside className="answer-review-panel" aria-label="Flutter 정답 패널 미리보기">
+      <div className="answer-review-panel__eyebrow">정답 검수 · panel_input</div>
+      <strong>정답을 입력하세요</strong>
+      <div className="answer-review-panel__field">
+        {answerOptions.length ? answerOptions.map((option) => `${option.value}${option.unit ? ` ${option.unit}` : ""}`).join(" / ") : "정답 데이터 없음"}
+      </div>
+      <button type="button" disabled>정답 확인</button>
+    </aside>
+  );
+}
+
+function AnswerChoicePanelPreview({ choices }: { choices: AnswerChoiceReview[] }) {
+  return (
+    <aside className="answer-review-panel" aria-label="선택형 정답 패널 미리보기">
+      <div className="answer-review-panel__eyebrow">정답 검수 · choice</div>
+      <strong>알맞은 정답을 선택하세요</strong>
+      <div className="answer-review-choices">
+        {choices.length ? (
+          choices.map((choice) => (
+            <div key={choice.id} className={choice.correct ? "answer-review-choice correct" : "answer-review-choice"}>
+              <span>{choice.label}</span>
+              <span>{choice.text}</span>
+              {choice.correct ? <b>정답</b> : null}
+            </div>
+          ))
+        ) : (
+          <div className="answer-review-choice missing">선택지 데이터 없음</div>
+        )}
+      </div>
+      <button type="button" disabled>정답 확인</button>
+    </aside>
+  );
 }
 
 function characterWidthRatio(valueType: string | undefined): number {

@@ -1,0 +1,87 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008661",
+  "problem_type": "geometry_segment_comparison",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "Longest line segment",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.segment.gn",
+      "value": {
+        "label": "Line segment AB"
+      }
+    },
+    {
+      "ref": "obj.segment.dr",
+      "value": {
+        "label": "Line segment CD"
+      }
+    },
+    {
+      "ref": "obj.segment.mb",
+      "value": {
+        "label": "Line segment EF"
+      }
+    },
+    {
+      "ref": "obj.segment.ss",
+      "value": {
+        "label": "Line segment GI"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_selection"
+  },
+  "method": "visual_comparison",
+  "plan": [
+    "Compare the four line segments inside the circle.",
+    "Find the line segment that passes through the center.",
+    "Choose the number corresponding to that line segment."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "Check line segment passing through center",
+      "value": "Line segment CD"
+    },
+    {
+      "id": "step.2",
+      "expr": "Match with options",
+      "value": "2. Line segment CD"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "Check match between explanation and option",
+      "expected": "2. Line segment CD",
+      "actual": "2. Line segment CD",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "1. Line segment AB",
+      "2. Line segment CD",
+      "3. Line segment EF",
+      "4. Line segment GI"
+    ],
+    "answer_key": [
+      "2. Line segment CD"
+    ],
+    "target": {
+      "type": "choice_selection",
+      "description": "Longest line segment"
+    },
+    "value": "2. Line segment CD",
+    "unit": ""
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008732",
+  "problem_type": "Fraction classification",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "○ or ×",
+    "target_ticks": 3,
+    "target_count": 3,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.frac1",
+      "value": {
+        "numerator": 2,
+        "denominator": 8
+      }
+    },
+    {
+      "ref": "obj.frac2",
+      "value": {
+        "numerator": 9,
+        "denominator": 10
+      }
+    },
+    {
+      "ref": "obj.frac3",
+      "value": {
+        "numerator": 4,
+        "denominator": 4
+      }
+    },
+    {
+      "ref": "obj.label1",
+      "value": {
+        "name": "Improper fraction"
+      }
+    },
+    {
+      "ref": "obj.label2",
+      "value": {
+        "name": "Improper fraction"
+      }
+    },
+    {
+      "ref": "obj.label3",
+      "value": {
+        "name": "Proper fraction"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "○ or ×"
+  },
+  "method": "classification_check",
+  "plan": [
+    "Match each fraction destination label with the classification shown on the screen.",
+    "Record the displayed answer notation exactly."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "2/8 → Improper fraction",
+      "value": "Improper fraction"
+    },
+    {
+      "id": "step.2",
+      "expr": "9/10 → Improper fraction",
+      "value": "Improper fraction"
+    },
+    {
+      "id": "step.3",
+      "expr": "4/4 → Proper fraction",
+      "value": "Proper fraction"
+    },
+    {
+      "id": "step.4",
+      "expr": "Check displayed answer symbol",
+      "value": "○, ×, ○"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "Check agreement between displayed answer and explanation",
+      "expected": "○, ×, ○",
+      "actual": "○, ×, ○",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "○ or ×",
+      "description": "Mark whether the ladder arrival spot is True or False"
+    },
+    "value": "○, ×, ○",
+    "unit": ""
+  }
+}

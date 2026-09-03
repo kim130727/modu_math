@@ -1,0 +1,82 @@
+{
+  "problem_id": "S3_elem_3_008751",
+  "problem_type": "ប្រភេទការវិនិច្ឆ័យ",
+  "metadata": {
+    "title": "ប្រៀបធៀបដបទឹកនិងដបទឹកដោះគោ",
+    "tags": [],
+    "instruction": "សម្រេចថាវិធីប្រៀបធៀបនេះត្រឹមត្រូវឬអត់។",
+    "question": "យើងចង់ប្រៀបធៀបកម្ពស់ដបទឹក និងដបទឹកដោះគោ។ ប្រសិនបើវិធីប្រៀបធៀបកម្ពស់ដបទាំងពីរត្រឹមត្រូវ សូមជ្រើស ○ បើមិនត្រឹមត្រូវ សូមជ្រើស ×។",
+    "required_layout_ids": [
+      "slot.inserted.image.1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.bottle_water",
+        "type": "container",
+        "name": "ដបទឹក"
+      },
+      {
+        "id": "obj.bottle_milk",
+        "type": "container",
+        "name": "ដបទឹកដោះគោ"
+      },
+      {
+        "id": "obj.speech",
+        "type": "statement",
+        "content": "បំពេញទឹកក្នុងដបទឹកឱ្យពេញ រួចចាក់ទឹកទៅក្នុងដបទឹកដោះគោ។"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.bottle_water",
+          "obj.bottle_milk",
+          "obj.speech"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_height",
+          "rel.statement_about_method"
+        ]
+      },
+      "plan": {
+        "method": "វិនិច្ឆ័យ",
+        "description": "ពិនិត្យមើលថាតើវិធីដែលបានស្នើរសមស្របសម្រាប់ប្រៀបធៀបកម្ពស់ដបឬទេ។"
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_statement_with_goal",
+          "judge_method_validity"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "statement_matches_target",
+          "answer_symbol_consistency"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "○",
+      "X"
+    ],
+    "answer_key": [
+      "X"
+    ],
+    "target": {
+      "type": "symbol_judgment",
+      "description": "វិនិច្ឆ័យថាតើវិធីដែលបានស្នើត្រឹមត្រូវសម្រាប់ការប្រៀបធៀបកម្ពស់ឬទេ"
+    },
+    "value": "X",
+    "unit": ""
+  }
+}

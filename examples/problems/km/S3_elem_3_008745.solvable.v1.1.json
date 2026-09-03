@@ -1,0 +1,96 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008745",
+  "problem_type": "ការប្រៀបធៀប",
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "ដប ក, ដប ខ",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.bottle.ga",
+      "value": {
+        "label": "ដប ក"
+      }
+    },
+    {
+      "ref": "obj.bottle.na",
+      "value": {
+        "label": "ដប ខ"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "multiple_choice_group"
+  },
+  "method": "same_container_rule_check",
+  "plan": [
+    "ប្រៀបធៀបកម្ពស់ទឹកដែលចាក់ទៅក្នុងធុងមានរាងនិងទំហំដូចគ្នា។",
+    "សន្និដ្ឋានថាដែលមានកម្រិតទឹកខ្ពស់ជាង មានចំណុះច្រើនជាង។"
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "ក្នុងរូបភាព កម្រិតទឹកក្នុងធុងខាងស្តាំខ្ពស់ជាង",
+      "value": "ដប ខ"
+    },
+    {
+      "id": "step.2",
+      "expr": "ក្នុងធុងដូចគ្នា កម្រិតទឹកកាន់តែខ្ពស់មានចំណុះកាន់តែច្រើន",
+      "value": "ដប ខ"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "ពិនិត្យការប្រៀបធៀបក្នុងធុងដែលមានរាង និងទំហំដូចគ្នា",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "ពិនិត្យមើលថាតើចម្លើយដែលបានជ្រើសរើសត្រូវគ្នានឹងការប្រៀបធៀបកម្ពស់ឬទេ",
+      "expected": "ដប ខ",
+      "actual": "ដប ខ",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "ដប ក",
+      "ដប ខ"
+    ],
+    "choice_groups": [
+      {
+        "label": "សំណួរ (1)",
+        "choices": [
+          "ដប ក",
+          "ដប ខ"
+        ]
+      },
+      {
+        "label": "សំណួរ (2)",
+        "choices": [
+          "ដប ក",
+          "ដប ខ"
+        ]
+      }
+    ],
+    "answer_key": [
+      "ដប ខ",
+      "ដប ខ"
+    ],
+    "target": {
+      "type": "multiple_choice_group",
+      "description": "កម្រិតទឹកខ្ពស់ជាងនិងចំណុះច្រើនជាង"
+    },
+    "value": "ដប ខ, ដប ខ",
+    "unit": ""
+  }
+}

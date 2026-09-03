@@ -1,0 +1,67 @@
+{
+  "problem_id": "S3_elem_3_008541",
+  "problem_type": "multiple_choice_ordering",
+  "metadata": {
+    "title": "ជ្រើសចម្លើយដែលរៀបលទ្ធផលពីធំទៅតូច",
+    "tags": [],
+    "instruction": "ជ្រើសចម្លើយដែលរៀបលទ្ធផលពីធំទៅតូច",
+    "question": "ជ្រើសចម្លើយដែលរៀបលទ្ធផលពីធំទៅតូច",
+    "required_layout_ids": [
+      "slot.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.a",
+        "type": "expression",
+        "label": "ក",
+        "operation": "397 × 6"
+      },
+      {
+        "id": "obj.b",
+        "type": "expression",
+        "label": "ខ",
+        "operation": "549 × 4"
+      },
+      {
+        "id": "obj.c",
+        "type": "expression",
+        "label": "គ",
+        "operation": "456 × 5"
+      },
+      {
+        "id": "obj.option2",
+        "type": "choice",
+        "label": "②",
+        "sequence": [
+          "ក",
+          "គ",
+          "ខ"
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.order",
+        "type": "descending_order",
+        "from_id": "obj.a",
+        "to_id": "obj.b"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_number",
+      "description": "លេខជម្រើសដែលរៀបចំលទ្ធផលពីធំទៅតូច"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

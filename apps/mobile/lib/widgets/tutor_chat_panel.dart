@@ -745,7 +745,7 @@ class _SubmittedAnswerSummary extends StatelessWidget {
             Icon(Icons.edit_note, color: colorScheme.primary),
             const SizedBox(width: 10),
             Text(
-              '내 답',
+              AppStrings.of(context).t('tutor.myAnswer'),
               style: TextStyle(
                 color: colorScheme.onSurfaceVariant,
                 fontWeight: FontWeight.w700,
@@ -862,9 +862,9 @@ class _ConversationSection extends StatelessWidget {
       child: ExpansionTile(
         tilePadding: const EdgeInsets.symmetric(horizontal: 14),
         childrenPadding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
-        title: const Text(
-          '풀이 과정 보기',
-          style: TextStyle(fontWeight: FontWeight.w800),
+        title: Text(
+          AppStrings.of(context).t('tutor.viewSolutionProcess'),
+          style: const TextStyle(fontWeight: FontWeight.w800),
         ),
         children: [conversation],
       ),

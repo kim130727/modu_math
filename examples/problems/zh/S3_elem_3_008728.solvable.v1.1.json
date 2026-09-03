@@ -1,0 +1,81 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008728",
+  "problem_type": "fraction_description_choice",
+  "inputs": {
+    "total_ticks": 7,
+    "target_label": "正确描述图画的人",
+    "target_ticks": 3,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.colored_part",
+      "value": {
+        "description": "涂色部分",
+        "fraction": "3/7"
+      }
+    },
+    {
+      "ref": "obj.uncolored_part",
+      "value": {
+        "description": "未涂色部分",
+        "fraction": "4/7"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "person_selection"
+  },
+  "method": "fraction_description_matching",
+  "plan": [
+    "将图中涂色和未涂色部分与分数说明进行比较。",
+    "找出对话框中的说明与图画相符的人。"
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "涂色部分 ↔ 3/7",
+      "value": "真京"
+    },
+    {
+      "id": "step.2",
+      "expr": "未涂色部分 ↔ 4/7",
+      "value": "贤真"
+    },
+    {
+      "id": "step.3",
+      "expr": "选择与图画相符的话",
+      "value": "真京"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "确认涂色部分是否为7份中的3份",
+      "expected": "3/7",
+      "actual": "3/7",
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "确认未涂色部分是否为7份中的4份",
+      "expected": "4/7",
+      "actual": "4/7",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "person_selection",
+      "description": "正确描述图画的人"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

@@ -102,6 +102,7 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     return Scaffold(
       appBar: AppBar(
         title: FutureBuilder<ProblemContent>(
@@ -124,7 +125,7 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
         future: contentFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState != ConnectionState.done) {
-            return const OnsemLoadingIndicator(label: '다음 문제로 달려가고 있어요');
+            return const OnsemLoadingIndicator(labelKey: 'problem.loading');
           }
           if (snapshot.hasError) {
             return _ProblemLoadError(
@@ -167,8 +168,14 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
                 onAnswerChanged: _updateAnswerDraft,
                 onSubmit: (answer) => _submit(content, answer),
               );
+              final activeLocale = AppLocaleScope.maybeOf(context)?.locale.languageCode ??
+                  widget.repository.activeProblemLocale;
               final hintPanel = HintPanel(
-                hints: hintService.buildHints(content),
+                hints: hintService.buildHints(
+                  content,
+                  locale: activeLocale,
+                  strings: strings,
+                ),
                 visibleLevel: hintLevel,
                 onRevealNext: () => _revealNextHint(content),
               );

@@ -36,7 +36,8 @@ void main() {
     );
 
     expect(find.text('단원별 학습'), findsOneWidget);
-    expect(find.text('2학기 1. 곱셈'), findsWidgets);
+    expect(find.text('수와 연산'), findsWidgets);
+    expect(find.text('곱셈'), findsWidgets);
     expect(find.text('Rule Tutor'), findsNothing);
   });
 
@@ -63,7 +64,7 @@ void main() {
 
     expect(find.text('Навчання за розділами'), findsOneWidget);
     expect(find.text('Оберіть розділ на сьогодні'), findsOneWidget);
-    expect(find.textContaining('2 семестр'), findsOneWidget);
+    expect(find.textContaining('Числа та операції'), findsOneWidget);
     expect(find.text('Множення'), findsOneWidget);
   });
 }

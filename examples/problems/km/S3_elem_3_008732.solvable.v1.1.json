@@ -1,0 +1,104 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008732",
+  "problem_type": "ការចាត់ថ្នាក់ប្រភាគ",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "សញ្ញា ○ ឬ ×",
+    "target_ticks": 3,
+    "target_count": 3,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.frac1",
+      "value": {
+        "numerator": 2,
+        "denominator": 8
+      }
+    },
+    {
+      "ref": "obj.frac2",
+      "value": {
+        "numerator": 9,
+        "denominator": 10
+      }
+    },
+    {
+      "ref": "obj.frac3",
+      "value": {
+        "numerator": 4,
+        "denominator": 4
+      }
+    },
+    {
+      "ref": "obj.label1",
+      "value": {
+        "name": "ប្រភាគមិនសុទ្ធ"
+      }
+    },
+    {
+      "ref": "obj.label2",
+      "value": {
+        "name": "ប្រភាគមិនសុទ្ធ"
+      }
+    },
+    {
+      "ref": "obj.label3",
+      "value": {
+        "name": "ប្រភាគសុទ្ធ"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "សញ្ញា ○ ឬ ×"
+  },
+  "method": "classification_check",
+  "plan": [
+    "ផ្គូផ្គងស្លាកទីបញ្ចប់របស់ប្រភាគនីមួយៗនឹងប្រភេទដែលបង្ហាញលើអេក្រង់។",
+    "កត់ត្រាសញ្ញាចម្លើយដែលបង្ហាញឱ្យដូចដើម។"
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "2/8 → ប្រភាគមិនសុទ្ធ",
+      "value": "ប្រភាគមិនសុទ្ធ"
+    },
+    {
+      "id": "step.2",
+      "expr": "9/10 → ប្រភាគមិនសុទ្ធ",
+      "value": "ប្រភាគមិនសុទ្ធ"
+    },
+    {
+      "id": "step.3",
+      "expr": "4/4 → ប្រភាគសុទ្ធ",
+      "value": "ប្រភាគសុទ្ធ"
+    },
+    {
+      "id": "step.4",
+      "expr": "ពិនិត្យមើលសញ្ញាចម្លើយដែលបង្ហាញនៅលើអេក្រង់",
+      "value": "○, ×, ○"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "ពិនិត្យការផ្គូផ្គងរវាងចម្លើយដែលបង្ហាញនិងការពន្យល់",
+      "expected": "○, ×, ○",
+      "actual": "○, ×, ○",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "សញ្ញា ○ ឬ ×",
+      "description": "សញ្ញាបង្ហាញថាកន្លែងដែលជណ្ដើរចុះមកពិតឬមិនពិត"
+    },
+    "value": "○, ×, ○",
+    "unit": ""
+  }
+}

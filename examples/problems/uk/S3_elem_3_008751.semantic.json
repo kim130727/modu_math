@@ -1,0 +1,82 @@
+{
+  "problem_id": "S3_elem_3_008751",
+  "problem_type": "Тип судження",
+  "metadata": {
+    "title": "Порівняння пляшки для води та молочної пляшки",
+    "tags": [],
+    "instruction": "Визначте, чи правильний спосіб порівняння.",
+    "question": "Ми хочемо порівняти висоту пляшки для води й пляшки для молока. Якщо спосіб порівняння їхньої висоти правильний, виберіть ○, інакше — ×.",
+    "required_layout_ids": [
+      "slot.inserted.image.1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.bottle_water",
+        "type": "container",
+        "name": "Пляшка для води"
+      },
+      {
+        "id": "obj.bottle_milk",
+        "type": "container",
+        "name": "Пляшка для молока"
+      },
+      {
+        "id": "obj.speech",
+        "type": "statement",
+        "content": "Наповни пляшку для води, а потім перелий воду в пляшку для молока."
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.bottle_water",
+          "obj.bottle_milk",
+          "obj.speech"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_height",
+          "rel.statement_about_method"
+        ]
+      },
+      "plan": {
+        "method": "Визначити",
+        "description": "Перевірте, чи підходить запропонований спосіб для порівняння висоти пляшок."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_statement_with_goal",
+          "judge_method_validity"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "statement_matches_target",
+          "answer_symbol_consistency"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "○",
+      "X"
+    ],
+    "answer_key": [
+      "X"
+    ],
+    "target": {
+      "type": "symbol_judgment",
+      "description": "Визначте, чи є запропонований спосіб правильним для порівняння висоти"
+    },
+    "value": "X",
+    "unit": ""
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008661",
+  "problem_type": "geometry_segment_comparison",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "最长线段",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.segment.gn",
+      "value": {
+        "label": "线段甲乙"
+      }
+    },
+    {
+      "ref": "obj.segment.dr",
+      "value": {
+        "label": "线段丙丁"
+      }
+    },
+    {
+      "ref": "obj.segment.mb",
+      "value": {
+        "label": "线段戊己"
+      }
+    },
+    {
+      "ref": "obj.segment.ss",
+      "value": {
+        "label": "线段庚壬"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_selection"
+  },
+  "method": "visual_comparison",
+  "plan": [
+    "比较圆内的四条线段。",
+    "找出经过圆心的线段。",
+    "选择与该线段对应的编号。"
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "确认通过圆心的线段",
+      "value": "线段丙丁"
+    },
+    {
+      "id": "step.2",
+      "expr": "与选项对应",
+      "value": "2. 线段丙丁"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "解析语句与选项一致性确认",
+      "expected": "2. 线段丙丁",
+      "actual": "2. 线段丙丁",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "1. 线段甲乙",
+      "2. 线段丙丁",
+      "3. 线段戊己",
+      "4. 线段庚壬"
+    ],
+    "answer_key": [
+      "2. 线段丙丁"
+    ],
+    "target": {
+      "type": "choice_selection",
+      "description": "最长线段"
+    },
+    "value": "2. 线段丙丁",
+    "unit": ""
+  }
+}

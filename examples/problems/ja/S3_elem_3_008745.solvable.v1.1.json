@@ -1,0 +1,96 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008745",
+  "problem_type": "比較",
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "水筒ア, 水筒イ",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.bottle.ga",
+      "value": {
+        "label": "水筒ア"
+      }
+    },
+    {
+      "ref": "obj.bottle.na",
+      "value": {
+        "label": "水筒イ"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "multiple_choice_group"
+  },
+  "method": "same_container_rule_check",
+  "plan": [
+    "同じ形と大きさの容器に移した水の高さを比べます。",
+    "水面が高い方の容量が大きいと判断します。"
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "図で右側の容器の水位が高い",
+      "value": "水筒イ"
+    },
+    {
+      "id": "step.2",
+      "expr": "同じ容器では水位が高い方のかさがより多い",
+      "value": "水筒イ"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "同じ形と大きさの容器の比較か確認",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "選択した答えが図の水位比較と一致するか確認",
+      "expected": "水筒イ",
+      "actual": "水筒イ",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "水筒ア",
+      "水筒イ"
+    ],
+    "choice_groups": [
+      {
+        "label": "問題(1)",
+        "choices": [
+          "水筒ア",
+          "水筒イ"
+        ]
+      },
+      {
+        "label": "問題(2)",
+        "choices": [
+          "水筒ア",
+          "水筒イ"
+        ]
+      }
+    ],
+    "answer_key": [
+      "水筒イ",
+      "水筒イ"
+    ],
+    "target": {
+      "type": "multiple_choice_group",
+      "description": "移し替えた水位が高いこととかさが多いこと"
+    },
+    "value": "水筒イ, 水筒イ",
+    "unit": ""
+  }
+}

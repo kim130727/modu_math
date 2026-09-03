@@ -1,3 +1,4 @@
+import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
 import '../utils/problem_text_sanitizer.dart';
 
@@ -33,6 +34,8 @@ class SolvableHint {
   final String? groupKey;
   final String? groupLabel;
   final String successMessage;
+
+  int get maxLevel => level;
 }
 
 List<SolvableHint> _withHintGroup(
@@ -63,12 +66,27 @@ List<SolvableHint> _withHintGroup(
 class SolvableHintService {
   const SolvableHintService();
 
-  List<SolvableHint> buildHints(ProblemContent content) {
+  List<SolvableHint> buildHints(
+    ProblemContent content, {
+    String locale = 'ko',
+    AppStrings? strings,
+  }) {
     final hints = _buildRawHints(content);
-    return hints.map(_localizeSolvableHint).toList();
+    if (locale == 'ko') {
+      return hints.map(_localizeSolvableHint).toList();
+    }
+    return hints
+        .map((h) => _translateHintForLocale(h, locale, strings))
+        .toList();
   }
 
   List<SolvableHint> _buildRawHints(ProblemContent content) {
+    final multiplicationPlaceValueHints =
+        _multiplicationPlaceValueHints(content);
+    if (multiplicationPlaceValueHints.isNotEmpty) {
+      return multiplicationPlaceValueHints;
+    }
+
     final baseTenModelHints = _baseTenModelHints(content);
     if (baseTenModelHints.isNotEmpty) {
       return baseTenModelHints;
@@ -92,12 +110,6 @@ class SolvableHintService {
     final authoredHints = _authoredStudentHints(content);
     if (authoredHints.isNotEmpty) {
       return authoredHints;
-    }
-
-    final multiplicationPlaceValueHints =
-        _multiplicationPlaceValueHints(content);
-    if (multiplicationPlaceValueHints.isNotEmpty) {
-      return multiplicationPlaceValueHints;
     }
 
     if (!_isWordProblem(content) && !_isComparisonProblem(content)) {
@@ -203,6 +215,889 @@ List<SolvableHint> _generalFallbackHints(ProblemContent content) {
       body: '구한 답이 문제 조건과 맞는지 다시 한 번 확인해 보세요.',
     ),
   ];
+}
+
+SolvableHint _translateHintForLocale(
+  SolvableHint hint,
+  String locale,
+  AppStrings? strings,
+) {
+  final stepStr = switch (locale) {
+    'en' => 'Step ${hint.level}',
+    'ja' => 'ステップ${hint.level}',
+    'zh' => '第${hint.level}步',
+    'km' => 'ជំហានទី ${hint.level}',
+    'uk' => 'Крок ${hint.level}',
+    _ => '${hint.level}단계',
+  };
+
+  return SolvableHint(
+    level: hint.level,
+    title: _translateHintTitle(hint.title, hint.level, locale, stepStr),
+    body: _translateHintBody(hint.body, locale),
+    miniQuestion: _translateHintQuestion(hint.miniQuestion, locale),
+    choices: hint.choices
+        .map((c) => HintChoice(
+              label: _translateChoiceLabel(c.label, locale),
+              isCorrect: c.isCorrect,
+            ))
+        .toList(),
+    acceptedAnswers: hint.acceptedAnswers
+        .map((a) => _translateChoiceLabel(a, locale))
+        .toList(),
+    successMessage: _translateHintSuccessMessage(hint.successMessage, locale),
+    groupKey: hint.groupKey,
+    groupLabel: hint.groupLabel != null
+        ? _translateHintTitle(hint.groupLabel!, hint.level, locale, stepStr)
+        : null,
+  );
+}
+
+String _translateHintTitle(String title, int level, String locale, String stepStr) {
+  final clean = title.replaceFirst(RegExp(r'^\s*\d+단계:\s*'), '').trim();
+
+  final translations = <String, Map<String, String>>{
+    '색칠된 자리의 실제 값 찾기': {
+      'en': 'Find the actual value of the shaded digit',
+      'ja': '色の付いた位の実際の値を求める',
+      'zh': '找出涂色数位的实际数值',
+      'km': 'រកតម្លៃពិតនៃខ្ទង់ដែលបានដាក់ពណ៌',
+      'uk': 'Знайдіть фактичне значення виділеної цифри',
+    },
+    '곱하는 수 확인': {
+      'en': 'Identify the multiplier',
+      'ja': '掛ける数を確認する',
+      'zh': '确认乘数',
+      'km': 'ពិនិត្យមើលគុណនីយ',
+      'uk': 'Визначте множник',
+    },
+    '알맞은 곱셈식 완성': {
+      'en': 'Complete the multiplication expression',
+      'ja': '正しい掛け算の式を完成させる',
+      'zh': '完成正确的乘法算式',
+      'km': 'បំពេញកន្សោមគុណដែលត្រឹមត្រូវ',
+      'uk': 'Складіть правильний вираз множення',
+    },
+    '오른쪽 일의 자리 더하기': {
+      'en': 'Add digits in the ones place',
+      'ja': '一の位を足す',
+      'zh': '计算个位相加',
+      'km': 'បូកខ្ទង់រាយ',
+      'uk': 'Додайте одиниці',
+    },
+    '일의 자리 더하기': {
+      'en': 'Add digits in the ones place',
+      'ja': '一の位を足す',
+      'zh': '计算个位相加',
+      'km': 'បូកខ្ទង់រាយ',
+      'uk': 'Додайте одиниці',
+    },
+    '십의 자리 더하기': {
+      'en': 'Add digits in the tens place',
+      'ja': '十の位を足す',
+      'zh': '计算十位相加',
+      'km': 'បូកខ្ទង់ដប់',
+      'uk': 'Додайте десятки',
+    },
+    '비교 기호 고르기': {
+      'en': 'Choose comparison symbol',
+      'ja': '比較記号を選ぶ',
+      'zh': '选择比较符号',
+      'km': 'ជ្រើសសញ្ញាប្រៀបធៀប',
+      'uk': 'Виберіть знак порівняння',
+    },
+    '두 값 확인': {
+      'en': 'Check both values',
+      'ja': '2つの値を確認する',
+      'zh': '确认两个数值',
+      'km': 'ពិនិត្យតម្លៃទាំងពីរ',
+      'uk': 'Перевірте обидва значення',
+    },
+    '수 모형 확인하기': {
+      'en': 'Check base-ten model',
+      'ja': '数の模型を確認する',
+      'zh': '查看数位模型',
+      'km': 'ពិនិត្យមើលគំរូចំនួន',
+      'uk': 'Перевірте модель блоків',
+    },
+    '묻는 것 찾기': {
+      'en': 'Understand what is asked',
+      'ja': '問いを確認する',
+      'zh': '找出问题所求',
+      'km': 'ស្វែងយល់ពីបញ្ហា',
+      'uk': 'Зрозумійте запитання',
+    },
+    '문제 파악하기': {
+      'en': 'Understand the problem',
+      'ja': '問題を把握する',
+      'zh': '理解题意',
+      'km': 'ស្វែងយល់ពីបញ្ហា',
+      'uk': 'Зрозумійте задачу',
+    },
+    '계산 방법 고르기': {
+      'en': 'Choose calculation method',
+      'ja': '計算方法を選ぶ',
+      'zh': '选择计算方法',
+      'km': 'ជ្រើសវិធីគណនា',
+      'uk': 'Виберіть метод обчислення',
+    },
+    '자리 맞춰 계산': {
+      'en': 'Align and calculate',
+      'ja': '位をそろえて計算する',
+      'zh': '对齐数位计算',
+      'km': 'គណនាតាមខ្ទង់',
+      'uk': 'Обчисліть за розрядами',
+    },
+    '다시 확인': {
+      'en': 'Review your answer',
+      'ja': '答えを見直す',
+      'zh': '核对答案',
+      'km': 'ពិនិត្យមើលចម្លើយឡើងវិញ',
+      'uk': 'Перевірте відповідь',
+    },
+    '정답 검토하기': {
+      'en': 'Review your answer',
+      'ja': '答えを見直す',
+      'zh': '核对答案',
+      'km': 'ពិនិត្យមើលចម្លើយឡើងវិញ',
+      'uk': 'Перевірте відповідь',
+    },
+    '핵심 조건 찾기': {
+      'en': 'Find key conditions',
+      'ja': '重要な条件を見つける',
+      'zh': '找出关键条件',
+      'km': 'រកលក្ខខណ្ឌសំខាន់ៗ',
+      'uk': 'Знайдіть ключові умови',
+    },
+    '차근차근 풀이하기': {
+      'en': 'Solve step by step',
+      'ja': '順番に解く',
+      'zh': '循序渐进解题',
+      'km': 'ដោះស្រាយមួយជំហានម្តងៗ',
+      'uk': 'Розв’язуйте покроково',
+    },
+    '개념 확인': {
+      'en': 'Concept check',
+      'ja': '概念確認',
+      'zh': '概念检查',
+      'km': 'ពិនិត្យគោលគំនិត',
+      'uk': 'Перевірка понять',
+    },
+    '중심을 지나는 가장 긴 선분 확인': {
+      'en': 'Check longest segment through center',
+      'ja': '中心を通る最も長い線分の確認',
+      'zh': '确认经过中心的最长线段',
+      'km': 'ពិនិត្យអង្កត់វែងបំផុតកាត់តាមផ្ចិត',
+      'uk': 'Перевірте найдовший відрізок через центр',
+    },
+    '원의 중심에서 가장 멀리 있는 구멍 확인': {
+      'en': 'Check hole furthest from center',
+      'ja': '円の中心から最も遠い穴の確認',
+      'zh': '确认离圆心最远的孔',
+      'km': 'ពិនិត្យរន្ធដែលនៅឆ្ងាយបំផុតពីផ្ចិត',
+      'uk': 'Перевірте отвір, найвіддаленіший від центра',
+    },
+    '컴퍼스를 벌려 원을 그리는 순서 확인': {
+      'en': 'Check compass drawing order',
+      'ja': 'コンパスを使って円を描く順序の確認',
+      'zh': '确认圆规画圆顺序',
+      'km': 'ពិនិត្យលំដាប់នៃការប្រើដែកឈានគូសរង្វង់',
+      'uk': 'Перевірте порядок малювання кола циркулем',
+    },
+    '그림이 나타내는 분수 확인': {
+      'en': 'Check fraction shown in diagram',
+      'ja': '図が表す分数の確認',
+      'zh': '确认图形表示的分数',
+      'km': 'ពិនិត្យប្រភាគដែលបង្ហាញក្នុងរូបភាព',
+      'uk': 'Перевірте дріб, показаний на малюнку',
+    },
+    '사다리를 따라가며 분수의 종류 판단': {
+      'en': 'Follow ladder to classify fraction',
+      'ja': 'あみだくじに沿って分数の種類を判定',
+      'zh': '顺着梯子判断分数类型',
+      'km': 'ដើរតាមជណ្ដើរដើម្បីកំណត់ប្រភេទប្រភាគ',
+      'uk': 'Слідуйте за сходинками для класифікації дробу',
+    },
+    '그릇에 부었을 때 수면의 높이 비교': {
+      'en': 'Compare water level when poured',
+      'ja': '容器に注いだときの水面の高さを比較',
+      'zh': '比较倒入容器后的水面高度',
+      'km': 'ប្រៀបធៀបកម្ពស់ទឹកនៅពេលចាក់ចូលកែវ',
+      'uk': 'Порівняйте рівень води при переливанні',
+    },
+    '들이를 직접 비교하는 올바른 방법 확인': {
+      'en': 'Check correct way to compare capacity directly',
+      'ja': 'かさを直接比べる正しい方法の確認',
+      'zh': '确认直接比较容量的正确方法',
+      'km': 'ពិនិត្យវិធីត្រឹមត្រូវដើម្បីប្រៀបធៀបចំណុះផ្ទាល់',
+      'uk': 'Перевірте правильний спосіб прямого порівняння місткості',
+    },
+  };
+
+  if (translations.containsKey(clean) && translations[clean]!.containsKey(locale)) {
+    return '$stepStr: ${translations[clean]![locale]}';
+  }
+
+  final conceptCheckMatch = RegExp(r'^개념 확인\s*(\d+)?$').firstMatch(clean);
+  if (conceptCheckMatch != null) {
+    final num = conceptCheckMatch.group(1);
+    final numSuffix = num != null ? ' $num' : '';
+    return switch (locale) {
+      'en' => '$stepStr: Concept check$numSuffix',
+      'ja' => '$stepStr: 概念確認$numSuffix',
+      'zh' => '$stepStr: 概念检查$numSuffix',
+      'km' => '$stepStr: ពិនិត្យគោលគំនិត$numSuffix',
+      'uk' => '$stepStr: Перевірка понять$numSuffix',
+      _ => '$stepStr: $clean',
+    };
+  }
+
+  final solutionGuideMatch = RegExp(r'^풀이 안내\s*(\d+)?$').firstMatch(clean);
+  if (solutionGuideMatch != null) {
+    final num = solutionGuideMatch.group(1);
+    final numSuffix = num != null ? ' $num' : '';
+    return switch (locale) {
+      'en' => '$stepStr: Solution guide$numSuffix',
+      'ja' => '$stepStr: 解法案内$numSuffix',
+      'zh' => '$stepStr: 解题指引$numSuffix',
+      'km' => '$stepStr: ការណែនាំដំណោះស្រាយ$numSuffix',
+      'uk' => '$stepStr: Посібник із розв\'язання$numSuffix',
+      _ => '$stepStr: $clean',
+    };
+  }
+
+  final generalCalcMatch = RegExp(r'^(.+)\s*계산하기$').firstMatch(clean);
+  if (generalCalcMatch != null) {
+    final target = generalCalcMatch.group(1)!.trim();
+    return switch (locale) {
+      'en' => '$stepStr: Calculate $target',
+      'ja' => '$stepStr: $targetを計算する',
+      'zh' => '$stepStr: 计算 $target',
+      'km' => '$stepStr: គណនា $target',
+      'uk' => '$stepStr: Обчисліть $target',
+      _ => '$stepStr: $clean',
+    };
+  }
+
+  final calcMatch = RegExp(r'^식 계산하기\s*\((.+)\)$').firstMatch(clean);
+  if (calcMatch != null) {
+    final expr = calcMatch.group(1)!;
+    return switch (locale) {
+      'en' => '$stepStr: Calculate expression ($expr)',
+      'ja' => '$stepStr: 式を計算する ($expr)',
+      'zh' => '$stepStr: 计算算式 ($expr)',
+      'km' => '$stepStr: គណនាកន្សោម ($expr)',
+      'uk' => '$stepStr: Обчисліть вираз ($expr)',
+      _ => '$stepStr: $clean',
+    };
+  }
+
+  final ineqMatch = RegExp(r'^알맞은 부등호 기호 선택\s*\((.+)\)$').firstMatch(clean);
+  if (ineqMatch != null) {
+    final expr = ineqMatch.group(1)!;
+    return switch (locale) {
+      'en' => '$stepStr: Select inequality symbol ($expr)',
+      'ja' => '$stepStr: 不等号を選ぶ ($expr)',
+      'zh' => '$stepStr: 选择不等号 ($expr)',
+      'km' => '$stepStr: ជ្រើសសញ្ញាវិសមភាព ($expr)',
+      'uk' => '$stepStr: Виберіть знак нерівності ($expr)',
+      _ => '$stepStr: $clean',
+    };
+  }
+
+  return '$stepStr: $clean';
+}
+
+String _translateHintBody(String body, String locale) {
+  final clean = body.trim();
+  if (clean.isEmpty) return clean;
+
+  final exactBodyTranslations = <String, Map<String, String>>{
+    '69를 3으로 나눈 몫을 구한다.': {
+      'en': 'Find the quotient of 69 divided by 3.',
+      'ja': '69を3で割った商を求めます。',
+      'zh': '求69除以3的商。',
+      'km': 'ស្វែងរកផលចែកនៃ 69 ចែកនឹង 3។',
+      'uk': 'Знайдіть частку від ділення 69 на 3.',
+    },
+    '보기 중 계산 결과와 같은 수를 찾는다.': {
+      'en': 'Find the number matching the calculation result from options.',
+      'ja': '選択肢から計算結果と同じ数を見つけます。',
+      'zh': '在选项中找出与计算结果相同的数。',
+      'km': 'ស្វែងរកចំនួនដែលត្រូវនឹងលទ្ធផលគណនាពីជម្រើស។',
+      'uk': 'Знайдіть число, що відповідає результату обчислення, серед варіантів.',
+    },
+    '원 안의 네 선분을 비교한다.': {
+      'en': 'Compare the four line segments in the circle.',
+      'ja': '円の中の4つの線分を比較します。',
+      'zh': '比较圆内的四条线段。',
+      'km': 'ប្រៀបធៀបអង្កត់ទាំងបួននៅក្នុងរង្វង់។',
+      'uk': 'Порівняйте чотири відрізки в колі.',
+    },
+    '중심을 지나는 선분을 찾는다.': {
+      'en': 'Find the line segment passing through the center.',
+      'ja': '中心を通る線分を見つけます。',
+      'zh': '找出穿过圆心的线段。',
+      'km': 'ស្វែងរកអង្កត់ដែលកាត់តាមផ្ចិត។',
+      'uk': 'Знайдіть відрізок, що проходить через центр.',
+    },
+    '보기에서 그 선분에 해당하는 번호를 고른다.': {
+      'en': 'Choose the number corresponding to that line segment from the options.',
+      'ja': '選択肢からその線分に対応する番号を選びます。',
+      'zh': '在选项中选择对应那条线段的编号。',
+      'km': 'ជ្រើសរើសលេខដែលត្រូវនឹងអង្កត់នោះពីជម្រើស។',
+      'uk': 'Виберіть номер, що відповідає цьому відрізку, із запропонованих варіантів.',
+    },
+    '구멍들의 위치를 비교한다.': {
+      'en': 'Compare the positions of the holes.',
+      'ja': '穴の位置を比較します。',
+      'zh': '比较各个孔的位置。',
+      'km': 'ប្រៀបធៀបទីតាំងនៃរន្ធនានា។',
+      'uk': 'Порівняйте положення отворів.',
+    },
+    '누름 못과 연필심 사이가 가장 멀어지는 구멍을 찾는다.': {
+      'en': 'Find the hole furthest between push pin and pencil lead.',
+      'ja': '押しピンと鉛筆の芯の間が最も遠くなる穴を見つけます。',
+      'zh': '找出图钉和铅笔芯距离最远的孔。',
+      'km': 'ស្វែងរករន្ធដែលនៅឆ្ងាយបំផុតរវាងម្ជុលខ្ទាស់និងចុងខ្មៅដៃ។',
+      'uk': 'Знайдіть отвір, найбільш віддалений між кнопкою та грифелем олівця.',
+    },
+    '그 구멍에 대응하는 기호를 답으로 둔다.': {
+      'en': 'Use the letter corresponding to that hole as the answer.',
+      'ja': 'その穴に対応する記号を答えとします。',
+      'zh': '将对应那个孔的符号作为答案。',
+      'km': 'កំណត់និមិត្តសញ្ញាដែលត្រូវនឹងរន្ធនោះជាចម្លើយ។',
+      'uk': 'Запишіть букву, що відповідає цьому отвору, як відповідь.',
+    },
+    '해설의 순서를 따라 올바른 단계 배열을 확인한다.': {
+      'en': 'Follow the explanation to check the correct order of steps.',
+      'ja': '解説の手順に沿って、正しいステップの順序を確認します。',
+      'zh': '根据解析顺序确认正确的步骤排列。',
+      'km': 'ធ្វើតាមការពន្យល់ដើម្បីពិនិត្យលំដាប់លំដោយត្រឹមត្រូវនៃជំហាន។',
+      'uk': 'Дотримуйтесь пояснення, щоб перевірити правильний порядок дій.',
+    },
+    '해당 순서와 같은 선택지를 찾는다.': {
+      'en': 'Find the option that matches that order.',
+      'ja': 'その順序と一致する選択肢を見つけます。',
+      'zh': '找出与该顺序相同的选项。',
+      'km': 'ស្វែងរកជម្រើសដែលត្រូវគ្នានឹងលំដាប់នោះ។',
+      'uk': 'Знайдіть варіант, що відповідає цьому порядку.',
+    },
+    '그림의 색칠한 부분과 색칠하지 않은 부분을 분수 설명과 비교한다.': {
+      'en': 'Compare the shaded and unshaded parts with the fraction explanation.',
+      'ja': '図の色の付いた部分と付いていない部分を分数の説明と比較します。',
+      'zh': '将图中涂色部分和未涂色部分与分数说明进行比较。',
+      'km': 'ប្រៀបធៀបផ្នែកដាក់ពណ៌និងផ្នែកមិនដាក់ពណ៌ក្នុងរូបភាពជាមួយការពន្យល់ប្រភាគ។',
+      'uk': 'Порівняйте зафарбовану та незафарбовану частини на малюнку з поясненням дробу.',
+    },
+    '말풍선의 설명이 그림과 맞는 사람을 찾는다.': {
+      'en': 'Find the person whose speech bubble matches the diagram.',
+      'ja': '吹き出しの説明が図と合っている人を見つけます。',
+      'zh': '找出对话框说明与图形相符的人。',
+      'km': 'ស្វែងរកបុគ្គលដែលការពន្យល់ក្នុងពពុះពាក្យត្រូវនឹងរូបភាព។',
+      'uk': 'Знайдіть людину, чиє пояснення у виносці відповідає малюнку.',
+    },
+  };
+
+  if (exactBodyTranslations.containsKey(clean) &&
+      exactBodyTranslations[clean]!.containsKey(locale)) {
+    return exactBodyTranslations[clean]![locale]!;
+  }
+
+  final shadedMatch = RegExp(
+    r'^(?:(\d+)에서\s*)?색칠된 자리의 숫자 (\d+)은 실제 얼마를 나타내는지 확인해요\.?$',
+  ).firstMatch(clean);
+  if (shadedMatch != null) {
+    final num = shadedMatch.group(1);
+    final digit = shadedMatch.group(2)!;
+    final prefix = num != null ? 'In $num, ' : '';
+    final jaPrefix = num != null ? '$numで' : '';
+    final zhPrefix = num != null ? '在$num中，' : '';
+    final kmPrefix = num != null ? 'នៅក្នុង $num ' : '';
+    final ukPrefix = num != null ? 'У $num ' : '';
+    return switch (locale) {
+      'en' => '${prefix}let\'s find the actual value represented by the shaded digit $digit.',
+      'ja' => '${jaPrefix}色の付いた位の数字$digitが実際に表す値を確認しましょう。',
+      'zh' => '${zhPrefix}确认涂色数位的数字$digit实际表示的数值。',
+      'km' => '${kmPrefix}សូមពិនិត្យមើលថាតើតួលេខ $digit ក្នុងខ្ទង់ដាក់ពណ៌ពិតជាតំណាងឱ្យប៉ុន្មាន។',
+      'uk' => '${ukPrefix}перевіримо, яке значення насправді представляє виділена цифра $digit.',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('색칠된 부분에 곱해지는 한 자리 수를 확인해요')) {
+    return switch (locale) {
+      'en' => 'Identify the single-digit multiplier for the shaded part.',
+      'ja' => '色の付いた部分に掛けられている1桁の数を確認しましょう。',
+      'zh' => '确认与涂色部分相乘的一位数。',
+      'km' => 'ពិនិត្យមើលលេខមួយខ្ទង់ដែលគុណនឹងផ្នែកដាក់ពណ៌។',
+      'uk' => 'Визначте одноцифровий множник для виділеної частини.',
+      _ => clean,
+    };
+  }
+
+  final prodMatch = RegExp(
+    r'^색칠된 부분\((.+?)\)은 (.+?)과 (.+?)의 곱이에요\.?$',
+  ).firstMatch(clean);
+  if (prodMatch != null) {
+    final prod = prodMatch.group(1)!;
+    final a = prodMatch.group(2)!;
+    final b = prodMatch.group(3)!;
+    return switch (locale) {
+      'en' => 'The shaded part ($prod) is the product of $a and $b.',
+      'ja' => '色の付いた部分($prod)は、$aと$bの積です。',
+      'zh' => '涂色部分（$prod）是$a与$b的乘积。',
+      'km' => 'ផ្នែកដាក់ពណ៌ ($prod) គឺជាផលគុណនៃ $a និង $b។',
+      'uk' => 'Зафарбована частина ($prod) є добутком $a та $b.',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('구한 답이 문제 조건과 맞는지')) {
+    return switch (locale) {
+      'en' => 'Check again if your answer matches the problem conditions.',
+      'ja' => '求めた答えが問題の条件に合っているかもう一度確認してみましょう。',
+      'zh' => '再次检查算出的答案是否符合题意。',
+      'km' => 'សូមពិនិត្យមើលឡើងវិញថាតើចម្លើយដែលរកឃើញត្រូវនឹងលក្ខខណ្ឌបញ្ហាឬទេ។',
+      'uk' => 'Перевірте ще раз, чи відповідає знайдена відповідь умовам задачі.',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('조건과 묻는 내용을 차례대로 정리')) {
+    return switch (locale) {
+      'en' => 'Organize the given conditions and what is being asked.',
+      'ja' => '問題の条件と問われている内容を順に整理してみましょう。',
+      'zh' => '把题目给出的条件和所求问题依次整理清楚。',
+      'km' => 'រៀបចំលក្ខខណ្ឌដែលបានផ្ដល់ និងអ្វីដែលសួរតាមលំដាប់។',
+      'uk' => 'Упорядкуйте дані умови та запитання задачі.',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('핵심 힌트나 식을 찾아보세요')) {
+    return switch (locale) {
+      'en' => 'Find the key hint or expression to solve the problem.',
+      'ja' => '問題を解くための重要なヒントや式を見つけましょう。',
+      'zh' => '找出解题的关键提示或算式。',
+      'km' => 'ស្វែងរកជំនួយសំខាន់ ឬកន្សោមដើម្បីដោះស្រាយបញ្ហា។',
+      'uk' => 'Знайдіть ключову підказку або вираз для розв’язання задачі.',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('계산 과정을 확인하며 단계별로')) {
+    return switch (locale) {
+      'en' => 'Follow the calculation step by step.',
+      'ja' => '計算手順を確認しながら、順番に解いてみましょう。',
+      'zh' => '跟着计算过程一步步进行求解。',
+      'km' => 'ពិនិត្យដំណើរការគណនា ហើយដោះស្រាយមួយជំហានម្តងៗ។',
+      'uk' => 'Виконуйте обчислення крок за кроком.',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('보이는 정답 표기를 그대로 기록')) {
+    return switch (locale) {
+      'en' => 'Record the displayed answer directly.',
+      'ja' => '表示された答えをそのまま記録します。',
+      'zh' => '直接记录显示的答案。',
+      'km' => 'កត់ត្រាចម្លើយដែលបានបង្ហាញ។',
+      'uk' => 'Запишіть відображену відповідь.',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('도착 라벨과 화면에 제시된 분류')) {
+    return switch (locale) {
+      'en' => 'Match each fraction\'s label with the classification on screen.',
+      'ja' => '各分数の終点ラベルと画面に表示された分類を対応させます。',
+      'zh' => '将每个分数的到达标签与屏幕上的分类相对应。',
+      'km' => 'ផ្គូផ្គងស្លាកនៃប្រភាគនីមួយៗជាមួយចំណាត់ថ្នាក់នៅលើអេក្រង់។',
+      'uk' => 'Зіставте мітку кожного дробу з класифікацією на екрані.',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('같은 모양과 크기의 그릇에 옮겨 담은 물의 높이')) {
+    return switch (locale) {
+      'en' => 'Compare the water level transferred into containers of the same shape and size.',
+      'ja' => '同じ形と大きさの容器に移し替えた水の高さを比べます。',
+      'zh' => '比较倒入同样形状和大小的容器中水的高度。',
+      'km' => 'ប្រៀបធៀបកម្ពស់ទឹកដែលបានផ្ទេរទៅក្នុងធុងដែលមានរាង និងទំហំដូចគ្នា។',
+      'uk' => 'Порівняйте рівень води, перелитої в посудини однакової форми та розміру.',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('물의 높이가 더 높은 쪽의 들이가 더 많다고')) {
+    return switch (locale) {
+      'en' => 'Determine that the higher water level indicates greater capacity.',
+      'ja' => '水位が高い方の容器のかさがより多いと判断します。',
+      'zh' => '判断水面较高的一侧容量更大。',
+      'km' => 'កំណត់ថាកម្រិតទឹកកាន់តែខ្ពស់បង្ហាញពីចំណុះកាន់តែច្រើន។',
+      'uk' => 'Визначте, що вищий рівень води вказує на більшу місткість.',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('제시된 설명이 높이 비교 방법인지')) {
+    return switch (locale) {
+      'en' => 'Check if the given explanation is a height comparison method.',
+      'ja' => '提示された説明が高さの比較方法であるか確認します。',
+      'zh' => '确认给出的说明是否为比较高度的方法。',
+      'km' => 'ពិនិត្យមើលថាតើការពន្យល់ដែលបានផ្ដល់គឺជាវិធីប្រៀបធៀបកម្ពស់ឬទេ។',
+      'uk' => 'Перевірте, чи є наведене пояснення методом порівняння висоти.',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('문장이 비교의 목적에 맞는지')) {
+    return switch (locale) {
+      'en' => 'Determine whether the statement matches the purpose of the comparison.',
+      'ja' => '文が比較の目的に合っているかを判断します。',
+      'zh' => '判断句子是否符合比较的目的。',
+      'km' => 'កំណត់ថាតើប្រយោគនេះត្រូវនឹងគោលបំណងនៃការប្រៀបធៀបឬទេ។',
+      'uk' => 'Визначте, чи відповідає твердження меті порівняння.',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('알맞은 순서나 식을 골라보세요')) {
+    return switch (locale) {
+      'en' => 'Select the correct order or expression.',
+      'ja' => '正しい順序や式を選んでみましょう。',
+      'zh' => '请选择正确的顺序或算式。',
+      'km' => 'សូមជ្រើសរើសលំដាប់ ឬកន្សោមដែលត្រឹមត្រូវ។',
+      'uk' => 'Виберіть правильний порядок або вираз.',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('계산 결과가 큰 것부터 차례대로 나열한 것은 무엇일까요')) {
+    return switch (locale) {
+      'en' => 'Which option lists the results from greatest to least?',
+      'ja' => '計算結果が大きい順に並んでいるものはどれですか？',
+      'zh' => '哪个选项是按计算结果从大到小排列的？',
+      'km' => 'តើជម្រើសណារៀបចំលទ្ធផលពីធំទៅតូច?',
+      'uk' => 'Який варіант розташовує результати від найбільшого до найменшого?',
+      _ => clean,
+    };
+  }
+
+  final calcStepMatch = RegExp(r'^(.+?)(?:을|를)\s*계산해요\.?$').firstMatch(clean);
+  if (calcStepMatch != null) {
+    final target = calcStepMatch.group(1)!.trim();
+    return switch (locale) {
+      'en' => 'Calculate $target.',
+      'ja' => '$targetを計算しましょう。',
+      'zh' => '计算 $target。',
+      'km' => 'គណនា $target។',
+      'uk' => 'Обчисліть $target.',
+      _ => clean,
+    };
+  }
+
+  final valBodyMatch = RegExp(r'^(.+?)(?:의 값은 얼마인가요|의 값은 얼마일까요|은 얼마인가요)\??$').firstMatch(clean);
+  if (valBodyMatch != null) {
+    final expr = valBodyMatch.group(1)!.trim();
+    return switch (locale) {
+      'en' => 'What is the value of $expr?',
+      'ja' => '$exprの値はいくつですか？',
+      'zh' => '$expr的值是多少？',
+      'km' => 'តើតម្លៃនៃ $expr ស្មើនឹងប៉ុន្មាន?',
+      'uk' => 'Яке значення виразу $expr?',
+      _ => clean,
+    };
+  }
+
+  return clean;
+}
+
+String _translateHintQuestion(String question, String locale) {
+  final clean = question.trim();
+  if (clean.isEmpty) return clean;
+
+  if (clean.contains('순서대로 확인해 보세요')) {
+    final base = clean
+        .replaceFirst('순서대로 확인해 보세요.', '')
+        .replaceFirst('순서대로 확인해 보세요', '')
+        .trim();
+    final translatedBase = _translateHintBody(base, locale);
+    return switch (locale) {
+      'en' => '$translatedBase Check in order.',
+      'ja' => '$translatedBase 順番に確認してみましょう。',
+      'zh' => '$translatedBase 请按顺序进行确认。',
+      'km' => '$translatedBase សូមពិនិត្យមើលតាមលំដាប់។',
+      'uk' => '$translatedBase Перевірте по черзі.',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('계산 결과가 큰 것부터 차례대로 나열한 것은 무엇일까요')) {
+    return switch (locale) {
+      'en' => 'Which option lists the results from greatest to least?',
+      'ja' => '計算結果が大きい順に並んでいるものはどれですか？',
+      'zh' => '哪个选项是按计算结果从大到小排列的？',
+      'km' => 'តើជម្រើសណារៀបចំលទ្ធផលពីធំទៅតូច?',
+      'uk' => 'Який варіант розташовує результати від найбільшого до найменшого?',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('알맞은 순서나 식을 골라보세요')) {
+    return switch (locale) {
+      'en' => 'Select the correct order or expression.',
+      'ja' => '正しい順序や式を選んでみましょう。',
+      'zh' => '请选择正确的顺序或算式。',
+      'km' => 'សូមជ្រើសរើសលំដាប់ ឬកន្សោមដែលត្រឹមត្រូវ។',
+      'uk' => 'Виберіть правильний порядок або вираз.',
+      _ => clean,
+    };
+  }
+
+  final digitMatch = RegExp(
+    r'^(?:(\d+)에서\s*)?숫자 (\d+)은 실제 얼마를 나타내나요\??$',
+  ).firstMatch(clean);
+  if (digitMatch != null) {
+    final num = digitMatch.group(1);
+    final digit = digitMatch.group(2)!;
+    final prefix = num != null ? 'In $num, ' : '';
+    final jaPrefix = num != null ? '$numで' : '';
+    final zhPrefix = num != null ? '在$num中，' : '';
+    final kmPrefix = num != null ? 'នៅក្នុង $num ' : '';
+    final ukPrefix = num != null ? 'У $num ' : '';
+    return switch (locale) {
+      'en' => '${prefix}what value does the digit $digit actually represent?',
+      'ja' => '${jaPrefix}数字$digitは実際にいくつを表していますか？',
+      'zh' => '${zhPrefix}数字$digit实际表示多少？',
+      'km' => '${kmPrefix}តើតួលេខ $digit ពិតជាតំណាងឱ្យប៉ុន្មាន?',
+      'uk' => '${ukPrefix}яке значення насправді представляє цифра $digit?',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('곱하는 수는 얼마인가요')) {
+    return switch (locale) {
+      'en' => 'What is the multiplier?',
+      'ja' => '掛ける数はいくつですか？',
+      'zh' => '乘数是多少？',
+      'km' => 'តើគុណនីយជាអ្វី?',
+      'uk' => 'Який множник?',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('색칠된 부분을 나타내는 알맞은 곱셈식은')) {
+    return switch (locale) {
+      'en' => 'Which multiplication expression represents the shaded part?',
+      'ja' => '色の付いた部分を表す正しい掛け算の式はどれですか？',
+      'zh' => '表示涂色部分的正确乘法算式是什么？',
+      'km' => 'តើកន្សោមគុណណាដែលតំណាងឱ្យផ្នែកដាក់ពណ៌?',
+      'uk' => 'Який вираз множення представляє зафарбовану частину?',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('빈칸에 들어갈 기호는')) {
+    return switch (locale) {
+      'en' => 'Which symbol goes in the blank?',
+      'ja' => '空欄に入る記号は何ですか？',
+      'zh' => '空格中应该填入什么符号？',
+      'km' => 'តើសញ្ញាណាត្រូវដាក់ក្នុងចន្លោះទទេ?',
+      'uk' => 'Який знак має бути у пропуску?',
+      _ => clean,
+    };
+  }
+
+  final valMatch = RegExp(r'^(.+?)(?:의 값은 얼마인가요|의 값은 얼마일까요|은 얼마인가요)\??$').firstMatch(clean);
+  if (valMatch != null) {
+    final expr = valMatch.group(1)!.trim();
+    return switch (locale) {
+      'en' => 'What is the value of $expr?',
+      'ja' => '$exprの値はいくつですか？',
+      'zh' => '$expr的值是多少？',
+      'km' => 'តើតម្លៃនៃ $expr ស្មើនឹងប៉ុន្មាន?',
+      'uk' => 'Яке значення виразу $expr?',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('이 문제에서 구해야 하는 것')) {
+    return switch (locale) {
+      'en' => 'What are we looking for in this problem?',
+      'ja' => 'この問題で求めるものは何ですか？',
+      'zh' => '这道题要求的是什么？',
+      'km' => 'តើបញ្ហានេះសួររកអ្វី?',
+      'uk' => 'Що потрібно знайти в цій задачі?',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('어떻게 계산해야 할까요')) {
+    return switch (locale) {
+      'en' => 'How should we calculate?',
+      'ja' => 'どのように計算すればよいでしょうか？',
+      'zh' => '应该如何计算？',
+      'km' => 'តើយើងគួរគណនាយ៉ាងដូចម្តេច?',
+      'uk' => 'Як нам слід обчислити?',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('먼저 해야 할 일')) {
+    return switch (locale) {
+      'en' => 'What should we do first?',
+      'ja' => '最初に何をすべきでしょうか？',
+      'zh' => '首先应该做什么？',
+      'km' => 'តើយើងគួរធ្វើអ្វីមុនគេ?',
+      'uk' => 'Що нам слід зробити спочатку?',
+      _ => clean,
+    };
+  }
+
+  return clean;
+}
+
+String _translateHintSuccessMessage(String msg, String locale) {
+  final clean = msg.trim();
+  if (clean.isEmpty) return clean;
+
+  final shadedSuccess = RegExp(
+    r'^맞아요\.\s*(\d+)은\s*.*?\s*숫자이므로 실제로는\s*(\d+)입니다\.?$',
+  ).firstMatch(clean);
+  if (shadedSuccess != null) {
+    final digit = shadedSuccess.group(1)!;
+    final val = shadedSuccess.group(2)!;
+    return switch (locale) {
+      'en' => 'Correct! The digit $digit represents $val.',
+      'ja' => '正解です！数字$digitは実際には$valを表します。',
+      'zh' => '正确！数字$digit实际表示$val。',
+      'km' => 'ត្រឹមត្រូវ! តួលេខ $digit តំណាងឱ្យ $val។',
+      'uk' => 'Правильно! Цифра $digit представляє $val.',
+      _ => clean,
+    };
+  }
+
+  final multSuccess = RegExp(
+    r'^좋아요\.\s*곱하는 수는\s*(\d+)입니다\.?$',
+  ).firstMatch(clean);
+  if (multSuccess != null) {
+    final val = multSuccess.group(1)!;
+    return switch (locale) {
+      'en' => 'Great! The multiplier is $val.',
+      'ja' => 'よくできました！掛ける数は$valです。',
+      'zh' => '很好！乘数是$val。',
+      'km' => 'ល្អណាស់! គុណនីយគឺ $val។',
+      'uk' => 'Чудово! Множник дорівнює $val.',
+      _ => clean,
+    };
+  }
+
+  final exprSuccess = RegExp(
+    r'^정답이에요!\s*색칠된 부분은\s*(.+?)(?:를|을) 나타냅니다\.?$',
+  ).firstMatch(clean);
+  if (exprSuccess != null) {
+    final expr = exprSuccess.group(1)!;
+    return switch (locale) {
+      'en' => 'Correct! The shaded part represents $expr.',
+      'ja' => '正解です！色の付いた部分は$exprを表します。',
+      'zh' => '回答正确！涂色部分表示$expr。',
+      'km' => 'ត្រឹមត្រូវហើយ! ផ្នែកដាក់ពណ៌តំណាងឱ្យ $expr។',
+      'uk' => 'Правильно! Зафарбована частина представляє $expr.',
+      _ => clean,
+    };
+  }
+
+  if (clean.contains('좋아요. 다음 단계로 가 볼게요')) {
+    return switch (locale) {
+      'en' => 'Great job! Let\'s move to the next step.',
+      'ja' => 'よくできました！次のステップへ進みましょう。',
+      'zh' => '很好！进入下一步。',
+      'km' => 'ល្អណាស់! តោះទៅជំហានបន្ទាប់។',
+      'uk' => 'Чудово! Перейдемо до наступного кроку.',
+      _ => clean,
+    };
+  }
+
+  final jsonChoiceSuccess = RegExp(
+    r"^(?:맞아요|정답이에요|좋아요)[!.]?\s*\{.*?['\x22](?:label|text)['\x22]:\s*['\x22](.*?)['\x22].*?\}\s*(?:입니다|예요|이에요)\.?$",
+  ).firstMatch(clean);
+  if (jsonChoiceSuccess != null) {
+    final val = jsonChoiceSuccess.group(1)!.trim();
+    return switch (locale) {
+      'en' => 'Correct! It is $val.',
+      'ja' => '正解です！$valです。',
+      'zh' => '正确！是$val。',
+      'km' => 'ត្រឹមត្រូវ! គឺ $val។',
+      'uk' => 'Правильно! Це $val.',
+      _ => clean,
+    };
+  }
+
+  final generalSuccessMatch = RegExp(
+    r'^(?:맞아요|정답이에요|좋아요)[!.]?\s*(.+?)\s*(?:입니다|예요|이에요)\.?$',
+  ).firstMatch(clean);
+  if (generalSuccessMatch != null) {
+    final val = generalSuccessMatch.group(1)!.trim();
+    return switch (locale) {
+      'en' => 'Correct! It is $val.',
+      'ja' => '正解です！$valです。',
+      'zh' => '正确！是$val。',
+      'km' => 'ត្រឹមត្រូវ! គឺ $val។',
+      'uk' => 'Правильно! Це $val.',
+      _ => clean,
+    };
+  }
+
+  return clean;
+}
+
+String _translateChoiceLabel(String label, String locale) {
+  final clean = label.trim();
+  final choiceTranslations = <String, Map<String, String>>{
+    '가분수': {
+      'en': 'Improper fraction',
+      'ja': '仮分数',
+      'zh': '假分数',
+      'km': 'ប្រភាគមិនសុទ្ធ',
+      'uk': 'Неправильний дріб',
+    },
+    '진분수': {
+      'en': 'Proper fraction',
+      'ja': '真分数',
+      'zh': '真分数',
+      'km': 'ប្រភាគសុទ្ធ',
+      'uk': 'Правильний дріб',
+    },
+    '대분수': {
+      'en': 'Mixed number',
+      'ja': '帯分数',
+      'zh': '带分数',
+      'km': 'ចំនួនចម្រុះ',
+      'uk': 'Мішане число',
+    },
+    '참': {
+      'en': 'True',
+      'ja': '正',
+      'zh': '正确',
+      'km': 'ពិត',
+      'uk': 'Правда',
+    },
+    '거짓': {
+      'en': 'False',
+      'ja': '誤',
+      'zh': '错误',
+      'km': 'មិនពិត',
+      'uk': 'Хибність',
+    },
+  };
+
+  if (choiceTranslations.containsKey(clean) &&
+      choiceTranslations[clean]!.containsKey(locale)) {
+    return choiceTranslations[clean]![locale]!;
+  }
+  return clean;
 }
 
 SolvableHint _localizeSolvableHint(SolvableHint hint) {
@@ -908,8 +1803,10 @@ bool _isMultiplicationPlaceValueProblem(ProblemContent content) {
           pieces.contains('곱셈') ||
           pieces.contains('세로셈')) &&
       (pieces.contains('place_value') ||
+          pieces.contains('place value') ||
           pieces.contains('자리값') ||
           pieces.contains('부분곱') ||
+          pieces.contains('shaded') ||
           pieces.contains('색칠') ||
           pieces.contains('어떤 수의 곱'));
 }

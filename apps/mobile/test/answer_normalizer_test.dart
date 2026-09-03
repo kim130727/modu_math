@@ -53,7 +53,7 @@ void main() {
       expect(isSameAnswer('ㄱㄹ, 지름', 'ㄴㄹ, 지름'), isFalse);
     });
 
-    test('matches arithmetic expression against calculated value and formula choices (S3_초등_3_008578)', () {
+    test('matches arithmetic expression against calculated value and formula choices (S3_elem_3_008578)', () {
       expect(isSameAnswer('752 × 3', '752 × 3'), isTrue);
       expect(isSameAnswer('752 * 3', '752 × 3'), isTrue);
       expect(isSameAnswer('752x3', '752 × 3'), isTrue);
@@ -65,7 +65,7 @@ void main() {
       expect(isSameAnswer('2624', '752 × 3'), isFalse);
     });
 
-    test('matches container and bottle comparison labels flexibly (S3_초등_3_008750)', () {
+    test('matches container and bottle comparison labels flexibly (S3_elem_3_008750)', () {
       expect(isSameAnswer('가 병', '가 병'), isTrue);
       expect(isSameAnswer('가', '가 병'), isTrue);
       expect(isSameAnswer('가병', '가 병'), isTrue);

@@ -1,0 +1,78 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008751",
+  "problem_type": "判断型",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "○ または ×",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.bottle_water",
+      "value": {
+        "name": "水筒"
+      }
+    },
+    {
+      "ref": "obj.bottle_milk",
+      "value": {
+        "name": "牛乳瓶"
+      }
+    },
+    {
+      "ref": "obj.speech",
+      "value": {
+        "content": "水筒に水をいっぱい入れてから牛乳瓶に移し替えればいいよ。"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "symbol_judgment"
+  },
+  "method": "判断する",
+  "plan": [
+    "示された説明が高さを比べる方法として正しいか確認します。",
+    "文が比較の目的に合うか判断します。"
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "提示された方法の確認",
+      "value": "水筒に水をいっぱい入れてから牛乳瓶に移し替えればいいよ。"
+    },
+    {
+      "id": "step.2",
+      "expr": "高さの比較方法として適切か判断",
+      "value": "TODO"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "解答記号が○または×か確認",
+      "expected": "○ または ×",
+      "actual": "TODO",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "○",
+      "X"
+    ],
+    "answer_key": [
+      "X"
+    ],
+    "target": {
+      "type": "symbol_judgment",
+      "description": "提示された方法が高さの比較方法として適切か判断する"
+    },
+    "value": "X",
+    "unit": ""
+  }
+}

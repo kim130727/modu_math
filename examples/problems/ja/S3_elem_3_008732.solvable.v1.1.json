@@ -1,0 +1,104 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008732",
+  "problem_type": "分数の分類判断",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "○×記号",
+    "target_ticks": 3,
+    "target_count": 3,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.frac1",
+      "value": {
+        "numerator": 2,
+        "denominator": 8
+      }
+    },
+    {
+      "ref": "obj.frac2",
+      "value": {
+        "numerator": 9,
+        "denominator": 10
+      }
+    },
+    {
+      "ref": "obj.frac3",
+      "value": {
+        "numerator": 4,
+        "denominator": 4
+      }
+    },
+    {
+      "ref": "obj.label1",
+      "value": {
+        "name": "仮分数"
+      }
+    },
+    {
+      "ref": "obj.label2",
+      "value": {
+        "name": "仮分数"
+      }
+    },
+    {
+      "ref": "obj.label3",
+      "value": {
+        "name": "真分数"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "○×記号"
+  },
+  "method": "classification_check",
+  "plan": [
+    "各分数の到着ラベルと画面の分類を対応させます。",
+    "表示された答えの記号をそのまま記録します。"
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "2/8 → 仮分数",
+      "value": "仮分数"
+    },
+    {
+      "id": "step.2",
+      "expr": "9/10 → 仮分数",
+      "value": "仮分数"
+    },
+    {
+      "id": "step.3",
+      "expr": "4/4 → 真分数",
+      "value": "真分数"
+    },
+    {
+      "id": "step.4",
+      "expr": "画面に表示された解答表記の確認",
+      "value": "○, ×, ○"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "表示された解答表記と解説文字列の一致確認",
+      "expected": "○, ×, ○",
+      "actual": "○, ×, ○",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "○×記号",
+      "description": "あみだくじで到達した場所が真か偽かの表示"
+    },
+    "value": "○, ×, ○",
+    "unit": ""
+  }
+}

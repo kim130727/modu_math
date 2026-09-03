@@ -1,0 +1,78 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008751",
+  "problem_type": "Тип судження",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "○ або ×",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.bottle_water",
+      "value": {
+        "name": "Пляшка для води"
+      }
+    },
+    {
+      "ref": "obj.bottle_milk",
+      "value": {
+        "name": "Пляшка для молока"
+      }
+    },
+    {
+      "ref": "obj.speech",
+      "value": {
+        "content": "Наповніть пляшку водою вщерть, потім перелийте її в пляшку для молока."
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "symbol_judgment"
+  },
+  "method": "Визначити",
+  "plan": [
+    "Перевірте, чи є пояснення правильним способом порівняння висоти.",
+    "Визначте, чи відповідає речення меті порівняння."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "Перевірка запропонованого способу",
+      "value": "Наповніть пляшку водою вщерть, потім перелийте її в пляшку для молока."
+    },
+    {
+      "id": "step.2",
+      "expr": "Визначте, чи це правильний спосіб порівняння висоти",
+      "value": "TODO"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "Перевірте, чи є символом відповіді ○ або ×",
+      "expected": "○ або ×",
+      "actual": "TODO",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "○",
+      "X"
+    ],
+    "answer_key": [
+      "X"
+    ],
+    "target": {
+      "type": "symbol_judgment",
+      "description": "Визначте, чи є запропонований спосіб правильним для порівняння висоти"
+    },
+    "value": "X",
+    "unit": ""
+  }
+}

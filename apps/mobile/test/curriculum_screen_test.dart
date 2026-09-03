@@ -43,8 +43,8 @@ void main() {
     // 전체 단원 목록 화면으로 복귀 확인
     expect(find.text('단원 학습'), findsOneWidget);
     expect(find.text('오늘 배울 단원을 골라요'), findsOneWidget);
-    expect(find.text('3학년 1학기'), findsOneWidget);
-    expect(find.text('3학년 2학기'), findsOneWidget);
+    expect(find.text('수와 연산'), findsOneWidget);
+    expect(find.text('도형'), findsOneWidget);
   });
 }
 

@@ -1,0 +1,104 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008732",
+  "problem_type": "分数分类判断",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "○×符号",
+    "target_ticks": 3,
+    "target_count": 3,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.frac1",
+      "value": {
+        "numerator": 2,
+        "denominator": 8
+      }
+    },
+    {
+      "ref": "obj.frac2",
+      "value": {
+        "numerator": 9,
+        "denominator": 10
+      }
+    },
+    {
+      "ref": "obj.frac3",
+      "value": {
+        "numerator": 4,
+        "denominator": 4
+      }
+    },
+    {
+      "ref": "obj.label1",
+      "value": {
+        "name": "假分数"
+      }
+    },
+    {
+      "ref": "obj.label2",
+      "value": {
+        "name": "假分数"
+      }
+    },
+    {
+      "ref": "obj.label3",
+      "value": {
+        "name": "真分数"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "○×符号"
+  },
+  "method": "classification_check",
+  "plan": [
+    "将各分数的终点标签与画面上的分类对应起来。",
+    "原样记录画面上的答案标记。"
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "2/8 → 假分数",
+      "value": "假分数"
+    },
+    {
+      "id": "step.2",
+      "expr": "9/10 → 假分数",
+      "value": "假分数"
+    },
+    {
+      "id": "step.3",
+      "expr": "4/4 → 真分数",
+      "value": "真分数"
+    },
+    {
+      "id": "step.4",
+      "expr": "确认画面显示的答案标记",
+      "value": "○, ×, ○"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "确认显示的答案符号与解析是否一致",
+      "expected": "○, ×, ○",
+      "actual": "○, ×, ○",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "○×符号",
+      "description": "走梯子到达的位置判断为真还是假的标记"
+    },
+    "value": "○, ×, ○",
+    "unit": ""
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "problem_id": "S3_elem_3_008728",
+  "problem_type": "fraction_description_choice",
+  "metadata": {
+    "title": "Choose the person who described the picture correctly",
+    "tags": [],
+    "instruction": "Choose the person who described the picture correctly",
+    "question": "Choose the person who described the picture correctly",
+    "required_layout_ids": [
+      "slot.speech.left",
+      "slot.speech.right",
+      "slot.person.left.body",
+      "slot.person.left.head",
+      "slot.person.left.hair.cap",
+      "slot.person.left.eye.left",
+      "slot.person.left.eye.right",
+      "slot.person.left.smile",
+      "slot.person.left.bow.left",
+      "slot.person.left.bow.right",
+      "slot.person.right.body",
+      "slot.person.right.head",
+      "slot.person.right.hair.cap",
+      "slot.person.right.eye.left",
+      "slot.person.right.eye.right",
+      "slot.person.right.smile",
+      "slot.person.right.tail.left",
+      "slot.person.right.tail.right",
+      "slot.person.right.bow.left",
+      "slot.person.right.bow.right",
+      "slot.inserted.image.1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.picture",
+        "type": "picture_group"
+      },
+      {
+        "id": "obj.colored_part",
+        "type": "part",
+        "property": "Shaded part"
+      },
+      {
+        "id": "obj.uncolored_part",
+        "type": "part",
+        "property": "Unshaded part"
+      },
+      {
+        "id": "obj.fraction_colored",
+        "type": "fraction",
+        "value": "3/7"
+      },
+      {
+        "id": "obj.fraction_uncolored",
+        "type": "fraction",
+        "value": "4/7"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.picture",
+          "obj.colored_part",
+          "obj.uncolored_part"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.describe_colored",
+          "rel.describe_uncolored"
+        ]
+      },
+      "plan": {
+        "method": "fraction_description_matching",
+        "description": "Check if the statement explaining shading matches the fraction."
+      },
+      "execute": {
+        "expected_operations": [
+          "match_description_to_fraction",
+          "compare_statement_with_picture"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "picture_statement_consistency"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "person_selection",
+      "description": "Person who described the picture correctly"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

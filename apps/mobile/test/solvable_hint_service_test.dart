@@ -220,7 +220,7 @@ void main() {
 
 const _englishDiagnosticQuestionContent = ProblemContent(
   summary: ProblemSummary(
-    id: 'S3_초등_3_008542',
+    id: 'S3_elem_3_008542',
     grade: 3,
     subject: 'math',
     unit: 'multiplication',
@@ -396,7 +396,7 @@ const _expandedAdditionContent = ProblemContent(
 );
 
 const _multiplicationPlaceValueSummary = ProblemSummary(
-  id: 'S3_초등_3_008559',
+  id: 'S3_elem_3_008559',
   grade: 3,
   subject: 'math',
   unit: 'multiplication',
@@ -431,7 +431,7 @@ const _multiplicationPlaceValueContent = ProblemContent(
 
 const _diagnosticQuestionContent = ProblemContent(
   summary: ProblemSummary(
-    id: 'S3_초등_3_008636',
+    id: 'S3_elem_3_008636',
     grade: 3,
     subject: 'math',
     unit: 'geometry',

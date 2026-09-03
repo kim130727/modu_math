@@ -1,0 +1,62 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008713",
+  "problem_type": "sequence_ordering",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "ជម្រើសត្រឹមត្រូវ",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.step.g1",
+      "value": "ក"
+    },
+    {
+      "ref": "obj.step.g2",
+      "value": "ខ"
+    },
+    {
+      "ref": "obj.step.g3",
+      "value": "គ"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_number"
+  },
+  "method": "sequence_matching",
+  "plan": [
+    "ធ្វើតាមការពន្យល់ ដើម្បីពិនិត្យលំដាប់ជំហានត្រឹមត្រូវ។",
+    "រកជម្រើសដែលត្រូវនឹងលំដាប់នោះ។"
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "ខ → គ → ក",
+      "value": 2
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "ជម្រើស ② = ខ, គ, ក",
+      "expected": 2,
+      "actual": 2,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_number",
+      "description": "ជម្រើសត្រឹមត្រូវសម្រាប់លំដាប់គូររង្វង់"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

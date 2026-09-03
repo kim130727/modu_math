@@ -72,6 +72,8 @@ type ToolName =
 interface KonvaToolbarProps {
   hasSelection: boolean;
   hasAnswerSlotCandidate: boolean;
+  answerReviewMode: boolean;
+  onAnswerReviewModeChange: (enabled: boolean) => void;
   onInsertShape: (preset: ShapePreset) => void;
   onOpenAvatarMaker: () => void;
   onAddMath: () => void;
@@ -482,6 +484,24 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
       />
       <IconButton label="Delete selected" icon="delete" onClick={props.onDeleteSelected} disabled={!props.hasSelection} />
       <span className="toolbar-spacer" />
+      <div className="answer-review-toggle" role="group" aria-label="정답 표시 모드">
+        <button
+          type="button"
+          className={!props.answerReviewMode ? "active" : ""}
+          aria-pressed={!props.answerReviewMode}
+          onClick={() => props.onAnswerReviewModeChange(false)}
+        >
+          학생 화면
+        </button>
+        <button
+          type="button"
+          className={props.answerReviewMode ? "active review" : ""}
+          aria-pressed={props.answerReviewMode}
+          onClick={() => props.onAnswerReviewModeChange(true)}
+        >
+          정답 검수
+        </button>
+      </div>
       <IconButton label="Refresh JSON" icon="refresh" onClick={props.onRefreshJson} />
       <IconButton label="Save DSL" icon="save" onClick={props.onSave} primary />
       <IconButton label="Save and Build" icon="saveBuild" onClick={props.onSaveAndBuild} primary />

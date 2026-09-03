@@ -1,0 +1,82 @@
+{
+  "problem_id": "S3_elem_3_008751",
+  "problem_type": "判断型",
+  "metadata": {
+    "title": "水筒と牛乳びんの高さの比較",
+    "tags": [],
+    "instruction": "高さの比べ方が正しいか判断してください。",
+    "question": "水筒と牛乳びんの高さを比べます。2本の高さを比べる方法が正しければ○、正しくなければ×を選んでください。",
+    "required_layout_ids": [
+      "slot.inserted.image.1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.bottle_water",
+        "type": "container",
+        "name": "水筒"
+      },
+      {
+        "id": "obj.bottle_milk",
+        "type": "container",
+        "name": "牛乳びん"
+      },
+      {
+        "id": "obj.speech",
+        "type": "statement",
+        "content": "水筒を水でいっぱいにしてから、牛乳びんに移し替えればいいよ。"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.bottle_water",
+          "obj.bottle_milk",
+          "obj.speech"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_height",
+          "rel.statement_about_method"
+        ]
+      },
+      "plan": {
+        "method": "判断する",
+        "description": "提示された方法が瓶の高さを比較するのに適切か確認します。"
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_statement_with_goal",
+          "judge_method_validity"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "statement_matches_target",
+          "answer_symbol_consistency"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "○",
+      "X"
+    ],
+    "answer_key": [
+      "X"
+    ],
+    "target": {
+      "type": "symbol_judgment",
+      "description": "提示された方法が高さの比較方法として適切か判断する"
+    },
+    "value": "X",
+    "unit": ""
+  }
+}

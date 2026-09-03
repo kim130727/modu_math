@@ -1,0 +1,78 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008751",
+  "problem_type": "ប្រភេទការវិនិច្ឆ័យ",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "○ ឬ ×",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.bottle_water",
+      "value": {
+        "name": "ដបទឹក"
+      }
+    },
+    {
+      "ref": "obj.bottle_milk",
+      "value": {
+        "name": "ដបទូកដោះគោ"
+      }
+    },
+    {
+      "ref": "obj.speech",
+      "value": {
+        "content": "ចាក់ទឹកពេញដបទឹក រួចចាក់ចូលក្នុងដបទូកដោះគោ។"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "symbol_judgment"
+  },
+  "method": "វិនិច្ឆ័យ",
+  "plan": [
+    "ពិនិត្យថាការពន្យល់ដែលបានផ្តល់ជាវិធីប្រៀបធៀបកម្ពស់ត្រឹមត្រូវឬទេ។",
+    "វិនិច្ឆ័យថាប្រយោគសមនឹងគោលបំណងនៃការប្រៀបធៀបឬទេ។"
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "ពិនិត្យវិធីដែលបានស្នើ",
+      "value": "ចាក់ទឹកពេញដបទឹក រួចចាក់ចូលក្នុងដបទូកដោះគោ។"
+    },
+    {
+      "id": "step.2",
+      "expr": "វិនិច្ឆ័យថាតើវាជាវិធីប្រៀបធៀបកម្ពស់ត្រឹមត្រូវឬទេ",
+      "value": "TODO"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "ពិនិត្យមើលថាតើសញ្ញាចម្លើយគឺ ○ ឬ ×",
+      "expected": "○ ឬ ×",
+      "actual": "TODO",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "○",
+      "X"
+    ],
+    "answer_key": [
+      "X"
+    ],
+    "target": {
+      "type": "symbol_judgment",
+      "description": "វិនិច្ឆ័យថាតើវិធីដែលបានស្នើត្រឹមត្រូវសម្រាប់ការប្រៀបធៀបកម្ពស់ឬទេ"
+    },
+    "value": "X",
+    "unit": ""
+  }
+}

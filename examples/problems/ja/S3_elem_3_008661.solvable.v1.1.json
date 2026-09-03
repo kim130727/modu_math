@@ -1,0 +1,87 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008661",
+  "problem_type": "geometry_segment_comparison",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "最も長い線分",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.segment.gn",
+      "value": {
+        "label": "線分アイ"
+      }
+    },
+    {
+      "ref": "obj.segment.dr",
+      "value": {
+        "label": "線分ウエ"
+      }
+    },
+    {
+      "ref": "obj.segment.mb",
+      "value": {
+        "label": "線分オカ"
+      }
+    },
+    {
+      "ref": "obj.segment.ss",
+      "value": {
+        "label": "線分キケ"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_selection"
+  },
+  "method": "visual_comparison",
+  "plan": [
+    "円の中の4本の線分を比べます。",
+    "中心を通る線分を探します。",
+    "その線分に当たる番号を選びます。"
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "中心を通る線分の確認",
+      "value": "線分ウエ"
+    },
+    {
+      "id": "step.2",
+      "expr": "選択肢と対応",
+      "value": "2. 線分ウエ"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "解説文と選択肢の一致確認",
+      "expected": "2. 線分ウエ",
+      "actual": "2. 線分ウエ",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "1. 線分アイ",
+      "2. 線分ウエ",
+      "3. 線分オカ",
+      "4. 線分キケ"
+    ],
+    "answer_key": [
+      "2. 線分ウエ"
+    ],
+    "target": {
+      "type": "choice_selection",
+      "description": "最も長い線分"
+    },
+    "value": "2. 線分ウエ",
+    "unit": ""
+  }
+}

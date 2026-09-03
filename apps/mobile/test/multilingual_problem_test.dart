@@ -6,16 +6,16 @@ void main() {
 
   const locales = ['ko', 'en', 'zh', 'ja', 'km', 'uk'];
   const expectedProblemIds = [
-    'S3_초등_3_008540',
-    'S3_초등_3_008541',
-    'S3_초등_3_008631',
-    'S3_초등_3_008661',
-    'S3_초등_3_008664',
-    'S3_초등_3_008713',
-    'S3_초등_3_008728',
-    'S3_초등_3_008732',
-    'S3_초등_3_008745',
-    'S3_초등_3_008751',
+    'S3_elem_3_008540',
+    'S3_elem_3_008541',
+    'S3_elem_3_008631',
+    'S3_elem_3_008661',
+    'S3_elem_3_008664',
+    'S3_elem_3_008713',
+    'S3_elem_3_008728',
+    'S3_elem_3_008732',
+    'S3_elem_3_008745',
+    'S3_elem_3_008751',
   ];
 
   group('Multilingual 10 MVP Problems', () {
@@ -51,7 +51,7 @@ void main() {
       repository.activeProblemLocale = 'ko';
       var manifest = await repository.loadManifest();
       expect(manifest.problems.length, equals(10));
-      var summary = manifest.problems.firstWhere((p) => p.id == 'S3_초등_3_008540');
+      var summary = manifest.problems.firstWhere((p) => p.id == 'S3_elem_3_008540');
       var content = await repository.loadProblem(summary);
       expect(content.semantic['metadata']['title'], isNotEmpty);
 
@@ -59,7 +59,7 @@ void main() {
       repository.activeProblemLocale = 'en';
       manifest = await repository.loadManifest();
       expect(manifest.problems.length, equals(10));
-      summary = manifest.problems.firstWhere((p) => p.id == 'S3_초등_3_008540');
+      summary = manifest.problems.firstWhere((p) => p.id == 'S3_elem_3_008540');
       content = await repository.loadProblem(summary);
       expect(content.semantic['metadata']['title'], isNotEmpty);
 
@@ -67,7 +67,7 @@ void main() {
       repository.activeProblemLocale = 'ja';
       manifest = await repository.loadManifest();
       expect(manifest.problems.length, equals(10));
-      summary = manifest.problems.firstWhere((p) => p.id == 'S3_초등_3_008540');
+      summary = manifest.problems.firstWhere((p) => p.id == 'S3_elem_3_008540');
       content = await repository.loadProblem(summary);
       expect(content.semantic['metadata']['title'], isNotEmpty);
 
@@ -75,7 +75,7 @@ void main() {
       repository.activeProblemLocale = 'zh';
       manifest = await repository.loadManifest();
       expect(manifest.problems.length, equals(10));
-      summary = manifest.problems.firstWhere((p) => p.id == 'S3_초등_3_008540');
+      summary = manifest.problems.firstWhere((p) => p.id == 'S3_elem_3_008540');
       content = await repository.loadProblem(summary);
       expect(content.semantic['metadata']['title'], isNotEmpty);
 
@@ -83,7 +83,7 @@ void main() {
       repository.activeProblemLocale = 'km';
       manifest = await repository.loadManifest();
       expect(manifest.problems.length, equals(10));
-      summary = manifest.problems.firstWhere((p) => p.id == 'S3_초등_3_008540');
+      summary = manifest.problems.firstWhere((p) => p.id == 'S3_elem_3_008540');
       content = await repository.loadProblem(summary);
       expect(content.semantic['metadata']['title'], isNotEmpty);
 
@@ -91,7 +91,7 @@ void main() {
       repository.activeProblemLocale = 'uk';
       manifest = await repository.loadManifest();
       expect(manifest.problems.length, equals(10));
-      summary = manifest.problems.firstWhere((p) => p.id == 'S3_초등_3_008540');
+      summary = manifest.problems.firstWhere((p) => p.id == 'S3_elem_3_008540');
       content = await repository.loadProblem(summary);
       expect(content.semantic['metadata']['title'], isNotEmpty);
     });

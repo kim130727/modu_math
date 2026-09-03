@@ -1,0 +1,67 @@
+{
+  "problem_id": "S3_elem_3_008541",
+  "problem_type": "multiple_choice_ordering",
+  "metadata": {
+    "title": "Виберіть варіант, де результати розташовані від найбільшого до найменшого",
+    "tags": [],
+    "instruction": "Виберіть варіант, де результати розташовані від найбільшого до найменшого",
+    "question": "Виберіть варіант, де результати розташовані від найбільшого до найменшого",
+    "required_layout_ids": [
+      "slot.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.a",
+        "type": "expression",
+        "label": "А",
+        "operation": "397 × 6"
+      },
+      {
+        "id": "obj.b",
+        "type": "expression",
+        "label": "Б",
+        "operation": "549 × 4"
+      },
+      {
+        "id": "obj.c",
+        "type": "expression",
+        "label": "В",
+        "operation": "456 × 5"
+      },
+      {
+        "id": "obj.option2",
+        "type": "choice",
+        "label": "②",
+        "sequence": [
+          "А",
+          "В",
+          "Б"
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.order",
+        "type": "descending_order",
+        "from_id": "obj.a",
+        "to_id": "obj.b"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_number",
+      "description": "Номер варіанта з розташуванням результатів від найбільшого до найменшого"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

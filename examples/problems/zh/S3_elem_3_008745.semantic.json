@@ -1,0 +1,108 @@
+{
+  "problem_id": "S3_elem_3_008745",
+  "problem_type": "比较",
+  "metadata": {
+    "title": "比较容量",
+    "tags": [],
+    "question": "比较甲、乙水瓶的容量。",
+    "required_layout_ids": [
+      "slot.inserted.image.1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "请选择正确的词语。"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.bottle.ga",
+        "type": "水瓶",
+        "label": "甲水瓶"
+      },
+      {
+        "id": "obj.bottle.na",
+        "type": "水瓶",
+        "label": "乙水瓶"
+      },
+      {
+        "id": "obj.container.left",
+        "type": "容器",
+        "label": "左边的容器",
+        "same_shape_as": "obj.container.right",
+        "same_size_as": "obj.container.right"
+      },
+      {
+        "id": "obj.container.right",
+        "type": "容器",
+        "label": "右边的容器",
+        "same_shape_as": "obj.container.left",
+        "same_size_as": "obj.container.left"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.bottle.ga",
+          "obj.bottle.na",
+          "obj.container.left",
+          "obj.container.right"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare.height",
+          "rel.compare.capacity"
+        ]
+      },
+      "plan": {
+        "method": "same_container_height_comparison",
+        "description": "通过比较倒入相同形状和大小容器中的水面高度来判断容量大小。"
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_water_heights",
+          "infer_capacity_relation"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "same_container_rule_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "甲水瓶",
+      "乙水瓶"
+    ],
+    "choice_groups": [
+      {
+        "label": "第(1)题",
+        "choices": [
+          "甲水瓶",
+          "乙水瓶"
+        ]
+      },
+      {
+        "label": "第(2)题",
+        "choices": [
+          "甲水瓶",
+          "乙水瓶"
+        ]
+      }
+    ],
+    "answer_key": [
+      "乙水瓶",
+      "乙水瓶"
+    ],
+    "target": {
+      "type": "multiple_choice_group",
+      "description": "倒入的水位更高且容量更大"
+    },
+    "value": "乙水瓶, 乙水瓶",
+    "unit": ""
+  }
+}

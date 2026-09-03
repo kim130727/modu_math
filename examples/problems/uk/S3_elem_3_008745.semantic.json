@@ -1,0 +1,108 @@
+{
+  "problem_id": "S3_elem_3_008745",
+  "problem_type": "Порівняння",
+  "metadata": {
+    "title": "Порівняння місткості",
+    "tags": [],
+    "question": "Порівняйте місткість пляшок А і Б.",
+    "required_layout_ids": [
+      "slot.inserted.image.1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "Виберіть правильні слова."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.bottle.ga",
+        "type": "Пляшка для води",
+        "label": "Пляшка А"
+      },
+      {
+        "id": "obj.bottle.na",
+        "type": "Пляшка для води",
+        "label": "Пляшка Б"
+      },
+      {
+        "id": "obj.container.left",
+        "type": "Посудина",
+        "label": "Ліва посудина",
+        "same_shape_as": "obj.container.right",
+        "same_size_as": "obj.container.right"
+      },
+      {
+        "id": "obj.container.right",
+        "type": "Посудина",
+        "label": "Права посудина",
+        "same_shape_as": "obj.container.left",
+        "same_size_as": "obj.container.left"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.bottle.ga",
+          "obj.bottle.na",
+          "obj.container.left",
+          "obj.container.right"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare.height",
+          "rel.compare.capacity"
+        ]
+      },
+      "plan": {
+        "method": "same_container_height_comparison",
+        "description": "Порівняйте рівень води, перелитої в посудини однакової форми і розміру, щоб визначити місткість."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_water_heights",
+          "infer_capacity_relation"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "same_container_rule_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "Пляшка А",
+      "Пляшка Б"
+    ],
+    "choice_groups": [
+      {
+        "label": "Завдання (1)",
+        "choices": [
+          "Пляшка А",
+          "Пляшка Б"
+        ]
+      },
+      {
+        "label": "Завдання (2)",
+        "choices": [
+          "Пляшка А",
+          "Пляшка Б"
+        ]
+      }
+    ],
+    "answer_key": [
+      "Пляшка Б",
+      "Пляшка Б"
+    ],
+    "target": {
+      "type": "multiple_choice_group",
+      "description": "Вищий рівень перелитої води та більша місткість"
+    },
+    "value": "Пляшка Б, Пляшка Б",
+    "unit": ""
+  }
+}

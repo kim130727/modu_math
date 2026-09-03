@@ -1,0 +1,87 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008661",
+  "problem_type": "geometry_segment_comparison",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "Найдовший відрізок",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.segment.gn",
+      "value": {
+        "label": "Відрізок АБ"
+      }
+    },
+    {
+      "ref": "obj.segment.dr",
+      "value": {
+        "label": "Відрізок ВГ"
+      }
+    },
+    {
+      "ref": "obj.segment.mb",
+      "value": {
+        "label": "Відрізок ҐД"
+      }
+    },
+    {
+      "ref": "obj.segment.ss",
+      "value": {
+        "label": "Відрізок ЕЖ"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_selection"
+  },
+  "method": "visual_comparison",
+  "plan": [
+    "Порівняйте чотири відрізки всередині кола.",
+    "Знайдіть відрізок, що проходить через центр.",
+    "Виберіть номер, що відповідає цьому відрізку."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "Перевірка відрізка, що проходить через центр",
+      "value": "Відрізок ВГ"
+    },
+    {
+      "id": "step.2",
+      "expr": "Зіставлення з варіантами",
+      "value": "2. Відрізок ВГ"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "Перевірка відповідності пояснення варіанту",
+      "expected": "2. Відрізок ВГ",
+      "actual": "2. Відрізок ВГ",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "1. Відрізок АБ",
+      "2. Відрізок ВГ",
+      "3. Відрізок ҐД",
+      "4. Відрізок ЕЖ"
+    ],
+    "answer_key": [
+      "2. Відрізок ВГ"
+    ],
+    "target": {
+      "type": "choice_selection",
+      "description": "Найдовший відрізок"
+    },
+    "value": "2. Відрізок ВГ",
+    "unit": ""
+  }
+}

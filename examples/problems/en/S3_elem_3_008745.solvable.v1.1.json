@@ -1,0 +1,96 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008745",
+  "problem_type": "Comparison",
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "Bottle A, Bottle B",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.bottle.ga",
+      "value": {
+        "label": "Bottle A"
+      }
+    },
+    {
+      "ref": "obj.bottle.na",
+      "value": {
+        "label": "Bottle B"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "multiple_choice_group"
+  },
+  "method": "same_container_rule_check",
+  "plan": [
+    "Compare the heights of the water poured into containers of the same shape and size.",
+    "Conclude that the side with the higher water level has the greater capacity."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "The water level in the right container is higher",
+      "value": "Bottle B"
+    },
+    {
+      "id": "step.2",
+      "expr": "In identical containers, the higher water level indicates greater capacity.",
+      "value": "Bottle B"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "Check comparison in identical shape and size containers",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "Check if selected answer matches the visual height comparison",
+      "expected": "Bottle B",
+      "actual": "Bottle B",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "Bottle A",
+      "Bottle B"
+    ],
+    "choice_groups": [
+      {
+        "label": "Question (1)",
+        "choices": [
+          "Bottle A",
+          "Bottle B"
+        ]
+      },
+      {
+        "label": "Question (2)",
+        "choices": [
+          "Bottle A",
+          "Bottle B"
+        ]
+      }
+    ],
+    "answer_key": [
+      "Bottle B",
+      "Bottle B"
+    ],
+    "target": {
+      "type": "multiple_choice_group",
+      "description": "Higher water level and greater capacity"
+    },
+    "value": "Bottle B, Bottle B",
+    "unit": ""
+  }
+}

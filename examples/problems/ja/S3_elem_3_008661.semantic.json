@@ -1,0 +1,105 @@
+{
+  "problem_id": "S3_elem_3_008661",
+  "problem_type": "geometry_segment_comparison",
+  "metadata": {
+    "title": "最も長い線分はどれですか。",
+    "tags": [],
+    "question": "最も長い線分はどれですか。",
+    "required_layout_ids": [
+      "slot.circle.outer",
+      "slot.circle.center",
+      "slot.line.top",
+      "slot.line.middle1",
+      "slot.line.middle2",
+      "slot.line.bottom",
+      "slot.dot.center"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "最も長い線分はどれですか。"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.segment.gn",
+        "type": "segment",
+        "label": "アイ"
+      },
+      {
+        "id": "obj.segment.dr",
+        "type": "segment",
+        "label": "ウエ"
+      },
+      {
+        "id": "obj.segment.mb",
+        "type": "segment",
+        "label": "オカ"
+      },
+      {
+        "id": "obj.segment.ss",
+        "type": "segment",
+        "label": "キキ"
+      },
+      {
+        "id": "obj.center_mark",
+        "type": "mark",
+        "description": "小さな円/点の表示"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.segment.gn",
+          "obj.segment.dr",
+          "obj.segment.mb",
+          "obj.segment.ss"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.dr_passes_center",
+          "rel.max_length"
+        ]
+      },
+      "plan": {
+        "method": "visual_comparison",
+        "description": "円の中の線分のうち中心を通る線分を探し、選択肢から選びます。"
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_center_passing_segment",
+          "match_with_choice"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "compare_with_printed_explanation"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "1. 線分アイ",
+      "2. 線分ウエ",
+      "3. 線分オカ",
+      "4. 線分キケ"
+    ],
+    "answer_key": [
+      "2. 線分ウエ"
+    ],
+    "target": {
+      "type": "choice_selection",
+      "description": "最も長い線分"
+    },
+    "value": "2. 線分ウエ",
+    "unit": ""
+  }
+}

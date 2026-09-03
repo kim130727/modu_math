@@ -1,0 +1,83 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008664",
+  "problem_type": "choice_selection",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "戊",
+    "target_ticks": 5,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.hole_positions",
+      "value": {
+        "count": 5,
+        "labels": [
+          "甲",
+          "乙",
+          "丙",
+          "丁",
+          "戊"
+        ]
+      }
+    },
+    {
+      "ref": "obj.tool",
+      "value": {
+        "type": "center_tool"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_label"
+  },
+  "method": "compare_hole_distances",
+  "plan": [
+    "比较各孔的位置。",
+    "找出离图钉和铅笔芯最远的孔。",
+    "将与该孔对应的符号作为答案。"
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "从左到右比较孔的位置。",
+      "value": "甲, 乙, 丙, 丁, 戊"
+    },
+    {
+      "id": "step.2",
+      "expr": "选择距离最远的孔。",
+      "value": "戊"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "确认最远位置是否为最后一个孔。",
+      "expected": "戊",
+      "actual": "戊",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "甲",
+      "乙",
+      "丙",
+      "丁",
+      "戊"
+    ],
+    "answer_key": [
+      "戊"
+    ],
+    "target": {
+      "type": "choice_label",
+      "description": "能画出最大圆的孔代号"
+    },
+    "value": "戊",
+    "unit": ""
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "problem_id": "S3_elem_3_008661",
+  "problem_type": "geometry_segment_comparison",
+  "metadata": {
+    "title": "哪条线段最长？",
+    "tags": [],
+    "question": "哪条线段最长？",
+    "required_layout_ids": [
+      "slot.circle.outer",
+      "slot.circle.center",
+      "slot.line.top",
+      "slot.line.middle1",
+      "slot.line.middle2",
+      "slot.line.bottom",
+      "slot.dot.center"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "哪条线段最长？"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.segment.gn",
+        "type": "segment",
+        "label": "甲乙"
+      },
+      {
+        "id": "obj.segment.dr",
+        "type": "segment",
+        "label": "丙丁"
+      },
+      {
+        "id": "obj.segment.mb",
+        "type": "segment",
+        "label": "戊己"
+      },
+      {
+        "id": "obj.segment.ss",
+        "type": "segment",
+        "label": "庚庚"
+      },
+      {
+        "id": "obj.center_mark",
+        "type": "mark",
+        "description": "小圆/点标记"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.segment.gn",
+          "obj.segment.dr",
+          "obj.segment.mb",
+          "obj.segment.ss"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.dr_passes_center",
+          "rel.max_length"
+        ]
+      },
+      "plan": {
+        "method": "visual_comparison",
+        "description": "找出圆内通过圆心的线段，并从选项中选择。"
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_center_passing_segment",
+          "match_with_choice"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "compare_with_printed_explanation"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "1. 线段甲乙",
+      "2. 线段丙丁",
+      "3. 线段戊己",
+      "4. 线段庚壬"
+    ],
+    "answer_key": [
+      "2. 线段丙丁"
+    ],
+    "target": {
+      "type": "choice_selection",
+      "description": "最长线段"
+    },
+    "value": "2. 线段丙丁",
+    "unit": ""
+  }
+}

@@ -98,7 +98,7 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
           future: _manifestFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState != ConnectionState.done) {
-              return const OnsemLoadingIndicator(label: '단원을 준비하고 있어요');
+              return const OnsemLoadingIndicator(labelKey: 'curriculum.loading');
             }
             if (snapshot.hasError) {
               return Center(
@@ -171,7 +171,10 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
   ) {
     for (final group in groups) {
       for (final unit in group.units) {
-        if (unit.name == unitName) {
+        if (unit.name == unitName ||
+            unit.topic == unitName ||
+            unitName.contains(unit.topic) ||
+            unit.name.contains(unitName)) {
           return _UnitWithGroup(unit: unit, group: group);
         }
       }
@@ -212,10 +215,7 @@ class _SingleUnitView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final strings = AppStrings.of(context);
-    final groupTitle = strings.t('curriculum.groupTitle', {
-      'grade': group.grade,
-      'semester': strings.semester(group.semester),
-    });
+    final groupTitle = strings.domainTitle(group.domain);
 
     return ListView(
       padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
@@ -530,10 +530,7 @@ class _CurriculumSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          strings.t('curriculum.groupTitle', {
-            'grade': group.grade,
-            'semester': strings.semester(group.semester),
-          }),
+          strings.domainTitle(group.domain),
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 12),
@@ -625,7 +622,7 @@ class _UnitTile extends StatelessWidget {
                   OutlinedButton.icon(
                     onPressed: onOpenUnit,
                     icon: const Icon(Icons.play_arrow_rounded, size: 18),
-                    label: const Text('전체 학습'),
+                    label: Text(strings.t('curriculum.startWholeUnitShort')),
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 12, vertical: 8),
@@ -675,25 +672,35 @@ class _CurriculumGroup {
   const _CurriculumGroup({
     required this.grade,
     required this.semester,
+    required this.domain,
     required this.units,
   });
 
   final int grade;
   final String semester;
+  final String domain;
   final List<_CurriculumUnit> units;
 
   static List<_CurriculumGroup> fromProblems(List<ProblemSummary> problems) {
     const unknownSemester = '__unknown_semester__';
     final unitBuckets = <String, List<ProblemSummary>>{};
     for (final problem in problems) {
-      unitBuckets.putIfAbsent(problem.unit, () => []).add(problem);
+      unitBuckets.putIfAbsent(problem.unitTopic, () => []).add(problem);
     }
 
     final groupedUnits = <String, List<_CurriculumUnit>>{};
+    final groupDomains = <String, String>{};
+    final groupSemesters = <String, String>{};
+    final groupGrades = <String, int>{};
+
     for (final entry in unitBuckets.entries) {
       final sample = entry.value.first;
-      final semester = sample.semester.isNotEmpty ? sample.semester : unknownSemester;
-      final groupKey = '${sample.grade}|$semester';
+      final domain = sample.domain;
+      final groupKey = domain;
+      groupDomains[groupKey] = domain;
+      groupSemesters[groupKey] =
+          sample.semester.isNotEmpty ? sample.semester : unknownSemester;
+      groupGrades[groupKey] = sample.grade;
 
       final subBuckets = <String, int>{};
       for (final p in entry.value) {
@@ -714,22 +721,34 @@ class _CurriculumGroup {
           );
     }
 
+    const domainOrder = [
+      '수와 연산',
+      '도형',
+      '측정',
+      '자료와 가능성',
+      '수학 개념',
+    ];
+
     final groups = groupedUnits.entries.map((entry) {
-      final parts = entry.key.split('|');
+      final domain = entry.key;
       final units = entry.value
         ..sort((a, b) {
           final byNumber = a.number.compareTo(b.number);
           return byNumber == 0 ? a.name.compareTo(b.name) : byNumber;
         });
       return _CurriculumGroup(
-        grade: int.tryParse(parts.first) ?? 0,
-        semester: parts.length > 1 ? parts[1] : unknownSemester,
+        grade: groupGrades[domain] ?? 0,
+        semester: groupSemesters[domain] ?? unknownSemester,
+        domain: domain,
         units: units,
       );
     }).toList()
       ..sort((a, b) {
-        final byGrade = a.grade.compareTo(b.grade);
-        return byGrade == 0 ? a.semester.compareTo(b.semester) : byGrade;
+        final aIdx = domainOrder.indexOf(a.domain);
+        final bIdx = domainOrder.indexOf(b.domain);
+        final orderA = aIdx >= 0 ? aIdx : 999;
+        final orderB = bIdx >= 0 ? bIdx : 999;
+        return orderA.compareTo(orderB);
       });
 
     return groups;

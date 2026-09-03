@@ -184,15 +184,17 @@ class _AnswerPanelState extends State<AnswerPanel> {
     if (!hasVisual) {
       titleText = widget.content.prompt;
     } else if (choiceGroups.isNotEmpty) {
-      titleText = '각 항목에 알맞은 정답을 선택하세요';
+      titleText = strings.t('answer.promptChoiceGroups');
     } else if (choices.isNotEmpty) {
-      titleText = allowsMultipleChoices ? '알맞은 정답을 모두 선택하세요' : '알맞은 정답을 선택하세요';
+      titleText = allowsMultipleChoices
+          ? strings.t('answer.promptMultipleChoices')
+          : strings.t('answer.promptSingleChoice');
     } else if (hasRendererAnswerInputs) {
-      titleText = '문제의 빈칸에 정답을 입력하세요';
+      titleText = strings.t('answer.promptBlanks');
     } else if (widget.content.multiAnswerFields.isNotEmpty) {
-      titleText = '각 물음에 알맞은 정답을 입력하세요';
+      titleText = strings.t('answer.promptMultiAnswer');
     } else {
-      titleText = '정답을 입력하세요';
+      titleText = strings.t('answer.promptDefault');
     }
 
     final targetUnit = _targetUnit(widget.content);
@@ -311,9 +313,9 @@ class _AnswerPanelState extends State<AnswerPanel> {
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(color: const Color(0xFFD9DFFF)),
                   ),
-                  child: const Row(
+                  child: Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.touch_app_outlined,
                         color: Color(0xFF5C6AC4),
                         size: 21,
@@ -321,8 +323,8 @@ class _AnswerPanelState extends State<AnswerPanel> {
                       SizedBox(width: 10),
                       Expanded(
                         child: Text(
-                          '왼쪽 문제의 빈칸을 순서대로 입력한 뒤 정답을 확인하세요.',
-                          style: TextStyle(
+                          strings.t('answer.checkAllBlanks'),
+                          style: const TextStyle(
                             color: Color(0xFF4B5563),
                             fontSize: 15,
                             height: 1.4,
@@ -391,7 +393,7 @@ class _AnswerPanelState extends State<AnswerPanel> {
                             : Icons.dialpad_rounded,
                         color: const Color(0xFF5C6AC4),
                       ),
-                      tooltip: '수학 키패드',
+                      tooltip: strings.t('answer.keypadTooltip'),
                       onPressed: () =>
                           setState(() => _showKeypad = !_showKeypad),
                     ),

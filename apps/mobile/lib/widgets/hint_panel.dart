@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_strings.dart';
 import '../services/solvable_hint_service.dart';
 
 class HintPanel extends StatefulWidget {
@@ -58,8 +59,9 @@ class _HintPanelState extends State<HintPanel> {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     final colorScheme = Theme.of(context).colorScheme;
-    final groups = _hintGroups(widget.hints);
+    final groups = _hintGroups(widget.hints, strings.t('curriculum.startWholeUnitShort'));
     final hasSubproblemTabs = groups.length > 1;
     final activeGroup = groups.isEmpty
         ? null
@@ -81,6 +83,10 @@ class _HintPanelState extends State<HintPanel> {
 
     return Card(
       margin: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: const BorderSide(color: Color(0xFFE5E7EB)),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(18),
         child: Column(
@@ -91,7 +97,7 @@ class _HintPanelState extends State<HintPanel> {
                 Icon(Icons.lightbulb_outline, color: colorScheme.primary),
                 const SizedBox(width: 8),
                 Text(
-                  '단계별 힌트',
+                  strings.t('hint.title'),
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w800,
                       ),
@@ -109,15 +115,17 @@ class _HintPanelState extends State<HintPanel> {
             ],
             FilledButton.icon(
               onPressed: canRevealMore
-                  ? () => _revealNext(activeGroup)
+                  ? () => _revealNext(activeGroup!)
                   : null,
               icon: const Icon(Icons.visibility_outlined),
-              label: Text(canRevealMore ? '힌트 보기' : '모든 힌트를 봤어요'),
+              label: Text(canRevealMore
+                  ? strings.t('hint.showHint')
+                  : strings.t('hint.allRevealed')),
             ),
             if (visibleHints.isEmpty) ...[
               const SizedBox(height: 12),
               Text(
-                '막히면 힌트를 한 단계씩 열어 보세요.',
+                strings.t('hint.intro'),
                 style: TextStyle(color: colorScheme.onSurfaceVariant),
               ),
             ] else ...[
@@ -256,7 +264,7 @@ class _SubproblemTabs extends StatelessWidget {
   }
 }
 
-List<_HintGroup> _hintGroups(List<SolvableHint> hints) {
+List<_HintGroup> _hintGroups(List<SolvableHint> hints, [String allLabel = '전체']) {
   final grouped = <String, List<SolvableHint>>{};
   for (final hint in hints) {
     final key = hint.groupKey ?? _groupKeyForTitle(hint.title);
@@ -266,7 +274,7 @@ List<_HintGroup> _hintGroups(List<SolvableHint> hints) {
       .map(
         (entry) => _HintGroup(
           key: entry.key,
-          label: entry.key == 'all' ? '전체' : '(${entry.key})',
+          label: entry.key == 'all' ? allLabel : '(${entry.key})',
           hints: entry.value,
         ),
       )
@@ -315,6 +323,7 @@ class _MiniHintProblem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
     final colorScheme = Theme.of(context).colorScheme;
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -350,10 +359,10 @@ class _MiniHintProblem extends StatelessWidget {
                   Expanded(
                     child: TextField(
                       controller: controller,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         isDense: true,
-                        border: OutlineInputBorder(),
-                        labelText: '작은 답',
+                        border: const OutlineInputBorder(),
+                        labelText: strings.t('hint.checkAnswer'),
                       ),
                       onSubmitted: (_) => onCheck(),
                     ),
@@ -361,7 +370,7 @@ class _MiniHintProblem extends StatelessWidget {
                   const SizedBox(width: 8),
                   OutlinedButton(
                     onPressed: onCheck,
-                    child: const Text('확인'),
+                    child: Text(strings.t('hint.confirm')),
                   ),
                 ],
               ),
@@ -370,7 +379,7 @@ class _MiniHintProblem extends StatelessWidget {
               Text(
                 result!
                     ? hint.successMessage
-                    : '조금 달라요. 질문을 다시 보고 한 번 더 골라 보세요.',
+                    : strings.t('hint.tryAgain'),
                 style: TextStyle(
                   color: result! ? const Color(0xFF166534) : colorScheme.error,
                   fontWeight: FontWeight.w700,

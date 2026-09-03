@@ -77,7 +77,7 @@ class _ReviewNoteScreenState extends State<ReviewNoteScreen> {
           future: Future.wait([_manifestFuture, _attemptsFuture]),
           builder: (context, snapshot) {
             if (snapshot.connectionState != ConnectionState.done) {
-              return const OnsemLoadingIndicator(label: '오답노트를 살펴보고 있어요');
+              return const OnsemLoadingIndicator(labelKey: 'review.loading');
             }
 
             if (snapshot.hasError) {

@@ -1,7 +1,10 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'app_strings_bundle.dart';
 
 class AppStrings {
   const AppStrings(this._values);
@@ -26,7 +29,7 @@ class AppStrings {
     'language.ja': '日本語',
     'language.km': 'ភាសាខ្មែរ',
     'language.uk': 'Українська',
-    'common.grade': '{grade}학년',
+    'common.grade': '레벨 {grade}',
     'common.problemCount': '{count}문제',
     'common.itemCount': '{count}개',
     'common.problemTitleForTopic': '{topic} 문제',
@@ -40,7 +43,7 @@ class AppStrings {
     'home.reviewTooltip': '오답 노트',
     'home.reportTooltip': '학습 리포트',
     'home.heroTitle': '오늘은 한 문제씩\n생각해 볼까요?',
-    'home.heroSubtitle': '{grade}학년 {name}에게 맞춘 문제로 풀이 단계를 천천히 확인해요.',
+    'home.heroSubtitle': '맞춤 문제로 풀이 단계를 천천히 확인해요.',
     'home.startToday': '오늘 학습 시작',
     'home.chooseUnit': '단원에서 고르기',
     'home.today': '오늘',
@@ -50,11 +53,36 @@ class AppStrings {
     'home.recommendationLoading': '추천 문제를 준비하고 있어요.',
     'home.unitLearning': '단원별 학습',
     'home.problemCount': '{count}문제',
+    'home.prevUnit': '이전 단원',
+    'home.nextUnit': '다음 단원',
+    'home.loading': '오늘의 문제를 고르고 있어요',
     'answer.inputLabel': '답 입력',
     'answer.check': '정답 확인',
     'answer.showSolution': '힌트 보기',
     'answer.correct': '맞았어요!',
     'answer.incorrectWithAnswer': '다시 확인해 봐요. 힌트를 보고 한 번 더 생각해 봐요.',
+    'answer.promptChoiceGroups': '각 항목에 알맞은 정답을 선택하세요',
+    'answer.promptMultipleChoices': '알맞은 정답을 모두 선택하세요',
+    'answer.promptSingleChoice': '알맞은 정답을 선택하세요',
+    'answer.promptBlanks': '문제의 빈칸에 정답을 입력하세요',
+    'answer.promptMultiAnswer': '각 물음에 알맞은 정답을 입력하세요',
+    'answer.promptDefault': '정답을 입력하세요',
+    'answer.checkAllBlanks': '왼쪽 문제의 빈칸을 순서대로 입력한 뒤 정답을 확인하세요.',
+    'answer.keypadTooltip': '수학 키패드',
+    'keypad.backspace': '지우기',
+    'keypad.clearAll': '전체 지우기',
+    'keypad.next': '다음',
+    'keypad.nextBlank': '다음 빈칸',
+    'keypad.reset': '초기화',
+    'hint.title': '단계별 힌트',
+    'hint.showHint': '힌트 보기',
+    'hint.allRevealed': '모든 힌트를 봤어요',
+    'hint.intro': '막히면 힌트를 한 단계씩 열어 보세요.',
+    'hint.checkAnswer': '답 확인',
+    'hint.confirm': '확인',
+    'hint.tryAgain': '조금 달라요. 힌트를 다시 읽고 한 번 더 생각해 봐요.',
+    'tutor.myAnswer': '내 답',
+    'tutor.viewSolutionProcess': '풀이 과정 보기',
     'progress.title': '학습 결과',
     'progress.solved': '푼 문제',
     'progress.correct': '맞힌 문제',
@@ -66,11 +94,16 @@ class AppStrings {
     'curriculum.empty': '아직 학습할 문제가 없어요.',
     'curriculum.headerTitle': '오늘 배울 단원을 골라요',
     'curriculum.headerDescription': '단원을 고르면 문제 풀이와 온셈이가 바로 이어집니다.',
-    'curriculum.groupTitle': '{grade}학년 {semester}',
-    'curriculum.unknownSemester': '학기 미정',
+    'curriculum.groupTitle': '{domain}',
+    'curriculum.domain.수와 연산': '수와 연산',
+    'curriculum.domain.도형': '도형',
+    'curriculum.domain.측정': '측정',
+    'curriculum.domain.자료와 가능성': '자료와 가능성',
+    'curriculum.domain.수학 개념': '수학 개념',
+    'curriculum.unknownSemester': '단원 미정',
     'curriculum.semester.1학기': '1학기',
     'curriculum.semester.2학기': '2학기',
-    'curriculum.semester.학기 미정': '학기 미정',
+    'curriculum.semester.학기 미정': '단원 미정',
     'curriculum.topic.덧셈과 뺄셈': '덧셈과 뺄셈',
     'curriculum.topic.평면도형': '평면도형',
     'curriculum.topic.나눗셈': '나눗셈',
@@ -84,10 +117,18 @@ class AppStrings {
     'curriculum.viewAllUnits': '전체 단원 보기',
     'curriculum.unitDetailTitle': '{unit} 학습',
     'curriculum.startWholeUnit': '전체 단원 학습 시작 ({count}문제)',
+    'curriculum.startWholeUnitShort': '전체 학습',
     'curriculum.subUnitSection': '소단원 선택 학습',
     'curriculum.subUnitSolve': '학습하기',
     'curriculum.exploreOtherUnits': '다른 단원 둘러보기',
+    'curriculum.loading': '단원을 준비하고 있어요',
     'session.title': '학습 세션',
+    'session.loading': '학습 세션을 준비하고 있어요',
+    'problem.loading': '문제를 불러오고 있어요',
+    'problemList.loading': '문제 목록을 모으고 있어요',
+    'review.loading': '노트를 살펴보고 있어요',
+    'report.loading': '학습 리포트를 정리하고 있어요',
+    'studio.loading': '미리보기를 준비하고 있어요',
     'session.loadError': '학습 세션을 준비하지 못했어요.\n{error}',
     'session.empty': '이 단원에는 아직 문제가 없어요.',
     'session.resume': '이어 풀기',
@@ -180,20 +221,45 @@ class AppStrings {
         '식은 맞았는데 사칙연산 계산에서 오차가 생겼어요.',
     'errorSheet.review_unit.title': '단위 또는 마지막 검산 부족',
     'errorSheet.review_unit.description': '단위(cm, 개 등)를 빠뜨렸거나 검산을 안 했어요.',
-    'studio.noRenderableProblems': '렌더링 가능한 3학년 문제 자료가 없어요.',
+    'studio.noRenderableProblems': '렌더링 가능한 문제 자료가 없어요.',
     'studio.tutorLoadError': '튜터 응답을 받지 못했어요. 잠시 후 다시 시도해 주세요.',
     'studio.description': 'JSON 렌더링과 문제 구조를 한 화면에서 확인합니다.',
     'studio.problemListTooltip': '기존 문제 목록',
     'studio.defaultInstruction': '렌더링 데이터를 확인합니다.',
     'studio.loadError': 'JSON 문제를 불러오지 못했습니다.\n{error}',
+    'loading.default': '온셈이가 문제를 준비하고 있어요',
   });
 
   static AppStrings of(BuildContext context) {
+    final activeLocale = AppLocaleScope.maybeOf(context)?.locale;
+    if (activeLocale != null) {
+      final code = activeLocale.languageCode;
+      if (bundledTranslations.containsKey(code)) {
+        return AppStrings(bundledTranslations[code]!);
+      }
+    }
     return Localizations.of<AppStrings>(context, AppStrings) ?? fallback;
+  }
+
+  static AppStrings forLocale(Locale locale, {BuildContext? context}) {
+    final code = locale.languageCode;
+    if (bundledTranslations.containsKey(code)) {
+      return AppStrings(bundledTranslations[code]!);
+    }
+    if (context != null) {
+      final loc = Localizations.of<AppStrings>(context, AppStrings);
+      if (loc != null) return loc;
+    }
+    return fallback;
   }
 
   static Future<AppStrings> load(Locale locale) async {
     final languageCode = locale.languageCode;
+    if (bundledTranslations.containsKey(languageCode)) {
+      return SynchronousFuture<AppStrings>(
+        AppStrings(bundledTranslations[languageCode]!),
+      );
+    }
     try {
       final raw = await rootBundle.loadString('assets/i18n/$languageCode.json');
       final decoded = jsonDecode(raw) as Map<String, dynamic>;
@@ -205,6 +271,8 @@ class AppStrings {
       return fallback;
     }
   }
+
+  bool hasKey(String key) => _values.containsKey(key);
 
   String t(String key, [Map<String, Object?> args = const {}]) {
     var value = _values[key] ?? fallback._values[key] ?? key;
@@ -231,7 +299,33 @@ class AppStrings {
     });
   }
 
+  String domainTitle(String topicOrDomain) {
+    final domain = switch (topicOrDomain) {
+      '덧셈과 뺄셈' || '나눗셈' || '곱셈' || '분수와 소수' || '분수' || '수와 연산' => '수와 연산',
+      '평면도형' || '원' || '도형' => '도형',
+      '길이와 시간' || '들이와 무게' || '측정' => '측정',
+      '자료의 정리' || '자료와 가능성' => '자료와 가능성',
+      _ => '수학 개념',
+    };
+    return t('curriculum.domain.$domain');
+  }
+
+  String problemTitleById(String id, [String? fallback]) {
+    final suffix = id.length >= 6 ? id.substring(id.length - 6) : id;
+    final key = 'problem.title.$suffix';
+    if (_values.containsKey(key)) {
+      return _values[key]!;
+    }
+    return fallback ?? (id.isNotEmpty ? id : '');
+  }
+
   String curriculumTerm(String value) {
+    if (_values.containsKey('curriculum.topic.$value')) {
+      return _values['curriculum.topic.$value']!;
+    }
+    if (_values.containsKey('curriculum.domain.$value')) {
+      return _values['curriculum.domain.$value']!;
+    }
     return t('curriculum.topic.$value') == 'curriculum.topic.$value'
         ? t('curriculum.semester.$value', const {})
         : t('curriculum.topic.$value');
@@ -247,9 +341,29 @@ class AppStrings {
   }
 
   String unitTitle(String value) {
+    var cleaned = value;
+    cleaned = cleaned.replaceAll(RegExp(r'^\s*\d+학년\s*'), '');
+    cleaned = cleaned.replaceAll(RegExp(r'^\s*\d+학기\s*'), '');
+    cleaned = cleaned.replaceAll(RegExp(r'^\s*\d+\.\s*'), '');
+    cleaned = cleaned.trim();
+
+    if (_values.containsKey('curriculum.topic.$cleaned')) {
+      return _values['curriculum.topic.$cleaned']!;
+    }
+    if (_values.containsKey('curriculum.domain.$cleaned')) {
+      return _values['curriculum.domain.$cleaned']!;
+    }
+
     var translated = value;
     for (final entry in _values.entries) {
       const prefix = 'curriculum.topic.';
+      if (entry.key.startsWith(prefix)) {
+        translated = translated.replaceAll(
+            entry.key.substring(prefix.length), entry.value);
+      }
+    }
+    for (final entry in _values.entries) {
+      const prefix = 'curriculum.domain.';
       if (entry.key.startsWith(prefix)) {
         translated = translated.replaceAll(
             entry.key.substring(prefix.length), entry.value);

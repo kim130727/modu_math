@@ -1,0 +1,112 @@
+{
+  "problem_id": "S3_elem_3_008732",
+  "problem_type": "Класифікація дробів",
+  "metadata": {
+    "title": "Спустіться драбиною: якщо місце прибуття правильне, поставте ○, якщо ні — ×.",
+    "tags": [],
+    "instruction": "Спустіться драбиною: якщо місце прибуття правильне, поставте ○, якщо ні — ×.",
+    "question": "Спустіться драбиною: якщо місце прибуття правильне, поставте ○, якщо ні — ×.",
+    "required_layout_ids": [
+      "slot.q9",
+      "slot.q10",
+      "slot.q11",
+      "slot.q18",
+      "slot.q19",
+      "slot.q20",
+      "slot.q21",
+      "slot.q22",
+      "slot.q23",
+      "slot.q24",
+      "slot.q25",
+      "slot.q26",
+      "slot.math.fraction.bar",
+      "slot.math.fraction_1.bar",
+      "slot.math.fraction_2.bar"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.frac1",
+        "type": "fraction",
+        "numerator": 2,
+        "denominator": 8
+      },
+      {
+        "id": "obj.frac2",
+        "type": "fraction",
+        "numerator": 9,
+        "denominator": 10
+      },
+      {
+        "id": "obj.frac3",
+        "type": "fraction",
+        "numerator": 4,
+        "denominator": 4
+      },
+      {
+        "id": "obj.label1",
+        "type": "classification",
+        "name": "Неправильний дріб"
+      },
+      {
+        "id": "obj.label2",
+        "type": "classification",
+        "name": "Неправильний дріб"
+      },
+      {
+        "id": "obj.label3",
+        "type": "classification",
+        "name": "Правильний дріб"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.frac1",
+          "obj.frac2",
+          "obj.frac3",
+          "obj.label1",
+          "obj.label2",
+          "obj.label3"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.connect1",
+          "rel.connect2",
+          "rel.connect3"
+        ]
+      },
+      "plan": {
+        "method": "classification_check",
+        "description": "Перевірте, чи дріб і досягнута назва класифікації відповідають екрану."
+      },
+      "execute": {
+        "expected_operations": [
+          "match_fraction_to_label",
+          "compare_with_displayed_response"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "display_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "Позначка ○/×",
+      "description": "Позначення істинності чи хибності місця прибуття драбинки"
+    },
+    "value": "○, ×, ○",
+    "unit": ""
+  }
+}

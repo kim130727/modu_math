@@ -102,7 +102,8 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
                 future: bundleFuture,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState != ConnectionState.done) {
-                    return const OnsemLoadingIndicator(label: '미리보기를 준비하고 있어요');
+                    return const OnsemLoadingIndicator(
+                        labelKey: 'studio.loading');
                   }
                   if (snapshot.hasError) {
                     return _LoadError(error: snapshot.error);

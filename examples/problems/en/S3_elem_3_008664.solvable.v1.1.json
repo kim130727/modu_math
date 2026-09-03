@@ -1,0 +1,83 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008664",
+  "problem_type": "choice_selection",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "E",
+    "target_ticks": 5,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.hole_positions",
+      "value": {
+        "count": 5,
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E"
+        ]
+      }
+    },
+    {
+      "ref": "obj.tool",
+      "value": {
+        "type": "center_tool"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_label"
+  },
+  "method": "compare_hole_distances",
+  "plan": [
+    "Compare the positions of the holes.",
+    "Find the hole that is farthest from the pushpin to the pencil lead.",
+    "Use the symbol corresponding to that hole as the answer."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "Compare hole positions from left to right.",
+      "value": "A, B, C, D, E"
+    },
+    {
+      "id": "step.2",
+      "expr": "Select the hole that is farthest away.",
+      "value": "E"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "Check if the farthest position is the last hole.",
+      "expected": "E",
+      "actual": "E",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "answer_key": [
+      "E"
+    ],
+    "target": {
+      "type": "choice_label",
+      "description": "Hole label that draws the largest circle"
+    },
+    "value": "E",
+    "unit": ""
+  }
+}

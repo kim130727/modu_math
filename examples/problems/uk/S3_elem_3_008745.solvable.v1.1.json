@@ -1,0 +1,96 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008745",
+  "problem_type": "Порівняння",
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "Пляшка А, Пляшка Б",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.bottle.ga",
+      "value": {
+        "label": "Пляшка А"
+      }
+    },
+    {
+      "ref": "obj.bottle.na",
+      "value": {
+        "label": "Пляшка Б"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "multiple_choice_group"
+  },
+  "method": "same_container_rule_check",
+  "plan": [
+    "Порівняйте висоту води, перелитої в однакові за формою й розміром посудини.",
+    "Зробіть висновок, що більшу місткість має та, де рівень води вищий."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "На малюнку рівень води в правій посудині вищий",
+      "value": "Пляшка Б"
+    },
+    {
+      "id": "step.2",
+      "expr": "В однакових посудинах вищий рівень води означає більшу місткість",
+      "value": "Пляшка Б"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "Перевірте порівняння в посудинах однакової форми та розміру",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "Перевірте, чи обрана відповідь збігається з порівнянням висоти на малюнку",
+      "expected": "Пляшка Б",
+      "actual": "Пляшка Б",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "Пляшка А",
+      "Пляшка Б"
+    ],
+    "choice_groups": [
+      {
+        "label": "Завдання (1)",
+        "choices": [
+          "Пляшка А",
+          "Пляшка Б"
+        ]
+      },
+      {
+        "label": "Завдання (2)",
+        "choices": [
+          "Пляшка А",
+          "Пляшка Б"
+        ]
+      }
+    ],
+    "answer_key": [
+      "Пляшка Б",
+      "Пляшка Б"
+    ],
+    "target": {
+      "type": "multiple_choice_group",
+      "description": "Вищий рівень перелитої води та більша місткість"
+    },
+    "value": "Пляшка Б, Пляшка Б",
+    "unit": ""
+  }
+}

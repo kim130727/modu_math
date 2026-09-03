@@ -1,0 +1,108 @@
+{
+  "problem_id": "S3_elem_3_008745",
+  "problem_type": "比較",
+  "metadata": {
+    "title": "容量の比較",
+    "tags": [],
+    "question": "アとイの水筒の容量を比べる問題",
+    "required_layout_ids": [
+      "slot.inserted.image.1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "正しい言葉を選んでください。"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.bottle.ga",
+        "type": "水筒",
+        "label": "アの水筒"
+      },
+      {
+        "id": "obj.bottle.na",
+        "type": "水筒",
+        "label": "イの水筒"
+      },
+      {
+        "id": "obj.container.left",
+        "type": "容器",
+        "label": "左の容器",
+        "same_shape_as": "obj.container.right",
+        "same_size_as": "obj.container.right"
+      },
+      {
+        "id": "obj.container.right",
+        "type": "容器",
+        "label": "右の容器",
+        "same_shape_as": "obj.container.left",
+        "same_size_as": "obj.container.left"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.bottle.ga",
+          "obj.bottle.na",
+          "obj.container.left",
+          "obj.container.right"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare.height",
+          "rel.compare.capacity"
+        ]
+      },
+      "plan": {
+        "method": "same_container_height_comparison",
+        "description": "同じ形と大きさの容器に移した水位を比べ、かさの大小を判断します。"
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_water_heights",
+          "infer_capacity_relation"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "same_container_rule_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "水筒ア",
+      "水筒イ"
+    ],
+    "choice_groups": [
+      {
+        "label": "問題(1)",
+        "choices": [
+          "水筒ア",
+          "水筒イ"
+        ]
+      },
+      {
+        "label": "問題(2)",
+        "choices": [
+          "水筒ア",
+          "水筒イ"
+        ]
+      }
+    ],
+    "answer_key": [
+      "水筒イ",
+      "水筒イ"
+    ],
+    "target": {
+      "type": "multiple_choice_group",
+      "description": "移し替えた水位が高いこととかさが多いこと"
+    },
+    "value": "水筒イ, 水筒イ",
+    "unit": ""
+  }
+}

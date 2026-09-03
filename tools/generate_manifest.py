@@ -41,7 +41,31 @@ def _summary_title(metadata: dict[str, object], unit_topic: str) -> str:
     return f"{unit_topic} 문제"
 
 
+PROBLEM_UNIT_INFO = {
+    "008541": (3, 1, 1, "덧셈과 뺄셈", "계산 결과가 큰 것부터 차례대로 나열하기"),
+    "008661": (3, 1, 2, "평면도형", "길이가 가장 긴 선분 찾기"),
+    "008631": (3, 1, 3, "나눗셈", "수 모형을 보고 알맞은 몫 고르기"),
+    "008540": (3, 1, 4, "곱셈", "색칠한 부분에 해당하는 곱셈식 찾기"),
+    "008728": (3, 1, 6, "분수와 소수", "그림을 보고 분수를 바르게 말한 사람 찾기"),
+    "008732": (3, 1, 6, "분수와 소수", "사다리 결과로 분수 분류 판단하기"),
+    "008664": (3, 2, 3, "원", "원을 가장 크게 그릴 수 있는 구멍 고르기"),
+    "008713": (3, 2, 3, "원", "반지름이 1 cm인 원을 그리는 순서"),
+    "008745": (3, 2, 5, "들이와 무게", "같은 그릇에 옮겨 담아 들이 비교하기"),
+    "008751": (3, 2, 5, "들이와 무게", "물병과 우유병의 들이 비교 방법 판단하기"),
+}
+
+
 def _parse_unit_info(renderer_path: Path, file_prefix: str, metadata: dict[str, object]) -> tuple[int, int, int, str, str]:
+    suffix = file_prefix[-6:]
+    if suffix in PROBLEM_UNIT_INFO:
+        grade, semester, unit_number, unit_topic, _ = PROBLEM_UNIT_INFO[suffix]
+        sub_unit = ""
+        if isinstance(metadata, dict):
+            sub_unit = str(metadata.get("subUnit") or metadata.get("subTopic") or metadata.get("topic") or "").strip()
+        if not sub_unit or sub_unit == unit_topic:
+            sub_unit = "기본 학습"
+        return grade, semester, unit_number, unit_topic, sub_unit
+
     parts = renderer_path.relative_to(ROOT).parts
     grade = 3
     semester = 1
@@ -81,11 +105,23 @@ def _parse_unit_info(renderer_path: Path, file_prefix: str, metadata: dict[str, 
     return grade, semester, unit_number, unit_topic, sub_unit
 
 
+def _domain_for_topic(topic: str) -> str:
+    if topic in ("덧셈과 뺄셈", "나눗셈", "곱셈", "분수와 소수", "분수"):
+        return "수와 연산"
+    if topic in ("평면도형", "원"):
+        return "도형"
+    if topic in ("길이와 시간", "들이와 무게"):
+        return "측정"
+    if topic in ("자료의 정리",):
+        return "자료와 가능성"
+    return "수학 개념"
+
+
 def generate():
     renderer_files = sorted(
         [
-            path for path in ROOT.rglob("*.renderer.json")
-            if path.is_file() and not path.name.endswith("_uk.renderer.json") and "uk" not in path.parts
+            path for path in (ROOT / "ko").glob("*.renderer.json")
+            if path.is_file()
         ],
         key=lambda p: p.name,
     )
@@ -111,13 +147,15 @@ def generate():
         grade, semester, unit_number, unit_topic, sub_unit = _parse_unit_info(renderer_path, file_prefix, metadata)
         title = _summary_title(metadata, unit_topic)
         problem_type = str(semantic.get("problem_type") or "unknown")
+        domain = _domain_for_topic(unit_topic)
 
         problems.append(
             {
                 "id": file_prefix,
                 "grade": grade,
                 "subject": "math",
-                "unit": f"{semester}학기 {unit_number}. {unit_topic}",
+                "unit": unit_topic,
+                "domain": domain,
                 "type": problem_type,
                 "title": title,
                 "path": f"examples/problems/{rel_dir}".rstrip("/"),

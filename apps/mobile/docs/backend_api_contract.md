@@ -95,7 +95,7 @@ Request:
 
 ```json
 {
-  "problemId": "S3_초등_3_008540",
+  "problemId": "S3_elem_3_008540",
   "unit": "곱셈과 나눗셈",
   "answer": "24",
   "isCorrect": true,
@@ -112,7 +112,7 @@ Response `201`:
 {
   "attempt": {
     "id": "att_01J...",
-    "problemId": "S3_초등_3_008540",
+    "problemId": "S3_elem_3_008540",
     "isCorrect": true,
     "errorCategory": "none",
     "answeredAt": "2026-07-22T08:50:00Z"
@@ -175,7 +175,7 @@ Response `200`:
 {
   "items": [
     {
-      "problemId": "S3_초등_3_008540",
+      "problemId": "S3_elem_3_008540",
       "unit": "곱셈과 나눗셈",
       "lastAttemptId": "att_01J...",
       "lastAnsweredAt": "2026-07-19T08:50:00Z",
@@ -201,12 +201,12 @@ Request:
 {
   "action": "hint",
   "problem": {
-    "id": "S3_초등_3_008540",
+    "id": "S3_elem_3_008540",
     "grade": 3,
     "subject": "math",
     "unit": "곱셈과 나눗셈",
     "type": "word_problem",
-    "title": "S3_초등_3_008540",
+    "title": "S3_elem_3_008540",
     "prompt": "문제 본문",
     "choices": ["18", "24", "30"],
     "correctAnswer": "24",

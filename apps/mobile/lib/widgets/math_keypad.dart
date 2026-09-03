@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_strings.dart';
 import '../theme/app_theme.dart';
 
 enum MathKeypadMode {
@@ -43,6 +44,7 @@ class MathKeypad extends StatelessWidget {
   }
 
   Widget _buildDigitsKeypad(BuildContext context) {
+    final strings = AppStrings.of(context);
     return Container(
       decoration: BoxDecoration(
         color: const Color(0xFFF3F4F6),
@@ -65,7 +67,7 @@ class MathKeypad extends StatelessWidget {
                 context,
                 icon: Icons.backspace_outlined,
                 onTap: onBackspace,
-                tooltip: '지우기',
+                tooltip: strings.t('keypad.backspace'),
               ),
             ],
           ),
@@ -82,7 +84,7 @@ class MathKeypad extends StatelessWidget {
                 context,
                 label: 'C',
                 onTap: onClear,
-                tooltip: '전체 지우기',
+                tooltip: strings.t('keypad.clearAll'),
               ),
             ],
           ),
@@ -98,9 +100,9 @@ class MathKeypad extends StatelessWidget {
               if (showNextButton && onNext != null)
                 _textActionButton(
                   context,
-                  label: '다음',
+                  label: strings.t('keypad.next'),
                   onTap: onNext,
-                  tooltip: '다음 빈칸',
+                  tooltip: strings.t('keypad.nextBlank'),
                   highlight: true,
                 )
               else
@@ -157,7 +159,7 @@ class MathKeypad extends StatelessWidget {
             context,
             icon: Icons.backspace_outlined,
             onTap: onBackspace,
-            tooltip: '지우기',
+            tooltip: AppStrings.of(context).t('keypad.backspace'),
           ),
           if (onClear != null) ...[
             const SizedBox(width: 10),
@@ -165,7 +167,7 @@ class MathKeypad extends StatelessWidget {
               context,
               label: 'C',
               onTap: onClear,
-              tooltip: '초기화',
+              tooltip: AppStrings.of(context).t('keypad.reset'),
             ),
           ],
         ],
@@ -174,6 +176,7 @@ class MathKeypad extends StatelessWidget {
   }
 
   Widget _buildArithmeticKeypad(BuildContext context) {
+    final strings = AppStrings.of(context);
     return Container(
       decoration: BoxDecoration(
         color: const Color(0xFFF3F4F6),
@@ -208,7 +211,7 @@ class MathKeypad extends StatelessWidget {
                 context,
                 icon: Icons.backspace_outlined,
                 onTap: onBackspace,
-                tooltip: '지우기',
+                tooltip: strings.t('keypad.backspace'),
               ),
             ],
           ),
