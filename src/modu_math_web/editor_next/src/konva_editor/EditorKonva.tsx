@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ProblemList, type ProblemLanguage } from "../components/ProblemList";
+import { ProblemList, problemLanguages, type ProblemLanguage } from "../components/ProblemList";
 import {
   applyLayoutPatches,
   buildProblem,
@@ -1061,7 +1061,7 @@ function SidePanelIcon({ icon }: { icon: SidePanelTab }) {
 
 function problemLanguageFromId(problemId: string): ProblemLanguage | null {
   const firstPart = problemId.replace(/\\/g, "/").split("/").filter(Boolean)[0];
-  return firstPart === "ko" || firstPart === "uk" ? firstPart : null;
+  return problemLanguages.includes(firstPart as ProblemLanguage) ? firstPart as ProblemLanguage : null;
 }
 
 function normalizeNewProblemId(value: string): string {

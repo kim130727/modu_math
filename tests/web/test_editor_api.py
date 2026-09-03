@@ -155,8 +155,8 @@ def test_list_endpoint_includes_0001_if_present(tmp_path: Path) -> None:
 def test_list_endpoint_marks_language_equivalents(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     problems_root = tmp_path / "examples" / "problems"
-    (problems_root / "ko").mkdir(parents=True)
-    (problems_root / "uk").mkdir(parents=True)
+    for language in ("ko", "uk", "zh", "ja", "en", "km"):
+        (problems_root / language).mkdir(parents=True)
     (problems_root / "ko" / "same.dsl.py").write_text(
         "PROBLEM_TEMPLATE = None\n", encoding="utf-8"
     )
@@ -166,6 +166,10 @@ def test_list_endpoint_marks_language_equivalents(tmp_path: Path) -> None:
     (problems_root / "uk" / "same_uk.dsl.py").write_text(
         "PROBLEM_TEMPLATE = None\n", encoding="utf-8"
     )
+    for language in ("zh", "ja", "en", "km"):
+        (problems_root / language / "same.dsl.py").write_text(
+            "PROBLEM_TEMPLATE = None\n", encoding="utf-8"
+        )
 
     response = client.get("/api/editor/problems/")
 
@@ -176,9 +180,16 @@ def test_list_endpoint_marks_language_equivalents(tmp_path: Path) -> None:
     assert problems["ko/same.dsl.py"]["equivalent_problem_ids"] == {
         "ko": "ko/same.dsl.py",
         "uk": "uk/same_uk.dsl.py",
+        "zh": "zh/same.dsl.py",
+        "ja": "ja/same.dsl.py",
+        "en": "en/same.dsl.py",
+        "km": "km/same.dsl.py",
     }
     assert problems["uk/same_uk.dsl.py"]["language"] == "uk"
     assert problems["uk/same_uk.dsl.py"]["canonical_problem_id"] == "same"
+    for language in ("zh", "ja", "en", "km"):
+        assert problems[f"{language}/same.dsl.py"]["language"] == language
+        assert problems[f"{language}/same.dsl.py"]["canonical_problem_id"] == "same"
     assert problems["ko/only_ko.dsl.py"]["equivalent_problem_ids"] == {
         "ko": "ko/only_ko.dsl.py"
     }

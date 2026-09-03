@@ -1,0 +1,168 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008541",
+  "problem_type": "multiple_choice_ordering",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "보기 번호",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.a",
+      "value": {
+        "label": "ㄱ",
+        "expr": "397 × 6"
+      }
+    },
+    {
+      "ref": "obj.b",
+      "value": {
+        "label": "ㄴ",
+        "expr": "549 × 4"
+      }
+    },
+    {
+      "ref": "obj.c",
+      "value": {
+        "label": "ㄷ",
+        "expr": "456 × 5"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_number"
+  },
+  "method": "compare_results_descending",
+  "plan": [
+    "计算各乘法算式的结果，并按从大到小的顺序比较。",
+    "找出与比较顺序相同的选项编号。"
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "397 × 6",
+      "value": 2382
+    },
+    {
+      "id": "step.2",
+      "expr": "549 × 4",
+      "value": 2196
+    },
+    {
+      "id": "step.3",
+      "expr": "456 × 5",
+      "value": 2280
+    },
+    {
+      "id": "step.4",
+      "expr": "2382 > 2280 > 2196",
+      "value": "ㄱ, ㄷ, ㄴ"
+    },
+    {
+      "id": "step.5",
+      "expr": "보기 대조",
+      "value": "②"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "2382 > 2280 > 2196",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "보기 ②의 순서",
+      "expected": "ㄱ, ㄷ, ㄴ",
+      "actual": "ㄱ, ㄷ, ㄴ",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_number",
+      "description": "계산 결과가 큰 것부터 차례대로 나열한 보기 번호"
+    },
+    "value": 2,
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Compute three multiplication expressions and choose the option that orders their results from greatest to least.",
+    "facts": [
+      {
+        "ref": "obj.a",
+        "label": "expression A",
+        "value": "397 x 6",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.b",
+        "label": "expression B",
+        "value": "549 x 4",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.c",
+        "label": "expression C",
+        "value": "456 x 5",
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "choice number for descending order",
+        "unit": ""
+      }
+    ],
+    "relation": {
+      "type": "compare_products_descending",
+      "statement": "The products are 2382, 2196, and 2280, so the descending order is A, C, B.",
+      "symbolic": "397 x 6 > 456 x 5 > 549 x 4",
+      "uses": [
+        "obj.a",
+        "obj.b",
+        "obj.c"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.compute_a",
+        "type": "multiple_choice",
+        "prompt": "What is 397 x 6?",
+        "choices": [
+          "{'id': 'choice.1', 'label': 'choices', 'text': 'choices'}",
+          "{'id': 'choice.2', 'label': '2196', 'text': '2196'}",
+          "{'id': 'choice.3', 'label': '2280', 'text': '2280'}",
+          "{'id': 'choice.4', 'label': '2382', 'text': '2382'}"
+        ],
+        "answer_index": 2
+      },
+      {
+        "id": "understand.order",
+        "type": "multiple_choice",
+        "prompt": "Which order is greatest to least?",
+        "choices": [
+          "{'id': 'choice.1', 'label': 'choices', 'text': 'choices'}",
+          "{'id': 'choice.2', 'label': 'A, B, C', 'text': 'A, B, C'}",
+          "{'id': 'choice.3', 'label': 'A, C, B', 'text': 'A, C, B'}",
+          "{'id': 'choice.4', 'label': 'C, A, B', 'text': 'C, A, B'}"
+        ],
+        "answer_index": 1
+      }
+    ]
+  }
+}

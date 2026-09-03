@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { listProblems, type ProblemSummary } from "../api/editorApi";
 
-export type ProblemLanguage = "ko" | "uk";
+export const problemLanguages = ["ko", "uk", "zh", "ja", "en", "km"] as const;
+export type ProblemLanguage = (typeof problemLanguages)[number];
 
 interface ProblemListProps {
   selectedProblemId: string;
@@ -76,7 +77,7 @@ export function ProblemList({ selectedProblemId, language, onOpenProblem, onLang
     <aside className="problem-list-panel">
       <div className="panel-title">문제 탐색</div>
       <div className="problem-language-toggle" role="tablist" aria-label="Problem language">
-        {(["ko", "uk"] as const).map((option) => {
+        {problemLanguages.map((option) => {
           const equivalentProblemId = selectedProblem?.equivalent_problem_ids?.[option];
           const isActive = option === language;
           const disabled = !isActive && selectedProblem?.language != null && !equivalentProblemId;
@@ -187,7 +188,14 @@ function ProblemTree({
 }
 
 function languageLabel(language: ProblemLanguage): string {
-  return language === "ko" ? "한국어" : "Українська";
+  return {
+    ko: "한국어",
+    uk: "Українська",
+    zh: "中文",
+    ja: "日本語",
+    en: "English",
+    km: "ខ្មែរ",
+  }[language];
 }
 
 function buildProblemTree(problems: ProblemSummary[]): ProblemTreeNode {
@@ -213,7 +221,7 @@ function buildProblemTree(problems: ProblemSummary[]): ProblemTreeNode {
 function problemFolderParts(problem: ProblemSummary): string[] {
   const rawPath = problem.path || folderPathFromProblemId(problem.problem_id);
   const parts = rawPath.replace(/\\/g, "/").replace(/^\/+/, "").split("/").filter(Boolean);
-  if (parts[0] === "problems" && (parts[1] === "ko" || parts[1] === "uk")) parts.splice(0, 2);
+  if (parts[0] === "problems" && problemLanguages.includes(parts[1] as ProblemLanguage)) parts.splice(0, 2);
   return parts.at(-1)?.endsWith(".dsl.py") ? parts.slice(0, -1) : parts;
 }
 

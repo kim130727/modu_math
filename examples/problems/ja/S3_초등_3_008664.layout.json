@@ -1,0 +1,309 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008664",
+  "title": "最も大きな円を描ける穴を選ぶ",
+  "canvas": {
+    "width": 800,
+    "height": 360,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.bar",
+        "slot.hole.5.copy13",
+        "slot.link.1",
+        "slot.link.2",
+        "slot.link.3",
+        "slot.link.4",
+        "slot.link.5",
+        "slot.hole.1",
+        "slot.hole.2",
+        "slot.hole.3",
+        "slot.hole.4",
+        "slot.hole.5",
+        "slot.choice.lb.1",
+        "slot.choice.lb.2",
+        "slot.choice.lb.3",
+        "slot.choice.lb.4",
+        "slot.choice.lb.5",
+        "konva_1787989612052_text_440147"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.bar",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 175.0,
+        "y": 210.0,
+        "width": 435.0,
+        "height": 40.0,
+        "stroke": "#8fcfd0",
+        "stroke_width": 1.0,
+        "fill": "#bfeaed"
+      }
+    },
+    {
+      "id": "slot.hole.1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 275.0,
+        "cy": 230.0,
+        "r": 5.0,
+        "stroke": "#8a8a8a",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.hole.2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 340.0,
+        "cy": 230.0,
+        "r": 5.0,
+        "stroke": "#8a8a8a",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.hole.3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 400.0,
+        "cy": 230.0,
+        "r": 5.0,
+        "stroke": "#8a8a8a",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.hole.4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 460.0,
+        "cy": 230.0,
+        "r": 5.0,
+        "stroke": "#8a8a8a",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.hole.5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 525.0,
+        "cy": 230.0,
+        "r": 5.0,
+        "stroke": "#8a8a8a",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.link.1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 275.0,
+        "y1": 235.0,
+        "x2": 275.0,
+        "y2": 270.0,
+        "stroke": "#ff6bb6",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.link.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 235.0,
+        "x2": 340.0,
+        "y2": 270.0,
+        "stroke": "#ff6bb6",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.link.3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 400.0,
+        "y1": 235.0,
+        "x2": 400.0,
+        "y2": 270.0,
+        "stroke": "#ff6bb6",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.link.4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 460.0,
+        "y1": 235.0,
+        "x2": 460.0,
+        "y2": 270.0,
+        "stroke": "#ff6bb6",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.link.5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 525.0,
+        "y1": 235.0,
+        "x2": 525.0,
+        "y2": 270.0,
+        "stroke": "#ff6bb6",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.choice.lb.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠",
+        "style_role": "label",
+        "x": 262.0,
+        "y": 290.0,
+        "font_size": 25,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.lb.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡",
+        "style_role": "label",
+        "x": 327.0,
+        "y": 290.0,
+        "font_size": 25,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.lb.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉢",
+        "style_role": "label",
+        "x": 387.0,
+        "y": 290.0,
+        "font_size": 25,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.lb.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉣",
+        "style_role": "label",
+        "x": 447.0,
+        "y": 290.0,
+        "font_size": 25,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.lb.5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉤",
+        "style_role": "label",
+        "x": 513.0,
+        "y": 290.0,
+        "font_size": 25,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.hole.5.copy13",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 220.0,
+        "cy": 229.49998474121094,
+        "r": 10.0,
+        "stroke": "#8a8a8a",
+        "stroke_width": 1.0,
+        "fill": "#6b7280"
+      }
+    },
+    {
+      "id": "konva_1787989612052_text_440147",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "x": 37.211,
+        "y": 23.106,
+        "font_size": 30,
+        "fill": "#111827",
+        "width": 717.416,
+        "height": 158,
+        "align": "left",
+        "line_height": 1.25,
+        "kind": "text_box"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "region.diagram",
+    "slot.bar",
+    "slot.hole.5.copy13",
+    "slot.link.1",
+    "slot.link.2",
+    "slot.link.3",
+    "slot.link.4",
+    "slot.link.5",
+    "slot.hole.1",
+    "slot.hole.2",
+    "slot.hole.3",
+    "slot.hole.4",
+    "slot.hole.5",
+    "slot.choice.lb.1",
+    "slot.choice.lb.2",
+    "slot.choice.lb.3",
+    "slot.choice.lb.4",
+    "slot.choice.lb.5",
+    "konva_1787989612052_text_440147"
+  ]
+}

@@ -22,8 +22,15 @@ ARTIFACT_FILES = {
 
 _PROBLEM_LIST_CACHE_TTL_SECONDS = 5.0
 _PROBLEM_LIST_CACHE: dict[tuple[bool, tuple[tuple[str, str], ...]], tuple[float, list[dict[str, Any]]]] = {}
-LANGUAGE_PROBLEM_FOLDERS = {"ko", "uk"}
-LANGUAGE_FILENAME_SUFFIXES = {"ko": "_ko", "uk": "_uk"}
+LANGUAGE_PROBLEM_FOLDERS = {"ko", "uk", "zh", "ja", "en", "km"}
+LANGUAGE_FILENAME_SUFFIXES = {
+    "ko": "_ko",
+    "uk": "_uk",
+    "zh": "_zh",
+    "ja": "_ja",
+    "en": "_en",
+    "km": "_km",
+}
 
 
 BLANK_PROBLEM_DSL = '''from __future__ import annotations
