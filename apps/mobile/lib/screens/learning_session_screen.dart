@@ -59,9 +59,18 @@ class _LearningSessionScreenState extends State<LearningSessionScreen> {
     final manifest = await widget.repository.loadManifest();
     final attempts = await widget.progressRepository.getAttempts();
     final problems = manifest.problems
-        .where((problem) =>
-            problem.unit == widget.unit &&
-            (widget.subUnit == null || problem.subUnit == widget.subUnit))
+        .where((problem) {
+          if (problem.unit != widget.unit) return false;
+          if (widget.subUnit == null) return true;
+          if (problem.subUnit == widget.subUnit) return true;
+          final isWidgetDefault = widget.subUnit == '__basicLearning__' ||
+              widget.subUnit == '기본 학습' ||
+              widget.subUnit == 'Basic Learning';
+          final isProblemDefault = problem.subUnit == '__basicLearning__' ||
+              problem.subUnit == '기본 학습' ||
+              problem.subUnit == 'Basic Learning';
+          return isWidgetDefault && isProblemDefault;
+        })
         .toList()
       ..sort(_compareProblemSummaries);
     return _SessionData(problems: problems, attempts: attempts);
@@ -75,7 +84,7 @@ class _LearningSessionScreenState extends State<LearningSessionScreen> {
       appBar: AppBar(
         title: Text(
           widget.subUnit != null
-              ? '${strings.unitTitle(widget.unit)} · ${widget.subUnit}'
+              ? '${strings.unitTitle(widget.unit)} · ${strings.subUnitName(widget.subUnit!)}'
               : strings.unitTitle(widget.unit),
         ),
       ),
@@ -106,6 +115,7 @@ class _LearningSessionScreenState extends State<LearningSessionScreen> {
 
             final nextIndex = data.nextProblemIndex;
             final nextProblem = data.problems[nextIndex];
+            final localStrings = AppStrings.of(context);
             return ListView(
               padding: const EdgeInsets.fromLTRB(20, 16, 20, 28),
               children: [
@@ -113,7 +123,7 @@ class _LearningSessionScreenState extends State<LearningSessionScreen> {
                   unit: widget.unit,
                   totalCount: data.problems.length,
                   solvedCount: data.correctProblemIds.length,
-                  nextTitle: nextProblem.title,
+                  nextTitle: localStrings.problemTitleById(nextProblem.id, nextProblem.title),
                   nextProblemName: _problemName(nextProblem),
                   complete: data.isComplete,
                   onStart: () => _startProblem(data, nextIndex),
@@ -317,9 +327,9 @@ class _ProblemPreviewList extends StatelessWidget {
             subtitle: Text(
               next
                   ? strings.t('session.nextProblemSubtitle', {
-                      'title': problem.title,
+                      'title': strings.problemTitleById(problem.id, problem.title),
                     })
-                  : problem.title,
+                  : strings.problemTitleById(problem.id, problem.title),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),

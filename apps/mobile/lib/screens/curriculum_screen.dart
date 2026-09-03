@@ -384,7 +384,7 @@ class _SingleUnitView extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                subUnit.name,
+                                strings.subUnitName(subUnit.name),
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleMedium
@@ -647,7 +647,7 @@ class _UnitTile extends StatelessWidget {
                     avatar: const Icon(Icons.bookmark_outline_rounded,
                         size: 16, color: KidsPalette.sage),
                     label: Text(
-                      '${subUnit.name} (${subUnit.problemCount})',
+                      '${strings.subUnitName(subUnit.name)} (${subUnit.problemCount})',
                       style: const TextStyle(
                           fontSize: 13, fontWeight: FontWeight.w600),
                     ),

@@ -86,7 +86,7 @@ class ProblemSummary {
     if (candidate != null && candidate.trim().isNotEmpty) {
       return candidate.trim();
     }
-    return '기본 학습';
+    return '__basicLearning__';
   }
 
   String assetPath(String fileName) {

@@ -197,7 +197,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.choice.lb.1",
             prompt="",
-            text="А",
+            text="A",
             style_role="label",
             x=262,
             y=290,
@@ -207,7 +207,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.choice.lb.2",
             prompt="",
-            text="Б",
+            text="B",
             style_role="label",
             x=327,
             y=290,
@@ -217,7 +217,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.choice.lb.3",
             prompt="",
-            text="В",
+            text="C",
             style_role="label",
             x=387,
             y=290,
@@ -227,7 +227,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.choice.lb.4",
             prompt="",
-            text="Г",
+            text="D",
             style_role="label",
             x=447,
             y=290,
@@ -237,7 +237,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.choice.lb.5",
             prompt="",
-            text="Ґ",
+            text="E",
             style_role="label",
             x=513,
             y=290,
@@ -289,7 +289,7 @@ SEMANTIC_OVERRIDE = {
         "objects": [
             {"id": "obj.tool", "type": "center_tool"},
             {"id": "obj.hole_positions", "type": "ordered_holes", "count": 5},
-            {"id": "obj.choice_labels", "type": "labels", "labels": ["А", "Б", "В", "Г", "Ґ"]},
+            {"id": "obj.choice_labels", "type": "labels", "labels": ["A", "B", "C", "D", "E"]},
         ],
         "relations": [],
         "problem_solving": {
@@ -308,13 +308,13 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": ["А", "Б", "В", "Г", "Ґ"],
-        "answer_key": ["Ґ"],
+        "choices": ["A", "B", "C", "D", "E"],
+        "answer_key": ["E"],
         "target": {
             "type": "choice_label",
             "description": "원을 가장 크게 그릴 수 있는 구멍의 기호",
         },
-        "value": "Ґ",
+        "value": "E",
         "unit": "",
     },
 }
@@ -327,13 +327,13 @@ SOLVABLE = {
     "problem_type": "choice_selection",
     "inputs": {
         "total_ticks": 5,
-        "target_label": "Ґ",
+        "target_label": "E",
         "target_ticks": 5,
         "target_count": 1,
         "unit": "",
     },
     "given": [
-        {"ref": "obj.hole_positions", "value": {"count": 5, "labels": ["А", "Б", "В", "Г", "Ґ"]}},
+        {"ref": "obj.hole_positions", "value": {"count": 5, "labels": ["A", "B", "C", "D", "E"]}},
         {"ref": "obj.tool", "value": {"type": "center_tool"}},
     ],
     "target": {"ref": "answer.target", "type": "choice_label"},
@@ -347,28 +347,28 @@ SOLVABLE = {
         {
             "id": "step.1",
             "expr": "구멍 위치를 왼쪽에서 오른쪽으로 비교한다.",
-            "value": "А, Б, В, Г, Ґ",
+            "value": "A, B, C, D, E",
         },
-        {"id": "step.2", "expr": "가장 멀리 있는 구멍을 고른다.", "value": "Ґ"},
+        {"id": "step.2", "expr": "가장 멀리 있는 구멍을 고른다.", "value": "E"},
     ],
     "checks": [
         {
             "id": "check.1",
             "expr": "가장 먼 위치가 마지막 구멍인지 확인한다.",
-            "expected": "Ґ",
-            "actual": "Ґ",
+            "expected": "E",
+            "actual": "E",
             "pass": True,
         }
     ],
     "answer": {
         "blanks": [],
-        "choices": ["А", "Б", "В", "Г", "Ґ"],
-        "answer_key": ["Ґ"],
+        "choices": ["A", "B", "C", "D", "E"],
+        "answer_key": ["E"],
         "target": {
             "type": "choice_label",
             "description": "원을 가장 크게 그릴 수 있는 구멍의 기호",
         },
-        "value": "Ґ",
+        "value": "E",
         "unit": "",
     },
 }

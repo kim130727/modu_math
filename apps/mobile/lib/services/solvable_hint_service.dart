@@ -1330,7 +1330,7 @@ List<SolvableHint> _diagnosticQuestionHints(ProblemContent content) {
     }
     final choicesList = item['choices'];
     final rawChoices = choicesList is List
-        ? choicesList.map((c) => c.toString().trim()).toList()
+        ? choicesList.map((c) => _extractChoiceLabel(c)).where((s) => s.isNotEmpty).toList()
         : <String>[];
     if (rawChoices.isEmpty) {
       continue;
@@ -2633,6 +2633,34 @@ String _withoutAnswer(ProblemContent content, String text) {
     return text;
   }
   return text.replaceAll(answer, '□');
+}
+
+String _extractChoiceLabel(Object? value) {
+  if (value is String) {
+    // Handle Python dict string format: "{'id': 'choice.1', 'label': 'VALUE', 'text': 'VALUE'}"
+    final labelMatch = RegExp(
+      r"""['"]?label['"]?\s*:\s*['"](.+?)['"]""",
+    ).firstMatch(value);
+    if (labelMatch != null) {
+      final label = labelMatch.group(1)!.trim();
+      // Skip generic placeholder values
+      if (label.isNotEmpty && label != 'choices' && label != 'label' && label != 'choice') {
+        return label;
+      }
+      // Try 'text' key as fallback
+      final textMatch = RegExp(
+        r"""['"]?text['"]?\s*:\s*['"](.+?)['"]""",
+      ).firstMatch(value);
+      if (textMatch != null) {
+        final text = textMatch.group(1)!.trim();
+        if (text.isNotEmpty && text != 'choices' && text != 'text' && text != 'choice') {
+          return text;
+        }
+      }
+      return '';
+    }
+  }
+  return _readText(value);
 }
 
 String _readText(Object? value, {String fallback = ''}) {

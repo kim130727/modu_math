@@ -53,6 +53,10 @@ void main() {
       tester.widget<Text>(find.text('problem text')).style?.fontFamily,
       contains('PoorStory'),
     );
+    expect(
+      tester.widget<Text>(find.text('problem text')).style?.fontFamilyFallback,
+      contains('Segoe UI Symbol'),
+    );
     expect(tester.takeException(), isNull);
   });
 

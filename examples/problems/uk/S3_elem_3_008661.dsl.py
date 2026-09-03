@@ -137,7 +137,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.giyeok",
             prompt="",
-            text="А",
+            text="A",
             style_role="label",
             x=195,
             y=120,
@@ -146,7 +146,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.nieun",
             prompt="",
-            text="Б",
+            text="B",
             style_role="label",
             x=420,
             y=120,
@@ -155,7 +155,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.digeut",
             prompt="",
-            text="В",
+            text="C",
             style_role="label",
             x=180,
             y=175,
@@ -164,7 +164,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.rieul",
             prompt="",
-            text="Г",
+            text="D",
             style_role="label",
             x=435,
             y=175,
@@ -173,7 +173,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.mieum",
             prompt="",
-            text="Ґ",
+            text="E",
             style_role="label",
             x=190,
             y=215,
@@ -182,7 +182,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.bieup",
             prompt="",
-            text="Д",
+            text="F",
             style_role="label",
             x=430,
             y=215,
@@ -191,7 +191,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.sieut1",
             prompt="",
-            text="Ж",
+            text="I",
             style_role="label",
             x=410,
             y=245,
@@ -200,7 +200,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.lb.sieut2",
             prompt="",
-            text="Е",
+            text="G",
             style_role="label",
             x=200,
             y=250,
@@ -217,7 +217,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.opt1",
             prompt="",
-            text="① Відрізок АБ",
+            text="① Відрізок AB",
             style_role="choice",
             x=50,
             y=325,
@@ -226,7 +226,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.opt2",
             prompt="",
-            text="② Відрізок ВГ",
+            text="② Відрізок CD",
             style_role="choice",
             x=240,
             y=325,
@@ -235,7 +235,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.opt3",
             prompt="",
-            text="③ Відрізок ҐД",
+            text="③ Відрізок EF",
             style_role="choice",
             x=420,
             y=325,
@@ -244,7 +244,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.opt4",
             prompt="",
-            text="④ Відрізок ЕЖ",
+            text="④ Відрізок GI",
             style_role="choice",
             x=50,
             y=370,
@@ -281,10 +281,10 @@ SEMANTIC_OVERRIDE = {
     "domain": {
         "objects": [
             {"id": "obj.circle", "type": "circle"},
-            {"id": "obj.segment.gn", "type": "segment", "label": "АБ"},
-            {"id": "obj.segment.dr", "type": "segment", "label": "ВГ"},
-            {"id": "obj.segment.mb", "type": "segment", "label": "ҐД"},
-            {"id": "obj.segment.ss", "type": "segment", "label": "ЕЕ"},
+            {"id": "obj.segment.gn", "type": "segment", "label": "AB"},
+            {"id": "obj.segment.dr", "type": "segment", "label": "CD"},
+            {"id": "obj.segment.mb", "type": "segment", "label": "EF"},
+            {"id": "obj.segment.ss", "type": "segment", "label": "GI"},
             {"id": "obj.center_mark", "type": "mark", "description": "작은 원/점 표시"},
         ],
         "relations": [],
@@ -313,10 +313,10 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": ["1. 선분 АБ", "2. 선분 ВГ", "3. 선분 ҐД", "4. 선분 ЕЖ"],
-        "answer_key": ["2. 선분 ВГ"],
+        "choices": ["1. Відрізок AB", "2. Відрізок CD", "3. Відрізок EF", "4. Відрізок GI"],
+        "answer_key": ["2. Відрізок CD"],
         "target": {"type": "choice_selection", "description": "길이가 가장 긴 선분"},
-        "value": "2. 선분 ВГ",
+        "value": "2. Відрізок CD",
         "unit": "",
     },
 }
@@ -335,10 +335,10 @@ SOLVABLE = {
         "unit": "",
     },
     "given": [
-        {"ref": "obj.segment.gn", "value": {"label": "선분 АБ"}},
-        {"ref": "obj.segment.dr", "value": {"label": "선분 ВГ"}},
-        {"ref": "obj.segment.mb", "value": {"label": "선분 ҐД"}},
-        {"ref": "obj.segment.ss", "value": {"label": "선분 ЕЖ"}},
+        {"ref": "obj.segment.gn", "value": {"label": "Відрізок AB"}},
+        {"ref": "obj.segment.dr", "value": {"label": "Відрізок CD"}},
+        {"ref": "obj.segment.mb", "value": {"label": "Відрізок EF"}},
+        {"ref": "obj.segment.ss", "value": {"label": "Відрізок GI"}},
     ],
     "target": {"ref": "answer.target", "type": "choice_selection"},
     "method": "visual_comparison",
@@ -348,24 +348,24 @@ SOLVABLE = {
         "Виберіть номер, що відповідає цьому відрізку.",
     ],
     "steps": [
-        {"id": "step.1", "expr": "중심을 지나는 선분 확인", "value": "선분 ВГ"},
-        {"id": "step.2", "expr": "보기와 대응", "value": "2. 선분 ВГ"},
+        {"id": "step.1", "expr": "중심을 지나는 선분 확인", "value": "Відрізок CD"},
+        {"id": "step.2", "expr": "보기와 대응", "value": "2. Відрізок CD"},
     ],
     "checks": [
         {
             "id": "check.1",
             "expr": "해설 문장과 선택지 일치 여부",
-            "expected": "2. 선분 ВГ",
-            "actual": "2. 선분 ВГ",
+            "expected": "2. Відрізок CD",
+            "actual": "2. Відрізок CD",
             "pass": True,
         }
     ],
     "answer": {
         "blanks": [],
-        "choices": ["1. 선분 АБ", "2. 선분 ВГ", "3. 선분 ҐД", "4. 선분 ЕЖ"],
-        "answer_key": ["2. 선분 ВГ"],
+        "choices": ["1. Відрізок AB", "2. Відрізок CD", "3. Відрізок EF", "4. Відрізок GI"],
+        "answer_key": ["2. Відрізок CD"],
         "target": {"type": "choice_selection", "description": "길이가 가장 긴 선분"},
-        "value": "2. 선분 ВГ",
+        "value": "2. Відрізок CD",
         "unit": "",
     },
 }

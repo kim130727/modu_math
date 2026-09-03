@@ -95,5 +95,28 @@ void main() {
       content = await repository.loadProblem(summary);
       expect(content.semantic['metadata']['title'], isNotEmpty);
     });
+
+    test('uses Latin alphabet notation for points and geometric segments in Ukrainian', () async {
+      final repository = ContentRepository.bundledAssets();
+      repository.activeProblemLocale = 'uk';
+      final manifest = await repository.loadManifest();
+
+      // S3_elem_3_008661: geometry segment comparison (AB, CD, EF, GI)
+      final geomProblem = manifest.problems.firstWhere((p) => p.id == 'S3_elem_3_008661');
+      final geomContent = await repository.loadProblem(geomProblem);
+      final choices = (geomContent.semantic['answer']['choices'] as List).cast<String>();
+      expect(choices, contains('1. Відрізок AB'));
+      expect(choices, contains('2. Відрізок CD'));
+      expect(choices, contains('3. Відрізок EF'));
+      expect(choices, contains('4. Відрізок GI'));
+      expect(geomContent.semantic['answer']['value'], '2. Відрізок CD');
+
+      // S3_elem_3_008664: geometry circle hole points (A, B, C, D, E)
+      final circleProblem = manifest.problems.firstWhere((p) => p.id == 'S3_elem_3_008664');
+      final circleContent = await repository.loadProblem(circleProblem);
+      final holeChoices = (circleContent.semantic['answer']['choices'] as List).cast<String>();
+      expect(holeChoices, containsAll(['A', 'B', 'C', 'D', 'E']));
+      expect(circleContent.semantic['answer']['value'], 'E');
+    });
   });
 }

@@ -6,6 +6,7 @@ import 'package:modu_math_app/models/student_profile.dart';
 import 'package:modu_math_app/screens/curriculum_screen.dart';
 import 'package:modu_math_app/services/content_repository.dart';
 import 'package:modu_math_app/services/learning_progress_repository.dart';
+import 'package:modu_math_app/l10n/app_strings.dart';
 import 'package:modu_math_app/theme/app_theme.dart';
 
 void main() {
@@ -46,6 +47,84 @@ void main() {
     expect(find.text('수와 연산'), findsOneWidget);
     expect(find.text('도형'), findsOneWidget);
   });
+
+  test('AppStrings localizes 기본 학습 to Basic Learning in English and other locales', () {
+    final en = AppStrings.forLocale(const Locale('en'));
+    expect(en.subUnitName('기본 학습'), 'Basic Learning');
+    expect(en.subUnitName('__basicLearning__'), 'Basic Learning');
+
+    final ko = AppStrings.forLocale(const Locale('ko'));
+    expect(ko.subUnitName('기본 학습'), '기본 학습');
+    expect(ko.subUnitName('Basic Learning'), '기본 학습');
+
+    final ja = AppStrings.forLocale(const Locale('ja'));
+    expect(ja.subUnitName('기본 학습'), '基本学習');
+
+    final uk = AppStrings.forLocale(const Locale('uk'));
+    expect(uk.subUnitName('기본 학습'), 'Базове навчання');
+  });
+
+  testWidgets('renders Basic Learning instead of 기본 학습 when locale is English',
+      (tester) async {
+    final fakeRepo = _FakeBasicLearningRepository();
+    final fakeProgressRepo = _FakeProgressRepository();
+
+    await tester.pumpWidget(
+      AppLocaleScope(
+        locale: const Locale('en'),
+        onLocaleChanged: (_) {},
+        child: MaterialApp(
+          locale: const Locale('en'),
+          localizationsDelegates: const [
+            AppStringsDelegate(),
+          ],
+          supportedLocales: AppStrings.supportedLocales,
+          theme: buildKidsTheme(),
+          home: CurriculumScreen(
+            repository: fakeRepo,
+            progressRepository: fakeProgressRepo,
+            initialUnit: '3학년 1학기 1. 덧셈과 뺄셈',
+          ),
+        ),
+      ),
+    );
+
+    await tester.pumpAndSettle();
+
+    // English unit title and sub-unit title should be rendered
+    expect(find.text('Addition & Subtraction Learning'), findsOneWidget);
+    expect(find.text('Sub-unit Practice'), findsOneWidget);
+    expect(find.text('Basic Learning'), findsOneWidget);
+    expect(find.text('기본 학습'), findsNothing);
+  });
+}
+
+class _FakeBasicLearningRepository extends ContentRepository {
+  @override
+  Future<ProblemManifest> loadManifest() async {
+    return const ProblemManifest(
+      version: 'test',
+      problems: [
+        ProblemSummary(
+          id: 'P_basic',
+          grade: 3,
+          subject: 'math',
+          unit: '3학년 1학기 1. 덧셈과 뺄셈',
+          type: 'addition',
+          title: '덧셈 문제',
+          path: '',
+          raw: {
+            'grade': 3,
+            'semester': '1학기',
+            'unitNumber': 1,
+            'unitTopic': '덧셈과 뺄셈',
+            'subUnit': '기본 학습',
+          },
+        ),
+      ],
+      raw: {},
+    );
+  }
 }
 
 class _FakeCurriculumRepository extends ContentRepository {

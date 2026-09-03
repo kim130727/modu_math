@@ -120,6 +120,7 @@ class AppStrings {
     'curriculum.startWholeUnitShort': '전체 학습',
     'curriculum.subUnitSection': '소단원 선택 학습',
     'curriculum.subUnitSolve': '학습하기',
+    'curriculum.defaultSubUnit': '기본 학습',
     'curriculum.exploreOtherUnits': '다른 단원 둘러보기',
     'curriculum.loading': '단원을 준비하고 있어요',
     'session.title': '학습 세션',
@@ -338,6 +339,26 @@ class AppStrings {
     return t('curriculum.semester.$value') == 'curriculum.semester.$value'
         ? value
         : t('curriculum.semester.$value');
+  }
+
+  String subUnitName(String value) {
+    final trimmed = value.trim();
+    if (trimmed == '__basicLearning__' ||
+        trimmed == '기본 학습' ||
+        trimmed == 'Basic Learning' ||
+        trimmed == '基本学習' ||
+        trimmed == '基础学习' ||
+        trimmed == 'ការសិក្សាមូលដ្ឋាន' ||
+        trimmed == 'Базове навчання') {
+      return t('curriculum.defaultSubUnit');
+    }
+    if (_values.containsKey('curriculum.topic.$trimmed')) {
+      return _values['curriculum.topic.$trimmed']!;
+    }
+    if (_values.containsKey('curriculum.domain.$trimmed')) {
+      return _values['curriculum.domain.$trimmed']!;
+    }
+    return unitTitle(value);
   }
 
   String unitTitle(String value) {

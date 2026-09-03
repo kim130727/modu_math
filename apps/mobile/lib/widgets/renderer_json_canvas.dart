@@ -902,6 +902,7 @@ class RendererJsonPainter extends CustomPainter {
     final text = _normalizeRenderText(rawText);
     final fontSize = _readDouble(attributes['font-size']) ?? 18;
     final fill = _readColor(attributes['fill']) ?? Colors.black;
+    final fontFamily = attributes['font-family'];
     final painter = TextPainter(
       text: TextSpan(
         text: text,
@@ -910,6 +911,7 @@ class RendererJsonPainter extends CustomPainter {
           fontSize: fontSize,
           fontWeight: FontWeight.w600,
           height: 1.25,
+          fontFamily: fontFamily,
         ),
       ),
       textDirection: TextDirection.ltr,
@@ -1031,6 +1033,7 @@ List<Widget> _textBoxLayers(Map<String, dynamic> renderer, double scale) {
         fontSize: fontSize * scale,
         fontWeight: FontWeight.w600,
         height: lineHeight,
+        fontFamily: attributes['font-family'],
       ),
     );
 
@@ -2197,16 +2200,52 @@ Color? _readColor(Object? value) {
   return null;
 }
 
+List<String> _parseFontFamilyFallback(Object? rawFontFamily) {
+  if (rawFontFamily == null) return const [];
+  final text = rawFontFamily.toString();
+  return text
+      .split(',')
+      .map((f) => f.trim().replaceAll(RegExp(r'''^["']|["']$'''), ''))
+      .where((f) =>
+          f.isNotEmpty &&
+          !f.toLowerCase().contains('poor story') &&
+          !f.toLowerCase().contains('poorstory'))
+      .toList();
+}
+
+List<String> _buildFontFamilyFallback([Object? rawFontFamily]) {
+  final parsed = _parseFontFamilyFallback(rawFontFamily);
+  final notoSans = GoogleFonts.notoSans().fontFamily;
+  final notoSansKr = GoogleFonts.notoSansKr().fontFamily;
+  return [
+    if (notoSans != null) notoSans,
+    if (notoSansKr != null) notoSansKr,
+    ...parsed,
+    'Noto Sans',
+    'Noto Sans KR',
+    'Segoe UI Symbol',
+    'Segoe UI',
+    'Apple SD Gothic Neo',
+    'Malgun Gothic',
+    'sans-serif',
+  ];
+}
+
 TextStyle _problemTextStyle({
   required Color color,
   required double fontSize,
   required FontWeight fontWeight,
   required double height,
+  Object? fontFamily,
+  List<String>? fontFamilyFallback,
 }) {
   return GoogleFonts.poorStory(
     color: color,
     fontSize: fontSize,
     fontWeight: fontWeight,
     height: height,
+  ).copyWith(
+    fontFamilyFallback:
+        fontFamilyFallback ?? _buildFontFamilyFallback(fontFamily),
   );
 }
