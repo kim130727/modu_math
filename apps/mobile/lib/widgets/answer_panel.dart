@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
+import '../theme/app_theme.dart';
 import '../utils/answer_normalizer.dart';
 import 'math_keypad.dart';
 
@@ -202,8 +203,8 @@ class _AnswerPanelState extends State<AnswerPanel> {
     return Card(
       margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-        side: const BorderSide(color: Color(0xFFE5E7EB)),
+        borderRadius: BorderRadius.circular(AppRadii.large),
+        side: const BorderSide(color: KidsPalette.line),
       ),
       child: Padding(
         padding: const EdgeInsets.all(18),
@@ -257,8 +258,8 @@ class _AnswerPanelState extends State<AnswerPanel> {
                     return ChoiceChip(
                       selected: selected,
                       labelPadding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 4,
+                        horizontal: 14,
+                        vertical: 10,
                       ),
                       padding: const EdgeInsets.symmetric(
                         horizontal: 6,
@@ -266,11 +267,11 @@ class _AnswerPanelState extends State<AnswerPanel> {
                       ),
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(AppRadii.medium),
                         side: BorderSide(
-                          color: selected
-                              ? const Color(0xFF5C6AC4)
-                              : const Color(0xFFD1D5DB),
+                          color:
+                              selected ? KidsPalette.primary : KidsPalette.line,
+                          width: selected ? 2 : 1.5,
                         ),
                       ),
                       label: Text(
@@ -320,7 +321,7 @@ class _AnswerPanelState extends State<AnswerPanel> {
                         color: Color(0xFF5C6AC4),
                         size: 21,
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Expanded(
                         child: Text(
                           strings.t('answer.checkAllBlanks'),
@@ -335,7 +336,8 @@ class _AnswerPanelState extends State<AnswerPanel> {
                   ),
                 )
               else if (widget.content.multiAnswerFields.isNotEmpty) ...[
-                for (final (i, field) in widget.content.multiAnswerFields.indexed) ...[
+                for (final (i, field)
+                    in widget.content.multiAnswerFields.indexed) ...[
                   TextField(
                     key: ValueKey('multi-input-field-$i'),
                     controller: multiControllers[i],
@@ -452,8 +454,8 @@ class _AnswerPanelState extends State<AnswerPanel> {
                   return ChoiceChip(
                     selected: selected,
                     labelPadding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 4,
+                      horizontal: 14,
+                      vertical: 10,
                     ),
                     padding: const EdgeInsets.symmetric(
                       horizontal: 6,
@@ -461,11 +463,11 @@ class _AnswerPanelState extends State<AnswerPanel> {
                     ),
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(AppRadii.medium),
                       side: BorderSide(
-                        color: selected
-                            ? const Color(0xFF5C6AC4)
-                            : const Color(0xFFD1D5DB),
+                        color:
+                            selected ? KidsPalette.primary : KidsPalette.line,
+                        width: selected ? 2 : 1.5,
                       ),
                     ),
                     label: Text(
@@ -519,9 +521,8 @@ class _AnswerPanelState extends State<AnswerPanel> {
                   if (widget.content.hasMultipleRendererAnswerInputs) {
                     answer = widget.answerDraft;
                   } else if (widget.content.multiAnswerFields.isNotEmpty) {
-                    answer = multiControllers
-                        .map((c) => c.text.trim())
-                        .join(' / ');
+                    answer =
+                        multiControllers.map((c) => c.text.trim()).join(' / ');
                   } else {
                     answer = controller.text;
                   }

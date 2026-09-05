@@ -116,32 +116,48 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
               child: LayoutBuilder(
                 builder: (context, constraints) {
                   final wide = constraints.maxWidth >= 980;
-                  final horizontal = wide ? 28.0 : 16.0;
+                  final horizontal =
+                      AppLayout.horizontalPadding(constraints.maxWidth);
 
                   return ListView(
                     padding:
-                        EdgeInsets.fromLTRB(horizontal, 16, horizontal, 32),
+                        EdgeInsets.fromLTRB(horizontal, 12, horizontal, 40),
                     children: [
-                      _TopNavigation(
-                        onReview: _openReview,
-                        onProgress: _openProgress,
-                      ),
-                      const SizedBox(height: 18),
-                      _TodayCard(
-                        wide: wide,
-                        profile: profile,
-                        dailySummary: dailySummary,
-                        nextProblem: nextProblem,
-                        onStart: recommendations.isEmpty
-                            ? null
-                            : () => _startDailyChallenge(recommendations),
-                        onCurriculum: _openCurriculum,
-                      ),
-                      const SizedBox(height: 22),
-                      _UnitRail(
-                        problems: manifest.problems,
-                        onOpenUnit: (unit, {subUnit}) =>
-                            _openCurriculum(initialUnit: unit, subUnit: subUnit),
+                      Center(
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(
+                            maxWidth: AppLayout.maxContentWidth,
+                          ),
+                          child: Column(
+                            children: [
+                              _TopNavigation(
+                                onReview: _openReview,
+                                onProgress: _openProgress,
+                              ),
+                              const SizedBox(height: 20),
+                              _TodayCard(
+                                wide: wide,
+                                profile: profile,
+                                dailySummary: dailySummary,
+                                nextProblem: nextProblem,
+                                onStart: recommendations.isEmpty
+                                    ? null
+                                    : () =>
+                                        _startDailyChallenge(recommendations),
+                                onCurriculum: _openCurriculum,
+                              ),
+                              const SizedBox(height: 28),
+                              _UnitRail(
+                                problems: manifest.problems,
+                                onOpenUnit: (unit, {subUnit}) =>
+                                    _openCurriculum(
+                                  initialUnit: unit,
+                                  subUnit: subUnit,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ],
                   );
@@ -224,17 +240,29 @@ class _TopNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     final strings = AppStrings.of(context);
     return Container(
-      height: 64,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      height: 68,
+      padding: const EdgeInsets.symmetric(horizontal: 14),
       decoration: BoxDecoration(
         color: KidsPalette.paper,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppRadii.medium),
         border: Border.all(color: KidsPalette.line),
       ),
       child: Row(
         children: [
-          const Icon(Icons.school_rounded, color: KidsPalette.ink, size: 28),
-          const SizedBox(width: 10),
+          Container(
+            width: 42,
+            height: 42,
+            decoration: BoxDecoration(
+              color: KidsPalette.primary,
+              borderRadius: BorderRadius.circular(13),
+            ),
+            child: const Icon(
+              Icons.school_rounded,
+              color: Colors.white,
+              size: 24,
+            ),
+          ),
+          const SizedBox(width: 12),
           Text(
             strings.t('app.title'),
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -252,6 +280,7 @@ class _TopNavigation extends StatelessWidget {
             onPressed: onProgress,
             icon: const Icon(Icons.bar_chart_rounded),
           ),
+          const SizedBox(width: 44),
         ],
       ),
     );
@@ -278,19 +307,23 @@ class _TodayCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final copy = _TodayCopy(
-      profile: profile,
       dailySummary: dailySummary,
+      dailyTarget: profile.targetDailyCount,
       onStart: onStart,
       onCurriculum: onCurriculum,
     );
     final problemCard = _NextProblemCard(problem: nextProblem);
 
     return Container(
-      padding: EdgeInsets.all(wide ? 28 : 20),
+      padding: EdgeInsets.all(wide ? 36 : 22),
       decoration: BoxDecoration(
-        color: const Color(0xFFF7F8FC),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: KidsPalette.line),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFFEEF2FF), Color(0xFFF8FAFF)],
+        ),
+        borderRadius: BorderRadius.circular(AppRadii.extraLarge),
+        border: Border.all(color: const Color(0xFFD8DCFF)),
       ),
       child: wide
           ? Row(
@@ -315,14 +348,14 @@ class _TodayCard extends StatelessWidget {
 
 class _TodayCopy extends StatelessWidget {
   const _TodayCopy({
-    required this.profile,
     required this.dailySummary,
+    required this.dailyTarget,
     required this.onStart,
     required this.onCurriculum,
   });
 
-  final StudentProfile profile;
   final DailySummary dailySummary;
+  final int dailyTarget;
   final VoidCallback? onStart;
   final VoidCallback onCurriculum;
 
@@ -343,10 +376,7 @@ class _TodayCopy extends StatelessWidget {
         ),
         const SizedBox(height: 14),
         Text(
-          strings.t('home.heroSubtitle', {
-            'grade': profile.grade,
-            'name': profile.name,
-          }),
+          strings.t('home.heroSubtitle'),
           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 color: KidsPalette.cocoaSoft,
                 height: 1.5,
@@ -355,7 +385,7 @@ class _TodayCopy extends StatelessWidget {
         const SizedBox(height: 18),
         _HeroStats(
           solved: dailySummary.totalAttempted,
-          target: profile.targetDailyCount,
+          target: dailyTarget,
           accuracy: dailySummary.accuracy,
         ),
         const SizedBox(height: 22),
@@ -471,7 +501,7 @@ class _NextProblemCard extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: KidsPalette.paper,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppRadii.large),
         border: Border.all(color: KidsPalette.line),
       ),
       child: Padding(
@@ -715,7 +745,7 @@ class _UnitTile extends StatelessWidget {
       child: Card(
         margin: EdgeInsets.zero,
         child: InkWell(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(AppRadii.large),
           onTap: onTap,
           child: Padding(
             padding: const EdgeInsets.all(18),
@@ -723,7 +753,8 @@ class _UnitTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                     color: const Color(0xFFECEEFF),
                     borderRadius: BorderRadius.circular(6),
@@ -759,7 +790,8 @@ class _UnitTile extends StatelessWidget {
                           ),
                     ),
                     const Spacer(),
-                    const Icon(Icons.chevron_right_rounded, color: KidsPalette.sage),
+                    const Icon(Icons.chevron_right_rounded,
+                        color: KidsPalette.sage),
                   ],
                 ),
               ],

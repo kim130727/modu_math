@@ -50,7 +50,7 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'curriculum.empty': '아직 학습할 문제가 없어요.',
     'curriculum.headerTitle': '오늘 배울 단원을 골라요',
     'curriculum.headerDescription': '단원을 고르면 문제 풀이와 온셈이가 바로 이어집니다.',
-    'curriculum.groupTitle': '{grade}학년 {semester}',
+    'curriculum.groupTitle': '{semester}',
     'curriculum.unknownSemester': '학기 미정',
     'curriculum.semester.1학기': '1학기',
     'curriculum.semester.2학기': '2학기',
@@ -158,9 +158,11 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'errorSheet.planning_concept.title': '개념/공식 연결 오류',
     'errorSheet.planning_concept.description': '어떤 수학 개념이나 법칙을 써야 할지 생각 안 났어요.',
     'errorSheet.planning_operation.title': '연산 순서/식 세우기 오류',
-    'errorSheet.planning_operation.description': '덧셈, 뺄셈, 곱셈, 나눗셈 등 해결 순서를 틀렸어요.',
+    'errorSheet.planning_operation.description':
+        '덧셈, 뺄셈, 곱셈, 나눗셈 등 해결 순서를 틀렸어요.',
     'errorSheet.execution_calculation.title': '아쉬운 계산 실수',
-    'errorSheet.execution_calculation.description': '식은 맞았는데 사칙연산 계산에서 오차가 생겼어요.',
+    'errorSheet.execution_calculation.description':
+        '식은 맞았는데 사칙연산 계산에서 오차가 생겼어요.',
     'errorSheet.review_unit.title': '단위 또는 마지막 검산 부족',
     'errorSheet.review_unit.description': '단위(cm, 개 등)를 빠뜨렸거나 검산을 안 했어요.',
     'studio.noRenderableProblems': '렌더링 가능한 문제 자료가 없어요.',
@@ -251,7 +253,8 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'answer.check': 'Check Answer',
     'answer.showSolution': 'Show Hint',
     'answer.correct': 'Correct!',
-    'answer.incorrectWithAnswer': 'Let\'s check again. Review the hint and think once more.',
+    'answer.incorrectWithAnswer':
+        'Let\'s check again. Review the hint and think once more.',
     'progress.title': 'Learning Results',
     'progress.solved': 'Solved',
     'progress.correct': 'Correct',
@@ -262,8 +265,9 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'curriculum.loadError': 'Could not load unit info.\n{error}',
     'curriculum.empty': 'No problems to study yet.',
     'curriculum.headerTitle': 'Choose a unit for today',
-    'curriculum.headerDescription': 'Select a unit to start solving problems with Onsemi.',
-    'curriculum.groupTitle': 'Grade {grade}, Semester {semester}',
+    'curriculum.headerDescription':
+        'Select a unit to start solving problems with Onsemi.',
+    'curriculum.groupTitle': 'Semester {semester}',
     'curriculum.unknownSemester': 'Undecided Semester',
     'curriculum.semester.1학기': 'Semester 1',
     'curriculum.semester.2학기': 'Semester 2',
@@ -294,12 +298,15 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'session.allComplete': 'All completed! You can practice again.',
     'session.nextProblemLabel': 'Next Problem',
     'session.nextProblemSubtitle': 'Next Problem · {title}',
-    'problem.loadErrorTutor': 'Could not load tutor response. Please try again in a moment.',
+    'problem.loadErrorTutor':
+        'Could not load tutor response. Please try again in a moment.',
     'problem.noVisual': 'This problem has no visual elements yet.',
     'problem.loadErrorTitle': 'Could not load problem content',
-    'problem.loadErrorDescription': 'You can try again or move to the next problem.',
+    'problem.loadErrorDescription':
+        'You can try again or move to the next problem.',
     'problemList.loadError': 'Could not load problem list.\n{error}',
-    'problemList.journeyDescription': 'Solve {count} problems step by step with Onsemi.',
+    'problemList.journeyDescription':
+        'Solve {count} problems step by step with Onsemi.',
     'problemList.solve': 'Solve',
     'problemList.done': 'Done',
     'problemList.startWithTutor': 'Start with Onsemi',
@@ -324,9 +331,11 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'tutor.noTextToRead': 'No tutor message to read yet.',
     'tutor.voiceUnavailable': 'Voice reading is not supported in this browser.',
     'tutor.thinking': 'Thinking...',
-    'tutor.firstQuestionPlaceholder': 'When you start, the first step will appear here.',
+    'tutor.firstQuestionPlaceholder':
+        'When you start, the first step will appear here.',
     'tutor.correctReview': 'Great job! You can move to the next problem.',
-    'tutor.incorrectReview': 'Let\'s look at it again. We can check from the necessary step.',
+    'tutor.incorrectReview':
+        'Let\'s look at it again. We can check from the necessary step.',
     'tutor.student': 'Student',
     'review.title': 'Review Notes & Reasoning Steps',
     'review.loadError': 'Could not load review notes: {error}',
@@ -335,11 +344,13 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'review.empty': 'No review problems! Keep up the good work.',
     'review.submittedAnswer': 'Submitted Answer: {answer}',
     'review.headerTitle': '{count} Problems to Review',
-    'review.headerDescription': 'Reviewing where you got stuck connects knowledge to long-term memory.',
+    'review.headerDescription':
+        'Reviewing where you got stuck connects knowledge to long-term memory.',
     'report.title': 'Learning Growth Report',
     'report.loadError': 'Could not load report: {error}',
     'report.weaknessTitle': 'Step-by-Step Weakness Analysis',
-    'report.noErrors': 'No reasoning errors recorded yet. Record error causes after solving problems!',
+    'report.noErrors':
+        'No reasoning errors recorded yet. Record error causes after solving problems!',
     'report.recordCount': '{count} times recorded',
     'report.masteryTitle': 'Concept Mastery by Unit',
     'report.noMastery': 'No units solved yet.',
@@ -363,22 +374,31 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'errorCategory.review_unit': 'Unit or final check error',
     'errorCategory.none': 'No error',
     'errorSheet.title': 'Which thinking step was tricky?',
-    'errorSheet.description': 'Recording reasons helps Onsemi give better hints next time.',
+    'errorSheet.description':
+        'Recording reasons helps Onsemi give better hints next time.',
     'errorSheet.understanding_target.title': 'Missed the goal',
-    'errorSheet.understanding_target.description': 'Did not correctly identify what to find.',
+    'errorSheet.understanding_target.description':
+        'Did not correctly identify what to find.',
     'errorSheet.understanding_given.title': 'Misread conditions',
-    'errorSheet.understanding_given.description': 'Misread the given numbers or conditions.',
+    'errorSheet.understanding_given.description':
+        'Misread the given numbers or conditions.',
     'errorSheet.planning_concept.title': 'Concept/formula confusion',
-    'errorSheet.planning_concept.description': 'Could not recall the math concept or formula.',
+    'errorSheet.planning_concept.description':
+        'Could not recall the math concept or formula.',
     'errorSheet.planning_operation.title': 'Operation order error',
-    'errorSheet.planning_operation.description': 'Got the calculation order or formula structure wrong.',
+    'errorSheet.planning_operation.description':
+        'Got the calculation order or formula structure wrong.',
     'errorSheet.execution_calculation.title': 'Calculation error',
-    'errorSheet.execution_calculation.description': 'Formula was right, but made an arithmetic mistake.',
+    'errorSheet.execution_calculation.description':
+        'Formula was right, but made an arithmetic mistake.',
     'errorSheet.review_unit.title': 'Unit or check missing',
-    'errorSheet.review_unit.description': 'Missed the unit or forgot to double-check.',
+    'errorSheet.review_unit.description':
+        'Missed the unit or forgot to double-check.',
     'studio.noRenderableProblems': 'No renderable problems available.',
-    'studio.tutorLoadError': 'Could not receive tutor response. Please try again soon.',
-    'studio.description': 'Inspect JSON rendering and problem structures side by side.',
+    'studio.tutorLoadError':
+        'Could not receive tutor response. Please try again soon.',
+    'studio.description':
+        'Inspect JSON rendering and problem structures side by side.',
     'studio.problemListTooltip': 'Problem List',
     'studio.defaultInstruction': 'Inspect rendering data.',
     'studio.loadError': 'Could not load JSON problem.\n{error}',
@@ -420,14 +440,19 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'review.loading': 'Reviewing notes...',
     'report.loading': 'Generating learning report...',
     'studio.loading': 'Preparing preview...',
-    'problem.title.008540': 'Choose the multiplication expression represented by the shaded part.',
-    'problem.title.008541': 'Choose the option that lists the results from greatest to least.',
-    'problem.title.008631': 'Choose the correct quotient from the base-ten model',
+    'problem.title.008540':
+        'Choose the multiplication expression represented by the shaded part.',
+    'problem.title.008541':
+        'Choose the option that lists the results from greatest to least.',
+    'problem.title.008631':
+        'Choose the correct quotient from the base-ten model',
     'problem.title.008661': 'Find the longest line segment',
     'problem.title.008664': 'Choose the hole that makes the largest circle',
     'problem.title.008713': 'Steps for drawing a circle with a radius of 1 cm',
-    'problem.title.008728': 'Find the person who described the fraction correctly',
-    'problem.title.008732': 'Determine fraction classification from ladder result',
+    'problem.title.008728':
+        'Find the person who described the fraction correctly',
+    'problem.title.008732':
+        'Determine fraction classification from ladder result',
     'problem.title.008745': 'Comparing capacity using identical containers',
     'problem.title.008751': 'Evaluate method for comparing bottle capacity',
     'keypad.backspace': 'Delete',
@@ -481,7 +506,7 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'curriculum.empty': '学習できる問題がまだありません。',
     'curriculum.headerTitle': '今日学習する単元を選びましょう',
     'curriculum.headerDescription': '単元を選ぶと、AIチューターと一緒に問題を解き始められます。',
-    'curriculum.groupTitle': '小学{grade}年生 {semester}',
+    'curriculum.groupTitle': '{semester}',
     'curriculum.unknownSemester': '学期未定',
     'curriculum.semester.1학기': '1学期',
     'curriculum.semester.2학기': '2学期',
@@ -699,7 +724,7 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'curriculum.empty': '暂无学习题目。',
     'curriculum.headerTitle': '选择今日要学习的单元',
     'curriculum.headerDescription': '选择单元后，即可与AI导师一起开始解题。',
-    'curriculum.groupTitle': '{grade}年级 {semester}',
+    'curriculum.groupTitle': '{semester}',
     'curriculum.unknownSemester': '未定学期',
     'curriculum.semester.1학기': '上学期',
     'curriculum.semester.2학기': '下学期',
@@ -891,7 +916,8 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'home.reviewTooltip': 'សៀវភៅកត់ត្រាកំហុស',
     'home.reportTooltip': 'របាយការណ៍សិក្សា',
     'home.heroTitle': 'តើយើងគួរដោះស្រាយលំហាត់\nមួយៗនៅថ្ងៃនេះទេ?',
-    'home.heroSubtitle': 'ពិនិត្យមើលជំហានដោះស្រាយយឺតៗ ជាមួយនឹងបញ្ហាតម្រូវតាមអ្នក។',
+    'home.heroSubtitle':
+        'ពិនិត្យមើលជំហានដោះស្រាយយឺតៗ ជាមួយនឹងបញ្ហាតម្រូវតាមអ្នក។',
     'home.startToday': 'ចាប់ផ្តើមរៀនថ្ងៃនេះ',
     'home.chooseUnit': 'ជ្រើសរើសមេរៀន',
     'home.today': 'ថ្ងៃនេះ',
@@ -905,7 +931,8 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'answer.check': 'ពិនិត្យចម្លើយ',
     'answer.showSolution': 'មើលការណែនាំ',
     'answer.correct': 'ត្រឹមត្រូវហើយ!',
-    'answer.incorrectWithAnswer': 'សូមពិនិត្យម្តងទៀត។ មើលការណែនាំហើយគិតម្តងទៀត។',
+    'answer.incorrectWithAnswer':
+        'សូមពិនិត្យម្តងទៀត។ មើលការណែនាំហើយគិតម្តងទៀត។',
     'progress.title': 'លទ្ធផលសិក្សា',
     'progress.solved': 'បានដោះស្រាយ',
     'progress.correct': 'ត្រឹមត្រូវ',
@@ -916,8 +943,9 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'curriculum.loadError': 'មិនអាចទាញយកព័ត៌មានមេរៀនបានទេ: {error}',
     'curriculum.empty': 'មិនទាន់មានលំហាត់សម្រាប់រៀនទេ។',
     'curriculum.headerTitle': 'ជ្រើសរើសមេរៀនសម្រាប់ថ្ងៃនេះ',
-    'curriculum.headerDescription': 'ជ្រើសរើសមេរៀនដើម្បីចាប់ផ្តើមដោះស្រាយជាមួយគ្រូបង្រៀន AI។',
-    'curriculum.groupTitle': 'ថ្នាក់ទី {grade}, ឆមាស {semester}',
+    'curriculum.headerDescription':
+        'ជ្រើសរើសមេរៀនដើម្បីចាប់ផ្តើមដោះស្រាយជាមួយគ្រូបង្រៀន AI។',
+    'curriculum.groupTitle': '{semester}',
     'curriculum.unknownSemester': 'ឆមាសមិនទាន់កំណត់',
     'curriculum.semester.1학기': 'ឆមាសទី ១',
     'curriculum.semester.2학기': 'ឆមាសទី ២',
@@ -948,12 +976,15 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'session.allComplete': 'បានបញ្ចប់ទាំងអស់! អ្នកអាចអនុវត្តឡើងវិញបាន។',
     'session.nextProblemLabel': 'លំហាត់បន្ទាប់',
     'session.nextProblemSubtitle': 'លំហាត់បន្ទាប់ · {title}',
-    'problem.loadErrorTutor': 'មិនអាចទទួលការឆ្លើយតបពីគ្រូបានទេ។ សូមព្យាយាមម្តងទៀត។',
+    'problem.loadErrorTutor':
+        'មិនអាចទទួលការឆ្លើយតបពីគ្រូបានទេ។ សូមព្យាយាមម្តងទៀត។',
     'problem.noVisual': 'លំហាត់នេះមិនទាន់មានរូបភាពជំនួយទេ។',
     'problem.loadErrorTitle': 'មិនអាចទាញយកទិន្នន័យលំហាត់បានទេ',
-    'problem.loadErrorDescription': 'អ្នកអាចព្យាយាមម្តងទៀត ឬបន្តទៅលំហាត់បន្ទាប់។',
+    'problem.loadErrorDescription':
+        'អ្នកអាចព្យាយាមម្តងទៀត ឬបន្តទៅលំហាត់បន្ទាប់។',
     'problemList.loadError': 'មិនអាចទាញយកបញ្ជីលំហាត់បានទេ: {error}',
-    'problemList.journeyDescription': 'ដោះស្រាយ {count} លំហាត់ជាលំដាប់ជាមួយគ្រូបង្រៀន AI។',
+    'problemList.journeyDescription':
+        'ដោះស្រាយ {count} លំហាត់ជាលំដាប់ជាមួយគ្រូបង្រៀន AI។',
     'problemList.solve': 'ដោះស្រាយ',
     'problemList.done': 'រួចរាល់',
     'problemList.startWithTutor': 'ចាប់ផ្តើមជាមួយគ្រូបង្រៀន',
@@ -978,9 +1009,11 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'tutor.noTextToRead': 'មិនទាន់មានអត្ថបទដើម្បីអានទេ។',
     'tutor.voiceUnavailable': 'កម្មវិធីរុករកនេះមិនគាំទ្រការអានសំឡេងទេ។',
     'tutor.thinking': 'កំពុងគិត...',
-    'tutor.firstQuestionPlaceholder': 'នៅពេលចាប់ផ្តើម ជំហានដំបូងនឹងបង្ហាញនៅទីនេះ។',
+    'tutor.firstQuestionPlaceholder':
+        'នៅពេលចាប់ផ្តើម ជំហានដំបូងនឹងបង្ហាញនៅទីនេះ។',
     'tutor.correctReview': 'ពូកែណាស់! អ្នកអាចបន្តទៅលំហាត់បន្ទាប់។',
-    'tutor.incorrectReview': 'សូមមើលម្តងទៀត។ យើងនឹងពិនិត្យមើលជំហានចាំបាច់ជាមួយគ្នា។',
+    'tutor.incorrectReview':
+        'សូមមើលម្តងទៀត។ យើងនឹងពិនិត្យមើលជំហានចាំបាច់ជាមួយគ្នា។',
     'tutor.student': 'សិស្ស',
     'review.title': 'សៀវភៅកត់ត្រាកំហុស & ការពិនិត្យឡើងវិញ',
     'review.loadError': 'មិនអាចទាញយកសៀវភៅកត់ត្រាកំហុសបានទេ: {error}',
@@ -993,11 +1026,13 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'report.title': 'របាយការណ៍ការរីកចម្រើនក្នុងការសិក្សា',
     'report.loadError': 'មិនអាចទាញយករបាយការណ៍បានទេ: {error}',
     'report.weaknessTitle': 'ការវិភាគចំណុចខ្សោយតាមជំហានគិត',
-    'report.noErrors': 'មិនទាន់មានកំហុសត្រូវបានកត់ត្រាទេ។ សូមកត់ត្រាមូលហេតុខុសបន្ទាប់ពីដោះស្រាយលំហាត់!',
+    'report.noErrors':
+        'មិនទាន់មានកំហុសត្រូវបានកត់ត្រាទេ។ សូមកត់ត្រាមូលហេតុខុសបន្ទាប់ពីដោះស្រាយលំហាត់!',
     'report.recordCount': 'បានកត់ត្រា {count} ដង',
     'report.masteryTitle': 'កម្រិតជំនាញតាមមេរៀន',
     'report.noMastery': 'មិនទាន់មានមេរៀនដែលបានដោះស្រាយទេ។',
-    'report.masteryStats': 'លំហាត់បានព្យាយាម: {count} | អត្រាត្រឹមត្រូវ: {percent}%',
+    'report.masteryStats':
+        'លំហាត់បានព្យាយាម: {count} | អត្រាត្រឹមត្រូវ: {percent}%',
     'report.overviewTitle': 'របាយការណ៍លទ្ធផលរបស់ {name}',
     'report.streak': 'ជាប់គ្នា {days} ថ្ងៃ',
     'report.totalSolved': 'ចំនួនលំហាត់ដោះស្រាយសរុប',
@@ -1017,22 +1052,31 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'errorCategory.review_unit': 'កំហុសខ្នាត ឬការផ្ទៀងផ្ទាត់ចុងក្រោយ',
     'errorCategory.none': 'គ្មានកំហុស',
     'errorSheet.title': 'តើអ្នកពិបាកនៅដំណាក់កាលគិតមួយណា?',
-    'errorSheet.description': 'ការកត់ត្រាមូលហេតុជួយឱ្យគ្រូបង្រៀនផ្តល់ការណែនាំកាន់តែប្រសើរនៅពេលក្រោយ។',
+    'errorSheet.description':
+        'ការកត់ត្រាមូលហេតុជួយឱ្យគ្រូបង្រៀនផ្តល់ការណែនាំកាន់តែប្រសើរនៅពេលក្រោយ។',
     'errorSheet.understanding_target.title': 'មិនដឹងថាត្រូវស្វែងរកអ្វី',
-    'errorSheet.understanding_target.description': 'មិនបានមើលឱ្យច្បាស់ពីអ្វីដែលលំហាត់តម្រូវឱ្យស្វែងរក។',
+    'errorSheet.understanding_target.description':
+        'មិនបានមើលឱ្យច្បាស់ពីអ្វីដែលលំហាត់តម្រូវឱ្យស្វែងរក។',
     'errorSheet.understanding_given.title': 'មើលលក្ខខណ្ឌឬលេខខុស',
-    'errorSheet.understanding_given.description': 'មើលលេខឬលក្ខខណ្ឌដែលបានផ្តល់ឱ្យខុស។',
+    'errorSheet.understanding_given.description':
+        'មើលលេខឬលក្ខខណ្ឌដែលបានផ្តល់ឱ្យខុស។',
     'errorSheet.planning_concept.title': 'ច្រឡំទ្រឹស្តី ឬរូបមន្ត',
-    'errorSheet.planning_concept.description': 'មិនដឹងថាត្រូវយករូបមន្តគណិតវិទ្យាណាមកប្រើទេ។',
+    'errorSheet.planning_concept.description':
+        'មិនដឹងថាត្រូវយករូបមន្តគណិតវិទ្យាណាមកប្រើទេ។',
     'errorSheet.planning_operation.title': 'លំដាប់ប្រមាណវិធីខុស',
-    'errorSheet.planning_operation.description': 'រៀបចំលំដាប់បូក ដក គុណ ចែកខុស។',
+    'errorSheet.planning_operation.description':
+        'រៀបចំលំដាប់បូក ដក គុណ ចែកខុស។',
     'errorSheet.execution_calculation.title': 'កំហុសក្នុងការគណនា',
-    'errorSheet.execution_calculation.description': 'រូបមន្តត្រូវ ប៉ុន្តែមានកំហុសក្នុងការគណនា។',
+    'errorSheet.execution_calculation.description':
+        'រូបមន្តត្រូវ ប៉ុន្តែមានកំហុសក្នុងការគណនា។',
     'errorSheet.review_unit.title': 'ភ្លេចខ្នាត ឬមិនបានផ្ទៀងផ្ទាត់',
-    'errorSheet.review_unit.description': 'ភ្លេចដាក់ខ្នាត ឬមិនបានផ្ទៀងផ្ទាត់ចម្លើយឡើងវិញ។',
+    'errorSheet.review_unit.description':
+        'ភ្លេចដាក់ខ្នាត ឬមិនបានផ្ទៀងផ្ទាត់ចម្លើយឡើងវិញ។',
     'studio.noRenderableProblems': 'មិនមានទិន្នន័យបញ្ហាដែលអាចបង្ហាញបានទេ។',
-    'studio.tutorLoadError': 'មិនអាចទទួលការឆ្លើយតបពីគ្រូបានទេ។ សូមព្យាយាមម្តងទៀត។',
-    'studio.description': 'ពិនិត្យមើលរចនាសម្ព័ន្ធលំហាត់ និងការបង្ហាញ JSON នៅលើអេក្រង់តែមួយ។',
+    'studio.tutorLoadError':
+        'មិនអាចទទួលការឆ្លើយតបពីគ្រូបានទេ។ សូមព្យាយាមម្តងទៀត។',
+    'studio.description':
+        'ពិនិត្យមើលរចនាសម្ព័ន្ធលំហាត់ និងការបង្ហាញ JSON នៅលើអេក្រង់តែមួយ។',
     'studio.problemListTooltip': 'បញ្ជីលំហាត់',
     'studio.defaultInstruction': 'ពិនិត្យទិន្នន័យបង្ហាញ។',
     'studio.loadError': 'មិនអាចផ្ទុកលំហាត់ JSON បានទេ: {error}',
@@ -1052,7 +1096,8 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'answer.promptBlanks': 'បញ្ចូលចម្លើយត្រឹមត្រូវក្នុងចន្លោះទទេ',
     'answer.promptMultiAnswer': 'បញ្ចូលចម្លើយត្រឹមត្រូវសម្រាប់សំណួរនីមួយៗ',
     'answer.promptDefault': 'បញ្ចូលចម្លើយរបស់អ្នក',
-    'answer.checkAllBlanks': 'សូមពិនិត្យមើលថាតើអ្នកបានបំពេញចន្លោះទាំងអស់ហើយឬនៅ។',
+    'answer.checkAllBlanks':
+        'សូមពិនិត្យមើលថាតើអ្នកបានបំពេញចន្លោះទាំងអស់ហើយឬនៅ។',
     'answer.keypadTooltip': 'ក្ដារចុចគណិតវិទ្យា',
     'hint.title': 'ជំនួយជាជំហាន',
     'hint.showHint': 'មើលជំនួយ',
@@ -1113,7 +1158,8 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'home.reviewTooltip': 'Зошит помилок',
     'home.reportTooltip': 'Навчальний звіт',
     'home.heroTitle': 'Спробуємо сьогодні\nпо одній задачі?',
-    'home.heroSubtitle': 'Покрокове розв’язання задач, підібраних спеціально для вас.',
+    'home.heroSubtitle':
+        'Покрокове розв’язання задач, підібраних спеціально для вас.',
     'home.startToday': 'Почати сьогодні',
     'home.chooseUnit': 'Обрати розділ',
     'home.today': 'Сьогодні',
@@ -1138,8 +1184,9 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'curriculum.loadError': 'Не вдалося завантажити розділи.\n{error}',
     'curriculum.empty': 'Поки немає задач для навчання.',
     'curriculum.headerTitle': 'Оберіть розділ на сьогодні',
-    'curriculum.headerDescription': 'Після вибору розділу одразу відкриються задачі та Rule Tutor.',
-    'curriculum.groupTitle': '{grade} клас, {semester}',
+    'curriculum.headerDescription':
+        'Після вибору розділу одразу відкриються задачі та Rule Tutor.',
+    'curriculum.groupTitle': '{semester}',
     'curriculum.unknownSemester': 'Семестр не визначено',
     'curriculum.semester.1학기': '1 семестр',
     'curriculum.semester.2학기': '2 семестр',
@@ -1170,12 +1217,15 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'session.allComplete': 'Усе розв’язано. Можна потренуватися ще раз.',
     'session.nextProblemLabel': 'Наступна задача',
     'session.nextProblemSubtitle': 'Наступна задача · {title}',
-    'problem.loadErrorTutor': 'Не вдалося отримати відповідь тьютора. Спробуйте ще раз трохи пізніше.',
+    'problem.loadErrorTutor':
+        'Не вдалося отримати відповідь тьютора. Спробуйте ще раз трохи пізніше.',
     'problem.noVisual': 'Для цієї задачі ще немає матеріалів на екрані.',
     'problem.loadErrorTitle': 'Не вдалося завантажити матеріали задачі',
-    'problem.loadErrorDescription': 'Можна спробувати ще раз або перейти до наступної задачі.',
+    'problem.loadErrorDescription':
+        'Можна спробувати ще раз або перейти до наступної задачі.',
     'problemList.loadError': 'Не вдалося завантажити список задач.\n{error}',
-    'problemList.journeyDescription': 'Розв’яжемо {count} задач по черзі разом із Rule Tutor.',
+    'problemList.journeyDescription':
+        'Розв’яжемо {count} задач по черзі разом із Rule Tutor.',
     'problemList.solve': 'Розв’язати',
     'problemList.done': 'Готово',
     'problemList.startWithTutor': 'Почати з Rule Tutor',
@@ -1190,7 +1240,8 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'tutor.reset': 'Скинути',
     'tutor.nextProblem': 'До наступної задачі',
     'tutor.finishUnit': 'Завершити розділ',
-    'tutor.emptyConversation': 'Натисніть «Почати», і тьютор проведе розв’язання крок за кроком.',
+    'tutor.emptyConversation':
+        'Натисніть «Почати», і тьютор проведе розв’язання крок за кроком.',
     'tutor.hint': 'Підказка',
     'tutor.chatInput': 'Напишіть запитання або виберіть варіант.',
     'tutor.stopListeningTooltip': 'Зупинити слухання',
@@ -1200,9 +1251,11 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'tutor.noTextToRead': 'Поки немає репліки тьютора для озвучення.',
     'tutor.voiceUnavailable': 'У браузері недоступне озвучення.',
     'tutor.thinking': 'Думаю.',
-    'tutor.firstQuestionPlaceholder': 'Після старту тут з’явиться перше запитання.',
+    'tutor.firstQuestionPlaceholder':
+        'Після старту тут з’явиться перше запитання.',
     'tutor.correctReview': 'Правильно! Тепер сформулюймо причину.',
-    'tutor.incorrectReview': 'Перевіримо ще раз. Тьютор підкаже наступний крок.',
+    'tutor.incorrectReview':
+        'Перевіримо ще раз. Тьютор підкаже наступний крок.',
     'tutor.student': 'Учень',
     'review.title': 'Зошит помилок і повторення',
     'review.loadError': 'Не вдалося завантажити зошит помилок: {error}',
@@ -1211,11 +1264,13 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'review.empty': 'Помилкових задач немає!\nПродовжуйте тренуватися.',
     'review.submittedAnswer': 'Ваша відповідь: {answer}',
     'review.headerTitle': 'Задачі для повторення: {count}',
-    'review.headerDescription': 'Повторення з аналізом причини помилки допомагає запам’ятати надовго.',
+    'review.headerDescription':
+        'Повторення з аналізом причини помилки допомагає запам’ятати надовго.',
     'report.title': 'Звіт про навчальний прогрес',
     'report.loadError': 'Не вдалося завантажити звіт: {error}',
     'report.weaknessTitle': 'Аналіз слабких місць',
-    'report.noErrors': 'Поки немає записаних помилок мислення.\nПісля розв’язання задач запишіть причину помилки.',
+    'report.noErrors':
+        'Поки немає записаних помилок мислення.\nПісля розв’язання задач запишіть причину помилки.',
     'report.recordCount': '{count} записів',
     'report.masteryTitle': 'Опанування розділів',
     'report.noMastery': 'Поки немає розділів із розв’язаними задачами.',
@@ -1239,22 +1294,31 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'errorCategory.review_unit': 'Помилка з одиницями або фінальною перевіркою',
     'errorCategory.none': 'Помилки немає',
     'errorSheet.title': 'На якому кроці мислення було складно?',
-    'errorSheet.description': 'Якщо записати причину, Rule Tutor підготує кращі підказки наступного разу.',
+    'errorSheet.description':
+        'Якщо записати причину, Rule Tutor підготує кращі підказки наступного разу.',
     'errorSheet.understanding_target.title': 'Пропущено, що треба знайти',
-    'errorSheet.understanding_target.description': 'Було незрозуміло, що саме треба знайти в задачі.',
+    'errorSheet.understanding_target.description':
+        'Було незрозуміло, що саме треба знайти в задачі.',
     'errorSheet.understanding_given.title': 'Неправильно прочитано умову',
-    'errorSheet.understanding_given.description': 'Числа або умови були прочитані інакше.',
+    'errorSheet.understanding_given.description':
+        'Числа або умови були прочитані інакше.',
     'errorSheet.planning_concept.title': 'Помилка з поняттям або формулою',
-    'errorSheet.planning_concept.description': 'Не вдалося згадати потрібне математичне поняття або правило.',
+    'errorSheet.planning_concept.description':
+        'Не вдалося згадати потрібне математичне поняття або правило.',
     'errorSheet.planning_operation.title': 'Помилка в порядку дій або виразі',
-    'errorSheet.planning_operation.description': 'Було обрано неправильний порядок додавання, віднімання, множення чи ділення.',
+    'errorSheet.planning_operation.description':
+        'Було обрано неправильний порядок додавання, віднімання, множення чи ділення.',
     'errorSheet.execution_calculation.title': 'Обчислювальна помилка',
-    'errorSheet.execution_calculation.description': 'Вираз був правильний, але в обчисленні з’явилася помилка.',
+    'errorSheet.execution_calculation.description':
+        'Вираз був правильний, але в обчисленні з’явилася помилка.',
     'errorSheet.review_unit.title': 'Не перевірено одиниці або відповідь',
-    'errorSheet.review_unit.description': 'Було пропущено одиниці або фінальну перевірку.',
+    'errorSheet.review_unit.description':
+        'Було пропущено одиниці або фінальну перевірку.',
     'studio.noRenderableProblems': 'Немає доступних задач для відображення.',
-    'studio.tutorLoadError': 'Не вдалося отримати відповідь тьютора. Спробуйте ще раз трохи пізніше.',
-    'studio.description': 'Перегляд JSON-рендерингу та структури задачі на одному екрані.',
+    'studio.tutorLoadError':
+        'Не вдалося отримати відповідь тьютора. Спробуйте ще раз трохи пізніше.',
+    'studio.description':
+        'Перегляд JSON-рендерингу та структури задачі на одному екрані.',
     'studio.problemListTooltip': 'Список наявних задач',
     'studio.defaultInstruction': 'Перевірте дані рендерингу.',
     'studio.loadError': 'Не вдалося завантажити JSON задачі.\n{error}',
@@ -1263,13 +1327,16 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'curriculum.domain.측정': 'Вимірювання',
     'curriculum.domain.자료와 가능성': 'Дані та статистика',
     'curriculum.domain.수학 개념': 'Математичні поняття',
-    'answer.promptChoiceGroups': 'Виберіть правильну відповідь для кожного пункту',
+    'answer.promptChoiceGroups':
+        'Виберіть правильну відповідь для кожного пункту',
     'answer.promptMultipleChoices': 'Виберіть усі правильні відповіді',
     'answer.promptSingleChoice': 'Виберіть правильну відповідь',
     'answer.promptBlanks': 'Введіть правильну відповідь у пропуск',
-    'answer.promptMultiAnswer': 'Введіть правильну відповідь на кожне запитання',
+    'answer.promptMultiAnswer':
+        'Введіть правильну відповідь на кожне запитання',
     'answer.promptDefault': 'Введіть відповідь',
-    'answer.checkAllBlanks': 'Будь ласка, перевірте, чи всі пропуски заповнено.',
+    'answer.checkAllBlanks':
+        'Будь ласка, перевірте, чи всі пропуски заповнено.',
     'answer.keypadTooltip': 'Математична клавіатура',
     'hint.title': 'Покрокові підказки',
     'hint.showHint': 'Показати підказку',
@@ -1291,16 +1358,21 @@ const Map<String, Map<String, String>> bundledTranslations = {
     'review.loading': 'Переглядаємо нотатки...',
     'report.loading': 'Формуємо навчальний звіт...',
     'studio.loading': 'Готуємо попередній перегляд...',
-    'problem.title.008540': 'Виберіть добуток, який представляє зафарбована частина.',
-    'problem.title.008541': 'Виберіть варіант, де результати розташовані від найбільшого до найменшого.',
+    'problem.title.008540':
+        'Виберіть добуток, який представляє зафарбована частина.',
+    'problem.title.008541':
+        'Виберіть варіант, де результати розташовані від найбільшого до найменшого.',
     'problem.title.008631': 'Вибрати правильну частку за моделлю',
     'problem.title.008661': 'Знайти найдовший відрізок',
     'problem.title.008664': 'Вибрати отвір для найбільшого кола',
     'problem.title.008713': 'Послідовність креслення кола радіусом 1 см',
     'problem.title.008728': 'Знайти того, хто правильно описав дріб',
-    'problem.title.008732': 'Визначити класифікацію дробу за результатом драбини',
-    'problem.title.008745': 'Порівняння місткості за допомогою однакових посудин',
-    'problem.title.008751': 'Оцінити спосіб порівняння місткості пляшки для води та молока',
+    'problem.title.008732':
+        'Визначити класифікацію дробу за результатом драбини',
+    'problem.title.008745':
+        'Порівняння місткості за допомогою однакових посудин',
+    'problem.title.008751':
+        'Оцінити спосіб порівняння місткості пляшки для води та молока',
     'keypad.backspace': 'Видалити',
     'keypad.clearAll': 'Очистити все',
     'keypad.next': 'Далі',

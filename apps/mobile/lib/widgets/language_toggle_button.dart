@@ -75,7 +75,7 @@ class LanguageToggleButton extends StatelessWidget {
     final scope = AppLocaleScope.maybeOf(context);
     final selected = scope?.locale.languageCode ?? 'ko';
 
-    final supported = AppStrings.supportedLocales;
+    const supported = AppStrings.supportedLocales;
     final currentIndex =
         supported.indexWhere((l) => l.languageCode == selected);
     final nextIndex =
@@ -90,8 +90,18 @@ class LanguageToggleButton extends StatelessWidget {
             ? Colors.transparent
             : Theme.of(context).colorScheme.surface.withValues(alpha: 0.92),
         shape: const CircleBorder(),
-        elevation: compact ? 0 : 3,
+        elevation: 0,
         child: IconButton(
+          style: IconButton.styleFrom(
+            backgroundColor: compact
+                ? Colors.transparent
+                : Theme.of(context).colorScheme.surface,
+            side: compact
+                ? BorderSide.none
+                : BorderSide(
+                    color: Theme.of(context).colorScheme.outlineVariant,
+                  ),
+          ),
           visualDensity: VisualDensity.compact,
           tooltip: null,
           onPressed:

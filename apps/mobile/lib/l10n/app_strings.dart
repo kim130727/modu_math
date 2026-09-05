@@ -363,6 +363,25 @@ class AppStrings {
 
   String unitTitle(String value) {
     var cleaned = value;
+    // Content identifiers may carry a source curriculum grade. The product UI
+    // is level-neutral, so expose only the useful unit/semester/topic label.
+    cleaned = cleaned.replaceFirst(
+      RegExp(r'^\s*(?:초등\s*)?\d+\s*학년\s*'),
+      '',
+    );
+    cleaned = cleaned.replaceFirst(
+      RegExp(r'^\s*grade\s*\d+\s*[,·\-]?\s*', caseSensitive: false),
+      '',
+    );
+    cleaned = cleaned.replaceFirst(
+      RegExp(r'^\s*小学\s*\d+\s*年生?\s*'),
+      '',
+    );
+    cleaned = cleaned.replaceFirst(RegExp(r'^\s*\d+\s*年级\s*'), '');
+    cleaned = cleaned.replaceFirst(
+      RegExp(r'^\s*\d+\s*клас(?:у|і)?\s*', caseSensitive: false),
+      '',
+    );
     cleaned = cleaned.replaceAll(RegExp(r'^\s*\d+학년\s*'), '');
     cleaned = cleaned.replaceAll(RegExp(r'^\s*\d+학기\s*'), '');
     cleaned = cleaned.replaceAll(RegExp(r'^\s*\d+\.\s*'), '');

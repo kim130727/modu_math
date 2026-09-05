@@ -7,6 +7,7 @@ import '../services/content_repository.dart';
 import '../services/learning_progress_repository.dart';
 import '../theme/app_theme.dart';
 import '../widgets/onsem_loading_indicator.dart';
+import '../widgets/content_frame.dart';
 import 'problem_solve_screen.dart';
 
 class LearningSessionScreen extends StatefulWidget {
@@ -58,20 +59,18 @@ class _LearningSessionScreenState extends State<LearningSessionScreen> {
   Future<_SessionData> _loadSession() async {
     final manifest = await widget.repository.loadManifest();
     final attempts = await widget.progressRepository.getAttempts();
-    final problems = manifest.problems
-        .where((problem) {
-          if (problem.unit != widget.unit) return false;
-          if (widget.subUnit == null) return true;
-          if (problem.subUnit == widget.subUnit) return true;
-          final isWidgetDefault = widget.subUnit == '__basicLearning__' ||
-              widget.subUnit == '기본 학습' ||
-              widget.subUnit == 'Basic Learning';
-          final isProblemDefault = problem.subUnit == '__basicLearning__' ||
-              problem.subUnit == '기본 학습' ||
-              problem.subUnit == 'Basic Learning';
-          return isWidgetDefault && isProblemDefault;
-        })
-        .toList()
+    final problems = manifest.problems.where((problem) {
+      if (problem.unit != widget.unit) return false;
+      if (widget.subUnit == null) return true;
+      if (problem.subUnit == widget.subUnit) return true;
+      final isWidgetDefault = widget.subUnit == '__basicLearning__' ||
+          widget.subUnit == '기본 학습' ||
+          widget.subUnit == 'Basic Learning';
+      final isProblemDefault = problem.subUnit == '__basicLearning__' ||
+          problem.subUnit == '기본 학습' ||
+          problem.subUnit == 'Basic Learning';
+      return isWidgetDefault && isProblemDefault;
+    }).toList()
       ..sort(_compareProblemSummaries);
     return _SessionData(problems: problems, attempts: attempts);
   }
@@ -89,55 +88,58 @@ class _LearningSessionScreenState extends State<LearningSessionScreen> {
         ),
       ),
       body: SafeArea(
-        child: FutureBuilder<_SessionData>(
-          future: _sessionFuture,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState != ConnectionState.done) {
-              return const OnsemLoadingIndicator(labelKey: 'session.loading');
-            }
-            if (snapshot.hasError) {
-              return Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: Text(
-                    strings.t('session.loadError', {
-                      'error': snapshot.error,
-                    }),
+        child: ContentFrame(
+          child: FutureBuilder<_SessionData>(
+            future: _sessionFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState != ConnectionState.done) {
+                return const OnsemLoadingIndicator(labelKey: 'session.loading');
+              }
+              if (snapshot.hasError) {
+                return Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Text(
+                      strings.t('session.loadError', {
+                        'error': snapshot.error,
+                      }),
+                    ),
                   ),
-                ),
+                );
+              }
+
+              final data = snapshot.data ?? const _SessionData.empty();
+              if (data.problems.isEmpty) {
+                return Center(child: Text(strings.t('session.empty')));
+              }
+
+              final nextIndex = data.nextProblemIndex;
+              final nextProblem = data.problems[nextIndex];
+              final localStrings = AppStrings.of(context);
+              return ListView(
+                padding: const EdgeInsets.fromLTRB(20, 16, 20, 28),
+                children: [
+                  _SessionHeader(
+                    unit: widget.unit,
+                    totalCount: data.problems.length,
+                    solvedCount: data.correctProblemIds.length,
+                    nextTitle: localStrings.problemTitleById(
+                        nextProblem.id, nextProblem.title),
+                    nextProblemName: _problemName(nextProblem),
+                    complete: data.isComplete,
+                    onStart: () => _startProblem(data, nextIndex),
+                  ),
+                  const SizedBox(height: 18),
+                  _ProblemPreviewList(
+                    problems: data.problems,
+                    correctProblemIds: data.correctProblemIds,
+                    nextProblemId: nextProblem.id,
+                    onOpenProblem: (index) => _startProblem(data, index),
+                  ),
+                ],
               );
-            }
-
-            final data = snapshot.data ?? const _SessionData.empty();
-            if (data.problems.isEmpty) {
-              return Center(child: Text(strings.t('session.empty')));
-            }
-
-            final nextIndex = data.nextProblemIndex;
-            final nextProblem = data.problems[nextIndex];
-            final localStrings = AppStrings.of(context);
-            return ListView(
-              padding: const EdgeInsets.fromLTRB(20, 16, 20, 28),
-              children: [
-                _SessionHeader(
-                  unit: widget.unit,
-                  totalCount: data.problems.length,
-                  solvedCount: data.correctProblemIds.length,
-                  nextTitle: localStrings.problemTitleById(nextProblem.id, nextProblem.title),
-                  nextProblemName: _problemName(nextProblem),
-                  complete: data.isComplete,
-                  onStart: () => _startProblem(data, nextIndex),
-                ),
-                const SizedBox(height: 18),
-                _ProblemPreviewList(
-                  problems: data.problems,
-                  correctProblemIds: data.correctProblemIds,
-                  nextProblemId: nextProblem.id,
-                  onOpenProblem: (index) => _startProblem(data, index),
-                ),
-              ],
-            );
-          },
+            },
+          ),
         ),
       ),
     );
@@ -190,9 +192,13 @@ class _SessionHeader extends StatelessWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: const Color(0xFFECEEFF),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: KidsPalette.line),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [KidsPalette.primarySoft, KidsPalette.canvas],
+        ),
+        borderRadius: BorderRadius.circular(AppRadii.large),
+        border: Border.all(color: const Color(0xFFD8DCFF)),
       ),
       child: Padding(
         padding: const EdgeInsets.all(20),
@@ -221,12 +227,14 @@ class _SessionHeader extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 10),
-            LinearProgressIndicator(
-              value: progress,
-              minHeight: 10,
-              borderRadius: BorderRadius.circular(8),
-              backgroundColor: KidsPalette.paper,
-              color: KidsPalette.sage,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(999),
+              child: LinearProgressIndicator(
+                value: progress,
+                minHeight: 12,
+                backgroundColor: KidsPalette.paper,
+                color: KidsPalette.primary,
+              ),
             ),
             const SizedBox(height: 10),
             Text(
@@ -327,7 +335,8 @@ class _ProblemPreviewList extends StatelessWidget {
             subtitle: Text(
               next
                   ? strings.t('session.nextProblemSubtitle', {
-                      'title': strings.problemTitleById(problem.id, problem.title),
+                      'title':
+                          strings.problemTitleById(problem.id, problem.title),
                     })
                   : strings.problemTitleById(problem.id, problem.title),
               maxLines: 1,

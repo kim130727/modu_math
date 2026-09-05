@@ -14,6 +14,7 @@ import '../widgets/hint_panel.dart';
 import '../widgets/onsem_loading_indicator.dart';
 import '../widgets/problem_svg_viewer.dart';
 import '../widgets/renderer_json_canvas.dart';
+import '../theme/app_theme.dart';
 
 class ProblemSolveScreen extends StatefulWidget {
   const ProblemSolveScreen({
@@ -105,21 +106,48 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
     final strings = AppStrings.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: FutureBuilder<ProblemContent>(
-          future: contentFuture,
-          builder: (context, snapshot) {
-            final strings = AppStrings.of(context);
-            return Text(
-              snapshot.hasData
-                  ? _problemScreenTitle(snapshot.data!, strings)
-                  : _problemTitleWithPrefix(
-                      widget.problem.id,
-                      strings.problemTitle(widget.problem.title),
-                    ),
-            );
-          },
+        title: Row(
+          children: [
+            Flexible(
+              child: Text(
+                strings.unitTitle(widget.problem.unitTopic),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            const SizedBox(width: 10),
+            Text(
+              widget.problem.id,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: KidsPalette.inkSoft,
+                  ),
+            ),
+          ],
         ),
-        toolbarHeight: 72,
+        actions: [
+          if (widget.unitProblems.isNotEmpty)
+            Padding(
+              padding: const EdgeInsetsDirectional.only(end: 64),
+              child: Center(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 8,
+                  ),
+                  decoration: BoxDecoration(
+                    color: KidsPalette.primarySoft,
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                  child: Text(
+                    '${widget.problemIndex + 1} / ${widget.unitProblems.length}',
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          color: KidsPalette.primary,
+                        ),
+                  ),
+                ),
+              ),
+            ),
+        ],
       ),
       body: FutureBuilder<ProblemContent>(
         future: contentFuture,
@@ -168,8 +196,9 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
                 onAnswerChanged: _updateAnswerDraft,
                 onSubmit: (answer) => _submit(content, answer),
               );
-              final activeLocale = AppLocaleScope.maybeOf(context)?.locale.languageCode ??
-                  widget.repository.activeProblemLocale;
+              final activeLocale =
+                  AppLocaleScope.maybeOf(context)?.locale.languageCode ??
+                      widget.repository.activeProblemLocale;
               final hintPanel = HintPanel(
                 hints: hintService.buildHints(
                   content,
@@ -191,7 +220,9 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
                 return SafeArea(
                   child: Center(
                     child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 1480),
+                      constraints: const BoxConstraints(
+                        maxWidth: AppLayout.maxContentWidth,
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(24, 8, 24, 28),
                         child: Row(
@@ -381,6 +412,8 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
   }
 }
 
+// Kept for compatibility with deep links that may restore a legacy title.
+// ignore: unused_element
 String _problemScreenTitle(ProblemContent content, AppStrings strings) {
   final fallbackTitle = strings.problemTitle(content.summary.title);
   var title = fallbackTitle;

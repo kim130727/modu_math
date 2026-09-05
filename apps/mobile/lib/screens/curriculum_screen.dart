@@ -9,6 +9,7 @@ import '../services/content_repository.dart';
 import '../services/learning_progress_repository.dart';
 import '../theme/app_theme.dart';
 import '../widgets/onsem_loading_indicator.dart';
+import '../widgets/content_frame.dart';
 
 class CurriculumScreen extends StatefulWidget {
   const CurriculumScreen({
@@ -42,7 +43,9 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
     final manifest = await widget.repository.loadManifest();
     final count = manifest.problems.length.clamp(0, 3);
     for (var i = 0; i < count; i++) {
-      unawaited(widget.repository.preloadProblem(manifest.problems[i]).catchError((_) {}));
+      unawaited(widget.repository
+          .preloadProblem(manifest.problems[i])
+          .catchError((_) {}));
     }
     return manifest;
   }
@@ -81,7 +84,7 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
         actions: [
           if (_selectedUnit != null)
             Padding(
-              padding: const EdgeInsets.only(right: 8),
+              padding: const EdgeInsets.only(right: 64),
               child: TextButton.icon(
                 onPressed: () => setState(() => _selectedUnit = null),
                 icon: const Icon(Icons.list_alt_rounded, size: 18),
@@ -94,64 +97,67 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
         ],
       ),
       body: SafeArea(
-        child: FutureBuilder<ProblemManifest>(
-          future: _manifestFuture,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState != ConnectionState.done) {
-              return const OnsemLoadingIndicator(labelKey: 'curriculum.loading');
-            }
-            if (snapshot.hasError) {
-              return Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: Text(
-                    strings.t('curriculum.loadError', {
-                      'error': snapshot.error,
-                    }),
-                  ),
-                ),
-              );
-            }
-
-            final groups = _CurriculumGroup.fromProblems(
-              snapshot.data?.problems ?? const <ProblemSummary>[],
-            );
-            if (groups.isEmpty) {
-              return Center(child: Text(strings.t('curriculum.empty')));
-            }
-
-            if (_selectedUnit != null) {
-              final focused = _findUnitAndGroup(groups, _selectedUnit!);
-              if (focused != null) {
-                return _SingleUnitView(
-                  unit: focused.unit,
-                  group: focused.group,
-                  onOpenUnit: _openUnit,
-                  onShowAllUnits: () => setState(() => _selectedUnit = null),
-                );
+        child: ContentFrame(
+          child: FutureBuilder<ProblemManifest>(
+            future: _manifestFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState != ConnectionState.done) {
+                return const OnsemLoadingIndicator(
+                    labelKey: 'curriculum.loading');
               }
-            }
-
-            return ListView(
-              padding: const EdgeInsets.fromLTRB(20, 12, 20, 28),
-              children: [
-                const _CurriculumHeader(),
-                const SizedBox(height: 20),
-                ...groups.map(
-                  (group) => Padding(
-                    padding: const EdgeInsets.only(bottom: 18),
-                    child: _CurriculumSection(
-                      group: group,
-                      initialUnit: widget.initialUnit,
-                      onSelectUnit: (unit) =>
-                          setState(() => _selectedUnit = unit),
-                      onOpenUnit: _openUnit,
+              if (snapshot.hasError) {
+                return Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Text(
+                      strings.t('curriculum.loadError', {
+                        'error': snapshot.error,
+                      }),
                     ),
                   ),
-                ),
-              ],
-            );
-          },
+                );
+              }
+
+              final groups = _CurriculumGroup.fromProblems(
+                snapshot.data?.problems ?? const <ProblemSummary>[],
+              );
+              if (groups.isEmpty) {
+                return Center(child: Text(strings.t('curriculum.empty')));
+              }
+
+              if (_selectedUnit != null) {
+                final focused = _findUnitAndGroup(groups, _selectedUnit!);
+                if (focused != null) {
+                  return _SingleUnitView(
+                    unit: focused.unit,
+                    group: focused.group,
+                    onOpenUnit: _openUnit,
+                    onShowAllUnits: () => setState(() => _selectedUnit = null),
+                  );
+                }
+              }
+
+              return ListView(
+                padding: const EdgeInsets.fromLTRB(20, 12, 20, 28),
+                children: [
+                  const _CurriculumHeader(),
+                  const SizedBox(height: 20),
+                  ...groups.map(
+                    (group) => Padding(
+                      padding: const EdgeInsets.only(bottom: 18),
+                      child: _CurriculumSection(
+                        group: group,
+                        initialUnit: widget.initialUnit,
+                        onSelectUnit: (unit) =>
+                            setState(() => _selectedUnit = unit),
+                        onOpenUnit: _openUnit,
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
@@ -223,7 +229,8 @@ class _SingleUnitView extends StatelessWidget {
         Row(
           children: [
             ActionChip(
-              avatar: const Icon(Icons.arrow_back_rounded, size: 16, color: KidsPalette.ink),
+              avatar: const Icon(Icons.arrow_back_rounded,
+                  size: 16, color: KidsPalette.ink),
               label: Text(strings.t('curriculum.viewAllUnits')),
               backgroundColor: KidsPalette.paper,
               side: const BorderSide(color: KidsPalette.line),
@@ -285,21 +292,28 @@ class _SingleUnitView extends StatelessWidget {
                         children: [
                           Text(
                             groupTitle,
-                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                  color: KidsPalette.cocoaSoft,
-                                ),
+                            style:
+                                Theme.of(context).textTheme.bodySmall?.copyWith(
+                                      color: KidsPalette.cocoaSoft,
+                                    ),
                           ),
                           const SizedBox(height: 2),
                           Text(
                             strings.unitTitle(unit.topic),
-                            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall
+                                ?.copyWith(
                                   fontWeight: FontWeight.w800,
                                 ),
                           ),
                           const SizedBox(height: 4),
                           Text(
                             strings.problemCount(unit.problemCount),
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
                                   color: KidsPalette.sage,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -395,7 +409,10 @@ class _SingleUnitView extends StatelessWidget {
                               const SizedBox(height: 2),
                               Text(
                                 strings.problemCount(subUnit.problemCount),
-                                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.copyWith(
                                       color: KidsPalette.cocoaSoft,
                                     ),
                               ),
@@ -405,7 +422,8 @@ class _SingleUnitView extends StatelessWidget {
                         OutlinedButton.icon(
                           onPressed: () =>
                               onOpenUnit(unit.name, subUnit: subUnit.name),
-                          icon: const Icon(Icons.arrow_forward_rounded, size: 16),
+                          icon:
+                              const Icon(Icons.arrow_forward_rounded, size: 16),
                           label: Text(strings.t('curriculum.subUnitSolve')),
                           style: OutlinedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(
@@ -436,7 +454,8 @@ class _SingleUnitView extends StatelessWidget {
           ),
           child: Row(
             children: [
-              const Icon(Icons.explore_outlined, color: KidsPalette.sage, size: 28),
+              const Icon(Icons.explore_outlined,
+                  color: KidsPalette.sage, size: 28),
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
@@ -474,14 +493,26 @@ class _CurriculumHeader extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: const Color(0xFFECEEFF),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppRadii.large),
         border: Border.all(color: KidsPalette.line),
       ),
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Row(
           children: [
-            const Icon(Icons.map_outlined, color: KidsPalette.sage, size: 32),
+            Container(
+              width: 52,
+              height: 52,
+              decoration: BoxDecoration(
+                color: KidsPalette.primary,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: const Icon(
+                Icons.grid_view_rounded,
+                color: Colors.white,
+                size: 26,
+              ),
+            ),
             const SizedBox(width: 14),
             Expanded(
               child: Column(
@@ -596,8 +627,7 @@ class _UnitTile extends StatelessWidget {
                   CircleAvatar(
                     backgroundColor:
                         selected ? KidsPalette.sage : const Color(0xFFECEEFF),
-                    foregroundColor:
-                        selected ? Colors.white : KidsPalette.sage,
+                    foregroundColor: selected ? Colors.white : KidsPalette.sage,
                     child: Text('${unit.number}'),
                   ),
                   const SizedBox(width: 14),

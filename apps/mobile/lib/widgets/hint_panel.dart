@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../l10n/app_strings.dart';
 import '../services/solvable_hint_service.dart';
+import '../theme/app_theme.dart';
 
 class HintPanel extends StatefulWidget {
   const HintPanel({
@@ -61,7 +62,8 @@ class _HintPanelState extends State<HintPanel> {
   Widget build(BuildContext context) {
     final strings = AppStrings.of(context);
     final colorScheme = Theme.of(context).colorScheme;
-    final groups = _hintGroups(widget.hints, strings.t('curriculum.startWholeUnitShort'));
+    final groups =
+        _hintGroups(widget.hints, strings.t('curriculum.startWholeUnitShort'));
     final hasSubproblemTabs = groups.length > 1;
     final activeGroup = groups.isEmpty
         ? null
@@ -84,8 +86,8 @@ class _HintPanelState extends State<HintPanel> {
     return Card(
       margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-        side: const BorderSide(color: Color(0xFFE5E7EB)),
+        borderRadius: BorderRadius.circular(AppRadii.large),
+        side: const BorderSide(color: KidsPalette.line),
       ),
       child: Padding(
         padding: const EdgeInsets.all(18),
@@ -114,13 +116,15 @@ class _HintPanelState extends State<HintPanel> {
               const SizedBox(height: 12),
             ],
             FilledButton.icon(
-              onPressed: canRevealMore && activeGroup != null
-                  ? () => _revealNext(activeGroup)
-                  : null,
+              onPressed: canRevealMore ? () => _revealNext(activeGroup) : null,
               icon: const Icon(Icons.visibility_outlined),
               label: Text(canRevealMore
                   ? strings.t('hint.showHint')
                   : strings.t('hint.allRevealed')),
+              style: FilledButton.styleFrom(
+                backgroundColor: KidsPalette.warningSoft,
+                foregroundColor: const Color(0xFF9A5B00),
+              ),
             ),
             if (visibleHints.isEmpty) ...[
               const SizedBox(height: 12),
@@ -140,7 +144,7 @@ class _HintPanelState extends State<HintPanel> {
                   child: DecoratedBox(
                     decoration: BoxDecoration(
                       color: colorScheme.surfaceContainerHighest,
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(AppRadii.medium),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(14),
@@ -264,7 +268,8 @@ class _SubproblemTabs extends StatelessWidget {
   }
 }
 
-List<_HintGroup> _hintGroups(List<SolvableHint> hints, [String allLabel = '전체']) {
+List<_HintGroup> _hintGroups(List<SolvableHint> hints,
+    [String allLabel = '전체']) {
   final grouped = <String, List<SolvableHint>>{};
   for (final hint in hints) {
     final key = hint.groupKey ?? _groupKeyForTitle(hint.title);
@@ -377,9 +382,7 @@ class _MiniHintProblem extends StatelessWidget {
             if (result != null) ...[
               const SizedBox(height: 8),
               Text(
-                result!
-                    ? hint.successMessage
-                    : strings.t('hint.tryAgain'),
+                result! ? hint.successMessage : strings.t('hint.tryAgain'),
                 style: TextStyle(
                   color: result! ? const Color(0xFF166534) : colorScheme.error,
                   fontWeight: FontWeight.w700,
