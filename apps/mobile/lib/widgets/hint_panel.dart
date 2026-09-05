@@ -96,13 +96,31 @@ class _HintPanelState extends State<HintPanel> {
           children: [
             Row(
               children: [
-                Icon(Icons.lightbulb_outline, color: colorScheme.primary),
+                const Text('💡', style: TextStyle(fontSize: 18)),
                 const SizedBox(width: 8),
                 Text(
-                  strings.t('hint.title'),
+                  '단계별 마법 힌트',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w800,
+                        color: const Color(0xFF0F172A),
                       ),
+                ),
+                const Spacer(),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFFEF9C3),
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: const Color(0xFFFDE047)),
+                  ),
+                  child: const Text(
+                    '힌트 가이드',
+                    style: TextStyle(
+                      color: Color(0xFF854D0E),
+                      fontSize: 11,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -115,18 +133,18 @@ class _HintPanelState extends State<HintPanel> {
               ),
               const SizedBox(height: 12),
             ],
-            FilledButton.icon(
-              onPressed: canRevealMore ? () => _revealNext(activeGroup) : null,
-              icon: const Icon(Icons.visibility_outlined),
-              label: Text(canRevealMore
-                  ? strings.t('hint.showHint')
-                  : strings.t('hint.allRevealed')),
-              style: FilledButton.styleFrom(
-                backgroundColor: KidsPalette.warningSoft,
-                foregroundColor: const Color(0xFF9A5B00),
-              ),
-            ),
             if (visibleHints.isEmpty) ...[
+              FilledButton.icon(
+                onPressed: canRevealMore ? () => _revealNext(activeGroup) : null,
+                icon: const Icon(Icons.visibility_outlined),
+                label: Text(canRevealMore
+                    ? strings.t('hint.showHint')
+                    : strings.t('hint.allRevealed')),
+                style: FilledButton.styleFrom(
+                  backgroundColor: const Color(0xFFFEF08A),
+                  foregroundColor: const Color(0xFF854D0E),
+                ),
+              ),
               const SizedBox(height: 12),
               Text(
                 strings.t('hint.intro'),
@@ -141,47 +159,86 @@ class _HintPanelState extends State<HintPanel> {
                     : hint.title;
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 12),
-                  child: DecoratedBox(
+                  child: Container(
                     decoration: BoxDecoration(
-                      color: colorScheme.surfaceContainerHighest,
-                      borderRadius: BorderRadius.circular(AppRadii.medium),
+                      color: const Color(0xFFFEFCE8),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: const Color(0xFFFEF08A)),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(14),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.info_outline_rounded,
+                              size: 17,
+                              color: Color(0xFFB45309),
+                            ),
+                            const SizedBox(width: 6),
+                            Expanded(
+                              child: Text(
+                                title,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 14,
+                                  color: Color(0xFFB45309),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        if (hint.body.trim().isNotEmpty &&
+                            hint.body.trim() != hint.miniQuestion.trim()) ...[
+                          const SizedBox(height: 8),
                           Text(
-                            title,
+                            hint.body,
                             style: const TextStyle(
-                              fontWeight: FontWeight.w800,
+                              color: Color(0xFF78350F),
+                              fontSize: 13,
+                              height: 1.45,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                          if (hint.body.trim().isNotEmpty &&
-                              hint.body.trim() != hint.miniQuestion.trim()) ...[
-                            const SizedBox(height: 6),
-                            Text(hint.body),
-                          ],
-                          if (hint.miniQuestion.trim().isNotEmpty &&
-                              (hint.choices.isNotEmpty ||
-                                  hint.acceptedAnswers.isNotEmpty)) ...[
-                            const SizedBox(height: 12),
-                            _MiniHintProblem(
-                              hint: hint,
-                              controller: _controllerFor(hintKey),
-                              result: _results[hintKey],
-                              selectedChoice: _selectedChoices[hintKey],
-                              onSelectChoice: (choice) =>
-                                  _checkChoice(hintKey, choice),
-                              onCheck: () => _checkMiniProblem(hintKey, hint),
-                            ),
-                          ],
                         ],
-                      ),
+                        if (hint.miniQuestion.trim().isNotEmpty &&
+                            (hint.choices.isNotEmpty ||
+                                hint.acceptedAnswers.isNotEmpty)) ...[
+                          const SizedBox(height: 12),
+                          _MiniHintProblem(
+                            hint: hint,
+                            controller: _controllerFor(hintKey),
+                            result: _results[hintKey],
+                            selectedChoice: _selectedChoices[hintKey],
+                            onSelectChoice: (choice) =>
+                                _checkChoice(hintKey, choice),
+                            onCheck: () => _checkMiniProblem(hintKey, hint),
+                          ),
+                        ],
+                      ],
                     ),
                   ),
                 );
               }),
+              if (canRevealMore)
+                Padding(
+                  padding: const EdgeInsets.only(top: 4),
+                  child: OutlinedButton.icon(
+                    onPressed: () => _revealNext(activeGroup),
+                    icon: const Text('👁️', style: TextStyle(fontSize: 14)),
+                    label: Text('🔍 ${activeVisibleLevel + 1}단계 힌트 더보기'),
+                    style: OutlinedButton.styleFrom(
+                      backgroundColor: const Color(0xFFF8FAFC),
+                      foregroundColor: const Color(0xFF334155),
+                      side: const BorderSide(color: Color(0xFFE2E8F0)),
+                      minimumSize: const Size.fromHeight(44),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  ),
+                ),
             ],
           ],
         ),

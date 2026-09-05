@@ -261,9 +261,10 @@ class _SingleUnitView extends StatelessWidget {
         const SizedBox(height: 16),
         Card(
           margin: EdgeInsets.zero,
+          color: KidsPalette.ink,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-            side: const BorderSide(color: KidsPalette.sage, width: 2),
+            borderRadius: BorderRadius.circular(AppRadii.extraLarge),
+            side: BorderSide.none,
           ),
           child: Padding(
             padding: const EdgeInsets.all(22),
@@ -274,8 +275,8 @@ class _SingleUnitView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     CircleAvatar(
-                      radius: 28,
-                      backgroundColor: KidsPalette.sage,
+                      radius: 30,
+                      backgroundColor: Colors.white.withValues(alpha: 0.14),
                       foregroundColor: Colors.white,
                       child: Text(
                         '${unit.number}',
@@ -294,7 +295,7 @@ class _SingleUnitView extends StatelessWidget {
                             groupTitle,
                             style:
                                 Theme.of(context).textTheme.bodySmall?.copyWith(
-                                      color: KidsPalette.cocoaSoft,
+                                      color: const Color(0xFFC7D2FE),
                                     ),
                           ),
                           const SizedBox(height: 2),
@@ -305,6 +306,7 @@ class _SingleUnitView extends StatelessWidget {
                                 .headlineSmall
                                 ?.copyWith(
                                   fontWeight: FontWeight.w800,
+                                  color: Colors.white,
                                 ),
                           ),
                           const SizedBox(height: 4),
@@ -314,7 +316,7 @@ class _SingleUnitView extends StatelessWidget {
                                 .textTheme
                                 .bodyMedium
                                 ?.copyWith(
-                                  color: KidsPalette.sage,
+                                  color: const Color(0xFFA5B4FC),
                                   fontWeight: FontWeight.w700,
                                 ),
                           ),
@@ -338,9 +340,8 @@ class _SingleUnitView extends StatelessWidget {
                   ),
                   style: FilledButton.styleFrom(
                     minimumSize: const Size.fromHeight(52),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
+                    backgroundColor: Colors.white,
+                    foregroundColor: KidsPalette.primaryDark,
                   ),
                 ),
               ],
@@ -366,11 +367,11 @@ class _SingleUnitView extends StatelessWidget {
               return Card(
                 margin: EdgeInsets.zero,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(AppRadii.large),
                   side: const BorderSide(color: KidsPalette.line),
                 ),
                 child: InkWell(
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(AppRadii.large),
                   onTap: () => onOpenUnit(unit.name, subUnit: subUnit.name),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
@@ -380,16 +381,19 @@ class _SingleUnitView extends StatelessWidget {
                     child: Row(
                       children: [
                         Container(
-                          width: 36,
-                          height: 36,
+                          width: 48,
+                          height: 48,
                           decoration: BoxDecoration(
-                            color: const Color(0xFFECEEFF),
-                            borderRadius: BorderRadius.circular(10),
+                            color: KidsPalette.primarySoft,
+                            borderRadius: BorderRadius.circular(16),
                           ),
-                          child: const Icon(
-                            Icons.bookmark_outline_rounded,
-                            color: KidsPalette.sage,
-                            size: 20,
+                          alignment: Alignment.center,
+                          child: Text(
+                            '${index + 1}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(color: KidsPalette.primary),
                           ),
                         ),
                         const SizedBox(width: 14),
@@ -419,22 +423,9 @@ class _SingleUnitView extends StatelessWidget {
                             ],
                           ),
                         ),
-                        OutlinedButton.icon(
-                          onPressed: () =>
-                              onOpenUnit(unit.name, subUnit: subUnit.name),
-                          icon:
-                              const Icon(Icons.arrow_forward_rounded, size: 16),
-                          label: Text(strings.t('curriculum.subUnitSolve')),
-                          style: OutlinedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 8,
-                            ),
-                            side: const BorderSide(color: KidsPalette.line),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
+                        const Icon(
+                          Icons.arrow_forward_rounded,
+                          color: KidsPalette.primary,
                         ),
                       ],
                     ),

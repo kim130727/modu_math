@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import '../app/router.dart';
@@ -320,10 +319,10 @@ class _TodayCard extends StatelessWidget {
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFFEEF2FF), Color(0xFFF8FAFF)],
+          colors: [Color(0xFF312E81), Color(0xFF4F46E5)],
         ),
         borderRadius: BorderRadius.circular(AppRadii.extraLarge),
-        border: Border.all(color: const Color(0xFFD8DCFF)),
+        border: Border.all(color: const Color(0xFF6366F1)),
       ),
       child: wide
           ? Row(
@@ -372,13 +371,14 @@ class _TodayCopy extends StatelessWidget {
           style: Theme.of(context).textTheme.displaySmall?.copyWith(
                 fontSize: compactType ? 32 : 42,
                 letterSpacing: 0,
+                color: Colors.white,
               ),
         ),
         const SizedBox(height: 14),
         Text(
           strings.t('home.heroSubtitle'),
           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: KidsPalette.cocoaSoft,
+                color: const Color(0xFFE0E7FF),
                 height: 1.5,
               ),
         ),
@@ -399,6 +399,8 @@ class _TodayCopy extends StatelessWidget {
                 icon: const Icon(Icons.play_arrow_rounded),
                 style: FilledButton.styleFrom(
                   minimumSize: const Size.fromHeight(56),
+                  backgroundColor: Colors.white,
+                  foregroundColor: KidsPalette.primaryDark,
                 ),
                 label: Text(
                   strings.t('home.startToday'),
@@ -413,7 +415,9 @@ class _TodayCopy extends StatelessWidget {
                 onPressed: onCurriculum,
                 icon: const Icon(Icons.list_alt_rounded),
                 style: OutlinedButton.styleFrom(
-                  backgroundColor: KidsPalette.paper,
+                  backgroundColor: Colors.transparent,
+                  foregroundColor: Colors.white,
+                  side: const BorderSide(color: Color(0xFFA5B4FC)),
                   minimumSize: const Size.fromHeight(52),
                 ),
                 label: Text(
@@ -474,16 +478,26 @@ class _StatPill extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       decoration: BoxDecoration(
-        color: KidsPalette.paper,
+        color: Colors.white.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: KidsPalette.line),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.22)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(label, style: Theme.of(context).textTheme.bodySmall),
+          Text(
+            label,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: const Color(0xFFE0E7FF),
+                ),
+          ),
           const SizedBox(width: 8),
-          Text(value, style: Theme.of(context).textTheme.labelLarge),
+          Text(
+            value,
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  color: Colors.white,
+                ),
+          ),
         ],
       ),
     );
@@ -579,7 +593,7 @@ class _UnitItem {
   final int count;
 }
 
-class _UnitRail extends StatefulWidget {
+class _UnitRail extends StatelessWidget {
   const _UnitRail({
     required this.problems,
     required this.onOpenUnit,
@@ -589,65 +603,16 @@ class _UnitRail extends StatefulWidget {
   final SubUnitOpener onOpenUnit;
 
   @override
-  State<_UnitRail> createState() => _UnitRailState();
-}
-
-class _UnitRailState extends State<_UnitRail> {
-  final ScrollController _scrollController = ScrollController();
-  bool _canScrollLeft = false;
-  bool _canScrollRight = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(_updateScrollButtons);
-    WidgetsBinding.instance.addPostFrameCallback((_) => _updateScrollButtons());
-  }
-
-  void _updateScrollButtons() {
-    if (!_scrollController.hasClients) return;
-    final maxScroll = _scrollController.position.maxScrollExtent;
-    final currentScroll = _scrollController.offset;
-    final canLeft = currentScroll > 8;
-    final canRight = currentScroll < maxScroll - 8;
-    if (canLeft != _canScrollLeft || canRight != _canScrollRight) {
-      if (mounted) {
-        setState(() {
-          _canScrollLeft = canLeft;
-          _canScrollRight = canRight;
-        });
-      }
-    }
-  }
-
-  void _scroll(double delta) {
-    if (!_scrollController.hasClients) return;
-    final target = (_scrollController.offset + delta)
-        .clamp(0.0, _scrollController.position.maxScrollExtent);
-    _scrollController.animateTo(
-      target,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeOutCubic,
-    );
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final strings = AppStrings.of(context);
     final unitGroups = <String, List<ProblemSummary>>{};
-    for (final problem in widget.problems) {
-      unitGroups.putIfAbsent(problem.unit, () => []).add(problem);
+    for (final problem in problems) {
+      unitGroups.putIfAbsent(problem.unitTopic, () => []).add(problem);
     }
     final items = unitGroups.entries.map((entry) {
       final sample = entry.value.first;
       return _UnitItem(
-        unit: sample.unit,
+        unit: sample.unitTopic,
         unitTopic: sample.unitTopic,
         semester: sample.semester,
         unitNumber: sample.unitNumber,
@@ -662,66 +627,42 @@ class _UnitRailState extends State<_UnitRail> {
         return a.unitNumber.compareTo(b.unitNumber);
       });
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final columns = constraints.maxWidth >= 900
+            ? 3
+            : constraints.maxWidth >= 600
+                ? 2
+                : 1;
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               strings.t('home.unitLearning'),
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
-            Row(
-              children: [
-                IconButton.filledTonal(
-                  icon: const Icon(Icons.chevron_left_rounded, size: 20),
-                  tooltip: strings.t('home.prevUnit'),
-                  onPressed: _canScrollLeft ? () => _scroll(-300) : null,
-                ),
-                const SizedBox(width: 8),
-                IconButton.filledTonal(
-                  icon: const Icon(Icons.chevron_right_rounded, size: 20),
-                  tooltip: strings.t('home.nextUnit'),
-                  onPressed: _canScrollRight ? () => _scroll(300) : null,
-                ),
-              ],
-            ),
-          ],
-        ),
-        const SizedBox(height: 12),
-        SizedBox(
-          height: 172,
-          child: ScrollConfiguration(
-            behavior: ScrollConfiguration.of(context).copyWith(
-              dragDevices: {
-                PointerDeviceKind.touch,
-                PointerDeviceKind.mouse,
-                PointerDeviceKind.trackpad,
-                PointerDeviceKind.stylus,
+            const SizedBox(height: 16),
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: columns,
+                mainAxisExtent: 176,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+              ),
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                final item = items[index];
+                return _UnitTile(
+                  item: item,
+                  onTap: () => onOpenUnit(item.unit),
+                );
               },
             ),
-            child: Scrollbar(
-              controller: _scrollController,
-              thumbVisibility: true,
-              child: ListView.separated(
-                controller: _scrollController,
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.only(bottom: 12, right: 24),
-                itemCount: items.length,
-                separatorBuilder: (context, index) => const SizedBox(width: 12),
-                itemBuilder: (context, index) {
-                  final item = items[index];
-                  return _UnitTile(
-                    item: item,
-                    onTap: () => widget.onOpenUnit(item.unit),
-                  );
-                },
-              ),
-            ),
-          ),
-        ),
-      ],
+          ],
+        );
+      },
     );
   }
 }

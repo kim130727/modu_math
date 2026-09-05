@@ -118,6 +118,26 @@ class _AnswerPanelState extends State<AnswerPanel> {
     return parts.join(' / ');
   }
 
+  static String _choiceExplanation(String choice, ProblemContent content) {
+    final match = RegExp(r'(\d+)\s*[×x*]\s*(\d+)').firstMatch(choice);
+    if (match != null) {
+      final a = int.tryParse(match.group(1)!);
+      final b = int.tryParse(match.group(2)!);
+      if (a != null && b != null) {
+        if (a < 10 && b < 10) {
+          return '일의 자리 곱으로 계산 시 ${a * b}';
+        } else if (a >= 10 && a < 100 && a % 10 != 0) {
+          return '두 자릿수 전체 곱';
+        } else if (a >= 100) {
+          return '백의 자리 곱일 때 ${a * b}';
+        } else if (a >= 10 && a % 10 == 0) {
+          return '십의 자리 곱일 때 ${a * b}';
+        }
+      }
+    }
+    return '';
+  }
+
   void _syncSelectedChoice() {
     final choices = widget.content.choices;
     if (choices.isNotEmpty && widget.answerDraft.isNotEmpty) {
@@ -213,22 +233,52 @@ class _AnswerPanelState extends State<AnswerPanel> {
           children: [
             Row(
               children: [
-                Icon(
-                  choices.isNotEmpty
-                      ? Icons.check_circle_outline_rounded
-                      : Icons.edit_note_rounded,
-                  color: const Color(0xFF5C6AC4),
-                  size: 22,
+                Container(
+                  width: 26,
+                  height: 26,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF4F46E5),
+                    shape: BoxShape.circle,
+                  ),
+                  alignment: Alignment.center,
+                  child: const Text(
+                    'Q',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 14,
+                    ),
+                  ),
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 10),
                 Expanded(
                   child: Text(
                     titleText,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w800,
+                          color: const Color(0xFF0F172A),
                         ),
                   ),
                 ),
+                if (choices.isNotEmpty)
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFEEF2FF),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(
+                      allowsMultipleChoices ? '복수 선택' : '택 1',
+                      style: const TextStyle(
+                        color: Color(0xFF4F46E5),
+                        fontSize: 11,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
               ],
             ),
             const SizedBox(height: 16),
@@ -442,71 +492,148 @@ class _AnswerPanelState extends State<AnswerPanel> {
                 ],
               ],
             ] else
-              Wrap(
-                spacing: 10,
-                runSpacing: 10,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: choices.indexed.map((entry) {
                   final choiceIndex = entry.$1;
                   final choice = entry.$2;
                   final selected = allowsMultipleChoices
                       ? selectedChoiceIndexes.contains(choiceIndex)
                       : selectedChoiceIndex == choiceIndex;
-                  return ChoiceChip(
-                    selected: selected,
-                    labelPadding: const EdgeInsets.symmetric(
-                      horizontal: 14,
-                      vertical: 10,
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 6,
-                      vertical: 4,
-                    ),
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(AppRadii.medium),
-                      side: BorderSide(
-                        color:
-                            selected ? KidsPalette.primary : KidsPalette.line,
-                        width: selected ? 2 : 1.5,
-                      ),
-                    ),
-                    label: Text(
-                      choice,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        height: 1.3,
-                        leadingDistribution: TextLeadingDistribution.even,
-                      ),
-                    ),
-                    onSelected: (_) {
-                      setState(() {
-                        if (allowsMultipleChoices) {
-                          selectedChoiceIndexes = {...selectedChoiceIndexes};
-                          if (selectedChoiceIndexes.contains(choiceIndex)) {
-                            selectedChoiceIndexes.remove(choiceIndex);
-                          } else {
-                            selectedChoiceIndexes.add(choiceIndex);
-                          }
-                          selectedChoiceIndex = null;
-                        } else {
-                          selectedChoiceIndex = choiceIndex;
-                          selectedChoiceIndexes = {};
-                        }
-                      });
-                      widget.onAnswerChanged(
-                        allowsMultipleChoices
-                            ? _selectedChoiceAnswer(
-                                choices,
-                                selectedChoiceIndexes,
+                  final explanation = _choiceExplanation(choice, widget.content);
+
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: ChoiceChip(
+                      selected: selected,
+                      showCheckmark: false,
+                      avatar: Container(
+                        width: 22,
+                        height: 22,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: selected
+                                ? const Color(0xFF4F46E5)
+                                : const Color(0xFFCBD5E1),
+                            width: 2.0,
+                          ),
+                        ),
+                        child: selected
+                            ? Center(
+                                child: Container(
+                                  width: 10,
+                                  height: 10,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Color(0xFF4F46E5),
+                                  ),
+                                ),
                               )
-                            : choice,
-                      );
-                    },
+                            : null,
+                      ),
+                      label: SizedBox(
+                        width: double.infinity,
+                        child: Row(
+                          children: [
+                            Text(
+                              choice,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: selected
+                                    ? FontWeight.w800
+                                    : FontWeight.w600,
+                                color: selected
+                                    ? const Color(0xFF4F46E5)
+                                    : const Color(0xFF0F172A),
+                              ),
+                            ),
+                            const Spacer(),
+                            if (selected)
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 4,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFF4F46E5),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: const Text(
+                                  '정답 후보 ✓',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              )
+                            else if (explanation.isNotEmpty)
+                              Text(
+                                explanation,
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  color: Color(0xFF94A3B8),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                      backgroundColor: Colors.white,
+                      selectedColor: const Color(0xFFEEF2FF),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 12,
+                      ),
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14),
+                        side: BorderSide(
+                          color: selected
+                              ? const Color(0xFF4F46E5)
+                              : const Color(0xFFE2E8F0),
+                          width: selected ? 2.0 : 1.0,
+                        ),
+                      ),
+                      onSelected: (_) {
+                        setState(() {
+                          if (allowsMultipleChoices) {
+                            selectedChoiceIndexes = {...selectedChoiceIndexes};
+                            if (selectedChoiceIndexes.contains(choiceIndex)) {
+                              selectedChoiceIndexes.remove(choiceIndex);
+                            } else {
+                              selectedChoiceIndexes.add(choiceIndex);
+                            }
+                            selectedChoiceIndex = null;
+                          } else {
+                            selectedChoiceIndex = choiceIndex;
+                            selectedChoiceIndexes = {};
+                          }
+                        });
+                        widget.onAnswerChanged(
+                          allowsMultipleChoices
+                              ? _selectedChoiceAnswer(
+                                  choices,
+                                  selectedChoiceIndexes,
+                                )
+                              : choice,
+                        );
+                      },
+                    ),
                   );
                 }).toList(),
               ),
             const SizedBox(height: 16),
             FilledButton(
+              style: FilledButton.styleFrom(
+                backgroundColor: const Color(0xFF4F46E5),
+                minimumSize: const Size.fromHeight(52),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                elevation: 2,
+              ),
               onPressed: () {
                 final String? answer;
                 if (choiceGroups.isNotEmpty) {
@@ -540,10 +667,26 @@ class _AnswerPanelState extends State<AnswerPanel> {
                 }
                 widget.onSubmit(answer);
               },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: Text(strings.t('answer.check'),
-                    style: const TextStyle(fontSize: 18)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    strings.t('answer.check'),
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const Text(
+                    '하고 별 받기 ✨',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
               ),
             ),
             if (widget.isCorrect != null) ...[

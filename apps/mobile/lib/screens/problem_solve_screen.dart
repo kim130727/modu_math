@@ -14,6 +14,7 @@ import '../widgets/hint_panel.dart';
 import '../widgets/onsem_loading_indicator.dart';
 import '../widgets/problem_svg_viewer.dart';
 import '../widgets/renderer_json_canvas.dart';
+import '../widgets/vertical_arithmetic_explorer.dart';
 import '../theme/app_theme.dart';
 
 class ProblemSolveScreen extends StatefulWidget {
@@ -104,49 +105,155 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
   @override
   Widget build(BuildContext context) {
     final strings = AppStrings.of(context);
+    final subTopic = widget.problem.subUnit.isNotEmpty &&
+            widget.problem.subUnit != '__basicLearning__' &&
+            widget.problem.subUnit != '기본 학습'
+        ? widget.problem.subUnit
+        : '세 자릿수 자릿값 탐험';
+
     return Scaffold(
+      backgroundColor: const Color(0xFFF8FAFC),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        titleSpacing: 16,
         title: Row(
           children: [
-            Flexible(
+            OutlinedButton.icon(
+              onPressed: () => Navigator.of(context).pop(),
+              icon: const Icon(Icons.arrow_back_rounded, size: 16),
+              label: const Text('브리핑 룸으로'),
+              style: OutlinedButton.styleFrom(
+                foregroundColor: const Color(0xFF0F172A),
+                side: const BorderSide(color: Color(0xFFE2E8F0)),
+                backgroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(999),
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+              ),
+            ),
+            const SizedBox(width: 14),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              decoration: BoxDecoration(
+                color: const Color(0xFFEEF2FF),
+                borderRadius: BorderRadius.circular(8),
+              ),
               child: Text(
-                strings.unitTitle(widget.problem.unitTopic),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+                '초등 ${widget.problem.grade > 0 ? widget.problem.grade : 3}학년 수학',
+                style: const TextStyle(
+                  color: Color(0xFF4F46E5),
+                  fontSize: 12,
+                  fontWeight: FontWeight.w800,
+                ),
               ),
             ),
             const SizedBox(width: 10),
-            Text(
-              widget.problem.id,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: KidsPalette.inkSoft,
-                  ),
+            Flexible(
+              child: Text(
+                '${widget.problem.unitNumber}단원 ${widget.problem.unitTopic} · $subTopic',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w800,
+                  color: Color(0xFF0F172A),
+                ),
+              ),
             ),
           ],
         ),
         actions: [
-          if (widget.unitProblems.isNotEmpty)
-            Padding(
-              padding: const EdgeInsetsDirectional.only(end: 64),
-              child: Center(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 14,
-                    vertical: 8,
-                  ),
-                  decoration: BoxDecoration(
-                    color: KidsPalette.primarySoft,
-                    borderRadius: BorderRadius.circular(999),
-                  ),
-                  child: Text(
-                    '${widget.problemIndex + 1} / ${widget.unitProblems.length}',
-                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          color: KidsPalette.primary,
-                        ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: const Color(0xFFEEF2FF),
+              borderRadius: BorderRadius.circular(999),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 6,
+                  height: 6,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF4F46E5),
+                    shape: BoxShape.circle,
                   ),
                 ),
+                const SizedBox(width: 6),
+                Text(
+                  '문제 ${widget.problemIndex + 1} / ${widget.unitProblems.isNotEmpty ? widget.unitProblems.length : 1}',
+                  style: const TextStyle(
+                    color: Color(0xFF4F46E5),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 8),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: const Color(0xFFFFF7ED),
+              borderRadius: BorderRadius.circular(999),
+              border: Border.all(color: const Color(0xFFFFEDD5)),
+            ),
+            child: const Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('🔥', style: TextStyle(fontSize: 13)),
+                SizedBox(width: 4),
+                Text(
+                  '5일 연속',
+                  style: TextStyle(
+                    color: Color(0xFFC2410C),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 8),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: const Color(0xFFFEFCE8),
+              borderRadius: BorderRadius.circular(999),
+              border: Border.all(color: const Color(0xFFFEF08A)),
+            ),
+            child: const Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('★', style: TextStyle(color: Color(0xFFF59E0B), fontSize: 13)),
+                SizedBox(width: 4),
+                Text(
+                  '420 P',
+                  style: TextStyle(
+                    color: Color(0xFF854D0E),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 8),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 6),
+            child: Center(
+              child: Text(
+                '❤️❤️❤️',
+                style: TextStyle(fontSize: 14),
               ),
             ),
+          ),
+          const SizedBox(width: 64),
         ],
       ),
       body: FutureBuilder<ProblemContent>(
@@ -177,7 +284,7 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
           return LayoutBuilder(
             builder: (context, constraints) {
               final wide = constraints.maxWidth >= 960;
-              final problemViewer = _ProblemVisual(
+              final problemViewer = VerticalArithmeticExplorer(
                 repository: widget.repository,
                 content: content,
                 answerDraft: answerDraft,
@@ -224,21 +331,29 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
                         maxWidth: AppLayout.maxContentWidth,
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(24, 8, 24, 28),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                        padding: const EdgeInsets.fromLTRB(24, 12, 24, 28),
+                        child: Column(
                           children: [
-                            Expanded(flex: 5, child: problemViewer),
-                            const SizedBox(width: 20),
+                            _MissionHeroBanner(content: content),
+                            const SizedBox(height: 18),
                             Expanded(
-                              flex: 4,
-                              child: ListView(
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  answerPanel,
-                                  const SizedBox(height: 14),
-                                  hintPanel,
-                                  const SizedBox(height: 14),
-                                  controls,
+                                  Expanded(flex: 6, child: problemViewer),
+                                  const SizedBox(width: 20),
+                                  Expanded(
+                                    flex: 4,
+                                    child: ListView(
+                                      children: [
+                                        answerPanel,
+                                        const SizedBox(height: 14),
+                                        hintPanel,
+                                        const SizedBox(height: 14),
+                                        controls,
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -252,9 +367,11 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
 
               return SafeArea(
                 child: ListView(
-                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+                  padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
                   children: [
-                    SizedBox(height: 340, child: problemViewer),
+                    _MissionHeroBanner(content: content),
+                    const SizedBox(height: 18),
+                    SizedBox(height: 560, child: problemViewer),
                     const SizedBox(height: 16),
                     answerPanel,
                     const SizedBox(height: 14),
@@ -449,6 +566,236 @@ bool _looksBrokenText(String value) {
       value.contains('�');
 }
 
+class _MissionHeroBanner extends StatelessWidget {
+  const _MissionHeroBanner({required this.content});
+
+  final ProblemContent content;
+
+  @override
+  Widget build(BuildContext context) {
+    final prompt = content.prompt.trim();
+
+    String? targetHighlight;
+    final objects = content.semantic['domain']?['objects'];
+    if (objects is List) {
+      for (final obj in objects) {
+        if (obj is Map && (obj['id'] == 'obj.highlighted_value' || obj['type'] == 'value')) {
+          targetHighlight = obj['text']?.toString();
+          break;
+        }
+      }
+    }
+    if (targetHighlight == null && (content.summary.id.contains('008540') || prompt.contains('240'))) {
+      targetHighlight = '240';
+    }
+
+    String tutorQuote;
+    if (content.summary.id.contains('008540') || prompt.contains('색칠한 부분')) {
+      tutorQuote = '"6은 단순한 6이 아니에요! 십의 자리에 살고 있으니 60을 의미한답니다."';
+    } else {
+      tutorQuote = '"핵심 단서를 찾아보세요! 문제 속 조건에 정답의 열쇠가 숨어 있어요."';
+    }
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(22),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [
+            Color(0xFF4338CA),
+            Color(0xFF4F46E5),
+            Color(0xFF6366F1),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(22),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF4F46E5).withValues(alpha: 0.25),
+            blurRadius: 18,
+            offset: const Offset(0, 6),
+          ),
+        ],
+      ),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final isNarrow = constraints.maxWidth < 740;
+          final leftContent = Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.18),
+                  borderRadius: BorderRadius.circular(999),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      width: 7,
+                      height: 7,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF34D399),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      '미션 코드: ${content.summary.id.replaceAll('S3_elem_', 'S3_초등_')}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 12),
+              _buildHighlightedPrompt(prompt, targetHighlight),
+            ],
+          );
+
+          final rightContent = Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.16),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: Colors.white.withValues(alpha: 0.25)),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 44,
+                  height: 44,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.2),
+                    shape: BoxShape.circle,
+                  ),
+                  child: ClipOval(
+                    child: Image.asset(
+                      'assets/characters/onsem_tutor.png',
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) =>
+                          const Center(child: Text('🧚', style: TextStyle(fontSize: 24))),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        '자릿수 요정의 속삭임',
+                        style: TextStyle(
+                          color: Color(0xFFFDE047),
+                          fontWeight: FontWeight.w800,
+                          fontSize: 13,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        tutorQuote,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 13,
+                          height: 1.35,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+
+          if (isNarrow) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                leftContent,
+                const SizedBox(height: 16),
+                rightContent,
+              ],
+            );
+          }
+
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(flex: 6, child: leftContent),
+              const SizedBox(width: 24),
+              Expanded(flex: 4, child: rightContent),
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildHighlightedPrompt(String prompt, String? highlight) {
+    if (highlight == null || !prompt.contains(highlight)) {
+      return Text(
+        prompt,
+        style: const TextStyle(
+          fontSize: 22,
+          fontWeight: FontWeight.w800,
+          color: Colors.white,
+          height: 1.35,
+        ),
+      );
+    }
+
+    final parts = prompt.split(highlight);
+    return RichText(
+      text: TextSpan(
+        style: const TextStyle(
+          fontSize: 22,
+          fontWeight: FontWeight.w800,
+          color: Colors.white,
+          height: 1.35,
+          fontFamily: 'Pretendard',
+        ),
+        children: [
+          TextSpan(text: parts[0]),
+          WidgetSpan(
+            alignment: PlaceholderAlignment.middle,
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFF4B6E),
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.15),
+                    blurRadius: 6,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Text(
+                highlight,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w900,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+          ),
+          if (parts.length > 1) TextSpan(text: parts.sublist(1).join(highlight)),
+        ],
+      ),
+    );
+  }
+}
+
 List<String> _skillIdsFromSolvable(Map<String, dynamic> solvable) {
   final diagnostics = solvable['diagnostics'];
   if (diagnostics is! Map<String, dynamic>) {
@@ -482,50 +829,80 @@ class _ProblemControls extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final strings = AppStrings.of(context);
-    return Card(
-      margin: EdgeInsets.zero,
-      child: Padding(
-        padding: const EdgeInsets.all(18),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final previousButton = OutlinedButton.icon(
-              onPressed: canOpenPreviousProblem ? onPreviousProblem : null,
-              icon: const Icon(Icons.navigate_before),
-              label: Text(strings.t('common.previousProblem')),
-            );
-            final retryButton = OutlinedButton.icon(
-              onPressed: onRetry,
-              icon: const Icon(Icons.refresh),
-              label: Text(strings.t('common.retry')),
-            );
-            final nextButton = FilledButton.icon(
-              onPressed: canOpenNextProblem ? onNextProblem : null,
-              icon: const Icon(Icons.navigate_next),
-              label: Text(strings.t('common.nextProblem')),
-            );
-            if (constraints.maxWidth < 520) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  previousButton,
-                  const SizedBox(height: 10),
-                  retryButton,
-                  const SizedBox(height: 10),
-                  nextButton,
-                ],
-              );
-            }
-            return Row(
-              children: [
-                Expanded(child: previousButton),
-                const SizedBox(width: 10),
-                Expanded(child: retryButton),
-                const SizedBox(width: 10),
-                Expanded(child: nextButton),
-              ],
-            );
-          },
+
+    final previousButton = OutlinedButton.icon(
+      onPressed: canOpenPreviousProblem ? onPreviousProblem : null,
+      icon: const Icon(Icons.navigate_before, size: 20),
+      label: Text(strings.t('common.previousProblem')),
+      style: OutlinedButton.styleFrom(
+        foregroundColor: const Color(0xFF475569),
+        side: const BorderSide(color: Color(0xFFE2E8F0)),
+        backgroundColor: Colors.white,
+        disabledForegroundColor: const Color(0xFFCBD5E1),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
         ),
+      ),
+    );
+
+    final retryButton = OutlinedButton.icon(
+      onPressed: onRetry,
+      icon: const Icon(Icons.refresh, size: 18),
+      label: Text(strings.t('common.retry')),
+      style: OutlinedButton.styleFrom(
+        foregroundColor: const Color(0xFF475569),
+        side: const BorderSide(color: Color(0xFFE2E8F0)),
+        backgroundColor: Colors.white,
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+      ),
+    );
+
+    final nextButton = FilledButton.icon(
+      onPressed: canOpenNextProblem ? onNextProblem : null,
+      icon: const Icon(Icons.navigate_next, size: 20),
+      iconAlignment: IconAlignment.end,
+      label: Text(strings.t('common.nextProblem')),
+      style: FilledButton.styleFrom(
+        backgroundColor: const Color(0xFF059669),
+        foregroundColor: Colors.white,
+        disabledBackgroundColor: const Color(0xFFE2E8F0),
+        disabledForegroundColor: const Color(0xFF94A3B8),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        elevation: 1,
+      ),
+    );
+
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: const Color(0xFFE2E8F0)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.03),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      padding: const EdgeInsets.all(12),
+      child: Row(
+        children: [
+          if (canOpenPreviousProblem) ...[
+            Expanded(child: previousButton),
+            const SizedBox(width: 8),
+          ],
+          Expanded(child: retryButton),
+          const SizedBox(width: 8),
+          Expanded(child: nextButton),
+        ],
       ),
     );
   }

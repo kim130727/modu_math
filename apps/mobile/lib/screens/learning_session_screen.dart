@@ -56,20 +56,66 @@ class _LearningSessionScreenState extends State<LearningSessionScreen> {
     });
   }
 
+  bool _matchesUnit(ProblemSummary problem, String targetUnit) {
+    final cleanTarget = targetUnit.trim();
+    final cleanUnit = problem.unit.trim();
+    final cleanTopic = problem.unitTopic.trim();
+    if (cleanTarget.isEmpty) return true;
+    if (cleanUnit == cleanTarget || cleanTopic == cleanTarget) {
+      return true;
+    }
+    String stripPrefix(String s) {
+      return s
+          .replaceAll(RegExp(r'^\d+학기\s*'), '')
+          .replaceAll(RegExp(r'^\d+[._\s]+'), '')
+          .trim();
+    }
+    final strippedUnit = stripPrefix(cleanUnit);
+    final strippedTarget = stripPrefix(cleanTarget);
+    if (strippedUnit == strippedTarget ||
+        strippedUnit == cleanTarget ||
+        cleanTopic == strippedTarget) {
+      return true;
+    }
+    if (cleanUnit.contains(cleanTarget) ||
+        cleanTarget.contains(cleanTopic) ||
+        cleanTopic.contains(cleanTarget) ||
+        strippedUnit.contains(strippedTarget)) {
+      return true;
+    }
+    return false;
+  }
+
+  bool _matchesSubUnit(ProblemSummary problem, String? targetSubUnit) {
+    if (targetSubUnit == null || targetSubUnit.trim().isEmpty) {
+      return true;
+    }
+    final cleanTarget = targetSubUnit.trim();
+    final cleanSub = problem.subUnit.trim();
+    if (cleanSub == cleanTarget) {
+      return true;
+    }
+    final isWidgetDefault = cleanTarget == '__basicLearning__' ||
+        cleanTarget == '기본 학습' ||
+        cleanTarget == 'Basic Learning';
+    final isProblemDefault = cleanSub == '__basicLearning__' ||
+        cleanSub == '기본 학습' ||
+        cleanSub == 'Basic Learning';
+    if (isWidgetDefault && isProblemDefault) {
+      return true;
+    }
+    if (isWidgetDefault) {
+      return true;
+    }
+    return cleanSub.contains(cleanTarget) || cleanTarget.contains(cleanSub);
+  }
+
   Future<_SessionData> _loadSession() async {
     final manifest = await widget.repository.loadManifest();
     final attempts = await widget.progressRepository.getAttempts();
     final problems = manifest.problems.where((problem) {
-      if (problem.unit != widget.unit) return false;
-      if (widget.subUnit == null) return true;
-      if (problem.subUnit == widget.subUnit) return true;
-      final isWidgetDefault = widget.subUnit == '__basicLearning__' ||
-          widget.subUnit == '기본 학습' ||
-          widget.subUnit == 'Basic Learning';
-      final isProblemDefault = problem.subUnit == '__basicLearning__' ||
-          problem.subUnit == '기본 학습' ||
-          problem.subUnit == 'Basic Learning';
-      return isWidgetDefault && isProblemDefault;
+      if (!_matchesUnit(problem, widget.unit)) return false;
+      return _matchesSubUnit(problem, widget.subUnit);
     }).toList()
       ..sort(_compareProblemSummaries);
     return _SessionData(problems: problems, attempts: attempts);
@@ -195,10 +241,10 @@ class _SessionHeader extends StatelessWidget {
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [KidsPalette.primarySoft, KidsPalette.canvas],
+          colors: [Color(0xFF312E81), Color(0xFF4F46E5)],
         ),
         borderRadius: BorderRadius.circular(AppRadii.large),
-        border: Border.all(color: const Color(0xFFD8DCFF)),
+        border: Border.all(color: const Color(0xFF6366F1)),
       ),
       child: Padding(
         padding: const EdgeInsets.all(20),
@@ -211,7 +257,9 @@ class _SessionHeader extends StatelessWidget {
                 Expanded(
                   child: Text(
                     strings.unitTitle(unit),
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                          color: Colors.white,
+                        ),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -223,6 +271,10 @@ class _SessionHeader extends StatelessWidget {
                         ? strings.t('session.retry')
                         : strings.t('session.resume'),
                   ),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: KidsPalette.primaryDark,
+                  ),
                 ),
               ],
             ),
@@ -232,8 +284,8 @@ class _SessionHeader extends StatelessWidget {
               child: LinearProgressIndicator(
                 value: progress,
                 minHeight: 12,
-                backgroundColor: KidsPalette.paper,
-                color: KidsPalette.primary,
+                backgroundColor: Colors.white.withValues(alpha: 0.18),
+                color: const Color(0xFFA5B4FC),
               ),
             ),
             const SizedBox(height: 10),
@@ -243,7 +295,7 @@ class _SessionHeader extends StatelessWidget {
                 'total': totalCount,
               }),
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: KidsPalette.cocoaSoft,
+                    color: const Color(0xFFC7D2FE),
                     fontWeight: FontWeight.w700,
                   ),
             ),
@@ -253,19 +305,21 @@ class _SessionHeader extends StatelessWidget {
                   ? strings.t('session.allComplete')
                   : strings.t('session.nextProblemLabel'),
               style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    color: KidsPalette.sage,
+                    color: const Color(0xFFA5B4FC),
                   ),
             ),
             const SizedBox(height: 4),
             Text(
               nextProblemName,
-              style: Theme.of(context).textTheme.titleMedium,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: Colors.white,
+                  ),
             ),
             const SizedBox(height: 2),
             Text(
               nextTitle,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: KidsPalette.cocoaSoft,
+                    color: const Color(0xFFE0E7FF),
                     fontWeight: FontWeight.w700,
                   ),
             ),
@@ -294,7 +348,9 @@ class _ProblemPreviewList extends StatelessWidget {
     final strings = AppStrings.of(context);
     return Card(
       margin: EdgeInsets.zero,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppRadii.large),
+      ),
       child: ListView.separated(
         padding: const EdgeInsets.all(8),
         shrinkWrap: true,
