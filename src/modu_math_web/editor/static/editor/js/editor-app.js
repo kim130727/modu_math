@@ -637,7 +637,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       editor.style.width = `${Math.max(48, rect.width + 12)}px`;
       editor.style.height = `${Math.max(24, rect.height + 8)}px`;
       editor.style.fontSize = `${Math.max(12, fontSize)}px`;
-      editor.style.fontFamily = el.getAttribute("font-family") || '"Segoe UI", "Pretendard", sans-serif';
+      editor.style.fontFamily = el.getAttribute("font-family") || '"Noto Sans KR", "Pretendard", "Segoe UI", sans-serif';
       editor.style.display = "block";
       inlineTextEditState = { el, slotId, originalText: el.textContent || "" };
       editor.onkeydown = (keyEv) => {

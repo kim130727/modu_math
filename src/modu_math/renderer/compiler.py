@@ -9,7 +9,7 @@ _DEFAULT_STROKE = "#111111"
 _DEFAULT_FILL = "none"
 _DEFAULT_TEXT_FILL = "#111111"
 _DEFAULT_FONT_FAMILY = (
-    '"Poor Story", "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", "Segoe UI Symbol", sans-serif'
+    '"Noto Sans KR", "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", "Segoe UI Symbol", sans-serif'
 )
 _DEFAULT_FONT_SIZE = 26
 

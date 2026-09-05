@@ -51,7 +51,7 @@ void main() {
     expect(find.text('problem text'), findsOneWidget);
     expect(
       tester.widget<Text>(find.text('problem text')).style?.fontFamily,
-      contains('PoorStory'),
+      contains('NotoSansKR'),
     );
     expect(
       tester.widget<Text>(find.text('problem text')).style?.fontFamilyFallback,

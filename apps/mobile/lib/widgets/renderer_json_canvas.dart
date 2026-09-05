@@ -2215,14 +2215,15 @@ List<String> _parseFontFamilyFallback(Object? rawFontFamily) {
 
 List<String> _buildFontFamilyFallback([Object? rawFontFamily]) {
   final parsed = _parseFontFamilyFallback(rawFontFamily);
-  final notoSans = GoogleFonts.notoSans().fontFamily;
   final notoSansKr = GoogleFonts.notoSansKr().fontFamily;
+  final notoSans = GoogleFonts.notoSans().fontFamily;
   return [
-    if (notoSans != null) notoSans,
     if (notoSansKr != null) notoSansKr,
+    if (notoSans != null) notoSans,
     ...parsed,
-    'Noto Sans',
+    'Pretendard',
     'Noto Sans KR',
+    'Noto Sans',
     'Segoe UI Symbol',
     'Segoe UI',
     'Apple SD Gothic Neo',
@@ -2239,7 +2240,7 @@ TextStyle _problemTextStyle({
   Object? fontFamily,
   List<String>? fontFamilyFallback,
 }) {
-  return GoogleFonts.poorStory(
+  return GoogleFonts.notoSansKr(
     color: color,
     fontSize: fontSize,
     fontWeight: fontWeight,

@@ -4,7 +4,7 @@ import type Konva from "konva";
 import type { EditorShape } from "../types/editorShape";
 import { connectorPathData } from "./connectorGeometry";
 import { estimateWrappedTextHeight, normalizedTextBoxHeight, normalizedTextBoxWidth, parseFractionLatex, type FractionLatex } from "./converters";
-import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
+import { KONVA_PREVIEW_FONT_FAMILY, normalizePreviewFontFamily } from "./fonts";
 import { renderLatexToSvgDataUrl } from "./latexRenderer";
 import { pathDataForShape } from "./shapeGeometry";
 
@@ -115,7 +115,7 @@ export function ShapeRenderer({ shape, nodeRef, onSelect, onDragStart, onDragMov
           {...common}
           text={shape.text}
           fontSize={shape.fontSize}
-          fontFamily={shape.fontFamily ?? KONVA_PREVIEW_FONT_FAMILY}
+          fontFamily={normalizePreviewFontFamily(shape.fontFamily)}
           fill={shape.fill ?? "#111827"}
           width={textWidth}
           height={textHeight}

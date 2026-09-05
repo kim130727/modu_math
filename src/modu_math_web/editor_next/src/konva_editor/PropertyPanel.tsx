@@ -1,6 +1,6 @@
 import type { AnswerInteractionType, AnswerKeyboard, AnswerRole, AnswerValueType, EditorShape, InputInteraction, InputStyle } from "../types/editorShape";
 import { scalePathData } from "../utils/pathData";
-import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
+import { KONVA_PREVIEW_FONT_FAMILY, normalizePreviewFontFamily } from "./fonts";
 import { resolveAnswerBinding, type AnswerBindingOption } from "./answerReview";
 
 interface PropertyPanelProps {
@@ -90,7 +90,7 @@ export function PropertyPanel({ shape, selectedShapes = [], answerOptions = [], 
             <NumberField label="font" value={shape.fontSize} onChange={(fontSize) => onChange({ fontSize } as Partial<EditorShape>)} />
             <TextField
               label="fontFamily"
-              value={shape.fontFamily ?? KONVA_PREVIEW_FONT_FAMILY}
+              value={normalizePreviewFontFamily(shape.fontFamily)}
               onChange={(fontFamily) => onChange({ fontFamily } as Partial<EditorShape>)}
             />
             <NumberField label="width" value={shape.width ?? 220} onChange={(width) => onChange({ width } as Partial<EditorShape>)} />

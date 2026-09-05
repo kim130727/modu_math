@@ -1,7 +1,7 @@
 import type { EditorShape, EditorShapeDocument, InputInteraction, InputStyle } from "../types/editorShape";
 import type { ProblemCanvas, ProblemJson, ProblemObject } from "../types/problem";
 import { connectorToPathObject } from "./connectorGeometry";
-import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
+import { KONVA_PREVIEW_FONT_FAMILY, normalizePreviewFontFamily } from "./fonts";
 import { inferAdjustableShapePreset, pathDataForShape } from "./shapeGeometry";
 
 export interface FractionLatex {
@@ -95,7 +95,7 @@ function problemObjectToEditorShape(object: ProblemObject, canvas: ProblemCanvas
           y: object.y,
           text,
           fontSize,
-          fontFamily: stringProp(object.props.fontFamily) ?? KONVA_PREVIEW_FONT_FAMILY,
+          fontFamily: normalizePreviewFontFamily(stringProp(object.props.fontFamily)),
           fill: object.props.color ?? "#111827",
           width,
           height: isTextBox ? normalizedTextBoxHeight(text, fontSize, width ?? estimateTextWidth(text, fontSize), object.props.height, lineHeight) : undefined,
@@ -411,7 +411,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             latex: shape.text,
             text: shape.text,
             fontSize: shape.fontSize,
-            fontFamily: shape.fontFamily ?? KONVA_PREVIEW_FONT_FAMILY,
+            fontFamily: normalizePreviewFontFamily(shape.fontFamily),
             width,
             height,
             color: shape.fill ?? "#111827",
