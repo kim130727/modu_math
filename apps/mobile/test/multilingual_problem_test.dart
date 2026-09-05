@@ -118,5 +118,26 @@ void main() {
       expect(holeChoices, containsAll(['A', 'B', 'C', 'D', 'E']));
       expect(circleContent.semantic['answer']['value'], 'E');
     });
+
+    test('verifies zero Korean in prompt, title, and choices for en, zh, ja', () async {
+      final repository = ContentRepository.bundledAssets();
+      final koreanRegex = RegExp(r'[\uAC00-\uD7A3]');
+
+      for (final locale in ['en', 'zh', 'ja']) {
+        repository.activeProblemLocale = locale;
+        final manifest = await repository.loadManifest();
+        final problem = manifest.problems.firstWhere((p) => p.id == 'S3_elem_3_008540');
+        final content = await repository.loadProblem(problem);
+
+        expect(koreanRegex.hasMatch(content.prompt), isFalse,
+            reason: 'content.prompt should have no Korean in ' + locale);
+        expect(koreanRegex.hasMatch(content.summary.title), isFalse,
+            reason: 'content.summary.title should have no Korean in ' + locale);
+        for (final choice in content.choices) {
+          expect(koreanRegex.hasMatch(choice), isFalse,
+              reason: 'choice should have no Korean in ' + locale);
+        }
+      }
+    });
   });
 }

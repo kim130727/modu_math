@@ -1331,9 +1331,9 @@ String _answerValueText(Object? value) {
 }
 
 bool _looksBrokenText(String value) {
-  return RegExp(r'[\u3400-\u9FFF\uFFFD]').hasMatch(value) ||
+  return value.contains('\uFFFD') ||
       value.contains('??') ||
-      value.contains('\uFFFD');
+      value.contains('占');
 }
 
 class ChoiceGroup {

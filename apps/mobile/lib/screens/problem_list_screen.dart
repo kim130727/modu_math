@@ -430,7 +430,7 @@ class _JourneyStepTile extends StatelessWidget {
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      problem.title,
+                      strings.problemTitleById(problem.id, problem.title),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(

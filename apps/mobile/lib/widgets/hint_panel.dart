@@ -98,14 +98,18 @@ class _HintPanelState extends State<HintPanel> {
               children: [
                 const Text('💡', style: TextStyle(fontSize: 18)),
                 const SizedBox(width: 8),
-                Text(
-                  '단계별 마법 힌트',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w800,
-                        color: const Color(0xFF0F172A),
-                      ),
+                Expanded(
+                  child: Text(
+                    strings.t('hint.stepByStepMagicHint'),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.w800,
+                          color: const Color(0xFF0F172A),
+                        ),
+                  ),
                 ),
-                const Spacer(),
+                const SizedBox(width: 8),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
@@ -113,9 +117,9 @@ class _HintPanelState extends State<HintPanel> {
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: const Color(0xFFFDE047)),
                   ),
-                  child: const Text(
-                    '힌트 가이드',
-                    style: TextStyle(
+                  child: Text(
+                    strings.t('hint.hintGuide'),
+                    style: const TextStyle(
                       color: Color(0xFF854D0E),
                       fontSize: 11,
                       fontWeight: FontWeight.w800,
@@ -227,7 +231,9 @@ class _HintPanelState extends State<HintPanel> {
                   child: OutlinedButton.icon(
                     onPressed: () => _revealNext(activeGroup),
                     icon: const Text('👁️', style: TextStyle(fontSize: 14)),
-                    label: Text('🔍 ${activeVisibleLevel + 1}단계 힌트 더보기'),
+                    label: Text(
+                      strings.t('hint.seeNextStageHint', {'stage': activeVisibleLevel + 1}),
+                    ),
                     style: OutlinedButton.styleFrom(
                       backgroundColor: const Color(0xFFF8FAFC),
                       foregroundColor: const Color(0xFF334155),

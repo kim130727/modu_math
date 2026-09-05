@@ -118,20 +118,24 @@ class _AnswerPanelState extends State<AnswerPanel> {
     return parts.join(' / ');
   }
 
-  static String _choiceExplanation(String choice, ProblemContent content) {
+  static String _choiceExplanation(
+    String choice,
+    ProblemContent content,
+    AppStrings strings,
+  ) {
     final match = RegExp(r'(\d+)\s*[×x*]\s*(\d+)').firstMatch(choice);
     if (match != null) {
       final a = int.tryParse(match.group(1)!);
       final b = int.tryParse(match.group(2)!);
       if (a != null && b != null) {
         if (a < 10 && b < 10) {
-          return '일의 자리 곱으로 계산 시 ${a * b}';
+          return strings.t('answer.onesPlaceProduct', {'val': a * b});
         } else if (a >= 10 && a < 100 && a % 10 != 0) {
-          return '두 자릿수 전체 곱';
+          return strings.t('answer.totalTwoDigitProduct');
         } else if (a >= 100) {
-          return '백의 자리 곱일 때 ${a * b}';
+          return strings.t('answer.hundredsPlaceProduct', {'val': a * b});
         } else if (a >= 10 && a % 10 == 0) {
-          return '십의 자리 곱일 때 ${a * b}';
+          return strings.t('answer.tensPlaceProduct', {'val': a * b});
         }
       }
     }
@@ -271,7 +275,9 @@ class _AnswerPanelState extends State<AnswerPanel> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
-                      allowsMultipleChoices ? '복수 선택' : '택 1',
+                      allowsMultipleChoices
+                          ? strings.t('answer.multipleChoiceTag')
+                          : strings.t('answer.singleChoiceTag'),
                       style: const TextStyle(
                         color: Color(0xFF4F46E5),
                         fontSize: 11,
@@ -500,7 +506,9 @@ class _AnswerPanelState extends State<AnswerPanel> {
                   final selected = allowsMultipleChoices
                       ? selectedChoiceIndexes.contains(choiceIndex)
                       : selectedChoiceIndex == choiceIndex;
-                  final explanation = _choiceExplanation(choice, widget.content);
+                  final explanation = widget.isCorrect != null
+                      ? _choiceExplanation(choice, widget.content, strings)
+                      : '';
 
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 10),
@@ -536,20 +544,22 @@ class _AnswerPanelState extends State<AnswerPanel> {
                         width: double.infinity,
                         child: Row(
                           children: [
-                            Text(
-                              choice,
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: selected
-                                    ? FontWeight.w800
-                                    : FontWeight.w600,
-                                color: selected
-                                    ? const Color(0xFF4F46E5)
-                                    : const Color(0xFF0F172A),
+                            Expanded(
+                              child: Text(
+                                choice,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: selected
+                                      ? FontWeight.w800
+                                      : FontWeight.w600,
+                                  color: selected
+                                      ? const Color(0xFF4F46E5)
+                                      : const Color(0xFF0F172A),
+                                ),
                               ),
                             ),
-                            const Spacer(),
-                            if (selected)
+                            if (selected) ...[
+                              const SizedBox(width: 8),
                               Container(
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 10,
@@ -559,24 +569,29 @@ class _AnswerPanelState extends State<AnswerPanel> {
                                   color: const Color(0xFF4F46E5),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                child: const Text(
-                                  '정답 후보 ✓',
-                                  style: TextStyle(
+                                child: Text(
+                                  strings.t('answer.candidateSelected'),
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
-                              )
-                            else if (explanation.isNotEmpty)
-                              Text(
-                                explanation,
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  color: Color(0xFF94A3B8),
-                                  fontWeight: FontWeight.w500,
+                              ),
+                            ] else if (explanation.isNotEmpty) ...[
+                              const SizedBox(width: 8),
+                              Flexible(
+                                child: Text(
+                                  explanation,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    color: Color(0xFF94A3B8),
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ),
+                            ],
                           ],
                         ),
                       ),
@@ -667,26 +682,33 @@ class _AnswerPanelState extends State<AnswerPanel> {
                 }
                 widget.onSubmit(answer);
               },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    strings.t('answer.check'),
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w800,
-                      color: Colors.white,
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      strings.t('answer.check'),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  const Text(
-                    '하고 별 받기 ✨',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w800,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
+                    if (strings.t('answer.andEarnStar').isNotEmpty) ...[
+                      const SizedBox(width: 4),
+                      Text(
+                        strings.t('answer.andEarnStar'),
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
               ),
             ),
             if (widget.isCorrect != null) ...[

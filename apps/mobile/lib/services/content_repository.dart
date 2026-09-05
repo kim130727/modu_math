@@ -160,7 +160,13 @@ class ContentRepository {
     if (decoded != null && decoded['problems'] is List) {
       final manifest = ProblemManifest.fromJson(decoded);
       if (manifest.problems.isNotEmpty) {
-        return manifest;
+        final sortedProblems = [...manifest.problems]
+          ..sort(_compareProblemsByCurriculum);
+        return ProblemManifest(
+          version: manifest.version,
+          problems: sortedProblems,
+          raw: manifest.raw,
+        );
       }
     }
 
@@ -333,9 +339,26 @@ class ContentRepository {
       _loadSolvable(basePath),
     ]);
 
+    final semantic = results[0] as Map<String, dynamic>;
+    final metadata = _asMap(semantic['metadata']);
+    final metaTitle = metadata['title']?.toString().trim() ?? '';
+    final localizedSummary = (metaTitle.isNotEmpty && metaTitle != summary.id)
+        ? ProblemSummary(
+            id: summary.id,
+            grade: summary.grade,
+            subject: summary.subject,
+            unit: summary.unit,
+            type: summary.type,
+            title: metaTitle,
+            path: summary.path,
+            filePrefix: summary.filePrefix,
+            raw: summary.raw,
+          )
+        : summary;
+
     return ProblemContent(
-      summary: summary,
-      semantic: results[0] as Map<String, dynamic>,
+      summary: localizedSummary,
+      semantic: semantic,
       renderer: results[1] as Map<String, dynamic>,
       layout: results[2] as Map<String, dynamic>,
       solvable: results[3] as Map<String, dynamic>,
@@ -538,8 +561,7 @@ class ContentRepository {
           .join('/');
       return _summaryFromPrefix(path: path, filePrefix: filePrefix);
     }))
-      ..sort((a, b) =>
-          _compareProblemPrefixes(a.filePrefix ?? a.id, b.filePrefix ?? b.id));
+      ..sort(_compareProblemsByCurriculum);
     return problems;
   }
 
@@ -567,8 +589,7 @@ class ContentRepository {
             .whereType<Map<String, dynamic>>()
             .map(ProblemSummary.fromJson)
             .toList()
-          ..sort((a, b) => _compareProblemPrefixes(
-              a.filePrefix ?? a.id, b.filePrefix ?? b.id));
+          ..sort(_compareProblemsByCurriculum);
       }
     } catch (_) {}
     return null;
@@ -1154,6 +1175,21 @@ String _baseProblemPrefix(String filePrefix) {
     }
   }
   return filePrefix;
+}
+
+int _compareProblemsByCurriculum(ProblemSummary a, ProblemSummary b) {
+  if (a.grade != b.grade) {
+    return a.grade.compareTo(b.grade);
+  }
+  final semA = a.semester.contains('2') ? 2 : 1;
+  final semB = b.semester.contains('2') ? 2 : 1;
+  if (semA != semB) {
+    return semA.compareTo(semB);
+  }
+  if (a.unitNumber != b.unitNumber) {
+    return a.unitNumber.compareTo(b.unitNumber);
+  }
+  return _compareProblemPrefixes(a.filePrefix ?? a.id, b.filePrefix ?? b.id);
 }
 
 int _compareProblemPrefixes(String a, String b) {

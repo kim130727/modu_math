@@ -27,7 +27,7 @@ class ProblemCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                problem.title,
+                strings.problemTitleById(problem.id, problem.title),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.titleMedium,
@@ -38,7 +38,7 @@ class ProblemCard extends StatelessWidget {
                 runSpacing: 8,
                 children: [
                   _Chip(text: strings.grade(problem.grade)),
-                  _Chip(text: problem.unit),
+                  _Chip(text: strings.unitTitle(problem.unit)),
                   _Chip(text: problem.type),
                 ],
               ),
