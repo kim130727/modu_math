@@ -48,6 +48,7 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
   @override
   void initState() {
     super.initState();
+    _activeProblemLocale = widget.repository.activeProblemLocale;
     tutorService = _createTutorService();
     prefixesFuture = widget.repository.loadGrade3JsonProblemPrefixes();
     bundleFuture = _loadInitialBundle();
@@ -57,27 +58,23 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     final locale = AppLocaleScope.maybeOf(context)?.locale.languageCode ?? 'ko';
-    if (_activeProblemLocale == locale) {
-      return;
-    }
-    final previousLocale = _activeProblemLocale;
+    final localeChanged = _activeProblemLocale != locale;
     _activeProblemLocale = locale;
     widget.repository.activeProblemLocale = locale;
-    if (previousLocale == null) {
-      return;
+    if (localeChanged) {
+      setState(() {
+        prefixesFuture = widget.repository.loadGrade3JsonProblemPrefixes();
+        bundleFuture = _loadInitialBundle();
+        selectedFilePrefix = '';
+        tutorProblemId = null;
+        tutorMessages.clear();
+        submittedAnswer = null;
+        answerDraft = '';
+        isCorrect = null;
+        hintLevel = 0;
+        tutorStepIndex = 0;
+      });
     }
-    setState(() {
-      prefixesFuture = widget.repository.loadGrade3JsonProblemPrefixes();
-      bundleFuture = _loadInitialBundle();
-      selectedFilePrefix = '';
-      tutorProblemId = null;
-      tutorMessages.clear();
-      submittedAnswer = null;
-      answerDraft = '';
-      isCorrect = null;
-      hintLevel = 0;
-      tutorStepIndex = 0;
-    });
   }
 
   Future<ProblemJsonBundle> _loadInitialBundle() async {

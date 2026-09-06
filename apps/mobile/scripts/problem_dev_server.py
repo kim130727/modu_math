@@ -68,7 +68,12 @@ class ProblemDevHandler(BaseHTTPRequestHandler):
             self._send_problem_list(locale)
             return
         if parsed.path.startswith("/api/problem-bundle/"):
-            self._send_problem_bundle(parsed.path.removeprefix("/api/problem-bundle/"))
+            query = parse_qs(parsed.query)
+            locale = query.get("locale", ["ko"])[0]
+            self._send_problem_bundle(
+                parsed.path.removeprefix("/api/problem-bundle/"),
+                locale=locale,
+            )
             return
         if parsed.path.startswith("/files/"):
             self._send_problem_file(parsed.path.removeprefix("/files/"))
@@ -78,7 +83,7 @@ class ProblemDevHandler(BaseHTTPRequestHandler):
                 "ok": True,
                 "endpoints": [
                     "/api/problems",
-                    "/api/problem-bundle/<prefix>",
+                    "/api/problem-bundle/<prefix>?locale=<locale>",
                     "/files/<relative-path>",
                 ],
             }
@@ -156,12 +161,12 @@ class ProblemDevHandler(BaseHTTPRequestHandler):
             "paths": paths,
             "problems": problems,
         }
-        ProblemDevHandler._cached_manifest = manifest_payload
+        ProblemDevHandler._cached_manifests[locale] = manifest_payload
         self._send_json(manifest_payload)
 
-    def _send_problem_bundle(self, encoded_prefix: str) -> None:
+    def _send_problem_bundle(self, encoded_prefix: str, locale: str = "ko") -> None:
         prefix = unquote(encoded_prefix).replace("\\", "/").strip("/")
-        base_path = self._resolve_problem_base_path(prefix)
+        base_path = self._resolve_problem_base_path(prefix, locale=locale)
         if base_path is None:
             self.send_error(404, f"Problem prefix not found: {prefix}")
             return
@@ -177,10 +182,24 @@ class ProblemDevHandler(BaseHTTPRequestHandler):
         }
         self._send_json(bundle)
 
-    def _resolve_problem_base_path(self, prefix: str) -> Path | None:
+    def _resolve_problem_base_path(self, prefix: str, locale: str = "ko") -> Path | None:
+        # 1. Direct path check
         direct = self.root / prefix
         if direct.with_name(f"{direct.name}.renderer.json").is_file():
             return direct
+
+        # 2. Locale directory check
+        locale_direct = self.root / locale / prefix
+        if locale_direct.with_name(f"{locale_direct.name}.renderer.json").is_file():
+            return locale_direct
+
+        locale_dir = self.root / locale
+        if locale_dir.is_dir():
+            for candidate_name in (prefix, f"{prefix}_{locale}"):
+                matches = list(locale_dir.rglob(f"{candidate_name}.renderer.json"))
+                if matches:
+                    matched_file = matches[0]
+                    return matched_file.with_name(matched_file.name[: -len(".renderer.json")])
 
         for candidate_name in (prefix, f"{prefix}_ko"):
             matches = list(self.root.rglob(f"{candidate_name}.renderer.json"))

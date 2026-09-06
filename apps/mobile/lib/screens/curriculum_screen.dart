@@ -35,6 +35,7 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
   @override
   void initState() {
     super.initState();
+    _activeProblemLocale = widget.repository.activeProblemLocale;
     _selectedUnit = widget.initialUnit;
     _manifestFuture = _loadManifest();
   }
@@ -54,18 +55,14 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     final locale = AppLocaleScope.maybeOf(context)?.locale.languageCode ?? 'ko';
-    if (_activeProblemLocale == locale) {
-      return;
-    }
-    final previousLocale = _activeProblemLocale;
+    final localeChanged = _activeProblemLocale != locale;
     _activeProblemLocale = locale;
     widget.repository.activeProblemLocale = locale;
-    if (previousLocale == null) {
-      return;
+    if (localeChanged) {
+      setState(() {
+        _manifestFuture = _loadManifest();
+      });
     }
-    setState(() {
-      _manifestFuture = _loadManifest();
-    });
   }
 
   @override

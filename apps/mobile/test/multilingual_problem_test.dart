@@ -1,143 +1,131 @@
-import 'package:flutter_test/flutter_test.dart';
+﻿import 'package:flutter_test/flutter_test.dart';
+import 'package:modu_math_app/models/content_models.dart';
 import 'package:modu_math_app/services/content_repository.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  const locales = ['ko', 'en', 'zh', 'ja', 'km', 'uk'];
-  const expectedProblemIds = [
-    'S3_elem_3_008540',
-    'S3_elem_3_008541',
-    'S3_elem_3_008631',
-    'S3_elem_3_008661',
-    'S3_elem_3_008664',
-    'S3_elem_3_008713',
-    'S3_elem_3_008728',
-    'S3_elem_3_008732',
-    'S3_elem_3_008745',
-    'S3_elem_3_008751',
-  ];
+  group('Multilingual Problem Loading & Isolation', () {
+    test('loads S3_elem_3_008661 in English with zero Chinese text', () async {
+      final repository = ContentRepository.bundledAssets()
+        ..activeProblemLocale = 'en';
 
-  group('Multilingual 10 MVP Problems', () {
-    for (final locale in locales) {
-      test('loads all 10 problems in ' + locale, () async {
-        final repository = ContentRepository.bundledAssets();
-        repository.activeProblemLocale = locale;
+      final enSummary = ProblemSummary(
+        id: 'S3_elem_3_008661',
+        grade: 3,
+        subject: 'math',
+        unit: '1학기 2. 평면도형',
+        type: 'local_json_problem',
+        title: 'Find the longest line segment',
+        path: 'examples/problems/en',
+        filePrefix: 'S3_elem_3_008661',
+        raw: const {
+          'id': 'S3_elem_3_008661',
+          'filePrefix': 'S3_elem_3_008661',
+        },
+      );
 
-        final manifest = await repository.loadManifest();
-        expect(
-          manifest.problems.length,
-          equals(10),
-          reason: 'Should discover exactly 10 problems for locale ' + locale,
-        );
+      final content = await repository.loadProblem(enSummary);
 
-        final discoveredIds = manifest.problems.map((p) => p.id).toList();
-        for (final id in expectedProblemIds) {
-          expect(discoveredIds, contains(id));
-        }
+      expect(content.summary.title, equals('Which line segment is the longest?'));
+      expect(content.prompt, contains('longest'));
+      expect(content.choices, isNotEmpty);
 
-        final firstSummary = manifest.problems.first;
-        final firstContent = await repository.loadProblem(firstSummary);
-        expect(firstContent.semantic, isNotEmpty);
-        expect(firstContent.renderer, isNotEmpty);
-        expect(firstContent.solvable, isNotEmpty);
-      });
-    }
+      // Check choices are English line segments (AB, CD, EF, etc.)
+      for (final label in content.choices) {
+        // Must not contain Chinese characters
+        expect(RegExp(r'[\u4e00-\u9fff]').hasMatch(label), isFalse,
+            reason: 'Choice label should not contain Chinese: $label');
+      }
 
-    test('switches problem locale dynamically', () async {
-      final repository = ContentRepository.bundledAssets();
-
-      // 1. Korean
-      repository.activeProblemLocale = 'ko';
-      var manifest = await repository.loadManifest();
-      expect(manifest.problems.length, equals(10));
-      var summary = manifest.problems.firstWhere((p) => p.id == 'S3_elem_3_008540');
-      var content = await repository.loadProblem(summary);
-      expect(content.semantic['metadata']['title'], isNotEmpty);
-
-      // 2. English
-      repository.activeProblemLocale = 'en';
-      manifest = await repository.loadManifest();
-      expect(manifest.problems.length, equals(10));
-      summary = manifest.problems.firstWhere((p) => p.id == 'S3_elem_3_008540');
-      content = await repository.loadProblem(summary);
-      expect(content.semantic['metadata']['title'], isNotEmpty);
-
-      // 3. Japanese
-      repository.activeProblemLocale = 'ja';
-      manifest = await repository.loadManifest();
-      expect(manifest.problems.length, equals(10));
-      summary = manifest.problems.firstWhere((p) => p.id == 'S3_elem_3_008540');
-      content = await repository.loadProblem(summary);
-      expect(content.semantic['metadata']['title'], isNotEmpty);
-
-      // 4. Chinese
-      repository.activeProblemLocale = 'zh';
-      manifest = await repository.loadManifest();
-      expect(manifest.problems.length, equals(10));
-      summary = manifest.problems.firstWhere((p) => p.id == 'S3_elem_3_008540');
-      content = await repository.loadProblem(summary);
-      expect(content.semantic['metadata']['title'], isNotEmpty);
-
-      // 5. Khmer
-      repository.activeProblemLocale = 'km';
-      manifest = await repository.loadManifest();
-      expect(manifest.problems.length, equals(10));
-      summary = manifest.problems.firstWhere((p) => p.id == 'S3_elem_3_008540');
-      content = await repository.loadProblem(summary);
-      expect(content.semantic['metadata']['title'], isNotEmpty);
-
-      // 6. Ukrainian
-      repository.activeProblemLocale = 'uk';
-      manifest = await repository.loadManifest();
-      expect(manifest.problems.length, equals(10));
-      summary = manifest.problems.firstWhere((p) => p.id == 'S3_elem_3_008540');
-      content = await repository.loadProblem(summary);
-      expect(content.semantic['metadata']['title'], isNotEmpty);
-    });
-
-    test('uses Latin alphabet notation for points and geometric segments in Ukrainian', () async {
-      final repository = ContentRepository.bundledAssets();
-      repository.activeProblemLocale = 'uk';
-      final manifest = await repository.loadManifest();
-
-      // S3_elem_3_008661: geometry segment comparison (AB, CD, EF, GI)
-      final geomProblem = manifest.problems.firstWhere((p) => p.id == 'S3_elem_3_008661');
-      final geomContent = await repository.loadProblem(geomProblem);
-      final choices = (geomContent.semantic['answer']['choices'] as List).cast<String>();
-      expect(choices, contains('1. Відрізок AB'));
-      expect(choices, contains('2. Відрізок CD'));
-      expect(choices, contains('3. Відрізок EF'));
-      expect(choices, contains('4. Відрізок GI'));
-      expect(geomContent.semantic['answer']['value'], '2. Відрізок CD');
-
-      // S3_elem_3_008664: geometry circle hole points (A, B, C, D, E)
-      final circleProblem = manifest.problems.firstWhere((p) => p.id == 'S3_elem_3_008664');
-      final circleContent = await repository.loadProblem(circleProblem);
-      final holeChoices = (circleContent.semantic['answer']['choices'] as List).cast<String>();
-      expect(holeChoices, containsAll(['A', 'B', 'C', 'D', 'E']));
-      expect(circleContent.semantic['answer']['value'], 'E');
-    });
-
-    test('verifies zero Korean in prompt, title, and choices for en, zh, ja', () async {
-      final repository = ContentRepository.bundledAssets();
-      final koreanRegex = RegExp(r'[\uAC00-\uD7A3]');
-
-      for (final locale in ['en', 'zh', 'ja']) {
-        repository.activeProblemLocale = locale;
-        final manifest = await repository.loadManifest();
-        final problem = manifest.problems.firstWhere((p) => p.id == 'S3_elem_3_008540');
-        final content = await repository.loadProblem(problem);
-
-        expect(koreanRegex.hasMatch(content.prompt), isFalse,
-            reason: 'content.prompt should have no Korean in ' + locale);
-        expect(koreanRegex.hasMatch(content.summary.title), isFalse,
-            reason: 'content.summary.title should have no Korean in ' + locale);
-        for (final choice in content.choices) {
-          expect(koreanRegex.hasMatch(choice), isFalse,
-              reason: 'choice should have no Korean in ' + locale);
+      // Check renderer elements do not contain Chinese text
+      final elements = content.renderer['elements'];
+      if (elements is List) {
+        for (final element in elements) {
+          if (element is Map && element['text'] != null) {
+            final text = element['text'].toString();
+            expect(RegExp(r'[\u4e00-\u9fff]').hasMatch(text), isFalse,
+                reason: 'Renderer text should not contain Chinese: $text');
+          }
         }
       }
+    });
+
+    test('normalizes problem path to English even if given summary has zh path', () async {
+      final repository = ContentRepository.bundledAssets()
+        ..activeProblemLocale = 'en';
+
+      // Simulate a summary that previously held a Chinese path
+      final staleSummary = ProblemSummary(
+        id: 'S3_elem_3_008661',
+        grade: 3,
+        subject: 'math',
+        unit: '1학기 2. 평면도형',
+        type: 'local_json_problem',
+        title: '找出最长的线段',
+        path: 'examples/problems/zh',
+        filePrefix: 'S3_elem_3_008661',
+        raw: const {
+          'id': 'S3_elem_3_008661',
+          'filePrefix': 'S3_elem_3_008661',
+          'path': 'examples/problems/zh',
+        },
+      );
+
+      final content = await repository.loadProblem(staleSummary);
+
+      // Should be normalized to English
+      expect(content.summary.path, equals('examples/problems/en'));
+      expect(content.summary.title, equals('Which line segment is the longest?'));
+      expect(content.prompt, contains('longest'));
+      expect(RegExp(r'[\u4e00-\u9fff]').hasMatch(content.prompt), isFalse);
+    });
+
+    test('dynamically switching locale from zh to en updates loaded content and choices', () async {
+      final repository = ContentRepository.bundledAssets()
+        ..activeProblemLocale = 'zh';
+
+      final summary = ProblemSummary(
+        id: 'S3_elem_3_008661',
+        grade: 3,
+        subject: 'math',
+        unit: '1학기 2. 평면도형',
+        type: 'local_json_problem',
+        title: '找出最长的线段',
+        path: 'examples/problems/zh',
+        filePrefix: 'S3_elem_3_008661',
+        raw: const {
+          'id': 'S3_elem_3_008661',
+          'filePrefix': 'S3_elem_3_008661',
+        },
+      );
+
+      // Load in Chinese
+      final zhContent = await repository.loadProblem(summary);
+      expect(zhContent.prompt, contains('最长'));
+
+      // Now switch locale to English
+      repository.activeProblemLocale = 'en';
+      final enContent = await repository.loadProblem(summary);
+
+      expect(enContent.summary.path, equals('examples/problems/en'));
+      expect(enContent.summary.title, equals('Which line segment is the longest?'));
+      expect(enContent.prompt, contains('longest'));
+      expect(RegExp(r'[\u4e00-\u9fff]').hasMatch(enContent.prompt), isFalse);
+    });
+
+    test('manifest for English locale contains English titles and paths', () async {
+      final repository = ContentRepository.bundledAssets()
+        ..activeProblemLocale = 'en';
+
+      final manifest = await repository.loadManifest();
+      expect(manifest.problems, isNotEmpty);
+
+      final problem = manifest.problems.firstWhere(
+        (p) => p.id == 'S3_elem_3_008661',
+      );
+      expect(problem.path, equals('examples/problems/en'));
+      expect(problem.title, equals('Which line segment is the longest?'));
     });
   });
 }

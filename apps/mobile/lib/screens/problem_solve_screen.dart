@@ -54,6 +54,7 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
   @override
   void initState() {
     super.initState();
+    _activeProblemLocale = widget.repository.activeProblemLocale;
     contentFuture = _loadContent();
   }
 
@@ -61,25 +62,21 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     final locale = AppLocaleScope.maybeOf(context)?.locale.languageCode ?? 'ko';
-    if (_activeProblemLocale == locale) {
-      return;
-    }
-    final previousLocale = _activeProblemLocale;
+    final localeChanged = _activeProblemLocale != locale;
     _activeProblemLocale = locale;
     widget.repository.activeProblemLocale = locale;
-    if (previousLocale == null) {
-      return;
+    if (localeChanged) {
+      setState(() {
+        contentFuture = _loadContent();
+        submittedAnswer = null;
+        answerDraft = '';
+        isCorrect = null;
+        hintLevel = 0;
+        _learningSessionProblemId = null;
+        _learningSessionId = null;
+        _learningSessionFuture = null;
+      });
     }
-    setState(() {
-      contentFuture = _loadContent();
-      submittedAnswer = null;
-      answerDraft = '';
-      isCorrect = null;
-      hintLevel = 0;
-      _learningSessionProblemId = null;
-      _learningSessionId = null;
-      _learningSessionFuture = null;
-    });
   }
 
   Future<ProblemContent> _loadContent() {

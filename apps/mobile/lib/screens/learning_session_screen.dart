@@ -35,6 +35,7 @@ class _LearningSessionScreenState extends State<LearningSessionScreen> {
   @override
   void initState() {
     super.initState();
+    _activeProblemLocale = widget.repository.activeProblemLocale;
     _sessionFuture = _loadSession();
   }
 
@@ -42,18 +43,14 @@ class _LearningSessionScreenState extends State<LearningSessionScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     final locale = AppLocaleScope.maybeOf(context)?.locale.languageCode ?? 'ko';
-    if (_activeProblemLocale == locale) {
-      return;
-    }
-    final previousLocale = _activeProblemLocale;
+    final localeChanged = _activeProblemLocale != locale;
     _activeProblemLocale = locale;
     widget.repository.activeProblemLocale = locale;
-    if (previousLocale == null) {
-      return;
+    if (localeChanged) {
+      setState(() {
+        _sessionFuture = _loadSession();
+      });
     }
-    setState(() {
-      _sessionFuture = _loadSession();
-    });
   }
 
   bool _matchesUnit(ProblemSummary problem, String targetUnit) {

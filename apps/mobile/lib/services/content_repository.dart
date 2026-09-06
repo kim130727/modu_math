@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
+import '../l10n/app_strings_bundle.dart';
 import '../models/content_models.dart';
 import 'problem_file_loader.dart'
     if (dart.library.io) 'problem_file_loader_io.dart';
@@ -93,6 +94,9 @@ class ContentRepository {
     _activeProblemLocale = locale;
     _rendererPathCache = null;
     _cachedManifest = null;
+    _problemCache.clear();
+    _completedProblemCache.clear();
+    _problemAssetCache.clear();
   }
 
   Future<ProblemManifest> loadManifest() async {
@@ -156,11 +160,30 @@ class ContentRepository {
       );
     }
 
+    // Always prefer localized bundled problems if available for the active locale.
+    try {
+      final bundledProblems = await _loadBundledProblems();
+      if (bundledProblems.isNotEmpty) {
+        return ProblemManifest(
+          version: 'examples-$activeProblemLocale',
+          problems: bundledProblems,
+          raw: {
+            'version': 'examples-$activeProblemLocale',
+            'source': 'bundled-examples',
+            'path': problemsPath,
+            'problems': bundledProblems.map((problem) => problem.raw).toList(),
+          },
+        );
+      }
+    } catch (_) {}
+
     final decoded = await _loadOptionalManifest();
     if (decoded != null && decoded['problems'] is List) {
       final manifest = ProblemManifest.fromJson(decoded);
       if (manifest.problems.isNotEmpty) {
-        final sortedProblems = [...manifest.problems]
+        final sortedProblems = manifest.problems
+            .map((p) => _ensureSummaryLocale(p, activeProblemLocale))
+            .toList()
           ..sort(_compareProblemsByCurriculum);
         return ProblemManifest(
           version: manifest.version,
@@ -184,7 +207,8 @@ class ContentRepository {
   }
 
   Future<ProblemContent> loadProblem(ProblemSummary summary) {
-    final cacheKey = _problemCacheKey(summary);
+    final normalizedSummary = _ensureSummaryLocale(summary, activeProblemLocale);
+    final cacheKey = _problemCacheKey(normalizedSummary);
     final completed = _completedProblemCache[cacheKey];
     if (completed != null) {
       return SynchronousFuture(completed);
@@ -193,7 +217,7 @@ class ContentRepository {
     if (cached != null) {
       return cached;
     }
-    return _cacheProblemLoad(summary, cacheKey);
+    return _cacheProblemLoad(normalizedSummary, cacheKey);
   }
 
   Future<ProblemContent> _cacheProblemLoad(
@@ -213,7 +237,8 @@ class ContentRepository {
   }
 
   Future<void> preloadProblem(ProblemSummary summary) async {
-    await loadProblem(summary);
+    final normalizedSummary = _ensureSummaryLocale(summary, activeProblemLocale);
+    await loadProblem(normalizedSummary);
   }
 
   /// Loads an image referenced relative to a problem's renderer file.
@@ -371,7 +396,9 @@ class ContentRepository {
     final filePrefix = summary.filePrefix ?? summary.id;
     try {
       final response = await _httpClient.get(
-        _localHttpUri('/api/problem-bundle/${Uri.encodeComponent(filePrefix)}'),
+        _localHttpUri(
+          '/api/problem-bundle/${Uri.encodeComponent(filePrefix)}?locale=$activeProblemLocale',
+        ),
       );
       if (response.statusCode != 200) {
         return null;
@@ -381,8 +408,9 @@ class ContentRepository {
       if (decoded['ok'] != true) {
         return null;
       }
+      final localizedSummary = _ensureSummaryLocale(summary, activeProblemLocale);
       return ProblemContent(
-        summary: summary,
+        summary: localizedSummary,
         semantic: _asMap(decoded['semantic']),
         renderer: _asMap(decoded['renderer']),
         layout: _asMap(decoded['layout']),
@@ -478,13 +506,16 @@ class ContentRepository {
     String? hintPath,
   }) async {
     final rendererPaths = await _loadRendererPaths();
+    final locale = localizedProblemLocales.contains(activeProblemLocale)
+        ? activeProblemLocale
+        : 'ko';
     final baseFilePrefix = _baseProblemPrefix(filePrefix);
     final localizedFilePrefix = _localizedFilePrefix(filePrefix);
     final rendererPath =
-        _findRendererPath(rendererPaths, localizedFilePrefix) ??
-            _findRendererPath(rendererPaths, filePrefix) ??
-            _findRendererPath(rendererPaths, baseFilePrefix) ??
-            _findRendererPathWithVariantFallback(rendererPaths, filePrefix) ??
+        _findRendererPath(rendererPaths, localizedFilePrefix, locale: locale) ??
+            _findRendererPath(rendererPaths, filePrefix, locale: locale) ??
+            _findRendererPath(rendererPaths, baseFilePrefix, locale: locale) ??
+            _findRendererPathWithVariantFallback(rendererPaths, filePrefix, locale: locale) ??
             '';
     if (rendererPath.isNotEmpty) {
       return rendererPath.substring(
@@ -493,40 +524,63 @@ class ContentRepository {
       );
     }
     if (hintPath != null && hintPath.isNotEmpty) {
-      final normalized =
-          hintPath.replaceAll(r'\', '/').replaceAll(RegExp(r'/+$'), '');
+      final normalized = _normalizeProblemPath(
+        hintPath.replaceAll(r'\', '/').replaceAll(RegExp(r'/+$'), ''),
+        locale,
+      );
       return '$normalized/$filePrefix';
     }
-    final locale = localizedProblemLocales.contains(activeProblemLocale)
-        ? activeProblemLocale
-        : 'ko';
     return '$problemsPath/$locale/$filePrefix';
   }
 
-  String? _findRendererPath(List<String> rendererPaths, String filePrefix) {
+  String? _findRendererPath(
+    List<String> rendererPaths,
+    String filePrefix, {
+    String? locale,
+  }) {
+    final targetLocale = locale ?? activeProblemLocale;
+    // 1. First priority: match exact filePrefix within the target locale directory
     for (final path in rendererPaths) {
-      if (path.endsWith('/$filePrefix.renderer.json') ||
-          path == '$filePrefix.renderer.json' ||
-          path == '$problemsPath/$filePrefix.renderer.json') {
+      if (path.contains('/$targetLocale/$filePrefix.renderer.json') ||
+          path == '$targetLocale/$filePrefix.renderer.json' ||
+          path == '$problemsPath/$targetLocale/$filePrefix.renderer.json') {
         return path;
       }
     }
+
+    // 2. Second priority: any path ending with filePrefix.renderer.json that does NOT belong to another locale
+    for (final path in rendererPaths) {
+      final matchesName = path.endsWith('/$filePrefix.renderer.json') ||
+          path == '$filePrefix.renderer.json' ||
+          path == '$problemsPath/$filePrefix.renderer.json';
+      if (!matchesName) continue;
+
+      // Ensure it doesn't belong to a different locale
+      final belongsToOtherLocale = localizedProblemLocales.any(
+        (loc) => loc != targetLocale && path.contains('/$loc/'),
+      );
+      if (!belongsToOtherLocale) {
+        return path;
+      }
+    }
+
     return null;
   }
 
   String? _findRendererPathWithVariantFallback(
     List<String> rendererPaths,
-    String filePrefix,
-  ) {
+    String filePrefix, {
+    String? locale,
+  }) {
     final subMatch = RegExp(r'^(.*)_(\d+)$').firstMatch(filePrefix);
     if (subMatch != null) {
       final base = subMatch.group(1)!;
-      final fallback1 = _findRendererPath(rendererPaths, '${base}_1');
+      final fallback1 = _findRendererPath(rendererPaths, '${base}_1', locale: locale);
       if (fallback1 != null) return fallback1;
-      final fallbackBase = _findRendererPath(rendererPaths, base);
+      final fallbackBase = _findRendererPath(rendererPaths, base, locale: locale);
       if (fallbackBase != null) return fallbackBase;
     } else {
-      final fallback1 = _findRendererPath(rendererPaths, '${filePrefix}_1');
+      final fallback1 = _findRendererPath(rendererPaths, '${filePrefix}_1', locale: locale);
       if (fallback1 != null) return fallback1;
     }
     return null;
@@ -1150,6 +1204,67 @@ Map<String, dynamic> _mapAt(Map<String, dynamic> map, String key) {
     return value;
   }
   return const {};
+}
+
+String _normalizeProblemPath(String path, String targetLocale) {
+  final normalized = path.replaceAll(r'\', '/');
+  final locale = ContentRepository.localizedProblemLocales.contains(targetLocale)
+      ? targetLocale
+      : 'ko';
+  for (final candidate in ContentRepository.localizedProblemLocales) {
+    if (normalized.endsWith('/$candidate')) {
+      return '${normalized.substring(0, normalized.length - candidate.length)}$locale';
+    }
+    if (normalized.contains('/$candidate/')) {
+      return normalized.replaceAll('/$candidate/', '/$locale/');
+    }
+    if (normalized == candidate) {
+      return locale;
+    }
+  }
+  if (normalized.endsWith(ContentRepository.problemsPath)) {
+    return '$normalized/$locale';
+  }
+  return normalized;
+}
+
+String? _localizedTitleFor(String problemId, String locale) {
+  final translations = bundledTranslations[locale];
+  if (translations == null) {
+    return null;
+  }
+  final match = RegExp(r'(\d+)$').firstMatch(problemId);
+  if (match != null) {
+    final suffix = match.group(1)!;
+    final title = translations['problem.title.$suffix'];
+    if (title != null && title.isNotEmpty) {
+      return title;
+    }
+  }
+  return null;
+}
+
+ProblemSummary _ensureSummaryLocale(ProblemSummary summary, String targetLocale) {
+  final locale = ContentRepository.localizedProblemLocales.contains(targetLocale)
+      ? targetLocale
+      : 'ko';
+  final normalizedPath = _normalizeProblemPath(summary.path, locale);
+  final localizedTitle = _localizedTitleFor(summary.id, locale) ?? summary.title;
+  final raw = Map<String, dynamic>.from(summary.raw);
+  raw['path'] = normalizedPath;
+  raw['title'] = localizedTitle;
+
+  return ProblemSummary(
+    id: summary.id,
+    grade: summary.grade,
+    subject: summary.subject,
+    unit: summary.unit,
+    type: summary.type,
+    title: localizedTitle,
+    path: normalizedPath,
+    filePrefix: summary.filePrefix,
+    raw: raw,
+  );
 }
 
 int _gradeFromPrefix(String filePrefix) {

@@ -39,6 +39,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
   @override
   void initState() {
     super.initState();
+    _activeProblemLocale = widget.repository.activeProblemLocale;
     _loadData();
   }
 
@@ -46,16 +47,12 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     final locale = AppLocaleScope.maybeOf(context)?.locale.languageCode ?? 'ko';
-    if (_activeProblemLocale == locale) {
-      return;
-    }
-    final previousLocale = _activeProblemLocale;
+    final localeChanged = _activeProblemLocale != locale;
     _activeProblemLocale = locale;
     widget.repository.activeProblemLocale = locale;
-    if (previousLocale == null) {
-      return;
+    if (localeChanged) {
+      setState(_loadData);
     }
-    setState(_loadData);
   }
 
   void _loadData() {

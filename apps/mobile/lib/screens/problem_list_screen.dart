@@ -35,6 +35,7 @@ class _ProblemListScreenState extends State<ProblemListScreen> {
   @override
   void initState() {
     super.initState();
+    _activeProblemLocale = widget.repository.activeProblemLocale;
     selectedUnit = widget.initialUnit;
     dataFuture = _loadData();
   }
@@ -43,19 +44,15 @@ class _ProblemListScreenState extends State<ProblemListScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     final locale = AppLocaleScope.maybeOf(context)?.locale.languageCode ?? 'ko';
-    if (_activeProblemLocale == locale) {
-      return;
-    }
-    final previousLocale = _activeProblemLocale;
+    final localeChanged = _activeProblemLocale != locale;
     _activeProblemLocale = locale;
     widget.repository.activeProblemLocale = locale;
-    if (previousLocale == null) {
-      return;
+    if (localeChanged) {
+      setState(() {
+        selectedUnit = null;
+        dataFuture = _loadData();
+      });
     }
-    setState(() {
-      selectedUnit = null;
-      dataFuture = _loadData();
-    });
   }
 
   Future<_ProblemListData> _loadData() async {
