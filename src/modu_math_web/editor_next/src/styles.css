@@ -1659,3 +1659,16 @@ input {
   background: #4338ca;
 }
 
+
+.presentation-review { display: grid; grid-template-columns: minmax(280px, 1fr) 320px; gap: 12px; align-content: start; }
+.konva-question-preview {
+  grid-column: 1 / -1;
+  padding: 14px 20px;
+  border-radius: 16px;
+  background: #4f46e5;
+  color: white;
+  white-space: pre-wrap;
+}
+.konva-question-preview p { margin: 4px 0; font-size: 20px; font-weight: 700; }
+.presentation-review .konva-canvas-surface { grid-column: 1; }
+.presentation-review .answer-review-panel { position: static; grid-column: 2; width: 100%; align-self: start; }

@@ -261,6 +261,10 @@ def _build_problem_artifacts(problem_id: str) -> str:
 
     semantic, _semantic_normalized = normalize_semantic_for_schema(semantic)
 
+    from .presentation import structure_presentation
+
+    layout, semantic, solvable = structure_presentation(layout, semantic, solvable)
+
     deleted_answer_slots: set[str] = set()
     editor_override_slot_ids: set[str] = set()
     editor_overrides_path = (
@@ -347,6 +351,7 @@ def _build_problem_artifacts(problem_id: str) -> str:
 
     semantic, _semantic_normalized = normalize_semantic_for_schema(semantic)
 
+    layout, semantic, solvable = structure_presentation(layout, semantic, solvable)
     renderer = compile_renderer_json(layout)
     if hasattr(module, "TUTOR_RENDERER_FLOW"):
         renderer = attach_tutor_renderer_flow(renderer, module.TUTOR_RENDERER_FLOW)

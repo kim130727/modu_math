@@ -41,6 +41,12 @@ export function PropertyPanel({ shape, selectedShapes = [], answerOptions = [], 
       <div className="konva-field-grid">
         <ReadOnlyField label="id" value={shape.id} />
         <ReadOnlyField label="type" value={shape.type} />
+        {shape.type === "text" ? (
+          <SelectField label="??? ?? ??" value={shape.semanticRole ?? "auto"}
+            options={Array.from(new Set(["auto", "question", "instruction", "choice", "diagram_label", shape.semanticRole ?? "auto"]))}
+            optionLabels={{ auto: "?? ??", question: "?? ? ?? ??", instruction: "?? ? ?? ???", choice: "? ?? ? ???", diagram_label: "Canvas ? ?? ??" }}
+            onChange={(semanticRole) => onChange({ semanticRole: semanticRole === "auto" ? "" : semanticRole })} />
+        ) : null}
         {isAnswerSlotShape(shape) ? <AnswerSlotFields shape={shape} answerOptions={answerOptions} onChange={onChange} /> : null}
         <NumberField label="x" value={shape.x} onChange={(x) => onChange({ x } as Partial<EditorShape>)} />
         <NumberField label="y" value={shape.y} onChange={(y) => onChange({ y } as Partial<EditorShape>)} />

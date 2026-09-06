@@ -77,8 +77,15 @@ export function EditorKonva() {
     [document.shapes, previewArtifacts.semantic, previewArtifacts.solvable],
   );
   const answerChoiceReviews = useMemo(
-    () => answerChoicesFromArtifacts(previewArtifacts.semantic, previewArtifacts.solvable, answerBindingOptions),
-    [answerBindingOptions, previewArtifacts.semantic, previewArtifacts.solvable],
+    () => {
+      const existing = answerChoicesFromArtifacts(previewArtifacts.semantic, previewArtifacts.solvable, answerBindingOptions);
+      const choices = document.shapes.filter((shape) => shape.type === "text" && shape.semanticRole === "choice");
+      return choices.length ? choices.map((shape, index) => ({
+        id: shape.id, label: existing[index]?.label ?? String(index + 1),
+        text: shape.type === "text" ? shape.text : "", correct: existing[index]?.correct ?? false,
+      })) : existing;
+    },
+    [document.shapes, answerBindingOptions, previewArtifacts.semantic, previewArtifacts.solvable],
   );
   const effectiveTutorFlow = draftTutorFlow ?? previewArtifacts.renderer?.tutor_flow ?? [];
   const activeTutorFrames = useMemo(() => {

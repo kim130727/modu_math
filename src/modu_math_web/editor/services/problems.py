@@ -44,7 +44,7 @@ PROBLEM_TITLE = "{title}"
 ANSWER = {{
     "blanks": [
         {{
-            "id": "blank.answer",
+            "id": "slot.answer",
             "label": "정답",
             "expected": "",
             "unit": "",
@@ -74,7 +74,7 @@ ANSWER = {{
     ],
     "answer_key": [
         {{
-            "blank_id": "blank.answer",
+            "blank_id": "slot.answer",
             "value": "",
             "unit": "",
         }},
@@ -771,11 +771,13 @@ def read_artifacts(problem_id: str) -> dict[str, Any]:
     paths = resolve_problem_paths(problem_id)
     solvable_path = _find_solvable_path(paths.base_dir, paths.artifact_base)
     svg_path = paths.artifact_path("svg")
-    return {
+    from .presentation import structure_artifacts
+
+    return structure_artifacts({
         "semantic": _read_json(paths.artifact_path("semantic")),
         "solvable": _read_json(solvable_path) if solvable_path else None,
         "layout": _read_json(paths.artifact_path("layout")),
         "renderer": _read_json(paths.artifact_path("renderer")),
         "svg": _rewrite_svg_asset_hrefs(_read_text(svg_path), paths),
         "svg_url": _asset_url(paths.problem_id, svg_path.name) if svg_path.exists() else None,
-    }
+    })

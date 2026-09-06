@@ -304,7 +304,7 @@ function sourceRegionShapeProps(shape: EditorShape): { sourceRegionId?: string }
 }
 
 function semanticRoleShapeProps(shape: EditorShape): { semantic_role?: string } {
-  return shape.semanticRole ? { semantic_role: shape.semanticRole } : {};
+  return typeof shape.semanticRole === "string" ? { semantic_role: shape.semanticRole } : {};
 }
 
 function recordProp(value: unknown): Record<string, unknown> | undefined {

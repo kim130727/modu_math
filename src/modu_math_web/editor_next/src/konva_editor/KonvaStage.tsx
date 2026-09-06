@@ -145,14 +145,18 @@ export function KonvaStage({
     tutorTextEditorRef.current?.select();
   }, [editingTutorLabel?.index]);
 
-  const fitScale = Math.min((viewport.width - 40) / width, (viewport.height - 40) / height);
+  const previewWidth = answerReviewMode ? Math.max(280, viewport.width - 356) : viewport.width;
+  const fitScale = Math.min((previewWidth - 40) / width, (viewport.height - (answerReviewMode ? 160 : 40)) / height);
   const scale = Math.min(fitScale, 2.5);
-  const stageWidth = Math.max(viewport.width, width * scale + 40);
+  const stageWidth = Math.max(previewWidth, width * scale + 40);
   const stageHeight = Math.max(viewport.height, height * scale + 40);
   const offsetX = Math.max(20, (stageWidth - width * scale) / 2);
   const offsetY = Math.max(20, (stageHeight - height * scale) / 2);
   const selectedIdSet = new Set(selectedShapeIds);
-  const renderedShapes = [...shapes].sort(compareRenderOrder);
+  const promptShapes = shapes.filter((shape) => shape.type === "text" && ["question", "instruction"].includes(shape.semanticRole ?? ""));
+  const renderedShapes = shapes.filter((shape) => !answerReviewMode ||
+    !(shape.type === "text" && (["question", "instruction"].includes(shape.semanticRole ?? "") ||
+      (shape.semanticRole === "choice" && answerChoices.length > 0)))).sort(compareRenderOrder);
   const answerReviews = answerReviewMode ? answerSlotReviews(shapes, answerOptions) : new Map<string, AnswerSlotReview>();
   const shapesById = new Map(shapes.map((shape) => [shape.id, shape]));
   const selectedLine =
@@ -342,8 +346,14 @@ export function KonvaStage({
   };
 
   return (
-    <div className={drawingPreset ? "konva-stage-wrap drawing" : "konva-stage-wrap"} ref={wrapRef}>
+    <div className={`konva-stage-wrap${drawingPreset ? " drawing" : ""}${answerReviewMode ? " presentation-review" : ""}`} ref={wrapRef}>
+      {answerReviewMode && promptShapes.length > 0 ? (
+        <div className="konva-question-preview" role="region" aria-label="?? ??">
+          {promptShapes.map((shape) => <p key={shape.id}>{shape.type === "text" ? shape.text : ""}</p>)}
+        </div>
+      ) : null}
       <Stage
+        className="konva-canvas-surface"
         width={stageWidth}
         height={stageHeight}
         onMouseDown={(event) => {
@@ -539,7 +549,7 @@ export function KonvaStage({
       {answerReviewMode && answerPresentationMode === "panel_input" ? (
         <AnswerPanelPreview answerOptions={answerOptions} />
       ) : null}
-      {answerReviewMode && answerPresentationMode === "choice" ? <AnswerChoicePanelPreview choices={answerChoices} /> : null}
+      {answerReviewMode && answerChoices.length > 0 ? <AnswerChoicePanelPreview choices={answerChoices} /> : null}
       {editingTutorLabel ? (
         <textarea
           ref={tutorTextEditorRef}

@@ -117,7 +117,7 @@ class ProblemContent {
   String get prompt {
     final metadata = _mapAt(semantic, 'metadata');
     final semanticPrompt =
-        metadata['question']?.toString() ?? metadata['instruction']?.toString();
+        metadata['presentation_prompt']?.toString() ?? metadata['question']?.toString() ?? metadata['instruction']?.toString();
     if (semanticPrompt != null && !_looksBrokenText(semanticPrompt)) {
       return semanticPrompt;
     }

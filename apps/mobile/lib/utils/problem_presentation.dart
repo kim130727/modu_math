@@ -37,6 +37,8 @@ Map<String, dynamic> _projectVisual(ProblemContent content) {
     final isPrompt = text.isNotEmpty &&
         prompt.contains(text) &&
         (text == prompt ||
+            role == 'question' ||
+            role == 'instruction' ||
             (text.length >= 6 &&
                 RegExp(r'instruction|question|stem|slot\.q\d*\b')
                     .hasMatch(identity)));
