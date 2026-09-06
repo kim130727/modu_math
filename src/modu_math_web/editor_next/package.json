@@ -4,6 +4,11 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "check:text": "node scripts/check-text-encoding.mjs",
+    "test:text": "node --test scripts/check-text-encoding.test.mjs",
+    "prebuild": "npm run check:text",
+    "predev": "npm run check:text",
+    "pretypecheck": "npm run check:text",
     "build": "vite build",
     "dev": "vite --host 127.0.0.1 --port 5174",
     "typecheck": "tsc --noEmit"

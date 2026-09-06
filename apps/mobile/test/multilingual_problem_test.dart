@@ -1,3 +1,4 @@
+import 'package:flutter/painting.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:modu_math_app/models/content_models.dart';
 import 'package:modu_math_app/services/content_repository.dart';
@@ -129,6 +130,38 @@ void main() {
       expect(problem.title, equals('Which line segment is the longest?'));
     });
 
+    test('inspect S3_elem_3_008664 in ko vs uk', () async {
+      final repoKo = ContentRepository.bundledAssets()..activeProblemLocale = 'ko';
+      final manifestKo = await repoKo.loadManifest();
+      final summaryKo = manifestKo.problems.firstWhere((p) => p.id == 'S3_elem_3_008664');
+      final contentKo = await repoKo.loadProblem(summaryKo);
+
+      final repoUk = ContentRepository.bundledAssets()..activeProblemLocale = 'uk';
+      final manifestUk = await repoUk.loadManifest();
+      final summaryUk = manifestUk.problems.firstWhere((p) => p.id == 'S3_elem_3_008664');
+      final contentUk = await repoUk.loadProblem(summaryUk);
+
+      print('008664 KO prompt: ${contentKo.prompt}');
+      print('008664 KO choices: ${contentKo.choices}');
+      print('008664 UK prompt: ${contentUk.prompt}');
+      print('008664 UK choices: ${contentUk.choices}');
+
+      final visualKo = problemVisualRenderer(contentKo);
+      final visualUk = problemVisualRenderer(contentUk);
+
+      final elementsKo = (visualKo['elements'] as List).map((e) => '${e['id']}:${e['text']}').toList();
+      final elementsUk = (visualUk['elements'] as List).map((e) => '${e['id']}:${e['text']}').toList();
+
+      print('008664 KO visual elements: $elementsKo');
+      print('008664 UK visual elements: $elementsUk');
+
+      // Verify KO stem is removed from canvas
+      expect(elementsKo.any((e) => e.startsWith('slot.question')), isFalse);
+      // Verify UK labels A..E are present on canvas
+      expect(elementsUk.any((e) => e.startsWith('slot.choice.lb.1:A')), isTrue);
+      expect(elementsUk.any((e) => e.startsWith('slot.choice.lb.5:E')), isTrue);
+    });
+
     test('inspect S3_elem_3_008713 in ko vs en', () async {
       final repoKo = ContentRepository.bundledAssets()..activeProblemLocale = 'ko';
       final manifestKo = await repoKo.loadManifest();
@@ -140,25 +173,23 @@ void main() {
       final summaryEn = manifestEn.problems.firstWhere((p) => p.id == 'S3_elem_3_008713');
       final contentEn = await repoEn.loadProblem(summaryEn);
 
-      print('KO prompt: ${contentKo.prompt}');
-      print('KO choices: ${contentKo.choices}');
-      print('EN prompt: ${contentEn.prompt}');
-      print('EN choices: ${contentEn.choices}');
-
       final visualKo = problemVisualRenderer(contentKo);
       final visualEn = problemVisualRenderer(contentEn);
 
-      final elementsKo = (visualKo['elements'] as List).map((e) => e['id']).toList();
-      final elementsEn = (visualEn['elements'] as List).map((e) => e['id']).toList();
+      final elementsKo = (visualKo['elements'] as List).map((e) => '${e['id']}:${e['text']}').toList();
+      final elementsEn = (visualEn['elements'] as List).map((e) => '${e['id']}:${e['text']}').toList();
 
-      print('KO visual elements: $elementsKo');
-      print('EN visual elements: $elementsEn');
+      print('008713 KO visual elements: $elementsKo');
+      print('008713 EN visual elements: $elementsEn');
 
-      print('KO viewport: ${visualKo['presentation_viewport']}');
-      print('EN viewport: ${visualEn['presentation_viewport']}');
+      // In EN, slot.stem should be removed from canvas
+      expect(elementsEn.any((e) => e.startsWith('slot.stem')), isFalse);
     });
   });
 }
+
+
+
 
 
 

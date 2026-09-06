@@ -42,9 +42,9 @@ export function PropertyPanel({ shape, selectedShapes = [], answerOptions = [], 
         <ReadOnlyField label="id" value={shape.id} />
         <ReadOnlyField label="type" value={shape.type} />
         {shape.type === "text" ? (
-          <SelectField label="??? ?? ??" value={shape.semanticRole ?? "auto"}
+          <SelectField label="텍스트 표시 위치" value={shape.semanticRole ?? "auto"}
             options={Array.from(new Set(["auto", "question", "instruction", "choice", "diagram_label", shape.semanticRole ?? "auto"]))}
-            optionLabels={{ auto: "?? ??", question: "?? ? ?? ??", instruction: "?? ? ?? ???", choice: "? ?? ? ???", diagram_label: "Canvas ? ?? ??" }}
+            optionLabels={{ auto: "자동 판별", question: "상단 · 문제 지문", instruction: "상단 · 풀이 지시문", choice: "답 패널 · 선택지", diagram_label: "Canvas · 도형 설명" }}
             onChange={(semanticRole) => onChange({ semanticRole: semanticRole === "auto" ? "" : semanticRole })} />
         ) : null}
         {isAnswerSlotShape(shape) ? <AnswerSlotFields shape={shape} answerOptions={answerOptions} onChange={onChange} /> : null}

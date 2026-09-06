@@ -21,6 +21,25 @@ Map<String, dynamic> _projectVisual(ProblemContent content) {
   final choices = content.choices.map(choiceText).toSet();
   final removed = <Map>[];
   final kept = <dynamic>[];
+
+  // Discover any slots explicitly designated as stem/diagram in layout regions
+  final stemSlotIds = <String>{};
+  final regions = content.layout['regions'];
+  if (regions is List) {
+    for (final reg in regions) {
+      if (reg is Map) {
+        final role = reg['role']?.toString().toLowerCase();
+        final slotIds = reg['slot_ids'];
+        if (slotIds is List) {
+          final ids = slotIds.map((id) => id.toString().toLowerCase());
+          if (role == 'stem' || role == 'instruction' || role == 'question') {
+            stemSlotIds.addAll(ids);
+          }
+        }
+      }
+    }
+  }
+
   for (final element in raw) {
     if (element is! Map) {
       kept.add(element);
@@ -28,27 +47,60 @@ Map<String, dynamic> _projectVisual(ProblemContent content) {
     }
     final attributes = element['attributes'];
     final role = attributes is Map
-        ? attributes['data-semantic-role']?.toString() ?? ''
+        ? attributes['data-semantic-role']?.toString().toLowerCase() ?? ''
         : '';
     final text = normalize(element['text']?.toString() ?? '');
+    final sourceRef = (element['source_ref'] ?? '').toString().toLowerCase();
+    final refs = element['refs'];
+    final layoutSlotId = (refs is Map ? refs['layout_slot_id'] : '')
+            ?.toString()
+            .toLowerCase() ??
+        '';
     final identity =
-        '${element['id']} ${element['source_ref']} ${element['refs']} ${element['metadata']}'
+        '${element['id']} $sourceRef $layoutSlotId ${element['refs']} ${element['metadata']}'
             .toLowerCase();
-    final isPrompt = text.isNotEmpty &&
-        prompt.contains(text) &&
-        (text == prompt ||
-            role == 'question' ||
-            role == 'instruction' ||
-            (text.length >= 6 &&
-                RegExp(r'instruction|question|stem|slot\.q\d*\b')
-                    .hasMatch(identity)));
-    // Only move text that the answer panel actually represents. In particular,
-    // labels attached to diagrams and visual answer choices stay on Canvas.
+
+    final isStemSlot = stemSlotIds.contains(sourceRef) ||
+        stemSlotIds.contains(layoutSlotId) ||
+        stemSlotIds.any((id) => identity.contains(id));
+
+    final isPromptRole = isStemSlot ||
+        role == 'question' ||
+        role == 'instruction' ||
+        RegExp(r'\b(?:stem|instruction|question|slot\.q\d*)\b')
+            .hasMatch(identity);
+
+    final promptMatches = prompt.isNotEmpty &&
+        text.isNotEmpty &&
+        (prompt == text ||
+            prompt.contains(text) ||
+            text.contains(prompt) ||
+            (text.length >= 10 &&
+                prompt.length >= 10 &&
+                prompt.substring(0, math.min(15, prompt.length)) ==
+                    text.substring(0, math.min(15, text.length))));
+
+    final isPrompt = text.isNotEmpty && (isPromptRole || promptMatches);
+
+    // Labels attached to diagrams, points, holes, or geometry must stay on Canvas.
+    final isDiagramLabel = identity.contains('.lb.') ||
+        identity.contains('.lb') ||
+        identity.contains('_lb_') ||
+        identity.contains('label') ||
+        identity.contains('symbol_label') ||
+        role == 'label' ||
+        role == 'symbol_label';
+
+    final isChoiceRole = (role == 'choice' ||
+            role == 'option' ||
+            RegExp(r'\b(?:choice|option|slot\.c\d|slot\.opt)\b').hasMatch(identity)) &&
+        !isDiagramLabel;
+
     final isChoice = text.isNotEmpty &&
+        !isDiagramLabel &&
         choices.contains(choiceText(text)) &&
-        (RegExp(r'choice|option|slot\.c\d|slot\.opt').hasMatch(identity) ||
-            role == 'choice' ||
-            role == 'option');
+        (isChoiceRole || role == 'choice' || role == 'option');
+
     if (isPrompt || isChoice) {
       removed.add(element);
     } else {
