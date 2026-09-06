@@ -108,7 +108,7 @@ export function ShapeRenderer({ shape, nodeRef, onSelect, onDragStart, onDragMov
           : shape.width;
       const textHeight =
         typeof textWidth === "number"
-          ? normalizedTextBoxHeight(shape.text, shape.fontSize, textWidth, shape.height, shape.lineHeight ?? 1.25)
+          ? normalizedTextBoxHeight(shape.text, shape.fontSize, textWidth, shape.height, shape.lineHeight ?? 1.25, shape.fontFamily, Boolean(shape.interaction))
           : undefined;
       return (
         <Text

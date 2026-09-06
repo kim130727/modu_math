@@ -16,7 +16,7 @@ import type { ProblemJson } from "../types/problem";
 import { scalePathData } from "../utils/pathData";
 import sampleProblem from "../samples/sample_problem.json";
 import { connectorArrowForPreset, connectorKindForPreset } from "./connectorGeometry";
-import { editorDocumentToProblemJson, estimateTextWidth, fittedTextHeight, normalizedTextBoxWidth, problemJsonToEditorDocument } from "./converters";
+import { editorDocumentToProblemJson, estimateTextWidth, fittedTextHeight, normalizedTextBoxHeight, normalizedTextBoxWidth, problemJsonToEditorDocument } from "./converters";
 import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
 import { JsonImportExport } from "./JsonImportExport";
 import { KonvaStage, type CanvasPoint } from "./KonvaStage";
@@ -1488,7 +1488,7 @@ function shapeBoundsForScaling(shape: EditorShape): { x: number; y: number; widt
       x: shape.x,
       y: shape.y,
       width: shape.width ?? estimateTextWidth(shape.text, shape.fontSize),
-      height: shape.height ?? fittedTextHeight(shape.text, shape.fontSize, shape.width ?? estimateTextWidth(shape.text, shape.fontSize), shape.lineHeight ?? 1.25),
+      height: normalizedTextBoxHeight(shape.text, shape.fontSize, shape.width ?? estimateTextWidth(shape.text, shape.fontSize), shape.height, shape.lineHeight ?? 1.25, shape.fontFamily, Boolean(shape.interaction)),
     };
   }
   if (shape.type === "baseTenBlock") {
@@ -1761,6 +1761,7 @@ function applyAutoTextSizing(nextShape: Extract<EditorShape, { type: "text" }>, 
   if (
     nextShape.text === previousShape.text &&
     nextShape.fontSize === previousShape.fontSize &&
+    nextShape.fontFamily === previousShape.fontFamily &&
     nextShape.width === previousShape.width &&
     nextShape.lineHeight === previousShape.lineHeight
   ) {
@@ -1778,13 +1779,13 @@ function applyAutoTextSizing(nextShape: Extract<EditorShape, { type: "text" }>, 
       ...nextShape,
       sourceKind: "text_box",
       width,
-      height: fittedTextHeight(nextShape.text, nextShape.fontSize, width, nextShape.lineHeight ?? 1.25),
+      height: normalizedTextBoxHeight(nextShape.text, nextShape.fontSize, width, nextShape.height, nextShape.lineHeight ?? 1.25, nextShape.fontFamily, Boolean(nextShape.interaction)),
     };
   }
   return {
     ...nextShape,
-    width: Math.max(nextShape.width ?? 0, autoTextWidth(nextShape.text, nextShape.fontSize)),
-    height: fittedTextHeight(nextShape.text, nextShape.fontSize, autoTextWidth(nextShape.text, nextShape.fontSize), nextShape.lineHeight ?? 1.25),
+    width: nextShape.width ?? autoTextWidth(nextShape.text, nextShape.fontSize),
+    height: normalizedTextBoxHeight(nextShape.text, nextShape.fontSize, nextShape.width ?? autoTextWidth(nextShape.text, nextShape.fontSize), nextShape.height, nextShape.lineHeight ?? 1.25, nextShape.fontFamily, Boolean(nextShape.interaction)),
   };
 }
 

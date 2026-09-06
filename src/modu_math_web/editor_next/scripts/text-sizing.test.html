@@ -1,0 +1,32 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Text sizing regression checks</title>
+<pre id="result">RUNNING</pre>
+<script type="module">
+import { Text } from '/node_modules/konva/lib/shapes/Text.js';
+import { normalizedTextBoxHeight, fittedTextWidth, problemJsonToEditorDocument, editorDocumentToProblemJson } from '/src/konva_editor/converters.ts';
+import { KONVA_PREVIEW_FONT_FAMILY } from '/src/konva_editor/fonts.ts';
+try {
+  await document.fonts.ready;
+  let count = 0;
+  const assert = (condition, message) => { if (!condition) throw new Error(message); count++; };
+  for (const text of ['물병에 물을 가득 채운 후\n우유병에 옮겨 담아보면 돼', 'A longer sentence with words that wrap differently.', '짧은 글', '', '첫 줄\n\n마지막 줄']) {
+    for (const width of [90, 345, 600]) {
+      const node = new Text({ text: text || ' ', width, fontSize: 28, lineHeight: 1.25, fontFamily: KONVA_PREVIEW_FONT_FAMILY });
+      const height = normalizedTextBoxHeight(text, 28, width, 300, 1.25);
+      assert(height === Math.ceil(node.height()), 'Height differs from actual rendered lines');
+      assert(normalizedTextBoxHeight(text, 28, width, 300, 1.25, undefined, true) >= 300, 'Answer slot shrank');
+      node.destroy();
+    }
+  }
+  assert(fittedTextWidth('짧은 글', 28) < 345, 'Fit width did not remove excess width');
+  const base = { id: 'test', title: 'Test', canvas: { width: 800, height: 600 }, objects: [{ id: 't', type: 'math_text', x: 20, y: 20, props: { text: '짧은 글', fontSize: 28, width: 345, height: 300, sourceKind: 'text_box' } }] };
+  const doc = problemJsonToEditorDocument(base);
+  assert(doc.shapes[0].height < 300, 'Imported whitespace remains');
+  const saved = editorDocumentToProblemJson(doc, base);
+  const reopened = problemJsonToEditorDocument(saved);
+  assert(reopened.shapes[0].height === doc.shapes[0].height, 'Save/reopen changed height');
+  assert(reopened.shapes[0].width === 345, 'Wrap width changed on reopen');
+  document.querySelector('#result').textContent = `PASS: ${count} text sizing checks`;
+} catch (error) { document.querySelector('#result').textContent = `FAIL: ${error.stack}`; }
+</script>

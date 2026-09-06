@@ -511,6 +511,8 @@ export function KonvaStage({
           ) : null}
           <Transformer
             ref={transformerRef}
+            enabledAnchors={selectedShapeIds.length === 1 && shapes.some((shape) => shape.id === selectedShapeIds[0] && shape.type === "text" && !shape.interaction)
+              ? ["middle-left", "middle-right"] : undefined}
             rotateEnabled
             ignoreStroke
             borderStroke="#6b7280"
@@ -991,7 +993,7 @@ function shapeBounds(shape: EditorShape): CanvasRect {
       x: shape.x,
       y: shape.y,
       width: textWidth,
-      height: normalizedTextBoxHeight(shape.text, shape.fontSize, textWidth, shape.height, shape.lineHeight ?? 1.25),
+      height: normalizedTextBoxHeight(shape.text, shape.fontSize, textWidth, shape.height, shape.lineHeight ?? 1.25, shape.fontFamily, Boolean(shape.interaction)),
     };
   }
   if (shape.type === "path") {
@@ -1459,7 +1461,7 @@ function shapeFromNode(shape: EditorShape, node: Konva.Node): EditorShape {
       y: node.y(),
       rotation: node.rotation(),
       width,
-      height: normalizedTextBoxHeight(shape.text, shape.fontSize, width, scaledHeight, shape.lineHeight ?? 1.25),
+      height: normalizedTextBoxHeight(shape.text, shape.fontSize, width, scaledHeight, shape.lineHeight ?? 1.25, shape.fontFamily, Boolean(shape.interaction)),
       sourceKind: "text_box",
     };
   }

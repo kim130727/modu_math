@@ -3,6 +3,7 @@ import type { ProblemCanvas, ProblemJson, ProblemObject } from "../types/problem
 import { connectorToPathObject } from "./connectorGeometry";
 import { KONVA_PREVIEW_FONT_FAMILY, normalizePreviewFontFamily } from "./fonts";
 import { inferAdjustableShapePreset, pathDataForShape } from "./shapeGeometry";
+import { Text as KonvaText } from "konva/lib/shapes/Text";
 
 export interface FractionLatex {
   whole?: string;
@@ -98,7 +99,7 @@ function problemObjectToEditorShape(object: ProblemObject, canvas: ProblemCanvas
           fontFamily: normalizePreviewFontFamily(stringProp(object.props.fontFamily)),
           fill: object.props.color ?? "#111827",
           width,
-          height: isTextBox ? normalizedTextBoxHeight(text, fontSize, width ?? estimateTextWidth(text, fontSize), object.props.height, lineHeight) : undefined,
+          height: isTextBox ? normalizedTextBoxHeight(text, fontSize, width ?? estimateTextWidth(text, fontSize), object.props.height, lineHeight, stringProp(object.props.fontFamily), Boolean(answerProps.interaction)) : undefined,
           align: textAlign,
           lineHeight,
           sourceKind: isTextBox ? "text_box" : (object.props.sourceKind ?? "text"),
@@ -399,8 +400,8 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
           : shape.width;
       const height =
         isTextBox && typeof width === "number"
-          ? normalizedTextBoxHeight(shape.text, shape.fontSize, width, shape.height, lineHeight)
-          : shape.height;
+          ? normalizedTextBoxHeight(shape.text, shape.fontSize, width, shape.height, lineHeight, shape.fontFamily, Boolean(shape.interaction))
+          : shape.interaction ? shape.height : undefined;
       return [
         {
           id: shape.id,
@@ -723,15 +724,16 @@ export function estimateTextWidth(text: string, fontSize: number): number {
   return Math.max(fontSize, Math.ceil(longestLineWidth + fontSize * 0.28));
 }
 
-export function fittedTextWidth(text: string, fontSize: number): number {
+export function fittedTextWidth(text: string, fontSize: number, fontFamily?: string): number {
+  const measured = measureTextBox(text, fontSize, undefined, 1.25, fontFamily);
+  if (measured) return Math.max(24, Math.ceil(measured.width + 1));
   const longestLineWidth = Math.max(...text.split(/\n/g).map((line) => estimateLineWidth(line, fontSize)), 0);
   return Math.max(12, Math.ceil(longestLineWidth + fontSize * 0.28));
 }
 
 export function normalizedTextBoxWidth(text: string, fontSize: number, width?: number, align = "left", maxWidth?: number): number {
-  const fittedWidth = fittedTextWidth(text, fontSize);
   const capped = (value: number) => Math.max(24, Math.min(value, maxWidth ?? value));
-  if (typeof width !== "number" || !Number.isFinite(width) || width <= 0) return capped(fittedWidth);
+  if (typeof width !== "number" || !Number.isFinite(width) || width <= 0) return capped(fittedTextWidth(text, fontSize));
   return capped(width);
 }
 
@@ -740,16 +742,24 @@ function maxTextBoxWidthWithinCanvas(x: number, canvasWidth: number): number {
   return Math.max(24, canvasWidth - x - margin);
 }
 
-export function fittedTextHeight(text: string, fontSize: number, width: number, lineHeight = 1.25): number {
-  return Math.max(24, Math.ceil(estimateWrappedLineCount(text, fontSize, width) * fontSize * lineHeight + 8));
+export function fittedTextHeight(text: string, fontSize: number, width: number, lineHeight = 1.25, fontFamily?: string): number {
+  const measured = measureTextBox(text, fontSize, width, lineHeight, fontFamily);
+  return Math.ceil(measured?.height ?? Math.max(1, estimateWrappedLineCount(text, fontSize, width)) * fontSize * lineHeight);
 }
 
-export function normalizedTextBoxHeight(text: string, fontSize: number, width: number, height?: number, lineHeight = 1.25): number {
-  const fittedHeight = fittedTextHeight(text, fontSize, width, lineHeight);
-  if (typeof height !== "number" || !Number.isFinite(height)) return fittedHeight;
-  if (!text.trim()) return Math.max(24, height);
-  const suspiciouslyTall = height > Math.max(fittedHeight * 2.5, fittedHeight + fontSize * 2);
-  return suspiciouslyTall ? fittedHeight : Math.max(height, fittedHeight);
+export function normalizedTextBoxHeight(text: string, fontSize: number, width: number, height?: number, lineHeight = 1.25, fontFamily?: string, preserveHeight = false): number {
+  const fittedHeight = fittedTextHeight(text, fontSize, width, lineHeight, fontFamily);
+  return preserveHeight && typeof height === "number" && Number.isFinite(height) ? Math.max(height, fittedHeight) : fittedHeight;
+}
+
+// Use the same font metrics and word wrapping as the visible Konva Text.
+// Do not cache: web fonts may finish loading between measurements.
+function measureTextBox(text: string, fontSize: number, width: number | undefined, lineHeight: number, fontFamily?: string): { width: number; height: number } | null {
+  if (typeof document === "undefined") return null;
+  const node = new KonvaText({ text: text || " ", fontSize, width, lineHeight, fontFamily: normalizePreviewFontFamily(fontFamily), padding: 0 });
+  const size = { width: node.width(), height: node.height() };
+  node.destroy();
+  return size;
 }
 
 export function estimateWrappedTextHeight(text: string, fontSize: number, width: number, lineHeight = 1.25): number {

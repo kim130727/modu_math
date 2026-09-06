@@ -46,7 +46,6 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.choice.box",
         "slot.choice.1",
         "slot.choice.2",
         "slot.choice.3",
@@ -65,7 +64,8 @@
         "x": 58.0,
         "y": 55.0,
         "font_size": 28,
-        "fill": "#111111"
+        "fill": "#111111",
+        "semantic_role": "question"
       }
     },
     {
@@ -296,20 +296,6 @@
       }
     },
     {
-      "id": "slot.choice.box",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 420.0,
-        "y": 110.0,
-        "width": 410.0,
-        "height": 170.0,
-        "stroke": "#F39C12",
-        "stroke_width": 2.0,
-        "fill": "none"
-      }
-    },
-    {
       "id": "slot.choice.1",
       "kind": "text",
       "prompt": "",
@@ -319,7 +305,8 @@
         "x": 450.0,
         "y": 170.0,
         "font_size": 28,
-        "fill": "#111111"
+        "fill": "#111111",
+        "semantic_role": "choice"
       }
     },
     {
@@ -332,7 +319,8 @@
         "x": 635.0,
         "y": 170.0,
         "font_size": 28,
-        "fill": "#111111"
+        "fill": "#111111",
+        "semantic_role": "choice"
       }
     },
     {
@@ -345,7 +333,8 @@
         "x": 450.0,
         "y": 240.0,
         "font_size": 28,
-        "fill": "#111111"
+        "fill": "#111111",
+        "semantic_role": "choice"
       }
     },
     {
@@ -358,7 +347,8 @@
         "x": 635.0,
         "y": 240.0,
         "font_size": 28,
-        "fill": "#111111"
+        "fill": "#111111",
+        "semantic_role": "choice"
       }
     }
   ],
@@ -387,7 +377,6 @@
     "slot.mul.3200",
     "slot.mul.3476",
     "region.choice",
-    "slot.choice.box",
     "slot.choice.1",
     "slot.choice.2",
     "slot.choice.3",

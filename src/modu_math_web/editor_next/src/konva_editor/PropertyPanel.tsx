@@ -2,6 +2,7 @@ import type { AnswerInteractionType, AnswerKeyboard, AnswerRole, AnswerValueType
 import { scalePathData } from "../utils/pathData";
 import { KONVA_PREVIEW_FONT_FAMILY, normalizePreviewFontFamily } from "./fonts";
 import { resolveAnswerBinding, type AnswerBindingOption } from "./answerReview";
+import { fittedTextWidth } from "./converters";
 
 interface PropertyPanelProps {
   shape: EditorShape | null;
@@ -55,6 +56,12 @@ export function PropertyPanel({ shape, selectedShapes = [], answerOptions = [], 
             <TextPlacementFields shapes={[shape]} onChange={onTextRoleChange} />
             <NumberField label="글자 크기" value={shape.fontSize} onChange={(fontSize) => onChange({ fontSize } as Partial<EditorShape>)} />
             <NumberField label="글상자 너비" value={shape.width ?? 220} onChange={(width) => onChange({ width } as Partial<EditorShape>)} />
+            {!shape.interaction ? <div className="konva-field-wide">
+              <div className="konva-placement-buttons">
+                <button type="button" onClick={() => onChange({ width: Math.min(shape.width ?? Infinity, fittedTextWidth(shape.text, shape.fontSize, shape.fontFamily)), sourceKind: "text_box" } as Partial<EditorShape>)}>내용에 폭 맞추기</button>
+              </div>
+              <p className="konva-answer-hint">높이는 실제 줄 수에 자동으로 맞춰집니다. 양옆 손잡이로 줄바꿈 폭을 조절하세요.</p>
+            </div> : null}
           </>
         ) : null}
         <details className="konva-property-details" key={shape.id} open={shape.type !== "text" ? true : undefined}>
