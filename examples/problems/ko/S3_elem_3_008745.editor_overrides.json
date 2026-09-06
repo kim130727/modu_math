@@ -1,4 +1,20 @@
 {
+  "version": 1,
+  "slot_regions": {
+    "konva_1788399809477_image_1065658": "region.stem",
+    "konva_1788399809477_text_1078378": "region.stem",
+    "konva_1788399809477_text_1084923": "region.stem",
+    "konva_1788399809477_text_1125898": "region.stem"
+  },
+  "deleted_slots": [
+    "slot.inserted.image.1",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "konva_1788399809477_text_1078378",
+    "konva_1788399809477_text_1084923",
+    "konva_1788399809477_text_1125898"
+  ],
   "slots": {
     "slot.choice.1": {
       "y": 402
@@ -49,22 +65,16 @@
       "align": "left",
       "line_height": 1.25,
       "kind": "text_box"
+    },
+    "slot.question": {
+      "height": 158.0,
+      "semantic_role": "question"
+    },
+    "slot.label.a": {
+      "height": 46.0
+    },
+    "slot.label.b": {
+      "height": 46.0
     }
-  },
-  "version": 1,
-  "slot_regions": {
-    "konva_1788399809477_image_1065658": "region.stem",
-    "konva_1788399809477_text_1078378": "region.stem",
-    "konva_1788399809477_text_1084923": "region.stem",
-    "konva_1788399809477_text_1125898": "region.stem"
-  },
-  "deleted_slots": [
-    "slot.inserted.image.1",
-    "slot.q1",
-    "slot.q2",
-    "slot.q3",
-    "konva_1788399809477_text_1078378",
-    "konva_1788399809477_text_1084923",
-    "konva_1788399809477_text_1125898"
-  ]
+  }
 }

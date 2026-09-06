@@ -734,15 +734,17 @@ export function EditorKonva() {
   const saveCurrentTutorFlow = useCallback(
     async (tutorFlow: TutorRendererStep[]) => {
       if (selectedProblemId === initialProblem.id) {
-        setMessage("Sample problem is local only. Open a real problem before saving tutor flow.");
+        setMessage("실제 문제를 열어 힌트를 저장해 주세요.");
         setSaveStatus("error");
-        return;
+        throw new Error("실제 문제를 열어 힌트를 저장해 주세요.");
       }
 
       setSaveStatus("saving");
-      setMessage(`Saving tutor flow for ${selectedProblemId}...`);
+      setMessage("힌트를 저장하고 학생용 데이터를 빌드합니다…");
       try {
         const response = await saveTutorFlow(selectedProblemId, tutorFlow, { format: false });
+        const build = await buildProblem(selectedProblemId);
+        if (!build.ok) throw new Error("힌트는 저장됐지만 빌드에 실패했습니다.");
         setPreviewArtifacts((current) => ({
           ...current,
           renderer:
@@ -751,10 +753,11 @@ export function EditorKonva() {
         setDraftTutorFlow(response.tutor_flow);
         setActiveTutorFrameIndex(0);
         setSaveStatus("saved");
-        setMessage(`Saved tutor flow for ${selectedProblemId}. Build to refresh artifacts.`);
+        setMessage("힌트 저장과 빌드를 완료했습니다.");
       } catch (error) {
         setSaveStatus("error");
         setMessage(`Could not save tutor flow for ${selectedProblemId}: ${String(error)}`);
+        throw error;
       }
     },
     [selectedProblemId],
@@ -774,7 +777,7 @@ export function EditorKonva() {
             };
           },
         );
-        return { step_id: step.step_id, frames };
+        return { ...step, frames };
       });
       setSaveStatus("unsaved");
       setDraftTutorFlow(nextFlow);
@@ -942,7 +945,7 @@ export function EditorKonva() {
             />
             <SidePanelButton
               active={activeSidePanel === "flow"}
-              label="Tutor Flow"
+              label="힌트 편집"
               onClick={() => setActiveSidePanel("flow")}
               icon="flow"
             />

@@ -12,103 +12,48 @@ void main() {
   test('scratch', () {
     final layout = jsonDecode(File('../../examples/problems/ko/S3_elem_3_008732.layout.json').readAsStringSync());
     final renderer = jsonDecode(File('../../examples/problems/ko/S3_elem_3_008732.renderer.json').readAsStringSync());
-    final semantic = jsonDecode(File('../../examples/problems/ko/S3_elem_3_008732.semantic.json').readAsStringSync());
-    final solvable = jsonDecode(File('../../examples/problems/ko/S3_elem_3_008732.solvable.v1.1.json').readAsStringSync());
-    final summary = ProblemSummary(
-      id: 'S3_elem_3_008732',
-      grade: 3,
-      subject: 'math',
-      unit: 'fraction',
-      type: 'ox_choice',
-      title: '사다리를 타고 내려가 도착한 곳이 참이면 ○표, 거짓이면 X표하세요.',
-      path: '',
-      raw: {},
-    );
-    final content = ProblemContent(
-      summary: summary,
-      layout: layout,
-      renderer: renderer,
-      semantic: semantic,
-      solvable: solvable,
-    );
-    print('content.prompt: ${content.prompt}');
-    print('content.choices: ${content.choices}');
-    final visual = problemVisualRenderer(content);
-    print('viewport: ${visual["presentation_viewport"]}');
-    for (final el in visual['elements']) {
-      if (el['type'] == 'text') {
-        final a = el['attributes'] as Map;
-        final rawText = el['text']?.toString() ?? '';
-        final fontSize = (a['font-size'] as num?)?.toDouble() ?? 18.0;
-        final x = (a['x'] as num?)?.toDouble() ?? 0.0;
-        final y = (a['y'] as num?)?.toDouble() ?? 0.0;
-        final anchor = a['text-anchor']?.toString();
+    for (final loc in ['en', 'km']) {
+      final layout = jsonDecode(File('../../examples/problems/$loc/S3_elem_3_008664.layout.json').readAsStringSync());
+      final renderer = jsonDecode(File('../../examples/problems/$loc/S3_elem_3_008664.renderer.json').readAsStringSync());
+      final semantic = jsonDecode(File('../../examples/problems/$loc/S3_elem_3_008664.semantic.json').readAsStringSync());
+      final solvable = jsonDecode(File('../../examples/problems/$loc/S3_elem_3_008664.solvable.v1.1.json').readAsStringSync());
+      final summary = ProblemSummary(
+        id: 'S3_elem_3_008664',
+        grade: 3,
+        subject: 'math',
+        unit: 'circle',
+        type: 'choice_selection',
+        title: semantic['metadata']?['title'] ?? 'test',
+        path: '',
+        raw: {},
+      );
+      final content = ProblemContent(
+        summary: summary,
+        layout: layout,
+        renderer: renderer,
+        semantic: semantic,
+        solvable: solvable,
+      );
+      print('=== LOCALE $loc ===');
+      print('PROMPT: "${content.prompt}"');
+      print('CHOICES: ${content.choices}');
 
-        final painter = TextPainter(
-          text: TextSpan(
-            text: rawText,
-            style: TextStyle(
-              color: const Color(0xFF111111),
-              fontSize: fontSize,
-              fontWeight: FontWeight.w600,
-              height: 1.25,
-            ),
-          ),
-          textDirection: TextDirection.ltr,
-        )..layout();
+      final originalTexts = (renderer['elements'] as List)
+          .whereType<Map>()
+          .where((e) => e['type'] == 'text')
+          .map((e) => '${e["id"]}: "${e["text"]}"')
+          .toList();
+      print('ORIGINAL TEXTS: $originalTexts');
 
-        final baseline = painter.computeDistanceToActualBaseline(TextBaseline.alphabetic);
-        final offset = rendererTextPaintOffset(
-          x: x,
-          y: y,
-          baseline: baseline,
-          anchorWidth: painter.width,
-          textAnchor: anchor,
-        );
-        print('TEXT [${el["id"]}] "$rawText": size=${painter.size}, baseline=$baseline, offset=$offset');
-      }
+      final visual = problemVisualRenderer(content);
+      final visualTexts = (visual['elements'] as List)
+          .whereType<Map>()
+          .where((e) => e['type'] == 'text')
+          .map((e) => '${e["id"]}: "${e["text"]}"')
+          .toList();
+      print('VISUAL TEXTS: $visualTexts');
     }
   });
 
 
-  test('render to image', () async {
-    final layout = jsonDecode(File('../../examples/problems/ko/S3_elem_3_008732.layout.json').readAsStringSync());
-    final renderer = jsonDecode(File('../../examples/problems/ko/S3_elem_3_008732.renderer.json').readAsStringSync());
-    final semantic = jsonDecode(File('../../examples/problems/ko/S3_elem_3_008732.semantic.json').readAsStringSync());
-    final solvable = jsonDecode(File('../../examples/problems/ko/S3_elem_3_008732.solvable.v1.1.json').readAsStringSync());
-    final summary = ProblemSummary(
-      id: 'S3_elem_3_008732',
-      grade: 3,
-      subject: 'math',
-      unit: 'fraction',
-      type: 'ox_choice',
-      title: '사다리를 타고 내려가 도착한 곳이 참이면 ○표, 거짓이면 X표하세요.',
-      path: '',
-      raw: {},
-    );
-    final content = ProblemContent(
-      summary: summary,
-      layout: layout,
-      renderer: renderer,
-      semantic: semantic,
-      solvable: solvable,
-    );
-    final visual = problemVisualRenderer(content);
-    final viewBox = visual['view_box'] as Map;
-    final w = (viewBox['width'] as num).toDouble();
-    final h = (viewBox['height'] as num).toDouble();
-
-    final recorder = ui.PictureRecorder();
-    final canvas = Canvas(recorder, Rect.fromLTWH(0, 0, w, h));
-    final painter = RendererJsonPainter(
-      renderer: visual,
-      logicalSize: Size(w, h),
-    );
-    painter.paint(canvas, Size(w, h));
-    final picture = recorder.endRecording();
-    final img = await picture.toImage(w.toInt(), h.toInt());
-    final byteData = await img.toByteData(format: ui.ImageByteFormat.png);
-    File('test_ladder.png').writeAsBytesSync(byteData!.buffer.asUint8List());
-    print('WROTE test_ladder.png, size: ${byteData.lengthInBytes}');
-  });
 }

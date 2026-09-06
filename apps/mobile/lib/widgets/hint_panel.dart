@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../l10n/app_strings.dart';
 import '../services/solvable_hint_service.dart';
 import '../theme/app_theme.dart';
+import 'renderer_json_canvas.dart';
 
 class HintPanel extends StatefulWidget {
   const HintPanel({
@@ -10,11 +11,13 @@ class HintPanel extends StatefulWidget {
     required this.hints,
     required this.visibleLevel,
     required this.onRevealNext,
+    this.imageLoader,
   });
 
   final List<SolvableHint> hints;
   final int visibleLevel;
   final VoidCallback onRevealNext;
+  final RendererImageLoader? imageLoader;
 
   @override
   State<HintPanel> createState() => _HintPanelState();
@@ -206,6 +209,8 @@ class _HintPanelState extends State<HintPanel> {
                             ),
                           ),
                         ],
+                        for (final renderer in hint.rendererFrames)
+                          Padding(padding: const EdgeInsets.only(top: 8), child: RendererJsonCanvas(renderer: renderer, suppressInputs: true, imageLoader: widget.imageLoader)),
                         if (hint.miniQuestion.trim().isNotEmpty &&
                             (hint.choices.isNotEmpty ||
                                 hint.acceptedAnswers.isNotEmpty)) ...[

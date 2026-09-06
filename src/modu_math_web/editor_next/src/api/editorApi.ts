@@ -72,6 +72,9 @@ export interface RendererElement {
 
 export interface TutorRendererStep {
   step_id: string;
+  phase?: string;
+  title?: string;
+  text?: string;
   overlays?: TutorRendererOverlay[];
   frames?: TutorRendererFrame[];
 }

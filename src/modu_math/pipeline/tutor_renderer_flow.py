@@ -44,6 +44,12 @@ def normalize_tutor_renderer_flow(flow: Any) -> list[dict[str, Any]]:
             raise TutorRendererFlowError(f"TUTOR_RENDERER_FLOW[{index}].frames must be an array")
         normalized_frames = [_normalize_frame(frame, index, frame_index, step_id) for frame_index, frame in enumerate(frames)]
         normalized_item = dict(item)
+        if phase == "hint":
+            for field in ("text", "title"):
+                if field in item and not isinstance(item[field], str):
+                    raise TutorRendererFlowError(f"Hint {field} must be a string")
+            if not item.get("text", "").strip():
+                raise TutorRendererFlowError("Hint text must not be empty")
         normalized_item["step_id"] = step_id
         normalized_item["frames"] = normalized_frames
         normalized_item.pop("overlays", None)

@@ -22,6 +22,7 @@ class SolvableHint {
     this.choices = const [],
     this.groupKey,
     this.groupLabel,
+    this.rendererFrames = const [],
     this.successMessage = '좋아요. 다음 단계로 가 볼게요.',
   });
 
@@ -33,6 +34,7 @@ class SolvableHint {
   final List<HintChoice> choices;
   final String? groupKey;
   final String? groupLabel;
+  final List<Map<String, dynamic>> rendererFrames;
   final String successMessage;
 
   int get maxLevel => level;
@@ -71,6 +73,8 @@ class SolvableHintService {
     String locale = 'ko',
     AppStrings? strings,
   }) {
+    final editorHints = _editorHints(content);
+    if (editorHints.isNotEmpty) return editorHints;
     final hints = _buildRawHints(content);
     if (locale == 'ko') {
       return hints.map(_localizeSolvableHint).toList();
@@ -2423,6 +2427,44 @@ List<SolvableHint> _authoredStudentHints(ProblemContent content) {
     );
   }
   hints.sort((a, b) => a.level.compareTo(b.level));
+  return hints;
+}
+
+List<SolvableHint> _editorHints(ProblemContent content) {
+  final flow = content.renderer['tutor_flow'];
+  if (flow is! List) return const [];
+  final hints = <SolvableHint>[];
+  for (final step in flow.whereType<Map>()) {
+    if (step['phase'] != 'hint' || step['text'] is! String || (step['text'] as String).trim().isEmpty) continue;
+    final frames = <Map<String, dynamic>>[];
+    final rawFrames = step['frames'];
+    if (rawFrames is List) {
+      for (final frame in rawFrames.whereType<Map>()) {
+        final overlays = frame['overlays'];
+        if (overlays is! List || overlays.isEmpty) continue;
+        final targets = overlays.whereType<Map>().where((o) => o['type'] == 'highlight').map((o) => o['target_ref']).toSet();
+        dynamic highlight(dynamic element) {
+          if (element is! Map) return element;
+          final copy = Map<String, dynamic>.from(element);
+          final refs = element['refs'];
+          if (targets.contains(element['id']) || targets.contains(element['source_ref']) || (refs is Map && refs.values.any(targets.contains))) {
+            copy['attributes'] = {...?element['attributes'] as Map?, 'stroke': '#0f766e', 'stroke-width': 4};
+          }
+          if (element['elements'] is List) copy['elements'] = (element['elements'] as List).map(highlight).toList();
+          return copy;
+        }
+        final elements = ((content.renderer['elements'] as List?) ?? []).map(highlight).toList();
+        for (final overlay in overlays.whereType<Map>()) {
+          if (overlay['type'] != 'label') continue;
+          final style = overlay['style'] is Map ? overlay['style'] as Map : {};
+          elements.add({'id': 'hint.label.${elements.length}', 'type': 'text', 'text': overlay['text'] ?? '', 'attributes': {'x': overlay['x'] ?? 40, 'y': (overlay['y'] as num? ?? 40) + (style['font_size'] as num? ?? 24), 'font-size': style['font_size'] ?? 24, 'fill': style['fill'] ?? '#0f766e'}});
+        }
+        frames.add({...content.renderer, 'elements': elements});
+      }
+    }
+    final title = step['title'] is String ? (step['title'] as String).trim() : '';
+    hints.add(SolvableHint(level: hints.length + 1, title: title.isEmpty ? '힌트 ${hints.length + 1}' : title, body: step['text'] as String, rendererFrames: frames));
+  }
   return hints;
 }
 

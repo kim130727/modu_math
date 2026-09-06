@@ -351,6 +351,7 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
                   AppLocaleScope.maybeOf(context)?.locale.languageCode ??
                       widget.repository.activeProblemLocale;
               final hintPanel = HintPanel(
+                imageLoader: (href) => widget.repository.loadProblemAsset(content.summary, href),
                 hints: hintService.buildHints(
                   content,
                   locale: activeLocale,

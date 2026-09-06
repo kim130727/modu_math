@@ -30,7 +30,18 @@
       "slot.inserted.image.1"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko"
+    "language": "ko",
+    "presentation_sources": {
+      "question": [
+        "slot.header.text"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.header.text.copy1",
+        "slot.header.text.copy1.copy2"
+      ]
+    },
+    "presentation_prompt": "그림을 보고 바르게 말한 사람을 선택해 보세요.\n그림의 색칠한 부분과 색칠하지 않은 부분을 분수로 바르게 말한 사람을 고른다."
   },
   "domain": {
     "objects": [
@@ -93,7 +104,18 @@
   },
   "answer": {
     "blanks": [],
-    "choices": [],
+    "choices": [
+      {
+        "text": "진경",
+        "slot_id": "slot.header.text.copy1",
+        "id": "slot.header.text.copy1"
+      },
+      {
+        "text": "현진",
+        "slot_id": "slot.header.text.copy1.copy2",
+        "id": "slot.header.text.copy1.copy2"
+      }
+    ],
     "answer_key": [],
     "confidence": 1.0,
     "target": {

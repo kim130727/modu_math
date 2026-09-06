@@ -5,12 +5,28 @@
     "title": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오",
     "tags": [],
     "instruction": "보기에서 계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
-    "question": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
+    "question": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.\nㄱ. 397 × 6\nㄴ. 549 × 4\nㄷ. 456 × 5",
     "required_layout_ids": [
       "slot.box"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko"
+    "language": "ko",
+    "presentation_sources": {
+      "question": [
+        "slot.q1",
+        "slot.expr1",
+        "slot.expr2",
+        "slot.expr3"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.opt1",
+        "slot.opt2",
+        "slot.opt3",
+        "slot.opt4"
+      ]
+    },
+    "presentation_prompt": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.\nㄱ. 397 × 6\nㄴ. 549 × 4\nㄷ. 456 × 5\n보기에서 계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오."
   },
   "domain": {
     "objects": [
@@ -55,7 +71,28 @@
   },
   "answer": {
     "blanks": [],
-    "choices": [],
+    "choices": [
+      {
+        "text": "① ㄱ ㄴ ㄷ",
+        "slot_id": "slot.opt1",
+        "id": "slot.opt1"
+      },
+      {
+        "text": "② ㄱ ㄷ ㄴ",
+        "slot_id": "slot.opt2",
+        "id": "slot.opt2"
+      },
+      {
+        "text": "③ ㄴ ㄷ ㄱ",
+        "slot_id": "slot.opt3",
+        "id": "slot.opt3"
+      },
+      {
+        "text": "④ ㄷ ㄴ ㄱ",
+        "slot_id": "slot.opt4",
+        "id": "slot.opt4"
+      }
+    ],
     "answer_key": [],
     "confidence": 1.0,
     "target": {
