@@ -76,8 +76,13 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
   @override
   Widget build(BuildContext context) {
     final viewBox = _mapAt(widget.renderer, 'view_box');
-    final width = _readDouble(viewBox['width']) ?? 928;
-    final height = _readDouble(viewBox['height']) ?? 426;
+    final originalWidth = _readDouble(viewBox['width']) ?? 928;
+    final originalHeight = _readDouble(viewBox['height']) ?? 426;
+    final viewport = _mapAt(widget.renderer, 'presentation_viewport');
+    final width = _readDouble(viewport['width']) ?? originalWidth;
+    final height = _readDouble(viewport['height']) ?? originalHeight;
+    final originX = _readDouble(viewport['x']) ?? 0;
+    final originY = _readDouble(viewport['y']) ?? 0;
     final background = _readColor(viewBox['background']) ?? Colors.white;
 
     final inputSlots = _inputSlots(
@@ -129,23 +134,35 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                     child: Stack(
                       clipBehavior: Clip.hardEdge,
                       children: [
-                        ..._imageLayers(
-                          widget.renderer,
-                          scale,
-                          loadRelativeImage: widget.imageLoader == null
-                              ? null
-                              : _loadRelativeImage,
-                        ),
-                        Positioned.fill(
-                          child: CustomPaint(
-                            painter: RendererJsonPainter(
-                              renderer: widget.renderer,
-                              logicalSize: Size(width, height),
-                            ),
+                        Positioned(
+                          left: -originX * scale,
+                          top: -originY * scale,
+                          width: originalWidth * scale,
+                          height: originalHeight * scale,
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              ..._imageLayers(
+                                widget.renderer,
+                                scale,
+                                loadRelativeImage: widget.imageLoader == null
+                                    ? null
+                                    : _loadRelativeImage,
+                              ),
+                              Positioned.fill(
+                                child: CustomPaint(
+                                  painter: RendererJsonPainter(
+                                    renderer: widget.renderer,
+                                    logicalSize:
+                                        Size(originalWidth, originalHeight),
+                                  ),
+                                ),
+                              ),
+                              ..._textBoxLayers(widget.renderer, scale),
+                              ..._inputLayers(inputSlots, scale),
+                            ],
                           ),
                         ),
-                        ..._textBoxLayers(widget.renderer, scale),
-                        ..._inputLayers(inputSlots, scale),
                       ],
                     ),
                   ),

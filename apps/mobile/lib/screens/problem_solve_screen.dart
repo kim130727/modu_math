@@ -610,38 +610,6 @@ bool _looksBrokenText(String value) {
       value.contains('占');
 }
 
-bool _hasCanvasQuestion(ProblemContent content) {
-  final elements = content.renderer['elements'];
-  if (elements is List && elements.isNotEmpty) {
-    for (final el in elements) {
-      if (el is! Map) continue;
-      final id = (el['id'] ?? '').toString().toLowerCase();
-      final type = (el['type'] ?? '').toString().toLowerCase();
-      final text = (el['text'] ?? '').toString().trim();
-      final sourceRef = (el['source_ref'] ?? '').toString().toLowerCase();
-
-      if (id.contains('question') ||
-          id.contains('q_text') ||
-          id.contains('stem') ||
-          id.contains('header.text') ||
-          id.startsWith('slot.q') ||
-          sourceRef.contains('question') ||
-          sourceRef.contains('q1') ||
-          sourceRef.contains('stem')) {
-        if (text.isNotEmpty) return true;
-      }
-      if (type == 'text' && text.isNotEmpty && content.prompt.isNotEmpty) {
-        final normPrompt = content.prompt.replaceAll(RegExp(r'\s+'), '');
-        final normText = text.replaceAll(RegExp(r'\s+'), '');
-        if (normPrompt.contains(normText) && normText.length >= 6) {
-          return true;
-        }
-      }
-    }
-  }
-  return false;
-}
-
 class _MissionHeroBanner extends StatelessWidget {
   const _MissionHeroBanner({required this.content});
 
@@ -656,24 +624,25 @@ class _MissionHeroBanner extends StatelessWidget {
     final objects = content.semantic['domain']?['objects'];
     if (objects is List) {
       for (final obj in objects) {
-        if (obj is Map && (obj['id'] == 'obj.highlighted_value' || obj['type'] == 'value')) {
+        if (obj is Map &&
+            (obj['id'] == 'obj.highlighted_value' || obj['type'] == 'value')) {
           targetHighlight = obj['text']?.toString();
           break;
         }
       }
     }
-    if (targetHighlight == null && (content.summary.id.contains('008540') || prompt.contains('240'))) {
+    if (targetHighlight == null &&
+        (content.summary.id.contains('008540') || prompt.contains('240'))) {
       targetHighlight = '240';
     }
 
     final tutorQuote = strings.t('problem.tutorDefaultQuote');
-    final hasCanvasQuestion = _hasCanvasQuestion(content);
 
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 16,
-        vertical: hasCanvasQuestion ? 8 : 10,
+        vertical: 22,
       ),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
@@ -707,7 +676,8 @@ class _MissionHeroBanner extends StatelessWidget {
                 crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 3),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 9, vertical: 3),
                     decoration: BoxDecoration(
                       color: Colors.white.withValues(alpha: 0.18),
                       borderRadius: BorderRadius.circular(999),
@@ -725,7 +695,8 @@ class _MissionHeroBanner extends StatelessWidget {
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          strings.t('problem.missionCode', {'code': content.summary.id}),
+                          strings.t('problem.missionCode',
+                              {'code': content.summary.id}),
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 11,
@@ -735,33 +706,9 @@ class _MissionHeroBanner extends StatelessWidget {
                       ],
                     ),
                   ),
-                  if (hasCanvasQuestion && content.summary.unitTopic.isNotEmpty)
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 3),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.14),
-                        borderRadius: BorderRadius.circular(999),
-                        border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Icon(Icons.menu_book_rounded, size: 12, color: Colors.white70),
-                          const SizedBox(width: 5),
-                          Text(
-                            strings.unitTitle(content.summary.unitTopic),
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 11,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
                 ],
               ),
-              if (!hasCanvasQuestion) ...[
+              if (prompt.isNotEmpty) ...[
                 const SizedBox(height: 8),
                 _buildHighlightedPrompt(prompt, targetHighlight),
               ],
@@ -790,7 +737,9 @@ class _MissionHeroBanner extends StatelessWidget {
                       'assets/characters/onsem_tutor.png',
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) =>
-                          const Center(child: Text('🧚', style: TextStyle(fontSize: 18))),
+                          const Center(
+                              child:
+                                  Text('🧚', style: TextStyle(fontSize: 18))),
                     ),
                   ),
                 ),
@@ -839,9 +788,9 @@ class _MissionHeroBanner extends StatelessWidget {
           return Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Expanded(flex: hasCanvasQuestion ? 5 : 6, child: leftContent),
+              Expanded(flex: 6, child: leftContent),
               const SizedBox(width: 14),
-              Expanded(flex: hasCanvasQuestion ? 5 : 4, child: rightContent),
+              Expanded(flex: 4, child: rightContent),
             ],
           );
         },
@@ -854,7 +803,7 @@ class _MissionHeroBanner extends StatelessWidget {
       return Text(
         prompt,
         style: const TextStyle(
-          fontSize: 18,
+          fontSize: 24,
           fontWeight: FontWeight.w800,
           color: Colors.white,
           height: 1.3,
@@ -866,7 +815,7 @@ class _MissionHeroBanner extends StatelessWidget {
     return RichText(
       text: TextSpan(
         style: const TextStyle(
-          fontSize: 18,
+          fontSize: 24,
           fontWeight: FontWeight.w800,
           color: Colors.white,
           height: 1.3,
@@ -900,7 +849,8 @@ class _MissionHeroBanner extends StatelessWidget {
               ),
             ),
           ),
-          if (parts.length > 1) TextSpan(text: parts.sublist(1).join(highlight)),
+          if (parts.length > 1)
+            TextSpan(text: parts.sublist(1).join(highlight)),
         ],
       ),
     );

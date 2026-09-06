@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
 import '../services/content_repository.dart';
+import '../utils/problem_presentation.dart';
 import 'problem_svg_viewer.dart';
 import 'renderer_json_canvas.dart';
 
@@ -43,7 +44,8 @@ class VerticalArithmeticExplorer extends StatelessWidget {
           children: [
             _buildExplorerHeader(
               icon: Icons.explore_rounded,
-              title: strings.t('explorer.standardTitle', {'topic': strings.unitTitle(content.summary.unitTopic)}),
+              title: strings.t('explorer.standardTitle',
+                  {'topic': strings.unitTitle(content.summary.unitTopic)}),
               badgeText: content.renderer.isNotEmpty ? 'Canvas' : 'Visual',
             ),
             const SizedBox(height: 8),
@@ -59,9 +61,9 @@ class VerticalArithmeticExplorer extends StatelessWidget {
                 child: Center(
                   child: content.renderer.isNotEmpty
                       ? RendererJsonCanvas(
-                          renderer: content.renderer,
-                          imageLoader: (href) =>
-                              repository.loadProblemAsset(content.summary, href),
+                          renderer: problemVisualRenderer(content),
+                          imageLoader: (href) => repository.loadProblemAsset(
+                              content.summary, href),
                           imageCacheKey: content.summary.path,
                           inputValue: answerDraft,
                           expectedAnswer: content.correctAnswer,
@@ -153,4 +155,3 @@ class VerticalArithmeticExplorer extends StatelessWidget {
     );
   }
 }
-
