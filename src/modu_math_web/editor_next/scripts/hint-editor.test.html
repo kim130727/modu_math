@@ -1,0 +1,35 @@
+<!doctype html><meta charset="utf-8"><div id="root"></div><pre id="result">RUNNING</pre>
+<script type="module">
+import React, { useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import { TutorFlowPanel } from '/src/konva_editor/TutorFlowPanel.tsx';
+let current, saved;
+function Harness() {
+ const [flow, setFlow] = useState([{ step_id:'legacy', phase:'understand', frames:[] }, {step_id:'hint.1', phase:'hint', title:'관찰', text:'그림을 보세요.', frames:[{id:'f1',overlays:[]}]}]);
+ const [active, setActive] = useState('hint.1');
+ current = flow;
+ return React.createElement(TutorFlowPanel, {problemId:'test', tutorFlow:flow, activeStepId:active, activeFrameIndex:0, activeOverlayIndex:null, selectedShapeIds:['a'], message:'', onDraftChange:setFlow, onSelectFrame:id=>setActive(id), onSelectOverlay:()=>{}, onSave:async flow=>{saved=flow;}});
+}
+createRoot(document.querySelector('#root')).render(React.createElement(Harness));
+const tick = () => new Promise(resolve=>setTimeout(resolve,60));
+const click = async text => {const button=[...document.querySelectorAll('button')].find(b=>b.textContent===text); if(!button) throw Error('Missing button '+text); button.click(); await tick();};
+const assert = (ok,message) => {if(!ok) throw Error(message);};
+try {
+ await tick();
+ await click('선택한 그림 강조');
+ assert(current[1].frames[0].overlays[0].target_ref==='a','Highlight missing');
+ await click('그림에 설명 추가');
+ assert(current[1].frames[0].overlays.length===2,'Label missing');
+ await click('힌트 저장 · 빌드');
+ assert(saved[1].text==='그림을 보세요.','Text lost on save');
+ await click('+ 힌트 추가');
+ assert(current.length===3,'Add failed');
+ await click('위로');
+ assert(current[1].text==='','Reorder failed');
+ await click('힌트 저장 · 빌드');
+ assert(document.querySelector('[role=alert]')?.textContent.includes('내용'),'Blank text accepted');
+ await click('이 힌트 삭제');
+ assert(current.length===2 && current[0].step_id==='legacy','Delete damaged legacy data');
+ document.querySelector('#result').textContent='PASS: add, reorder, highlight, label, save, blank validation, delete and legacy preservation';
+} catch(error) {document.querySelector('#result').textContent='FAIL: '+error.stack;}
+</script>

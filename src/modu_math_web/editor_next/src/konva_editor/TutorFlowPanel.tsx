@@ -1,8 +1,8 @@
 import { useEffect, useState, type ComponentProps } from "react";
 import type { TutorRendererStep, TutorRendererOverlay } from "../api/editorApi";
-import { LegacyTutorFlowPanel } from "./LegacyTutorFlowPanel";
+import type { LegacyTutorFlowPanel } from "./LegacyTutorFlowPanel";
 
-export function TutorFlowPanel(props: ComponentProps<typeof LegacyTutorFlowPanel>) {
+export function TutorFlowPanel(props: ComponentProps<typeof LegacyTutorFlowPanel> & { studentHints?: unknown }) {
   const { tutorFlow, activeStepId, onSelectFrame, onDraftChange } = props;
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
@@ -44,6 +44,10 @@ export function TutorFlowPanel(props: ComponentProps<typeof LegacyTutorFlowPanel
         <button type="button" onClick={save}>{saving ? "저장 중…" : "힌트 저장 · 빌드"}</button>
       </div>
       {!hints.length ? <p>‘힌트 추가’로 시작하세요. 작성 전에는 앱의 기존 힌트를 사용합니다.</p> : null}
+      {!hints.length && Array.isArray(props.studentHints) && props.studentHints.length > 0 ? <button type="button" onClick={() => {
+        const imported = (props.studentHints as Record<string, unknown>[]).filter(item => typeof item?.text === "string").map(item => ({ step_id: `hint.${crypto.randomUUID()}`, phase: "hint", title: typeof item.title === "string" ? item.title : "", text: item.text as string, frames: [] }));
+        onDraftChange([...tutorFlow, ...imported]);
+      }}>저장된 기존 힌트 가져오기</button> : null}
       <div className="konva-hint-list">
         {hints.map((hint, i) => <button type="button" key={hint.step_id} aria-pressed={hint === active} onClick={() => onSelectFrame(hint.step_id, 0)}>힌트 {i + 1} · {hint.title || hint.text?.slice(0, 24) || "내용 입력"}</button>)}
       </div>

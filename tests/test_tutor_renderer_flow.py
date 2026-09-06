@@ -9,6 +9,21 @@ from modu_math.pipeline.tutor_renderer_flow import (
 )
 
 
+def test_authored_hints_preserve_text_order_and_visuals():
+    flow = [{"step_id": "hint.b", "phase": "hint", "text": "먼저 살펴보세요.", "title": "관찰", "overlays": [{"type": "highlight", "target_ref": "slot.a"}]},
+            {"step_id": "hint.a", "phase": "hint", "text": "다음으로 비교하세요."}]
+    normalized = normalize_tutor_renderer_flow(flow)
+    assert [item["step_id"] for item in normalized] == ["hint.b", "hint.a"]
+    assert normalized[0]["text"] == flow[0]["text"]
+    assert normalized[0]["title"] == "관찰"
+    validate_tutor_renderer_flow({"elements": [{"id": "slot.a"}], "tutor_flow": normalized}, {"steps": [{"id": "step.1"}]})
+
+
+def test_authored_hint_rejects_blank_text():
+    with pytest.raises(TutorRendererFlowError, match="Hint text"):
+        normalize_tutor_renderer_flow([{"step_id": "hint.1", "phase": "hint", "text": "  "}])
+
+
 def test_normalize_tutor_renderer_flow_accepts_phase_sections() -> None:
     flow = [
         {

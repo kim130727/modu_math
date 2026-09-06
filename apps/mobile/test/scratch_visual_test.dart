@@ -9,7 +9,8 @@ import 'package:modu_math_app/utils/problem_presentation.dart';
 import 'package:modu_math_app/widgets/renderer_json_canvas.dart';
 
 void main() {
-  test('scratch', () {
+  TestWidgetsFlutterBinding.ensureInitialized();
+  test('scratch', () async {
     final layout = jsonDecode(File('../../examples/problems/ko/S3_elem_3_008732.layout.json').readAsStringSync());
     final renderer = jsonDecode(File('../../examples/problems/ko/S3_elem_3_008732.renderer.json').readAsStringSync());
     for (final loc in ['en', 'km']) {
@@ -52,8 +53,23 @@ void main() {
           .map((e) => '${e["id"]}: "${e["text"]}"')
           .toList();
       print('VISUAL TEXTS: $visualTexts');
+
+      final viewBox = visual['view_box'] as Map;
+      final w = (viewBox['width'] as num).toDouble();
+      final h = (viewBox['height'] as num).toDouble();
+
+      final recorder = ui.PictureRecorder();
+      final canvas = Canvas(recorder, Rect.fromLTWH(0, 0, w, h));
+      final painter = RendererJsonPainter(
+        renderer: visual,
+        logicalSize: Size(w, h),
+      );
+      painter.paint(canvas, Size(w, h));
+      final picture = recorder.endRecording();
+      final img = await picture.toImage(w.toInt(), h.toInt());
+      final byteData = await img.toByteData(format: ui.ImageByteFormat.png);
+      File('test_circle_$loc.png').writeAsBytesSync(byteData!.buffer.asUint8List());
+      print('WROTE test_circle_$loc.png, size: ${byteData.lengthInBytes}');
     }
   });
-
-
 }

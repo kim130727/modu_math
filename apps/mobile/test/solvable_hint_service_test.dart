@@ -5,6 +5,21 @@ import 'package:modu_math_app/services/solvable_hint_service.dart';
 void main() {
   const service = SolvableHintService();
 
+  test('editor hints override generated hints and preserve text and graphics', () {
+    final content = ProblemContent(summary: _columnAdditionContent.summary, semantic: _columnAdditionContent.semantic, solvable: _columnAdditionContent.solvable,
+      renderer: {'elements': [{'id': 'a', 'type': 'circle', 'attributes': {'cx': 40, 'cy': 40, 'r': 20}}], 'tutor_flow': [
+        {'phase': 'hint', 'step_id': 'hint.b', 'title': '관찰', 'text': '중심을 찾아보세요.', 'frames': [{'overlays': [{'type': 'highlight', 'target_ref': 'a'}, {'type': 'label', 'text': '중심', 'x': 20, 'y': 30}]}]},
+        {'phase': 'hint', 'step_id': 'hint.a', 'text': '거리를 비교하세요.'}
+      ]});
+    final hints = service.buildHints(content);
+    expect(hints, hasLength(2));
+    expect(hints.first.body, '중심을 찾아보세요.');
+    expect(hints.last.body, '거리를 비교하세요.');
+    expect(hints.first.rendererFrames.first['elements'], hasLength(2));
+    expect(hints.first.rendererFrames.first['elements'][0]['attributes']['stroke'], '#0f766e');
+    expect(content.renderer['elements'][0]['attributes']['stroke'], isNull);
+  });
+
   test('builds multiple-choice column addition hints by place value', () {
     final hints = service.buildHints(_columnAdditionContent);
 

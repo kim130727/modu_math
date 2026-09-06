@@ -742,6 +742,12 @@ export function EditorKonva() {
       setSaveStatus("saving");
       setMessage("힌트를 저장하고 학생용 데이터를 빌드합니다…");
       try {
+        const nextProblem = editorDocumentToProblemJson(document, baseProblemJson);
+        const patches = problemJsonToLayoutPatches(baseProblemJson, nextProblem);
+        if (patches.length) {
+          await applyLayoutPatches(selectedProblemId, patches, { format: false, fast: true });
+          setBaseProblemJson(nextProblem);
+        }
         const response = await saveTutorFlow(selectedProblemId, tutorFlow, { format: false });
         const build = await buildProblem(selectedProblemId);
         if (!build.ok) throw new Error("힌트는 저장됐지만 빌드에 실패했습니다.");
@@ -760,7 +766,7 @@ export function EditorKonva() {
         throw error;
       }
     },
-    [selectedProblemId],
+    [selectedProblemId, document, baseProblemJson],
   );
 
   const patchTutorOverlay = useCallback(
@@ -970,6 +976,7 @@ export function EditorKonva() {
             ) : null}
             {activeSidePanel === "flow" ? (
               <TutorFlowPanel
+                studentHints={previewArtifacts.solvable?.student_hints}
                 problemId={selectedProblemId}
                 tutorFlow={effectiveTutorFlow}
                 message={message}
