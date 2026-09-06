@@ -186,13 +186,14 @@ class DslPatchError(ValueError):
 
 
 class TutorRendererFlowUpdater(cst.CSTTransformer):
-    def __init__(self, flow: list[dict[str, Any]]):
+    def __init__(self, flow: list[dict[str, Any]], variable_name: str = "TUTOR_RENDERER_FLOW"):
         self.flow = flow
+        self.variable_name = variable_name
         self.updated = False
 
     def _assignment(self) -> cst.SimpleStatementLine:
         literal = pprint.pformat(self.flow, width=100, sort_dicts=False)
-        return cst.parse_statement(f"TUTOR_RENDERER_FLOW = {literal}\n")
+        return cst.parse_statement(f"{self.variable_name} = {literal}\n")
 
     def leave_SimpleStatementLine(
         self,
@@ -205,7 +206,7 @@ class TutorRendererFlowUpdater(cst.CSTTransformer):
         if not isinstance(statement, cst.Assign) or len(statement.targets) != 1:
             return updated_node
         target = statement.targets[0].target
-        if not isinstance(target, cst.Name) or target.value != "TUTOR_RENDERER_FLOW":
+        if not isinstance(target, cst.Name) or target.value != self.variable_name:
             return updated_node
         self.updated = True
         return self._assignment()

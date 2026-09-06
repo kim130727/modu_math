@@ -264,6 +264,9 @@ def _build_problem_artifacts(problem_id: str) -> str:
     from .presentation import structure_presentation
 
     layout, semantic, solvable = structure_presentation(layout, semantic, solvable)
+    if hasattr(module, "EDITOR_CHOICE_GROUPS"):
+        from .choice_groups import apply_choice_groups
+        semantic, solvable = apply_choice_groups(semantic, solvable, module.EDITOR_CHOICE_GROUPS)
 
     deleted_answer_slots: set[str] = set()
     editor_override_slot_ids: set[str] = set()

@@ -15,6 +15,7 @@ urlpatterns = [
     path("problems/<path:problem_id>/dsl/format/", views.format_dsl),
     path("problems/<path:problem_id>/build/", views.build_problem),
     path("problems/<path:problem_id>/tutor-flow/", views.tutor_flow),
+    path("problems/<path:problem_id>/choice-groups/", views.choice_groups),
     path("problems/<path:problem_id>/layout-patch/", views.layout_patch),
     path("problems/<path:problem_id>/layout-patch-and-build/", views.layout_patch_and_build),
     path("problems/<path:problem_id>/", views.problem_detail),
