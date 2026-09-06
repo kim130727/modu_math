@@ -41,6 +41,7 @@ export function textEncodingErrors(bytes, filename) {
 export function checkSourceTree(directory) {
   const errors = [];
   for (const entry of readdirSync(directory, { withFileTypes: true })) {
+    if (entry.name === "node_modules" || entry.name === "mathjax" || entry.name === "mathjax-newcm") continue;
     const filename = resolve(directory, entry.name);
     if (entry.isDirectory()) errors.push(...checkSourceTree(filename));
     else if (/\.(?:[jt]sx?|json|css|html)$/.test(filename)) {
@@ -51,11 +52,14 @@ export function checkSourceTree(directory) {
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const errors = checkSourceTree(fileURLToPath(new URL("../src", import.meta.url)));
+  const target = process.argv[2]
+    ? resolve(process.cwd(), process.argv[2])
+    : fileURLToPath(new URL("../src", import.meta.url));
+  const errors = checkSourceTree(target);
   if (errors.length) {
     console.error(errors.join("\n"));
     process.exitCode = 1;
   } else {
-    console.log("Source text encoding check passed.");
+    console.log(`Text encoding check passed for ${target}.`);
   }
 }

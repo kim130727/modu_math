@@ -118,12 +118,20 @@ class ProblemContent {
     final metadata = _mapAt(semantic, 'metadata');
     final semanticPrompt =
         metadata['presentation_prompt']?.toString() ?? metadata['question']?.toString() ?? metadata['instruction']?.toString();
-    if (semanticPrompt != null && !_looksBrokenText(semanticPrompt)) {
+    final title = (metadata['title'] ?? summary.title).toString().trim();
+    final rendererPrompt = _rendererInstructionText();
+    final isGenericOrTitle = semanticPrompt == null ||
+        semanticPrompt.trim() == title ||
+        semanticPrompt.trim().endsWith('문제이다.') ||
+        semanticPrompt.trim().endsWith('문제이다');
+    if (!isGenericOrTitle && !_looksBrokenText(semanticPrompt)) {
       return semanticPrompt;
     }
-    final rendererPrompt = _rendererInstructionText();
     if (rendererPrompt.isNotEmpty) {
       return rendererPrompt;
+    }
+    if (semanticPrompt != null && !_looksBrokenText(semanticPrompt)) {
+      return semanticPrompt;
     }
     return summary.title;
   }
@@ -172,6 +180,17 @@ class ProblemContent {
       );
     }
     if (_isNumberedOptionChoiceProblem) {
+      final rendererChoices = _choicesFromRenderer();
+      final numberedChoices = rendererChoices.where((c) {
+        return RegExp(r'^[①②③④⑤⑥⑦⑧⑨⑩\(\d]').hasMatch(c.trim());
+      }).toList();
+      if (numberedChoices.length >= 2) {
+        return _sortChoicesByLeadingMarker(
+          _ensureChoiceMarkers(
+            _mergeAlternatingMarkerChoices(numberedChoices),
+          ),
+        );
+      }
       return _numberedOptionChoices;
     }
     if (hasRendererAnswerInputs) {
@@ -625,7 +644,16 @@ class ProblemContent {
         _mapAt(element, 'refs')['layout_slot_id'],
         _mapAt(element, 'metadata')['layout_slot_id'],
       ].whereType<Object>().join(' ').toLowerCase();
-      if (!identity.contains('instruction')) {
+      final role = _mapAt(element, 'attributes')['data-semantic-role']
+              ?.toString()
+              .toLowerCase() ??
+          '';
+      if (!identity.contains('instruction') &&
+          !identity.contains('stem') &&
+          !identity.contains('question') &&
+          !RegExp(r'\bslot\.q\d*\b').hasMatch(identity) &&
+          role != 'question' &&
+          role != 'instruction') {
         continue;
       }
       final text = element['text']?.toString().trim() ?? '';

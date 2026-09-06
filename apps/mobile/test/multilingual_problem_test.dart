@@ -130,7 +130,7 @@ void main() {
       expect(problem.title, equals('Which line segment is the longest?'));
     });
 
-    test('inspect S3_elem_3_008664 in ko vs uk', () async {
+    test('S3_elem_3_008664 separates stem and retains diagram symbol labels in KO and UK', () async {
       final repoKo = ContentRepository.bundledAssets()..activeProblemLocale = 'ko';
       final manifestKo = await repoKo.loadManifest();
       final summaryKo = manifestKo.problems.firstWhere((p) => p.id == 'S3_elem_3_008664');
@@ -141,49 +141,44 @@ void main() {
       final summaryUk = manifestUk.problems.firstWhere((p) => p.id == 'S3_elem_3_008664');
       final contentUk = await repoUk.loadProblem(summaryUk);
 
-      print('008664 KO prompt: ${contentKo.prompt}');
-      print('008664 KO choices: ${contentKo.choices}');
-      print('008664 UK prompt: ${contentUk.prompt}');
-      print('008664 UK choices: ${contentUk.choices}');
-
       final visualKo = problemVisualRenderer(contentKo);
       final visualUk = problemVisualRenderer(contentUk);
 
       final elementsKo = (visualKo['elements'] as List).map((e) => '${e['id']}:${e['text']}').toList();
       final elementsUk = (visualUk['elements'] as List).map((e) => '${e['id']}:${e['text']}').toList();
 
-      print('008664 KO visual elements: $elementsKo');
-      print('008664 UK visual elements: $elementsUk');
-
-      // Verify KO stem is removed from canvas
+      // Verify KO stem is removed from canvas to avoid duplication
       expect(elementsKo.any((e) => e.startsWith('slot.question')), isFalse);
-      // Verify UK labels A..E are present on canvas
-      expect(elementsUk.any((e) => e.startsWith('slot.choice.lb.1:A')), isTrue);
-      expect(elementsUk.any((e) => e.startsWith('slot.choice.lb.5:E')), isTrue);
+      expect(contentKo.prompt, contains('누름 못과 띠 종이를 사용하여'));
+
+      // Verify UK labels A..E are present on canvas and not incorrectly stripped
+      expect(elementsUk.any((e) => e.startsWith('slot.choice.lb.1.text:A')), isTrue);
+      expect(elementsUk.any((e) => e.startsWith('slot.choice.lb.5.text:E')), isTrue);
+      expect(contentUk.prompt, contains('Накресліть коло'));
     });
 
-    test('inspect S3_elem_3_008713 in ko vs en', () async {
-      final repoKo = ContentRepository.bundledAssets()..activeProblemLocale = 'ko';
-      final manifestKo = await repoKo.loadManifest();
-      final summaryKo = manifestKo.problems.firstWhere((p) => p.id == 'S3_elem_3_008713');
-      final contentKo = await repoKo.loadProblem(summaryKo);
-
+    test('S3_elem_3_008713 stem is cleanly projected to prompt header in EN without canvas overlap', () async {
       final repoEn = ContentRepository.bundledAssets()..activeProblemLocale = 'en';
       final manifestEn = await repoEn.loadManifest();
       final summaryEn = manifestEn.problems.firstWhere((p) => p.id == 'S3_elem_3_008713');
       final contentEn = await repoEn.loadProblem(summaryEn);
 
-      final visualKo = problemVisualRenderer(contentKo);
       final visualEn = problemVisualRenderer(contentEn);
-
-      final elementsKo = (visualKo['elements'] as List).map((e) => '${e['id']}:${e['text']}').toList();
       final elementsEn = (visualEn['elements'] as List).map((e) => '${e['id']}:${e['text']}').toList();
-
-      print('008713 KO visual elements: $elementsKo');
-      print('008713 EN visual elements: $elementsEn');
 
       // In EN, slot.stem should be removed from canvas
       expect(elementsEn.any((e) => e.startsWith('slot.stem')), isFalse);
+      expect(contentEn.prompt, contains('drawing a circle'));
+
+      // Choices must be separated from canvas and available in answer choices
+      expect(contentEn.choices.length, equals(5));
+      expect(contentEn.choices.first, contains('A, B, C'));
+      expect(elementsEn.any((e) => e.contains('slot.option.1.copy1')), isFalse);
+      expect(elementsEn.any((e) => e.contains('slot.option.2')), isFalse);
+
+      // Diagram step labels A, B must remain on canvas
+      expect(elementsEn.any((e) => e.startsWith('slot.option.1.text:A')), isTrue);
+      expect(elementsEn.any((e) => e.startsWith('slot.option.1.copy2.text:B')), isTrue);
     });
   });
 }

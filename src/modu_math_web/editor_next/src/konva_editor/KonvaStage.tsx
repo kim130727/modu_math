@@ -348,7 +348,7 @@ export function KonvaStage({
   return (
     <div className={`konva-stage-wrap${drawingPreset ? " drawing" : ""}${answerReviewMode ? " presentation-review" : ""}`} ref={wrapRef}>
       {answerReviewMode && promptShapes.length > 0 ? (
-        <div className="konva-question-preview" role="region" aria-label="?? ??">
+        <div className="konva-question-preview" role="region" aria-label="문제 지문">
           {promptShapes.map((shape) => <p key={shape.id}>{shape.type === "text" ? shape.text : ""}</p>)}
         </div>
       ) : null}

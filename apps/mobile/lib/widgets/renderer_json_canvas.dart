@@ -917,9 +917,38 @@ class RendererJsonPainter extends CustomPainter {
   ) {
     final rawText = element['text']?.toString() ?? '';
     final text = _normalizeRenderText(rawText);
-    final fontSize = _readDouble(attributes['font-size']) ?? 18;
+    var fontSize = _readDouble(attributes['font-size']) ?? 18;
     final fill = _readColor(attributes['fill']) ?? Colors.black;
     final fontFamily = attributes['font-family'];
+    final x = _readDouble(attributes['x']) ?? 0;
+    final explicitMaxWidth = _readDouble(attributes['max_width']);
+
+    // For single-line text without explicit newlines, scale down font size if
+    // multilingual expansion exceeds the available horizontal canvas space to
+    // prevent vertical wrapping that collides with elements placed below.
+    if (!text.contains('\n')) {
+      final measurePainter = TextPainter(
+        text: TextSpan(
+          text: text,
+          style: _problemTextStyle(
+            color: fill,
+            fontSize: fontSize,
+            fontWeight: FontWeight.w600,
+            height: 1.25,
+            fontFamily: fontFamily,
+          ),
+        ),
+        textDirection: TextDirection.ltr,
+      )..layout();
+
+      final availableWidth = explicitMaxWidth ??
+          math.max(120.0, logicalSize.width - x - 20.0);
+      if (measurePainter.width > availableWidth && availableWidth > 0) {
+        final scaleRatio = availableWidth / measurePainter.width;
+        fontSize = math.max(12.0, fontSize * scaleRatio);
+      }
+    }
+
     final painter = TextPainter(
       text: TextSpan(
         text: text,
@@ -932,13 +961,13 @@ class RendererJsonPainter extends CustomPainter {
         ),
       ),
       textDirection: TextDirection.ltr,
-    )..layout(maxWidth: _readDouble(attributes['max_width']) ?? 860);
+    )..layout(maxWidth: explicitMaxWidth ?? math.max(120.0, logicalSize.width - x - 10.0));
 
     final baseline =
         painter.computeDistanceToActualBaseline(TextBaseline.alphabetic);
     final anchorWidth = _textAnchorWidth(painter);
     final offset = rendererTextPaintOffset(
-      x: _readDouble(attributes['x']) ?? 0,
+      x: x,
       y: _readDouble(attributes['y']) ?? 0,
       baseline: baseline,
       anchorWidth: anchorWidth,

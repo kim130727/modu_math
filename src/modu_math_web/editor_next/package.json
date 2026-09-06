@@ -10,6 +10,7 @@
     "predev": "npm run check:text",
     "pretypecheck": "npm run check:text",
     "build": "vite build",
+    "postbuild": "node scripts/check-text-encoding.mjs static/editor_next/konva_assets",
     "dev": "vite --host 127.0.0.1 --port 5174",
     "typecheck": "tsc --noEmit"
   },
