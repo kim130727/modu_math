@@ -22,8 +22,9 @@ Map<String, dynamic> _projectVisual(ProblemContent content) {
   final removed = <Map>[];
   final kept = <dynamic>[];
 
-  // Discover any slots explicitly designated as stem/diagram in layout regions
-  final stemSlotIds = <String>{};
+  // Discover any slots explicitly designated as instruction/question or choice in layout
+  final questionSlotIds = <String>{};
+  final choiceSlotIds = <String>{};
   final regions = content.layout['regions'];
   if (regions is List) {
     for (final reg in regions) {
@@ -32,8 +33,42 @@ Map<String, dynamic> _projectVisual(ProblemContent content) {
         final slotIds = reg['slot_ids'];
         if (slotIds is List) {
           final ids = slotIds.map((id) => id.toString().toLowerCase());
-          if (role == 'stem' || role == 'instruction' || role == 'question') {
-            stemSlotIds.addAll(ids);
+          if (role == 'instruction' || role == 'question') {
+            questionSlotIds.addAll(ids);
+          } else if (role == 'choices' ||
+              role == 'choice' ||
+              role == 'options' ||
+              role == 'option') {
+            choiceSlotIds.addAll(ids);
+          }
+        }
+      }
+    }
+  }
+  final slots = content.layout['slots'];
+  if (slots is List) {
+    for (final slot in slots) {
+      if (slot is Map) {
+        final slotContent = slot['content'];
+        if (slotContent is Map) {
+          final styleRole =
+              slotContent['style_role']?.toString().toLowerCase();
+          final semanticRole =
+              slotContent['semantic_role']?.toString().toLowerCase();
+          final id = slot['id']?.toString().toLowerCase();
+          if (id != null && id.isNotEmpty) {
+            if (styleRole == 'question' ||
+                styleRole == 'instruction' ||
+                semanticRole == 'question' ||
+                semanticRole == 'instruction') {
+              questionSlotIds.add(id);
+            } else if (styleRole == 'choice' ||
+                styleRole == 'choices' ||
+                styleRole == 'option' ||
+                semanticRole == 'choice' ||
+                semanticRole == 'option') {
+              choiceSlotIds.add(id);
+            }
           }
         }
       }
@@ -60,46 +95,58 @@ Map<String, dynamic> _projectVisual(ProblemContent content) {
         '${element['id']} $sourceRef $layoutSlotId ${element['refs']} ${element['metadata']}'
             .toLowerCase();
 
-    final isStemSlot = stemSlotIds.contains(sourceRef) ||
-        stemSlotIds.contains(layoutSlotId) ||
-        stemSlotIds.any((id) => identity.contains(id));
+    final isExplicitQuestionSlot = questionSlotIds.contains(sourceRef) ||
+        questionSlotIds.contains(layoutSlotId) ||
+        questionSlotIds.any((id) => identity.contains(id));
 
-    final isPromptRole = isStemSlot ||
+    final isPromptRole = isExplicitQuestionSlot ||
         role == 'question' ||
         role == 'instruction' ||
-        RegExp(r'\b(?:stem|instruction|question|slot\.q\d*)\b')
-            .hasMatch(identity);
+        RegExp(r'\b(?:instruction|question|slot\.q\d*)\b').hasMatch(identity);
+
+    final hasLabelMarker = identity.contains('.lb.') ||
+        identity.contains('.lb') ||
+        identity.contains('_lb_') ||
+        identity.contains('label');
+
+    // Labels attached to diagrams, points, holes, or geometry must stay on Canvas.
+    final isDiagramLabel = hasLabelMarker ||
+        role == 'label' ||
+        (role == 'symbol_label' &&
+            !RegExp(r'\b(?:slot\.opt\d*)\b').hasMatch(identity));
 
     final promptMatches = prompt.isNotEmpty &&
         text.isNotEmpty &&
         (prompt == text ||
-            prompt.contains(text) ||
-            text.contains(prompt) ||
-            (text.length >= 10 &&
-                prompt.length >= 10 &&
-                prompt.substring(0, math.min(15, prompt.length)) ==
-                    text.substring(0, math.min(15, text.length))));
+            (text.length >= 6 &&
+                (prompt.contains(text) ||
+                    text.contains(prompt) ||
+                    (text.length >= 10 &&
+                        prompt.length >= 10 &&
+                        prompt.substring(0, math.min(15, prompt.length)) ==
+                            text.substring(0, math.min(15, text.length))))));
 
-    final isPrompt = text.isNotEmpty && (isPromptRole || promptMatches);
+    final isPrompt = text.isNotEmpty &&
+        !isDiagramLabel &&
+        (prompt == text ||
+            (isPromptRole && (promptMatches || prompt.isEmpty)));
 
-    // Labels attached to diagrams, points, holes, or geometry must stay on Canvas.
-    final isDiagramLabel = identity.contains('.lb.') ||
-        identity.contains('.lb') ||
-        identity.contains('_lb_') ||
-        identity.contains('label') ||
-        identity.contains('symbol_label') ||
-        role == 'label' ||
-        role == 'symbol_label';
+    final isExplicitChoiceSlot = choiceSlotIds.contains(sourceRef) ||
+        choiceSlotIds.contains(layoutSlotId) ||
+        choiceSlotIds.any((id) => identity.contains(id));
 
     final isChoiceRole = (role == 'choice' ||
             role == 'option' ||
-            RegExp(r'\b(?:choice|option|slot\.c\d|slot\.opt)\b').hasMatch(identity)) &&
-        !isDiagramLabel;
+            isExplicitChoiceSlot ||
+            RegExp(r'\b(?:choice|option|slot\.c\d+|slot\.opt\d*)\b')
+                .hasMatch(identity)) &&
+        !hasLabelMarker;
 
     final isChoice = text.isNotEmpty &&
         !isDiagramLabel &&
-        choices.contains(choiceText(text)) &&
-        (isChoiceRole || role == 'choice' || role == 'option');
+        isChoiceRole &&
+        (choices.contains(choiceText(text)) ||
+            (content.choices.isNotEmpty && isExplicitChoiceSlot));
 
     if (isPrompt || isChoice) {
       removed.add(element);

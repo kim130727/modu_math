@@ -1088,6 +1088,63 @@ input {
   font-size: 12px;
 }
 
+.konva-text-placement {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid #dbe3ed;
+  border-radius: 10px;
+  background: #f8fafc;
+  font-size: 12px;
+  color: #334155;
+}
+
+.konva-placement-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.konva-placement-buttons button {
+  min-height: 36px;
+  padding: 7px 5px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: white;
+  color: #334155;
+  cursor: pointer;
+  font: inherit;
+}
+
+.konva-placement-buttons button:hover { background: #eff6ff; }
+.konva-placement-buttons button:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+.konva-placement-buttons button[aria-pressed="true"] {
+  background: #dbeafe;
+  border-color: #2563eb;
+  color: #1e40af;
+  font-weight: 700;
+}
+.konva-placement-buttons button[data-placement="choice"][aria-pressed="true"] {
+  background: #dcfce7;
+  border-color: #15803d;
+  color: #166534;
+}
+.konva-text-placement p { margin: 0; line-height: 1.6; color: #52627a; }
+.konva-text-placement summary,
+.konva-property-details summary { cursor: pointer; padding: 8px 0; font-size: 12px; color: #52627a; }
+.konva-property-details { grid-column: 1 / -1; min-width: 0; }
+.konva-property-detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
+
+.konva-answer-settings {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  background: #eff6ff;
+}
+.konva-answer-settings h3 { margin: 0 0 10px; font-size: 13px; color: #1e40af; }
+.konva-answer-hint { margin: 0; font-size: 12px; line-height: 1.6; color: #52627a; }
+
 .konva-field input,
 .konva-field textarea {
   min-width: 0;

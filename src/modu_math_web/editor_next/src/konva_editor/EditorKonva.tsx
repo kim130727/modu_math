@@ -26,10 +26,9 @@ import type { AvatarConfig } from "./avatar/avatarParts";
 import { PropertyPanel } from "./PropertyPanel";
 import { answerChoicesFromArtifacts, inferAnswerPresentationMode, type AnswerBindingOption } from "./answerReview";
 import { TutorFlowPanel } from "./TutorFlowPanel";
-import { TutorPreviewPanel } from "./TutorPreviewPanel";
 
 const initialProblem = sampleProblem as ProblemJson;
-type SidePanelTab = "properties" | "tutor" | "flow" | "json";
+type SidePanelTab = "properties" | "flow" | "json";
 type SaveStatus = "saved" | "saving" | "unsaved" | "building" | "built" | "error";
 
 export function EditorKonva() {
@@ -95,11 +94,6 @@ export function EditorKonva() {
     return step.frames?.length ? step.frames : [{ id: `${activeTutorStepId}.frame.1`, overlays: step.overlays ?? [] }];
   }, [activeTutorStepId, effectiveTutorFlow]);
   const activeTutorOverlays = activeTutorFrames[activeTutorFrameIndex]?.overlays ?? [];
-  const setTutorStep = useCallback((stepId: string | null) => {
-    setActiveTutorStepId(stepId);
-    setActiveTutorFrameIndex(0);
-    setActiveTutorOverlayIndex(null);
-  }, []);
   const selectTutorFrame = useCallback((stepId: string, frameIndex: number) => {
     setActiveTutorStepId(stepId);
     setActiveTutorFrameIndex(Math.max(0, frameIndex));
@@ -201,6 +195,13 @@ export function EditorKonva() {
     },
     [selectedShapes, updateShapes],
   );
+
+  const setSelectedTextRole = useCallback((role: string) => {
+    updateShapes(selectedShapes.filter((shape) => shape.type === "text").map((shape) => ({
+      ...shape,
+      semanticRole: role === "top" ? (shape.semanticRole === "instruction" ? "instruction" : "question") : role,
+    })));
+  }, [selectedShapes, updateShapes]);
 
   const addShape = useCallback(
     (shape: EditorShape) => {
@@ -935,15 +936,9 @@ export function EditorKonva() {
           <div className="konva-side-tabs" role="tablist" aria-label="Editor side panels">
             <SidePanelButton
               active={activeSidePanel === "properties"}
-              label="Properties"
+              label="편집"
               onClick={() => setActiveSidePanel("properties")}
               icon="properties"
-            />
-            <SidePanelButton
-              active={activeSidePanel === "tutor"}
-              label="Rule Tutor Preview"
-              onClick={() => setActiveSidePanel("tutor")}
-              icon="tutor"
             />
             <SidePanelButton
               active={activeSidePanel === "flow"}
@@ -967,22 +962,7 @@ export function EditorKonva() {
                 saveStatus={saveStatus}
                 onChange={patchSelectedShape}
                 onScaleSelection={scaleSelectedShapes}
-              />
-            ) : null}
-            {activeSidePanel === "tutor" ? (
-              <TutorPreviewPanel
-                problemId={selectedProblemId}
-                shapeDocument={document}
-                semantic={previewArtifacts.semantic}
-                solvable={previewArtifacts.solvable}
-                layout={previewArtifacts.layout}
-                renderer={previewArtifacts.renderer}
-                tutorFrameIndex={activeTutorFrameIndex}
-                tutorFrameCount={activeTutorFrames.length}
-                saveStatus={saveStatus}
-                message={message}
-                onTutorFrameChange={setActiveTutorFrameIndex}
-                onTutorStepChange={setTutorStep}
+                onTextRoleChange={setSelectedTextRole}
               />
             ) : null}
             {activeSidePanel === "flow" ? (
@@ -1047,15 +1027,6 @@ function SidePanelIcon({ icon }: { icon: SidePanelTab }) {
         <circle cx="8" cy="5" r="2" />
         <circle cx="16" cy="12" r="2" />
         <circle cx="10" cy="19" r="2" />
-      </svg>
-    );
-  }
-  if (icon === "tutor") {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M5 6.5h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-7l-4 3v-3H5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2Z" />
-        <path d="M8 10h8" />
-        <path d="M8 13h5" />
       </svg>
     );
   }

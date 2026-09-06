@@ -21,6 +21,7 @@ void main() {
             ? '$prefix.solvable.v1.2.json'
             : '$prefix.solvable.v1.1.json'),
         renderer: read('$prefix.renderer.json'),
+        layout: read('$prefix.layout.json'),
       );
 
   test('separates supplied multiplication example in every language', () {
@@ -39,6 +40,32 @@ void main() {
       expect(visual['presentation_viewport'], isNotNull);
       expect(jsonEncode(content.renderer), before);
       expect(identical(problemVisualRenderer(content), visual), isTrue);
+    }
+  });
+
+  test('keeps expression cards in ordering problem S3_elem_3_008541', () {
+    for (final locale in ['ko', 'en', 'ja', 'km', 'uk', 'zh']) {
+      final content = load('${root.path}/$locale/S3_elem_3_008541');
+      final visual = problemVisualRenderer(content);
+      final elements = visual['elements'] as List;
+      expect(elements.any((e) => e['id'] == 'slot.box.rect'), isTrue);
+      expect(elements.any((e) => e['id'] == 'slot.expr1.text'), isTrue,
+          reason: 'expr1 should be visible in $locale');
+      expect(elements.any((e) => e['id'] == 'slot.expr2.text'), isTrue,
+          reason: 'expr2 should be visible in $locale');
+    }
+  });
+
+  test('removes text choices from canvas for S3_elem_3_008661', () {
+    for (final locale in ['ko', 'en', 'ja', 'km', 'uk', 'zh']) {
+      final content = load('${root.path}/$locale/S3_elem_3_008661');
+      final visual = problemVisualRenderer(content);
+      final elements = visual['elements'] as List;
+      // Diagram labels like ㄱ, ㄴ, etc. must remain
+      expect(elements.any((e) => e['id'] == 'slot.lb.giyeok.text'), isTrue);
+      // Choices like slot.opt1, slot.opt2, etc. must be removed from canvas
+      expect(elements.any((e) => '${e['id']}'.contains('opt')), isFalse,
+          reason: 'Choices should be removed from canvas in $locale');
     }
   });
 

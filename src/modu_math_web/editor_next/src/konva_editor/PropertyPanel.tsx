@@ -10,19 +10,21 @@ interface PropertyPanelProps {
   saveStatus: "saved" | "saving" | "unsaved" | "building" | "built" | "error";
   onChange: (patch: Partial<EditorShape>) => void;
   onScaleSelection?: (scalePercent: number) => void;
+  onTextRoleChange: (role: string) => void;
 }
 
 export type { AnswerBindingOption } from "./answerReview";
 
-export function PropertyPanel({ shape, selectedShapes = [], answerOptions = [], saveStatus, onChange, onScaleSelection }: PropertyPanelProps) {
+export function PropertyPanel({ shape, selectedShapes = [], answerOptions = [], saveStatus, onChange, onScaleSelection, onTextRoleChange }: PropertyPanelProps) {
   if (!shape) {
     if (selectedShapes.length > 1) {
       return (
         <section className="konva-property-panel">
           <PropertyPanelTitle saveStatus={saveStatus} />
           <div className="konva-field-grid">
-            <ReadOnlyField label="selection" value={`${selectedShapes.length} shapes`} />
-            <NumberField label="scale %" value={100} onChange={(scale) => onScaleSelection?.(scale)} />
+            <ReadOnlyField label="선택한 요소" value={`${selectedShapes.length}개`} />
+            <NumberField label="크기 (%)" value={100} onChange={(scale) => onScaleSelection?.(scale)} />
+            <TextPlacementFields shapes={selectedShapes} onChange={onTextRoleChange} />
           </div>
         </section>
       );
@@ -30,7 +32,7 @@ export function PropertyPanel({ shape, selectedShapes = [], answerOptions = [], 
     return (
       <section className="konva-property-panel">
         <PropertyPanelTitle saveStatus={saveStatus} />
-        <div className="konva-empty-state">Select a shape.</div>
+        <div className="konva-empty-state">편집할 글자나 도형을 클릭하세요. 글자를 두 번 클릭하면 바로 수정할 수 있습니다. Shift를 누른 채 클릭하면 여러 요소를 함께 선택합니다.</div>
       </section>
     );
   }
@@ -39,15 +41,27 @@ export function PropertyPanel({ shape, selectedShapes = [], answerOptions = [], 
     <section className="konva-property-panel">
       <PropertyPanelTitle saveStatus={saveStatus} />
       <div className="konva-field-grid">
+        {isAnswerSlotShape(shape) ? (
+          <section className="konva-answer-settings konva-field-wide" aria-label="정답 입력칸 설정">
+            <h3>정답 입력칸 (Answer slot)</h3>
+            <div className="konva-property-detail-grid">
+              <AnswerSlotFields key={shape.id} shape={shape} answerOptions={answerOptions} onChange={onChange} />
+            </div>
+          </section>
+        ) : null}
+        {shape.type === "text" ? (
+          <>
+            <TextAreaField label="내용" value={shape.text} onChange={(text) => onChange({ text } as Partial<EditorShape>)} />
+            <TextPlacementFields shapes={[shape]} onChange={onTextRoleChange} />
+            <NumberField label="글자 크기" value={shape.fontSize} onChange={(fontSize) => onChange({ fontSize } as Partial<EditorShape>)} />
+            <NumberField label="글상자 너비" value={shape.width ?? 220} onChange={(width) => onChange({ width } as Partial<EditorShape>)} />
+          </>
+        ) : null}
+        <details className="konva-property-details" key={shape.id} open={shape.type !== "text" ? true : undefined}>
+          <summary>세부 서식 · 위치</summary>
+          <div className="konva-property-detail-grid">
         <ReadOnlyField label="id" value={shape.id} />
         <ReadOnlyField label="type" value={shape.type} />
-        {shape.type === "text" ? (
-          <SelectField label="텍스트 표시 위치" value={shape.semanticRole ?? "auto"}
-            options={Array.from(new Set(["auto", "question", "instruction", "choice", "diagram_label", shape.semanticRole ?? "auto"]))}
-            optionLabels={{ auto: "자동 판별", question: "상단 · 문제 지문", instruction: "상단 · 풀이 지시문", choice: "답 패널 · 선택지", diagram_label: "Canvas · 도형 설명" }}
-            onChange={(semanticRole) => onChange({ semanticRole: semanticRole === "auto" ? "" : semanticRole })} />
-        ) : null}
-        {isAnswerSlotShape(shape) ? <AnswerSlotFields shape={shape} answerOptions={answerOptions} onChange={onChange} /> : null}
         <NumberField label="x" value={shape.x} onChange={(x) => onChange({ x } as Partial<EditorShape>)} />
         <NumberField label="y" value={shape.y} onChange={(y) => onChange({ y } as Partial<EditorShape>)} />
         <NumberField label="rotation" value={shape.rotation ?? 0} onChange={(rotation) => onChange({ rotation } as Partial<EditorShape>)} />
@@ -92,14 +106,11 @@ export function PropertyPanel({ shape, selectedShapes = [], answerOptions = [], 
         ) : null}
         {shape.type === "text" ? (
           <>
-            <TextAreaField label="text" value={shape.text} onChange={(text) => onChange({ text } as Partial<EditorShape>)} />
-            <NumberField label="font" value={shape.fontSize} onChange={(fontSize) => onChange({ fontSize } as Partial<EditorShape>)} />
             <TextField
               label="fontFamily"
               value={normalizePreviewFontFamily(shape.fontFamily)}
               onChange={(fontFamily) => onChange({ fontFamily } as Partial<EditorShape>)}
             />
-            <NumberField label="width" value={shape.width ?? 220} onChange={(width) => onChange({ width } as Partial<EditorShape>)} />
           </>
         ) : null}
         {shape.type === "math" ? (
@@ -109,8 +120,46 @@ export function PropertyPanel({ shape, selectedShapes = [], answerOptions = [], 
           </>
         ) : null}
         {shape.type === "image" ? <TextAreaField label="src" value={shape.src} onChange={(src) => onChange({ src } as Partial<EditorShape>)} /> : null}
+          </div>
+        </details>
       </div>
     </section>
+  );
+}
+
+function TextPlacementFields({ shapes, onChange }: { shapes: EditorShape[]; onChange: (role: string) => void }) {
+  const texts = shapes.filter((shape) => shape.type === "text");
+  if (!texts.length) return null;
+  const placement = (role?: string) => role === "instruction" ? "question" : role || "auto";
+  const current = placement(texts[0].semanticRole);
+  const mixed = texts.some((text) => placement(text.semanticRole) !== current);
+  const options = [
+    { role: "auto", label: "자동", hint: "기존 구조에 따라 표시 위치를 판단합니다." },
+    { role: "question", label: "상단", hint: "문제 화면 위에 안내문으로 표시합니다." },
+    { role: "choice", label: "선택지", hint: "답 패널에 선택지로 표시합니다. 정답 검토에서 연결을 확인하세요." },
+    { role: "diagram_label", label: "그림에 유지", hint: "점 이름, 길이 등 그림에 붙은 설명에 사용합니다." },
+  ];
+  return (
+    <div className="konva-text-placement konva-field-wide">
+      <span>표시 위치{shapes.length > 1 ? ` · 글자 ${texts.length}개에 적용` : ""}</span>
+      <div className="konva-placement-buttons" role="group" aria-label="텍스트 표시 위치">
+        {options.map((option) => (
+          <button type="button" key={option.role} data-placement={option.role}
+            aria-pressed={!mixed && current === option.role} title={option.hint}
+            onClick={() => onChange(option.role === "auto" ? "" : option.role === "question" ? "top" : option.role)}>{option.label}</button>
+        ))}
+      </div>
+      <p aria-live="polite">{mixed ? "표시 위치가 서로 다릅니다. 버튼을 누르면 한 번에 변경됩니다." : options.find((option) => option.role === current)?.hint ?? `기존 역할: ${texts[0].semanticRole}`}</p>
+      {shapes.length > texts.length ? <p>함께 선택한 도형은 변경하지 않습니다.</p> : null}
+      <details>
+        <summary>지문 · 풀이 지시문 구분</summary>
+        <div className="konva-placement-buttons" role="group" aria-label="상단 문장 역할">
+          <button type="button" aria-pressed={texts.every((text) => text.semanticRole === "question")} onClick={() => onChange("question")}>문제 지문</button>
+          <button type="button" aria-pressed={texts.every((text) => text.semanticRole === "instruction")} onClick={() => onChange("instruction")}>풀이 지시문</button>
+        </div>
+      </details>
+      <p>Shift + 클릭으로 여러 글자를 선택해 한 번에 지정할 수 있습니다.</p>
+    </div>
   );
 }
 
@@ -130,7 +179,7 @@ function AnswerSlotFields({
   return (
     <>
       <CheckboxField
-        label="입력 기능"
+        label="답 입력·선택 기능 사용"
         checked={enabled}
         onChange={(checked) =>
           onChange(
@@ -143,26 +192,35 @@ function AnswerSlotFields({
           )
         }
       />
-      <AnswerBindingFields
+      {interaction ? <AnswerBindingFields
         interaction={interaction}
         answerOptions={answerOptions}
         selectedAnswerOption={selectedAnswerOption}
         onChange={onChange}
-      />
+      /> : <p className="konva-answer-hint konva-field-wide">학생이 이 요소에 답을 입력하거나 선택해야 할 때 켜세요.</p>}
       {interaction ? (
         <>
           <SelectField
             label="입력 방식"
             value={interaction.type}
             options={["input", "select"]}
+            optionLabels={{ input: "직접 입력", select: "클릭하여 선택" }}
             onChange={(type) => onChange({ interaction: { ...interaction, type: type as AnswerInteractionType } } as Partial<EditorShape>)}
           />
           <SelectField
             label="역할"
             value={interaction.role}
             options={["answer", "result", "intermediate", "carry", "blank", "choice"]}
+            optionLabels={{ answer: "최종 정답", result: "계산 결과", intermediate: "중간 풀이", carry: "받아올림", blank: "빈칸", choice: "선택지" }}
             onChange={(role) => onChange({ interaction: { ...interaction, role: role as AnswerRole } } as Partial<EditorShape>)}
           />
+        </>
+      ) : null}
+      {interaction || inputStyle ? (
+        <details className="konva-property-details">
+          <summary>입력 상세 설정 · 글자 서식</summary>
+          <div className="konva-property-detail-grid">
+          {interaction ? (<>
           <SelectField
             label="값 형식"
             value={interaction.value_type}
@@ -236,6 +294,9 @@ function AnswerSlotFields({
             onChange={(text_color) => onChange({ input_style: { ...inputStyle, text_color } } as Partial<EditorShape>)}
           />
         </>
+      ) : null}
+          </div>
+        </details>
       ) : null}
     </>
   );
@@ -330,7 +391,7 @@ function answerBindingStatusLabel(
 function PropertyPanelTitle({ saveStatus }: { saveStatus: PropertyPanelProps["saveStatus"] }) {
   return (
     <div className="panel-title konva-property-title">
-      <span>Properties</span>
+      <span>편집</span>
       <span className={`konva-save-status ${saveStatus}`} aria-live="polite">
         {statusLabel(saveStatus)}
       </span>

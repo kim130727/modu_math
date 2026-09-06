@@ -22,7 +22,6 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.box",
         "slot.circle.main",
         "slot.step.d.ruler.body",
         "slot.step.d.compass.head",
@@ -99,21 +98,8 @@
         "x": 15.0,
         "y": 35.0,
         "font_size": 30,
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.box",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 30.0,
-        "y": 60.0,
-        "width": 720.0,
-        "height": 220.0,
-        "stroke": "#111111",
-        "stroke_width": 1.5,
-        "fill": "#ffffff"
+        "fill": "#111111",
+        "semantic_role": "question"
       }
     },
     {
@@ -205,7 +191,8 @@
         "x": 280.0,
         "y": 335.0,
         "font_size": 30,
-        "fill": "#111111"
+        "fill": "#111111",
+        "semantic_role": "choice"
       }
     },
     {
@@ -218,7 +205,8 @@
         "x": 525.0,
         "y": 335.0,
         "font_size": 30,
-        "fill": "#111111"
+        "fill": "#111111",
+        "semantic_role": "choice"
       }
     },
     {
@@ -231,7 +219,8 @@
         "x": 25.0,
         "y": 375.0,
         "font_size": 30,
-        "fill": "#111111"
+        "fill": "#111111",
+        "semantic_role": "choice"
       }
     },
     {
@@ -244,7 +233,8 @@
         "x": 280.0,
         "y": 375.0,
         "font_size": 30,
-        "fill": "#111111"
+        "fill": "#111111",
+        "semantic_role": "choice"
       }
     },
     {
@@ -257,7 +247,8 @@
         "x": 25.0,
         "y": 332.0,
         "font_size": 30,
-        "fill": "#111111"
+        "fill": "#111111",
+        "semantic_role": "choice"
       }
     },
     {
@@ -725,7 +716,7 @@
       "content": {
         "text": "0",
         "style_role": "label",
-        "x": 560.0,
+        "x": 564.5,
         "y": 223.0,
         "font_size": 15,
         "anchor": "middle",
@@ -739,7 +730,7 @@
       "content": {
         "text": "1",
         "style_role": "label",
-        "x": 608.0,
+        "x": 612.5,
         "y": 223.0,
         "font_size": 15,
         "anchor": "middle",
@@ -753,7 +744,7 @@
       "content": {
         "text": "2",
         "style_role": "label",
-        "x": 656.0,
+        "x": 660.5,
         "y": 223.0,
         "font_size": 15,
         "anchor": "middle",
@@ -767,7 +758,7 @@
       "content": {
         "text": "3",
         "style_role": "label",
-        "x": 704.0,
+        "x": 708.5,
         "y": 223.0,
         "font_size": 15,
         "anchor": "middle",
@@ -955,7 +946,6 @@
     "region.stem",
     "slot.stem",
     "region.diagram",
-    "slot.box",
     "slot.circle.main",
     "slot.step.d.ruler.body",
     "slot.step.d.compass.head",

@@ -61,7 +61,21 @@
     "extraction_confidence": 1.0,
     "language": "ko",
     "instruction": "그림의 순서를 바르게 고르기",
-    "points": 0
+    "points": 0,
+    "presentation_sources": {
+      "question": [
+        "slot.stem"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.option.2",
+        "slot.option.3",
+        "slot.option.4",
+        "slot.option.5",
+        "slot.option.1.copy1"
+      ]
+    },
+    "presentation_prompt": "반지름이 1 cm인 원을 그리는 순서를 바르게 나타낸 것을 고르세요.\n그림의 순서를 바르게 고르기"
   },
   "domain": {
     "objects": [
@@ -116,8 +130,35 @@
   },
   "answer": {
     "blanks": [],
-    "choices": [],
+    "choices": [
+      {
+        "text": "② ㄴ, ㄷ, ㄱ",
+        "slot_id": "slot.option.2",
+        "id": "slot.option.2"
+      },
+      {
+        "text": "③ ㄷ, ㄱ, ㄴ",
+        "slot_id": "slot.option.3",
+        "id": "slot.option.3"
+      },
+      {
+        "text": "④ ㄱ, ㄷ, ㄴ",
+        "slot_id": "slot.option.4",
+        "id": "slot.option.4"
+      },
+      {
+        "text": "⑤ ㄴ, ㄱ, ㄷ",
+        "slot_id": "slot.option.5",
+        "id": "slot.option.5"
+      },
+      {
+        "text": "① ㄱ, ㄴ, ㄷ",
+        "slot_id": "slot.option.1.copy1",
+        "id": "slot.option.1.copy1"
+      }
+    ],
     "answer_key": [],
+    "confidence": 1.0,
     "target": {
       "type": "choice_number",
       "description": "원 그리기 순서의 정답 선택지"
