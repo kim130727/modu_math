@@ -684,20 +684,33 @@ class ProblemContent {
       return '';
     }
     for (final element in elements.whereType<Map<String, dynamic>>()) {
+      final role = _mapAt(element, 'attributes')['data-semantic-role']
+              ?.toString()
+              .toLowerCase() ??
+          '';
+      if (role == 'diagram_label' ||
+          role == 'label' ||
+          role == 'symbol_label' ||
+          role == 'choice' ||
+          role == 'option') {
+        continue;
+      }
       final identity = [
         element['id'],
         element['source_ref'],
         _mapAt(element, 'refs')['layout_slot_id'],
         _mapAt(element, 'metadata')['layout_slot_id'],
       ].whereType<Object>().join(' ').toLowerCase();
-      final role = _mapAt(element, 'attributes')['data-semantic-role']
-              ?.toString()
-              .toLowerCase() ??
-          '';
+      if (identity.contains('label') ||
+          identity.contains('.lb.') ||
+          identity.contains('choice') ||
+          identity.contains('option')) {
+        continue;
+      }
       if (!identity.contains('instruction') &&
           !identity.contains('stem') &&
           !identity.contains('question') &&
-          !RegExp(r'\bslot\.q\d*\b').hasMatch(identity) &&
+          !RegExp(r'\bslot\.q(?:1|2|_stem|_inst)?\b').hasMatch(identity) &&
           role != 'question' &&
           role != 'instruction') {
         continue;
