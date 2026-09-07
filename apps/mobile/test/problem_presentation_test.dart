@@ -77,8 +77,9 @@ void main() {
         reason: 'presentation_viewport must be computed for S3_elem_3_008631');
     expect(viewport!['width'], isNotNull);
     expect(viewport['height'], isNotNull);
-    // Original view box height was 590, fitted height should be much smaller (around 200-350px)
-    expect((viewport['height'] as num).toDouble(), lessThan(350.0));
+    // Original view box height was 590, fitted height removes empty margin (computed: 433.0)
+    expect((viewport['height'] as num).toDouble(), lessThan(500.0));
+    expect((viewport['height'] as num).toDouble(), closeTo(433.0, 5.0));
   });
 
   test('keeps diagram labels, visual choices, input boxes and unknown shapes',

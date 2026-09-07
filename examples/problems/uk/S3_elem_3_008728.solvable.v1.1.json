@@ -4,7 +4,7 @@
   "problem_type": "fraction_description_choice",
   "inputs": {
     "total_ticks": 7,
-    "target_label": "Хто правильно описав малюнок",
+    "target_label": "그림을 바르게 말한 사람",
     "target_ticks": 3,
     "target_count": 1,
     "unit": ""
@@ -13,14 +13,14 @@
     {
       "ref": "obj.colored_part",
       "value": {
-        "description": "Зафарбована частина",
+        "description": "색칠한 부분",
         "fraction": "3/7"
       }
     },
     {
       "ref": "obj.uncolored_part",
       "value": {
-        "description": "Незафарбована частина",
+        "description": "색칠하지 않은 부분",
         "fraction": "4/7"
       }
     }
@@ -37,31 +37,31 @@
   "steps": [
     {
       "id": "step.1",
-      "expr": "Зафарбована частина ↔ 3/7",
-      "value": "Джінкьон"
+      "expr": "색칠한 부분 ↔ 3/7",
+      "value": "진경"
     },
     {
       "id": "step.2",
-      "expr": "Незафарбована частина ↔ 4/7",
-      "value": "Хьонджін"
+      "expr": "색칠하지 않은 부분 ↔ 4/7",
+      "value": "현진"
     },
     {
       "id": "step.3",
-      "expr": "Виберіть вислів, що відповідає малюнку",
-      "value": "Джінкьон"
+      "expr": "그림과 맞는 말 고르기",
+      "value": "진경"
     }
   ],
   "checks": [
     {
       "id": "check.1",
-      "expr": "Перевірте, чи зафарбована частина становить 3 з 7 груп",
+      "expr": "색칠한 부분이 7묶음 중 3묶음인지 확인",
       "expected": "3/7",
       "actual": "3/7",
       "pass": true
     },
     {
       "id": "check.2",
-      "expr": "Перевірте, чи незафарбована частина становить 4 з 7 груп",
+      "expr": "색칠하지 않은 부분이 7묶음 중 4묶음인지 확인",
       "expected": "4/7",
       "actual": "4/7",
       "pass": true
@@ -73,7 +73,7 @@
     "answer_key": [],
     "target": {
       "type": "person_selection",
-      "description": "Хто правильно описав малюнок"
+      "description": "그림을 바르게 말한 사람"
     },
     "value": 1,
     "unit": ""

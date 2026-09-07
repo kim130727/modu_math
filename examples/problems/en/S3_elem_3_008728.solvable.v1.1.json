@@ -4,7 +4,7 @@
   "problem_type": "fraction_description_choice",
   "inputs": {
     "total_ticks": 7,
-    "target_label": "Person who described the picture correctly",
+    "target_label": "그림을 바르게 말한 사람",
     "target_ticks": 3,
     "target_count": 1,
     "unit": ""
@@ -13,14 +13,14 @@
     {
       "ref": "obj.colored_part",
       "value": {
-        "description": "Shaded part",
+        "description": "색칠한 부분",
         "fraction": "3/7"
       }
     },
     {
       "ref": "obj.uncolored_part",
       "value": {
-        "description": "Unshaded part",
+        "description": "색칠하지 않은 부분",
         "fraction": "4/7"
       }
     }
@@ -37,31 +37,31 @@
   "steps": [
     {
       "id": "step.1",
-      "expr": "Shaded part ↔ 3/7",
-      "value": "Jingyeong"
+      "expr": "색칠한 부분 ↔ 3/7",
+      "value": "진경"
     },
     {
       "id": "step.2",
-      "expr": "Unshaded part ↔ 4/7",
-      "value": "Hyunjin"
+      "expr": "색칠하지 않은 부분 ↔ 4/7",
+      "value": "현진"
     },
     {
       "id": "step.3",
-      "expr": "Select the correct statement for the picture",
-      "value": "Jingyeong"
+      "expr": "그림과 맞는 말 고르기",
+      "value": "진경"
     }
   ],
   "checks": [
     {
       "id": "check.1",
-      "expr": "Check if shaded part is 3 out of 7 groups",
+      "expr": "색칠한 부분이 7묶음 중 3묶음인지 확인",
       "expected": "3/7",
       "actual": "3/7",
       "pass": true
     },
     {
       "id": "check.2",
-      "expr": "Check if unshaded part is 4 out of 7 groups",
+      "expr": "색칠하지 않은 부분이 7묶음 중 4묶음인지 확인",
       "expected": "4/7",
       "actual": "4/7",
       "pass": true
@@ -73,7 +73,7 @@
     "answer_key": [],
     "target": {
       "type": "person_selection",
-      "description": "Person who described the picture correctly"
+      "description": "그림을 바르게 말한 사람"
     },
     "value": 1,
     "unit": ""

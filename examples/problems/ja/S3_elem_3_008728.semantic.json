@@ -4,8 +4,8 @@
   "metadata": {
     "title": "絵を正しく説明した人を選ぶ",
     "tags": [],
-    "instruction": "絵を正しく説明した人を選ぶ",
-    "question": "絵を正しく説明した人を選ぶ",
+    "instruction": "그림의 색칠한 부분과 색칠하지 않은 부분을 분수로 바르게 말한 사람을 고른다.",
+    "question": "그림을 보고 바르게 말한 사람을 선택해 보세요.",
     "required_layout_ids": [
       "slot.speech.left",
       "slot.speech.right",
@@ -41,12 +41,12 @@
       {
         "id": "obj.colored_part",
         "type": "part",
-        "property": "色を塗った部分"
+        "property": "색칠한 부분"
       },
       {
         "id": "obj.uncolored_part",
         "type": "part",
-        "property": "塗られていない部分"
+        "property": "색칠하지 않은 부분"
       },
       {
         "id": "obj.fraction_colored",
@@ -76,7 +76,7 @@
       },
       "plan": {
         "method": "fraction_description_matching",
-        "description": "図の色塗り状態を説明した言葉が分数と合うか確認します。"
+        "description": "그림의 색칠 상태를 설명한 말이 분수와 맞는지 확인한다."
       },
       "execute": {
         "expected_operations": [
@@ -97,7 +97,7 @@
     "answer_key": [],
     "target": {
       "type": "person_selection",
-      "description": "図について正しく話した人"
+      "description": "그림을 바르게 말한 사람"
     },
     "value": 1,
     "unit": ""
