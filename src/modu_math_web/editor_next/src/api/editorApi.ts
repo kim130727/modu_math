@@ -256,6 +256,13 @@ export function buildProblem(problemId: string): Promise<BuildProblemResponse> {
   });
 }
 
+export function saveAnswerReview(problemId: string, review: import("../konva_editor/answerReview").AnswerReviewSettings): Promise<{ ok: boolean }> {
+  return requestJson(encodedProblemPath(problemId, "/answer-review/"), {
+    method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({ review }),
+  });
+}
+
 export function tutorPreviewStatus(): Promise<TutorPreviewStatusResponse> {
   return requestJson<TutorPreviewStatusResponse>("/api/editor/tutor-preview/status/");
 }

@@ -69,12 +69,20 @@ def structure_presentation(layout: dict, semantic: dict, solvable: dict | None =
 
     # Bind complete textual options to their slots. Do not flatten grouped or
     # graphical choices, nor rewrite answer keys based on display text.
-    choices = texts["choice"]
+    markers = {
+        slot["id"].rsplit(".", 1)[0]: slot
+        for slot in texts["choice"]
+        if re.fullmatch(r"[①-⑳]|\([1-9][0-9]?\)|[1-9][0-9]?[.)]", slot["content"]["text"].strip())
+        and slot["id"].endswith(".marker")
+    }
+    paired_markers = {marker["id"] for prefix, marker in markers.items()
+                      if any(s["id"] == prefix + ".value" for s in texts["choice"])}
+    choices = [slot for slot in texts["choice"] if slot["id"] not in paired_markers]
     for document in (semantic, solvable):
         if not document or not choices:
             continue
         answer = document.setdefault("answer", {})
-        if answer.get("choice_groups"):
+        if answer.get("choice_groups") or answer.get("presentation", {}).get("editor_managed"):
             continue
         previous = answer.get("choices", [])
         placeholders = all(isinstance(item, dict) and not item.get("text") and not item.get("value")
@@ -100,6 +108,10 @@ def structure_presentation(layout: dict, semantic: dict, solvable: dict | None =
                 entry.setdefault("id", slot["id"])
             else:
                 entry = {"id": slot["id"], "slot_id": slot["id"], "text": text, "value": old}
+            marker = markers.get(slot["id"].rsplit(".", 1)[0]) if slot["id"].endswith(".value") else None
+            if marker and marker["id"] in paired_markers:
+                entry["label"] = marker["content"]["text"].strip()
+                entry["source_refs"] = [marker["id"], slot["id"]]
             updated.append(entry)
         answer["choices"] = updated
         # A literal answer follows its bound choice's edited text. IDs, numeric

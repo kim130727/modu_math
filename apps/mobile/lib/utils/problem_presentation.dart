@@ -180,7 +180,9 @@ Map<String, dynamic> _projectVisual(ProblemContent content) {
   });
   final result = <String, dynamic>{...renderer, 'elements': kept};
   // Fit the remaining artwork without altering any authored coordinates.
-  final bounds = kept.whereType<Map>().map(_bounds).toList();
+  final visualElements =
+      kept.whereType<Map>().where(_hasVisualPresence).toList();
+  final bounds = visualElements.map(_bounds).toList();
   if (bounds.isNotEmpty && bounds.every((b) => b != null)) {
     final boxes = bounds.whereType<(double, double, double, double)>();
     final left = boxes.map((b) => b.$1).reduce(math.min) - 24;
@@ -195,6 +197,24 @@ Map<String, dynamic> _projectVisual(ProblemContent content) {
     };
   }
   return result;
+}
+
+bool _hasVisualPresence(Map element) {
+  final a = element['attributes'];
+  if (element['type'] == 'text') {
+    final text = '${element['text'] ?? ''}'.trim();
+    return text.isNotEmpty;
+  }
+  if (element['type'] == 'rect' ||
+      element['type'] == 'image' ||
+      element['type'] == 'text_box') {
+    final w =
+        double.tryParse('${a is Map ? a['width'] : element['width']}') ?? 0;
+    final h =
+        double.tryParse('${a is Map ? a['height'] : element['height']}') ?? 0;
+    return w > 0 && h > 0;
+  }
+  return true;
 }
 
 (double, double, double, double)? _bounds(Map element) {
@@ -280,6 +300,8 @@ Map<String, dynamic> _projectVisual(ProblemContent content) {
         ys.reduce(math.max)
       );
     case 'text':
+      final textContent = '${element['text'] ?? ''}'.trim();
+      if (textContent.isEmpty) return null;
       final size = n('font-size', 16);
       final lines = '${element['text'] ?? ''}'.split('\n');
       final width = lines

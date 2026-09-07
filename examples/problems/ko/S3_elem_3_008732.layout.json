@@ -43,14 +43,6 @@
         "slot.math.fraction_2.bar",
         "slot.math.fraction_2.den"
       ]
-    },
-    {
-      "id": "region.bottom",
-      "role": "support",
-      "flow": "absolute",
-      "slot_ids": [
-        "slot.b39"
-      ]
     }
   ],
   "slots": [
@@ -314,18 +306,6 @@
       }
     },
     {
-      "id": "slot.b39",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "",
-        "style_role": "label",
-        "x": 0.0,
-        "y": 0.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.math.fraction.num",
       "kind": "text",
       "prompt": "",
@@ -336,8 +316,7 @@
         "font_size": 36,
         "anchor": "middle",
         "fill": "#111827",
-        "style_role": "body",
-        "semantic_role": "question"
+        "style_role": "body"
       }
     },
     {
@@ -364,8 +343,7 @@
         "font_size": 36,
         "anchor": "middle",
         "fill": "#111827",
-        "style_role": "body",
-        "semantic_role": "question"
+        "style_role": "body"
       }
     },
     {
@@ -379,8 +357,7 @@
         "font_size": 36,
         "anchor": "middle",
         "fill": "#111827",
-        "style_role": "body",
-        "semantic_role": "question"
+        "style_role": "body"
       }
     },
     {
@@ -407,8 +384,7 @@
         "font_size": 36,
         "anchor": "middle",
         "fill": "#111827",
-        "style_role": "body",
-        "semantic_role": "question"
+        "style_role": "body"
       }
     },
     {
@@ -422,8 +398,7 @@
         "font_size": 36,
         "anchor": "middle",
         "fill": "#111827",
-        "style_role": "body",
-        "semantic_role": "question"
+        "style_role": "body"
       }
     },
     {
@@ -450,8 +425,7 @@
         "font_size": 36,
         "anchor": "middle",
         "fill": "#111827",
-        "style_role": "body",
-        "semantic_role": "question"
+        "style_role": "body"
       }
     }
   ],
@@ -479,8 +453,6 @@
     "slot.q30",
     "slot.q31",
     "slot.q32",
-    "region.bottom",
-    "slot.b39",
     "slot.math.fraction.num",
     "slot.math.fraction.bar",
     "slot.math.fraction.den",

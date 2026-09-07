@@ -39,12 +39,6 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.math.fraction_2.den",
                 ),
             ),
-            Region(
-                id="region.bottom",
-                role="support",
-                flow="absolute",
-                slot_ids=("slot.b39",),
-            ),
         ),
         slots=(
             TextSlot(
@@ -241,15 +235,6 @@ def build_problem_template() -> ProblemTemplate:
                 y=512,
                 font_size=30,
                 fill="#111111",
-            ),
-            TextSlot(
-                id="slot.b39",
-                prompt="",
-                text="",
-                style_role="label",
-                x=0.0,
-                y=0.0,
-                font_size=28,
             ),
             TextSlot(
                 id="slot.math.fraction.num",

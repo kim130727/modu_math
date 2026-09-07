@@ -323,6 +323,18 @@ def tutor_flow(request: HttpRequest, problem_id: str) -> JsonResponse:
 
 
 @require_POST
+def answer_review(request: HttpRequest, problem_id: str) -> JsonResponse:
+    from .services.answer_review import save_answer_review
+    try:
+        review = save_answer_review(problem_id, _json_body(request).get("review"))
+        return JsonResponse({"ok": True, "review": review})
+    except ValueError as exc:
+        return _error(str(exc), status=400)
+    except FileNotFoundError as exc:
+        return _error(str(exc), status=404)
+
+
+@require_POST
 def choice_groups(request: HttpRequest, problem_id: str) -> JsonResponse:
     from .services.choice_groups import save_choice_groups
     try:

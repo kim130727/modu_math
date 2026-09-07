@@ -82,6 +82,29 @@ void main() {
     expect((viewport['height'] as num).toDouble(), closeTo(433.0, 5.0));
   });
 
+  test('computes fitted presentation_viewport for S3_elem_3_008732 removing top and side whitespace across all locales', () {
+    for (final locale in ['ko', 'en', 'ja', 'km', 'uk', 'zh']) {
+      final content = load('${root.path}/$locale/S3_elem_3_008732');
+      final visual = problemVisualRenderer(content);
+      final viewport = visual['presentation_viewport'] as Map<String, dynamic>?;
+      expect(viewport, isNotNull,
+          reason: 'presentation_viewport must be computed for S3_elem_3_008732 in $locale');
+      expect(viewport!['width'], isNotNull);
+      expect(viewport['height'], isNotNull);
+      // Original view box was 920x650.
+      // Fitted width should be around 486 (less than 550) and height around 397 (less than 450).
+      // And origin x, y should start around 189, 168 (greater than 100), not pinned to (0, 0).
+      expect((viewport['width'] as num).toDouble(), lessThan(550.0),
+          reason: 'Fitted width in $locale should remove side margins');
+      expect((viewport['height'] as num).toDouble(), lessThan(450.0),
+          reason: 'Fitted height in $locale should remove top margins');
+      expect((viewport['x'] as num).toDouble(), greaterThan(100.0),
+          reason: 'Origin X in $locale should not be pinned to 0');
+      expect((viewport['y'] as num).toDouble(), greaterThan(100.0),
+          reason: 'Origin Y in $locale should not be pinned to 0');
+    }
+  });
+
   test('keeps diagram labels, visual choices, input boxes and unknown shapes',
       () {
     final content = ProblemContent(

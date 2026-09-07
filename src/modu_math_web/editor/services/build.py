@@ -356,6 +356,9 @@ def _build_problem_artifacts(problem_id: str) -> str:
 
     layout, semantic, solvable = structure_presentation(layout, semantic, solvable)
     renderer = compile_renderer_json(layout)
+    if hasattr(module, "EDITOR_ANSWER_REVIEW"):
+        from .answer_review import apply_answer_review
+        semantic, solvable = apply_answer_review(semantic, solvable, module.EDITOR_ANSWER_REVIEW)
     if hasattr(module, "TUTOR_RENDERER_FLOW"):
         renderer = attach_tutor_renderer_flow(renderer, module.TUTOR_RENDERER_FLOW)
     svg = inline_local_image_hrefs(render_svg(renderer), problem_paths.base_dir)
