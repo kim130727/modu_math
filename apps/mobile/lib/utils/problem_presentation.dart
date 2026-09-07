@@ -201,11 +201,14 @@ Map<String, dynamic> _projectVisual(ProblemContent content) {
   final a = element['attributes'];
   if (a is! Map || a.containsKey('transform')) return null;
   double n(String key, [double fallback = 0]) =>
-      double.tryParse('${a[key]}') ?? fallback;
+      double.tryParse('${a[key]}') ??
+      double.tryParse('${element[key]}') ??
+      fallback;
   final x = n('x'), y = n('y');
   switch (element['type']) {
     case 'rect':
     case 'image':
+    case 'text_box':
       return (x, y, x + n('width'), y + n('height'));
     case 'line':
       return (
@@ -220,6 +223,61 @@ Map<String, dynamic> _projectVisual(ProblemContent content) {
         n('cy') - n('r'),
         n('cx') + n('r'),
         n('cy') + n('r')
+      );
+    case 'polygon':
+      final rawPoints = a['points'] ?? element['points'];
+      final pts = <(double, double)>[];
+      if (rawPoints is List) {
+        for (final p in rawPoints) {
+          if (p is List && p.length >= 2) {
+            final px = double.tryParse('${p[0]}');
+            final py = double.tryParse('${p[1]}');
+            if (px != null && py != null) {
+              pts.add((px, py));
+            }
+          }
+        }
+      } else if (rawPoints is String) {
+        for (final token in rawPoints.trim().split(RegExp(r'\s+'))) {
+          final xy = token.split(',');
+          if (xy.length == 2) {
+            final px = double.tryParse(xy[0]);
+            final py = double.tryParse(xy[1]);
+            if (px != null && py != null) {
+              pts.add((px, py));
+            }
+          }
+        }
+      }
+      if (pts.isEmpty) return null;
+      final xs = pts.map((p) => p.$1);
+      final ys = pts.map((p) => p.$2);
+      return (
+        xs.reduce(math.min),
+        ys.reduce(math.min),
+        xs.reduce(math.max),
+        ys.reduce(math.max)
+      );
+    case 'path':
+      final d = (a['d'] ?? element['d'])?.toString() ?? '';
+      final matches = RegExp(r'[-+]?\d*\.?\d+').allMatches(d).toList();
+      if (matches.length < 2) return null;
+      final xs = <double>[];
+      final ys = <double>[];
+      for (var i = 0; i + 1 < matches.length; i += 2) {
+        final px = double.tryParse(matches[i].group(0)!);
+        final py = double.tryParse(matches[i + 1].group(0)!);
+        if (px != null && py != null) {
+          xs.add(px);
+          ys.add(py);
+        }
+      }
+      if (xs.isEmpty || ys.isEmpty) return null;
+      return (
+        xs.reduce(math.min),
+        ys.reduce(math.min),
+        xs.reduce(math.max),
+        ys.reduce(math.max)
       );
     case 'text':
       final size = n('font-size', 16);

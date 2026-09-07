@@ -69,6 +69,18 @@ void main() {
     }
   });
 
+  test('computes fitted presentation_viewport for S3_elem_3_008631 removing whitespace', () {
+    final content = load('${root.path}/ko/S3_elem_3_008631');
+    final visual = problemVisualRenderer(content);
+    final viewport = visual['presentation_viewport'] as Map<String, dynamic>?;
+    expect(viewport, isNotNull,
+        reason: 'presentation_viewport must be computed for S3_elem_3_008631');
+    expect(viewport!['width'], isNotNull);
+    expect(viewport['height'], isNotNull);
+    // Original view box height was 590, fitted height should be much smaller (around 200-350px)
+    expect((viewport['height'] as num).toDouble(), lessThan(350.0));
+  });
+
   test('keeps diagram labels, visual choices, input boxes and unknown shapes',
       () {
     final content = ProblemContent(

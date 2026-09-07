@@ -92,6 +92,144 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
     }
     return loaded;
   }
+
+  void _preloadUpcomingProblems() {
+    if (!_hasNextProblem) {
+      return;
+    }
+    final end = (widget.problemIndex + 6).clamp(0, widget.unitProblems.length);
+    for (var index = widget.problemIndex + 1; index < end; index += 1) {
+      unawaited(
+        widget.repository
+            .preloadProblem(widget.unitProblems[index])
+            .catchError((_) {}),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
+    final summary = _loadedContent?.summary;
+
+    final unitTopic = summary != null && summary.unitTopic.isNotEmpty
+        ? summary.unitTopic
+        : widget.problem.unitTopic;
+    final unitNumber = summary != null && summary.unitNumber > 0
+        ? summary.unitNumber
+        : widget.problem.unitNumber;
+
+    final problemTitle = strings.problemTitleById(
+      widget.problem.id,
+      summary?.title.isNotEmpty == true && summary!.title != '수학 문제'
+          ? summary.title
+          : '',
+    );
+
+    final rawSubUnit = widget.problem.subUnit.trim();
+    final subTopic = (rawSubUnit.isNotEmpty &&
+            rawSubUnit != '__basicLearning__' &&
+            rawSubUnit != '기본 학습' &&
+            rawSubUnit != 'Basic Learning')
+        ? strings.subUnitName(rawSubUnit)
+        : (problemTitle.isNotEmpty
+            ? problemTitle
+            : strings.unitTitle(unitTopic));
+
+    final badgeLabel = strings.domainTitle(unitTopic);
+
+    final screenWidth = MediaQuery.sizeOf(context).width;
+    final isWide = screenWidth >= 960;
+
+    return Scaffold(
+      backgroundColor: const Color(0xFFF8FAFC),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        titleSpacing: 12,
+        leadingWidth: isWide ? 176 : 56,
+        leading: Padding(
+          padding: EdgeInsetsDirectional.only(
+            start: 16,
+            top: 8,
+            bottom: 8,
+            end: isWide ? 0 : 8,
+          ),
+          child: isWide
+              ? OutlinedButton.icon(
+                  onPressed: () => Navigator.of(context).pop(),
+                  icon: const Icon(Icons.arrow_back_rounded, size: 16),
+                  label: Text(strings.t('common.backToBriefingRoom')),
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: const Color(0xFF0F172A),
+                    side: const BorderSide(color: Color(0xFFE2E8F0)),
+                    backgroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(999),
+                    ),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                  ),
+                )
+              : IconButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  icon: const Icon(Icons.arrow_back_rounded, size: 20),
+                  tooltip: strings.t('common.backToBriefingRoom'),
+                ),
+        ),
+        title: Row(
+          children: [
+            if (isWide) ...[
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFEEF2FF),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  badgeLabel,
+                  style: const TextStyle(
+                    color: Color(0xFF4F46E5),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
+            ],
+            Expanded(
+              child: Text(
+                '${strings.t('common.unitNumberWithTopic', {
+                      'unit': unitNumber,
+                      'topic': strings.unitTitle(unitTopic),
+                    })} · $subTopic',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w800,
+                  color: Color(0xFF0F172A),
+                ),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Text(
+              widget.problem.id,
+              style: const TextStyle(
+                fontSize: 12,
+                color: Color(0xFF94A3B8),
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: const Color(0xFFEEF2FF),
               borderRadius: BorderRadius.circular(999),
             ),
             child: Row(

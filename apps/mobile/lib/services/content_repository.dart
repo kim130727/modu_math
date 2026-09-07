@@ -817,6 +817,14 @@ class ContentRepository {
     final metadata = semantic != null
         ? _mapAt(semantic, 'metadata')
         : const <String, dynamic>{};
+    final domain = semantic != null
+        ? _mapAt(semantic, 'domain')
+        : const <String, dynamic>{};
+    final domainObjects = (domain['objects'] is List)
+        ? (domain['objects'] as List)
+            .map((e) => e is Map ? '${e['type']} ${e['description'] ?? ''}' : '')
+            .join(' ')
+        : '';
     final problemType =
         semantic?['problem_type']?.toString().toLowerCase() ?? '';
     final metaTitle = metadata['title']?.toString() ?? '';
@@ -826,7 +834,7 @@ class ContentRepository {
         (metadata['tags'] is List ? (metadata['tags'] as List).join(' ') : '')
             .toLowerCase();
     final metaCombined =
-        '$problemType $metaTitle $metaInstruction $metaTopic $tags'
+        '$problemType $metaTitle $metaInstruction $metaTopic $tags $domainObjects'
             .toLowerCase();
 
     if (detectedUnitTopic == null) {
@@ -1278,6 +1286,9 @@ int _semesterFromPrefix(String filePrefix) {
 }
 
 int _unitNumberFromPrefix(String filePrefix) {
+  if (filePrefix.startsWith(RegExp(r'^S\d+_elem_'))) {
+    return 1;
+  }
   final parts = filePrefix.split('_');
   return parts.length > 2 ? int.tryParse(parts[2]) ?? 1 : 1;
 }

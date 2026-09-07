@@ -58,7 +58,11 @@ function problemObjectToEditorShape(object: ProblemObject, canvas: ProblemCanvas
       const needsAlignmentBox = textAlign !== "left";
       const sourceWidth = object.props.width ?? estimateTextWidth(text, fontSize);
       const maxWidth = maxTextBoxWidthWithinCanvas(object.x, canvas.width);
-      const width = isTextBox || needsAlignmentBox ? normalizedTextBoxWidth(text, fontSize, sourceWidth, textAlign, maxWidth) : undefined;
+      // Plain text x was derived from its SVG anchor using sourceWidth. Changing
+      // that width moves the center/end anchor on every build and reload.
+      const width = isTextBox
+        ? normalizedTextBoxWidth(text, fontSize, sourceWidth, textAlign, maxWidth)
+        : needsAlignmentBox ? sourceWidth : undefined;
       const fittedHeight = fittedTextHeight(text, fontSize, width ?? estimateTextWidth(text, fontSize), lineHeight);
 
       const fraction = parseFractionLatex(text);
