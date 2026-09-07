@@ -116,24 +116,70 @@ class ProblemContent {
 
   String get prompt {
     final metadata = _mapAt(semantic, 'metadata');
-    final semanticPrompt =
-        metadata['presentation_prompt']?.toString() ?? metadata['question']?.toString() ?? metadata['instruction']?.toString();
+    final question = metadata['question']?.toString().trim() ?? '';
+    final presentationSources = _mapAt(metadata, 'presentation_sources');
+    final instructionSources = presentationSources['instruction'];
+    final hasInstructionSlot =
+        instructionSources is List && instructionSources.isNotEmpty;
+
+    String rawPrompt;
+    if (!hasInstructionSlot &&
+        question.isNotEmpty &&
+        !_looksBrokenText(question)) {
+      rawPrompt = question;
+    } else {
+      rawPrompt = metadata['presentation_prompt']?.toString() ??
+          (question.isNotEmpty ? question : null) ??
+          metadata['instruction']?.toString() ??
+          '';
+    }
+
+    final sanitized = _sanitizePromptText(rawPrompt, question: question);
     final title = (metadata['title'] ?? summary.title).toString().trim();
     final rendererPrompt = _rendererInstructionText();
-    final isGenericOrTitle = semanticPrompt == null ||
-        semanticPrompt.trim() == title ||
-        semanticPrompt.trim().endsWith('문제이다.') ||
-        semanticPrompt.trim().endsWith('문제이다');
-    if (!isGenericOrTitle && !_looksBrokenText(semanticPrompt)) {
-      return semanticPrompt;
+    final isGenericOrTitle = sanitized.isEmpty ||
+        sanitized == title ||
+        sanitized.endsWith('문제이다.') ||
+        sanitized.endsWith('문제이다');
+    if (!isGenericOrTitle && !_looksBrokenText(sanitized)) {
+      return sanitized;
     }
     if (rendererPrompt.isNotEmpty) {
       return rendererPrompt;
     }
-    if (semanticPrompt != null && !_looksBrokenText(semanticPrompt)) {
-      return semanticPrompt;
+    if (sanitized.isNotEmpty && !_looksBrokenText(sanitized)) {
+      return sanitized;
     }
     return summary.title;
+  }
+
+  static String _sanitizePromptText(String prompt, {String? question}) {
+    final trimmed = prompt.trim();
+    if (trimmed.isEmpty) return '';
+    final lines = trimmed
+        .split('\n')
+        .map((l) => l.trim())
+        .where((l) => l.isNotEmpty)
+        .toList();
+    if (lines.length <= 1) return trimmed;
+
+    final firstLine = lines.first;
+    final remainingLines = <String>[];
+    final metaPattern = RegExp(
+      r'(?:고르기|고른다|고른다\.|고르는\s*문제|문제이다\.?|판단한다\.?|선택하기|찾기)$',
+    );
+
+    for (int i = 1; i < lines.length; i++) {
+      final line = lines[i];
+      if (line == firstLine) continue;
+      if (metaPattern.hasMatch(line)) continue;
+      remainingLines.add(line);
+    }
+
+    if (remainingLines.isEmpty) {
+      return firstLine;
+    }
+    return [firstLine, ...remainingLines].join('\n');
   }
 
   List<ChoiceGroup> get choiceGroups {

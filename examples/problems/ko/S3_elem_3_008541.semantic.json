@@ -5,7 +5,7 @@
     "title": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오",
     "tags": [],
     "instruction": "보기에서 계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
-    "question": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.\nㄱ. 397 × 6\nㄴ. 549 × 4\nㄷ. 456 × 5",
+    "question": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
     "required_layout_ids": [
       "slot.box"
     ],
@@ -13,10 +13,7 @@
     "language": "ko",
     "presentation_sources": {
       "question": [
-        "slot.q1",
-        "slot.expr1",
-        "slot.expr2",
-        "slot.expr3"
+        "slot.q1"
       ],
       "instruction": [],
       "choice": [
@@ -26,7 +23,7 @@
         "slot.opt4"
       ]
     },
-    "presentation_prompt": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.\nㄱ. 397 × 6\nㄴ. 549 × 4\nㄷ. 456 × 5\n보기에서 계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오."
+    "presentation_prompt": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.\n보기에서 계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오."
   },
   "domain": {
     "objects": [

@@ -61,3 +61,18 @@ def test_new_problem_edit_build_and_reopen_keep_presentation(tmp_path):
     assert '알맞은 답을 구하세요.' in detail['semantic']['metadata']['presentation_prompt']
     question = next(e for e in detail['renderer']['elements'] if e.get('source_ref') == 'slot.question')
     assert question['attributes']['data-semantic-role'] == 'question'
+
+
+def test_instruction_without_layout_slot_not_synthesized_into_presentation_prompt():
+    layout = {"slots": [
+        {"id": "slot.q_text", "kind": "text", "content": {"text": "길이가 가장 긴 선분은 어느 것인가요?"}},
+    ]}
+    semantic = {
+        "metadata": {
+            "question": "길이가 가장 긴 선분은 어느 것인가요?",
+            "instruction": "도형을 보고 보기 중 맞는 선분을 고르기",
+        }
+    }
+    _, updated, _ = structure_presentation(layout, semantic)
+    assert updated["metadata"]["presentation_prompt"] == "길이가 가장 긴 선분은 어느 것인가요?"
+

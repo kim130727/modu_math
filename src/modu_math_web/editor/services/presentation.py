@@ -53,8 +53,17 @@ def structure_presentation(layout: dict, semantic: dict, solvable: dict | None =
     metadata["presentation_sources"] = {
         role: [slot["id"] for slot in slots] for role, slots in texts.items()
     }
+
+    # Only include presentation roles that actually exist in the layout slots.
+    prompt_roles = [role for role in ("question", "instruction") if texts[role]]
+    if not prompt_roles:
+        if metadata.get("question"):
+            prompt_roles = ["question"]
+        elif metadata.get("instruction"):
+            prompt_roles = ["instruction"]
+
     metadata["presentation_prompt"] = "\n".join(dict.fromkeys(
-        metadata.get(role, "").strip() for role in ("question", "instruction")
+        metadata.get(role, "").strip() for role in prompt_roles
         if isinstance(metadata.get(role), str) and metadata[role].strip()
     ))
 

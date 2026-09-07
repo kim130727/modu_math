@@ -214,7 +214,7 @@ SEMANTIC_OVERRIDE = {
     "metadata": {
         "language": "ko",
         "question": "길이가 가장 긴 선분은 어느 것인가요?",
-        "instruction": "도형을 보고 보기 중 맞는 선분을 고르기",
+        "instruction": "",
     },
     "domain": {
         "objects": [
