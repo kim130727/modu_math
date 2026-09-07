@@ -7,6 +7,7 @@ import {
   loadProblem,
   problemDetailToCanonicalProblem,
   saveTutorFlow,
+  saveAnswerReview,
   type TutorRendererStep,
   type TutorRendererOverlay,
 } from "../api/editorApi";
@@ -24,7 +25,8 @@ import { KonvaToolbar, type ShapePreset } from "./KonvaToolbar";
 import { KidAvatarMakerModal } from "./avatar/KidAvatarMakerModal";
 import type { AvatarConfig } from "./avatar/avatarParts";
 import { PropertyPanel } from "./PropertyPanel";
-import { answerChoicesFromArtifacts, inferAnswerPresentationMode, type AnswerBindingOption } from "./answerReview";
+import { answerChoicesFromArtifacts, inferAnswerPresentationMode, reviewSettings, type AnswerReviewSettings, type AnswerBindingOption } from "./answerReview";
+import { AnswerReviewPanel } from "./AnswerReviewPanel";
 import { TutorFlowPanel } from "./TutorFlowPanel";
 
 const initialProblem = sampleProblem as ProblemJson;
@@ -47,6 +49,7 @@ export function EditorKonva() {
   const [saveStatus, setSaveStatus] = useState<SaveStatus>("saved");
   const [drawingPreset, setDrawingPreset] = useState<ShapePreset | null>(null);
   const [answerReviewMode, setAnswerReviewMode] = useState(false);
+  const [draftReview, setDraftReview] = useState<AnswerReviewSettings | null>(null);
   const [problemListVersion, setProblemListVersion] = useState(0);
   const [activeSidePanel, setActiveSidePanel] = useState<SidePanelTab>("properties");
   const [isAvatarModalOpen, setAvatarModalOpen] = useState(false);
@@ -79,7 +82,7 @@ export function EditorKonva() {
     () => {
       const existing = answerChoicesFromArtifacts(previewArtifacts.semantic, previewArtifacts.solvable, answerBindingOptions);
       const choices = document.shapes.filter((shape) => shape.type === "text" && shape.semanticRole === "choice");
-      return choices.length ? choices.map((shape, index) => ({
+      return existing.length ? existing : choices.length ? choices.map((shape, index) => ({
         id: shape.id, label: existing[index]?.label ?? String(index + 1),
         text: shape.type === "text" ? shape.text : "", correct: existing[index]?.correct ?? false,
       })) : existing;
@@ -87,6 +90,7 @@ export function EditorKonva() {
     [document.shapes, answerBindingOptions, previewArtifacts.semantic, previewArtifacts.solvable],
   );
   const effectiveTutorFlow = draftTutorFlow ?? previewArtifacts.renderer?.tutor_flow ?? [];
+  const activeReview = useMemo(() => draftReview ?? reviewSettings(previewArtifacts.semantic, answerBindingOptions, answerChoiceReviews, answerPresentationMode), [draftReview, previewArtifacts.semantic, answerBindingOptions, answerChoiceReviews, answerPresentationMode]);
   const activeTutorFrames = useMemo(() => {
     if (!activeTutorStepId) return [];
     const step = effectiveTutorFlow.find((item) => item.step_id === activeTutorStepId);
@@ -113,12 +117,14 @@ export function EditorKonva() {
     setActiveTutorStepId(null);
     setActiveTutorOverlayIndex(null);
     setDraftTutorFlow(null);
+    setDraftReview(null);
     setMessage(nextMessage);
     setSaveStatus("saved");
   }, [previewArtifacts]);
 
   const openProblem = useCallback(
     async (problemId: string) => {
+      if (draftReview && saveStatus === "unsaved" && !window.confirm("저장하지 않은 검수 수정이 있습니다. 수정 내용을 버리고 다른 문제를 열까요?")) return;
       setMessage(`Loading ${problemId}...`);
       try {
         const detail = await loadProblem(problemId);
@@ -134,7 +140,7 @@ export function EditorKonva() {
         setMessage(`Could not load ${problemId}: ${String(error)}`);
       }
     },
-    [setProblem],
+    [setProblem, draftReview, saveStatus],
   );
 
   const createNewProblem = useCallback(async () => {
@@ -692,7 +698,7 @@ export function EditorKonva() {
     setMessage("Imported shape JSON.");
   }, []);
 
-  const saveJson = useCallback(async () => {
+  const saveJson = useCallback(async (reviewOverride?: AnswerReviewSettings) => {
     const nextProblem = editorDocumentToProblemJson(document, baseProblemJson);
     if (selectedProblemId === initialProblem.id) {
       setMessage("Sample problem is local only. Open a real problem before saving to DSL.");
@@ -701,7 +707,8 @@ export function EditorKonva() {
     }
 
     const patches = problemJsonToLayoutPatches(baseProblemJson, nextProblem);
-    if (!patches.length && !draftTutorFlow) {
+    const reviewToSave = reviewOverride ?? draftReview;
+    if (!patches.length && !draftTutorFlow && !reviewToSave) {
       setMessage(`No DSL changes to save for ${selectedProblemId}.`);
       setSaveStatus("saved");
       return true;
@@ -711,6 +718,10 @@ export function EditorKonva() {
     setMessage(`Saving ${selectedProblemId}...`);
     try {
       const savedParts: string[] = [];
+      if (reviewToSave) {
+        await saveAnswerReview(selectedProblemId, reviewToSave);
+        savedParts.push("정답 검수");
+      }
       if (patches.length) {
         const response = await applyLayoutPatches(selectedProblemId, patches, { format: false, fast: true });
         setBaseProblemJson(nextProblem);
@@ -729,7 +740,7 @@ export function EditorKonva() {
       setMessage(`Could not save ${selectedProblemId}: ${String(error)}`);
       return false;
     }
-  }, [baseProblemJson, document, draftTutorFlow, selectedProblemId]);
+  }, [baseProblemJson, document, draftTutorFlow, draftReview, selectedProblemId]);
 
   const saveCurrentTutorFlow = useCallback(
     async (tutorFlow: TutorRendererStep[]) => {
@@ -824,6 +835,7 @@ export function EditorKonva() {
         setSaveStatus("building");
       }
       const response = await buildProblem(selectedProblemId);
+      if (!response.ok) throw new Error(response.stderr || "Build에 실패했습니다. 저장된 내용과 오류를 확인하세요.");
       const detail = [response.stdout, response.stderr].filter(Boolean).join("\n").trim();
       const builtArtifacts = {
         semantic: (response.artifacts.semantic as Record<string, unknown> | null | undefined) ?? null,
@@ -845,6 +857,7 @@ export function EditorKonva() {
       setDocument(problemJsonToEditorDocument(builtProblem));
       setSelectedShapeIds([]);
       setDraftTutorFlow(null);
+      setDraftReview(null);
       setSaveStatus("built");
       setMessage(detail ? `Build complete for ${selectedProblemId}.\n${detail}` : `Build complete for ${selectedProblemId}.`);
       return true;
@@ -855,8 +868,8 @@ export function EditorKonva() {
     }
   }, [draftTutorFlow, selectedProblemId]);
 
-  const buildCurrentProblem = useCallback(async () => {
-    const saved = await saveJson();
+  const buildCurrentProblem = useCallback(async (reviewOverride?: AnswerReviewSettings) => {
+    const saved = await saveJson(reviewOverride);
     if (!saved) return false;
     return buildSavedProblem();
   }, [buildSavedProblem, saveJson]);
@@ -909,7 +922,7 @@ export function EditorKonva() {
           if (file) void importLocalImage(file);
         }}
       />
-      <div className="editor-body konva-editor-body">
+      <div className={`editor-body konva-editor-body${answerReviewMode ? " reviewing-answers" : ""}`}>
         <ProblemList
           key={problemListVersion}
           selectedProblemId={selectedProblemId}
@@ -919,6 +932,7 @@ export function EditorKonva() {
         />
         <div className="konva-main-panel">
           <KonvaStage
+            key={selectedProblemId}
             width={document.canvas.width}
             height={document.canvas.height}
             shapes={document.shapes}
@@ -930,6 +944,13 @@ export function EditorKonva() {
             answerOptions={answerBindingOptions}
             answerChoices={answerChoiceReviews}
             answerPresentationMode={answerPresentationMode}
+            reviewPanel={<AnswerReviewPanel settings={activeReview}
+              onChange={(settings) => { setDraftReview(settings); setSaveStatus("unsaved"); }}
+              onSave={(override) => { void buildCurrentProblem(override); }}
+              busy={saveStatus === "saving" || saveStatus === "building"}
+              feedback={saveStatus === "error" ? message : saveStatus === "unsaved" ? "저장하지 않은 수정" : saveStatus === "built" ? "저장 및 Build 완료" : ""}
+              onSelect={(ids) => { setAnswerReviewMode(false); setSelectedShapeIds(ids); setActiveSidePanel("properties"); }}
+              onEditLayout={() => { setAnswerReviewMode(false); setActiveSidePanel("properties"); }} />}
             onSelectShapes={setSelectedShapeIds}
             onChangeShapes={updateShapes}
             onConvertShapesToAnswer={(ids) => setAnswerSlotState(ids, true)}
@@ -1190,7 +1211,7 @@ function answerOptionFromItem(item: unknown, index: number): AnswerBindingOption
   const value = answerValueText(record.value ?? record.expected ?? record.result ?? record.answer);
   if (!value) return null;
   const unit = stringValue(record.unit);
-  const ref = stringValue(record.slot_id) || stringValue(record.target_ref) || stringValue(record.ref) || `answer_key[${index}]`;
+  const ref = stringValue(record.slot_id) || stringValue(record.target_ref) || stringValue(record.ref) || stringValue(record.id) || `answer_key[${index}]`;
   const labelSource = stringValue(record.label) || stringValue(record.id) || stringValue(record.slot_id) || `답 ${index + 1}`;
   return { index, value, unit, ref, label: answerOptionLabel(index, value, unit, labelSource) };
 }

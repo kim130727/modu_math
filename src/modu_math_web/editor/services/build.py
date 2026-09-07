@@ -68,7 +68,8 @@ def _load_dsl_module(dsl_path: Path) -> Any:
     if spec is None or spec.loader is None:
         raise ValueError(f"unable to load DSL file: {dsl_path}")
     module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
+    code = compile(dsl_path.read_text(encoding="utf-8"), str(dsl_path), "exec")
+    exec(code, module.__dict__)
     return module
 
 
