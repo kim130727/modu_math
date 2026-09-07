@@ -2204,6 +2204,204 @@ void main() {
     expect(content.choiceGroups[0].label, equals('주스병'));
     expect(content.choiceGroups[1].label, equals('우유갑'));
   });
+
+  testWidgets('renders dedicated kid-friendly OX cards for S3_elem_3_008751 and allows selection & submission',
+      (tester) async {
+    var draft = '';
+    var submitted = '';
+
+    const content8751 = ProblemContent(
+      summary: ProblemSummary(
+        id: 'S3_elem_3_008751',
+        grade: 3,
+        subject: 'math',
+        unit: '들이와 무게',
+        type: '판단형',
+        title: '물병과 우유병의 높이 비교',
+        path: '',
+        raw: {},
+      ),
+      semantic: {
+        'problem_type': '판단형',
+        'metadata': {
+          'title': '물병과 우유병의 높이 비교',
+          'question': '물병과 우유병의 높이를 비교하려고 합니다. 두 병의 높이를 비교하는 방법을 바르게 설명했으면 ○표, 그렇지 않으면 ×를 선택하세요.',
+        },
+        'answer': {
+          'choices': ['○', 'X'],
+          'answer_key': ['X'],
+          'target': {'type': 'symbol_judgment'},
+          'value': 'X',
+        },
+      },
+      renderer: {'elements': []},
+      solvable: {
+        'problem_type': 'judgment',
+        'answer': {
+          'choices': ['○', 'X'],
+          'answer_key': ['X'],
+          'value': 'X',
+        },
+      },
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: AnswerPanel(
+            content: content8751,
+            answerDraft: draft,
+            isCorrect: null,
+            onAnswerChanged: (value) => draft = value,
+            onSubmit: (value) => submitted = value,
+          ),
+        ),
+      ),
+    );
+
+    // Tag badge should say "O / X" instead of generic "택 1"
+    expect(find.text('O / X'), findsOneWidget);
+    expect(find.text('택 1'), findsNothing);
+
+    // Title should be OX-specific
+    expect(find.text('알맞은 답(○ 또는 ✕)을 선택하세요'), findsOneWidget);
+
+    // Standard ChoiceChips should not be used
+    expect(find.byType(ChoiceChip), findsNothing);
+
+    // Two big distinct cards: left is ○ (참), right is ✕ (거짓)
+    expect(find.text('○'), findsOneWidget);
+    expect(find.text('참'), findsOneWidget);
+    expect(find.text('✕'), findsOneWidget);
+    expect(find.text('거짓'), findsOneWidget);
+
+    // Initial state: no checkmark icon visible
+    expect(find.byIcon(Icons.check), findsNothing);
+
+    // Tap the X card
+    await tester.tap(find.text('✕'));
+    await tester.pumpAndSettle();
+
+    expect(draft, equals('X'));
+    expect(find.byIcon(Icons.check), findsOneWidget);
+
+    // Submit the answer
+    await tester.tap(find.byType(FilledButton));
+    await tester.pumpAndSettle();
+
+    expect(submitted, equals('X'));
+    expect(isSameAnswer(submitted, content8751.correctAnswer), isTrue);
+
+    // Tap the O card to switch answer
+    await tester.tap(find.text('○'));
+    await tester.pumpAndSettle();
+
+    expect(draft, equals('○'));
+    expect(find.byIcon(Icons.check), findsOneWidget);
+  });
+
+  testWidgets('preserves O-left X-right layout and maps values accurately even with reversed choices',
+      (tester) async {
+    var draft = '';
+
+    const reversedOxContent = ProblemContent(
+      summary: ProblemSummary(
+        id: 'ox_reversed',
+        grade: 3,
+        subject: 'math',
+        unit: 'test',
+        type: 'judgment',
+        title: 'ox test',
+        path: '',
+        raw: {},
+      ),
+      semantic: {
+        'problem_type': 'judgment',
+        'answer': {
+          'choices': ['X', '○'],
+          'answer_key': ['○'],
+          'value': '○',
+        },
+      },
+      renderer: {'elements': []},
+      solvable: {
+        'answer': {
+          'choices': ['X', '○'],
+          'value': '○',
+        },
+      },
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: AnswerPanel(
+            content: reversedOxContent,
+            answerDraft: '',
+            isCorrect: null,
+            onAnswerChanged: (value) => draft = value,
+            onSubmit: (_) {},
+          ),
+        ),
+      ),
+    );
+
+    // Left card is ○, right card is ✕
+    expect(find.text('○'), findsOneWidget);
+    expect(find.text('✕'), findsOneWidget);
+
+    // Tapping ○ correctly maps to the raw value '○' (index 1)
+    await tester.tap(find.text('○'));
+    await tester.pumpAndSettle();
+    expect(draft, equals('○'));
+
+    // Tapping ✕ correctly maps to the raw value 'X' (index 0)
+    await tester.tap(find.text('✕'));
+    await tester.pumpAndSettle();
+    expect(draft, equals('X'));
+  });
+
+  testWidgets('pre-selects the appropriate card when initialized with an existing draft',
+      (tester) async {
+    const content = ProblemContent(
+      summary: ProblemSummary(
+        id: 'ox_preselect',
+        grade: 3,
+        subject: 'math',
+        unit: 'test',
+        type: 'judgment',
+        title: 'ox preselect',
+        path: '',
+        raw: {},
+      ),
+      semantic: {
+        'answer': {
+          'choices': ['○', 'X'],
+          'answer_key': ['X'],
+          'value': 'X',
+        },
+      },
+      renderer: {'elements': []},
+      solvable: {},
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: AnswerPanel(
+            content: content,
+            answerDraft: 'X',
+            isCorrect: null,
+            onAnswerChanged: (_) {},
+            onSubmit: (_) {},
+          ),
+        ),
+      ),
+    );
+
+    // 1 checkmark badge should be present for the selected X card
+    expect(find.byIcon(Icons.check), findsOneWidget);
+  });
 }
 
 const _summary = ProblemSummary(

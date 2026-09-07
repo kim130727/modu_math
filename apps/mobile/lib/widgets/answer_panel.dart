@@ -204,10 +204,16 @@ class _AnswerPanelState extends State<AnswerPanel> {
     final hasVisual =
         widget.content.renderer.isNotEmpty || widget.content.svg.isNotEmpty;
     final hasRendererAnswerInputs = widget.content.hasRendererAnswerInputs;
+    final oxChoices =
+        choices.isNotEmpty && !allowsMultipleChoices && choiceGroups.isEmpty
+            ? _detectOxChoices(choices, strings)
+            : null;
 
     final String titleText;
     if (!hasVisual) {
       titleText = widget.content.prompt;
+    } else if (oxChoices != null) {
+      titleText = strings.t('answer.promptOx');
     } else if (choiceGroups.isNotEmpty) {
       titleText = strings.t('answer.promptChoiceGroups');
     } else if (choices.isNotEmpty) {
@@ -275,9 +281,11 @@ class _AnswerPanelState extends State<AnswerPanel> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
-                      allowsMultipleChoices
-                          ? strings.t('answer.multipleChoiceTag')
-                          : strings.t('answer.singleChoiceTag'),
+                      oxChoices != null
+                          ? strings.t('answer.oxTag')
+                          : (allowsMultipleChoices
+                              ? strings.t('answer.multipleChoiceTag')
+                              : strings.t('answer.singleChoiceTag')),
                       style: const TextStyle(
                         color: Color(0xFF4F46E5),
                         fontSize: 11,
@@ -497,7 +505,9 @@ class _AnswerPanelState extends State<AnswerPanel> {
                   ),
                 ],
               ],
-            ] else
+            ] else if (oxChoices != null)
+              _buildOxChoices(context, oxChoices, strings)
+            else
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: choices.indexed.map((entry) {
@@ -723,6 +733,47 @@ class _AnswerPanelState extends State<AnswerPanel> {
       ),
     );
   }
+
+  Widget _buildOxChoices(
+    BuildContext context,
+    OxChoicePair pair,
+    AppStrings strings,
+  ) {
+    final isOSelected = selectedChoiceIndex == pair.oChoice.originalIndex;
+    final isXSelected = selectedChoiceIndex == pair.xChoice.originalIndex;
+
+    return Row(
+      children: [
+        Expanded(
+          child: _OxCard(
+            item: pair.oChoice,
+            isSelected: isOSelected,
+            onTap: () {
+              setState(() {
+                selectedChoiceIndex = pair.oChoice.originalIndex;
+                selectedChoiceIndexes = {};
+              });
+              widget.onAnswerChanged(pair.oChoice.rawValue);
+            },
+          ),
+        ),
+        const SizedBox(width: 14),
+        Expanded(
+          child: _OxCard(
+            item: pair.xChoice,
+            isSelected: isXSelected,
+            onTap: () {
+              setState(() {
+                selectedChoiceIndex = pair.xChoice.originalIndex;
+                selectedChoiceIndexes = {};
+              });
+              widget.onAnswerChanged(pair.xChoice.rawValue);
+            },
+          ),
+        ),
+      ],
+    );
+  }
 }
 
 String _combinedGroupAnswer(
@@ -841,3 +892,255 @@ Map<String, dynamic> _mapAt(Object? value, Object? key) {
   }
   return const {};
 }
+
+enum OxChoiceType { o, x }
+
+class OxChoiceItem {
+  const OxChoiceItem({
+    required this.originalIndex,
+    required this.rawValue,
+    required this.type,
+    required this.displaySymbol,
+    required this.subLabel,
+  });
+
+  final int originalIndex;
+  final String rawValue;
+  final OxChoiceType type;
+  final String displaySymbol;
+  final String subLabel;
+}
+
+class OxChoicePair {
+  const OxChoicePair({
+    required this.oChoice,
+    required this.xChoice,
+  });
+
+  final OxChoiceItem oChoice;
+  final OxChoiceItem xChoice;
+}
+
+bool _isPositiveChoice(String text) {
+  final cleaned = text
+      .trim()
+      .toLowerCase()
+      .replaceAll(RegExp(r'[\s\(\)\[\]\.\,]'), '');
+  const positiveTokens = {
+    '○', 'o', '0', '⭕', 'o표', '○표', '참', '맞음', '맞다', '맞아요', '바름', '바르다',
+    '옳음', '옳다', '예', '네', 'true', 't', 'yes', 'y', 'correct', 'tak', 'так',
+    'правильно', '正しい', 'マル', 'まる', '对', '正確', '正确', '是'
+  };
+  return positiveTokens.contains(cleaned);
+}
+
+bool _isNegativeChoice(String text) {
+  final cleaned = text
+      .trim()
+      .toLowerCase()
+      .replaceAll(RegExp(r'[\s\(\)\[\]\.\,]'), '');
+  const negativeTokens = {
+    'x', '✕', '×', '❌', 'x표', '×표', '✕표', '거짓', '틀림', '틀리다', '틀려요',
+    '그름', '그르다', '아니오', '아니요', 'false', 'f', 'no', 'n', 'incorrect',
+    'wrong', 'ні', 'ni', 'неправильно', '違う', 'バツ', 'ばつ', '错', '錯誤',
+    '错误', '否'
+  };
+  return negativeTokens.contains(cleaned);
+}
+
+String _resolveSubLabel(String raw, bool isPositive, AppStrings strings) {
+  final cleaned = raw.trim().replaceAll(RegExp(r'[\(\)\[\]\.\,]'), '').trim();
+  final isSymbolOnly = RegExp(
+    r'^(?:○|o|0|⭕|x|✕|×|❌|o표|○표|x표|×표|✕표)$',
+    caseSensitive: false,
+  ).hasMatch(cleaned);
+  if (isSymbolOnly) {
+    return isPositive
+        ? strings.t('answer.oxTrue')
+        : strings.t('answer.oxFalse');
+  }
+  return cleaned;
+}
+
+OxChoicePair? _detectOxChoices(List<String> choices, AppStrings strings) {
+  if (choices.length != 2) {
+    return null;
+  }
+  final c0 = choices[0];
+  final c1 = choices[1];
+
+  final is0Pos = _isPositiveChoice(c0);
+  final is0Neg = _isNegativeChoice(c0);
+  final is1Pos = _isPositiveChoice(c1);
+  final is1Neg = _isNegativeChoice(c1);
+
+  if (is0Pos && is1Neg) {
+    return OxChoicePair(
+      oChoice: OxChoiceItem(
+        originalIndex: 0,
+        rawValue: c0,
+        type: OxChoiceType.o,
+        displaySymbol: '○',
+        subLabel: _resolveSubLabel(c0, true, strings),
+      ),
+      xChoice: OxChoiceItem(
+        originalIndex: 1,
+        rawValue: c1,
+        type: OxChoiceType.x,
+        displaySymbol: '✕',
+        subLabel: _resolveSubLabel(c1, false, strings),
+      ),
+    );
+  } else if (is1Pos && is0Neg) {
+    return OxChoicePair(
+      oChoice: OxChoiceItem(
+        originalIndex: 1,
+        rawValue: c1,
+        type: OxChoiceType.o,
+        displaySymbol: '○',
+        subLabel: _resolveSubLabel(c1, true, strings),
+      ),
+      xChoice: OxChoiceItem(
+        originalIndex: 0,
+        rawValue: c0,
+        type: OxChoiceType.x,
+        displaySymbol: '✕',
+        subLabel: _resolveSubLabel(c0, false, strings),
+      ),
+    );
+  }
+
+  return null;
+}
+
+class _OxCard extends StatelessWidget {
+  const _OxCard({
+    required this.item,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  final OxChoiceItem item;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final isO = item.type == OxChoiceType.o;
+    final primaryColor =
+        isO ? const Color(0xFF2563EB) : const Color(0xFFDC2626);
+    final selectedBorderColor =
+        isO ? const Color(0xFF3B82F6) : const Color(0xFFEF4444);
+    final selectedBgColor =
+        isO ? const Color(0xFFEFF6FF) : const Color(0xFFFEF2F2);
+    final textColor = isSelected
+        ? (isO ? const Color(0xFF1D4ED8) : const Color(0xFFB91C1C))
+        : const Color(0xFF64748B);
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(18),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
+          curve: Curves.easeInOut,
+          constraints: const BoxConstraints(minHeight: 110),
+          decoration: BoxDecoration(
+            color: isSelected ? selectedBgColor : Colors.white,
+            borderRadius: BorderRadius.circular(18),
+            border: Border.all(
+              color: isSelected
+                  ? selectedBorderColor
+                  : const Color(0xFFE2E8F0),
+              width: isSelected ? 2.5 : 1.5,
+            ),
+            boxShadow: isSelected
+                ? [
+                    BoxShadow(
+                      color: selectedBorderColor.withOpacity(0.18),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ]
+                : [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.02),
+                      blurRadius: 4,
+                      offset: const Offset(0, 1),
+                    ),
+                  ],
+          ),
+          child: Stack(
+            children: [
+              Positioned(
+                top: 10,
+                right: 10,
+                child: Container(
+                  width: 22,
+                  height: 22,
+                  decoration: BoxDecoration(
+                    color: isSelected ? primaryColor : Colors.transparent,
+                    shape: BoxShape.circle,
+                    border: isSelected
+                        ? null
+                        : Border.all(
+                            color: const Color(0xFFCBD5E1),
+                            width: 1.5,
+                          ),
+                  ),
+                  alignment: Alignment.center,
+                  child: isSelected
+                      ? const Icon(
+                          Icons.check,
+                          size: 14,
+                          color: Colors.white,
+                        )
+                      : null,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 18,
+                  horizontal: 12,
+                ),
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        item.displaySymbol,
+                        style: TextStyle(
+                          fontSize: 48,
+                          height: 1.0,
+                          fontWeight: FontWeight.w900,
+                          color: textColor,
+                        ),
+                      ),
+                      if (item.subLabel.isNotEmpty) ...[
+                        const SizedBox(height: 6),
+                        Text(
+                          item.subLabel,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: isSelected
+                                ? FontWeight.w800
+                                : FontWeight.w600,
+                            color: isSelected
+                                ? textColor
+                                : const Color(0xFF475569),
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
