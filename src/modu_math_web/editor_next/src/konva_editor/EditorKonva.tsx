@@ -26,6 +26,7 @@ import { KidAvatarMakerModal } from "./avatar/KidAvatarMakerModal";
 import type { AvatarConfig } from "./avatar/avatarParts";
 import { avatarTargets, replaceAvatarShapes } from "./avatar/avatarReplacement";
 import { PropertyPanel } from "./PropertyPanel";
+import { PlacementSyncPanel } from "./PlacementSyncPanel";
 import { answerChoicesFromArtifacts, inferAnswerPresentationMode, reviewSettings, type AnswerReviewSettings, type AnswerBindingOption } from "./answerReview";
 import { AnswerReviewPanel } from "./AnswerReviewPanel";
 import { TutorFlowPanel } from "./TutorFlowPanel";
@@ -997,6 +998,7 @@ export function EditorKonva() {
           </div>
           <div className="konva-side-content">
             {activeSidePanel === "properties" ? (
+              <>
               <PropertyPanel
                 shape={selectedShape}
                 selectedShapes={selectedShapes}
@@ -1006,6 +1008,8 @@ export function EditorKonva() {
                 onScaleSelection={scaleSelectedShapes}
                 onTextRoleChange={setSelectedTextRole}
               />
+              <PlacementSyncPanel key={selectedProblemId} problemId={selectedProblemId} shapes={document.shapes} selectedIds={selectedShapeIds} onSave={buildCurrentProblem} />
+              </>
             ) : null}
             {activeSidePanel === "flow" ? (
               <TutorFlowPanel

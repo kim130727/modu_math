@@ -58,6 +58,103 @@ def test_path_traversal_rejected(tmp_path: Path) -> None:
     assert response.status_code in (400, 404)
 
 
+def _placement_sync_problem(tmp_path: Path, language: str, *, extra=True) -> Path:
+    text = "안내" if language == "ko" else "Localized instruction"
+    slots = f'TextSlot(id="slot.caption", text={text!r}, x=45, y=70, font_size=17, semantic_role="diagram_label"),'
+    if extra:
+        slots += 'TextSlot(id="slot.extra", text="Extra", x=120, y=130),'
+    return _write_problem(tmp_path, f"{language}/shared", f'''
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="shared", title="Placement sync", canvas=Canvas(width=300, height=220),
+    regions=(Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=("slot.caption", { '"slot.extra",' if extra else '' })),),
+    slots=({slots}),
+)
+''')
+
+
+def test_placement_sync_preserves_translations_and_reports_missing(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    paths = {lang: _placement_sync_problem(tmp_path, lang, extra=lang != "ja") for lang in ("ko", "en", "ja")}
+    for lang in paths:
+        assert client.post(f"/api/editor/problems/{lang}/shared/build/").json()["ok"]
+    english_before = json.loads((paths["en"] / "problem.layout.json").read_text(encoding="utf-8"))
+    response = client.post("/api/editor/problems/ko/shared/placement-sync/", data=json.dumps({
+        "languages": ["en", "ja"], "placements": [
+            {"id": "slot.caption", "role": "question"}, {"id": "slot.extra", "role": "choice"},
+        ],
+    }), content_type="application/json")
+    assert response.status_code == 200
+    results = response.json()["results"]
+    assert [(item["status"], item["applied"]) for item in results] == [("success", 2), ("partial", 1)]
+    assert results[1]["missing"] == ["slot.extra"]
+    for lang in ("en", "ja"):
+        assert client.post(f"/api/editor/problems/{lang}/shared/build/").json()["ok"]
+        layout = json.loads((paths[lang] / "problem.layout.json").read_text(encoding="utf-8"))
+        content = next(slot["content"] for slot in layout["slots"] if slot["id"] == "slot.caption")
+        original = next(slot["content"] for slot in english_before["slots"] if slot["id"] == "slot.caption")
+        assert content["semantic_role"] == "question"
+        assert {k: v for k, v in content.items() if k != "semantic_role"} == {k: v for k, v in original.items() if k != "semantic_role"}
+    assert not (paths["ko"] / "problem.editor_overrides.json").exists()
+
+
+def test_placement_sync_auto_and_deleted_target(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    paths = {lang: _placement_sync_problem(tmp_path, lang) for lang in ("ko", "en")}
+    for lang in paths:
+        assert client.post(f"/api/editor/problems/{lang}/shared/build/").json()["ok"]
+    overrides_path = paths["en"] / "problem.editor_overrides.json"
+    overrides_path.write_text(json.dumps({"version": 1, "slots": {"slot.caption": {"semantic_role": "choice", "x": 99}}, "deleted_slots": ["slot.extra"]}), encoding="utf-8")
+    response = client.post("/api/editor/problems/ko/shared/placement-sync/", data=json.dumps({
+        "languages": ["en"], "placements": [{"id": "slot.caption", "role": ""}, {"id": "slot.extra", "role": "choice"}],
+    }), content_type="application/json")
+    assert response.status_code == 200
+    assert response.json()["results"][0]["missing"] == ["slot.extra"]
+    overrides = json.loads(overrides_path.read_text(encoding="utf-8"))
+    assert overrides["slots"]["slot.caption"] == {"semantic_role": "", "x": 99}
+    assert client.post("/api/editor/problems/en/shared/build/").json()["ok"]
+    layout = json.loads((paths["en"] / "problem.layout.json").read_text(encoding="utf-8"))
+    assert not any(slot["id"] == "slot.extra" for slot in layout["slots"])
+    assert next(slot["content"] for slot in layout["slots"] if slot["id"] == "slot.caption")["semantic_role"] == ""
+
+
+def test_placement_sync_rejects_invalid_targets_before_writing(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    _placement_sync_problem(tmp_path, "ko")
+    target = _placement_sync_problem(tmp_path, "en")
+    for languages, placements in [
+        (["ko"], [{"id": "slot.caption", "role": "choice"}]),
+        (["ja"], [{"id": "slot.caption", "role": "choice"}]),
+        (["en"], [{"id": "slot.caption", "role": "bad"}]),
+        (["en"], [{"id": "slot.not_present", "role": "choice"}]),
+    ]:
+        response = client.post("/api/editor/problems/ko/shared/placement-sync/", data=json.dumps({"languages": languages, "placements": placements}), content_type="application/json")
+        assert response.status_code == 400
+        assert not (target / "problem.editor_overrides.json").exists()
+
+
+def test_placement_sync_continues_after_one_language_build_fails(tmp_path: Path, monkeypatch) -> None:
+    from types import SimpleNamespace
+    from modu_math_web.editor.services import placement_sync
+
+    client = _setup_django(tmp_path)
+    for lang in ("ko", "en", "ja"):
+        _placement_sync_problem(tmp_path, lang)
+        assert client.post(f"/api/editor/problems/{lang}/shared/build/").json()["ok"]
+    original_build = placement_sync.run_problem_build
+    monkeypatch.setattr(placement_sync, "run_problem_build", lambda problem_id: (
+        SimpleNamespace(ok=False, error="test build failure") if problem_id == "en/shared" else original_build(problem_id)
+    ))
+    response = client.post("/api/editor/problems/ko/shared/placement-sync/", data=json.dumps({
+        "languages": ["en", "ja"], "placements": [{"id": "slot.caption", "role": "instruction"}],
+    }), content_type="application/json")
+    assert response.status_code == 200
+    results = response.json()["results"]
+    assert [item["status"] for item in results] == ["error", "success"]
+    assert results[0]["saved"] is True
+    assert results[0]["error"] == "test build failure"
+
+
 def test_editor_index_uses_static_assets_without_inline_script(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
 

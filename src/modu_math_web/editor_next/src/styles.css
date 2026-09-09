@@ -1744,6 +1744,14 @@ input {
 .reviewing-answers .konva-side-panel { display: none; }
 .editor-body.reviewing-answers { grid-template-columns: 300px minmax(0, 1fr); }
 .review-tabs { display: flex; gap: 6px; }
+.placement-sync-panel { margin: 12px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 12px; overflow-wrap: anywhere; }
+.placement-sync-panel summary { cursor: pointer; font-weight: 700; }
+.placement-sync-panel p { line-height: 1.5; margin: 8px 0; }
+.placement-sync-panel fieldset { min-width: 0; margin: 8px 0; border: 1px solid #d7dde7; border-radius: 6px; }
+.placement-sync-panel label { display: flex; align-items: center; gap: 6px; margin: 6px 0; }
+.placement-sync-panel button { width: 100%; padding: 8px; font-size: 12px; border: 0; border-radius: 6px; background: #4f46e5; color: white; cursor: pointer; }
+.placement-sync-panel button:disabled { opacity: .45; cursor: default; }
+.placement-sync-result { margin-top: 10px; padding-top: 8px; border-top: 1px solid #d7dde7; }
 .review-tabs button { flex: 1; }
 .answer-review-panel .review-mode-tabs button {
   display: flex;

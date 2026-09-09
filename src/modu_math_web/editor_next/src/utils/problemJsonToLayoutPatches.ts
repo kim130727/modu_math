@@ -276,7 +276,7 @@ function mathTextFields(object: MathTextObject, includeBoxSize: boolean): Record
     fields.max_width = null;
   }
 
-  if (typeof object.props.semantic_role === "string" && object.props.semantic_role) {
+  if (typeof object.props.semantic_role === "string") {
     fields.semantic_role = object.props.semantic_role;
   }
   appendAnswerSlotFields(fields, object.props);

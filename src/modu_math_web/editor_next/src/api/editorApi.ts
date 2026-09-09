@@ -263,6 +263,23 @@ export function saveAnswerReview(problemId: string, review: import("../konva_edi
   });
 }
 
+export interface PlacementSyncResult {
+  language: string;
+  problem_id: string;
+  status: "success" | "partial" | "skipped" | "error";
+  applied: number;
+  missing: string[];
+  saved: boolean;
+  error?: string;
+}
+
+export function syncTextPlacements(problemId: string, languages: string[], placements: { id: string; role: string }[]): Promise<{ results: PlacementSyncResult[] }> {
+  return requestJson(encodedProblemPath(problemId, "/placement-sync/"), {
+    method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({ languages, placements }),
+  });
+}
+
 export function tutorPreviewStatus(): Promise<TutorPreviewStatusResponse> {
   return requestJson<TutorPreviewStatusResponse>("/api/editor/tutor-preview/status/");
 }
