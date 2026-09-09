@@ -111,6 +111,15 @@ export interface TutorFlowSaveResponse {
   problem_id: string;
   tutor_flow: TutorRendererStep[];
   dsl: string;
+  built: boolean;
+  artifacts: {
+    semantic?: Record<string, unknown> | null;
+    solvable?: Record<string, unknown> | null;
+    layout?: LayoutDocument | null;
+    renderer?: RendererDocument | null;
+  };
+  stdout?: string;
+  stderr?: string;
 }
 
 export interface BuildProblemResponse {
@@ -241,12 +250,16 @@ export async function applyLayoutPatches(
 export async function saveTutorFlow(
   problemId: string,
   tutorFlow: TutorRendererStep[],
-  options: { format?: boolean } = {},
+  options: { format?: boolean; build?: boolean } = {},
 ): Promise<TutorFlowSaveResponse> {
   return requestJson<TutorFlowSaveResponse>(encodedProblemPath(problemId, "/tutor-flow/"), {
     method: "POST",
     headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify({ tutor_flow: tutorFlow, format: options.format ?? false }),
+    body: JSON.stringify({
+      tutor_flow: tutorFlow,
+      format: options.format ?? false,
+      build: options.build ?? true,
+    }),
   });
 }
 

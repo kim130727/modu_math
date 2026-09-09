@@ -20,7 +20,20 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "ជ្រើសកន្សោមគុណដែលផ្នែកដាក់ពណ៌តំណាង។"
+    "instruction": "보기에서 알맞은 식을 고른다.",
+    "presentation_sources": {
+      "question": [
+        "slot.q1"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.1",
+        "slot.choice.2",
+        "slot.choice.3",
+        "slot.choice.4"
+      ]
+    },
+    "presentation_prompt": "ជ្រើសកន្សោមគុណដែលផ្នែកដាក់ពណ៌តំណាង។"
   },
   "domain": {
     "objects": [
@@ -61,22 +74,26 @@
       {
         "id": "choice.1",
         "label": "(1)",
-        "text": "(1) 6 × 4"
+        "text": "(1) 6 × 4",
+        "slot_id": "slot.choice.1"
       },
       {
         "id": "choice.2",
         "label": "(2)",
-        "text": "(2) 69 × 4"
+        "text": "(2) 69 × 4",
+        "slot_id": "slot.choice.2"
       },
       {
         "id": "choice.3",
         "label": "(3)",
-        "text": "(3) 60 × 4"
+        "text": "(3) 60 × 4",
+        "slot_id": "slot.choice.3"
       },
       {
         "id": "choice.4",
         "label": "(4)",
-        "text": "(4) 600 × 4"
+        "text": "(4) 600 × 4",
+        "slot_id": "slot.choice.4"
       }
     ],
     "answer_key": [
@@ -87,7 +104,7 @@
     ],
     "target": {
       "type": "choice_value",
-      "description": "លេខជម្រើសត្រូវនឹងផ្នែកផាត់ពណ៌ 240"
+      "description": "색칠한 부분 240에 해당하는 보기 번호"
     },
     "value": "(3) 60 × 4",
     "unit": ""

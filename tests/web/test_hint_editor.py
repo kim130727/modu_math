@@ -13,8 +13,27 @@ def test_hint_editor_save_build_reopen_and_delete(tmp_path):
     for expected in (flow, list(reversed(flow)), []):
         response = client.post(f'/api/editor/problems/{problem_id}/tutor-flow/', data=json.dumps({'tutor_flow': expected, 'format': False}), content_type='application/json')
         assert response.status_code == 200, response.content
-        response = client.post(f'/api/editor/problems/{problem_id}/build/', data='{}', content_type='application/json')
-        assert response.status_code == 200, response.content
-        assert response.json()['ok'], response.content
+        payload = response.json()
+        assert payload['ok'], response.content
+        assert payload['built'], response.content
+        assert payload['artifacts']['renderer'].get('tutor_flow', []) == expected
         detail = client.get(f'/api/editor/problems/{problem_id}/').json()
         assert detail['renderer'].get('tutor_flow', []) == expected
+
+
+def test_hint_editor_can_save_without_build_for_batch_workflows(tmp_path):
+    client = _setup_django(tmp_path)
+    problem_id = "hint-editor-no-build"
+    response = client.post('/api/editor/problems/create/', data=json.dumps({'problem_id': problem_id}), content_type='application/json')
+    assert response.status_code == 200, response.content
+
+    flow = [{'step_id': 'hint.1', 'phase': 'hint', 'text': '먼저 수를 살펴보세요.'}]
+    response = client.post(
+        f'/api/editor/problems/{problem_id}/tutor-flow/',
+        data=json.dumps({'tutor_flow': flow, 'build': False}),
+        content_type='application/json',
+    )
+
+    assert response.status_code == 200, response.content
+    assert response.json()['built'] is False
+    assert response.json()['artifacts'] == {}

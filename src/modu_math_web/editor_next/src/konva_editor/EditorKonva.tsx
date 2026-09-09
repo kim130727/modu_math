@@ -741,7 +741,7 @@ export function EditorKonva() {
         if (failed) savedParts.push(`번역 ${failed}개 확인 필요`);
       }
       if (draftTutorFlow) {
-        const response = await saveTutorFlow(selectedProblemId, draftTutorFlow, { format: false });
+        const response = await saveTutorFlow(selectedProblemId, draftTutorFlow, { format: false, build: false });
         setDraftTutorFlow(response.tutor_flow);
         savedParts.push("tutor flow");
       }
@@ -772,13 +772,13 @@ export function EditorKonva() {
           await applyLayoutPatches(selectedProblemId, patches, { format: false, fast: true });
           setBaseProblemJson(nextProblem);
         }
-        const response = await saveTutorFlow(selectedProblemId, tutorFlow, { format: false });
-        const build = await buildProblem(selectedProblemId);
-        if (!build.ok) throw new Error("힌트는 저장됐지만 빌드에 실패했습니다.");
+        const response = await saveTutorFlow(selectedProblemId, tutorFlow, { format: false, build: true });
+        if (!response.built) throw new Error("힌트는 저장됐지만 빌드에 실패했습니다.");
         setPreviewArtifacts((current) => ({
-          ...current,
-          renderer:
-            current.renderer ? { ...current.renderer, tutor_flow: response.tutor_flow } : current.renderer,
+          semantic: response.artifacts.semantic ?? current.semantic,
+          solvable: response.artifacts.solvable ?? current.solvable,
+          layout: response.artifacts.layout ?? current.layout,
+          renderer: response.artifacts.renderer ?? current.renderer,
         }));
         setDraftTutorFlow(response.tutor_flow);
         setActiveTutorFrameIndex(0);
@@ -844,7 +844,7 @@ export function EditorKonva() {
       if (draftTutorFlow) {
         setSaveStatus("saving");
         setMessage(`Saving tutor flow for ${selectedProblemId} before build...`);
-        await saveTutorFlow(selectedProblemId, draftTutorFlow, { format: false });
+        await saveTutorFlow(selectedProblemId, draftTutorFlow, { format: false, build: false });
         setSaveStatus("building");
       }
       const response = await buildProblem(selectedProblemId);

@@ -25,6 +25,7 @@ from modu_math.dsl import (
     TextBoxSlot,
     TextSlot,
     Triangle,
+    columnar_number_slots,
 )
 
 
@@ -33,6 +34,41 @@ def build_problem_template() -> ProblemTemplate:
         width=886,
         height=396,
         coordinate_mode="logical",
+    )
+    row_869 = columnar_number_slots(
+        id_prefix="slot.mul.869",
+        value="869",
+        right_x=295,
+        y=120,
+        column_width=34,
+    )
+    row_36 = columnar_number_slots(
+        id_prefix="slot.mul.36",
+        value="36",
+        right_x=295,
+        y=202,
+        column_width=34,
+    )
+    row_240 = columnar_number_slots(
+        id_prefix="slot.mul.240",
+        value="240",
+        right_x=295,
+        y=250,
+        column_width=34,
+    )
+    row_3200 = columnar_number_slots(
+        id_prefix="slot.mul.3200",
+        value="3200",
+        right_x=295,
+        y=288,
+        column_width=34,
+    )
+    row_3476 = columnar_number_slots(
+        id_prefix="slot.mul.3476",
+        value="3476",
+        right_x=295,
+        y=334,
+        column_width=34,
     )
     regions = (
         Region(
@@ -55,13 +91,13 @@ def build_problem_template() -> ProblemTemplate:
                 "slot.mul.hline2",
                 "slot.mul.hline3",
                 "slot.mul.hline4",
-                "slot.mul.869",
+                *(slot.id for slot in row_869),
                 "slot.mul.x",
                 "slot.mul.4",
-                "slot.mul.36",
-                "slot.mul.240",
-                "slot.mul.3200",
-                "slot.mul.3476",
+                *(slot.id for slot in row_36),
+                *(slot.id for slot in row_240),
+                *(slot.id for slot in row_3200),
+                *(slot.id for slot in row_3476),
                 "slot.mul.highlight",
             ),
         ),
@@ -184,16 +220,7 @@ def build_problem_template() -> ProblemTemplate:
             stroke="#222222",
             stroke_width=1.2,
         ),
-        TextSlot(
-            id="slot.mul.869",
-            prompt="",
-            text="8   6   9",
-            style_role="diagram",
-            x=220.0,
-            y=120.0,
-            font_size=28,
-            fill="#111111",
-        ),
+        *row_869,
         TextSlot(
             id="slot.mul.x",
             prompt="",
@@ -214,16 +241,7 @@ def build_problem_template() -> ProblemTemplate:
             font_size=28,
             fill="#111111",
         ),
-        TextSlot(
-            id="slot.mul.36",
-            prompt="",
-            text="3   6",
-            style_role="diagram",
-            x=253.0,
-            y=202.0,
-            font_size=28,
-            fill="#111111",
-        ),
+        *row_36,
         RectSlot(
             id="slot.mul.highlight",
             prompt="",
@@ -235,36 +253,9 @@ def build_problem_template() -> ProblemTemplate:
             stroke_width=1.5,
             fill="#F4C6D8",
         ),
-        TextSlot(
-            id="slot.mul.240",
-            prompt="",
-            text="2   4   0",
-            style_role="diagram",
-            x=218.0,
-            y=250.0,
-            font_size=28,
-            fill="#111111",
-        ),
-        TextSlot(
-            id="slot.mul.3200",
-            prompt="",
-            text="3   2   0   0",
-            style_role="diagram",
-            x=184.0,
-            y=288.0,
-            font_size=28,
-            fill="#111111",
-        ),
-        TextSlot(
-            id="slot.mul.3476",
-            prompt="",
-            text="3   4   7   6",
-            style_role="diagram",
-            x=184.0,
-            y=334.0,
-            font_size=28,
-            fill="#111111",
-        ),
+        *row_240,
+        *row_3200,
+        *row_3476,
         RectSlot(
             id="slot.choice.box",
             prompt="",

@@ -53,6 +53,7 @@ Allowed slot classes include:
 Allowed helpers include current exports from `modu_math.dsl`, especially when they simplify visible repeated structures:
 
 - `fraction_slots`
+- `columnar_number_slots`
 - `table_slots`
 - `ruler_slots`
 - `compass_slots`
@@ -69,6 +70,8 @@ Prefer readable helper use over hundreds of hand-written primitive slots when th
 - Use visible worksheet text exactly as shown.
 - Use Korean text directly in UTF-8.
 - Keep ordinary labels as `TextSlot`.
+- Never align vertical arithmetic by inserting repeated spaces in one `TextSlot`.
+  Use `columnar_number_slots` so every digit has a fixed place-value coordinate.
 - Use `TextBoxSlot` only when a fixed PowerPoint-like text box is needed.
 - Use `PathSlot` for arcs, curves, irregular shapes, folded paper, or shapes not represented by simpler primitives.
 - Add TODO comments for uncertain OCR or unclear image details.

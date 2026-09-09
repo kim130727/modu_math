@@ -220,6 +220,19 @@ class ContentRepository {
     return _cacheProblemLoad(normalizedSummary, cacheKey);
   }
 
+  /// Evicts one problem bundle and loads the latest generated artifacts.
+  ///
+  /// This is primarily used by the local HTTP development flow so a hint
+  /// saved and built in the web editor can be previewed without restarting
+  /// the Flutter app.
+  Future<ProblemContent> refreshProblem(ProblemSummary summary) {
+    final normalizedSummary = _ensureSummaryLocale(summary, activeProblemLocale);
+    final cacheKey = _problemCacheKey(normalizedSummary);
+    _problemCache.remove(cacheKey);
+    _completedProblemCache.remove(cacheKey);
+    return _cacheProblemLoad(normalizedSummary, cacheKey);
+  }
+
   Future<ProblemContent> _cacheProblemLoad(
     ProblemSummary summary,
     String cacheKey,
@@ -228,10 +241,14 @@ class ContentRepository {
     _problemCache[cacheKey] = future;
     try {
       final content = await future;
-      _completedProblemCache[cacheKey] = content;
+      if (identical(_problemCache[cacheKey], future)) {
+        _completedProblemCache[cacheKey] = content;
+      }
       return content;
     } on Object {
-      _problemCache.remove(cacheKey);
+      if (identical(_problemCache[cacheKey], future)) {
+        _problemCache.remove(cacheKey);
+      }
       rethrow;
     }
   }
