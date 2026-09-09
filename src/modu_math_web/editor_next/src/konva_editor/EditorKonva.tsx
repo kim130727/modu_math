@@ -1000,8 +1000,8 @@ export function EditorKonva() {
           </div>
           <div className="konva-side-content">
             {activeSidePanel === "properties" ? (
-              <>
               <PropertyPanel
+                syncPanel={<PlacementSyncPanel key={selectedProblemId} problemId={selectedProblemId} shapes={document.shapes} selectedIds={selectedShapeIds} onSave={buildCurrentProblem} />}
                 shape={selectedShape}
                 selectedShapes={selectedShapes}
                 answerOptions={answerBindingOptions}
@@ -1010,8 +1010,6 @@ export function EditorKonva() {
                 onScaleSelection={scaleSelectedShapes}
                 onTextRoleChange={setSelectedTextRole}
               />
-              <PlacementSyncPanel key={selectedProblemId} problemId={selectedProblemId} shapes={document.shapes} selectedIds={selectedShapeIds} onSave={buildCurrentProblem} />
-              </>
             ) : null}
             {activeSidePanel === "flow" ? (
               <TutorFlowPanel

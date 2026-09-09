@@ -1,4 +1,5 @@
 import type { AnswerInteractionType, AnswerKeyboard, AnswerRole, AnswerValueType, EditorShape, InputInteraction, InputStyle } from "../types/editorShape";
+import type { ReactNode } from "react";
 import { scalePathData } from "../utils/pathData";
 import { KONVA_PREVIEW_FONT_FAMILY, normalizePreviewFontFamily } from "./fonts";
 import { resolveAnswerBinding, type AnswerBindingOption } from "./answerReview";
@@ -12,17 +13,19 @@ interface PropertyPanelProps {
   onChange: (patch: Partial<EditorShape>) => void;
   onScaleSelection?: (scalePercent: number) => void;
   onTextRoleChange: (role: string) => void;
+  syncPanel?: ReactNode;
 }
 
 export type { AnswerBindingOption } from "./answerReview";
 
-export function PropertyPanel({ shape, selectedShapes = [], answerOptions = [], saveStatus, onChange, onScaleSelection, onTextRoleChange }: PropertyPanelProps) {
+export function PropertyPanel({ shape, selectedShapes = [], answerOptions = [], saveStatus, onChange, onScaleSelection, onTextRoleChange, syncPanel }: PropertyPanelProps) {
   if (!shape) {
     if (selectedShapes.length > 1) {
       return (
         <section className="konva-property-panel">
           <PropertyPanelTitle saveStatus={saveStatus} />
           <div className="konva-field-grid">
+            {syncPanel && <div className="konva-field-wide">{syncPanel}</div>}
             <ReadOnlyField label="선택한 요소" value={`${selectedShapes.length}개`} />
             <NumberField label="크기 (%)" value={100} onChange={(scale) => onScaleSelection?.(scale)} />
             <TextPlacementFields shapes={selectedShapes} onChange={onTextRoleChange} />
@@ -33,7 +36,10 @@ export function PropertyPanel({ shape, selectedShapes = [], answerOptions = [], 
     return (
       <section className="konva-property-panel">
         <PropertyPanelTitle saveStatus={saveStatus} />
-        <div className="konva-empty-state">편집할 글자나 도형을 클릭하세요. 글자를 두 번 클릭하면 바로 수정할 수 있습니다. Shift를 누른 채 클릭하면 여러 요소를 함께 선택합니다.</div>
+        <div className="konva-field-grid">
+          {syncPanel && <div className="konva-field-wide">{syncPanel}</div>}
+          <div className="konva-empty-state konva-field-wide">편집할 글자나 도형을 클릭하세요. 글자를 두 번 클릭하면 바로 수정할 수 있습니다. Shift를 누른 채 클릭하면 여러 요소를 함께 선택합니다.</div>
+        </div>
       </section>
     );
   }
@@ -42,6 +48,7 @@ export function PropertyPanel({ shape, selectedShapes = [], answerOptions = [], 
     <section className="konva-property-panel">
       <PropertyPanelTitle saveStatus={saveStatus} />
       <div className="konva-field-grid">
+        {syncPanel && <div className="konva-field-wide">{syncPanel}</div>}
         {isAnswerSlotShape(shape) ? (
           <section className="konva-answer-settings konva-field-wide" aria-label="정답 입력칸 설정">
             <h3>정답 입력칸 (Answer slot)</h3>

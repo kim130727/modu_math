@@ -63,59 +63,54 @@
     "blanks": [],
     "choices": [
       {
-        "text": "①",
-        "slot_id": "slot.choice.1.marker",
-        "id": "slot.choice.1.marker"
-      },
-      {
         "id": "choice.1",
         "label": "①",
         "text": "21",
-        "slot_id": "slot.choice.1.value"
-      },
-      {
-        "text": "②",
-        "slot_id": "slot.choice.2.marker",
-        "id": "slot.choice.2.marker"
+        "slot_id": "slot.choice.1.value",
+        "source_refs": [
+          "slot.choice.1.marker",
+          "slot.choice.1.value"
+        ]
       },
       {
         "id": "choice.2",
         "label": "②",
         "text": "22",
-        "slot_id": "slot.choice.2.value"
-      },
-      {
-        "text": "③",
-        "slot_id": "slot.choice.3.marker",
-        "id": "slot.choice.3.marker"
+        "slot_id": "slot.choice.2.value",
+        "source_refs": [
+          "slot.choice.2.marker",
+          "slot.choice.2.value"
+        ]
       },
       {
         "id": "choice.3",
         "label": "③",
         "text": "23",
-        "slot_id": "slot.choice.3.value"
-      },
-      {
-        "text": "④",
-        "slot_id": "slot.choice.4.marker",
-        "id": "slot.choice.4.marker"
+        "slot_id": "slot.choice.3.value",
+        "source_refs": [
+          "slot.choice.3.marker",
+          "slot.choice.3.value"
+        ]
       },
       {
         "id": "choice.4",
         "label": "④",
         "text": "24",
-        "slot_id": "slot.choice.4.value"
-      },
-      {
-        "text": "⑤",
-        "slot_id": "slot.choice.5.marker",
-        "id": "slot.choice.5.marker"
+        "slot_id": "slot.choice.4.value",
+        "source_refs": [
+          "slot.choice.4.marker",
+          "slot.choice.4.value"
+        ]
       },
       {
         "id": "choice.5",
         "label": "⑤",
         "text": "25",
-        "slot_id": "slot.choice.5.value"
+        "slot_id": "slot.choice.5.value",
+        "source_refs": [
+          "slot.choice.5.marker",
+          "slot.choice.5.value"
+        ]
       }
     ],
     "answer_key": [

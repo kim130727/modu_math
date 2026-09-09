@@ -1746,6 +1746,8 @@ input {
 .review-tabs { display: flex; gap: 6px; }
 .placement-sync-panel { margin: 12px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 12px; overflow-wrap: anywhere; }
 .placement-sync-panel summary { cursor: pointer; font-weight: 700; }
+.konva-field-grid .placement-sync-panel { margin: 0; border-color: #a5b4fc; background: #eef2ff; }
+.konva-field-grid .placement-sync-panel > details > summary { color: #3730a3; }
 .placement-sync-panel p { line-height: 1.5; margin: 8px 0; }
 .placement-sync-panel fieldset { min-width: 0; margin: 8px 0; border: 1px solid #d7dde7; border-radius: 6px; }
 .placement-sync-panel label { display: flex; align-items: center; gap: 6px; margin: 6px 0; }
