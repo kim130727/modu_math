@@ -1,11 +1,11 @@
 {
   "problem_id": "S3_elem_3_008732",
-  "problem_type": "分数分类判断",
+  "problem_type": "분수_분류_판단",
   "metadata": {
     "title": "沿梯子向下，到达位置正确画○，错误画×。",
     "tags": [],
-    "instruction": "沿梯子向下，到达位置正确画○，错误画×。",
-    "question": "沿梯子向下，到达位置正确画○，错误画×。",
+    "instruction": "분수와 분류명의 대응을 보고 판단한다.",
+    "question": "沿梯子向下，到达位置正确画○，错误画×。\n假分数\n假分数\n真分数\n(○, ×)\n(○, ×)\n(○, ×)\n2\n8\n9\n10\n4\n4",
     "required_layout_ids": [
       "slot.q9",
       "slot.q10",
@@ -24,7 +24,27 @@
       "slot.math.fraction_2.bar"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko"
+    "language": "ko",
+    "presentation_sources": {
+      "question": [
+        "slot.q2",
+        "slot.q27",
+        "slot.q28",
+        "slot.q29",
+        "slot.q30",
+        "slot.q31",
+        "slot.q32",
+        "slot.math.fraction.num",
+        "slot.math.fraction.den",
+        "slot.math.fraction_1.num",
+        "slot.math.fraction_1.den",
+        "slot.math.fraction_2.num",
+        "slot.math.fraction_2.den"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "沿梯子向下，到达位置正确画○，错误画×。\n假分数\n假分数\n真分数\n(○, ×)\n(○, ×)\n(○, ×)\n2\n8\n9\n10\n4\n4"
   },
   "domain": {
     "objects": [
@@ -49,17 +69,17 @@
       {
         "id": "obj.label1",
         "type": "classification",
-        "name": "假分数"
+        "name": "가분수"
       },
       {
         "id": "obj.label2",
         "type": "classification",
-        "name": "假分数"
+        "name": "가분수"
       },
       {
         "id": "obj.label3",
         "type": "classification",
-        "name": "真分数"
+        "name": "진분수"
       }
     ],
     "relations": [],
@@ -83,7 +103,7 @@
       },
       "plan": {
         "method": "classification_check",
-        "description": "确认分数与到达的分类名称是否与画面对应。"
+        "description": "분수와 도착한 분류명이 화면에 제시된 대응과 일치하는지 확인한다."
       },
       "execute": {
         "expected_operations": [
@@ -103,8 +123,8 @@
     "choices": [],
     "answer_key": [],
     "target": {
-      "type": "○×符号",
-      "description": "走梯子到达的位置判断为真还是假的标记"
+      "type": "○×표시",
+      "description": "사다리를 타고 내려가 도착한 곳이 참인지 거짓인지의 표시"
     },
     "value": "○, ×, ○",
     "unit": ""

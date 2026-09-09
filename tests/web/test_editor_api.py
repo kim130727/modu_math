@@ -1729,6 +1729,52 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     }
 
 
+def test_avatar_replacement_survives_save_and_repeated_build(tmp_path: Path) -> None:
+    from modu_math.dsl.characters import person_slots
+
+    client = _setup_django(tmp_path)
+    problem_dir = _write_problem(tmp_path, "0001", '''
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot
+from modu_math.dsl.characters import person_slots
+
+person = person_slots("slot.person.right", cx=150, head_cy=70,
+                      hair="#C77A22", shirt="#ffcc00", bow="#D487D8", pigtails=True)
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="p_avatar_replace", title="avatar replacement", canvas=Canvas(width=300, height=220),
+    regions=(Region(id="region.diagram", role="diagram", flow="absolute",
+                    slot_ids=(*(slot.id for slot in person), "slot.name")),),
+    slots=(*person, TextSlot(id="slot.name", text="Name", x=150, y=190)),
+)
+'''.lstrip())
+    assert client.post("/api/editor/problems/0001/build/").status_code == 200
+    old_ids = {slot.id for slot in person_slots(
+        "slot.person.right", cx=150, head_cy=70,
+        hair="#C77A22", shirt="#ffcc00", bow="#D487D8", pigtails=True,
+    )}
+    avatar_id = "konva_100_avatar_200"
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps({"fast": True, "patches": [
+            {"target": avatar_id, "op": "add", "value": {
+                "kind": "image", "region_id": "region.diagram", "content": {
+                    "href": "data:image/svg+xml;base64,PHN2Zy8+",
+                    "x": 100, "y": 40, "width": 100, "height": 110,
+                },
+            }},
+            *({"target": slot_id, "op": "delete"} for slot_id in sorted(old_ids)),
+        ]}), content_type="application/json",
+    )
+    assert response.status_code == 200
+    for _ in range(2):
+        response = client.post("/api/editor/problems/0001/build/")
+        assert response.status_code == 200
+        assert response.json()["ok"] is True
+        layout = json.loads((problem_dir / "problem.layout.json").read_text(encoding="utf-8"))
+        slot_ids = {slot["id"] for slot in layout["slots"]}
+        assert not (old_ids & slot_ids)
+        assert {avatar_id, "slot.name"} <= slot_ids
+
+
 def test_layout_patch_adds_table_slots_and_imports(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """

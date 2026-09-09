@@ -4,13 +4,28 @@
   "metadata": {
     "title": "計算結果を大きい順に並べたものを選びなさい",
     "tags": [],
-    "instruction": "計算結果を大きい順に並べたものを選びなさい",
-    "question": "計算結果を大きい順に並べたものを選びなさい",
+    "instruction": "보기에서 계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
+    "question": "計算結果を大きい順に並べたものを選びなさい。\nア. 397 × 6\nイ. 549 × 4\nウ. 456 × 5\n① ア イ ウ\n② ア ウ イ\n③ イ ウ ア\n④ ウ イ ア",
     "required_layout_ids": [
       "slot.box"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko"
+    "language": "ko",
+    "presentation_sources": {
+      "question": [
+        "slot.q1",
+        "slot.expr1",
+        "slot.expr2",
+        "slot.expr3",
+        "slot.opt1",
+        "slot.opt2",
+        "slot.opt3",
+        "slot.opt4"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "計算結果を大きい順に並べたものを選びなさい。\nア. 397 × 6\nイ. 549 × 4\nウ. 456 × 5\n① ア イ ウ\n② ア ウ イ\n③ イ ウ ア\n④ ウ イ ア"
   },
   "domain": {
     "objects": [
@@ -59,7 +74,7 @@
     "answer_key": [],
     "target": {
       "type": "choice_number",
-      "description": "計算結果が大きい順に並べた選択肢番号"
+      "description": "계산 결과가 큰 것부터 차례대로 나열한 보기 번호"
     },
     "value": 2,
     "unit": ""

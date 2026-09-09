@@ -1,16 +1,27 @@
 {
   "problem_id": "S3_elem_3_008751",
-  "problem_type": "判断型",
+  "problem_type": "판단형",
   "metadata": {
     "title": "比较水瓶和牛奶瓶",
     "tags": [],
     "instruction": "判断这种比较方法是否正确。",
-    "question": "我们要比较水瓶和牛奶瓶的高度。如果比较两只瓶子高度的方法正确，请选○；否则，请选×。",
+    "question": "我们要比较水瓶和牛奶瓶的高度。如果比较两只瓶子高度的方法正确，请选○；否则，请选×。\n把水瓶装满水，再把水倒入牛奶瓶中就可以了。\n水瓶\n牛奶瓶",
     "required_layout_ids": [
       "slot.inserted.image.1"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko"
+    "language": "ko",
+    "presentation_sources": {
+      "question": [
+        "slot.question",
+        "slot.speech",
+        "slot.label.water",
+        "slot.label.milk"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "我们要比较水瓶和牛奶瓶的高度。如果比较两只瓶子高度的方法正确，请选○；否则，请选×。\n把水瓶装满水，再把水倒入牛奶瓶中就可以了。\n水瓶\n牛奶瓶"
   },
   "domain": {
     "objects": [
@@ -47,7 +58,7 @@
       },
       "plan": {
         "method": "判断",
-        "description": "确认提出的方法是否适用于比较瓶子的高度。"
+        "description": "제시된 방법이 병의 높이를 비교하는 데 적절한지 확인한다."
       },
       "execute": {
         "expected_operations": [
@@ -74,7 +85,7 @@
     ],
     "target": {
       "type": "symbol_judgment",
-      "description": "判断提出的方法作为高度比较方法是否正确"
+      "description": "제시된 방법이 높이 비교 방법으로 바른지 판단하기"
     },
     "value": "X",
     "unit": ""

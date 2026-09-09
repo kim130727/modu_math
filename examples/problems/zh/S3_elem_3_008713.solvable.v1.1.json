@@ -4,7 +4,7 @@
   "problem_type": "sequence_ordering",
   "inputs": {
     "total_ticks": 3,
-    "target_label": "正确选项",
+    "target_label": "정답 선택지",
     "target_ticks": 1,
     "target_count": 1,
     "unit": ""
@@ -42,7 +42,7 @@
   "checks": [
     {
       "id": "check.1",
-      "expr": "选项② = 乙, 丙, 甲",
+      "expr": "선택지 ② = 乙, 丙, 甲",
       "expected": 2,
       "actual": 2,
       "pass": true
@@ -50,11 +50,52 @@
   ],
   "answer": {
     "blanks": [],
-    "choices": [],
+    "choices": [
+      {
+        "text": "甲",
+        "slot_id": "slot.option.1",
+        "id": "slot.option.1"
+      },
+      {
+        "text": "② 乙, 丙, 甲",
+        "slot_id": "slot.option.2",
+        "id": "slot.option.2"
+      },
+      {
+        "text": "③ 丙, 甲, 乙",
+        "slot_id": "slot.option.3",
+        "id": "slot.option.3"
+      },
+      {
+        "text": "④ 甲, 丙, 乙",
+        "slot_id": "slot.option.4",
+        "id": "slot.option.4"
+      },
+      {
+        "text": "⑤ 乙, 甲, 丙",
+        "slot_id": "slot.option.5",
+        "id": "slot.option.5"
+      },
+      {
+        "text": "① 甲, 乙, 丙",
+        "slot_id": "slot.option.1.copy1",
+        "id": "slot.option.1.copy1"
+      },
+      {
+        "text": "乙",
+        "slot_id": "slot.option.1.copy2",
+        "id": "slot.option.1.copy2"
+      },
+      {
+        "text": "丙",
+        "slot_id": "slot.option.1.copy3",
+        "id": "slot.option.1.copy3"
+      }
+    ],
     "answer_key": [],
     "target": {
       "type": "choice_number",
-      "description": "画圆顺序的正解选项"
+      "description": "원 그리기 순서의 정답 선택지"
     },
     "value": 2,
     "unit": ""

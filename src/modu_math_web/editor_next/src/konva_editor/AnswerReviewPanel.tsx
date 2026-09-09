@@ -137,9 +137,9 @@ export function AnswerReviewPanel({
 
   return (
     <aside className="answer-review-panel" aria-label="정답 검수">
-      <div className="review-tabs">
+      <div className="review-tabs review-mode-tabs">
         <button type="button" aria-pressed={!editing} onClick={() => setEditing(false)}>
-          풀어보기 및 빠른 정답 지정
+          <span>풀어보기 및 빠른</span>{" "}<span>정답 지정</span>
         </button>
         <button type="button" aria-pressed={editing} onClick={() => setEditing(true)}>
           상세 설정

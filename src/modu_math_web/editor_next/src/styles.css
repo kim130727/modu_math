@@ -1745,6 +1745,21 @@ input {
 .editor-body.reviewing-answers { grid-template-columns: 300px minmax(0, 1fr); }
 .review-tabs { display: flex; gap: 6px; }
 .review-tabs button { flex: 1; }
+.answer-review-panel .review-mode-tabs button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: auto;
+  min-height: 44px;
+  padding: 6px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
 .answer-review-panel label { display: block; font-size: 13px; }
 .answer-review-panel input:not([type=checkbox]):not([type=radio]), .answer-review-panel select, .answer-review-panel textarea { box-sizing: border-box; width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; margin: 4px 0; font: inherit; }
 .answer-review-panel textarea { min-height: 64px; resize: vertical; }

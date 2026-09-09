@@ -1,10 +1,10 @@
 {
   "schema": "modu.solvable.v1.1",
   "problem_id": "S3_elem_3_008732",
-  "problem_type": "分数分类判断",
+  "problem_type": "분수_분류_판단",
   "inputs": {
     "total_ticks": 3,
-    "target_label": "○×符号",
+    "target_label": "○×표시",
     "target_ticks": 3,
     "target_count": 3,
     "unit": ""
@@ -34,25 +34,25 @@
     {
       "ref": "obj.label1",
       "value": {
-        "name": "假分数"
+        "name": "가분수"
       }
     },
     {
       "ref": "obj.label2",
       "value": {
-        "name": "假分数"
+        "name": "가분수"
       }
     },
     {
       "ref": "obj.label3",
       "value": {
-        "name": "真分数"
+        "name": "진분수"
       }
     }
   ],
   "target": {
     "ref": "answer.target",
-    "type": "○×符号"
+    "type": "○×표시"
   },
   "method": "classification_check",
   "plan": [
@@ -62,29 +62,29 @@
   "steps": [
     {
       "id": "step.1",
-      "expr": "2/8 → 假分数",
-      "value": "假分数"
+      "expr": "2/8 → 가분수",
+      "value": "가분수"
     },
     {
       "id": "step.2",
-      "expr": "9/10 → 假分数",
-      "value": "假分数"
+      "expr": "9/10 → 가분수",
+      "value": "가분수"
     },
     {
       "id": "step.3",
-      "expr": "4/4 → 真分数",
-      "value": "真分数"
+      "expr": "4/4 → 진분수",
+      "value": "진분수"
     },
     {
       "id": "step.4",
-      "expr": "确认画面显示的答案标记",
+      "expr": "화면에 보이는 정답 표기 확인",
       "value": "○, ×, ○"
     }
   ],
   "checks": [
     {
       "id": "check.1",
-      "expr": "确认显示的答案符号与解析是否一致",
+      "expr": "보이는 정답 표기와 해설 문자열의 일치 여부",
       "expected": "○, ×, ○",
       "actual": "○, ×, ○",
       "pass": true
@@ -95,8 +95,8 @@
     "choices": [],
     "answer_key": [],
     "target": {
-      "type": "○×符号",
-      "description": "走梯子到达的位置判断为真还是假的标记"
+      "type": "○×표시",
+      "description": "사다리를 타고 내려가 도착한 곳이 참인지 거짓인지의 표시"
     },
     "value": "○, ×, ○",
     "unit": ""

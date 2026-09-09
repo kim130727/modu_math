@@ -5,7 +5,7 @@
     "title": "选择正确描述图画的人",
     "tags": [],
     "instruction": "그림의 색칠한 부분과 색칠하지 않은 부분을 분수로 바르게 말한 사람을 고른다.",
-    "question": "그림을 보고 바르게 말한 사람을 선택해 보세요.",
+    "question": "看图并选择说法正确的人。\n真京\n贤真",
     "required_layout_ids": [
       "slot.speech.left",
       "slot.speech.right",
@@ -30,7 +30,17 @@
       "slot.inserted.image.1"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko"
+    "language": "ko",
+    "presentation_sources": {
+      "question": [
+        "slot.header.text",
+        "slot.header.text.copy1",
+        "slot.header.text.copy1.copy2"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "看图并选择说法正确的人。\n真京\n贤真"
   },
   "domain": {
     "objects": [

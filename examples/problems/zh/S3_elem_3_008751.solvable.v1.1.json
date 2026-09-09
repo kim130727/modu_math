@@ -1,10 +1,10 @@
 {
   "schema": "modu.solvable.v1.1",
   "problem_id": "S3_elem_3_008751",
-  "problem_type": "判断型",
+  "problem_type": "판단형",
   "inputs": {
     "total_ticks": 0,
-    "target_label": "○ 或 ×",
+    "target_label": "○ 또는 ×",
     "target_ticks": 0,
     "target_count": 1,
     "unit": ""
@@ -13,19 +13,19 @@
     {
       "ref": "obj.bottle_water",
       "value": {
-        "name": "水瓶"
+        "name": "물병"
       }
     },
     {
       "ref": "obj.bottle_milk",
       "value": {
-        "name": "牛奶瓶"
+        "name": "우유병"
       }
     },
     {
       "ref": "obj.speech",
       "value": {
-        "content": "把水瓶装满水后倒入牛奶瓶里看就行。"
+        "content": "물병에 물을 가득 채운 후 우유병에 옮겨 담아 보면 돼."
       }
     }
   ],
@@ -41,20 +41,20 @@
   "steps": [
     {
       "id": "step.1",
-      "expr": "确认提出的方法",
-      "value": "把水瓶装满水后倒入牛奶瓶里看就行。"
+      "expr": "제시된 방법 확인",
+      "value": "물병에 물을 가득 채운 후 우유병에 옮겨 담아 보면 돼."
     },
     {
       "id": "step.2",
-      "expr": "判断是否为比较高度的方法",
+      "expr": "높이 비교 방법 여부 판단",
       "value": "TODO"
     }
   ],
   "checks": [
     {
       "id": "check.1",
-      "expr": "确认答案符号是否为○或×",
-      "expected": "○ 或 ×",
+      "expr": "답안 기호가 ○ 또는 ×인지 확인",
+      "expected": "○ 또는 ×",
       "actual": "TODO",
       "pass": true
     }
@@ -70,7 +70,7 @@
     ],
     "target": {
       "type": "symbol_judgment",
-      "description": "判断提出的方法作为高度比较方法是否正确"
+      "description": "제시된 방법이 높이 비교 방법으로 바른지 판단하기"
     },
     "value": "X",
     "unit": ""

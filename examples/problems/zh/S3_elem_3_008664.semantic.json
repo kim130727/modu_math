@@ -22,7 +22,15 @@
     "extraction_confidence": 1.0,
     "language": "ko",
     "instruction": "请选择孔的标号。",
-    "points": 5
+    "points": 5,
+    "presentation_sources": {
+      "question": [
+        "slot.question"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "用图钉和纸条画一个圆。要画出最大的圆，请选择应该插入铅笔的孔的标号。"
   },
   "domain": {
     "objects": [
@@ -62,7 +70,7 @@
       },
       "plan": {
         "method": "compare_hole_distances",
-        "description": "选择铅笔芯与中心点距离最大的孔。"
+        "description": "연필심과 중심점 사이의 거리가 가장 큰 구멍을 고른다."
       },
       "execute": {
         "expected_operations": [
@@ -91,7 +99,7 @@
     ],
     "target": {
       "type": "choice_label",
-      "description": "能画出最大圆的孔代号"
+      "description": "원을 가장 크게 그릴 수 있는 구멍의 기호"
     },
     "value": "戊",
     "unit": ""

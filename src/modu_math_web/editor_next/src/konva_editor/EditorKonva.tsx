@@ -24,6 +24,7 @@ import { KonvaStage, type CanvasPoint } from "./KonvaStage";
 import { KonvaToolbar, type ShapePreset } from "./KonvaToolbar";
 import { KidAvatarMakerModal } from "./avatar/KidAvatarMakerModal";
 import type { AvatarConfig } from "./avatar/avatarParts";
+import { avatarTargets, replaceAvatarShapes } from "./avatar/avatarReplacement";
 import { PropertyPanel } from "./PropertyPanel";
 import { answerChoicesFromArtifacts, inferAnswerPresentationMode, reviewSettings, type AnswerReviewSettings, type AnswerBindingOption } from "./answerReview";
 import { AnswerReviewPanel } from "./AnswerReviewPanel";
@@ -53,6 +54,8 @@ export function EditorKonva() {
   const [problemListVersion, setProblemListVersion] = useState(0);
   const [activeSidePanel, setActiveSidePanel] = useState<SidePanelTab>("properties");
   const [isAvatarModalOpen, setAvatarModalOpen] = useState(false);
+  const [avatarTargetId, setAvatarTargetId] = useState("");
+  const avatarReplacementTargets = useMemo(() => avatarTargets(document.shapes), [document.shapes]);
   const [activeTutorStepId, setActiveTutorStepId] = useState<string | null>(null);
   const [activeTutorFrameIndex, setActiveTutorFrameIndex] = useState(0);
   const [activeTutorOverlayIndex, setActiveTutorOverlayIndex] = useState<number | null>(null);
@@ -385,9 +388,10 @@ export function EditorKonva() {
 
   const handleInsertAvatar = useCallback(
     (avatarConfig: AvatarConfig, svgDataUrl: string) => {
-      const targetWidth = 140;
-      const targetHeight = 150;
-      const box = fitInsertBox(targetWidth, targetHeight, 24, 24);
+      const target = avatarReplacementTargets.find((item) => item.id === avatarTargetId);
+      const box = target ? selectionBounds(target.shapes) : fitInsertBox(140, 150, 24, 24);
+      const targetWidth = box.width;
+      const targetHeight = box.height;
       const avatarId = nextId("avatar");
 
       const newShapes: EditorShape[] = [
@@ -400,6 +404,7 @@ export function EditorKonva() {
           width: targetWidth,
           height: targetHeight,
           preserveAspectRatio: "xMidYMid meet",
+          sourceRegionId: target?.shapes[0].sourceRegionId,
         },
       ];
 
@@ -455,12 +460,12 @@ export function EditorKonva() {
 
       setDocument((prev) => ({
         ...prev,
-        shapes: [...prev.shapes, ...newShapes],
+        shapes: replaceAvatarShapes(prev.shapes, target, newShapes),
       }));
       setSelectedShapeIds([avatarId]);
-      setMessage(`어린이 캐릭터(${avatarConfig.gender === "boy" ? "남아" : "여아"})를 캔버스에 삽입했습니다.`);
+      setMessage(target ? "기존 캐릭터를 새 캐릭터로 교체했습니다. 저장 후 미리보기에도 반영됩니다." : `어린이 캐릭터(${avatarConfig.gender === "boy" ? "남아" : "여아"})를 캔버스에 삽입했습니다.`);
     },
-    [fitInsertBox, nextId],
+    [fitInsertBox, nextId, avatarReplacementTargets, avatarTargetId],
   );
 
   const addTable = useCallback(() => {
@@ -886,7 +891,11 @@ export function EditorKonva() {
         answerReviewMode={answerReviewMode}
         onAnswerReviewModeChange={setAnswerReviewMode}
         onInsertShape={insertShape}
-        onOpenAvatarMaker={() => setAvatarModalOpen(true)}
+        onOpenAvatarMaker={() => {
+          const selectedTargets = avatarReplacementTargets.filter((target) => target.shapes.some((shape) => selectedShapeIds.includes(shape.id)));
+          setAvatarTargetId(selectedTargets.length === 1 ? selectedTargets[0].id : "");
+          setAvatarModalOpen(true);
+        }}
         onAddMath={addMath}
         onAddProperFraction={addProperFraction}
         onAddMixedFraction={addMixedFraction}
@@ -910,6 +919,9 @@ export function EditorKonva() {
         isOpen={isAvatarModalOpen}
         onClose={() => setAvatarModalOpen(false)}
         onInsertAvatar={handleInsertAvatar}
+        replacementTargets={avatarReplacementTargets}
+        replacementTargetId={avatarTargetId}
+        onReplacementTargetChange={setAvatarTargetId}
       />
       <input
         ref={imageFileInputRef}

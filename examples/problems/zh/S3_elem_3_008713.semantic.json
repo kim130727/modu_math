@@ -4,7 +4,7 @@
   "metadata": {
     "title": "画半径为1厘米的圆的步骤",
     "tags": [],
-    "question": "画半径为1厘米的圆的步骤",
+    "question": "选择画半径为1厘米的圆的正确顺序。",
     "required_layout_ids": [
       "slot.box",
       "slot.circle.main",
@@ -60,8 +60,25 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "画半径为1厘米的圆的步骤",
-    "points": 0
+    "instruction": "그림의 순서를 바르게 고르기",
+    "points": 0,
+    "presentation_sources": {
+      "question": [
+        "slot.stem"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.option.1",
+        "slot.option.2",
+        "slot.option.3",
+        "slot.option.4",
+        "slot.option.5",
+        "slot.option.1.copy1",
+        "slot.option.1.copy2",
+        "slot.option.1.copy3"
+      ]
+    },
+    "presentation_prompt": "选择画半径为1厘米的圆的正确顺序。"
   },
   "domain": {
     "objects": [
@@ -97,7 +114,7 @@
       },
       "plan": {
         "method": "sequence_matching",
-        "description": "看图和解析找出正确的顺序。"
+        "description": "그림과 해설을 보고 올바른 순서를 찾는다."
       },
       "execute": {
         "expected_operations": [
@@ -116,11 +133,52 @@
   },
   "answer": {
     "blanks": [],
-    "choices": [],
+    "choices": [
+      {
+        "text": "甲",
+        "slot_id": "slot.option.1",
+        "id": "slot.option.1"
+      },
+      {
+        "text": "② 乙, 丙, 甲",
+        "slot_id": "slot.option.2",
+        "id": "slot.option.2"
+      },
+      {
+        "text": "③ 丙, 甲, 乙",
+        "slot_id": "slot.option.3",
+        "id": "slot.option.3"
+      },
+      {
+        "text": "④ 甲, 丙, 乙",
+        "slot_id": "slot.option.4",
+        "id": "slot.option.4"
+      },
+      {
+        "text": "⑤ 乙, 甲, 丙",
+        "slot_id": "slot.option.5",
+        "id": "slot.option.5"
+      },
+      {
+        "text": "① 甲, 乙, 丙",
+        "slot_id": "slot.option.1.copy1",
+        "id": "slot.option.1.copy1"
+      },
+      {
+        "text": "乙",
+        "slot_id": "slot.option.1.copy2",
+        "id": "slot.option.1.copy2"
+      },
+      {
+        "text": "丙",
+        "slot_id": "slot.option.1.copy3",
+        "id": "slot.option.1.copy3"
+      }
+    ],
     "answer_key": [],
     "target": {
       "type": "choice_number",
-      "description": "画圆顺序的正解选项"
+      "description": "원 그리기 순서의 정답 선택지"
     },
     "value": 2,
     "unit": ""

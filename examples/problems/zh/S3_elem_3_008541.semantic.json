@@ -4,13 +4,28 @@
   "metadata": {
     "title": "选择计算结果从大到小排列的选项",
     "tags": [],
-    "instruction": "选择计算结果从大到小排列的选项",
-    "question": "选择计算结果从大到小排列的选项",
+    "instruction": "보기에서 계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
+    "question": "选择计算结果从大到小排列的选项。\n甲. 397 × 6\n乙. 549 × 4\n丙. 456 × 5\n① 甲 乙 丙\n② 甲 丙 乙\n③ 乙 丙 甲\n④ 丙 乙 甲",
     "required_layout_ids": [
       "slot.box"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko"
+    "language": "ko",
+    "presentation_sources": {
+      "question": [
+        "slot.q1",
+        "slot.expr1",
+        "slot.expr2",
+        "slot.expr3",
+        "slot.opt1",
+        "slot.opt2",
+        "slot.opt3",
+        "slot.opt4"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "选择计算结果从大到小排列的选项。\n甲. 397 × 6\n乙. 549 × 4\n丙. 456 × 5\n① 甲 乙 丙\n② 甲 丙 乙\n③ 乙 丙 甲\n④ 丙 乙 甲"
   },
   "domain": {
     "objects": [
@@ -59,7 +74,7 @@
     "answer_key": [],
     "target": {
       "type": "choice_number",
-      "description": "按计算结果从大到小排列的选项编号"
+      "description": "계산 결과가 큰 것부터 차례대로 나열한 보기 번호"
     },
     "value": 2,
     "unit": ""

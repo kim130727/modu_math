@@ -43,19 +43,19 @@
   "steps": [
     {
       "id": "step.1",
-      "expr": "从左到右比较孔的位置。",
+      "expr": "구멍 위치를 왼쪽에서 오른쪽으로 비교한다.",
       "value": "甲, 乙, 丙, 丁, 戊"
     },
     {
       "id": "step.2",
-      "expr": "选择距离最远的孔。",
+      "expr": "가장 멀리 있는 구멍을 고른다.",
       "value": "戊"
     }
   ],
   "checks": [
     {
       "id": "check.1",
-      "expr": "确认最远位置是否为最后一个孔。",
+      "expr": "가장 먼 위치가 마지막 구멍인지 확인한다.",
       "expected": "戊",
       "actual": "戊",
       "pass": true
@@ -75,7 +75,7 @@
     ],
     "target": {
       "type": "choice_label",
-      "description": "能画出最大圆的孔代号"
+      "description": "원을 가장 크게 그릴 수 있는 구멍의 기호"
     },
     "value": "戊",
     "unit": ""

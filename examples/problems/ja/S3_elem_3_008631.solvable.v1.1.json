@@ -4,7 +4,7 @@
   "problem_type": "multiple_choice_division",
   "inputs": {
     "total_ticks": 69,
-    "target_label": "商",
+    "target_label": "몫",
     "target_ticks": 3,
     "target_count": 1,
     "unit": ""
@@ -46,7 +46,7 @@
     },
     {
       "id": "step.2",
-      "expr": "選択肢から23を探す",
+      "expr": "보기에서 23 찾기",
       "value": 3
     }
   ],
@@ -65,27 +65,32 @@
       {
         "id": "choice.1",
         "label": "①",
-        "text": "21"
+        "text": "21",
+        "slot_id": "slot.choice.1.value"
       },
       {
         "id": "choice.2",
         "label": "②",
-        "text": "22"
+        "text": "22",
+        "slot_id": "slot.choice.2.value"
       },
       {
         "id": "choice.3",
         "label": "③",
-        "text": "23"
+        "text": "23",
+        "slot_id": "slot.choice.3.value"
       },
       {
         "id": "choice.4",
         "label": "④",
-        "text": "24"
+        "text": "24",
+        "slot_id": "slot.choice.4.value"
       },
       {
         "id": "choice.5",
         "label": "⑤",
-        "text": "25"
+        "text": "25",
+        "slot_id": "slot.choice.5.value"
       }
     ],
     "answer_key": [
@@ -96,7 +101,7 @@
     ],
     "target": {
       "type": "division_quotient",
-      "description": "69 ÷ 3の商"
+      "description": "69 ÷ 3의 몫"
     },
     "value": 23,
     "unit": ""

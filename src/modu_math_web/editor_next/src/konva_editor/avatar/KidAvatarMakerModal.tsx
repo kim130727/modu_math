@@ -25,6 +25,9 @@ interface KidAvatarMakerModalProps {
   isOpen: boolean;
   onClose: () => void;
   onInsertAvatar: (config: AvatarConfig, svgDataUrl: string) => void;
+  replacementTargets: { id: string; label: string }[];
+  replacementTargetId: string;
+  onReplacementTargetChange: (id: string) => void;
 }
 
 type TabType = "hair" | "face" | "pose" | "accessory" | "speech";
@@ -33,6 +36,9 @@ export const KidAvatarMakerModal: React.FC<KidAvatarMakerModalProps> = ({
   isOpen,
   onClose,
   onInsertAvatar,
+  replacementTargets,
+  replacementTargetId,
+  onReplacementTargetChange,
 }) => {
   const [config, setConfig] = useState<AvatarConfig>(() => getDefaultAvatarConfig("boy"));
   const [activeTab, setActiveTab] = useState<TabType>("hair");
@@ -373,14 +379,21 @@ export const KidAvatarMakerModal: React.FC<KidAvatarMakerModalProps> = ({
         {/* Footer */}
         <div className="avatar-modal-footer">
           <div className="avatar-footer-hint">
-            💡 100% 자체 제작 독창적 벡터 그래픽으로 저작권 걱정 없이 자유롭게 사용하실 수 있습니다.
+            <label>
+              삽입 방식{" "}
+              <select value={replacementTargetId} onChange={(event) => onReplacementTargetChange(event.target.value)}>
+                <option value="">새 캐릭터 추가</option>
+                {replacementTargets.map((target) => <option key={target.id} value={target.id}>{target.label} 교체</option>)}
+              </select>
+            </label>
+            <div>{replacementTargetId ? "기존 위치와 크기로 교체하며 이름과 말풍선은 유지합니다." : "기존 캐릭터를 바꾸려면 교체 대상을 선택하세요."}</div>
           </div>
           <div className="avatar-footer-actions">
             <button className="avatar-btn-cancel" onClick={onClose}>
               취소
             </button>
             <button className="avatar-btn-insert" onClick={handleInsert}>
-              ✨ 캔버스에 삽입
+              {replacementTargetId ? "✨ 선택한 캐릭터 교체" : "✨ 캔버스에 삽입"}
             </button>
           </div>
         </div>
