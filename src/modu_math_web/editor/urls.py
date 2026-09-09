@@ -18,6 +18,7 @@ urlpatterns = [
     path("problems/<path:problem_id>/choice-groups/", views.choice_groups),
     path("problems/<path:problem_id>/answer-review/", views.answer_review),
     path("problems/<path:problem_id>/placement-sync/", views.placement_sync),
+    path("problems/<path:problem_id>/answer-review-sync/", views.answer_review_sync),
     path("problems/<path:problem_id>/layout-patch/", views.layout_patch),
     path("problems/<path:problem_id>/layout-patch-and-build/", views.layout_patch_and_build),
     path("problems/<path:problem_id>/", views.problem_detail),

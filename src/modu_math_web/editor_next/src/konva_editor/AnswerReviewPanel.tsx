@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { normalizedAnswer, type AnswerReviewSettings } from "./answerReview";
 
 export function AnswerReviewPanel({
@@ -9,6 +9,7 @@ export function AnswerReviewPanel({
   onEditLayout,
   busy,
   feedback,
+  syncPanel,
 }: {
   settings: AnswerReviewSettings;
   onChange: (settings: AnswerReviewSettings) => void;
@@ -17,6 +18,7 @@ export function AnswerReviewPanel({
   onEditLayout: () => void;
   busy: boolean;
   feedback?: string;
+  syncPanel?: ReactNode;
 }) {
   const [editing, setEditing] = useState(false);
   const [responses, setResponses] = useState<string[]>([]);
@@ -690,6 +692,7 @@ export function AnswerReviewPanel({
           </div>
         </>
       )}
+      {syncPanel}
     </aside>
   );
 }

@@ -273,6 +273,21 @@ export interface PlacementSyncResult {
   error?: string;
 }
 
+export interface AnswerReviewSyncResult {
+  language: string;
+  problem_id: string;
+  status: "success" | "skipped" | "error";
+  saved: boolean;
+  error?: string;
+}
+
+export function syncAnswerReviews(problemId: string, languages: string[]): Promise<{ results: AnswerReviewSyncResult[] }> {
+  return requestJson(encodedProblemPath(problemId, "/answer-review-sync/"), {
+    method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({ languages }),
+  });
+}
+
 export function syncTextPlacements(problemId: string, languages: string[], placements: { id: string; role: string }[]): Promise<{ results: PlacementSyncResult[] }> {
   return requestJson(encodedProblemPath(problemId, "/placement-sync/"), {
     method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },

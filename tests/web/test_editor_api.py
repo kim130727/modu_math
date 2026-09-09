@@ -155,6 +155,109 @@ def test_placement_sync_continues_after_one_language_build_fails(tmp_path: Path,
     assert results[0]["error"] == "test build failure"
 
 
+def test_answer_review_sync_saves_translated_choices_and_survives_build(tmp_path: Path) -> None:
+    from modu_math_web.editor.services.answer_review import save_answer_review
+
+    client = _setup_django(tmp_path)
+    paths = {lang: _placement_sync_problem(tmp_path, lang) for lang in ("ko", "en", "ja")}
+    for lang in paths:
+        assert client.post(f"/api/editor/problems/{lang}/shared/build/").json()["ok"]
+    source = {"mode": "choice", "status": "verified", "note": "한국어 메모", "answers": [], "choices": [
+        {"id": "slot.caption", "label": "1", "text": "안내", "correct": True},
+        {"id": "slot.extra", "label": "2", "text": "추가", "correct": False},
+    ]}
+    save_answer_review("ko/shared", source)
+    target = {**source, "note": "English note", "choices": [
+        {"id": "slot.extra", "label": "2", "text": "Extra", "correct": True},
+        {"id": "slot.caption", "label": "1", "text": "Localized instruction", "correct": False},
+    ]}
+    save_answer_review("en/shared", target)
+    source_before = (paths["ko"] / "problem.dsl.py").read_bytes()
+    for _ in range(2):
+        response = client.post("/api/editor/problems/ko/shared/answer-review-sync/", data=json.dumps({"languages": ["en", "ja"]}), content_type="application/json")
+        assert response.status_code == 200
+        assert [result["status"] for result in response.json()["results"]] == ["success", "success"]
+        for lang in ("en", "ja"):
+            assert client.post(f"/api/editor/problems/{lang}/shared/build/").json()["ok"]
+            semantic = json.loads((paths[lang] / "problem.semantic.json").read_text(encoding="utf-8"))
+            saved = semantic["answer"]["presentation"]["review"]
+            assert saved["status"] == "verified"
+            assert [(c["text"], c["correct"]) for c in saved["choices"]] == [("Localized instruction", True), ("Extra", False)]
+            assert semantic["answer"]["value"] == "Localized instruction"
+            assert saved["note"] == ("English note" if lang == "en" else "")
+    assert (paths["ko"] / "problem.dsl.py").read_bytes() == source_before
+
+
+def test_answer_review_sync_skips_unmapped_language_without_saving(tmp_path: Path) -> None:
+    from modu_math_web.editor.services.answer_review import save_answer_review
+
+    client = _setup_django(tmp_path)
+    paths = {lang: _placement_sync_problem(tmp_path, lang, extra=lang != "en") for lang in ("ko", "en", "ja")}
+    for lang in paths:
+        assert client.post(f"/api/editor/problems/{lang}/shared/build/").json()["ok"]
+    save_answer_review("ko/shared", {"mode": "choice", "status": "verified", "note": "", "answers": [], "choices": [
+        {"id": "slot.caption", "label": "1", "text": "안내", "correct": True},
+        {"id": "slot.extra", "label": "2", "text": "추가", "correct": False},
+    ]})
+    before = (paths["en"] / "problem.dsl.py").read_bytes()
+    response = client.post("/api/editor/problems/ko/shared/answer-review-sync/", data=json.dumps({"languages": ["en", "ja"]}), content_type="application/json")
+    assert response.status_code == 200
+    results = response.json()["results"]
+    assert [result["status"] for result in results] == ["skipped", "success"]
+    assert results[0]["saved"] is False
+    assert (paths["en"] / "problem.dsl.py").read_bytes() == before
+
+
+def test_answer_review_sync_continues_after_build_failure(tmp_path: Path, monkeypatch) -> None:
+    from types import SimpleNamespace
+    from modu_math_web.editor.services import answer_review_sync
+    from modu_math_web.editor.services.answer_review import save_answer_review
+
+    client = _setup_django(tmp_path)
+    for lang in ("ko", "en", "ja"):
+        _placement_sync_problem(tmp_path, lang)
+        assert client.post(f"/api/editor/problems/{lang}/shared/build/").json()["ok"]
+    save_answer_review("ko/shared", {"mode": "ox", "status": "verified", "note": "", "answers": [{"value": "X"}], "choices": []})
+    original_build = answer_review_sync.run_problem_build
+    monkeypatch.setattr(answer_review_sync, "run_problem_build", lambda problem_id: (
+        SimpleNamespace(ok=False, error="test failure") if problem_id == "en/shared" else original_build(problem_id)
+    ))
+    response = client.post("/api/editor/problems/ko/shared/answer-review-sync/", data=json.dumps({"languages": ["en", "ja"]}), content_type="application/json")
+    assert response.status_code == 200
+    results = response.json()["results"]
+    assert [result["status"] for result in results] == ["error", "success"]
+    assert results[0]["saved"] is True
+    assert results[0]["error"] == "test failure"
+
+
+def test_answer_review_sync_builds_missing_translation_artifacts(tmp_path: Path) -> None:
+    from modu_math_web.editor.services.answer_review import save_answer_review
+
+    client = _setup_django(tmp_path)
+    _placement_sync_problem(tmp_path, "ko")
+    target = _placement_sync_problem(tmp_path, "en")
+    dsl = target / "problem.dsl.py"
+    with dsl.open("a", encoding="utf-8") as stream:
+        stream.write('\nSEMANTIC_OVERRIDE = {"answer": {"choices": [{"id": "c1", "text": "Alpha"}, {"id": "c2", "text": "Beta"}]}}\n')
+    save_answer_review("ko/shared", {"mode": "choice", "status": "verified", "note": "", "answers": [], "choices": [
+        {"id": "c1", "label": "1", "text": "가", "correct": True},
+        {"id": "c2", "label": "2", "text": "나", "correct": False},
+    ]})
+    response = client.post("/api/editor/problems/ko/shared/answer-review-sync/", data=json.dumps({"languages": ["en"]}), content_type="application/json")
+    assert response.status_code == 200
+    assert response.json()["results"][0]["status"] == "success"
+    semantic = json.loads((target / "problem.semantic.json").read_text(encoding="utf-8"))
+    assert semantic["answer"]["value"] == "Alpha"
+
+
+def test_answer_review_sync_rejects_unrelated_language(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    _placement_sync_problem(tmp_path, "ko")
+    for languages in (["ja"], ["ko"], []):
+        response = client.post("/api/editor/problems/ko/shared/answer-review-sync/", data=json.dumps({"languages": languages}), content_type="application/json")
+        assert response.status_code == 400
+
+
 def test_editor_index_uses_static_assets_without_inline_script(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
 

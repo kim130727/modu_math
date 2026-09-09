@@ -346,6 +346,17 @@ def placement_sync(request: HttpRequest, problem_id: str) -> JsonResponse:
 
 
 @require_POST
+def answer_review_sync(request: HttpRequest, problem_id: str) -> JsonResponse:
+    from .services.answer_review_sync import sync_answer_reviews
+    try:
+        return JsonResponse({"results": sync_answer_reviews(problem_id, _json_body(request))})
+    except ValueError as exc:
+        return _error(str(exc), status=400)
+    except FileNotFoundError as exc:
+        return _error(str(exc), status=404)
+
+
+@require_POST
 def choice_groups(request: HttpRequest, problem_id: str) -> JsonResponse:
     from .services.choice_groups import save_choice_groups
     try:

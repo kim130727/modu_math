@@ -29,6 +29,7 @@ import { PropertyPanel } from "./PropertyPanel";
 import { PlacementSyncPanel } from "./PlacementSyncPanel";
 import { answerChoicesFromArtifacts, inferAnswerPresentationMode, reviewSettings, type AnswerReviewSettings, type AnswerBindingOption } from "./answerReview";
 import { AnswerReviewPanel } from "./AnswerReviewPanel";
+import { AnswerReviewSyncPanel } from "./AnswerReviewSyncPanel";
 import { TutorFlowPanel } from "./TutorFlowPanel";
 
 const initialProblem = sampleProblem as ProblemJson;
@@ -958,6 +959,7 @@ export function EditorKonva() {
             answerChoices={answerChoiceReviews}
             answerPresentationMode={answerPresentationMode}
             reviewPanel={<AnswerReviewPanel settings={activeReview}
+              syncPanel={<AnswerReviewSyncPanel key={selectedProblemId} problemId={selectedProblemId} parentBusy={saveStatus === "saving" || saveStatus === "building"} onSave={() => buildCurrentProblem(activeReview)} />}
               onChange={(settings) => { setDraftReview(settings); setSaveStatus("unsaved"); }}
               onSave={(override) => { void buildCurrentProblem(override); }}
               busy={saveStatus === "saving" || saveStatus === "building"}

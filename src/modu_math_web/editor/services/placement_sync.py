@@ -34,7 +34,7 @@ def _effective_slots(problem_id):
     return {slot["id"]: slot for slot in layout.get("slots", [])}
 
 
-def sync_text_placements(problem_id, payload):
+def translation_targets(problem_id, languages):
     source_id = resolve_problem_paths(problem_id).problem_id
     source = next(
         (
@@ -46,8 +46,6 @@ def sync_text_placements(problem_id, payload):
     )
     if not source or not source.get("language"):
         raise ValueError("언어가 지정된 실제 문항을 열어 주세요.")
-    languages = payload.get("languages")
-    placements = payload.get("placements")
     equivalents = source.get("equivalent_problem_ids", {})
     if (
         not isinstance(languages, list)
@@ -60,6 +58,12 @@ def sync_text_placements(problem_id, payload):
         )
     ):
         raise ValueError("같은 문항의 다른 번역 언어를 선택하세요.")
+    return source_id, {lang: equivalents[lang] for lang in dict.fromkeys(languages)}
+
+
+def sync_text_placements(problem_id, payload):
+    source_id, targets = translation_targets(problem_id, payload.get("languages"))
+    placements = payload.get("placements")
     if not isinstance(placements, list) or not placements or len(placements) > 10000:
         raise ValueError("적용할 글자를 선택하세요.")
     roles = {}
@@ -85,8 +89,7 @@ def sync_text_placements(problem_id, payload):
         )
 
     results = []
-    for language in dict.fromkeys(languages):
-        target_id = equivalents[language]
+    for language, target_id in targets.items():
         result = {
             "language": language,
             "problem_id": target_id,
