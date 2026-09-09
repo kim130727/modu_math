@@ -725,14 +725,20 @@ export function EditorKonva() {
     setMessage(`Saving ${selectedProblemId}...`);
     try {
       const savedParts: string[] = [];
-      if (reviewToSave) {
-        await saveAnswerReview(selectedProblemId, reviewToSave);
-        savedParts.push("정답 검수");
-      }
+      // Save layout first so answer propagation can resolve newly edited slot
+      // identities and translated source text from the effective layout.
       if (patches.length) {
         const response = await applyLayoutPatches(selectedProblemId, patches, { format: false, fast: true });
         setBaseProblemJson(nextProblem);
         savedParts.push(`${response.applied.length} layout patch(es)`);
+      }
+      if (reviewToSave) {
+        const response = await saveAnswerReview(selectedProblemId, reviewToSave);
+        savedParts.push("정답 검수");
+        const synced = response.sync_results?.filter((result) => result.status === "success").length ?? 0;
+        const failed = response.sync_results?.filter((result) => result.status !== "success").length ?? 0;
+        if (synced) savedParts.push(`번역 ${synced}개 정답`);
+        if (failed) savedParts.push(`번역 ${failed}개 확인 필요`);
       }
       if (draftTutorFlow) {
         const response = await saveTutorFlow(selectedProblemId, draftTutorFlow, { format: false });
@@ -959,7 +965,7 @@ export function EditorKonva() {
             answerChoices={answerChoiceReviews}
             answerPresentationMode={answerPresentationMode}
             reviewPanel={<AnswerReviewPanel settings={activeReview}
-              syncPanel={<AnswerReviewSyncPanel key={selectedProblemId} problemId={selectedProblemId} parentBusy={saveStatus === "saving" || saveStatus === "building"} onSave={() => buildCurrentProblem(activeReview)} />}
+              syncPanel={<AnswerReviewSyncPanel key={selectedProblemId} problemId={selectedProblemId} parentBusy={saveStatus === "saving" || saveStatus === "building"} />}
               onChange={(settings) => { setDraftReview(settings); setSaveStatus("unsaved"); }}
               onSave={(override) => { void buildCurrentProblem(override); }}
               busy={saveStatus === "saving" || saveStatus === "building"}
@@ -1195,6 +1201,12 @@ function answerOptionsFromArtifact(artifact: Record<string, unknown> | null): An
     .map((item, index) => answerOptionFromItem(item, index))
     .filter((option): option is AnswerBindingOption => Boolean(option));
   if (options.length) return options;
+
+  const blanks = Array.isArray(answer.blanks) ? answer.blanks : [];
+  const blankOptions = blanks
+    .map((item, index) => answerOptionFromItem(item, index))
+    .filter((option): option is AnswerBindingOption => Boolean(option));
+  if (blankOptions.length) return blankOptions;
 
   const values = Array.isArray(answer.values) ? answer.values : [];
   const valueOptions = values

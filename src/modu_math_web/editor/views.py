@@ -326,8 +326,23 @@ def tutor_flow(request: HttpRequest, problem_id: str) -> JsonResponse:
 def answer_review(request: HttpRequest, problem_id: str) -> JsonResponse:
     from .services.answer_review import save_answer_review
     try:
-        review = save_answer_review(problem_id, _json_body(request).get("review"))
-        return JsonResponse({"ok": True, "review": review})
+        body = _json_body(request)
+        review = save_answer_review(problem_id, body.get("review"))
+        sync_results = []
+        if body.get("propagate") is True:
+            from .services.answer_review_sync import (
+                all_translation_languages,
+                sync_answer_reviews,
+            )
+
+            languages = all_translation_languages(problem_id)
+            if languages:
+                sync_results = sync_answer_reviews(
+                    problem_id, {"languages": languages}
+                )
+        return JsonResponse(
+            {"ok": True, "review": review, "sync_results": sync_results}
+        )
     except ValueError as exc:
         return _error(str(exc), status=400)
     except FileNotFoundError as exc:

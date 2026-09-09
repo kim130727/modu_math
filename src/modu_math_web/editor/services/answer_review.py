@@ -2,9 +2,87 @@
 from copy import deepcopy
 
 import libcst as cst
+from modu_math.dsl import BlankSlot, ChoiceSlot
 
-from .dsl_patch import TutorRendererFlowUpdater
+from .dsl_patch import (
+    TutorRendererFlowUpdater,
+    _arg_value_to_cst,
+    _call_name,
+    _keyword_arg,
+)
 from .problems import resolve_problem_paths
+
+
+class AnswerSlotKeyUpdater(cst.CSTTransformer):
+    """Keep explicit DSL answer slots aligned with the editor review contract."""
+
+    def __init__(self, review):
+        self.blank_keys, self.choice_keys = _review_slot_answer_keys(review)
+        self.updated_slots = set()
+
+    def leave_Call(self, original_node, updated_node):
+        slot_type = _call_name(original_node)
+        if slot_type not in {"BlankSlot", "ChoiceSlot"}:
+            return updated_node
+        id_arg = _keyword_arg(original_node, "id")
+        if id_arg is None or not isinstance(id_arg.value, cst.SimpleString):
+            return updated_node
+        try:
+            slot_id = id_arg.value.evaluated_value
+        except Exception:
+            return updated_node
+        answer_key = (
+            self.blank_keys.get(slot_id)
+            if slot_type == "BlankSlot"
+            else self.choice_keys.get(slot_id)
+        )
+        if answer_key is None:
+            return updated_node
+
+        args = list(updated_node.args)
+        replacement = cst.Arg(
+            keyword=cst.Name("answer_key"), value=_arg_value_to_cst(answer_key)
+        )
+        for index, arg in enumerate(args):
+            if arg.keyword and arg.keyword.value == "answer_key":
+                args[index] = replacement
+                break
+        else:
+            args.append(replacement)
+        self.updated_slots.add(slot_id)
+        return updated_node.with_changes(args=tuple(args))
+
+
+def _review_slot_answer_keys(review):
+    blank_keys = {}
+    choice_candidates = {}
+    if review["mode"] not in {"choice", "grouped_choice"}:
+        for answer in review["answers"]:
+            ref = answer.get("ref", "")
+            if ref.startswith("slot."):
+                blank_keys[ref] = answer["value"]
+    elif review["mode"] == "choice":
+        for choice in review["choices"]:
+            for ref in choice.get("sourceRefs", []):
+                if ref.startswith("slot."):
+                    choice_candidates.setdefault(ref, []).append(choice)
+        # A real ChoiceSlot is referenced by all of its choices. A single
+        # reference normally points at a visual TextSlot and must not be edited.
+        choice_keys = {
+            ref: tuple(item["text"] for item in choices if item["correct"])
+            for ref, choices in choice_candidates.items()
+            if len(choices) >= 2 and any(item["correct"] for item in choices)
+        }
+        return blank_keys, choice_keys
+    else:
+        choice_keys = {}
+        for group in review.get("groups", []):
+            selected = group["choices"][group["correct_index"]]
+            for ref in group.get("source_refs", []):
+                if ref.startswith("slot."):
+                    choice_keys[ref] = (selected,)
+        return blank_keys, choice_keys
+    return blank_keys, {}
 
 
 def normalize_review(value):
@@ -62,9 +140,70 @@ def save_answer_review(problem_id, value):
     review = normalize_review(value)
     paths = resolve_problem_paths(problem_id)
     module = cst.parse_module(paths.dsl_path.read_text(encoding="utf-8"))
+    module = module.visit(AnswerSlotKeyUpdater(review))
     updater = TutorRendererFlowUpdater(review, variable_name="EDITOR_ANSWER_REVIEW")
     paths.dsl_path.write_text(module.visit(updater).code, encoding="utf-8")
     return review
+
+
+def review_with_slot_answer_keys(value, problem):
+    """Overlay explicit BlankSlot/ChoiceSlot keys for review hydration.
+
+    Review saves write these keys at the same time, so this mainly handles a
+    human changing an answer_key directly in problem.dsl.py.
+    """
+    review = deepcopy(normalize_review(value))
+    slots = getattr(problem, "slots", ())
+    if review["mode"] not in {"choice", "grouped_choice"}:
+        explicit = {
+            slot.id: slot.answer_key
+            for slot in slots
+            if isinstance(slot, BlankSlot)
+            and isinstance(slot.answer_key, str)
+            and slot.answer_key.strip()
+        }
+        if explicit:
+            by_ref = {answer.get("ref"): answer for answer in review["answers"]}
+            if len(explicit) == 1 and len(review["answers"]) == 1:
+                slot_id, answer_key = next(iter(explicit.items()))
+                review["answers"][0] = {"ref": slot_id, "value": answer_key}
+                by_ref = {slot_id: review["answers"][0]}
+            for slot_id, answer_key in explicit.items():
+                if slot_id in by_ref:
+                    by_ref[slot_id]["value"] = answer_key
+                else:
+                    review["answers"].append({"ref": slot_id, "value": answer_key})
+    elif review["mode"] == "choice":
+        keys = {
+            slot.id: set(slot.answer_key)
+            for slot in slots
+            if isinstance(slot, ChoiceSlot) and slot.answer_key
+        }
+        for choice in review["choices"]:
+            refs = choice.get("sourceRefs", [])
+            matching = [keys[ref] for ref in refs if ref in keys]
+            if matching:
+                choice["correct"] = any(choice["text"] in values for values in matching)
+    else:
+        keys = {
+            slot.id: tuple(slot.answer_key)
+            for slot in slots
+            if isinstance(slot, ChoiceSlot) and slot.answer_key
+        }
+        for group in review.get("groups", []):
+            values = [
+                value
+                for ref in group.get("source_refs", [])
+                for value in keys.get(ref, ())
+            ]
+            indexes = [
+                index
+                for index, choice in enumerate(group["choices"])
+                if choice in values
+            ]
+            if len(indexes) == 1:
+                group["correct_index"] = indexes[0]
+    return normalize_review(review)
 
 
 def apply_answer_review(semantic, solvable, value):

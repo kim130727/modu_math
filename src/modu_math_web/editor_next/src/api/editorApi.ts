@@ -256,10 +256,10 @@ export function buildProblem(problemId: string): Promise<BuildProblemResponse> {
   });
 }
 
-export function saveAnswerReview(problemId: string, review: import("../konva_editor/answerReview").AnswerReviewSettings): Promise<{ ok: boolean }> {
+export function saveAnswerReview(problemId: string, review: import("../konva_editor/answerReview").AnswerReviewSettings): Promise<{ ok: boolean; sync_results: AnswerReviewSyncResult[] }> {
   return requestJson(encodedProblemPath(problemId, "/answer-review/"), {
     method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify({ review }),
+    body: JSON.stringify({ review, propagate: true }),
   });
 }
 
