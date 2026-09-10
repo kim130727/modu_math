@@ -374,3 +374,12 @@ SOLVABLE = {
 }
 
 SEMANTIC_ANSWER = SOLVABLE.get("answer")
+EDITOR_ANSWER_REVIEW = {'mode': 'choice',
+ 'status': 'verified',
+ 'note': '',
+ 'answers': [],
+ 'choices': [{'id': 'choice.1', 'text': 'A', 'correct': False, 'label': '1', 'sourceRefs': []},
+             {'id': 'choice.2', 'text': 'B', 'correct': False, 'label': '2', 'sourceRefs': []},
+             {'id': 'choice.3', 'text': 'C', 'correct': False, 'label': '3', 'sourceRefs': []},
+             {'id': 'choice.4', 'text': 'D', 'correct': False, 'label': '4', 'sourceRefs': []},
+             {'id': 'choice.5', 'text': 'E', 'correct': True, 'label': '5', 'sourceRefs': []}]}
