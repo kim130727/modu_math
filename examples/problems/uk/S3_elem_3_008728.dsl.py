@@ -189,7 +189,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.speech.right.text3",
             prompt="",
-            text="Це 4/7 від цілого.",
+            text="Це 7/4 від цілого.",
             style_role="body",
             x=515,
             y=410,
@@ -498,3 +498,17 @@ SOLVABLE = {
 }
 
 SEMANTIC_ANSWER = SOLVABLE.get("answer")
+EDITOR_ANSWER_REVIEW = {'mode': 'choice',
+ 'status': 'verified',
+ 'note': '',
+ 'answers': [],
+ 'choices': [{'id': 'choice.1',
+              'text': 'Чінгьон',
+              'correct': True,
+              'label': '1',
+              'sourceRefs': ['slot.header.text.copy1']},
+             {'id': 'choice.2',
+              'text': 'Хьонджін',
+              'correct': False,
+              'label': '2',
+              'sourceRefs': ['slot.header.text.copy1.copy2']}]}

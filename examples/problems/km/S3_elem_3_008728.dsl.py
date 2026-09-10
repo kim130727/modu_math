@@ -189,7 +189,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.speech.right.text3",
             prompt="",
-            text="វាជា 4/7 នៃទាំងមូល។",
+            text="វាជា 7/4 នៃទាំងមូល។",
             style_role="body",
             x=515,
             y=410,
@@ -498,3 +498,17 @@ SOLVABLE = {
 }
 
 SEMANTIC_ANSWER = SOLVABLE.get("answer")
+EDITOR_ANSWER_REVIEW = {'mode': 'choice',
+ 'status': 'verified',
+ 'note': '',
+ 'answers': [],
+ 'choices': [{'id': 'choice.1',
+              'text': 'ជីនក្យុង',
+              'correct': True,
+              'label': '1',
+              'sourceRefs': ['slot.header.text.copy1']},
+             {'id': 'choice.2',
+              'text': 'ហ្យុនជីន',
+              'correct': False,
+              'label': '2',
+              'sourceRefs': ['slot.header.text.copy1.copy2']}]}

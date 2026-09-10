@@ -189,7 +189,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.speech.right.text3",
             prompt="",
-            text="占整体的4/7。",
+            text="占整体的7/4。",
             style_role="body",
             x=515,
             y=410,
@@ -495,3 +495,17 @@ SOLVABLE = {
 }
 
 SEMANTIC_ANSWER = SOLVABLE.get("answer")
+EDITOR_ANSWER_REVIEW = {'mode': 'choice',
+ 'status': 'verified',
+ 'note': '',
+ 'answers': [],
+ 'choices': [{'id': 'choice.1',
+              'text': '真京',
+              'correct': True,
+              'label': '1',
+              'sourceRefs': ['slot.header.text.copy1']},
+             {'id': 'choice.2',
+              'text': '贤真',
+              'correct': False,
+              'label': '2',
+              'sourceRefs': ['slot.header.text.copy1.copy2']}]}

@@ -189,7 +189,7 @@ def build_problem_template() -> ProblemTemplate:
         TextSlot(
             id="slot.speech.right.text3",
             prompt="",
-            text="It is 4/7 of the whole.",
+            text="It is 7/4 of the whole.",
             style_role="body",
             x=515,
             y=410,
@@ -498,3 +498,17 @@ SOLVABLE = {
 }
 
 SEMANTIC_ANSWER = SOLVABLE.get("answer")
+EDITOR_ANSWER_REVIEW = {'mode': 'choice',
+ 'status': 'verified',
+ 'note': '',
+ 'answers': [],
+ 'choices': [{'id': 'choice.1',
+              'text': 'Jingyeong',
+              'correct': True,
+              'label': '1',
+              'sourceRefs': ['slot.header.text.copy1']},
+             {'id': 'choice.2',
+              'text': 'Hyeonjin',
+              'correct': False,
+              'label': '2',
+              'sourceRefs': ['slot.header.text.copy1.copy2']}]}
