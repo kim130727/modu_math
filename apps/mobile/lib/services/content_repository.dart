@@ -57,8 +57,10 @@ class ContentRepository {
         );
 
   static const String problemsPath = 'examples/problems';
-  // Asset keys match the repository-relative paths declared in pubspec.yaml.
-  static const String _bundledAssetPrefix = '../../';
+  String? _detectedBundledAssetPrefix;
+  String get _bundledAssetPrefix =>
+      _detectedBundledAssetPrefix ?? (kIsWeb ? '' : '../../');
+
   static const String manifestPath = '$problemsPath/manifest.json';
   static const String grade3Path = '$problemsPath/grade3';
   static const String generatedPath = '$problemsPath/generated';
@@ -300,7 +302,11 @@ class ContentRepository {
               '${response.statusCode} $path',
             );
           }
-          return response.bodyBytes;
+          final bytes = response.bodyBytes;
+          if (_isHtmlBytes(bytes)) {
+            throw _MissingContent(path);
+          }
+          return bytes;
         } on _MissingContent {
           rethrow;
         } on Object {
@@ -316,7 +322,11 @@ class ContentRepository {
             'GitHub problem asset load failed: ${response.statusCode} $path',
           );
         }
-        return response.bodyBytes;
+        final bytes = response.bodyBytes;
+        if (_isHtmlBytes(bytes)) {
+          throw _MissingContent(path);
+        }
+        return bytes;
       case ContentRepositorySource.bundledAssets:
         return _loadBundledBytes(path);
     }
@@ -324,7 +334,23 @@ class ContentRepository {
 
   Future<Uint8List> _loadBundledBytes(String path) async {
     final data = await rootBundle.load(_bundledProblemPath(path));
-    return data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+    final bytes =
+        data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+    if (_isHtmlBytes(bytes)) {
+      throw _MissingContent(path);
+    }
+    return bytes;
+  }
+
+  static bool _isHtmlBytes(Uint8List bytes) {
+    if (bytes.length < 5) {
+      return false;
+    }
+    final sample = utf8.decode(
+      bytes.sublist(0, bytes.length < 32 ? bytes.length : 32),
+      allowMalformed: true,
+    ).trimLeft().toLowerCase();
+    return sample.startsWith('<!doctype') || sample.startsWith('<html');
   }
 
   String _resolveProblemAssetPath(String basePath, String relativePath) {
@@ -422,8 +448,11 @@ class ContentRepository {
       if (response.statusCode != 200) {
         return null;
       }
-      final decoded =
-          jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>;
+      final text = utf8.decode(response.bodyBytes).trimLeft();
+      if (text.startsWith('<')) {
+        return null;
+      }
+      final decoded = jsonDecode(text) as Map<String, dynamic>;
       if (decoded['ok'] != true) {
         return null;
       }
@@ -645,8 +674,11 @@ class ContentRepository {
       if (response.statusCode != 200) {
         return null;
       }
-      final decoded =
-          jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>;
+      final text = utf8.decode(response.bodyBytes).trimLeft();
+      if (text.startsWith('<')) {
+        return null;
+      }
+      final decoded = jsonDecode(text) as Map<String, dynamic>;
       final paths = decoded['paths'];
       if (paths is List) {
         _rendererPathCache = paths
@@ -668,6 +700,27 @@ class ContentRepository {
     return null;
   }
 
+  void _detectBundledAssetPrefix(Iterable<String> assetKeys) {
+    if (kIsWeb) {
+      _detectedBundledAssetPrefix = '';
+      return;
+    }
+    if (_detectedBundledAssetPrefix != null) {
+      return;
+    }
+    for (final key in assetKeys) {
+      if (key.startsWith('$problemsPath/')) {
+        _detectedBundledAssetPrefix = '';
+        return;
+      }
+      if (key.startsWith('../../$problemsPath/')) {
+        _detectedBundledAssetPrefix = '../../';
+        return;
+      }
+    }
+    _detectedBundledAssetPrefix = '';
+  }
+
   Future<List<String>> _loadRendererPaths() async {
     if (source == ContentRepositorySource.localExamples) {
       return _rendererPathCache ??= await loadLocalRendererPaths(
@@ -680,6 +733,7 @@ class ContentRepository {
         return _rendererPathCache ??= await _loadLocalHttpRendererPaths();
       } on Object {
         final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+        _detectBundledAssetPrefix(manifest.listAssets());
         return manifest
             .listAssets()
             .map(_logicalProblemPath)
@@ -694,6 +748,7 @@ class ContentRepository {
     }
 
     final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+    _detectBundledAssetPrefix(manifest.listAssets());
     return manifest
         .listAssets()
         .map(_logicalProblemPath)
@@ -725,8 +780,14 @@ class ContentRepository {
 
   Future<Map<String, dynamic>?> _loadOptionalManifest() async {
     try {
+      final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+      _detectBundledAssetPrefix(manifest.listAssets());
       final manifestSource =
           await rootBundle.loadString(_bundledProblemPath(manifestPath));
+      final trimmed = manifestSource.trimLeft();
+      if (trimmed.startsWith('<')) {
+        return null;
+      }
       return jsonDecode(manifestSource) as Map<String, dynamic>;
     } on Object catch (error) {
       if (_isMissingContent(error)) {
@@ -1076,6 +1137,10 @@ class ContentRepository {
           _bundledProblemPath(assetPath),
         ),
     };
+    final trimmed = source.trimLeft();
+    if (trimmed.startsWith('<')) {
+      throw _MissingContent(assetPath);
+    }
     return jsonDecode(source) as Map<String, dynamic>;
   }
 
@@ -1131,8 +1196,11 @@ class ContentRepository {
         'Local problem server list load failed: ${response.statusCode}',
       );
     }
-    final decoded =
-        jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>;
+    final text = utf8.decode(response.bodyBytes).trimLeft();
+    if (text.startsWith('<')) {
+      throw StateError('Local problem server returned HTML');
+    }
+    final decoded = jsonDecode(text) as Map<String, dynamic>;
     final paths = decoded['paths'];
     if (paths is! List) {
       return const [];
@@ -1159,11 +1227,19 @@ class ContentRepository {
           'Local problem server file load failed: ${response.statusCode} $path',
         );
       }
-      return utf8.decode(response.bodyBytes);
+      final text = utf8.decode(response.bodyBytes);
+      if (text.trimLeft().startsWith('<')) {
+        throw _MissingContent(path);
+      }
+      return text;
     } on _MissingContent {
       rethrow;
     } on Object {
-      return rootBundle.loadString(_bundledProblemPath(path));
+      final bundled = await rootBundle.loadString(_bundledProblemPath(path));
+      if (bundled.trimLeft().startsWith('<')) {
+        throw _MissingContent(path);
+      }
+      return bundled;
     }
   }
 
@@ -1178,15 +1254,20 @@ class ContentRepository {
 
   String _bundledProblemPath(String path) {
     final normalized = _logicalProblemPath(path.replaceAll(r'\', '/'));
+    final prefix = _bundledAssetPrefix;
     if (normalized.startsWith('$problemsPath/')) {
-      return '$_bundledAssetPrefix$normalized';
+      return '$prefix$normalized';
     }
-    return '$_bundledAssetPrefix$problemsPath/$normalized';
+    return '$prefix$problemsPath/$normalized';
   }
 
   String _logicalProblemPath(String path) {
-    if (path.startsWith('$_bundledAssetPrefix$problemsPath/')) {
+    if (_bundledAssetPrefix.isNotEmpty &&
+        path.startsWith('$_bundledAssetPrefix$problemsPath/')) {
       return path.substring(_bundledAssetPrefix.length);
+    }
+    if (path.startsWith('../../$problemsPath/')) {
+      return path.substring('../../'.length);
     }
     return path;
   }

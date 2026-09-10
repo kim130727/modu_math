@@ -663,6 +663,55 @@ void main() {
         expect(problem.filePrefix, isNotEmpty);
       }
     });
+
+    test(
+        'treats HTML responses from web servers as missing content instead of throwing FormatException',
+        () async {
+      final repository = ContentRepository.localHttp(
+        localHttpBaseUrl: 'http://localhost:8765',
+        httpClient: MockClient((request) async {
+          final url = request.url.toString();
+          if (request.url.path == '/api/problems') {
+            return http.Response(
+              '{"paths": ["P3_1_01_00040_00469.renderer.json"]}',
+              200,
+            );
+          }
+          if (url.endsWith('P3_1_01_00040_00469.semantic.json')) {
+            return http.Response(
+              '{"problem_type": "multi_blank_vertical_addition", "metadata": {"title": "HTML test"}, "answer": {"value": 507}}',
+              200,
+            );
+          }
+          if (url.endsWith('P3_1_01_00040_00469.renderer.json')) {
+            return http.Response(
+              '{"view_box": {"width": 928, "height": 426}, "elements": []}',
+              200,
+            );
+          }
+          if (url.endsWith('.layout.json') ||
+              url.endsWith('.solvable.v1.3.json') ||
+              url.endsWith('.solvable.json')) {
+            return http.Response(
+              '<!DOCTYPE html><html><body>Not Found</body></html>',
+              200,
+            );
+          }
+          return http.Response(
+            '<!DOCTYPE html><html><body>Not Found</body></html>',
+            200,
+          );
+        }),
+      );
+
+      final manifest = await repository.loadManifest();
+      final content = await repository.loadProblem(manifest.problems.single);
+
+      expect(content.semantic, isNotEmpty);
+      expect(content.renderer, isNotEmpty);
+      expect(content.layout, isEmpty);
+      expect(content.solvable, isEmpty);
+    });
   });
 }
 
