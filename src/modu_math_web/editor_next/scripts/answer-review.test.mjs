@@ -43,3 +43,9 @@ test('person selection without choices requests review instead of guessing a nam
   assert.equal(settings.status,'needs_changes');
   assert.deepEqual(settings.choices,[]);
 });
+
+test('blank-slot answers can populate review settings', () => {
+  const settings = reviewSettings(null,[{value:'42',ref:'slot.answer'}],[], 'canvas_slots');
+  assert.equal(settings.mode,'canvas_slots');
+  assert.deepEqual(settings.answers,[{value:'42',ref:'slot.answer'}]);
+});

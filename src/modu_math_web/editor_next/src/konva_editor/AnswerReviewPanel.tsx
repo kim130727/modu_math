@@ -86,10 +86,11 @@ export function AnswerReviewPanel({
   const registerDirectInputAnswerAndSave = (valueText: string) => {
     const trimmed = valueText.trim();
     if (!trimmed) return;
+    const existingRef = settings.answers.length === 1 ? settings.answers[0].ref : undefined;
     const next: AnswerReviewSettings = {
       ...settings,
       status: "verified",
-      answers: [{ value: trimmed, ref: "answer.value" }],
+      answers: [{ value: trimmed, ref: existingRef || "answer.value" }],
     };
     onChange(next);
     onSave(next);

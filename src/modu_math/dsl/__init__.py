@@ -1,5 +1,6 @@
 from .compiler_to_layout import compile_problem_template_to_layout
 from .compiler_to_semantic import compile_problem_template_to_semantic
+from .arithmetic import columnar_number_slots
 from .characters import (
     SpeakerSpec,
     character_body_slot_ids,
@@ -86,6 +87,7 @@ __all__ = [
     "character_hand_slots",
     "compile_problem_template_to_layout",
     "compile_problem_template_to_semantic",
+    "columnar_number_slots",
     "export_layout_to_dsl_source",
     "problem_template_from_layout",
     "export_problem_template",

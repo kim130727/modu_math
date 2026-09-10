@@ -3,9 +3,8 @@ import { listProblems, syncAnswerReviews, type AnswerReviewSyncResult } from "..
 
 const languageNames: Record<string, string> = { ko: "한국어", en: "영어", ja: "일본어", zh: "중국어", uk: "우크라이나어", km: "크메르어" };
 
-export function AnswerReviewSyncPanel({ problemId, onSave, parentBusy }: {
+export function AnswerReviewSyncPanel({ problemId, parentBusy }: {
   problemId: string;
-  onSave: () => Promise<boolean>;
   parentBusy: boolean;
 }) {
   const [languages, setLanguages] = useState<string[]>([]);
@@ -34,7 +33,6 @@ export function AnswerReviewSyncPanel({ problemId, onSave, parentBusy }: {
     setError("");
     setResults([]);
     try {
-      if (!await onSave()) throw new Error("원본 문항 저장·빌드에 실패했습니다.");
       setResults((await syncAnswerReviews(problemId, chosen)).results);
     } catch (err) {
       setError(String(err));
@@ -45,16 +43,16 @@ export function AnswerReviewSyncPanel({ problemId, onSave, parentBusy }: {
 
   return <section className="placement-sync-panel answer-review-sync" aria-label="정답 검수 다국어 적용">
     <details>
-      <summary>정답 검수를 다국어에 적용</summary>
-      <p>응답 방식·정답·검수 상태를 같은 문항의 번역본에 적용합니다. 번역된 선택지와 검수 메모는 유지합니다.</p>
+      <summary>다국어 자동 적용 현황 및 재시도</summary>
+      <p>정답을 저장하면 모든 번역 문항에 자동 적용됩니다. 실패한 언어만 여기에서 다시 적용할 수 있습니다.</p>
       {loading ? <p role="status">번역 언어를 확인하고 있습니다…</p> : !languages.length ? <p>적용할 번역 문항이 없습니다.</p> : <>
         <fieldset disabled={busy || parentBusy}>
           <legend>대상 언어</legend>
           <label><input type="checkbox" checked={chosen.length === languages.length} onChange={(event) => setChosen(event.target.checked ? languages : [])} />모든 번역 언어</label>
           {languages.map((language) => <label key={language}><input type="checkbox" checked={chosen.includes(language)} onChange={(event) => setChosen((current) => event.target.checked ? [...current, language] : current.filter((item) => item !== language))} />{languageNames[language] ?? language}</label>)}
         </fieldset>
-        <p>대상 {chosen.length}개 언어의 기존 검수 설정을 덮어씁니다. 현재 문항의 수정 사항도 저장합니다. 정답 연결이나 번역이 불명확한 언어는 적용하지 않고 알려드립니다.</p>
-        <button type="button" disabled={busy || parentBusy || !chosen.length} onClick={() => void apply()}>{busy ? "언어별 저장·빌드 중…" : "정답 검수 다국어에 적용"}</button>
+        <p>대상 {chosen.length}개 언어의 저장된 검수 설정을 다시 적용합니다. 정답 연결이나 번역이 불명확한 언어는 적용하지 않고 알려드립니다.</p>
+        <button type="button" disabled={busy || parentBusy || !chosen.length} onClick={() => void apply()}>{busy ? "언어별 저장·빌드 중…" : "선택 언어 다시 적용"}</button>
       </>}
       {error && <p role="alert">{error}</p>}
       <div aria-live="polite">{results.map((result) => <div key={result.language} className="placement-sync-result">

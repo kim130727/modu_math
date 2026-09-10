@@ -252,7 +252,8 @@ void main() {
       expect(content.correctAnswer, equals('507'));
     });
 
-    test('reuses loaded problem content for repeated opens', () async {
+    test('reuses loaded content and refreshes editor-built artifacts on demand',
+        () async {
       final requestedFileUrls = <String>[];
       final repository = ContentRepository.localHttp(
         localHttpBaseUrl: 'http://localhost:8765',
@@ -298,6 +299,15 @@ void main() {
         requestedFileUrls
             .where((url) => url.endsWith('P3_1_01_00040_00469.renderer.json')),
         hasLength(1),
+      );
+
+      final refreshed =
+          await repository.refreshProblem(manifest.problems.single);
+      expect(identical(first, refreshed), isFalse);
+      expect(
+        requestedFileUrls
+            .where((url) => url.endsWith('P3_1_01_00040_00469.renderer.json')),
+        hasLength(2),
       );
     });
 

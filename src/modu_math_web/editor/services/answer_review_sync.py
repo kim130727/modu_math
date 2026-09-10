@@ -7,7 +7,7 @@ import re
 from .answer_review import normalize_review, save_answer_review
 from .build import run_problem_build
 from .placement_sync import _effective_slots, translation_targets
-from .problems import read_problem_detail
+from .problems import list_problem_directories, read_problem_detail, resolve_problem_paths
 
 
 class ReviewMappingError(ValueError):
@@ -217,3 +217,22 @@ def sync_answer_reviews(problem_id, payload):
             result["error"] = str(exc)
         results.append(result)
     return results
+
+
+def all_translation_languages(problem_id):
+    """Return every sibling language that can receive this problem's review."""
+    source_id = resolve_problem_paths(problem_id).problem_id
+    source = next(
+        (item for item in list_problem_directories() if item["problem_id"] == source_id),
+        None,
+    )
+    if not source:
+        return []
+    equivalents = source.get("equivalent_problem_ids", {})
+    if not isinstance(equivalents, dict):
+        return []
+    return [
+        language
+        for language, target_id in equivalents.items()
+        if language != source.get("language") and target_id != source_id
+    ]

@@ -78,8 +78,10 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
     }
   }
 
-  Future<ProblemContent> _loadContent() async {
-    final future = widget.repository.loadProblem(widget.problem);
+  Future<ProblemContent> _loadContent({bool refresh = false}) async {
+    final future = refresh
+        ? widget.repository.refreshProblem(widget.problem)
+        : widget.repository.loadProblem(widget.problem);
     _preloadUpcomingProblems();
     final loaded = await future;
     if (mounted) {
@@ -480,6 +482,10 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
 
   void _restartProblem(ProblemContent content) {
     setState(() {
+      if (widget.repository.source == ContentRepositorySource.localHttp) {
+        _loadedContent = null;
+        contentFuture = _loadContent(refresh: true);
+      }
       submittedAnswer = null;
       answerDraft = '';
       isCorrect = null;

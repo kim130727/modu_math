@@ -188,6 +188,47 @@ def test_answer_review_sync_saves_translated_choices_and_survives_build(tmp_path
     assert (paths["ko"] / "problem.dsl.py").read_bytes() == source_before
 
 
+def test_answer_review_save_can_propagate_to_all_translations(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    paths = {
+        lang: _placement_sync_problem(tmp_path, lang)
+        for lang in ("ko", "en", "ja")
+    }
+    for lang in paths:
+        assert client.post(f"/api/editor/problems/{lang}/shared/build/").json()["ok"]
+
+    response = client.post(
+        "/api/editor/problems/ko/shared/answer-review/",
+        data=json.dumps(
+            {
+                "propagate": True,
+                "review": {
+                    "mode": "ox",
+                    "status": "verified",
+                    "note": "source-only note",
+                    "answers": [{"value": "X"}],
+                    "choices": [],
+                },
+            }
+        ),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200, response.content
+    assert [item["status"] for item in response.json()["sync_results"]] == [
+        "success",
+        "success",
+    ]
+    for language in ("en", "ja"):
+        dsl = (paths[language] / "problem.dsl.py").read_text(encoding="utf-8")
+        assert "EDITOR_ANSWER_REVIEW" in dsl
+        semantic = json.loads(
+            (paths[language] / "problem.semantic.json").read_text(encoding="utf-8")
+        )
+        assert semantic["answer"]["value"] == "X"
+        assert semantic["answer"]["presentation"]["review"]["note"] == ""
+
+
 def test_answer_review_sync_skips_unmapped_language_without_saving(tmp_path: Path) -> None:
     from modu_math_web.editor.services.answer_review import save_answer_review
 

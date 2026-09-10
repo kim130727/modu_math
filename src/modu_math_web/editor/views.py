@@ -302,6 +302,9 @@ def tutor_flow(request: HttpRequest, problem_id: str) -> JsonResponse:
         format_source = data.get("format", False)
         if not isinstance(format_source, bool):
             return _error("'format' must be a boolean", status=400)
+        build_requested = data.get("build", True)
+        if not isinstance(build_requested, bool):
+            return _error("'build' must be a boolean", status=400)
         dsl_text, normalized = save_tutor_renderer_flow(problem_id, flow, format_source=format_source)
     except DslPatchError as exc:
         return _error(str(exc), status=400)
@@ -312,22 +315,54 @@ def tutor_flow(request: HttpRequest, problem_id: str) -> JsonResponse:
     except Exception as exc:
         return _error(str(exc), status=500)
 
-    return JsonResponse(
+    payload: dict[str, Any] = {
+        "ok": True,
+        "problem_id": problem_id,
+        "tutor_flow": normalized,
+        "dsl": dsl_text,
+        "built": False,
+        "artifacts": {},
+    }
+    if not build_requested:
+        return JsonResponse(payload)
+
+    result, artifacts = build_with_artifacts(problem_id)
+    payload.update(
         {
-            "ok": True,
-            "problem_id": problem_id,
-            "tutor_flow": normalized,
-            "dsl": dsl_text,
+            "ok": result.ok,
+            "built": result.ok,
+            "stdout": result.stdout,
+            "stderr": result.stderr,
+            "artifacts": artifacts,
         }
     )
+    if not result.ok:
+        payload["error"] = result.error or "hint build failed"
+        return JsonResponse(payload, status=500)
+    return JsonResponse(payload)
 
 
 @require_POST
 def answer_review(request: HttpRequest, problem_id: str) -> JsonResponse:
     from .services.answer_review import save_answer_review
     try:
-        review = save_answer_review(problem_id, _json_body(request).get("review"))
-        return JsonResponse({"ok": True, "review": review})
+        body = _json_body(request)
+        review = save_answer_review(problem_id, body.get("review"))
+        sync_results = []
+        if body.get("propagate") is True:
+            from .services.answer_review_sync import (
+                all_translation_languages,
+                sync_answer_reviews,
+            )
+
+            languages = all_translation_languages(problem_id)
+            if languages:
+                sync_results = sync_answer_reviews(
+                    problem_id, {"languages": languages}
+                )
+        return JsonResponse(
+            {"ok": True, "review": review, "sync_results": sync_results}
+        )
     except ValueError as exc:
         return _error(str(exc), status=400)
     except FileNotFoundError as exc:
