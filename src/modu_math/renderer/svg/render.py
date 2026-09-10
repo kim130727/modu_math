@@ -11,6 +11,8 @@ from typing import Any
 
 from fontTools.ttLib import TTFont
 
+from modu_math.layout.text_layout import wrap_text
+
 from ...renderer.models.primitive import RenderElement, RenderGroup, RenderText, RendererAST
 
 _POOR_STORY_FONT_PATH = Path(__file__).resolve().parents[1] / "assets" / "PoorStory-Regular.ttf"
@@ -84,7 +86,8 @@ def _attrs_to_str(attrs: dict[str, Any]) -> str:
             )
         if isinstance(value, (int, float)):
             value = _float_str(float(value))
-        parts.append(f'{key}="{escape(str(value), quote=True)}"')
+        escaped = escape(str(value), quote=True).replace("\n", "&#10;").replace("\r", "&#13;").replace("\t", "&#9;")
+        parts.append(f'{key}="{escaped}"')
     return " ".join(parts)
 
 def _text_unit_width(ch: str, font_size: float) -> float:
@@ -135,30 +138,8 @@ def _wrap_long_token(token: str, max_width: float, font_size: float) -> list[str
     return lines or [token]
 
 def _wrap_text(text: str, max_width: float | None, font_size: float) -> list[str]:
-    if not max_width or max_width <= 0:
-        return text.split("\n")
-    out: list[str] = []
-    for paragraph in text.split("\n"):
-        if not paragraph:
-            out.append("")
-            continue
-        if _text_width(paragraph, font_size) <= max_width:
-            out.append(paragraph)
-            continue
-        words = paragraph.split(" ")
-        current = ""
-        for word in words:
-            pieces = _wrap_long_token(word, max_width, font_size)
-            for piece in pieces:
-                trial = piece if not current else f"{current} {piece}"
-                if current and _text_width(trial, font_size) > max_width:
-                    out.append(current)
-                    current = piece
-                else:
-                    current = trial
-        if current:
-            out.append(current)
-    return out or [""]
+    return wrap_text(text, max_width, font_size)
+
 
 def _svg_paint_order(element: RenderElement) -> int:
     if isinstance(element, RenderText):
@@ -178,6 +159,7 @@ def _element_to_svg_lines(element: RenderElement, depth: int = 1) -> list[str]:
 
     if isinstance(element, RenderText):
         attrs.setdefault("xml:space", "preserve")
+        attrs.setdefault("style", "white-space: pre")
         if element.type == "text_box":
             raw_width = attrs.pop("width", attrs.get("data-box-width", None))
             raw_height = attrs.pop("height", attrs.get("data-box-height", None))
@@ -216,12 +198,11 @@ def _element_to_svg_lines(element: RenderElement, depth: int = 1) -> list[str]:
                 return [f'{indent}<text {attrs_str}>{escape(element.text)}</text>']
             attrs["data-raw-text"] = element.text
             attrs_str = _attrs_to_str(attrs)
-            res = [f"{indent}<text {attrs_str}>"]
+            spans = []
             for i, line in enumerate(text_lines):
                 line_y = baseline_y + i * line_step
-                res.append(f'{indent}  <tspan x="{_float_str(line_x)}" y="{_float_str(line_y)}">{escape(line)}</tspan>')
-            res.append(f"{indent}</text>")
-            return res
+                spans.append(f'<tspan x="{_float_str(line_x)}" y="{_float_str(line_y)}">{escape(line)}</tspan>')
+            return [f'{indent}<text {attrs_str}>{"".join(spans)}</text>']
 
         font_size_raw = attrs.get("font-size", attrs.get("font_size", 26))
         font_size = float(font_size_raw) if isinstance(font_size_raw, (int, float)) else 26.0
@@ -236,12 +217,11 @@ def _element_to_svg_lines(element: RenderElement, depth: int = 1) -> list[str]:
         attrs["data-raw-text"] = element.text
         attrs_str = _attrs_to_str(attrs)
         x = attrs.get("x", 0)
-        res = [f"{indent}<text {attrs_str}>"]
+        spans = []
         for i, line in enumerate(text_lines):
             dy = "0" if i == 0 else "1.2em"
-            res.append(f'{indent}  <tspan x="{_float_str(float(x))}" dy="{dy}">{escape(line)}</tspan>')
-        res.append(f"{indent}</text>")
-        return res
+            spans.append(f'<tspan x="{_float_str(float(x))}" dy="{dy}">{escape(line)}</tspan>')
+        return [f'{indent}<text {attrs_str}>{"".join(spans)}</text>']
     attrs_str = _attrs_to_str(attrs)
     if isinstance(element, RenderGroup):
         lines = [f"{indent}<g {attrs_str}>"] if attrs_str else [f"{indent}<g>"]

@@ -57,6 +57,8 @@ class ContentRepository {
         );
 
   static const String problemsPath = 'examples/problems';
+  // Asset keys match the repository-relative paths declared in pubspec.yaml.
+  static const String _bundledAssetPrefix = '../../';
   static const String manifestPath = '$problemsPath/manifest.json';
   static const String grade3Path = '$problemsPath/grade3';
   static const String generatedPath = '$problemsPath/generated';
@@ -663,6 +665,7 @@ class ContentRepository {
         final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
         return manifest
             .listAssets()
+            .map(_logicalProblemPath)
             .where((path) => _isBundledRendererPathForActiveLocale(path))
             .toList()
           ..sort();
@@ -676,6 +679,7 @@ class ContentRepository {
     final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
     return manifest
         .listAssets()
+        .map(_logicalProblemPath)
         .where((path) => _isBundledRendererPathForActiveLocale(path))
         .toList()
       ..sort();
@@ -704,7 +708,8 @@ class ContentRepository {
 
   Future<Map<String, dynamic>?> _loadOptionalManifest() async {
     try {
-      final manifestSource = await rootBundle.loadString(manifestPath);
+      final manifestSource =
+          await rootBundle.loadString(_bundledProblemPath(manifestPath));
       return jsonDecode(manifestSource) as Map<String, dynamic>;
     } on Object catch (error) {
       if (_isMissingContent(error)) {
@@ -1051,7 +1056,7 @@ class ContentRepository {
           assetPath,
         ),
       ContentRepositorySource.bundledAssets => await rootBundle.loadString(
-          assetPath,
+          _bundledProblemPath(assetPath),
         ),
     };
     return jsonDecode(source) as Map<String, dynamic>;
@@ -1155,11 +1160,18 @@ class ContentRepository {
   }
 
   String _bundledProblemPath(String path) {
-    final normalized = path.replaceAll(r'\', '/');
+    final normalized = _logicalProblemPath(path.replaceAll(r'\', '/'));
     if (normalized.startsWith('$problemsPath/')) {
-      return normalized;
+      return '$_bundledAssetPrefix$normalized';
     }
-    return '$problemsPath/$normalized';
+    return '$_bundledAssetPrefix$problemsPath/$normalized';
+  }
+
+  String _logicalProblemPath(String path) {
+    if (path.startsWith('$_bundledAssetPrefix$problemsPath/')) {
+      return path.substring(_bundledAssetPrefix.length);
+    }
+    return path;
   }
 
   Uri _localHttpUri(String path) {

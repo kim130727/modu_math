@@ -276,6 +276,7 @@ function mathTextFields(object: MathTextObject, includeBoxSize: boolean): Record
     fields.max_width = null;
   }
 
+  if (object.props.fontFamily) fields.font_family = object.props.fontFamily;
   if (typeof object.props.semantic_role === "string") {
     fields.semantic_role = object.props.semantic_role;
   }

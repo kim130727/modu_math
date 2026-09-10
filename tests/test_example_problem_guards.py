@@ -32,7 +32,7 @@ def _path_numbers(d: str) -> list[float]:
 
 
 def test_circle_area_0001_radius_helper_path_keeps_semantic_id_and_position() -> None:
-    module = _load_module(Path("examples/problems/ko/초6_2_원의넓이_0001.dsl.py"))
+    module = _load_module(Path("examples/storage/ko/초6_2_원의넓이_0001.dsl.py"))
     problem = getattr(module, "PROBLEM_TEMPLATE")
     assert isinstance(problem, ProblemTemplate)
 
@@ -64,7 +64,7 @@ def test_circle_area_0001_radius_helper_path_keeps_semantic_id_and_position() ->
 
 def test_circle_center_008667_renderer_keeps_label_r_next_to_its_point() -> None:
     renderer_path = next(
-        Path("examples/problems/ko").glob("**/S3_초등_3_008667.renderer.json")
+        Path("examples/storage/ko").glob("**/S3_초등_3_008667.renderer.json")
     )
     renderer = json.loads(renderer_path.read_text(encoding="utf-8"))
     elements = renderer["elements"]

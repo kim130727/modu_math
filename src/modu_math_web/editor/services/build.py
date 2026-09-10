@@ -23,6 +23,8 @@ from modu_math.layout.editor_overrides import (
     prune_legacy_answer_blank_slots,
 )
 from modu_math.layout.sanitizer import sanitize_layout
+from modu_math.layout.shared_layout import resolve_shared_layout
+from modu_math.layout.text_layout import fit_prompt_text
 from modu_math.pipeline.answer_contracts import (
     normalize_answer_for_deleted_slots,
     normalize_answer_for_submit_slots,
@@ -244,6 +246,7 @@ def _build_problem_artifacts(problem_id: str) -> str:
         problem, problem_type="diagram_problem"
     )
     layout = compile_problem_template_to_layout(problem)
+    layout = resolve_shared_layout(layout, problem_paths.dsl_path)
 
     if hasattr(module, "SEMANTIC_OVERRIDE"):
         semantic_override = module.SEMANTIC_OVERRIDE
@@ -271,6 +274,7 @@ def _build_problem_artifacts(problem_id: str) -> str:
 
     deleted_answer_slots: set[str] = set()
     editor_override_slot_ids: set[str] = set()
+    fit_shared_text = False
     editor_overrides_path = (
         problem_paths.base_dir / f"{problem_paths.artifact_base}.editor_overrides.json"
     )
@@ -278,6 +282,7 @@ def _build_problem_artifacts(problem_id: str) -> str:
         editor_overrides = json.loads(
             editor_overrides_path.read_text(encoding="utf-8-sig")
         )
+        fit_shared_text = bool(editor_overrides.get("layout_source")) or editor_overrides.get("text_layout") == "fit"
         editor_overrides, pruned = prune_editor_overrides(layout, editor_overrides)
         editor_overrides, answer_pruned = prune_deleted_legacy_answer_slots(
             layout,
@@ -356,6 +361,8 @@ def _build_problem_artifacts(problem_id: str) -> str:
     semantic, _semantic_normalized = normalize_semantic_for_schema(semantic)
 
     layout, semantic, solvable = structure_presentation(layout, semantic, solvable)
+    if fit_shared_text:
+        layout = fit_prompt_text(layout)
     renderer = compile_renderer_json(layout)
     if hasattr(module, "EDITOR_ANSWER_REVIEW"):
         from .answer_review import apply_answer_review
@@ -424,6 +431,9 @@ def run_problem_build(problem_id: str) -> BuildResult:
     started = time.perf_counter()
     try:
         output = _build_problem_artifacts(problem_id)
+        rebuilt = _rebuild_linked_layouts(problem_id)
+        if rebuilt:
+            output += "\n[shared_layout] rebuilt " + ", ".join(rebuilt)
     except Exception as exc:  # pragma: no cover
         return BuildResult(ok=False, stdout="", stderr="", error=str(exc))
 
@@ -434,6 +444,38 @@ def run_problem_build(problem_id: str) -> BuildResult:
         stderr="",
         error=None,
     )
+
+
+def _rebuild_linked_layouts(problem_id: str) -> list[str]:
+    """A source build refreshes its translations, including chained sources."""
+    paths = resolve_problem_paths(problem_id)
+    pending = [paths.dsl_path.resolve()]
+    visited = set(pending)
+    links = []
+    for override_file in sorted(paths.root_dir.rglob("*.editor_overrides.json")):
+        try:
+            reference = json.loads(override_file.read_text(encoding="utf-8-sig")).get("layout_source")
+        except (ValueError, AttributeError):
+            continue
+        if isinstance(reference, str):
+            dsl_path = override_file.with_name(override_file.name.removesuffix(".editor_overrides.json") + ".dsl.py")
+            links.append(((override_file.parent / reference).resolve(), dsl_path.resolve()))
+    rebuilt = []
+    while pending:
+        source = pending.pop(0)
+        for linked_source, target in links:
+            if linked_source != source or target in visited:
+                continue
+            relative_id = target.relative_to(paths.root_dir.resolve()).as_posix()
+            target_id = f"{paths.root_alias}/{relative_id}" if paths.root_alias else relative_id
+            try:
+                _build_problem_artifacts(target_id)
+            except Exception as exc:
+                raise ValueError(f"Source built, but linked translation {target_id} failed: {exc}") from exc
+            rebuilt.append(target_id)
+            visited.add(target)
+            pending.append(target)
+    return rebuilt
 
 
 def build_with_artifacts(problem_id: str) -> tuple[BuildResult, dict[str, Any]]:

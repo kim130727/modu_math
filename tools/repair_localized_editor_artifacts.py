@@ -203,6 +203,9 @@ def merged_overrides(
                 patch["input_style"] = deepcopy(content["input_style"])
 
     if existing_localized_overrides:
+        for key in ("layout_source", "text_layout"):
+            if key in existing_localized_overrides:
+                out[key] = deepcopy(existing_localized_overrides[key])
         if isinstance(existing_localized_overrides.get("canvas"), dict):
             out["canvas"] = deepcopy(existing_localized_overrides["canvas"])
         if isinstance(existing_localized_overrides.get("deleted_slots"), list):

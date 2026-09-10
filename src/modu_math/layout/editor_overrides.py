@@ -6,88 +6,15 @@ from typing import Any
 from modu_math.layout.sanitizer import sanitize_answer_input_content
 
 
-def _text_width(text: str, font_size: float) -> float:
-    width = 0.0
-    for char in text:
-        if char.isspace():
-            width += font_size * 0.34
-        elif (
-            "\u1100" <= char <= "\u11ff"
-            or "\u3130" <= char <= "\u318f"
-            or "\uac00" <= char <= "\ud7af"
-            or "\u3400" <= char <= "\u9fff"
-            or "\u2000" <= char <= "\u23ff"
-            or "\u2460" <= char <= "\u24ff"
-            or "\u2500" <= char <= "\u27bf"
-            or "\u3000" <= char <= "\u33ff"
-            or "\u3260" <= char <= "\u327b"
-            or "\uff00" <= char <= "\uffef"
-        ):
-            width += font_size
-        elif char.isupper() or char.isdigit():
-            width += font_size * 0.62
-        elif char.islower():
-            width += font_size * 0.54
-        else:
-            width += font_size * 0.5
-    return width
-
-
-def _minimum_text_box_height(
-    content: dict[str, Any], patch: dict[str, Any] | None = None
-) -> float | None:
-    merged = dict(content)
-    if patch:
-        merged.update(patch)
-    text = merged.get("text")
-    width = merged.get("width")
-    font_size = merged.get("font_size")
-    if not isinstance(text, str) or not text:
-        return None
-    if not isinstance(width, int | float) or width <= 0:
-        return None
-    if not isinstance(font_size, int | float) or font_size <= 0:
-        return None
-    line_height = merged.get("line_height")
-    if not isinstance(line_height, int | float) or line_height <= 0:
-        line_height = 1.25
-    usable_width = max(float(font_size), float(width))
-    line_count = sum(
-        max(
-            1,
-            int(
-                (_text_width(line, float(font_size)) + usable_width - 1) // usable_width
-            ),
-        )
-        for line in text.splitlines() or [""]
-    )
-    return max(24.0, line_count * float(font_size) * float(line_height) + 8.0)
-
-
-def _normalize_text_box_height(
-    content: dict[str, Any], patch: dict[str, Any]
-) -> tuple[dict[str, Any], bool]:
-    if "height" not in patch:
-        return patch, False
-    height = patch.get("height")
-    if not isinstance(height, int | float):
-        return patch, False
-    minimum = _minimum_text_box_height(content, patch)
-    base_height = content.get("height")
-    if isinstance(base_height, int | float):
-        minimum = max(float(base_height), minimum or 0.0)
-    if minimum is None or height >= minimum:
-        return patch, False
-    normalized = dict(patch)
-    normalized["height"] = round(minimum, 3)
-    return normalized, True
-
-
 def _normalize_text_slot_override(
     base_content: dict[str, Any], patch: dict[str, Any]
 ) -> tuple[dict[str, Any], bool]:
     """Normalize overrides targeting a plain TextSlot so text-box metadata does not corrupt text anchors."""
     if not isinstance(base_content, dict) or not isinstance(patch, dict):
+        return patch, False
+
+    # An explicit kind is an authoring decision, not legacy bounding-box metadata.
+    if patch.get("kind") == "text_box" and isinstance(patch.get("width"), (int, float)) and patch["width"] > 0:
         return patch, False
 
     text = patch.get("text", base_content.get("text"))
@@ -934,36 +861,6 @@ def _normalize_slot_patch(
     return normalized, normalized != patch
 
 
-def _compact_text_for_spacing_compare(text: str) -> str:
-    return "".join(char for char in text if not char.isspace())
-
-
-def _whitespace_count(text: str) -> int:
-    return sum(1 for char in text if char.isspace())
-
-
-def _drop_stale_text_override_if_base_has_more_spacing(
-    content: dict[str, Any], patch: dict[str, Any]
-) -> tuple[dict[str, Any], bool]:
-    base_text = content.get("text")
-    patch_text = patch.get("text")
-    if (
-        not isinstance(base_text, str)
-        or not isinstance(patch_text, str)
-        or base_text == patch_text
-    ):
-        return patch, False
-    if _compact_text_for_spacing_compare(
-        base_text
-    ) != _compact_text_for_spacing_compare(patch_text):
-        return patch, False
-    if _whitespace_count(base_text) <= _whitespace_count(patch_text):
-        return patch, False
-    normalized = dict(patch)
-    normalized.pop("text", None)
-    return normalized, True
-
-
 def prune_editor_overrides(
     layout: dict[str, Any], overrides: dict[str, Any] | None
 ) -> tuple[dict[str, Any] | None, bool]:
@@ -1036,21 +933,11 @@ def prune_editor_overrides(
                     and isinstance(base_slot.get("content"), dict)
                     else {}
                 )
-                patch, text_spacing_normalized = (
-                    _drop_stale_text_override_if_base_has_more_spacing(
-                        base_content, patch
-                    )
-                )
                 if slot_kinds.get(slot_id) == "text":
                     patch, text_slot_normalized = _normalize_text_slot_override(
                         base_content, patch
                     )
                     normalized = normalized or text_slot_normalized
-                if slot_kinds.get(slot_id) == "text_box" or "width" in patch:
-                    patch, text_normalized = _normalize_text_box_height(
-                        base_content, patch
-                    )
-                    normalized = normalized or text_normalized
                 changed = changed or normalized
                 if patch:
                     cleaned_slots[slot_id] = patch
@@ -1259,6 +1146,8 @@ def apply_editor_overrides(
                     "path",
                     "blank",
                 }:
+                    if current_kind == "text" and patch["kind"] == "text_box":
+                        content.pop("anchor", None)
                     slot["kind"] = patch["kind"]
                 content.update(patch)
                 _normalize_answer_input_interaction(content)

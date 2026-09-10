@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'dart:convert';
 import 'dart:io';
 
@@ -25,12 +26,12 @@ void main() {
       final content = load('${root.path}/$loc/S3_elem_3_008713');
       final visual = problemVisualRenderer(content);
       final elements = visual['elements'] as List;
-      print('=== $loc ===');
-      print('content.choices: ${content.choices}');
-      print('viewport: ${visual['presentation_viewport']}');
+      debugPrint('=== $loc ===');
+      debugPrint('content.choices: ${content.choices}');
+      debugPrint('viewport: ${visual['presentation_viewport']}');
       for (final el in elements) {
         if ('${el['id']}'.contains('option')) {
-          print('  KEPT: ${el['id']} -> ${el['text']}');
+          debugPrint('  KEPT: ${el['id']} -> ${el['text']}');
         }
       }
     }

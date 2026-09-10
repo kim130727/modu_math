@@ -357,7 +357,7 @@ def _compile_slots(
             tx = float(content["x"]) if isinstance(content.get("x"), int | float) else x
             ty = float(content["y"]) if isinstance(content.get("y"), int | float) else y
             font_size = (
-                int(content["font_size"])
+                float(content["font_size"])
                 if isinstance(content.get("font_size"), int | float)
                 else _DEFAULT_FONT_SIZE
             )

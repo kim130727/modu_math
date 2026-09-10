@@ -1063,12 +1063,12 @@ void main() {
   testWidgets('sizes multi-digit answer text to match surrounding problem text',
       (tester) async {
     await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: SizedBox(
+      const MaterialApp(
+        home: const Scaffold(
+          body: const SizedBox(
             width: 365,
             height: 125,
-            child: RendererJsonCanvas(
+            child: const RendererJsonCanvas(
               inputValue: '434',
               expectedAnswer: '4341131',
               renderer: {
@@ -1114,12 +1114,12 @@ void main() {
   testWidgets('suppresses renderer input slots for choice problems',
       (tester) async {
     await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: SizedBox(
+      const MaterialApp(
+        home: const Scaffold(
+          body: const SizedBox(
             width: 240,
             height: 160,
-            child: RendererJsonCanvas(
+            child: const RendererJsonCanvas(
               suppressInputs: true,
               renderer: {
                 'view_box': {

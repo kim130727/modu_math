@@ -1,0 +1,107 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_elem_3_008661",
+  "problem_type": "geometry_segment_comparison",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "가장 긴 선분",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.segment.gn",
+      "value": {
+        "label": "선분 ㄱㄴ"
+      }
+    },
+    {
+      "ref": "obj.segment.dr",
+      "value": {
+        "label": "선분 ㄷㄹ"
+      }
+    },
+    {
+      "ref": "obj.segment.mb",
+      "value": {
+        "label": "선분 ㅁㅂ"
+      }
+    },
+    {
+      "ref": "obj.segment.ss",
+      "value": {
+        "label": "선분 ㅅㅈ"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_selection"
+  },
+  "method": "visual_comparison",
+  "plan": [
+    "원 안의 네 선분을 비교한다.",
+    "중심을 지나는 선분을 찾는다.",
+    "보기에서 그 선분에 해당하는 번호를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "중심을 지나는 선분 확인",
+      "value": "선분 ㄷㄹ"
+    },
+    {
+      "id": "step.2",
+      "expr": "보기와 대응",
+      "value": "2. 선분 ㄷㄹ"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "해설 문장과 선택지 일치 여부",
+      "expected": "2. 선분 ㄷㄹ",
+      "actual": "2. 선분 ㄷㄹ",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.opt1",
+        "slot_id": "slot.opt1",
+        "text": "① 선분 ㄱㄴ",
+        "value": "1. 선분 ㄱㄴ"
+      },
+      {
+        "id": "slot.opt2",
+        "slot_id": "slot.opt2",
+        "text": "② 선분 ㄷㄹ",
+        "value": "2. 선분 ㄷㄹ"
+      },
+      {
+        "id": "slot.opt3",
+        "slot_id": "slot.opt3",
+        "text": "③ 선분 ㅁㅂ",
+        "value": "3. 선분 ㅁㅂ"
+      },
+      {
+        "id": "slot.opt4",
+        "slot_id": "slot.opt4",
+        "text": "④ 선분 ㅅㅈ",
+        "value": "4. 선분 ㅅㅈ"
+      }
+    ],
+    "answer_key": [
+      "② 선분 ㄷㄹ"
+    ],
+    "target": {
+      "type": "choice_selection",
+      "description": "길이가 가장 긴 선분"
+    },
+    "value": "② 선분 ㄷㄹ",
+    "unit": ""
+  }
+}

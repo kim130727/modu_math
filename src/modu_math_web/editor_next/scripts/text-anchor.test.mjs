@@ -65,3 +65,24 @@ test("actual text boxes retain their minimum width and top-left position", () =>
   assert.equal(shape.width, 24);
   assert.equal(shape.x, 100);
 });
+
+for (const text of ["  8   6 9  ", "869", "日本語の問題", "中文题目", "ប្រយោគគុណ"]) {
+  test(`text-only edits preserve box geometry and font: ${text}`, () => {
+    const slot = { id: "slot.caption", kind: "text_box", content: {
+      text: "8   6   9", x: 50, y: 60, width: 340, height: 170,
+      font_size: 24, font_family: "Noto Sans Khmer", align: "right", line_height: 1.5,
+    } };
+    const base = problemDetailToCanonicalProblem({ problem_id: "box", layout: {
+      canvas: { width: 900, height: 500 }, slots: [slot],
+    } });
+    const doc = problemJsonToEditorDocument(base);
+    assert.equal(doc.shapes[0].height, 170);
+    assert.equal(doc.shapes[0].fontFamily, "Noto Sans Khmer");
+    assert.equal(doc.shapes[0].align, "right");
+    doc.shapes[0].text = text;
+    const next = editorDocumentToProblemJson(doc, base);
+    const patches = problemJsonToLayoutPatches(base, next);
+    assert.deepEqual(patches, [{ target: "slot.caption", op: "update", value: { text } }]);
+    assert.equal(problemJsonToEditorDocument(next).shapes[0].height, 170);
+  });
+}

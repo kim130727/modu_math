@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from dataclasses import fields, is_dataclass, replace
 from pathlib import Path
@@ -18,6 +19,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from modu_math.dsl.exporter import _render_problem_template_source
+from modu_math.layout.shared_layout import override_path, read_overrides
 from modu_math.dsl.symbol_roles import (
     is_protected_symbol_role,
     is_symbol_marker_text,
@@ -331,6 +333,16 @@ def main(argv: list[str] | None = None) -> int:
         solvable=solvable,
     )
     changed = write_output(out_path, source, force=args.force)
+
+    # Store a live geometry link rather than making another divergent snapshot.
+    # Existing language-specific edits remain authoritative over this source.
+    if out_path.resolve() != dsl_path.resolve():
+        overrides = read_overrides(out_path)
+        overrides.setdefault("version", 1)
+        overrides["layout_source"] = Path(os.path.relpath(dsl_path.resolve(), out_path.resolve().parent)).as_posix()
+        override_path(out_path).write_text(
+            json.dumps(overrides, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        )
 
     action = "wrote" if changed else "unchanged"
     print(f"{action}: {out_path}")

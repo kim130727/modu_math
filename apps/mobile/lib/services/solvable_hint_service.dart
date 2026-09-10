@@ -621,10 +621,10 @@ String _translateHintBody(String body, String locale) {
     final ukPrefix = num != null ? 'У $num ' : '';
     return switch (locale) {
       'en' => '${prefix}let\'s find the actual value represented by the shaded digit $digit.',
-      'ja' => '${jaPrefix}色の付いた位の数字$digitが実際に表す値を確認しましょう。',
-      'zh' => '${zhPrefix}确认涂色数位的数字$digit实际表示的数值。',
-      'km' => '${kmPrefix}សូមពិនិត្យមើលថាតើតួលេខ $digit ក្នុងខ្ទង់ដាក់ពណ៌ពិតជាតំណាងឱ្យប៉ុន្មាន។',
-      'uk' => '${ukPrefix}перевіримо, яке значення насправді представляє виділена цифра $digit.',
+      'ja' => '$jaPrefix色の付いた位の数字$digitが実際に表す値を確認しましょう。',
+      'zh' => '$zhPrefix确认涂色数位的数字$digit实际表示的数值。',
+      'km' => '$kmPrefixសូមពិនិត្យមើលថាតើតួលេខ $digit ក្នុងខ្ទង់ដាក់ពណ៌ពិតជាតំណាងឱ្យប៉ុន្មាន។',
+      'uk' => '$ukPrefixперевіримо, яке значення насправді представляє виділена цифра $digit.',
       _ => clean,
     };
   }
@@ -873,10 +873,10 @@ String _translateHintQuestion(String question, String locale) {
     final ukPrefix = num != null ? 'У $num ' : '';
     return switch (locale) {
       'en' => '${prefix}what value does the digit $digit actually represent?',
-      'ja' => '${jaPrefix}数字$digitは実際にいくつを表していますか？',
-      'zh' => '${zhPrefix}数字$digit实际表示多少？',
-      'km' => '${kmPrefix}តើតួលេខ $digit ពិតជាតំណាងឱ្យប៉ុន្មាន?',
-      'uk' => '${ukPrefix}яке значення насправді представляє цифра $digit?',
+      'ja' => '$jaPrefix数字$digitは実際にいくつを表していますか？',
+      'zh' => '$zhPrefix数字$digit实际表示多少？',
+      'km' => '$kmPrefixតើតួលេខ $digit ពិតជាតំណាងឱ្យប៉ុន្មាន?',
+      'uk' => '$ukPrefixяке значення насправді представляє цифра $digit?',
       _ => clean,
     };
   }

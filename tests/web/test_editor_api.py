@@ -2296,7 +2296,7 @@ def test_apply_editor_overrides_line_geometry_removes_stale_transform() -> None:
     }
 
 
-def test_prune_editor_overrides_clamps_text_box_height_to_fit_content() -> None:
+def test_prune_editor_overrides_preserves_authored_text_box_height() -> None:
     layout = {
         "regions": [
             {"id": "region.stem", "role": "stem", "slot_ids": ["slot.question"]}
@@ -2319,11 +2319,11 @@ def test_prune_editor_overrides_clamps_text_box_height_to_fit_content() -> None:
 
     cleaned, changed = prune_editor_overrides(layout, overrides)
 
-    assert changed is True
-    assert cleaned["slots"]["slot.question"]["height"] >= 120
+    assert changed is False
+    assert cleaned["slots"]["slot.question"]["height"] == 69
 
 
-def test_prune_editor_overrides_drops_stale_text_that_removes_dsl_spacing() -> None:
+def test_prune_editor_overrides_preserves_edits_that_remove_dsl_spacing() -> None:
     layout = {
         "regions": [
             {"id": "region.problem", "role": "diagram", "slot_ids": ["slot.addend"]}
@@ -2340,8 +2340,8 @@ def test_prune_editor_overrides_drops_stale_text_that_removes_dsl_spacing() -> N
 
     cleaned, changed = prune_editor_overrides(layout, overrides)
 
-    assert changed is True
-    assert cleaned["slots"]["slot.addend"] == {"x": 105.0}
+    assert changed is False
+    assert cleaned["slots"]["slot.addend"] == {"text": "235", "x": 105.0}
 
 
 def test_prune_editor_overrides_keeps_text_that_adds_editor_spacing() -> None:

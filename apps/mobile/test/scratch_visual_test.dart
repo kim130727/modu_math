@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:modu_math_app/models/content_models.dart';
 import 'package:modu_math_app/utils/problem_presentation.dart';
 import 'package:modu_math_app/widgets/renderer_json_canvas.dart';
@@ -11,8 +10,6 @@ import 'package:modu_math_app/widgets/renderer_json_canvas.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   test('scratch', () async {
-    final layout = jsonDecode(File('../../examples/problems/ko/S3_elem_3_008732.layout.json').readAsStringSync());
-    final renderer = jsonDecode(File('../../examples/problems/ko/S3_elem_3_008732.renderer.json').readAsStringSync());
     for (final loc in ['en', 'km']) {
       final layout = jsonDecode(File('../../examples/problems/$loc/S3_elem_3_008664.layout.json').readAsStringSync());
       final renderer = jsonDecode(File('../../examples/problems/$loc/S3_elem_3_008664.renderer.json').readAsStringSync());
@@ -35,16 +32,16 @@ void main() {
         semantic: semantic,
         solvable: solvable,
       );
-      print('=== LOCALE $loc ===');
-      print('PROMPT: "${content.prompt}"');
-      print('CHOICES: ${content.choices}');
+      debugPrint('=== LOCALE $loc ===');
+      debugPrint('PROMPT: "${content.prompt}"');
+      debugPrint('CHOICES: ${content.choices}');
 
       final originalTexts = (renderer['elements'] as List)
           .whereType<Map>()
           .where((e) => e['type'] == 'text')
           .map((e) => '${e["id"]}: "${e["text"]}"')
           .toList();
-      print('ORIGINAL TEXTS: $originalTexts');
+      debugPrint('ORIGINAL TEXTS: $originalTexts');
 
       final visual = problemVisualRenderer(content);
       final visualTexts = (visual['elements'] as List)
@@ -52,7 +49,7 @@ void main() {
           .where((e) => e['type'] == 'text')
           .map((e) => '${e["id"]}: "${e["text"]}"')
           .toList();
-      print('VISUAL TEXTS: $visualTexts');
+      debugPrint('VISUAL TEXTS: $visualTexts');
 
       final viewBox = visual['view_box'] as Map;
       final w = (viewBox['width'] as num).toDouble();
@@ -69,7 +66,7 @@ void main() {
       final img = await picture.toImage(w.toInt(), h.toInt());
       final byteData = await img.toByteData(format: ui.ImageByteFormat.png);
       File('test_circle_$loc.png').writeAsBytesSync(byteData!.buffer.asUint8List());
-      print('WROTE test_circle_$loc.png, size: ${byteData.lengthInBytes}');
+      debugPrint('WROTE test_circle_$loc.png, size: ${byteData.lengthInBytes}');
     }
   });
 }

@@ -14,7 +14,8 @@ try {
     for (const width of [90, 345, 600]) {
       const node = new Text({ text: text || ' ', width, fontSize: 28, lineHeight: 1.25, fontFamily: KONVA_PREVIEW_FONT_FAMILY });
       const height = normalizedTextBoxHeight(text, 28, width, 300, 1.25);
-      assert(height === Math.ceil(node.height()), 'Height differs from actual rendered lines');
+      assert(height === 300, 'Authored height changed');
+      assert(normalizedTextBoxHeight(text, 28, width, undefined, 1.25) === Math.ceil(node.height()), 'Automatic height differs from actual rendered lines');
       assert(normalizedTextBoxHeight(text, 28, width, 300, 1.25, undefined, true) >= 300, 'Answer slot shrank');
       node.destroy();
     }
@@ -22,7 +23,7 @@ try {
   assert(fittedTextWidth('짧은 글', 28) < 345, 'Fit width did not remove excess width');
   const base = { id: 'test', title: 'Test', canvas: { width: 800, height: 600 }, objects: [{ id: 't', type: 'math_text', x: 20, y: 20, props: { text: '짧은 글', fontSize: 28, width: 345, height: 300, sourceKind: 'text_box' } }] };
   const doc = problemJsonToEditorDocument(base);
-  assert(doc.shapes[0].height < 300, 'Imported whitespace remains');
+  assert(doc.shapes[0].height === 300, 'Imported authored height changed');
   const saved = editorDocumentToProblemJson(doc, base);
   const reopened = problemJsonToEditorDocument(saved);
   assert(reopened.shapes[0].height === doc.shapes[0].height, 'Save/reopen changed height');

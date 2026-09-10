@@ -920,8 +920,8 @@ void main() {
   });
 
   test('does not treat number cards as choices for P3_1_01_00040_15611', () {
-    final content = ProblemContent(
-      summary: const ProblemSummary(
+    const content = ProblemContent(
+      summary: ProblemSummary(
         id: 'P3_1_01_00040_15611',
         grade: 3,
         subject: 'math',
@@ -967,15 +967,15 @@ void main() {
           'choices': [],
         },
       },
-      semantic: const {},
+      semantic: {},
     );
 
     expect(content.choices, isEmpty);
   });
 
   test('extracts choice blank square box for S3_elem_3_008588', () {
-    final content = ProblemContent(
-      summary: const ProblemSummary(
+    const content = ProblemContent(
+      summary: ProblemSummary(
         id: 'S3_elem_3_008588',
         grade: 3,
         subject: 'math',
@@ -1090,7 +1090,7 @@ void main() {
           'choices': [],
         },
       },
-      semantic: const {},
+      semantic: {},
     );
 
     expect(
@@ -1105,8 +1105,8 @@ void main() {
   });
 
   test('extracts person names as choices for S3_elem_3_008590', () {
-    final content = ProblemContent(
-      summary: const ProblemSummary(
+    const content = ProblemContent(
+      summary: ProblemSummary(
         id: 'S3_elem_3_008590',
         grade: 3,
         subject: 'math',
@@ -1181,7 +1181,7 @@ void main() {
           'choices': [],
         },
       },
-      semantic: const {},
+      semantic: {},
     );
 
     expect(
@@ -1195,8 +1195,8 @@ void main() {
   });
 
   test('extracts choice blank square box for S3_elem_3_008592', () {
-    final content = ProblemContent(
-      summary: const ProblemSummary(
+    const content = ProblemContent(
+      summary: ProblemSummary(
         id: 'S3_elem_3_008592',
         grade: 3,
         subject: 'math',
@@ -1354,7 +1354,7 @@ void main() {
           'choices': [],
         },
       },
-      semantic: const {},
+      semantic: {},
     );
 
     expect(
@@ -1372,8 +1372,8 @@ void main() {
   test(
       'extracts circled hangul consonant and blank square box for S3_elem_3_008601',
       () {
-    final content = ProblemContent(
-      summary: const ProblemSummary(
+    const content = ProblemContent(
+      summary: ProblemSummary(
         id: 'S3_elem_3_008601',
         grade: 3,
         subject: 'math',
@@ -1485,7 +1485,7 @@ void main() {
           'choices': [],
         },
       },
-      semantic: const {},
+      semantic: {},
     );
 
     expect(
@@ -1499,8 +1499,8 @@ void main() {
   });
 
   test('extracts choices with expressions for S3_elem_3_008603', () {
-    final content = ProblemContent(
-      summary: const ProblemSummary(
+    const content = ProblemContent(
+      summary: ProblemSummary(
         id: 'S3_elem_3_008603',
         grade: 3,
         subject: 'math',
@@ -1551,7 +1551,7 @@ void main() {
           'choices': [],
         },
       },
-      semantic: const {},
+      semantic: {},
     );
 
     expect(
@@ -1565,8 +1565,8 @@ void main() {
   });
 
   test('extracts person names as choices for S3_elem_3_008604', () {
-    final content = ProblemContent(
-      summary: const ProblemSummary(
+    const content = ProblemContent(
+      summary: ProblemSummary(
         id: 'S3_elem_3_008604',
         grade: 3,
         subject: 'math',
@@ -1634,7 +1634,7 @@ void main() {
           'choices': [],
         },
       },
-      semantic: const {},
+      semantic: {},
     );
 
     expect(
@@ -1648,8 +1648,8 @@ void main() {
   });
 
   test('extracts person names as choices for S3_elem_3_008608', () {
-    final content = ProblemContent(
-      summary: const ProblemSummary(
+    const content = ProblemContent(
+      summary: ProblemSummary(
         id: 'S3_elem_3_008608',
         grade: 3,
         subject: 'math',
@@ -1736,7 +1736,7 @@ void main() {
           'choices': [],
         },
       },
-      semantic: const {},
+      semantic: {},
     );
 
     expect(
@@ -1752,8 +1752,8 @@ void main() {
 
   test('creates O and X choices for divisibility judgment in S3_elem_3_008612',
       () {
-    final content = ProblemContent(
-      summary: const ProblemSummary(
+    const content = ProblemContent(
+      summary: ProblemSummary(
         id: 'S3_elem_3_008612',
         grade: 3,
         subject: 'math',
@@ -1803,7 +1803,7 @@ void main() {
           'choices': [],
         },
       },
-      semantic: const {},
+      semantic: {},
     );
 
     expect(

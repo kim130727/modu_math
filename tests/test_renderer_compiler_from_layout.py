@@ -468,7 +468,7 @@ def test_compile_renderer_keeps_region_blank_without_authored_geometry() -> None
     assert any(element["id"] == "slot.answer.blank" for element in renderer["elements"])
 
 
-def test_apply_editor_overrides_preserves_text_slot_middle_anchor() -> None:
+def test_explicit_text_box_override_preserves_top_left_coordinates() -> None:
     from modu_math.layout.editor_overrides import (
         apply_editor_overrides,
         prune_editor_overrides,
@@ -513,20 +513,19 @@ def test_apply_editor_overrides_preserves_text_slot_middle_anchor() -> None:
     slot_card1 = next(
         slot for slot in applied_layout["slots"] if slot["id"] == "slot.card1.text"
     )
-    assert slot_card1["kind"] == "text"
-    assert slot_card1["content"]["anchor"] == "middle"
-    assert slot_card1["content"]["x"] == 90.132
-    assert slot_card1["content"]["y"] == 97.105
+    assert slot_card1["kind"] == "text_box"
+    assert "anchor" not in slot_card1["content"]
+    assert slot_card1["content"]["x"] == 78.132
+    assert slot_card1["content"]["y"] == 76.105
 
     el = next(
         element
         for element in renderer["elements"]
         if element["id"] == "slot.card1.text.text"
     )
-    assert el["type"] == "text"
-    assert el["attributes"]["text-anchor"] == "middle"
-    assert el["attributes"]["x"] == 90.132
-    assert el["attributes"]["y"] == 97.105
+    assert el["type"] == "text_box"
+    assert el["attributes"]["x"] == 78.132
+    assert el["attributes"]["y"] == 76.105
 
 
 def test_apply_editor_overrides_keeps_center_dot_on_circle_center() -> None:

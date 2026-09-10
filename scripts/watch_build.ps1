@@ -116,6 +116,9 @@ from modu_math.layout.editor_overrides import (
     prune_legacy_answer_blank_slots,
 )
 from modu_math.layout.sanitizer import sanitize_layout
+from modu_math.layout.shared_layout import resolve_shared_layout, read_overrides
+from modu_math.layout.text_layout import fit_prompt_text
+from modu_math_web.editor.services.presentation import structure_presentation
 from modu_math.pipeline.answer_contracts import normalize_answer_for_deleted_slots, normalize_answer_for_submit_slots, validate_answer_slot_contract
 from modu_math.pipeline.semantic_normalizer import normalize_semantic_for_schema
 from modu_math.pipeline.subproblem_projection import project_suffixed_subproblem
@@ -132,7 +135,7 @@ base = Path(os.environ["MODU_BASE_PATH"])
 spec = importlib.util.spec_from_file_location("problem_dsl_module", dsl_path)
 module = importlib.util.module_from_spec(spec)
 assert spec and spec.loader
-spec.loader.exec_module(module)
+exec(compile(dsl_path.read_text(encoding="utf-8-sig"), str(dsl_path), "exec"), module.__dict__)
 
 # Get PROBLEM_TEMPLATE
 if hasattr(module, "PROBLEM_TEMPLATE") and isinstance(module.PROBLEM_TEMPLATE, ProblemTemplate):
@@ -144,7 +147,7 @@ else:
 
 # Compilation
 semantic = compile_problem_template_to_semantic(problem, problem_type="diagram_problem")
-layout = compile_problem_template_to_layout(problem)
+layout = resolve_shared_layout(compile_problem_template_to_layout(problem), dsl_path)
 
 deleted_answer_slots = set()
 editor_override_slot_ids = set()
@@ -325,6 +328,10 @@ if isinstance(solvable, dict):
 
 semantic, _semantic_normalized = normalize_semantic_for_schema(semantic)
 
+layout, semantic, solvable = structure_presentation(layout, semantic, solvable)
+layout_settings = read_overrides(dsl_path)
+if layout_settings.get("layout_source") or layout_settings.get("text_layout") == "fit":
+    layout = fit_prompt_text(layout)
 renderer = compile_renderer_json(layout)
 if hasattr(module, "TUTOR_RENDERER_FLOW"):
     renderer = attach_tutor_renderer_flow(renderer, module.TUTOR_RENDERER_FLOW)

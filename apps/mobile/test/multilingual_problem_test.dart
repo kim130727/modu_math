@@ -1,4 +1,3 @@
-import 'package:flutter/painting.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:modu_math_app/models/content_models.dart';
 import 'package:modu_math_app/services/content_repository.dart';
@@ -12,7 +11,7 @@ void main() {
       final repository = ContentRepository.bundledAssets()
         ..activeProblemLocale = 'en';
 
-      final enSummary = ProblemSummary(
+      const enSummary = ProblemSummary(
         id: 'S3_elem_3_008661',
         grade: 3,
         subject: 'math',
@@ -21,7 +20,7 @@ void main() {
         title: 'Find the longest line segment',
         path: 'examples/problems/en',
         filePrefix: 'S3_elem_3_008661',
-        raw: const {
+        raw: {
           'id': 'S3_elem_3_008661',
           'filePrefix': 'S3_elem_3_008661',
         },
@@ -58,7 +57,7 @@ void main() {
         ..activeProblemLocale = 'en';
 
       // Simulate a summary that previously held a Chinese path
-      final staleSummary = ProblemSummary(
+      const staleSummary = ProblemSummary(
         id: 'S3_elem_3_008661',
         grade: 3,
         subject: 'math',
@@ -67,7 +66,7 @@ void main() {
         title: '找出最长的线段',
         path: 'examples/problems/zh',
         filePrefix: 'S3_elem_3_008661',
-        raw: const {
+        raw: {
           'id': 'S3_elem_3_008661',
           'filePrefix': 'S3_elem_3_008661',
           'path': 'examples/problems/zh',
@@ -87,7 +86,7 @@ void main() {
       final repository = ContentRepository.bundledAssets()
         ..activeProblemLocale = 'zh';
 
-      final summary = ProblemSummary(
+      const summary = ProblemSummary(
         id: 'S3_elem_3_008661',
         grade: 3,
         subject: 'math',
@@ -96,7 +95,7 @@ void main() {
         title: '找出最长的线段',
         path: 'examples/problems/zh',
         filePrefix: 'S3_elem_3_008661',
-        raw: const {
+        raw: {
           'id': 'S3_elem_3_008661',
           'filePrefix': 'S3_elem_3_008661',
         },

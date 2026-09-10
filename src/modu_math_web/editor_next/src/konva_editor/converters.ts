@@ -751,9 +751,10 @@ export function fittedTextHeight(text: string, fontSize: number, width: number, 
   return Math.ceil(measured?.height ?? Math.max(1, estimateWrappedLineCount(text, fontSize, width)) * fontSize * lineHeight);
 }
 
-export function normalizedTextBoxHeight(text: string, fontSize: number, width: number, height?: number, lineHeight = 1.25, fontFamily?: string, preserveHeight = false): number {
-  const fittedHeight = fittedTextHeight(text, fontSize, width, lineHeight, fontFamily);
-  return preserveHeight && typeof height === "number" && Number.isFinite(height) ? Math.max(height, fittedHeight) : fittedHeight;
+export function normalizedTextBoxHeight(text: string, fontSize: number, width: number, height?: number, lineHeight = 1.25, fontFamily?: string, _preserveHeight = false): number {
+  // Loading or editing copy must not rewrite an authored box's geometry.
+  if (typeof height === "number" && Number.isFinite(height) && height > 0) return height;
+  return fittedTextHeight(text, fontSize, width, lineHeight, fontFamily);
 }
 
 // Use the same font metrics and word wrapping as the visible Konva Text.

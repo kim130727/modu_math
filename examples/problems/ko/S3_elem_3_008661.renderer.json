@@ -8,13 +8,24 @@
   "elements": [
     {
       "id": "slot.q_text.text",
-      "type": "text",
+      "type": "text_box",
       "attributes": {
         "x": 40.0,
-        "y": 35.0,
+        "y": 5.0,
         "fill": "#111111",
         "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 30,
+        "font-size": 30.0,
+        "width": 609.0,
+        "height": 82.0,
+        "max_width": 609.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 40.0,
+        "data-box-y": 5.0,
+        "data-box-width": 609.0,
+        "data-box-height": 82.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.3,
         "data-semantic-role": "question"
       },
       "source_ref": "slot.q_text",
@@ -143,7 +154,7 @@
         "y": 120.0,
         "fill": "#111111",
         "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 25,
+        "font-size": 25.0,
         "data-semantic-role": "diagram_label"
       },
       "source_ref": "slot.lb.giyeok",
@@ -160,7 +171,7 @@
         "y": 120.0,
         "fill": "#111111",
         "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 25,
+        "font-size": 25.0,
         "data-semantic-role": "diagram_label"
       },
       "source_ref": "slot.lb.nieun",
@@ -177,7 +188,7 @@
         "y": 175.0,
         "fill": "#111111",
         "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 25,
+        "font-size": 25.0,
         "data-semantic-role": "diagram_label"
       },
       "source_ref": "slot.lb.digeut",
@@ -194,7 +205,7 @@
         "y": 175.0,
         "fill": "#111111",
         "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 25,
+        "font-size": 25.0,
         "data-semantic-role": "diagram_label"
       },
       "source_ref": "slot.lb.rieul",
@@ -211,7 +222,7 @@
         "y": 215.0,
         "fill": "#111111",
         "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 25,
+        "font-size": 25.0,
         "data-semantic-role": "diagram_label"
       },
       "source_ref": "slot.lb.mieum",
@@ -228,7 +239,7 @@
         "y": 215.0,
         "fill": "#111111",
         "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 25,
+        "font-size": 25.0,
         "data-semantic-role": "diagram_label"
       },
       "source_ref": "slot.lb.bieup",
@@ -245,7 +256,7 @@
         "y": 245.0,
         "fill": "#111111",
         "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 25,
+        "font-size": 25.0,
         "data-semantic-role": "diagram_label"
       },
       "source_ref": "slot.lb.sieut1",
@@ -262,7 +273,7 @@
         "y": 250.0,
         "fill": "#111111",
         "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 25,
+        "font-size": 25.0,
         "data-semantic-role": "diagram_label"
       },
       "source_ref": "slot.lb.sieut2",
@@ -279,7 +290,7 @@
         "y": 325.0,
         "fill": "#111111",
         "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 30,
+        "font-size": 30.0,
         "data-semantic-role": "choice"
       },
       "source_ref": "slot.opt1",
@@ -296,7 +307,7 @@
         "y": 325.0,
         "fill": "#111111",
         "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 30,
+        "font-size": 30.0,
         "data-semantic-role": "choice"
       },
       "source_ref": "slot.opt2",
@@ -313,7 +324,7 @@
         "y": 325.0,
         "fill": "#111111",
         "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 30,
+        "font-size": 30.0,
         "data-semantic-role": "choice"
       },
       "source_ref": "slot.opt3",
@@ -330,7 +341,7 @@
         "y": 370.0,
         "fill": "#111111",
         "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 30,
+        "font-size": 30.0,
         "data-semantic-role": "choice"
       },
       "source_ref": "slot.opt4",

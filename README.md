@@ -52,9 +52,9 @@ powershell -ExecutionPolicy Bypass -File scripts\modu_monorepo.ps1 -Task check
 ```
 
 `examples/problems` is the canonical location for generated semantic,
-solvable, layout, renderer JSON and SVG files. The Flutter app reads that
-location through `apps/mobile/examples/problems`, a local junction to the
-canonical directory. Python DSL files and `locales/` remain the
+solvable, layout, renderer JSON and SVG files. The Flutter app bundles that
+location directly through `../../examples/problems/` in its `pubspec.yaml`,
+so analysis and builds do not require a local junction. Python DSL files and `locales/` remain the
 authoring/localization sources.
 
 ## Example Artifacts

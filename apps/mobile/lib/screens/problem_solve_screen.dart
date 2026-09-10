@@ -12,10 +12,7 @@ import '../utils/answer_normalizer.dart';
 import '../widgets/answer_panel.dart';
 import '../widgets/hint_panel.dart';
 import '../widgets/onsem_loading_indicator.dart';
-import '../widgets/problem_svg_viewer.dart';
-import '../widgets/renderer_json_canvas.dart';
 import '../widgets/vertical_arithmetic_explorer.dart';
-import '../theme/app_theme.dart';
 
 class ProblemSolveScreen extends StatefulWidget {
   const ProblemSolveScreen({
@@ -990,55 +987,6 @@ class _ProblemControls extends StatelessWidget {
           const SizedBox(width: 8),
           Expanded(child: nextButton),
         ],
-      ),
-    );
-  }
-}
-
-class _ProblemVisual extends StatelessWidget {
-  const _ProblemVisual({
-    required this.repository,
-    required this.content,
-    required this.answerDraft,
-    required this.onAnswerChanged,
-  });
-
-  final ContentRepository repository;
-  final ProblemContent content;
-  final String answerDraft;
-  final ValueChanged<String> onAnswerChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    final strings = AppStrings.of(context);
-    if (content.renderer.isNotEmpty) {
-      return Card(
-        margin: EdgeInsets.zero,
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: RendererJsonCanvas(
-            renderer: content.renderer,
-            imageLoader: (href) =>
-                repository.loadProblemAsset(content.summary, href),
-            imageCacheKey: content.summary.path,
-            inputValue: answerDraft,
-            expectedAnswer: content.correctAnswer,
-            suppressInputs: content.choices.isNotEmpty,
-            onInputChanged: onAnswerChanged,
-          ),
-        ),
-      );
-    }
-    if (content.svg.isNotEmpty) {
-      return ProblemSvgViewer(svg: content.svg);
-    }
-    return Card(
-      margin: EdgeInsets.zero,
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Text(strings.t('problem.noVisual')),
-        ),
       ),
     );
   }

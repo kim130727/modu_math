@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:modu_math_app/services/content_repository.dart';
@@ -34,7 +35,7 @@ void main() {
       }
     }
     for (final u in untranslated) {
-      print(u);
+      debugPrint(u);
     }
     expect(untranslated, isEmpty);
   });
