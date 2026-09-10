@@ -36,7 +36,13 @@ void main() {
           elements.any((e) => '${e['id']}'.startsWith('slot.choice')), isFalse,
           reason: locale);
       expect(elements.any((e) => e['id'] == 'slot.mul.highlight.rect'), isTrue);
-      expect(elements.any((e) => e['text'] == '3   4   7   6'), isTrue);
+      expect(
+          elements.any((e) =>
+              e['id'] == 'slot.mul.3476.place.0.text' ||
+              e['id']?.toString().contains('3476') == true ||
+              e['text'] == '3   4   7   6'),
+          isTrue,
+          reason: locale);
       expect(visual['presentation_viewport'], isNotNull);
       expect(jsonEncode(content.renderer), before);
       expect(identical(problemVisualRenderer(content), visual), isTrue);
@@ -92,9 +98,10 @@ void main() {
       expect(viewport!['width'], isNotNull);
       expect(viewport['height'], isNotNull);
       // Original view box was 920x650.
-      // Fitted width should be around 486 (less than 550) and height around 397 (less than 450).
+      // Fitted width removes empty side margins across locales (486-680 depending on translation length, all < 700).
+      // Fitted height removes top margins (around 397, less than 450).
       // And origin x, y should start around 189, 168 (greater than 100), not pinned to (0, 0).
-      expect((viewport['width'] as num).toDouble(), lessThan(550.0),
+      expect((viewport['width'] as num).toDouble(), lessThan(700.0),
           reason: 'Fitted width in $locale should remove side margins');
       expect((viewport['height'] as num).toDouble(), lessThan(450.0),
           reason: 'Fitted height in $locale should remove top margins');

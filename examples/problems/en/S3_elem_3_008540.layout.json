@@ -57,7 +57,6 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.choice.box",
         "slot.choice.1",
         "slot.choice.2",
         "slot.choice.3",
@@ -68,16 +67,21 @@
   "slots": [
     {
       "id": "slot.q1",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "Choose the multiplication expression represented by the shaded part.",
         "style_role": "question",
-        "x": 58.0,
-        "y": 55.0,
+        "x": 42.103,
+        "y": 5.816,
         "font_size": 28,
         "fill": "#111111",
-        "semantic_role": "question"
+        "semantic_role": "question",
+        "width": 695.159,
+        "height": 68,
+        "align": "left",
+        "line_height": 1.2,
+        "kind": "text_box"
       }
     },
     {
@@ -483,20 +487,6 @@
       }
     },
     {
-      "id": "slot.choice.box",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 420.0,
-        "y": 110.0,
-        "width": 410.0,
-        "height": 170.0,
-        "stroke": "#F39C12",
-        "stroke_width": 2.0,
-        "fill": "none"
-      }
-    },
-    {
       "id": "slot.choice.1",
       "kind": "text",
       "prompt": "",
@@ -589,7 +579,6 @@
     "slot.mul.3476.place.1",
     "slot.mul.3476.place.0",
     "region.choice",
-    "slot.choice.box",
     "slot.choice.1",
     "slot.choice.2",
     "slot.choice.3",

@@ -316,3 +316,17 @@ SOLVABLE = {
         "unit": "",
     },
 }
+EDITOR_ANSWER_REVIEW = {'mode': 'choice',
+ 'status': 'needs_changes',
+ 'note': '이름 선택지와 정답 연결을 확인하세요. 복수 정답 가능성도 검토해 주세요.',
+ 'answers': [{'value': '1', 'ref': 'answer.value'}],
+ 'choices': [{'id': 'choice.review.87ce3696-7ce4-4799-9a72-50ffaa1d9900',
+              'text': '진경',
+              'correct': True,
+              'label': '1',
+              'sourceRefs': []},
+             {'id': 'choice.review.ab648486-5108-4f49-96a1-dc878aba7a5c',
+              'text': '현진',
+              'correct': False,
+              'label': '2',
+              'sourceRefs': []}]}

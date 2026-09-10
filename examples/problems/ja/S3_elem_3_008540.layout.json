@@ -57,7 +57,6 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.choice.box",
         "slot.choice.1",
         "slot.choice.2",
         "slot.choice.3",
@@ -68,16 +67,21 @@
   "slots": [
     {
       "id": "slot.q1",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "色を塗った部分が実際にどの数の積か選んでください。",
         "style_role": "question",
         "x": 58.0,
-        "y": 55.0,
-        "font_size": 28,
+        "y": 27.0,
+        "font_size": 28.0,
         "fill": "#111111",
-        "semantic_role": "question"
+        "semantic_role": "question",
+        "width": 804.0,
+        "height": 50.0,
+        "align": "left",
+        "valign": "top",
+        "line_height": 1.3
       }
     },
     {
@@ -257,7 +261,8 @@
         "x": 142.0,
         "y": 156.0,
         "font_size": 28,
-        "fill": "#111111"
+        "fill": "#111111",
+        "semantic_role": "diagram_label"
       }
     },
     {
@@ -270,7 +275,8 @@
         "x": 287.0,
         "y": 156.0,
         "font_size": 28,
-        "fill": "#111111"
+        "fill": "#111111",
+        "semantic_role": "diagram_label"
       }
     },
     {
@@ -483,20 +489,6 @@
       }
     },
     {
-      "id": "slot.choice.box",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 420.0,
-        "y": 110.0,
-        "width": 410.0,
-        "height": 170.0,
-        "stroke": "#F39C12",
-        "stroke_width": 2.0,
-        "fill": "none"
-      }
-    },
-    {
       "id": "slot.choice.1",
       "kind": "text",
       "prompt": "",
@@ -589,7 +581,6 @@
     "slot.mul.3476.place.1",
     "slot.mul.3476.place.0",
     "region.choice",
-    "slot.choice.box",
     "slot.choice.1",
     "slot.choice.2",
     "slot.choice.3",

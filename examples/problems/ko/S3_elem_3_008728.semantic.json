@@ -101,14 +101,63 @@
   },
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      {
+        "id": "choice.review.87ce3696-7ce4-4799-9a72-50ffaa1d9900",
+        "label": "1",
+        "text": "진경",
+        "source_refs": []
+      },
+      {
+        "id": "choice.review.ab648486-5108-4f49-96a1-dc878aba7a5c",
+        "label": "2",
+        "text": "현진",
+        "source_refs": []
+      }
+    ],
+    "answer_key": [
+      {
+        "id": "choice.review.87ce3696-7ce4-4799-9a72-50ffaa1d9900",
+        "value": "진경"
+      }
+    ],
     "confidence": 1.0,
     "target": {
       "type": "person_selection",
       "description": "그림을 바르게 말한 사람"
     },
-    "value": 1,
-    "unit": ""
+    "value": "진경",
+    "unit": "",
+    "presentation": {
+      "mode": "choice",
+      "editor_managed": true,
+      "review": {
+        "mode": "choice",
+        "status": "needs_changes",
+        "note": "이름 선택지와 정답 연결을 확인하세요. 복수 정답 가능성도 검토해 주세요.",
+        "answers": [
+          {
+            "value": "1",
+            "ref": "answer.value"
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice.review.87ce3696-7ce4-4799-9a72-50ffaa1d9900",
+            "text": "진경",
+            "correct": true,
+            "label": "1",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.review.ab648486-5108-4f49-96a1-dc878aba7a5c",
+            "text": "현진",
+            "correct": false,
+            "label": "2",
+            "sourceRefs": []
+          }
+        ]
+      }
+    }
   }
 }

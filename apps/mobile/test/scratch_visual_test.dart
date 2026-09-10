@@ -1,15 +1,27 @@
-import 'dart:io';
 import 'dart:convert';
-import 'dart:ui' as ui;
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:modu_math_app/models/content_models.dart';
 import 'package:modu_math_app/utils/problem_presentation.dart';
 import 'package:modu_math_app/widgets/renderer_json_canvas.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  test('scratch', () async {
+
+  setUpAll(() {
+    GoogleFonts.config.allowRuntimeFetching = false;
+    for (final loc in ['en', 'km']) {
+      final file = File('test_circle_$loc.png');
+      if (file.existsSync()) {
+        file.deleteSync();
+      }
+    }
+  });
+
+  testWidgets('renders circle problem visual canvas for en and km', (tester) async {
     for (final loc in ['en', 'km']) {
       final layout = jsonDecode(File('../../examples/problems/$loc/S3_elem_3_008664.layout.json').readAsStringSync());
       final renderer = jsonDecode(File('../../examples/problems/$loc/S3_elem_3_008664.renderer.json').readAsStringSync());
@@ -55,18 +67,20 @@ void main() {
       final w = (viewBox['width'] as num).toDouble();
       final h = (viewBox['height'] as num).toDouble();
 
-      final recorder = ui.PictureRecorder();
-      final canvas = Canvas(recorder, Rect.fromLTWH(0, 0, w, h));
-      final painter = RendererJsonPainter(
-        renderer: visual,
-        logicalSize: Size(w, h),
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SizedBox(
+              width: w,
+              height: h,
+              child: RendererJsonCanvas(
+                renderer: visual,
+              ),
+            ),
+          ),
+        ),
       );
-      painter.paint(canvas, Size(w, h));
-      final picture = recorder.endRecording();
-      final img = await picture.toImage(w.toInt(), h.toInt());
-      final byteData = await img.toByteData(format: ui.ImageByteFormat.png);
-      File('test_circle_$loc.png').writeAsBytesSync(byteData!.buffer.asUint8List());
-      debugPrint('WROTE test_circle_$loc.png, size: ${byteData.lengthInBytes}');
+      expect(find.byType(RendererJsonCanvas), findsOneWidget);
     }
   });
 }
