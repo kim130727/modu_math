@@ -128,6 +128,73 @@ class Problem(models.Model):
     def check_answer(self, submitted: Any) -> bool:
         return answer_matches(self.answer, submitted)
 
+    @property
+    def effective_concepts(self) -> list[str]:
+        if hasattr(self, "tagging") and self.tagging:
+            return self.tagging.effective_concepts or self.concepts
+        return self.concepts
+
+    @property
+    def effective_skills(self) -> list[str]:
+        if hasattr(self, "tagging") and self.tagging:
+            return self.tagging.effective_skills or self.skills
+        return self.skills
+
+
+class ProblemTagging(models.Model):
+    problem = models.OneToOneField(
+        Problem, on_delete=models.CASCADE, related_name="tagging"
+    )
+    auto_concepts = models.JSONField(default=list, blank=True)
+    auto_skills = models.JSONField(default=list, blank=True)
+    rule_version = models.CharField(max_length=32, default="1.0.0")
+    source = models.CharField(max_length=64, default="rule_based")
+    confidence = models.FloatField(
+        default=1.0, validators=[MinValueValidator(0.0), MaxValueValidator(1.0)]
+    )
+    review_status = models.CharField(
+        max_length=32,
+        default="pending",
+        choices=[
+            ("pending", "대기"),
+            ("reviewed", "검토완료"),
+            ("confirmed", "확정"),
+        ],
+    )
+    reviewed_concepts = models.JSONField(null=True, blank=True)
+    reviewed_skills = models.JSONField(null=True, blank=True)
+    reviewed_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="reviewed_tags",
+    )
+    reviewed_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=("review_status",), name="tagging_status_idx"),
+            models.Index(fields=("confidence",), name="tagging_confidence_idx"),
+        ]
+
+    def __str__(self) -> str:
+        return f"Tagging for {self.problem} ({self.review_status}, conf={self.confidence:.2f})"
+
+    @property
+    def effective_concepts(self) -> list[str]:
+        if self.reviewed_concepts is not None:
+            return self.reviewed_concepts
+        return self.auto_concepts
+
+    @property
+    def effective_skills(self) -> list[str]:
+        if self.reviewed_skills is not None:
+            return self.reviewed_skills
+        return self.auto_skills
+
 
 class Attempt(models.Model):
     user = models.ForeignKey(
@@ -142,6 +209,8 @@ class Attempt(models.Model):
     hint_count = models.PositiveSmallIntegerField(default=0)
     retry_count = models.PositiveSmallIntegerField(default=0)
     events = models.JSONField(default=list, blank=True)
+    session_id = models.CharField(max_length=128, blank=True, default="")
+    submitted_at = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -163,9 +232,19 @@ class Attempt(models.Model):
         with transaction.atomic():
             super().save(*args, **kwargs)
             if is_new:
-                for concept in dict.fromkeys(self.problem.concepts):
+                all_concepts = list(
+                    dict.fromkeys(
+                        list(self.problem.effective_concepts)
+                        + list(self.problem.concepts)
+                    )
+                )
+                for concept in all_concepts:
                     Mastery.record(
-                        self.user, str(concept), self.is_correct, self.created_at
+                        self.user,
+                        str(concept),
+                        self.is_correct,
+                        self.created_at,
+                        tag_type="concept",
                     )
 
 
@@ -174,6 +253,11 @@ class Mastery(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="masteries"
     )
     concept = models.CharField(max_length=255)
+    tag_type = models.CharField(
+        max_length=16,
+        default="concept",
+        choices=[("concept", "Concept"), ("skill", "Skill")],
+    )
     score = models.FloatField(
         default=0.0, validators=[MinValueValidator(0.0), MaxValueValidator(1.0)]
     )
@@ -196,17 +280,24 @@ class Mastery(models.Model):
     @classmethod
     @transaction.atomic
     def record(
-        cls, user: Any, concept: str, correct: bool, practiced_at: Any
+        cls,
+        user: Any,
+        concept: str,
+        correct: bool,
+        practiced_at: Any,
+        tag_type: str = "concept",
     ) -> "Mastery":
         mastery, _ = cls.objects.select_for_update().get_or_create(
-            user=user, concept=concept
+            user=user, concept=concept, defaults={"tag_type": tag_type}
         )
+        mastery.tag_type = tag_type
         mastery.attempt_count += 1
         mastery.correct_count += int(correct)
         mastery.score = mastery.correct_count / mastery.attempt_count
         mastery.last_practiced_at = practiced_at
         mastery.save(
             update_fields=(
+                "tag_type",
                 "attempt_count",
                 "correct_count",
                 "score",

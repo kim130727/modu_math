@@ -1,0 +1,267 @@
+{
+  "version": "1.0.0",
+  "name": "Modu Math Curriculum Taxonomy (Elementary Math)",
+  "tags": [
+    {
+      "key": "arithmetic",
+      "name_ko": "수와 연산",
+      "domain": "수와 연산",
+      "grade": null,
+      "parent_key": null,
+      "description": "자연수, 분수, 소수와 사칙연산의 기본 개념",
+      "type": "concept"
+    },
+    {
+      "key": "arithmetic.addition_subtraction",
+      "name_ko": "덧셈과 뺄셈",
+      "domain": "수와 연산",
+      "grade": 3,
+      "parent_key": "arithmetic",
+      "description": "세 자리 수의 덧셈과 뺄셈 및 연산 결과 비교",
+      "type": "concept"
+    },
+    {
+      "key": "arithmetic.addition_subtraction.ordering",
+      "name_ko": "연산 결과의 크기 비교",
+      "domain": "수와 연산",
+      "grade": 3,
+      "parent_key": "arithmetic.addition_subtraction",
+      "description": "여러 덧셈·뺄셈 식의 결과를 계산하고 크기 순서로 정렬하기",
+      "type": "concept"
+    },
+    {
+      "key": "arithmetic.multiplication",
+      "name_ko": "곱셈",
+      "domain": "수와 연산",
+      "grade": 3,
+      "parent_key": "arithmetic",
+      "description": "몇십 몇과 몇의 곱셈 및 자릿값 개념",
+      "type": "concept"
+    },
+    {
+      "key": "arithmetic.multiplication.place_value",
+      "name_ko": "곱셈의 자릿값 원리",
+      "domain": "수와 연산",
+      "grade": 3,
+      "parent_key": "arithmetic.multiplication",
+      "description": "곱셈의 각 단계에서 계산된 값이 실제 어떤 수의 곱인지 자릿값 이해하기",
+      "type": "concept"
+    },
+    {
+      "key": "arithmetic.division",
+      "name_ko": "나눗셈",
+      "domain": "수와 연산",
+      "grade": 3,
+      "parent_key": "arithmetic",
+      "description": "똑같이 나누기, 몫과 나머지의 기초 개념",
+      "type": "concept"
+    },
+    {
+      "key": "arithmetic.division.model",
+      "name_ko": "수 모형 나눗셈",
+      "domain": "수와 연산",
+      "grade": 3,
+      "parent_key": "arithmetic.division",
+      "description": "수 모형을 묶거나 배분하여 나눗셈 몫과 식 도출하기",
+      "type": "concept"
+    },
+    {
+      "key": "arithmetic.fractions",
+      "name_ko": "분수와 소수",
+      "domain": "수와 연산",
+      "grade": 3,
+      "parent_key": "arithmetic",
+      "description": "전체에 대한 부분의 크기로서의 분수와 소수",
+      "type": "concept"
+    },
+    {
+      "key": "arithmetic.fractions.concept",
+      "name_ko": "분수의 의미",
+      "domain": "수와 연산",
+      "grade": 3,
+      "parent_key": "arithmetic.fractions",
+      "description": "단위분수 및 전체를 똑같이 나눈 것 중의 몇 표현하기",
+      "type": "concept"
+    },
+    {
+      "key": "arithmetic.fractions.classification",
+      "name_ko": "분수 판단 및 분류",
+      "domain": "수와 연산",
+      "grade": 3,
+      "parent_key": "arithmetic.fractions",
+      "description": "분수의 성질에 따른 참/거짓 판단 및 분류",
+      "type": "concept"
+    },
+    {
+      "key": "geometry",
+      "name_ko": "도형",
+      "domain": "도형",
+      "grade": null,
+      "parent_key": null,
+      "description": "평면도형과 입체도형의 성질과 구성 요소",
+      "type": "concept"
+    },
+    {
+      "key": "geometry.plane_figures",
+      "name_ko": "평면도형",
+      "domain": "도형",
+      "grade": 3,
+      "parent_key": "geometry",
+      "description": "선분, 직선, 각, 직각삼각형, 직사각형, 정사각형의 기초",
+      "type": "concept"
+    },
+    {
+      "key": "geometry.plane_figures.segments",
+      "name_ko": "선분의 비교",
+      "domain": "도형",
+      "grade": 3,
+      "parent_key": "geometry.plane_figures",
+      "description": "그리드 또는 좌표 상의 선분 길이를 비교하기",
+      "type": "concept"
+    },
+    {
+      "key": "geometry.circle",
+      "name_ko": "원",
+      "domain": "도형",
+      "grade": 3,
+      "parent_key": "geometry",
+      "description": "원의 중심, 반지름, 지름과 원의 성질",
+      "type": "concept"
+    },
+    {
+      "key": "geometry.circle.radius",
+      "name_ko": "원의 반지름과 지름",
+      "domain": "도형",
+      "grade": 3,
+      "parent_key": "geometry.circle",
+      "description": "원의 반지름 길이에 따라 달라지는 원의 크기 이해하기",
+      "type": "concept"
+    },
+    {
+      "key": "geometry.circle.drawing",
+      "name_ko": "원 그리기 순서",
+      "domain": "도형",
+      "grade": 3,
+      "parent_key": "geometry.circle",
+      "description": "컴퍼스나 도구를 사용하여 일정한 반지름의 원을 그리는 절차",
+      "type": "concept"
+    },
+    {
+      "key": "measurement",
+      "name_ko": "측정",
+      "domain": "측정",
+      "grade": null,
+      "parent_key": null,
+      "description": "길이, 시간, 들이, 무게의 단위와 측정",
+      "type": "concept"
+    },
+    {
+      "key": "measurement.capacity_weight",
+      "name_ko": "들이와 무게",
+      "domain": "측정",
+      "grade": 3,
+      "parent_key": "measurement",
+      "description": "들이와 무게의 단위(L, mL, g, kg) 및 비교",
+      "type": "concept"
+    },
+    {
+      "key": "measurement.capacity_weight.comparison",
+      "name_ko": "들이의 직접·간접 비교",
+      "domain": "측정",
+      "grade": 3,
+      "parent_key": "measurement.capacity_weight",
+      "description": "모양이 다른 두 용기의 들이를 매개물을 이용해 비교하기",
+      "type": "concept"
+    },
+    {
+      "key": "measurement.capacity_weight.height_comparison",
+      "name_ko": "높이와 들이의 조건 판단",
+      "domain": "측정",
+      "grade": 3,
+      "parent_key": "measurement.capacity_weight",
+      "description": "높이와 밑면의 관계를 바탕으로 올바른 비교 방법 판단하기",
+      "type": "concept"
+    },
+    {
+      "key": "skill.read_word_problem",
+      "name_ko": "문제 조건 파악",
+      "domain": "문제해결",
+      "grade": null,
+      "parent_key": null,
+      "description": "문제 지문에서 주어진 조건과 구해야 할 목표를 정확히 파악하기",
+      "type": "skill"
+    },
+    {
+      "key": "skill.select_operation",
+      "name_ko": "연산 선택",
+      "domain": "문제해결",
+      "grade": null,
+      "parent_key": null,
+      "description": "문제 상황에 알맞은 연산(덧셈, 뺄셈, 곱셈, 나눗셈)을 올바르게 선택하기",
+      "type": "skill"
+    },
+    {
+      "key": "skill.calculate",
+      "name_ko": "계산 수행",
+      "domain": "수와 연산",
+      "grade": null,
+      "parent_key": null,
+      "description": "자릿값과 올림/내림 원리에 따라 정확하게 사칙연산 계산하기",
+      "type": "skill"
+    },
+    {
+      "key": "skill.place_value_matching",
+      "name_ko": "자릿값 대응",
+      "domain": "수와 연산",
+      "grade": 3,
+      "parent_key": null,
+      "description": "각 자리 숫자가 나타내는 실제 크기와 곱의 의미를 매칭하기",
+      "type": "skill"
+    },
+    {
+      "key": "skill.compare_lengths",
+      "name_ko": "길이·크기 비교",
+      "domain": "도형",
+      "grade": 3,
+      "parent_key": null,
+      "description": "선분이나 도형의 길이 또는 크기를 눈금과 조건으로 비교하기",
+      "type": "skill"
+    },
+    {
+      "key": "skill.draw_figure",
+      "name_ko": "도형 작도 원리 이해",
+      "domain": "도형",
+      "grade": 3,
+      "parent_key": null,
+      "description": "원의 중심과 반지름 등 도구를 활용한 작도 절차 파악하기",
+      "type": "skill"
+    },
+    {
+      "key": "skill.verify_fraction",
+      "name_ko": "분수 참/거짓 판정",
+      "domain": "수와 연산",
+      "grade": 3,
+      "parent_key": null,
+      "description": "그림 및 서술에 따른 분수 모델의 정확성을 판정하기",
+      "type": "skill"
+    },
+    {
+      "key": "skill.compare_capacity",
+      "name_ko": "들이 비교 판단",
+      "domain": "측정",
+      "grade": 3,
+      "parent_key": null,
+      "description": "용기의 들이를 비교하기 위한 기준과 조건을 적용하기",
+      "type": "skill"
+    },
+    {
+      "key": "skill.review_answer",
+      "name_ko": "결과 검산 및 확인",
+      "domain": "문제해결",
+      "grade": null,
+      "parent_key": null,
+      "description": "도출한 답안이 문제의 물음과 조건에 부합하는지 재점검하기",
+      "type": "skill"
+    }
+  ]
+}

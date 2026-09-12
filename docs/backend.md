@@ -84,6 +84,14 @@ method에서 채운다. 원본 파일에는 쓰지 않으며 DB에서 사라진 
 | `POST` | `/api/v1/attempts/` | 풀이 제출, 서버 채점 및 숙련도 갱신 |
 | `GET` | `/api/v1/attempts/`, `/api/v1/attempts/{id}/` | 로그인 사용자의 풀이 기록 |
 | `GET` | `/api/v1/masteries/` | 로그인 사용자의 개념별 숙련도 |
+| `GET` | `/api/v1/diagnostics/summary/` | 종합 학습 진단, 정확도, 강점/취약점 |
+| `GET` | `/api/v1/diagnostics/concepts/` | 개념별 상세 숙련도 및 신뢰도 |
+| `GET` | `/api/v1/diagnostics/skills/` | 기능별 상세 숙련도 |
+| `GET` | `/api/v1/diagnostics/history/` | 일자별 풀이 성취 추이 |
+| `GET` | `/api/v1/recommendations/` | 5단계 우선순위 기반 맞춤 문제 추천 |
+| `GET`, `PATCH` | `/api/v1/admin/problem-tags/` | 관리자용 문제 태그 검토 및 수정 |
+
+자세한 체계표, 자동 태깅 규칙, 숙련도 산출 공식 및 Flutter 연동 가이드는 [개념·기능 체계 및 진단 분석 문서](taxonomy_and_diagnostics.md)를 참고한다.
 
 문제 목록은 `language`, `grade`, `problem_type` 쿼리 파라미터와 DRF의 `page`
 파라미터를 지원한다. 풀이 목록은 `problem_id`로 필터링할 수 있다.

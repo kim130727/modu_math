@@ -10,6 +10,11 @@ import '../services/learning_progress_repository.dart';
 import '../services/recommendation_service.dart';
 import '../theme/app_theme.dart';
 import '../widgets/onsem_loading_indicator.dart';
+import '../services/auth_service.dart';
+import '../services/backend_attempt_service.dart';
+import '../services/diagnostics_service.dart';
+import 'auth_screen.dart';
+import 'diagnostic_screen.dart';
 import 'problem_solve_screen.dart';
 import 'review_note_screen.dart';
 
@@ -18,10 +23,16 @@ class StudentHomeScreen extends StatefulWidget {
     super.key,
     required this.repository,
     required this.progressRepository,
+    this.authService,
+    this.diagnosticsService,
+    this.backendAttemptService,
   });
 
   final ContentRepository repository;
   final LearningProgressRepository progressRepository;
+  final AuthService? authService;
+  final DiagnosticsClientService? diagnosticsService;
+  final BackendAttemptService? backendAttemptService;
 
   @override
   State<StudentHomeScreen> createState() => _StudentHomeScreenState();
@@ -129,6 +140,8 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                               _TopNavigation(
                                 onReview: _openReview,
                                 onProgress: _openProgress,
+                                onAuth: _openAuth,
+                                authService: widget.authService,
                               ),
                               const SizedBox(height: 20),
                               _TodayCard(
@@ -179,8 +192,57 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
   }
 
   Future<void> _openProgress() async {
-    await Navigator.of(context).pushNamed(ModuMathRoutes.progress);
+    if (widget.authService != null && widget.diagnosticsService != null) {
+      await Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (context) => DiagnosticScreen(
+            authService: widget.authService!,
+            diagnosticsService: widget.diagnosticsService!,
+            contentRepository: widget.repository,
+            progressRepository: widget.progressRepository,
+          ),
+        ),
+      );
+    } else {
+      await Navigator.of(context).pushNamed(ModuMathRoutes.progress);
+    }
     _refresh();
+  }
+
+  Future<void> _openAuth() async {
+    if (widget.authService == null) return;
+    if (widget.authService!.isAuthenticated) {
+      final username = widget.authService!.currentUser?.username ?? '학습자';
+      await showDialog<void>(
+        context: context,
+        builder: (dialogContext) => AlertDialog(
+          title: Text('$username 님의 계정'),
+          content: const Text('현재 로그인되어 학습 기록이 백엔드 서버와 안전하게 동기화되고 있습니다.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(dialogContext).pop(),
+              child: const Text('닫기'),
+            ),
+            TextButton(
+              onPressed: () async {
+                await widget.authService!.logout();
+                if (!dialogContext.mounted) return;
+                Navigator.of(dialogContext).pop();
+                _refresh();
+              },
+              child: const Text('로그아웃', style: TextStyle(color: Colors.red)),
+            ),
+          ],
+        ),
+      );
+    } else {
+      await Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (context) => AuthScreen(authService: widget.authService!),
+        ),
+      );
+      _refresh();
+    }
   }
 
   Future<void> _startDailyChallenge(
@@ -195,6 +257,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
         builder: (context) => ProblemSolveScreen(
           repository: widget.repository,
           progressRepository: widget.progressRepository,
+          backendAttemptService: widget.backendAttemptService,
           problem: problems.first,
           unitProblems: problems,
           problemIndex: 0,
@@ -227,14 +290,21 @@ class _TopNavigation extends StatelessWidget {
   const _TopNavigation({
     required this.onReview,
     required this.onProgress,
+    required this.onAuth,
+    this.authService,
   });
 
   final VoidCallback onReview;
   final VoidCallback onProgress;
+  final VoidCallback onAuth;
+  final AuthService? authService;
 
   @override
   Widget build(BuildContext context) {
     final strings = AppStrings.of(context);
+    final isAuthenticated = authService?.isAuthenticated ?? false;
+    final username = authService?.currentUser?.username ?? '';
+
     return Container(
       height: 68,
       padding: const EdgeInsets.symmetric(horizontal: 14),
@@ -272,9 +342,17 @@ class _TopNavigation extends StatelessWidget {
             icon: const Icon(Icons.fact_check_outlined),
           ),
           IconButton(
-            tooltip: strings.t('home.reportTooltip'),
+            tooltip: '학습 진단 리포트',
             onPressed: onProgress,
             icon: const Icon(Icons.bar_chart_rounded),
+          ),
+          IconButton(
+            tooltip: isAuthenticated ? '$username (계정 관리)' : '로그인',
+            onPressed: onAuth,
+            icon: Icon(
+              isAuthenticated ? Icons.account_circle : Icons.account_circle_outlined,
+              color: isAuthenticated ? KidsPalette.primary : KidsPalette.cocoaSoft,
+            ),
           ),
           const SizedBox(width: 44),
         ],

@@ -12,6 +12,7 @@ import '../utils/answer_normalizer.dart';
 import '../widgets/answer_panel.dart';
 import '../widgets/hint_panel.dart';
 import '../widgets/onsem_loading_indicator.dart';
+import '../services/backend_attempt_service.dart';
 import '../widgets/vertical_arithmetic_explorer.dart';
 
 class ProblemSolveScreen extends StatefulWidget {
@@ -19,6 +20,7 @@ class ProblemSolveScreen extends StatefulWidget {
     super.key,
     required this.repository,
     this.progressRepository,
+    this.backendAttemptService,
     required this.problem,
     this.unitProblems = const [],
     this.problemIndex = 0,
@@ -26,6 +28,7 @@ class ProblemSolveScreen extends StatefulWidget {
 
   final ContentRepository repository;
   final LearningProgressRepository? progressRepository;
+  final BackendAttemptService? backendAttemptService;
   final ProblemSummary problem;
   final List<ProblemSummary> unitProblems;
   final int problemIndex;
@@ -43,6 +46,8 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
   String answerDraft = '';
   bool? isCorrect;
   int hintLevel = 0;
+  DateTime _problemStartTime = DateTime.now();
+  int _retryCount = 0;
   String? _activeProblemLocale;
   String? _learningSessionProblemId;
   String? _learningSessionId;
@@ -458,25 +463,49 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
   }
 
   Future<void> _submit(ProblemContent content, String answer) async {
-    final correct = isSameAnswer(answer, content.correctAnswer);
+    final localCorrect = isSameAnswer(answer, content.correctAnswer);
     final sessionId = await _ensureLearningSession(content);
+    final elapsedMs =
+        DateTime.now().difference(_problemStartTime).inMilliseconds;
+
+    final submission = AttemptSubmission(
+      problemId: content.summary.id,
+      submittedAnswer: answer,
+      elapsedMs: elapsedMs,
+      hintCount: hintLevel,
+      retryCount: _retryCount,
+      events: [
+        {'type': 'submit', 'at_ms': elapsedMs},
+      ],
+      sessionId: sessionId ?? '',
+      submittedAt: DateTime.now(),
+    );
+
+    final backendResult = await widget.backendAttemptService?.submitAttempt(
+      submission: submission,
+      localJudgement: localCorrect,
+    );
+
+    final authoritativeCorrect = backendResult?.isCorrect ?? localCorrect;
+
     if (sessionId != null) {
       await widget.progressRepository?.recordSessionSubmission(
         sessionId: sessionId,
         answer: answer,
-        isCorrect: correct,
+        isCorrect: authoritativeCorrect,
       );
     }
     await widget.progressRepository?.recordAttempt(
       problem: content.summary,
       answer: answer,
-      isCorrect: correct,
+      isCorrect: authoritativeCorrect,
       hintLevelUsed: hintLevel,
+      timeSpentSeconds: (elapsedMs / 1000).round(),
     );
     setState(() {
       answerDraft = answer;
       submittedAnswer = answer;
-      isCorrect = correct;
+      isCorrect = authoritativeCorrect;
     });
   }
 
@@ -490,6 +519,8 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
       answerDraft = '';
       isCorrect = null;
       hintLevel = 0;
+      _retryCount++;
+      _problemStartTime = DateTime.now();
       _learningSessionProblemId = null;
       _learningSessionId = null;
       _learningSessionFuture = null;
