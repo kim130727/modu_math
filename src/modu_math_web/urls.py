@@ -13,6 +13,7 @@ urlpatterns = [
     path("editor/", editor_views.editor_index),
     path("editor-konva/", editor_next_views.editor_konva),
     path("api/editor/", include("modu_math_web.editor.urls")),
+    path("api/v1/", include("modu_math_web.learning.urls")),
 ]
 
 if settings.DEBUG:

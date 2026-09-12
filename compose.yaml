@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: modu_math
+      POSTGRES_USER: modu_math
+      POSTGRES_PASSWORD: modu_math
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U modu_math -d modu_math"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    environment:
+      MODU_MATH_WEB_SECRET_KEY: local-compose-secret-change-me
+      DJANGO_DEBUG: "true"
+      DJANGO_ALLOWED_HOSTS: localhost,127.0.0.1
+      DATABASE_URL: postgresql://modu_math:modu_math@db:5432/modu_math
+      MODU_PROBLEMS_ROOT: /app/examples/problems
+    command: >-
+      sh -c "python manage.py migrate &&
+      gunicorn modu_math_web.wsgi:application --bind 0.0.0.0:8000 --workers 3"
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+
+volumes:
+  postgres_data:
