@@ -49,6 +49,9 @@ class ProblemSummary {
   final String? filePrefix;
   final Map<String, dynamic> raw;
 
+  int? get dbId => _readInt(raw['dbId'] ?? raw['db_id']);
+  String get language => raw['language']?.toString() ?? 'ko';
+
   factory ProblemSummary.fromJson(Map<String, dynamic> json) {
     return ProblemSummary(
       id: json['id']?.toString() ?? '',

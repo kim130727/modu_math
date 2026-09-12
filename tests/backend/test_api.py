@@ -60,6 +60,8 @@ class LearningApiTests(TestCase):
         response = self.client.get("/api/v1/problems/?language=ko&grade=3")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data["count"], 1)
+        self.assertEqual(response.data["results"][0]["title"], "sample-1")
+        self.assertEqual(response.data["results"][0]["path"], "examples/problems/ko")
         detail = self.client.get(f"/api/v1/problems/{self.problem.pk}/")
         self.assertEqual(detail.data["semantic_data"]["problem_id"], "sample-1")
 
@@ -94,6 +96,30 @@ class LearningApiTests(TestCase):
         self.assertEqual(
             (mastery.attempt_count, mastery.correct_count, mastery.score), (2, 1, 0.5)
         )
+
+    def test_problem_id_submission_uses_requested_language(self):
+        Problem.objects.create(
+            problem_id="sample-1",
+            language="en",
+            grade=3,
+            answer={"value": "english-answer"},
+        )
+        self._authenticate()
+        response = self.client.post(
+            "/api/v1/attempts/",
+            {
+                "problem_id": "sample-1",
+                "problem_language": "en",
+                "submitted_answer": "english-answer",
+            },
+            format="json",
+        )
+        self.assertEqual(response.status_code, 201)
+        attempt = Attempt.objects.get(pk=response.data["id"])
+        self.assertEqual(response.data["problem_id"], "sample-1")
+        self.assertEqual(response.data["language"], "en")
+        self.assertEqual(attempt.problem.language, "en")
+        self.assertTrue(attempt.is_correct)
 
     def test_login_returns_a_token(self):
         get_user_model().objects.create_user("existing", password="strong-pass-123")
@@ -134,4 +160,5 @@ class SyncProblemsTests(TestCase):
             problem_id=semantic_path.name.removesuffix(".semantic.json"), language="ko"
         )
         self.assertEqual(imported.semantic_data["problem_id"], imported.problem_id)
+        self.assertEqual(imported.catalog_data["id"], imported.problem_id)
         self.assertTrue(imported.answer)

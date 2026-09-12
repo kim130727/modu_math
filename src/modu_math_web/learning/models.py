@@ -98,6 +98,7 @@ class Problem(models.Model):
     problem_type = models.CharField(max_length=128, blank=True)
     concepts = models.JSONField(default=list, blank=True)
     skills = models.JSONField(default=list, blank=True)
+    catalog_data = models.JSONField(default=dict, blank=True)
     answer = models.JSONField(default=dict)
     semantic_data = models.JSONField(default=dict)
     solvable_data = models.JSONField(default=dict)

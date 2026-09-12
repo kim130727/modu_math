@@ -35,6 +35,18 @@ class LoginSerializer(serializers.Serializer):
 
 
 class ProblemListSerializer(serializers.ModelSerializer):
+    title = serializers.SerializerMethodField()
+    subject = serializers.SerializerMethodField()
+    unit = serializers.SerializerMethodField()
+    domain = serializers.SerializerMethodField()
+    semester = serializers.SerializerMethodField()
+    unit_number = serializers.SerializerMethodField()
+    unit_topic = serializers.SerializerMethodField()
+    sub_unit = serializers.SerializerMethodField()
+    topic = serializers.SerializerMethodField()
+    file_prefix = serializers.SerializerMethodField()
+    path = serializers.SerializerMethodField()
+
     class Meta:
         model = Problem
         fields = (
@@ -45,21 +57,71 @@ class ProblemListSerializer(serializers.ModelSerializer):
             "problem_type",
             "concepts",
             "skills",
+            "title",
+            "subject",
+            "unit",
+            "domain",
+            "semester",
+            "unit_number",
+            "unit_topic",
+            "sub_unit",
+            "topic",
+            "file_prefix",
+            "path",
             "updated_at",
         )
 
+    def _catalog_value(self, obj, *keys, default=""):
+        for key in keys:
+            value = obj.catalog_data.get(key)
+            if value not in (None, ""):
+                return value
+        return default
 
-class ProblemDetailSerializer(serializers.ModelSerializer):
+    def get_title(self, obj):
+        metadata = obj.semantic_data.get("metadata", {})
+        return self._catalog_value(
+            obj,
+            "title",
+            default=metadata.get("title") or metadata.get("question") or obj.problem_id,
+        )
+
+    def get_subject(self, obj):
+        return self._catalog_value(obj, "subject", default="math")
+
+    def get_unit(self, obj):
+        return self._catalog_value(obj, "unit", "unitTopic", "topic", default="미분류")
+
+    def get_domain(self, obj):
+        return self._catalog_value(obj, "domain", default="수학 개념")
+
+    def get_semester(self, obj):
+        return self._catalog_value(obj, "semester", default="1학기")
+
+    def get_unit_number(self, obj):
+        return self._catalog_value(obj, "unitNumber", default=1)
+
+    def get_unit_topic(self, obj):
+        return self._catalog_value(obj, "unitTopic", "unit", default="미분류")
+
+    def get_sub_unit(self, obj):
+        return self._catalog_value(obj, "subUnit", default="기본 학습")
+
+    def get_topic(self, obj):
+        return self._catalog_value(obj, "topic", "unitTopic", "unit", default="미분류")
+
+    def get_file_prefix(self, obj):
+        return self._catalog_value(obj, "filePrefix", default=obj.problem_id)
+
+    def get_path(self, obj):
+        return f"examples/problems/{obj.language}"
+
+
+class ProblemDetailSerializer(ProblemListSerializer):
     class Meta:
         model = Problem
-        fields = (
-            "id",
-            "problem_id",
-            "language",
-            "grade",
-            "problem_type",
-            "concepts",
-            "skills",
+        fields = ProblemListSerializer.Meta.fields + (
+            "catalog_data",
             "answer",
             "semantic_data",
             "solvable_data",
@@ -74,6 +136,7 @@ class AttemptSerializer(serializers.ModelSerializer):
         queryset=Problem.objects.all(), required=False
     )
     problem_id = serializers.CharField(required=False)
+    problem_language = serializers.CharField(write_only=True, required=False)
     language = serializers.CharField(source="problem.language", read_only=True)
 
     class Meta:
@@ -82,6 +145,7 @@ class AttemptSerializer(serializers.ModelSerializer):
             "id",
             "problem",
             "problem_id",
+            "problem_language",
             "language",
             "submitted_answer",
             "is_correct",
@@ -101,13 +165,18 @@ class AttemptSerializer(serializers.ModelSerializer):
         return value
 
     def validate(self, attrs):
+        language = attrs.pop(
+            "problem_language", self.initial_data.get("problem_language", "ko")
+        )
         if "problem" not in attrs:
             raw_id = self.initial_data.get("problem_id")
             if not raw_id:
                 raise serializers.ValidationError(
                     {"problem": "problem ID 또는 problem_id가 필요합니다."}
                 )
-            problem = Problem.objects.filter(problem_id=raw_id).first()
+            problem = Problem.objects.filter(
+                problem_id=raw_id, language=language
+            ).first()
             if not problem:
                 raise serializers.ValidationError(
                     {"problem_id": f"존재하지 않는 problem_id입니다: {raw_id}"}
@@ -120,6 +189,11 @@ class AttemptSerializer(serializers.ModelSerializer):
         return Attempt.objects.create(
             user=self.context["request"].user, **validated_data
         )
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data["problem_id"] = instance.problem.problem_id
+        return data
 
 
 class MasterySerializer(serializers.ModelSerializer):

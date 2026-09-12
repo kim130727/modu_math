@@ -10,7 +10,8 @@ class AuthService {
   AuthService({
     String? baseUrl,
     http.Client? httpClient,
-  })  : baseUrl = (baseUrl ?? AppEnvironment.backendBaseUrl).replaceAll(RegExp(r'/+$'), ''),
+  })  : baseUrl = (baseUrl ?? AppEnvironment.backendBaseUrl)
+            .replaceAll(RegExp(r'/+$'), ''),
         _client = httpClient ?? http.Client();
 
   static const tokenStorageKey = 'modu_math_auth_token_v1';
@@ -28,6 +29,9 @@ class AuthService {
   bool get isAuthenticated => _token != null && _token!.isNotEmpty;
 
   String get effectiveBaseUrl {
+    if (baseUrl == 'same-origin' && kIsWeb) {
+      return Uri.base.origin;
+    }
     if (baseUrl.isNotEmpty) {
       return baseUrl;
     }
@@ -75,13 +79,15 @@ class AuthService {
 
           final prefs = await SharedPreferences.getInstance();
           await prefs.setString(tokenStorageKey, tokenVal);
-          await prefs.setString(userStorageKey, jsonEncode(_currentUser!.toJson()));
+          await prefs.setString(
+              userStorageKey, jsonEncode(_currentUser!.toJson()));
           return const AuthResult.success();
         }
       }
 
       final errorMsg = _extractErrorMessage(decoded);
-      return AuthResult.failure(errorMsg.isNotEmpty ? errorMsg : '로그인에 실패했습니다.');
+      return AuthResult.failure(
+          errorMsg.isNotEmpty ? errorMsg : '로그인에 실패했습니다.');
     } catch (e) {
       return AuthResult.failure('서버와 통신하는 중 오류가 발생했습니다: $e');
     }
@@ -118,13 +124,15 @@ class AuthService {
 
           final prefs = await SharedPreferences.getInstance();
           await prefs.setString(tokenStorageKey, tokenVal);
-          await prefs.setString(userStorageKey, jsonEncode(_currentUser!.toJson()));
+          await prefs.setString(
+              userStorageKey, jsonEncode(_currentUser!.toJson()));
           return const AuthResult.success();
         }
       }
 
       final errorMsg = _extractErrorMessage(decoded);
-      return AuthResult.failure(errorMsg.isNotEmpty ? errorMsg : '회원가입에 실패했습니다.');
+      return AuthResult.failure(
+          errorMsg.isNotEmpty ? errorMsg : '회원가입에 실패했습니다.');
     } catch (e) {
       return AuthResult.failure('서버와 통신하는 중 오류가 발생했습니다: $e');
     }

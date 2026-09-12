@@ -18,7 +18,9 @@ services:
     environment:
       MODU_MATH_WEB_SECRET_KEY: local-compose-secret-change-me
       DJANGO_DEBUG: "true"
-      DJANGO_ALLOWED_HOSTS: localhost,127.0.0.1
+      # Development only: also accepts Android emulators and LAN devices.
+      DJANGO_ALLOWED_HOSTS: "*"
+      DJANGO_CORS_ALLOWED_ORIGINS: http://localhost:3000,http://127.0.0.1:3000
       DATABASE_URL: postgresql://modu_math:modu_math@db:5432/modu_math
       MODU_PROBLEMS_ROOT: /app/examples/problems
     command: >-

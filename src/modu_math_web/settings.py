@@ -34,12 +34,14 @@ ALLOWED_HOSTS = [
 ROOT_URLCONF = "modu_math_web.urls"
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
 ]
 INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.staticfiles",
+    "corsheaders",
     "rest_framework",
     "rest_framework.authtoken",
     "modu_math_web.editor",
@@ -79,5 +81,17 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 50,
 }
-PROBLEMS_ROOT = Path(os.environ.get("MODU_PROBLEMS_ROOT", BASE_DIR / "examples" / "problems"))
-GOLDEN_PROBLEMS_ROOT = Path(os.environ.get("MODU_GOLDEN_PROBLEMS_ROOT", BASE_DIR / "examples" / "golden"))
+CORS_ALLOWED_ORIGINS = [
+    origin.strip()
+    for origin in os.environ.get(
+        "DJANGO_CORS_ALLOWED_ORIGINS",
+        "http://localhost:3000,http://127.0.0.1:3000",
+    ).split(",")
+    if origin.strip()
+]
+PROBLEMS_ROOT = Path(
+    os.environ.get("MODU_PROBLEMS_ROOT", BASE_DIR / "examples" / "problems")
+)
+GOLDEN_PROBLEMS_ROOT = Path(
+    os.environ.get("MODU_GOLDEN_PROBLEMS_ROOT", BASE_DIR / "examples" / "golden")
+)

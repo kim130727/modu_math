@@ -46,6 +46,44 @@ API와 기존 편집기는 각각 `http://localhost:8000/api/v1/`,
 `http://localhost:8000/editor-konva/`에서 접근한다. 데이터베이스 볼륨까지 제거할 때만
 `docker compose down -v`를 사용한다.
 
+## Flutter 앱 연결
+
+개발 중에는 Django와 PostgreSQL만 Docker에서 실행하고 Flutter는 로컬에서 실행한다.
+Flutter의 문제 목록/상세 화면은 Django API에서 원본 JSON을 읽고, 로그인한 사용자의
+풀이 결과는 `/api/v1/attempts/`에 저장한다. API가 일시적으로 연결되지 않으면 앱에
+번들된 기존 문제 파일을 오프라인 fallback으로 사용한다.
+
+Windows 데스크톱에서 실행할 때:
+
+```powershell
+docker compose up --build -d
+docker compose exec web python manage.py sync_problems
+cd apps/mobile
+flutter pub get
+flutter run -d windows --dart-define=BACKEND_API_BASE_URL=http://127.0.0.1:8000
+```
+
+Chrome에서는 CORS 허용 목록과 일치하도록 개발 포트를 고정한다.
+
+```powershell
+flutter run -d chrome --web-port 3000 --dart-define=BACKEND_API_BASE_URL=http://127.0.0.1:8000
+```
+
+Android 에뮬레이터는 PC의 localhost를 가리키는 전용 주소를 사용한다.
+
+```powershell
+flutter run -d emulator-5554 --dart-define=BACKEND_API_BASE_URL=http://10.0.2.2:8000
+```
+
+실제 Android/iOS 기기에서는 같은 Wi-Fi에 연결한 뒤 `ipconfig`로 확인한 PC의 IPv4
+주소(예: `http://192.168.0.10:8000`)를 지정한다. Windows 방화벽에서 TCP 8000의
+사설 네트워크 접근도 허용해야 한다. `compose.yaml`의 모든 호스트 허용 설정은 로컬
+개발용이며 배포 환경에서는 실제 도메인으로 제한한다.
+
+앱에서 언어를 변경하면 문제 API의 `language` 필터도 함께 바뀐다. 문제 제출에는
+DB 기본 키와 기존 문제 ID/언어가 전송되므로 같은 문제 ID가 여러 언어에 있어도 정확한
+레코드에 연결된다. 서버가 저장된 `answer`와 비교해 최종 정답 여부를 결정한다.
+
 직접 PostgreSQL을 사용할 때는 `.env.example`을 `.env`로 복사하고 연결 정보를
 수정한다. Django는 다음 형태의 환경변수를 읽는다.
 
@@ -81,6 +119,7 @@ method에서 채운다. 원본 파일에는 쓰지 않으며 DB에서 사라진 
 | `POST` | `/api/v1/auth/login/` | 로그인 및 토큰 발급 |
 | `GET` | `/api/v1/problems/` | 문제 목록 |
 | `GET` | `/api/v1/problems/{db_id}/` | 문제와 기존 JSON 상세 |
+| `GET` | `/api/v1/problems/{db_id}/asset/?filename=...` | 문제 SVG/이미지 자산 |
 | `POST` | `/api/v1/attempts/` | 풀이 제출, 서버 채점 및 숙련도 갱신 |
 | `GET` | `/api/v1/attempts/`, `/api/v1/attempts/{id}/` | 로그인 사용자의 풀이 기록 |
 | `GET` | `/api/v1/masteries/` | 로그인 사용자의 개념별 숙련도 |

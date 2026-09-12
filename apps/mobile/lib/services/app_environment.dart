@@ -8,6 +8,10 @@ class AppEnvironment {
   }
 
   static String get backendBaseUrl {
+    const compiledValue = String.fromEnvironment('BACKEND_API_BASE_URL');
+    if (compiledValue.trim().isNotEmpty) {
+      return compiledValue.trim();
+    }
     return _envValue('BACKEND_API_BASE_URL').trim();
   }
 

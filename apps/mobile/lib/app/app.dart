@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import '../l10n/app_strings.dart';
 import '../services/auth_service.dart';
 import '../services/backend_attempt_service.dart';
+import '../services/backend_content_repository.dart';
 import '../services/content_repository.dart';
 import '../services/diagnostics_service.dart';
 import '../services/learning_progress_repository.dart';
@@ -44,12 +45,13 @@ class _ModuMathAppState extends State<ModuMathApp> {
   @override
   void initState() {
     super.initState();
-    _contentRepository = widget.contentRepository ?? ContentRepository();
+    _authService = widget.authService ?? AuthService();
+    _authService.restoreSession();
+    _contentRepository = widget.contentRepository ??
+        BackendContentRepository(baseUrl: _authService.effectiveBaseUrl);
     _contentRepository.activeProblemLocale = _locale.languageCode;
     _progressRepository =
         widget.progressRepository ?? PersistentProgressRepository();
-    _authService = widget.authService ?? AuthService();
-    _authService.restoreSession();
     _backendAttemptService = widget.backendAttemptService ??
         BackendAttemptService(authService: _authService);
     _backendAttemptService.syncOfflineQueue();

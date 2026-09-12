@@ -102,6 +102,7 @@ class Command(BaseCommand):
                 ),
                 "concepts": concepts,
                 "skills": skills,
+                "catalog_data": catalog,
                 "answer": (
                     semantic.get("answer")
                     if isinstance(semantic.get("answer"), dict)

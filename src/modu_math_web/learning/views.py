@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from django.conf import settings
+from django.http import FileResponse
 from django.utils import timezone
 from rest_framework import mixins, permissions, status, viewsets
 from rest_framework.authtoken.models import Token
@@ -79,6 +81,19 @@ class ProblemViewSet(viewsets.ReadOnlyModelViewSet):
             except ValueError as exc:
                 raise ValidationError({"grade": "grade는 정수여야 합니다."}) from exc
         return queryset
+
+    @action(detail=True, methods=["get"], url_path="asset")
+    def asset(self, request, pk=None):
+        problem = self.get_object()
+        filename = request.query_params.get("filename", "")
+        if not filename or filename != filename.replace("\\", "/").split("/")[-1]:
+            raise ValidationError({"filename": "올바른 파일 이름이 필요합니다."})
+        asset_path = settings.PROBLEMS_ROOT / problem.language / filename
+        if not asset_path.is_file():
+            from rest_framework.exceptions import NotFound
+
+            raise NotFound("문제 자산을 찾을 수 없습니다.")
+        return FileResponse(asset_path.open("rb"), filename=filename)
 
 
 class AttemptViewSet(

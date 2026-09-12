@@ -8,6 +8,7 @@ import 'auth_service.dart';
 class AttemptSubmission {
   const AttemptSubmission({
     required this.problemId,
+    this.language = 'ko',
     this.problemDbId,
     required this.submittedAnswer,
     required this.elapsedMs,
@@ -19,6 +20,7 @@ class AttemptSubmission {
   });
 
   final String problemId;
+  final String language;
   final int? problemDbId;
   final dynamic submittedAnswer;
   final int elapsedMs;
@@ -30,6 +32,7 @@ class AttemptSubmission {
 
   Map<String, dynamic> toJson() => {
         'problem_id': problemId,
+        'problem_language': language,
         if (problemDbId != null) 'problem': problemDbId,
         'submitted_answer': submittedAnswer,
         'elapsed_ms': elapsedMs,
@@ -43,6 +46,7 @@ class AttemptSubmission {
   factory AttemptSubmission.fromJson(Map<String, dynamic> json) {
     return AttemptSubmission(
       problemId: json['problem_id'] as String? ?? '',
+      language: json['problem_language'] as String? ?? 'ko',
       problemDbId: json['problem'] as int?,
       submittedAnswer: json['submitted_answer'],
       elapsedMs: json['elapsed_ms'] as int? ?? 0,

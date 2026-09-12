@@ -380,7 +380,8 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
                   AppLocaleScope.maybeOf(context)?.locale.languageCode ??
                       widget.repository.activeProblemLocale;
               final hintPanel = HintPanel(
-                imageLoader: (href) => widget.repository.loadProblemAsset(content.summary, href),
+                imageLoader: (href) =>
+                    widget.repository.loadProblemAsset(content.summary, href),
                 hints: hintService.buildHints(
                   content,
                   locale: activeLocale,
@@ -470,6 +471,8 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
 
     final submission = AttemptSubmission(
       problemId: content.summary.id,
+      language: content.summary.language,
+      problemDbId: content.summary.dbId,
       submittedAnswer: answer,
       elapsedMs: elapsedMs,
       hintCount: hintLevel,
