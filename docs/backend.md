@@ -58,10 +58,15 @@ Windows 데스크톱에서 실행할 때:
 ```powershell
 docker compose up --build -d
 docker compose exec web python manage.py sync_problems
+.\scripts\modu_monorepo.ps1 -Task setup
 cd apps/mobile
 flutter pub get
 flutter run -d windows --dart-define=BACKEND_API_BASE_URL=http://127.0.0.1:8000
 ```
+
+`setup`은 저장소 루트의 `examples`를 Flutter 패키지에 junction으로 연결한다. Git에서
+무거운 문제 파일을 중복 관리하지 않으면서 오프라인 fallback asset을 빌드하기 위한
+최초 1회 작업이다. GitHub Actions에서는 같은 연결을 Linux 심볼릭 링크로 자동 생성한다.
 
 Chrome에서는 CORS 허용 목록과 일치하도록 개발 포트를 고정한다.
 

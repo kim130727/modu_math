@@ -81,6 +81,9 @@ jobs:
           flutter-version: "3.44.8"
           cache: true
 
+      - name: Link shared problem assets
+        run: ln -s ../../examples examples
+
       - name: Install Flutter dependencies
         run: flutter pub get
 

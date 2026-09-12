@@ -1,5 +1,5 @@
 param(
-    [ValidateSet("python-test", "flutter-analyze", "flutter-test", "check")]
+    [ValidateSet("setup", "python-test", "flutter-analyze", "flutter-test", "check")]
     [string]$Task = "check"
 )
 
@@ -49,6 +49,9 @@ function Invoke-FlutterTests {
 }
 
 switch ($Task) {
+    "setup" {
+        Ensure-MobileJunction
+    }
     "python-test" {
         Invoke-PythonTests
     }
