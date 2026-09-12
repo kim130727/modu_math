@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
 import '../services/auth_service.dart';
 import '../services/content_repository.dart';
@@ -170,6 +171,7 @@ class _DiagnosticScreenState extends State<DiagnosticScreen> {
   }
 
   Widget _buildUnauthenticatedView() {
+    final strings = AppStrings.of(context);
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(32),
@@ -179,16 +181,16 @@ class _DiagnosticScreenState extends State<DiagnosticScreen> {
             const Icon(Icons.lock_person_outlined,
                 size: 64, color: KidsPalette.primary),
             const SizedBox(height: 16),
-            const Text(
-              '로그인하고 나만의 수학 진단을 받아보세요!',
+            Text(
+              strings.t('diagnostic.unauthenticatedTitle'),
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
-            const Text(
-              '문제를 풀 때마다 개념과 역량 숙련도가 자동으로 분석되고,\n취약점을 보완하는 맞춤 문제가 추천됩니다.',
+            Text(
+              strings.t('diagnostic.unauthenticatedDescription'),
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 14, color: KidsPalette.cocoaSoft),
+              style: const TextStyle(fontSize: 14, color: KidsPalette.cocoaSoft),
             ),
             const SizedBox(height: 24),
             FilledButton.icon(
@@ -202,7 +204,7 @@ class _DiagnosticScreenState extends State<DiagnosticScreen> {
                 _refresh();
               },
               icon: const Icon(Icons.login),
-              label: const Text('로그인 / 회원가입하기'),
+              label: Text(strings.t('diagnostic.loginOrRegister')),
               style: FilledButton.styleFrom(
                 minimumSize: const Size(200, 48),
                 backgroundColor: KidsPalette.primary,

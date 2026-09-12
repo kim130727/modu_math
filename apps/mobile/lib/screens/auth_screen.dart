@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_strings.dart';
 import '../services/auth_service.dart';
 import '../theme/app_theme.dart';
 
@@ -33,6 +34,7 @@ class _AuthScreenState extends State<AuthScreen>
 
   bool _isLoading = false;
   String? _errorMessage;
+  String? _errorKey;
 
   @override
   void initState() {
@@ -57,6 +59,7 @@ class _AuthScreenState extends State<AuthScreen>
     setState(() {
       _isLoading = true;
       _errorMessage = null;
+      _errorKey = null;
     });
 
     final result = await widget.authService.login(
@@ -71,7 +74,10 @@ class _AuthScreenState extends State<AuthScreen>
       widget.onAuthSuccess?.call();
       Navigator.of(context).pop();
     } else {
-      setState(() => _errorMessage = result.errorMessage);
+      setState(() {
+        _errorMessage = result.errorMessage;
+        _errorKey = null;
+      });
     }
   }
 
@@ -79,13 +85,17 @@ class _AuthScreenState extends State<AuthScreen>
     if (!_registerFormKey.currentState!.validate()) return;
     if (_registerPasswordController.text !=
         _registerConfirmPasswordController.text) {
-      setState(() => _errorMessage = '비밀번호가 일치하지 않습니다.');
+      setState(() {
+        _errorKey = 'auth.passwordsDoNotMatch';
+        _errorMessage = null;
+      });
       return;
     }
 
     setState(() {
       _isLoading = true;
       _errorMessage = null;
+      _errorKey = null;
     });
 
     final result = await widget.authService.register(
@@ -101,16 +111,31 @@ class _AuthScreenState extends State<AuthScreen>
       widget.onAuthSuccess?.call();
       Navigator.of(context).pop();
     } else {
-      setState(() => _errorMessage = result.errorMessage);
+      setState(() {
+        _errorMessage = result.errorMessage;
+        _errorKey = null;
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
+    final displayError = _errorKey != null
+        ? strings.t(_errorKey!)
+        : (_errorMessage == '로그인에 실패했습니다.'
+            ? strings.t('auth.loginFailed')
+            : (_errorMessage == '회원가입에 실패했습니다.'
+                ? strings.t('auth.registerFailed')
+                : (_errorMessage != null &&
+                        _errorMessage!.startsWith('서버와 통신하는 중 오류가 발생했습니다')
+                    ? strings.t('auth.networkError')
+                    : _errorMessage)));
+
     return Scaffold(
       backgroundColor: KidsPalette.cream,
       appBar: AppBar(
-        title: const Text('학습 계정 로그인'),
+        title: Text(strings.t('auth.screenTitle')),
         backgroundColor: Colors.transparent,
         elevation: 0,
         bottom: TabBar(
@@ -118,9 +143,9 @@ class _AuthScreenState extends State<AuthScreen>
           indicatorColor: KidsPalette.primary,
           labelColor: KidsPalette.primaryDark,
           unselectedLabelColor: KidsPalette.cocoaSoft,
-          tabs: const [
-            Tab(text: '로그인'),
-            Tab(text: '회원가입'),
+          tabs: [
+            Tab(text: strings.t('auth.loginTab')),
+            Tab(text: strings.t('auth.registerTab')),
           ],
         ),
       ),
@@ -141,7 +166,7 @@ class _AuthScreenState extends State<AuthScreen>
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      if (_errorMessage != null) ...[
+                      if (displayError != null) ...[
                         Container(
                           padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(
@@ -156,7 +181,7 @@ class _AuthScreenState extends State<AuthScreen>
                               const SizedBox(width: 8),
                               Expanded(
                                 child: Text(
-                                  _errorMessage!,
+                                  displayError,
                                   style: TextStyle(
                                     color: Colors.red.shade900,
                                     fontSize: 13,
@@ -168,15 +193,11 @@ class _AuthScreenState extends State<AuthScreen>
                         ),
                         const SizedBox(height: 16),
                       ],
-                      SizedBox(
-                        height: 320,
-                        child: TabBarView(
-                          controller: _tabController,
-                          children: [
-                            _buildLoginForm(),
-                            _buildRegisterForm(),
-                          ],
-                        ),
+                      AnimatedBuilder(
+                        animation: _tabController,
+                        builder: (context, child) => _tabController.index == 0
+                            ? _buildLoginForm(strings)
+                            : _buildRegisterForm(strings),
                       ),
                     ],
                   ),
@@ -189,35 +210,38 @@ class _AuthScreenState extends State<AuthScreen>
     );
   }
 
-  Widget _buildLoginForm() {
+  Widget _buildLoginForm(AppStrings strings) {
     return Form(
       key: _loginFormKey,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           TextFormField(
             controller: _loginUsernameController,
-            decoration: const InputDecoration(
-              labelText: '아이디 (사용자 이름)',
-              prefixIcon: Icon(Icons.person_outline),
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: strings.t('auth.usernameLabel'),
+              prefixIcon: const Icon(Icons.person_outline),
+              border: const OutlineInputBorder(),
             ),
-            validator: (value) =>
-                value == null || value.trim().isEmpty ? '아이디를 입력해 주세요.' : null,
+            validator: (value) => value == null || value.trim().isEmpty
+                ? strings.t('auth.usernameRequired')
+                : null,
           ),
           const SizedBox(height: 16),
           TextFormField(
             controller: _loginPasswordController,
             obscureText: true,
-            decoration: const InputDecoration(
-              labelText: '비밀번호',
-              prefixIcon: Icon(Icons.lock_outline),
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: strings.t('auth.passwordLabel'),
+              prefixIcon: const Icon(Icons.lock_outline),
+              border: const OutlineInputBorder(),
             ),
-            validator: (value) =>
-                value == null || value.isEmpty ? '비밀번호를 입력해 주세요.' : null,
+            validator: (value) => value == null || value.isEmpty
+                ? strings.t('auth.passwordRequired')
+                : null,
           ),
-          const Spacer(),
+          const SizedBox(height: 24),
           FilledButton(
             onPressed: _isLoading ? null : _handleLogin,
             style: FilledButton.styleFrom(
@@ -233,9 +257,10 @@ class _AuthScreenState extends State<AuthScreen>
                       color: Colors.white,
                     ),
                   )
-                : const Text(
-                    '로그인하기',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                : Text(
+                    strings.t('auth.loginButton'),
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
                   ),
           ),
         ],
@@ -243,46 +268,49 @@ class _AuthScreenState extends State<AuthScreen>
     );
   }
 
-  Widget _buildRegisterForm() {
+  Widget _buildRegisterForm(AppStrings strings) {
     return Form(
       key: _registerFormKey,
-      child: ListView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           TextFormField(
             controller: _registerUsernameController,
-            decoration: const InputDecoration(
-              labelText: '아이디 (사용자 이름)',
-              prefixIcon: Icon(Icons.person_add_outlined),
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: strings.t('auth.usernameLabel'),
+              prefixIcon: const Icon(Icons.person_add_outlined),
+              border: const OutlineInputBorder(),
             ),
-            validator: (value) =>
-                value == null || value.trim().isEmpty ? '아이디를 입력해 주세요.' : null,
+            validator: (value) => value == null || value.trim().isEmpty
+                ? strings.t('auth.usernameRequired')
+                : null,
           ),
           const SizedBox(height: 12),
           TextFormField(
             controller: _registerEmailController,
             keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(
-              labelText: '이메일 (선택)',
-              prefixIcon: Icon(Icons.email_outlined),
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: strings.t('auth.emailOptionalLabel'),
+              prefixIcon: const Icon(Icons.email_outlined),
+              border: const OutlineInputBorder(),
             ),
           ),
           const SizedBox(height: 12),
           TextFormField(
             controller: _registerPasswordController,
             obscureText: true,
-            decoration: const InputDecoration(
-              labelText: '비밀번호 (8자 이상)',
-              prefixIcon: Icon(Icons.lock_outline),
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: strings.t('auth.registerPasswordLabel'),
+              prefixIcon: const Icon(Icons.lock_outline),
+              border: const OutlineInputBorder(),
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return '비밀번호를 입력해 주세요.';
+                return strings.t('auth.passwordRequired');
               }
               if (value.length < 8) {
-                return '8자 이상 입력해 주세요.';
+                return strings.t('auth.passwordMinLength');
               }
               return null;
             },
@@ -291,13 +319,14 @@ class _AuthScreenState extends State<AuthScreen>
           TextFormField(
             controller: _registerConfirmPasswordController,
             obscureText: true,
-            decoration: const InputDecoration(
-              labelText: '비밀번호 확인',
-              prefixIcon: Icon(Icons.check_circle_outline),
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: strings.t('auth.confirmPasswordLabel'),
+              prefixIcon: const Icon(Icons.check_circle_outline),
+              border: const OutlineInputBorder(),
             ),
-            validator: (value) =>
-                value == null || value.isEmpty ? '비밀번호 확인을 입력해 주세요.' : null,
+            validator: (value) => value == null || value.isEmpty
+                ? strings.t('auth.confirmPasswordRequired')
+                : null,
           ),
           const SizedBox(height: 16),
           FilledButton(
@@ -315,9 +344,10 @@ class _AuthScreenState extends State<AuthScreen>
                       color: Colors.white,
                     ),
                   )
-                : const Text(
-                    '회원가입 완료',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                : Text(
+                    strings.t('auth.registerButton'),
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
                   ),
           ),
         ],

@@ -166,14 +166,19 @@ class ProblemContent {
         .toList();
     if (lines.length <= 1) return trimmed;
 
-    final firstLine = lines.first;
+    // Filter out lines that are bare digits (e.g. leaked fraction numerators/denominators like 2, 8, 9, 10, 4, 4)
+    final validLines =
+        lines.where((l) => !RegExp(r'^\d+$').hasMatch(l)).toList();
+    if (validLines.isEmpty) return trimmed;
+
+    final firstLine = validLines.first;
     final remainingLines = <String>[];
     final metaPattern = RegExp(
       r'(?:고르기|고른다|고른다\.|고르는\s*문제|문제이다\.?|판단한다\.?|선택하기|찾기)$',
     );
 
-    for (int i = 1; i < lines.length; i++) {
-      final line = lines[i];
+    for (int i = 1; i < validLines.length; i++) {
+      final line = validLines[i];
       if (line == firstLine) continue;
       if (metaPattern.hasMatch(line)) continue;
       remainingLines.add(line);
@@ -210,7 +215,84 @@ class ProblemContent {
           .where((g) => g.choices.isNotEmpty)
           .toList();
     }
+
+    // Fallback: auto-generate choice groups for multi-OX problems
+    final targetType =
+        _mapAt(solvable, 'target')['type']?.toString().toLowerCase() ?? '';
+    final targetDesc =
+        _mapAt(solvable, 'target')['description']?.toString().toLowerCase() ?? '';
+    final isOxTarget = targetType.contains('ox') ||
+        targetType.contains('○×') ||
+        targetType.contains('judgment') ||
+        targetDesc.contains('ox') ||
+        targetDesc.contains('o표') ||
+        targetDesc.contains('x표') ||
+        targetDesc.contains('참인지 거짓인지');
+
+    final answerVal = (answer['value'] ?? '').toString();
+    final targetCount = int.tryParse(
+      _mapAt(solvable, 'inputs')['target_count']?.toString() ?? '',
+    ) ?? 0;
+
+    final isMultiOx = (targetCount > 1 || answerVal.contains(',')) &&
+        (isOxTarget || _looksLikeOxSequence(answerVal));
+
+    if (isMultiOx) {
+      final fractions = _extractFractionsFromDomain();
+      const defaultOxChoices = ['○', '×'];
+      if (fractions.isNotEmpty) {
+        return fractions
+            .map((f) => ChoiceGroup(label: f, choices: defaultOxChoices))
+            .toList();
+      }
+      final parts = answerVal
+          .split(RegExp(r'[,/]+'))
+          .map((s) => s.trim())
+          .where((s) => s.isNotEmpty)
+          .toList();
+      if (parts.length > 1) {
+        return List.generate(
+          parts.length,
+          (i) => ChoiceGroup(label: '(${i + 1})', choices: defaultOxChoices),
+        );
+      }
+    }
+
     return const [];
+  }
+
+  static bool _looksLikeOxSequence(String val) {
+    final tokens = val
+        .split(RegExp(r'[,/]+'))
+        .map((s) => s.trim().toLowerCase())
+        .where((s) => s.isNotEmpty)
+        .toList();
+    if (tokens.length <= 1) return false;
+    return tokens.every((t) =>
+        t == 'o' ||
+        t == 'x' ||
+        t == '○' ||
+        t == '×' ||
+        t == '✕' ||
+        t == '참' ||
+        t == '거짓');
+  }
+
+  List<String> _extractFractionsFromDomain() {
+    final domainMap = _mapAt(semantic, 'domain');
+    final objects = domainMap['objects'];
+    if (objects is! List) return const [];
+    final fracs = <String>[];
+    for (final obj in objects) {
+      if (obj is Map<String, dynamic> && obj['type'] == 'fraction') {
+        final num = obj['numerator'];
+        final den = obj['denominator'];
+        if (num != null && den != null) {
+          fracs.add('$num/$den');
+        }
+      }
+    }
+    return fracs;
   }
 
   List<String> get choices {
@@ -719,7 +801,9 @@ class ProblemContent {
         continue;
       }
       final text = element['text']?.toString().trim() ?? '';
-      if (text.isNotEmpty && !_looksBrokenText(text)) {
+      if (text.isNotEmpty &&
+          !_looksBrokenText(text) &&
+          !RegExp(r'^\d+$').hasMatch(text)) {
         return text;
       }
     }
@@ -769,6 +853,20 @@ class ProblemContent {
   }
 
   bool get _isOxJudgmentProblem {
+    if (choiceGroups.isNotEmpty) {
+      return false;
+    }
+    final answerVal = correctAnswer.toLowerCase().trim();
+    if (answerVal.contains(',')) {
+      return false;
+    }
+    final targetCount = int.tryParse(
+      _mapAt(solvable, 'inputs')['target_count']?.toString() ?? '',
+    ) ?? 1;
+    if (targetCount > 1) {
+      return false;
+    }
+
     final targetType =
         _mapAt(solvable, 'target')['type']?.toString().toLowerCase() ?? '';
     final targetDesc =
@@ -780,7 +878,6 @@ class ProblemContent {
         semantic['problem_type']?.toString().toLowerCase() ?? '';
     final promptText = prompt.toLowerCase();
     final titleText = summary.title.toLowerCase();
-    final answerVal = correctAnswer.toLowerCase().trim();
 
     final isOxTarget = targetType.contains('ox') ||
         targetType.contains('boolean') ||

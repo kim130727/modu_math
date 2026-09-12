@@ -163,11 +163,43 @@ class _AnswerPanelState extends State<AnswerPanel> {
     }
   }
 
+  void _syncSelectedGroupChoices() {
+    final groups = widget.content.choiceGroups;
+    if (groups.isEmpty) {
+      if (selectedGroupChoices.isNotEmpty) {
+        selectedGroupChoices.clear();
+      }
+      return;
+    }
+    if (widget.answerDraft.isEmpty) {
+      if (selectedGroupChoices.isNotEmpty) {
+        selectedGroupChoices.clear();
+      }
+      return;
+    }
+    final parts = widget.answerDraft
+        .split(RegExp(r'[,/]+'))
+        .map((s) => s.trim())
+        .where((s) => s.isNotEmpty)
+        .toList();
+    if (parts.length == groups.length) {
+      for (var i = 0; i < groups.length; i++) {
+        final choiceList = groups[i].choices;
+        final part = parts[i];
+        final idx = choiceList.indexWhere((c) => isSameAnswer(c, part));
+        if (idx >= 0) {
+          selectedGroupChoices[i] = idx;
+        }
+      }
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     controller.text = _formatAnswerDraft(widget.answerDraft, widget.content);
     _syncSelectedChoice();
+    _syncSelectedGroupChoices();
     _syncMultiControllers();
   }
 
@@ -175,6 +207,7 @@ class _AnswerPanelState extends State<AnswerPanel> {
   void didUpdateWidget(covariant AnswerPanel oldWidget) {
     super.didUpdateWidget(oldWidget);
     _syncSelectedChoice();
+    _syncSelectedGroupChoices();
     _syncMultiControllers();
     final formatted = _formatAnswerDraft(widget.answerDraft, widget.content);
     if (formatted == controller.text) {
@@ -208,6 +241,14 @@ class _AnswerPanelState extends State<AnswerPanel> {
         choices.isNotEmpty && !allowsMultipleChoices && choiceGroups.isEmpty
             ? _detectOxChoices(choices, strings)
             : null;
+    final isOxChoiceGroup = choiceGroups.isNotEmpty &&
+        choiceGroups.every(
+          (g) =>
+              g.choices.isNotEmpty &&
+              g.choices.every(
+                (c) => _isPositiveChoice(c) || _isNegativeChoice(c),
+              ),
+        );
 
     final String titleText;
     if (!hasVisual) {
@@ -281,7 +322,7 @@ class _AnswerPanelState extends State<AnswerPanel> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
-                      oxChoices != null
+                      oxChoices != null || isOxChoiceGroup
                           ? strings.t('answer.oxTag')
                           : (allowsMultipleChoices
                               ? strings.t('answer.multipleChoiceTag')
@@ -319,8 +360,34 @@ class _AnswerPanelState extends State<AnswerPanel> {
                     final choiceText = entry.$2;
                     final selected =
                         selectedGroupChoices[groupIndex] == choiceIndex;
+                    final isPos = _isPositiveChoice(choiceText);
+                    final isNeg = _isNegativeChoice(choiceText);
+                    final String displayLabel;
+                    if (isPos) {
+                      displayLabel = '○  ${strings.t('answer.oxTrue')}';
+                    } else if (isNeg) {
+                      displayLabel = '✕  ${strings.t('answer.oxFalse')}';
+                    } else {
+                      displayLabel = choiceText;
+                    }
+                    Color? selectedBgColor;
+                    if (selected) {
+                      if (isPos) {
+                        selectedBgColor = const Color(0xFFEFF6FF);
+                      } else if (isNeg) {
+                        selectedBgColor = const Color(0xFFFEF2F2);
+                      }
+                    }
+                    final borderColor = selected
+                        ? (isPos
+                            ? const Color(0xFF3B82F6)
+                            : (isNeg
+                                ? const Color(0xFFEF4444)
+                                : KidsPalette.primary))
+                        : KidsPalette.line;
                     return ChoiceChip(
                       selected: selected,
+                      selectedColor: selectedBgColor,
                       labelPadding: const EdgeInsets.symmetric(
                         horizontal: 14,
                         vertical: 10,
@@ -333,16 +400,24 @@ class _AnswerPanelState extends State<AnswerPanel> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(AppRadii.medium),
                         side: BorderSide(
-                          color:
-                              selected ? KidsPalette.primary : KidsPalette.line,
+                          color: borderColor,
                           width: selected ? 2 : 1.5,
                         ),
                       ),
                       label: Text(
-                        choiceText,
-                        style: const TextStyle(
+                        displayLabel,
+                        style: TextStyle(
                           fontSize: 18,
                           height: 1.3,
+                          fontWeight:
+                              selected ? FontWeight.bold : FontWeight.w500,
+                          color: selected
+                              ? (isPos
+                                  ? const Color(0xFF1D4ED8)
+                                  : (isNeg
+                                      ? const Color(0xFFB91C1C)
+                                      : KidsPalette.primary))
+                              : const Color(0xFF374151),
                           leadingDistribution: TextLeadingDistribution.even,
                         ),
                       ),

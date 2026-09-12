@@ -212,28 +212,35 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
   Future<void> _openAuth() async {
     if (widget.authService == null) return;
     if (widget.authService!.isAuthenticated) {
-      final username = widget.authService!.currentUser?.username ?? '학습자';
       await showDialog<void>(
         context: context,
-        builder: (dialogContext) => AlertDialog(
-          title: Text('$username 님의 계정'),
-          content: const Text('현재 로그인되어 학습 기록이 백엔드 서버와 안전하게 동기화되고 있습니다.'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(dialogContext).pop(),
-              child: const Text('닫기'),
-            ),
-            TextButton(
-              onPressed: () async {
-                await widget.authService!.logout();
-                if (!dialogContext.mounted) return;
-                Navigator.of(dialogContext).pop();
-                _refresh();
-              },
-              child: const Text('로그아웃', style: TextStyle(color: Colors.red)),
-            ),
-          ],
-        ),
+        builder: (dialogContext) {
+          final strings = AppStrings.of(dialogContext);
+          final username = widget.authService!.currentUser?.username ??
+              strings.t('auth.learner');
+          return AlertDialog(
+            title: Text(strings.t('auth.accountTitle', {'username': username})),
+            content: Text(strings.t('auth.syncMessage')),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(dialogContext).pop(),
+                child: Text(strings.t('common.close')),
+              ),
+              TextButton(
+                onPressed: () async {
+                  await widget.authService!.logout();
+                  if (!dialogContext.mounted) return;
+                  Navigator.of(dialogContext).pop();
+                  _refresh();
+                },
+                child: Text(
+                  strings.t('auth.logout'),
+                  style: const TextStyle(color: Colors.red),
+                ),
+              ),
+            ],
+          );
+        },
       );
     } else {
       await Navigator.of(context).push(
@@ -303,7 +310,8 @@ class _TopNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     final strings = AppStrings.of(context);
     final isAuthenticated = authService?.isAuthenticated ?? false;
-    final username = authService?.currentUser?.username ?? '';
+    final username = authService?.currentUser?.username ??
+        strings.t('auth.learner');
 
     return Container(
       height: 68,
@@ -342,12 +350,14 @@ class _TopNavigation extends StatelessWidget {
             icon: const Icon(Icons.fact_check_outlined),
           ),
           IconButton(
-            tooltip: '학습 진단 리포트',
+            tooltip: strings.t('home.reportTooltip'),
             onPressed: onProgress,
             icon: const Icon(Icons.bar_chart_rounded),
           ),
           IconButton(
-            tooltip: isAuthenticated ? '$username (계정 관리)' : '로그인',
+            tooltip: isAuthenticated
+                ? strings.t('auth.manageAccount', {'username': username})
+                : strings.t('auth.login'),
             onPressed: onAuth,
             icon: Icon(
               isAuthenticated ? Icons.account_circle : Icons.account_circle_outlined,

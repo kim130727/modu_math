@@ -5,7 +5,7 @@
     "title": "はしごを下り、着いた場所が正しければ○、誤りなら×を付けなさい。",
     "tags": [],
     "instruction": "분수와 분류명의 대응을 보고 판단한다.",
-    "question": "はしごを下り、着いた場所が正しければ○、誤りなら×を付けなさい。\n2\n8\n9\n10\n4\n4",
+    "question": "はしごを下り、着いた場所が正しければ○、誤りなら×を付けなさい。",
     "required_layout_ids": [
       "slot.q9",
       "slot.q10",
@@ -38,7 +38,7 @@
       "instruction": [],
       "choice": []
     },
-    "presentation_prompt": "はしごを下り、着いた場所が正しければ○、誤りなら×を付けなさい。\n2\n8\n9\n10\n4\n4"
+    "presentation_prompt": "はしごを下り、着いた場所が正しければ○、誤りなら×を付けなさい。"
   },
   "domain": {
     "objects": [
@@ -114,13 +114,43 @@
   },
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "○",
+      "×"
+    ],
+    "answer_key": [
+      "○",
+      "×",
+      "○"
+    ],
     "target": {
       "type": "○×표시",
       "description": "사다리를 타고 내려가 도착한 곳이 참인지 거짓인지의 표시"
     },
     "value": "○, ×, ○",
-    "unit": ""
+    "unit": "",
+    "choice_groups": [
+      {
+        "label": "2/8",
+        "choices": [
+          "○",
+          "×"
+        ]
+      },
+      {
+        "label": "9/10",
+        "choices": [
+          "○",
+          "×"
+        ]
+      },
+      {
+        "label": "4/4",
+        "choices": [
+          "○",
+          "×"
+        ]
+      }
+    ]
   }
 }

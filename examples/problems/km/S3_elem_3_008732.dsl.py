@@ -459,8 +459,13 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["○", "×"],
+        "choice_groups": [
+            {"label": "2/8", "choices": ["○", "×"]},
+            {"label": "9/10", "choices": ["○", "×"]},
+            {"label": "4/4", "choices": ["○", "×"]}
+        ],
+        "answer_key": ["○", "×", "○"],
         "target": {
             "type": "○×표시",
             "description": "사다리를 타고 내려가 도착한 곳이 참인지 거짓인지의 표시",
@@ -514,8 +519,13 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": [],
-        "answer_key": [],
+        "choices": ["○", "×"],
+        "choice_groups": [
+            {"label": "2/8", "choices": ["○", "×"]},
+            {"label": "9/10", "choices": ["○", "×"]},
+            {"label": "4/4", "choices": ["○", "×"]}
+        ],
+        "answer_key": ["○", "×", "○"],
         "target": {
             "type": "○×표시",
             "description": "사다리를 타고 내려가 도착한 곳이 참인지 거짓인지의 표시",
