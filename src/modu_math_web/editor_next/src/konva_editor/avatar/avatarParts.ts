@@ -188,568 +188,134 @@ export function generateRandomAvatarConfig(forcedGender?: AvatarGender): AvatarC
 }
 
 /**
- * ModuMath Unique Modern Minimalist Diverse Kid Avatar Generator (200x200 canvas)
+ * Compact, deterministic marker doodles. Colored subject interiors occlude overlaps;
+ * the canvas itself stays transparent. No raster textures or SVG filters.
  */
 export function compileAvatarSvg(config: AvatarConfig): string {
-  const line = "#1e293b"; // Clean dark slate ink line
-  const skin = config.skinTone || "#ffedd5";
-  const hairColor = config.hairColor || "#1e293b";
-  const cloth = config.clothColor || "#6366f1";
+  const safeColor = (value: string, fallback: string) => /^#[0-9a-f]{6}$/i.test(value) ? value : fallback;
+  const ink = "#394350";
+  const cloth = safeColor(config.clothColor, "#6366f1");
+  const skin = safeColor(config.skinTone, "#ffedd5");
+  const hair = safeColor(config.hairColor, "#1e293b");
+  const accentMap: Record<string, string> = {
+    "#6366f1": "#f4bd65", "#38bdf8": "#f28c73", "#f472b6": "#62b7a5",
+    "#34d399": "#ecaa65", "#fbbf24": "#7c91cb", "#a855f7": "#7bc5b0",
+    "#fb923c": "#7ca7d0", "#475569": "#e4b36c",
+  };
+  const accent = accentMap[cloth.toLowerCase()] ?? "#e4b36c";
+  const skinRgb = [1, 3, 5].map((start) => parseInt(skin.slice(start, start + 2), 16));
+  const facialInk = skinRgb[0] * 0.299 + skinRgb[1] * 0.587 + skinRgb[2] * 0.114 < 115 ? "#fff4e5" : ink;
+  const path = (d: string, fill = "none", width = 2.8, color = ink) =>
+    `<path d="${d}" fill="${fill}" stroke="${color}" stroke-width="${width}"/>`;
+  const mark = (d: string) => path(d, "none", 1.5);
+  const wash = (d: string, color: string, width: number, opacity: number) =>
+    `<path d="${d}" fill="none" stroke="${color}" stroke-width="${width}" opacity="${opacity}"/>`;
 
-  // Match blush color to skin tone
-  const currentSkinObj = SKIN_TONE_PALETTES.find((s) => s.color === skin) ?? SKIN_TONE_PALETTES[0];
-  const blush = currentSkinObj.blush;
-
-  const parts: string[] = [];
-
-  // 1. Back Hair Layer (Long hair, braids, buns, ponytail in background)
-  parts.push(renderBackHair(config.hair, hairColor, line));
-
-  // 2. Body & Arms Layer (Exact 2 arms per pose with distinct Boy/Girl collar)
-  parts.push(renderBodyAndPose(config.pose, cloth, line, skin, config.gender));
-
-  // 3. Head, Neck & Ears Base Layer
-  parts.push(`
-    <!-- Neck -->
-    <path d="M 92 120 L 92 133 L 108 133 L 108 120 Z" fill="${skin}" stroke="${line}" stroke-width="2.6" stroke-linejoin="round" />
-    
-    <!-- Ears (Natural attached curves with inner crease) -->
-    <path d="M 64 78 C 55 78, 55 92, 64 92" fill="${skin}" stroke="${line}" stroke-width="2.6" stroke-linecap="round" />
-    <path d="M 63 82 C 60 84, 60 86, 63 88" stroke="${line}" stroke-width="1.8" fill="none" stroke-linecap="round" />
-    
-    <path d="M 136 78 C 145 78, 145 92, 136 92" fill="${skin}" stroke="${line}" stroke-width="2.6" stroke-linecap="round" />
-    <path d="M 137 82 C 140 84, 140 86, 137 88" stroke="${line}" stroke-width="1.8" fill="none" stroke-linecap="round" />
-
-    <!-- Head / Face Contour (Slightly softer curve for girl, sturdy for boy) -->
-    <path d="M 63 76 C 63 46, 137 46, 137 76 C 137 106, 126 124, 100 124 C 74 124, 63 106, 63 76 Z" fill="${skin}" stroke="${line}" stroke-width="2.8" stroke-linejoin="round" />
-    
-    <!-- Cheerful Soft Blush -->
-    <ellipse cx="74" cy="94" rx="5.5" ry="3.5" fill="${blush}" opacity="0.65" />
-    <ellipse cx="126" cy="94" rx="5.5" ry="3.5" fill="${blush}" opacity="0.65" />
-  `);
-
-  // 4. Eyes & Eyebrows (Distinct features for boy vs girl)
-  parts.push(renderEyes(config.eyes, line, config.gender));
-
-  // 5. Nose & Mouth
-  parts.push(renderMouth(config.mouth, line, config.gender));
-
-  // 6. Front Hair Layer
-  parts.push(renderFrontHair(config.hair, hairColor, line));
-
-  // 7. Accessories (Glasses, Pins, Freckles)
-  parts.push(renderAccessory(config.accessory, line, skin));
-
-  const svgContent = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
-  <defs>
-    <style>
-      .notion-line { stroke: ${line}; stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; fill: none; }
-      .notion-fill { fill: ${line}; }
-    </style>
-  </defs>
-  ${parts.join("\n")}
-</svg>`.trim();
-
-  return `data:image/svg+xml;utf8,${encodeURIComponent(svgContent)}`;
-}
-
-// -------------------------------------------------------------
-// Back Hair (Rendered behind head & shoulders)
-// -------------------------------------------------------------
-function renderBackHair(hair: AvatarHairStyle, hairColor: string, line: string): string {
-  switch (hair) {
-    case "girl_twintail":
-      return `
-        <!-- Girl Twin-tails (Behind) -->
-        <path d="M 62 76 C 40 76, 28 98, 30 125 C 32 136, 44 138, 48 126 C 52 108, 56 90, 64 80 Z" fill="${hairColor}" stroke="${line}" stroke-width="2.8" stroke-linejoin="round" />
-        <path d="M 138 76 C 160 76, 172 98, 170 125 C 168 136, 156 138, 152 126 C 148 108, 144 90, 136 80 Z" fill="${hairColor}" stroke="${line}" stroke-width="2.8" stroke-linejoin="round" />
-        <ellipse cx="58" cy="80" rx="4.5" ry="3.5" fill="#f43f5e" />
-        <ellipse cx="142" cy="80" rx="4.5" ry="3.5" fill="#f43f5e" />
-      `;
-    case "girl_braids":
-      return `
-        <!-- Girl Braids (땋은 머리) -->
-        <path d="M 60 80 C 48 95, 46 120, 50 145 C 52 152, 58 152, 58 144 C 54 122, 56 100, 66 84 Z" fill="${hairColor}" stroke="${line}" stroke-width="2.6" stroke-linejoin="round" />
-        <circle cx="53" cy="100" r="4.5" fill="${hairColor}" stroke="${line}" stroke-width="1.8" />
-        <circle cx="52" cy="116" r="4.5" fill="${hairColor}" stroke="${line}" stroke-width="1.8" />
-        <circle cx="51" cy="132" r="4.5" fill="${hairColor}" stroke="${line}" stroke-width="1.8" />
-        <ellipse cx="51" cy="142" rx="3.5" ry="2.5" fill="#38bdf8" />
-        
-        <path d="M 140 80 C 152 95, 154 120, 150 145 C 148 152, 142 152, 142 144 C 146 122, 144 100, 134 84 Z" fill="${hairColor}" stroke="${line}" stroke-width="2.6" stroke-linejoin="round" />
-        <circle cx="147" cy="100" r="4.5" fill="${hairColor}" stroke="${line}" stroke-width="1.8" />
-        <circle cx="148" cy="116" r="4.5" fill="${hairColor}" stroke="${line}" stroke-width="1.8" />
-        <circle cx="149" cy="132" r="4.5" fill="${hairColor}" stroke="${line}" stroke-width="1.8" />
-        <ellipse cx="149" cy="142" rx="3.5" ry="2.5" fill="#38bdf8" />
-      `;
-    case "girl_ponytail":
-      return `
-        <!-- Girl High Ponytail (Behind) -->
-        <path d="M 132 42 C 154 30, 180 40, 178 72 C 176 96, 160 110, 150 112 C 156 92, 162 68, 140 52 Z" fill="${hairColor}" stroke="${line}" stroke-width="2.8" stroke-linejoin="round" />
-        <ellipse cx="136" cy="46" rx="4.5" ry="5.5" fill="#f43f5e" />
-      `;
-    case "girl_wavy_long":
-      return `
-        <!-- Girl Long Wavy Hair (Behind) -->
-        <path d="M 54 75 C 40 105, 42 145, 58 160 C 66 162, 70 150, 60 130 L 58 76 Z" fill="${hairColor}" stroke="${line}" stroke-width="2.6" stroke-linejoin="round" />
-        <path d="M 146 75 C 160 105, 158 145, 142 160 C 134 162, 130 150, 140 130 L 142 76 Z" fill="${hairColor}" stroke="${line}" stroke-width="2.6" stroke-linejoin="round" />
-      `;
-    case "girl_curly_buns":
-      return `
-        <!-- Girl Afro Double Buns (Behind) -->
-        <circle cx="54" cy="36" r="16" fill="${hairColor}" stroke="${line}" stroke-width="2.8" />
-        <circle cx="146" cy="36" r="16" fill="${hairColor}" stroke="${line}" stroke-width="2.8" />
-        <ellipse cx="60" cy="48" rx="4" ry="2.5" fill="#ec4899" />
-        <ellipse cx="140" cy="48" rx="4" ry="2.5" fill="#ec4899" />
-      `;
-    case "girl_hijab":
-      return `
-        <!-- Global Hijab / Headscarf Base (Behind) -->
-        <path d="M 52 75 C 44 110, 50 160, 70 175 L 130 175 C 150 160, 156 110, 148 75 Z" fill="#8b5cf6" stroke="${line}" stroke-width="2.8" stroke-linejoin="round" />
-      `;
-    default:
-      return "";
+  // Deliberately uneven silhouettes, with the face kept large enough at insertion size.
+  const hairFront: Record<AvatarHairStyle, string> = {
+    boy_dandy: "M79 59 L78 49 Q81 34 102 36 L117 41 121 57 112 52 100 55 94 49 82 60Z",
+    boy_spiky: "M79 60 L77 46 86 47 86 34 97 42 103 32 110 41 117 36 122 57 108 52 99 56 90 51Z",
+    boy_afro: "M77 61 Q68 55 75 46 Q70 35 83 34 Q86 24 97 30 Q107 23 114 33 Q129 32 126 45 Q132 55 122 61 L112 54 96 55 85 52Z",
+    boy_wavy: "M78 59 Q74 40 92 37 Q109 29 121 43 L123 60 110 52 101 58 91 51Z",
+    boy_beanie: "M77 59 L78 44 Q82 29 103 31 Q121 33 122 49 L123 60 101 57Z",
+    boy_cap: "M77 56 Q76 35 98 35 Q119 34 120 51 L137 55 135 60 115 59 98 55Z",
+    boy_fade: "M79 60 L79 44 89 38 112 39 121 47 121 60 115 52 86 51Z",
+    boy_curls: "M78 60 Q73 49 80 43 Q78 34 91 37 Q97 29 105 36 Q118 31 121 44 Q128 53 120 59 L107 53 95 56 87 52Z",
+    girl_twintail: "M78 60 Q73 36 98 35 Q120 32 123 60 L112 53 102 57 94 51 85 57Z",
+    girl_braids: "M78 60 Q74 35 100 35 Q123 35 122 60 L109 53 101 45 93 54Z",
+    girl_wavy_long: "M77 60 Q73 33 99 34 Q125 33 124 61 L110 52 99 55 88 51Z",
+    girl_ponytail: "M78 60 Q73 37 98 35 Q120 31 123 60 L113 52 99 55 90 51Z",
+    girl_bob: "M76 73 L76 48 Q79 33 100 35 Q122 33 124 49 L124 78 117 77 116 54 84 53 83 77Z",
+    girl_curly_buns: "M78 59 Q74 36 99 36 Q123 34 123 59 L108 52 96 55 85 52Z",
+    girl_hijab: "M75 65 Q72 34 98 32 Q124 32 126 60 L131 88 112 97 96 90 74 94Z",
+    girl_headband: "M77 62 Q72 35 98 34 Q123 31 125 60 L117 66 114 53 88 53 82 67Z",
+  };
+  const hairBack: Partial<Record<AvatarHairStyle, string>> = {
+    girl_twintail: "M80 52 Q61 48 64 71 L58 87 Q72 92 78 74Z M120 51 Q139 49 135 71 L143 84 Q130 93 123 72Z",
+    girl_braids: "M80 55 L70 62 73 71 68 80 72 89 79 83 76 73 81 65Z M120 55 L130 62 127 72 132 81 128 91 121 85 124 74 119 65Z",
+    girl_wavy_long: "M79 49 Q66 58 71 75 L65 95 82 92 89 64Z M120 48 Q134 57 128 76 L138 94 119 93 112 64Z",
+    girl_ponytail: "M115 40 Q140 29 144 51 L140 73 128 78 130 57 116 51Z",
+    girl_curly_buns: "M81 40 Q64 46 64 32 Q64 21 75 23 Q88 21 89 33Z M115 36 Q111 22 125 23 Q139 22 136 35 Q133 46 120 42Z",
+  };
+  const armDownLeft = "M77 98 L61 118 55 151 63 153 74 130 87 119Z";
+  const armDownRight = "M120 97 L138 118 145 151 136 154 125 130 113 119Z";
+  const armRaisedLeft = "M82 101 L58 87 48 64 40 68 47 101 70 122Z";
+  const arms: Record<AvatarPose, [string, string, string, string]> = {
+    standing: [armDownLeft, armDownRight, "M55 149 Q47 152 52 159 L59 162 64 153Z", "M137 151 L145 149 Q152 157 144 162 L137 159Z"],
+    pencil: [armDownLeft, "M120 97 L144 113 151 130 141 146 131 140 139 129 117 119Z", "M55 149 Q47 152 52 159 L59 162 64 153Z", "M133 137 Q139 132 144 136 L146 143 137 147 132 143Z"],
+    pointing: [armDownLeft, "M120 97 L139 106 157 85 163 92 145 121 128 120 112 112Z", "M55 149 Q47 152 52 159 L59 162 64 153Z", "M156 87 L158 75 Q161 69 163 76 L163 83 168 82 169 89 163 94Z"],
+    thinking: [armDownLeft, "M121 96 L140 125 128 143 111 109 107 85 115 82 121 108 127 117Z", "M55 149 Q47 152 52 159 L59 162 64 153Z", "M107 87 L103 79 Q104 75 108 79 L115 78 118 82 114 89Z"],
+    cheering: [armRaisedLeft, "M119 99 L142 86 151 63 160 68 153 100 129 122Z", "M40 69 L36 59 Q37 54 42 59 L45 56 50 61 48 67Z", "M150 66 L150 58 155 55 158 59 Q164 56 164 62 L159 70Z"],
+    waving: [armDownLeft, "M120 97 L141 108 151 77 160 80 154 124 138 130 116 117Z", "M55 149 Q47 152 52 159 L59 162 64 153Z", "M151 80 L146 70 Q146 66 150 68 L150 61 Q153 57 155 63 L158 59 161 65 164 63 165 71 160 82Z"],
+  };
+  const [left, right, leftHand, rightHand] = arms[config.pose] ?? arms.standing;
+  const body = config.gender === "girl"
+    ? "M86 90 L109 89 123 99 124 127 138 167 113 171 91 168 64 171 75 127 73 102Z"
+    : "M86 90 L109 89 124 99 133 167 112 170 92 168 68 171 73 122 72 102Z";
+  const collar = config.gender === "girl"
+    ? "M88 93 Q89 105 99 100 Q109 105 112 92 L100 96Z"
+    : "M88 93 L96 105 101 98 107 104 112 92 100 96Z";
+  const pieces = [
+    hairBack[config.hair] ? path(hairBack[config.hair]!, hair) : "",
+    path(left, cloth),
+    path(body, cloth),
+    // Broad adjacent marker sweeps, intentionally offset with narrow paper gaps.
+    wash("M82 111 L77 158 M95 108 L92 160 M111 110 L112 160", "#fff", 7, 0.14),
+    wash("M84 113 L80 153 M107 112 L108 157", "#fff", 1.7, 0.5),
+    mark("M76 164 L94 163"),
+    path("M108 115 L120 114 119 128 109 129Z", accent, 1.5),
+    path(right, cloth),
+    path("M91 81 L91 92 Q100 99 108 91 L108 80", skin),
+    path(collar, "#fff9ef", 1.6),
+    path("M79 59 Q72 56 73 64 L79 68 M120 58 Q128 57 126 65 L121 69", skin),
+    path("M80 53 L98 47 118 53 121 70 Q117 85 103 87 L91 84 80 75Z", skin),
+  ];
+  const eyes: Record<AvatarEyes, string> = {
+    smile: "M86 65 Q89 61 92 65 M106 65 Q109 61 112 65",
+    sparkle: "M88 62 L88 65 M109 61 L109 65",
+    gentle: "M88 64 L90 64 M107 64 L109 64",
+    thinking: "M89 60 L90 61 M110 60 L111 61",
+    focus: "M86 60 L93 62 M105 62 L112 60 M89 66 L90 66 M108 66 L109 66",
+    round: "M86 64 Q86 59 91 61 Q94 66 89 67Z M106 64 Q105 60 110 61 Q113 66 108 67Z",
+  };
+  const mouths: Record<AvatarMouth, string> = {
+    smile: "M95 77 Q100 81 105 76",
+    talking: "M97 76 L104 76 101 82Z",
+    grin: "M94 75 Q100 85 107 75Z",
+    curious: "M98 77 Q103 74 103 80 Q98 83 98 77",
+    quiet: "M96 78 L103 77",
+  };
+  pieces.push(path(eyes[config.eyes] ?? eyes.smile, "none", 1.9, facialInk),
+    path("M99 65 L97 71 101 72", "none", 1.5, facialInk),
+    path(mouths[config.mouth] ?? mouths.smile, "none", 1.5, facialInk));
+  if (config.hair === "girl_hijab") {
+    // Wrap sits behind the face; open front leaves facial marks unobstructed.
+    pieces.unshift(path(hairFront.girl_hijab, hair));
+    pieces.push(path("M78 75 L88 87 105 94 M119 72 L113 83", "none", 2, accent));
+  } else {
+    pieces.push(path(hairFront[config.hair] ?? hairFront.boy_dandy, hair));
+    pieces.push(wash("M85 44 L98 40 109 43", "#fff", 2.2, 0.5));
+    if (config.hair === "boy_beanie") pieces.push(mark("M79 52 L120 52"));
+    if (config.hair === "girl_headband") pieces.push(path("M82 46 Q99 32 120 47", "none", 3.5, accent));
+    if (config.hair === "girl_braids") pieces.push(mark("M72 66 L78 69 M125 67 L130 70"));
   }
-}
-
-// -------------------------------------------------------------
-// Eyes & Eyebrows (Distinct Boy / Girl styling)
-// -------------------------------------------------------------
-function renderEyes(eyes: AvatarEyes, line: string, gender: AvatarGender): string {
-  const isGirl = gender === "girl";
-  const browWidth = isGirl ? "2.0" : "2.6";
-
-  switch (eyes) {
-    case "sparkle":
-      return `
-        <!-- Sparkle Eyes with Clean Natural Arched Brows -->
-        <path d="M 74 69 Q 82 65 90 70" class="notion-line" stroke-width="${browWidth}" />
-        <path d="M 110 70 Q 118 65 126 69" class="notion-line" stroke-width="${browWidth}" />
-        
-        <ellipse cx="82" cy="83" rx="5" ry="6.5" fill="${line}" />
-        <circle cx="80.5" cy="80.5" r="2" fill="#ffffff" />
-        <circle cx="83.5" cy="85.5" r="1.2" fill="#ffffff" />
-        
-        <ellipse cx="118" cy="83" rx="5" ry="6.5" fill="${line}" />
-        <circle cx="116.5" cy="80.5" r="2" fill="#ffffff" />
-        <circle cx="119.5" cy="85.5" r="1.2" fill="#ffffff" />
-      `;
-    case "gentle":
-      return `
-        <!-- Gentle & Bright Eyes -->
-        <path d="M 74 69 Q 82 65 90 70" class="notion-line" stroke-width="${browWidth}" />
-        <path d="M 110 70 Q 118 65 126 69" class="notion-line" stroke-width="${browWidth}" />
-        
-        <ellipse cx="82" cy="83" rx="4.5" ry="5.8" fill="${line}" />
-        <circle cx="80.5" cy="81" r="1.8" fill="#ffffff" />
-        
-        <ellipse cx="118" cy="83" rx="4.5" ry="5.8" fill="${line}" />
-        <circle cx="116.5" cy="81" r="1.8" fill="#ffffff" />
-      `;
-    case "thinking":
-      return `
-        <!-- Thinking Eyes (Looking Up) -->
-        <path d="M 74 69 Q 82 65 90 70" class="notion-line" stroke-width="${browWidth}" />
-        <path d="M 110 70 Q 118 67 126 66" class="notion-line" stroke-width="${browWidth}" />
-        
-        <ellipse cx="83" cy="79" rx="4.5" ry="5.5" fill="${line}" />
-        <circle cx="82" cy="77" r="1.6" fill="#ffffff" />
-        
-        <ellipse cx="119" cy="79" rx="4.5" ry="5.5" fill="${line}" />
-        <circle cx="118" cy="77" r="1.6" fill="#ffffff" />
-      `;
-    case "focus":
-      return `
-        <!-- Focus / Confident Eyes -->
-        <path d="M 74 72 L 90 69" class="notion-line" stroke-width="${browWidth}" />
-        <path d="M 110 69 L 126 72" class="notion-line" stroke-width="${browWidth}" />
-        
-        <ellipse cx="83" cy="84" rx="4.8" ry="5.8" fill="${line}" />
-        <circle cx="81.5" cy="82" r="1.8" fill="#ffffff" />
-        
-        <ellipse cx="117" cy="84" rx="4.8" ry="5.8" fill="${line}" />
-        <circle cx="115.5" cy="82" r="1.8" fill="#ffffff" />
-      `;
-    case "round":
-      return `
-        <!-- Round Curious Eyes -->
-        <path d="M 76 69 Q 83 66 90 70" class="notion-line" stroke-width="${browWidth}" />
-        <path d="M 110 70 Q 117 66 124 69" class="notion-line" stroke-width="${browWidth}" />
-        
-        <circle cx="83" cy="84" r="5" fill="${line}" />
-        <circle cx="81" cy="82" r="1.8" fill="#ffffff" />
-        
-        <circle cx="117" cy="84" r="5" fill="${line}" />
-        <circle cx="115" cy="82" r="1.8" fill="#ffffff" />
-      `;
-    case "smile":
-    default:
-      return `
-        <!-- Smiling Crescent Eyes -->
-        <path d="M 74 69 Q 82 65 90 70" class="notion-line" stroke-width="${browWidth}" />
-        <path d="M 110 70 Q 118 65 126 69" class="notion-line" stroke-width="${browWidth}" />
-        
-        <path d="M 76 84 C 77 77, 89 77, 90 84" class="notion-line" stroke-width="2.8" />
-        <path d="M 110 84 C 111 77, 123 77, 124 84" class="notion-line" stroke-width="2.8" />
-      `;
+  const accessories: Record<AvatarAccessory, string> = {
+    none: "",
+    glasses: mark("M82 60 L94 59 94 69 83 70Z M104 60 L116 59 117 69 105 70Z M95 63 L104 63"),
+    sunglasses: path("M82 60 L94 59 94 69 83 70Z M104 60 L116 59 117 69 105 70Z", ink, 1.9) + mark("M95 63 L104 63"),
+    freckles: mark("M84 73 L85 73 M88 74 L89 74 M111 73 L112 73 M115 72 L116 72"),
+    flower_clip: path("M115 43 Q107 38 113 35 Q112 28 118 32 Q125 29 123 36 Q130 41 122 43Z", accent, 1.9),
+    star_pin: path("M118 31 L120 36 126 36 122 40 123 45 118 42 113 45 114 40 110 36 116 36Z", accent, 1.9),
+    hair_bow: path("M111 36 L121 41 129 34 129 46 120 42 112 48Z", accent, 1.9),
+  };
+  pieces.push(accessories[config.accessory] ?? "");
+  if (config.pose === "pencil") {
+    pieces.push(path("M134 155 L152 109 160 102 160 114 142 158Z", accent, 2.5),
+      mark("M152 109 L160 114 M141 150 L146 152"),
+      wash("M155 119 L151 130", "#fff", 2, 0.7));
   }
-}
-
-function renderMouth(mouth: AvatarMouth, line: string, gender: AvatarGender): string {
-  const nose = `<path d="M 99 87 Q 102 91 99 94" class="notion-line" stroke-width="2.2" />`;
-  const lipColor = gender === "girl" ? "#fb7185" : "#f43f5e";
-
-  let mouthSvg = "";
-  switch (mouth) {
-    case "talking":
-      mouthSvg = `
-        <path d="M 93 103 Q 100 114 107 103 Z" fill="${lipColor}" stroke="${line}" stroke-width="2.4" stroke-linejoin="round" />
-        <path d="M 94 104 Q 100 106 106 104" stroke="#ffffff" stroke-width="2" stroke-linecap="round" fill="none" />
-      `;
-      break;
-    case "grin":
-      mouthSvg = `
-        <path d="M 90 102 Q 100 117 110 102 Z" fill="${lipColor}" stroke="${line}" stroke-width="2.4" stroke-linejoin="round" />
-        <path d="M 92 103 Q 100 106 108 103" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" fill="none" />
-      `;
-      break;
-    case "curious":
-      mouthSvg = `
-        <ellipse cx="100" cy="106" rx="4.5" ry="5.5" fill="${lipColor}" stroke="${line}" stroke-width="2.4" />
-      `;
-      break;
-    case "quiet":
-      mouthSvg = `<path d="M 94 105 L 106 105" class="notion-line" stroke-width="2.4" />`;
-      break;
-    case "smile":
-    default:
-      mouthSvg = `<path d="M 93 103 Q 100 110 107 103" class="notion-line" stroke-width="2.6" />`;
-      break;
-  }
-
-  return `${nose}\n${mouthSvg}`;
-}
-
-// -------------------------------------------------------------
-// Front Hair (Foreground hair on forehead & crown)
-// -------------------------------------------------------------
-function renderFrontHair(hair: AvatarHairStyle, hairColor: string, line: string): string {
-  switch (hair) {
-    // ---------------- BOY HAIRS ----------------
-    case "boy_dandy":
-      return `
-        <!-- Boy Dandy Side-part -->
-        <path d="M 58 76 C 56 42, 85 28, 116 29 C 142 30, 146 54, 143 78 C 137 70, 131 66, 122 66 C 110 66, 102 73, 91 67 C 82 62, 73 70, 60 76 Z" fill="${hairColor}" stroke="${line}" stroke-width="2.8" stroke-linejoin="round" />
-      `;
-    case "boy_spiky":
-      return `
-        <!-- Boy Spiky / Sporty -->
-        <path d="M 58 78 C 55 46, 75 32, 100 31 C 125 30, 145 46, 142 78 C 138 72, 132 64, 122 65 C 114 66, 108 61, 98 62 C 86 63, 80 68, 60 78 Z" fill="${hairColor}" stroke="${line}" stroke-width="2.8" stroke-linejoin="round" />
-        <path d="M 82 32 L 86 22 L 94 30" fill="${hairColor}" stroke="${line}" stroke-width="2.2" />
-        <path d="M 98 30 L 104 18 L 112 28" fill="${hairColor}" stroke="${line}" stroke-width="2.2" />
-        <path d="M 116 30 L 122 22 L 128 32" fill="${hairColor}" stroke="${line}" stroke-width="2.2" />
-      `;
-    case "boy_afro":
-      return `
-        <!-- Global Afro Curls (Boy) -->
-        <path d="M 54 80 C 46 60, 52 38, 70 28 C 84 18, 116 18, 130 28 C 148 38, 154 60, 146 80 C 138 70, 128 66, 116 66 C 102 66, 92 70, 80 66 C 68 66, 62 72, 54 80 Z" fill="${hairColor}" stroke="${line}" stroke-width="2.8" stroke-linejoin="round" />
-        <circle cx="68" cy="40" r="10" fill="${hairColor}" />
-        <circle cx="88" cy="28" r="11" fill="${hairColor}" />
-        <circle cx="112" cy="28" r="11" fill="${hairColor}" />
-        <circle cx="132" cy="40" r="10" fill="${hairColor}" />
-      `;
-    case "boy_wavy":
-      return `
-        <!-- Boy Wavy Parted -->
-        <path d="M 58 76 C 55 44, 76 29, 100 29 C 124 29, 145 44, 142 76 C 135 68, 120 63, 106 68 C 96 73, 90 64, 75 64 C 65 64, 60 70, 58 76 Z" fill="${hairColor}" stroke="${line}" stroke-width="2.8" stroke-linejoin="round" />
-        <path d="M 98 32 C 98 48, 104 62, 106 68" stroke="${line}" stroke-width="2.2" fill="none" />
-      `;
-    case "boy_curls":
-      return `
-        <!-- Boy Curly Perm -->
-        <path d="M 58 76 C 54 58, 62 42, 74 36 C 84 30, 96 32, 104 29 C 116 26, 130 32, 138 42 C 145 52, 144 68, 142 77 C 136 70, 127 65, 117 65 C 108 65, 99 71, 88 66 C 76 60, 68 70, 58 76 Z" fill="${hairColor}" stroke="${line}" stroke-width="2.8" stroke-linejoin="round" />
-        <circle cx="78" cy="38" r="7" fill="${hairColor}" />
-        <circle cx="100" cy="33" r="8" fill="${hairColor}" />
-        <circle cx="122" cy="36" r="7" fill="${hairColor}" />
-      `;
-    case "boy_fade":
-      return `
-        <!-- Boy Clean Fade / Crop -->
-        <path d="M 60 76 C 58 46, 76 32, 100 32 C 124 32, 142 46, 140 76 C 136 70, 128 66, 100 66 C 72 66, 64 70, 60 76 Z" fill="${hairColor}" stroke="${line}" stroke-width="2.8" stroke-linejoin="round" />
-        <path d="M 60 72 L 60 84" stroke="${line}" stroke-width="2" />
-        <path d="M 140 72 L 140 84" stroke="${line}" stroke-width="2" />
-      `;
-    case "boy_cap":
-      return `
-        <!-- Boy Snapback Baseball Cap -->
-        <path d="M 58 72 C 55 42, 75 28, 100 28 C 125 28, 145 42, 142 72 Z" fill="#3b82f6" stroke="${line}" stroke-width="2.8" stroke-linejoin="round" />
-        <path d="M 54 70 C 54 70, 90 60, 146 70 C 158 72, 150 82, 138 80 L 60 76 Z" fill="#3b82f6" stroke="${line}" stroke-width="2.6" stroke-linejoin="round" />
-        <circle cx="100" cy="28" r="3.5" fill="#1e293b" />
-      `;
-    case "boy_beanie":
-      return `
-        <!-- Boy Warm Beanie -->
-        <path d="M 56 74 C 54 36, 76 22, 100 22 C 124 22, 146 36, 144 74 Z" fill="#f59e0b" stroke="${line}" stroke-width="2.8" stroke-linejoin="round" />
-        <rect x="54" y="66" width="92" height="12" rx="4" fill="#d97706" stroke="${line}" stroke-width="2.4" />
-        <circle cx="100" cy="22" r="5.5" fill="#d97706" stroke="${line}" stroke-width="2" />
-      `;
-
-    // ---------------- GIRL HAIRS ----------------
-    case "girl_twintail":
-    case "girl_braids":
-    case "girl_ponytail":
-      return `
-        <!-- Girl Bangs & Top Hair -->
-        <path d="M 57 76 C 54 38, 76 26, 100 26 C 124 26, 146 38, 143 76 C 137 68, 128 64, 116 68 C 104 72, 94 65, 82 66 C 70 67, 63 71, 57 76 Z" fill="${hairColor}" stroke="${line}" stroke-width="2.8" stroke-linejoin="round" />
-      `;
-    case "girl_wavy_long":
-      return `
-        <!-- Girl Long Wavy Crown & Soft Bangs -->
-        <path d="M 56 76 C 52 36, 76 25, 100 25 C 124 25, 148 36, 144 76 C 138 68, 128 65, 100 65 C 72 65, 62 68, 56 76 Z" fill="${hairColor}" stroke="${line}" stroke-width="2.8" stroke-linejoin="round" />
-        <path d="M 75 66 C 85 74, 95 66, 105 72" stroke="${line}" stroke-width="2" fill="none" />
-      `;
-    case "girl_bob":
-      return `
-        <!-- Girl Bob with Bangs (단발) -->
-        <path d="M 54 75 C 48 95, 52 118, 66 122 C 72 124, 76 116, 68 106 L 60 78 Z" fill="${hairColor}" stroke="${line}" stroke-width="2.6" stroke-linejoin="round" />
-        <path d="M 146 75 C 152 95, 148 118, 134 122 C 128 124, 124 116, 132 106 L 140 78 Z" fill="${hairColor}" stroke="${line}" stroke-width="2.6" stroke-linejoin="round" />
-        <path d="M 56 76 C 52 38, 76 26, 100 26 C 124 26, 148 38, 144 76 C 138 68, 126 63, 100 63 C 74 63, 62 68, 56 76 Z" fill="${hairColor}" stroke="${line}" stroke-width="2.8" stroke-linejoin="round" />
-      `;
-    case "girl_curly_buns":
-      return `
-        <!-- Girl Afro Buns Front Bangs -->
-        <path d="M 58 76 C 55 42, 76 28, 100 28 C 124 28, 145 42, 142 76 C 136 68, 124 65, 100 65 C 76 65, 64 68, 58 76 Z" fill="${hairColor}" stroke="${line}" stroke-width="2.8" stroke-linejoin="round" />
-        <circle cx="80" cy="50" r="4" fill="${hairColor}" />
-        <circle cx="120" cy="50" r="4" fill="${hairColor}" />
-      `;
-    case "girl_headband":
-      return `
-        <!-- Girl Headband Short -->
-        <path d="M 56 76 C 52 40, 76 28, 100 28 C 124 28, 148 40, 144 76 C 138 70, 126 66, 100 66 C 74 66, 62 70, 56 76 Z" fill="${hairColor}" stroke="${line}" stroke-width="2.8" stroke-linejoin="round" />
-        <path d="M 58 64 C 62 36, 138 36, 142 64" stroke="#ec4899" stroke-width="6" stroke-linecap="round" fill="none" />
-        <path d="M 58 64 C 62 36, 138 36, 142 64" class="notion-line" stroke-width="2.4" />
-        <polygon points="128,40 138,34 138,46" fill="#ec4899" stroke="${line}" stroke-width="2" />
-        <polygon points="148,40 138,34 138,46" fill="#ec4899" stroke="${line}" stroke-width="2" />
-        <circle cx="138" cy="40" r="2.8" fill="#ffffff" stroke="${line}" stroke-width="1.8" />
-      `;
-    case "girl_hijab":
-      return `
-        <!-- Global Hijab Front Wrap -->
-        <path d="M 58 74 C 54 44, 76 28, 100 28 C 124 28, 146 44, 142 74 C 142 104, 130 126, 100 126 C 70 126, 58 104, 58 74 Z" fill="none" stroke="#8b5cf6" stroke-width="6" stroke-linejoin="round" />
-        <path d="M 58 74 C 54 44, 76 28, 100 28 C 124 28, 146 44, 142 74 C 142 104, 130 126, 100 126 C 70 126, 58 104, 58 74 Z" class="notion-line" stroke-width="2.6" />
-      `;
-    default:
-      return "";
-  }
-}
-
-// -------------------------------------------------------------
-// Accessories (Glasses, Freckles, Hairpins)
-// -------------------------------------------------------------
-function renderAccessory(acc: AvatarAccessory, line: string, skin: string): string {
-  switch (acc) {
-    case "glasses":
-      return `
-        <!-- Round Glasses -->
-        <circle cx="82" cy="83" r="12" fill="none" stroke="${line}" stroke-width="2.6" />
-        <circle cx="118" cy="83" r="12" fill="none" stroke="${line}" stroke-width="2.6" />
-        <path d="M 94 83 L 106 83" class="notion-line" stroke-width="2.6" />
-        <path d="M 70 82 L 62 80" class="notion-line" stroke-width="2.2" />
-        <path d="M 130 82 L 138 80" class="notion-line" stroke-width="2.2" />
-      `;
-    case "sunglasses":
-      return `
-        <!-- Cool Sunglasses -->
-        <rect x="70" y="74" width="25" height="18" rx="5" fill="${line}" stroke="${line}" stroke-width="2" />
-        <rect x="105" y="74" width="25" height="18" rx="5" fill="${line}" stroke="${line}" stroke-width="2" />
-        <path d="M 95 80 L 105 80" class="notion-line" stroke-width="3" />
-        <line x1="72" y1="78" x2="88" y2="78" stroke="#ffffff" stroke-width="1.8" opacity="0.8" />
-        <line x1="107" y1="78" x2="123" y2="78" stroke="#ffffff" stroke-width="1.8" opacity="0.8" />
-      `;
-    case "freckles":
-      return `
-        <!-- Cute Cheerful Freckles -->
-        <circle cx="72" cy="91" r="1.2" fill="#78350f" />
-        <circle cx="76" cy="94" r="1.2" fill="#78350f" />
-        <circle cx="80" cy="91" r="1.2" fill="#78350f" />
-        <circle cx="120" cy="91" r="1.2" fill="#78350f" />
-        <circle cx="124" cy="94" r="1.2" fill="#78350f" />
-        <circle cx="128" cy="91" r="1.2" fill="#78350f" />
-      `;
-    case "flower_clip":
-      return `
-        <!-- Cute Flower Clip -->
-        <g transform="translate(62, 48)">
-          <circle cx="0" cy="0" r="4.5" fill="#f43f5e" />
-          <circle cx="-6" cy="0" r="3.5" fill="#fb7185" />
-          <circle cx="6" cy="0" r="3.5" fill="#fb7185" />
-          <circle cx="0" cy="-6" r="3.5" fill="#fb7185" />
-          <circle cx="0" cy="6" r="3.5" fill="#fb7185" />
-          <circle cx="0" cy="0" r="2" fill="#fef08a" stroke="${line}" stroke-width="1.2" />
-        </g>
-      `;
-    case "star_pin":
-      return `
-        <!-- Star Pin -->
-        <polygon points="68,54 70,60 76,60 71,64 73,70 68,66 63,70 65,64 60,60 66,60" fill="#facc15" stroke="${line}" stroke-width="2" stroke-linejoin="round" />
-      `;
-    case "hair_bow":
-      return `
-        <!-- Hair Ribbon Bow -->
-        <polygon points="124,52 134,46 134,58" fill="#f43f5e" stroke="${line}" stroke-width="2" />
-        <polygon points="144,52 134,46 134,58" fill="#f43f5e" stroke="${line}" stroke-width="2" />
-        <circle cx="134" cy="52" r="3" fill="#ffffff" stroke="${line}" stroke-width="1.8" />
-      `;
-    case "none":
-    default:
-      return "";
-  }
-}
-
-// -------------------------------------------------------------
-// Body & Poses (Clean distinct Boy / Girl Collar details)
-// -------------------------------------------------------------
-function renderBodyAndPose(
-  pose: AvatarPose,
-  clothColor: string,
-  line: string,
-  skin: string,
-  gender: AvatarGender,
-): string {
-  const isGirl = gender === "girl";
-
-  // Distinct collar: Girl gets soft rounded peter-pan collar, Boy gets neat polo collar
-  const collar = isGirl
-    ? `
-      <!-- Girl Rounded Peter-Pan Collar -->
-      <path d="M 88 132 C 92 142, 98 142, 100 138 C 102 142, 108 142, 112 132" fill="#ffffff" stroke="${line}" stroke-width="2" stroke-linejoin="round" />
-      <circle cx="100" cy="146" r="2" fill="${line}" />
-    `
-    : `
-      <!-- Boy Polo Collar -->
-      <polygon points="92,130 100,140 96,146 88,132" fill="#ffffff" stroke="${line}" stroke-width="2" stroke-linejoin="round" />
-      <polygon points="108,130 100,140 104,146 112,132" fill="#ffffff" stroke="${line}" stroke-width="2" stroke-linejoin="round" />
-    `;
-
-  const torso = `
-    <!-- Torso / Shirt -->
-    <path d="M 68 195 C 66 156, 74 132, 92 130 L 108 130 C 126 132, 134 156, 132 195 Z" fill="${clothColor}" stroke="${line}" stroke-width="2.8" stroke-linejoin="round" />
-    ${collar}
-  `;
-
-  switch (pose) {
-    case "pencil":
-      return `
-        <!-- Pencil Pose: Left arm down, Right arm holding pencil to the side -->
-        <!-- Left Arm & Hand -->
-        <path d="M 72 134 C 62 148, 58 170, 60 186" stroke="${clothColor}" stroke-width="12" stroke-linecap="round" fill="none" />
-        <path d="M 72 134 C 62 148, 58 170, 60 186" class="notion-line" stroke-width="2.6" />
-        <circle cx="60" cy="186" r="6.5" fill="${skin}" stroke="${line}" stroke-width="2.4" />
-
-        ${torso}
-
-        <!-- Right Arm Bending to Side holding pencil (Safe angle away from face) -->
-        <path d="M 128 134 C 142 146, 150 162, 144 175" stroke="${clothColor}" stroke-width="12" stroke-linecap="round" fill="none" />
-        <path d="M 128 134 C 142 146, 150 162, 144 175" class="notion-line" stroke-width="2.6" />
-
-        <!-- Cute Big Pencil tilted safely at side (angle 35 deg to the right) -->
-        <g transform="rotate(35 152 155)">
-          <rect x="146" y="118" width="10" height="38" fill="#facc15" stroke="${line}" stroke-width="2.2" rx="1" />
-          <polygon points="146,118 156,118 151,104" fill="#fde047" stroke="${line}" stroke-width="2.2" stroke-linejoin="round" />
-          <polygon points="149,110 153,110 151,104" fill="${line}" />
-          <!-- Eraser -->
-          <rect x="146" y="156" width="10" height="7" fill="#f43f5e" stroke="${line}" stroke-width="2.2" rx="2" />
-          <line x1="146" y1="156" x2="156" y2="156" stroke="${line}" stroke-width="1.8" />
-        </g>
-
-        <!-- Right Hand gripping pencil at side -->
-        <circle cx="148" cy="168" r="7" fill="${skin}" stroke="${line}" stroke-width="2.4" />
-        <path d="M 144 165 C 148 163, 152 166, 150 170" class="notion-line" stroke-width="2" />
-      `;
-
-    case "pointing":
-      return `
-        <!-- Pointing Pose: Left arm down, Right arm pointing up-right -->
-        <!-- Left Arm & Hand -->
-        <path d="M 72 134 C 62 148, 58 170, 60 186" stroke="${clothColor}" stroke-width="12" stroke-linecap="round" fill="none" />
-        <path d="M 72 134 C 62 148, 58 170, 60 186" class="notion-line" stroke-width="2.6" />
-        <circle cx="60" cy="186" r="6.5" fill="${skin}" stroke="${line}" stroke-width="2.4" />
-
-        ${torso}
-
-        <!-- Right Arm with natural sleeve -->
-        <path d="M 128 134 C 144 138, 156 132, 164 122" stroke="${clothColor}" stroke-width="12" stroke-linecap="round" fill="none" />
-        <path d="M 128 134 C 144 138, 156 132, 164 122" class="notion-line" stroke-width="2.6" />
-
-        <!-- Pointing Hand -->
-        <g transform="translate(158, 108)">
-          <ellipse cx="6" cy="14" rx="6.5" ry="5.5" fill="${skin}" stroke="${line}" stroke-width="2.4" />
-          <rect x="3" y="0" width="5.5" height="15" rx="2.8" fill="${skin}" stroke="${line}" stroke-width="2.2" />
-        </g>
-      `;
-
-    case "thinking":
-      return `
-        <!-- Thinking Pose: Left arm down, Right arm supporting chin -->
-        <!-- Left Arm & Hand -->
-        <path d="M 72 134 C 62 148, 58 170, 60 186" stroke="${clothColor}" stroke-width="12" stroke-linecap="round" fill="none" />
-        <path d="M 72 134 C 62 148, 58 170, 60 186" class="notion-line" stroke-width="2.6" />
-        <circle cx="60" cy="186" r="6.5" fill="${skin}" stroke="${line}" stroke-width="2.4" />
-
-        ${torso}
-
-        <!-- Right Arm bending up to chin -->
-        <path d="M 128 134 C 140 148, 134 162, 122 138 C 118 128, 114 120, 112 118" stroke="${clothColor}" stroke-width="10" stroke-linecap="round" fill="none" />
-        <path d="M 128 134 C 140 148, 134 162, 122 138 C 118 128, 114 120, 112 118" class="notion-line" stroke-width="2.6" />
-
-        <!-- Hand gently on cheek/chin -->
-        <ellipse cx="110" cy="118" rx="6" ry="5" fill="${skin}" stroke="${line}" stroke-width="2.4" />
-        <path d="M 107 115 C 109 112, 113 113, 112 119" class="notion-line" stroke-width="1.8" />
-      `;
-
-    case "cheering":
-      return `
-        <!-- Cheering Pose: Both arms raised high -->
-        <path d="M 72 134 C 54 118, 42 94, 46 80" stroke="${clothColor}" stroke-width="12" stroke-linecap="round" fill="none" />
-        <path d="M 72 134 C 54 118, 42 94, 46 80" class="notion-line" stroke-width="2.6" />
-        <circle cx="46" cy="76" r="7" fill="${skin}" stroke="${line}" stroke-width="2.4" />
-
-        <path d="M 128 134 C 146 118, 158 94, 154 80" stroke="${clothColor}" stroke-width="12" stroke-linecap="round" fill="none" />
-        <path d="M 128 134 C 146 118, 158 94, 154 80" class="notion-line" stroke-width="2.6" />
-        <circle cx="154" cy="76" r="7" fill="${skin}" stroke="${line}" stroke-width="2.4" />
-
-        ${torso}
-      `;
-
-    case "waving":
-      return `
-        <!-- Waving Pose: Left arm down, Right arm waving -->
-        <path d="M 72 134 C 62 148, 58 170, 60 186" stroke="${clothColor}" stroke-width="12" stroke-linecap="round" fill="none" />
-        <path d="M 72 134 C 62 148, 58 170, 60 186" class="notion-line" stroke-width="2.6" />
-        <circle cx="60" cy="186" r="6.5" fill="${skin}" stroke="${line}" stroke-width="2.4" />
-
-        ${torso}
-
-        <path d="M 128 134 C 144 122, 158 102, 156 88" stroke="${clothColor}" stroke-width="12" stroke-linecap="round" fill="none" />
-        <path d="M 128 134 C 144 122, 158 102, 156 88" class="notion-line" stroke-width="2.6" />
-        <circle cx="156" cy="84" r="7" fill="${skin}" stroke="${line}" stroke-width="2.4" />
-        <path d="M 166 74 C 170 80, 170 88, 166 94" class="notion-line" stroke-width="2" />
-        <path d="M 172 71 C 178 80, 178 91, 172 100" class="notion-line" stroke-width="2" />
-      `;
-
-    case "standing":
-    default:
-      return `
-        <!-- Standing Pose: Both arms down at sides naturally -->
-        <path d="M 72 134 C 62 148, 58 170, 60 186" stroke="${clothColor}" stroke-width="12" stroke-linecap="round" fill="none" />
-        <path d="M 72 134 C 62 148, 58 170, 60 186" class="notion-line" stroke-width="2.6" />
-        <circle cx="60" cy="186" r="6.5" fill="${skin}" stroke="${line}" stroke-width="2.4" />
-
-        <path d="M 128 134 C 138 148, 142 170, 140 186" stroke="${clothColor}" stroke-width="12" stroke-linecap="round" fill="none" />
-        <path d="M 128 134 C 138 148, 142 170, 140 186" class="notion-line" stroke-width="2.6" />
-        <circle cx="140" cy="186" r="6.5" fill="${skin}" stroke="${line}" stroke-width="2.4" />
-
-        ${torso}
-      `;
-  }
+  // Hands are above the face and prop so thinking and gripping remain legible.
+  pieces.push(path(leftHand, skin, 2.8), path(rightHand, skin, 2.8));
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200"><g stroke-linecap="round" stroke-linejoin="round">${pieces.join("")}</g></svg>`;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 }

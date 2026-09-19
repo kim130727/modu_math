@@ -53,7 +53,6 @@ export const KidAvatarMakerModal: React.FC<KidAvatarMakerModalProps> = ({
       gender,
       hair: gender === "boy" ? "boy_dandy" : "girl_twintail",
       eyes: gender === "boy" ? "smile" : "sparkle",
-      clothColor: gender === "boy" ? "#6366f1" : "#f472b6",
     }));
   };
 
@@ -75,8 +74,8 @@ export const KidAvatarMakerModal: React.FC<KidAvatarMakerModalProps> = ({
         <div className="avatar-modal-header">
           <div className="avatar-modal-title">
             <span className="avatar-modal-icon">🧒</span>
-            <span>글로벌 어린이 아바타 만들기</span>
-            <span className="avatar-modal-badge">초경량 벡터</span>
+            <span>마커 드로잉 캐릭터 만들기</span>
+            <span className="avatar-modal-badge">손그림 스타일</span>
           </div>
           <button className="avatar-modal-close" onClick={onClose} title="닫기">
             ✕
