@@ -375,8 +375,8 @@ def test_editor_konva_uses_konva_assets_and_editor_next_is_removed(
     assert response.status_code == 200
     html = response.content.decode("utf-8")
     assert 'id="root" data-editor-mode="konva"' in html
-    assert 'href="/static/editor_next/konva_assets/editor-konva.css' in html
-    assert 'type="module" src="/static/editor_next/konva_assets/editor-konva.js' in html
+    assert 'href="/static/editor_next/konva_assets/editor-konva.css?v=' in html
+    assert 'type="module" src="/static/editor_next/konva_assets/editor-konva.js?v=' in html
     assert 'src="/static/editor/js/editor-app.js"' not in html
     assert 'href="/static/editor/css/editor.css"' not in html
     assert client.get("/editor-next/").status_code == 404

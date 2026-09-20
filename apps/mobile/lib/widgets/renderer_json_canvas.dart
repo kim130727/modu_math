@@ -933,7 +933,7 @@ class RendererJsonPainter extends CustomPainter {
           style: _problemTextStyle(
             color: fill,
             fontSize: fontSize,
-            fontWeight: FontWeight.w600,
+            fontWeight: _readFontWeight(attributes['font-weight']),
             height: 1.25,
             fontFamily: fontFamily,
           ),
@@ -941,8 +941,8 @@ class RendererJsonPainter extends CustomPainter {
         textDirection: TextDirection.ltr,
       )..layout();
 
-      final availableWidth = explicitMaxWidth ??
-          math.max(120.0, logicalSize.width - x - 20.0);
+      final availableWidth =
+          explicitMaxWidth ?? math.max(120.0, logicalSize.width - x - 20.0);
       if (measurePainter.width > availableWidth && availableWidth > 0) {
         final scaleRatio = availableWidth / measurePainter.width;
         fontSize = math.max(12.0, fontSize * scaleRatio);
@@ -955,13 +955,15 @@ class RendererJsonPainter extends CustomPainter {
         style: _problemTextStyle(
           color: fill,
           fontSize: fontSize,
-          fontWeight: FontWeight.w600,
+          fontWeight: _readFontWeight(attributes['font-weight']),
           height: 1.25,
           fontFamily: fontFamily,
         ),
       ),
       textDirection: TextDirection.ltr,
-    )..layout(maxWidth: explicitMaxWidth ?? math.max(120.0, logicalSize.width - x - 10.0));
+    )..layout(
+        maxWidth:
+            explicitMaxWidth ?? math.max(120.0, logicalSize.width - x - 10.0));
 
     final baseline =
         painter.computeDistanceToActualBaseline(TextBaseline.alphabetic);
@@ -1066,18 +1068,24 @@ List<Widget> _textBoxLayers(Map<String, dynamic> renderer, double scale) {
       vertical: attributes['data-vertical-align'],
     );
     final text = _normalizeTextBoxText(element['text']?.toString() ?? '');
+    final wrappedText = text.contains('\n')
+        ? text
+        : wrapRendererTextLikeEditor(
+            text,
+            maxWidth: width,
+            fontSize: fontSize,
+          );
     final textWidget = Text(
-      text,
+      wrappedText,
       textAlign: align,
-      // Renderer JSON line breaks are layout instructions, not merely word
-      // wrapping hints. Keeping those lines atomic prevents Flutter's font
-      // metrics from introducing an extra line compared with the source SVG.
-      softWrap: !text.contains('\n'),
+      // Use the editor-compatible line layout above instead of delegating to
+      // platform font metrics, which differ between Canvas and Flutter.
+      softWrap: false,
       overflow: TextOverflow.clip,
       style: _problemTextStyle(
         color: _readColor(attributes['fill']) ?? Colors.black,
         fontSize: fontSize * scale,
-        fontWeight: FontWeight.w600,
+        fontWeight: _readFontWeight(attributes['font-weight']),
         height: lineHeight,
         fontFamily: attributes['font-family'],
       ),
@@ -1091,13 +1099,11 @@ List<Widget> _textBoxLayers(Map<String, dynamic> renderer, double scale) {
       child: ClipRect(
         child: Align(
           alignment: verticalAlign,
-          child: text.contains('\n')
-              ? FittedBox(
-                  fit: BoxFit.scaleDown,
-                  alignment: verticalAlign,
-                  child: textWidget,
-                )
-              : textWidget,
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: verticalAlign,
+            child: textWidget,
+          ),
         ),
       ),
     );
@@ -1118,6 +1124,107 @@ String _normalizeTextBoxText(String text) {
   );
   return trimmed.split('\n').map((line) => line.trimRight()).join('\n');
 }
+
+@visibleForTesting
+String wrapRendererTextLikeEditor(
+  String text, {
+  required double maxWidth,
+  required double fontSize,
+}) {
+  if (text.isEmpty || maxWidth <= 0 || fontSize <= 0) {
+    return text;
+  }
+  final lines = <String>[];
+  for (final paragraph in text.split('\n')) {
+    var current = '';
+    final tokens = RegExp(r'[^\s]+\s*|\s+').allMatches(paragraph);
+    for (final match in tokens) {
+      final token = match.group(0) ?? '';
+      if (current.isNotEmpty &&
+          _editorTextWidth(current + token, fontSize) > maxWidth) {
+        lines.add(current.trimRight());
+        current = '';
+      }
+      for (final rune in token.runes) {
+        final character = String.fromCharCode(rune);
+        if (current.isNotEmpty &&
+            _editorTextWidth(current + character, fontSize) > maxWidth) {
+          lines.add(current.trimRight());
+          current = '';
+        }
+        current += character;
+      }
+    }
+    lines.add(current.trimRight());
+  }
+  return lines.join('\n');
+}
+
+double _editorTextWidth(String text, double fontSize) {
+  var units = 0.0;
+  for (final rune in text.runes) {
+    if (rune == 0x09) {
+      units += 1.4;
+    } else if (_isUnicodeWhitespace(rune)) {
+      units += 0.35;
+    } else if (_isZeroWidthOrCombining(rune)) {
+      continue;
+    } else if (_isKhmer(rune)) {
+      units += 1.05;
+    } else if (_isEastAsianWide(rune)) {
+      // Browser canvas metrics for Noto Sans CJK are slightly narrower than
+      // one em. Matching that advance keeps editor and app line breaks equal.
+      units += 0.9;
+    } else if (_isNarrowLatin(rune)) {
+      units += 0.32;
+    } else if (_isAsciiDigit(rune)) {
+      units += 0.58;
+    } else if (_isWideLatin(rune)) {
+      units += 0.95;
+    } else {
+      units += 0.65;
+    }
+  }
+  return units * fontSize;
+}
+
+bool _isUnicodeWhitespace(int rune) =>
+    rune == 0x20 ||
+    rune == 0xA0 ||
+    rune == 0x1680 ||
+    (rune >= 0x2000 && rune <= 0x200A) ||
+    rune == 0x2028 ||
+    rune == 0x2029 ||
+    rune == 0x202F ||
+    rune == 0x205F ||
+    rune == 0x3000;
+
+bool _isZeroWidthOrCombining(int rune) =>
+    rune == 0x200B ||
+    rune == 0x200C ||
+    rune == 0x200D ||
+    (rune >= 0x0300 && rune <= 0x036F) ||
+    (rune >= 0x1AB0 && rune <= 0x1AFF) ||
+    (rune >= 0x1DC0 && rune <= 0x1DFF) ||
+    (rune >= 0x20D0 && rune <= 0x20FF) ||
+    (rune >= 0xFE20 && rune <= 0xFE2F);
+
+bool _isKhmer(int rune) => rune >= 0x1780 && rune <= 0x17FF;
+
+bool _isEastAsianWide(int rune) =>
+    (rune >= 0x1100 && rune <= 0x11FF) ||
+    (rune >= 0x2E80 && rune <= 0xA4CF) ||
+    (rune >= 0xAC00 && rune <= 0xD7AF) ||
+    (rune >= 0xF900 && rune <= 0xFAFF) ||
+    (rune >= 0xFE10 && rune <= 0xFE6F) ||
+    (rune >= 0xFF01 && rune <= 0xFF60) ||
+    (rune >= 0xFFE0 && rune <= 0xFFE6);
+
+bool _isNarrowLatin(int rune) => "ilI.,:;!'|()".runes.contains(rune);
+
+bool _isAsciiDigit(int rune) => rune >= 0x30 && rune <= 0x39;
+
+bool _isWideLatin(int rune) => 'MWmw@'.runes.contains(rune);
 
 List<Widget> _imageLayers(
   Map<String, dynamic> renderer,
@@ -2295,4 +2402,23 @@ TextStyle _problemTextStyle({
     fontFamilyFallback:
         fontFamilyFallback ?? _buildFontFamilyFallback(fontFamily),
   );
+}
+
+FontWeight _readFontWeight(Object? value) {
+  final normalized = value?.toString().trim().toLowerCase();
+  if (normalized == null || normalized.isEmpty || normalized == 'normal') {
+    return FontWeight.w400;
+  }
+  if (normalized == 'bold' || normalized == 'bolder') {
+    return FontWeight.w700;
+  }
+  if (normalized == 'lighter') {
+    return FontWeight.w300;
+  }
+  final numeric = int.tryParse(normalized);
+  if (numeric == null) {
+    return FontWeight.w400;
+  }
+  final index = ((numeric.clamp(100, 900) - 100) / 100).round();
+  return FontWeight.values[index];
 }

@@ -2,6 +2,8 @@ import type { AvatarConfig, AvatarHairStyle, AvatarPose } from "./avatarParts";
 
 const HEADS = new URL("../../assets/watercolor/heads-v2.webp", import.meta.url).href;
 const BODIES = new URL("../../assets/watercolor/bodies.webp", import.meta.url).href;
+const FULL_FRAME_HEIGHT = 560;
+export const UPPER_BODY_FRAME_HEIGHT = 400;
 const hairOrder: AvatarHairStyle[] = ["boy_dandy", "boy_spiky", "boy_afro", "boy_wavy", "boy_curls", "boy_fade", "boy_cap", "boy_beanie", "girl_twintail", "girl_braids", "girl_ponytail", "girl_wavy_long", "girl_bob", "girl_curly_buns", "girl_headband", "girl_hijab"];
 const poseOrder: AvatarPose[] = ["pencil", "pointing", "thinking", "cheering", "waving", "standing"];
 type RGB = [number, number, number];
@@ -205,7 +207,7 @@ function face(context: CanvasRenderingContext2D, config: AvatarConfig, bounds: B
 }
 
 export function watercolorKey(config: AvatarConfig): string {
-  return JSON.stringify([config.gender, config.hair, config.eyes, config.mouth, config.pose, config.accessory, config.skinTone, config.hairColor, config.clothColor]);
+  return JSON.stringify([config.gender, config.framing, config.hair, config.eyes, config.mouth, config.pose, config.accessory, config.skinTone, config.hairColor, config.clothColor]);
 }
 export async function renderWatercolorAvatar(config: AvatarConfig): Promise<string> {
   const key = watercolorKey(config);
@@ -214,7 +216,7 @@ export async function renderWatercolorAvatar(config: AvatarConfig): Promise<stri
   const [headImage, bodyImage] = await Promise.all([load(HEADS), load(BODIES)]);
   const head = tile(headImage, Math.max(0, hairOrder.indexOf(config.hair)), 4, 4, true);
   const body = tile(bodyImage, Math.max(0, poseOrder.indexOf(config.pose)), 3, 2, false);
-  const { canvas, context } = surface(384, 560);
+  const { canvas, context } = surface(384, FULL_FRAME_HEIGHT);
   const bodyScale = 360 / body.canvas.width;
   const neckX = (body.skin.left + body.skin.right) / 2;
   const bx = 192 - neckX * bodyScale;
@@ -256,7 +258,23 @@ export async function renderWatercolorAvatar(config: AvatarConfig): Promise<stri
       context.drawImage(paintedBody, x, 0, w, h, bx + x * bodyScale, by, w * bodyScale, h * upperScale);
     }
   }
-  const url = canvas.toDataURL("image/webp", .9);
+  let output = canvas;
+  if (config.framing === "upper") {
+    const upperBody = surface(canvas.width, UPPER_BODY_FRAME_HEIGHT);
+    upperBody.context.drawImage(
+      canvas,
+      0,
+      0,
+      canvas.width,
+      UPPER_BODY_FRAME_HEIGHT,
+      0,
+      0,
+      canvas.width,
+      UPPER_BODY_FRAME_HEIGHT,
+    );
+    output = upperBody.canvas;
+  }
+  const url = output.toDataURL("image/webp", .9);
   renders.set(key, url);
   // Bounded result cache: previews must not retain every randomized combination.
   if (renders.size > 48) renders.delete(renders.keys().next().value!);

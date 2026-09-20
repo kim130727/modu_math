@@ -49,6 +49,28 @@ test("same selection is deterministic and speech settings do not alter the image
   assert.equal(await api.renderWatercolorAvatar(config), await api.renderWatercolorAvatar({ ...config, hasSpeechBubble: true, speechText: "안녕!" }));
 });
 
+test("upper-body framing creates a real cropped image and has its own cache key", async () => {
+  const fullConfig = api.getDefaultAvatarConfig();
+  const upperConfig = { ...fullConfig, framing: "upper" };
+  assert.equal(fullConfig.framing, "full");
+  assert.notEqual(api.watercolorKey(fullConfig), api.watercolorKey(upperConfig));
+
+  const full = new Image();
+  full.src = await api.renderWatercolorAvatar(fullConfig);
+  await full.decode();
+  const upper = new Image();
+  upper.src = await api.renderWatercolorAvatar(upperConfig);
+  await upper.decode();
+
+  assert.deepEqual([full.width, full.height], [384, 560]);
+  assert.deepEqual([upper.width, upper.height], [384, api.UPPER_BODY_FRAME_HEIGHT]);
+  const canvas = createCanvas(upper.width, upper.height);
+  const context = canvas.getContext("2d");
+  context.drawImage(upper, 0, 0);
+  const bottom = context.getImageData(0, upper.height - 1, upper.width, 1).data;
+  assert.ok(Array.from({ length: upper.width }, (_, x) => bottom[x * 4 + 3]).some((alpha) => alpha > 32), "the crop must end through the torso rather than add blank padding");
+});
+
 test("all new heads retain independent face and hair coloring", async () => {
   for (const { id } of [...api.BOY_HAIR_OPTIONS, ...api.GIRL_HAIR_OPTIONS]) {
     const config = { ...api.getDefaultAvatarConfig(), hair: id, pose: "standing" };

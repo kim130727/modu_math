@@ -22,6 +22,7 @@ class BackendContentRepository extends ContentRepository {
   final ContentRepository _fallback;
   final Map<String, ProblemContent> _contentCache = {};
   ProblemManifest? _manifestCache;
+  String? _manifestCacheLocale;
 
   @override
   set activeProblemLocale(String locale) {
@@ -29,6 +30,7 @@ class BackendContentRepository extends ContentRepository {
     super.activeProblemLocale = locale;
     _fallback.activeProblemLocale = locale;
     _manifestCache = null;
+    _manifestCacheLocale = null;
     _contentCache.clear();
   }
 
@@ -39,11 +41,17 @@ class BackendContentRepository extends ContentRepository {
 
   @override
   Future<ProblemManifest> loadManifest() async {
-    if (_manifestCache != null) return _manifestCache!;
+    return _loadManifestForLocale(activeProblemLocale);
+  }
+
+  Future<ProblemManifest> _loadManifestForLocale(String locale) async {
+    if (_manifestCache != null && _manifestCacheLocale == locale) {
+      return _manifestCache!;
+    }
     try {
       final problems = <ProblemSummary>[];
       Uri? next = _uri('/api/v1/problems/', {
-        'language': activeProblemLocale,
+        'language': locale,
         'grade': '3',
       });
       while (next != null) {
@@ -60,7 +68,7 @@ class BackendContentRepository extends ContentRepository {
         next = nextValue.isEmpty ? null : Uri.parse(nextValue);
       }
       problems.sort((a, b) => a.id.compareTo(b.id));
-      return _manifestCache = ProblemManifest(
+      final manifest = ProblemManifest(
         version: 'django-api-v1',
         problems: problems,
         raw: {
@@ -69,7 +77,15 @@ class BackendContentRepository extends ContentRepository {
           'problems': problems.map((problem) => problem.raw).toList(),
         },
       );
+      if (activeProblemLocale == locale) {
+        _manifestCache = manifest;
+        _manifestCacheLocale = locale;
+      }
+      return manifest;
     } catch (_) {
+      if (activeProblemLocale != locale) {
+        rethrow;
+      }
       return _fallback.loadManifest();
     }
   }
@@ -89,12 +105,26 @@ class BackendContentRepository extends ContentRepository {
 
   @override
   Future<ProblemContent> loadProblem(ProblemSummary summary) async {
-    final cacheKey = '${summary.dbId}:${summary.language}';
+    final requestedLocale = activeProblemLocale;
+    final cacheKey = '$requestedLocale:${summary.id}';
     final cached = _contentCache[cacheKey];
     if (cached != null) return cached;
-    final dbId = summary.dbId;
-    if (dbId == null) return _fallback.loadProblem(summary);
     try {
+      var localizedSummary = summary;
+      if (summary.language != requestedLocale || summary.dbId == null) {
+        final manifest = await _loadManifestForLocale(requestedLocale);
+        final matches = manifest.problems.where(
+          (problem) => problem.id == summary.id,
+        );
+        if (matches.isEmpty) {
+          return _fallback.loadProblem(summary);
+        }
+        localizedSummary = matches.first;
+      }
+      final dbId = localizedSummary.dbId;
+      if (dbId == null) {
+        return _fallback.loadProblem(summary);
+      }
       final response = await _client.get(_uri('/api/v1/problems/$dbId/'));
       if (response.statusCode != 200) {
         throw StateError('Problem detail API returned ${response.statusCode}');
@@ -118,7 +148,7 @@ class BackendContentRepository extends ContentRepository {
 
   @override
   Future<ProblemContent> refreshProblem(ProblemSummary summary) {
-    _contentCache.remove('${summary.dbId}:${summary.language}');
+    _contentCache.remove('$activeProblemLocale:${summary.id}');
     return loadProblem(summary);
   }
 

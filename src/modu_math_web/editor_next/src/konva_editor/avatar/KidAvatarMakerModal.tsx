@@ -24,7 +24,7 @@ import {
 interface KidAvatarMakerModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onInsertAvatar: (config: AvatarConfig, svgDataUrl: string) => void;
+  onInsertAvatar: (config: AvatarConfig, imageDataUrl: string) => void;
   replacementTargets: { id: string; label: string }[];
   replacementTargetId: string;
   onReplacementTargetChange: (id: string) => void;
@@ -60,7 +60,13 @@ export const KidAvatarMakerModal: React.FC<KidAvatarMakerModalProps> = ({
   };
 
   const handleRandomize = () => {
-    setConfig(generateRandomAvatarConfig(config.gender));
+    setConfig((previous) => ({
+      ...generateRandomAvatarConfig(previous.gender),
+      framing: previous.framing,
+      hasSpeechBubble: previous.hasSpeechBubble,
+      speechText: previous.speechText,
+      bubblePosition: previous.bubblePosition,
+    }));
   };
 
   const handleInsert = async () => {
@@ -123,6 +129,28 @@ export const KidAvatarMakerModal: React.FC<KidAvatarMakerModalProps> = ({
                 >
                   👧 여아 (Girl)
                 </button>
+              </div>
+
+              <div className="avatar-color-section avatar-framing-section">
+                <div className="avatar-section-label">🖼️ 표시 범위</div>
+                <div className="avatar-gender-toggle" role="group" aria-label="캐릭터 표시 범위">
+                  <button
+                    type="button"
+                    className={`avatar-gender-btn ${config.framing === "full" ? "active" : ""}`}
+                    aria-pressed={config.framing === "full"}
+                    onClick={() => setConfig((previous) => ({ ...previous, framing: "full" }))}
+                  >
+                    전신
+                  </button>
+                  <button
+                    type="button"
+                    className={`avatar-gender-btn ${config.framing === "upper" ? "active" : ""}`}
+                    aria-pressed={config.framing === "upper"}
+                    onClick={() => setConfig((previous) => ({ ...previous, framing: "upper" }))}
+                  >
+                    상반신
+                  </button>
+                </div>
               </div>
 
               {/* Skin Tone Selector (Global Diversity) */}

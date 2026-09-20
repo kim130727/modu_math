@@ -15,6 +15,9 @@ services:
 
   web:
     build: .
+    # Re-evaluate the local build on every `docker compose up`. Docker layer
+    # caching keeps unchanged starts fast while preventing stale editor assets.
+    pull_policy: build
     environment:
       MODU_MATH_WEB_SECRET_KEY: local-compose-secret-change-me
       DJANGO_DEBUG: "true"
@@ -31,6 +34,8 @@ services:
         condition: service_healthy
     ports:
       - "8000:8000"
+    volumes:
+      - ./examples/problems:/app/examples/problems
 
 volumes:
   postgres_data:

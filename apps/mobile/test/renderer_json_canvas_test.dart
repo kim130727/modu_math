@@ -114,6 +114,7 @@ void main() {
         )
         .map((box) => box.top.round())
         .toSet();
+
     expect(renderedLineTops, hasLength(3));
     expect(
       find.ancestor(of: textFinder, matching: find.byType(FittedBox)),
@@ -155,11 +156,74 @@ void main() {
       ),
     );
 
-    final textFinder = find.text(prompt);
-    expect(tester.widget<Text>(textFinder).softWrap, isTrue);
+    final textFinder = find.text(
+      wrapRendererTextLikeEditor(
+        prompt,
+        maxWidth: 100,
+        fontSize: 24,
+      ),
+    );
+    expect(tester.widget<Text>(textFinder).softWrap, isFalse);
     expect(
       find.ancestor(of: textFinder, matching: find.byType(FittedBox)),
-      findsNothing,
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('matches the editor wrapping for authored normal-weight text',
+      (tester) async {
+    const speech = '물병에 물을 가득 채운 후 우유병에 옮겨 담아보면 돼';
+
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 940,
+            height: 395,
+            child: RendererJsonCanvas(
+              renderer: {
+                'view_box': {'width': 940, 'height': 395},
+                'elements': [
+                  {
+                    'id': 'slot.speech.text',
+                    'type': 'text_box',
+                    'attributes': {
+                      'x': 570.546,
+                      'y': 118.817,
+                      'width': 309.474,
+                      'height': 121,
+                      'font-size': 28,
+                      'data-line-height': 1.25,
+                    },
+                    'text': speech,
+                  },
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    const wrappedSpeech = '물병에 물을 가득 채운 후\n우유병에 옮겨 담아보면 돼';
+    final textFinder = find.text(wrappedSpeech);
+    final textWidget = tester.widget<Text>(textFinder);
+    final paragraph = tester.renderObject<RenderParagraph>(textFinder);
+    final renderedLineTops = paragraph
+        .getBoxesForSelection(
+          const TextSelection(
+            baseOffset: 0,
+            extentOffset: wrappedSpeech.length,
+          ),
+        )
+        .map((box) => box.top.round())
+        .toSet();
+
+    expect(renderedLineTops, hasLength(2));
+    expect(textWidget.style?.fontWeight, FontWeight.w400);
+    expect(
+      find.ancestor(of: textFinder, matching: find.byType(FittedBox)),
+      findsOneWidget,
     );
   });
 

@@ -7,7 +7,7 @@ test("custom watercolor survives insertion, save/reload and replacement", async 
   const layout = JSON.parse(readFileSync(new URL("../../../../examples/problems/ko/S3_elem_3_008728.layout.json", import.meta.url), "utf8"));
   const base = api.problemDetailToCanonicalProblem({ problem_id: "watercolor", layout });
   const document = api.problemJsonToEditorDocument(base);
-  const src = await api.renderWatercolorAvatar({ ...api.getDefaultAvatarConfig("girl"), skinTone: "#6c432b", hairColor: "#ea580c", clothColor: "#34d399", accessory: "glasses", pose: "waving" });
+  const src = await api.renderWatercolorAvatar({ ...api.getDefaultAvatarConfig("girl"), framing: "upper", skinTone: "#6c432b", hairColor: "#ea580c", clothColor: "#34d399", accessory: "glasses", pose: "waving" });
   assert.ok(src.startsWith("data:image/webp;base64,"));
   assert.ok(Buffer.from(src.split(",")[1], "base64").length < 150000);
   const avatar = { id: "konva_100_avatar_300", type: "image", src, x: 50, y: 60, width: 140, height: 150, preserveAspectRatio: "xMidYMid meet" };

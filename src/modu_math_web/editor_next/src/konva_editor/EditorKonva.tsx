@@ -389,7 +389,7 @@ export function EditorKonva() {
   );
 
   const handleInsertAvatar = useCallback(
-    (avatarConfig: AvatarConfig, svgDataUrl: string) => {
+    (avatarConfig: AvatarConfig, imageDataUrl: string) => {
       const target = avatarReplacementTargets.find((item) => item.id === avatarTargetId);
       const box = target ? selectionBounds(target.shapes) : fitInsertBox(140, 150, 24, 24);
       const targetWidth = box.width;
@@ -402,7 +402,7 @@ export function EditorKonva() {
           type: "image",
           x: box.x,
           y: box.y,
-          src: svgDataUrl,
+          src: imageDataUrl,
           width: targetWidth,
           height: targetHeight,
           preserveAspectRatio: "xMidYMid meet",
@@ -465,7 +465,8 @@ export function EditorKonva() {
         shapes: replaceAvatarShapes(prev.shapes, target, newShapes),
       }));
       setSelectedShapeIds([avatarId]);
-      setMessage(target ? "기존 캐릭터를 새 캐릭터로 교체했습니다. 저장 후 미리보기에도 반영됩니다." : `어린이 캐릭터(${avatarConfig.gender === "boy" ? "남아" : "여아"})를 캔버스에 삽입했습니다.`);
+      const framingLabel = avatarConfig.framing === "upper" ? "상반신" : "전신";
+      setMessage(target ? `기존 캐릭터를 새 ${framingLabel} 캐릭터로 교체했습니다. 저장 후 미리보기에도 반영됩니다.` : `어린이 캐릭터(${avatarConfig.gender === "boy" ? "남아" : "여아"}, ${framingLabel})를 캔버스에 삽입했습니다.`);
     },
     [fitInsertBox, nextId, avatarReplacementTargets, avatarTargetId],
   );

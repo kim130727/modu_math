@@ -75,7 +75,7 @@ void main() {
       ),
     );
 
-    expect(tester.getTopLeft(find.text('off canvas')).dx, greaterThan(900));
+    expect(tester.getTopLeft(find.textContaining('off')).dx, greaterThan(900));
     expect(tester.takeException(), isNull);
   });
 

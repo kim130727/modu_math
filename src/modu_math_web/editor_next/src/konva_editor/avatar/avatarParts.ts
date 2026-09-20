@@ -1,5 +1,7 @@
 export type AvatarGender = "boy" | "girl";
 
+export type AvatarFraming = "full" | "upper";
+
 export type AvatarHairStyle =
   // Boy Hairstyles (Global & Diverse)
   | "boy_dandy"
@@ -30,6 +32,7 @@ export type AvatarAccessory = "none" | "glasses" | "sunglasses" | "freckles" | "
 
 export interface AvatarConfig {
   gender: AvatarGender;
+  framing: AvatarFraming;
   skinTone: string;
   hairColor: string;
   hair: AvatarHairStyle;
@@ -145,6 +148,7 @@ export const ACCESSORY_OPTIONS: Array<{ id: AvatarAccessory; label: string }> = 
 export function getDefaultAvatarConfig(gender: AvatarGender = "boy"): AvatarConfig {
   return {
     gender,
+    framing: "full",
     skinTone: "#fed7aa",
     hairColor: "#78350f",
     hair: gender === "boy" ? "boy_dandy" : "girl_bob",
@@ -173,6 +177,7 @@ export function generateRandomAvatarConfig(forcedGender?: AvatarGender): AvatarC
 
   return {
     gender,
+    framing: "full",
     skinTone: skin,
     hairColor,
     hair,
