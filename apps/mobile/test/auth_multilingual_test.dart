@@ -8,7 +8,6 @@ import 'package:modu_math_app/models/auth_user.dart';
 import 'package:modu_math_app/models/content_models.dart';
 import 'package:modu_math_app/models/learning_progress.dart';
 import 'package:modu_math_app/models/student_profile.dart';
-import 'package:modu_math_app/screens/auth_screen.dart';
 import 'package:modu_math_app/services/auth_service.dart';
 import 'package:modu_math_app/services/content_repository.dart';
 import 'package:modu_math_app/services/learning_progress_repository.dart';
