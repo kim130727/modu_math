@@ -1370,6 +1370,8 @@ input {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  overflow-y: auto;
+  min-height: 0;
 }
 
 .avatar-preview-card {
@@ -1397,6 +1399,10 @@ input {
   height: 100%;
   object-fit: contain;
 }
+
+.avatar-watercolor-preview { height: 255px; flex-shrink: 0; border: 0; box-shadow: none; border-radius: 12px; }
+.avatar-insert-error { color: #b42318; }
+.avatar-modal-container button:disabled { opacity: .6; cursor: wait; }
 
 .avatar-preview-bubble {
   position: absolute;

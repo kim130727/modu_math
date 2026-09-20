@@ -8,6 +8,8 @@
     "test:text": "node --test scripts/check-text-encoding.test.mjs",
     "test:anchors": "node --test scripts/text-anchor.test.mjs",
     "test:review": "node --test scripts/answer-review.test.mjs",
+    "test:avatars": "node --test scripts/avatar-colors.test.mjs scripts/watercolor-avatars.test.mjs",
+    "preview:avatars": "node scripts/watercolor-preview.mjs",
     "prebuild": "npm run check:text",
     "predev": "npm run check:text",
     "pretypecheck": "npm run check:text",
@@ -25,6 +27,7 @@
     "react-konva": "^19.2.5"
   },
   "devDependencies": {
+    "@napi-rs/canvas": "1.0.9",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "typescript": "^5.7.3",

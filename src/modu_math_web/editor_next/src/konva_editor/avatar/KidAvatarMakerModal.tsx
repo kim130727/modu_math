@@ -1,4 +1,5 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { renderWatercolorAvatar, watercolorKey } from "./watercolorRenderer";
 import {
   ACCESSORY_OPTIONS,
   type AvatarAccessory,
@@ -10,7 +11,6 @@ import {
   type AvatarPose,
   BOY_HAIR_OPTIONS,
   CLOTH_COLOR_PALETTES,
-  compileAvatarSvg,
   EYES_OPTIONS,
   GIRL_HAIR_OPTIONS,
   HAIR_COLOR_PALETTES,
@@ -42,8 +42,11 @@ export const KidAvatarMakerModal: React.FC<KidAvatarMakerModalProps> = ({
 }) => {
   const [config, setConfig] = useState<AvatarConfig>(() => getDefaultAvatarConfig("boy"));
   const [activeTab, setActiveTab] = useState<TabType>("hair");
+  const [inserting, setInserting] = useState(false);
+  const [error, setError] = useState("");
 
-  const previewSvgUrl = useMemo(() => compileAvatarSvg(config), [config]);
+  const [retry, setRetry] = useState(0);
+  const preview = useWatercolorPreview(config, isOpen, retry);
 
   if (!isOpen) return null;
 
@@ -51,8 +54,8 @@ export const KidAvatarMakerModal: React.FC<KidAvatarMakerModalProps> = ({
     setConfig((prev) => ({
       ...prev,
       gender,
-      hair: gender === "boy" ? "boy_dandy" : "girl_twintail",
-      eyes: gender === "boy" ? "smile" : "sparkle",
+      hair: getDefaultAvatarConfig(gender).hair,
+      eyes: getDefaultAvatarConfig(gender).eyes,
     }));
   };
 
@@ -60,24 +63,33 @@ export const KidAvatarMakerModal: React.FC<KidAvatarMakerModalProps> = ({
     setConfig(generateRandomAvatarConfig(config.gender));
   };
 
-  const handleInsert = () => {
-    onInsertAvatar(config, previewSvgUrl);
-    onClose();
+  const handleInsert = async () => {
+    if (inserting || !preview.src || preview.busy) return;
+    setInserting(true);
+    setError("");
+    try {
+      onInsertAvatar(config, preview.src);
+      onClose();
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : "캐릭터 삽입에 실패했습니다.");
+    } finally {
+      setInserting(false);
+    }
   };
 
   const currentHairList = config.gender === "boy" ? BOY_HAIR_OPTIONS : GIRL_HAIR_OPTIONS;
 
   return (
-    <div className="avatar-modal-overlay" onClick={onClose}>
-      <div className="avatar-modal-container" onClick={(e) => e.stopPropagation()}>
+    <div className="avatar-modal-overlay" onClick={() => { if (!inserting) onClose(); }}>
+      <div className="avatar-modal-container" role="dialog" aria-modal="true" aria-label="캐릭터 만들기" aria-busy={inserting} onClick={(e) => e.stopPropagation()}>
         {/* Header */}
         <div className="avatar-modal-header">
           <div className="avatar-modal-title">
             <span className="avatar-modal-icon">🧒</span>
-            <span>마커 드로잉 캐릭터 만들기</span>
-            <span className="avatar-modal-badge">손그림 스타일</span>
+            <span>캐릭터 만들기</span>
+            <span className="avatar-modal-badge">수채화 일러스트</span>
           </div>
-          <button className="avatar-modal-close" onClick={onClose} title="닫기">
+          <button className="avatar-modal-close" disabled={inserting} onClick={onClose} title="닫기">
             ✕
           </button>
         </div>
@@ -87,14 +99,15 @@ export const KidAvatarMakerModal: React.FC<KidAvatarMakerModalProps> = ({
           {/* Left Column: Live Preview & Tone Selectors */}
           <div className="avatar-preview-column">
             <div className="avatar-preview-card">
-              <div className="avatar-preview-box">
-                <img src={previewSvgUrl} alt="Avatar Preview" className="avatar-preview-image" />
+              <div className="avatar-preview-box avatar-watercolor-preview" aria-busy={preview.busy}>
+                {preview.src ? <img src={preview.src} alt="선택한 설정의 수채화 캐릭터" className="avatar-preview-image" /> : <span role="status">{preview.error ? "그림을 불러오지 못했습니다" : "수채화 캐릭터 준비 중…"}</span>}
                 {config.hasSpeechBubble && config.speechText ? (
                   <div className="avatar-preview-bubble">
                     <span>{config.speechText}</span>
                   </div>
                 ) : null}
               </div>
+
 
               {/* Gender Toggle */}
               <div className="avatar-gender-toggle">
@@ -171,6 +184,7 @@ export const KidAvatarMakerModal: React.FC<KidAvatarMakerModalProps> = ({
           <div className="avatar-control-column">
             {/* Category Tabs */}
             <div className="avatar-tabs-nav">
+
               <button
                 className={`avatar-tab-btn ${activeTab === "hair" ? "active" : ""}`}
                 onClick={() => setActiveTab("hair")}
@@ -215,11 +229,7 @@ export const KidAvatarMakerModal: React.FC<KidAvatarMakerModalProps> = ({
                       onClick={() => setConfig((prev) => ({ ...prev, hair: item.id }))}
                     >
                       <div className="avatar-option-preview">
-                        <img
-                          src={compileAvatarSvg({ ...config, hair: item.id })}
-                          alt={item.label}
-                          className="avatar-mini-preview"
-                        />
+                        <WatercolorThumbnail config={{ ...config, hair: item.id }} label={item.label} />
                       </div>
                       <div className="avatar-option-label">{item.label}</div>
                     </button>
@@ -272,11 +282,7 @@ export const KidAvatarMakerModal: React.FC<KidAvatarMakerModalProps> = ({
                       onClick={() => setConfig((prev) => ({ ...prev, pose: item.id }))}
                     >
                       <div className="avatar-option-preview">
-                        <img
-                          src={compileAvatarSvg({ ...config, pose: item.id })}
-                          alt={item.label}
-                          className="avatar-mini-preview"
-                        />
+                        <WatercolorThumbnail config={{ ...config, pose: item.id }} label={item.label} />
                       </div>
                       <div className="avatar-option-label">{item.label}</div>
                     </button>
@@ -294,11 +300,7 @@ export const KidAvatarMakerModal: React.FC<KidAvatarMakerModalProps> = ({
                       onClick={() => setConfig((prev) => ({ ...prev, accessory: item.id }))}
                     >
                       <div className="avatar-option-preview">
-                        <img
-                          src={compileAvatarSvg({ ...config, accessory: item.id })}
-                          alt={item.label}
-                          className="avatar-mini-preview"
-                        />
+                        <WatercolorThumbnail config={{ ...config, accessory: item.id }} label={item.label} />
                       </div>
                       <div className="avatar-option-label">{item.label}</div>
                     </button>
@@ -378,6 +380,7 @@ export const KidAvatarMakerModal: React.FC<KidAvatarMakerModalProps> = ({
         {/* Footer */}
         <div className="avatar-modal-footer">
           <div className="avatar-footer-hint">
+            {(error || preview.error) && <p role="alert" className="avatar-insert-error">{error || preview.error} <button onClick={() => setRetry((value) => value + 1)}>다시 불러오기</button></p>}
             <label>
               삽입 방식{" "}
               <select value={replacementTargetId} onChange={(event) => onReplacementTargetChange(event.target.value)}>
@@ -388,11 +391,11 @@ export const KidAvatarMakerModal: React.FC<KidAvatarMakerModalProps> = ({
             <div>{replacementTargetId ? "기존 위치와 크기로 교체하며 이름과 말풍선은 유지합니다." : "기존 캐릭터를 바꾸려면 교체 대상을 선택하세요."}</div>
           </div>
           <div className="avatar-footer-actions">
-            <button className="avatar-btn-cancel" onClick={onClose}>
+            <button className="avatar-btn-cancel" disabled={inserting} onClick={onClose}>
               취소
             </button>
-            <button className="avatar-btn-insert" onClick={handleInsert}>
-              {replacementTargetId ? "✨ 선택한 캐릭터 교체" : "✨ 캔버스에 삽입"}
+            <button className="avatar-btn-insert" disabled={inserting || preview.busy || !preview.src} onClick={handleInsert}>
+              {inserting || preview.busy ? "이미지 준비 중…" : replacementTargetId ? "✨ 선택한 캐릭터 교체" : "✨ 캔버스에 삽입"}
             </button>
           </div>
         </div>
@@ -400,3 +403,28 @@ export const KidAvatarMakerModal: React.FC<KidAvatarMakerModalProps> = ({
     </div>
   );
 };
+
+function useWatercolorPreview(config: AvatarConfig, enabled = true, retry = 0) {
+  const key = watercolorKey(config);
+  const [result, setResult] = useState({ key: "", src: "", error: "" });
+  useEffect(() => {
+    if (!enabled) return;
+    let active = true;
+    setResult({ key: "", src: "", error: "" });
+    const timer = setTimeout(() => {
+      renderWatercolorAvatar(config).then(
+        (src) => { if (active) setResult({ key, src, error: "" }); },
+        (cause) => { if (active) setResult({ key, src: "", error: cause instanceof Error ? cause.message : "이미지를 준비하지 못했습니다." }); },
+      );
+    }, 40);
+    return () => { active = false; clearTimeout(timer); };
+  }, [key, enabled, retry]);
+  return result.key === key ? { ...result, busy: false } : { src: "", error: "", busy: enabled };
+}
+
+function WatercolorThumbnail({ config, label }: { config: AvatarConfig; label: string }) {
+  const preview = useWatercolorPreview(config);
+  return preview.src
+    ? <img src={preview.src} alt={label} className="avatar-mini-preview" />
+    : <span aria-label={preview.error || "미리보기 준비 중"}>…</span>;
+}
