@@ -54,6 +54,7 @@ function problemObjectToEditorShape(object: ProblemObject, canvas: ProblemCanvas
       const fontSize = object.props.fontSize;
       const isTextBox = object.props.sourceKind === "text_box";
       const textAlign = object.props.textAlign ?? "left";
+      const verticalAlign = object.props.verticalAlign ?? "middle";
       const lineHeight = object.props.lineHeight ?? 1.25;
       const needsAlignmentBox = textAlign !== "left";
       const sourceWidth = object.props.width ?? estimateTextWidth(text, fontSize);
@@ -105,6 +106,7 @@ function problemObjectToEditorShape(object: ProblemObject, canvas: ProblemCanvas
           width,
           height: isTextBox ? normalizedTextBoxHeight(text, fontSize, width ?? estimateTextWidth(text, fontSize), object.props.height, lineHeight, stringProp(object.props.fontFamily), Boolean(answerProps.interaction)) : undefined,
           align: textAlign,
+          valign: isTextBox ? verticalAlign : undefined,
           lineHeight,
           sourceKind: isTextBox ? "text_box" : (object.props.sourceKind ?? "text"),
           ...regionProps,
@@ -421,6 +423,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             height,
             color: shape.fill ?? "#111827",
             textAlign: shape.align ?? "left",
+            verticalAlign: isTextBox ? (shape.valign ?? "middle") : undefined,
             lineHeight,
             sourceKind,
             ...regionProps,

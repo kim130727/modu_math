@@ -757,6 +757,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
       const lineHeight = numberValue(attrs["data-line-height"], 1.25);
       const height = numberValue(attrs["data-box-height"], fittedTextBoxHeight(text, fontSize, width, lineHeight));
       const align = stringValue(attrs["data-text-align"], stringValue(attrs["text-anchor"], "left"));
+      const rawValign = stringValue(attrs["data-vertical-align"], stringValue(attrs.valign, "top"));
       return [
         {
           id: sourceId(element),
@@ -772,6 +773,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
             fontFamily: stringValue(attrs["font-family"], ""),
             color: stringValue(attrs.fill, "#111111"),
             textAlign: align === "middle" || align === "center" ? "center" : align === "end" || align === "right" ? "right" : "left",
+            verticalAlign: rawValign === "bottom" ? "bottom" : rawValign === "middle" || rawValign === "center" ? "middle" : "top",
             lineHeight,
             sourceKind: "text_box",
             transform: stringValue(attrs.transform, ""),
@@ -967,6 +969,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot, sourceRe
             fontFamily: stringValue(content.font_family, ""),
             color: stringValue(content.fill, "#111111"),
             textAlign: content.align === "right" ? "right" : content.align === "center" ? "center" : "left",
+            verticalAlign: content.valign === "bottom" ? "bottom" : content.valign === "middle" || content.valign === "center" ? "middle" : "top",
             lineHeight,
             sourceKind: "text_box",
             transform: stringValue(content.transform, ""),

@@ -137,6 +137,7 @@ export type TextShape = BaseShape & {
   width?: number;
   height?: number;
   align?: "left" | "center" | "right";
+  valign?: "top" | "middle" | "bottom";
   lineHeight?: number;
   sourceKind?: "text" | "text_box";
 };

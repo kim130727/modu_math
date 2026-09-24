@@ -85,10 +85,8 @@ def resolve_shared_layout(layout: dict, dsl_path: Path, *, ancestors: tuple[Path
     if path in ancestors:
         raise ValueError(f"Circular layout_source: {path}")
     reference = read_overrides(path).get("layout_source")
-    if reference is None:
-        from modu_math.dsl.variants import delta_path, source_path as variant_source_path
-        if not delta_path(path).exists():
-            return layout
+    from modu_math.dsl.variants import delta_path, source_path as variant_source_path
+    if delta_path(path).exists():
         # The virtual template already inherits source geometry. Add common editor
         # edits without replacing its translated prose or authored local geometry.
         shared = deepcopy(read_overrides(variant_source_path(path)))
@@ -96,6 +94,8 @@ def resolve_shared_layout(layout: dict, dsl_path: Path, *, ancestors: tuple[Path
             for key in ("text", "prompt", "placeholder"):
                 patch.pop(key, None)
         return apply_editor_overrides(layout, shared)
+    if reference is None:
+        return layout
     if not isinstance(reference, str) or not reference.endswith(".dsl.py"):
         raise ValueError("layout_source must name a relative *.dsl.py file")
     if Path(reference).is_absolute():

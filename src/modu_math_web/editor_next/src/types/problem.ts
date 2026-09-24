@@ -37,6 +37,7 @@ export interface MathTextProps extends Record<string, unknown> {
   color?: string;
   fontFamily?: string;
   textAlign?: "left" | "center" | "right";
+  verticalAlign?: "top" | "middle" | "bottom";
   lineHeight?: number;
   sourceKind?: "text" | "text_box";
 }

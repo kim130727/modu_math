@@ -265,6 +265,9 @@ function mathTextFields(object: MathTextObject, includeBoxSize: boolean): Record
     fields.width = round(width);
     fields.height = round(object.props.height ?? Math.max(24, fontSize * 1.25));
     fields.align = textAlign;
+    if (object.props.verticalAlign) {
+      fields.valign = object.props.verticalAlign;
+    }
     fields.line_height = object.props.lineHeight ?? 1.25;
     if (object.props.sourceKind === "text_box") {
       fields.kind = "text_box";
