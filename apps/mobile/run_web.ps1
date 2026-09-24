@@ -3,7 +3,7 @@ param(
     [ValidateRange(1, 65535)]
     [int]$WebPort = 3000,
     [ValidateSet("edge", "chrome", "none")]
-    [string]$Browser = "none"
+    [string]$Browser = "edge"
 )
 
 $ErrorActionPreference = "Stop"
@@ -38,15 +38,33 @@ try {
             throw "Could not find the $Browser browser executable."
         }
 
+        $browserProfile = Join-Path $PSScriptRoot ".dart_tool\web_${Browser}_profile"
+        Get-CimInstance Win32_Process -ErrorAction SilentlyContinue |
+            Where-Object {
+                $_.Name -eq (Split-Path -Leaf $browserExecutable) -and
+                $_.CommandLine -like "*$browserProfile*"
+            } |
+            ForEach-Object {
+                Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue
+            }
+
         $browserJob = Start-Job -ScriptBlock {
-            param($Url, $Executable)
+            param($Url, $Executable, $Profile)
 
             $deadline = (Get-Date).AddMinutes(3)
             while ((Get-Date) -lt $deadline) {
                 try {
                     $response = Invoke-WebRequest -Uri $Url -UseBasicParsing -TimeoutSec 2
                     if ($response.StatusCode -ge 200) {
-                        Start-Process -FilePath $Executable -ArgumentList $Url
+                        $arguments = @(
+                            "--user-data-dir=`"$Profile`"",
+                            "--app=$Url",
+                            "--no-first-run",
+                            "--no-default-browser-check",
+                            "--disable-extensions",
+                            "--disable-gpu"
+                        )
+                        Start-Process -FilePath $Executable -ArgumentList $arguments
                         return
                     }
                 }
@@ -56,7 +74,7 @@ try {
             }
 
             throw "Flutter web server did not become ready at $Url."
-        } -ArgumentList $appUrl, $browserExecutable
+        } -ArgumentList $appUrl, $browserExecutable, $browserProfile
     }
 
     Write-Host "Starting Flutter web server at $appUrl"
@@ -64,7 +82,7 @@ try {
         Write-Host "Open $appUrl in one browser tab, or refresh an existing tab."
     }
     else {
-        Write-Host "The $Browser browser will be opened once after the server is ready."
+        Write-Host "A clean $Browser app window will be opened after the server is ready."
     }
 
     & flutter run `
