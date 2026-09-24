@@ -53,11 +53,12 @@ class Command(BaseCommand):
         }
         created = updated = 0
 
-        semantic_paths = sorted(root.glob("*/*.semantic.json"))
-        for semantic_path in semantic_paths:
-            language = semantic_path.parent.name
-            prefix = semantic_path.name[: -len(".semantic.json")]
-            semantic = _read_json(semantic_path)
+        from modu_math_web.editor.services.content_store import list_content, read_content, source_files
+        for paths in list_content(root):
+            language = paths.dsl_path.relative_to(root).parts[0]
+            prefix = paths.artifact_base
+            bundle = read_content(paths)
+            semantic = bundle.get("semantic") or {}
             problem_id = str(semantic.get("problem_id") or prefix)
             metadata = (
                 semantic.get("metadata")
@@ -66,16 +67,8 @@ class Command(BaseCommand):
             )
             catalog = manifest_by_id.get(problem_id, {})
 
-            solvable_candidates = sorted(
-                semantic_path.parent.glob(f"{prefix}.solvable*.json")
-            )
-            solvable_path = solvable_candidates[-1] if solvable_candidates else None
-            layout_path = semantic_path.parent / f"{prefix}.layout.json"
-            renderer_path = semantic_path.parent / f"{prefix}.renderer.json"
-            solvable = _read_json(solvable_path)
-            artifact_paths = [semantic_path, layout_path, renderer_path]
-            if solvable_path:
-                artifact_paths.append(solvable_path)
+            solvable = bundle.get("solvable") or {}
+            artifact_paths = source_files(paths)
 
             concepts = _unique_strings(
                 list(metadata.get("concepts", []))
@@ -110,8 +103,8 @@ class Command(BaseCommand):
                 ),
                 "semantic_data": semantic,
                 "solvable_data": solvable,
-                "layout_data": _read_json(layout_path),
-                "renderer_data": _read_json(renderer_path),
+                "layout_data": bundle.get("layout") or {},
+                "renderer_data": bundle.get("renderer") or {},
                 "source_updated_at": datetime.fromtimestamp(
                     max(
                         path.stat().st_mtime for path in artifact_paths if path.exists()

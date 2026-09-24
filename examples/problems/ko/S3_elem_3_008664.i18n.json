@@ -1,0 +1,3336 @@
+{
+  "version": 2,
+  "source_language": "ko",
+  "editor_overrides": {
+    "version": 1,
+    "slots": {
+      "slot.question": {
+        "height": 158.0,
+        "semantic_role": "question"
+      },
+      "slot.choice.lb.1": {
+        "semantic_role": "diagram_label"
+      },
+      "slot.choice.lb.2": {
+        "semantic_role": "diagram_label"
+      },
+      "slot.choice.lb.3": {
+        "semantic_role": "diagram_label"
+      },
+      "slot.choice.lb.4": {
+        "semantic_role": "diagram_label"
+      },
+      "slot.choice.lb.5": {
+        "semantic_role": "diagram_label"
+      }
+    },
+    "text_layout": "fit"
+  },
+  "languages": {
+    "en": {
+      "delta": {
+        "version": 1,
+        "source": "../ko/S3_elem_3_008664.dsl.py",
+        "changes": [
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.1",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.1"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.1",
+              "text"
+            ],
+            "source": "ㄱ",
+            "value": "A"
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.2",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.2"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.2",
+              "text"
+            ],
+            "source": "ㄴ",
+            "value": "B"
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.3",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.3"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.3",
+              "text"
+            ],
+            "source": "ㄷ",
+            "value": "C"
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.4",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.4"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.4",
+              "text"
+            ],
+            "source": "ㄹ",
+            "value": "D"
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.5",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.5"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.5",
+              "text"
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.1",
+              "text"
+            ],
+            "source": "㉠",
+            "value": "A"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.2",
+              "text"
+            ],
+            "source": "㉡",
+            "value": "B"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.3",
+              "text"
+            ],
+            "source": "㉢",
+            "value": "C"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.4",
+              "text"
+            ],
+            "source": "㉣",
+            "value": "D"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.5",
+              "text"
+            ],
+            "source": "㉤",
+            "value": "E"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.question",
+              "text"
+            ],
+            "source": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택해 보세요.",
+            "value": "Use a pushpin and a strip of paper to draw a circle. Choose the label of the hole where the pencil should be inserted to draw the largest circle."
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "title"
+            ],
+            "source": "원을 가장 크게 그릴 수 있는 구멍 고르기",
+            "value": "Choose the hole that makes the largest circle"
+          },
+          {
+            "path": [
+              "SEMANTIC_ANSWER"
+            ],
+            "value": {
+              "blanks": [],
+              "choices": [
+                "A",
+                "B",
+                "C",
+                "D",
+                "E"
+              ],
+              "answer_key": [
+                "E"
+              ],
+              "target": {
+                "type": "choice_label",
+                "description": "원을 가장 크게 그릴 수 있는 구멍의 기호"
+              },
+              "value": "E",
+              "unit": ""
+            }
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "answer_key",
+              0
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "A"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              1
+            ],
+            "source": "ㄴ",
+            "value": "B"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              2
+            ],
+            "source": "ㄷ",
+            "value": "C"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              3
+            ],
+            "source": "ㄹ",
+            "value": "D"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              4
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "value"
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "A"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              1
+            ],
+            "source": "ㄴ",
+            "value": "B"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              2
+            ],
+            "source": "ㄷ",
+            "value": "C"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              3
+            ],
+            "source": "ㄹ",
+            "value": "D"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              4
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "metadata",
+              "instruction"
+            ],
+            "source": "구멍의 기호를 선택하시오.",
+            "value": "Choose the label of the hole."
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "metadata",
+              "question"
+            ],
+            "source": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택하는 문제이다.",
+            "value": "Use a pushpin and a strip of paper to draw a circle. Choose the label of the hole where the pencil should be inserted to draw the largest circle."
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "answer_key",
+              0
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "A"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              1
+            ],
+            "source": "ㄴ",
+            "value": "B"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              2
+            ],
+            "source": "ㄷ",
+            "value": "C"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              3
+            ],
+            "source": "ㄹ",
+            "value": "D"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              4
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "value"
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "checks",
+              "$items",
+              "check.1",
+              "actual"
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "checks",
+              "$items",
+              "check.1",
+              "expected"
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "A"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              1
+            ],
+            "source": "ㄴ",
+            "value": "B"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              2
+            ],
+            "source": "ㄷ",
+            "value": "C"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              3
+            ],
+            "source": "ㄹ",
+            "value": "D"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              4
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "inputs",
+              "target_label"
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              0
+            ],
+            "source": "구멍들의 위치를 비교한다.",
+            "value": "Compare the positions of the holes."
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              1
+            ],
+            "source": "누름 못과 연필심 사이가 가장 멀어지는 구멍을 찾는다.",
+            "value": "Find the hole that is farthest from the pushpin to the pencil lead."
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              2
+            ],
+            "source": "그 구멍에 대응하는 기호를 답으로 둔다.",
+            "value": "Use the symbol corresponding to that hole as the answer."
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "steps",
+              "$items",
+              "step.1",
+              "value"
+            ],
+            "source": "ㄱ, ㄴ, ㄷ, ㄹ, ㅁ",
+            "value": "A, B, C, D, E"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "steps",
+              "$items",
+              "step.2",
+              "value"
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          }
+        ]
+      },
+      "editor_overrides": {
+        "version": 1,
+        "layout_source": "../ko/S3_elem_3_008664.dsl.py"
+      },
+      "translation_catalog": {
+        "semantic.domain.problem_solving.plan.method": {
+          "source": "compare_hole_distances",
+          "translation": "compare_hole_distances"
+        },
+        "semantic.metadata.instruction": {
+          "source": "구멍의 기호를 선택하시오.",
+          "translation": "Choose the label of the hole."
+        },
+        "semantic.metadata.question": {
+          "source": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택하는 문제이다.",
+          "translation": "Use a pushpin and a strip of paper to draw a circle. Choose the label of the hole where the pencil should be inserted to draw the largest circle."
+        },
+        "solvable.method": {
+          "source": "compare_hole_distances",
+          "translation": "compare_hole_distances"
+        },
+        "solvable.plan.0": {
+          "source": "구멍들의 위치를 비교한다.",
+          "translation": "Compare the positions of the holes."
+        },
+        "solvable.plan.1": {
+          "source": "누름 못과 연필심 사이가 가장 멀어지는 구멍을 찾는다.",
+          "translation": "Find the hole that is farthest from the pushpin to the pencil lead."
+        },
+        "solvable.plan.2": {
+          "source": "그 구멍에 대응하는 기호를 답으로 둔다.",
+          "translation": "Use the symbol corresponding to that hole as the answer."
+        },
+        "template.slots.slot.choice.lb.1.text": {
+          "source": "㉠",
+          "translation": "㉠"
+        },
+        "template.slots.slot.choice.lb.2.text": {
+          "source": "㉡",
+          "translation": "㉡"
+        },
+        "template.slots.slot.choice.lb.3.text": {
+          "source": "㉢",
+          "translation": "㉢"
+        },
+        "template.slots.slot.choice.lb.4.text": {
+          "source": "㉣",
+          "translation": "㉣"
+        },
+        "template.slots.slot.choice.lb.5.text": {
+          "source": "㉤",
+          "translation": "㉤"
+        },
+        "template.slots.slot.question.text": {
+          "source": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택해 보세요.",
+          "translation": "Use a pushpin and a strip of paper to draw a circle. Choose the label of the hole where the pencil should be inserted to draw the largest circle."
+        },
+        "template.title": {
+          "source": "원을 가장 크게 그릴 수 있는 구멍 고르기",
+          "translation": "Choose the hole that makes the largest circle"
+        }
+      }
+    },
+    "ja": {
+      "delta": {
+        "version": 1,
+        "source": "../ko/S3_elem_3_008664.dsl.py",
+        "changes": [
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.1",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.1"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.1",
+              "text"
+            ],
+            "source": "ㄱ",
+            "value": "ア"
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.2",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.2"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.2",
+              "text"
+            ],
+            "source": "ㄴ",
+            "value": "イ"
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.3",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.3"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.3",
+              "text"
+            ],
+            "source": "ㄷ",
+            "value": "ウ"
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.4",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.4"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.4",
+              "text"
+            ],
+            "source": "ㄹ",
+            "value": "エ"
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.5",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.5"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.5",
+              "text"
+            ],
+            "source": "ㅁ",
+            "value": "オ"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.1",
+              "text"
+            ],
+            "source": "㉠",
+            "value": "ア"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.2",
+              "text"
+            ],
+            "source": "㉡",
+            "value": "イ"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.3",
+              "text"
+            ],
+            "source": "㉢",
+            "value": "ウ"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.4",
+              "text"
+            ],
+            "source": "㉣",
+            "value": "エ"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.5",
+              "text"
+            ],
+            "source": "㉤",
+            "value": "オ"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.question",
+              "text"
+            ],
+            "source": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택해 보세요.",
+            "value": "画びょうと紙テープを使って円を描きます。最も大きな円を描くには、鉛筆を差す穴の記号を選んでください。"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "title"
+            ],
+            "source": "원을 가장 크게 그릴 수 있는 구멍 고르기",
+            "value": "最も大きな円を描ける穴を選ぶ"
+          },
+          {
+            "path": [
+              "SEMANTIC_ANSWER"
+            ],
+            "value": {
+              "blanks": [],
+              "choices": [
+                "ア",
+                "イ",
+                "ウ",
+                "エ",
+                "オ"
+              ],
+              "answer_key": [
+                "オ"
+              ],
+              "target": {
+                "type": "choice_label",
+                "description": "원을 가장 크게 그릴 수 있는 구멍의 기호"
+              },
+              "value": "オ",
+              "unit": ""
+            }
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "answer_key",
+              0
+            ],
+            "source": "ㅁ",
+            "value": "オ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "ア"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              1
+            ],
+            "source": "ㄴ",
+            "value": "イ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              2
+            ],
+            "source": "ㄷ",
+            "value": "ウ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              3
+            ],
+            "source": "ㄹ",
+            "value": "エ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              4
+            ],
+            "source": "ㅁ",
+            "value": "オ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "value"
+            ],
+            "source": "ㅁ",
+            "value": "オ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "ア"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              1
+            ],
+            "source": "ㄴ",
+            "value": "イ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              2
+            ],
+            "source": "ㄷ",
+            "value": "ウ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              3
+            ],
+            "source": "ㄹ",
+            "value": "エ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              4
+            ],
+            "source": "ㅁ",
+            "value": "オ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "metadata",
+              "instruction"
+            ],
+            "source": "구멍의 기호를 선택하시오.",
+            "value": "穴の記号を選んでください。"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "metadata",
+              "question"
+            ],
+            "source": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택하는 문제이다.",
+            "value": "画びょうと紙テープを使って円を描きます。最も大きな円を描くには、鉛筆を差す穴の記号を選んでください。"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "answer_key",
+              0
+            ],
+            "source": "ㅁ",
+            "value": "オ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "ア"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              1
+            ],
+            "source": "ㄴ",
+            "value": "イ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              2
+            ],
+            "source": "ㄷ",
+            "value": "ウ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              3
+            ],
+            "source": "ㄹ",
+            "value": "エ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              4
+            ],
+            "source": "ㅁ",
+            "value": "オ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "value"
+            ],
+            "source": "ㅁ",
+            "value": "オ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "checks",
+              "$items",
+              "check.1",
+              "actual"
+            ],
+            "source": "ㅁ",
+            "value": "オ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "checks",
+              "$items",
+              "check.1",
+              "expected"
+            ],
+            "source": "ㅁ",
+            "value": "オ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "ア"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              1
+            ],
+            "source": "ㄴ",
+            "value": "イ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              2
+            ],
+            "source": "ㄷ",
+            "value": "ウ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              3
+            ],
+            "source": "ㄹ",
+            "value": "エ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              4
+            ],
+            "source": "ㅁ",
+            "value": "オ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "inputs",
+              "target_label"
+            ],
+            "source": "ㅁ",
+            "value": "オ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              0
+            ],
+            "source": "구멍들의 위치를 비교한다.",
+            "value": "穴の位置を比べます。"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              1
+            ],
+            "source": "누름 못과 연필심 사이가 가장 멀어지는 구멍을 찾는다.",
+            "value": "画びょうと鉛筆の芯の間が最も遠くなる穴を探します。"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              2
+            ],
+            "source": "그 구멍에 대응하는 기호를 답으로 둔다.",
+            "value": "その穴に対応する記号を答えにします。"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "steps",
+              "$items",
+              "step.1",
+              "value"
+            ],
+            "source": "ㄱ, ㄴ, ㄷ, ㄹ, ㅁ",
+            "value": "ア, イ, ウ, エ, オ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "steps",
+              "$items",
+              "step.2",
+              "value"
+            ],
+            "source": "ㅁ",
+            "value": "オ"
+          }
+        ]
+      },
+      "editor_overrides": {
+        "version": 1,
+        "layout_source": "../ko/S3_elem_3_008664.dsl.py"
+      },
+      "translation_catalog": {
+        "semantic.domain.problem_solving.plan.method": {
+          "source": "compare_hole_distances",
+          "translation": "compare_hole_distances"
+        },
+        "semantic.metadata.instruction": {
+          "source": "구멍의 기호를 선택하시오.",
+          "translation": "穴の記号を選んでください。"
+        },
+        "semantic.metadata.question": {
+          "source": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택하는 문제이다.",
+          "translation": "画びょうと紙テープを使って円を描きます。最も大きな円を描くには、鉛筆を差す穴の記号を選んでください。"
+        },
+        "solvable.method": {
+          "source": "compare_hole_distances",
+          "translation": "compare_hole_distances"
+        },
+        "solvable.plan.0": {
+          "source": "구멍들의 위치를 비교한다.",
+          "translation": "穴の位置を比べます。"
+        },
+        "solvable.plan.1": {
+          "source": "누름 못과 연필심 사이가 가장 멀어지는 구멍을 찾는다.",
+          "translation": "画びょうと鉛筆の芯の間が最も遠くなる穴を探します。"
+        },
+        "solvable.plan.2": {
+          "source": "그 구멍에 대응하는 기호를 답으로 둔다.",
+          "translation": "その穴に対応する記号を答えにします。"
+        },
+        "template.slots.slot.choice.lb.1.text": {
+          "source": "㉠",
+          "translation": "㉠"
+        },
+        "template.slots.slot.choice.lb.2.text": {
+          "source": "㉡",
+          "translation": "㉡"
+        },
+        "template.slots.slot.choice.lb.3.text": {
+          "source": "㉢",
+          "translation": "㉢"
+        },
+        "template.slots.slot.choice.lb.4.text": {
+          "source": "㉣",
+          "translation": "㉣"
+        },
+        "template.slots.slot.choice.lb.5.text": {
+          "source": "㉤",
+          "translation": "㉤"
+        },
+        "template.slots.slot.question.text": {
+          "source": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택해 보세요.",
+          "translation": "画びょうと紙テープを使って円を描きます。最も大きな円を描くには、鉛筆を差す穴の記号を選んでください。"
+        },
+        "template.title": {
+          "source": "원을 가장 크게 그릴 수 있는 구멍 고르기",
+          "translation": "最も大きな円を描ける穴を選ぶ"
+        }
+      }
+    },
+    "zh": {
+      "delta": {
+        "version": 1,
+        "source": "../ko/S3_elem_3_008664.dsl.py",
+        "changes": [
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.1",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.1"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.1",
+              "text"
+            ],
+            "source": "ㄱ",
+            "value": "甲"
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.2",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.2"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.2",
+              "text"
+            ],
+            "source": "ㄴ",
+            "value": "乙"
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.3",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.3"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.3",
+              "text"
+            ],
+            "source": "ㄷ",
+            "value": "丙"
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.4",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.4"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.4",
+              "text"
+            ],
+            "source": "ㄹ",
+            "value": "丁"
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.5",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.5"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.5",
+              "text"
+            ],
+            "source": "ㅁ",
+            "value": "戊"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.1",
+              "text"
+            ],
+            "source": "㉠",
+            "value": "甲"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.2",
+              "text"
+            ],
+            "source": "㉡",
+            "value": "乙"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.3",
+              "text"
+            ],
+            "source": "㉢",
+            "value": "丙"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.4",
+              "text"
+            ],
+            "source": "㉣",
+            "value": "丁"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.5",
+              "text"
+            ],
+            "source": "㉤",
+            "value": "戊"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.question",
+              "text"
+            ],
+            "source": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택해 보세요.",
+            "value": "用图钉和纸条画一个圆。要画出最大的圆，请选择应该插入铅笔的孔的标号。"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "title"
+            ],
+            "source": "원을 가장 크게 그릴 수 있는 구멍 고르기",
+            "value": "选择能画出最大圆的孔"
+          },
+          {
+            "path": [
+              "SEMANTIC_ANSWER"
+            ],
+            "value": {
+              "blanks": [],
+              "choices": [
+                "甲",
+                "乙",
+                "丙",
+                "丁",
+                "戊"
+              ],
+              "answer_key": [
+                "戊"
+              ],
+              "target": {
+                "type": "choice_label",
+                "description": "원을 가장 크게 그릴 수 있는 구멍의 기호"
+              },
+              "value": "戊",
+              "unit": ""
+            }
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "answer_key",
+              0
+            ],
+            "source": "ㅁ",
+            "value": "戊"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "甲"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              1
+            ],
+            "source": "ㄴ",
+            "value": "乙"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              2
+            ],
+            "source": "ㄷ",
+            "value": "丙"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              3
+            ],
+            "source": "ㄹ",
+            "value": "丁"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              4
+            ],
+            "source": "ㅁ",
+            "value": "戊"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "value"
+            ],
+            "source": "ㅁ",
+            "value": "戊"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "甲"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              1
+            ],
+            "source": "ㄴ",
+            "value": "乙"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              2
+            ],
+            "source": "ㄷ",
+            "value": "丙"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              3
+            ],
+            "source": "ㄹ",
+            "value": "丁"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              4
+            ],
+            "source": "ㅁ",
+            "value": "戊"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "metadata",
+              "instruction"
+            ],
+            "source": "구멍의 기호를 선택하시오.",
+            "value": "请选择孔的标号。"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "metadata",
+              "question"
+            ],
+            "source": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택하는 문제이다.",
+            "value": "用图钉和纸条画一个圆。要画出最大的圆，请选择应该插入铅笔的孔的标号。"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "answer_key",
+              0
+            ],
+            "source": "ㅁ",
+            "value": "戊"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "甲"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              1
+            ],
+            "source": "ㄴ",
+            "value": "乙"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              2
+            ],
+            "source": "ㄷ",
+            "value": "丙"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              3
+            ],
+            "source": "ㄹ",
+            "value": "丁"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              4
+            ],
+            "source": "ㅁ",
+            "value": "戊"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "value"
+            ],
+            "source": "ㅁ",
+            "value": "戊"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "checks",
+              "$items",
+              "check.1",
+              "actual"
+            ],
+            "source": "ㅁ",
+            "value": "戊"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "checks",
+              "$items",
+              "check.1",
+              "expected"
+            ],
+            "source": "ㅁ",
+            "value": "戊"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "甲"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              1
+            ],
+            "source": "ㄴ",
+            "value": "乙"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              2
+            ],
+            "source": "ㄷ",
+            "value": "丙"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              3
+            ],
+            "source": "ㄹ",
+            "value": "丁"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              4
+            ],
+            "source": "ㅁ",
+            "value": "戊"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "inputs",
+              "target_label"
+            ],
+            "source": "ㅁ",
+            "value": "戊"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              0
+            ],
+            "source": "구멍들의 위치를 비교한다.",
+            "value": "比较各孔的位置。"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              1
+            ],
+            "source": "누름 못과 연필심 사이가 가장 멀어지는 구멍을 찾는다.",
+            "value": "找出离图钉和铅笔芯最远的孔。"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              2
+            ],
+            "source": "그 구멍에 대응하는 기호를 답으로 둔다.",
+            "value": "将与该孔对应的符号作为答案。"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "steps",
+              "$items",
+              "step.1",
+              "value"
+            ],
+            "source": "ㄱ, ㄴ, ㄷ, ㄹ, ㅁ",
+            "value": "甲, 乙, 丙, 丁, 戊"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "steps",
+              "$items",
+              "step.2",
+              "value"
+            ],
+            "source": "ㅁ",
+            "value": "戊"
+          }
+        ]
+      },
+      "editor_overrides": {
+        "version": 1,
+        "slots": {
+          "slot.question": {
+            "height": 158.0,
+            "semantic_role": "question"
+          }
+        },
+        "layout_source": "../ko/S3_elem_3_008664.dsl.py"
+      },
+      "translation_catalog": {
+        "semantic.domain.problem_solving.plan.method": {
+          "source": "compare_hole_distances",
+          "translation": "compare_hole_distances"
+        },
+        "semantic.metadata.instruction": {
+          "source": "구멍의 기호를 선택하시오.",
+          "translation": "请选择孔的标号。"
+        },
+        "semantic.metadata.question": {
+          "source": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택하는 문제이다.",
+          "translation": "用图钉和纸条画一个圆。要画出最大的圆，请选择应该插入铅笔的孔的标号。"
+        },
+        "solvable.method": {
+          "source": "compare_hole_distances",
+          "translation": "compare_hole_distances"
+        },
+        "solvable.plan.0": {
+          "source": "구멍들의 위치를 비교한다.",
+          "translation": "比较各孔的位置。"
+        },
+        "solvable.plan.1": {
+          "source": "누름 못과 연필심 사이가 가장 멀어지는 구멍을 찾는다.",
+          "translation": "找出离图钉和铅笔芯最远的孔。"
+        },
+        "solvable.plan.2": {
+          "source": "그 구멍에 대응하는 기호를 답으로 둔다.",
+          "translation": "将与该孔对应的符号作为答案。"
+        },
+        "template.slots.slot.choice.lb.1.text": {
+          "source": "㉠",
+          "translation": "㉠"
+        },
+        "template.slots.slot.choice.lb.2.text": {
+          "source": "㉡",
+          "translation": "㉡"
+        },
+        "template.slots.slot.choice.lb.3.text": {
+          "source": "㉢",
+          "translation": "㉢"
+        },
+        "template.slots.slot.choice.lb.4.text": {
+          "source": "㉣",
+          "translation": "㉣"
+        },
+        "template.slots.slot.choice.lb.5.text": {
+          "source": "㉤",
+          "translation": "㉤"
+        },
+        "template.slots.slot.question.text": {
+          "source": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택해 보세요.",
+          "translation": "用图钉和纸条画一个圆。要画出最大的圆，请选择应该插入铅笔的孔的标号。"
+        },
+        "template.title": {
+          "source": "원을 가장 크게 그릴 수 있는 구멍 고르기",
+          "translation": "选择能画出最大圆的孔"
+        }
+      }
+    },
+    "uk": {
+      "delta": {
+        "version": 1,
+        "source": "../ko/S3_elem_3_008664.dsl.py",
+        "changes": [
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.1",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.1"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.1",
+              "text"
+            ],
+            "source": "ㄱ",
+            "value": "A"
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.2",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.2"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.2",
+              "text"
+            ],
+            "source": "ㄴ",
+            "value": "B"
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.3",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.3"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.3",
+              "text"
+            ],
+            "source": "ㄷ",
+            "value": "C"
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.4",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.4"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.4",
+              "text"
+            ],
+            "source": "ㄹ",
+            "value": "D"
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.5",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.5"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.5",
+              "text"
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.1",
+              "text"
+            ],
+            "source": "㉠",
+            "value": "A"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.2",
+              "text"
+            ],
+            "source": "㉡",
+            "value": "B"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.3",
+              "text"
+            ],
+            "source": "㉢",
+            "value": "C"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.4",
+              "text"
+            ],
+            "source": "㉣",
+            "value": "D"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.5",
+              "text"
+            ],
+            "source": "㉤",
+            "value": "E"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.question",
+              "text"
+            ],
+            "source": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택해 보세요.",
+            "value": "Накресліть коло за допомогою канцелярської кнопки та паперової смужки. Виберіть позначення отвору, у який слід вставити олівець, щоб накреслити найбільше коло."
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "title"
+            ],
+            "source": "원을 가장 크게 그릴 수 있는 구멍 고르기",
+            "value": "Вибрати отвір для найбільшого кола"
+          },
+          {
+            "path": [
+              "SEMANTIC_ANSWER"
+            ],
+            "value": {
+              "blanks": [],
+              "choices": [
+                "A",
+                "B",
+                "C",
+                "D",
+                "E"
+              ],
+              "answer_key": [
+                "E"
+              ],
+              "target": {
+                "type": "choice_label",
+                "description": "원을 가장 크게 그릴 수 있는 구멍의 기호"
+              },
+              "value": "E",
+              "unit": ""
+            }
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "answer_key",
+              0
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "A"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              1
+            ],
+            "source": "ㄴ",
+            "value": "B"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              2
+            ],
+            "source": "ㄷ",
+            "value": "C"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              3
+            ],
+            "source": "ㄹ",
+            "value": "D"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              4
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "value"
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "A"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              1
+            ],
+            "source": "ㄴ",
+            "value": "B"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              2
+            ],
+            "source": "ㄷ",
+            "value": "C"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              3
+            ],
+            "source": "ㄹ",
+            "value": "D"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              4
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "metadata",
+              "instruction"
+            ],
+            "source": "구멍의 기호를 선택하시오.",
+            "value": "Виберіть позначення отвору."
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "metadata",
+              "question"
+            ],
+            "source": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택하는 문제이다.",
+            "value": "Накресліть коло за допомогою канцелярської кнопки та паперової смужки. Виберіть позначення отвору, у який слід вставити олівець, щоб накреслити найбільше коло."
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "answer_key",
+              0
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "A"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              1
+            ],
+            "source": "ㄴ",
+            "value": "B"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              2
+            ],
+            "source": "ㄷ",
+            "value": "C"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              3
+            ],
+            "source": "ㄹ",
+            "value": "D"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              4
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "value"
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "checks",
+              "$items",
+              "check.1",
+              "actual"
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "checks",
+              "$items",
+              "check.1",
+              "expected"
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "A"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              1
+            ],
+            "source": "ㄴ",
+            "value": "B"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              2
+            ],
+            "source": "ㄷ",
+            "value": "C"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              3
+            ],
+            "source": "ㄹ",
+            "value": "D"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              4
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "inputs",
+              "target_label"
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              0
+            ],
+            "source": "구멍들의 위치를 비교한다.",
+            "value": "Порівняйте розташування отворів."
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              1
+            ],
+            "source": "누름 못과 연필심 사이가 가장 멀어지는 구멍을 찾는다.",
+            "value": "Знайдіть отвір, найдальший від кнопки до грифеля олівця."
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              2
+            ],
+            "source": "그 구멍에 대응하는 기호를 답으로 둔다.",
+            "value": "Запишіть позначення відповідного отвору як відповідь."
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "steps",
+              "$items",
+              "step.1",
+              "value"
+            ],
+            "source": "ㄱ, ㄴ, ㄷ, ㄹ, ㅁ",
+            "value": "A, B, C, D, E"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "steps",
+              "$items",
+              "step.2",
+              "value"
+            ],
+            "source": "ㅁ",
+            "value": "E"
+          }
+        ]
+      },
+      "editor_overrides": {
+        "version": 1,
+        "slots": {
+          "slot.question": {
+            "font_size": 29,
+            "height": 158.0
+          }
+        },
+        "layout_source": "../ko/S3_elem_3_008664.dsl.py"
+      },
+      "translation_catalog": {
+        "semantic.domain.problem_solving.plan.method": {
+          "source": "compare_hole_distances",
+          "translation": "compare_hole_distances"
+        },
+        "semantic.metadata.instruction": {
+          "source": "구멍의 기호를 선택하시오.",
+          "translation": "Виберіть позначення отвору."
+        },
+        "semantic.metadata.question": {
+          "source": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택하는 문제이다.",
+          "translation": "Накресліть коло за допомогою канцелярської кнопки та паперової смужки. Виберіть позначення отвору, у який слід вставити олівець, щоб накреслити найбільше коло."
+        },
+        "solvable.method": {
+          "source": "compare_hole_distances",
+          "translation": "compare_hole_distances"
+        },
+        "solvable.plan.0": {
+          "source": "구멍들의 위치를 비교한다.",
+          "translation": "Порівняйте розташування отворів."
+        },
+        "solvable.plan.1": {
+          "source": "누름 못과 연필심 사이가 가장 멀어지는 구멍을 찾는다.",
+          "translation": "Знайдіть отвір, найдальший від кнопки до грифеля олівця."
+        },
+        "solvable.plan.2": {
+          "source": "그 구멍에 대응하는 기호를 답으로 둔다.",
+          "translation": "Запишіть позначення відповідного отвору як відповідь."
+        },
+        "template.slots.slot.choice.lb.1.text": {
+          "source": "㉠",
+          "translation": "A"
+        },
+        "template.slots.slot.choice.lb.2.text": {
+          "source": "㉡",
+          "translation": "B"
+        },
+        "template.slots.slot.choice.lb.3.text": {
+          "source": "㉢",
+          "translation": "C"
+        },
+        "template.slots.slot.choice.lb.4.text": {
+          "source": "㉣",
+          "translation": "D"
+        },
+        "template.slots.slot.choice.lb.5.text": {
+          "source": "㉤",
+          "translation": "E"
+        },
+        "template.slots.slot.question.text": {
+          "source": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택해 보세요.",
+          "translation": "Накресліть коло за допомогою канцелярської кнопки та паперової смужки. Виберіть позначення отвору, у який слід вставити олівець, щоб накреслити найбільше коло."
+        },
+        "template.title": {
+          "source": "원을 가장 크게 그릴 수 있는 구멍 고르기",
+          "translation": "Вибрати отвір для найбільшого кола"
+        }
+      }
+    },
+    "km": {
+      "delta": {
+        "version": 1,
+        "source": "../ko/S3_elem_3_008664.dsl.py",
+        "changes": [
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.1",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.1"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.1",
+              "text"
+            ],
+            "source": "ㄱ",
+            "value": "ក"
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.2",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.2"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.2",
+              "text"
+            ],
+            "source": "ㄴ",
+            "value": "ខ"
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.3",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.3"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.3",
+              "text"
+            ],
+            "source": "ㄷ",
+            "value": "គ"
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.4",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.4"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.4",
+              "text"
+            ],
+            "source": "ㄹ",
+            "value": "ឃ"
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.5",
+              "sourceRefs"
+            ],
+            "source": [
+              "slot.choice.lb.5"
+            ],
+            "value": []
+          },
+          {
+            "path": [
+              "EDITOR_ANSWER_REVIEW",
+              "choices",
+              "$items",
+              "choice.5",
+              "text"
+            ],
+            "source": "ㅁ",
+            "value": "ង"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.1",
+              "text"
+            ],
+            "source": "㉠",
+            "value": "ក"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.2",
+              "text"
+            ],
+            "source": "㉡",
+            "value": "ខ"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.3",
+              "text"
+            ],
+            "source": "㉢",
+            "value": "គ"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.4",
+              "text"
+            ],
+            "source": "㉣",
+            "value": "ឃ"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.choice.lb.5",
+              "text"
+            ],
+            "source": "㉤",
+            "value": "ង"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.question",
+              "text"
+            ],
+            "source": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택해 보세요.",
+            "value": "យើងនឹងគូររង្វង់ដោយប្រើម្ជុលចុច និងបន្ទះក្រដាស។ ដើម្បីគូររង្វង់ធំបំផុត សូមជ្រើសនិមិត្តសញ្ញារបស់រន្ធដែលត្រូវដាក់ខ្មៅដៃ។"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "title"
+            ],
+            "source": "원을 가장 크게 그릴 수 있는 구멍 고르기",
+            "value": "ជ្រើសរន្ធដែលអាចគូររង្វង់ធំបំផុត"
+          },
+          {
+            "path": [
+              "SEMANTIC_ANSWER"
+            ],
+            "value": {
+              "blanks": [],
+              "choices": [
+                "ក",
+                "ខ",
+                "គ",
+                "ឃ",
+                "ង"
+              ],
+              "answer_key": [
+                "ង"
+              ],
+              "target": {
+                "type": "choice_label",
+                "description": "원을 가장 크게 그릴 수 있는 구멍의 기호"
+              },
+              "value": "ង",
+              "unit": ""
+            }
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "answer_key",
+              0
+            ],
+            "source": "ㅁ",
+            "value": "ង"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "ក"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              1
+            ],
+            "source": "ㄴ",
+            "value": "ខ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              2
+            ],
+            "source": "ㄷ",
+            "value": "គ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              3
+            ],
+            "source": "ㄹ",
+            "value": "ឃ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "choices",
+              4
+            ],
+            "source": "ㅁ",
+            "value": "ង"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "answer",
+              "value"
+            ],
+            "source": "ㅁ",
+            "value": "ង"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "ក"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              1
+            ],
+            "source": "ㄴ",
+            "value": "ខ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              2
+            ],
+            "source": "ㄷ",
+            "value": "គ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              3
+            ],
+            "source": "ㄹ",
+            "value": "ឃ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.choice_labels",
+              "labels",
+              4
+            ],
+            "source": "ㅁ",
+            "value": "ង"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "metadata",
+              "instruction"
+            ],
+            "source": "구멍의 기호를 선택하시오.",
+            "value": "សូមជ្រើសនិមិត្តសញ្ញារបស់រន្ធ។"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "metadata",
+              "question"
+            ],
+            "source": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택하는 문제이다.",
+            "value": "យើងនឹងគូររង្វង់ដោយប្រើម្ជុលចុច និងបន្ទះក្រដាស។ ដើម្បីគូររង្វង់ធំបំផុត សូមជ្រើសនិមិត្តសញ្ញារបស់រន្ធដែលត្រូវដាក់ខ្មៅដៃ។"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "answer_key",
+              0
+            ],
+            "source": "ㅁ",
+            "value": "ង"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "ក"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              1
+            ],
+            "source": "ㄴ",
+            "value": "ខ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              2
+            ],
+            "source": "ㄷ",
+            "value": "គ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              3
+            ],
+            "source": "ㄹ",
+            "value": "ឃ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "choices",
+              4
+            ],
+            "source": "ㅁ",
+            "value": "ង"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "answer",
+              "value"
+            ],
+            "source": "ㅁ",
+            "value": "ង"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "checks",
+              "$items",
+              "check.1",
+              "actual"
+            ],
+            "source": "ㅁ",
+            "value": "ង"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "checks",
+              "$items",
+              "check.1",
+              "expected"
+            ],
+            "source": "ㅁ",
+            "value": "ង"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "ក"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              1
+            ],
+            "source": "ㄴ",
+            "value": "ខ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              2
+            ],
+            "source": "ㄷ",
+            "value": "គ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              3
+            ],
+            "source": "ㄹ",
+            "value": "ឃ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "labels",
+              4
+            ],
+            "source": "ㅁ",
+            "value": "ង"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "inputs",
+              "target_label"
+            ],
+            "source": "ㅁ",
+            "value": "ង"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              0
+            ],
+            "source": "구멍들의 위치를 비교한다.",
+            "value": "ប្រៀបធៀបទីតាំងរន្ធ។"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              1
+            ],
+            "source": "누름 못과 연필심 사이가 가장 멀어지는 구멍을 찾는다.",
+            "value": "រករន្ធដែលឆ្ងាយបំផុតពីម្ជុលចុចទៅចុងខ្មៅដៃ។"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              2
+            ],
+            "source": "그 구멍에 대응하는 기호를 답으로 둔다.",
+            "value": "យកនិមិត្តសញ្ញាដែលត្រូវនឹងរន្ធនោះជាចម្លើយ។"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "steps",
+              "$items",
+              "step.1",
+              "value"
+            ],
+            "source": "ㄱ, ㄴ, ㄷ, ㄹ, ㅁ",
+            "value": "ក, ខ, គ, ឃ, ង"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "steps",
+              "$items",
+              "step.2",
+              "value"
+            ],
+            "source": "ㅁ",
+            "value": "ង"
+          }
+        ]
+      },
+      "editor_overrides": {
+        "version": 1,
+        "slots": {
+          "slot.question": {
+            "font_size": 25,
+            "height": 158.0
+          }
+        },
+        "layout_source": "../ko/S3_elem_3_008664.dsl.py"
+      },
+      "translation_catalog": {
+        "semantic.domain.problem_solving.plan.method": {
+          "source": "compare_hole_distances",
+          "translation": "compare_hole_distances"
+        },
+        "semantic.metadata.instruction": {
+          "source": "구멍의 기호를 선택하시오.",
+          "translation": "សូមជ្រើសនិមិត្តសញ្ញារបស់រន្ធ។"
+        },
+        "semantic.metadata.question": {
+          "source": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택하는 문제이다.",
+          "translation": "យើងនឹងគូររង្វង់ដោយប្រើម្ជុលចុច និងបន្ទះក្រដាស។ ដើម្បីគូររង្វង់ធំបំផុត សូមជ្រើសនិមិត្តសញ្ញារបស់រន្ធដែលត្រូវដាក់ខ្មៅដៃ។"
+        },
+        "solvable.method": {
+          "source": "compare_hole_distances",
+          "translation": "compare_hole_distances"
+        },
+        "solvable.plan.0": {
+          "source": "구멍들의 위치를 비교한다.",
+          "translation": "ប្រៀបធៀបទីតាំងរន្ធ។"
+        },
+        "solvable.plan.1": {
+          "source": "누름 못과 연필심 사이가 가장 멀어지는 구멍을 찾는다.",
+          "translation": "រករន្ធដែលឆ្ងាយបំផុតពីម្ជុលចុចទៅចុងខ្មៅដៃ។"
+        },
+        "solvable.plan.2": {
+          "source": "그 구멍에 대응하는 기호를 답으로 둔다.",
+          "translation": "យកនិមិត្តសញ្ញាដែលត្រូវនឹងរន្ធនោះជាចម្លើយ។"
+        },
+        "template.slots.slot.choice.lb.1.text": {
+          "source": "㉠",
+          "translation": "㉠"
+        },
+        "template.slots.slot.choice.lb.2.text": {
+          "source": "㉡",
+          "translation": "㉡"
+        },
+        "template.slots.slot.choice.lb.3.text": {
+          "source": "㉢",
+          "translation": "㉢"
+        },
+        "template.slots.slot.choice.lb.4.text": {
+          "source": "㉣",
+          "translation": "㉣"
+        },
+        "template.slots.slot.choice.lb.5.text": {
+          "source": "㉤",
+          "translation": "㉤"
+        },
+        "template.slots.slot.question.text": {
+          "source": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택해 보세요.",
+          "translation": "យើងនឹងគូររង្វង់ដោយប្រើម្ជុលចុច និងបន្ទះក្រដាស។ ដើម្បីគូររង្វង់ធំបំផុត សូមជ្រើសនិមិត្តសញ្ញារបស់រន្ធដែលត្រូវដាក់ខ្មៅដៃ។"
+        },
+        "template.title": {
+          "source": "원을 가장 크게 그릴 수 있는 구멍 고르기",
+          "translation": "ជ្រើសរន្ធដែលអាចគូររង្វង់ធំបំផុត"
+        }
+      }
+    }
+  },
+  "provenance": {
+    ".build_report.json": {
+      "dsl_path": "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008664.dsl.py",
+      "out_prefix": "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008664",
+      "success": true,
+      "generated_files": [
+        "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008664.semantic.json",
+        "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008664.layout.json",
+        "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008664.renderer.json",
+        "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008664.svg",
+        "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008664.solvable.v1.1.json"
+      ],
+      "strict": false,
+      "emit_solvable": true
+    },
+    ".visual_alignment_report.json": {
+      "ok": true,
+      "vision_draft": "examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008664.vision_draft.md",
+      "layout_json": "examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008664.layout.json",
+      "text_hit_ratio": 0.6363636363636364,
+      "expected_text_count": 22,
+      "matched_text_count": 14,
+      "missing_texts": [
+        "(정답)",
+        "(해설)",
+        "(정답)",
+        "(해설) 눈물 못과 연필심 사이가 많이 벌어질수록 원을 크게 그릴 수 있습니다.",
+        "(정답)",
+        "(해설)",
+        "(정답)",
+        "(정답)"
+      ],
+      "shape_counts": {
+        "rect": 1,
+        "line": 5,
+        "circle": 12,
+        "path": 0,
+        "polygon": 0
+      },
+      "notes": []
+    }
+  }
+}

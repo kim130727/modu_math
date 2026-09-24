@@ -8,12 +8,13 @@ $RepoRoot = Split-Path -Parent $PSScriptRoot
 $MobileRoot = Join-Path $RepoRoot "apps/mobile"
 
 function Ensure-MobileJunction {
-    $target = Join-Path $RepoRoot "examples"
-    $link = Join-Path $MobileRoot "examples"
-    if (-not (Test-Path -LiteralPath $link)) {
-        Write-Host "Creating junction: $link -> $target" -ForegroundColor Cyan
-        New-Item -ItemType Junction -Path $link -Target $target | Out-Null
-    }
+    # Keep the existing task entrypoints; compile disposable assets instead of
+    # pointing Flutter at authored DSL/translation files.
+    Push-Location $RepoRoot
+    try {
+        uv run python tools/export_problem_content.py
+        if ($LASTEXITCODE -ne 0) { throw "Problem content export failed" }
+    } finally { Pop-Location }
 }
 
 function Invoke-PythonTests {

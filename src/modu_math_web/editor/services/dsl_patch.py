@@ -799,7 +799,8 @@ def _path_number_bounds(d: str) -> tuple[float, float, float, float] | None:
 
 
 def _editor_overrides_path(paths: Any):
-    return paths.base_dir / f"{paths.artifact_base}.editor_overrides.json"
+    from modu_math.layout.shared_layout import override_path
+    return override_path(paths.dsl_path)
 
 
 def _layout_artifact_path(paths: Any):
@@ -807,6 +808,10 @@ def _layout_artifact_path(paths: Any):
 
 
 def _load_layout_artifact(paths: Any) -> dict[str, Any] | None:
+    from modu_math.dsl.problem_store import consolidated
+    if consolidated(paths.dsl_path):
+        from .artifact_cache import get_artifacts
+        return get_artifacts(paths).get("layout")
     path = _layout_artifact_path(paths)
     if not path.exists():
         return None

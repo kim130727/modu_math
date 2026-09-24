@@ -54,9 +54,9 @@ def test_review_save_build_reopen_is_persistent(tmp_path, mode):
 
 
 def test_8631_marker_and_value_form_five_choices():
-    base = Path('examples/problems/ko/S3_elem_3_008631')
-    layout = json.loads(Path(str(base) + '.layout.json').read_text(encoding='utf-8'))
-    semantic = json.loads(Path(str(base) + '.semantic.json').read_text(encoding='utf-8'))
+    from modu_math_web.editor.services.content_store import paths_for, read_content
+    content = read_content(paths_for(Path('examples/problems'), 'ko/S3_elem_3_008631.dsl.py'))
+    layout, semantic = content['layout'], content['semantic']
     original = deepcopy((layout, semantic))
     result, updated, _ = structure_presentation(layout, semantic)
     assert [c['text'] for c in updated['answer']['choices']] == ['21', '22', '23', '24', '25']

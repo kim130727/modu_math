@@ -239,9 +239,7 @@ def _attach_submit_slot_answers(
     return semantic, solvable
 
 
-def _build_problem_artifacts(problem_id: str) -> str:
-    safe_problem_id = validate_problem_id(problem_id)
-    problem_paths = resolve_problem_paths(safe_problem_id)
+def compile_problem_artifacts(problem_paths) -> dict:
     module = _load_dsl_module(problem_paths.dsl_path)
     problem = _problem_template_from_module(module, problem_paths.dsl_path)
 
@@ -278,9 +276,8 @@ def _build_problem_artifacts(problem_id: str) -> str:
     deleted_answer_slots: set[str] = set()
     editor_override_slot_ids: set[str] = set()
     fit_shared_text = False
-    editor_overrides_path = (
-        problem_paths.base_dir / f"{problem_paths.artifact_base}.editor_overrides.json"
-    )
+    from modu_math.layout.shared_layout import override_path
+    editor_overrides_path = override_path(problem_paths.dsl_path)
     if editor_overrides_path.exists():
         editor_overrides = json.loads(
             editor_overrides_path.read_text(encoding="utf-8-sig")
@@ -409,6 +406,20 @@ def _build_problem_artifacts(problem_id: str) -> str:
         deleted_slots=deleted_answer_slots,
     )
 
+    return {"semantic": semantic, "layout": layout, "renderer": renderer,
+            "solvable": solvable, "svg": svg}
+
+
+def _build_problem_artifacts(problem_id: str) -> str:
+    problem_paths = resolve_problem_paths(validate_problem_id(problem_id))
+    from modu_math.dsl.problem_store import consolidated
+    if consolidated(problem_paths.dsl_path):
+        from .artifact_cache import get_artifacts
+        get_artifacts(problem_paths, force=True)
+        return "build_ok (cached bundle)"
+    artifacts = compile_problem_artifacts(problem_paths)
+    semantic, layout, renderer, solvable, svg = (
+        artifacts[key] for key in ("semantic", "layout", "renderer", "solvable", "svg"))
     problem_paths.artifact_path("semantic").write_text(
         json.dumps(semantic, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
@@ -458,6 +469,10 @@ def run_problem_build(problem_id: str) -> BuildResult:
 def _rebuild_linked_layouts(problem_id: str) -> list[str]:
     """A source build refreshes its translations, including chained sources."""
     paths = resolve_problem_paths(problem_id)
+    from modu_math.dsl.problem_store import consolidated
+    if consolidated(paths.dsl_path):
+        # Fingerprints invalidate linked languages. Render them only when requested.
+        return []
     pending = [paths.dsl_path.resolve()]
     visited = set(pending)
     links = []

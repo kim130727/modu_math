@@ -51,8 +51,14 @@ IDENTIFIER_FIELDS = {
 }
 
 
-def read_locale(path: Path) -> dict[str, dict[str, str]]:
+def read_locale(path: Path, locale: str | None = None) -> dict[str, dict[str, str]]:
     loaded = json.loads(path.read_text(encoding="utf-8"))
+    if isinstance(loaded, dict) and loaded.get("version") == 2 and loaded.get("source_language") == "ko":
+        if not locale:
+            raise ValueError("--locale is required for a consolidated problem JSON")
+        language = locale.split("-")[0]
+        loaded = loaded if language == "ko" else loaded.get("languages", {}).get(language, {})
+        loaded = loaded.get("translation_catalog", {})
     if not isinstance(loaded, dict):
         raise ValueError(f"Locale JSON must be an object: {path}")
 
@@ -323,11 +329,17 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     dsl_path = Path(args.dsl)
     locale_json_path = Path(args.locale_json)
+    if locale_json_path.name.endswith(".i18n.json") and not args.locale:
+        raise ValueError("--locale is required for a consolidated problem JSON")
     locale = args.locale or locale_json_path.parent.name
     out_path = Path(args.out) if args.out else default_output_path(dsl_path, locale)
+    from modu_math.dsl.problem_store import consolidated, location
+    if not args.out and consolidated(dsl_path):
+        canonical, _, root = location(dsl_path)
+        out_path = root / locale.split("-")[0] / canonical.relative_to(root / "ko")
 
     module = load_dsl_module(dsl_path)
-    entries = read_locale(locale_json_path)
+    entries = read_locale(locale_json_path, locale=locale)
     template, semantic, solvable = localized_objects(
         module,
         entries,

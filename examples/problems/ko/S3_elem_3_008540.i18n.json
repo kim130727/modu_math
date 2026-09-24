@@ -1,0 +1,1376 @@
+{
+  "version": 2,
+  "source_language": "ko",
+  "editor_overrides": {
+    "version": 1,
+    "deleted_slots": [
+      "slot.choice.box",
+      "slot.choice"
+    ],
+    "slots": {
+      "slot.mul.x": {
+        "semantic_role": "diagram_label"
+      },
+      "slot.mul.4": {
+        "semantic_role": "diagram_label"
+      }
+    }
+  },
+  "languages": {
+    "en": {
+      "delta": {
+        "version": 1,
+        "source": "../ko/S3_elem_3_008540.dsl.py",
+        "changes": [
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.q1",
+              "text"
+            ],
+            "source": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+            "value": "Choose the multiplication expression represented by the shaded part."
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "title"
+            ],
+            "source": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+            "value": "Choose the multiplication expression represented by the shaded part."
+          },
+          {
+            "path": [
+              "SEMANTIC_ANSWER"
+            ],
+            "value": {
+              "blanks": [],
+              "choices": {
+                "$sequence": "list",
+                "$order": [
+                  "choice.1",
+                  "choice.2",
+                  "choice.3",
+                  "choice.4"
+                ],
+                "$items": {
+                  "choice.1": {
+                    "id": "choice.1",
+                    "label": "(1)",
+                    "text": "(1) 6 × 4"
+                  },
+                  "choice.2": {
+                    "id": "choice.2",
+                    "label": "(2)",
+                    "text": "(2) 69 × 4"
+                  },
+                  "choice.3": {
+                    "id": "choice.3",
+                    "label": "(3)",
+                    "text": "(3) 60 × 4"
+                  },
+                  "choice.4": {
+                    "id": "choice.4",
+                    "label": "(4)",
+                    "text": "(4) 600 × 4"
+                  }
+                }
+              },
+              "answer_key": {
+                "$sequence": "list",
+                "$order": [
+                  "choice.3"
+                ],
+                "$items": {
+                  "choice.3": {
+                    "id": "choice.3",
+                    "value": "(3) 60 × 4"
+                  }
+                }
+              },
+              "target": {
+                "type": "choice_value",
+                "description": "색칠한 부분 240에 해당하는 보기 번호"
+              },
+              "value": "(3) 60 × 4",
+              "unit": ""
+            }
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              0
+            ],
+            "source": "색칠한 부분이 나타내는 자리값을 해설 문장과 함께 확인한다.",
+            "value": "Check the place value represented by the shaded part together with the explanation."
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              1
+            ],
+            "source": "보기 중 같은 수식을 찾는다.",
+            "value": "Find the identical expression among the choices."
+          }
+        ]
+      },
+      "editor_overrides": {
+        "version": 1,
+        "deleted_slots": [
+          "slot.choice.box",
+          "slot.choice"
+        ],
+        "slots": {
+          "slot.q1": {
+            "x": 42.103,
+            "y": 5.816,
+            "width": 695.159,
+            "height": 68,
+            "align": "left",
+            "line_height": 1.2,
+            "kind": "text_box"
+          }
+        }
+      },
+      "translation_catalog": {
+        "semantic.domain.objects.obj.choice_set.text.0": {
+          "source": "6 × 4",
+          "translation": "6 × 4",
+          "status": "translated"
+        },
+        "semantic.domain.objects.obj.choice_set.text.1": {
+          "source": "69 × 4",
+          "translation": "69 × 4",
+          "status": "translated"
+        },
+        "semantic.domain.objects.obj.choice_set.text.2": {
+          "source": "60 × 4",
+          "translation": "60 × 4",
+          "status": "translated"
+        },
+        "semantic.domain.objects.obj.choice_set.text.3": {
+          "source": "600 × 4",
+          "translation": "600 × 4",
+          "status": "translated"
+        },
+        "semantic.domain.objects.obj.multiple.text": {
+          "source": "869 × 4",
+          "translation": "869 × 4",
+          "status": "translated"
+        },
+        "solvable.method": {
+          "source": "place_value_matching",
+          "translation": "place_value_matching",
+          "status": "translated"
+        },
+        "solvable.plan.0": {
+          "source": "색칠한 부분이 나타내는 자리값을 해설 문장과 함께 확인한다.",
+          "translation": "Check the place value represented by the shaded part together with the explanation.",
+          "status": "translated"
+        },
+        "solvable.plan.1": {
+          "source": "보기 중 같은 수식을 찾는다.",
+          "translation": "Find the identical expression among the choices.",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.partial_product.choices.0": {
+          "source": "6 x 4",
+          "translation": "6 x 4",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.partial_product.choices.1": {
+          "source": "60 x 4",
+          "translation": "60 x 4",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.partial_product.choices.2": {
+          "source": "600 x 4",
+          "translation": "600 x 4",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.partial_product.prompt": {
+          "source": "Which expression gives the highlighted partial product 240?",
+          "translation": "Which expression gives the highlighted partial product 240?",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.place_value.prompt": {
+          "source": "What value does the digit 6 have in 869?",
+          "translation": "What value does the digit 6 have in 869?",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.0.label": {
+          "source": "whole multiplication",
+          "translation": "whole multiplication",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.1.label": {
+          "source": "highlighted partial product",
+          "translation": "highlighted partial product",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.2.label": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.relation.statement": {
+          "source": "The digit 6 in 869 has value 60, so the highlighted partial product 240 is 60 x 4.",
+          "translation": "The digit 6 in 869 has value 60, so the highlighted partial product 240 is 60 x 4.",
+          "status": "translated"
+        },
+        "solvable.understanding.summary": {
+          "source": "Find which choice represents the highlighted partial product in 869 x 4.",
+          "translation": "Find which choice represents the highlighted partial product in 869 x 4.",
+          "status": "translated"
+        },
+        "solvable.understanding.unknowns.0.label": {
+          "source": "choice matching the highlighted part",
+          "translation": "choice matching the highlighted part",
+          "status": "translated"
+        },
+        "template.slots.slot.choice.1.text": {
+          "source": "(1) 6 × 4",
+          "translation": "(1) 6 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.choice.2.text": {
+          "source": "(2) 69 × 4",
+          "translation": "(2) 69 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.choice.3.text": {
+          "source": "(3) 60 × 4",
+          "translation": "(3) 60 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.choice.4.text": {
+          "source": "(4) 600 × 4",
+          "translation": "(4) 600 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.mul.x.text": {
+          "source": "×",
+          "translation": "×",
+          "status": "translated"
+        },
+        "template.slots.slot.q1.text": {
+          "source": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+          "translation": "Choose the multiplication expression represented by the shaded part.",
+          "status": "translated"
+        },
+        "template.title": {
+          "source": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+          "translation": "Choose the multiplication expression represented by the shaded part.",
+          "status": "translated"
+        }
+      }
+    },
+    "ja": {
+      "delta": {
+        "version": 1,
+        "source": "../ko/S3_elem_3_008540.dsl.py",
+        "changes": [
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.q1",
+              "text"
+            ],
+            "source": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+            "value": "色を塗った部分が実際にどの数の積か選んでください。"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "title"
+            ],
+            "source": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+            "value": "色を塗った部分が実際にどの数の積か選んでください。"
+          },
+          {
+            "path": [
+              "SEMANTIC_ANSWER"
+            ],
+            "value": {
+              "blanks": [],
+              "choices": {
+                "$sequence": "list",
+                "$order": [
+                  "choice.1",
+                  "choice.2",
+                  "choice.3",
+                  "choice.4"
+                ],
+                "$items": {
+                  "choice.1": {
+                    "id": "choice.1",
+                    "label": "(1)",
+                    "text": "(1) 6 × 4"
+                  },
+                  "choice.2": {
+                    "id": "choice.2",
+                    "label": "(2)",
+                    "text": "(2) 69 × 4"
+                  },
+                  "choice.3": {
+                    "id": "choice.3",
+                    "label": "(3)",
+                    "text": "(3) 60 × 4"
+                  },
+                  "choice.4": {
+                    "id": "choice.4",
+                    "label": "(4)",
+                    "text": "(4) 600 × 4"
+                  }
+                }
+              },
+              "answer_key": {
+                "$sequence": "list",
+                "$order": [
+                  "choice.3"
+                ],
+                "$items": {
+                  "choice.3": {
+                    "id": "choice.3",
+                    "value": "(3) 60 × 4"
+                  }
+                }
+              },
+              "target": {
+                "type": "choice_value",
+                "description": "색칠한 부분 240에 해당하는 보기 번호"
+              },
+              "value": "(3) 60 × 4",
+              "unit": ""
+            }
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              0
+            ],
+            "source": "색칠한 부분이 나타내는 자리값을 해설 문장과 함께 확인한다.",
+            "value": "色を塗った部分が表す位の値を説明とともに確認します。"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              1
+            ],
+            "source": "보기 중 같은 수식을 찾는다.",
+            "value": "選択肢から同じ式を探します。"
+          }
+        ]
+      },
+      "editor_overrides": {
+        "version": 1,
+        "layout_source": "../ko/S3_elem_3_008540.dsl.py",
+        "deleted_slots": [
+          "slot.mul.869"
+        ],
+        "slots": {
+          "slot.q1": {
+            "semantic_role": "question"
+          }
+        }
+      },
+      "translation_catalog": {
+        "semantic.domain.objects.obj.choice_set.text.0": {
+          "source": "6 × 4",
+          "translation": "6 × 4",
+          "status": "translated"
+        },
+        "semantic.domain.objects.obj.choice_set.text.1": {
+          "source": "69 × 4",
+          "translation": "69 × 4",
+          "status": "translated"
+        },
+        "semantic.domain.objects.obj.choice_set.text.2": {
+          "source": "60 × 4",
+          "translation": "60 × 4",
+          "status": "translated"
+        },
+        "semantic.domain.objects.obj.choice_set.text.3": {
+          "source": "600 × 4",
+          "translation": "600 × 4",
+          "status": "translated"
+        },
+        "semantic.domain.objects.obj.multiple.text": {
+          "source": "869 × 4",
+          "translation": "869 × 4",
+          "status": "translated"
+        },
+        "solvable.method": {
+          "source": "place_value_matching",
+          "translation": "place_value_matching",
+          "status": "translated"
+        },
+        "solvable.plan.0": {
+          "source": "색칠한 부분이 나타내는 자리값을 해설 문장과 함께 확인한다.",
+          "translation": "色を塗った部分が表す位の値を説明とともに確認します。",
+          "status": "translated"
+        },
+        "solvable.plan.1": {
+          "source": "보기 중 같은 수식을 찾는다.",
+          "translation": "選択肢から同じ式を探します。",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.partial_product.choices.0": {
+          "source": "6 x 4",
+          "translation": "6 x 4",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.partial_product.choices.1": {
+          "source": "60 x 4",
+          "translation": "60 x 4",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.partial_product.choices.2": {
+          "source": "600 x 4",
+          "translation": "600 x 4",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.partial_product.prompt": {
+          "source": "Which expression gives the highlighted partial product 240?",
+          "translation": "Which expression gives the highlighted partial product 240?",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.place_value.prompt": {
+          "source": "What value does the digit 6 have in 869?",
+          "translation": "What value does the digit 6 have in 869?",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.0.label": {
+          "source": "whole multiplication",
+          "translation": "whole multiplication",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.1.label": {
+          "source": "highlighted partial product",
+          "translation": "highlighted partial product",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.2.label": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.relation.statement": {
+          "source": "The digit 6 in 869 has value 60, so the highlighted partial product 240 is 60 x 4.",
+          "translation": "The digit 6 in 869 has value 60, so the highlighted partial product 240 is 60 x 4.",
+          "status": "translated"
+        },
+        "solvable.understanding.summary": {
+          "source": "Find which choice represents the highlighted partial product in 869 x 4.",
+          "translation": "Find which choice represents the highlighted partial product in 869 x 4.",
+          "status": "translated"
+        },
+        "solvable.understanding.unknowns.0.label": {
+          "source": "choice matching the highlighted part",
+          "translation": "choice matching the highlighted part",
+          "status": "translated"
+        },
+        "template.slots.slot.choice.1.text": {
+          "source": "(1) 6 × 4",
+          "translation": "(1) 6 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.choice.2.text": {
+          "source": "(2) 69 × 4",
+          "translation": "(2) 69 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.choice.3.text": {
+          "source": "(3) 60 × 4",
+          "translation": "(3) 60 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.choice.4.text": {
+          "source": "(4) 600 × 4",
+          "translation": "(4) 600 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.mul.x.text": {
+          "source": "×",
+          "translation": "×",
+          "status": "translated"
+        },
+        "template.slots.slot.q1.text": {
+          "source": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+          "translation": "色を塗った部分が実際にどの数の積か選んでください。",
+          "status": "translated"
+        },
+        "template.title": {
+          "source": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+          "translation": "色を塗った部分が実際にどの数の積か選んでください。",
+          "status": "translated"
+        }
+      }
+    },
+    "zh": {
+      "delta": {
+        "version": 1,
+        "source": "../ko/S3_elem_3_008540.dsl.py",
+        "changes": [
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.q1",
+              "text"
+            ],
+            "source": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+            "value": "选择涂色部分实际表示的乘法算式。"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "title"
+            ],
+            "source": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+            "value": "选择涂色部分实际表示的乘法算式。"
+          },
+          {
+            "path": [
+              "SEMANTIC_ANSWER"
+            ],
+            "value": {
+              "blanks": [],
+              "choices": {
+                "$sequence": "list",
+                "$order": [
+                  "choice.1",
+                  "choice.2",
+                  "choice.3",
+                  "choice.4"
+                ],
+                "$items": {
+                  "choice.1": {
+                    "id": "choice.1",
+                    "label": "(1)",
+                    "text": "(1) 6 × 4"
+                  },
+                  "choice.2": {
+                    "id": "choice.2",
+                    "label": "(2)",
+                    "text": "(2) 69 × 4"
+                  },
+                  "choice.3": {
+                    "id": "choice.3",
+                    "label": "(3)",
+                    "text": "(3) 60 × 4"
+                  },
+                  "choice.4": {
+                    "id": "choice.4",
+                    "label": "(4)",
+                    "text": "(4) 600 × 4"
+                  }
+                }
+              },
+              "answer_key": {
+                "$sequence": "list",
+                "$order": [
+                  "choice.3"
+                ],
+                "$items": {
+                  "choice.3": {
+                    "id": "choice.3",
+                    "value": "(3) 60 × 4"
+                  }
+                }
+              },
+              "target": {
+                "type": "choice_value",
+                "description": "색칠한 부분 240에 해당하는 보기 번호"
+              },
+              "value": "(3) 60 × 4",
+              "unit": ""
+            }
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              0
+            ],
+            "source": "색칠한 부분이 나타내는 자리값을 해설 문장과 함께 확인한다.",
+            "value": "结合说明确认涂色部分表示的位值。"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              1
+            ],
+            "source": "보기 중 같은 수식을 찾는다.",
+            "value": "在选项中找出相同的算式。"
+          }
+        ]
+      },
+      "editor_overrides": {
+        "version": 1,
+        "slots": {
+          "slot.q1": {
+            "semantic_role": "question"
+          }
+        },
+        "deleted_slots": [
+          "slot.choice.box",
+          "slot.choice"
+        ]
+      },
+      "translation_catalog": {
+        "semantic.domain.objects.obj.choice_set.text.0": {
+          "source": "6 × 4",
+          "translation": "6 × 4",
+          "status": "translated"
+        },
+        "semantic.domain.objects.obj.choice_set.text.1": {
+          "source": "69 × 4",
+          "translation": "69 × 4",
+          "status": "translated"
+        },
+        "semantic.domain.objects.obj.choice_set.text.2": {
+          "source": "60 × 4",
+          "translation": "60 × 4",
+          "status": "translated"
+        },
+        "semantic.domain.objects.obj.choice_set.text.3": {
+          "source": "600 × 4",
+          "translation": "600 × 4",
+          "status": "translated"
+        },
+        "semantic.domain.objects.obj.multiple.text": {
+          "source": "869 × 4",
+          "translation": "869 × 4",
+          "status": "translated"
+        },
+        "solvable.method": {
+          "source": "place_value_matching",
+          "translation": "place_value_matching",
+          "status": "translated"
+        },
+        "solvable.plan.0": {
+          "source": "색칠한 부분이 나타내는 자리값을 해설 문장과 함께 확인한다.",
+          "translation": "结合说明确认涂色部分表示的位值。",
+          "status": "translated"
+        },
+        "solvable.plan.1": {
+          "source": "보기 중 같은 수식을 찾는다.",
+          "translation": "在选项中找出相同的算式。",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.partial_product.choices.0": {
+          "source": "6 x 4",
+          "translation": "6 x 4",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.partial_product.choices.1": {
+          "source": "60 x 4",
+          "translation": "60 x 4",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.partial_product.choices.2": {
+          "source": "600 x 4",
+          "translation": "600 x 4",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.partial_product.prompt": {
+          "source": "Which expression gives the highlighted partial product 240?",
+          "translation": "Which expression gives the highlighted partial product 240?",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.place_value.prompt": {
+          "source": "What value does the digit 6 have in 869?",
+          "translation": "What value does the digit 6 have in 869?",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.0.label": {
+          "source": "whole multiplication",
+          "translation": "whole multiplication",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.1.label": {
+          "source": "highlighted partial product",
+          "translation": "highlighted partial product",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.2.label": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.relation.statement": {
+          "source": "The digit 6 in 869 has value 60, so the highlighted partial product 240 is 60 x 4.",
+          "translation": "The digit 6 in 869 has value 60, so the highlighted partial product 240 is 60 x 4.",
+          "status": "translated"
+        },
+        "solvable.understanding.summary": {
+          "source": "Find which choice represents the highlighted partial product in 869 x 4.",
+          "translation": "Find which choice represents the highlighted partial product in 869 x 4.",
+          "status": "translated"
+        },
+        "solvable.understanding.unknowns.0.label": {
+          "source": "choice matching the highlighted part",
+          "translation": "choice matching the highlighted part",
+          "status": "translated"
+        },
+        "template.slots.slot.choice.1.text": {
+          "source": "(1) 6 × 4",
+          "translation": "(1) 6 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.choice.2.text": {
+          "source": "(2) 69 × 4",
+          "translation": "(2) 69 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.choice.3.text": {
+          "source": "(3) 60 × 4",
+          "translation": "(3) 60 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.choice.4.text": {
+          "source": "(4) 600 × 4",
+          "translation": "(4) 600 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.mul.x.text": {
+          "source": "×",
+          "translation": "×",
+          "status": "translated"
+        },
+        "template.slots.slot.q1.text": {
+          "source": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+          "translation": "选择涂色部分实际表示的乘法算式。",
+          "status": "translated"
+        },
+        "template.title": {
+          "source": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+          "translation": "选择涂色部分实际表示的乘法算式。",
+          "status": "translated"
+        }
+      }
+    },
+    "uk": {
+      "delta": {
+        "version": 1,
+        "source": "../ko/S3_elem_3_008540.dsl.py",
+        "changes": [
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.q1",
+              "text"
+            ],
+            "source": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+            "value": "Виберіть добуток, який представляє зафарбована частина."
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "title"
+            ],
+            "source": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+            "value": "Виберіть добуток, який представляє зафарбована частина."
+          },
+          {
+            "path": [
+              "SEMANTIC_ANSWER"
+            ],
+            "value": {
+              "blanks": [],
+              "choices": {
+                "$sequence": "list",
+                "$order": [
+                  "choice.1",
+                  "choice.2",
+                  "choice.3",
+                  "choice.4"
+                ],
+                "$items": {
+                  "choice.1": {
+                    "id": "choice.1",
+                    "label": "(1)",
+                    "text": "(1) 6 × 4"
+                  },
+                  "choice.2": {
+                    "id": "choice.2",
+                    "label": "(2)",
+                    "text": "(2) 69 × 4"
+                  },
+                  "choice.3": {
+                    "id": "choice.3",
+                    "label": "(3)",
+                    "text": "(3) 60 × 4"
+                  },
+                  "choice.4": {
+                    "id": "choice.4",
+                    "label": "(4)",
+                    "text": "(4) 600 × 4"
+                  }
+                }
+              },
+              "answer_key": {
+                "$sequence": "list",
+                "$order": [
+                  "choice.3"
+                ],
+                "$items": {
+                  "choice.3": {
+                    "id": "choice.3",
+                    "value": "(3) 60 × 4"
+                  }
+                }
+              },
+              "target": {
+                "type": "choice_value",
+                "description": "색칠한 부분 240에 해당하는 보기 번호"
+              },
+              "value": "(3) 60 × 4",
+              "unit": ""
+            }
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              0
+            ],
+            "source": "색칠한 부분이 나타내는 자리값을 해설 문장과 함께 확인한다.",
+            "value": "Перевірте розрядне значення зафарбованої частини разом із поясненням."
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              1
+            ],
+            "source": "보기 중 같은 수식을 찾는다.",
+            "value": "Знайдіть серед варіантів однаковий вираз."
+          }
+        ]
+      },
+      "editor_overrides": {
+        "version": 1,
+        "deleted_slots": [
+          "slot.choice.box",
+          "slot.choice"
+        ]
+      },
+      "translation_catalog": {
+        "semantic.domain.objects.obj.choice_set.text.0": {
+          "source": "6 × 4",
+          "translation": "6 × 4",
+          "status": "translated"
+        },
+        "semantic.domain.objects.obj.choice_set.text.1": {
+          "source": "69 × 4",
+          "translation": "69 × 4",
+          "status": "translated"
+        },
+        "semantic.domain.objects.obj.choice_set.text.2": {
+          "source": "60 × 4",
+          "translation": "60 × 4",
+          "status": "translated"
+        },
+        "semantic.domain.objects.obj.choice_set.text.3": {
+          "source": "600 × 4",
+          "translation": "600 × 4",
+          "status": "translated"
+        },
+        "semantic.domain.objects.obj.multiple.text": {
+          "source": "869 × 4",
+          "translation": "869 × 4",
+          "status": "translated"
+        },
+        "solvable.method": {
+          "source": "place_value_matching",
+          "translation": "place_value_matching",
+          "status": "translated"
+        },
+        "solvable.plan.0": {
+          "source": "색칠한 부분이 나타내는 자리값을 해설 문장과 함께 확인한다.",
+          "translation": "Перевірте розрядне значення зафарбованої частини разом із поясненням.",
+          "status": "translated"
+        },
+        "solvable.plan.1": {
+          "source": "보기 중 같은 수식을 찾는다.",
+          "translation": "Знайдіть серед варіантів однаковий вираз.",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.partial_product.choices.0": {
+          "source": "6 x 4",
+          "translation": "6 x 4",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.partial_product.choices.1": {
+          "source": "60 x 4",
+          "translation": "60 x 4",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.partial_product.choices.2": {
+          "source": "600 x 4",
+          "translation": "600 x 4",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.partial_product.prompt": {
+          "source": "Which expression gives the highlighted partial product 240?",
+          "translation": "Which expression gives the highlighted partial product 240?",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.place_value.prompt": {
+          "source": "What value does the digit 6 have in 869?",
+          "translation": "What value does the digit 6 have in 869?",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.0.label": {
+          "source": "whole multiplication",
+          "translation": "whole multiplication",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.1.label": {
+          "source": "highlighted partial product",
+          "translation": "highlighted partial product",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.2.label": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.relation.statement": {
+          "source": "The digit 6 in 869 has value 60, so the highlighted partial product 240 is 60 x 4.",
+          "translation": "The digit 6 in 869 has value 60, so the highlighted partial product 240 is 60 x 4.",
+          "status": "translated"
+        },
+        "solvable.understanding.summary": {
+          "source": "Find which choice represents the highlighted partial product in 869 x 4.",
+          "translation": "Find which choice represents the highlighted partial product in 869 x 4.",
+          "status": "translated"
+        },
+        "solvable.understanding.unknowns.0.label": {
+          "source": "choice matching the highlighted part",
+          "translation": "choice matching the highlighted part",
+          "status": "translated"
+        },
+        "template.slots.slot.choice.1.text": {
+          "source": "(1) 6 × 4",
+          "translation": "(1) 6 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.choice.2.text": {
+          "source": "(2) 69 × 4",
+          "translation": "(2) 69 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.choice.3.text": {
+          "source": "(3) 60 × 4",
+          "translation": "(3) 60 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.choice.4.text": {
+          "source": "(4) 600 × 4",
+          "translation": "(4) 600 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.mul.x.text": {
+          "source": "×",
+          "translation": "×",
+          "status": "translated"
+        },
+        "template.slots.slot.q1.text": {
+          "source": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+          "translation": "Виберіть добуток, який представляє зафарбована частина.",
+          "status": "translated"
+        },
+        "template.title": {
+          "source": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+          "translation": "Виберіть добуток, який представляє зафарбована частина.",
+          "status": "translated"
+        }
+      }
+    },
+    "km": {
+      "delta": {
+        "version": 1,
+        "source": "../ko/S3_elem_3_008540.dsl.py",
+        "changes": [
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.q1",
+              "text"
+            ],
+            "source": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+            "value": "ជ្រើសកន្សោមគុណដែលផ្នែកដាក់ពណ៌តំណាង។"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "title"
+            ],
+            "source": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+            "value": "ជ្រើសកន្សោមគុណដែលផ្នែកដាក់ពណ៌តំណាង។"
+          },
+          {
+            "path": [
+              "SEMANTIC_ANSWER"
+            ],
+            "value": {
+              "blanks": [],
+              "choices": {
+                "$sequence": "list",
+                "$order": [
+                  "choice.1",
+                  "choice.2",
+                  "choice.3",
+                  "choice.4"
+                ],
+                "$items": {
+                  "choice.1": {
+                    "id": "choice.1",
+                    "label": "(1)",
+                    "text": "(1) 6 × 4"
+                  },
+                  "choice.2": {
+                    "id": "choice.2",
+                    "label": "(2)",
+                    "text": "(2) 69 × 4"
+                  },
+                  "choice.3": {
+                    "id": "choice.3",
+                    "label": "(3)",
+                    "text": "(3) 60 × 4"
+                  },
+                  "choice.4": {
+                    "id": "choice.4",
+                    "label": "(4)",
+                    "text": "(4) 600 × 4"
+                  }
+                }
+              },
+              "answer_key": {
+                "$sequence": "list",
+                "$order": [
+                  "choice.3"
+                ],
+                "$items": {
+                  "choice.3": {
+                    "id": "choice.3",
+                    "value": "(3) 60 × 4"
+                  }
+                }
+              },
+              "target": {
+                "type": "choice_value",
+                "description": "색칠한 부분 240에 해당하는 보기 번호"
+              },
+              "value": "(3) 60 × 4",
+              "unit": ""
+            }
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              0
+            ],
+            "source": "색칠한 부분이 나타내는 자리값을 해설 문장과 함께 확인한다.",
+            "value": "ពិនិត្យតម្លៃខ្ទង់ដែលផ្នែកដាក់ពណ៌តំណាង រួមជាមួយការពន្យល់។"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              1
+            ],
+            "source": "보기 중 같은 수식을 찾는다.",
+            "value": "រកកន្សោមដូចគ្នាក្នុងចំណោមជម្រើស។"
+          }
+        ]
+      },
+      "editor_overrides": {
+        "version": 1,
+        "deleted_slots": [
+          "slot.choice.box",
+          "slot.choice"
+        ]
+      },
+      "translation_catalog": {
+        "semantic.domain.objects.obj.choice_set.text.0": {
+          "source": "6 × 4",
+          "translation": "6 × 4",
+          "status": "translated"
+        },
+        "semantic.domain.objects.obj.choice_set.text.1": {
+          "source": "69 × 4",
+          "translation": "69 × 4",
+          "status": "translated"
+        },
+        "semantic.domain.objects.obj.choice_set.text.2": {
+          "source": "60 × 4",
+          "translation": "60 × 4",
+          "status": "translated"
+        },
+        "semantic.domain.objects.obj.choice_set.text.3": {
+          "source": "600 × 4",
+          "translation": "600 × 4",
+          "status": "translated"
+        },
+        "semantic.domain.objects.obj.multiple.text": {
+          "source": "869 × 4",
+          "translation": "869 × 4",
+          "status": "translated"
+        },
+        "solvable.method": {
+          "source": "place_value_matching",
+          "translation": "place_value_matching",
+          "status": "translated"
+        },
+        "solvable.plan.0": {
+          "source": "색칠한 부분이 나타내는 자리값을 해설 문장과 함께 확인한다.",
+          "translation": "ពិនិត្យតម្លៃខ្ទង់ដែលផ្នែកដាក់ពណ៌តំណាង រួមជាមួយការពន្យល់។",
+          "status": "translated"
+        },
+        "solvable.plan.1": {
+          "source": "보기 중 같은 수식을 찾는다.",
+          "translation": "រកកន្សោមដូចគ្នាក្នុងចំណោមជម្រើស។",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.partial_product.choices.0": {
+          "source": "6 x 4",
+          "translation": "6 x 4",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.partial_product.choices.1": {
+          "source": "60 x 4",
+          "translation": "60 x 4",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.partial_product.choices.2": {
+          "source": "600 x 4",
+          "translation": "600 x 4",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.partial_product.prompt": {
+          "source": "Which expression gives the highlighted partial product 240?",
+          "translation": "Which expression gives the highlighted partial product 240?",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.place_value.prompt": {
+          "source": "What value does the digit 6 have in 869?",
+          "translation": "What value does the digit 6 have in 869?",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.0.label": {
+          "source": "whole multiplication",
+          "translation": "whole multiplication",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.1.label": {
+          "source": "highlighted partial product",
+          "translation": "highlighted partial product",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.2.label": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.relation.statement": {
+          "source": "The digit 6 in 869 has value 60, so the highlighted partial product 240 is 60 x 4.",
+          "translation": "The digit 6 in 869 has value 60, so the highlighted partial product 240 is 60 x 4.",
+          "status": "translated"
+        },
+        "solvable.understanding.summary": {
+          "source": "Find which choice represents the highlighted partial product in 869 x 4.",
+          "translation": "Find which choice represents the highlighted partial product in 869 x 4.",
+          "status": "translated"
+        },
+        "solvable.understanding.unknowns.0.label": {
+          "source": "choice matching the highlighted part",
+          "translation": "choice matching the highlighted part",
+          "status": "translated"
+        },
+        "template.slots.slot.choice.1.text": {
+          "source": "(1) 6 × 4",
+          "translation": "(1) 6 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.choice.2.text": {
+          "source": "(2) 69 × 4",
+          "translation": "(2) 69 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.choice.3.text": {
+          "source": "(3) 60 × 4",
+          "translation": "(3) 60 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.choice.4.text": {
+          "source": "(4) 600 × 4",
+          "translation": "(4) 600 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.mul.x.text": {
+          "source": "×",
+          "translation": "×",
+          "status": "translated"
+        },
+        "template.slots.slot.q1.text": {
+          "source": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+          "translation": "ជ្រើសកន្សោមគុណដែលផ្នែកដាក់ពណ៌តំណាង។",
+          "status": "translated"
+        },
+        "template.title": {
+          "source": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+          "translation": "ជ្រើសកន្សោមគុណដែលផ្នែកដាក់ពណ៌តំណាង។",
+          "status": "translated"
+        }
+      }
+    }
+  },
+  "provenance": {
+    ".build_report.json": {
+      "dsl_path": "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008540.dsl.py",
+      "out_prefix": "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008540",
+      "success": true,
+      "generated_files": [
+        "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008540.semantic.json",
+        "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008540.layout.json",
+        "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008540.renderer.json",
+        "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008540.svg",
+        "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008540.solvable.v1.1.json"
+      ],
+      "strict": true,
+      "emit_solvable": true
+    },
+    ".json": {
+      "raw_data_info": {
+        "raw_data_name": "fcf38232-dfeb-4a63-b103-dc936516f3ac",
+        "date": "2024-10-18",
+        "publisher": "2차 저작",
+        "publication_year": "2022-08-01",
+        "school": "초등학교",
+        "grade": "3학년",
+        "semester": "2학기",
+        "subject": "수학",
+        "revision_year": "2015"
+      },
+      "source_data_info": {
+        "source_data_name": "S3_elem_3_008540",
+        "2009_achievement_standard": [
+          " "
+        ],
+        "2015_achievement_standard": [
+          "[4수01-05] 곱하는 수가 한 자리 수 또는 두 자리 수인 곱셈의 계산 원리를 이해하고 그 계산을 할 수 있다."
+        ],
+        "2022_achievement_standard": [
+          "[4수01-04] 곱하는 수가 한 자리 수 또는 두 자리 수인 곱셈의 계산 원리를 이해하고 그 계산을 할 수 있다."
+        ],
+        "level_of_difficulty": "하",
+        "types_of_problems": "객관식"
+      },
+      "learning_data_info": [
+        {
+          "class_num": 1,
+          "class_name": "문항(텍스트)",
+          "class_info_list": [
+            {
+              "Type": "Bounding_Box",
+              "Type_value": [
+                [
+                  59.3,
+                  4.04,
+                  745.7,
+                  32.84
+                ]
+              ],
+              "text_description": "색칠된 부분은 실제 어떤 수의 곱인지를 찾아 선택하세요."
+            }
+          ]
+        },
+        {
+          "class_num": 2,
+          "class_name": "문항(이미지)",
+          "class_info_list": [
+            {
+              "Type": "Bounding_Box",
+              "Type_value": [
+                [
+                  226.5,
+                  36.84,
+                  367.3,
+                  297.64
+                ]
+              ],
+              "text_description": "\\[ \\begin{array}{|r|r|r|r|} & 8&6&9 \\\\ \\times & & &4 \\\\ \\hline & & 3 & 6 \\\\ & 2&4&0 \\\\ 3&2&0&0 \\\\ \\hline 3&4&7&6 \\\\ \\end{array} \\]"
+            },
+            {
+              "Type": "Bounding_Box",
+              "Type_value": [
+                [
+                  481.1,
+                  129.14,
+                  692.54,
+                  203.86
+                ]
+              ],
+              "text_description": "$\\begin{array}{rlr}6 \\times 4 & 69 \\times 4 \\\\ 60 \\times 4 & 600 \\times 4\\end{array}$"
+            }
+          ]
+        },
+        {
+          "class_num": 1,
+          "class_name": "해설(텍스트)",
+          "class_info_list": [
+            {
+              "Type": "Bounding_Box",
+              "Type_value": [
+                [
+                  54.5,
+                  356.1,
+                  867.1,
+                  386.1
+                ]
+              ],
+              "text_description": "869에서 6은 60을 나타내므로 색 칠된 부분 240은 실제 $60 \\times 4$의 결과입니다."
+            }
+          ]
+        },
+        {
+          "class_num": 1,
+          "class_name": "정답(이미지)",
+          "class_info_list": [
+            {
+              "Type": "Bounding_Box",
+              "Type_value": [
+                [
+                  54.5,
+                  310.9,
+                  126.5,
+                  339.7
+                ]
+              ],
+              "text_description": "$60 \\times 4$"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

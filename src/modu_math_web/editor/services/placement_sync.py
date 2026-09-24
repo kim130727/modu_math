@@ -24,7 +24,8 @@ def _effective_slots(problem_id):
             raise ValueError(result.error or "문항을 빌드하지 못했습니다.")
         layout = read_problem_detail(problem_id)["layout"]
     paths = resolve_problem_paths(problem_id)
-    override_path = paths.base_dir / f"{paths.artifact_base}.editor_overrides.json"
+    from modu_math.layout.shared_layout import override_path as stored_override_path
+    override_path = stored_override_path(paths.dsl_path)
     overrides = (
         json.loads(override_path.read_text(encoding="utf-8-sig"))
         if override_path.exists()

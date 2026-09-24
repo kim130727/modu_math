@@ -268,7 +268,9 @@ def write_locale(path: Path, entries: dict[str, dict[str, str]]) -> bool:
     payload = json.dumps(entries, ensure_ascii=False, indent=2) + "\n"
     if path.exists() and path.read_text(encoding="utf-8") == payload:
         return False
-    path.parent.mkdir(parents=True, exist_ok=True)
+    from modu_math.dsl.problem_store import JsonSection
+    if not isinstance(path, JsonSection):
+        path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(payload, encoding="utf-8", newline="\n")
     return True
 
@@ -288,6 +290,24 @@ def main(argv: list[str] | None = None) -> int:
     module = load_dsl_module(dsl_path)
     problem_id = problem_id_from(module, dsl_path)
     out_path = Path(args.out) if args.out else ROOT / "locales" / args.locale / f"{problem_id}.locale.json"
+    from modu_math.dsl.problem_store import consolidated, location, document_path, JsonSection, LANGUAGES
+    if not args.out and consolidated(dsl_path):
+        import os
+        canonical, _, root = location(dsl_path)
+        language = args.locale.split("-")[0]
+        if language not in LANGUAGES:
+            raise ValueError(f"Unsupported language: {language}")
+        if language == "ko":
+            keys = ("translation_catalog",)
+        else:
+            language_section = JsonSection(document_path(canonical), ("languages", language), root)
+            if not language_section.exists():
+                virtual = root / language / canonical.relative_to(root / "ko")
+                language_section.write_text(json.dumps({"delta": {
+                    "version": 1, "source": Path(os.path.relpath(canonical, virtual.parent)).as_posix(),
+                    "changes": []}, "editor_overrides": {}}))
+            keys = ("languages", language, "translation_catalog")
+        out_path = JsonSection(document_path(canonical), keys, root)
 
     extracted = extract_localization(module)
     existing = read_existing(out_path, force=args.force)

@@ -24,7 +24,7 @@ class ContentRepository {
     this.githubRepo = 'modu_math',
     this.githubRef = 'main',
     this.githubProblemsPath = 'examples/problems',
-    this.localProblemsPath = r'..\..\examples\problems',
+    this.localProblemsPath = r'generated\examples\problems',
     this.localHttpBaseUrl = 'http://127.0.0.1:8765',
   })  : source = source ??
             (kIsWeb
@@ -44,7 +44,7 @@ class ContentRepository {
   ContentRepository.localExamples({String? localProblemsPath})
       : this(
           source: ContentRepositorySource.localExamples,
-          localProblemsPath: localProblemsPath ?? r'..\..\examples\problems',
+          localProblemsPath: localProblemsPath ?? r'generated\examples\problems',
         );
 
   ContentRepository.localHttp({
@@ -59,7 +59,7 @@ class ContentRepository {
   static const String problemsPath = 'examples/problems';
   String? _detectedBundledAssetPrefix;
   String get _bundledAssetPrefix =>
-      _detectedBundledAssetPrefix ?? (kIsWeb ? '' : '../../');
+      _detectedBundledAssetPrefix ?? 'generated/';
 
   static const String manifestPath = '$problemsPath/manifest.json';
   static const String grade3Path = '$problemsPath/grade3';
@@ -701,6 +701,10 @@ class ContentRepository {
   }
 
   void _detectBundledAssetPrefix(Iterable<String> assetKeys) {
+    if (assetKeys.any((key) => key.startsWith('generated/$problemsPath/'))) {
+      _detectedBundledAssetPrefix = 'generated/';
+      return;
+    }
     if (kIsWeb) {
       _detectedBundledAssetPrefix = '';
       return;

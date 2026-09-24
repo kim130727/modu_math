@@ -101,6 +101,26 @@ class ProblemDevHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def _send_problem_list(self, locale: str = "ko") -> None:
+        from modu_math.dsl.problem_store import LANGUAGES, SUFFIX
+        if locale not in LANGUAGES:
+            self.send_error(400, "Unsupported locale")
+            return
+        if any((self.root / "ko").rglob("*" + SUFFIX)):
+            from modu_math_web.editor.services.content_store import list_content, content_title
+            manifest_path = self.root / "manifest.json"
+            manifest = self._read_optional_json(manifest_path)
+            catalogs = {item["id"]: item for item in manifest.get("problems", [])}
+            paths, problems = [], []
+            for item in list_content(self.root, locale):
+                relative_dir = item.base_dir.relative_to(self.root).as_posix()
+                paths.append(f"{relative_dir}/{item.artifact_base}.renderer.json")
+                summary = dict(catalogs.get(item.artifact_base, {}))
+                summary.update(id=item.artifact_base, filePrefix=item.artifact_base,
+                               path=f"examples/problems/{relative_dir}",
+                               title=content_title(item, item.artifact_base))
+                problems.append(summary)
+            self._send_json({"root": str(self.root), "paths": paths, "problems": problems})
+            return
         if locale in ProblemDevHandler._cached_manifests:
             self._send_json(ProblemDevHandler._cached_manifests[locale])
             return
@@ -166,10 +186,25 @@ class ProblemDevHandler(BaseHTTPRequestHandler):
         self._send_json(manifest_payload)
 
     def _send_problem_bundle(self, encoded_prefix: str, locale: str = "ko") -> None:
+        from modu_math.dsl.problem_store import LANGUAGES
+        if locale not in LANGUAGES:
+            self.send_error(400, "Unsupported locale")
+            return
         prefix = unquote(encoded_prefix).replace("\\", "/").strip("/")
         base_path = self._resolve_problem_base_path(prefix, locale=locale)
         if base_path is None:
             self.send_error(404, f"Problem prefix not found: {prefix}")
+            return
+
+        from modu_math.dsl.problem_store import consolidated
+        from modu_math_web.editor.services.content_store import paths_for, read_content
+        virtual = base_path.with_name(base_path.name + ".dsl.py")
+        if consolidated(virtual):
+            try:
+                content = read_content(paths_for(self.root, virtual.relative_to(self.root).as_posix()))
+                self._send_json({"ok": True, "prefix": prefix, **content})
+            except (ValueError, OSError) as exc:
+                self.send_error(500, str(exc))
             return
 
         bundle: dict[str, object] = {
@@ -184,6 +219,13 @@ class ProblemDevHandler(BaseHTTPRequestHandler):
         self._send_json(bundle)
 
     def _resolve_problem_base_path(self, prefix: str, locale: str = "ko") -> Path | None:
+        from modu_math.dsl.problem_store import consolidated
+        for candidate in (self.root / locale / (prefix + ".dsl.py"), self.root / (prefix + ".dsl.py")):
+            candidate = candidate.resolve()
+            if not self._is_inside_root(candidate):
+                return None
+            if consolidated(candidate):
+                return candidate.with_name(candidate.name.removesuffix(".dsl.py"))
         # 1. Direct path check
         direct = self.root / prefix
         if direct.with_name(f"{direct.name}.renderer.json").is_file():
@@ -244,6 +286,33 @@ class ProblemDevHandler(BaseHTTPRequestHandler):
     def _send_problem_file(self, encoded_path: str) -> None:
         relative_path = unquote(encoded_path).replace("\\", "/")
         file_path = (self.root / relative_path).resolve()
+        if self._is_inside_root(file_path):
+            from modu_math_web.editor.services.content_store import list_content, read_content
+            from modu_math_web.editor.services.artifact_cache import artifact_key
+            from modu_math.dsl.problem_store import consolidated
+            for item in list_content(self.root):
+                if item.base_dir != file_path.parent or not consolidated(item.dsl_path):
+                    continue
+                key = artifact_key(file_path.name, item.artifact_base)
+                if key:
+                    content = read_content(item).get(key)
+                    if content is None:
+                        self.send_error(404, "Artifact not available")
+                    elif key == "svg":
+                        data = content.encode("utf-8")
+                        self.send_response(200)
+                        self.send_header("Content-Type", "image/svg+xml")
+                        self.send_header("Content-Length", str(len(data)))
+                        self.end_headers()
+                        self.wfile.write(data)
+                    else:
+                        if key == "solvable" and ".solvable.v" in file_path.name:
+                            version = file_path.name.split(".solvable.", 1)[1].removesuffix(".json")
+                            if content.get("schema") != "modu.solvable." + version:
+                                self.send_error(404, "Artifact version not available")
+                                return
+                        self._send_json(content)
+                    return
         if not self._is_inside_root(file_path) or not file_path.is_file():
             self.send_error(404, "File not found")
             return

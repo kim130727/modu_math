@@ -16,6 +16,10 @@ from modu_math.layout.editor_overrides import apply_editor_overrides, prune_edit
 
 
 def override_path(dsl_path: Path) -> Path:
+    from modu_math.dsl.problem_store import section
+    stored = section(dsl_path, "editor_overrides")
+    if stored is not None:
+        return stored
     return dsl_path.with_name(dsl_path.name.removesuffix(".dsl.py") + ".editor_overrides.json")
 
 

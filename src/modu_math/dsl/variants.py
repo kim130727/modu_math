@@ -25,6 +25,12 @@ EXPORTS = (
 
 
 def delta_path(path: Path) -> Path:
+    from .problem_store import section, location
+    info = location(path)
+    if info and info[1] != "ko":
+        stored = section(path, "delta")
+        if stored is not None:
+            return stored
     return path.with_name(path.name.removesuffix(".dsl.py") + SUFFIX)
 
 
@@ -202,7 +208,8 @@ def read_source(path: Path) -> str:
 
 def write_source(path: Path, source: str) -> None:
     if not delta_path(path).exists():
-        path.write_text(source, encoding="utf-8")
+        from .problem_store import atomic_write
+        atomic_write(path, source.encode("utf-8"))
         return
     canonical = source_path(path)
     save_variant(path, canonical, snapshot(source, path), preserve_review=True)
@@ -225,11 +232,12 @@ def save_variant(
             old = old_changes.get(tuple(change["path"]))
             if old and "source" in old and old.get("value") == change.get("value"):
                 change["source"] = old["source"]
-    temporary = output.with_suffix(output.suffix + ".tmp")
-    temporary.write_text(
-        json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
-    temporary.replace(output)
+    from .problem_store import JsonSection, atomic_write
+    text = json.dumps(data, ensure_ascii=False, indent=2) + "\n"
+    if isinstance(output, JsonSection):
+        output.write_text(text)
+    else:
+        atomic_write(output, text.encode("utf-8"))
 
 
 def load_module(path: Path):

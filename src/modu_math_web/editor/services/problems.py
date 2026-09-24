@@ -656,6 +656,8 @@ def list_problem_directories(*, include_artifacts: bool = False) -> list[dict[st
             continue
         from modu_math.dsl.variants import SUFFIX
         dsl_paths = set(root.rglob("*.dsl.py"))
+        from modu_math.dsl.problem_store import virtual_paths
+        dsl_paths.update(virtual_paths(root))
         dsl_paths.update(path.with_name(path.name.removesuffix(SUFFIX) + ".dsl.py")
                          for path in root.rglob("*" + SUFFIX))
         for dsl_path in sorted(dsl_paths):
@@ -722,6 +724,17 @@ def read_problem_detail(problem_id: str) -> dict[str, Any]:
     from modu_math.dsl.variants import delta_path, source_path, review_paths
     is_variant = delta_path(paths.dsl_path).exists()
     dsl = paths.read_dsl()
+    from modu_math.dsl.problem_store import consolidated
+    if consolidated(paths.dsl_path):
+        return {
+            "problem_id": paths.problem_id, "base_dir": str(paths.base_dir), "dsl": dsl,
+            "dsl_storage": "locale_delta" if is_variant else "source",
+            "source_problem_id": (
+                _display_problem_id(paths.root_alias, source_path(paths.dsl_path).relative_to(paths.root_dir).as_posix())
+                if is_variant else paths.problem_id),
+            "translation_review_paths": review_paths(paths.dsl_path),
+            **read_artifacts(problem_id),
+        }
     solvable_path = _find_solvable_path(paths.base_dir, paths.artifact_base)
     svg_path = paths.artifact_path("svg")
     return {
@@ -799,6 +812,14 @@ def format_problem_dsl(problem_id: str) -> tuple[ProblemPaths, str]:
 
 def read_artifacts(problem_id: str) -> dict[str, Any]:
     paths = resolve_problem_paths(problem_id)
+    from modu_math.dsl.problem_store import consolidated
+    if consolidated(paths.dsl_path):
+        from .artifact_cache import get_artifacts
+        from .presentation import structure_artifacts
+        artifacts = get_artifacts(paths)
+        artifacts["svg"] = _rewrite_svg_asset_hrefs(artifacts.get("svg"), paths)
+        artifacts["svg_url"] = _asset_url(paths.problem_id, f"{paths.artifact_base}.svg")
+        return structure_artifacts(artifacts)
     solvable_path = _find_solvable_path(paths.base_dir, paths.artifact_base)
     svg_path = paths.artifact_path("svg")
     from .presentation import structure_artifacts

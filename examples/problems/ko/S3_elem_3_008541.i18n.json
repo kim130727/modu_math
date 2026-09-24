@@ -1,0 +1,2487 @@
+{
+  "version": 2,
+  "source_language": "ko",
+  "editor_overrides": {
+    "version": 1,
+    "slots": {
+      "slot.q1": {
+        "y": 78,
+        "font_size": 30,
+        "semantic_role": "question"
+      },
+      "slot.expr1": {
+        "y": 172,
+        "font_size": 30,
+        "semantic_role": "diagram_label"
+      },
+      "slot.expr2": {
+        "y": 172,
+        "font_size": 30,
+        "semantic_role": "diagram_label"
+      },
+      "slot.expr3": {
+        "y": 172,
+        "font_size": 30,
+        "semantic_role": "diagram_label"
+      },
+      "slot.opt1": {
+        "y": 262,
+        "font_size": 30,
+        "semantic_role": "choice"
+      },
+      "slot.opt2": {
+        "y": 262,
+        "font_size": 30,
+        "semantic_role": "choice"
+      },
+      "slot.opt3": {
+        "y": 322,
+        "font_size": 30,
+        "semantic_role": "choice"
+      },
+      "slot.opt4": {
+        "y": 317,
+        "font_size": 30,
+        "semantic_role": "choice"
+      }
+    },
+    "text_layout": "fit"
+  },
+  "languages": {
+    "en": {
+      "delta": {
+        "version": 1,
+        "source": "../ko/S3_elem_3_008541.dsl.py",
+        "changes": [
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.expr1",
+              "text"
+            ],
+            "source": "ㄱ. 397 × 6",
+            "value": "A. 397 × 6"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.expr2",
+              "text"
+            ],
+            "source": "ㄴ. 549 × 4",
+            "value": "B. 549 × 4"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.expr3",
+              "text"
+            ],
+            "source": "ㄷ. 456 × 5",
+            "value": "C. 456 × 5"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.opt1",
+              "text"
+            ],
+            "source": "① ㄱ ㄴ ㄷ",
+            "value": "① A B C"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.opt2",
+              "text"
+            ],
+            "source": "② ㄱ ㄷ ㄴ",
+            "value": "② A C B"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.opt3",
+              "text"
+            ],
+            "source": "③ ㄴ ㄷ ㄱ",
+            "value": "③ B C A"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.opt4",
+              "text"
+            ],
+            "source": "④ ㄷ ㄴ ㄱ",
+            "value": "④ C B A"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.q1",
+              "text"
+            ],
+            "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
+            "value": "Choose the option that lists the results from greatest to least."
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "title"
+            ],
+            "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오",
+            "value": "Choose the option that lists the results from greatest to least"
+          },
+          {
+            "path": [
+              "SEMANTIC_ANSWER"
+            ],
+            "value": {
+              "blanks": [],
+              "choices": [],
+              "answer_key": [],
+              "target": {
+                "type": "choice_number",
+                "description": "계산 결과가 큰 것부터 차례대로 나열한 보기 번호"
+              },
+              "value": 2,
+              "unit": ""
+            }
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.a",
+              "label"
+            ],
+            "source": "ㄱ",
+            "value": "A"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.b",
+              "label"
+            ],
+            "source": "ㄴ",
+            "value": "B"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.c",
+              "label"
+            ],
+            "source": "ㄷ",
+            "value": "C"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.option2",
+              "sequence",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "A"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.option2",
+              "sequence",
+              1
+            ],
+            "source": "ㄷ",
+            "value": "C"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.option2",
+              "sequence",
+              2
+            ],
+            "source": "ㄴ",
+            "value": "B"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "checks",
+              "$items",
+              "check.2",
+              "actual"
+            ],
+            "source": "ㄱ, ㄷ, ㄴ",
+            "value": "A, C, B"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "checks",
+              "$items",
+              "check.2",
+              "expected"
+            ],
+            "source": "ㄱ, ㄷ, ㄴ",
+            "value": "A, C, B"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "label"
+            ],
+            "source": "ㄱ",
+            "value": "A"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              1,
+              "value",
+              "label"
+            ],
+            "source": "ㄴ",
+            "value": "B"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              2,
+              "value",
+              "label"
+            ],
+            "source": "ㄷ",
+            "value": "C"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              0
+            ],
+            "source": "각 곱셈식의 결과를 구한 뒤 큰 값부터 작은 값 순서로 비교합니다.",
+            "value": "Calculate each product, then compare them from greatest to least."
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              1
+            ],
+            "source": "비교한 순서와 같은 보기 번호를 찾습니다.",
+            "value": "Find the option number that matches the comparison order."
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "steps",
+              "$items",
+              "step.4",
+              "value"
+            ],
+            "source": "ㄱ, ㄷ, ㄴ",
+            "value": "A, C, B"
+          }
+        ]
+      },
+      "editor_overrides": {
+        "version": 1,
+        "slots": {
+          "slot.q1": {
+            "y": 78,
+            "font_size": 30,
+            "text": "Choose the option that lists the results from greatest to least."
+          },
+          "slot.expr1": {
+            "y": 172,
+            "font_size": 30,
+            "text": "A. 397 × 6"
+          },
+          "slot.expr2": {
+            "y": 172,
+            "font_size": 30,
+            "text": "B. 549 × 4"
+          },
+          "slot.expr3": {
+            "y": 172,
+            "font_size": 30,
+            "text": "C. 456 × 5"
+          },
+          "slot.opt1": {
+            "y": 262,
+            "font_size": 30,
+            "text": "① A B C"
+          },
+          "slot.opt2": {
+            "y": 262,
+            "font_size": 30,
+            "text": "② A C B"
+          },
+          "slot.opt3": {
+            "y": 322,
+            "font_size": 30,
+            "text": "③ B C A"
+          },
+          "slot.opt4": {
+            "y": 317,
+            "font_size": 30,
+            "text": "④ C B A"
+          }
+        },
+        "layout_source": "../ko/S3_elem_3_008541.dsl.py"
+      },
+      "translation_catalog": {
+        "solvable.method": {
+          "source": "compare_results_descending",
+          "translation": "compare_results_descending",
+          "status": "translated"
+        },
+        "solvable.plan.0": {
+          "source": "각 곱셈식의 결과를 구한 뒤 큰 값부터 작은 값 순서로 비교합니다.",
+          "translation": "Calculate each product, then compare them from greatest to least.",
+          "status": "translated"
+        },
+        "solvable.plan.1": {
+          "source": "비교한 순서와 같은 보기 번호를 찾습니다.",
+          "translation": "Find the option number that matches the comparison order.",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.compute_a.choices.choice.1.label": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.compute_a.choices.choice.1.text": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.compute_a.prompt": {
+          "source": "What is 397 x 6?",
+          "translation": "What is 397 x 6?",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.1.label": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.1.text": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.2.label": {
+          "source": "A, B, C",
+          "translation": "A, B, C",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.2.text": {
+          "source": "A, B, C",
+          "translation": "A, B, C",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.3.label": {
+          "source": "A, C, B",
+          "translation": "A, C, B",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.3.text": {
+          "source": "A, C, B",
+          "translation": "A, C, B",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.4.label": {
+          "source": "C, A, B",
+          "translation": "C, A, B",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.4.text": {
+          "source": "C, A, B",
+          "translation": "C, A, B",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.prompt": {
+          "source": "Which order is greatest to least?",
+          "translation": "Which order is greatest to least?",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.0.label": {
+          "source": "expression A",
+          "translation": "expression A",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.1.label": {
+          "source": "expression B",
+          "translation": "expression B",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.2.label": {
+          "source": "expression C",
+          "translation": "expression C",
+          "status": "translated"
+        },
+        "solvable.understanding.relation.statement": {
+          "source": "The products are 2382, 2196, and 2280, so the descending order is A, C, B.",
+          "translation": "The products are 2382, 2196, and 2280, so the descending order is A, C, B.",
+          "status": "translated"
+        },
+        "solvable.understanding.summary": {
+          "source": "Compute three multiplication expressions and choose the option that orders their results from greatest to least.",
+          "translation": "Compute three multiplication expressions and choose the option that orders their results from greatest to least.",
+          "status": "translated"
+        },
+        "solvable.understanding.unknowns.0.label": {
+          "source": "choice number for descending order",
+          "translation": "choice number for descending order",
+          "status": "translated"
+        },
+        "template.slots.slot.expr1.text": {
+          "source": "ㄱ. 397 × 6",
+          "translation": "ㄱ. 397 × 6",
+          "status": "translated"
+        },
+        "template.slots.slot.expr2.text": {
+          "source": "ㄴ. 549 × 4",
+          "translation": "ㄴ. 549 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.expr3.text": {
+          "source": "ㄷ. 456 × 5",
+          "translation": "ㄷ. 456 × 5",
+          "status": "translated"
+        },
+        "template.slots.slot.q1.text": {
+          "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
+          "translation": "Choose the option that lists the results from greatest to least.",
+          "status": "translated"
+        },
+        "template.title": {
+          "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오",
+          "translation": "Choose the option that lists the results from greatest to least",
+          "status": "translated"
+        }
+      }
+    },
+    "ja": {
+      "delta": {
+        "version": 1,
+        "source": "../ko/S3_elem_3_008541.dsl.py",
+        "changes": [
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.expr1",
+              "text"
+            ],
+            "source": "ㄱ. 397 × 6",
+            "value": "ア. 397 × 6"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.expr2",
+              "text"
+            ],
+            "source": "ㄴ. 549 × 4",
+            "value": "イ. 549 × 4"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.expr3",
+              "text"
+            ],
+            "source": "ㄷ. 456 × 5",
+            "value": "ウ. 456 × 5"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.opt1",
+              "text"
+            ],
+            "source": "① ㄱ ㄴ ㄷ",
+            "value": "① ア イ ウ"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.opt2",
+              "text"
+            ],
+            "source": "② ㄱ ㄷ ㄴ",
+            "value": "② ア ウ イ"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.opt3",
+              "text"
+            ],
+            "source": "③ ㄴ ㄷ ㄱ",
+            "value": "③ イ ウ ア"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.opt4",
+              "text"
+            ],
+            "source": "④ ㄷ ㄴ ㄱ",
+            "value": "④ ウ イ ア"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.q1",
+              "text"
+            ],
+            "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
+            "value": "計算結果を大きい順に並べたものを選びなさい。"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "title"
+            ],
+            "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오",
+            "value": "計算結果を大きい順に並べたものを選びなさい"
+          },
+          {
+            "path": [
+              "SEMANTIC_ANSWER"
+            ],
+            "value": {
+              "blanks": [],
+              "choices": [],
+              "answer_key": [],
+              "target": {
+                "type": "choice_number",
+                "description": "계산 결과가 큰 것부터 차례대로 나열한 보기 번호"
+              },
+              "value": 2,
+              "unit": ""
+            }
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.a",
+              "label"
+            ],
+            "source": "ㄱ",
+            "value": "ア"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.b",
+              "label"
+            ],
+            "source": "ㄴ",
+            "value": "イ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.c",
+              "label"
+            ],
+            "source": "ㄷ",
+            "value": "ウ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.option2",
+              "sequence",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "ア"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.option2",
+              "sequence",
+              1
+            ],
+            "source": "ㄷ",
+            "value": "ウ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.option2",
+              "sequence",
+              2
+            ],
+            "source": "ㄴ",
+            "value": "イ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "checks",
+              "$items",
+              "check.2",
+              "actual"
+            ],
+            "source": "ㄱ, ㄷ, ㄴ",
+            "value": "ア, ウ, イ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "checks",
+              "$items",
+              "check.2",
+              "expected"
+            ],
+            "source": "ㄱ, ㄷ, ㄴ",
+            "value": "ア, ウ, イ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "label"
+            ],
+            "source": "ㄱ",
+            "value": "ア"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              1,
+              "value",
+              "label"
+            ],
+            "source": "ㄴ",
+            "value": "イ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              2,
+              "value",
+              "label"
+            ],
+            "source": "ㄷ",
+            "value": "ウ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              0
+            ],
+            "source": "각 곱셈식의 결과를 구한 뒤 큰 값부터 작은 값 순서로 비교합니다.",
+            "value": "それぞれの積を求め、大きい順に比べます。"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              1
+            ],
+            "source": "비교한 순서와 같은 보기 번호를 찾습니다.",
+            "value": "比較した順序と同じ選択肢の番号を探します。"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "steps",
+              "$items",
+              "step.4",
+              "value"
+            ],
+            "source": "ㄱ, ㄷ, ㄴ",
+            "value": "ア, ウ, イ"
+          }
+        ]
+      },
+      "editor_overrides": {
+        "version": 1,
+        "slots": {
+          "slot.q1": {
+            "y": 78,
+            "font_size": 30,
+            "text": "計算結果を大きい順に並べたものを選びなさい。",
+            "semantic_role": "question"
+          },
+          "slot.expr1": {
+            "y": 172,
+            "font_size": 30,
+            "text": "ア. 397 × 6"
+          },
+          "slot.expr2": {
+            "y": 172,
+            "font_size": 30,
+            "text": "イ. 549 × 4"
+          },
+          "slot.expr3": {
+            "y": 172,
+            "font_size": 30,
+            "text": "ウ. 456 × 5"
+          },
+          "slot.opt1": {
+            "y": 262,
+            "font_size": 30,
+            "text": "① ア イ ウ"
+          },
+          "slot.opt2": {
+            "y": 262,
+            "font_size": 30,
+            "text": "② ア ウ イ"
+          },
+          "slot.opt3": {
+            "y": 322,
+            "font_size": 30,
+            "text": "③ イ ウ ア"
+          },
+          "slot.opt4": {
+            "y": 317,
+            "font_size": 30,
+            "text": "④ ウ イ ア"
+          }
+        },
+        "layout_source": "../ko/S3_elem_3_008541.dsl.py"
+      },
+      "translation_catalog": {
+        "solvable.method": {
+          "source": "compare_results_descending",
+          "translation": "compare_results_descending",
+          "status": "translated"
+        },
+        "solvable.plan.0": {
+          "source": "각 곱셈식의 결과를 구한 뒤 큰 값부터 작은 값 순서로 비교합니다.",
+          "translation": "それぞれの積を求め、大きい順に比べます。",
+          "status": "translated"
+        },
+        "solvable.plan.1": {
+          "source": "비교한 순서와 같은 보기 번호를 찾습니다.",
+          "translation": "比較した順序と同じ選択肢の番号を探します。",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.compute_a.choices.choice.1.label": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.compute_a.choices.choice.1.text": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.compute_a.prompt": {
+          "source": "What is 397 x 6?",
+          "translation": "What is 397 x 6?",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.1.label": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.1.text": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.2.label": {
+          "source": "A, B, C",
+          "translation": "A, B, C",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.2.text": {
+          "source": "A, B, C",
+          "translation": "A, B, C",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.3.label": {
+          "source": "A, C, B",
+          "translation": "A, C, B",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.3.text": {
+          "source": "A, C, B",
+          "translation": "A, C, B",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.4.label": {
+          "source": "C, A, B",
+          "translation": "C, A, B",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.4.text": {
+          "source": "C, A, B",
+          "translation": "C, A, B",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.prompt": {
+          "source": "Which order is greatest to least?",
+          "translation": "Which order is greatest to least?",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.0.label": {
+          "source": "expression A",
+          "translation": "expression A",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.1.label": {
+          "source": "expression B",
+          "translation": "expression B",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.2.label": {
+          "source": "expression C",
+          "translation": "expression C",
+          "status": "translated"
+        },
+        "solvable.understanding.relation.statement": {
+          "source": "The products are 2382, 2196, and 2280, so the descending order is A, C, B.",
+          "translation": "The products are 2382, 2196, and 2280, so the descending order is A, C, B.",
+          "status": "translated"
+        },
+        "solvable.understanding.summary": {
+          "source": "Compute three multiplication expressions and choose the option that orders their results from greatest to least.",
+          "translation": "Compute three multiplication expressions and choose the option that orders their results from greatest to least.",
+          "status": "translated"
+        },
+        "solvable.understanding.unknowns.0.label": {
+          "source": "choice number for descending order",
+          "translation": "choice number for descending order",
+          "status": "translated"
+        },
+        "template.slots.slot.expr1.text": {
+          "source": "ㄱ. 397 × 6",
+          "translation": "ㄱ. 397 × 6",
+          "status": "translated"
+        },
+        "template.slots.slot.expr2.text": {
+          "source": "ㄴ. 549 × 4",
+          "translation": "ㄴ. 549 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.expr3.text": {
+          "source": "ㄷ. 456 × 5",
+          "translation": "ㄷ. 456 × 5",
+          "status": "translated"
+        },
+        "template.slots.slot.q1.text": {
+          "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
+          "translation": "計算結果を大きい順に並べたものを選びなさい。",
+          "status": "translated"
+        },
+        "template.title": {
+          "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오",
+          "translation": "計算結果を大きい順に並べたものを選びなさい",
+          "status": "translated"
+        }
+      }
+    },
+    "zh": {
+      "delta": {
+        "version": 1,
+        "source": "../ko/S3_elem_3_008541.dsl.py",
+        "changes": [
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.expr1",
+              "text"
+            ],
+            "source": "ㄱ. 397 × 6",
+            "value": "甲. 397 × 6"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.expr2",
+              "text"
+            ],
+            "source": "ㄴ. 549 × 4",
+            "value": "乙. 549 × 4"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.expr3",
+              "text"
+            ],
+            "source": "ㄷ. 456 × 5",
+            "value": "丙. 456 × 5"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.opt1",
+              "text"
+            ],
+            "source": "① ㄱ ㄴ ㄷ",
+            "value": "① 甲 乙 丙"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.opt2",
+              "text"
+            ],
+            "source": "② ㄱ ㄷ ㄴ",
+            "value": "② 甲 丙 乙"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.opt3",
+              "text"
+            ],
+            "source": "③ ㄴ ㄷ ㄱ",
+            "value": "③ 乙 丙 甲"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.opt4",
+              "text"
+            ],
+            "source": "④ ㄷ ㄴ ㄱ",
+            "value": "④ 丙 乙 甲"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.q1",
+              "text"
+            ],
+            "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
+            "value": "选择计算结果从大到小排列的选项。"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "title"
+            ],
+            "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오",
+            "value": "选择计算结果从大到小排列的选项"
+          },
+          {
+            "path": [
+              "SEMANTIC_ANSWER"
+            ],
+            "value": {
+              "blanks": [],
+              "choices": [],
+              "answer_key": [],
+              "target": {
+                "type": "choice_number",
+                "description": "계산 결과가 큰 것부터 차례대로 나열한 보기 번호"
+              },
+              "value": 2,
+              "unit": ""
+            }
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.a",
+              "label"
+            ],
+            "source": "ㄱ",
+            "value": "甲"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.b",
+              "label"
+            ],
+            "source": "ㄴ",
+            "value": "乙"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.c",
+              "label"
+            ],
+            "source": "ㄷ",
+            "value": "丙"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.option2",
+              "sequence",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "甲"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.option2",
+              "sequence",
+              1
+            ],
+            "source": "ㄷ",
+            "value": "丙"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.option2",
+              "sequence",
+              2
+            ],
+            "source": "ㄴ",
+            "value": "乙"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "checks",
+              "$items",
+              "check.2",
+              "actual"
+            ],
+            "source": "ㄱ, ㄷ, ㄴ",
+            "value": "甲, 丙, 乙"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "checks",
+              "$items",
+              "check.2",
+              "expected"
+            ],
+            "source": "ㄱ, ㄷ, ㄴ",
+            "value": "甲, 丙, 乙"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "label"
+            ],
+            "source": "ㄱ",
+            "value": "甲"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              1,
+              "value",
+              "label"
+            ],
+            "source": "ㄴ",
+            "value": "乙"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              2,
+              "value",
+              "label"
+            ],
+            "source": "ㄷ",
+            "value": "丙"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              0
+            ],
+            "source": "각 곱셈식의 결과를 구한 뒤 큰 값부터 작은 값 순서로 비교합니다.",
+            "value": "计算各乘法算式的结果，并按从大到小的顺序比较。"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              1
+            ],
+            "source": "비교한 순서와 같은 보기 번호를 찾습니다.",
+            "value": "找出与比较顺序相同的选项编号。"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "steps",
+              "$items",
+              "step.4",
+              "value"
+            ],
+            "source": "ㄱ, ㄷ, ㄴ",
+            "value": "甲, 丙, 乙"
+          }
+        ]
+      },
+      "editor_overrides": {
+        "version": 1,
+        "slots": {
+          "slot.q1": {
+            "y": 78,
+            "font_size": 30,
+            "text": "选择计算结果从大到小排列的选项。",
+            "semantic_role": "question"
+          },
+          "slot.expr1": {
+            "y": 172,
+            "font_size": 30,
+            "text": "甲. 397 × 6"
+          },
+          "slot.expr2": {
+            "y": 172,
+            "font_size": 30,
+            "text": "乙. 549 × 4"
+          },
+          "slot.expr3": {
+            "y": 172,
+            "font_size": 30,
+            "text": "丙. 456 × 5"
+          },
+          "slot.opt1": {
+            "y": 262,
+            "font_size": 30,
+            "text": "① 甲 乙 丙"
+          },
+          "slot.opt2": {
+            "y": 262,
+            "font_size": 30,
+            "text": "② 甲 丙 乙"
+          },
+          "slot.opt3": {
+            "y": 322,
+            "font_size": 30,
+            "text": "③ 乙 丙 甲"
+          },
+          "slot.opt4": {
+            "y": 317,
+            "font_size": 30,
+            "text": "④ 丙 乙 甲"
+          }
+        },
+        "layout_source": "../ko/S3_elem_3_008541.dsl.py"
+      },
+      "translation_catalog": {
+        "solvable.method": {
+          "source": "compare_results_descending",
+          "translation": "compare_results_descending",
+          "status": "translated"
+        },
+        "solvable.plan.0": {
+          "source": "각 곱셈식의 결과를 구한 뒤 큰 값부터 작은 값 순서로 비교합니다.",
+          "translation": "计算各乘法算式的结果，并按从大到小的顺序比较。",
+          "status": "translated"
+        },
+        "solvable.plan.1": {
+          "source": "비교한 순서와 같은 보기 번호를 찾습니다.",
+          "translation": "找出与比较顺序相同的选项编号。",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.compute_a.choices.choice.1.label": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.compute_a.choices.choice.1.text": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.compute_a.prompt": {
+          "source": "What is 397 x 6?",
+          "translation": "What is 397 x 6?",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.1.label": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.1.text": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.2.label": {
+          "source": "A, B, C",
+          "translation": "A, B, C",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.2.text": {
+          "source": "A, B, C",
+          "translation": "A, B, C",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.3.label": {
+          "source": "A, C, B",
+          "translation": "A, C, B",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.3.text": {
+          "source": "A, C, B",
+          "translation": "A, C, B",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.4.label": {
+          "source": "C, A, B",
+          "translation": "C, A, B",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.4.text": {
+          "source": "C, A, B",
+          "translation": "C, A, B",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.prompt": {
+          "source": "Which order is greatest to least?",
+          "translation": "Which order is greatest to least?",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.0.label": {
+          "source": "expression A",
+          "translation": "expression A",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.1.label": {
+          "source": "expression B",
+          "translation": "expression B",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.2.label": {
+          "source": "expression C",
+          "translation": "expression C",
+          "status": "translated"
+        },
+        "solvable.understanding.relation.statement": {
+          "source": "The products are 2382, 2196, and 2280, so the descending order is A, C, B.",
+          "translation": "The products are 2382, 2196, and 2280, so the descending order is A, C, B.",
+          "status": "translated"
+        },
+        "solvable.understanding.summary": {
+          "source": "Compute three multiplication expressions and choose the option that orders their results from greatest to least.",
+          "translation": "Compute three multiplication expressions and choose the option that orders their results from greatest to least.",
+          "status": "translated"
+        },
+        "solvable.understanding.unknowns.0.label": {
+          "source": "choice number for descending order",
+          "translation": "choice number for descending order",
+          "status": "translated"
+        },
+        "template.slots.slot.expr1.text": {
+          "source": "ㄱ. 397 × 6",
+          "translation": "ㄱ. 397 × 6",
+          "status": "translated"
+        },
+        "template.slots.slot.expr2.text": {
+          "source": "ㄴ. 549 × 4",
+          "translation": "ㄴ. 549 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.expr3.text": {
+          "source": "ㄷ. 456 × 5",
+          "translation": "ㄷ. 456 × 5",
+          "status": "translated"
+        },
+        "template.slots.slot.q1.text": {
+          "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
+          "translation": "选择计算结果从大到小排列的选项。",
+          "status": "translated"
+        },
+        "template.title": {
+          "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오",
+          "translation": "选择计算结果从大到小排列的选项",
+          "status": "translated"
+        }
+      }
+    },
+    "uk": {
+      "delta": {
+        "version": 1,
+        "source": "../ko/S3_elem_3_008541.dsl.py",
+        "changes": [
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.expr1",
+              "text"
+            ],
+            "source": "ㄱ. 397 × 6",
+            "value": "А. 397 × 6"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.expr2",
+              "text"
+            ],
+            "source": "ㄴ. 549 × 4",
+            "value": "Б. 549 × 4"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.expr3",
+              "text"
+            ],
+            "source": "ㄷ. 456 × 5",
+            "value": "В. 456 × 5"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.opt1",
+              "text"
+            ],
+            "source": "① ㄱ ㄴ ㄷ",
+            "value": "① А Б В"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.opt2",
+              "text"
+            ],
+            "source": "② ㄱ ㄷ ㄴ",
+            "value": "② А В Б"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.opt3",
+              "text"
+            ],
+            "source": "③ ㄴ ㄷ ㄱ",
+            "value": "③ Б В А"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.opt4",
+              "text"
+            ],
+            "source": "④ ㄷ ㄴ ㄱ",
+            "value": "④ В Б А"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.q1",
+              "text"
+            ],
+            "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
+            "value": "Виберіть варіант, де результати розташовані від найбільшого до найменшого."
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "title"
+            ],
+            "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오",
+            "value": "Виберіть варіант, де результати розташовані від найбільшого до найменшого"
+          },
+          {
+            "path": [
+              "SEMANTIC_ANSWER"
+            ],
+            "value": {
+              "blanks": [],
+              "choices": [],
+              "answer_key": [],
+              "target": {
+                "type": "choice_number",
+                "description": "계산 결과가 큰 것부터 차례대로 나열한 보기 번호"
+              },
+              "value": 2,
+              "unit": ""
+            }
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.a",
+              "label"
+            ],
+            "source": "ㄱ",
+            "value": "А"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.b",
+              "label"
+            ],
+            "source": "ㄴ",
+            "value": "Б"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.c",
+              "label"
+            ],
+            "source": "ㄷ",
+            "value": "В"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.option2",
+              "sequence",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "А"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.option2",
+              "sequence",
+              1
+            ],
+            "source": "ㄷ",
+            "value": "В"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.option2",
+              "sequence",
+              2
+            ],
+            "source": "ㄴ",
+            "value": "Б"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "checks",
+              "$items",
+              "check.2",
+              "actual"
+            ],
+            "source": "ㄱ, ㄷ, ㄴ",
+            "value": "А, В, Б"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "checks",
+              "$items",
+              "check.2",
+              "expected"
+            ],
+            "source": "ㄱ, ㄷ, ㄴ",
+            "value": "А, В, Б"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "label"
+            ],
+            "source": "ㄱ",
+            "value": "А"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              1,
+              "value",
+              "label"
+            ],
+            "source": "ㄴ",
+            "value": "Б"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              2,
+              "value",
+              "label"
+            ],
+            "source": "ㄷ",
+            "value": "В"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              0
+            ],
+            "source": "각 곱셈식의 결과를 구한 뒤 큰 값부터 작은 값 순서로 비교합니다.",
+            "value": "Обчисліть кожний добуток і порівняйте результати від найбільшого до найменшого."
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              1
+            ],
+            "source": "비교한 순서와 같은 보기 번호를 찾습니다.",
+            "value": "Знайдіть номер варіанта з таким самим порядком порівняння."
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "steps",
+              "$items",
+              "step.4",
+              "value"
+            ],
+            "source": "ㄱ, ㄷ, ㄴ",
+            "value": "А, В, Б"
+          }
+        ]
+      },
+      "editor_overrides": {
+        "version": 1,
+        "slots": {
+          "slot.q1": {
+            "y": 48.782,
+            "font_size": 30,
+            "text": "Виберіть варіант, де результати розташовані від найбільшого до найменшого.",
+            "x": 88.152
+          },
+          "slot.expr1": {
+            "y": 172,
+            "font_size": 30,
+            "text": "А. 397 × 6"
+          },
+          "slot.expr2": {
+            "y": 172,
+            "font_size": 30,
+            "text": "Б. 549 × 4"
+          },
+          "slot.expr3": {
+            "y": 172,
+            "font_size": 30,
+            "text": "В. 456 × 5"
+          },
+          "slot.opt1": {
+            "y": 262,
+            "font_size": 30,
+            "text": "① А Б В"
+          },
+          "slot.opt2": {
+            "y": 262,
+            "font_size": 30,
+            "text": "② А В Б"
+          },
+          "slot.opt3": {
+            "y": 322,
+            "font_size": 30,
+            "text": "③ Б В А"
+          },
+          "slot.opt4": {
+            "y": 317,
+            "font_size": 30,
+            "text": "④ В Б А"
+          }
+        },
+        "layout_source": "../ko/S3_elem_3_008541.dsl.py"
+      },
+      "translation_catalog": {
+        "solvable.method": {
+          "source": "compare_results_descending",
+          "translation": "compare_results_descending",
+          "status": "translated"
+        },
+        "solvable.plan.0": {
+          "source": "각 곱셈식의 결과를 구한 뒤 큰 값부터 작은 값 순서로 비교합니다.",
+          "translation": "Обчисліть кожний добуток і порівняйте результати від найбільшого до найменшого.",
+          "status": "translated"
+        },
+        "solvable.plan.1": {
+          "source": "비교한 순서와 같은 보기 번호를 찾습니다.",
+          "translation": "Знайдіть номер варіанта з таким самим порядком порівняння.",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.compute_a.choices.choice.1.label": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.compute_a.choices.choice.1.text": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.compute_a.prompt": {
+          "source": "What is 397 x 6?",
+          "translation": "What is 397 x 6?",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.1.label": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.1.text": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.2.label": {
+          "source": "A, B, C",
+          "translation": "A, B, C",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.2.text": {
+          "source": "A, B, C",
+          "translation": "A, B, C",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.3.label": {
+          "source": "A, C, B",
+          "translation": "A, C, B",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.3.text": {
+          "source": "A, C, B",
+          "translation": "A, C, B",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.4.label": {
+          "source": "C, A, B",
+          "translation": "C, A, B",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.4.text": {
+          "source": "C, A, B",
+          "translation": "C, A, B",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.prompt": {
+          "source": "Which order is greatest to least?",
+          "translation": "Which order is greatest to least?",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.0.label": {
+          "source": "expression A",
+          "translation": "expression A",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.1.label": {
+          "source": "expression B",
+          "translation": "expression B",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.2.label": {
+          "source": "expression C",
+          "translation": "expression C",
+          "status": "translated"
+        },
+        "solvable.understanding.relation.statement": {
+          "source": "The products are 2382, 2196, and 2280, so the descending order is A, C, B.",
+          "translation": "The products are 2382, 2196, and 2280, so the descending order is A, C, B.",
+          "status": "translated"
+        },
+        "solvable.understanding.summary": {
+          "source": "Compute three multiplication expressions and choose the option that orders their results from greatest to least.",
+          "translation": "Compute three multiplication expressions and choose the option that orders their results from greatest to least.",
+          "status": "translated"
+        },
+        "solvable.understanding.unknowns.0.label": {
+          "source": "choice number for descending order",
+          "translation": "choice number for descending order",
+          "status": "translated"
+        },
+        "template.slots.slot.expr1.text": {
+          "source": "ㄱ. 397 × 6",
+          "translation": "ㄱ. 397 × 6",
+          "status": "translated"
+        },
+        "template.slots.slot.expr2.text": {
+          "source": "ㄴ. 549 × 4",
+          "translation": "ㄴ. 549 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.expr3.text": {
+          "source": "ㄷ. 456 × 5",
+          "translation": "ㄷ. 456 × 5",
+          "status": "translated"
+        },
+        "template.slots.slot.q1.text": {
+          "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
+          "translation": "Виберіть варіант, де результати розташовані від найбільшого до найменшого.",
+          "status": "translated"
+        },
+        "template.title": {
+          "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오",
+          "translation": "Виберіть варіант, де результати розташовані від найбільшого до найменшого",
+          "status": "translated"
+        }
+      }
+    },
+    "km": {
+      "delta": {
+        "version": 1,
+        "source": "../ko/S3_elem_3_008541.dsl.py",
+        "changes": [
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.expr1",
+              "text"
+            ],
+            "source": "ㄱ. 397 × 6",
+            "value": "ក. 397 × 6"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.expr2",
+              "text"
+            ],
+            "source": "ㄴ. 549 × 4",
+            "value": "ខ. 549 × 4"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.expr3",
+              "text"
+            ],
+            "source": "ㄷ. 456 × 5",
+            "value": "គ. 456 × 5"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.opt1",
+              "text"
+            ],
+            "source": "① ㄱ ㄴ ㄷ",
+            "value": "① ក ខ គ"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.opt2",
+              "text"
+            ],
+            "source": "② ㄱ ㄷ ㄴ",
+            "value": "② ក គ ខ"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.opt3",
+              "text"
+            ],
+            "source": "③ ㄴ ㄷ ㄱ",
+            "value": "③ ខ គ ក"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.opt4",
+              "text"
+            ],
+            "source": "④ ㄷ ㄴ ㄱ",
+            "value": "④ គ ខ ក"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "slots",
+              "$items",
+              "slot.q1",
+              "text"
+            ],
+            "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
+            "value": "ជ្រើសចម្លើយដែលរៀបលទ្ធផលពីធំទៅតូច។"
+          },
+          {
+            "path": [
+              "PROBLEM_TEMPLATE",
+              "title"
+            ],
+            "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오",
+            "value": "ជ្រើសចម្លើយដែលរៀបលទ្ធផលពីធំទៅតូច"
+          },
+          {
+            "path": [
+              "SEMANTIC_ANSWER"
+            ],
+            "value": {
+              "blanks": [],
+              "choices": [],
+              "answer_key": [],
+              "target": {
+                "type": "choice_number",
+                "description": "계산 결과가 큰 것부터 차례대로 나열한 보기 번호"
+              },
+              "value": 2,
+              "unit": ""
+            }
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.a",
+              "label"
+            ],
+            "source": "ㄱ",
+            "value": "ក"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.b",
+              "label"
+            ],
+            "source": "ㄴ",
+            "value": "ខ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.c",
+              "label"
+            ],
+            "source": "ㄷ",
+            "value": "គ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.option2",
+              "sequence",
+              0
+            ],
+            "source": "ㄱ",
+            "value": "ក"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.option2",
+              "sequence",
+              1
+            ],
+            "source": "ㄷ",
+            "value": "គ"
+          },
+          {
+            "path": [
+              "SEMANTIC_OVERRIDE",
+              "domain",
+              "objects",
+              "$items",
+              "obj.option2",
+              "sequence",
+              2
+            ],
+            "source": "ㄴ",
+            "value": "ខ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "checks",
+              "$items",
+              "check.2",
+              "actual"
+            ],
+            "source": "ㄱ, ㄷ, ㄴ",
+            "value": "ក, គ, ខ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "checks",
+              "$items",
+              "check.2",
+              "expected"
+            ],
+            "source": "ㄱ, ㄷ, ㄴ",
+            "value": "ក, គ, ខ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              0,
+              "value",
+              "label"
+            ],
+            "source": "ㄱ",
+            "value": "ក"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              1,
+              "value",
+              "label"
+            ],
+            "source": "ㄴ",
+            "value": "ខ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "given",
+              2,
+              "value",
+              "label"
+            ],
+            "source": "ㄷ",
+            "value": "គ"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              0
+            ],
+            "source": "각 곱셈식의 결과를 구한 뒤 큰 값부터 작은 값 순서로 비교합니다.",
+            "value": "គណនាផលគុណនីមួយៗ រួចប្រៀបធៀបពីធំទៅតូច។"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "plan",
+              1
+            ],
+            "source": "비교한 순서와 같은 보기 번호를 찾습니다.",
+            "value": "រកលេខជម្រើសដែលត្រូវនឹងលំដាប់ប្រៀបធៀប។"
+          },
+          {
+            "path": [
+              "SOLVABLE",
+              "steps",
+              "$items",
+              "step.4",
+              "value"
+            ],
+            "source": "ㄱ, ㄷ, ㄴ",
+            "value": "ក, គ, ខ"
+          }
+        ]
+      },
+      "editor_overrides": {
+        "version": 1,
+        "slots": {
+          "slot.q1": {
+            "y": 78,
+            "font_size": 30,
+            "text": "ជ្រើសចម្លើយដែលរៀបលទ្ធផលពីធំទៅតូច។"
+          },
+          "slot.expr1": {
+            "y": 172,
+            "font_size": 30,
+            "text": "ក. 397 × 6"
+          },
+          "slot.expr2": {
+            "y": 172,
+            "font_size": 30,
+            "text": "ខ. 549 × 4"
+          },
+          "slot.expr3": {
+            "y": 172,
+            "font_size": 30,
+            "text": "គ. 456 × 5"
+          },
+          "slot.opt1": {
+            "y": 262,
+            "font_size": 30,
+            "text": "① ក ខ គ"
+          },
+          "slot.opt2": {
+            "y": 262,
+            "font_size": 30,
+            "text": "② ក គ ខ"
+          },
+          "slot.opt3": {
+            "y": 322,
+            "font_size": 30,
+            "text": "③ ខ គ ក"
+          },
+          "slot.opt4": {
+            "y": 317,
+            "font_size": 30,
+            "text": "④ គ ខ ក"
+          }
+        },
+        "layout_source": "../ko/S3_elem_3_008541.dsl.py"
+      },
+      "translation_catalog": {
+        "solvable.method": {
+          "source": "compare_results_descending",
+          "translation": "compare_results_descending",
+          "status": "translated"
+        },
+        "solvable.plan.0": {
+          "source": "각 곱셈식의 결과를 구한 뒤 큰 값부터 작은 값 순서로 비교합니다.",
+          "translation": "គណនាផលគុណនីមួយៗ រួចប្រៀបធៀបពីធំទៅតូច។",
+          "status": "translated"
+        },
+        "solvable.plan.1": {
+          "source": "비교한 순서와 같은 보기 번호를 찾습니다.",
+          "translation": "រកលេខជម្រើសដែលត្រូវនឹងលំដាប់ប្រៀបធៀប។",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.compute_a.choices.choice.1.label": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.compute_a.choices.choice.1.text": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.compute_a.prompt": {
+          "source": "What is 397 x 6?",
+          "translation": "What is 397 x 6?",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.1.label": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.1.text": {
+          "source": "choices",
+          "translation": "choices",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.2.label": {
+          "source": "A, B, C",
+          "translation": "A, B, C",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.2.text": {
+          "source": "A, B, C",
+          "translation": "A, B, C",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.3.label": {
+          "source": "A, C, B",
+          "translation": "A, C, B",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.3.text": {
+          "source": "A, C, B",
+          "translation": "A, C, B",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.4.label": {
+          "source": "C, A, B",
+          "translation": "C, A, B",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.choices.choice.4.text": {
+          "source": "C, A, B",
+          "translation": "C, A, B",
+          "status": "translated"
+        },
+        "solvable.understanding.diagnostic_questions.understand.order.prompt": {
+          "source": "Which order is greatest to least?",
+          "translation": "Which order is greatest to least?",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.0.label": {
+          "source": "expression A",
+          "translation": "expression A",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.1.label": {
+          "source": "expression B",
+          "translation": "expression B",
+          "status": "translated"
+        },
+        "solvable.understanding.facts.2.label": {
+          "source": "expression C",
+          "translation": "expression C",
+          "status": "translated"
+        },
+        "solvable.understanding.relation.statement": {
+          "source": "The products are 2382, 2196, and 2280, so the descending order is A, C, B.",
+          "translation": "The products are 2382, 2196, and 2280, so the descending order is A, C, B.",
+          "status": "translated"
+        },
+        "solvable.understanding.summary": {
+          "source": "Compute three multiplication expressions and choose the option that orders their results from greatest to least.",
+          "translation": "Compute three multiplication expressions and choose the option that orders their results from greatest to least.",
+          "status": "translated"
+        },
+        "solvable.understanding.unknowns.0.label": {
+          "source": "choice number for descending order",
+          "translation": "choice number for descending order",
+          "status": "translated"
+        },
+        "template.slots.slot.expr1.text": {
+          "source": "ㄱ. 397 × 6",
+          "translation": "ㄱ. 397 × 6",
+          "status": "translated"
+        },
+        "template.slots.slot.expr2.text": {
+          "source": "ㄴ. 549 × 4",
+          "translation": "ㄴ. 549 × 4",
+          "status": "translated"
+        },
+        "template.slots.slot.expr3.text": {
+          "source": "ㄷ. 456 × 5",
+          "translation": "ㄷ. 456 × 5",
+          "status": "translated"
+        },
+        "template.slots.slot.q1.text": {
+          "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
+          "translation": "ជ្រើសចម្លើយដែលរៀបលទ្ធផលពីធំទៅតូច។",
+          "status": "translated"
+        },
+        "template.title": {
+          "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오",
+          "translation": "ជ្រើសចម្លើយដែលរៀបលទ្ធផលពីធំទៅតូច",
+          "status": "translated"
+        }
+      }
+    }
+  },
+  "provenance": {
+    ".build_report.json": {
+      "dsl_path": "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008541.dsl.py",
+      "out_prefix": "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008541",
+      "success": true,
+      "generated_files": [
+        "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008541.semantic.json",
+        "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008541.layout.json",
+        "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008541.renderer.json",
+        "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008541.svg",
+        "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_elem_3_008541.solvable.v1.1.json"
+      ],
+      "strict": true,
+      "emit_solvable": true
+    },
+    ".json": {
+      "raw_data_info": {
+        "raw_data_name": "b3c25920-53d7-41be-b6b7-0082e1fd371c",
+        "date": "2024-10-18",
+        "publisher": "2차 저작",
+        "publication_year": "2022-08-01",
+        "school": "초등학교",
+        "grade": "3학년",
+        "semester": "2학기",
+        "subject": "수학",
+        "revision_year": "2015"
+      },
+      "source_data_info": {
+        "source_data_name": "S3_elem_3_008541",
+        "2009_achievement_standard": [
+          " "
+        ],
+        "2015_achievement_standard": [
+          "[4수01-05] 곱하는 수가 한 자리 수 또는 두 자리 수인 곱셈의 계산 원리를 이해하고 그 계산을 할 수 있다."
+        ],
+        "2022_achievement_standard": [
+          "[4수01-04] 곱하는 수가 한 자리 수 또는 두 자리 수인 곱셈의 계산 원리를 이해하고 그 계산을 할 수 있다."
+        ],
+        "level_of_difficulty": "하",
+        "types_of_problems": "객관식"
+      },
+      "learning_data_info": [
+        {
+          "class_num": 1,
+          "class_name": "문항(텍스트)",
+          "class_info_list": [
+            {
+              "Type": "Bounding_Box",
+              "Type_value": [
+                [
+                  57.5,
+                  10.92,
+                  716.5,
+                  37.92
+                ]
+              ],
+              "text_description": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르세요."
+            }
+          ]
+        },
+        {
+          "class_num": 1,
+          "class_name": "문항(이미지)",
+          "class_info_list": [
+            {
+              "Type": "Bounding_Box",
+              "Type_value": [
+                [
+                  99.5,
+                  47.92,
+                  860.5,
+                  131.92
+                ]
+              ],
+              "text_description": "㉠ $397 \\times 6$ ㉡ $549 \\times 4$ ㉢ $456 \\times 5$"
+            }
+          ]
+        },
+        {
+          "class_num": 1,
+          "class_name": "정답(텍스트)",
+          "class_info_list": [
+            {
+              "Type": "Bounding_Box",
+              "Type_value": [
+                [
+                  478.5,
+                  139.5,
+                  600.5,
+                  168.5
+                ]
+              ],
+              "text_description": "② ㉠ ㉢ ㉡"
+            }
+          ]
+        },
+        {
+          "class_num": 2,
+          "class_name": "오답(텍스트)",
+          "class_info_list": [
+            {
+              "Type": "Bounding_Box",
+              "Type_value": [
+                [
+                  30.5,
+                  138.5,
+                  153.5,
+                  211.5
+                ]
+              ],
+              "text_description": "① ㉠ ㉡ ㉢ ③ ㉡ ㉢ ㉠"
+            },
+            {
+              "Type": "Bounding_Box",
+              "Type_value": [
+                [
+                  478.5,
+                  179.5,
+                  600.5,
+                  211.5
+                ]
+              ],
+              "text_description": "④ ㉢ ㉡ ㉡"
+            }
+          ]
+        },
+        {
+          "class_num": 1,
+          "class_name": "해설(텍스트)",
+          "class_info_list": [
+            {
+              "Type": "Bounding_Box",
+              "Type_value": [
+                [
+                  56.5,
+                  278.5,
+                  928.5,
+                  376.5
+                ]
+              ],
+              "text_description": "㉠ $397 \\times 6=2382$ ㉡ $549 \\times 4=2196$ ㉢ $456 \\times 5=2280$ $2382>2280>2196$ 이므로 계산 결과가 큰 것부터 차례로 기호를 써 보면 ㉠, ㉢, ㉡입니다."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -185,6 +185,20 @@ def problem_asset(_: HttpRequest, problem_id: str, filename: str) -> FileRespons
             return _error("invalid asset filename", status=400)
         paths = resolve_problem_paths(problem_id)
         asset_path = (paths.base_dir / filename).resolve()
+        from modu_math.dsl.problem_store import consolidated
+        from .services.artifact_cache import artifact_key, get_artifacts
+        key = artifact_key(filename, paths.artifact_base)
+        if key and consolidated(paths.dsl_path):
+            value = get_artifacts(paths).get(key)
+            if value is None:
+                return _error("asset not found", status=404)
+            if key == "svg":
+                return HttpResponse(value, content_type="image/svg+xml")
+            if key == "solvable" and ".solvable.v" in filename:
+                version = filename.split(".solvable.", 1)[1].removesuffix(".json")
+                if value.get("schema") != "modu.solvable." + version:
+                    return _error("asset not found", status=404)
+            return JsonResponse(value)
         if asset_path.parent != paths.base_dir.resolve():
             return _error("invalid asset path", status=400)
         if not asset_path.exists() or not asset_path.is_file():

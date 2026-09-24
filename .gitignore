@@ -25,6 +25,7 @@ env/
 ENV/
 
 # Build artifacts
+.modu-cache/
 build/
 dist/
 *.egg-info/
@@ -37,6 +38,7 @@ apps/mobile/.packages
 apps/mobile/build/
 apps/mobile/coverage/
 apps/mobile/examples/
+apps/mobile/generated/
 apps/mobile/flutter_preview.*.log
 apps/mobile/backend/.venv/
 apps/mobile/backend/db.sqlite3
