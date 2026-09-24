@@ -893,6 +893,17 @@ def prune_editor_overrides(
             if not isinstance(slot_id, str) or not isinstance(patch, dict):
                 changed = True
                 continue
+            is_localized = bool(overrides.get("layout_source"))
+            patch_kind = patch.get("kind") or slot_kinds.get(slot_id)
+            is_visual = (
+                patch_kind not in {"text", "text_box", "label", "choice", "blank"}
+                or "avatar" in slot_id
+                or "image" in slot_id
+                or "calloutRect" in slot_id
+            )
+            if is_localized and is_visual and slot_id not in slot_ids:
+                changed = True
+                continue
             if (
                 slot_id in slot_ids
                 or _infer_region_id_for_slot(
@@ -1074,6 +1085,16 @@ def apply_editor_overrides(
                 and not _deleted_slot_matches(slot_id, deleted, deleted & slot_ids)
             ):
                 if slot_id not in slot_ids:
+                    if overrides.get("layout_source"):
+                        patch_kind = patch.get("kind")
+                        is_visual = (
+                            patch_kind not in {"text", "text_box", "label", "choice", "blank"}
+                            or "avatar" in slot_id
+                            or "image" in slot_id
+                            or "calloutRect" in slot_id
+                        )
+                        if is_visual:
+                            continue
                     explicit_region_id = slot_region_map.get(slot_id)
                     _add_missing_override_slot(
                         layout,

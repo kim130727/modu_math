@@ -140,3 +140,66 @@ def test_svg_keeps_authored_newlines_without_inserting_indentation():
     assert node.text is None
     assert [span.text for span in node] == text.split("\n")
     assert all(span.tail is None for span in node)
+
+
+def test_source_avatar_replacement_prevents_duplicate_in_translations(tmp_path):
+    _setup_django(tmp_path)
+    source = _write_problem(tmp_path, "ko/avatar_test", _dsl("문제를 푸세요."))
+    target = _write_problem(tmp_path, "uk/avatar_test", _dsl("Розв'яжіть задачу."))
+
+    old_avatar = "konva_1001_avatar_old"
+    new_avatar = "konva_2002_avatar_new"
+
+    # In Korean, old avatar was deleted and new avatar was added
+    override_path(source / "problem.dsl.py").write_text(json.dumps({
+        "deleted_slots": [old_avatar],
+        "slots": {
+            new_avatar: {
+                "kind": "image",
+                "href": "data:image/webp;base64,NEW_AVATAR",
+                "x": 300,
+                "y": 150,
+                "width": 100,
+                "height": 120,
+            }
+        },
+        "slot_regions": {new_avatar: "region.stem"}
+    }), encoding="utf-8")
+
+    # In Ukrainian, the stale override file still has the old avatar in slots
+    # and doesn't know it was deleted in source
+    override_path(target / "problem.dsl.py").write_text(json.dumps({
+        "layout_source": "../../ko/avatar_test/problem.dsl.py",
+        "slots": {
+            old_avatar: {
+                "kind": "image",
+                "href": "data:image/webp;base64,OLD_AVATAR",
+                "x": 310,
+                "y": 160,
+                "width": 100,
+                "height": 120,
+            }
+        },
+        "slot_regions": {old_avatar: "region.stem"}
+    }), encoding="utf-8")
+
+    built = run_problem_build("uk/avatar_test")
+    assert built.ok, built.error
+
+    layout = json.loads((target / "problem.layout.json").read_text(encoding="utf-8"))
+    slot_ids = [s["id"] for s in layout["slots"]]
+
+    # The new avatar must be present
+    assert new_avatar in slot_ids
+    # The old avatar MUST NOT be present
+    assert old_avatar not in slot_ids
+    # There must be exactly ONE avatar in the layout
+    avatars = [s for s in layout["slots"] if "avatar" in s["id"]]
+    assert len(avatars) == 1
+    assert avatars[0]["id"] == new_avatar
+
+    # The localized editor_overrides must also have been cleaned
+    target_overrides = json.loads(override_path(target / "problem.dsl.py").read_text(encoding="utf-8"))
+    assert old_avatar not in target_overrides.get("slots", {})
+    assert old_avatar in target_overrides.get("deleted_slots", [])
+

@@ -209,19 +209,39 @@ def merged_overrides(
         if isinstance(existing_localized_overrides.get("canvas"), dict):
             out["canvas"] = deepcopy(existing_localized_overrides["canvas"])
         if isinstance(existing_localized_overrides.get("deleted_slots"), list):
-            out["deleted_slots"] = [
+            existing_deleted = [
                 slot_id
                 for slot_id in existing_localized_overrides["deleted_slots"]
                 if isinstance(slot_id, str)
             ]
+            current_deleted = out.get("deleted_slots", [])
+            out["deleted_slots"] = list(dict.fromkeys(current_deleted + existing_deleted))
         if isinstance(existing_localized_overrides.get("region_slot_orders"), dict):
             out["region_slot_orders"] = deepcopy(existing_localized_overrides["region_slot_orders"])
 
         existing_slots = existing_localized_overrides.get("slots")
         if isinstance(existing_slots, dict):
             out_slots = out.setdefault("slots", {})
+            deleted_set = set(out.get("deleted_slots", []))
+            source_slots_map = (
+                source_overrides.get("slots", {})
+                if source_overrides and isinstance(source_overrides.get("slots"), dict)
+                else {}
+            )
             for slot_id, patch in existing_slots.items():
                 if isinstance(slot_id, str) and isinstance(patch, dict):
+                    if slot_id in deleted_set:
+                        out_slots.pop(slot_id, None)
+                        continue
+                    patch_kind = patch.get("kind")
+                    is_visual = (
+                        patch_kind not in {"text", "text_box", "label", "choice", "blank"}
+                        or "avatar" in slot_id
+                        or "image" in slot_id
+                    )
+                    if is_visual and slot_id not in source_slots_map:
+                        out_slots.pop(slot_id, None)
+                        continue
                     merged_patch = out_slots.setdefault(slot_id, {})
                     merged_patch.update(deepcopy(patch))
 

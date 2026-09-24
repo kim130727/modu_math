@@ -1045,6 +1045,111 @@ def _save_editor_slot_delete(paths: Any, target: str) -> None:
     path.write_text(
         json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
+    _propagate_slot_delete_to_translations(paths, targets_to_delete)
+
+
+def _propagate_slot_delete_to_translations(
+    paths: Any, targets_to_delete: list[str]
+) -> None:
+    from modu_math.dsl.problem_store import (
+        location,
+        read_document,
+        document_path,
+        atomic_write,
+        LANGUAGES,
+    )
+
+    loc = location(paths.dsl_path)
+    if loc is None or loc[1] != "ko":
+        return
+    canonical, _, root = loc
+    doc_path = document_path(canonical)
+    if doc_path.is_file():
+        try:
+            doc = read_document(doc_path)
+            changed = False
+            for lang, lang_data in doc.get("languages", {}).items():
+                if not isinstance(lang_data, dict):
+                    continue
+                overrides = lang_data.setdefault("editor_overrides", {})
+                if not isinstance(overrides, dict):
+                    continue
+                deleted = overrides.setdefault("deleted_slots", [])
+                if not isinstance(deleted, list):
+                    deleted = []
+                    overrides["deleted_slots"] = deleted
+                for t in targets_to_delete:
+                    if t not in deleted:
+                        deleted.append(t)
+                        changed = True
+                slots = overrides.get("slots")
+                if isinstance(slots, dict):
+                    for t in targets_to_delete:
+                        if t in slots:
+                            slots.pop(t, None)
+                            changed = True
+                    if any("avatar" in t for t in targets_to_delete):
+                        for ak in list(slots.keys()):
+                            if "avatar" in ak:
+                                slots.pop(ak, None)
+                                changed = True
+                regions = overrides.get("slot_regions")
+                if isinstance(regions, dict):
+                    for t in targets_to_delete:
+                        if t in regions:
+                            regions.pop(t, None)
+                            changed = True
+            if changed:
+                atomic_write(
+                    doc_path,
+                    (json.dumps(doc, ensure_ascii=False, indent=2) + "\n").encode(),
+                )
+        except Exception:
+            pass
+    else:
+        try:
+            relative = paths.dsl_path.resolve().relative_to(root / "ko")
+            for lang in LANGUAGES - {"ko"}:
+                lang_dsl = root / lang / relative
+                from modu_math.layout.shared_layout import override_path
+
+                lang_overrides_path = override_path(lang_dsl)
+                if lang_overrides_path.exists():
+                    try:
+                        lo = json.loads(
+                            lang_overrides_path.read_text(encoding="utf-8-sig")
+                        )
+                    except Exception:
+                        continue
+                    if not isinstance(lo, dict):
+                        continue
+                    l_changed = False
+                    l_del = lo.setdefault("deleted_slots", [])
+                    if not isinstance(l_del, list):
+                        l_del = []
+                        lo["deleted_slots"] = l_del
+                    for t in targets_to_delete:
+                        if t not in l_del:
+                            l_del.append(t)
+                            l_changed = True
+                    l_slots = lo.get("slots")
+                    if isinstance(l_slots, dict):
+                        for t in targets_to_delete:
+                            if t in l_slots:
+                                l_slots.pop(t, None)
+                                l_changed = True
+                        if any("avatar" in t for t in targets_to_delete):
+                            for ak in list(l_slots.keys()):
+                                if "avatar" in ak:
+                                    l_slots.pop(ak, None)
+                                    l_changed = True
+                    if l_changed:
+                        lang_overrides_path.write_text(
+                            json.dumps(lo, ensure_ascii=False, indent=2) + "\n",
+                            encoding="utf-8",
+                        )
+        except Exception:
+            pass
 
 
 def _fast_add_override_fields(

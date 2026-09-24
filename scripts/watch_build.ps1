@@ -116,7 +116,7 @@ from modu_math.layout.editor_overrides import (
     prune_legacy_answer_blank_slots,
 )
 from modu_math.layout.sanitizer import sanitize_layout
-from modu_math.layout.shared_layout import resolve_shared_layout, read_overrides
+from modu_math.layout.shared_layout import resolve_shared_layout, read_overrides, override_path
 from modu_math.layout.text_layout import fit_prompt_text
 from modu_math_web.editor.services.presentation import structure_presentation
 from modu_math.pipeline.answer_contracts import normalize_answer_for_deleted_slots, normalize_answer_for_submit_slots, validate_answer_slot_contract
@@ -151,16 +151,50 @@ layout = resolve_shared_layout(compile_problem_template_to_layout(problem), dsl_
 
 deleted_answer_slots = set()
 editor_override_slot_ids = set()
-editor_overrides_path = base.with_suffix(".editor_overrides.json")
+editor_overrides_path = override_path(dsl_path)
 if editor_overrides_path.exists():
     editor_overrides = json.loads(editor_overrides_path.read_text(encoding="utf-8-sig"))
-    editor_overrides, pruned = prune_editor_overrides(layout, editor_overrides)
+    pruned = False
+
+    layout_source = editor_overrides.get("layout_source")
+    source_dsl = None
+    if isinstance(layout_source, str) and layout_source.endswith(".dsl.py"):
+        source_dsl = (dsl_path.resolve().parent / layout_source).resolve()
+    else:
+        from modu_math.dsl.problem_store import location
+        loc = location(dsl_path)
+        if loc is not None and loc[1] != "ko":
+            source_dsl = loc[0]
+
+    if source_dsl is not None and source_dsl.exists():
+        source_overrides = read_overrides(source_dsl)
+        source_deleted = {s for s in source_overrides.get("deleted_slots", []) if isinstance(s, str)}
+        if source_deleted:
+            cur_deleted = {s for s in editor_overrides.get("deleted_slots", []) if isinstance(s, str)}
+            new_deleted = cur_deleted | source_deleted
+            if new_deleted != cur_deleted:
+                editor_overrides["deleted_slots"] = list(dict.fromkeys(list(editor_overrides.get("deleted_slots", [])) + sorted(source_deleted)))
+                pruned = True
+            override_slots = editor_overrides.get("slots")
+            if isinstance(override_slots, dict):
+                for slot_id in source_deleted:
+                    if slot_id in override_slots:
+                        override_slots.pop(slot_id, None)
+                        pruned = True
+                slot_regions = editor_overrides.get("slot_regions")
+                if isinstance(slot_regions, dict):
+                    for slot_id in source_deleted:
+                        if slot_id in slot_regions:
+                            slot_regions.pop(slot_id, None)
+                            pruned = True
+
+    editor_overrides, o_pruned = prune_editor_overrides(layout, editor_overrides)
     editor_overrides, answer_pruned = prune_deleted_legacy_answer_slots(
         layout,
         editor_overrides,
         semantic.get("answer"),
     )
-    pruned = pruned or answer_pruned
+    pruned = pruned or o_pruned or answer_pruned
     deleted_slots = editor_overrides.get("deleted_slots") if isinstance(editor_overrides, dict) else None
     override_slots = editor_overrides.get("slots") if isinstance(editor_overrides, dict) else None
     if isinstance(override_slots, dict):

@@ -60,7 +60,7 @@ def inherit_layout(localized: dict, source: dict, deleted: set[str]) -> dict:
     # Shared decorative shapes inserted in the editor have no translated text.
     local_ids = {slot["id"] for slot in localized["slots"]}
     merged.extend(deepcopy(slot) for slot in source["slots"]
-                  if slot["id"] not in local_ids and slot["kind"] not in {"text", "text_box", "label", "choice", "blank"})
+                  if slot["id"] not in local_ids and slot["id"] not in deleted and slot["kind"] not in {"text", "text_box", "label", "choice", "blank"})
     result["slots"] = merged
     result["canvas"] = deepcopy(source["canvas"])
     valid_ids = {slot["id"] for slot in merged}
@@ -110,7 +110,13 @@ def resolve_shared_layout(layout: dict, dsl_path: Path, *, ancestors: tuple[Path
     source = compile_problem_template_to_layout(template)
     original_ids = {slot["id"] for slot in source["slots"]}
     source = resolve_shared_layout(source, source_path, ancestors=(*ancestors, path))
-    overrides, _ = prune_editor_overrides(source, read_overrides(source_path))
+    source_overrides = read_overrides(source_path)
+    overrides, _ = prune_editor_overrides(source, source_overrides)
     source = apply_editor_overrides(source, overrides)
-    deleted = original_ids - {slot["id"] for slot in source["slots"]}
+    source_deleted_slots = {
+        slot_id
+        for slot_id in source_overrides.get("deleted_slots", [])
+        if isinstance(slot_id, str)
+    }
+    deleted = (original_ids - {slot["id"] for slot in source["slots"]}) | source_deleted_slots
     return inherit_layout(layout, source, deleted)
