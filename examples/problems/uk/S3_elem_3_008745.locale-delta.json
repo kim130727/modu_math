@@ -1,0 +1,191 @@
+{
+  "version": 1,
+  "source": "../ko/S3_elem_3_008745.dsl.py",
+  "changes": [
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.choice.1",
+        "text"
+      ],
+      "source": "(1) 옮겨 담은 물의 높이가 더 높은 것은 ( ㉮ 물병, ㉯ 물병)입니다.",
+      "value": "(1) Вищий рівень перелитої води має (пляшка А, пляшка Б)."
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.choice.2",
+        "text"
+      ],
+      "source": "(2) 들이가 더 많은 것은 ( ㉮ 물병, ㉯ 물병)입니다.",
+      "value": "(2) Більшу місткість має (пляшка А, пляшка Б)."
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.label.a",
+        "text"
+      ],
+      "source": "㉮",
+      "value": "А"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.label.b",
+        "text"
+      ],
+      "source": "㉯",
+      "value": "Б"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.question",
+        "text"
+      ],
+      "source": "㉮ 물병과 ㉯ 물병에 물을 가득 채운 후 모양과 크기가 같은 그릇에 옮겨 담았습니다. 그림과 같이 물을 채웠을 때에 ㉮ 물병과 ㉯ 물병의 들이를 비교하려고 합니다. 알맞은 말을 선택하세요.",
+      "value": "Пляшки А і Б наповнили водою, а потім перелили воду в посудини однакової форми й розміру. Порівняйте місткість пляшок А і Б за рівнями води на малюнку. Виберіть правильні слова."
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "title"
+      ],
+      "source": "들이 비교",
+      "value": "Порівняння місткості"
+    },
+    {
+      "path": [
+        "SEMANTIC_ANSWER"
+      ],
+      "value": {
+        "blanks": [],
+        "choices": [
+          "가 물병",
+          "나 물병"
+        ],
+        "choice_groups": [
+          {
+            "label": "(1)번 문제",
+            "choices": [
+              "가 물병",
+              "나 물병"
+            ]
+          },
+          {
+            "label": "(2)번 문제",
+            "choices": [
+              "가 물병",
+              "나 물병"
+            ]
+          }
+        ],
+        "answer_key": [
+          "나 물병",
+          "나 물병"
+        ],
+        "target": {
+          "type": "multiple_choice_group",
+          "description": "옮겨 담은 물의 높이가 더 높은 것과 들이가 더 많은 것"
+        },
+        "value": "나 물병, 나 물병",
+        "unit": ""
+      }
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "domain",
+        "objects",
+        "$items",
+        "obj.bottle.ga",
+        "label"
+      ],
+      "source": "가 물병",
+      "value": "Пляшка А"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "domain",
+        "objects",
+        "$items",
+        "obj.bottle.na",
+        "label"
+      ],
+      "source": "나 물병",
+      "value": "Пляшка Б"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "domain",
+        "objects",
+        "$items",
+        "obj.container.left",
+        "label"
+      ],
+      "source": "왼쪽 그릇",
+      "value": "Ліва посудина"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "domain",
+        "objects",
+        "$items",
+        "obj.container.right",
+        "label"
+      ],
+      "source": "오른쪽 그릇",
+      "value": "Права посудина"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "metadata",
+        "instruction"
+      ],
+      "source": "알맞은 말을 선택하세요.",
+      "value": "Виберіть правильні слова."
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "metadata",
+        "question"
+      ],
+      "source": "가 물병과 나 물병의 들이를 비교하는 문제",
+      "value": "Порівняйте місткість пляшок А і Б."
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "plan",
+        0
+      ],
+      "source": "같은 모양과 크기의 그릇에 옮겨 담은 물의 높이를 비교한다.",
+      "value": "Порівняйте висоту води, перелитої в однакові за формою й розміром посудини."
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "plan",
+        1
+      ],
+      "source": "물의 높이가 더 높은 쪽의 들이가 더 많다고 판단한다.",
+      "value": "Зробіть висновок, що більшу місткість має та, де рівень води вищий."
+    }
+  ]
+}

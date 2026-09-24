@@ -91,6 +91,9 @@ MATH_RE = re.compile(r"^[\d\s+\-*/=<>≤≥().,\[\]{}:]+$")
 
 
 def load_dsl_module(path: Path) -> ModuleType:
+    from modu_math.dsl.variants import delta_path, load_module
+    if delta_path(path).exists():
+        return load_module(path)
     source = path.read_text(encoding="utf-8")
     digest = hashlib.sha256(source.encode("utf-8")).hexdigest()[:16]
     spec = importlib.util.spec_from_file_location(f"_modu_dsl_{path.stem}_{digest}", path)

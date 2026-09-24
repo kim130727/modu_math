@@ -1,0 +1,937 @@
+{
+  "version": 1,
+  "source": "../ko/S3_elem_3_008732.dsl.py",
+  "changes": [
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "regions",
+        "$items",
+        "region.bottom"
+      ],
+      "value": {
+        "$type": "Region",
+        "id": "region.bottom",
+        "role": "support",
+        "flow": "absolute",
+        "slot_ids": {
+          "$tuple": [
+            "slot.b39"
+          ]
+        }
+      }
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "regions",
+        "$items",
+        "region.top",
+        "slot_ids",
+        "$tuple"
+      ],
+      "source": [
+        "slot.q2",
+        "slot.q9",
+        "slot.q10",
+        "slot.q11",
+        "slot.q18",
+        "slot.q19",
+        "slot.q20",
+        "slot.q21",
+        "slot.q22",
+        "slot.q23",
+        "slot.q24",
+        "slot.q25",
+        "slot.q26",
+        "slot.q27",
+        "slot.q28",
+        "slot.math.fraction.num",
+        "slot.math.fraction.bar",
+        "slot.math.fraction.den",
+        "slot.math.fraction_1.num",
+        "slot.math.fraction_1.bar",
+        "slot.math.fraction_1.den",
+        "slot.math.fraction_2.num",
+        "slot.math.fraction_2.bar",
+        "slot.math.fraction_2.den"
+      ],
+      "value": [
+        "slot.q2",
+        "slot.q9",
+        "slot.q10",
+        "slot.q11",
+        "slot.q18",
+        "slot.q19",
+        "slot.q20",
+        "slot.q21",
+        "slot.q22",
+        "slot.q23",
+        "slot.q24",
+        "slot.q25",
+        "slot.q26",
+        "slot.q27",
+        "slot.q28",
+        "slot.q29",
+        "slot.q30",
+        "slot.q31",
+        "slot.q32",
+        "slot.math.fraction.num",
+        "slot.math.fraction.bar",
+        "slot.math.fraction.den",
+        "slot.math.fraction_1.num",
+        "slot.math.fraction_1.bar",
+        "slot.math.fraction_1.den",
+        "slot.math.fraction_2.num",
+        "slot.math.fraction_2.bar",
+        "slot.math.fraction_2.den"
+      ]
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "regions",
+        "$order"
+      ],
+      "source": [
+        "region.top"
+      ],
+      "value": [
+        "region.top",
+        "region.bottom"
+      ]
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.b39"
+      ],
+      "value": {
+        "$type": "TextSlot",
+        "id": "slot.b39",
+        "kind": "text",
+        "prompt": "",
+        "interaction": null,
+        "input_style": null,
+        "text": "",
+        "style_role": "label",
+        "x": 0.0,
+        "y": 0.0,
+        "width": null,
+        "height": null,
+        "font_size": 28,
+        "max_width": null,
+        "font_family": null,
+        "align": null,
+        "valign": null,
+        "line_height": null,
+        "anchor": null,
+        "fill": null,
+        "transform": null,
+        "semantic_role": null
+      }
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q2",
+        "font_size"
+      ],
+      "source": 30,
+      "value": 28
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q2",
+        "text"
+      ],
+      "source": "사다리를 타고 내려가 도착한 곳이 참이면 ○표, 거짓이면 ×표하세요.",
+      "value": "Follow the ladder down and mark ○ if the destination is correct,\nor × if it is incorrect."
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q2",
+        "y"
+      ],
+      "source": 105,
+      "value": 75
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q24",
+        "height"
+      ],
+      "source": 45,
+      "value": 56
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q24",
+        "width"
+      ],
+      "source": 110,
+      "value": 126
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q24",
+        "x"
+      ],
+      "source": 213,
+      "value": 212
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q25",
+        "height"
+      ],
+      "source": 45,
+      "value": 56
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q25",
+        "width"
+      ],
+      "source": 100,
+      "value": 126
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q25",
+        "x"
+      ],
+      "source": 370,
+      "value": 362
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q26",
+        "height"
+      ],
+      "source": 45,
+      "value": 56
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q26",
+        "width"
+      ],
+      "source": 100,
+      "value": 126
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q26",
+        "x"
+      ],
+      "source": 517,
+      "value": 512
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q27",
+        "$type"
+      ],
+      "source": "TextSlot",
+      "value": "TextBoxSlot"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q27",
+        "align"
+      ],
+      "source": null,
+      "value": "center"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q27",
+        "anchor"
+      ],
+      "delete": true,
+      "source": null
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q27",
+        "font_size"
+      ],
+      "source": 30,
+      "value": 22
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q27",
+        "height"
+      ],
+      "source": null,
+      "value": 56
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q27",
+        "kind"
+      ],
+      "source": "text",
+      "value": "text_box"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q27",
+        "max_width"
+      ],
+      "delete": true,
+      "source": null
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q27",
+        "text"
+      ],
+      "source": "가분수",
+      "value": "Improper\nfraction"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q27",
+        "valign"
+      ],
+      "source": null,
+      "value": "middle"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q27",
+        "width"
+      ],
+      "source": null,
+      "value": 126
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q27",
+        "x"
+      ],
+      "source": 230,
+      "value": 212
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q27",
+        "y"
+      ],
+      "source": 455,
+      "value": 425
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q28",
+        "$type"
+      ],
+      "source": "TextSlot",
+      "value": "TextBoxSlot"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q28",
+        "align"
+      ],
+      "source": null,
+      "value": "center"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q28",
+        "anchor"
+      ],
+      "delete": true,
+      "source": null
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q28",
+        "font_size"
+      ],
+      "source": 30,
+      "value": 22
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q28",
+        "height"
+      ],
+      "source": null,
+      "value": 56
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q28",
+        "kind"
+      ],
+      "source": "text",
+      "value": "text_box"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q28",
+        "max_width"
+      ],
+      "delete": true,
+      "source": null
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q28",
+        "text"
+      ],
+      "source": "가분수",
+      "value": "Improper\nfraction"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q28",
+        "valign"
+      ],
+      "source": null,
+      "value": "middle"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q28",
+        "width"
+      ],
+      "source": null,
+      "value": 126
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q28",
+        "x"
+      ],
+      "source": 380,
+      "value": 362
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q28",
+        "y"
+      ],
+      "source": 455,
+      "value": 425
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q29",
+        "$type"
+      ],
+      "source": "TextSlot",
+      "value": "TextBoxSlot"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q29",
+        "align"
+      ],
+      "source": null,
+      "value": "center"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q29",
+        "anchor"
+      ],
+      "delete": true,
+      "source": null
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q29",
+        "font_size"
+      ],
+      "source": 30,
+      "value": 22
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q29",
+        "height"
+      ],
+      "source": null,
+      "value": 56
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q29",
+        "kind"
+      ],
+      "source": "text",
+      "value": "text_box"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q29",
+        "max_width"
+      ],
+      "delete": true,
+      "source": null
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q29",
+        "text"
+      ],
+      "source": "진분수",
+      "value": "Proper\nfraction"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q29",
+        "valign"
+      ],
+      "source": null,
+      "value": "middle"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q29",
+        "width"
+      ],
+      "source": null,
+      "value": 126
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q29",
+        "x"
+      ],
+      "source": 530,
+      "value": 512
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q29",
+        "y"
+      ],
+      "source": 455,
+      "value": 425
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q30",
+        "anchor"
+      ],
+      "source": null,
+      "value": "middle"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q30",
+        "font_size"
+      ],
+      "source": 30,
+      "value": 28
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q30",
+        "x"
+      ],
+      "source": 222,
+      "value": 275
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q30",
+        "y"
+      ],
+      "source": 512,
+      "value": 525
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q31",
+        "anchor"
+      ],
+      "source": null,
+      "value": "middle"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q31",
+        "font_size"
+      ],
+      "source": 30,
+      "value": 28
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q31",
+        "x"
+      ],
+      "source": 372,
+      "value": 425
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q31",
+        "y"
+      ],
+      "source": 512,
+      "value": 525
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q32",
+        "anchor"
+      ],
+      "source": null,
+      "value": "middle"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q32",
+        "font_size"
+      ],
+      "source": 30,
+      "value": 28
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q32",
+        "x"
+      ],
+      "source": 522,
+      "value": 575
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q32",
+        "y"
+      ],
+      "source": 512,
+      "value": 525
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$order"
+      ],
+      "source": [
+        "slot.q2",
+        "slot.q9",
+        "slot.q10",
+        "slot.q11",
+        "slot.q18",
+        "slot.q19",
+        "slot.q20",
+        "slot.q21",
+        "slot.q22",
+        "slot.q23",
+        "slot.q24",
+        "slot.q25",
+        "slot.q26",
+        "slot.q27",
+        "slot.q28",
+        "slot.q29",
+        "slot.q30",
+        "slot.q31",
+        "slot.q32",
+        "slot.math.fraction.num",
+        "slot.math.fraction.bar",
+        "slot.math.fraction.den",
+        "slot.math.fraction_1.num",
+        "slot.math.fraction_1.bar",
+        "slot.math.fraction_1.den",
+        "slot.math.fraction_2.num",
+        "slot.math.fraction_2.bar",
+        "slot.math.fraction_2.den"
+      ],
+      "value": [
+        "slot.q2",
+        "slot.q9",
+        "slot.q10",
+        "slot.q11",
+        "slot.q18",
+        "slot.q19",
+        "slot.q20",
+        "slot.q21",
+        "slot.q22",
+        "slot.q23",
+        "slot.q24",
+        "slot.q25",
+        "slot.q26",
+        "slot.q27",
+        "slot.q28",
+        "slot.q29",
+        "slot.q30",
+        "slot.q31",
+        "slot.q32",
+        "slot.b39",
+        "slot.math.fraction.num",
+        "slot.math.fraction.bar",
+        "slot.math.fraction.den",
+        "slot.math.fraction_1.num",
+        "slot.math.fraction_1.bar",
+        "slot.math.fraction_1.den",
+        "slot.math.fraction_2.num",
+        "slot.math.fraction_2.bar",
+        "slot.math.fraction_2.den"
+      ]
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "title"
+      ],
+      "source": "사다리를 타고 내려가 도착한 곳이 참이면 ○표, 거짓이면 ×표 하세요.",
+      "value": "Follow the ladder down and mark ○ if the destination is correct, or × if it is incorrect."
+    },
+    {
+      "path": [
+        "SEMANTIC_ANSWER"
+      ],
+      "value": {
+        "blanks": [],
+        "choices": [
+          "○",
+          "×"
+        ],
+        "choice_groups": [
+          {
+            "label": "2/8",
+            "choices": [
+              "○",
+              "×"
+            ]
+          },
+          {
+            "label": "9/10",
+            "choices": [
+              "○",
+              "×"
+            ]
+          },
+          {
+            "label": "4/4",
+            "choices": [
+              "○",
+              "×"
+            ]
+          }
+        ],
+        "answer_key": [
+          "○",
+          "×",
+          "○"
+        ],
+        "target": {
+          "type": "○×표시",
+          "description": "사다리를 타고 내려가 도착한 곳이 참인지 거짓인지의 표시"
+        },
+        "value": "○, ×, ○",
+        "unit": ""
+      }
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "plan",
+        0
+      ],
+      "source": "각 분수의 도착 라벨과 화면에 제시된 분류를 대응시켜 본다.",
+      "value": "Match each fraction destination label with the classification shown on the screen."
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "plan",
+        1
+      ],
+      "source": "보이는 정답 표기를 그대로 기록한다.",
+      "value": "Record the displayed answer notation exactly."
+    }
+  ]
+}

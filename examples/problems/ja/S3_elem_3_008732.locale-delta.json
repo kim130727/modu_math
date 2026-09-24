@@ -1,0 +1,255 @@
+{
+  "version": 1,
+  "source": "../ko/S3_elem_3_008732.dsl.py",
+  "changes": [
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "regions",
+        "$items",
+        "region.bottom"
+      ],
+      "value": {
+        "$type": "Region",
+        "id": "region.bottom",
+        "role": "support",
+        "flow": "absolute",
+        "slot_ids": {
+          "$tuple": [
+            "slot.b39"
+          ]
+        }
+      }
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "regions",
+        "$order"
+      ],
+      "source": [
+        "region.top"
+      ],
+      "value": [
+        "region.top",
+        "region.bottom"
+      ]
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.b39"
+      ],
+      "value": {
+        "$type": "TextSlot",
+        "id": "slot.b39",
+        "kind": "text",
+        "prompt": "",
+        "interaction": null,
+        "input_style": null,
+        "text": "",
+        "style_role": "label",
+        "x": 0.0,
+        "y": 0.0,
+        "width": null,
+        "height": null,
+        "font_size": 28,
+        "max_width": null,
+        "font_family": null,
+        "align": null,
+        "valign": null,
+        "line_height": null,
+        "anchor": null,
+        "fill": null,
+        "transform": null,
+        "semantic_role": null
+      }
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q2",
+        "text"
+      ],
+      "source": "사다리를 타고 내려가 도착한 곳이 참이면 ○표, 거짓이면 ×표하세요.",
+      "value": "はしごを下り、着いた場所が正しければ○、誤りなら×を付けなさい。"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q27",
+        "text"
+      ],
+      "source": "가분수",
+      "value": "仮分数"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q28",
+        "text"
+      ],
+      "source": "가분수",
+      "value": "仮分数"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q29",
+        "text"
+      ],
+      "source": "진분수",
+      "value": "真分数"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$order"
+      ],
+      "source": [
+        "slot.q2",
+        "slot.q9",
+        "slot.q10",
+        "slot.q11",
+        "slot.q18",
+        "slot.q19",
+        "slot.q20",
+        "slot.q21",
+        "slot.q22",
+        "slot.q23",
+        "slot.q24",
+        "slot.q25",
+        "slot.q26",
+        "slot.q27",
+        "slot.q28",
+        "slot.q29",
+        "slot.q30",
+        "slot.q31",
+        "slot.q32",
+        "slot.math.fraction.num",
+        "slot.math.fraction.bar",
+        "slot.math.fraction.den",
+        "slot.math.fraction_1.num",
+        "slot.math.fraction_1.bar",
+        "slot.math.fraction_1.den",
+        "slot.math.fraction_2.num",
+        "slot.math.fraction_2.bar",
+        "slot.math.fraction_2.den"
+      ],
+      "value": [
+        "slot.q2",
+        "slot.q9",
+        "slot.q10",
+        "slot.q11",
+        "slot.q18",
+        "slot.q19",
+        "slot.q20",
+        "slot.q21",
+        "slot.q22",
+        "slot.q23",
+        "slot.q24",
+        "slot.q25",
+        "slot.q26",
+        "slot.q27",
+        "slot.q28",
+        "slot.q29",
+        "slot.q30",
+        "slot.q31",
+        "slot.q32",
+        "slot.b39",
+        "slot.math.fraction.num",
+        "slot.math.fraction.bar",
+        "slot.math.fraction.den",
+        "slot.math.fraction_1.num",
+        "slot.math.fraction_1.bar",
+        "slot.math.fraction_1.den",
+        "slot.math.fraction_2.num",
+        "slot.math.fraction_2.bar",
+        "slot.math.fraction_2.den"
+      ]
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "title"
+      ],
+      "source": "사다리를 타고 내려가 도착한 곳이 참이면 ○표, 거짓이면 ×표 하세요.",
+      "value": "はしごを下り、着いた場所が正しければ○、誤りなら×を付けなさい。"
+    },
+    {
+      "path": [
+        "SEMANTIC_ANSWER"
+      ],
+      "value": {
+        "blanks": [],
+        "choices": [
+          "○",
+          "×"
+        ],
+        "choice_groups": [
+          {
+            "label": "2/8",
+            "choices": [
+              "○",
+              "×"
+            ]
+          },
+          {
+            "label": "9/10",
+            "choices": [
+              "○",
+              "×"
+            ]
+          },
+          {
+            "label": "4/4",
+            "choices": [
+              "○",
+              "×"
+            ]
+          }
+        ],
+        "answer_key": [
+          "○",
+          "×",
+          "○"
+        ],
+        "target": {
+          "type": "○×표시",
+          "description": "사다리를 타고 내려가 도착한 곳이 참인지 거짓인지의 표시"
+        },
+        "value": "○, ×, ○",
+        "unit": ""
+      }
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "plan",
+        0
+      ],
+      "source": "각 분수의 도착 라벨과 화면에 제시된 분류를 대응시켜 본다.",
+      "value": "各分数の到着ラベルと画面の分類を対応させます。"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "plan",
+        1
+      ],
+      "source": "보이는 정답 표기를 그대로 기록한다.",
+      "value": "表示された答えの記号をそのまま記録します。"
+    }
+  ]
+}

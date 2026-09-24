@@ -137,12 +137,13 @@ def normalize_review(value):
 
 
 def save_answer_review(problem_id, value):
+    from modu_math.dsl.variants import read_source, write_source
     review = normalize_review(value)
     paths = resolve_problem_paths(problem_id)
-    module = cst.parse_module(paths.dsl_path.read_text(encoding="utf-8"))
+    module = cst.parse_module(read_source(paths.dsl_path))
     module = module.visit(AnswerSlotKeyUpdater(review))
     updater = TutorRendererFlowUpdater(review, variable_name="EDITOR_ANSWER_REVIEW")
-    paths.dsl_path.write_text(module.visit(updater).code, encoding="utf-8")
+    write_source(paths.dsl_path, module.visit(updater).code)
     return review
 
 

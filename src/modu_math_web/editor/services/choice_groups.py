@@ -40,9 +40,9 @@ def normalize_choice_groups(groups):
 def save_choice_groups(problem_id, groups):
     groups = normalize_choice_groups(groups)
     paths = resolve_problem_paths(problem_id)
-    module = cst.parse_module(paths.dsl_path.read_text(encoding='utf-8'))
+    module = cst.parse_module(paths.read_dsl())
     updater = TutorRendererFlowUpdater(groups, variable_name='EDITOR_CHOICE_GROUPS')
-    paths.dsl_path.write_text(module.visit(updater).code, encoding='utf-8')
+    paths.write_dsl(module.visit(updater).code)
     return groups
 
 

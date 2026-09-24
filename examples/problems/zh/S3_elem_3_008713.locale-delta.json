@@ -1,0 +1,235 @@
+{
+  "version": 1,
+  "source": "../ko/S3_elem_3_008713.dsl.py",
+  "changes": [
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.option.1",
+        "text"
+      ],
+      "source": "ㄱ",
+      "value": "甲"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.option.1.copy1",
+        "text"
+      ],
+      "source": "① ㄱ, ㄴ, ㄷ",
+      "value": "① 甲, 乙, 丙"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.option.1.copy2",
+        "text"
+      ],
+      "source": "ㄴ",
+      "value": "乙"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.option.1.copy3",
+        "text"
+      ],
+      "source": "ㄷ",
+      "value": "丙"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.option.2",
+        "text"
+      ],
+      "source": "② ㄴ, ㄷ, ㄱ",
+      "value": "② 乙, 丙, 甲"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.option.3",
+        "text"
+      ],
+      "source": "③ ㄷ, ㄱ, ㄴ",
+      "value": "③ 丙, 甲, 乙"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.option.4",
+        "text"
+      ],
+      "source": "④ ㄱ, ㄷ, ㄴ",
+      "value": "④ 甲, 丙, 乙"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.option.5",
+        "text"
+      ],
+      "source": "⑤ ㄴ, ㄱ, ㄷ",
+      "value": "⑤ 乙, 甲, 丙"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.stem",
+        "text"
+      ],
+      "source": "반지름이 1 cm인 원을 그리는 순서를 바르게 나타낸 것을 고르세요.",
+      "value": "选择画半径为1厘米的圆的正确顺序。"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "title"
+      ],
+      "source": "반지름이 1 cm인 원을 그리는 순서",
+      "value": "画半径为1厘米的圆的步骤"
+    },
+    {
+      "path": [
+        "SEMANTIC_ANSWER"
+      ],
+      "value": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+          "type": "choice_number",
+          "description": "원 그리기 순서의 정답 선택지"
+        },
+        "value": 2,
+        "unit": ""
+      }
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "domain",
+        "objects",
+        "$items",
+        "obj.step.g1",
+        "name"
+      ],
+      "source": "ㄱ",
+      "value": "甲"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "domain",
+        "objects",
+        "$items",
+        "obj.step.g2",
+        "name"
+      ],
+      "source": "ㄴ",
+      "value": "乙"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "domain",
+        "objects",
+        "$items",
+        "obj.step.g3",
+        "name"
+      ],
+      "source": "ㄷ",
+      "value": "丙"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "checks",
+        "$items",
+        "check.1",
+        "expr"
+      ],
+      "source": "선택지 ② = ㄴ, ㄷ, ㄱ",
+      "value": "선택지 ② = 乙, 丙, 甲"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "given",
+        0,
+        "value"
+      ],
+      "source": "ㄱ",
+      "value": "甲"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "given",
+        1,
+        "value"
+      ],
+      "source": "ㄴ",
+      "value": "乙"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "given",
+        2,
+        "value"
+      ],
+      "source": "ㄷ",
+      "value": "丙"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "plan",
+        0
+      ],
+      "source": "해설의 순서를 따라 올바른 단계 배열을 확인한다.",
+      "value": "按照解析的顺序确认正确的步骤排列。"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "plan",
+        1
+      ],
+      "source": "해당 순서와 같은 선택지를 찾는다.",
+      "value": "找出与该顺序相同的选项。"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "steps",
+        "$items",
+        "step.1",
+        "expr"
+      ],
+      "source": "ㄴ → ㄷ → ㄱ",
+      "value": "乙 → 丙 → 甲"
+    }
+  ]
+}

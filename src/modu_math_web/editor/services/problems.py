@@ -316,6 +316,14 @@ class ProblemPaths:
     def artifact_path(self, key: str) -> Path:
         return self.base_dir / f"{self.artifact_base}{ARTIFACT_FILES[key]}"
 
+    def read_dsl(self) -> str:
+        from modu_math.dsl.variants import read_source
+        return read_source(self.dsl_path)
+
+    def write_dsl(self, source: str) -> None:
+        from modu_math.dsl.variants import write_source
+        write_source(self.dsl_path, source)
+
 
 def problems_root() -> Path:
     return Path(settings.PROBLEMS_ROOT).resolve()
@@ -503,6 +511,15 @@ def resolve_problem_paths(problem_id: str) -> ProblemPaths:
     if target != root and root not in target.parents:
         raise ValueError("invalid problem path")
 
+    from modu_math.dsl.variants import delta_path
+    virtual = target if target.name.endswith(".dsl.py") else target.with_name(target.name + ".dsl.py")
+    if delta_path(virtual).is_file():
+        return ProblemPaths(
+            problem_id=_display_problem_id(alias, virtual.relative_to(root).as_posix()),
+            root_alias=alias, root_dir=root, base_dir=virtual.parent,
+            dsl_path=virtual, artifact_base=virtual.name.removesuffix(".dsl.py"),
+        )
+
     if target.exists() and target.is_dir():
         dsl_path = target / "problem.dsl.py"
         if not dsl_path.exists():
@@ -637,7 +654,11 @@ def list_problem_directories(*, include_artifacts: bool = False) -> list[dict[st
     for alias, root in problem_roots():
         if not root.exists():
             continue
-        for dsl_path in sorted(root.rglob("*.dsl.py")):
+        from modu_math.dsl.variants import SUFFIX
+        dsl_paths = set(root.rglob("*.dsl.py"))
+        dsl_paths.update(path.with_name(path.name.removesuffix(SUFFIX) + ".dsl.py")
+                         for path in root.rglob("*" + SUFFIX))
+        for dsl_path in sorted(dsl_paths):
             child = dsl_path.parent
             if dsl_path.name == "problem.dsl.py":
                 artifact_base = "problem"
@@ -698,13 +719,21 @@ def list_problem_directories(*, include_artifacts: bool = False) -> list[dict[st
 
 def read_problem_detail(problem_id: str) -> dict[str, Any]:
     paths = resolve_problem_paths(problem_id)
-    dsl = paths.dsl_path.read_text(encoding="utf-8")
+    from modu_math.dsl.variants import delta_path, source_path, review_paths
+    is_variant = delta_path(paths.dsl_path).exists()
+    dsl = paths.read_dsl()
     solvable_path = _find_solvable_path(paths.base_dir, paths.artifact_base)
     svg_path = paths.artifact_path("svg")
     return {
         "problem_id": paths.problem_id,
         "base_dir": str(paths.base_dir),
         "dsl": dsl,
+        "dsl_storage": "locale_delta" if is_variant else "source",
+        "source_problem_id": (
+            _display_problem_id(paths.root_alias, source_path(paths.dsl_path).relative_to(paths.root_dir).as_posix())
+            if is_variant else paths.problem_id
+        ),
+        "translation_review_paths": review_paths(paths.dsl_path),
         "semantic": _read_json(paths.artifact_path("semantic")),
         "solvable": _read_json(solvable_path) if solvable_path else None,
         "layout": _read_json(paths.artifact_path("layout")),
@@ -737,7 +766,8 @@ def create_blank_problem(problem_id: str, title: str | None = None) -> dict[str,
         template_problem_id = PurePosixPath(relative_id).name
         create_parent_only = False
 
-    if dsl_path.exists():
+    from modu_math.dsl.variants import available
+    if available(dsl_path):
         raise FileExistsError(f"problem already exists: {display_id}")
     if not create_parent_only and base_dir.exists():
         raise FileExistsError(f"problem folder already exists: {display_id}")
@@ -755,15 +785,15 @@ def create_blank_problem(problem_id: str, title: str | None = None) -> dict[str,
 def save_problem_dsl(problem_id: str, dsl: str) -> tuple[ProblemPaths, str]:
     paths = resolve_problem_paths(problem_id)
     dsl = format_dsl_source(dsl)
-    paths.dsl_path.write_text(dsl, encoding="utf-8")
+    paths.write_dsl(dsl)
     return paths, dsl
 
 
 def format_problem_dsl(problem_id: str) -> tuple[ProblemPaths, str]:
     paths = resolve_problem_paths(problem_id)
-    dsl = paths.dsl_path.read_text(encoding="utf-8")
+    dsl = paths.read_dsl()
     formatted = format_dsl_source(dsl)
-    paths.dsl_path.write_text(formatted, encoding="utf-8")
+    paths.write_dsl(formatted)
     return paths, formatted
 
 

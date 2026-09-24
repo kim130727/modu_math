@@ -1,0 +1,235 @@
+{
+  "version": 1,
+  "source": "../ko/S3_elem_3_008713.dsl.py",
+  "changes": [
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.option.1",
+        "text"
+      ],
+      "source": "ㄱ",
+      "value": "ក"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.option.1.copy1",
+        "text"
+      ],
+      "source": "① ㄱ, ㄴ, ㄷ",
+      "value": "① ក, ខ, គ"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.option.1.copy2",
+        "text"
+      ],
+      "source": "ㄴ",
+      "value": "ខ"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.option.1.copy3",
+        "text"
+      ],
+      "source": "ㄷ",
+      "value": "គ"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.option.2",
+        "text"
+      ],
+      "source": "② ㄴ, ㄷ, ㄱ",
+      "value": "② ខ, គ, ក"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.option.3",
+        "text"
+      ],
+      "source": "③ ㄷ, ㄱ, ㄴ",
+      "value": "③ គ, ក, ខ"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.option.4",
+        "text"
+      ],
+      "source": "④ ㄱ, ㄷ, ㄴ",
+      "value": "④ ក, គ, ខ"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.option.5",
+        "text"
+      ],
+      "source": "⑤ ㄴ, ㄱ, ㄷ",
+      "value": "⑤ ខ, ក, គ"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.stem",
+        "text"
+      ],
+      "source": "반지름이 1 cm인 원을 그리는 순서를 바르게 나타낸 것을 고르세요.",
+      "value": "ជ្រើសលំដាប់ត្រឹមត្រូវសម្រាប់គូររង្វង់ដែលមានកាំ 1 cm។"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "title"
+      ],
+      "source": "반지름이 1 cm인 원을 그리는 순서",
+      "value": "លំដាប់គូររង្វង់ដែលមានកាំ 1 cm"
+    },
+    {
+      "path": [
+        "SEMANTIC_ANSWER"
+      ],
+      "value": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+          "type": "choice_number",
+          "description": "원 그리기 순서의 정답 선택지"
+        },
+        "value": 2,
+        "unit": ""
+      }
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "domain",
+        "objects",
+        "$items",
+        "obj.step.g1",
+        "name"
+      ],
+      "source": "ㄱ",
+      "value": "ក"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "domain",
+        "objects",
+        "$items",
+        "obj.step.g2",
+        "name"
+      ],
+      "source": "ㄴ",
+      "value": "ខ"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "domain",
+        "objects",
+        "$items",
+        "obj.step.g3",
+        "name"
+      ],
+      "source": "ㄷ",
+      "value": "គ"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "checks",
+        "$items",
+        "check.1",
+        "expr"
+      ],
+      "source": "선택지 ② = ㄴ, ㄷ, ㄱ",
+      "value": "선택지 ② = ខ, គ, ក"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "given",
+        0,
+        "value"
+      ],
+      "source": "ㄱ",
+      "value": "ក"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "given",
+        1,
+        "value"
+      ],
+      "source": "ㄴ",
+      "value": "ខ"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "given",
+        2,
+        "value"
+      ],
+      "source": "ㄷ",
+      "value": "គ"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "plan",
+        0
+      ],
+      "source": "해설의 순서를 따라 올바른 단계 배열을 확인한다.",
+      "value": "ធ្វើតាមការពន្យល់ ដើម្បីពិនិត្យលំដាប់ជំហានត្រឹមត្រូវ។"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "plan",
+        1
+      ],
+      "source": "해당 순서와 같은 선택지를 찾는다.",
+      "value": "រកជម្រើសដែលត្រូវនឹងលំដាប់នោះ។"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "steps",
+        "$items",
+        "step.1",
+        "expr"
+      ],
+      "source": "ㄴ → ㄷ → ㄱ",
+      "value": "ខ → គ → ក"
+    }
+  ]
+}

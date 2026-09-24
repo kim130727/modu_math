@@ -25,6 +25,9 @@ export interface ProblemDetailResponse {
   problem_id: string;
   base_dir: string;
   dsl: string;
+  dsl_storage?: "source" | "locale_delta";
+  source_problem_id?: string;
+  translation_review_paths?: (string | number)[][];
   layout: LayoutDocument | null;
   renderer: RendererDocument | null;
   semantic: Record<string, unknown> | null;

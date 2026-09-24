@@ -1,0 +1,470 @@
+{
+  "version": 1,
+  "source": "../ko/S3_elem_3_008661.dsl.py",
+  "changes": [
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.lb.bieup",
+        "text"
+      ],
+      "source": "ㅂ",
+      "value": "己"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.lb.digeut",
+        "text"
+      ],
+      "source": "ㄷ",
+      "value": "丙"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.lb.giyeok",
+        "text"
+      ],
+      "source": "ㄱ",
+      "value": "甲"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.lb.mieum",
+        "text"
+      ],
+      "source": "ㅁ",
+      "value": "戊"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.lb.nieun",
+        "text"
+      ],
+      "source": "ㄴ",
+      "value": "乙"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.lb.rieul",
+        "text"
+      ],
+      "source": "ㄹ",
+      "value": "丁"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.lb.sieut1",
+        "text"
+      ],
+      "source": "ㅈ",
+      "value": "壬"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.lb.sieut2",
+        "text"
+      ],
+      "source": "ㅅ",
+      "value": "庚"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.opt1",
+        "text"
+      ],
+      "source": "① 선분 ㄱㄴ",
+      "value": "① 线段甲乙"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.opt2",
+        "text"
+      ],
+      "source": "② 선분 ㄷㄹ",
+      "value": "② 线段丙丁"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.opt3",
+        "text"
+      ],
+      "source": "③ 선분 ㅁㅂ",
+      "value": "③ 线段戊己"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.opt4",
+        "text"
+      ],
+      "source": "④ 선분 ㅅㅈ",
+      "value": "④ 线段庚壬"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q_text",
+        "text"
+      ],
+      "source": "길이가 가장 긴 선분은 어느 것인가요?",
+      "value": "哪条线段最长？"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "title"
+      ],
+      "source": "길이가 가장 긴 선분은 어느 것인가요?",
+      "value": "哪条线段最长？"
+    },
+    {
+      "path": [
+        "SEMANTIC_ANSWER"
+      ],
+      "value": {
+        "blanks": [],
+        "choices": [
+          "1. 선분 甲乙",
+          "2. 선분 丙丁",
+          "3. 선분 戊己",
+          "4. 선분 庚壬"
+        ],
+        "answer_key": [
+          "2. 선분 丙丁"
+        ],
+        "target": {
+          "type": "choice_selection",
+          "description": "길이가 가장 긴 선분"
+        },
+        "value": "2. 선분 丙丁",
+        "unit": ""
+      }
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "answer",
+        "answer_key",
+        0
+      ],
+      "source": "2. 선분 ㄷㄹ",
+      "value": "2. 선분 丙丁"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "answer",
+        "choices",
+        0
+      ],
+      "source": "1. 선분 ㄱㄴ",
+      "value": "1. 선분 甲乙"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "answer",
+        "choices",
+        1
+      ],
+      "source": "2. 선분 ㄷㄹ",
+      "value": "2. 선분 丙丁"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "answer",
+        "choices",
+        2
+      ],
+      "source": "3. 선분 ㅁㅂ",
+      "value": "3. 선분 戊己"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "answer",
+        "choices",
+        3
+      ],
+      "source": "4. 선분 ㅅㅈ",
+      "value": "4. 선분 庚壬"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "answer",
+        "value"
+      ],
+      "source": "2. 선분 ㄷㄹ",
+      "value": "2. 선분 丙丁"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "domain",
+        "objects",
+        "$items",
+        "obj.segment.dr",
+        "label"
+      ],
+      "source": "ㄷㄹ",
+      "value": "丙丁"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "domain",
+        "objects",
+        "$items",
+        "obj.segment.gn",
+        "label"
+      ],
+      "source": "ㄱㄴ",
+      "value": "甲乙"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "domain",
+        "objects",
+        "$items",
+        "obj.segment.mb",
+        "label"
+      ],
+      "source": "ㅁㅂ",
+      "value": "戊己"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "domain",
+        "objects",
+        "$items",
+        "obj.segment.ss",
+        "label"
+      ],
+      "source": "스ㅅ",
+      "value": "庚庚"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "metadata",
+        "instruction"
+      ],
+      "source": "",
+      "value": "도형을 보고 보기 중 맞는 선분을 고르기"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "answer",
+        "answer_key",
+        0
+      ],
+      "source": "2. 선분 ㄷㄹ",
+      "value": "2. 선분 丙丁"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "answer",
+        "choices",
+        0
+      ],
+      "source": "1. 선분 ㄱㄴ",
+      "value": "1. 선분 甲乙"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "answer",
+        "choices",
+        1
+      ],
+      "source": "2. 선분 ㄷㄹ",
+      "value": "2. 선분 丙丁"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "answer",
+        "choices",
+        2
+      ],
+      "source": "3. 선분 ㅁㅂ",
+      "value": "3. 선분 戊己"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "answer",
+        "choices",
+        3
+      ],
+      "source": "4. 선분 ㅅㅈ",
+      "value": "4. 선분 庚壬"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "answer",
+        "value"
+      ],
+      "source": "2. 선분 ㄷㄹ",
+      "value": "2. 선분 丙丁"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "checks",
+        "$items",
+        "check.1",
+        "actual"
+      ],
+      "source": "2. 선분 ㄷㄹ",
+      "value": "2. 선분 丙丁"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "checks",
+        "$items",
+        "check.1",
+        "expected"
+      ],
+      "source": "2. 선분 ㄷㄹ",
+      "value": "2. 선분 丙丁"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "given",
+        0,
+        "value",
+        "label"
+      ],
+      "source": "선분 ㄱㄴ",
+      "value": "선분 甲乙"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "given",
+        1,
+        "value",
+        "label"
+      ],
+      "source": "선분 ㄷㄹ",
+      "value": "선분 丙丁"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "given",
+        2,
+        "value",
+        "label"
+      ],
+      "source": "선분 ㅁㅂ",
+      "value": "선분 戊己"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "given",
+        3,
+        "value",
+        "label"
+      ],
+      "source": "선분 ㅅㅈ",
+      "value": "선분 庚壬"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "plan",
+        0
+      ],
+      "source": "원 안의 네 선분을 비교한다.",
+      "value": "比较圆内的四条线段。"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "plan",
+        1
+      ],
+      "source": "중심을 지나는 선분을 찾는다.",
+      "value": "找出经过圆心的线段。"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "plan",
+        2
+      ],
+      "source": "보기에서 그 선분에 해당하는 번호를 고른다.",
+      "value": "选择与该线段对应的编号。"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "steps",
+        "$items",
+        "step.1",
+        "value"
+      ],
+      "source": "선분 ㄷㄹ",
+      "value": "선분 丙丁"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "steps",
+        "$items",
+        "step.2",
+        "value"
+      ],
+      "source": "2. 선분 ㄷㄹ",
+      "value": "2. 선분 丙丁"
+    }
+  ]
+}

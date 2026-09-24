@@ -285,6 +285,14 @@ def render_localized_source(
 
 
 def write_output(path: Path, source: str, *, force: bool) -> bool:
+    from modu_math.dsl.variants import delta_path, read_source, write_source
+    if delta_path(path).exists():
+        if read_source(path) == source:
+            return False
+        if not force:
+            raise FileExistsError(f"Localized data already exists: {delta_path(path)}")
+        write_source(path, source)
+        return True
     if path.exists():
         current = path.read_text(encoding="utf-8")
         if current == source:

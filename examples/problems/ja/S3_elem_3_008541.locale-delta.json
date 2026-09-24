@@ -1,0 +1,277 @@
+{
+  "version": 1,
+  "source": "../ko/S3_elem_3_008541.dsl.py",
+  "changes": [
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.expr1",
+        "text"
+      ],
+      "source": "ㄱ. 397 × 6",
+      "value": "ア. 397 × 6"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.expr2",
+        "text"
+      ],
+      "source": "ㄴ. 549 × 4",
+      "value": "イ. 549 × 4"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.expr3",
+        "text"
+      ],
+      "source": "ㄷ. 456 × 5",
+      "value": "ウ. 456 × 5"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.opt1",
+        "text"
+      ],
+      "source": "① ㄱ ㄴ ㄷ",
+      "value": "① ア イ ウ"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.opt2",
+        "text"
+      ],
+      "source": "② ㄱ ㄷ ㄴ",
+      "value": "② ア ウ イ"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.opt3",
+        "text"
+      ],
+      "source": "③ ㄴ ㄷ ㄱ",
+      "value": "③ イ ウ ア"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.opt4",
+        "text"
+      ],
+      "source": "④ ㄷ ㄴ ㄱ",
+      "value": "④ ウ イ ア"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.q1",
+        "text"
+      ],
+      "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
+      "value": "計算結果を大きい順に並べたものを選びなさい。"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "title"
+      ],
+      "source": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오",
+      "value": "計算結果を大きい順に並べたものを選びなさい"
+    },
+    {
+      "path": [
+        "SEMANTIC_ANSWER"
+      ],
+      "value": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+          "type": "choice_number",
+          "description": "계산 결과가 큰 것부터 차례대로 나열한 보기 번호"
+        },
+        "value": 2,
+        "unit": ""
+      }
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "domain",
+        "objects",
+        "$items",
+        "obj.a",
+        "label"
+      ],
+      "source": "ㄱ",
+      "value": "ア"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "domain",
+        "objects",
+        "$items",
+        "obj.b",
+        "label"
+      ],
+      "source": "ㄴ",
+      "value": "イ"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "domain",
+        "objects",
+        "$items",
+        "obj.c",
+        "label"
+      ],
+      "source": "ㄷ",
+      "value": "ウ"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "domain",
+        "objects",
+        "$items",
+        "obj.option2",
+        "sequence",
+        0
+      ],
+      "source": "ㄱ",
+      "value": "ア"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "domain",
+        "objects",
+        "$items",
+        "obj.option2",
+        "sequence",
+        1
+      ],
+      "source": "ㄷ",
+      "value": "ウ"
+    },
+    {
+      "path": [
+        "SEMANTIC_OVERRIDE",
+        "domain",
+        "objects",
+        "$items",
+        "obj.option2",
+        "sequence",
+        2
+      ],
+      "source": "ㄴ",
+      "value": "イ"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "checks",
+        "$items",
+        "check.2",
+        "actual"
+      ],
+      "source": "ㄱ, ㄷ, ㄴ",
+      "value": "ア, ウ, イ"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "checks",
+        "$items",
+        "check.2",
+        "expected"
+      ],
+      "source": "ㄱ, ㄷ, ㄴ",
+      "value": "ア, ウ, イ"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "given",
+        0,
+        "value",
+        "label"
+      ],
+      "source": "ㄱ",
+      "value": "ア"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "given",
+        1,
+        "value",
+        "label"
+      ],
+      "source": "ㄴ",
+      "value": "イ"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "given",
+        2,
+        "value",
+        "label"
+      ],
+      "source": "ㄷ",
+      "value": "ウ"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "plan",
+        0
+      ],
+      "source": "각 곱셈식의 결과를 구한 뒤 큰 값부터 작은 값 순서로 비교합니다.",
+      "value": "それぞれの積を求め、大きい順に比べます。"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "plan",
+        1
+      ],
+      "source": "비교한 순서와 같은 보기 번호를 찾습니다.",
+      "value": "比較した順序と同じ選択肢の番号を探します。"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "steps",
+        "$items",
+        "step.4",
+        "value"
+      ],
+      "source": "ㄱ, ㄷ, ㄴ",
+      "value": "ア, ウ, イ"
+    }
+  ]
+}

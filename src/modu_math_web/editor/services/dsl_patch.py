@@ -2242,7 +2242,7 @@ def apply_layout_patches(
     fast_overrides: bool = False,
 ) -> tuple[str, list[AppliedPatch]]:
     paths = resolve_problem_paths(problem_id)
-    source = paths.dsl_path.read_text(encoding="utf-8")
+    source = paths.read_dsl()
     if not source.strip():
         raise DslPatchError(
             "DSL file is empty; restore or save a valid DSL before editing layout"
@@ -2522,7 +2522,7 @@ def apply_layout_patches(
         if format_source and not preserve_polygon_point_spacing
         else transformed.code
     )
-    paths.dsl_path.write_text(updated_code, encoding="utf-8")
+    paths.write_dsl(updated_code)
     return updated_code, applied
 
 
@@ -2537,7 +2537,7 @@ def save_tutor_renderer_flow(
     format_source: bool = True,
 ) -> tuple[str, list[dict[str, Any]]]:
     paths = resolve_problem_paths(problem_id)
-    source = paths.dsl_path.read_text(encoding="utf-8")
+    source = paths.read_dsl()
     if not source.strip():
         raise DslPatchError(
             "DSL file is empty; restore or save a valid DSL before editing tutor flow"
@@ -2555,5 +2555,5 @@ def save_tutor_renderer_flow(
     updated_code = (
         format_dsl_source(transformed.code) if format_source else transformed.code
     )
-    paths.dsl_path.write_text(updated_code, encoding="utf-8")
+    paths.write_dsl(updated_code)
     return updated_code, normalized

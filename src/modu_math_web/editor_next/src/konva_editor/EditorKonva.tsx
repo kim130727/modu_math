@@ -133,7 +133,11 @@ export function EditorKonva() {
       setMessage(`Loading ${problemId}...`);
       try {
         const detail = await loadProblem(problemId);
-        setProblem(problemDetailToCanonicalProblem(detail), `Loaded ${problemId}.`, {
+        const reviewCount = detail.translation_review_paths?.length ?? 0;
+        const loadedMessage = detail.dsl_storage === "locale_delta"
+          ? `한국어 원본을 공유하는 번역 문제입니다. 이 언어에서 수정한 내용은 이 언어에만 저장됩니다.${reviewCount ? ` 원본 변경으로 번역 ${reviewCount}곳의 검토가 필요합니다.` : ""}`
+          : `Loaded ${problemId}.`;
+        setProblem(problemDetailToCanonicalProblem(detail), loadedMessage, {
           semantic: detail.semantic,
           solvable: detail.solvable,
           layout: detail.layout,

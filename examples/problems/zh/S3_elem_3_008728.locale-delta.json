@@ -1,0 +1,182 @@
+{
+  "version": 1,
+  "source": "../ko/S3_elem_3_008728.dsl.py",
+  "changes": [
+    {
+      "path": [
+        "EDITOR_ANSWER_REVIEW",
+        "answers"
+      ],
+      "source": [
+        {
+          "value": "1",
+          "ref": "answer.value"
+        }
+      ],
+      "value": []
+    },
+    {
+      "path": [
+        "EDITOR_ANSWER_REVIEW",
+        "choices",
+        "$items",
+        "choice.1",
+        "text"
+      ],
+      "source": "진경",
+      "value": "真京"
+    },
+    {
+      "path": [
+        "EDITOR_ANSWER_REVIEW",
+        "choices",
+        "$items",
+        "choice.2",
+        "text"
+      ],
+      "source": "현진",
+      "value": "贤真"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.header.text",
+        "text"
+      ],
+      "source": "그림을 보고 바르게 말한 사람을 선택해 보세요.",
+      "value": "看图并选择说法正确的人。"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.header.text.copy1",
+        "text"
+      ],
+      "source": "진경",
+      "value": "真京"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.header.text.copy1.copy2",
+        "text"
+      ],
+      "source": "현진",
+      "value": "贤真"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.speech.left.text1",
+        "text"
+      ],
+      "source": "색칠한 부분은",
+      "value": "涂色部分是"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.speech.left.text2",
+        "text"
+      ],
+      "source": "7묶음 중에서 3묶음이므로",
+      "value": "因为7组中有3组"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.speech.left.text3",
+        "text"
+      ],
+      "source": "전체의 3/7이야.",
+      "value": "占整体的3/7。"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.speech.right.text1",
+        "text"
+      ],
+      "source": "색칠하지 않은 부분은",
+      "value": "未涂色部分是"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.speech.right.text2",
+        "text"
+      ],
+      "source": "7묶음 중에서 4묶음이므로",
+      "value": "因为7组中有4组"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "slots",
+        "$items",
+        "slot.speech.right.text3",
+        "text"
+      ],
+      "source": "전체의 7/4이야.",
+      "value": "占整体的7/4。"
+    },
+    {
+      "path": [
+        "PROBLEM_TEMPLATE",
+        "title"
+      ],
+      "source": "그림을 보고 바르게 말한 사람을 선택하기",
+      "value": "选择正确描述图画的人"
+    },
+    {
+      "path": [
+        "SEMANTIC_ANSWER"
+      ],
+      "value": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+          "type": "person_selection",
+          "description": "그림을 바르게 말한 사람"
+        },
+        "value": 1,
+        "unit": ""
+      }
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "plan",
+        0
+      ],
+      "source": "그림의 색칠한 부분과 색칠하지 않은 부분을 분수 설명과 비교한다.",
+      "value": "将图中涂色和未涂色部分与分数说明进行比较。"
+    },
+    {
+      "path": [
+        "SOLVABLE",
+        "plan",
+        1
+      ],
+      "source": "말풍선의 설명이 그림과 맞는 사람을 찾는다.",
+      "value": "找出对话框中的说明与图画相符的人。"
+    }
+  ]
+}

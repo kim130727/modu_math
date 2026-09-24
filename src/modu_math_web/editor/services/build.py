@@ -65,6 +65,9 @@ def _schema_validator(relative_path: str) -> Draft202012Validator:
 
 
 def _load_dsl_module(dsl_path: Path) -> Any:
+    from modu_math.dsl.variants import delta_path, load_module
+    if delta_path(dsl_path).exists():
+        return load_module(dsl_path)
     module_name = f"modu_editor_build_{uuid.uuid4().hex}"
     spec = importlib.util.spec_from_file_location(module_name, dsl_path)
     if spec is None or spec.loader is None:
@@ -466,6 +469,10 @@ def _rebuild_linked_layouts(problem_id: str) -> list[str]:
         if isinstance(reference, str):
             dsl_path = override_file.with_name(override_file.name.removesuffix(".editor_overrides.json") + ".dsl.py")
             links.append(((override_file.parent / reference).resolve(), dsl_path.resolve()))
+    from modu_math.dsl.variants import SUFFIX, source_path
+    for variant in paths.root_dir.rglob("*" + SUFFIX):
+        virtual = variant.with_name(variant.name.removesuffix(SUFFIX) + ".dsl.py")
+        links.append((source_path(virtual), virtual.resolve()))
     rebuilt = []
     while pending:
         source = pending.pop(0)
