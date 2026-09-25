@@ -66,7 +66,7 @@ def consolidate(root: Path, *, catalogs: Path | None = None, delete=False):
         authored = {"version": 2, "source_language": "ko", "editor_overrides": {}, "languages": {}}
         language_paths = [canonical]
         relative = canonical.relative_to(root / "ko")
-        for language in ("en", "ja", "zh", "uk", "km"):
+        for language in ("uk",):
             virtual = root / language / relative
             delta = virtual.with_name(prefix + ".locale-delta.json")
             if delta.exists():

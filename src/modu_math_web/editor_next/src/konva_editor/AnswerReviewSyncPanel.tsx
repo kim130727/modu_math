@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { listProblems, syncAnswerReviews, type AnswerReviewSyncResult } from "../api/editorApi";
 
-const languageNames: Record<string, string> = { ko: "한국어", en: "영어", ja: "일본어", zh: "중국어", uk: "우크라이나어", km: "크메르어" };
+const languageNames: Record<string, string> = { ko: "한국어", uk: "우크라이나어" };
 
 export function AnswerReviewSyncPanel({ problemId, parentBusy }: {
   problemId: string;

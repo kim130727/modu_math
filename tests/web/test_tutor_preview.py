@@ -32,17 +32,17 @@ def test_tutor_prompt_explains_inscribed_hexagon_radius_relation() -> None:
 
 
 def test_tutor_prompt_uses_problem_language_metadata() -> None:
-    payload = {"semantic": {"metadata": {"language": "ja"}}}
+    payload = {"semantic": {"metadata": {"language": "uk"}}}
 
     prompt = _system_prompt(payload)
 
-    assert "Japanese tutor" in prompt
-    assert "Always speak with the student in Japanese" in prompt
+    assert "Ukrainian tutor" in prompt
+    assert "Always speak with the student in Ukrainian" in prompt
 
 
 def test_rule_tutor_uses_problem_language_for_default_reply() -> None:
     payload = {
-        "semantic": {"metadata": {"language": "en"}},
+        "semantic": {"metadata": {"language": "uk"}},
         "solvable": {
             "schema": "modu.solvable.v1.1",
             "problem_type": "numeric_answer",
@@ -54,7 +54,7 @@ def test_rule_tutor_uses_problem_language_for_default_reply() -> None:
 
     first = rule_tutor_response(payload, "start", [])
 
-    assert "Step 1:" in first["reply"]
+    assert "Крок 1:" in first["reply"]
     assert "단계" not in first["reply"]
 
 
@@ -102,19 +102,11 @@ def test_tutor_steps_compact_vertical_addition_micro_steps() -> None:
 
 def test_tutor_speech_uses_local_accent_instructions() -> None:
     assert (
-        tutor_speech_locale({"semantic": {"metadata": {"language": "km"}}}) == "km-KH"
+        tutor_speech_locale({"semantic": {"metadata": {"language": "uk"}}}) == "uk-UA"
     )
-    assert (
-        tutor_speech_locale({"semantic": {"metadata": {"language": "my"}}}) == "my-MM"
-    )
-
-    assert _speech_voice("km-KH") == "coral"
-    assert "Khmer" in _speech_instructions("km-KH")
-    assert "Cambodian accent" in _speech_instructions("km-KH")
-
-    assert _speech_voice("my-MM") == "fable"
-    assert "Burmese" in _speech_instructions("my-MM")
-    assert "Myanmar accent" in _speech_instructions("my-MM")
+    assert _speech_voice("uk-UA") == "alloy"
+    assert "Ukrainian" in _speech_instructions("uk-UA")
+    assert "Ukrainian accent" in _speech_instructions("uk-UA")
 
 
 def test_rule_tutor_uses_student_result_and_step_explanation() -> None:

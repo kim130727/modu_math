@@ -9,7 +9,7 @@ from pathlib import Path
 import tempfile
 import threading
 
-LANGUAGES = frozenset({"ko", "en", "ja", "zh", "uk", "km"})
+LANGUAGES = frozenset({"ko", "uk"})
 SUFFIX = ".i18n.json"
 _locks: dict[str, threading.RLock] = {}
 _guard = threading.Lock()

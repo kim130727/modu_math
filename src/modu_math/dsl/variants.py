@@ -169,7 +169,7 @@ def source_path(path: Path) -> Path:
         (
             parent.parent
             for parent in path.resolve().parents
-            if parent.name in {"en", "ja", "zh", "uk", "km"}
+            if parent.name == "uk"
         ),
         path.parent.resolve(),
     )

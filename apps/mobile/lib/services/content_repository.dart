@@ -66,10 +66,6 @@ class ContentRepository {
   static const String generatedPath = '$problemsPath/generated';
   static const Set<String> localizedProblemLocales = {
     'ko',
-    'en',
-    'zh',
-    'ja',
-    'km',
     'uk',
   };
 

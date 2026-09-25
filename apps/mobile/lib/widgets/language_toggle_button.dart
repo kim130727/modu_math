@@ -13,10 +13,6 @@ class LanguageToggleButton extends StatelessWidget {
   static const languageFlags = {
     'ko': '🇰🇷',
     'uk': '🇺🇦',
-    'en': '🇺🇸',
-    'zh': '🇨🇳',
-    'ja': '🇯🇵',
-    'km': '🇰🇭',
   };
 
   void _showLanguageDialog(

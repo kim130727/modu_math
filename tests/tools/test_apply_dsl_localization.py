@@ -14,7 +14,7 @@ from tests.tools.test_extract_dsl_localization import _write_dsl
 def _locale_with_translations(dsl_path: Path, locale_path: Path) -> None:
     from tools.extract_dsl_localization import main as extract_main
 
-    assert extract_main(["--dsl", str(dsl_path), "--locale", "en-US", "--out", str(locale_path)]) == 0
+    assert extract_main(["--dsl", str(dsl_path), "--locale", "uk-UA", "--out", str(locale_path)]) == 0
     data = json.loads(locale_path.read_text(encoding="utf-8"))
     data["template.title"]["translation"] = "Addition"
     data["template.title"]["status"] = "translated"
@@ -32,7 +32,7 @@ def _locale_with_translations(dsl_path: Path, locale_path: Path) -> None:
 def test_apply_creates_localized_dsl_without_modifying_source(tmp_path: Path) -> None:
     dsl_path = tmp_path / "problem.dsl.py"
     locale_path = tmp_path / "p_localize.locale.json"
-    out_path = tmp_path / "problem.en-US.dsl.py"
+    out_path = tmp_path / "problem.uk-UA.dsl.py"
     _write_dsl(dsl_path, slot_text="Add the numbers.")
     _locale_with_translations(dsl_path, locale_path)
     before = sha256(dsl_path.read_bytes()).hexdigest()
@@ -64,7 +64,7 @@ def test_apply_creates_localized_dsl_without_modifying_source(tmp_path: Path) ->
 def test_apply_does_not_overwrite_existing_output_without_force(tmp_path: Path) -> None:
     dsl_path = tmp_path / "problem.dsl.py"
     locale_path = tmp_path / "p_localize.locale.json"
-    out_path = tmp_path / "problem.en-US.dsl.py"
+    out_path = tmp_path / "problem.uk-UA.dsl.py"
     _write_dsl(dsl_path)
     _locale_with_translations(dsl_path, locale_path)
     out_path.write_text("# existing\n", encoding="utf-8")
@@ -78,7 +78,7 @@ def test_apply_does_not_overwrite_existing_output_without_force(tmp_path: Path) 
 def test_apply_skips_needs_review_by_default(tmp_path: Path) -> None:
     dsl_path = tmp_path / "problem.dsl.py"
     locale_path = tmp_path / "p_localize.locale.json"
-    out_path = tmp_path / "problem.en-US.dsl.py"
+    out_path = tmp_path / "problem.uk-UA.dsl.py"
     _write_dsl(dsl_path)
     _locale_with_translations(dsl_path, locale_path)
 
@@ -94,7 +94,7 @@ def test_apply_skips_needs_review_by_default(tmp_path: Path) -> None:
                 "--locale-json",
                 str(locale_path),
                 "--locale",
-                "en-US",
+                "uk-UA",
                 "--out",
                 str(out_path),
             ]
@@ -108,7 +108,7 @@ def test_apply_skips_needs_review_by_default(tmp_path: Path) -> None:
 def test_apply_localizes_korean_jamo_symbol_markers(tmp_path: Path) -> None:
     dsl_path = tmp_path / "problem.dsl.py"
     locale_path = tmp_path / "p_symbol_locale.locale.json"
-    out_path = tmp_path / "problem.en-US.dsl.py"
+    out_path = tmp_path / "problem.uk-UA.dsl.py"
     dsl_path.write_text(
         '''
 from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot
@@ -156,7 +156,7 @@ PROBLEM_TEMPLATE = ProblemTemplate(
                 "--locale-json",
                 str(locale_path),
                 "--locale",
-                "en-US",
+                "uk-UA",
                 "--out",
                 str(out_path),
             ]
@@ -166,7 +166,7 @@ PROBLEM_TEMPLATE = ProblemTemplate(
 
     module = load_dsl_module(out_path)
     assert module.PROBLEM_TEMPLATE.slots[0].text == "(\uac00)"
-    assert module.PROBLEM_TEMPLATE.slots[1].text == "A"
+    assert module.PROBLEM_TEMPLATE.slots[1].text == "А"
 
 
 def test_apply_localizes_solution_values_without_changing_identifiers() -> None:
@@ -177,11 +177,11 @@ def test_apply_localizes_solution_values_without_changing_identifiers() -> None:
         "expected": "ㄷㄹ / ㉢㉣ / ㈂㈃",
     }
 
-    localized = apply_translations(source, {}, ["semantic"], locale="en")
+    localized = apply_translations(source, {}, ["semantic"], locale="uk")
 
     assert localized == {
         "id": "slot.ㄱ",
-        "label": "A",
-        "value": "선분 AB / AB / AB",
-        "expected": "CD / CD / CD",
+        "label": "А",
+        "value": "선분 АБ / АБ / АБ",
+        "expected": "ВГ / ВГ / ВГ",
     }

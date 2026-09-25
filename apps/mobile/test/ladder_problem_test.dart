@@ -9,14 +9,14 @@ import 'package:modu_math_app/widgets/answer_panel.dart';
 
 void main() {
   const problemId = 'S3_elem_3_008732';
-  final locales = ['ko', 'en', 'ja', 'km', 'uk', 'zh'];
+  final locales = ['ko', 'uk'];
 
   Map<String, dynamic> read(String path) => File(path).existsSync()
       ? jsonDecode(File(path).readAsStringSync()) as Map<String, dynamic>
       : <String, dynamic>{};
 
   ProblemContent load(String locale) {
-    final prefix = '../../examples/problems/$locale/$problemId';
+    final prefix = 'generated/examples/problems/$locale/$problemId';
     return ProblemContent(
       summary: ProblemSummary.fromJson({
         'id': problemId,
@@ -50,12 +50,15 @@ void main() {
       }
     });
 
-    test('has 3 choice groups with fraction labels and OX choices across all locales', () {
+    test(
+        'has 3 choice groups with fraction labels and OX choices across all locales',
+        () {
       for (final locale in locales) {
         final content = load(locale);
         final groups = content.choiceGroups;
 
-        expect(groups.length, equals(3), reason: 'Must have 3 groups in $locale');
+        expect(groups.length, equals(3),
+            reason: 'Must have 3 groups in $locale');
         expect(groups[0].label, equals('2/8'));
         expect(groups[1].label, equals('9/10'));
         expect(groups[2].label, equals('4/4'));
@@ -71,7 +74,8 @@ void main() {
       }
     });
 
-    testWidgets('AnswerPanel renders 3 choice groups and combines answers correctly',
+    testWidgets(
+        'AnswerPanel renders 3 choice groups and combines answers correctly',
         (tester) async {
       final content = load('ko');
       String currentDraft = '';

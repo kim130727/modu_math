@@ -14,20 +14,12 @@ class AppStrings {
   static const supportedLocales = [
     Locale('ko'),
     Locale('uk'),
-    Locale('en'),
-    Locale('zh'),
-    Locale('ja'),
-    Locale('km'),
   ];
 
   static const fallback = AppStrings({
     'app.title': '모두수학',
     'language.tooltip': '언어 변경',
     'language.ko': '한국어',
-    'language.en': 'English',
-    'language.zh': '中文',
-    'language.ja': '日本語',
-    'language.km': 'ភាសាខ្មែរ',
     'language.uk': 'Українська',
     'common.grade': '레벨 {grade}',
     'common.problemCount': '{count}문제',

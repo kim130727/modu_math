@@ -115,11 +115,11 @@ def test_localize_override_symbols_updates_content_but_not_slot_ids() -> None:
         }
     }
 
-    localized = localize_override_symbols(overrides, "ja")
+    localized = localize_override_symbols(overrides, "uk")
 
     assert set(localized["slots"]) == {"slot.ㄱ"}
-    assert localized["slots"]["slot.ㄱ"]["text"] == "선분 アイ / アイ / アイ"
-    assert localized["slots"]["slot.ㄱ"]["interaction"]["expected"] == "ウエ"
+    assert localized["slots"]["slot.ㄱ"]["text"] == "선분 АБ / АБ / АБ"
+    assert localized["slots"]["slot.ㄱ"]["interaction"]["expected"] == "ВГ"
 
 
 def test_repair_preserves_language_independent_text_formatting_in_diagram_slots(tmp_path: Path) -> None:

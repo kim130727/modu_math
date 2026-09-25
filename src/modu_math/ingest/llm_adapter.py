@@ -98,7 +98,7 @@ def _build_prompt(*, problem_id: str, ocr_lines: tuple[str, ...]) -> str:
         "Return only one JSON object with keys:\n"
         "{\n"
         '  "problem_type_guess": "string",\n'
-        '  "language": "ko|en|mixed|unknown",\n'
+        '  "language": "ko|uk|mixed|unknown",\n'
         '  "template_hints": ["string"],\n'
         '  "text_lines": ["string"],\n'
         '  "detected_objects": ["cube|triangle|circle|grid|fraction_area_model|arrow|label_slot|diagram_template"],\n'

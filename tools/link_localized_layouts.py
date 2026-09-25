@@ -12,7 +12,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from modu_math.layout.shared_layout import override_path, read_overrides
 
-LOCALES = ("ko", "en", "ja", "zh", "km", "uk")
+LOCALES = ("ko", "uk")
 
 
 def link_localized_layouts(root: Path, problem: str | None = None) -> list[Path]:

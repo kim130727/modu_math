@@ -7,7 +7,7 @@ import 'package:modu_math_app/models/content_models.dart';
 import 'package:modu_math_app/utils/problem_presentation.dart';
 
 void main() {
-  final root = Directory('../../examples/problems');
+  final root = Directory('generated/examples/problems');
   Map<String, dynamic> read(String path) => File(path).existsSync()
       ? jsonDecode(File(path).readAsStringSync()) as Map<String, dynamic>
       : <String, dynamic>{};
@@ -22,7 +22,7 @@ void main() {
       );
 
   test('debug 008713 presentation in all locales', () {
-    for (final loc in ['ko', 'en', 'uk', 'km', 'ja', 'zh']) {
+    for (final loc in ['ko', 'uk']) {
       final content = load('${root.path}/$loc/S3_elem_3_008713');
       final visual = problemVisualRenderer(content);
       final elements = visual['elements'] as List;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:modu_math_app/models/content_models.dart';
 import 'package:modu_math_app/models/learning_progress.dart';
@@ -48,35 +49,31 @@ void main() {
     expect(find.text('도형'), findsOneWidget);
   });
 
-  test('AppStrings localizes 기본 학습 to Basic Learning in English and other locales', () {
-    final en = AppStrings.forLocale(const Locale('en'));
-    expect(en.subUnitName('기본 학습'), 'Basic Learning');
-    expect(en.subUnitName('__basicLearning__'), 'Basic Learning');
-
+  test('AppStrings localizes 기본 학습 in Korean and Ukrainian', () {
     final ko = AppStrings.forLocale(const Locale('ko'));
     expect(ko.subUnitName('기본 학습'), '기본 학습');
     expect(ko.subUnitName('Basic Learning'), '기본 학습');
-
-    final ja = AppStrings.forLocale(const Locale('ja'));
-    expect(ja.subUnitName('기본 학습'), '基本学習');
 
     final uk = AppStrings.forLocale(const Locale('uk'));
     expect(uk.subUnitName('기본 학습'), 'Базове навчання');
   });
 
-  testWidgets('renders Basic Learning instead of 기본 학습 when locale is English',
+  testWidgets('renders Ukrainian labels when locale is Ukrainian',
       (tester) async {
     final fakeRepo = _FakeBasicLearningRepository();
     final fakeProgressRepo = _FakeProgressRepository();
 
     await tester.pumpWidget(
       AppLocaleScope(
-        locale: const Locale('en'),
+        locale: const Locale('uk'),
         onLocaleChanged: (_) {},
         child: MaterialApp(
-          locale: const Locale('en'),
+          locale: const Locale('uk'),
           localizationsDelegates: const [
             AppStringsDelegate(),
+            GlobalMaterialLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
           ],
           supportedLocales: AppStrings.supportedLocales,
           theme: buildKidsTheme(),
@@ -91,10 +88,9 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    // English unit title and sub-unit title should be rendered
-    expect(find.text('Addition & Subtraction Learning'), findsOneWidget);
-    expect(find.text('Sub-unit Practice'), findsOneWidget);
-    expect(find.text('Basic Learning'), findsOneWidget);
+    expect(find.text('Розділ Додавання і віднімання'), findsOneWidget);
+    expect(find.text('Навчання за підрозділами'), findsOneWidget);
+    expect(find.text('Базове навчання'), findsOneWidget);
     expect(find.text('기본 학습'), findsNothing);
   });
 }

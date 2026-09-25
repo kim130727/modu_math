@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { listProblems, type ProblemSummary } from "../api/editorApi";
 
-export const problemLanguages = ["ko", "uk", "zh", "ja", "en", "km"] as const;
+export const problemLanguages = ["ko", "uk"] as const;
 export type ProblemLanguage = (typeof problemLanguages)[number];
 
 interface ProblemListProps {
@@ -191,10 +191,6 @@ function languageLabel(language: ProblemLanguage): string {
   return {
     ko: "한국어",
     uk: "Українська",
-    zh: "中文",
-    ja: "日本語",
-    en: "English",
-    km: "ខ្មែរ",
   }[language];
 }
 

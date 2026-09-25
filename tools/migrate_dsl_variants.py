@@ -18,7 +18,7 @@ def migrate(root: Path, *, delete: bool = False) -> dict:
     root = root.resolve()
     candidates = sorted(
         path
-        for language in ("en", "ja", "zh", "uk", "km")
+        for language in ("uk",)
         for path in (root / language).rglob("*.dsl.py")
     )
     verified = []

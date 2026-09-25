@@ -314,7 +314,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Create a localized ModuMath DSL file from locale JSON.")
     parser.add_argument("--dsl", required=True, help="Source *.dsl.py file.")
     parser.add_argument("--locale-json", required=True, help="Locale JSON created by extract_dsl_localization.py.")
-    parser.add_argument("--locale", help="Locale code for the default output filename, e.g. en-US.")
+    parser.add_argument("--locale", help="Locale code for the default output filename, e.g. uk-UA.")
     parser.add_argument("--out", help="Output *.dsl.py path. Defaults to <source>.<locale>.dsl.py.")
     parser.add_argument("--force", action="store_true", help="Overwrite an existing output file.")
     parser.add_argument(

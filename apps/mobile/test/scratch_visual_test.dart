@@ -13,7 +13,7 @@ void main() {
 
   setUpAll(() {
     GoogleFonts.config.allowRuntimeFetching = false;
-    for (final loc in ['en', 'km']) {
+    for (final loc in ['uk']) {
       final file = File('test_circle_$loc.png');
       if (file.existsSync()) {
         file.deleteSync();
@@ -21,12 +21,21 @@ void main() {
     }
   });
 
-  testWidgets('renders circle problem visual canvas for en and km', (tester) async {
-    for (final loc in ['en', 'km']) {
-      final layout = jsonDecode(File('../../examples/problems/$loc/S3_elem_3_008664.layout.json').readAsStringSync());
-      final renderer = jsonDecode(File('../../examples/problems/$loc/S3_elem_3_008664.renderer.json').readAsStringSync());
-      final semantic = jsonDecode(File('../../examples/problems/$loc/S3_elem_3_008664.semantic.json').readAsStringSync());
-      final solvable = jsonDecode(File('../../examples/problems/$loc/S3_elem_3_008664.solvable.v1.1.json').readAsStringSync());
+  testWidgets('renders circle problem visual canvas for Ukrainian',
+      (tester) async {
+    for (final loc in ['uk']) {
+      final layout = jsonDecode(
+          File('generated/examples/problems/$loc/S3_elem_3_008664.layout.json')
+              .readAsStringSync());
+      final renderer = jsonDecode(
+          File('generated/examples/problems/$loc/S3_elem_3_008664.renderer.json')
+              .readAsStringSync());
+      final semantic = jsonDecode(
+          File('generated/examples/problems/$loc/S3_elem_3_008664.semantic.json')
+              .readAsStringSync());
+      final solvable = jsonDecode(File(
+              'generated/examples/problems/$loc/S3_elem_3_008664.solvable.json')
+          .readAsStringSync());
       final summary = ProblemSummary(
         id: 'S3_elem_3_008664',
         grade: 3,

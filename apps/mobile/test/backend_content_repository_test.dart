@@ -66,7 +66,7 @@ void main() {
         final language = request.url.queryParameters['language'] ?? 'ko';
         final item = _localizedProblemJson(
           language: language,
-          dbId: language == 'zh' ? 60 : 40,
+          dbId: language == 'uk' ? 60 : 40,
           includeContracts: false,
         );
         return http.Response(
@@ -94,7 +94,7 @@ void main() {
       if (request.url.path == '/api/v1/problems/60/') {
         return http.Response(
           jsonEncode(_localizedProblemJson(
-            language: 'zh',
+            language: 'uk',
             dbId: 60,
             includeContracts: true,
           )),
@@ -117,18 +117,18 @@ void main() {
     final koContent = await repository.loadProblem(staleKoSummary);
     expect(koContent.renderer['elements'].single['text'], '물병');
 
-    repository.activeProblemLocale = 'zh';
-    final zhContent = await repository.loadProblem(staleKoSummary);
+    repository.activeProblemLocale = 'uk';
+    final ukContent = await repository.loadProblem(staleKoSummary);
 
-    expect(zhContent.summary.language, 'zh');
-    expect(zhContent.summary.dbId, 60);
-    expect(zhContent.renderer['elements'].single['text'], '水瓶');
+    expect(ukContent.summary.language, 'uk');
+    expect(ukContent.summary.dbId, 60);
+    expect(ukContent.renderer['elements'].single['text'], 'Пляшка');
     expect(
       requests
           .where((uri) => uri.path == '/api/v1/problems/')
           .last
           .queryParameters['language'],
-      'zh',
+      'uk',
     );
     expect(requests.any((uri) => uri.path == '/api/v1/problems/60/'), isTrue);
   });
@@ -139,7 +139,7 @@ Map<String, dynamic> _localizedProblemJson({
   required int dbId,
   required bool includeContracts,
 }) {
-  final label = language == 'zh' ? '水瓶' : '물병';
+  final label = language == 'uk' ? 'Пляшка' : '물병';
   return {
     'id': dbId,
     'problem_id': 'S3_elem_3_008751',

@@ -64,10 +64,6 @@ def test_explicit_single_line_text_box_conversion_is_idempotent():
 
 
 @pytest.mark.parametrize("locale,text", [
-    ("en", "Choose the multiplication expression represented by the shaded area of the diagram."),
-    ("ja", "色を塗った部分がどの数の積を表しているか選んでください。"),
-    ("zh", "请选择表示图中涂色部分的乘法算式。"),
-    ("km", "ចូរជ្រើសរើសប្រយោគគុណដែលត្រូវនឹងផ្នែកដែលបានផាត់ពណ៌។"),
     ("uk", "Виберіть вираз множення, який відповідає зафарбованій частині малюнка."),
 ])
 def test_shared_geometry_keeps_translation_and_fits_without_moving_diagram(tmp_path, locale, text):

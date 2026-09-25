@@ -100,7 +100,7 @@ class LearningApiTests(TestCase):
     def test_problem_id_submission_uses_requested_language(self):
         Problem.objects.create(
             problem_id="sample-1",
-            language="en",
+            language="uk",
             grade=3,
             answer={"value": "english-answer"},
         )
@@ -109,7 +109,7 @@ class LearningApiTests(TestCase):
             "/api/v1/attempts/",
             {
                 "problem_id": "sample-1",
-                "problem_language": "en",
+                "problem_language": "uk",
                 "submitted_answer": "english-answer",
             },
             format="json",
@@ -117,8 +117,8 @@ class LearningApiTests(TestCase):
         self.assertEqual(response.status_code, 201)
         attempt = Attempt.objects.get(pk=response.data["id"])
         self.assertEqual(response.data["problem_id"], "sample-1")
-        self.assertEqual(response.data["language"], "en")
-        self.assertEqual(attempt.problem.language, "en")
+        self.assertEqual(response.data["language"], "uk")
+        self.assertEqual(attempt.problem.language, "uk")
         self.assertTrue(attempt.is_correct)
 
     def test_login_returns_a_token(self):
@@ -154,7 +154,7 @@ class SyncProblemsTests(TestCase):
         source_path = next((root / "ko").glob("*.i18n.json"))
         before = source_path.read_bytes()
         call_command("sync_problems", root=root, verbosity=0)
-        self.assertEqual(Problem.objects.count(), 60)
+        self.assertEqual(Problem.objects.count(), 20)
         self.assertEqual(source_path.read_bytes(), before)
         imported = Problem.objects.get(
             problem_id=source_path.name.removesuffix(".i18n.json"), language="ko"

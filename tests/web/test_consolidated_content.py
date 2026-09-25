@@ -30,7 +30,7 @@ def content(tmp_path, settings):
     canonical = root / "ko" / "sample.dsl.py"
     canonical.parent.mkdir(parents=True)
     canonical.write_text(SOURCE, encoding="utf-8")
-    translated = root / "en" / "sample.dsl.py"
+    translated = root / "uk" / "sample.dsl.py"
     translated.parent.mkdir()
     save_variant(translated, canonical, snapshot(SOURCE.replace("문제", "Question"), translated))
     settings.PROBLEMS_ROOT = root
@@ -45,7 +45,7 @@ def test_one_authored_json_and_lazy_assets(content, client):
     root, canonical, translated = content
     assert sorted(path.name for path in root.rglob("*.json")) == ["sample.i18n.json"]
     assert len(list_problem_directories()) == 2
-    detail = read_problem_detail("en/sample.dsl.py")
+    detail = read_problem_detail("uk/sample.dsl.py")
     assert "Question" in detail["svg"]
     assert not translated.exists()
     # Use the canonical URL returned by the editor, including its trailing slash.
@@ -55,7 +55,7 @@ def test_one_authored_json_and_lazy_assets(content, client):
     document = document_path(canonical).read_bytes()
     out = root.parent / "exported"
     assert export(root, out) == 2
-    assert (out / "en" / "sample.renderer.json").exists()
+    assert (out / "uk" / "sample.renderer.json").exists()
     assert document_path(canonical).read_bytes() == document
     with pytest.raises(ValueError, match="outside"):
         export(root, root)
@@ -63,7 +63,7 @@ def test_one_authored_json_and_lazy_assets(content, client):
 
 def test_cache_hit_invalidation_and_recovery(content, monkeypatch):
     root, canonical, translated = content
-    paths = resolve_problem_paths("en/sample.dsl.py")
+    paths = resolve_problem_paths("uk/sample.dsl.py")
     ko = resolve_problem_paths("ko/sample.dsl.py")
     original = build.compile_problem_artifacts
     calls = []
@@ -77,7 +77,7 @@ def test_cache_hit_invalidation_and_recovery(content, monkeypatch):
     write_source(translated, read_source(translated).replace("Question", "Edited"))
     assert "Edited" in artifact_cache.get_artifacts(paths)["svg"]
     artifact_cache.get_artifacts(ko)
-    assert calls == ["en/sample.dsl.py"]
+    assert calls == ["uk/sample.dsl.py"]
     assert artifact_cache.cache_path(ko).read_bytes() == ko_cache
     canonical.write_text(SOURCE.replace("x=10", "x=70"), encoding="utf-8")
     assert artifact_cache.get_artifacts(paths)["layout"]["slots"][0]["content"]["x"] == 70
@@ -89,10 +89,10 @@ def test_cache_hit_invalidation_and_recovery(content, monkeypatch):
 def test_editor_fast_save_uses_single_json(content):
     root, canonical, _ = content
     from modu_math_web.editor.services.dsl_patch import apply_layout_patches
-    apply_layout_patches("en/sample.dsl.py", [
+    apply_layout_patches("uk/sample.dsl.py", [
         {"target": "slot.q", "op": "update", "value": {"x": 77, "text": "Changed"}},
     ], fast_overrides=True)
-    detail = read_problem_detail("en/sample.dsl.py")
+    detail = read_problem_detail("uk/sample.dsl.py")
     assert detail["layout"]["slots"][0]["content"]["x"] == 77
     assert "Changed" in detail["svg"]
     assert not list(root.rglob("*.editor_overrides.json"))
@@ -110,7 +110,7 @@ def test_simultaneous_language_sections_preserved(content):
             future.result()
     data = json.loads(document_path(canonical).read_text(encoding="utf-8"))
     assert data["editor_overrides"]["canvas"]["width"] == 500
-    assert data["languages"]["en"]["editor_overrides"]["canvas"]["width"] == 600
+    assert data["languages"]["uk"]["editor_overrides"]["canvas"]["width"] == 600
 
 
 def test_stale_same_language_save_is_rejected(content):
@@ -128,12 +128,12 @@ def test_translation_tools_use_integrated_catalog(content):
     from tools.extract_dsl_localization import main as extract
     from tools.apply_dsl_localization import main as apply
     root, canonical, translated = content
-    assert extract(["--dsl", str(canonical), "--locale", "en"]) == 0
+    assert extract(["--dsl", str(canonical), "--locale", "uk"]) == 0
     stored = section(translated, "translation_catalog")
     entries = json.loads(stored.read_text())
     entries["template.slots.slot.q.text"]["translation"] = "New translation"
     stored.write_text(json.dumps(entries, ensure_ascii=False))
-    assert apply(["--dsl", str(canonical), "--locale", "en", "--locale-json", str(document_path(canonical)), "--force"]) == 0
+    assert apply(["--dsl", str(canonical), "--locale", "uk", "--locale-json", str(document_path(canonical)), "--force"]) == 0
     assert "New translation" in read_source(translated)
     assert len(list(root.rglob("*.json"))) == 1
 
@@ -150,11 +150,11 @@ def test_mobile_server_without_generated_json(content):
     thread.start()
     base = f"http://127.0.0.1:{server.server_port}"
     try:
-        with urlopen(base + "/api/problems?locale=en") as response:
+        with urlopen(base + "/api/problems?locale=uk") as response:
             assert len(json.load(response)["problems"]) == 1
-        with urlopen(base + "/api/problem-bundle/sample?locale=en") as response:
+        with urlopen(base + "/api/problem-bundle/sample?locale=uk") as response:
             assert "Question" in json.load(response)["svg"]
-        with urlopen(base + "/files/en/sample.renderer.json") as response:
+        with urlopen(base + "/files/uk/sample.renderer.json") as response:
             assert json.load(response)["elements"]
     finally:
         server.shutdown()
@@ -169,4 +169,4 @@ def test_learning_sync_renders_consolidated_source(content):
     root, _, _ = content
     call_command("sync_problems", root=root, verbosity=0)
     assert Problem.objects.count() == 2
-    assert Problem.objects.get(problem_id="sample", language="en").renderer_data["elements"]
+    assert Problem.objects.get(problem_id="sample", language="uk").renderer_data["elements"]

@@ -322,22 +322,14 @@ function problemLanguage(semantic: Record<string, unknown> | null): string {
   const raw = stringValue(metadata?.language) ?? stringValue(metadata?.locale) ?? stringValue(semantic?.language) ?? stringValue(semantic?.locale);
   const value = (raw ?? "ko").trim().toLowerCase().replace("_", "-");
   if (["ko", "kr", "ko-kr", "korean"].includes(value)) return "ko";
-  if (["en", "en-us", "en-gb", "english"].includes(value)) return "en";
-  if (["ja", "jp", "ja-jp", "japanese"].includes(value)) return "ja";
-  if (["zh", "zh-cn", "zh-hans", "ch", "cn", "chinese"].includes(value)) return "zh";
-  if (["km", "kh", "km-kh", "khmer", "cambodian", "cam"].includes(value)) return "km";
-  if (["my", "my-mm", "burmese", "myanmar"].includes(value)) return "my";
+  if (["uk", "uk-ua", "ua", "ukrainian"].includes(value)) return "uk";
   return value.split("-", 1)[0] || "ko";
 }
 
 function languageToSpeechLocale(language: string): string {
   return {
     ko: "ko-KR",
-    en: "en-US",
-    ja: "ja-JP",
-    zh: "zh-CN",
-    km: "km-KH",
-    my: "my-MM",
+    uk: "uk-UA",
   }[language] ?? language;
 }
 

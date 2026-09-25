@@ -13,11 +13,7 @@ _PARENTHESIZED_JAMO_MARKERS = "㈀㈁㈂㈃㈄㈅㈆㈇㈈㈉㈊㈋㈌㈍"
 _PARENTHESIZED_HANGUL_MARKERS = "㈎㈏㈐㈑㈒㈓㈔㈕㈖㈗㈘㈙㈚㈛"
 _CIRCLED_CHOICE_MARKERS = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳"
 _LOCALIZED_JAMO_MARKERS = {
-    "en": "ABCDEFGHIJKLMN",
     "uk": "АБВГҐДЕЄЖЗИІЇЙ",
-    "zh": "甲乙丙丁戊己庚辛壬癸子丑寅卯",
-    "ja": "アイウエオカキクケコサシスセ",
-    "km": "កខគឃងចឆជឈញដឋឌឍ",
 }
 _MARKER_CHARS = (
     re.escape(_HANGUL_CHOICE_MARKERS)

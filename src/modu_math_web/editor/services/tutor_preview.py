@@ -1650,16 +1650,8 @@ def _payload_language(payload: dict[str, Any]) -> str:
             value = candidate.strip().lower().replace("_", "-")
             if value in {"ko", "kr", "ko-kr", "korean"}:
                 return "ko"
-            if value in {"en", "en-us", "en-gb", "english"}:
-                return "en"
-            if value in {"ja", "jp", "ja-jp", "japanese"}:
-                return "ja"
-            if value in {"zh", "zh-cn", "zh-hans", "ch", "cn", "chinese"}:
-                return "zh"
-            if value in {"km", "kh", "km-kh", "khmer", "cambodian", "cam"}:
-                return "km"
-            if value in {"my", "my-mm", "burmese", "myanmar"}:
-                return "my"
+            if value in {"uk", "uk-ua", "ua", "ukrainian"}:
+                return "uk"
             return value.split("-", 1)[0]
     return "ko"
 
@@ -1667,11 +1659,7 @@ def _payload_language(payload: dict[str, Any]) -> str:
 def _language_name(lang: str) -> str:
     return {
         "ko": "Korean",
-        "en": "English",
-        "ja": "Japanese",
-        "zh": "Simplified Chinese",
-        "km": "Khmer",
-        "my": "Burmese",
+        "uk": "Ukrainian",
     }.get(lang, lang)
 
 
@@ -1679,49 +1667,29 @@ def _speech_language(locale: str) -> str:
     value = locale.strip().lower().replace("_", "-")
     if value in {"ko", "kr", "ko-kr", "korean"}:
         return "ko"
-    if value in {"en", "en-us", "en-gb", "english"}:
-        return "en"
-    if value in {"ja", "jp", "ja-jp", "japanese"}:
-        return "ja"
-    if value in {"zh", "zh-cn", "zh-hans", "ch", "cn", "chinese"}:
-        return "zh"
-    if value in {"km", "kh", "km-kh", "khmer", "cambodian", "cam"}:
-        return "km"
-    if value in {"my", "my-mm", "burmese", "myanmar"}:
-        return "my"
+    if value in {"uk", "uk-ua", "ua", "ukrainian"}:
+        return "uk"
     return value.split("-", 1)[0] or "ko"
 
 
 def _language_locale(language: str) -> str:
     return {
         "ko": "ko-KR",
-        "en": "en-US",
-        "ja": "ja-JP",
-        "zh": "zh-CN",
-        "km": "km-KH",
-        "my": "my-MM",
+        "uk": "uk-UA",
     }.get(language, language)
 
 
 def _speech_voice(locale: str) -> str:
     return {
         "ko": "nova",
-        "en": "alloy",
-        "ja": "shimmer",
-        "zh": "sage",
-        "km": "coral",
-        "my": "fable",
+        "uk": "alloy",
     }.get(_speech_language(locale), "alloy")
 
 
 def _speech_instructions(locale: str) -> str:
     language = {
         "ko": "Korean with a natural Korean accent",
-        "en": "English with a natural native-speaker accent",
-        "ja": "Japanese with a natural Japanese accent",
-        "zh": "Simplified Chinese Mandarin with a natural mainland Chinese accent",
-        "km": "Khmer with a natural Cambodian accent",
-        "my": "Burmese with a natural Myanmar accent",
+        "uk": "Ukrainian with a natural Ukrainian accent",
     }.get(
         _speech_language(locale), "the requested language with a natural local accent"
     )
@@ -1743,206 +1711,39 @@ _LOCALIZED_TEXT: dict[str, dict[str, str]] = {
         "mock_why": "작은 단계로 나누면 더 쉬워요.\n한 번에 다 풀지 않아도 돼요.\n먼저 무엇을 찾아야 할까요?",
         "mock_general": "좋아요.\n보기 하나만 먼저 확인해 볼게요.\n어느 보기부터 볼까요?",
     },
-    "en": {
-        "empty_message": "Good. First, let's see what the problem is asking.",
-        "missing_solvable": "This problem does not have solvable JSON yet.\nBuild the problem first, then start the tutor again.",
-        "missing_steps": "The solvable JSON exists, but the solution steps are empty.\nAdd steps or a plan, then the tutor can start.",
-        "mock_hint": "Here is a small hint.\nLook at what the problem asks first.\nWhich part should we check?",
-        "mock_stuck": "That's okay.\nFind one given number first.\nShall we do just one small step?",
-        "mock_why": "Small steps make it easier.\nWe do not need to solve everything at once.\nWhat should we find first?",
-        "mock_general": "Good.\nLet's check one choice first.\nWhich choice should we try?",
-    },
-    "ja": {
-        "empty_message": "いいですね。まず、何を求める問題か見てみましょう。",
-        "missing_solvable": "この問題にはまだ solvable JSON がありません。\n先に問題をビルドしてから、もう一度始めてください。",
-        "missing_steps": "solvable JSON はありますが、解き方の手順が空です。\nsteps または plan を作ると始められます。",
-        "mock_hint": "小さなヒントです。\nまず問題が何を聞いているか見ましょう。\nどこから確認しますか。",
-        "mock_stuck": "大丈夫です。\nまず、与えられた数を一つ見つけましょう。\n一つだけ一緒にやってみますか。",
-        "mock_why": "小さく分けると簡単になります。\n一度に全部解かなくていいです。\nまず何を見つけますか。",
-        "mock_general": "いいですね。\nまず選択肢を一つ確認しましょう。\nどれから見ますか。",
-    },
-    "zh": {
-        "empty_message": "很好。我们先看看题目要我们求什么。",
-        "missing_solvable": "这道题还没有 solvable JSON。\n请先构建题目，然后再启动辅导。",
-        "missing_steps": "solvable JSON 已存在，但解题步骤是空的。\n添加 steps 或 plan 后就可以开始。",
-        "mock_hint": "给你一个小提示。\n先看题目在问什么。\n我们先检查哪一部分？",
-        "mock_stuck": "没关系。\n先找出一个已知的数。\n我们只做一个小步骤，好吗？",
-        "mock_why": "分成小步骤会更容易。\n不用一次解完整题。\n先要找什么？",
-        "mock_general": "很好。\n我们先检查一个选项。\n从哪一个开始？",
-    },
-    "km": {
-        "empty_message": "ល្អណាស់។ មុនដំបូង យើងមើលថាលំហាត់សួររកអ្វី។",
-        "missing_solvable": "លំហាត់នេះមិនទាន់មាន solvable JSON ទេ។\nសូម build លំហាត់ជាមុន រួចចាប់ផ្តើមគ្រូជាថ្មី។",
-        "missing_steps": "មាន solvable JSON ប៉ុន្តែជំហានដោះស្រាយនៅទទេ។\nបន្ថែម steps ឬ plan សិន។",
-        "mock_hint": "នេះជាគន្លឹះតូចមួយ។\nមើលសិនថាលំហាត់សួរអ្វី។\nយើងគួរមើលផ្នែកណាមុន?",
-        "mock_stuck": "មិនអីទេ។\nរកចំនួនដែលបានឱ្យមួយសិន។\nយើងធ្វើតែជំហានតូចមួយជាមួយគ្នា?",
-        "mock_why": "បំបែកជាជំហានតូចៗ នឹងងាយជាង។\nមិនចាំបាច់ដោះស្រាយទាំងអស់ក្នុងពេលតែមួយទេ។\nមុនដំបូងត្រូវរកអ្វី?",
-        "mock_general": "ល្អណាស់។\nយើងពិនិត្យជម្រើសមួយសិន។\nចាប់ផ្តើមពីជម្រើសណា?",
-    },
-    "my": {
-        "empty_message": "ကောင်းပါတယ်။ ပထမဆုံး မေးခွန်းက ဘာကိုရှာခိုင်းလဲ ကြည့်ကြမယ်။",
-        "missing_solvable": "ဒီမေးခွန်းမှာ solvable JSON မရှိသေးပါ။\nပထမဆုံး build လုပ်ပြီးမှ tutor ကို ပြန်စပါ။",
-        "missing_steps": "solvable JSON ရှိပေမဲ့ ဖြေရှင်းမှုအဆင့်တွေ မရှိသေးပါ။\nsteps သို့မဟုတ် plan ထည့်ပြီးမှ စနိုင်ပါတယ်။",
-        "mock_hint": "အရိပ်အမြွက်လေးပါ။\nမေးခွန်းက ဘာကိုမေးလဲ အရင်ကြည့်ပါ။\nဘယ်အပိုင်းကို အရင်စစ်မလဲ?",
-        "mock_stuck": "ရပါတယ်။\nပေးထားတဲ့ ကိန်းတစ်ခုကို အရင်ရှာပါ။\nအဆင့်သေးသေးလေးတစ်ခု အတူလုပ်မလား?",
-        "mock_why": "အဆင့်သေးသေးလေးခွဲရင် ပိုလွယ်ပါတယ်။\nတစ်ခါတည်း အကုန်မဖြေရှင်းရပါဘူး။\nပထမဆုံး ဘာကိုရှာမလဲ?",
-        "mock_general": "ကောင်းပါတယ်။\nရွေးချယ်စရာတစ်ခုကို အရင်စစ်ကြည့်မယ်။\nဘယ်ဟာက စမလဲ?",
+    "uk": {
+        "empty_message": "Добре. Спочатку з’ясуймо, що потрібно знайти в задачі.",
+        "missing_solvable": "Ця задача ще не має solvable JSON.\nСпочатку зберіть задачу, а потім знову запустіть репетитора.",
+        "missing_steps": "solvable JSON існує, але кроки розв’язання порожні.\nДодайте steps або plan, щоб розпочати.",
+        "mock_hint": "Ось невелика підказка.\nСпочатку подивіться, що запитує задача.\nЯку частину перевіримо?",
+        "mock_stuck": "Нічого.\nСпочатку знайдіть одне дане число.\nЗробимо разом один крок?",
+        "mock_why": "Коли ділимо на малі кроки, стає легше.\nНе обов’язково розв’язувати все одразу.\nЩо знайдемо спочатку?",
+        "mock_general": "Добре.\nСпочатку перевіримо один варіант.\nЗ якого почнемо?",
     },
 }
 
 
 _LOCALIZED_PHRASES: dict[str, dict[str, str]] = {
     "ko": {
-        "step": "{n}단계",
-        "next": "좋아요. 다음 단계로 가 볼게요.",
-        "correct": "좋아요, 맞았어요.",
-        "try_again": "조금 다르게 본 것 같아요.",
-        "enter_again": "다시 입력해 볼까요?",
-        "enter_step_value": "이 단계에서 생각한 값을 입력해 주세요.",
-        "enter_calculated_number": "계산한 수를 입력해 보세요.",
-        "copy_given_number": "그 수를 그대로 입력해 보세요.",
-        "confusion": "좋아요, 이 단계만 다시 볼게요.",
-        "intro_place_value": "Rule Tutor로 자리값을 보면서 풀어 볼게요.",
-        "intro_highlighted": "{multiple}에서 색칠한 부분 {highlighted}이 어떤 보기와 같은지 찾는 문제예요.",
-        "intro_hexagon": "Rule Tutor로 도형의 이유를 확인하면서 풀어 볼게요.\n먼저 지름으로 반지름을 구합니다.",
-        "intro_general": "Rule Tutor로 단계별 풀이를 시작할게요.\n풀이 방법: {method}",
-        "place_value_hint": "색칠된 부분의 자리값을 보고 같은 곱셈식을 고르면 돼요.",
-        "choose_option": "아래 보기 중 알맞은 식을 선택해 보세요.",
-        "complete_with_answer": "좋아요. 풀이 단계가 모두 끝났어요.\n최종 답은 {answer}입니다.\n이제 보기나 답칸에 맞게 표시하면 돼요.",
-        "complete": "좋아요. 풀이 단계가 모두 끝났어요.\n이제 문제의 답칸이나 보기에 맞게 정리해 보세요.",
-        "step_place_value_select": "색칠된 부분이 실제로 어떤 곱셈식인지 보기에서 골라요.",
-        "step_copy_given_expression": "{expr}은 이미 수로 주어졌어요.",
-        "step_calculate_expression": "{expr}의 값을 먼저 구해요.",
-        "step_compare_smaller": "계산한 값을 비교해요. {values} 중 더 작은 것은 무엇일까요?",
-        "step_compare_larger": "계산한 값을 비교해요. {values} 중 더 큰 것은 무엇일까요?",
-        "step_compare_condition": "계산한 값을 비교해요. {values} 중 조건에 맞는 것은 무엇일까요?",
+        "step": "{n}단계", "next": "좋아요. 다음 단계로 가 볼게요.", "correct": "좋아요, 맞았어요.",
+        "try_again": "조금 다르게 본 것 같아요.", "enter_again": "다시 입력해 볼까요?", "enter_step_value": "이 단계에서 생각한 값을 입력해 주세요.",
+        "enter_calculated_number": "계산한 수를 입력해 보세요.", "copy_given_number": "그 수를 그대로 입력해 보세요.", "confusion": "좋아요, 이 단계만 다시 볼게요.",
+        "intro_place_value": "자릿값을 보면서 풀어 볼게요.", "intro_highlighted": "{multiple}에서 색칠한 부분 {highlighted}이 어떤 보기와 같은지 찾는 문제예요.", "intro_hexagon": "도형의 이유를 확인하며 풀어 볼게요.\n먼저 지름으로 반지름을 구합니다.",
+        "intro_general": "단계별 풀이를 시작할게요.\n풀이 방법: {method}", "place_value_hint": "색칠된 부분의 자릿값을 보고 같은 곱셈식을 고르면 돼요.", "choose_option": "아래 보기 중 알맞은 식을 선택해 보세요.",
+        "complete_with_answer": "좋아요. 풀이 단계가 모두 끝났어요.\n최종 답은 {answer}입니다.\n이제 보기나 답칸에 맞게 표시하면 돼요.", "complete": "좋아요. 풀이 단계가 모두 끝났어요.\n이제 문제의 답칸이나 보기에 맞게 정리해 보세요.",
+        "step_place_value_select": "색칠된 부분이 실제로 어떤 곱셈식인지 보기에서 골라요.", "step_copy_given_expression": "{expr}은 이미 수로 주어졌어요.", "step_calculate_expression": "{expr}의 값을 먼저 구해요.",
+        "step_compare_smaller": "계산한 값을 비교해요. {values} 중 더 작은 것은 무엇일까요?", "step_compare_larger": "계산한 값을 비교해요. {values} 중 더 큰 것은 무엇일까요?", "step_compare_condition": "계산한 값을 비교해요. {values} 중 조건에 맞는 것은 무엇일까요?",
     },
-    "en": {
-        "step": "Step {n}",
-        "next": "Good. Let's go to the next step.",
-        "correct": "Good, that's right.",
-        "try_again": "I think we looked at it a little differently.",
-        "enter_again": "Try entering it again.",
-        "enter_step_value": "Enter the value for this step.",
-        "enter_calculated_number": "Enter the number you calculated.",
-        "copy_given_number": "Enter that number as it is.",
-        "confusion": "Good. Let's look at just this step again.",
-        "intro_place_value": "Let's solve it by looking at place value.",
-        "intro_highlighted": "Find which choice matches the colored part {highlighted} in {multiple}.",
-        "intro_hexagon": "Let's check the shape reason first.\nFirst, use the diameter to find the radius.",
-        "intro_general": "Let's start step by step.\nMethod: {method}",
-        "place_value_hint": "Look at the place value of the colored part and choose the matching expression.",
-        "choose_option": "Choose the correct expression from the choices.",
-        "complete_with_answer": "Good. All steps are done.\nThe final answer is {answer}.\nNow mark it in the answer box or choices.",
-        "complete": "Good. All steps are done.\nNow write it in the answer box or choices.",
-        "step_place_value_select": "Choose which multiplication expression matches the colored part.",
-        "step_copy_given_expression": "{expr} is already given as a number.",
-        "step_calculate_expression": "First, find the value of {expr}.",
-        "step_compare_smaller": "Compare the values. From {values}, which one is smaller?",
-        "step_compare_larger": "Compare the values. From {values}, which one is larger?",
-        "step_compare_condition": "Compare the values. From {values}, which one matches the condition?",
+    "uk": {
+        "step": "Крок {n}", "next": "Добре. Перейдемо до наступного кроку.", "correct": "Добре, правильно.",
+        "try_again": "Схоже, ми подивилися на це трохи інакше.", "enter_again": "Спробуйте ввести ще раз.", "enter_step_value": "Введіть значення для цього кроку.",
+        "enter_calculated_number": "Введіть обчислене число.", "copy_given_number": "Введіть це число без змін.", "confusion": "Добре. Розглянемо ще раз лише цей крок.",
+        "intro_place_value": "Розв’яжемо, розглядаючи розрядні значення.", "intro_highlighted": "Знайдіть, який варіант відповідає виділеній частині {highlighted} у {multiple}.", "intro_hexagon": "Спочатку перевіримо геометричне обґрунтування.\nЗнайдіть радіус за діаметром.",
+        "intro_general": "Почнемо розв’язувати покроково.\nМетод: {method}", "place_value_hint": "Подивіться на розрядне значення виділеної частини та виберіть відповідний вираз.", "choose_option": "Виберіть правильний вираз з наведених варіантів.",
+        "complete_with_answer": "Добре. Усі кроки завершено.\nОстаточна відповідь: {answer}.\nТепер позначте її у полі або серед варіантів.", "complete": "Добре. Усі кроки завершено.\nТепер запишіть відповідь у полі або оберіть варіант.",
+        "step_place_value_select": "Виберіть вираз множення, що відповідає виділеній частині.", "step_copy_given_expression": "{expr} уже подано як число.", "step_calculate_expression": "Спочатку знайдіть значення {expr}.",
+        "step_compare_smaller": "Порівняйте значення. Яке з {values} менше?", "step_compare_larger": "Порівняйте значення. Яке з {values} більше?", "step_compare_condition": "Порівняйте значення. Яке з {values} відповідає умові?",
     },
-    "ja": {
-        "step": "ステップ{n}",
-        "next": "いいですね。次のステップに進みましょう。",
-        "correct": "いいですね、正解です。",
-        "try_again": "少し違う見方をしたようです。",
-        "enter_again": "もう一度入力してみましょう。",
-        "enter_step_value": "このステップで考えた値を入力してください。",
-        "enter_calculated_number": "計算した数を入力してください。",
-        "copy_given_number": "その数をそのまま入力してください。",
-        "confusion": "いいですね。このステップだけもう一度見ましょう。",
-        "intro_place_value": "位の値を見ながら解いてみましょう。",
-        "intro_highlighted": "{multiple} の色の部分 {highlighted} がどの選択肢と同じか探す問題です。",
-        "intro_hexagon": "まず図形の理由を確認しながら解きましょう。\nはじめに直径から半径を求めます。",
-        "intro_general": "ステップごとに始めましょう。\n方法: {method}",
-        "place_value_hint": "色の部分の位の値を見て、同じ式を選びます。",
-        "choose_option": "下の選択肢から合う式を選んでください。",
-        "complete_with_answer": "いいですね。すべてのステップが終わりました。\n答えは {answer} です。\n答えの欄や選択肢に合わせて書きましょう。",
-        "complete": "いいですね。すべてのステップが終わりました。\n答えの欄や選択肢に合わせてまとめましょう。",
-        "step_place_value_select": "色の部分に合うかけ算の式を選びましょう。",
-        "step_copy_given_expression": "{expr} は、もう数として与えられています。",
-        "step_calculate_expression": "まず {expr} の値を求めましょう。",
-        "step_compare_smaller": "値を比べましょう。{values} の中で小さいのはどれですか。",
-        "step_compare_larger": "値を比べましょう。{values} の中で大きいのはどれですか。",
-        "step_compare_condition": "値を比べましょう。{values} の中で条件に合うのはどれですか。",
-    },
-    "zh": {
-        "step": "第{n}步",
-        "next": "很好。我们进入下一步。",
-        "correct": "很好，答对了。",
-        "try_again": "好像看得有一点不同。",
-        "enter_again": "请再输入一次。",
-        "enter_step_value": "请输入这一步得到的值。",
-        "enter_calculated_number": "请输入你算出的数。",
-        "copy_given_number": "请直接输入这个数。",
-        "confusion": "好，我们只重新看这一步。",
-        "intro_place_value": "我们看位值来解题。",
-        "intro_highlighted": "这道题要找出 {multiple} 中涂色部分 {highlighted} 和哪个选项相同。",
-        "intro_hexagon": "我们先确认图形中的理由。\n先用直径求半径。",
-        "intro_general": "我们一步一步开始。\n方法：{method}",
-        "place_value_hint": "看涂色部分的位值，选择相同的乘法式。",
-        "choose_option": "请从下面的选项中选择合适的式子。",
-        "complete_with_answer": "很好。所有步骤都完成了。\n最终答案是 {answer}。\n现在把它填到答案框或选项中。",
-        "complete": "很好。所有步骤都完成了。\n现在按题目的答案框或选项整理一下。",
-        "step_place_value_select": "请选择和涂色部分相同的乘法式。",
-        "step_copy_given_expression": "{expr} 已经是题目给出的数。",
-        "step_calculate_expression": "先求出 {expr} 的值。",
-        "step_compare_smaller": "比较这些值。{values} 中哪一个更小？",
-        "step_compare_larger": "比较这些值。{values} 中哪一个更大？",
-        "step_compare_condition": "比较这些值。{values} 中哪一个符合条件？",
-    },
-}
-
-_LOCALIZED_PHRASES["km"] = _LOCALIZED_PHRASES["en"] | {
-    "step": "ជំហាន {n}",
-    "next": "ល្អណាស់។ យើងទៅជំហានបន្ទាប់។",
-    "correct": "ល្អណាស់ ត្រឹមត្រូវហើយ។",
-    "try_again": "មើលទៅយើងគិតខុសបន្តិចហើយ។",
-    "enter_again": "សូមបញ្ចូលម្តងទៀត។",
-    "enter_step_value": "បញ្ចូលតម្លៃសម្រាប់ជំហាននេះ។",
-    "enter_calculated_number": "បញ្ចូលចំនួនដែលបានគណនា។",
-    "copy_given_number": "សូមបញ្ចូលចំនួននោះដូចដើម។",
-    "confusion": "ល្អណាស់។ យើងមើលតែជំហាននេះម្តងទៀត។",
-    "intro_place_value": "យើងនឹងប្រើ Rule Tutor មើលតម្លៃតាមខ្ទង់។",
-    "intro_highlighted": "នេះជាលំហាត់រកថាផ្នែកដែលបានពណ៌ {highlighted} ក្នុង {multiple} ស្មើនឹងជម្រើសណា។",
-    "intro_hexagon": "យើងនឹងពិនិត្យហេតុផលរបស់រូបរាងជាមួយ Rule Tutor។\nមុនដំបូង រកកាំពីអង្កត់ផ្ចិត។",
-    "intro_general": "យើងចាប់ផ្តើមដោះស្រាយជាជំហានៗជាមួយ Rule Tutor។\nវិធីដោះស្រាយ: {method}",
-    "place_value_hint": "មើលតម្លៃតាមខ្ទង់នៃផ្នែកដែលបានពណ៌ ហើយជ្រើសសមីការគុណដែលដូចគ្នា។",
-    "choose_option": "សូមជ្រើសសមីការដែលត្រឹមត្រូវពីជម្រើសខាងក្រោម។",
-    "complete_with_answer": "ល្អណាស់។ ជំហានទាំងអស់បានបញ្ចប់ហើយ។\nចម្លើយចុងក្រោយគឺ {answer}។\nឥឡូវសម្គាល់វាក្នុងជម្រើស ឬប្រអប់ចម្លើយ។",
-    "complete": "ល្អណាស់។ ជំហានទាំងអស់បានបញ្ចប់ហើយ។\nឥឡូវរៀបចំចម្លើយក្នុងប្រអប់ ឬជម្រើស។",
-    "step_place_value_select": "សូមជ្រើសសមីការគុណដែលដូចនឹងផ្នែកដែលបានពណ៌។",
-    "step_copy_given_expression": "{expr} ត្រូវបានផ្តល់ជាចំនួនរួចហើយ។",
-    "step_calculate_expression": "មុនដំបូង រកតម្លៃនៃ {expr}។",
-    "step_compare_smaller": "ប្រៀបធៀបតម្លៃ។ ក្នុង {values} មួយណាតូចជាង?",
-    "step_compare_larger": "ប្រៀបធៀបតម្លៃ។ ក្នុង {values} មួយណាធំជាង?",
-    "step_compare_condition": "ប្រៀបធៀបតម្លៃ។ ក្នុង {values} មួយណាត្រូវនឹងលក្ខខណ្ឌ?",
-}
-_LOCALIZED_PHRASES["my"] = _LOCALIZED_PHRASES["en"] | {
-    "step": "အဆင့် {n}",
-    "next": "ကောင်းပါတယ်။ နောက်အဆင့်သို့ သွားကြမယ်။",
-    "correct": "ကောင်းပါတယ်၊ မှန်ပါတယ်။",
-    "try_again": "နည်းနည်း မတူတဲ့ဘက်ကနေ ကြည့်မိသလိုပါပဲ။",
-    "enter_again": "ထပ်ထည့်ကြည့်ပါ။",
-    "enter_step_value": "ဒီအဆင့်အတွက် တန်ဖိုးကို ထည့်ပါ။",
-    "enter_calculated_number": "တွက်ထားတဲ့ ကိန်းကို ထည့်ပါ။",
-    "copy_given_number": "အဲဒီကိန်းကို မပြောင်းဘဲ ထည့်ပါ။",
-    "confusion": "ကောင်းပါတယ်။ ဒီအဆင့်ကိုပဲ ပြန်ကြည့်မယ်။",
-    "intro_place_value": "Rule Tutor နဲ့ နေရာတန်ဖိုးကို ကြည့်ပြီး ဖြေကြမယ်။",
-    "intro_highlighted": "{multiple} ထဲက အရောင်ခြယ်ထားတဲ့ {highlighted} က ဘယ်ရွေးချယ်မှုနဲ့ တူလဲ ရှာရမယ့် မေးခွန်းပါ။",
-    "intro_hexagon": "Rule Tutor နဲ့ ပုံသဏ္ဍာန်အကြောင်းရင်းကို စစ်ကြမယ်။\nပထမဆုံး အချင်းကနေ အချင်းဝက်ကို ရှာပါ။",
-    "intro_general": "Rule Tutor နဲ့ အဆင့်လိုက် စတင်ဖြေရှင်းမယ်။\nဖြေရှင်းနည်း: {method}",
-    "place_value_hint": "အရောင်ခြယ်ထားတဲ့ အပိုင်းရဲ့ နေရာတန်ဖိုးကို ကြည့်ပြီး တူတဲ့ မြှောက်ဖော်ပြချက်ကို ရွေးပါ။",
-    "choose_option": "အောက်က ရွေးချယ်စရာတွေထဲက မှန်တဲ့ ဖော်ပြချက်ကို ရွေးပါ။",
-    "complete_with_answer": "ကောင်းပါတယ်။ ဖြေရှင်းမှုအဆင့်အားလုံး ပြီးသွားပါပြီ။\nနောက်ဆုံးအဖြေက {answer} ပါ။\nအခု ရွေးချယ်မှု ဒါမှမဟုတ် အဖြေကွက်မှာ မှတ်ပါ။",
-    "complete": "ကောင်းပါတယ်။ ဖြေရှင်းမှုအဆင့်အားလုံး ပြီးသွားပါပြီ။\nအခု မေးခွန်းရဲ့ အဖြေကွက် ဒါမှမဟုတ် ရွေးချယ်မှုမှာ စီစဉ်ပါ။",
-    "step_place_value_select": "အရောင်ခြယ်ထားတဲ့ အပိုင်းနဲ့ တူတဲ့ မြှောက်ဖော်ပြချက်ကို ရွေးပါ။",
-    "step_copy_given_expression": "{expr} ကို ကိန်းအဖြစ် ပေးထားပြီးသားပါ။",
-    "step_calculate_expression": "ပထမဆုံး {expr} ရဲ့ တန်ဖိုးကို ရှာပါ။",
-    "step_compare_smaller": "တန်ဖိုးတွေကို နှိုင်းယှဉ်ပါ။ {values} ထဲမှာ ဘယ်ဟာ ပိုသေးလဲ?",
-    "step_compare_larger": "တန်ဖိုးတွေကို နှိုင်းယှဉ်ပါ။ {values} ထဲမှာ ဘယ်ဟာ ပိုကြီးလဲ?",
-    "step_compare_condition": "တန်ဖိုးတွေကို နှိုင်းယှဉ်ပါ။ {values} ထဲမှာ ဘယ်ဟာ အခြေအနေနဲ့ ကိုက်ညီလဲ?",
 }
 
 

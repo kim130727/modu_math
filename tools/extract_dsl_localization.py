@@ -278,7 +278,7 @@ def write_locale(path: Path, entries: dict[str, dict[str, str]]) -> bool:
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Extract translatable strings from one ModuMath DSL file.")
     parser.add_argument("--dsl", required=True, help="Path to a single *.dsl.py file.")
-    parser.add_argument("--locale", required=True, help="Locale code, e.g. en-US.")
+    parser.add_argument("--locale", required=True, help="Locale code, e.g. uk-UA.")
     parser.add_argument("--out", help="Output JSON path. Defaults to locales/<locale>/<problem_id>.locale.json.")
     parser.add_argument("--force", action="store_true", help="Recreate malformed existing JSON instead of failing.")
     return parser.parse_args(argv)

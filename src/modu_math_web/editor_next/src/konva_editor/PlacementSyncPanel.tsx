@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { listProblems, syncTextPlacements, type PlacementSyncResult } from "../api/editorApi";
 import type { EditorShape } from "../types/editorShape";
 
-const languageNames: Record<string, string> = { ko: "한국어", en: "영어", ja: "일본어", zh: "중국어", uk: "우크라이나어", km: "크메르어" };
+const languageNames: Record<string, string> = { ko: "한국어", uk: "우크라이나어" };
 const placementRoles = new Set(["", "question", "instruction", "choice", "diagram_label"]);
 
 export function textPlacements(shapes: EditorShape[], selectedIds?: string[]) {

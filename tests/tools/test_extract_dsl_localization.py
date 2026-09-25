@@ -61,7 +61,7 @@ def test_extract_uses_stable_keys_and_skips_non_translatable_fields(tmp_path: Pa
     out_path = tmp_path / "p_localize.locale.json"
     _write_dsl(dsl_path)
 
-    assert main(["--dsl", str(dsl_path), "--locale", "en-US", "--out", str(out_path)]) == 0
+    assert main(["--dsl", str(dsl_path), "--locale", "uk-UA", "--out", str(out_path)]) == 0
 
     data = json.loads(out_path.read_text(encoding="utf-8"))
     assert data["template.slots.slot.question.text"]["source"] == "Add the numbers."
@@ -107,7 +107,7 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     )
     out_path = tmp_path / "p_symbol_locale.locale.json"
 
-    assert main(["--dsl", str(dsl_path), "--locale", "en-US", "--out", str(out_path)]) == 0
+    assert main(["--dsl", str(dsl_path), "--locale", "uk-UA", "--out", str(out_path)]) == 0
 
     data = json.loads(out_path.read_text(encoding="utf-8"))
     assert "template.slots.slot.choice.text" not in data
@@ -121,7 +121,7 @@ def test_extract_drops_stale_translation_and_obsolete_entries(tmp_path: Path) ->
     dsl_path = tmp_path / "problem.dsl.py"
     out_path = tmp_path / "p_localize.locale.json"
     _write_dsl(dsl_path)
-    assert main(["--dsl", str(dsl_path), "--locale", "en-US", "--out", str(out_path)]) == 0
+    assert main(["--dsl", str(dsl_path), "--locale", "uk-UA", "--out", str(out_path)]) == 0
 
     data = json.loads(out_path.read_text(encoding="utf-8"))
     data["template.slots.slot.question.text"]["translation"] = "Addiere die Zahlen."
@@ -133,7 +133,7 @@ def test_extract_drops_stale_translation_and_obsolete_entries(tmp_path: Path) ->
     out_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     _write_dsl(dsl_path, slot_text="Add all numbers.")
-    assert main(["--dsl", str(dsl_path), "--locale", "en-US", "--out", str(out_path)]) == 0
+    assert main(["--dsl", str(dsl_path), "--locale", "uk-UA", "--out", str(out_path)]) == 0
 
     updated = json.loads(out_path.read_text(encoding="utf-8"))
     question = updated["template.slots.slot.question.text"]
@@ -152,7 +152,7 @@ def test_extract_does_not_modify_existing_dsl(tmp_path: Path) -> None:
                 "--dsl",
                 str(dsl_path),
                 "--locale",
-                "en-US",
+                "uk-UA",
                 "--out",
                 str(tmp_path / "representative.locale.json"),
             ]

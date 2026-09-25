@@ -33,7 +33,7 @@ PROBLEM_TEMPLATE = ProblemTemplate(
 def variant(tmp_path, settings):
     root = tmp_path / "problems"
     canonical = root / "ko" / "sample.dsl.py"
-    target = root / "en" / "sample.dsl.py"
+    target = root / "uk" / "sample.dsl.py"
     canonical.parent.mkdir(parents=True)
     target.parent.mkdir()
     canonical.write_text(SOURCE, encoding="utf-8")
@@ -54,12 +54,12 @@ def test_virtual_listing_read_save_and_svg(variant):
     listing = list_problem_directories()
     assert len(listing) == 2
     assert listing[0]["equivalent_problem_ids"]["ko"] == "ko/sample.dsl.py"
-    detail = read_problem_detail("en/sample.dsl.py")
+    detail = read_problem_detail("uk/sample.dsl.py")
     assert detail["dsl_storage"] == "locale_delta"
     assert detail["source_problem_id"] == "ko/sample.dsl.py"
-    save_problem_dsl("en/sample.dsl.py", detail["dsl"].replace("Question", "Updated"))
+    save_problem_dsl("uk/sample.dsl.py", detail["dsl"].replace("Question", "Updated"))
     apply_layout_patches(
-        "en/sample.dsl.py",
+        "uk/sample.dsl.py",
         [
             {"target": "slot.q", "op": "update", "value": {"x": 35}},
         ],
@@ -93,23 +93,23 @@ def test_fast_canvas_edits_and_answer_metadata_keep_virtual_dsl(variant):
     from modu_math_web.editor.services.problems import create_blank_problem
 
     canonical, target = variant
-    assert run_problem_build("en/sample.dsl.py").ok
+    assert run_problem_build("uk/sample.dsl.py").ok
     apply_layout_patches(
-        "en/sample.dsl.py",
+        "uk/sample.dsl.py",
         [
             {"target": "slot.q", "op": "update", "value": {"x": 77, "text": "Edited"}},
         ],
         fast_overrides=True,
     )
-    assert run_problem_build("en/sample.dsl.py").ok
-    detail = read_problem_detail("en/sample.dsl.py")
+    assert run_problem_build("uk/sample.dsl.py").ok
+    detail = read_problem_detail("uk/sample.dsl.py")
     slot = next(slot for slot in detail["layout"]["slots"] if slot["id"] == "slot.q")
     assert slot["content"]["x"] == 77
     assert slot["content"]["text"] == "Edited"
     assert not target.exists()
     assert canonical.read_text(encoding="utf-8") == SOURCE
     with pytest.raises(FileExistsError):
-        create_blank_problem("en/sample.dsl.py")
+        create_blank_problem("uk/sample.dsl.py")
 
 
 def test_common_editor_geometry_and_language_override(variant):
@@ -127,11 +127,11 @@ def test_common_editor_geometry_and_language_override(variant):
     )
     result = run_problem_build("ko/sample.dsl.py")
     assert result.ok, result.error
-    detail = read_problem_detail("en/sample.dsl.py")
+    detail = read_problem_detail("uk/sample.dsl.py")
     assert detail["layout"]["slots"][0]["content"]["x"] == 60
     assert detail["layout"]["slots"][0]["content"]["text"] == "Question"
     apply_layout_patches(
-        "en/sample.dsl.py",
+        "uk/sample.dsl.py",
         [
             {"target": "slot.q", "op": "update", "value": {"x": 80}},
         ],
@@ -139,7 +139,7 @@ def test_common_editor_geometry_and_language_override(variant):
     )
     assert run_problem_build("ko/sample.dsl.py").ok
     assert (
-        read_problem_detail("en/sample.dsl.py")["layout"]["slots"][0]["content"]["x"]
+        read_problem_detail("uk/sample.dsl.py")["layout"]["slots"][0]["content"]["x"]
         == 80
     )
     assert not target.exists()
