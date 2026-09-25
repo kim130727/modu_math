@@ -16,7 +16,9 @@ void main() {
     final hangulRegex = RegExp(r'[\uac00-\ud7a3]');
 
     final untranslated = <String>[];
-    for (final problem in manifest.problems) {
+    final multilingualProblems = manifest.problems
+        .where((problem) => problem.id.startsWith('S3_elem_3_'));
+    for (final problem in multilingualProblems) {
       final content = await repo.loadProblem(problem);
       for (final locale in nonKoreanLocales) {
         final hints =

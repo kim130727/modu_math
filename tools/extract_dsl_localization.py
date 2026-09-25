@@ -278,8 +278,14 @@ def write_locale(path: Path, entries: dict[str, dict[str, str]]) -> bool:
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Extract translatable strings from one ModuMath DSL file.")
     parser.add_argument("--dsl", required=True, help="Path to a single *.dsl.py file.")
-    parser.add_argument("--locale", required=True, help="Locale code, e.g. uk-UA.")
-    parser.add_argument("--out", help="Output JSON path. Defaults to locales/<locale>/<problem_id>.locale.json.")
+    parser.add_argument("--locale", required=True, help="Supported locale code: ko, uk, or uk-UA.")
+    parser.add_argument(
+        "--out",
+        help=(
+            "Optional standalone catalog path for legacy or ad-hoc DSL files. "
+            "Consolidated problems write to their *.i18n.json document by default."
+        ),
+    )
     parser.add_argument("--force", action="store_true", help="Recreate malformed existing JSON instead of failing.")
     return parser.parse_args(argv)
 
@@ -288,15 +294,17 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     dsl_path = Path(args.dsl)
     module = load_dsl_module(dsl_path)
-    problem_id = problem_id_from(module, dsl_path)
-    out_path = Path(args.out) if args.out else ROOT / "locales" / args.locale / f"{problem_id}.locale.json"
     from modu_math.dsl.problem_store import consolidated, location, document_path, JsonSection, LANGUAGES
-    if not args.out and consolidated(dsl_path):
+
+    language = args.locale.split("-")[0]
+    if language not in LANGUAGES:
+        raise ValueError(f"Unsupported language: {language}; supported languages: {', '.join(sorted(LANGUAGES))}")
+
+    if args.out:
+        out_path = Path(args.out)
+    elif consolidated(dsl_path):
         import os
         canonical, _, root = location(dsl_path)
-        language = args.locale.split("-")[0]
-        if language not in LANGUAGES:
-            raise ValueError(f"Unsupported language: {language}")
         if language == "ko":
             keys = ("translation_catalog",)
         else:
@@ -308,6 +316,11 @@ def main(argv: list[str] | None = None) -> int:
                     "changes": []}, "editor_overrides": {}}))
             keys = ("languages", language, "translation_catalog")
         out_path = JsonSection(document_path(canonical), keys, root)
+    else:
+        raise ValueError(
+            "This DSL is not backed by a consolidated *.i18n.json document. "
+            "Pass --out for a standalone legacy catalog."
+        )
 
     extracted = extract_localization(module)
     existing = read_existing(out_path, force=args.force)

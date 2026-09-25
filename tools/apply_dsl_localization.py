@@ -311,10 +311,16 @@ def write_output(path: Path, source: str, *, force: bool) -> bool:
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Create a localized ModuMath DSL file from locale JSON.")
+    parser = argparse.ArgumentParser(description="Apply a translation catalog to a ModuMath problem.")
     parser.add_argument("--dsl", required=True, help="Source *.dsl.py file.")
-    parser.add_argument("--locale-json", required=True, help="Locale JSON created by extract_dsl_localization.py.")
-    parser.add_argument("--locale", help="Locale code for the default output filename, e.g. uk-UA.")
+    parser.add_argument(
+        "--locale-json",
+        "--i18n-json",
+        dest="locale_json",
+        required=True,
+        help="Consolidated *.i18n.json document, or a standalone legacy locale catalog.",
+    )
+    parser.add_argument("--locale", help="Target locale code. Required for a consolidated document, e.g. uk.")
     parser.add_argument("--out", help="Output *.dsl.py path. Defaults to <source>.<locale>.dsl.py.")
     parser.add_argument("--force", action="store_true", help="Overwrite an existing output file.")
     parser.add_argument(

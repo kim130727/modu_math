@@ -712,6 +712,56 @@ void main() {
       expect(content.layout, isEmpty);
       expect(content.solvable, isEmpty);
     });
+
+    test('classifies newly added 14 P3_1_01 problems under 1단원 덧셈과 뺄셈', () async {
+      final repository = ContentRepository.bundledAssets();
+      final manifest = await repository.loadManifest();
+
+      final addedPrefixes = [
+        'P3_1_01_00040_00469',
+        'P3_1_01_00040_00470',
+        'P3_1_01_00040_00471_1',
+        'P3_1_01_00040_00471_2',
+        'P3_1_01_00040_00472',
+        'P3_1_01_00040_00473',
+        'P3_1_01_00040_02135',
+        'P3_1_01_00040_02149',
+        'P3_1_01_00040_02150_1',
+        'P3_1_01_00040_02150_2',
+        'P3_1_01_00040_02151_1',
+        'P3_1_01_00040_02151_2',
+        'P3_1_01_00040_02151_3',
+        'P3_1_01_00040_02151_4',
+      ];
+
+      for (final prefix in addedPrefixes) {
+        final problem = manifest.problems.firstWhere(
+          (p) => p.id == prefix,
+          orElse: () => throw StateError('Missing problem $prefix in manifest'),
+        );
+
+        expect(problem.grade, equals(3));
+        expect(problem.semester, equals('1학기'));
+        expect(problem.unitNumber, equals(1));
+        expect(problem.unitTopic, equals('덧셈과 뺄셈'));
+        expect(problem.domain, equals('수와 연산'));
+        expect(problem.subUnit, isNotEmpty);
+        expect(problem.subUnit, isNot(equals('__basicLearning__')));
+      }
+
+      // Verify specific subUnits
+      final p469 = manifest.problems.firstWhere((p) => p.id == 'P3_1_01_00040_00469');
+      expect(p469.subUnit, equals('세 자리 수의 덧셈'));
+
+      final p471 = manifest.problems.firstWhere((p) => p.id == 'P3_1_01_00040_00471_1');
+      expect(p471.subUnit, equals('세 자리 수의 덧셈과 크기 비교'));
+
+      final p2135 = manifest.problems.firstWhere((p) => p.id == 'P3_1_01_00040_02135');
+      expect(p2135.subUnit, equals('받아올림이 있는 세 자리 수의 덧셈'));
+
+      final p2151 = manifest.problems.firstWhere((p) => p.id == 'P3_1_01_00040_02151_1');
+      expect(p2151.subUnit, equals('세 자리 수의 덧셈 계산'));
+    });
   });
 }
 

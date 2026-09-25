@@ -133,7 +133,7 @@ def test_translation_tools_use_integrated_catalog(content):
     entries = json.loads(stored.read_text())
     entries["template.slots.slot.q.text"]["translation"] = "New translation"
     stored.write_text(json.dumps(entries, ensure_ascii=False))
-    assert apply(["--dsl", str(canonical), "--locale", "uk", "--locale-json", str(document_path(canonical)), "--force"]) == 0
+    assert apply(["--dsl", str(canonical), "--locale", "uk", "--i18n-json", str(document_path(canonical)), "--force"]) == 0
     assert "New translation" in read_source(translated)
     assert len(list(root.rglob("*.json"))) == 1
 

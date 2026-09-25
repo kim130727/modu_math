@@ -828,11 +828,20 @@ class ContentRepository {
     final problemType = _problemTypeLabel(
       semantic['problem_type']?.toString(),
     );
+    final domain = _domainForTopic(unitTopic);
+    final subUnit = metadata['subUnit']?.toString().trim().isNotEmpty == true
+        ? metadata['subUnit'].toString().trim()
+        : (metadata['subTopic']?.toString().trim().isNotEmpty == true
+            ? metadata['subTopic'].toString().trim()
+            : (metadata['topic']?.toString().trim().isNotEmpty == true
+                ? metadata['topic'].toString().trim()
+                : '기본 학습'));
+
     final raw = <String, dynamic>{
       'id': filePrefix,
       'grade': grade,
       'subject': 'math',
-      'unit': '$semester학기 $unitNumber. $unitTopic',
+      'unit': unitTopic,
       'type': problemType,
       'title': title,
       'path': path,
@@ -840,11 +849,23 @@ class ContentRepository {
       'semester': '$semester학기',
       'unitNumber': unitNumber,
       'unitTopic': unitTopic,
+      'domain': domain,
+      'subUnit': subUnit,
       if (semantic['problem_type'] != null)
         'problemType': semantic['problem_type'].toString(),
       if (metadata['topic'] != null) 'topic': metadata['topic'].toString(),
     };
     return ProblemSummary.fromJson(raw);
+  }
+
+  static String _domainForTopic(String topic) {
+    return switch (topic) {
+      '덧셈과 뺄셈' || '나눗셈' || '곱셈' || '분수와 소수' || '분수' => '수와 연산',
+      '평면도형' || '원' => '도형',
+      '길이와 시간' || '들이와 무게' => '측정',
+      '자료의 정리' => '자료와 가능성',
+      _ => '수학 개념',
+    };
   }
 
   static ParsedUnitInfo resolveUnitInfo({

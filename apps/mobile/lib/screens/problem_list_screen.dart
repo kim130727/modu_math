@@ -119,7 +119,9 @@ class _ProblemListScreenState extends State<ProblemListScreen> {
                 )
               : _UnitJourney(
                   problems: data.manifest.problems
-                      .where((problem) => problem.unit == selectedUnit)
+                      .where((problem) =>
+                          problem.unit == selectedUnit ||
+                          problem.unitTopic == selectedUnit)
                       .toList(),
                   summary: data.summary,
                   onOpenProblem: _openProblem,
@@ -134,7 +136,9 @@ class _ProblemListScreenState extends State<ProblemListScreen> {
     final unitProblems = selectedUnit == null
         ? const <ProblemSummary>[]
         : (data.manifest.problems
-            .where((item) => item.unit == selectedUnit)
+            .where((item) =>
+                item.unit == selectedUnit ||
+                item.unitTopic == selectedUnit)
             .toList()
           ..sort((a, b) => a.id.compareTo(b.id)));
     final problemIndex =

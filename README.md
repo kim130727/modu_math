@@ -58,7 +58,7 @@ PNG -> vision_draft.md + vision_structured.json -> refined_draft.md -> Python DS
 ```text
 modu_math/
 ├── apps/
-│   └── mobile/                  # Flutter 모바일 앱 (modu_math_app)
+│   └── mobile/                  # Flutter 앱과 ko/uk UI 번역·빌드 결과물
 ├── src/
 │   ├── modu_math/               # 핵심 컴파일러, 파이프라인, 어댑터, 렌더러
 │   ├── modu_math_web/           # Django 백엔드
@@ -67,8 +67,8 @@ modu_math/
 │   │   └── editor_next/         # React 19 + Konva 차세대 웹 에디터
 │   └── modu_semantic/           # 하위 호환성 래퍼
 ├── examples/
-│   └── problems/                # 문제 번들 (0001, ko, en, ja, km, uk, zh)
-├── locales/                     # 다국어 번역 리소스
+│   └── problems/
+│       └── ko/                  # 한국어 DSL 원본 + 문제별 *.i18n.json
 ├── schema/                      # semantic, layout, renderer JSON Schema
 ├── scripts/                     # 모노레포 관리, 빌드 및 동기화 스크립트
 ├── tools/                       # Vision 드래프트 생성, DSL 변환 보조 도구
@@ -78,6 +78,13 @@ modu_math/
 ├── pyproject.toml               # Python 의존성 및 프로젝트 메타데이터
 └── README.md                    # 본 문서
 ```
+
+문제 번역은 별도 `locales/` 트리가 아니라 각 한국어 원본 옆의
+`*.i18n.json`에서 관리합니다. 한국어 원본과 우크라이나어 차이 데이터가 한
+문서에 있으므로 파일 이름 매칭과 중복 동기화가 필요하지 않습니다. 모바일 앱의
+메뉴·버튼 번역은 `apps/mobile/assets/i18n/{ko,uk}.json`, 빌드된 문제 데이터는
+`apps/mobile/generated/examples/problems/{ko,uk}/`에 위치합니다. 자세한 작업
+흐름은 `docs/single_source_localization.md`를 참고하세요.
 
 ---
 

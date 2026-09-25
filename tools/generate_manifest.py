@@ -35,9 +35,12 @@ def _unit_topic_for(grade: int, semester: int, unit_number: int) -> str:
 
 
 def _summary_title(metadata: dict[str, object], unit_topic: str) -> str:
-    candidate = metadata.get("question") or metadata.get("title") or metadata.get("instruction")
+    candidate = metadata.get("title") or metadata.get("question") or metadata.get("instruction")
     if candidate and isinstance(candidate, str) and not re.search(r"\?\?+", candidate):
         return candidate.strip()
+    topic = metadata.get("topic")
+    if topic and isinstance(topic, str):
+        return topic.strip()
     return f"{unit_topic} 문제"
 
 
@@ -66,7 +69,7 @@ def _parse_unit_info(renderer_path: Path, file_prefix: str, metadata: dict[str, 
             sub_unit = "기본 학습"
         return grade, semester, unit_number, unit_topic, sub_unit
 
-    parts = renderer_path.relative_to(ROOT).parts
+    parts = renderer_path.relative_to(ROOT).parts if renderer_path.is_relative_to(ROOT) else ()
     grade = 3
     semester = 1
     unit_number = 1
@@ -118,33 +121,22 @@ def _domain_for_topic(topic: str) -> str:
 
 
 def generate():
-    renderer_files = sorted(
-        [
-            path for path in (ROOT / "ko").glob("*.renderer.json")
-            if path.is_file()
-        ],
-        key=lambda p: p.name,
-    )
+    import os
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "modu_math_web.settings")
+    import django
+    django.setup()
+    from modu_math_web.editor.services.content_store import list_content, read_content
 
     problems: list[dict[str, object]] = []
 
-    for renderer_path in renderer_files:
-        file_prefix = renderer_path.name[: -len(".renderer.json")]
-        rel_dir = renderer_path.parent.relative_to(ROOT).as_posix()
-        if rel_dir == ".":
-            rel_dir = ""
-
-        base_path = renderer_path.with_name(file_prefix)
-        semantic_path = base_path.with_name(f"{file_prefix}.semantic.json")
-        semantic = {}
-        if semantic_path.is_file():
-            try:
-                semantic = json.loads(semantic_path.read_text(encoding="utf-8"))
-            except Exception:
-                pass
-
+    for paths in list_content(ROOT, language="ko"):
+        file_prefix = paths.artifact_base
+        bundle = read_content(paths)
+        semantic = bundle.get("semantic") or {}
         metadata = semantic.get("metadata") if isinstance(semantic.get("metadata"), dict) else {}
-        grade, semester, unit_number, unit_topic, sub_unit = _parse_unit_info(renderer_path, file_prefix, metadata)
+        grade, semester, unit_number, unit_topic, sub_unit = _parse_unit_info(
+            paths.artifact_path("renderer"), file_prefix, metadata
+        )
         title = _summary_title(metadata, unit_topic)
         problem_type = str(semantic.get("problem_type") or "unknown")
         domain = _domain_for_topic(unit_topic)
@@ -158,7 +150,7 @@ def generate():
                 "domain": domain,
                 "type": problem_type,
                 "title": title,
-                "path": f"examples/problems/{rel_dir}".rstrip("/"),
+                "path": "examples/problems/ko",
                 "filePrefix": file_prefix,
                 "semester": f"{semester}학기",
                 "unitNumber": unit_number,
@@ -181,6 +173,7 @@ def generate():
     dest_paths = [
         REPO / "apps" / "mobile" / "build" / "flutter_assets" / "examples" / "problems" / "manifest.json",
         REPO / "apps" / "mobile" / "build" / "unit_test_assets" / "examples" / "problems" / "manifest.json",
+        REPO / "apps" / "mobile" / "generated" / "examples" / "problems" / "manifest.json",
     ]
     for dest in dest_paths:
         dest.parent.mkdir(parents=True, exist_ok=True)
@@ -198,6 +191,8 @@ def verify() -> bool:
     problems = data.get("problems", [])
     errors = []
 
+    gen_dir = REPO / "apps" / "mobile" / "generated" / "examples" / "problems" / "ko"
+
     for item in problems:
         prefix = item.get("filePrefix") or item.get("id")
         rel_path = item.get("path", "")
@@ -205,13 +200,12 @@ def verify() -> bool:
         renderer_file = base_dir / f"{prefix}.renderer.json"
         semantic_file = base_dir / f"{prefix}.semantic.json"
 
-        if not renderer_file.is_file():
-            # Check if any renderer with this prefix exists anywhere in ROOT
+        if not renderer_file.is_file() and not (gen_dir / f"{prefix}.renderer.json").is_file():
             found = list(ROOT.rglob(f"{prefix}.renderer.json"))
             if not found:
                 errors.append(f"Missing renderer: {prefix} (expected at {renderer_file})")
 
-        if not semantic_file.is_file():
+        if not semantic_file.is_file() and not (gen_dir / f"{prefix}.semantic.json").is_file():
             found = list(ROOT.rglob(f"{prefix}.semantic.json"))
             if not found:
                 errors.append(f"Missing semantic: {prefix} (expected at {semantic_file})")

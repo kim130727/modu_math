@@ -154,7 +154,18 @@ class SyncProblemsTests(TestCase):
         source_path = next((root / "ko").glob("*.i18n.json"))
         before = source_path.read_bytes()
         call_command("sync_problems", root=root, verbosity=0)
-        self.assertEqual(Problem.objects.count(), 20)
+        from modu_math_web.editor.services.content_store import list_content, read_content
+
+        expected = {
+            (
+                str(read_content(paths).get("semantic", {}).get("problem_id") or paths.artifact_base),
+                paths.dsl_path.relative_to(root).parts[0],
+            )
+            for paths in list_content(root)
+        }
+        self.assertEqual(
+            set(Problem.objects.values_list("problem_id", "language")), expected
+        )
         self.assertEqual(source_path.read_bytes(), before)
         imported = Problem.objects.get(
             problem_id=source_path.name.removesuffix(".i18n.json"), language="ko"

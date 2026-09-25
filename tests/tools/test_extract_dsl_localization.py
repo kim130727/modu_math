@@ -4,6 +4,8 @@ import json
 from hashlib import sha256
 from pathlib import Path
 
+import pytest
+
 from tools.extract_dsl_localization import main
 
 
@@ -143,7 +145,8 @@ def test_extract_drops_stale_translation_and_obsolete_entries(tmp_path: Path) ->
 
 
 def test_extract_does_not_modify_existing_dsl(tmp_path: Path) -> None:
-    dsl_path = next(Path("examples/storage/ko").glob("**/P3_1_01_00040_00469.dsl.py"))
+    dsl_path = tmp_path / "problem.dsl.py"
+    _write_dsl(dsl_path)
     before = sha256(dsl_path.read_bytes()).hexdigest()
 
     assert (
@@ -161,3 +164,30 @@ def test_extract_does_not_modify_existing_dsl(tmp_path: Path) -> None:
     )
 
     assert sha256(dsl_path.read_bytes()).hexdigest() == before
+
+
+def test_extract_requires_explicit_output_for_standalone_dsl(tmp_path: Path) -> None:
+    dsl_path = tmp_path / "problem.dsl.py"
+    _write_dsl(dsl_path)
+
+    with pytest.raises(ValueError, match="Pass --out"):
+        main(["--dsl", str(dsl_path), "--locale", "uk"])
+
+    assert not (Path("locales") / "uk" / "p_localize.locale.json").exists()
+
+
+def test_extract_rejects_unsupported_language(tmp_path: Path) -> None:
+    dsl_path = tmp_path / "problem.dsl.py"
+    _write_dsl(dsl_path)
+
+    with pytest.raises(ValueError, match="supported languages: ko, uk"):
+        main(
+            [
+                "--dsl",
+                str(dsl_path),
+                "--locale",
+                "en",
+                "--out",
+                str(tmp_path / "en.locale.json"),
+            ]
+        )
