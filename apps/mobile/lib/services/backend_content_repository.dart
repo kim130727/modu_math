@@ -117,13 +117,13 @@ class BackendContentRepository extends ContentRepository {
           (problem) => problem.id == summary.id,
         );
         if (matches.isEmpty) {
-          return _fallback.loadProblem(summary);
+          return await _fallback.loadProblem(summary);
         }
         localizedSummary = matches.first;
       }
       final dbId = localizedSummary.dbId;
       if (dbId == null) {
-        return _fallback.loadProblem(summary);
+        return await _fallback.loadProblem(summary);
       }
       final response = await _client.get(_uri('/api/v1/problems/$dbId/'));
       if (response.statusCode != 200) {

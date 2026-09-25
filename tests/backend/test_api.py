@@ -151,8 +151,9 @@ class SyncProblemsTests(TestCase):
         from django.conf import settings
 
         root = settings.BASE_DIR / "examples" / "problems"
-        source_path = next((root / "ko").glob("*.i18n.json"))
-        before = source_path.read_bytes()
+        catalog_path = next((settings.BASE_DIR / "locales" / "uk").glob("*.json"))
+        source_path = root / "ko" / (catalog_path.stem + ".dsl.py")
+        before = source_path.read_bytes(), catalog_path.read_bytes()
         call_command("sync_problems", root=root, verbosity=0)
         from modu_math_web.editor.services.content_store import list_content, read_content
 
@@ -166,9 +167,9 @@ class SyncProblemsTests(TestCase):
         self.assertEqual(
             set(Problem.objects.values_list("problem_id", "language")), expected
         )
-        self.assertEqual(source_path.read_bytes(), before)
+        self.assertEqual((source_path.read_bytes(), catalog_path.read_bytes()), before)
         imported = Problem.objects.get(
-            problem_id=source_path.name.removesuffix(".i18n.json"), language="ko"
+            problem_id=catalog_path.stem, language="ko"
         )
         self.assertEqual(imported.semantic_data["problem_id"], imported.problem_id)
         self.assertEqual(imported.catalog_data["id"], imported.problem_id)

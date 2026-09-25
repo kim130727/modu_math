@@ -68,7 +68,12 @@ modu_math/
 │   └── modu_semantic/           # 하위 호환성 래퍼
 ├── examples/
 │   └── problems/
-│       └── ko/                  # 한국어 DSL 원본 + 문제별 *.i18n.json
+│       └── ko/                  # 한국어 DSL 원본
+├── locales/
+│   └── uk/                      # 문제별 우크라이나어 문장 번역
+├── overrides/
+│   ├── ko/                      # 한국어 문제 배치 보정
+│   └── uk/                      # 우크라이나어 문제 배치 보정
 ├── schema/                      # semantic, layout, renderer JSON Schema
 ├── scripts/                     # 모노레포 관리, 빌드 및 동기화 스크립트
 ├── tools/                       # Vision 드래프트 생성, DSL 변환 보조 도구
@@ -79,9 +84,9 @@ modu_math/
 └── README.md                    # 본 문서
 ```
 
-문제 번역은 별도 `locales/` 트리가 아니라 각 한국어 원본 옆의
-`*.i18n.json`에서 관리합니다. 한국어 원본과 우크라이나어 차이 데이터가 한
-문서에 있으므로 파일 이름 매칭과 중복 동기화가 필요하지 않습니다. 모바일 앱의
+문제 번역은 `locales/uk/<문제>.json`, 언어별 화면 배치는
+`overrides/{ko,uk}/<문제>.layout.json`에서 관리합니다. 번역 파일에는 문장만
+들어가므로 번역자가 배치나 내부 빌드 데이터를 다룰 필요가 없습니다. 모바일 앱의
 메뉴·버튼 번역은 `apps/mobile/assets/i18n/{ko,uk}.json`, 빌드된 문제 데이터는
 `apps/mobile/generated/examples/problems/{ko,uk}/`에 위치합니다. 자세한 작업
 흐름은 `docs/single_source_localization.md`를 참고하세요.

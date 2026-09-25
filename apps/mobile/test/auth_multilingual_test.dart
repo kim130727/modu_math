@@ -77,18 +77,18 @@ void main() {
 
     expect(find.text('Паролі не збігаються.'), findsOneWidget);
 
-    // 3. Switch to English (2nd tap on global LanguageToggleButton)
+    // 3. Switch back to Korean (tap on global LanguageToggleButton)
     await tester.tap(find.byIcon(Icons.language_rounded));
     await tester.pumpAndSettle();
 
-    expect(find.text('Study Account Login'), findsOneWidget);
-    expect(find.text('Log In'), findsOneWidget);
-    expect(find.text('Sign Up'), findsOneWidget);
-    expect(find.text('Complete Sign Up'), findsOneWidget);
-    expect(find.text('Passwords do not match.'), findsOneWidget);
+    expect(find.text('학습 계정 로그인'), findsOneWidget);
+    expect(find.text('로그인'), findsOneWidget);
+    expect(find.text('회원가입'), findsOneWidget);
+    expect(find.text('회원가입 완료'), findsOneWidget);
+    expect(find.text('비밀번호가 일치하지 않습니다.'), findsOneWidget);
   });
 
-  testWidgets('Account Info Dialog translates dynamically to Ukrainian and English',
+  testWidgets('Account Info Dialog translates dynamically to Ukrainian and Korean',
       (tester) async {
     final mockClient = MockClient((request) async {
       return http.Response('OK', 200);
@@ -133,7 +133,7 @@ void main() {
     expect(find.text('Закрити'), findsOneWidget);
     expect(find.text('Вийти'), findsOneWidget);
 
-    // 2. Close and switch language to English
+    // 2. Close and switch language back to Korean
     await tester.tap(find.text('Закрити'));
     await tester.pumpAndSettle();
 
@@ -143,14 +143,14 @@ void main() {
     await tester.tap(find.byIcon(Icons.account_circle));
     await tester.pumpAndSettle();
 
-    expect(find.text("kim130727's Account"), findsOneWidget);
+    expect(find.text('kim130727 님의 계정'), findsOneWidget);
     expect(
       find.text(
-          'You are currently logged in, and your learning progress is securely synced with the server.'),
+          '현재 로그인되어 학습 기록이 백엔드 서버와 안전하게 동기화되고 있습니다.'),
       findsOneWidget,
     );
-    expect(find.text('Close'), findsOneWidget);
-    expect(find.text('Log Out'), findsOneWidget);
+    expect(find.text('닫기'), findsOneWidget);
+    expect(find.text('로그아웃'), findsOneWidget);
   });
 }
 

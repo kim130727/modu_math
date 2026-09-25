@@ -2119,7 +2119,9 @@ List<SolvableHint> _editorHints(ProblemContent content) {
   for (final step in flow.whereType<Map>()) {
     if (step['phase'] != 'hint' ||
         step['text'] is! String ||
-        (step['text'] as String).trim().isEmpty) continue;
+        (step['text'] as String).trim().isEmpty) {
+      continue;
+    }
     final frames = <Map<String, dynamic>>[];
     final rawFrames = step['frames'];
     if (rawFrames is List) {
@@ -2144,9 +2146,10 @@ List<SolvableHint> _editorHints(ProblemContent content) {
               'stroke-width': 4
             };
           }
-          if (element['elements'] is List)
+          if (element['elements'] is List) {
             copy['elements'] =
                 (element['elements'] as List).map(highlight).toList();
+          }
           return copy;
         }
 

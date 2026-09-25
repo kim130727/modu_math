@@ -4,7 +4,10 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from modu_math.dsl.problem_store import LANGUAGES, consolidated, virtual_paths, document_path, location
+from modu_math.dsl.problem_store import (
+    LANGUAGES, consolidated, locale_path, location, override_path, review_path,
+    virtual_paths,
+)
 from .problems import ProblemPaths
 
 
@@ -49,8 +52,15 @@ def read_content(paths) -> dict:
 
 def source_files(paths):
     if consolidated(paths.dsl_path):
-        canonical, _, _ = location(paths.dsl_path)
-        return [canonical, document_path(canonical)]
+        canonical, language, _ = location(paths.dsl_path)
+        files = [canonical, override_path(canonical, "ko")]
+        if language != "ko":
+            files.extend([
+                locale_path(paths.dsl_path, language),
+                override_path(paths.dsl_path, language),
+                review_path(paths.dsl_path, language),
+            ])
+        return [path for path in files if path.exists()]
     return [path for path in paths.base_dir.glob(paths.artifact_base + ".*.json") if path.is_file()]
 
 

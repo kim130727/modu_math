@@ -101,11 +101,11 @@ class ProblemDevHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def _send_problem_list(self, locale: str = "ko") -> None:
-        from modu_math.dsl.problem_store import LANGUAGES, SUFFIX
+        from modu_math.dsl.problem_store import LANGUAGES, virtual_paths
         if locale not in LANGUAGES:
             self.send_error(400, "Unsupported locale")
             return
-        if any((self.root / "ko").rglob("*" + SUFFIX)):
+        if any(virtual_paths(self.root)):
             from modu_math_web.editor.services.content_store import list_content, content_title
             manifest_path = self.root / "manifest.json"
             manifest = self._read_optional_json(manifest_path)

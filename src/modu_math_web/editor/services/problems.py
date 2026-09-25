@@ -724,7 +724,7 @@ def read_problem_detail(problem_id: str) -> dict[str, Any]:
     if consolidated(paths.dsl_path):
         return {
             "problem_id": paths.problem_id, "base_dir": str(paths.base_dir), "dsl": dsl,
-            "dsl_storage": "locale_delta" if is_variant else "source",
+            "dsl_storage": "locale_catalog" if is_variant else "source",
             "source_problem_id": (
                 _display_problem_id(paths.root_alias, source_path(paths.dsl_path).relative_to(paths.root_dir).as_posix())
                 if is_variant else paths.problem_id),
@@ -737,7 +737,7 @@ def read_problem_detail(problem_id: str) -> dict[str, Any]:
         "problem_id": paths.problem_id,
         "base_dir": str(paths.base_dir),
         "dsl": dsl,
-        "dsl_storage": "locale_delta" if is_variant else "source",
+        "dsl_storage": "locale_catalog" if is_variant else "source",
         "source_problem_id": (
             _display_problem_id(paths.root_alias, source_path(paths.dsl_path).relative_to(paths.root_dir).as_posix())
             if is_variant else paths.problem_id

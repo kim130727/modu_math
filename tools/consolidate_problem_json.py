@@ -51,7 +51,12 @@ def consolidate_provenance(root: Path, *, delete=False):
     return len(candidates)
 
 
-def consolidate(root: Path, *, catalogs: Path | None = None, delete=False):
+def consolidate(root: Path, *, catalogs: Path | None = None, delete=False, allow_legacy_deprecated: bool = False):
+    if not allow_legacy_deprecated:
+        raise RuntimeError(
+            "consolidate_problem_json is deprecated and disabled to prevent creating legacy *.i18n.json files. "
+            "Use the split storage structure (locales/ and overrides/) instead."
+        )
     from modu_math_web.editor.services.build import compile_problem_artifacts
     from modu_math_web.editor.services.artifact_cache import get_artifacts
     root = root.resolve()
@@ -130,5 +135,6 @@ if __name__ == "__main__":
     parser.add_argument("root", type=Path)
     parser.add_argument("--catalogs", type=Path)
     parser.add_argument("--delete", action="store_true")
+    parser.add_argument("--allow-legacy-deprecated", action="store_true", help="Explicitly allow deprecated consolidation")
     args = parser.parse_args()
-    print(consolidate(args.root, catalogs=args.catalogs, delete=args.delete))
+    print(consolidate(args.root, catalogs=args.catalogs, delete=args.delete, allow_legacy_deprecated=args.allow_legacy_deprecated))

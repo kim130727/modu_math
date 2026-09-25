@@ -2358,7 +2358,12 @@ def apply_layout_patches(
             "DSL file is empty; restore or save a valid DSL before editing layout"
         )
 
-    if fast_overrides or _is_suffixed_split_artifact(paths.artifact_base):
+    from modu_math.dsl.problem_store import locale_path, location
+    loc = location(paths.dsl_path)
+    is_locale_variant = bool(
+        loc and loc[1] != "ko" and locale_path(paths.dsl_path, loc[1]).is_file()
+    )
+    if fast_overrides or is_locale_variant or _is_suffixed_split_artifact(paths.artifact_base):
         fast_applied = _try_apply_fast_editor_overrides(paths, patches)
         if fast_applied is not None:
             return source, fast_applied

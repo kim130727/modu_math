@@ -10,6 +10,7 @@ from modu_math.dsl.variants import (
     read_source,
     review_paths,
     save_variant,
+    source_path,
     snapshot,
     write_source,
 )
@@ -55,7 +56,7 @@ def test_virtual_listing_read_save_and_svg(variant):
     assert len(listing) == 2
     assert listing[0]["equivalent_problem_ids"]["ko"] == "ko/sample.dsl.py"
     detail = read_problem_detail("uk/sample.dsl.py")
-    assert detail["dsl_storage"] == "locale_delta"
+    assert detail["dsl_storage"] == "locale_catalog"
     assert detail["source_problem_id"] == "ko/sample.dsl.py"
     save_problem_dsl("uk/sample.dsl.py", detail["dsl"].replace("Question", "Updated"))
     apply_layout_patches(
@@ -67,11 +68,10 @@ def test_virtual_listing_read_save_and_svg(variant):
     assert canonical.read_bytes() == original
     assert not target.exists()
     assert "Updated" in read_source(target)
-    assert decode(materialized_snapshot(target)["PROBLEM_TEMPLATE"]).slots[0].x == 35
+    assert read_problem_detail("uk/sample.dsl.py")["layout"]["slots"][0]["content"]["x"] == 35
     result = run_problem_build("ko/sample.dsl.py")
     assert result.ok, result.error
-    svg = target.with_name("sample.svg").read_text(encoding="utf-8")
-    assert "Updated" in svg
+    assert "Updated" in read_problem_detail("uk/sample.dsl.py")["svg"]
 
 
 def test_source_geometry_inherits_and_translation_needs_review(variant):
@@ -165,10 +165,10 @@ def test_slot_ids_survive_reordering(variant):
     assert template.slots[1].text == "Question"
 
 
-def test_source_traversal_rejected(variant):
-    _, target = variant
+def test_locale_metadata_cannot_redirect_source(variant):
+    canonical, target = variant
     data = json.loads(delta_path(target).read_text(encoding="utf-8"))
     data["source"] = "../../../../outside.dsl.py"
     delta_path(target).write_text(json.dumps(data), encoding="utf-8")
-    with pytest.raises(ValueError, match="Invalid Korean source"):
-        read_source(target)
+    assert source_path(target) == canonical.resolve()
+    assert "Question" in read_source(target)

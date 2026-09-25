@@ -283,7 +283,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--out",
         help=(
             "Optional standalone catalog path for legacy or ad-hoc DSL files. "
-            "Consolidated problems write to their *.i18n.json document by default."
+            "Project problems write to locales/<locale>/<problem>.json by default."
         ),
     )
     parser.add_argument("--force", action="store_true", help="Recreate malformed existing JSON instead of failing.")
@@ -294,7 +294,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     dsl_path = Path(args.dsl)
     module = load_dsl_module(dsl_path)
-    from modu_math.dsl.problem_store import consolidated, location, document_path, JsonSection, LANGUAGES
+    from modu_math.dsl.problem_store import location, section, JsonSection, LANGUAGES
 
     language = args.locale.split("-")[0]
     if language not in LANGUAGES:
@@ -302,25 +302,18 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.out:
         out_path = Path(args.out)
-    elif consolidated(dsl_path):
-        import os
-        canonical, _, root = location(dsl_path)
-        if language == "ko":
-            keys = ("translation_catalog",)
-        else:
-            language_section = JsonSection(document_path(canonical), ("languages", language), root)
-            if not language_section.exists():
-                virtual = root / language / canonical.relative_to(root / "ko")
-                language_section.write_text(json.dumps({"delta": {
-                    "version": 1, "source": Path(os.path.relpath(canonical, virtual.parent)).as_posix(),
-                    "changes": []}, "editor_overrides": {}}))
-            keys = ("languages", language, "translation_catalog")
-        out_path = JsonSection(document_path(canonical), keys, root)
     else:
-        raise ValueError(
-            "This DSL is not backed by a consolidated *.i18n.json document. "
-            "Pass --out for a standalone legacy catalog."
-        )
+        info = location(dsl_path)
+        if info is None or info[1] != "ko" or language == "ko":
+            raise ValueError(
+                "Project catalogs require a Korean DSL source and a target language. "
+                "Pass --out for a standalone catalog."
+            )
+        canonical, _, root = info
+        virtual = root / language / canonical.relative_to(root / "ko")
+        out_path = section(virtual, "translation_catalog")
+        if out_path is None:
+            raise ValueError(f"Cannot resolve locale catalog for {dsl_path}")
 
     extracted = extract_localization(module)
     existing = read_existing(out_path, force=args.force)

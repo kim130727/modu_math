@@ -7,14 +7,13 @@ from http.server import ThreadingHTTPServer
 
 import pytest
 
-from modu_math.dsl.problem_store import document_path, section
+from modu_math.dsl.problem_store import locale_path, override_path, section
 from modu_math.dsl.variants import save_variant, snapshot, read_source, write_source
 from modu_math_web.editor.services import artifact_cache, build
 from modu_math_web.editor.services.problems import (
     invalidate_problem_list_cache, list_problem_directories, read_problem_detail,
     resolve_problem_paths,
 )
-from tools.consolidate_problem_json import consolidate
 from tools.export_problem_content import export
 
 SOURCE = '''from modu_math.dsl import Canvas, ProblemTemplate, TextSlot, Region
@@ -36,14 +35,14 @@ def content(tmp_path, settings):
     settings.PROBLEMS_ROOT = root
     settings.GOLDEN_PROBLEMS_ROOT = tmp_path / "golden"
     invalidate_problem_list_cache()
-    result = consolidate(root, delete=True)
-    assert result["verified_renders"] == 2
     return root, canonical, translated
 
 
-def test_one_authored_json_and_lazy_assets(content, client):
+def test_split_authoring_files_and_lazy_assets(content, client):
     root, canonical, translated = content
-    assert sorted(path.name for path in root.rglob("*.json")) == ["sample.i18n.json"]
+    assert not list(root.rglob("*.i18n.json"))
+    catalog = locale_path(translated, "uk")
+    assert catalog.is_file()
     assert len(list_problem_directories()) == 2
     detail = read_problem_detail("uk/sample.dsl.py")
     assert "Question" in detail["svg"]
@@ -52,11 +51,11 @@ def test_one_authored_json_and_lazy_assets(content, client):
     response = client.get(detail["svg_url"])
     assert response.status_code == 200
     assert b"Question" in response.content
-    document = document_path(canonical).read_bytes()
+    document = catalog.read_bytes()
     out = root.parent / "exported"
     assert export(root, out) == 2
     assert (out / "uk" / "sample.renderer.json").exists()
-    assert document_path(canonical).read_bytes() == document
+    assert catalog.read_bytes() == document
     with pytest.raises(ValueError, match="outside"):
         export(root, root)
 
@@ -65,6 +64,8 @@ def test_cache_hit_invalidation_and_recovery(content, monkeypatch):
     root, canonical, translated = content
     paths = resolve_problem_paths("uk/sample.dsl.py")
     ko = resolve_problem_paths("ko/sample.dsl.py")
+    artifact_cache.get_artifacts(paths)
+    artifact_cache.get_artifacts(ko)
     original = build.compile_problem_artifacts
     calls = []
     def counted(paths):
@@ -86,8 +87,8 @@ def test_cache_hit_invalidation_and_recovery(content, monkeypatch):
     assert len(calls) == 3
 
 
-def test_editor_fast_save_uses_single_json(content):
-    root, canonical, _ = content
+def test_editor_fast_save_uses_layout_override(content):
+    root, canonical, translated = content
     from modu_math_web.editor.services.dsl_patch import apply_layout_patches
     apply_layout_patches("uk/sample.dsl.py", [
         {"target": "slot.q", "op": "update", "value": {"x": 77, "text": "Changed"}},
@@ -97,6 +98,7 @@ def test_editor_fast_save_uses_single_json(content):
     assert "Changed" in detail["svg"]
     assert not list(root.rglob("*.editor_overrides.json"))
     assert not list(root.rglob("*.locale-delta.json"))
+    assert override_path(translated, "uk").is_file()
     assert canonical.read_text(encoding="utf-8") == SOURCE
 
 
@@ -108,9 +110,10 @@ def test_simultaneous_language_sections_preserved(content):
                    for path, width in ((canonical, 500), (translated, 600))]
         for future in futures:
             future.result()
-    data = json.loads(document_path(canonical).read_text(encoding="utf-8"))
-    assert data["editor_overrides"]["canvas"]["width"] == 500
-    assert data["languages"]["uk"]["editor_overrides"]["canvas"]["width"] == 600
+    ko = json.loads(override_path(canonical, "ko").read_text(encoding="utf-8"))
+    uk = json.loads(override_path(translated, "uk").read_text(encoding="utf-8"))
+    assert ko["canvas"]["width"] == 500
+    assert uk["canvas"]["width"] == 600
 
 
 def test_stale_same_language_save_is_rejected(content):
@@ -124,7 +127,7 @@ def test_stale_same_language_save_is_rejected(content):
         second.write_text('{"version":1,"canvas":{"width":700}}')
 
 
-def test_translation_tools_use_integrated_catalog(content):
+def test_translation_tools_use_simple_catalog(content):
     from tools.extract_dsl_localization import main as extract
     from tools.apply_dsl_localization import main as apply
     root, canonical, translated = content
@@ -133,9 +136,9 @@ def test_translation_tools_use_integrated_catalog(content):
     entries = json.loads(stored.read_text())
     entries["template.slots.slot.q.text"]["translation"] = "New translation"
     stored.write_text(json.dumps(entries, ensure_ascii=False))
-    assert apply(["--dsl", str(canonical), "--locale", "uk", "--i18n-json", str(document_path(canonical)), "--force"]) == 0
+    assert apply(["--dsl", str(canonical), "--locale", "uk", "--locale-json", str(locale_path(translated, "uk")), "--force"]) == 0
     assert "New translation" in read_source(translated)
-    assert len(list(root.rglob("*.json"))) == 1
+    assert not list(root.rglob("*.i18n.json"))
 
 
 def test_mobile_server_without_generated_json(content):

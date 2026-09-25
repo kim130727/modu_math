@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 
 from modu_math.dsl.problem_store import (
-    atomic_write, document_path, file_lock, location, read_document,
+    atomic_write, file_lock, locale_path, location, override_path, review_path,
 )
 
 CACHE_VERSION = "problem-bundle-v1"
@@ -30,14 +30,19 @@ def compiler_fingerprint() -> str:
 
 def fingerprint(paths) -> str:
     canonical, language, root = location(paths.dsl_path)
-    data = read_document(document_path(canonical))
-    localized = data.get("languages", {}).get(language, {})
-    relevant = {"common": data.get("editor_overrides", {}),
-                "delta": localized.get("delta", {}),
-                "overrides": localized.get("editor_overrides", {})}
     digest = hashlib.sha256((CACHE_VERSION + compiler_fingerprint()).encode())
     digest.update(canonical.read_bytes())
-    digest.update(json.dumps(relevant, sort_keys=True, ensure_ascii=False).encode())
+    dependencies = [override_path(canonical, "ko")]
+    if language != "ko":
+        dependencies.extend([
+            locale_path(paths.dsl_path, language),
+            override_path(paths.dsl_path, language),
+            review_path(paths.dsl_path, language),
+        ])
+    for dependency in dependencies:
+        if dependency.is_file():
+            digest.update(str(dependency).encode())
+            digest.update(dependency.read_bytes())
     # Local image assets affect embedded SVG, even if no DSL text changed.
     # Generated problem SVGs are outputs, not dependencies.
     for directory in sorted({canonical.parent, paths.base_dir}):

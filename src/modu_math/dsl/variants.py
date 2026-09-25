@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
-from dataclasses import fields, is_dataclass
+from dataclasses import fields, is_dataclass, replace
 import json
 import os
 from pathlib import Path
@@ -25,12 +25,15 @@ EXPORTS = (
 
 
 def delta_path(path: Path) -> Path:
-    from .problem_store import section, location
+    from .problem_store import document_path, locale_path, section, location
     info = location(path)
     if info and info[1] != "ko":
-        stored = section(path, "delta")
-        if stored is not None:
-            return stored
+        canonical, language, _ = info
+        if document_path(canonical).is_file() and not locale_path(path, language).is_file():
+            stored = section(path, "delta")
+            if stored is not None:
+                return stored
+        return locale_path(path, language)
     return path.with_name(path.name.removesuffix(".dsl.py") + SUFFIX)
 
 
@@ -159,6 +162,13 @@ def apply_differences(base, changes):
 
 
 def source_path(path: Path) -> Path:
+    from .problem_store import locale_path, location
+    info = location(path)
+    if info is not None and info[1] != "ko" and locale_path(path, info[1]).is_file():
+        canonical = info[0]
+        if not canonical.is_file():
+            raise ValueError(f"Invalid Korean source: {canonical}")
+        return canonical
     data = json.loads(delta_path(path).read_text(encoding="utf-8"))
     reference = Path(data["source"])
     if reference.is_absolute():
@@ -183,6 +193,39 @@ def materialized_snapshot(path: Path) -> dict:
         return snapshot(path.read_text(encoding="utf-8-sig"), path)
     source = source_path(path)
     base = snapshot(source.read_text(encoding="utf-8-sig"), source)
+    from .problem_store import locale_path, location, review_path
+    info = location(path)
+    if info is not None and info[1] != "ko" and locale_path(path, info[1]).is_file():
+        from .localization import apply_translations, read_catalog
+        entries = read_catalog(locale_path(path, info[1]))
+        result = deepcopy(base)
+        roots = {
+            "PROBLEM_TEMPLATE": "template",
+            "SEMANTIC_OVERRIDE": "semantic",
+            "SOLVABLE": "solvable",
+        }
+        decoded = {}
+        for name, root_name in roots.items():
+            if name not in base:
+                continue
+            value = decode(base[name])
+            localized = apply_translations(value, entries, [root_name], locale=info[1])
+            if name == "PROBLEM_TEMPLATE" and getattr(localized, "tags", ()):
+                # Korean discovery tags are not user-facing translations.
+                localized = replace(localized, tags=())
+            result[name] = encode(localized)
+            decoded[name] = localized
+        solvable = decoded.get("SOLVABLE")
+        semantic = decoded.get("SEMANTIC_OVERRIDE")
+        answer = solvable.get("answer") if isinstance(solvable, dict) else None
+        if answer is None and isinstance(semantic, dict):
+            answer = semantic.get("answer")
+        if answer is not None:
+            result["SEMANTIC_ANSWER"] = encode(answer)
+        review = review_path(path, info[1])
+        if review.is_file():
+            result["EDITOR_ANSWER_REVIEW"] = encode(json.loads(review.read_text(encoding="utf-8-sig")))
+        return result
     data = json.loads(delta_path(path).read_text(encoding="utf-8"))
     return apply_differences(base, data["changes"])
 
@@ -219,6 +262,39 @@ def save_variant(
     path: Path, canonical: Path, target: dict, *, preserve_review=False
 ) -> None:
     base = snapshot(canonical.read_text(encoding="utf-8-sig"), canonical)
+    from .problem_store import locale_path, location, review_path, atomic_write
+    info = location(path)
+    if info is not None and info[1] != "ko" and (
+        locale_path(path, info[1]).is_file() or not delta_path(path).exists()
+    ):
+        from .localization import collect_translations, read_catalog
+        catalog_path = locale_path(path, info[1])
+        existing = read_catalog(catalog_path) if catalog_path.is_file() else {}
+        collected = {}
+        for name, root_name in (("PROBLEM_TEMPLATE", "template"),
+                                ("SEMANTIC_OVERRIDE", "semantic"),
+                                ("SOLVABLE", "solvable")):
+            if name in base and name in target:
+                collect_translations(decode(base[name]), decode(target[name]), [root_name], collected)
+        for key, entry in collected.items():
+            previous = existing.get(key)
+            if isinstance(previous, dict) and previous.get("translation") == entry["translation"]:
+                # Formatting a stale translation must not silently approve it.
+                entry["source"] = previous.get("source", entry["source"])
+                if previous.get("status"):
+                    entry["status"] = previous["status"]
+        payload = {
+            "version": 1,
+            "problem_id": canonical.name.removesuffix(".dsl.py"),
+            "source_language": "ko",
+            "target_language": info[1],
+            "strings": dict(sorted(collected.items())),
+        }
+        atomic_write(catalog_path, (json.dumps(payload, ensure_ascii=False, indent=2) + "\n").encode())
+        if "EDITOR_ANSWER_REVIEW" in target and target.get("EDITOR_ANSWER_REVIEW") != base.get("EDITOR_ANSWER_REVIEW"):
+            review = review_path(path, info[1])
+            atomic_write(review, (json.dumps(decode(target["EDITOR_ANSWER_REVIEW"]), ensure_ascii=False, indent=2) + "\n").encode())
+        return
     data = {
         "version": 1,
         "source": Path(os.path.relpath(canonical, path.parent)).as_posix(),
@@ -252,6 +328,19 @@ def review_paths(path: Path) -> list[list]:
         return []
     canonical = source_path(path)
     base = snapshot(canonical.read_text(encoding="utf-8-sig"), canonical)
+    from .problem_store import locale_path, location
+    info = location(path)
+    if info is not None and info[1] != "ko" and locale_path(path, info[1]).is_file():
+        from .localization import read_catalog, string_values
+        entries = read_catalog(locale_path(path, info[1]))
+        current = {}
+        for name, root_name in (("PROBLEM_TEMPLATE", "template"),
+                                ("SEMANTIC_OVERRIDE", "semantic"),
+                                ("SOLVABLE", "solvable")):
+            if name in base:
+                string_values(decode(base[name]), [root_name], current)
+        return [key.split(".") for key, entry in entries.items()
+                if entry.get("source") != current.get(key)]
     data = json.loads(delta_path(path).read_text(encoding="utf-8"))
     review = []
     for change in data["changes"]:

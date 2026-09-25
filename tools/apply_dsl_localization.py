@@ -53,6 +53,8 @@ IDENTIFIER_FIELDS = {
 
 def read_locale(path: Path, locale: str | None = None) -> dict[str, dict[str, str]]:
     loaded = json.loads(path.read_text(encoding="utf-8"))
+    if isinstance(loaded, dict) and isinstance(loaded.get("strings"), dict):
+        loaded = loaded["strings"]
     if isinstance(loaded, dict) and loaded.get("version") == 2 and loaded.get("source_language") == "ko":
         if not locale:
             raise ValueError("--locale is required for a consolidated problem JSON")
@@ -318,7 +320,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--i18n-json",
         dest="locale_json",
         required=True,
-        help="Consolidated *.i18n.json document, or a standalone legacy locale catalog.",
+        help="Simple locale catalog (normally locales/uk/<problem>.json).",
     )
     parser.add_argument("--locale", help="Target locale code. Required for a consolidated document, e.g. uk.")
     parser.add_argument("--out", help="Output *.dsl.py path. Defaults to <source>.<locale>.dsl.py.")
