@@ -491,7 +491,7 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
           aria-pressed={!props.answerReviewMode}
           onClick={() => props.onAnswerReviewModeChange(false)}
         >
-          학생 화면
+          캔버스 편집
         </button>
         <button
           type="button"
@@ -499,7 +499,7 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
           aria-pressed={props.answerReviewMode}
           onClick={() => props.onAnswerReviewModeChange(true)}
         >
-          정답 검수
+          Flutter 화면 · 정답 검수
         </button>
       </div>
       <IconButton label="Refresh JSON" icon="refresh" onClick={props.onRefreshJson} />

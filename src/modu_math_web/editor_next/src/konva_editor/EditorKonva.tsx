@@ -981,6 +981,11 @@ export function EditorKonva() {
             onChangeShapes={updateShapes}
             onConvertShapesToAnswer={(ids) => setAnswerSlotState(ids, true)}
             onRestoreShapesFromAnswer={(ids) => setAnswerSlotState(ids, false)}
+            onEditPresentationShape={(id) => {
+              setAnswerReviewMode(false);
+              setSelectedShapeIds([id]);
+              setActiveSidePanel("properties");
+            }}
             onDrawShape={addDrawnShape}
             onDrawingComplete={() => setDrawingPreset(null)}
             onTutorOverlaySelect={selectTutorOverlay}

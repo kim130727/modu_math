@@ -3,7 +3,7 @@ import { listProblems, syncTextPlacements, type PlacementSyncResult } from "../a
 import type { EditorShape } from "../types/editorShape";
 
 const languageNames: Record<string, string> = { ko: "한국어", uk: "우크라이나어" };
-const placementRoles = new Set(["", "question", "instruction", "choice", "diagram_label"]);
+const placementRoles = new Set(["", "question", "instruction", "canvas", "choice", "diagram_label"]);
 
 export function textPlacements(shapes: EditorShape[], selectedIds?: string[]) {
   return shapes.filter((shape) => shape.type === "text" && (!selectedIds || selectedIds.includes(shape.id))

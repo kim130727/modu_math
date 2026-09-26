@@ -172,14 +172,14 @@ export function AnswerReviewPanel({
               onChange={(event) => update({ mode: event.target.value as AnswerReviewSettings["mode"] })}
             >
               <option value="choice">선택형 (객관식 1~5번)</option>
-              <option value="panel_input">직접 입력 (주관식 단답형)</option>
+              <option value="panel_input">Flutter 정답 패널에서 직접 입력</option>
               <option value="ox">항목별 OX</option>
               <option value="grouped_choice">여러 소문항 선택형</option>
-              <option value="canvas_slots">그림의 입력칸</option>
+              <option value="canvas_slots">Flutter 문제 캔버스의 입력칸</option>
             </select>
           </label>
           <p className="review-help">
-            보기가 있는 문제는 선택형, 여러 OX는 항목별 OX로 설정하세요. 내용이 모호하면 검수 보류 사유를 남겨 주세요.
+            수식 안의 빈칸에 답을 쓰면 문제 캔버스의 입력칸, 별도 답란을 쓰면 정답 패널에서 직접 입력으로 설정하세요. 보기가 있는 문제는 선택형으로 설정합니다.
           </p>
 
           {groupMode ? (

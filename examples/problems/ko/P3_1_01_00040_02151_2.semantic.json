@@ -5,7 +5,7 @@
     "title": "세 자리 수의 덧셈 계산 (2)",
     "tags": [],
     "instruction": "□ 안에 알맞은 수를 써넣으시오.",
-    "question": "3 7 3\n+\n4 6 8",
+    "question": "□ 안에 알맞은 수를 써넣으시오.",
     "required_layout_ids": [
       "slot.answer_box"
     ],
@@ -16,17 +16,13 @@
     "topic": "세 자리 수의 덧셈 계산",
     "language": "ko-KR",
     "presentation_sources": {
-      "question": [
-        "slot.first_addend",
-        "slot.plus_sign",
-        "slot.second_addend"
-      ],
+      "question": [],
       "instruction": [
         "slot.instruction"
       ],
       "choice": []
     },
-    "presentation_prompt": "3 7 3\n+\n4 6 8\n□ 안에 알맞은 수를 써넣으시오."
+    "presentation_prompt": "□ 안에 알맞은 수를 써넣으시오."
   },
   "domain": {
     "objects": [

@@ -169,14 +169,15 @@ function TextPlacementFields({ shapes, onChange }: { shapes: EditorShape[]; onCh
   const current = placement(texts[0].semanticRole);
   const mixed = texts.some((text) => placement(text.semanticRole) !== current);
   const options = [
-    { role: "auto", label: "자동", hint: "기존 구조에 따라 표시 위치를 판단합니다." },
-    { role: "question", label: "상단", hint: "문제 화면 위에 안내문으로 표시합니다." },
-    { role: "choice", label: "선택지", hint: "답 패널에 선택지로 표시합니다. 정답 검토에서 연결을 확인하세요." },
-    { role: "diagram_label", label: "그림에 유지", hint: "점 이름, 길이 등 그림에 붙은 설명에 사용합니다." },
+    { role: "question", label: "문제 상단", hint: "Flutter 문제 화면의 보라색 지문 영역에 표시합니다." },
+    { role: "canvas", label: "문제 캔버스", hint: "수식·단위·풀이 그림처럼 Flutter 캔버스 안에 그대로 표시합니다." },
+    { role: "choice", label: "정답 선택지", hint: "Flutter 정답 패널의 선택지로 표시합니다. 정답 검수에서 연결을 확인하세요." },
+    { role: "diagram_label", label: "도형 라벨", hint: "점 이름·길이처럼 도형에 붙어 함께 움직여야 하는 설명입니다." },
+    { role: "auto", label: "자동 판단", hint: "기존 구조에 따라 표시 위치를 판단합니다. 새 문항에는 명시적 지정을 권장합니다." },
   ];
   return (
     <div className="konva-text-placement konva-field-wide">
-      <span>표시 위치{shapes.length > 1 ? ` · 글자 ${texts.length}개에 적용` : ""}</span>
+      <span>Flutter 표시 영역{shapes.length > 1 ? ` · 글자 ${texts.length}개에 적용` : ""}</span>
       <div className="konva-placement-buttons" role="group" aria-label="텍스트 표시 위치">
         {options.map((option) => (
           <button type="button" key={option.role} data-placement={option.role}

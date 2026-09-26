@@ -36,6 +36,7 @@ interface KonvaStageProps {
   onChangeShapes: (shapes: EditorShape[]) => void;
   onConvertShapesToAnswer?: (ids: string[]) => void;
   onRestoreShapesFromAnswer?: (ids: string[]) => void;
+  onEditPresentationShape?: (id: string) => void;
   onDrawShape?: (preset: ShapePreset, start: CanvasPoint, end: CanvasPoint, points?: CanvasPoint[]) => void;
   onDrawingComplete?: () => void;
   onTutorOverlaySelect?: (overlayIndex: number | null) => void;
@@ -60,6 +61,7 @@ export function KonvaStage({
   onChangeShapes,
   onConvertShapesToAnswer,
   onRestoreShapesFromAnswer,
+  onEditPresentationShape,
   onDrawShape,
   onDrawingComplete,
   onTutorOverlaySelect,
@@ -361,12 +363,25 @@ export function KonvaStage({
 
   return (
     <div className={`konva-stage-wrap${drawingPreset ? " drawing" : ""}${answerReviewMode ? " presentation-review" : ""}`} ref={wrapRef}>
-      {answerReviewMode && promptShapes.length > 0 ? (
+      {answerReviewMode ? (
         <div className="konva-question-preview" role="region" aria-label="문제 지문">
-          {promptShapes.map((shape) => <p key={shape.id}>{shape.type === "text" ? shape.text : ""}</p>)}
+          <div className="presentation-zone-title">
+            <span>Flutter · 문제 상단</span>
+            <small>지문을 누르면 표시 영역을 바꿀 수 있습니다.</small>
+          </div>
+          {promptShapes.length ? promptShapes.map((shape) => (
+            <button type="button" className="presentation-prompt-item" key={shape.id}
+              onClick={() => onEditPresentationShape?.(shape.id)}>
+              <span className="presentation-role-badge">{shape.semanticRole === "instruction" ? "풀이 지시문" : "문제 지문"}</span>
+              <span>{shape.type === "text" ? shape.text : ""}</span>
+            </button>
+          )) : <p className="presentation-zone-empty">문제 상단으로 지정된 지문이 없습니다.</p>}
         </div>
       ) : null}
-      {answerReviewMode && <label className="review-fit-toggle"><input type="checkbox" checked={fitContent} onChange={(event) => setFitContent(event.target.checked)} />내용에 맞춰 보기 (원본 좌표 유지)</label>}
+      {answerReviewMode && <div className="review-canvas-toolbar">
+        <strong>Flutter · 문제 캔버스</strong>
+        <label className="review-fit-toggle"><input type="checkbox" checked={fitContent} onChange={(event) => setFitContent(event.target.checked)} />내용에 맞춰 보기 (원본 좌표 유지)</label>
+      </div>}
       <Stage
         className="konva-canvas-surface"
         width={stageWidth}

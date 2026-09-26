@@ -35,6 +35,54 @@ def test_explicit_roles_and_deleted_prompt():
     assert updated["metadata"]["presentation_prompt"] == ""
 
 
+def test_stem_region_promotes_only_first_unclassified_text_to_prompt():
+    layout = {
+        "regions": [{
+            "id": "region.stem",
+            "role": "stem",
+            "slot_ids": ["slot.expression", "slot.question", "slot.unit"],
+        }],
+        "slots": [
+            {"id": "slot.expression", "kind": "text_box", "content": {"text": "259 + 248 ="}},
+            {"id": "slot.question", "kind": "text_box", "content": {"text": "두 수의 합은 얼마인가요?"}},
+            {"id": "slot.unit", "kind": "text_box", "content": {"text": "개"}},
+        ],
+    }
+
+    result, semantic, _ = structure_presentation(layout, {})
+
+    roles = {
+        slot["id"]: slot["content"].get("semantic_role")
+        for slot in result["slots"]
+    }
+    assert roles == {
+        "slot.expression": "canvas",
+        "slot.question": "question",
+        "slot.unit": "canvas",
+    }
+    assert semantic["metadata"]["presentation_prompt"] == "두 수의 합은 얼마인가요?"
+
+
+def test_explicit_canvas_role_never_moves_text_to_flutter_header():
+    layout = {
+        "regions": [{
+            "id": "region.stem",
+            "role": "stem",
+            "slot_ids": ["slot.expression", "slot.question"],
+        }],
+        "slots": [
+            {"id": "slot.expression", "kind": "text_box", "content": {"text": "259 + 248 =", "semantic_role": "canvas"}},
+            {"id": "slot.question", "kind": "text_box", "content": {"text": "두 수의 합은 얼마인가요?"}},
+        ],
+    }
+
+    result, semantic, _ = structure_presentation(layout, {})
+
+    assert result["slots"][0]["content"]["semantic_role"] == "canvas"
+    assert result["slots"][1]["content"]["semantic_role"] == "question"
+    assert semantic["metadata"]["presentation_prompt"] == "두 수의 합은 얼마인가요?"
+
+
 def test_new_text_choices_replace_blank_template_placeholders():
     layout = {"slots": [
         {"id": "custom-a", "kind": "text_box", "content": {"text": "A", "semantic_role": "choice"}},

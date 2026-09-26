@@ -13,11 +13,30 @@ from typing import Any
 def structure_presentation(layout: dict, semantic: dict, solvable: dict | None = None):
     layout, semantic, solvable = deepcopy((layout, semantic, solvable))
     metadata = semantic.setdefault("metadata", {})
-    region_roles = {
-        slot_id: region.get("role")
+    slot_regions = {
+        slot_id: region
         for region in layout.get("regions", [])
         for slot_id in region.get("slot_ids", [])
     }
+    hinted_stem_regions: set[str] = set()
+    for slot in layout.get("slots", []):
+        region = slot_regions.get(slot.get("id"), {})
+        if region.get("role") != "stem":
+            continue
+        content = slot.get("content", {})
+        text = content.get("text")
+        if not isinstance(text, str):
+            continue
+        identity = str(slot.get("id", "")).lower()
+        role = content.get("semantic_role")
+        if (
+            role in {"question", "instruction"}
+            or re.search(r"(?:^|[._])(?:instruction|question|stem|q\d*|q_text)(?:[._]|$)", identity)
+            or content.get("style_role") in {"question", "instruction", "directive", "stem"}
+            or text.strip() == str(metadata.get("question", "")).strip()
+        ):
+            hinted_stem_regions.add(str(region.get("id", "")))
+    claimed_stem_regions: set[str] = set()
     texts: dict[str, list[dict]] = {"question": [], "instruction": [], "choice": []}
     for slot in layout.get("slots", []):
         if slot.get("kind") not in {"text", "text_box", "label"}:
@@ -28,19 +47,34 @@ def structure_presentation(layout: dict, semantic: dict, solvable: dict | None =
             continue
         identity = slot.get("id", "").lower()
         role = content.get("semantic_role")
+        region = slot_regions.get(slot.get("id"), {})
+        region_id = str(region.get("id", ""))
         if not role or role in {"text", "unknown"}:
             if re.search(r"(?:^|[._])(?:instruction)(?:[._]|$)", identity):
                 role = "instruction"
             elif (re.search(r"(?:^|[._])(?:question|stem|q\d*|q_text)(?:[._]|$)", identity)
                   or content.get("style_role") == "question"
-                  or region_roles.get(slot.get("id")) == "stem"
                   or text.strip() == str(metadata.get("question", "")).strip()):
                 role = "question"
             elif re.search(r"(?:^|[._])(?:choice|option|opt)[._]?\d+(?:[._]|$)", identity):
                 role = "choice"
+            elif region.get("role") == "stem":
+                # A stem region often contains the prompt followed by an
+                # equation, answer box, unit, or diagram labels. Only the
+                # first otherwise-unclassified text is the automatic prompt;
+                # later text is explicitly kept on the Flutter canvas.
+                role = (
+                    "question"
+                    if region_id not in hinted_stem_regions and region_id not in claimed_stem_regions
+                    else "canvas"
+                )
         if role in texts:
             content["semantic_role"] = role
             texts[role].append(slot)
+        elif role == "canvas":
+            content["semantic_role"] = role
+        if role in {"question", "instruction"} and region_id:
+            claimed_stem_regions.add(region_id)
 
     for role in ("question", "instruction"):
         if texts[role]:
