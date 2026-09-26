@@ -13,7 +13,6 @@ from ..layout.validate import validate_layout_json
 from ..adapters.json.layout_json import layout_to_layout_json
 from ..adapters.json.renderer_json import layout_to_renderer
 from ..renderer.validate import validate_renderer_json
-from ..renderer.svg.render import render_svg
 from ..adapters.json.semantic_json import problem_to_semantic_json
 from ..semantic.validate import validate_semantic_json
 from .validate_contracts import validate_contract_bundle
@@ -31,9 +30,13 @@ def compile_problem_pipeline(
     validate: bool = False,
     cross_layer_validate: bool | None = None,
     emit_semantic: bool = True,
+    emit_svg: bool = False,
 ) -> None:
     """
-    Compile semantic/layout/renderer contracts and SVG artifact to disk.
+    Compile semantic/layout/renderer contracts to disk.
+
+    SVG is a derived preview artifact and is emitted only when ``emit_svg`` is
+    explicitly enabled.
 
     Validation policy:
     - semantic/layout/renderer contract validation always runs.
@@ -84,11 +87,16 @@ def compile_problem_pipeline(
     with open(renderer_path, "w", encoding="utf-8") as f:
         json.dump(renderer_json, f, ensure_ascii=False, indent=2)
 
-    # 4. Output SVG (pure renderer -> SVG)
-    svg_content = render_svg(renderer_ast)
+    # 4. Optional SVG preview (pure renderer -> SVG)
     svg_path = out_prefix.with_suffix(".svg")
-    with open(svg_path, "w", encoding="utf-8") as f:
-        f.write(svg_content)
+    if emit_svg:
+        from ..renderer.svg.render import render_svg
+
+        svg_content = render_svg(renderer_ast)
+        with open(svg_path, "w", encoding="utf-8") as f:
+            f.write(svg_content)
+    else:
+        svg_path.unlink(missing_ok=True)
         
     # 5. Optional Output Editor State
     if editor_state:

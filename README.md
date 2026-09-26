@@ -12,7 +12,7 @@
 
 | 구성 요소 | 위치 | 기술 스택 | 현재 구현 및 진행 상태 |
 | :--- | :--- | :--- | :--- |
-| **Core DSL & Compiler** | `src/modu_math/` | Python 3.12, libcst, jsonschema | **완료/안정화**<br>• Canonical 파이프라인 구축 (`PNG` → `DSL` → `semantic/solvable/layout/renderer JSON` → `SVG`)<br>• 빈칸/선택지/연산 세로셈(Columnar)/사다리타기/OX 판정/선택지 그룹 등 다양한 수학 UI 지원<br>• Vision LLM 보조 저작 도구 (`tools/generate_vision_draft.py` 등)<br>• 배치 및 실시간 감시 빌더 (`mb.bat`, `mw.bat`, `mb_all.bat`) |
+| **Core DSL & Compiler** | `src/modu_math/` | Python 3.12, libcst, jsonschema | **완료/안정화**<br>• Canonical 파이프라인 구축 (`PNG` → `DSL` → `semantic/solvable/layout/renderer JSON`, 선택적 `SVG`)<br>• 빈칸/선택지/연산 세로셈(Columnar)/사다리타기/OX 판정/선택지 그룹 등 다양한 수학 UI 지원<br>• Vision LLM 보조 저작 도구 (`tools/generate_vision_draft.py` 등)<br>• 배치 및 실시간 감시 빌더 (`mb.bat`, `mw.bat`, `mb_all.bat`) |
 | **Web Backend & Learning API** | `src/modu_math_web/` | Django 4.2+, DRF, PostgreSQL, SQLite | **완료/안정화**<br>• 문제 카탈로그 API (`/api/v1/problems/`) 및 다국어 필터링<br>• 학생 풀이 세션, 제출 채점 및 학습 로그 기록 (`/api/v1/attempts/`)<br>• 단원/개념별 숙련도(Mastery) 집계 및 통계<br>• 문제 자동 태깅, 진단 및 추천 서비스 (`ProblemTagging`, Diagnostic & Recommendation)<br>• AI 튜터 프록시 엔드포인트 (`/api/v1/tutor/`) |
 | **Web Editor (Konva)** | `src/modu_math_web/editor_next/` | React 19, Konva, TypeScript, Vite | **완료/개선 중**<br>• 캔버스 기반 시각적 문제 레이아웃 편집기 (`/editor-konva/`)<br>• 정답 검수 패널 (`AnswerReviewPanel`) 및 다국어 배치 동기화<br>• 텍스트 앵커 조작, 눈금자 라벨 보존, 힌트 편집기<br>• 수채화 캐릭터 아바타 교체 및 레이어 렌더링 |
 | **Mobile App** | `apps/mobile/` | Flutter 3.44+, Dart, flutter_dotenv | **완료/고도화 중**<br>• Django REST API 연동 및 오프라인 번들 에셋 fallback 지원<br>• 6개 다국어 지원 (한국어, 영어, 일본어, 크메르어, 우크라이나어, 중국어)<br>• 어린이 친화적 UI: OX 전용 카드, 세로셈 입력 슬롯, 아바타 반응<br>• 음성 안내 (TTS) 및 음성 입력 (STT) 지원 |
@@ -22,7 +22,7 @@
 
 ## 🔄 Core Pipeline & Contracts
 
-모든 수학 문제는 사람이 직접 편집 가능한 `problem.dsl.py`를 단일 진실 공급원(SSOT)으로 삼으며, 생성된 JSON/SVG는 직접 수정하지 않고 DSL 빌드를 통해 생성됩니다.
+모든 수학 문제는 사람이 직접 편집 가능한 `problem.dsl.py`를 단일 진실 공급원(SSOT)으로 삼습니다. Flutter 앱의 기준 시각 계약은 `renderer.json`이며, SVG 미리보기는 필요할 때만 생성하는 파생 산출물입니다.
 
 ```text
 PNG / Vision Draft
@@ -36,8 +36,7 @@ Python DSL (problem.dsl.py)
     layout JSON   (위치 및 배치 구조 계약)
          ↓
    renderer JSON  (시각적 렌더링 계약)
-         ↓
-        SVG       (최종 벡터 그래픽 아티팩트)
+         └──────→ SVG (선택적 미리보기·내보내기 산출물)
 ```
 
 ### 추천 저작 워크플로우 (Vision-Assisted Workflow)

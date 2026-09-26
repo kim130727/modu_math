@@ -30,6 +30,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--out-prefix", default=None, help="Output prefix path for generated artifacts")
     parser.add_argument("--strict", action="store_true", help="Enable strict cross-layer contract validation")
     parser.add_argument(
+        "--emit-svg",
+        action="store_true",
+        help="Also write the optional derived SVG preview artifact.",
+    )
+    parser.add_argument(
         "--emit-solvable",
         action="store_true",
         help="Emit solvable JSON when DSL defines SOLVABLE or build_solvable().",
@@ -337,13 +342,16 @@ def _assert_layout_slot_count_close(problem: ProblemTemplate, layout: dict[str, 
         )
 
 
-def _build_from_legacy_problem(problem: LegacyProblem, *, out_prefix: Path, strict: bool) -> None:
+def _build_from_legacy_problem(
+    problem: LegacyProblem, *, out_prefix: Path, strict: bool, emit_svg: bool
+) -> None:
     # Reuse existing legacy build path; no execution of generated DSL beyond import/build object construction.
     problem.save(
         out_prefix,
         validate=bool(strict),
         cross_layer_validate=bool(strict),
         emit_semantic=False,
+        emit_svg=emit_svg,
     )
 
 
@@ -354,6 +362,7 @@ def _build_from_problem_template(
     strict: bool,
     module: ModuleType,
     emit_solvable: bool,
+    emit_svg: bool,
     source_problem_json_path: Path | None = None,
 ) -> None:
     _assert_semantic_override_required(module)
@@ -448,7 +457,11 @@ def _build_from_problem_template(
         json.dumps(renderer, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
-    out_prefix.with_suffix(".svg").write_text(render_svg(renderer), encoding="utf-8")
+    svg_path = out_prefix.with_suffix(".svg")
+    if emit_svg:
+        svg_path.write_text(render_svg(renderer), encoding="utf-8")
+    else:
+        svg_path.unlink(missing_ok=True)
 
     if solvable is not None:
         solvable_tag = _parse_solvable_schema_tag(solvable)
@@ -475,12 +488,18 @@ def _run_build(
     out_prefix: Path,
     strict: bool,
     emit_solvable: bool,
+    emit_svg: bool,
     source_problem_json_path: Path | None = None,
 ) -> None:
     module = _load_module(dsl_path)
     problem_obj = _resolve_problem_object(module)
     if isinstance(problem_obj, LegacyProblem):
-        _build_from_legacy_problem(problem_obj, out_prefix=out_prefix, strict=strict)
+        _build_from_legacy_problem(
+            problem_obj,
+            out_prefix=out_prefix,
+            strict=strict,
+            emit_svg=emit_svg,
+        )
         return
     if isinstance(problem_obj, ProblemTemplate):
         _build_from_problem_template(
@@ -489,6 +508,7 @@ def _run_build(
             strict=strict,
             module=module,
             emit_solvable=emit_solvable,
+            emit_svg=emit_svg,
             source_problem_json_path=source_problem_json_path,
         )
         return
@@ -592,6 +612,7 @@ def main(argv: list[str] | None = None) -> int:
         "generated_files": [],
         "strict": bool(args.strict),
         "emit_solvable": bool(args.emit_solvable),
+        "emit_svg": bool(args.emit_svg),
     }
 
     try:
@@ -607,6 +628,7 @@ def main(argv: list[str] | None = None) -> int:
             out_prefix=out_prefix,
             strict=bool(args.strict),
             emit_solvable=bool(args.emit_solvable),
+            emit_svg=bool(args.emit_svg),
             source_problem_json_path=Path(args.source_problem_json) if args.source_problem_json else None,
         )
         report["success"] = True

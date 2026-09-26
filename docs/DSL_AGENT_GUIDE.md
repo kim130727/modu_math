@@ -114,12 +114,15 @@ examples/problems/0001/
   problem.solvable.json
   problem.layout.json
   problem.renderer.json
+  # optional, generated with --emit-svg when needed
   problem.svg
 ```
 
 ## Rules
 
-- Do not edit generated JSON/SVG by hand.
+- Do not edit generated JSON or optional SVG previews by hand.
+- Treat `renderer.json` as the canonical app visual. Generate `problem.svg`
+  only for exports, debugging, or visual-regression workflows that need it.
 - Edit `problem.dsl.py` first.
 - Use `refined_draft.md` only as an assistant artifact before DSL generation.
 - `refined_draft.md` may contain TODOs and uncertainty notes.

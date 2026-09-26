@@ -99,4 +99,5 @@ class Problem:
             validate=bool(kwargs.get("validate", False)),
             cross_layer_validate=kwargs.get("cross_layer_validate"),
             emit_semantic=bool(kwargs.get("emit_semantic", False)),
+            emit_svg=bool(kwargs.get("emit_svg", False)),
         )

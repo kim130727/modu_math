@@ -55,6 +55,10 @@ def test_split_authoring_files_and_lazy_assets(content, client):
     out = root.parent / "exported"
     assert export(root, out) == 2
     assert (out / "uk" / "sample.renderer.json").exists()
+    assert not (out / "uk" / "sample.svg").exists()
+    svg_out = root.parent / "exported-with-svg"
+    assert export(root, svg_out, emit_svg=True) == 2
+    assert (svg_out / "uk" / "sample.svg").exists()
     assert catalog.read_bytes() == document
     with pytest.raises(ValueError, match="outside"):
         export(root, root)

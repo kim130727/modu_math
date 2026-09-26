@@ -795,7 +795,7 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     assert "build_ok" in body["stdout"]
     assert (problem_dir / "problem.layout.json").exists()
     assert (problem_dir / "problem.renderer.json").exists()
-    assert (problem_dir / "problem.svg").exists()
+    assert not (problem_dir / "problem.svg").exists()
 
 
 def test_build_endpoint_preserves_deleted_blank_answer_slot_override(

@@ -1,0 +1,102 @@
+{
+  "problem_id": "S3_elem_3_008541",
+  "problem_type": "multiple_choice_ordering",
+  "metadata": {
+    "title": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오",
+    "tags": [],
+    "instruction": "보기에서 계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
+    "question": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오.",
+    "required_layout_ids": [
+      "slot.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "presentation_sources": {
+      "question": [
+        "slot.q1"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.opt1",
+        "slot.opt2",
+        "slot.opt3",
+        "slot.opt4"
+      ]
+    },
+    "presentation_prompt": "계산 결과가 큰 것부터 차례대로 나열한 것을 고르시오."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.a",
+        "type": "expression",
+        "label": "ㄱ",
+        "operation": "397 × 6"
+      },
+      {
+        "id": "obj.b",
+        "type": "expression",
+        "label": "ㄴ",
+        "operation": "549 × 4"
+      },
+      {
+        "id": "obj.c",
+        "type": "expression",
+        "label": "ㄷ",
+        "operation": "456 × 5"
+      },
+      {
+        "id": "obj.option2",
+        "type": "choice",
+        "label": "②",
+        "sequence": [
+          "ㄱ",
+          "ㄷ",
+          "ㄴ"
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.order",
+        "type": "descending_order",
+        "from_id": "obj.a",
+        "to_id": "obj.b"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      {
+        "text": "① ㄱ ㄴ ㄷ",
+        "slot_id": "slot.opt1",
+        "id": "slot.opt1"
+      },
+      {
+        "text": "② ㄱ ㄷ ㄴ",
+        "slot_id": "slot.opt2",
+        "id": "slot.opt2"
+      },
+      {
+        "text": "③ ㄴ ㄷ ㄱ",
+        "slot_id": "slot.opt3",
+        "id": "slot.opt3"
+      },
+      {
+        "text": "④ ㄷ ㄴ ㄱ",
+        "slot_id": "slot.opt4",
+        "id": "slot.opt4"
+      }
+    ],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice_number",
+      "description": "계산 결과가 큰 것부터 차례대로 나열한 보기 번호"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

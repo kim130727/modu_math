@@ -38,7 +38,7 @@
 - examples/problems/0001/problem.semantic.json
 - examples/problems/0001/problem.layout.json
 - examples/problems/0001/problem.renderer.json
-- examples/problems/0001/problem.svg
+- examples/problems/0001/problem.svg (optional derived preview)
 
 ## Tests (Core-Focused)
 

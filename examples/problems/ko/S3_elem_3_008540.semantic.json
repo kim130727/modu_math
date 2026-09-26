@@ -1,0 +1,113 @@
+{
+  "problem_id": "S3_elem_3_008540",
+  "problem_type": "multiple_choice_multiplication_place_value",
+  "metadata": {
+    "title": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+    "tags": [],
+    "question": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.mul.vline1",
+      "slot.mul.vline2",
+      "slot.mul.vline3",
+      "slot.mul.vline4",
+      "slot.mul.vline5",
+      "slot.mul.hline1",
+      "slot.mul.hline2",
+      "slot.mul.hline3",
+      "slot.mul.hline4",
+      "slot.mul.highlight",
+      "slot.choice.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기에서 알맞은 식을 고른다.",
+    "presentation_sources": {
+      "question": [
+        "slot.q1"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.1",
+        "slot.choice.2",
+        "slot.choice.3",
+        "slot.choice.4"
+      ]
+    },
+    "presentation_prompt": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.multiple",
+        "type": "multiplication_expression",
+        "text": "869 × 4"
+      },
+      {
+        "id": "obj.highlighted_value",
+        "type": "value",
+        "text": "240"
+      },
+      {
+        "id": "obj.choice_set",
+        "type": "multiple_choice_options",
+        "text": [
+          "6 × 4",
+          "69 × 4",
+          "60 × 4",
+          "600 × 4"
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.highlighted_part",
+        "type": "corresponds_to_place_value",
+        "from_id": "obj.highlighted_value",
+        "to_id": "obj.multiple"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      {
+        "id": "choice.1",
+        "label": "(1)",
+        "text": "(1) 6 × 4",
+        "slot_id": "slot.choice.1"
+      },
+      {
+        "id": "choice.2",
+        "label": "(2)",
+        "text": "(2) 69 × 4",
+        "slot_id": "slot.choice.2"
+      },
+      {
+        "id": "choice.3",
+        "label": "(3)",
+        "text": "(3) 60 × 4",
+        "slot_id": "slot.choice.3"
+      },
+      {
+        "id": "choice.4",
+        "label": "(4)",
+        "text": "(4) 600 × 4",
+        "slot_id": "slot.choice.4"
+      }
+    ],
+    "answer_key": [
+      {
+        "id": "choice.3",
+        "value": "(3) 60 × 4"
+      }
+    ],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice_value",
+      "description": "색칠한 부분 240에 해당하는 보기 번호"
+    },
+    "value": "(3) 60 × 4",
+    "unit": ""
+  }
+}

@@ -12,7 +12,6 @@ REQUIRED_EXACT = [
     "problem.semantic.json",
     "problem.layout.json",
     "problem.renderer.json",
-    "problem.svg",
     "build_report.json",
 ]
 SOLVABLE_ALIASES = [

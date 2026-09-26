@@ -11,7 +11,7 @@ from modu_math.dsl.problem_store import atomic_write
 from modu_math_web.editor.services.content_store import list_content, read_content
 
 
-def export(root: Path, output: Path) -> int:
+def export(root: Path, output: Path, *, emit_svg: bool = False) -> int:
     root, output = root.resolve(), output.resolve()
     if output == root or root in output.parents or output in root.parents:
         raise ValueError("Export must be outside the authored problem tree (including junctions)")
@@ -24,8 +24,13 @@ def export(root: Path, output: Path) -> int:
         content = read_content(paths)
         directory = output / paths.base_dir.relative_to(root)
         directory.mkdir(parents=True, exist_ok=True)
+        if not emit_svg:
+            (directory / f"{paths.artifact_base}.svg").unlink(missing_ok=True)
+        exported_keys = {"semantic", "layout", "renderer", "solvable"}
+        if emit_svg:
+            exported_keys.add("svg")
         for key, value in content.items():
-            if value is None or key not in {"semantic", "layout", "renderer", "solvable", "svg"}:
+            if value in (None, "") or key not in exported_keys:
                 continue
             suffix = ".svg" if key == "svg" else f".{key}.json"
             text = value if key == "svg" else json.dumps(value, ensure_ascii=False, separators=(",", ":"))
@@ -49,5 +54,13 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path("examples/problems"))
     parser.add_argument("--out", type=Path, default=Path("apps/mobile/generated/examples/problems"))
+    parser.add_argument(
+        "--emit-svg",
+        action="store_true",
+        help="Also export optional derived SVG previews.",
+    )
     args = parser.parse_args()
-    print(f"Exported {export(args.root, args.out)} language bundles to {args.out}")
+    print(
+        f"Exported {export(args.root, args.out, emit_svg=args.emit_svg)} "
+        f"language bundles to {args.out}"
+    )

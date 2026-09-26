@@ -461,8 +461,8 @@ def _build_problem_artifacts(problem_id: str) -> str:
         get_artifacts(problem_paths, force=True)
         return "build_ok (cached bundle)"
     artifacts = compile_problem_artifacts(problem_paths)
-    semantic, layout, renderer, solvable, svg = (
-        artifacts[key] for key in ("semantic", "layout", "renderer", "solvable", "svg"))
+    semantic, layout, renderer, solvable = (
+        artifacts[key] for key in ("semantic", "layout", "renderer", "solvable"))
     problem_paths.artifact_path("semantic").write_text(
         json.dumps(semantic, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
@@ -475,8 +475,9 @@ def _build_problem_artifacts(problem_id: str) -> str:
         json.dumps(renderer, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
-    problem_paths.artifact_path("svg").write_text(svg, encoding="utf-8")
-
+    # The Flutter renderer JSON is canonical; remove any stale full-problem
+    # SVG left by older builds.
+    problem_paths.artifact_path("svg").unlink(missing_ok=True)
     if solvable:
         solvable_tag = _parse_solvable_schema_tag(solvable)
         (

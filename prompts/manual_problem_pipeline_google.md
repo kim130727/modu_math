@@ -75,7 +75,7 @@ python tools/generate_dsl_from_refined_draft.py `
   --rules-md "prompts/dsl_generation_rules.md" `
   --force
 
-# 7) JSON/SVG 추출 + 검증
+# 7) JSON 추출 + 검증 (`--emit-svg`를 추가하면 SVG 미리보기도 생성)
 python tools/validate_generated_dsl.py `
   --dsl "$DIR/$PROB_ID.dsl.py" `
   --out-prefix "$DIR/$PROB_ID" `

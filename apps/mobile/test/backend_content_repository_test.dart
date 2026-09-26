@@ -52,7 +52,11 @@ void main() {
     expect(content.semantic['problem_id'], 'S3_elem_3_008540');
     expect(content.layout['schema'], 'modu.layout.v1');
     expect(content.renderer['schema'], 'modu.renderer.v1');
-    expect(content.svg, '<svg></svg>');
+    expect(content.svg, isEmpty);
+    expect(
+      requests.any((uri) => uri.path == '/api/v1/problems/31/asset/'),
+      isFalse,
+    );
     expect(requests.first.queryParameters['language'], 'ko');
   });
 

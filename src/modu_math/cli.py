@@ -48,6 +48,11 @@ def _add_build_parser(subparsers: Any) -> None:
     build_parser.add_argument("input", help="Python file defining build() -> Problem")
     build_parser.add_argument("-o", "--out", required=True, help="Output prefix path")
     build_parser.add_argument("--no-validate", action="store_true")
+    build_parser.add_argument(
+        "--emit-svg",
+        action="store_true",
+        help="Also write the optional derived SVG preview artifact.",
+    )
 
 
 def _add_build_semantic_parser(subparsers: Any) -> None:
@@ -69,7 +74,12 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "build":
         problem = _load_problem_from_python_file(args.input)
         try:
-            problem.save(args.out, validate=not args.no_validate, emit_semantic=False)
+            problem.save(
+                args.out,
+                validate=not args.no_validate,
+                emit_semantic=False,
+                emit_svg=bool(args.emit_svg),
+            )
         except TypeError as exc:
             raise RuntimeError(
                 "This build path requires a modu_math.Problem instance so semantic output can remain untouched. "

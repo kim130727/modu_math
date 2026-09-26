@@ -131,13 +131,16 @@ class BackendContentRepository extends ContentRepository {
       }
       final data =
           jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>;
+      final renderer = _map(data['renderer_data']);
       final content = ProblemContent(
         summary: _summary(data),
-        svg: await _loadSvg(data),
+        // Renderer JSON is the canonical app visual. Fetch the legacy SVG
+        // preview only when no renderer is available.
+        svg: renderer.isEmpty ? await _loadSvg(data) : '',
         semantic: _map(data['semantic_data']),
         solvable: _map(data['solvable_data']),
         layout: _map(data['layout_data']),
-        renderer: _map(data['renderer_data']),
+        renderer: renderer,
       );
       _contentCache[cacheKey] = content;
       return content;

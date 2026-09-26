@@ -35,7 +35,7 @@
 - examples/problems/0001/problem.semantic.json (from 0001.semantic.json)
 - examples/problems/0001/problem.layout.json (from 0001.layout.json)
 - examples/problems/0001/problem.renderer.json (from 0001.renderer.json)
-- examples/problems/0001/problem.svg (from 0001.svg)
+- examples/problems/0001/problem.svg (optional derived preview, formerly from 0001.svg)
 
 ### Tests kept (core-focused)
 - tests/dsl/test_compiler_to_layout.py
