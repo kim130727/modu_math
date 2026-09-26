@@ -59,7 +59,7 @@ class Command(BaseCommand):
             prefix = paths.artifact_base
             bundle = read_content(paths)
             semantic = bundle.get("semantic") or {}
-            problem_id = str(semantic.get("problem_id") or prefix)
+            problem_id = prefix
             metadata = (
                 semantic.get("metadata")
                 if isinstance(semantic.get("metadata"), dict)
