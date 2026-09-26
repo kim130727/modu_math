@@ -120,7 +120,7 @@ export function ShapeRenderer({ shape, nodeRef, onSelect, onDragStart, onDragMov
           width={textWidth}
           height={textHeight}
           align={shape.align ?? "left"}
-          verticalAlign={shape.sourceKind === "text_box" ? (shape.valign ?? "middle") : undefined}
+          verticalAlign={shape.valign ?? (shape.sourceKind === "text_box" || typeof textHeight === "number" ? "middle" : undefined)}
           lineHeight={shape.lineHeight ?? 1.25}
         />
       );

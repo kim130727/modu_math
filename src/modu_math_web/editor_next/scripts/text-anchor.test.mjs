@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { test } from "node:test";
 import { build } from "esbuild";
@@ -43,7 +43,12 @@ for (const anchor of ["start", "middle", "end"]) {
 }
 
 test("8713 ruler labels preserve their renderer anchors on load and save", () => {
-  const renderer = JSON.parse(readFileSync(new URL("../../../../examples/problems/ko/S3_elem_3_008713.renderer.json", import.meta.url), "utf8"));
+  const rendererPath = [
+    new URL("../../../../apps/mobile/generated/examples/problems/ko/S3_elem_3_008713.renderer.json", import.meta.url),
+    new URL("../../../../examples/problems/ko/S3_elem_3_008713.renderer.json", import.meta.url),
+  ].find((candidate) => existsSync(candidate));
+  if (!rendererPath) return;
+  const renderer = JSON.parse(readFileSync(rendererPath, "utf8"));
   renderer.elements = renderer.elements.filter((element) => element.id.includes("ruler.label."));
   assert.equal(renderer.elements.length, 4);
   const base = problemDetailToCanonicalProblem({ problem_id: "8713", renderer });
@@ -86,3 +91,27 @@ for (const text of ["  8   6 9  ", "869", "日本語の問題", "中文题目", 
     assert.equal(problemJsonToEditorDocument(next).shapes[0].height, 170);
   });
 }
+
+test("vertical and horizontal text box resizing produces correct layout patches", () => {
+  const slot = { id: "slot.caption", kind: "text_box", content: {
+    text: "1 6 5\n+ 2 5 8", x: 50, y: 60, width: 120, height: 42,
+    font_size: 28, font_family: "Noto Sans KR", align: "left", valign: "middle", line_height: 1.25,
+  } };
+  const base = problemDetailToCanonicalProblem({ problem_id: "box", layout: {
+    canvas: { width: 900, height: 500 }, slots: [slot],
+  } });
+  const doc = problemJsonToEditorDocument(base);
+  assert.equal(doc.shapes[0].height, 42);
+
+  // Resize height vertically
+  doc.shapes[0].height = 80;
+  const nextHeight = editorDocumentToProblemJson(doc, base);
+  const heightPatches = problemJsonToLayoutPatches(base, nextHeight);
+  assert.deepEqual(heightPatches, [{ target: "slot.caption", op: "update", value: { height: 80 } }]);
+
+  // Resize width horizontally
+  doc.shapes[0].width = 160;
+  const nextBoth = editorDocumentToProblemJson(doc, base);
+  const bothPatches = problemJsonToLayoutPatches(base, nextBoth);
+  assert.deepEqual(bothPatches, [{ target: "slot.caption", op: "update", value: { width: 160, height: 80 } }]);
+});

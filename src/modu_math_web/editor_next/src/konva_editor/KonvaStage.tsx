@@ -5,7 +5,7 @@ import type { TutorRendererOverlay } from "../api/editorApi";
 import type { BaseTenBlockKind, ConnectorShape, EditorShape, LineShape } from "../types/editorShape";
 import { scalePathData } from "../utils/pathData";
 import { connectorArrowForPreset, connectorBounds, connectorControl, connectorEnd, connectorKindForPreset, connectorPathData, connectorStart } from "./connectorGeometry";
-import { estimateTextWidth, normalizedTextBoxHeight, normalizedTextBoxWidth } from "./converters";
+import { estimateTextWidth, fittedTextHeight, normalizedTextBoxHeight, normalizedTextBoxWidth } from "./converters";
 import { KONVA_PREVIEW_FONT_FAMILY, KONVA_PREVIEW_FONT_LOAD_SPEC } from "./fonts";
 import { ShapeRenderer } from "./ShapeRenderer";
 import { adjustableShapePoint } from "./shapeGeometry";
@@ -187,6 +187,7 @@ export function KonvaStage({
             shape.id === selectedShapeIds[0] && shape.type === "path" && !shape.locked && Boolean(adjustableShapePoint(shape)),
         ) ?? null
       : null;
+  const hasImageSelected = selectedShapeIds.some((id) => shapes.find((shape) => shape.id === id)?.type === "image");
 
   const pointFromEvent = (event: Konva.KonvaEventObject<MouseEvent | TouchEvent>) => {
     const stage = event.target.getStage();
@@ -525,8 +526,7 @@ export function KonvaStage({
           ) : null}
           <Transformer
             ref={transformerRef}
-            enabledAnchors={selectedShapeIds.length === 1 && shapes.some((shape) => shape.id === selectedShapeIds[0] && shape.type === "text" && !shape.interaction)
-              ? ["middle-left", "middle-right"] : undefined}
+            keepRatio={hasImageSelected}
             rotateEnabled
             ignoreStroke
             borderStroke="#6b7280"
@@ -1466,15 +1466,17 @@ function shapeFromNode(shape: EditorShape, node: Konva.Node): EditorShape {
     };
   }
   if (shape.type === "text") {
-    const width = Math.max(24, (shape.width ?? node.width()) * Math.abs(scaleX));
-    const previousHeight = shape.height;
-    const scaledHeight =
-      typeof previousHeight === "number" && Math.abs(Math.abs(scaleY) - 1) > 0.01 ? Math.max(12, previousHeight * Math.abs(scaleY)) : previousHeight;
+    const width = roundStageNumber(Math.max(24, (shape.width ?? node.width()) * Math.abs(scaleX)));
+    const baseHeight = shape.height ?? node.height();
+    const isHeightScaled = Math.abs(Math.abs(scaleY) - 1) > 0.01;
+    const minFittedHeight = fittedTextHeight(shape.text, shape.fontSize, width, shape.lineHeight ?? 1.25, shape.fontFamily);
+    const scaledHeight = isHeightScaled ? roundStageNumber(Math.max(12, baseHeight * Math.abs(scaleY))) : (typeof shape.height === "number" ? Math.max(shape.height, minFittedHeight) : undefined);
+
     return {
       ...shape,
-      x: node.x(),
-      y: node.y(),
-      rotation: node.rotation(),
+      x: roundStageNumber(node.x()),
+      y: roundStageNumber(node.y()),
+      rotation: roundStageNumber(node.rotation()),
       width,
       height: normalizedTextBoxHeight(shape.text, shape.fontSize, width, scaledHeight, shape.lineHeight ?? 1.25, shape.fontFamily, Boolean(shape.interaction)),
       sourceKind: "text_box",

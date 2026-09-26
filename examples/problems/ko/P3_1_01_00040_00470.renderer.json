@@ -25,12 +25,12 @@
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
+        "value_type": "integer",
+        "max_length": 3,
         "include_in_submission": true,
         "order": 0,
         "group_id": "final_answer",
-        "auto_advance": true,
+        "auto_advance": false,
         "keyboard": "number"
       },
       "input_style": {
@@ -42,7 +42,9 @@
         "horizontal_align": "center",
         "vertical_align": "middle",
         "padding": 6,
-        "text_color": "#222222"
+        "text_color": "#222222",
+        "width": 78.73,
+        "height": 41.989
       }
     },
     {
@@ -52,8 +54,8 @@
         "x": 48.0,
         "y": 30.0,
         "fill": "#202124",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30,
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 30.0,
         "width": 804.0,
         "height": 143.0,
         "max_width": 804.0,
@@ -64,7 +66,8 @@
         "data-box-height": 143.0,
         "data-text-align": "left",
         "data-vertical-align": "top",
-        "data-line-height": 1.5
+        "data-line-height": 1.5,
+        "data-semantic-role": "question"
       },
       "source_ref": "slot.question",
       "refs": {
@@ -79,19 +82,20 @@
         "x": 708.59,
         "y": 175.393,
         "fill": "#111827",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30,
-        "width": 98.0,
-        "height": 46.0,
-        "max_width": 98.0,
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 30.0,
+        "width": 39.0,
+        "height": 37.5,
+        "max_width": 39.0,
         "data-slot-kind": "text_box",
         "data-box-x": 708.59,
         "data-box-y": 175.393,
-        "data-box-width": 98.0,
-        "data-box-height": 46.0,
+        "data-box-width": 39.0,
+        "data-box-height": 37.5,
         "data-text-align": "left",
         "data-vertical-align": "top",
-        "data-line-height": 1.25
+        "data-line-height": 1.25,
+        "data-semantic-role": "question"
       },
       "source_ref": "konva_1785110879232_paste_620338_1",
       "refs": {

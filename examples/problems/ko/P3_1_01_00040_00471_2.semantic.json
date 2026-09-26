@@ -4,8 +4,8 @@
   "metadata": {
     "title": "덧셈식의 크기 비교",
     "tags": [],
-    "instruction": "(1)",
-    "question": "크기를 비교하여 ○ 안에 >, =, <를 알맞게 써넣으시오.",
+    "instruction": "크기를 비교하여 ○ 안에 >, =, <를 알맞게 써넣으시오.",
+    "question": "346+667\n428+585",
     "required_layout_ids": [
       "konva_1785110879232_circle_652757",
       "konva_1785110879232_paste_664084_0"
@@ -15,7 +15,18 @@
     "semester": 1,
     "subject": "수학",
     "topic": "세 자리 수의 덧셈과 크기 비교",
-    "language": "ko-KR"
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.problem_2_left",
+        "slot.problem_2_right"
+      ],
+      "instruction": [
+        "slot.instruction"
+      ],
+      "choice": []
+    },
+    "presentation_prompt": "346+667\n428+585\n크기를 비교하여 ○ 안에 >, =, <를 알맞게 써넣으시오."
   },
   "domain": {
     "objects": [

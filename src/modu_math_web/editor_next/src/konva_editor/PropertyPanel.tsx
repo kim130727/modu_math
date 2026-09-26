@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { scalePathData } from "../utils/pathData";
 import { KONVA_PREVIEW_FONT_FAMILY, normalizePreviewFontFamily } from "./fonts";
 import { resolveAnswerBinding, type AnswerBindingOption } from "./answerReview";
-import { fittedTextWidth } from "./converters";
+import { estimateTextWidth, fittedTextHeight, fittedTextWidth } from "./converters";
 
 interface PropertyPanelProps {
   shape: EditorShape | null;
@@ -62,12 +62,33 @@ export function PropertyPanel({ shape, selectedShapes = [], answerOptions = [], 
             <TextAreaField label="내용" value={shape.text} onChange={(text) => onChange({ text } as Partial<EditorShape>)} />
             <TextPlacementFields shapes={[shape]} onChange={onTextRoleChange} />
             <NumberField label="글자 크기" value={shape.fontSize} onChange={(fontSize) => onChange({ fontSize } as Partial<EditorShape>)} />
-            <NumberField label="글상자 너비" value={shape.width ?? 220} onChange={(width) => onChange({ width } as Partial<EditorShape>)} />
+            <NumberField label="줄 간격" value={shape.lineHeight ?? 1.25} onChange={(lineHeight) => onChange({ lineHeight } as Partial<EditorShape>)} />
+            <NumberField label="글상자 너비" value={shape.width ?? 220} onChange={(width) => onChange({ width, sourceKind: "text_box" } as Partial<EditorShape>)} />
+            <NumberField
+              label="글상자 높이"
+              value={shape.height ?? Math.round(fittedTextHeight(shape.text, shape.fontSize, shape.width ?? estimateTextWidth(shape.text, shape.fontSize), shape.lineHeight ?? 1.25, shape.fontFamily))}
+              onChange={(height) => onChange({ height: height ? Math.max(12, height) : undefined, sourceKind: "text_box" } as Partial<EditorShape>)}
+            />
+            <SelectField
+              label="가로 정렬"
+              value={shape.align ?? "left"}
+              options={["left", "center", "right"]}
+              optionLabels={{ left: "왼쪽 정렬", center: "가운데 정렬", right: "오른쪽 정렬" }}
+              onChange={(align) => onChange({ align: align as "left" | "center" | "right", sourceKind: "text_box" } as Partial<EditorShape>)}
+            />
+            <SelectField
+              label="세로 정렬"
+              value={shape.valign ?? "middle"}
+              options={["top", "middle", "bottom"]}
+              optionLabels={{ top: "상단 정렬", middle: "중앙 정렬", bottom: "하단 정렬" }}
+              onChange={(valign) => onChange({ valign: valign as "top" | "middle" | "bottom", sourceKind: "text_box" } as Partial<EditorShape>)}
+            />
             {!shape.interaction ? <div className="konva-field-wide">
               <div className="konva-placement-buttons">
                 <button type="button" onClick={() => onChange({ width: Math.min(shape.width ?? Infinity, fittedTextWidth(shape.text, shape.fontSize, shape.fontFamily)), sourceKind: "text_box" } as Partial<EditorShape>)}>내용에 폭 맞추기</button>
+                <button type="button" onClick={() => onChange({ height: undefined, sourceKind: "text_box" } as Partial<EditorShape>)}>내용에 높이 맞추기</button>
               </div>
-              <p className="konva-answer-hint">높이는 실제 줄 수에 자동으로 맞춰집니다. 양옆 손잡이로 줄바꿈 폭을 조절하세요.</p>
+              <p className="konva-answer-hint">캔버스 손잡이(상/하/좌/우/모서리) 또는 위 수치 입력으로 글상자의 너비와 높이를 조절할 수 있습니다.</p>
             </div> : null}
           </>
         ) : null}
@@ -102,10 +123,10 @@ export function PropertyPanel({ shape, selectedShapes = [], answerOptions = [], 
         {scalableShape(shape) && shape.type !== "baseTenBlock" ? (
           <NumberField label="scale %" value={shapeScalePercent(shape)} onChange={(scale) => onChange(shapeScalePatch(shape, scale))} />
         ) : null}
-        {shape.type === "rect" || shape.type === "image" || shape.type === "math" || shape.type === "baseTenBlock" ? (
+        {shape.type === "rect" || shape.type === "image" || shape.type === "math" || shape.type === "baseTenBlock" || shape.type === "text" ? (
           <>
-            <NumberField label="width" value={shape.width} onChange={(width) => onChange({ width } as Partial<EditorShape>)} />
-            <NumberField label="height" value={shape.height} onChange={(height) => onChange({ height } as Partial<EditorShape>)} />
+            <NumberField label="width" value={shape.width ?? 0} onChange={(width) => onChange({ width } as Partial<EditorShape>)} />
+            <NumberField label="height" value={shape.height ?? 0} onChange={(height) => onChange({ height } as Partial<EditorShape>)} />
           </>
         ) : null}
         {shape.type === "baseTenBlock" ? (
@@ -542,8 +563,8 @@ function TextAreaField({ label, value, onChange }: { label: string; value: strin
   );
 }
 
-function round(value: number): number {
-  return Math.round(value * 100) / 100;
+function round(value?: number): number {
+  return typeof value === "number" && Number.isFinite(value) ? Math.round(value * 100) / 100 : 0;
 }
 
 function scalableShape(shape: EditorShape): shape is Extract<EditorShape, { type: "rect" | "circle" | "path" | "image" | "math" | "baseTenBlock" }> {
