@@ -149,6 +149,7 @@ uv run python manage.py runserver 127.0.0.1:8000
    docker compose exec web python manage.py sync_problems
    ```
 4. **브라우저 접속**:
+   - **Flutter 웹 앱 (학생용)**: [http://localhost:3000/](http://localhost:3000/)
    - **웹 에디터 (Konva)**: [http://localhost:8000/editor-konva/](http://localhost:8000/editor-konva/) (또는 루트 [http://localhost:8000/](http://localhost:8000/))
    - **레거시 에디터**: [http://localhost:8000/editor/](http://localhost:8000/editor/)
    - **학습 REST API**: [http://localhost:8000/api/v1/](http://localhost:8000/api/v1/)

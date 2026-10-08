@@ -38,5 +38,15 @@ services:
       - ./examples/problems:/app/examples/problems
       - ./src:/app/src
 
+  mobile:
+    build:
+      context: .
+      dockerfile: docker/mobile.Dockerfile
+    pull_policy: build
+    depends_on:
+      - web
+    ports:
+      - "3000:3000"
+
 volumes:
   postgres_data:

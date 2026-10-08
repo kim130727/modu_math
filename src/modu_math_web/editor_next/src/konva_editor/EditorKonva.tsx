@@ -907,7 +907,7 @@ export function EditorKonva() {
         />
         <SidePanelButton
           active={activeSidePanel === "flow"}
-          label="튜터 편집"
+          label="힌트 편집"
           onClick={() => setActiveSidePanel("flow")}
           icon="flow"
         />
@@ -1052,62 +1052,6 @@ export function EditorKonva() {
             onTutorOverlayChange={changeActiveTutorOverlay}
             onTutorOverlayMove={moveActiveTutorOverlay}
           />
-        </div>
-        <div className="konva-side-panel">
-          <div className="konva-side-tabs" role="tablist" aria-label="Editor side panels">
-            <SidePanelButton
-              active={activeSidePanel === "properties"}
-              label="편집"
-              onClick={() => setActiveSidePanel("properties")}
-              icon="properties"
-            />
-            <SidePanelButton
-              active={activeSidePanel === "flow"}
-              label="힌트 편집"
-              onClick={() => setActiveSidePanel("flow")}
-              icon="flow"
-            />
-            <SidePanelButton
-              active={activeSidePanel === "json"}
-              label="Shape JSON"
-              onClick={() => setActiveSidePanel("json")}
-              icon="json"
-            />
-          </div>
-          <div className="konva-side-content">
-            {activeSidePanel === "properties" ? (
-              <PropertyPanel
-                syncPanel={<PlacementSyncPanel key={selectedProblemId} problemId={selectedProblemId} shapes={document.shapes} selectedIds={selectedShapeIds} onSave={buildCurrentProblem} />}
-                shape={selectedShape}
-                selectedShapes={selectedShapes}
-                answerOptions={answerBindingOptions}
-                saveStatus={saveStatus}
-                onChange={patchSelectedShape}
-                onScaleSelection={scaleSelectedShapes}
-                onTextRoleChange={setSelectedTextRole}
-              />
-            ) : null}
-            {activeSidePanel === "flow" ? (
-              <TutorFlowPanel
-                studentHints={previewArtifacts.solvable?.student_hints}
-                problemId={selectedProblemId}
-                tutorFlow={effectiveTutorFlow}
-                message={message}
-                activeStepId={activeTutorStepId}
-                activeFrameIndex={activeTutorFrameIndex}
-                activeOverlayIndex={activeTutorOverlayIndex}
-                selectedShapeIds={selectedShapeIds}
-                onDraftChange={(flow) => {
-                  setDraftTutorFlow(flow);
-                  setSaveStatus("unsaved");
-                }}
-                onSelectFrame={selectTutorFrame}
-                onSelectOverlay={selectTutorOverlay}
-                onSave={saveCurrentTutorFlow}
-              />
-            ) : null}
-            {activeSidePanel === "json" ? <JsonImportExport document={document} message={message} onImport={importDocument} /> : null}
-          </div>
         </div>
       </div>
     </div>
