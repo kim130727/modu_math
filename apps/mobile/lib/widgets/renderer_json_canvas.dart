@@ -8,6 +8,26 @@ import 'package:google_fonts/google_fonts.dart';
 
 typedef RendererImageLoader = Future<Uint8List> Function(String relativePath);
 
+enum RendererCanvasMode { preview, edit, studentTest }
+
+class RendererElementPatch {
+  const RendererElementPatch({
+    required this.elementId,
+    required this.targetId,
+    required this.value,
+  });
+
+  final String elementId;
+  final String targetId;
+  final Map<String, double> value;
+
+  Map<String, dynamic> toLayoutPatch() => {
+        'target': targetId,
+        'op': 'update',
+        'value': value,
+      };
+}
+
 class RendererJsonCanvas extends StatefulWidget {
   const RendererJsonCanvas({
     super.key,
@@ -18,6 +38,10 @@ class RendererJsonCanvas extends StatefulWidget {
     this.imageLoader,
     this.imageCacheKey,
     this.onInputChanged,
+    this.mode = RendererCanvasMode.preview,
+    this.selectedElementId,
+    this.onElementSelected,
+    this.onElementPatch,
   });
 
   final Map<String, dynamic> renderer;
@@ -27,6 +51,10 @@ class RendererJsonCanvas extends StatefulWidget {
   final RendererImageLoader? imageLoader;
   final Object? imageCacheKey;
   final ValueChanged<String>? onInputChanged;
+  final RendererCanvasMode mode;
+  final String? selectedElementId;
+  final ValueChanged<String?>? onElementSelected;
+  final ValueChanged<RendererElementPatch>? onElementPatch;
 
   @override
   State<RendererJsonCanvas> createState() => _RendererJsonCanvasState();
@@ -38,10 +66,13 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
   String? lastEmittedInputValue;
   int? activeOperatorSlotIndex;
   final Map<String, Future<Uint8List>> _imageFutures = {};
+  final Map<String, Rect> _editorGeometry = {};
+  String? _localSelectedElementId;
 
   @override
   void initState() {
     super.initState();
+    _localSelectedElementId = widget.selectedElementId;
     _syncInputControllers(force: true);
   }
 
@@ -50,6 +81,10 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.renderer != widget.renderer) {
       activeOperatorSlotIndex = null;
+      _editorGeometry.clear();
+    }
+    if (oldWidget.selectedElementId != widget.selectedElementId) {
+      _localSelectedElementId = widget.selectedElementId;
     }
     if (oldWidget.renderer != widget.renderer ||
         oldWidget.imageCacheKey != widget.imageCacheKey) {
@@ -75,7 +110,8 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
 
   @override
   Widget build(BuildContext context) {
-    final viewBox = _mapAt(widget.renderer, 'view_box');
+    final effectiveRenderer = _rendererWithEditorGeometry();
+    final viewBox = _mapAt(effectiveRenderer, 'view_box');
     final originalWidth = _readDouble(viewBox['width']) ?? 928;
     final originalHeight = _readDouble(viewBox['height']) ?? 426;
     final viewport = _mapAt(widget.renderer, 'presentation_viewport');
@@ -86,9 +122,10 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
     final background = _readColor(viewBox['background']) ?? Colors.white;
 
     final inputSlots = _inputSlots(
-      widget.renderer,
+      effectiveRenderer,
       expectedAnswer: widget.expectedAnswer,
-      suppressInputs: widget.suppressInputs,
+      suppressInputs:
+          widget.suppressInputs || widget.mode == RendererCanvasMode.edit,
     );
     _ensureControllerCount(inputSlots.length);
     final hasOperatorSlots = inputSlots.any((slot) => slot.operatorOnly);
@@ -143,7 +180,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                             clipBehavior: Clip.none,
                             children: [
                               ..._imageLayers(
-                                widget.renderer,
+                                effectiveRenderer,
                                 scale,
                                 loadRelativeImage: widget.imageLoader == null
                                     ? null
@@ -152,14 +189,16 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                               Positioned.fill(
                                 child: CustomPaint(
                                   painter: RendererJsonPainter(
-                                    renderer: widget.renderer,
+                                    renderer: effectiveRenderer,
                                     logicalSize:
                                         Size(originalWidth, originalHeight),
                                   ),
                                 ),
                               ),
-                              ..._textBoxLayers(widget.renderer, scale),
+                              ..._textBoxLayers(effectiveRenderer, scale),
                               ..._inputLayers(inputSlots, scale),
+                              if (widget.mode == RendererCanvasMode.edit)
+                                ..._editorLayers(effectiveRenderer, scale),
                             ],
                           ),
                         ),
@@ -177,6 +216,193 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
         );
       },
     );
+  }
+
+  Map<String, dynamic> _rendererWithEditorGeometry() {
+    if (_editorGeometry.isEmpty) return widget.renderer;
+    final elements = widget.renderer['elements'];
+    if (elements is! List) return widget.renderer;
+    return {
+      ...widget.renderer,
+      'elements': elements.map((raw) {
+        if (raw is! Map) return raw;
+        final element = Map<String, dynamic>.from(raw);
+        final id = element['id']?.toString() ?? '';
+        final rect = _editorGeometry[id];
+        if (rect == null) return element;
+        final attributes = Map<String, dynamic>.from(
+          element['attributes'] is Map
+              ? element['attributes'] as Map
+              : const {},
+        );
+        attributes.addAll({
+          'x': rect.left,
+          'y': rect.top,
+          'width': rect.width,
+          'height': rect.height,
+          if (attributes.containsKey('data-box-x')) 'data-box-x': rect.left,
+          if (attributes.containsKey('data-box-y')) 'data-box-y': rect.top,
+          if (attributes.containsKey('data-box-width'))
+            'data-box-width': rect.width,
+          if (attributes.containsKey('data-box-height'))
+            'data-box-height': rect.height,
+          if (attributes.containsKey('max_width')) 'max_width': rect.width,
+        });
+        element['attributes'] = attributes;
+        return element;
+      }).toList(),
+    };
+  }
+
+  List<Widget> _editorLayers(
+    Map<String, dynamic> renderer,
+    double scale,
+  ) {
+    final elements = renderer['elements'];
+    if (elements is! List) return const [];
+    final layers = <Widget>[];
+    for (final raw in elements) {
+      if (raw is! Map) continue;
+      final element = Map<String, dynamic>.from(raw);
+      final id = element['id']?.toString() ?? '';
+      if (id.isEmpty || !_isEditableRendererElement(element)) continue;
+      final rect = _rendererElementRect(element);
+      if (rect == null || rect.width <= 0 || rect.height <= 0) continue;
+      final selected =
+          (_localSelectedElementId ?? widget.selectedElementId) == id;
+      layers.add(_editorElementLayer(element, rect, scale, selected));
+    }
+    return layers;
+  }
+
+  Widget _editorElementLayer(
+    Map<String, dynamic> element,
+    Rect rect,
+    double scale,
+    bool selected,
+  ) {
+    final id = element['id']?.toString() ?? '';
+    final scaledRect = Rect.fromLTWH(
+      rect.left * scale,
+      rect.top * scale,
+      rect.width * scale,
+      rect.height * scale,
+    );
+    const handleSize = 14.0;
+    return Positioned.fromRect(
+      rect: scaledRect,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Positioned.fill(
+            child: MouseRegion(
+              cursor:
+                  selected ? SystemMouseCursors.move : SystemMouseCursors.click,
+              child: GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () => _selectEditorElement(id),
+                onPanStart: (_) => _selectEditorElement(id),
+                onPanUpdate: (details) {
+                  final current = _editorGeometry[id] ?? rect;
+                  _setEditorRect(
+                    element,
+                    current.shift(details.delta / scale),
+                    commit: true,
+                  );
+                },
+                onPanEnd: (_) => _commitEditorRect(element),
+                onPanCancel: () => _commitEditorRect(element),
+                child: DecoratedBox(
+                  key: ValueKey('renderer-editor-box-$id'),
+                  decoration: BoxDecoration(
+                    color:
+                        selected ? const Color(0x142F6BFF) : Colors.transparent,
+                    border: Border.all(
+                      color: selected
+                          ? const Color(0xFF2F6BFF)
+                          : Colors.transparent,
+                      width: 2,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          if (selected)
+            Positioned(
+              right: -handleSize / 2,
+              bottom: -handleSize / 2,
+              width: handleSize,
+              height: handleSize,
+              child: MouseRegion(
+                cursor: SystemMouseCursors.resizeDownRight,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onPanUpdate: (details) {
+                    final current = _editorGeometry[id] ?? rect;
+                    _setEditorRect(
+                      element,
+                      Rect.fromLTWH(
+                        current.left,
+                        current.top,
+                        math.max(12, current.width + details.delta.dx / scale),
+                        math.max(12, current.height + details.delta.dy / scale),
+                      ),
+                      commit: true,
+                    );
+                  },
+                  onPanEnd: (_) => _commitEditorRect(element),
+                  onPanCancel: () => _commitEditorRect(element),
+                  child: const DecoratedBox(
+                    key: ValueKey('renderer-editor-resize-handle'),
+                    decoration: BoxDecoration(
+                      color: Color(0xFF2F6BFF),
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  void _selectEditorElement(String id) {
+    if (_localSelectedElementId == id) return;
+    setState(() => _localSelectedElementId = id);
+    widget.onElementSelected?.call(id);
+  }
+
+  void _setEditorRect(
+    Map<String, dynamic> element,
+    Rect rect, {
+    required bool commit,
+  }) {
+    final id = element['id']?.toString() ?? '';
+    if (id.isEmpty) return;
+    setState(() => _editorGeometry[id] = rect);
+    if (commit) _emitEditorPatch(element, rect);
+  }
+
+  void _commitEditorRect(Map<String, dynamic> element) {
+    final id = element['id']?.toString() ?? '';
+    final rect = _editorGeometry[id];
+    if (rect != null) _emitEditorPatch(element, rect);
+  }
+
+  void _emitEditorPatch(Map<String, dynamic> element, Rect rect) {
+    final id = element['id']?.toString() ?? '';
+    widget.onElementPatch?.call(RendererElementPatch(
+      elementId: id,
+      targetId: _rendererElementTargetId(element),
+      value: {
+        'x': rect.left,
+        'y': rect.top,
+        'width': rect.width,
+        'height': rect.height,
+      },
+    ));
   }
 
   Future<Uint8List> _loadRelativeImage(String href) {
@@ -1556,6 +1782,37 @@ List<Map<String, dynamic>> rendererVisibleElements(List<dynamic> elements) {
         (element) => !_isPureInvisibleSlot(element),
       )
       .toList(growable: false);
+}
+
+bool _isEditableRendererElement(Map<String, dynamic> element) {
+  final type = element['type']?.toString().toLowerCase() ?? '';
+  if (type == 'text_box' || type == 'rect' || type == 'image') return true;
+  final attributes = _mapAt(element, 'attributes');
+  return attributes['data-slot-kind']?.toString() == 'text_box';
+}
+
+Rect? _rendererElementRect(Map<String, dynamic> element) {
+  final attributes = _mapAt(element, 'attributes');
+  final x =
+      _readDouble(attributes['x']) ?? _readDouble(attributes['data-box-x']);
+  final y =
+      _readDouble(attributes['y']) ?? _readDouble(attributes['data-box-y']);
+  final width = _readDouble(attributes['width']) ??
+      _readDouble(attributes['data-box-width']);
+  final height = _readDouble(attributes['height']) ??
+      _readDouble(attributes['data-box-height']);
+  if (x == null || y == null || width == null || height == null) return null;
+  return Rect.fromLTWH(x, y, width, height);
+}
+
+String _rendererElementTargetId(Map<String, dynamic> element) {
+  final refs = _mapAt(element, 'refs');
+  final layoutSlotId = refs['layout_slot_id']?.toString().trim() ?? '';
+  if (layoutSlotId.isNotEmpty) return layoutSlotId;
+  final sourceRef = element['source_ref']?.toString().trim() ?? '';
+  if (sourceRef.isNotEmpty) return sourceRef;
+  final id = element['id']?.toString() ?? '';
+  return id.replaceFirst(RegExp(r'\.(text|rect|image)$'), '');
 }
 
 bool _isPureInvisibleSlot(Map<String, dynamic> element) {

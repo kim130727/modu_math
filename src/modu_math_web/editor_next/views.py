@@ -9,6 +9,7 @@ from django.shortcuts import render
 from django.views.decorators.http import require_GET
 
 _ASSET_ROOT = Path(__file__).resolve().parent / "static" / "editor_next" / "konva_assets"
+_FLUTTER_ASSET_ROOT = Path(__file__).resolve().parent / "static" / "editor_next" / "flutter_editor"
 
 
 @lru_cache(maxsize=8)
@@ -24,10 +25,21 @@ def editor_asset_version() -> str:
     return _fingerprint_asset(str(bundle), stat.st_mtime_ns, stat.st_size)
 
 
+def flutter_editor_asset_version() -> str:
+    bundle = _FLUTTER_ASSET_ROOT / "main.dart.js"
+    if not bundle.exists():
+        return "missing"
+    stat = bundle.stat()
+    return _fingerprint_asset(str(bundle), stat.st_mtime_ns, stat.st_size)
+
+
 @require_GET
 def editor_konva(request: HttpRequest):
     return render(
         request,
         "editor_next/konva.html",
-        {"editor_asset_version": editor_asset_version()},
+        {
+            "editor_asset_version": editor_asset_version(),
+            "flutter_editor_asset_version": flutter_editor_asset_version(),
+        },
     )

@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
 import '../models/tutor_models.dart';
 import '../services/ai_tutor_service.dart';
 import '../services/content_repository.dart';
+import '../services/editor_host_bridge.dart';
 import '../services/rule_tutor_service.dart';
 import '../theme/app_theme.dart';
 import '../utils/answer_normalizer.dart';
@@ -44,12 +46,37 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
   int hintLevel = 0;
   int tutorStepIndex = 0;
   String? _activeProblemLocale;
+  RendererCanvasMode canvasMode = RendererCanvasMode.edit;
+  String? selectedRendererElementId;
+  String? workingRendererProblemId;
+  Map<String, dynamic>? workingRenderer;
+  final Map<String, RendererElementPatch> pendingRendererPatches = {};
+  late final EditorHostBridge editorHostBridge;
 
   @override
   void initState() {
     super.initState();
     _activeProblemLocale = widget.repository.activeProblemLocale;
     tutorService = _createTutorService();
+    editorHostBridge = EditorHostBridge(
+      onRenderer: (renderer) {
+        if (!mounted) return;
+        setState(() {
+          workingRenderer = renderer;
+          pendingRendererPatches.clear();
+        });
+      },
+      onSelection: (elementId) {
+        if (!mounted) return;
+        setState(() => selectedRendererElementId = elementId);
+      },
+      onMode: (mode) {
+        if (!mounted) return;
+        setState(() => canvasMode = mode);
+      },
+    );
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => editorHostBridge.ready());
     prefixesFuture = widget.repository.loadGrade3JsonProblemPrefixes();
     bundleFuture = _loadInitialBundle();
   }
@@ -82,8 +109,17 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
     if (prefixes.isEmpty) {
       throw StateError(AppStrings.fallback.t('studio.noRenderableProblems'));
     }
-    selectedFilePrefix = prefixes.first;
+    final requested = Uri.base.queryParameters['problem'];
+    selectedFilePrefix = requested != null && prefixes.contains(requested)
+        ? requested
+        : prefixes.first;
     return widget.repository.loadProblemJsonBundle(selectedFilePrefix);
+  }
+
+  @override
+  void dispose() {
+    editorHostBridge.dispose();
+    super.dispose();
   }
 
   @override
@@ -107,8 +143,47 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
                   }
 
                   final bundle = snapshot.data!;
+                  _ensureWorkingRenderer(bundle);
                   final content = _problemContent(bundle);
                   _ensureTutorSession(content);
+                  final renderTab = _RenderTab(
+                    repository: widget.repository,
+                    bundle: bundle,
+                    renderer: workingRenderer ?? bundle.renderer,
+                    content: content,
+                    embedded: Uri.base.queryParameters['embedded'] == '1',
+                    mode: canvasMode,
+                    selectedElementId: selectedRendererElementId,
+                    pendingPatches: pendingRendererPatches.values.toList(),
+                    answerDraft: answerDraft,
+                    onAnswerChanged: _updateAnswerDraft,
+                    onModeChanged: _changeCanvasMode,
+                    onElementSelected: _selectRendererElement,
+                    onElementPatch: _applyRendererPatch,
+                    onGeometryChanged: _changeSelectedGeometry,
+                    onCopyPatches: _copyPendingPatches,
+                    tutorPanel: TutorChatPanel(
+                      key: ValueKey(bundle.filePrefix),
+                      content: content,
+                      messages: tutorMessages,
+                      isBusy: tutorBusy,
+                      answerDraft: answerDraft,
+                      submittedAnswer: submittedAnswer,
+                      isCorrect: isCorrect,
+                      onAnswerChanged: _updateAnswerDraft,
+                      onSubmit: (answer) => _submit(content, answer),
+                      onSend: (message) => _sendTutorMessage(content, message),
+                      onHint: () => _requestHint(content),
+                      onNextStep: () => _requestNextStep(content),
+                      onRestart: () => _restartTutor(content),
+                      onReset: _resetTutor,
+                      hasNextProblem: false,
+                      onNextProblem: () {},
+                    ),
+                  );
+                  if (Uri.base.queryParameters['embedded'] == '1') {
+                    return renderTab;
+                  }
                   return Column(
                     children: [
                       _TopBar(
@@ -129,30 +204,7 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
                       Expanded(
                         child: TabBarView(
                           children: [
-                            _RenderTab(
-                              repository: widget.repository,
-                              bundle: bundle,
-                              content: content,
-                              tutorPanel: TutorChatPanel(
-                                key: ValueKey(bundle.filePrefix),
-                                content: content,
-                                messages: tutorMessages,
-                                isBusy: tutorBusy,
-                                answerDraft: answerDraft,
-                                submittedAnswer: submittedAnswer,
-                                isCorrect: isCorrect,
-                                onAnswerChanged: _updateAnswerDraft,
-                                onSubmit: (answer) => _submit(content, answer),
-                                onSend: (message) =>
-                                    _sendTutorMessage(content, message),
-                                onHint: () => _requestHint(content),
-                                onNextStep: () => _requestNextStep(content),
-                                onRestart: () => _restartTutor(content),
-                                onReset: _resetTutor,
-                                hasNextProblem: false,
-                                onNextProblem: () {},
-                              ),
-                            ),
+                            renderTab,
                             _JsonTab(
                                 title: 'semantic.json', data: bundle.semantic),
                             _JsonTab(title: 'layout.json', data: bundle.layout),
@@ -186,7 +238,130 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
       isCorrect = null;
       hintLevel = 0;
       tutorStepIndex = 0;
+      canvasMode = RendererCanvasMode.edit;
+      selectedRendererElementId = null;
+      workingRendererProblemId = null;
+      workingRenderer = null;
+      pendingRendererPatches.clear();
     });
+  }
+
+  void _ensureWorkingRenderer(ProblemJsonBundle bundle) {
+    if (workingRendererProblemId == bundle.filePrefix &&
+        workingRenderer != null) {
+      return;
+    }
+    workingRendererProblemId = bundle.filePrefix;
+    workingRenderer =
+        jsonDecode(jsonEncode(bundle.renderer)) as Map<String, dynamic>;
+    selectedRendererElementId = null;
+    pendingRendererPatches.clear();
+  }
+
+  void _applyRendererPatch(RendererElementPatch patch) {
+    final renderer = workingRenderer;
+    final elements = renderer?['elements'];
+    if (renderer == null || elements is! List) return;
+    final nextElements = elements.map((raw) {
+      if (raw is! Map || raw['id']?.toString() != patch.elementId) return raw;
+      final element = Map<String, dynamic>.from(raw);
+      final attributes = Map<String, dynamic>.from(
+        element['attributes'] is Map ? element['attributes'] as Map : const {},
+      );
+      attributes.addAll(patch.value);
+      if (attributes.containsKey('data-box-x')) {
+        attributes['data-box-x'] = patch.value['x'];
+      }
+      if (attributes.containsKey('data-box-y')) {
+        attributes['data-box-y'] = patch.value['y'];
+      }
+      if (attributes.containsKey('data-box-width')) {
+        attributes['data-box-width'] = patch.value['width'];
+      }
+      if (attributes.containsKey('data-box-height')) {
+        attributes['data-box-height'] = patch.value['height'];
+      }
+      if (attributes.containsKey('max_width')) {
+        attributes['max_width'] = patch.value['width'];
+      }
+      element['attributes'] = attributes;
+      return element;
+    }).toList();
+    final previous = pendingRendererPatches[patch.targetId];
+    setState(() {
+      workingRenderer = {...renderer, 'elements': nextElements};
+      selectedRendererElementId = patch.elementId;
+      pendingRendererPatches[patch.targetId] = RendererElementPatch(
+        elementId: patch.elementId,
+        targetId: patch.targetId,
+        value: {...?previous?.value, ...patch.value},
+      );
+    });
+    editorHostBridge.patch(patch);
+  }
+
+  void _changeCanvasMode(RendererCanvasMode mode) {
+    setState(() => canvasMode = mode);
+    editorHostBridge.mode(mode);
+  }
+
+  void _selectRendererElement(String? elementId) {
+    setState(() => selectedRendererElementId = elementId);
+    final element = _selectedElement(
+      workingRenderer ?? const {},
+      elementId,
+    );
+    editorHostBridge.selected(
+      elementId,
+      element == null ? null : _previewElementTargetId(element),
+    );
+  }
+
+  void _changeSelectedGeometry(String field, double value) {
+    final renderer = workingRenderer;
+    final elements = renderer?['elements'];
+    if (renderer == null ||
+        elements is! List ||
+        selectedRendererElementId == null) {
+      return;
+    }
+    final raw = elements.whereType<Map>().cast<Map>().firstWhere(
+          (element) => element['id']?.toString() == selectedRendererElementId,
+          orElse: () => const {},
+        );
+    if (raw.isEmpty) return;
+    final attributes = raw['attributes'] is Map
+        ? Map<String, dynamic>.from(raw['attributes'] as Map)
+        : <String, dynamic>{};
+    double number(String key) => (attributes[key] as num?)?.toDouble() ?? 0;
+    final patch = RendererElementPatch(
+      elementId: selectedRendererElementId!,
+      targetId: _previewElementTargetId(raw),
+      value: {
+        'x': field == 'x' ? value : number('x'),
+        'y': field == 'y' ? value : number('y'),
+        'width': field == 'width'
+            ? value.clamp(12, double.infinity)
+            : number('width'),
+        'height': field == 'height'
+            ? value.clamp(12, double.infinity)
+            : number('height'),
+      },
+    );
+    _applyRendererPatch(patch);
+  }
+
+  Future<void> _copyPendingPatches() async {
+    final payload = pendingRendererPatches.values
+        .map((patch) => patch.toLayoutPatch())
+        .toList();
+    await Clipboard.setData(
+      ClipboardData(text: const JsonEncoder.withIndent('  ').convert(payload)),
+    );
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('${payload.length}개 공통 레이아웃 패치를 복사했습니다.')),
+    );
   }
 
   ProblemContent _problemContent(ProblemJsonBundle bundle) {
@@ -504,13 +679,37 @@ class _RenderTab extends StatelessWidget {
   const _RenderTab({
     required this.repository,
     required this.bundle,
+    required this.renderer,
     required this.content,
+    required this.embedded,
+    required this.mode,
+    required this.selectedElementId,
+    required this.pendingPatches,
+    required this.answerDraft,
+    required this.onAnswerChanged,
+    required this.onModeChanged,
+    required this.onElementSelected,
+    required this.onElementPatch,
+    required this.onGeometryChanged,
+    required this.onCopyPatches,
     required this.tutorPanel,
   });
 
   final ContentRepository repository;
   final ProblemJsonBundle bundle;
+  final Map<String, dynamic> renderer;
   final ProblemContent content;
+  final bool embedded;
+  final RendererCanvasMode mode;
+  final String? selectedElementId;
+  final List<RendererElementPatch> pendingPatches;
+  final String answerDraft;
+  final ValueChanged<String> onAnswerChanged;
+  final ValueChanged<RendererCanvasMode> onModeChanged;
+  final ValueChanged<String?> onElementSelected;
+  final ValueChanged<RendererElementPatch> onElementPatch;
+  final void Function(String field, double value) onGeometryChanged;
+  final VoidCallback onCopyPatches;
   final Widget tutorPanel;
 
   @override
@@ -518,7 +717,19 @@ class _RenderTab extends StatelessWidget {
     return _RenderTabBody(
       repository: repository,
       bundle: bundle,
+      renderer: renderer,
       content: content,
+      embedded: embedded,
+      mode: mode,
+      selectedElementId: selectedElementId,
+      pendingPatches: pendingPatches,
+      answerDraft: answerDraft,
+      onAnswerChanged: onAnswerChanged,
+      onModeChanged: onModeChanged,
+      onElementSelected: onElementSelected,
+      onElementPatch: onElementPatch,
+      onGeometryChanged: onGeometryChanged,
+      onCopyPatches: onCopyPatches,
       tutorPanel: tutorPanel,
     );
   }
@@ -528,13 +739,37 @@ class _RenderTabBody extends StatelessWidget {
   const _RenderTabBody({
     required this.repository,
     required this.bundle,
+    required this.renderer,
     required this.content,
+    required this.embedded,
+    required this.mode,
+    required this.selectedElementId,
+    required this.pendingPatches,
+    required this.answerDraft,
+    required this.onAnswerChanged,
+    required this.onModeChanged,
+    required this.onElementSelected,
+    required this.onElementPatch,
+    required this.onGeometryChanged,
+    required this.onCopyPatches,
     required this.tutorPanel,
   });
 
   final ContentRepository repository;
   final ProblemJsonBundle bundle;
+  final Map<String, dynamic> renderer;
   final ProblemContent content;
+  final bool embedded;
+  final RendererCanvasMode mode;
+  final String? selectedElementId;
+  final List<RendererElementPatch> pendingPatches;
+  final String answerDraft;
+  final ValueChanged<String> onAnswerChanged;
+  final ValueChanged<RendererCanvasMode> onModeChanged;
+  final ValueChanged<String?> onElementSelected;
+  final ValueChanged<RendererElementPatch> onElementPatch;
+  final void Function(String field, double value) onGeometryChanged;
+  final VoidCallback onCopyPatches;
   final Widget tutorPanel;
 
   @override
@@ -551,10 +786,18 @@ class _RenderTabBody extends StatelessWidget {
             children: [
               _HeroPanel(bundle: bundle, instruction: metadata['instruction']),
               const SizedBox(height: 14),
+              _CanvasModeToolbar(mode: mode, onChanged: onModeChanged),
+              const SizedBox(height: 10),
               Expanded(
                 child: _CanvasShell(
                   child: RendererJsonCanvas(
-                    renderer: bundle.renderer,
+                    renderer: renderer,
+                    mode: mode,
+                    selectedElementId: selectedElementId,
+                    onElementSelected: onElementSelected,
+                    onElementPatch: onElementPatch,
+                    inputValue: answerDraft,
+                    onInputChanged: onAnswerChanged,
                     imageLoader: (href) =>
                         repository.loadProblemAsset(content.summary, href),
                     imageCacheKey: content.summary.path,
@@ -569,9 +812,22 @@ class _RenderTabBody extends StatelessWidget {
         final details = Padding(
           padding: EdgeInsets.fromLTRB(wide ? 8 : 24, 18, 24, 24),
           child: ListView(
-            children: [tutorPanel],
+            children: [
+              if (mode == RendererCanvasMode.edit)
+                _FlutterEditorPanel(
+                  renderer: renderer,
+                  selectedElementId: selectedElementId,
+                  pendingPatches: pendingPatches,
+                  onGeometryChanged: onGeometryChanged,
+                  onCopyPatches: onCopyPatches,
+                )
+              else
+                tutorPanel,
+            ],
           ),
         );
+
+        if (embedded) return preview;
 
         if (!wide) {
           return Column(
@@ -592,6 +848,161 @@ class _RenderTabBody extends StatelessWidget {
       },
     );
   }
+}
+
+class _CanvasModeToolbar extends StatelessWidget {
+  const _CanvasModeToolbar({required this.mode, required this.onChanged});
+
+  final RendererCanvasMode mode;
+  final ValueChanged<RendererCanvasMode> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        SegmentedButton<RendererCanvasMode>(
+          segments: const [
+            ButtonSegment(
+              value: RendererCanvasMode.edit,
+              icon: Icon(Icons.edit_outlined),
+              label: Text('편집 모드'),
+            ),
+            ButtonSegment(
+              value: RendererCanvasMode.studentTest,
+              icon: Icon(Icons.school_outlined),
+              label: Text('학생 테스트'),
+            ),
+          ],
+          selected: {mode},
+          onSelectionChanged: (selection) => onChanged(selection.first),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Text(
+            mode == RendererCanvasMode.edit
+                ? '요소를 선택해 이동하거나 오른쪽 아래 손잡이로 크기를 조절하세요.'
+                : '실제 학생 화면처럼 답을 입력하고 동작을 확인하세요.',
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _FlutterEditorPanel extends StatelessWidget {
+  const _FlutterEditorPanel({
+    required this.renderer,
+    required this.selectedElementId,
+    required this.pendingPatches,
+    required this.onGeometryChanged,
+    required this.onCopyPatches,
+  });
+
+  final Map<String, dynamic> renderer;
+  final String? selectedElementId;
+  final List<RendererElementPatch> pendingPatches;
+  final void Function(String field, double value) onGeometryChanged;
+  final VoidCallback onCopyPatches;
+
+  @override
+  Widget build(BuildContext context) {
+    final element = _selectedElement(renderer, selectedElementId);
+    final attributes = element == null
+        ? const <String, dynamic>{}
+        : _mapAt(element, 'attributes');
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(18),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text('Flutter 직접 편집',
+                style: Theme.of(context).textTheme.titleLarge),
+            const SizedBox(height: 8),
+            Text(
+              element == null
+                  ? '캔버스에서 텍스트, 사각형 또는 정답 칸을 선택하세요.'
+                  : _previewElementTargetId(element),
+            ),
+            if (element != null) ...[
+              const SizedBox(height: 16),
+              Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: ['x', 'y', 'width', 'height'].map((field) {
+                  final value = (attributes[field] as num?)?.toDouble() ?? 0;
+                  return SizedBox(
+                    width: 110,
+                    child: TextFormField(
+                      key: ValueKey('$selectedElementId-$field-$value'),
+                      initialValue: _compactNumber(value),
+                      keyboardType: const TextInputType.numberWithOptions(
+                        decimal: true,
+                        signed: true,
+                      ),
+                      decoration: InputDecoration(labelText: field),
+                      onFieldSubmitted: (raw) {
+                        final next = double.tryParse(raw);
+                        if (next != null) onGeometryChanged(field, next);
+                      },
+                    ),
+                  );
+                }).toList(),
+              ),
+            ],
+            const SizedBox(height: 18),
+            Text('저장 대기 변경: ${pendingPatches.length}개'),
+            const SizedBox(height: 8),
+            FilledButton.icon(
+              onPressed: pendingPatches.isEmpty ? null : onCopyPatches,
+              icon: const Icon(Icons.copy_all_outlined),
+              label: const Text('공통 Layout 패치 복사'),
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              '변경은 Flutter 전용 값이 아니라 target + x/y/width/height 형식으로 생성되어 다른 렌더러에서도 사용할 수 있습니다.',
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+Map<String, dynamic>? _selectedElement(
+  Map<String, dynamic> renderer,
+  String? selectedElementId,
+) {
+  if (selectedElementId == null) return null;
+  final elements = renderer['elements'];
+  if (elements is! List) return null;
+  for (final raw in elements) {
+    if (raw is Map && raw['id']?.toString() == selectedElementId) {
+      return Map<String, dynamic>.from(raw);
+    }
+  }
+  return null;
+}
+
+String _previewElementTargetId(Map<dynamic, dynamic> element) {
+  final refs = element['refs'];
+  if (refs is Map) {
+    final slotId = refs['layout_slot_id']?.toString().trim() ?? '';
+    if (slotId.isNotEmpty) return slotId;
+  }
+  final sourceRef = element['source_ref']?.toString().trim() ?? '';
+  if (sourceRef.isNotEmpty) return sourceRef;
+  return element['id']?.toString().replaceFirst(
+            RegExp(r'\.(text|rect|image)$'),
+            '',
+          ) ??
+      '';
+}
+
+String _compactNumber(double value) {
+  if (value == value.roundToDouble()) return value.toInt().toString();
+  return value.toStringAsFixed(3).replaceFirst(RegExp(r'0+$'), '');
 }
 
 class _HeroPanel extends StatelessWidget {

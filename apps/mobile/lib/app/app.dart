@@ -34,6 +34,7 @@ class ModuMathApp extends StatefulWidget {
 }
 
 class _ModuMathAppState extends State<ModuMathApp> {
+  static const _editorMode = bool.fromEnvironment('EDITOR_MODE');
   late final ContentRepository _contentRepository;
   late final LearningProgressRepository _progressRepository;
   late final AuthService _authService;
@@ -90,7 +91,8 @@ class _ModuMathAppState extends State<ModuMathApp> {
           GlobalWidgetsLocalizations.delegate,
         ],
         supportedLocales: AppStrings.supportedLocales,
-        initialRoute: ModuMathRoutes.home,
+        initialRoute:
+            _editorMode ? ModuMathRoutes.developerStudio : ModuMathRoutes.home,
         onGenerateRoute: _router.onGenerateRoute,
         builder: (context, child) {
           return Stack(

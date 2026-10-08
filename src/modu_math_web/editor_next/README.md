@@ -11,6 +11,7 @@ From `src/modu_math_web/editor_next`:
 npm install
 npm run typecheck
 npm run build
+npm run build:flutter-editor
 ```
 
 For local Vite development:
@@ -32,3 +33,11 @@ The Django template loads that bundle from:
 ```text
 /editor-konva/
 ```
+
+## Flutter editing surface
+
+The primary canvas is the real Flutter renderer. It sends platform-neutral
+layout patches (`target`, `op`, and `value`) to the React host, where the
+existing save/build flow persists them as editor overrides. Rebuild the
+embedded Flutter bundle with `npm run build:flutter-editor` after changing
+files under `apps/mobile/lib`. Konva remains available as an advanced fallback.

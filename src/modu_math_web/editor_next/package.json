@@ -14,6 +14,7 @@
     "predev": "npm run check:text",
     "pretypecheck": "npm run check:text",
     "build": "vite build",
+    "build:flutter-editor": "cd ../../../apps/mobile && flutter build web --release --base-href /static/editor_next/flutter_editor/ --output ../../src/modu_math_web/editor_next/static/editor_next/flutter_editor --dart-define=EDITOR_MODE=true --dart-define=BACKEND_API_BASE_URL=same-origin",
     "postbuild": "node scripts/check-text-encoding.mjs static/editor_next/konva_assets",
     "dev": "vite --host 127.0.0.1 --port 5174",
     "typecheck": "tsc --noEmit"

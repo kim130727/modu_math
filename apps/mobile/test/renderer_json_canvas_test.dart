@@ -2410,4 +2410,116 @@ void main() {
     expect(tf3.controller?.text, equals('7'));
     expect(tf4.controller?.text, equals('697'));
   });
+
+  testWidgets('edit mode selects and moves a text box with layout patch output',
+      (tester) async {
+    RendererElementPatch? emittedPatch;
+    String? selectedId;
+    const renderer = {
+      'view_box': {'width': 200, 'height': 100},
+      'elements': [
+        {
+          'id': 'slot.second_addend.text',
+          'type': 'text_box',
+          'source_ref': 'slot.second_addend',
+          'refs': {'layout_slot_id': 'slot.second_addend'},
+          'attributes': {
+            'x': 40,
+            'y': 20,
+            'width': 60,
+            'height': 32,
+            'font-size': 24,
+          },
+          'text': '2 7 5',
+        },
+      ],
+    };
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 200,
+            height: 100,
+            child: RendererJsonCanvas(
+              renderer: renderer,
+              mode: RendererCanvasMode.edit,
+              onElementSelected: (value) => selectedId = value,
+              onElementPatch: (value) => emittedPatch = value,
+            ),
+          ),
+        ),
+      ),
+    );
+
+    final editorBox = find
+        .byKey(const ValueKey('renderer-editor-box-slot.second_addend.text'));
+    expect(editorBox, findsOneWidget);
+    await tester.tap(editorBox);
+    await tester.pump();
+    expect(selectedId, 'slot.second_addend.text');
+    expect(find.byKey(const ValueKey('renderer-editor-resize-handle')),
+        findsOneWidget);
+
+    final dragTarget = tester.widget<GestureDetector>(
+      find
+          .ancestor(of: editorBox, matching: find.byType(GestureDetector))
+          .first,
+    );
+    dragTarget.onPanStart?.call(DragStartDetails());
+    dragTarget.onPanUpdate?.call(
+      DragUpdateDetails(
+        globalPosition: const Offset(80, 46),
+        delta: const Offset(20, 10),
+      ),
+    );
+    dragTarget.onPanEnd?.call(DragEndDetails());
+    await tester.pump();
+    expect(emittedPatch?.targetId, 'slot.second_addend');
+    expect(emittedPatch?.value['x'], closeTo(60, 0.01));
+    expect(emittedPatch?.value['y'], closeTo(30, 0.01));
+    expect(emittedPatch?.value['width'], closeTo(60, 0.01));
+    expect(emittedPatch?.value['height'], closeTo(32, 0.01));
+  });
+
+  testWidgets(
+      'student test mode keeps answer inputs interactive without editor overlay',
+      (tester) async {
+    const renderer = {
+      'view_box': {'width': 200, 'height': 100},
+      'elements': [
+        {
+          'id': 'slot.answer.rect',
+          'type': 'rect',
+          'source_ref': 'slot.answer',
+          'attributes': {'x': 40, 'y': 20, 'width': 60, 'height': 32},
+          'interaction': {
+            'type': 'input',
+            'role': 'answer',
+            'value_type': 'integer',
+            'max_length': 3,
+          },
+        },
+      ],
+    };
+
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 200,
+            height: 100,
+            child: RendererJsonCanvas(
+              renderer: renderer,
+              mode: RendererCanvasMode.studentTest,
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byType(TextField), findsOneWidget);
+    expect(find.byKey(const ValueKey('renderer-editor-box-slot.answer.rect')),
+        findsNothing);
+  });
 }
