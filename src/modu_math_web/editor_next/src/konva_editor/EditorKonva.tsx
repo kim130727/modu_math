@@ -31,12 +31,10 @@ import { answerChoicesFromArtifacts, inferAnswerPresentationMode, reviewSettings
 import { AnswerReviewPanel } from "./AnswerReviewPanel";
 import { AnswerReviewSyncPanel } from "./AnswerReviewSyncPanel";
 import { TutorFlowPanel } from "./TutorFlowPanel";
-import { FlutterEditorSurface } from "./FlutterEditorSurface";
 
 const initialProblem = sampleProblem as ProblemJson;
 type SidePanelTab = "properties" | "flow" | "json";
 type SaveStatus = "saved" | "saving" | "unsaved" | "building" | "built" | "error";
-type EditorSurface = "flutter" | "konva";
 
 export function EditorKonva() {
   const [baseProblemJson, setBaseProblemJson] = useState<ProblemJson>(initialProblem);
@@ -54,7 +52,6 @@ export function EditorKonva() {
   const [saveStatus, setSaveStatus] = useState<SaveStatus>("saved");
   const [drawingPreset, setDrawingPreset] = useState<ShapePreset | null>(null);
   const [answerReviewMode, setAnswerReviewMode] = useState(false);
-  const [editorSurface, setEditorSurface] = useState<EditorSurface>("flutter");
   const [draftReview, setDraftReview] = useState<AnswerReviewSettings | null>(null);
   const [problemListVersion, setProblemListVersion] = useState(0);
   const [activeSidePanel, setActiveSidePanel] = useState<SidePanelTab>("properties");
@@ -98,10 +95,6 @@ export function EditorKonva() {
     [document.shapes, answerBindingOptions, previewArtifacts.semantic, previewArtifacts.solvable],
   );
   const effectiveTutorFlow = draftTutorFlow ?? previewArtifacts.renderer?.tutor_flow ?? [];
-  const flutterRenderer = useMemo(
-    () => rendererWithEditorGeometry(previewArtifacts.renderer, document.shapes),
-    [previewArtifacts.renderer, document.shapes],
-  );
   const activeReview = useMemo(() => draftReview ?? reviewSettings(previewArtifacts.semantic, answerBindingOptions, answerChoiceReviews, answerPresentationMode), [draftReview, previewArtifacts.semantic, answerBindingOptions, answerChoiceReviews, answerPresentationMode]);
   const activeTutorFrames = useMemo(() => {
     if (!activeTutorStepId) return [];
@@ -207,21 +200,6 @@ export function EditorKonva() {
     },
     [selectedShape, updateShape],
   );
-
-  const selectFlutterTarget = useCallback((targetId: string) => {
-    const shape = document.shapes.find((item) => item.id === targetId);
-    if (!shape) return;
-    setSelectedShapeIds([shape.id]);
-    setActiveSidePanel("properties");
-  }, [document.shapes]);
-
-  const applyFlutterLayoutPatch = useCallback((targetId: string, value: Record<string, number>) => {
-    const shape = document.shapes.find((item) => item.id === targetId);
-    if (!shape) return;
-    updateShape(applyAutoSizing({ ...shape, ...value } as EditorShape, shape));
-    setSelectedShapeIds([shape.id]);
-    setActiveSidePanel("properties");
-  }, [document.shapes, updateShape]);
 
   const scaleSelectedShapes = useCallback(
     (scalePercent: number) => {
@@ -978,22 +956,7 @@ export function EditorKonva() {
           onLanguageChange={setActiveProblemLanguage}
         />
         <div className="konva-main-panel">
-          <div className="editor-surface-switch" role="group" aria-label="편집 화면 선택">
-            <button type="button" aria-pressed={editorSurface === "flutter"} onClick={() => setEditorSurface("flutter")}>Flutter 직접 편집</button>
-            <button type="button" aria-pressed={editorSurface === "konva"} onClick={() => setEditorSurface("konva")}>고급 Konva 편집</button>
-          </div>
-          {editorSurface === "flutter" && flutterRenderer ? (
-            <FlutterEditorSurface
-              problemId={selectedProblemId}
-              renderer={flutterRenderer}
-              mode={answerReviewMode ? "studentTest" : "edit"}
-              onModeChange={(mode) => setAnswerReviewMode(mode === "studentTest")}
-              onSelectTarget={selectFlutterTarget}
-              onLayoutPatch={applyFlutterLayoutPatch}
-            />
-          ) : editorSurface === "flutter" ? (
-            <div className="konva-empty-state">왼쪽 문제 목록에서 편집할 문제를 선택하세요.</div>
-          ) : <KonvaStage
+          <KonvaStage
             key={selectedProblemId}
             width={document.canvas.width}
             height={document.canvas.height}
@@ -1028,7 +991,7 @@ export function EditorKonva() {
             onTutorOverlaySelect={selectTutorOverlay}
             onTutorOverlayChange={changeActiveTutorOverlay}
             onTutorOverlayMove={moveActiveTutorOverlay}
-          />}
+          />
         </div>
         <div className="konva-side-panel">
           <div className="konva-side-tabs" role="tablist" aria-label="Editor side panels">
@@ -1089,45 +1052,6 @@ export function EditorKonva() {
       </div>
     </div>
   );
-}
-
-function rendererWithEditorGeometry(
-  renderer: import("../api/editorApi").RendererDocument | null,
-  shapes: EditorShape[],
-): Record<string, unknown> | null {
-  if (!renderer || !Array.isArray(renderer.elements)) return renderer as Record<string, unknown> | null;
-  const shapeById = new Map(shapes.map((shape) => [shape.id, shape]));
-  return {
-    ...renderer,
-    elements: renderer.elements.map((element) => {
-      const rawElement = element as unknown as Record<string, unknown>;
-      const refs = rawElement.refs as Record<string, unknown> | undefined;
-      const targetId = String(refs?.layout_slot_id ?? element.source_ref ?? "");
-      const shape = shapeById.get(targetId);
-      if (!shape) return element;
-      const attributes = { ...(element.attributes ?? {}) } as Record<string, unknown>;
-      attributes.x = shape.x;
-      attributes.y = shape.y;
-      if ("width" in shape && typeof shape.width === "number") {
-        attributes.width = shape.width;
-        if ("max_width" in attributes) attributes.max_width = shape.width;
-        if ("data-box-width" in attributes) attributes["data-box-width"] = shape.width;
-      }
-      if ("height" in shape && typeof shape.height === "number") {
-        attributes.height = shape.height;
-        if ("data-box-height" in attributes) attributes["data-box-height"] = shape.height;
-      }
-      if ("data-box-x" in attributes) attributes["data-box-x"] = shape.x;
-      if ("data-box-y" in attributes) attributes["data-box-y"] = shape.y;
-      if (shape.type === "text") {
-        attributes["font-size"] = shape.fontSize;
-        attributes["data-text-align"] = shape.align ?? "left";
-        attributes["data-vertical-align"] = shape.valign ?? "middle";
-        return { ...element, attributes, text: shape.text };
-      }
-      return { ...element, attributes };
-    }),
-  };
 }
 
 function SidePanelButton({
