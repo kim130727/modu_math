@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { scalePathData } from "../utils/pathData";
 import { KONVA_PREVIEW_FONT_FAMILY, normalizePreviewFontFamily } from "./fonts";
 import { resolveAnswerBinding, type AnswerBindingOption } from "./answerReview";
-import { estimateTextWidth, fittedTextHeight, fittedTextWidth } from "./converters";
+import { estimateTextWidth, fitTextBoxToContent, fittedTextHeight } from "./converters";
 
 interface PropertyPanelProps {
   shape: EditorShape | null;
@@ -85,8 +85,9 @@ export function PropertyPanel({ shape, selectedShapes = [], answerOptions = [], 
             />
             {!shape.interaction ? <div className="konva-field-wide">
               <div className="konva-placement-buttons">
-                <button type="button" onClick={() => onChange({ width: Math.min(shape.width ?? Infinity, fittedTextWidth(shape.text, shape.fontSize, shape.fontFamily)), sourceKind: "text_box" } as Partial<EditorShape>)}>내용에 폭 맞추기</button>
-                <button type="button" onClick={() => onChange({ height: undefined, sourceKind: "text_box" } as Partial<EditorShape>)}>내용에 높이 맞추기</button>
+                <button type="button" onClick={() => onChange(fitTextBoxToContent(shape, "width"))}>내용에 폭 맞추기</button>
+                <button type="button" onClick={() => onChange(fitTextBoxToContent(shape, "height"))}>내용에 높이 맞추기</button>
+                <button type="button" onClick={() => onChange(fitTextBoxToContent(shape, "both"))}>내용에 폭·높이 맞추기</button>
               </div>
               <p className="konva-answer-hint">캔버스 손잡이(상/하/좌/우/모서리) 또는 위 수치 입력으로 글상자의 너비와 높이를 조절할 수 있습니다.</p>
             </div> : null}

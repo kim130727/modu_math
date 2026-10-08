@@ -754,6 +754,28 @@ export function fittedTextHeight(text: string, fontSize: number, width: number, 
   return Math.ceil(measured?.height ?? Math.max(1, estimateWrappedLineCount(text, fontSize, width)) * fontSize * lineHeight);
 }
 
+export function fitTextBoxToContent(
+  shape: Extract<EditorShape, { type: "text" }>,
+  dimension: "width" | "height" | "both",
+): Partial<Extract<EditorShape, { type: "text" }>> {
+  const fitWidth = dimension === "width" || dimension === "both";
+  const fitHeight = dimension === "height" || dimension === "both";
+  const measuredWidth = fittedTextWidth(shape.text, shape.fontSize, shape.fontFamily);
+  const width = fitWidth ? Math.min(shape.width ?? Infinity, measuredWidth) : (shape.width ?? measuredWidth);
+  const oldWidth = shape.width ?? width;
+  const measuredHeight = fittedTextHeight(shape.text, shape.fontSize, width, shape.lineHeight ?? 1.25, shape.fontFamily);
+  const height = fitHeight ? measuredHeight : shape.height;
+  const oldHeight = shape.height ?? measuredHeight;
+  const horizontalAnchor = shape.align === "center" ? 0.5 : shape.align === "right" ? 1 : 0;
+  const verticalAnchor = shape.valign === "middle" ? 0.5 : shape.valign === "bottom" ? 1 : 0;
+
+  return {
+    ...(fitWidth ? { x: shape.x + (oldWidth - width) * horizontalAnchor, width } : {}),
+    ...(fitHeight && height !== undefined ? { y: shape.y + (oldHeight - height) * verticalAnchor, height } : {}),
+    sourceKind: "text_box",
+  };
+}
+
 export function normalizedTextBoxHeight(text: string, fontSize: number, width: number, height?: number, lineHeight = 1.25, fontFamily?: string, _preserveHeight = false): number {
   // Loading or editing copy must not rewrite an authored box's geometry.
   if (typeof height === "number" && Number.isFinite(height) && height > 0) return height;

@@ -8,7 +8,7 @@ const bundle = await build({
   stdin: {
     contents: `
       export { problemDetailToCanonicalProblem } from "./src/api/editorApi";
-      export { problemJsonToEditorDocument, editorDocumentToProblemJson } from "./src/konva_editor/converters";
+      export { problemJsonToEditorDocument, editorDocumentToProblemJson, fitTextBoxToContent } from "./src/konva_editor/converters";
       export { problemJsonToLayoutPatches } from "./src/utils/problemJsonToLayoutPatches";
     `,
     resolveDir: fileURLToPath(new URL("..", import.meta.url)),
@@ -18,7 +18,7 @@ const bundle = await build({
   format: "esm",
   platform: "browser",
 });
-const { problemDetailToCanonicalProblem, problemJsonToEditorDocument, editorDocumentToProblemJson, problemJsonToLayoutPatches } =
+const { problemDetailToCanonicalProblem, problemJsonToEditorDocument, editorDocumentToProblemJson, problemJsonToLayoutPatches, fitTextBoxToContent } =
   await import(`data:text/javascript;base64,${Buffer.from(bundle.outputFiles[0].text).toString("base64")}`);
 
 for (const anchor of ["start", "middle", "end"]) {
@@ -69,6 +69,47 @@ test("actual text boxes retain their minimum width and top-left position", () =>
   const shape = problemJsonToEditorDocument(base).shapes[0];
   assert.equal(shape.width, 24);
   assert.equal(shape.x, 100);
+});
+
+test("2151 centered addend keeps its visual position when fitting width", () => {
+  const shape = {
+    id: "slot.second_addend",
+    type: "text",
+    text: "2 7 5",
+    x: 149.156,
+    y: 136.503,
+    width: 59,
+    height: 33,
+    fontSize: 26,
+    lineHeight: 1.25,
+    align: "center",
+    valign: "top",
+    sourceKind: "text_box",
+  };
+  const oldCenter = shape.x + shape.width / 2;
+  const patch = fitTextBoxToContent(shape, "width");
+  assert.equal(patch.x + patch.width / 2, oldCenter);
+  assert.equal(patch.y, undefined);
+});
+
+test("combined content fit preserves center and middle anchors", () => {
+  const shape = {
+    id: "slot.centered",
+    type: "text",
+    text: "2 7 5",
+    x: 100,
+    y: 200,
+    width: 120,
+    height: 80,
+    fontSize: 26,
+    lineHeight: 1.25,
+    align: "center",
+    valign: "middle",
+    sourceKind: "text_box",
+  };
+  const patch = fitTextBoxToContent(shape, "both");
+  assert.equal(patch.x + patch.width / 2, shape.x + shape.width / 2);
+  assert.equal(patch.y + patch.height / 2, shape.y + shape.height / 2);
 });
 
 for (const text of ["  8   6 9  ", "869", "日本語の問題", "中文题目", "ប្រយោគគុណ"]) {
