@@ -19,10 +19,13 @@ def _fingerprint_asset(path: str, modified_ns: int, size: int) -> str:
 
 
 def editor_asset_version() -> str:
-    """Return a stable content version for the compiled editor bundle."""
-    bundle = _ASSET_ROOT / "editor-konva.js"
-    stat = bundle.stat()
-    return _fingerprint_asset(str(bundle), stat.st_mtime_ns, stat.st_size)
+    """Return a stable content version for the compiled editor assets."""
+    fingerprints: list[str] = []
+    for asset_name in ("editor-konva.js", "editor-konva.css"):
+        asset = _ASSET_ROOT / asset_name
+        stat = asset.stat()
+        fingerprints.append(_fingerprint_asset(str(asset), stat.st_mtime_ns, stat.st_size))
+    return hashlib.sha256(":".join(fingerprints).encode()).hexdigest()[:12]
 
 
 def flutter_editor_asset_version() -> str:

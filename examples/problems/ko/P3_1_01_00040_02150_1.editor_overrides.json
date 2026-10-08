@@ -5,28 +5,27 @@
       "font_family": "\"Noto Sans KR\", sans-serif"
     },
     "slot.problem_1_first_addend": {
-      "height": 42,
-      "x": 171.883,
-      "y": 113.21,
-      "font_family": "\"Noto Sans KR\", sans-serif"
+      "height": 34,
+      "x": 172.083,
+      "y": 117.21,
+      "font_family": "\"Noto Sans KR\", sans-serif",
+      "width": 62,
+      "semantic_role": "canvas"
     },
     "slot.problem_1_plus_sign": {
       "height": 42,
       "x": 143.883,
       "y": 157.21,
-      "font_family": "\"Noto Sans KR\", sans-serif"
+      "font_family": "\"Noto Sans KR\", sans-serif",
+      "semantic_role": "canvas"
     },
     "slot.problem_1_second_addend": {
-      "height": 42,
+      "height": 34,
       "x": 171.883,
-      "y": 157.21,
-      "font_family": "\"Noto Sans KR\", sans-serif"
-    },
-    "slot.problem_1_line": {
-      "height": 36,
-      "x": 114.883,
-      "y": 193.21,
-      "font_family": "\"Noto Sans KR\", sans-serif"
+      "y": 161.21,
+      "font_family": "\"Noto Sans KR\", sans-serif",
+      "width": 62,
+      "semantic_role": "canvas"
     },
     "konva_1785110879232_rect_1350341": {
       "interaction": {
@@ -167,6 +166,14 @@
       },
       "x": 160.314,
       "y": 87.138
+    },
+    "konva_1791462646666_line_82219": {
+      "x1": 136.93,
+      "y1": 200.41,
+      "x2": 243.33,
+      "y2": 200.41,
+      "stroke": "#111827",
+      "stroke_width": 1.2
     }
   },
   "version": 1,
@@ -181,10 +188,14 @@
     "slot.problem_2_first_addend",
     "slot.problem_2_plus_sign",
     "slot.problem_2_second_addend",
-    "slot.problem_2_line"
+    "slot.problem_2_line",
+    "slot.problem_1_line"
   ],
   "canvas": {
     "width": 400,
     "height": 300
+  },
+  "slot_regions": {
+    "konva_1791462646666_line_82219": "region.problem_1"
   }
 }
