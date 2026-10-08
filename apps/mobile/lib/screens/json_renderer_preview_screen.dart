@@ -50,6 +50,7 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
   String? selectedRendererElementId;
   String? workingRendererProblemId;
   Map<String, dynamic>? workingRenderer;
+  bool _hostRendererReceived = false;
   final Map<String, RendererElementPatch> pendingRendererPatches = {};
   late final EditorHostBridge editorHostBridge;
 
@@ -62,6 +63,7 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
       onRenderer: (renderer) {
         if (!mounted) return;
         setState(() {
+          _hostRendererReceived = true;
           workingRenderer = renderer;
           pendingRendererPatches.clear();
         });
@@ -109,9 +111,16 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
     if (prefixes.isEmpty) {
       throw StateError(AppStrings.fallback.t('studio.noRenderableProblems'));
     }
-    final requested = Uri.base.queryParameters['problem'];
-    selectedFilePrefix = requested != null && prefixes.contains(requested)
-        ? requested
+    final rawRequested = Uri.base.queryParameters['problem'];
+    final normalizedRequested = rawRequested
+        ?.replaceAll(r'\', '/')
+        .split('/')
+        .where((part) => part.isNotEmpty)
+        .lastOrNull
+        ?.replaceFirst(RegExp(r'\.dsl\.py$'), '');
+    selectedFilePrefix = normalizedRequested != null &&
+            prefixes.contains(normalizedRequested)
+        ? normalizedRequested
         : prefixes.first;
     return widget.repository.loadProblemJsonBundle(selectedFilePrefix);
   }
@@ -242,13 +251,16 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
       selectedRendererElementId = null;
       workingRendererProblemId = null;
       workingRenderer = null;
+      _hostRendererReceived = false;
       pendingRendererPatches.clear();
     });
   }
 
   void _ensureWorkingRenderer(ProblemJsonBundle bundle) {
-    if (workingRendererProblemId == bundle.filePrefix &&
+    if ((_hostRendererReceived ||
+            workingRendererProblemId == bundle.filePrefix) &&
         workingRenderer != null) {
+      workingRendererProblemId = bundle.filePrefix;
       return;
     }
     workingRendererProblemId = bundle.filePrefix;

@@ -13,9 +13,13 @@ export function FlutterEditorSurface({ problemId, renderer, mode, onModeChange, 
   const frameRef = useRef<HTMLIFrameElement | null>(null);
   const [ready, setReady] = useState(false);
   const assetVersion = document.querySelector<HTMLElement>("#root")?.dataset.flutterEditorVersion ?? "dev";
+  const problemPrefix = useMemo(() => {
+    const last = problemId.replace(/\\/g, "/").split("/").filter(Boolean).at(-1) ?? problemId;
+    return last.endsWith(".dsl.py") ? last.slice(0, -".dsl.py".length) : last;
+  }, [problemId]);
   const src = useMemo(
-    () => `/static/editor_next/flutter_editor/index.html?embedded=1&problem=${encodeURIComponent(problemId)}&v=${encodeURIComponent(assetVersion)}`,
-    [assetVersion, problemId],
+    () => `/static/editor_next/flutter_editor/index.html?embedded=1&problem=${encodeURIComponent(problemPrefix)}&problemId=${encodeURIComponent(problemId)}&v=${encodeURIComponent(assetVersion)}`,
+    [assetVersion, problemId, problemPrefix],
   );
 
   useEffect(() => {
@@ -57,7 +61,16 @@ export function FlutterEditorSurface({ problemId, renderer, mode, onModeChange, 
 
   useEffect(() => {
     if (!ready || !renderer) return;
-    frameRef.current?.contentWindow?.postMessage({ type: "modu-math:host-renderer", renderer }, "*");
+    const postRenderer = () => {
+      frameRef.current?.contentWindow?.postMessage({ type: "modu-math:host-renderer", renderer }, "*");
+    };
+    postRenderer();
+    const timer1 = window.setTimeout(postRenderer, 150);
+    const timer2 = window.setTimeout(postRenderer, 450);
+    return () => {
+      window.clearTimeout(timer1);
+      window.clearTimeout(timer2);
+    };
   }, [ready, renderer]);
 
   useEffect(() => setReady(false), [src]);
