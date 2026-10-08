@@ -896,6 +896,65 @@ export function EditorKonva() {
     await buildCurrentProblem();
   }, [buildCurrentProblem]);
 
+  const editorPanel = (
+    <div className="konva-side-panel">
+      <div className="konva-side-tabs" role="tablist" aria-label="Editor side panels">
+        <SidePanelButton
+          active={activeSidePanel === "properties"}
+          label="편집"
+          onClick={() => setActiveSidePanel("properties")}
+          icon="properties"
+        />
+        <SidePanelButton
+          active={activeSidePanel === "flow"}
+          label="튜터 편집"
+          onClick={() => setActiveSidePanel("flow")}
+          icon="flow"
+        />
+        <SidePanelButton
+          active={activeSidePanel === "json"}
+          label="Shape JSON"
+          onClick={() => setActiveSidePanel("json")}
+          icon="json"
+        />
+      </div>
+      <div className="konva-side-content">
+        {activeSidePanel === "properties" ? (
+          <PropertyPanel
+            syncPanel={<PlacementSyncPanel key={selectedProblemId} problemId={selectedProblemId} shapes={document.shapes} selectedIds={selectedShapeIds} onSave={buildCurrentProblem} />}
+            shape={selectedShape}
+            selectedShapes={selectedShapes}
+            answerOptions={answerBindingOptions}
+            saveStatus={saveStatus}
+            onChange={patchSelectedShape}
+            onScaleSelection={scaleSelectedShapes}
+            onTextRoleChange={setSelectedTextRole}
+          />
+        ) : null}
+        {activeSidePanel === "flow" ? (
+          <TutorFlowPanel
+            studentHints={previewArtifacts.solvable?.student_hints}
+            problemId={selectedProblemId}
+            tutorFlow={effectiveTutorFlow}
+            message={message}
+            activeStepId={activeTutorStepId}
+            activeFrameIndex={activeTutorFrameIndex}
+            activeOverlayIndex={activeTutorOverlayIndex}
+            selectedShapeIds={selectedShapeIds}
+            onDraftChange={(flow) => {
+              setDraftTutorFlow(flow);
+              setSaveStatus("unsaved");
+            }}
+            onSelectFrame={selectTutorFrame}
+            onSelectOverlay={selectTutorOverlay}
+            onSave={saveCurrentTutorFlow}
+          />
+        ) : null}
+        {activeSidePanel === "json" ? <JsonImportExport document={document} message={message} onImport={importDocument} /> : null}
+      </div>
+    </div>
+  );
+
   return (
     <div className="math-problem-editor konva-editor">
       <KonvaToolbar
@@ -969,6 +1028,7 @@ export function EditorKonva() {
             answerOptions={answerBindingOptions}
             answerChoices={answerChoiceReviews}
             answerPresentationMode={answerPresentationMode}
+            editorPanel={editorPanel}
             reviewPanel={<AnswerReviewPanel settings={activeReview}
               syncPanel={<AnswerReviewSyncPanel key={selectedProblemId} problemId={selectedProblemId} parentBusy={saveStatus === "saving" || saveStatus === "building"} />}
               onChange={(settings) => { setDraftReview(settings); setSaveStatus("unsaved"); }}

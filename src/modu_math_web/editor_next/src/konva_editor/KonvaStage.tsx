@@ -31,6 +31,7 @@ interface KonvaStageProps {
   answerOptions?: AnswerBindingOption[];
   answerChoices?: AnswerChoiceReview[];
   answerPresentationMode?: AnswerPresentationMode;
+  editorPanel?: ReactNode;
   reviewPanel?: ReactNode;
   onSelectShapes: (ids: string[]) => void;
   onChangeShapes: (shapes: EditorShape[]) => void;
@@ -56,6 +57,7 @@ export function KonvaStage({
   answerOptions = [],
   answerChoices = [],
   answerPresentationMode = "panel_input",
+  editorPanel,
   reviewPanel,
   onSelectShapes,
   onChangeShapes,
@@ -151,25 +153,27 @@ export function KonvaStage({
 
   const selectedIdSet = new Set(selectedShapeIds);
   const promptShapes = shapes.filter((shape) => shape.type === "text" && ["question", "instruction"].includes(shape.semanticRole ?? ""));
-  const renderedShapes = shapes.filter((shape) => !answerReviewMode ||
+  const renderedShapes = shapes.filter((shape) =>
     !(shape.type === "text" && (["question", "instruction"].includes(shape.semanticRole ?? "") ||
-      (shape.semanticRole === "choice" && answerChoices.length > 0)))).sort(compareRenderOrder);
+      (answerReviewMode && shape.semanticRole === "choice" && answerChoices.length > 0))),
+  ).sort(compareRenderOrder);
   const [fitContent, setFitContent] = useState(true);
   const boxes = renderedShapes.filter((shape) => shape.visible !== false).map((shape) => {
     const node = shapeRefs.current[shape.id];
     return node?.getLayer() ? node.getClientRect({ relativeTo: node.getLayer()! }) : shapeBounds(shape);
   }).filter((box) => Number.isFinite(box.x + box.y + box.width + box.height));
-  const crop = answerReviewMode && fitContent && boxes.length ? {
+  const crop = fitContent && boxes.length ? {
     x: Math.min(...boxes.map((box) => box.x)) - 20,
     y: Math.min(...boxes.map((box) => box.y)) - 20,
     width: Math.max(...boxes.map((box) => box.x + box.width)) - Math.min(...boxes.map((box) => box.x)) + 40,
     height: Math.max(...boxes.map((box) => box.y + box.height)) - Math.min(...boxes.map((box) => box.y)) + 40,
   } : { x: 0, y: 0, width, height };
-  const previewWidth = answerReviewMode ? Math.max(280, viewport.width - 344) : viewport.width;
-  const availableHeight = Math.max(260, viewport.height - (answerReviewMode ? 150 : 0));
+  const presentationPanel = answerReviewMode ? reviewPanel : editorPanel;
+  const previewWidth = presentationPanel ? Math.max(280, viewport.width - 344) : viewport.width;
+  const availableHeight = Math.max(260, viewport.height - 150);
   const scale = Math.max(0.05, Math.min((previewWidth - 40) / crop.width, (availableHeight - 40) / crop.height, 2.5));
   const stageWidth = previewWidth;
-  const stageHeight = answerReviewMode ? Math.max(280, crop.height * scale + 40) : viewport.height;
+  const stageHeight = Math.max(280, crop.height * scale + 40);
   const offsetX = (stageWidth - crop.width * scale) / 2 - crop.x * scale;
   const offsetY = (stageHeight - crop.height * scale) / 2 - crop.y * scale;
   const answerReviews = answerReviewMode && !reviewPanel ? answerSlotReviews(shapes, answerOptions) : new Map<string, AnswerSlotReview>();
@@ -362,9 +366,8 @@ export function KonvaStage({
   };
 
   return (
-    <div className={`konva-stage-wrap${drawingPreset ? " drawing" : ""}${answerReviewMode ? " presentation-review" : ""}`} ref={wrapRef}>
-      {answerReviewMode ? (
-        <div className="konva-question-preview" role="region" aria-label="문제 지문">
+    <div className={`konva-stage-wrap presentation-layout${drawingPreset ? " drawing" : ""}${presentationPanel ? " presentation-with-panel" : ""}${answerReviewMode ? " presentation-review" : ""}`} ref={wrapRef}>
+      <div className="konva-question-preview" role="region" aria-label="문제 지문">
           <div className="presentation-zone-title">
             <span>Flutter · 문제 상단</span>
             <small>지문을 누르면 표시 영역을 바꿀 수 있습니다.</small>
@@ -376,12 +379,11 @@ export function KonvaStage({
               <span>{shape.type === "text" ? shape.text : ""}</span>
             </button>
           )) : <p className="presentation-zone-empty">문제 상단으로 지정된 지문이 없습니다.</p>}
-        </div>
-      ) : null}
-      {answerReviewMode && <div className="review-canvas-toolbar">
+      </div>
+      <div className="review-canvas-toolbar">
         <strong>Flutter · 문제 캔버스</strong>
         <label className="review-fit-toggle"><input type="checkbox" checked={fitContent} onChange={(event) => setFitContent(event.target.checked)} />내용에 맞춰 보기 (원본 좌표 유지)</label>
-      </div>}
+      </div>
       <Stage
         className="konva-canvas-surface"
         width={stageWidth}
@@ -443,7 +445,7 @@ export function KonvaStage({
             return;
           }
 
-          const hits = shapes.filter((shape) => intersectsRect(shapeBounds(shape), rect)).map((shape) => shape.id);
+          const hits = renderedShapes.filter((shape) => intersectsRect(shapeBounds(shape), rect)).map((shape) => shape.id);
           onSelectShapes(start.additive ? Array.from(new Set([...selectedShapeIds, ...hits])) : hits);
         }}
         onTouchStart={(event) => {
@@ -577,7 +579,7 @@ export function KonvaStage({
           ) : null}
         </Layer>
       </Stage>
-      {answerReviewMode && reviewPanel}
+      {presentationPanel}
       {answerReviewMode && !reviewPanel && answerPresentationMode === "panel_input" ? (
         <AnswerPanelPreview answerOptions={answerOptions} />
       ) : null}

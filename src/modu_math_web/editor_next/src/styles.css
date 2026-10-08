@@ -272,7 +272,7 @@ input {
 .editor-body {
   min-height: 0;
   display: grid;
-  grid-template-columns: 300px minmax(0, 1fr) 360px;
+  grid-template-columns: 300px minmax(0, 1fr);
   overflow: hidden;
 }
 
@@ -1792,7 +1792,8 @@ input {
 }
 
 
-.presentation-review { display: grid; grid-template-columns: minmax(280px, 1fr) 320px; gap: 12px; align-content: start; }
+.presentation-layout { display: grid; grid-template-columns: minmax(280px, 1fr); gap: 12px; align-content: start; }
+.presentation-with-panel { grid-template-columns: minmax(280px, 1fr) 320px; }
 .konva-question-preview {
   grid-column: 1 / -1;
   padding: 14px 20px;
@@ -1809,12 +1810,11 @@ input {
 .presentation-prompt-item > span:last-child { font-size: 20px; font-weight: 700; line-height: 1.45; }
 .presentation-role-badge { flex: 0 0 auto; margin-top: 4px; padding: 2px 7px; border-radius: 999px; background: rgba(255, 255, 255, .2); color: #eef2ff; font-size: 10px; font-weight: 800; }
 .presentation-zone-empty { margin: 4px 0; color: #e0e7ff; font-size: 14px; font-weight: 700; }
-.presentation-review .konva-canvas-surface { grid-column: 1; grid-row: 3; }
+.presentation-layout .konva-canvas-surface { grid-column: 1; grid-row: 3; }
+.presentation-layout > .konva-side-panel { grid-column: 2; grid-row: 2 / span 2; width: 100%; align-self: stretch; border: 1px solid #cbd5e1; border-radius: 14px; }
 .presentation-review .answer-review-panel { position: static; grid-column: 2; grid-row: 2 / span 2; width: 100%; align-self: start; max-height: calc(100vh - 200px); overflow-y: auto; border-color: #cbd5e1; box-shadow: none; }
 .review-canvas-toolbar { grid-column: 1; grid-row: 2; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 4px 16px; color: #334155; font-size: 13px; }
 .review-fit-toggle { display: inline-flex; align-items: center; gap: 6px; }
-.reviewing-answers .konva-side-panel { display: none; }
-.editor-body.reviewing-answers { grid-template-columns: 300px minmax(0, 1fr); }
 .review-tabs { display: flex; gap: 6px; }
 .placement-sync-panel { margin: 12px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 12px; overflow-wrap: anywhere; }
 .placement-sync-panel summary { cursor: pointer; font-weight: 700; }
