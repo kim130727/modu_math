@@ -8,6 +8,7 @@ import {
   problemDetailToCanonicalProblem,
   saveTutorFlow,
   saveAnswerReview,
+  type ProblemDetailResponse,
   type TutorRendererStep,
   type TutorRendererOverlay,
 } from "../api/editorApi";
@@ -35,6 +36,7 @@ import { TutorFlowPanel } from "./TutorFlowPanel";
 const initialProblem = sampleProblem as ProblemJson;
 type SidePanelTab = "properties" | "flow" | "json";
 type SaveStatus = "saved" | "saving" | "unsaved" | "building" | "built" | "error";
+type CachedProblemRequest = { expiresAt: number; promise: Promise<ProblemDetailResponse> };
 
 export function EditorKonva() {
   const [baseProblemJson, setBaseProblemJson] = useState<ProblemJson>(initialProblem);
@@ -47,6 +49,9 @@ export function EditorKonva() {
   }>({ semantic: null, solvable: null, layout: null, renderer: null });
   const [selectedShapeIds, setSelectedShapeIds] = useState<string[]>([]);
   const [selectedProblemId, setSelectedProblemId] = useState(initialProblem.id);
+  const [openingProblemId, setOpeningProblemId] = useState<string | null>(null);
+  const problemRequestSequenceRef = useRef(0);
+  const problemLoadCacheRef = useRef<Map<string, CachedProblemRequest>>(new Map());
   const [activeProblemLanguage, setActiveProblemLanguage] = useState<ProblemLanguage>("ko");
   const [message, setMessage] = useState("Loaded sample problem in Konva editor.");
   const [saveStatus, setSaveStatus] = useState<SaveStatus>("saved");
@@ -118,6 +123,7 @@ export function EditorKonva() {
     setPreviewArtifacts(artifacts);
     setDocument(problemJsonToEditorDocument(problem));
     setSelectedProblemId(problem.id);
+    setOpeningProblemId(null);
     setSelectedShapeIds([]);
     setActiveTutorStepId(null);
     setActiveTutorOverlayIndex(null);
@@ -127,12 +133,33 @@ export function EditorKonva() {
     setSaveStatus("saved");
   }, [previewArtifacts]);
 
+  const loadProblemFast = useCallback((problemId: string) => {
+    const now = Date.now();
+    const cached = problemLoadCacheRef.current.get(problemId);
+    if (cached && cached.expiresAt > now) return cached.promise;
+    const promise = loadProblem(problemId).catch((error) => {
+      problemLoadCacheRef.current.delete(problemId);
+      throw error;
+    });
+    problemLoadCacheRef.current.set(problemId, { promise, expiresAt: now + 3000 });
+    return promise;
+  }, []);
+
+  const prefetchProblem = useCallback((problemId: string) => {
+    if (problemId === selectedProblemId) return;
+    void loadProblemFast(problemId).catch(() => undefined);
+  }, [loadProblemFast, selectedProblemId]);
+
   const openProblem = useCallback(
     async (problemId: string) => {
       if (draftReview && saveStatus === "unsaved" && !window.confirm("저장하지 않은 검수 수정이 있습니다. 수정 내용을 버리고 다른 문제를 열까요?")) return;
+      if (problemId === selectedProblemId && openingProblemId === null) return;
+      const requestSequence = ++problemRequestSequenceRef.current;
+      setOpeningProblemId(problemId);
       setMessage(`Loading ${problemId}...`);
       try {
-        const detail = await loadProblem(problemId);
+        const detail = await loadProblemFast(problemId);
+        if (requestSequence !== problemRequestSequenceRef.current) return;
         const reviewCount = detail.translation_review_paths?.length ?? 0;
         const loadedMessage = detail.dsl_storage === "locale_delta"
           ? `한국어 원본을 공유하는 번역 문제입니다. 이 언어에서 수정한 내용은 이 언어에만 저장됩니다.${reviewCount ? ` 원본 변경으로 번역 ${reviewCount}곳의 검토가 필요합니다.` : ""}`
@@ -146,10 +173,12 @@ export function EditorKonva() {
         const problemLanguage = problemLanguageFromId(detail.problem_id);
         if (problemLanguage) setActiveProblemLanguage(problemLanguage);
       } catch (error) {
+        if (requestSequence !== problemRequestSequenceRef.current) return;
+        setOpeningProblemId(null);
         setMessage(`Could not load ${problemId}: ${String(error)}`);
       }
     },
-    [setProblem, draftReview, saveStatus],
+    [setProblem, draftReview, loadProblemFast, openingProblemId, saveStatus, selectedProblemId],
   );
 
   const createNewProblem = useCallback(async () => {
@@ -1009,9 +1038,10 @@ export function EditorKonva() {
       <div className={`editor-body konva-editor-body${answerReviewMode ? " reviewing-answers" : ""}`}>
         <ProblemList
           key={problemListVersion}
-          selectedProblemId={selectedProblemId}
+          selectedProblemId={openingProblemId ?? selectedProblemId}
           language={activeProblemLanguage}
           onOpenProblem={openProblem}
+          onPrefetchProblem={prefetchProblem}
           onLanguageChange={setActiveProblemLanguage}
         />
         <div className="konva-main-panel">

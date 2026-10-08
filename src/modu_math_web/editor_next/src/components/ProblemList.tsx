@@ -8,6 +8,7 @@ interface ProblemListProps {
   selectedProblemId: string;
   language: ProblemLanguage;
   onOpenProblem: (problemId: string) => void;
+  onPrefetchProblem?: (problemId: string) => void;
   onLanguageChange: (language: ProblemLanguage) => void;
 }
 
@@ -18,7 +19,7 @@ interface ProblemTreeNode {
   problems: ProblemSummary[];
 }
 
-export function ProblemList({ selectedProblemId, language, onOpenProblem, onLanguageChange }: ProblemListProps) {
+export function ProblemList({ selectedProblemId, language, onOpenProblem, onPrefetchProblem, onLanguageChange }: ProblemListProps) {
   const [problems, setProblems] = useState<ProblemSummary[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -121,6 +122,7 @@ export function ProblemList({ selectedProblemId, language, onOpenProblem, onLang
             searching={searching}
             onToggleFolder={toggleFolder}
             onOpenProblem={onOpenProblem}
+            onPrefetchProblem={onPrefetchProblem}
           />
         ) : (
           <div className="problem-empty">검색 결과가 없습니다.</div>
@@ -137,6 +139,7 @@ function ProblemTree({
   searching,
   onToggleFolder,
   onOpenProblem,
+  onPrefetchProblem,
 }: {
   node: ProblemTreeNode;
   selectedProblemId: string;
@@ -144,6 +147,7 @@ function ProblemTree({
   searching: boolean;
   onToggleFolder: (path: string) => void;
   onOpenProblem: (problemId: string) => void;
+  onPrefetchProblem?: (problemId: string) => void;
 }) {
   const folders = Array.from(node.folders.values()).sort((a, b) => a.name.localeCompare(b.name, "ko"));
   const files = [...node.problems].sort((a, b) => problemFileName(a).localeCompare(problemFileName(b), "ko"));
@@ -166,6 +170,7 @@ function ProblemTree({
                 searching={searching}
                 onToggleFolder={onToggleFolder}
                 onOpenProblem={onOpenProblem}
+                onPrefetchProblem={onPrefetchProblem}
               />
             )}
           </li>
@@ -178,6 +183,8 @@ function ProblemTree({
             className={problem.problem_id === selectedProblemId ? "problem-file-row active" : "problem-file-row"}
             title={problemTitle(problem)}
             onClick={() => onOpenProblem(problem.problem_id)}
+            onPointerEnter={() => onPrefetchProblem?.(problem.problem_id)}
+            onFocus={() => onPrefetchProblem?.(problem.problem_id)}
           >
             {problemFileName(problem)}
           </button>
