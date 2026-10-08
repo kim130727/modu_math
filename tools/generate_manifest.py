@@ -45,28 +45,28 @@ def _summary_title(metadata: dict[str, object], unit_topic: str) -> str:
 
 
 PROBLEM_UNIT_INFO = {
-    "008541": (3, 1, 1, "덧셈과 뺄셈", "계산 결과가 큰 것부터 차례대로 나열하기"),
-    "008661": (3, 1, 2, "평면도형", "길이가 가장 긴 선분 찾기"),
-    "008631": (3, 1, 3, "나눗셈", "수 모형을 보고 알맞은 몫 고르기"),
-    "008540": (3, 1, 4, "곱셈", "색칠한 부분에 해당하는 곱셈식 찾기"),
-    "008728": (3, 1, 6, "분수와 소수", "그림을 보고 분수를 바르게 말한 사람 찾기"),
-    "008732": (3, 1, 6, "분수와 소수", "사다리 결과로 분수 분류 판단하기"),
-    "008664": (3, 2, 3, "원", "원을 가장 크게 그릴 수 있는 구멍 고르기"),
-    "008713": (3, 2, 3, "원", "반지름이 1 cm인 원을 그리는 순서"),
-    "008745": (3, 2, 5, "들이와 무게", "같은 그릇에 옮겨 담아 들이 비교하기"),
-    "008751": (3, 2, 5, "들이와 무게", "물병과 우유병의 들이 비교 방법 판단하기"),
+    "008541": (3, 1, 1, "덧셈과 뺄셈", "세 자리 수의 덧셈과 뺄셈"),
+    "008661": (3, 1, 2, "평면도형", "선분, 반직선, 직선"),
+    "008631": (3, 1, 3, "나눗셈", "(두 자리 수)÷(한 자리 수)"),
+    "008540": (3, 1, 4, "곱셈", "(두 자리 수)×(한 자리 수)"),
+    "008728": (3, 1, 6, "분수와 소수", "분수만큼 알아보기"),
+    "008732": (3, 1, 6, "분수와 소수", "분수의 크기 비교"),
+    "008664": (3, 2, 3, "원", "원의 중심과 반지름"),
+    "008713": (3, 2, 3, "원", "컴퍼스로 원 그리기"),
+    "008745": (3, 2, 5, "들이와 무게", "들이 비교하기"),
+    "008751": (3, 2, 5, "들이와 무게", "들이 비교하기"),
 }
 
 
 def _parse_unit_info(renderer_path: Path, file_prefix: str, metadata: dict[str, object]) -> tuple[int, int, int, str, str]:
     suffix = file_prefix[-6:]
     if suffix in PROBLEM_UNIT_INFO:
-        grade, semester, unit_number, unit_topic, _ = PROBLEM_UNIT_INFO[suffix]
+        grade, semester, unit_number, unit_topic, default_sub_unit = PROBLEM_UNIT_INFO[suffix]
         sub_unit = ""
         if isinstance(metadata, dict):
             sub_unit = str(metadata.get("subUnit") or metadata.get("subTopic") or metadata.get("topic") or "").strip()
         if not sub_unit or sub_unit == unit_topic:
-            sub_unit = "기본 학습"
+            sub_unit = default_sub_unit or "기본 학습"
         return grade, semester, unit_number, unit_topic, sub_unit
 
     parts = renderer_path.relative_to(ROOT).parts if renderer_path.is_relative_to(ROOT) else ()

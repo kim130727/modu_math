@@ -722,9 +722,31 @@ class _UnitRail extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              strings.t('home.unitLearning'),
-              style: Theme.of(context).textTheme.headlineSmall,
+            Row(
+              children: [
+                Text(
+                  strings.t('home.unitLearning'),
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                const SizedBox(width: 10),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFECEEFF),
+                    borderRadius: BorderRadius.circular(999),
+                    border: Border.all(color: KidsPalette.line),
+                  ),
+                  child: Text(
+                    strings.problemCount(problems.length),
+                    style: const TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w800,
+                      color: KidsPalette.sage,
+                    ),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 16),
             GridView.builder(
@@ -766,6 +788,7 @@ class _UnitTile extends StatelessWidget {
     final strings = AppStrings.of(context);
     final badgeLabel = strings.domainTitle(item.unitTopic);
     final titleLabel = strings.unitTitle(item.unitTopic);
+    final semesterLabel = strings.semester(item.semester);
     return SizedBox(
       width: 260,
       child: Card(
@@ -778,23 +801,40 @@ class _UnitTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFECEEFF),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Text(
-                    badgeLabel,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w700,
-                      color: KidsPalette.sage,
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFECEEFF),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: Text(
+                        badgeLabel,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
+                          color: KidsPalette.sage,
+                        ),
+                      ),
                     ),
-                  ),
+                    const SizedBox(width: 6),
+                    Flexible(
+                      child: Text(
+                        semesterLabel,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
+                          color: KidsPalette.cocoaSoft,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 10),
                 Text(

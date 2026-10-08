@@ -159,7 +159,7 @@ class SyncProblemsTests(TestCase):
 
         expected = {
             (
-                str(read_content(paths).get("semantic", {}).get("problem_id") or paths.artifact_base),
+                paths.artifact_base,
                 paths.dsl_path.relative_to(root).parts[0],
             )
             for paths in list_content(root)

@@ -115,9 +115,9 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
                 );
               }
 
-              final groups = _CurriculumGroup.fromProblems(
-                snapshot.data?.problems ?? const <ProblemSummary>[],
-              );
+              final problems =
+                  snapshot.data?.problems ?? const <ProblemSummary>[];
+              final groups = _CurriculumGroup.fromProblems(problems);
               if (groups.isEmpty) {
                 return Center(child: Text(strings.t('curriculum.empty')));
               }
@@ -137,7 +137,7 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
               return ListView(
                 padding: const EdgeInsets.fromLTRB(20, 12, 20, 28),
                 children: [
-                  const _CurriculumHeader(),
+                  _CurriculumHeader(totalProblems: problems.length),
                   const SizedBox(height: 20),
                   ...groups.map(
                     (group) => Padding(
@@ -473,7 +473,9 @@ class _SingleUnitView extends StatelessWidget {
 }
 
 class _CurriculumHeader extends StatelessWidget {
-  const _CurriculumHeader();
+  const _CurriculumHeader({this.totalProblems = 0});
+
+  final int totalProblems;
 
   @override
   Widget build(BuildContext context) {
@@ -520,6 +522,26 @@ class _CurriculumHeader extends StatelessWidget {
                 ],
               ),
             ),
+            if (totalProblems > 0) ...[
+              const SizedBox(width: 12),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(999),
+                  border: Border.all(color: KidsPalette.line),
+                ),
+                child: Text(
+                  strings.problemCount(totalProblems),
+                  style: const TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w800,
+                    color: KidsPalette.primary,
+                  ),
+                ),
+              ),
+            ],
           ],
         ),
       ),
@@ -545,12 +567,34 @@ class _CurriculumSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final strings = AppStrings.of(context);
+    final domainCount =
+        group.units.fold<int>(0, (sum, u) => sum + u.problemCount);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          strings.domainTitle(group.domain),
-          style: Theme.of(context).textTheme.titleMedium,
+        Row(
+          children: [
+            Text(
+              strings.domainTitle(group.domain),
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(width: 8),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              decoration: BoxDecoration(
+                color: const Color(0xFFECEEFF),
+                borderRadius: BorderRadius.circular(999),
+              ),
+              child: Text(
+                strings.problemCount(domainCount),
+                style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
+                  color: KidsPalette.sage,
+                ),
+              ),
+            ),
+          ],
         ),
         const SizedBox(height: 12),
         ListView.separated(
@@ -630,9 +674,31 @@ class _UnitTile extends StatelessWidget {
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                         const SizedBox(height: 2),
-                        Text(
-                          strings.problemCount(unit.problemCount),
-                          style: Theme.of(context).textTheme.bodySmall,
+                        Row(
+                          children: [
+                            Flexible(
+                              child: Text(
+                                strings.semester(unit.semester),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.copyWith(
+                                      color: KidsPalette.sage,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                              ),
+                            ),
+                            const SizedBox(width: 6),
+                            const Text('·',
+                                style: TextStyle(color: KidsPalette.cocoaSoft)),
+                            const SizedBox(width: 6),
+                            Text(
+                              strings.problemCount(unit.problemCount),
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -715,9 +781,10 @@ class _CurriculumGroup {
       final sample = entry.value.first;
       final domain = sample.domain;
       final groupKey = domain;
-      groupDomains[groupKey] = domain;
-      groupSemesters[groupKey] =
+      final unitSemester =
           sample.semester.isNotEmpty ? sample.semester : unknownSemester;
+      groupDomains[groupKey] = domain;
+      groupSemesters[groupKey] = unitSemester;
       groupGrades[groupKey] = sample.grade;
 
       final subBuckets = <String, int>{};
@@ -731,6 +798,7 @@ class _CurriculumGroup {
       groupedUnits.putIfAbsent(groupKey, () => []).add(
             _CurriculumUnit(
               name: entry.key,
+              semester: unitSemester,
               number: sample.unitNumber,
               topic: sample.unitTopic,
               problemCount: entry.value.length,
@@ -751,6 +819,8 @@ class _CurriculumGroup {
       final domain = entry.key;
       final units = entry.value
         ..sort((a, b) {
+          final bySemester = a.semester.compareTo(b.semester);
+          if (bySemester != 0) return bySemester;
           final byNumber = a.number.compareTo(b.number);
           return byNumber == 0 ? a.name.compareTo(b.name) : byNumber;
         });
@@ -786,6 +856,7 @@ class _CurriculumSubUnit {
 class _CurriculumUnit {
   const _CurriculumUnit({
     required this.name,
+    required this.semester,
     required this.number,
     required this.topic,
     required this.problemCount,
@@ -793,6 +864,7 @@ class _CurriculumUnit {
   });
 
   final String name;
+  final String semester;
   final int number;
   final String topic;
   final int problemCount;

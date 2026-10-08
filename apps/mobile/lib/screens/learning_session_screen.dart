@@ -98,13 +98,7 @@ class _LearningSessionScreenState extends State<LearningSessionScreen> {
     final isProblemDefault = cleanSub == '__basicLearning__' ||
         cleanSub == '기본 학습' ||
         cleanSub == 'Basic Learning';
-    if (isWidgetDefault && isProblemDefault) {
-      return true;
-    }
-    if (isWidgetDefault) {
-      return true;
-    }
-    return cleanSub.contains(cleanTarget) || cleanTarget.contains(cleanSub);
+    return isWidgetDefault && isProblemDefault;
   }
 
   Future<_SessionData> _loadSession() async {

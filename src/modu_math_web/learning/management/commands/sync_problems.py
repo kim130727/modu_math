@@ -52,20 +52,38 @@ class Command(BaseCommand):
             if isinstance(item, dict) and item.get("id")
         }
         created = updated = 0
+        synced_keys: set[tuple[str, str]] = set()
 
         from modu_math_web.editor.services.content_store import list_content, read_content, source_files
         for paths in list_content(root):
             language = paths.dsl_path.relative_to(root).parts[0]
             prefix = paths.artifact_base
             bundle = read_content(paths)
-            semantic = bundle.get("semantic") or {}
+            semantic = dict(bundle.get("semantic") or {})
             problem_id = prefix
+            semantic["problem_id"] = problem_id
+            synced_keys.add((problem_id, language))
             metadata = (
                 semantic.get("metadata")
                 if isinstance(semantic.get("metadata"), dict)
                 else {}
             )
-            catalog = manifest_by_id.get(problem_id, {})
+            catalog = dict(manifest_by_id.get(problem_id, {}))
+            if not catalog:
+                unit_topic = str(metadata.get("unitTopic") or metadata.get("unit") or "덧셈과 뺄셈")
+                sub_unit = str(metadata.get("subUnit") or metadata.get("subTopic") or metadata.get("topic") or "기본 학습")
+                catalog = {
+                    "id": problem_id,
+                    "grade": metadata.get("grade") or 3,
+                    "subject": "math",
+                    "unit": unit_topic,
+                    "unitTopic": unit_topic,
+                    "subUnit": sub_unit,
+                    "topic": sub_unit,
+                    "semester": str(metadata.get("semester") or "1학기"),
+                    "unitNumber": int(metadata.get("unitNumber") or 1),
+                    "filePrefix": problem_id,
+                }
 
             solvable = bundle.get("solvable") or {}
             artifact_paths = source_files(paths)
@@ -126,6 +144,15 @@ class Command(BaseCommand):
             )
             created += int(was_created)
             updated += int(not was_created)
+
+        if not options["dry_run"] and synced_keys:
+            stale_pks = [
+                pk
+                for pk, pid, lang in Problem.objects.values_list("pk", "problem_id", "language")
+                if (pid, lang) not in synced_keys
+            ]
+            if stale_pks:
+                Problem.objects.filter(pk__in=stale_pks).delete()
 
         if options["dry_run"]:
             transaction.set_rollback(True)
