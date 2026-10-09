@@ -19,7 +19,7 @@
   ],
   "target": {
     "ref": "answer.target",
-    "type": "multiple_choice_group"
+    "type": "selected_words"
   },
   "method": "circle_property_selection",
   "plan": [
@@ -55,16 +55,6 @@
       "같습니다",
       "다릅니다"
     ],
-    "answer_key": [
-      "셀 수 없이 많이",
-      "같습니다"
-    ],
-    "target": {
-      "type": "multiple_choice_group",
-      "description": "지름의 개수와 길이 관계"
-    },
-    "value": "셀 수 없이 많이, 같습니다",
-    "unit": "",
     "choice_groups": [
       {
         "label": "지름의 개수",
@@ -80,6 +70,16 @@
           "다릅니다"
         ]
       }
-    ]
+    ],
+    "answer_key": [
+      "셀 수 없이 많이",
+      "같습니다"
+    ],
+    "target": {
+      "type": "multiple_choice_group",
+      "description": "지름의 개수와 길이 관계"
+    },
+    "value": "셀 수 없이 많이, 같습니다",
+    "unit": ""
   }
 }

@@ -4,11 +4,12 @@
   "metadata": {
     "title": "누름 못과 띠 종이로 원 그리기",
     "tags": [],
-    "question": "누름 못과 띠 종이로 그린 원에서 원 위의 점들과 중심 사이의 거리 관계를 묻는 문제",
+    "question": "누름 못과 띠 종이를 이용하여 원을 그렸습니다. 그림을 보고 알맞은 말을 선택하세요.",
     "required_layout_ids": [
       "slot.left.frame",
       "slot.left.circle",
       "slot.inserted.rect.2",
+      "slot.right.center.copy4",
       "slot.left.arrow.1",
       "slot.left.dot.1",
       "slot.left.dot.2",
@@ -23,12 +24,19 @@
       "slot.right.dot.bottom",
       "slot.right.dot.left",
       "slot.right.dot.right",
-      "slot.choice.frame",
-      "slot.right.center.copy4"
+      "slot.choice.frame"
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "알맞은 말을 선택한다."
+    "instruction": "알맞은 말을 선택한다.",
+    "presentation_sources": {
+      "question": [
+        "slot.stem"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "누름 못과 띠 종이를 이용하여 원을 그렸습니다. 그림을 보고 알맞은 말을 선택하세요."
   },
   "domain": {
     "objects": [

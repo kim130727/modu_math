@@ -13,8 +13,10 @@
         "x": 110.0,
         "y": 45.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 30.0,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
       },
       "source_ref": "slot.q1",
       "refs": {
@@ -26,8 +28,8 @@
       "id": "slot.circle.outer.circle",
       "type": "circle",
       "attributes": {
-        "cx": 490.0,
-        "cy": 190.0,
+        "cx": 393.327,
+        "cy": 180.722,
         "r": 120.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -42,9 +44,9 @@
       "id": "slot.box.rect",
       "type": "rect",
       "attributes": {
-        "x": 100.0,
-        "y": 325.0,
-        "width": 750.0,
+        "x": 133.06,
+        "y": 331.0,
+        "width": 548.56,
         "height": 120.0,
         "fill": "none",
         "stroke": "#111111",
@@ -59,10 +61,10 @@
       "id": "slot.radius.horizontal.line",
       "type": "line",
       "attributes": {
-        "x1": 490.0,
-        "y1": 190.0,
-        "x2": 370.0,
-        "y2": 190.0,
+        "x1": 393.327,
+        "y1": 180.722,
+        "x2": 273.327,
+        "y2": 180.722,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -75,10 +77,10 @@
       "id": "slot.radius.diagonal.line",
       "type": "line",
       "attributes": {
-        "x1": 490.0,
-        "y1": 190.0,
-        "x2": 425.0,
-        "y2": 90.0,
+        "x1": 393.327,
+        "y1": 180.722,
+        "x2": 328.327,
+        "y2": 80.722,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -91,8 +93,8 @@
       "id": "slot.pt.center.circle",
       "type": "circle",
       "attributes": {
-        "cx": 490.0,
-        "cy": 190.0,
+        "cx": 393.327,
+        "cy": 180.722,
         "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -107,8 +109,8 @@
       "id": "slot.pt.above.circle",
       "type": "circle",
       "attributes": {
-        "cx": 495.0,
-        "cy": 175.0,
+        "cx": 398.327,
+        "cy": 165.722,
         "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -121,35 +123,32 @@
     },
     {
       "id": "slot.box.line1.text",
-      "type": "text",
+      "type": "text_box",
       "attributes": {
         "x": 145.0,
-        "y": 370.0,
+        "y": 340.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 30.0,
+        "width": 527.98,
+        "height": 108.0,
+        "max_width": 527.98,
+        "data-slot-kind": "text_box",
+        "data-box-x": 145.0,
+        "data-box-y": 340.0,
+        "data-box-width": 527.98,
+        "data-box-height": 108.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.2,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
       },
       "source_ref": "slot.box.line1",
       "refs": {
         "layout_slot_id": "slot.box.line1"
       },
-      "text": "한 원에는 반지름을 ( 2개만 , 무수히 많이 ) 그을 수 있고"
-    },
-    {
-      "id": "slot.box.line2.text",
-      "type": "text",
-      "attributes": {
-        "x": 240.0,
-        "y": 415.0,
-        "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30
-      },
-      "source_ref": "slot.box.line2",
-      "refs": {
-        "layout_slot_id": "slot.box.line2"
-      },
-      "text": "그 길이는 모두 ( 같습니다, 다릅니다 )."
+      "text": "한 원에는 반지름을 ( 2개만 , 무수히 많이 ) 그을 수 있고 그 길이는 모두 ( 같습니다, 다릅니다 )."
     }
   ],
   "contract_version": "modu_math.renderer.v2"

@@ -25,12 +25,13 @@
         "slot.left.frame",
         "slot.left.circle",
         "slot.inserted.rect.2",
+        "slot.left.arrow.1",
+        "slot.right.center.copy4",
         "slot.left.dot.1",
         "slot.left.dot.2",
         "slot.left.dot.3",
         "slot.left.dot.4",
-        "slot.left.text",
-        "konva_1791515301936_arrow_15144640"
+        "slot.left.text"
       ]
     },
     {
@@ -47,7 +48,6 @@
         "slot.right.dot.bottom",
         "slot.right.dot.left",
         "slot.right.dot.right",
-        "slot.right.center.copy4",
         "slot.right.text"
       ]
     },
@@ -73,14 +73,15 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "누름 못과 띠 종이를 이용하여 원을 그렸습니다. 그림을 보고 알맞은 말을 선택하세요.    ",
+        "text": "누름 못과 띠 종이를 이용하여 원을 그렸습니다. 그림을 보고 알맞은 말을 선택하세요.",
         "style_role": "question",
-        "x": 8.136,
-        "y": 51.528,
-        "font_size": 30,
+        "x": 25.0,
+        "y": 48.0,
+        "font_size": 28,
         "fill": "#111111",
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
         "semantic_role": "question",
-        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
+        "semantic_role_source": "inferred"
       }
     },
     {
@@ -88,10 +89,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 179,
-        "y": 130.0,
-        "width": 225.0,
-        "height": 215.0,
+        "x": 165.0,
+        "y": 105.0,
+        "width": 220.0,
+        "height": 220.0,
         "stroke": "#111111",
         "stroke_width": 1.5,
         "fill": "#ffffff"
@@ -102,9 +103,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 294,
-        "cy": 235.0,
-        "r": 105.0,
+        "cx": 275.0,
+        "cy": 215.0,
+        "r": 110.0,
         "stroke": "#111111",
         "stroke_width": 2.0,
         "fill": "none"
@@ -112,17 +113,56 @@
     },
     {
       "id": "slot.inserted.rect.2",
-      "kind": "rect",
+      "kind": "polygon",
       "prompt": "",
       "content": {
-        "x": 266.8,
-        "y": 267.383,
-        "width": 185.0,
-        "height": 30.0,
+        "points": [
+          [
+            250.0,
+            215.0
+          ],
+          [
+            268.0,
+            239.0
+          ],
+          [
+            392.0,
+            146.0
+          ],
+          [
+            374.0,
+            122.0
+          ]
+        ],
         "stroke": "#111827",
         "stroke_width": 1.5,
-        "fill": "#bfdbfe",
-        "transform": "rotate(-34 223 239)"
+        "fill": "#bfdbfe"
+      }
+    },
+    {
+      "id": "slot.right.center.copy4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 275.0,
+        "cy": 215.0,
+        "r": 7.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#B0B0B0"
+      }
+    },
+    {
+      "id": "slot.left.arrow.1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 120 365 C 130 290 190 230 263 218 M 253 211 L 265 218 L 253 225",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "none"
       }
     },
     {
@@ -130,8 +170,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 326,
-        "cy": 211.0,
+        "cx": 299.0,
+        "cy": 197.0,
         "r": 4.0,
         "stroke": "#111111",
         "stroke_width": 2.0,
@@ -143,8 +183,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 357,
-        "cy": 191.0,
+        "cx": 319.0,
+        "cy": 182.0,
         "r": 4.0,
         "stroke": "#111111",
         "stroke_width": 2.0,
@@ -156,8 +196,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 384,
-        "cy": 173.0,
+        "cx": 339.0,
+        "cy": 167.0,
         "r": 4.0,
         "stroke": "#111111",
         "stroke_width": 2.0,
@@ -169,8 +209,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 409,
-        "cy": 156.0,
+        "cx": 363.0,
+        "cy": 149.0,
         "r": 4.0,
         "stroke": "#111111",
         "stroke_width": 2.0,
@@ -184,12 +224,13 @@
       "content": {
         "text": "① 한쪽 구멍에 누름 못을 꽂아 띠 종이를 고정해요.",
         "style_role": "annotation",
-        "x": 95,
-        "y": 420.0,
-        "font_size": 30,
+        "x": 45.0,
+        "y": 375.0,
+        "font_size": 24,
         "fill": "#111111",
         "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "semantic_role": "canvas"
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
       }
     },
     {
@@ -197,10 +238,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 463,
-        "y": 131,
-        "width": 227.0,
-        "height": 214.0,
+        "x": 555.0,
+        "y": 105.0,
+        "width": 220.0,
+        "height": 220.0,
         "stroke": "#111111",
         "stroke_width": 1.5,
         "fill": "#ffffff"
@@ -211,9 +252,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 576,
-        "cy": 239,
-        "r": 108.0,
+        "cx": 665.0,
+        "cy": 215.0,
+        "r": 110.0,
         "stroke": "#111111",
         "stroke_width": 2.0,
         "fill": "none"
@@ -224,10 +265,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 576,
-        "y1": 131,
-        "x2": 576,
-        "y2": 345,
+        "x1": 665.0,
+        "y1": 105.0,
+        "x2": 665.0,
+        "y2": 325.0,
         "stroke": "#111111",
         "stroke_width": 2.0,
         "stroke_dasharray": "5 3"
@@ -238,10 +279,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 463,
-        "y1": 239,
-        "x2": 690,
-        "y2": 239,
+        "x1": 555.0,
+        "y1": 215.0,
+        "x2": 775.0,
+        "y2": 215.0,
         "stroke": "#111111",
         "stroke_width": 2.0,
         "stroke_dasharray": "5 3"
@@ -252,8 +293,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 576,
-        "cy": 239,
+        "cx": 665.0,
+        "cy": 215.0,
         "r": 5.0,
         "stroke": "#111111",
         "stroke_width": 2.0,
@@ -265,8 +306,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 576,
-        "cy": 131,
+        "cx": 665.0,
+        "cy": 105.0,
         "r": 4.0,
         "stroke": "#111111",
         "stroke_width": 2.0,
@@ -278,8 +319,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 576,
-        "cy": 345,
+        "cx": 665.0,
+        "cy": 325.0,
         "r": 4.0,
         "stroke": "#111111",
         "stroke_width": 2.0,
@@ -291,8 +332,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 463,
-        "cy": 239,
+        "cx": 555.0,
+        "cy": 215.0,
         "r": 4.0,
         "stroke": "#111111",
         "stroke_width": 2.0,
@@ -304,8 +345,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 690,
-        "cy": 239,
+        "cx": 775.0,
+        "cy": 215.0,
         "r": 4.0,
         "stroke": "#111111",
         "stroke_width": 2.0,
@@ -314,23 +355,18 @@
     },
     {
       "id": "slot.right.text",
-      "kind": "text_box",
+      "kind": "text",
       "prompt": "",
       "content": {
-        "text": "② 다른 구멍에 연필을 꽂고 한 바퀴 돌려 원을 그려요.  ",
+        "text": "② 다른 구멍에 연필을 꽂고 한 바퀴 돌려 원을 그려요.",
         "style_role": "annotation",
-        "x": 95,
-        "y": 440,
-        "font_size": 30,
+        "x": 45.0,
+        "y": 425.0,
+        "font_size": 24,
         "fill": "#111111",
-        "width": 666,
-        "height": 36,
-        "align": "left",
-        "valign": "middle",
-        "line_height": 1.2,
-        "kind": "text_box",
         "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "semantic_role": "canvas"
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
       }
     },
     {
@@ -338,10 +374,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 119,
-        "y": 495.0,
-        "width": 664.68,
-        "height": 85.0,
+        "x": 45.0,
+        "y": 475.0,
+        "width": 850.0,
+        "height": 90.0,
         "stroke": "#111111",
         "stroke_width": 1.5,
         "fill": "#ffffff"
@@ -349,47 +385,18 @@
     },
     {
       "id": "slot.choice.text",
-      "kind": "text_box",
+      "kind": "text",
       "prompt": "",
       "content": {
         "text": "누름 못이 꽂힌 점에서 원 위에 찍은 4개의 점까지의\n길이는 모두 ( 같습니다 , 다릅니다 ).",
         "style_role": "question",
-        "x": 133.86,
-        "y": 502.24,
-        "font_size": 30,
+        "x": 65.0,
+        "y": 505.0,
+        "font_size": 24,
         "fill": "#111111",
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
         "semantic_role": "canvas",
-        "width": 624,
-        "height": 72,
-        "align": "left",
-        "valign": "middle",
-        "line_height": 1.2,
-        "kind": "text_box",
-        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
-      }
-    },
-    {
-      "id": "slot.right.center.copy4",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 291,
-        "cy": 237.0,
-        "r": 8.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0,
-        "fill": "#B0B0B0"
-      }
-    },
-    {
-      "id": "konva_1791515301936_arrow_15144640",
-      "kind": "path",
-      "prompt": "",
-      "content": {
-        "d": "M 289.221 261.231 L 275.391 377.451 M 275.391 377.451 L 271.821 367.041 M 275.391 377.451 L 281.301 368.171",
-        "fill": "none",
-        "stroke": "#111827",
-        "stroke_width": 1.2
+        "semantic_role_source": "inferred"
       }
     }
   ],
@@ -403,6 +410,8 @@
     "slot.left.frame",
     "slot.left.circle",
     "slot.inserted.rect.2",
+    "slot.left.arrow.1",
+    "slot.right.center.copy4",
     "slot.left.dot.1",
     "slot.left.dot.2",
     "slot.left.dot.3",
@@ -418,12 +427,10 @@
     "slot.right.dot.bottom",
     "slot.right.dot.left",
     "slot.right.dot.right",
-    "slot.right.center.copy4",
     "slot.right.text",
     "region.choice",
     "slot.choice.frame",
     "slot.choice.text",
-    "region.answer",
-    "konva_1791515301936_arrow_15144640"
+    "region.answer"
   ]
 }

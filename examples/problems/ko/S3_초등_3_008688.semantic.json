@@ -15,7 +15,15 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "원의 성질에 대한 문장 완성"
+    "instruction": "원의 성질에 대한 문장 완성",
+    "presentation_sources": {
+      "question": [
+        "slot.q2"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "알맞은 말을 선택하세요."
   },
   "domain": {
     "objects": [
@@ -76,12 +84,7 @@
       "셀 수 없이 많이",
       "같습니다"
     ],
-    "target": {
-      "type": "multiple_choice_group",
-      "description": "지름의 개수와 길이 관계"
-    },
-    "value": "셀 수 없이 많이, 같습니다",
-    "unit": "",
+    "confidence": 1.0,
     "choice_groups": [
       {
         "label": "지름의 개수",
@@ -97,6 +100,12 @@
           "다릅니다"
         ]
       }
-    ]
+    ],
+    "target": {
+      "type": "multiple_choice_group",
+      "description": "지름의 개수와 길이 관계"
+    },
+    "value": "셀 수 없이 많이, 같습니다",
+    "unit": ""
   }
 }

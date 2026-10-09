@@ -21,8 +21,7 @@
         "slot.circle.center",
         "slot.circle.mark1",
         "slot.q2",
-        "slot.choice.line1",
-        "slot.choice.line2"
+        "slot.choice.line1"
       ]
     }
   ],
@@ -36,7 +35,9 @@
         "style_role": "question",
         "x": 75.0,
         "y": 60.0,
-        "font_size": 30
+        "font_size": 30,
+        "semantic_role": "question",
+        "font_family": "\"Noto Sans KR\", sans-serif"
       }
     },
     {
@@ -44,8 +45,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 485.0,
-        "cy": 240.0,
+        "cx": 392.859,
+        "cy": 239.386,
         "r": 145.0,
         "fill": "none"
       }
@@ -55,8 +56,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 485.0,
-        "cy": 240.0,
+        "cx": 392.859,
+        "cy": 239.386,
         "r": 5.0,
         "fill": "#ff2a8a"
       }
@@ -66,10 +67,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 340.0,
-        "y1": 240.0,
-        "x2": 630.0,
-        "y2": 240.0
+        "x1": 247.859,
+        "y1": 239.386,
+        "x2": 537.859,
+        "y2": 239.386
       }
     },
     {
@@ -77,10 +78,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 405.0,
-        "y1": 120.0,
-        "x2": 565.0,
-        "y2": 360.0
+        "x1": 312.859,
+        "y1": 119.386,
+        "x2": 472.859,
+        "y2": 359.386
       }
     },
     {
@@ -88,8 +89,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 505.0,
-        "cy": 220.0,
+        "cx": 412.859,
+        "cy": 219.386,
         "r": 5.0,
         "fill": "none"
       }
@@ -101,33 +102,29 @@
       "content": {
         "x": 70.0,
         "y": 405.0,
-        "width": 765.0,
-        "height": 120.0,
+        "width": 644.69,
+        "height": 100.31,
         "fill": "none"
       }
     },
     {
       "id": "slot.choice.line1",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
-        "text": "한 원에는 지름을 ( 2개만, 무수히 많이 ) 그을 수 있고",
+        "text": "한 원에는 지름을 ( 2개만, 무수히 많이 ) 그을 수 있고 그 길이는 모두 ( 같습니다, 다릅니다 ).",
         "style_role": "question",
-        "x": 135.0,
-        "y": 460.0,
-        "font_size": 30
-      }
-    },
-    {
-      "id": "slot.choice.line2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "그 길이는 모두 ( 같습니다, 다릅니다 ).",
-        "style_role": "question",
-        "x": 185.0,
-        "y": 495.0,
-        "font_size": 30
+        "x": 100.928,
+        "y": 415.723,
+        "font_size": 30,
+        "semantic_role": "canvas",
+        "width": 581.24,
+        "height": 72,
+        "align": "left",
+        "valign": "middle",
+        "line_height": 1.2,
+        "kind": "text_box",
+        "font_family": "\"Noto Sans KR\", sans-serif"
       }
     }
   ],
@@ -143,7 +140,6 @@
     "slot.circle.center",
     "slot.circle.mark1",
     "slot.q2",
-    "slot.choice.line1",
-    "slot.choice.line2"
+    "slot.choice.line1"
   ]
 }

@@ -28,8 +28,7 @@
         "slot.radius.diagonal",
         "slot.pt.center",
         "slot.pt.above",
-        "slot.box.line1",
-        "slot.box.line2"
+        "slot.box.line1"
       ]
     }
   ],
@@ -43,7 +42,10 @@
         "style_role": "question",
         "x": 110.0,
         "y": 45.0,
-        "font_size": 30
+        "font_size": 30,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
       }
     },
     {
@@ -51,8 +53,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 490.0,
-        "cy": 190.0,
+        "cx": 393.327,
+        "cy": 180.722,
         "r": 120.0,
         "fill": "none"
       }
@@ -62,10 +64,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 490.0,
-        "y1": 190.0,
-        "x2": 370.0,
-        "y2": 190.0
+        "x1": 393.327,
+        "y1": 180.722,
+        "x2": 273.327,
+        "y2": 180.722
       }
     },
     {
@@ -73,10 +75,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 490.0,
-        "y1": 190.0,
-        "x2": 425.0,
-        "y2": 90.0
+        "x1": 393.327,
+        "y1": 180.722,
+        "x2": 328.327,
+        "y2": 80.722
       }
     },
     {
@@ -84,8 +86,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 490.0,
-        "cy": 190.0,
+        "cx": 393.327,
+        "cy": 180.722,
         "r": 5.0,
         "fill": "#ff2aa8"
       }
@@ -95,8 +97,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 495.0,
-        "cy": 175.0,
+        "cx": 398.327,
+        "cy": 165.722,
         "r": 5.0,
         "fill": "none"
       }
@@ -106,35 +108,32 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 100.0,
-        "y": 325.0,
-        "width": 750.0,
+        "x": 133.06,
+        "y": 331,
+        "width": 548.56,
         "height": 120.0,
         "fill": "none"
       }
     },
     {
       "id": "slot.box.line1",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
-        "text": "한 원에는 반지름을 ( 2개만 , 무수히 많이 ) 그을 수 있고",
+        "text": "한 원에는 반지름을 ( 2개만 , 무수히 많이 ) 그을 수 있고 그 길이는 모두 ( 같습니다, 다릅니다 ).",
         "style_role": "question",
         "x": 145.0,
-        "y": 370.0,
-        "font_size": 30
-      }
-    },
-    {
-      "id": "slot.box.line2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "그 길이는 모두 ( 같습니다, 다릅니다 ).",
-        "style_role": "question",
-        "x": 240.0,
-        "y": 415.0,
-        "font_size": 30
+        "y": 340,
+        "font_size": 30,
+        "width": 527.98,
+        "height": 108,
+        "align": "left",
+        "valign": "middle",
+        "line_height": 1.2,
+        "kind": "text_box",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
       }
     }
   ],
@@ -151,7 +150,6 @@
     "slot.radius.diagonal",
     "slot.pt.center",
     "slot.pt.above",
-    "slot.box.line1",
-    "slot.box.line2"
+    "slot.box.line1"
   ]
 }

@@ -1,14 +1,21 @@
 {
   "version": 1,
   "slots": {
-    "slot.choice.text": {
-      "x": 39.86,
-      "y": 532.242,
-      "font_size": 30
-    },
     "slot.stem": {
-      "x": 8.136,
-      "y": 51.528
+      "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+      "semantic_role": "question"
+    },
+    "slot.left.text": {
+      "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+      "semantic_role": "canvas"
+    },
+    "slot.right.text": {
+      "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+      "semantic_role": "canvas"
+    },
+    "slot.choice.text": {
+      "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+      "semantic_role": "canvas"
     }
   }
 }
