@@ -136,24 +136,138 @@
   "answer": {
     "blanks": [],
     "choices": [
-      "ㄱ",
-      "ㄴ",
-      "ㄷ",
-      "ㄹ",
-      "ㅁ",
-      "ㅂ"
+      {
+        "id": "choice.1",
+        "label": "1",
+        "text": "ㄱ",
+        "source_refs": []
+      },
+      {
+        "id": "choice.2",
+        "label": "2",
+        "text": "ㄴ",
+        "source_refs": []
+      },
+      {
+        "id": "choice.3",
+        "label": "3",
+        "text": "ㄷ",
+        "source_refs": []
+      },
+      {
+        "id": "choice.4",
+        "label": "4",
+        "text": "ㄹ",
+        "source_refs": []
+      },
+      {
+        "id": "choice.5",
+        "label": "5",
+        "text": "ㅁ",
+        "source_refs": []
+      },
+      {
+        "id": "choice.6",
+        "label": "6",
+        "text": "ㅂ",
+        "source_refs": []
+      }
     ],
     "answer_key": [
-      "ㄱ",
-      "ㄴ",
-      "ㄷ",
-      "ㄹ"
+      {
+        "id": "choice.1",
+        "value": "ㄱ"
+      },
+      {
+        "id": "choice.2",
+        "value": "ㄴ"
+      },
+      {
+        "id": "choice.3",
+        "value": "ㄷ"
+      },
+      {
+        "id": "choice.4",
+        "value": "ㄹ"
+      }
     ],
     "target": {
       "type": "multiple_choice_set",
       "description": "컴퍼스의 침을 꽂아야 할 곳 모두 선택"
     },
-    "value": "ㄱ, ㄴ, ㄷ, ㄹ",
-    "unit": ""
+    "value": [
+      "ㄱ",
+      "ㄴ",
+      "ㄷ",
+      "ㄹ"
+    ],
+    "unit": "",
+    "presentation": {
+      "mode": "choice",
+      "editor_managed": true,
+      "review": {
+        "mode": "choice",
+        "status": "pending",
+        "note": "",
+        "answers": [
+          {
+            "value": "ㄱ"
+          },
+          {
+            "value": "ㄴ"
+          },
+          {
+            "value": "ㄷ"
+          },
+          {
+            "value": "ㄹ"
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice.1",
+            "text": "ㄱ",
+            "correct": true,
+            "label": "1",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.2",
+            "text": "ㄴ",
+            "correct": true,
+            "label": "2",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.3",
+            "text": "ㄷ",
+            "correct": true,
+            "label": "3",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.4",
+            "text": "ㄹ",
+            "correct": true,
+            "label": "4",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.5",
+            "text": "ㅁ",
+            "correct": false,
+            "label": "5",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.6",
+            "text": "ㅂ",
+            "correct": false,
+            "label": "6",
+            "sourceRefs": []
+          }
+        ]
+      }
+    }
   }
 }

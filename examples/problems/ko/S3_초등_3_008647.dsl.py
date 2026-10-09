@@ -268,3 +268,12 @@ SOLVABLE = {
         "unit": "",
     },
 }
+EDITOR_ANSWER_REVIEW = {'mode': 'choice',
+ 'status': 'verified',
+ 'note': '',
+ 'answers': [{'value': 'ㄷ'}],
+ 'choices': [{'id': 'choice.1', 'text': 'ㄱ', 'correct': False, 'label': '1', 'sourceRefs': []},
+             {'id': 'choice.2', 'text': 'ㄴ', 'correct': False, 'label': '2', 'sourceRefs': []},
+             {'id': 'choice.3', 'text': 'ㄷ', 'correct': True, 'label': '3', 'sourceRefs': []},
+             {'id': 'choice.4', 'text': 'ㄹ', 'correct': False, 'label': '4', 'sourceRefs': []},
+             {'id': 'choice.5', 'text': 'ㅁ', 'correct': False, 'label': '5', 'sourceRefs': []}]}

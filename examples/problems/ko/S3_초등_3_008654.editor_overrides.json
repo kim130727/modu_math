@@ -1,32 +1,12 @@
 {
-  "slots": {
-    "konva_1788083991421_text_597620": {
-      "text": "가와 나는 규칙에 따라 원을 그린 것입니다. 알맞은 것을 선택해 두 모양을 그린 규칙의 같은 점과 다른 점을 설명해 보세요.",
-      "x": 21.864,
-      "y": 6.358,
-      "font_size": 30,
-      "fill": "#111827",
-      "width": 860,
-      "height": 83,
-      "align": "left",
-      "line_height": 1.25
-    },
-    "konva_1788083991421_text_627092": {
-      "text": "다른 점: (가,나)는 원의 중심을 옮겨가며 그렸고, (가,나)는 원의 중심이 모두 같게 그렸습니다.  ",
-      "x": 22.797,
-      "y": 304.903,
-      "font_size": 30,
-      "fill": "#111827",
-      "width": 860,
-      "height": 83,
-      "align": "left",
-      "line_height": 1.25
-    }
-  },
   "version": 1,
   "slot_regions": {
     "konva_1788083991421_text_597620": "region.stem",
     "konva_1788083991421_text_627092": "region.choice"
+  },
+  "canvas": {
+    "width": 940,
+    "height": 400
   },
   "deleted_slots": [
     "slot.q1",
@@ -34,8 +14,123 @@
     "slot.choice1",
     "slot.choice1.copy1"
   ],
-  "canvas": {
-    "width": 940,
-    "height": 400
+  "slots": {
+    "konva_1788083991421_text_597620": {
+      "text": "가와 나는 규칙에 따라 원을 그린 것입니다. 알맞은 것을 선택해 두 모양을 그린 규칙의 같은 점과 다른 점을 설명해 보세요.",
+      "x": 21.864,
+      "y": 36.358,
+      "font_size": 30,
+      "fill": "#111827",
+      "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+      "semantic_role": "question",
+      "kind": "text"
+    },
+    "konva_1788083991421_text_627092": {
+      "text": "다른 점: (가,나)는 원의 중심을 옮겨가며 그렸고, (가,나)는 원의 중심이 모두 같게 그렸습니다.  ",
+      "x": 66.221,
+      "y": 276.2,
+      "font_size": 30,
+      "fill": "#111827",
+      "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+      "kind": "text_box",
+      "semantic_role": "canvas",
+      "width": 599.18,
+      "height": 72,
+      "align": "left",
+      "valign": "middle",
+      "line_height": 1.2
+    },
+    "slot.ga.grid.frame": {
+      "d": "M 107 84 L 287 84 L 287 264 L 107 264 Z"
+    },
+    "slot.ga.grid.v1": {
+      "d": "M 137 84 L 137 264"
+    },
+    "slot.ga.grid.h1": {
+      "d": "M 107 114 L 287 114"
+    },
+    "slot.ga.grid.v2": {
+      "d": "M 167 84 L 167 264"
+    },
+    "slot.ga.grid.h2": {
+      "d": "M 107 144 L 287 144"
+    },
+    "slot.ga.grid.v3": {
+      "d": "M 197 84 L 197 264"
+    },
+    "slot.ga.grid.h3": {
+      "d": "M 107 174 L 287 174"
+    },
+    "slot.ga.grid.v4": {
+      "d": "M 227 84 L 227 264"
+    },
+    "slot.ga.grid.h4": {
+      "d": "M 107 204 L 287 204"
+    },
+    "slot.ga.grid.v5": {
+      "d": "M 257 84 L 257 264"
+    },
+    "slot.ga.grid.h5": {
+      "d": "M 107 234 L 287 234"
+    },
+    "slot.ga.circle1.r1": {
+      "cx": 137
+    },
+    "slot.ga.circle2.r2": {
+      "cx": 167
+    },
+    "slot.ga.circle3.r3": {
+      "cx": 197
+    },
+    "slot.label.ga": {
+      "x": 77,
+      "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
+    },
+    "slot.na.grid.frame": {
+      "d": "M 392 84 L 572 84 L 572 264 L 392 264 Z"
+    },
+    "slot.na.grid.v1": {
+      "d": "M 422 84 L 422 264"
+    },
+    "slot.na.grid.h1": {
+      "d": "M 392 114 L 572 114"
+    },
+    "slot.na.grid.v2": {
+      "d": "M 452 84 L 452 264"
+    },
+    "slot.na.grid.h2": {
+      "d": "M 392 144 L 572 144"
+    },
+    "slot.na.grid.v3": {
+      "d": "M 482 84 L 482 264"
+    },
+    "slot.na.grid.h3": {
+      "d": "M 392 174 L 572 174"
+    },
+    "slot.na.grid.v4": {
+      "d": "M 512 84 L 512 264"
+    },
+    "slot.na.grid.h4": {
+      "d": "M 392 204 L 572 204"
+    },
+    "slot.na.grid.v5": {
+      "d": "M 542 84 L 542 264"
+    },
+    "slot.na.grid.h5": {
+      "d": "M 392 234 L 572 234"
+    },
+    "slot.na.circle1.r1": {
+      "cx": 482
+    },
+    "slot.na.circle2.r2": {
+      "cx": 482
+    },
+    "slot.na.circle3.r3": {
+      "cx": 482
+    },
+    "slot.label.na": {
+      "x": 362,
+      "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
+    }
   }
 }

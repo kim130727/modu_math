@@ -238,3 +238,9 @@ SOLVABLE = {
         "unit": "",
     },
 }
+EDITOR_ANSWER_REVIEW = {'mode': 'choice',
+ 'status': 'verified',
+ 'note': '',
+ 'answers': [{'value': '같습니다'}],
+ 'choices': [{'id': 'choice.1', 'text': '같습니다', 'correct': True, 'label': '1', 'sourceRefs': []},
+             {'id': 'choice.2', 'text': '다릅니다', 'correct': False, 'label': '2', 'sourceRefs': []}]}

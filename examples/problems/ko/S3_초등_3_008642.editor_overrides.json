@@ -14,22 +14,17 @@
       "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
       "semantic_role": "question"
     },
-    "slot.choice.box": {
-      "x": 91.16,
-      "y": 511.473,
-      "width": 590.79
-    },
     "slot.choice.1": {
-      "x": 131.16,
-      "y": 561.473,
+      "x": 261.281,
+      "y": 534.357,
       "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-      "semantic_role": "canvas"
+      "semantic_role": "choice"
     },
     "slot.choice.2": {
-      "x": 541.849,
-      "y": 560.982,
+      "x": 687.714,
+      "y": 533.11,
       "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-      "semantic_role": "canvas"
+      "semantic_role": "choice"
     },
     "slot.diameter.purple": {
       "x2": 518.214,
@@ -53,8 +48,8 @@
       "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
     },
     "slot.note.text": {
-      "x": 594.039,
-      "y": 260.223,
+      "x": 595.16,
+      "y": 293.604,
       "height": 75,
       "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
       "semantic_role": "canvas"
@@ -71,6 +66,8 @@
   },
   "deleted_slots": [
     "slot.q2",
-    "slot.note.arrow"
+    "slot.note.arrow",
+    "slot.choice.box",
+    "slot.choice"
   ]
 }

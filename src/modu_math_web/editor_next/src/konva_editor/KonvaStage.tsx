@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Circle, Layer, Line, Path, Rect, Stage, Text, Transformer } from "react-konva";
 import type Konva from "konva";
 import type { TutorRendererOverlay } from "../api/editorApi";
@@ -95,14 +95,24 @@ export function KonvaStage({
 
   useEffect(() => {
     if (!wrapRef.current) return;
+    let frame = 0;
     const observer = new ResizeObserver(([entry]) => {
-      setViewport({
-        width: Math.max(320, entry.contentRect.width),
-        height: Math.max(320, entry.contentRect.height),
+      const next = {
+        width: Math.max(320, Math.round(entry.contentRect.width)),
+        height: Math.max(320, Math.round(entry.contentRect.height)),
+      };
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        setViewport((current) =>
+          current.width === next.width && current.height === next.height ? current : next,
+        );
       });
     });
     observer.observe(wrapRef.current);
-    return () => observer.disconnect();
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+    };
   }, []);
 
   useEffect(() => {
@@ -151,23 +161,23 @@ export function KonvaStage({
     tutorTextEditorRef.current?.select();
   }, [editingTutorLabel?.index]);
 
-  const selectedIdSet = new Set(selectedShapeIds);
-  const promptShapes = shapes.filter((shape) => shape.type === "text" && ["question", "instruction"].includes(shape.semanticRole ?? ""));
-  const renderedShapes = shapes.filter((shape) =>
-    !(shape.type === "text" && (["question", "instruction"].includes(shape.semanticRole ?? "") ||
-      (answerReviewMode && shape.semanticRole === "choice" && answerChoices.length > 0))),
-  ).sort(compareRenderOrder);
+  const selectedIdSet = useMemo(() => new Set(selectedShapeIds), [selectedShapeIds]);
+  const promptShapes = useMemo(
+    () => shapes.filter((shape) => shape.type === "text" && ["question", "instruction"].includes(shape.semanticRole ?? "")),
+    [shapes],
+  );
+  const renderedShapes = useMemo(
+    () => shapes.filter((shape) =>
+      !(shape.type === "text" && (["question", "instruction"].includes(shape.semanticRole ?? "") ||
+        (answerReviewMode && shape.semanticRole === "choice" && answerChoices.length > 0))),
+    ).sort(compareRenderOrder),
+    [answerChoices.length, answerReviewMode, shapes],
+  );
   const [fitContent, setFitContent] = useState(true);
-  const boxes = renderedShapes.filter((shape) => shape.visible !== false).map((shape) => {
-    const node = shapeRefs.current[shape.id];
-    return node?.getLayer() ? node.getClientRect({ relativeTo: node.getLayer()! }) : shapeBounds(shape);
-  }).filter((box) => Number.isFinite(box.x + box.y + box.width + box.height));
-  const crop = fitContent && boxes.length ? {
-    x: Math.min(...boxes.map((box) => box.x)) - 20,
-    y: Math.min(...boxes.map((box) => box.y)) - 20,
-    width: Math.max(...boxes.map((box) => box.x + box.width)) - Math.min(...boxes.map((box) => box.x)) + 40,
-    height: Math.max(...boxes.map((box) => box.y + box.height)) - Math.min(...boxes.map((box) => box.y)) + 40,
-  } : { x: 0, y: 0, width, height };
+  const crop = useMemo(
+    () => contentCrop(renderedShapes, width, height, fitContent),
+    [fitContent, height, renderedShapes, width],
+  );
   const presentationPanel = answerReviewMode ? reviewPanel : editorPanel;
   const previewWidth = presentationPanel ? Math.max(280, viewport.width - 344) : viewport.width;
   const availableHeight = Math.max(260, viewport.height - 150);
@@ -264,19 +274,33 @@ export function KonvaStage({
     if (!dragStart || !activeStart) return;
     const dx = event.target.x() - activeStart.x;
     const dy = event.target.y() - activeStart.y;
+    for (const id of dragStart.ids) {
+      if (id === shapeId) continue;
+      const start = dragStart.positions.get(id);
+      const node = shapeRefs.current[id];
+      if (start && node) node.position({ x: start.x + dx, y: start.y + dy });
+    }
+    event.target.getLayer()?.batchDraw();
+  };
+
+  const finishSelectedDrag = (shapeId: string, event: Konva.KonvaEventObject<DragEvent>) => {
+    const dragStart = dragStartRef.current;
+    dragStartRef.current = null;
+    const activeStart = dragStart?.positions.get(shapeId);
+    if (!dragStart || !activeStart) return;
+    const dx = event.target.x() - activeStart.x;
+    const dy = event.target.y() - activeStart.y;
     const selected = new Set(dragStart.ids);
     onChangeShapes(
       shapes
         .filter((shape) => selected.has(shape.id))
         .map((shape) => {
           const start = dragStart.positions.get(shape.id);
-          return start ? ({ ...shape, x: start.x + dx, y: start.y + dy } as EditorShape) : shape;
+          return start
+            ? ({ ...shape, x: roundStageNumber(start.x + dx), y: roundStageNumber(start.y + dy) } as EditorShape)
+            : shape;
         }),
     );
-  };
-
-  const finishSelectedDrag = () => {
-    dragStartRef.current = null;
   };
 
   const updateLineEndpoint = (
@@ -465,7 +489,7 @@ export function KonvaStage({
               onSelect={(event) => selectShape(shape.id, event)}
               onDragStart={() => startShapeDrag(shape.id)}
               onDragMove={(event) => moveSelectedShapes(shape.id, event)}
-              onDragEnd={finishSelectedDrag}
+              onDragEnd={(event) => finishSelectedDrag(shape.id, event)}
               onContextMenu={(event) => openShapeContextMenu(shape, event)}
             />
           ))}
@@ -1000,42 +1024,96 @@ function intersectsRect(a: CanvasRect, b: CanvasRect): boolean {
   return a.x <= b.x + b.width && a.x + a.width >= b.x && a.y <= b.y + b.height && a.y + a.height >= b.y;
 }
 
+function contentCrop(shapes: EditorShape[], width: number, height: number, fitContent: boolean): CanvasRect {
+  if (!fitContent) return { x: 0, y: 0, width, height };
+  const boxes = shapes
+    .filter((shape) => shape.visible !== false)
+    .map(shapeBounds)
+    .filter((box) => Number.isFinite(box.x + box.y + box.width + box.height));
+  if (!boxes.length) return { x: 0, y: 0, width, height };
+  const minX = Math.min(...boxes.map((box) => box.x));
+  const minY = Math.min(...boxes.map((box) => box.y));
+  const maxX = Math.max(...boxes.map((box) => box.x + box.width));
+  const maxY = Math.max(...boxes.map((box) => box.y + box.height));
+  return {
+    x: minX - 20,
+    y: minY - 20,
+    width: Math.max(1, maxX - minX + 40),
+    height: Math.max(1, maxY - minY + 40),
+  };
+}
+
 function shapeBounds(shape: EditorShape): CanvasRect {
+  let bounds: CanvasRect;
   if (shape.type === "circle") {
-    return { x: shape.x - shape.radius, y: shape.y - shape.radius, width: shape.radius * 2, height: shape.radius * 2 };
-  }
-  if (shape.type === "line") {
+    bounds = { x: shape.x - shape.radius, y: shape.y - shape.radius, width: shape.radius * 2, height: shape.radius * 2 };
+  } else if (shape.type === "line") {
     const xs = shape.points.filter((_, index) => index % 2 === 0);
     const ys = shape.points.filter((_, index) => index % 2 === 1);
     const minX = Math.min(...xs);
     const maxX = Math.max(...xs);
     const minY = Math.min(...ys);
     const maxY = Math.max(...ys);
-    return { x: shape.x + minX, y: shape.y + minY, width: Math.max(1, maxX - minX), height: Math.max(1, maxY - minY) };
-  }
-  if (shape.type === "connector") {
-    return connectorBounds(shape);
-  }
-  if (shape.type === "text") {
+    bounds = { x: shape.x + minX, y: shape.y + minY, width: Math.max(1, maxX - minX), height: Math.max(1, maxY - minY) };
+  } else if (shape.type === "connector") {
+    bounds = connectorBounds(shape);
+  } else if (shape.type === "text") {
     const textWidth =
       shape.sourceKind === "text_box"
         ? normalizedTextBoxWidth(shape.text, shape.fontSize, shape.width ?? estimateTextWidth(shape.text, shape.fontSize), shape.align ?? "left")
         : shape.width ?? estimateTextWidth(shape.text, shape.fontSize);
-    return {
+    bounds = {
       x: shape.x,
       y: shape.y,
       width: textWidth,
       height: normalizedTextBoxHeight(shape.text, shape.fontSize, textWidth, shape.height, shape.lineHeight ?? 1.25, shape.fontFamily, Boolean(shape.interaction)),
     };
-  }
-  if (shape.type === "path") {
-    return { x: shape.x, y: shape.y, width: shape.width, height: shape.height };
-  }
-  if (shape.type === "baseTenBlock") {
+  } else if (shape.type === "path") {
+    bounds = { x: shape.x, y: shape.y, width: shape.width, height: shape.height };
+  } else if (shape.type === "baseTenBlock") {
     const depth = naturalBaseTenDepth(shape);
-    return { x: shape.x, y: shape.y, width: shape.width + depth, height: shape.height + depth };
+    bounds = { x: shape.x, y: shape.y, width: shape.width + depth, height: shape.height + depth };
+  } else {
+    bounds = { x: shape.x, y: shape.y, width: shape.width, height: shape.height };
   }
-  return { x: shape.x, y: shape.y, width: shape.width, height: shape.height };
+  return transformedBounds(bounds, shape.x, shape.y, shape.rotation ?? 0, shape.offsetX ?? 0, shape.offsetY ?? 0);
+}
+
+function transformedBounds(
+  bounds: CanvasRect,
+  originX: number,
+  originY: number,
+  rotationDegrees: number,
+  offsetX: number,
+  offsetY: number,
+): CanvasRect {
+  if (!rotationDegrees && !offsetX && !offsetY) return bounds;
+  const radians = degreesToRadians(rotationDegrees);
+  const cos = Math.cos(radians);
+  const sin = Math.sin(radians);
+  const corners = [
+    [bounds.x, bounds.y],
+    [bounds.x + bounds.width, bounds.y],
+    [bounds.x + bounds.width, bounds.y + bounds.height],
+    [bounds.x, bounds.y + bounds.height],
+  ].map(([x, y]) => {
+    const localX = x - originX - offsetX;
+    const localY = y - originY - offsetY;
+    return {
+      x: originX + localX * cos - localY * sin,
+      y: originY + localX * sin + localY * cos,
+    };
+  });
+  const xs = corners.map((corner) => corner.x);
+  const ys = corners.map((corner) => corner.y);
+  const minX = Math.min(...xs);
+  const minY = Math.min(...ys);
+  return {
+    x: minX,
+    y: minY,
+    width: Math.max(1, Math.max(...xs) - minX),
+    height: Math.max(1, Math.max(...ys) - minY),
+  };
 }
 
 function paddedRect(rect: CanvasRect, padding: number): CanvasRect {

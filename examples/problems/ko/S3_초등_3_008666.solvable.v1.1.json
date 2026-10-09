@@ -68,18 +68,73 @@
   "answer": {
     "blanks": [],
     "choices": [
-      "ㄱ",
-      "ㄴ",
-      "ㄷ"
+      {
+        "id": "choice.1",
+        "label": "1",
+        "text": "ㄱ",
+        "source_refs": []
+      },
+      {
+        "id": "choice.2",
+        "label": "2",
+        "text": "ㄴ",
+        "source_refs": []
+      },
+      {
+        "id": "choice.3",
+        "label": "3",
+        "text": "ㄷ",
+        "source_refs": []
+      }
     ],
     "answer_key": [
-      "ㄱ"
+      {
+        "id": "choice.1",
+        "value": "ㄱ"
+      }
     ],
     "target": {
       "type": "choice",
       "description": "원의 반지름이 모두 같고 원의 중심을 옮겨 가며 그린 그림"
     },
     "value": "ㄱ",
-    "unit": ""
+    "unit": "",
+    "presentation": {
+      "mode": "choice",
+      "editor_managed": true,
+      "review": {
+        "mode": "choice",
+        "status": "verified",
+        "note": "",
+        "answers": [
+          {
+            "value": "ㄱ"
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice.1",
+            "text": "ㄱ",
+            "correct": true,
+            "label": "1",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.2",
+            "text": "ㄴ",
+            "correct": false,
+            "label": "2",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.3",
+            "text": "ㄷ",
+            "correct": false,
+            "label": "3",
+            "sourceRefs": []
+          }
+        ]
+      }
+    }
   }
 }

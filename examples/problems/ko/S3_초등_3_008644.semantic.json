@@ -21,7 +21,22 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "원의 중심 ㅇ와 원 위의 한 점을 이은 선분을 모두 고르는 문제"
+    "instruction": "원의 중심 ㅇ와 원 위의 한 점을 이은 선분을 모두 고르는 문제",
+    "presentation_sources": {
+      "question": [
+        "slot.question.line1"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.ga",
+        "slot.choice.na",
+        "slot.choice.da",
+        "slot.choice.ra",
+        "slot.choice.ma",
+        "slot.choice.ba"
+      ]
+    },
+    "presentation_prompt": "점 ㅇ는 원의 중심입니다. 원의 반지름은 어느 선분인지 모두 선택해 보세요."
   },
   "domain": {
     "objects": [
@@ -125,24 +140,155 @@
   "answer": {
     "blanks": [],
     "choices": [
-      "가",
-      "나",
-      "다",
-      "라",
-      "마",
-      "바"
+      {
+        "id": "slot.choice.ga",
+        "label": "1",
+        "text": "선분 ㄱㅅ",
+        "source_refs": [
+          "slot.choice.ga"
+        ]
+      },
+      {
+        "id": "slot.choice.na",
+        "label": "2",
+        "text": "선분 ㅇㄴ",
+        "source_refs": [
+          "slot.choice.na"
+        ]
+      },
+      {
+        "id": "slot.choice.da",
+        "label": "3",
+        "text": "선분 ㅇㄷ",
+        "source_refs": [
+          "slot.choice.da"
+        ]
+      },
+      {
+        "id": "slot.choice.ra",
+        "label": "4",
+        "text": "선분 ㅇㅁ",
+        "source_refs": [
+          "slot.choice.ra"
+        ]
+      },
+      {
+        "id": "slot.choice.ma",
+        "label": "5",
+        "text": "선분 ㄹㅂ",
+        "source_refs": [
+          "slot.choice.ma"
+        ]
+      },
+      {
+        "id": "slot.choice.ba",
+        "label": "6",
+        "text": "선분 ㄴㅅ",
+        "source_refs": [
+          "slot.choice.ba"
+        ]
+      }
     ],
     "answer_key": [
-      "나",
-      "다",
-      "라"
+      {
+        "id": "slot.choice.na",
+        "value": "선분 ㅇㄴ"
+      },
+      {
+        "id": "slot.choice.da",
+        "value": "선분 ㅇㄷ"
+      },
+      {
+        "id": "slot.choice.ra",
+        "value": "선분 ㅇㅁ"
+      }
     ],
     "confidence": 1.0,
     "target": {
       "type": "multiple_choice_selection",
       "description": "원의 반지름인 선분을 모두 고르기"
     },
-    "value": "나, 다, 라",
-    "unit": ""
+    "value": [
+      "선분 ㅇㄴ",
+      "선분 ㅇㄷ",
+      "선분 ㅇㅁ"
+    ],
+    "unit": "",
+    "presentation": {
+      "mode": "choice",
+      "editor_managed": true,
+      "review": {
+        "mode": "choice",
+        "status": "pending",
+        "note": "",
+        "answers": [
+          {
+            "value": "㉯ 선분 ㅇㄴ"
+          },
+          {
+            "value": "㉰ 선분 ㅇㄷ"
+          },
+          {
+            "value": "㉱ 선분 ㅇㅁ"
+          }
+        ],
+        "choices": [
+          {
+            "id": "slot.choice.ga",
+            "text": "선분 ㄱㅅ",
+            "correct": false,
+            "label": "1",
+            "sourceRefs": [
+              "slot.choice.ga"
+            ]
+          },
+          {
+            "id": "slot.choice.na",
+            "text": "선분 ㅇㄴ",
+            "correct": true,
+            "label": "2",
+            "sourceRefs": [
+              "slot.choice.na"
+            ]
+          },
+          {
+            "id": "slot.choice.da",
+            "text": "선분 ㅇㄷ",
+            "correct": true,
+            "label": "3",
+            "sourceRefs": [
+              "slot.choice.da"
+            ]
+          },
+          {
+            "id": "slot.choice.ra",
+            "text": "선분 ㅇㅁ",
+            "correct": true,
+            "label": "4",
+            "sourceRefs": [
+              "slot.choice.ra"
+            ]
+          },
+          {
+            "id": "slot.choice.ma",
+            "text": "선분 ㄹㅂ",
+            "correct": false,
+            "label": "5",
+            "sourceRefs": [
+              "slot.choice.ma"
+            ]
+          },
+          {
+            "id": "slot.choice.ba",
+            "text": "선분 ㄴㅅ",
+            "correct": false,
+            "label": "6",
+            "sourceRefs": [
+              "slot.choice.ba"
+            ]
+          }
+        ]
+      }
+    }
   }
 }

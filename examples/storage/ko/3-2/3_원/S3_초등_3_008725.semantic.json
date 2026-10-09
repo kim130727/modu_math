@@ -23,7 +23,6 @@
       "slot.choice.2.shape.copy19",
       "slot.choice.2.shape.copy20",
       "slot.choice.2.shape.copy21",
-      "slot.choice.4.shape.copy22",
       "slot.choice.2.shape.copy16.copy24",
       "slot.inserted.quarterArc.1",
       "slot.inserted.quarterArc.1.copy1",
@@ -32,7 +31,15 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "보기의 중심 개수를 비교하여 정답을 고른다."
+    "instruction": "보기의 중심 개수를 비교하여 정답을 고른다.",
+    "presentation_sources": {
+      "question": [
+        "slot.q_text"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "원의 중심의 개수가 가장 많은 모양을 고르세요."
   },
   "domain": {
     "objects": [
@@ -102,6 +109,7 @@
     "blanks": [],
     "choices": [],
     "answer_key": [],
+    "confidence": 1.0,
     "target": {
       "type": "choice",
       "description": "원의 중심의 개수가 가장 많은 모양"

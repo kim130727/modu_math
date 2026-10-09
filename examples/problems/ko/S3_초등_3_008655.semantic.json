@@ -5,7 +5,7 @@
     "title": "원의 반지름",
     "tags": [],
     "instruction": "알맞은 말을 선택한다.",
-    "question": "한 원에서 반지름의 길이가 같은지 묻는 문제",
+    "question": "선분 ㅇㄱ, 선분 ㅇㄴ, 선분 ㅇㄷ은 모두 원의 반지름입니다. 각 선분의 길이를 재어 알맞은 말을 선택하세요.",
     "required_layout_ids": [
       "slot.diagram.circle",
       "slot.diagram.r1",
@@ -14,7 +14,15 @@
       "slot.diagram.center"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko"
+    "language": "ko",
+    "presentation_sources": {
+      "question": [
+        "slot.q1"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "선분 ㅇㄱ, 선분 ㅇㄴ, 선분 ㅇㄷ은 모두 원의 반지름입니다. 각 선분의 길이를 재어 알맞은 말을 선택하세요."
   },
   "domain": {
     "objects": [

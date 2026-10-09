@@ -330,3 +330,10 @@ SOLVABLE = {
         "unit": "",
     },
 }
+EDITOR_ANSWER_REVIEW = {'mode': 'choice',
+ 'status': 'verified',
+ 'note': '',
+ 'answers': [{'value': 'ㄱ'}],
+ 'choices': [{'id': 'choice.1', 'text': 'ㄱ', 'correct': True, 'label': '1', 'sourceRefs': []},
+             {'id': 'choice.2', 'text': 'ㄴ', 'correct': False, 'label': '2', 'sourceRefs': []},
+             {'id': 'choice.3', 'text': 'ㄷ', 'correct': False, 'label': '3', 'sourceRefs': []}]}

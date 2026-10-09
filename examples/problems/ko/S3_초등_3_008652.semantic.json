@@ -63,7 +63,16 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "그린 규칙을 바르게 말한 사람을 선택한다."
+    "instruction": "그린 규칙을 바르게 말한 사람을 선택한다.",
+    "presentation_sources": {
+      "question": [
+        "slot.qtext1",
+        "slot.qtext2"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "규칙에 따라 원을 그린 것입니다. 그린 규칙을 바르게 말한 사람을 선택해 보세요."
   },
   "domain": {
     "objects": [

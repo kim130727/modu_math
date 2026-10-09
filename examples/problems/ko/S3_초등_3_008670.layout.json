@@ -122,12 +122,14 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "규칙에 따라 원을 4개 더 그리려고 합니다.\n바르게 그린 것을 선택하세요.",
+        "text": "규칙에 따라 원을 4개 더 그리려고 합니다. 바르게 그린 것을 선택하세요.",
         "style_role": "question",
         "x": 39.949,
         "y": 50.565,
         "font_size": 30,
-        "max_width": 560.0
+        "max_width": 560.0,
+        "semantic_role": "question",
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     },
     {
@@ -1200,18 +1202,17 @@
     },
     {
       "id": "konva_1787270985164_text_2406826",
-      "kind": "text_box",
+      "kind": "text",
       "prompt": "",
       "content": {
         "text": "1번",
-        "x": 43.332,
-        "y": 162.666,
+        "x": 62.332,
+        "y": 211.666,
         "font_size": 30,
         "fill": "#111827",
-        "width": 98,
-        "height": 46,
-        "align": "left",
-        "line_height": 1.25
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "semantic_role": "canvas",
+        "kind": "text"
       }
     },
     {
@@ -1220,14 +1221,15 @@
       "prompt": "",
       "content": {
         "text": "2번",
-        "x": 47.359,
-        "y": 345.563,
+        "x": 66.359,
+        "y": 362.563,
         "font_size": 30,
         "fill": "#111827",
-        "width": 98,
-        "height": 46,
+        "width": 46,
+        "height": 38,
         "align": "left",
-        "line_height": 1.25
+        "line_height": 1.25,
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     }
   ],

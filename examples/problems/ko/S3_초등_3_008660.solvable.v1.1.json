@@ -62,20 +62,96 @@
   "answer": {
     "blanks": [],
     "choices": [
-      "1. 선분 ㅇㄱ",
-      "2. 선분 ㅇㄴ",
-      "3. 선분 ㄱㄷ",
-      "4. 선분 ㄴㄹ"
+      {
+        "id": "choice.1",
+        "label": "1.",
+        "text": "선분 ㅇㄱ",
+        "source_refs": []
+      },
+      {
+        "id": "choice.2",
+        "label": "2.",
+        "text": "선분 ㅇㄴ",
+        "source_refs": []
+      },
+      {
+        "id": "choice.3",
+        "label": "3.",
+        "text": "선분 ㄱㄷ",
+        "source_refs": []
+      },
+      {
+        "id": "choice.4",
+        "label": "4.",
+        "text": "선분 ㄴㄹ",
+        "source_refs": []
+      }
     ],
     "answer_key": [
-      "1. 선분 ㅇㄱ",
-      "2. 선분 ㅇㄴ"
+      {
+        "id": "choice.1",
+        "value": "선분 ㅇㄱ"
+      },
+      {
+        "id": "choice.2",
+        "value": "선분 ㅇㄴ"
+      }
     ],
     "target": {
       "type": "multiple_choice_set",
       "description": "원의 반지름을 나타내는 선분 모두 선택"
     },
-    "value": "1. 선분 ㅇㄱ, 2. 선분 ㅇㄴ",
-    "unit": ""
+    "value": [
+      "선분 ㅇㄱ",
+      "선분 ㅇㄴ"
+    ],
+    "unit": "",
+    "presentation": {
+      "mode": "choice",
+      "editor_managed": true,
+      "review": {
+        "mode": "choice",
+        "status": "pending",
+        "note": "",
+        "answers": [
+          {
+            "value": "1. 선분 ㅇㄱ"
+          },
+          {
+            "value": "2. 선분 ㅇㄴ"
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice.1",
+            "text": "선분 ㅇㄱ",
+            "correct": true,
+            "label": "1.",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.2",
+            "text": "선분 ㅇㄴ",
+            "correct": true,
+            "label": "2.",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.3",
+            "text": "선분 ㄱㄷ",
+            "correct": false,
+            "label": "3.",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.4",
+            "text": "선분 ㄴㄹ",
+            "correct": false,
+            "label": "4.",
+            "sourceRefs": []
+          }
+        ]
+      }
+    }
   }
 }

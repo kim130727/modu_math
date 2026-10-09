@@ -238,3 +238,10 @@ SOLVABLE = {
         "unit": "",
     },
 }
+EDITOR_ANSWER_REVIEW = {'mode': 'choice',
+ 'status': 'verified',
+ 'note': '',
+ 'answers': [{'value': '반지름'}],
+ 'choices': [{'id': 'choice.1', 'text': '지름', 'correct': False, 'label': '1', 'sourceRefs': []},
+             {'id': 'choice.2', 'text': '반지름', 'correct': True, 'label': '2', 'sourceRefs': []},
+             {'id': 'choice.3', 'text': '중심', 'correct': False, 'label': '3', 'sourceRefs': []}]}

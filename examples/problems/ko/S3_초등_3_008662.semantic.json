@@ -4,7 +4,7 @@
   "metadata": {
     "title": "원의 지름은 어떤 선분인가요?",
     "tags": [],
-    "question": "원의 지름은 어느 선분인가요?",
+    "question": "원의 지름은 어떤 선분인가요?",
     "required_layout_ids": [
       "slot.circle.outer",
       "slot.circle.center",
@@ -16,7 +16,20 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "보기에서 알맞은 선분을 고르시오."
+    "instruction": "보기에서 알맞은 선분을 고르시오.",
+    "presentation_sources": {
+      "question": [
+        "slot.q_text"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.opt1",
+        "slot.opt2",
+        "slot.opt3",
+        "slot.opt4"
+      ]
+    },
+    "presentation_prompt": "원의 지름은 어떤 선분인가요?"
   },
   "domain": {
     "objects": [
@@ -82,20 +95,40 @@
   "answer": {
     "blanks": [],
     "choices": [
-      "1. 선분 ㄱㄴ",
-      "2. 선분 ㄷㄹ",
-      "3. 선분 ㅁㅂ",
-      "4. 선분 ㅅㅈ"
+      {
+        "id": "slot.opt1",
+        "slot_id": "slot.opt1",
+        "text": "① 선분 ㄱㄴ",
+        "value": "1. 선분 ㄱㄴ"
+      },
+      {
+        "id": "slot.opt2",
+        "slot_id": "slot.opt2",
+        "text": "② 선분 ㄷㄹ",
+        "value": "2. 선분 ㄷㄹ"
+      },
+      {
+        "id": "slot.opt3",
+        "slot_id": "slot.opt3",
+        "text": "③ 선분 ㅁㅂ",
+        "value": "3. 선분 ㅁㅂ"
+      },
+      {
+        "id": "slot.opt4",
+        "slot_id": "slot.opt4",
+        "text": "④ 선분 ㅅㅈ",
+        "value": "4. 선분 ㅅㅈ"
+      }
     ],
     "answer_key": [
-      "2. 선분 ㄷㄹ"
+      "② 선분 ㄷㄹ"
     ],
     "confidence": 1.0,
     "target": {
       "type": "choice",
       "description": "원의 지름에 해당하는 보기"
     },
-    "value": "2. 선분 ㄷㄹ",
+    "value": "② 선분 ㄷㄹ",
     "unit": ""
   }
 }

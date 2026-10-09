@@ -339,3 +339,13 @@ SOLVABLE = {
     ],
     "answer": ANSWER,
 }
+EDITOR_ANSWER_REVIEW = {'mode': 'choice',
+ 'status': 'pending',
+ 'note': '',
+ 'answers': [{'value': 'ㄱ'}, {'value': 'ㄴ'}, {'value': 'ㄷ'}, {'value': 'ㄹ'}],
+ 'choices': [{'id': 'choice.1', 'text': 'ㄱ', 'correct': True, 'label': '1', 'sourceRefs': []},
+             {'id': 'choice.2', 'text': 'ㄴ', 'correct': True, 'label': '2', 'sourceRefs': []},
+             {'id': 'choice.3', 'text': 'ㄷ', 'correct': True, 'label': '3', 'sourceRefs': []},
+             {'id': 'choice.4', 'text': 'ㄹ', 'correct': True, 'label': '4', 'sourceRefs': []},
+             {'id': 'choice.5', 'text': 'ㅁ', 'correct': False, 'label': '5', 'sourceRefs': []},
+             {'id': 'choice.6', 'text': 'ㅂ', 'correct': False, 'label': '6', 'sourceRefs': []}]}

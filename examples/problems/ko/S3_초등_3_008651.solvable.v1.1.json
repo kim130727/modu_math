@@ -67,18 +67,73 @@
   "answer": {
     "blanks": [],
     "choices": [
-      "1번",
-      "2번",
-      "3번"
+      {
+        "id": "choice.1",
+        "label": "1",
+        "text": "1번",
+        "source_refs": []
+      },
+      {
+        "id": "choice.2",
+        "label": "2",
+        "text": "2번",
+        "source_refs": []
+      },
+      {
+        "id": "choice.3",
+        "label": "3",
+        "text": "3번",
+        "source_refs": []
+      }
     ],
     "answer_key": [
-      "3번"
+      {
+        "id": "choice.3",
+        "value": "3번"
+      }
     ],
     "target": {
       "type": "selected_compass",
       "description": "3 cm가 되도록 벌린 컴퍼스 그림 번호"
     },
     "value": "3번",
-    "unit": ""
+    "unit": "",
+    "presentation": {
+      "mode": "choice",
+      "editor_managed": true,
+      "review": {
+        "mode": "choice",
+        "status": "verified",
+        "note": "",
+        "answers": [
+          {
+            "value": "3번"
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice.1",
+            "text": "1번",
+            "correct": false,
+            "label": "1",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.2",
+            "text": "2번",
+            "correct": false,
+            "label": "2",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.3",
+            "text": "3번",
+            "correct": true,
+            "label": "3",
+            "sourceRefs": []
+          }
+        ]
+      }
+    }
   }
 }

@@ -401,3 +401,10 @@ SOLVABLE = {
         "unit": ""
     }
 }
+EDITOR_ANSWER_REVIEW = {'mode': 'choice',
+ 'status': 'verified',
+ 'note': '',
+ 'answers': [{'value': 'ㄴ'}],
+ 'choices': [{'id': 'choice.1', 'text': 'ㄱ', 'correct': False, 'label': '1', 'sourceRefs': []},
+             {'id': 'choice.2', 'text': 'ㄴ', 'correct': True, 'label': '2', 'sourceRefs': []},
+             {'id': 'choice.3', 'text': 'ㄷ', 'correct': False, 'label': '3', 'sourceRefs': []}]}

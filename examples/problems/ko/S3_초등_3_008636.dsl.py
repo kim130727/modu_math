@@ -273,3 +273,17 @@ SOLVABLE = {
         "unit": "",
     },
 }
+EDITOR_ANSWER_REVIEW = {'mode': 'choice',
+ 'status': 'verified',
+ 'note': '',
+ 'answers': [{'value': '같습니다', 'ref': 'answer.value'}],
+ 'choices': [{'id': 'slot.choice.copy4',
+              'text': '같습니다',
+              'correct': True,
+              'label': '1',
+              'sourceRefs': ['slot.choice.copy4']},
+             {'id': 'choice.review.97e7bcb8-e0fd-4aa7-b45e-107033d0b9de',
+              'text': '다릅니다',
+              'correct': False,
+              'label': '2',
+              'sourceRefs': []}]}

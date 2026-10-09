@@ -67,22 +67,64 @@
     "blanks": [],
     "choices": [
       {
-        "text": "누름 못이 꽂힌 점에서 원 위의 한 점까지의 길이는 모두",
-        "slot_id": "slot.choice",
-        "id": "slot.choice"
+        "id": "slot.choice.copy4",
+        "label": "1",
+        "text": "같습니다",
+        "source_refs": [
+          "slot.choice.copy4"
+        ]
       },
       {
-        "text": "( 같습니다 ,    다릅니다 ).",
-        "slot_id": "slot.choice.copy4",
-        "id": "slot.choice.copy4"
+        "id": "choice.review.97e7bcb8-e0fd-4aa7-b45e-107033d0b9de",
+        "label": "2",
+        "text": "다릅니다",
+        "source_refs": []
       }
     ],
-    "answer_key": [],
+    "answer_key": [
+      {
+        "id": "slot.choice.copy4",
+        "value": "같습니다"
+      }
+    ],
     "target": {
       "type": "choice",
       "description": "같습니다 / 다릅니다 중 알맞은 말"
     },
     "value": "같습니다",
-    "unit": ""
+    "unit": "",
+    "presentation": {
+      "mode": "choice",
+      "editor_managed": true,
+      "review": {
+        "mode": "choice",
+        "status": "verified",
+        "note": "",
+        "answers": [
+          {
+            "value": "같습니다",
+            "ref": "answer.value"
+          }
+        ],
+        "choices": [
+          {
+            "id": "slot.choice.copy4",
+            "text": "같습니다",
+            "correct": true,
+            "label": "1",
+            "sourceRefs": [
+              "slot.choice.copy4"
+            ]
+          },
+          {
+            "id": "choice.review.97e7bcb8-e0fd-4aa7-b45e-107033d0b9de",
+            "text": "다릅니다",
+            "correct": false,
+            "label": "2",
+            "sourceRefs": []
+          }
+        ]
+      }
+    }
   }
 }

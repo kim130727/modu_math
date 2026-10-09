@@ -91,7 +91,15 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "두 모눈 그림 중 바르게 그린 것을 고른다."
+    "instruction": "두 모눈 그림 중 바르게 그린 것을 고른다.",
+    "presentation_sources": {
+      "question": [
+        "slot.q1"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "규칙에 따라 원을 4개 더 그리려고 합니다. 바르게 그린 것을 선택하세요."
   },
   "domain": {
     "objects": [
@@ -142,8 +150,18 @@
   "answer": {
     "blanks": [],
     "choices": [
-      "1번",
-      "2번"
+      {
+        "id": "slot.lb.opt1",
+        "slot_id": "slot.lb.opt1",
+        "text": "1번",
+        "value": "1번"
+      },
+      {
+        "id": "slot.lb.opt2",
+        "slot_id": "slot.lb.opt2",
+        "text": "2번",
+        "value": "2번"
+      }
     ],
     "answer_key": [
       "2번"

@@ -68,7 +68,9 @@
         "style_role": "question",
         "x": 23.946,
         "y": 37.64,
-        "font_size": 26
+        "font_size": 26,
+        "semantic_role": "question",
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     },
     {
@@ -356,11 +358,12 @@
       "content": {
         "text": "ㄱ",
         "style_role": "label",
-        "x": 99.627,
-        "y": 190.307,
+        "x": 96.627,
+        "y": 192.307,
         "font_size": 24,
         "semantic_role": "symbol_label",
-        "fill": "#111111"
+        "fill": "#111111",
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     },
     {
@@ -383,10 +386,11 @@
       "content": {
         "text": "ㄴ",
         "style_role": "label",
-        "x": 152.627,
+        "x": 145.627,
         "y": 163.307,
         "font_size": 24,
-        "semantic_role": "symbol_label"
+        "semantic_role": "symbol_label",
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     },
     {
@@ -404,15 +408,22 @@
     },
     {
       "id": "slot.pt.digeut.label",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "ㄷ",
         "style_role": "label",
-        "x": 206.627,
-        "y": 134.307,
+        "x": 201.627,
+        "y": 110.307,
         "font_size": 24,
-        "semantic_role": "symbol_label"
+        "semantic_role": "symbol_label",
+        "width": 24,
+        "height": 29,
+        "align": "left",
+        "valign": "middle",
+        "line_height": 1.2,
+        "kind": "text_box",
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     },
     {
@@ -430,15 +441,22 @@
     },
     {
       "id": "slot.pt.rieul.label",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
         "text": "ㄹ",
         "style_role": "label",
-        "x": 206.627,
-        "y": 190.307,
+        "x": 200.627,
+        "y": 166.307,
         "font_size": 24,
-        "semantic_role": "symbol_label"
+        "semantic_role": "symbol_label",
+        "width": 24,
+        "height": 29,
+        "align": "left",
+        "valign": "middle",
+        "line_height": 1.2,
+        "kind": "text_box",
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     }
   ],

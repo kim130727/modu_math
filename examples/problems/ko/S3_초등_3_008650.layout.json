@@ -51,14 +51,22 @@
   "slots": [
     {
       "id": "slot.q1",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
-        "text": "\n    \n    그림을 보고 지름과 반지름 사이의 관계를 알아보려고 합니다.\n    알맞은 것을 선택하세요.\n  ",
+        "text": "그림을 보고 지름과 반지름 사이의 관계를 알아보려고 합니다. 알맞은 것을 선택하세요.",
         "style_role": "question",
         "x": 20.0,
-        "y": 15.0,
-        "font_size": 30
+        "y": -15,
+        "font_size": 30,
+        "semantic_role": "question",
+        "width": 774,
+        "height": 72,
+        "align": "left",
+        "valign": "middle",
+        "line_height": 1.2,
+        "kind": "text_box",
+        "font_family": "\"Noto Sans KR\", sans-serif"
       }
     },
     {
@@ -143,7 +151,8 @@
         "x": 345.0,
         "y": 210.0,
         "font_size": 25,
-        "fill": "#111111"
+        "fill": "#111111",
+        "font_family": "\"Noto Sans KR\", sans-serif"
       }
     },
     {
@@ -156,7 +165,8 @@
         "x": 460.0,
         "y": 310.0,
         "font_size": 25,
-        "fill": "#111111"
+        "fill": "#111111",
+        "font_family": "\"Noto Sans KR\", sans-serif"
       }
     },
     {
@@ -180,7 +190,9 @@
         "style_role": "question",
         "x": 65.0,
         "y": 455.0,
-        "font_size": 30
+        "font_size": 30,
+        "semantic_role": "canvas",
+        "font_family": "\"Noto Sans KR\", sans-serif"
       }
     }
   ],

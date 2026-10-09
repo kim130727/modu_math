@@ -351,3 +351,15 @@ SOLVABLE = {
         "unit": "",
     },
 }
+EDITOR_ANSWER_REVIEW = {'mode': 'choice',
+ 'status': 'pending',
+ 'note': '',
+ 'answers': [{'value': '1. 선분 ㅇㄱ'}, {'value': '2. 선분 ㅇㄴ'}],
+ 'choices': [{'id': 'choice.1', 'text': '선분 ㅇㄱ', 'correct': True, 'label': '1.', 'sourceRefs': []},
+             {'id': 'choice.2', 'text': '선분 ㅇㄴ', 'correct': True, 'label': '2.', 'sourceRefs': []},
+             {'id': 'choice.3', 'text': '선분 ㄱㄷ', 'correct': False, 'label': '3.', 'sourceRefs': []},
+             {'id': 'choice.4',
+              'text': '선분 ㄴㄹ',
+              'correct': False,
+              'label': '4.',
+              'sourceRefs': []}]}

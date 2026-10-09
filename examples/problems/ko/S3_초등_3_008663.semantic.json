@@ -9,8 +9,7 @@
       "ruler",
       "length"
     ],
-    "instruction": "컴퍼스를 3 cm만큼 벌린 보기를 선택한다.",
-    "question": "반지름이 3 cm인 원을 그릴 수 있도록 컴퍼스를 바르게 벌린 것을 고르는 문제",
+    "question": "다음 중 반지름이 3 cm인 원을 그릴 수 있도록 컴퍼스를 바르게 벌린 것을 선택하세요.",
     "required_layout_ids": [
       "slot.choice1.ruler.body",
       "slot.choice1.ruler.top",
@@ -149,7 +148,29 @@
       "slot.choice3.compass.needle.tip"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko"
+    "language": "ko",
+    "instruction": "컴퍼스를 3 cm만큼 벌린 보기를 선택한다.",
+    "presentation_sources": {
+      "question": [
+        "konva_1787989612052_text_496595"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice1.ruler.label.0",
+        "slot.choice1.ruler.label.1",
+        "slot.choice1.ruler.label.2",
+        "slot.choice1.ruler.label.3",
+        "slot.choice2.ruler.label.0",
+        "slot.choice2.ruler.label.1",
+        "slot.choice2.ruler.label.2",
+        "slot.choice2.ruler.label.3",
+        "slot.choice3.ruler.label.0",
+        "slot.choice3.ruler.label.1",
+        "slot.choice3.ruler.label.2",
+        "slot.choice3.ruler.label.3"
+      ]
+    },
+    "presentation_prompt": "다음 중 반지름이 3 cm인 원을 그릴 수 있도록 컴퍼스를 바르게 벌린 것을 선택하세요."
   },
   "domain": {
     "objects": [
@@ -223,12 +244,30 @@
   "answer": {
     "blanks": [],
     "choices": [
-      "ㄱ",
-      "ㄴ",
-      "ㄷ"
+      {
+        "id": "choice.1",
+        "label": "1",
+        "text": "ㄱ",
+        "source_refs": []
+      },
+      {
+        "id": "choice.2",
+        "label": "2",
+        "text": "ㄴ",
+        "source_refs": []
+      },
+      {
+        "id": "choice.3",
+        "label": "3",
+        "text": "ㄷ",
+        "source_refs": []
+      }
     ],
     "answer_key": [
-      "ㄷ"
+      {
+        "id": "choice.3",
+        "value": "ㄷ"
+      }
     ],
     "confidence": 1.0,
     "target": {
@@ -236,6 +275,43 @@
       "description": "반지름 3 cm만큼 컴퍼스를 벌린 그림"
     },
     "value": "ㄷ",
-    "unit": ""
+    "unit": "",
+    "presentation": {
+      "mode": "choice",
+      "editor_managed": true,
+      "review": {
+        "mode": "choice",
+        "status": "verified",
+        "note": "",
+        "answers": [
+          {
+            "value": "ㄷ"
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice.1",
+            "text": "ㄱ",
+            "correct": false,
+            "label": "1",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.2",
+            "text": "ㄴ",
+            "correct": false,
+            "label": "2",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.3",
+            "text": "ㄷ",
+            "correct": true,
+            "label": "3",
+            "sourceRefs": []
+          }
+        ]
+      }
+    }
   }
 }

@@ -9,7 +9,7 @@
       "paper_folding"
     ],
     "instruction": "알맞은 말을 선택하세요.",
-    "question": "원 모양의 종이를 접어 원의 성질을 알아보고 알맞은 말을 선택하는 문제",
+    "question": "원 모양의 종이를 접어 원의 성질을 알아보고 알맞은 말을 선택하세요.",
     "required_layout_ids": [
       "slot.person.left.body",
       "slot.person.left.ear.left",
@@ -45,7 +45,15 @@
       "slot.answer.box"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko"
+    "language": "ko",
+    "presentation_sources": {
+      "question": [
+        "slot.stem"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "원 모양의 종이를 접어 원의 성질을 알아보고 알맞은 말을 선택하세요."
   },
   "domain": {
     "objects": [

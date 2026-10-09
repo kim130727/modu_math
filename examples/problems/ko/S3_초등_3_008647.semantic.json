@@ -26,7 +26,15 @@
     "extraction_confidence": 1.0,
     "language": "ko",
     "instruction": "길이가 가장 긴 선분의 기호를 고른다.",
-    "points": 5
+    "points": 5,
+    "presentation_sources": {
+      "question": [
+        "slot.q.text"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "원 안의 선분 중 길이가 가장 긴 선분을 찾아 기호를 선택하세요."
   },
   "domain": {
     "objects": [
@@ -94,14 +102,42 @@
   "answer": {
     "blanks": [],
     "choices": [
-      "ㄱ",
-      "ㄴ",
-      "ㄷ",
-      "ㄹ",
-      "ㅁ"
+      {
+        "id": "choice.1",
+        "label": "1",
+        "text": "ㄱ",
+        "source_refs": []
+      },
+      {
+        "id": "choice.2",
+        "label": "2",
+        "text": "ㄴ",
+        "source_refs": []
+      },
+      {
+        "id": "choice.3",
+        "label": "3",
+        "text": "ㄷ",
+        "source_refs": []
+      },
+      {
+        "id": "choice.4",
+        "label": "4",
+        "text": "ㄹ",
+        "source_refs": []
+      },
+      {
+        "id": "choice.5",
+        "label": "5",
+        "text": "ㅁ",
+        "source_refs": []
+      }
     ],
     "answer_key": [
-      "ㄷ"
+      {
+        "id": "choice.3",
+        "value": "ㄷ"
+      }
     ],
     "confidence": 1.0,
     "target": {
@@ -109,6 +145,57 @@
       "description": "길이가 가장 긴 선분의 기호"
     },
     "value": "ㄷ",
-    "unit": ""
+    "unit": "",
+    "presentation": {
+      "mode": "choice",
+      "editor_managed": true,
+      "review": {
+        "mode": "choice",
+        "status": "verified",
+        "note": "",
+        "answers": [
+          {
+            "value": "ㄷ"
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice.1",
+            "text": "ㄱ",
+            "correct": false,
+            "label": "1",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.2",
+            "text": "ㄴ",
+            "correct": false,
+            "label": "2",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.3",
+            "text": "ㄷ",
+            "correct": true,
+            "label": "3",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.4",
+            "text": "ㄹ",
+            "correct": false,
+            "label": "4",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.5",
+            "text": "ㅁ",
+            "correct": false,
+            "label": "5",
+            "sourceRefs": []
+          }
+        ]
+      }
+    }
   }
 }

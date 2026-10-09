@@ -9,7 +9,7 @@
       "grid",
       "rule_comparison"
     ],
-    "question": "가와 나의 원 그리기 규칙을 비교하여 알맞은 설명을 고르는 문제",
+    "question": "가와 나는 규칙에 따라 원을 그린 것입니다. 알맞은 것을 선택해 두 모양을 그린 규칙의 같은 점과 다른 점을 설명해 보세요.",
     "required_layout_ids": [
       "slot.ga.grid.frame",
       "slot.ga.grid.v1",
@@ -42,7 +42,15 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "그림을 보고 같은 점과 다른 점을 설명한다."
+    "instruction": "그림을 보고 같은 점과 다른 점을 설명한다.",
+    "presentation_sources": {
+      "question": [
+        "konva_1788083991421_text_492324"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "가와 나는 규칙에 따라 원을 그린 것입니다. 알맞은 것을 선택해 두 모양을 그린 규칙의 같은 점과 다른 점을 설명해 보세요."
   },
   "domain": {
     "objects": [
@@ -153,11 +161,24 @@
   "answer": {
     "blanks": [],
     "choices": [
-      "중심",
-      "반지름"
+      {
+        "id": "choice.1",
+        "label": "1",
+        "text": "중심",
+        "source_refs": []
+      },
+      {
+        "id": "choice.2",
+        "label": "2",
+        "text": "반지름",
+        "source_refs": []
+      }
     ],
     "answer_key": [
-      "반지름"
+      {
+        "id": "choice.2",
+        "value": "반지름"
+      }
     ],
     "confidence": 1.0,
     "target": {
@@ -165,6 +186,36 @@
       "description": "같은 점에 들어갈 알맞은 말(중심, 반지름)"
     },
     "value": "반지름",
-    "unit": ""
+    "unit": "",
+    "presentation": {
+      "mode": "choice",
+      "editor_managed": true,
+      "review": {
+        "mode": "choice",
+        "status": "verified",
+        "note": "",
+        "answers": [
+          {
+            "value": "반지름"
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice.1",
+            "text": "중심",
+            "correct": false,
+            "label": "1",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.2",
+            "text": "반지름",
+            "correct": true,
+            "label": "2",
+            "sourceRefs": []
+          }
+        ]
+      }
+    }
   }
 }

@@ -9,7 +9,7 @@
       "초등수학"
     ],
     "instruction": "알맞은 말을 선택해 보시오.",
-    "question": "원의 중심과 원 위의 점을 잇는 선분의 이름을 고르는 문제",
+    "question": "알맞은 말을 선택해 보시오.",
     "required_layout_ids": [
       "slot.circle.outer",
       "slot.line.g1",
@@ -18,7 +18,15 @@
       "slot.pt.center"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko"
+    "language": "ko",
+    "presentation_sources": {
+      "question": [
+        "slot.header.text"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "알맞은 말을 선택해 보시오."
   },
   "domain": {
     "objects": [
@@ -83,12 +91,30 @@
   "answer": {
     "blanks": [],
     "choices": [
-      "지름",
-      "반지름",
-      "중심"
+      {
+        "id": "choice.1",
+        "label": "1",
+        "text": "지름",
+        "source_refs": []
+      },
+      {
+        "id": "choice.2",
+        "label": "2",
+        "text": "반지름",
+        "source_refs": []
+      },
+      {
+        "id": "choice.3",
+        "label": "3",
+        "text": "중심",
+        "source_refs": []
+      }
     ],
     "answer_key": [
-      "반지름"
+      {
+        "id": "choice.2",
+        "value": "반지름"
+      }
     ],
     "confidence": 1.0,
     "target": {
@@ -96,6 +122,43 @@
       "description": "선분 ㄱㅇ, 선분 ㄴㅇ, 선분 ㄷㅇ에 알맞은 말"
     },
     "value": "반지름",
-    "unit": ""
+    "unit": "",
+    "presentation": {
+      "mode": "choice",
+      "editor_managed": true,
+      "review": {
+        "mode": "choice",
+        "status": "verified",
+        "note": "",
+        "answers": [
+          {
+            "value": "반지름"
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice.1",
+            "text": "지름",
+            "correct": false,
+            "label": "1",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.2",
+            "text": "반지름",
+            "correct": true,
+            "label": "2",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.3",
+            "text": "중심",
+            "correct": false,
+            "label": "3",
+            "sourceRefs": []
+          }
+        ]
+      }
+    }
   }
 }
