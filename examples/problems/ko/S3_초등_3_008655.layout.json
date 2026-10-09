@@ -1,0 +1,182 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008655",
+  "title": "원의 반지름",
+  "canvas": {
+    "width": 800,
+    "height": 520,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.circle",
+        "slot.diagram.r1",
+        "slot.diagram.r2",
+        "slot.diagram.r3",
+        "slot.diagram.center",
+        "slot.q1",
+        "slot.diagram.lb.g",
+        "slot.diagram.lb.n",
+        "slot.diagram.lb.d",
+        "slot.choice",
+        "slot.q1.copy1"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "선분 ㅇㄱ, 선분 ㅇㄴ, 선분 ㅇㄷ은 모두 원의 반지름입니다.  ",
+        "style_role": "question",
+        "x": 64.842,
+        "y": 90.03,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.diagram.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 436.842,
+        "cy": 294.03,
+        "r": 110.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.r1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 436.842,
+        "y1": 294.03,
+        "x2": 351.842,
+        "y2": 364.03
+      }
+    },
+    {
+      "id": "slot.diagram.r2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 436.842,
+        "y1": 294.03,
+        "x2": 511.842,
+        "y2": 374.03
+      }
+    },
+    {
+      "id": "slot.diagram.r3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 436.842,
+        "y1": 294.03,
+        "x2": 546.842,
+        "y2": 274.03
+      }
+    },
+    {
+      "id": "slot.diagram.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 436.842,
+        "cy": 294.03,
+        "r": 5.0,
+        "fill": "#d81b60"
+      }
+    },
+    {
+      "id": "slot.diagram.lb.g",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 326.842,
+        "y": 389.03,
+        "font_size": 30,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.diagram.lb.n",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 516.842,
+        "y": 389.03,
+        "font_size": 30,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.diagram.lb.d",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 551.842,
+        "y": 269.03,
+        "font_size": 30,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "한 원에서 원의 반지름은 모두 ( 같습니다, 다릅니다 ).",
+        "style_role": "question",
+        "x": 76.842,
+        "y": 459.03,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.q1.copy1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "각 선분의 길이를 재어 알맞은 말을 선택하세요.  ",
+        "style_role": "body",
+        "x": 66.842,
+        "y": 134.03,
+        "font_size": 30,
+        "max_width": 832.0,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.diagram.circle",
+    "slot.diagram.r1",
+    "slot.diagram.r2",
+    "slot.diagram.r3",
+    "slot.diagram.center",
+    "slot.q1",
+    "slot.diagram.lb.g",
+    "slot.diagram.lb.n",
+    "slot.diagram.lb.d",
+    "slot.choice",
+    "slot.q1.copy1"
+  ]
+}

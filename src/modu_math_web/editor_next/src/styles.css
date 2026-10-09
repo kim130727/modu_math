@@ -426,9 +426,13 @@ input {
 .problem-list-status,
 .problem-list-error,
 .panel-message {
+  min-width: 0;
   padding: 8px 12px;
   border-bottom: 1px solid #e2e8f0;
   font-size: 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .problem-list-status,
@@ -1793,6 +1797,7 @@ input {
 
 
 .presentation-layout {
+  min-width: 0;
   height: 100%;
   box-sizing: border-box;
   display: grid;
@@ -1801,7 +1806,7 @@ input {
   gap: 12px;
   align-content: stretch;
 }
-.presentation-with-panel { grid-template-columns: minmax(280px, 1fr) 320px; }
+.presentation-with-panel { grid-template-columns: minmax(0, 1fr) minmax(0, 320px); }
 .konva-question-preview {
   grid-column: 1 / -1;
   padding: 14px 20px;
@@ -1820,7 +1825,7 @@ input {
 .presentation-zone-empty { margin: 4px 0; color: #e0e7ff; font-size: 14px; font-weight: 700; }
 .presentation-layout .konva-canvas-surface { grid-column: 1; grid-row: 3; }
 .presentation-layout > .konva-side-panel { grid-column: 2; grid-row: 2 / span 2; width: 100%; height: 100%; align-self: stretch; border: 1px solid #cbd5e1; border-radius: 14px; }
-.presentation-review .answer-review-panel { position: static; grid-column: 2; grid-row: 2 / span 2; width: 100%; align-self: start; max-height: calc(100vh - 200px); overflow-y: auto; border-color: #cbd5e1; box-shadow: none; }
+.presentation-review .answer-review-panel { position: static; grid-column: 2; grid-row: 2 / span 2; min-width: 0; width: 100%; max-width: 100%; align-self: start; max-height: calc(100vh - 200px); overflow-x: hidden; overflow-y: auto; border-color: #cbd5e1; box-shadow: none; }
 .review-canvas-toolbar { grid-column: 1; grid-row: 2; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 4px 16px; color: #334155; font-size: 13px; }
 .review-fit-toggle { display: inline-flex; align-items: center; gap: 6px; }
 .review-tabs { display: flex; gap: 6px; }
@@ -1866,6 +1871,7 @@ input {
 .answer-review-panel .answer-review-choice { display: flex; min-height: 40px; padding: 4px 8px; cursor: pointer; }
 
 .review-status-header {
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1895,8 +1901,14 @@ input {
   border-color: #e2e8f0;
 }
 .review-feedback {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 100%;
   font-size: 12px;
   color: #64748b;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .review-alert-unverified {
   background: #fff7ed;

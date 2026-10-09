@@ -1,0 +1,257 @@
+{
+  "problem_id": "S3_초등_3_008677",
+  "view_box": {
+    "width": 800.0,
+    "height": 390.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.qtext.text",
+      "type": "text",
+      "attributes": {
+        "x": 90.0,
+        "y": 35.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qtext",
+      "refs": {
+        "layout_slot_id": "slot.qtext"
+      },
+      "text": "원의 반지름을 나타내는 선분을 찾아 선택하세요."
+    },
+    {
+      "id": "slot.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 397.0,
+        "cy": 175.0,
+        "r": 120.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.circle",
+      "refs": {
+        "layout_slot_id": "slot.circle"
+      }
+    },
+    {
+      "id": "slot.seg1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 284.0,
+        "y1": 215.0,
+        "x2": 509.0,
+        "y2": 135.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.seg1",
+      "refs": {
+        "layout_slot_id": "slot.seg1"
+      }
+    },
+    {
+      "id": "slot.seg2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 507.0,
+        "y1": 135.0,
+        "x2": 507.0,
+        "y2": 220.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.seg2",
+      "refs": {
+        "layout_slot_id": "slot.seg2"
+      }
+    },
+    {
+      "id": "slot.seg3.line",
+      "type": "line",
+      "attributes": {
+        "x1": 397.0,
+        "y1": 175.0,
+        "x2": 397.0,
+        "y2": 295.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.seg3",
+      "refs": {
+        "layout_slot_id": "slot.seg3"
+      }
+    },
+    {
+      "id": "slot.pt.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 397.0,
+        "cy": 175.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ff4aa5"
+      },
+      "source_ref": "slot.pt.center",
+      "refs": {
+        "layout_slot_id": "slot.pt.center"
+      }
+    },
+    {
+      "id": "slot.lb.g1.text",
+      "type": "text",
+      "attributes": {
+        "x": 247.0,
+        "y": 235.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 30,
+        "data-semantic-role": "symbol_label"
+      },
+      "source_ref": "slot.lb.g1",
+      "refs": {
+        "layout_slot_id": "slot.lb.g1"
+      },
+      "text": "ㄱ"
+    },
+    {
+      "id": "slot.lb.g2.text",
+      "type": "text",
+      "attributes": {
+        "x": 407.0,
+        "y": 270.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 30,
+        "data-semantic-role": "symbol_label"
+      },
+      "source_ref": "slot.lb.g2",
+      "refs": {
+        "layout_slot_id": "slot.lb.g2"
+      },
+      "text": "ㄴ"
+    },
+    {
+      "id": "slot.lb.g3.text",
+      "type": "text",
+      "attributes": {
+        "x": 472.0,
+        "y": 225.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 30,
+        "data-semantic-role": "symbol_label"
+      },
+      "source_ref": "slot.lb.g3",
+      "refs": {
+        "layout_slot_id": "slot.lb.g3"
+      },
+      "text": "ㄷ"
+    },
+    {
+      "id": "slot.lb.g4.text",
+      "type": "text",
+      "attributes": {
+        "x": 517.0,
+        "y": 130.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 30,
+        "data-semantic-role": "symbol_label"
+      },
+      "source_ref": "slot.lb.g4",
+      "refs": {
+        "layout_slot_id": "slot.lb.g4"
+      },
+      "text": "ㄹ"
+    },
+    {
+      "id": "slot.lb.o.text",
+      "type": "text",
+      "attributes": {
+        "x": 372.0,
+        "y": 160.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 30,
+        "data-semantic-role": "symbol_label"
+      },
+      "source_ref": "slot.lb.o",
+      "refs": {
+        "layout_slot_id": "slot.lb.o"
+      },
+      "text": "ㅇ"
+    },
+    {
+      "id": "slot.choice_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 95.0,
+        "y": 305.0,
+        "width": 580.0,
+        "height": 65.0,
+        "fill": "none",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice_box",
+      "refs": {
+        "layout_slot_id": "slot.choice_box"
+      }
+    },
+    {
+      "id": "slot.choice1.text",
+      "type": "text",
+      "attributes": {
+        "x": 135.0,
+        "y": 345.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice1",
+      "refs": {
+        "layout_slot_id": "slot.choice1"
+      },
+      "text": "1. 선분 ㄱㄹ"
+    },
+    {
+      "id": "slot.choice2.text",
+      "type": "text",
+      "attributes": {
+        "x": 310.0,
+        "y": 345.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice2",
+      "refs": {
+        "layout_slot_id": "slot.choice2"
+      },
+      "text": "2. 선분 ㅇㄴ"
+    },
+    {
+      "id": "slot.choice3.text",
+      "type": "text",
+      "attributes": {
+        "x": 490.0,
+        "y": 345.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice3",
+      "refs": {
+        "layout_slot_id": "slot.choice3"
+      },
+      "text": "3. 선분 ㄷㄹ"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

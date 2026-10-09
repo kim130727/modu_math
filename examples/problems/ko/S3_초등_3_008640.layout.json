@@ -1,0 +1,184 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008640",
+  "title": "한 원의 반지름의 개수를 묻는 객관식 문제",
+  "canvas": {
+    "width": 960,
+    "height": 650,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle.boundary",
+        "slot.radius.left",
+        "slot.radius.up_right",
+        "slot.radius.down",
+        "slot.circle.center",
+        "slot.circle.marker"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "choice",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.1",
+        "slot.choice.2"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원에 반지름을 3개 그은 것입니다. 한 원에 반지름을 몇 개 그을 수 있는지\n알맞은 것을 선택하세요",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 34.0,
+        "font_size": 28,
+        "semantic_role": "question",
+        "font_family": "\"Noto Sans KR\", sans-serif"
+      }
+    },
+    {
+      "id": "slot.circle.boundary",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 354.011,
+        "cy": 227.168,
+        "r": 135.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 359.011,
+        "cy": 232.168,
+        "r": 5.0,
+        "fill": "#e91e63"
+      }
+    },
+    {
+      "id": "slot.circle.marker",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 357.011,
+        "cy": 212.168,
+        "r": 5.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.radius.left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 353.885,
+        "y1": 233.284,
+        "x2": 220.005,
+        "y2": 242.174
+      }
+    },
+    {
+      "id": "slot.radius.up_right",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 364.779,
+        "y1": 228.799,
+        "x2": 470.009,
+        "y2": 159.169
+      }
+    },
+    {
+      "id": "slot.radius.down",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 359.652,
+        "y1": 236.488,
+        "x2": 344.012,
+        "y2": 362.168
+      }
+    },
+    {
+      "id": "slot.choice.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "무수히 많이 그을 수 있습니다.",
+        "style_role": "choice",
+        "x": 137.873,
+        "y": 420.681,
+        "font_size": 28,
+        "semantic_role": "choice",
+        "font_family": "\"Noto Sans KR\", sans-serif"
+      }
+    },
+    {
+      "id": "slot.choice.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3개",
+        "style_role": "choice",
+        "x": 495.864,
+        "y": 420.159,
+        "font_size": 28,
+        "semantic_role": "choice",
+        "font_family": "\"Noto Sans KR\", sans-serif"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "region.diagram",
+    "slot.circle.boundary",
+    "slot.radius.left",
+    "slot.radius.up_right",
+    "slot.radius.down",
+    "slot.circle.center",
+    "slot.circle.marker",
+    "region.choice",
+    "slot.choice.1",
+    "slot.choice.2",
+    "region.answer",
+    "region.explanation"
+  ]
+}

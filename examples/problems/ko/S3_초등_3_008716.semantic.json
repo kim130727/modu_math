@@ -1,0 +1,145 @@
+{
+  "problem_id": "S3_초등_3_008716",
+  "problem_type": "multiple_choice",
+  "metadata": {
+    "title": "도형에 대한 설명으로 틀린 것은 어느 것일까요?",
+    "tags": [],
+    "question": "도형에 대한 설명으로 틀린 것은 어느 것일까요?",
+    "required_layout_ids": [
+      "slot.circle.outer",
+      "slot.line.chord",
+      "slot.line.diameter",
+      "slot.line.radius",
+      "slot.pt.center"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기 중 옳지 않은 설명을 고른다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.center",
+        "type": "point",
+        "symbol": "ㅇ"
+      },
+      {
+        "id": "obj.point_g",
+        "type": "point",
+        "symbol": "ㄱ"
+      },
+      {
+        "id": "obj.point_n",
+        "type": "point",
+        "symbol": "ㄴ"
+      },
+      {
+        "id": "obj.point_l",
+        "type": "point",
+        "symbol": "ㄹ"
+      },
+      {
+        "id": "obj.point_d",
+        "type": "point",
+        "symbol": "ㄷ"
+      },
+      {
+        "id": "obj.segment_nl",
+        "type": "segment",
+        "endpoints": [
+          "obj.point_n",
+          "obj.point_l"
+        ]
+      },
+      {
+        "id": "obj.segment_gl",
+        "type": "segment",
+        "endpoints": [
+          "obj.point_g",
+          "obj.point_l"
+        ]
+      },
+      {
+        "id": "obj.segment_no",
+        "type": "segment",
+        "endpoints": [
+          "obj.point_n",
+          "obj.center"
+        ]
+      },
+      {
+        "id": "obj.segment_do",
+        "type": "segment",
+        "endpoints": [
+          "obj.point_d",
+          "obj.center"
+        ]
+      },
+      {
+        "id": "obj.segment_lo",
+        "type": "segment",
+        "endpoints": [
+          "obj.point_l",
+          "obj.center"
+        ]
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.center",
+          "obj.segment_nl",
+          "obj.segment_gl",
+          "obj.segment_no",
+          "obj.segment_do",
+          "obj.segment_lo"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.incorrect_statement"
+        ]
+      },
+      "plan": {
+        "method": "property_verification",
+        "description": "중심, 지름, 반지름의 성질을 검증하여 옳지 않은 설명을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "verify_choice_statements"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "longest_segment_is_diameter"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "answer_key": [
+      "4"
+    ],
+    "confidence": 1.0,
+    "target": {
+      "type": "multiple_choice",
+      "description": "도형에 대한 설명으로 틀린 것"
+    },
+    "value": "4",
+    "unit": ""
+  }
+}

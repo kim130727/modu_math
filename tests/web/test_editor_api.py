@@ -798,6 +798,32 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     assert not (problem_dir / "problem.svg").exists()
 
 
+def test_failed_build_returns_the_error_without_stale_artifacts(
+    tmp_path: Path,
+) -> None:
+    client = _setup_django(tmp_path)
+    problem_dir = _write_problem(
+        tmp_path,
+        "0001",
+        "BROKEN = true\n",
+    )
+    (problem_dir / "problem.semantic.json").write_text(
+        json.dumps({"problem_id": "stale"}), encoding="utf-8"
+    )
+    (problem_dir / "problem.svg").write_text(
+        "<svg>" + ("A" * 50_000) + "</svg>", encoding="utf-8"
+    )
+
+    response = client.post("/api/editor/problems/0001/build/")
+
+    assert response.status_code == 500
+    body = response.json()
+    assert body["ok"] is False
+    assert body["error"] == "name 'true' is not defined"
+    assert body["artifacts"] == {}
+    assert len(response.content) < 1_000
+
+
 def test_build_endpoint_preserves_deleted_blank_answer_slot_override(
     tmp_path: Path,
 ) -> None:

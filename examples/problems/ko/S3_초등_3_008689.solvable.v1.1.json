@@ -1,0 +1,81 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008689",
+  "problem_type": "geometry_circle_classification",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "원의 반지름과 지름을 나타내는 선분의 기호",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.segment.ga",
+      "value": {
+        "label": "ㄱ"
+      }
+    },
+    {
+      "ref": "obj.segment.na",
+      "value": {
+        "label": "ㄴ"
+      }
+    },
+    {
+      "ref": "obj.segment.da",
+      "value": {
+        "label": "ㄷ"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "symbol_selection"
+  },
+  "method": "visual_classification",
+  "plan": [
+    "중심을 지나는지 확인한다.",
+    "원 둘레까지 이어지는지 확인한다.",
+    "반지름과 지름에 해당하는 기호를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "기호 ㄷ은 중심에서 원 둘레까지 이어지는 선분으로 본다.",
+      "value": "반지름"
+    },
+    {
+      "id": "step.2",
+      "expr": "기호 ㄴ은 원을 가로지르며 중심을 지나는 선분으로 본다.",
+      "value": "지름"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "반지름 후보가 중심과 원 둘레를 연결하는가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "지름 후보가 원의 두 점을 잇고 중심을 지나는가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "symbol_selection",
+      "description": "원의 반지름과 원의 지름에 해당하는 기호를 고르기"
+    },
+    "value": "ㄷ, ㄴ",
+    "unit": ""
+  }
+}

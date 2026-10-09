@@ -1,0 +1,326 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008720",
+  "title": "원의 크기와 구멍 선택",
+  "canvas": {
+    "width": 700,
+    "height": 344,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.pin_base",
+        "slot.lb2_text.copy5",
+        "slot.lb2_text",
+        "slot.lb3_text",
+        "slot.lb4_text",
+        "slot.lb5_text",
+        "konva_1788083991421_text_2123303"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.bar",
+        "slot.pin",
+        "slot.arrow1",
+        "slot.arrow2",
+        "slot.arrow3",
+        "slot.arrow4",
+        "slot.arrow5",
+        "slot.hole1",
+        "slot.hole2",
+        "slot.hole3",
+        "slot.hole4",
+        "slot.hole5"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.bar",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 126.97,
+        "y": 183.856,
+        "width": 425.0,
+        "height": 40.0,
+        "stroke": "#7AD7D7",
+        "stroke_width": 1.2,
+        "fill": "#CFEFEF"
+      }
+    },
+    {
+      "id": "slot.pin",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 181.97,
+        "cy": 204.856,
+        "r": 10.0,
+        "fill": "#A8B0B6"
+      }
+    },
+    {
+      "id": "slot.pin_base",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 189.97,
+        "y": 194.856,
+        "width": 10.0,
+        "height": 5.0,
+        "stroke": "#7E8790",
+        "stroke_width": 0.8,
+        "fill": "#A8B0B6"
+      }
+    },
+    {
+      "id": "slot.hole1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 249.97,
+        "cy": 204.856,
+        "r": 5.0,
+        "stroke": "#6E6E6E",
+        "stroke_width": 1.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.hole2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 304.97,
+        "cy": 204.856,
+        "r": 5.0,
+        "stroke": "#6E6E6E",
+        "stroke_width": 1.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.hole3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 364.97,
+        "cy": 204.856,
+        "r": 5.0,
+        "stroke": "#6E6E6E",
+        "stroke_width": 1.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.hole4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 424.97,
+        "cy": 204.856,
+        "r": 5.0,
+        "stroke": "#6E6E6E",
+        "stroke_width": 1.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.hole5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 484.97,
+        "cy": 204.856,
+        "r": 5.0,
+        "stroke": "#6E6E6E",
+        "stroke_width": 1.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.arrow1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 249.97,
+        "y1": 209.856,
+        "x2": 249.97,
+        "y2": 254.856,
+        "stroke": "#FF4FA0",
+        "stroke_width": 1.4
+      }
+    },
+    {
+      "id": "slot.arrow2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 304.97,
+        "y1": 209.856,
+        "x2": 304.97,
+        "y2": 254.856,
+        "stroke": "#FF4FA0",
+        "stroke_width": 1.4
+      }
+    },
+    {
+      "id": "slot.arrow3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 364.97,
+        "y1": 209.856,
+        "x2": 364.97,
+        "y2": 254.856,
+        "stroke": "#FF4FA0",
+        "stroke_width": 1.4
+      }
+    },
+    {
+      "id": "slot.arrow4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 424.97,
+        "y1": 209.856,
+        "x2": 424.97,
+        "y2": 254.856,
+        "stroke": "#FF4FA0",
+        "stroke_width": 1.4
+      }
+    },
+    {
+      "id": "slot.arrow5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 484.97,
+        "y1": 209.856,
+        "x2": 484.97,
+        "y2": 254.856,
+        "stroke": "#FF4FA0",
+        "stroke_width": 1.4
+      }
+    },
+    {
+      "id": "slot.lb2_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 294.97,
+        "y": 289.856,
+        "font_size": 30,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.lb3_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 354.97,
+        "y": 289.856,
+        "font_size": 30,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.lb4_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 409.97,
+        "y": 289.856,
+        "font_size": 30,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.lb5_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅁ",
+        "style_role": "label",
+        "x": 469.97,
+        "y": 289.856,
+        "font_size": 30,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.lb2_text.copy5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "body",
+        "x": 234.97,
+        "y": 289.856,
+        "font_size": 30,
+        "fill": "#111111",
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "konva_1788083991421_text_2123303",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 작게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택해 보세요.",
+        "x": 29.357,
+        "y": 15.682,
+        "font_size": 30,
+        "fill": "#111827",
+        "width": 639.866,
+        "height": 121,
+        "align": "left",
+        "line_height": 1.25,
+        "kind": "text_box"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.pin_base",
+    "slot.lb2_text.copy5",
+    "slot.lb2_text",
+    "slot.lb3_text",
+    "slot.lb4_text",
+    "slot.lb5_text",
+    "region.diagram",
+    "slot.bar",
+    "slot.pin",
+    "slot.arrow1",
+    "slot.arrow2",
+    "slot.arrow3",
+    "slot.arrow4",
+    "slot.arrow5",
+    "slot.hole1",
+    "slot.hole2",
+    "slot.hole3",
+    "slot.hole4",
+    "slot.hole5",
+    "konva_1788083991421_text_2123303"
+  ]
+}

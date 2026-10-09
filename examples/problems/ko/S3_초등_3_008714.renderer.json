@@ -1,0 +1,290 @@
+{
+  "problem_id": "S3_초등_3_008714",
+  "view_box": {
+    "width": 720.0,
+    "height": 420.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.header.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 35.0,
+        "y": 35.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.header.text",
+      "refs": {
+        "layout_slot_id": "slot.header.text"
+      },
+      "text": "그림과 같이 띠 종이를 이용하여 원을 그릴 때, 누름 못이 꽂혔던 점을 무엇이라고 할까요?"
+    },
+    {
+      "id": "slot.circle.outer.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 320.0,
+        "cy": 210.0,
+        "r": 90.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.circle.outer",
+      "refs": {
+        "layout_slot_id": "slot.circle.outer"
+      }
+    },
+    {
+      "id": "slot.tool.strip.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 305.0,
+        "y": 198.0,
+        "width": 135.0,
+        "height": 24.0,
+        "fill": "#f0f9ff",
+        "stroke": "#0284c7",
+        "stroke-width": 1.5,
+        "rx": 4.0,
+        "ry": 4.0
+      },
+      "source_ref": "slot.tool.strip",
+      "refs": {
+        "layout_slot_id": "slot.tool.strip"
+      }
+    },
+    {
+      "id": "slot.pencil.body.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            411.0,
+            195.0
+          ],
+          [
+            419.0,
+            198.0
+          ],
+          [
+            435.0,
+            151.0
+          ],
+          [
+            428.0,
+            148.0
+          ]
+        ],
+        "stroke": "#e11d48",
+        "stroke-width": 1.0,
+        "fill": "#fb7185"
+      },
+      "source_ref": "slot.pencil.body",
+      "refs": {
+        "layout_slot_id": "slot.pencil.body"
+      }
+    },
+    {
+      "id": "slot.pencil.tip.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            410.0,
+            210.0
+          ],
+          [
+            411.0,
+            195.0
+          ],
+          [
+            419.0,
+            198.0
+          ]
+        ],
+        "stroke": "#ea580c",
+        "stroke-width": 1.0,
+        "fill": "#fed7aa"
+      },
+      "source_ref": "slot.pencil.tip",
+      "refs": {
+        "layout_slot_id": "slot.pencil.tip"
+      }
+    },
+    {
+      "id": "slot.pencil.lead.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            410.0,
+            210.0
+          ],
+          [
+            410.5,
+            204.0
+          ],
+          [
+            413.0,
+            205.0
+          ]
+        ],
+        "stroke": "#0f172a",
+        "stroke-width": 1.0,
+        "fill": "#1e293b"
+      },
+      "source_ref": "slot.pencil.lead",
+      "refs": {
+        "layout_slot_id": "slot.pencil.lead"
+      }
+    },
+    {
+      "id": "slot.pencil.eraser.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            428.0,
+            148.0
+          ],
+          [
+            435.0,
+            151.0
+          ],
+          [
+            439.0,
+            142.0
+          ],
+          [
+            431.0,
+            139.0
+          ]
+        ],
+        "stroke": "#92400e",
+        "stroke-width": 1.0,
+        "fill": "#d97706"
+      },
+      "source_ref": "slot.pencil.eraser",
+      "refs": {
+        "layout_slot_id": "slot.pencil.eraser"
+      }
+    },
+    {
+      "id": "slot.hole.1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 345.0,
+        "cy": 210.0,
+        "r": 2.5,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#334155"
+      },
+      "source_ref": "slot.hole.1",
+      "refs": {
+        "layout_slot_id": "slot.hole.1"
+      }
+    },
+    {
+      "id": "slot.hole.2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 370.0,
+        "cy": 210.0,
+        "r": 2.5,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#334155"
+      },
+      "source_ref": "slot.hole.2",
+      "refs": {
+        "layout_slot_id": "slot.hole.2"
+      }
+    },
+    {
+      "id": "slot.hole.3.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 395.0,
+        "cy": 210.0,
+        "r": 2.5,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#334155"
+      },
+      "source_ref": "slot.hole.3",
+      "refs": {
+        "layout_slot_id": "slot.hole.3"
+      }
+    },
+    {
+      "id": "slot.hole.4.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 410.0,
+        "cy": 210.0,
+        "r": 3.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#334155"
+      },
+      "source_ref": "slot.hole.4",
+      "refs": {
+        "layout_slot_id": "slot.hole.4"
+      }
+    },
+    {
+      "id": "slot.pin.base.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 320.0,
+        "cy": 210.0,
+        "r": 6.0,
+        "stroke": "#334155",
+        "stroke-width": 1.5,
+        "fill": "#64748b"
+      },
+      "source_ref": "slot.pin.base",
+      "refs": {
+        "layout_slot_id": "slot.pin.base"
+      }
+    },
+    {
+      "id": "slot.pin.dot.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 320.0,
+        "cy": 210.0,
+        "r": 2.5,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#0f172a"
+      },
+      "source_ref": "slot.pin.dot",
+      "refs": {
+        "layout_slot_id": "slot.pin.dot"
+      }
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 180.0,
+        "y": 365.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "원의 ( 중심 , 반지름 , 지름 )"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

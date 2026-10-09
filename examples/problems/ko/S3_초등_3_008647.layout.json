@@ -1,0 +1,262 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008647",
+  "title": "원 안의 선분 중 길이가 가장 긴 선분 찾기",
+  "canvas": {
+    "width": 800,
+    "height": 360,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q.text"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.top.circle",
+        "slot.diagram.top.segment.a",
+        "slot.diagram.top.segment.b",
+        "slot.diagram.top.segment.c",
+        "slot.diagram.top.segment.d",
+        "slot.diagram.top.segment.e",
+        "slot.diagram.top.center.dot",
+        "slot.diagram.top.center.label",
+        "slot.diagram.top.label.a.text",
+        "slot.diagram.top.label.b.text",
+        "slot.diagram.top.label.c.text",
+        "slot.diagram.top.label.d.text",
+        "slot.diagram.top.label.e.text"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원 안의 선분 중 길이가 가장 긴 선분을 찾아 기호를 선택하세요.",
+        "style_role": "question",
+        "x": 38.479,
+        "y": 59.565,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.diagram.top.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 336.997,
+        "cy": 235.534,
+        "r": 96.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.top.segment.a",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 336.997,
+        "y1": 331.534,
+        "x2": 242.207,
+        "y2": 238.404,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.top.segment.b",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 336.997,
+        "y1": 331.534,
+        "x2": 279.397,
+        "y2": 160.654,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.top.segment.c",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 336.997,
+        "y1": 331.534,
+        "x2": 336.997,
+        "y2": 139.534,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.top.segment.d",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 336.997,
+        "y1": 331.534,
+        "x2": 394.597,
+        "y2": 160.654,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.top.segment.e",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 336.997,
+        "y1": 331.534,
+        "x2": 433.427,
+        "y2": 233.684,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.top.center.dot",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "●",
+        "style_role": "label",
+        "x": 336.997,
+        "y": 239.534,
+        "font_size": 12,
+        "anchor": "middle",
+        "fill": "#E11A86"
+      }
+    },
+    {
+      "id": "slot.diagram.top.center.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "O",
+        "style_role": "label",
+        "x": 342.849,
+        "y": 227.37,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.diagram.top.label.a.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 221.752,
+        "y": 237.513,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#555555",
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.diagram.top.label.b.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 266.378,
+        "y": 155.841,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#555555",
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.diagram.top.label.c.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 336.219,
+        "y": 132.544,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#555555",
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.diagram.top.label.d.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 414.229,
+        "y": 155.1,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#555555",
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.diagram.top.label.e.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅁ",
+        "style_role": "label",
+        "x": 455.301,
+        "y": 237.743,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#555555",
+        "semantic_role": "symbol_label"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q.text",
+    "region.diagram",
+    "slot.diagram.top.circle",
+    "slot.diagram.top.segment.a",
+    "slot.diagram.top.segment.b",
+    "slot.diagram.top.segment.c",
+    "slot.diagram.top.segment.d",
+    "slot.diagram.top.segment.e",
+    "slot.diagram.top.center.dot",
+    "slot.diagram.top.center.label",
+    "slot.diagram.top.label.a.text",
+    "slot.diagram.top.label.b.text",
+    "slot.diagram.top.label.c.text",
+    "slot.diagram.top.label.d.text",
+    "slot.diagram.top.label.e.text",
+    "region.answer"
+  ]
+}

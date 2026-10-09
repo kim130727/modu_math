@@ -1,0 +1,82 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008687",
+  "problem_type": "multiple_choice",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "selected_words",
+    "target_ticks": 0,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle",
+      "value": "circle"
+    },
+    {
+      "ref": "obj.radius",
+      "value": "radius_from_center_to_circle"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "multiple_choice_group"
+  },
+  "method": "concept_selection",
+  "plan": [
+    "원의 반지름에 대한 성질을 확인한다.",
+    "개수와 길이에 맞는 선택지를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "원의 반지름 성질 확인",
+      "value": "무수히 많이, 같습니다"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "반지름은 무수히 많이 그을 수 있고 길이는 모두 같은가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      "2개",
+      "셀 수 없이 많이",
+      "같습니다",
+      "다릅니다"
+    ],
+    "answer_key": [
+      "셀 수 없이 많이",
+      "같습니다"
+    ],
+    "target": {
+      "type": "multiple_choice_group",
+      "description": "지름의 개수와 길이 관계"
+    },
+    "value": "셀 수 없이 많이, 같습니다",
+    "unit": "",
+    "choice_groups": [
+      {
+        "label": "지름의 개수",
+        "choices": [
+          "2개",
+          "셀 수 없이 많이"
+        ]
+      },
+      {
+        "label": "지름의 길이",
+        "choices": [
+          "같습니다",
+          "다릅니다"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,348 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008660",
+  "title": "원의 반지름 찾기",
+  "canvas": {
+    "width": 800,
+    "height": 406,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "konva_1788083991421_text_850884"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle",
+        "slot.seg.1",
+        "slot.seg.2",
+        "slot.seg.3",
+        "slot.seg.4",
+        "slot.center",
+        "slot.pt.a",
+        "slot.pt.c",
+        "slot.pt.c.copy5",
+        "slot.pt.c.copy6",
+        "slot.lb.o",
+        "slot.lb.ga",
+        "slot.lb.na",
+        "slot.lb.da",
+        "slot.lb.ra"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.ga",
+        "slot.choice.na",
+        "slot.choice.da",
+        "slot.choice.ra"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 378.376,
+        "cy": 219.495,
+        "r": 90.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 378.376,
+        "cy": 219.495,
+        "r": 5.0,
+        "fill": "#ff4fa3"
+      }
+    },
+    {
+      "id": "slot.pt.a",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 316.376,
+        "cy": 154.495,
+        "r": 2.8,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.pt.c",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 458.376,
+        "cy": 259.495,
+        "r": 2.8,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.seg.1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 318.376,
+        "y1": 154.495,
+        "x2": 378.376,
+        "y2": 219.495,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.seg.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 318.376,
+        "y1": 154.495,
+        "x2": 398.376,
+        "y2": 304.495,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.seg.3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 313.376,
+        "y1": 279.495,
+        "x2": 458.376,
+        "y2": 259.495,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.seg.4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 313.376,
+        "y1": 279.495,
+        "x2": 378.376,
+        "y2": 219.495,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.lb.o",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅇ",
+        "style_role": "label",
+        "x": 373.376,
+        "y": 199.495,
+        "font_size": 25,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.lb.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 288.376,
+        "y": 154.495,
+        "font_size": 25,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.lb.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 293.376,
+        "y": 299.495,
+        "font_size": 25,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.lb.da",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 408.376,
+        "y": 324.495,
+        "font_size": 25,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.lb.ra",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 488.376,
+        "y": 254.495,
+        "font_size": 25,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.choice.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑴  선분  ㅇㄱ",
+        "style_role": "choice",
+        "x": 52.855,
+        "y": 374.824,
+        "font_size": 30,
+        "max_width": 825.0
+      }
+    },
+    {
+      "id": "slot.choice.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑵  선분  ㅇㄴ",
+        "style_role": "choice",
+        "x": 226.855,
+        "y": 374.824,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice.da",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑶  선분  ㄱㄷ",
+        "style_role": "choice",
+        "x": 407.855,
+        "y": 374.824,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice.ra",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑷  선분  ㄴㄹ",
+        "style_role": "choice",
+        "x": 588.855,
+        "y": 374.824,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.pt.c.copy5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 312.376,
+        "cy": 280.495,
+        "r": 2.8,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.pt.c.copy6",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 398.376,
+        "cy": 306.495,
+        "r": 2.8,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "konva_1788083991421_text_850884",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "그림에서 원의 반지름을 나타내는 선분을 찾아 기호를 모두 선택해 보세요.",
+        "x": 30.662,
+        "y": 17.911,
+        "font_size": 30,
+        "fill": "#111827",
+        "width": 725.031,
+        "height": 83,
+        "align": "left",
+        "line_height": 1.25,
+        "kind": "text_box"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "region.diagram",
+    "slot.circle",
+    "slot.seg.1",
+    "slot.seg.2",
+    "slot.seg.3",
+    "slot.seg.4",
+    "slot.center",
+    "slot.pt.a",
+    "slot.pt.c",
+    "slot.pt.c.copy5",
+    "slot.pt.c.copy6",
+    "slot.lb.o",
+    "slot.lb.ga",
+    "slot.lb.na",
+    "slot.lb.da",
+    "slot.lb.ra",
+    "region.choices",
+    "slot.choice.ga",
+    "slot.choice.na",
+    "slot.choice.da",
+    "slot.choice.ra",
+    "region.answer",
+    "konva_1788083991421_text_850884"
+  ]
+}

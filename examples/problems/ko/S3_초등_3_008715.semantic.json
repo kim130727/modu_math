@@ -1,0 +1,84 @@
+{
+  "problem_id": "S3_초등_3_008715",
+  "problem_type": "geometry_circle_radius_choice",
+  "metadata": {
+    "title": "원에서 반지름을 나타내는 선분을 선택하시오",
+    "tags": [],
+    "question": "원에서 반지름을 나타내는 선분을 선택하시오.",
+    "required_layout_ids": [
+      "slot.seg_gs",
+      "slot.seg_nr",
+      "slot.seg_do",
+      "slot.seg_bm",
+      "slot.pt.o",
+      "slot.inserted.freeform.1",
+      "slot.inserted.circle.1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기에서 반지름에 해당하는 선분을 고른다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.center.o",
+        "type": "point",
+        "role": "center",
+        "label": "ㅇ"
+      },
+      {
+        "id": "obj.radius_candidate.d_o",
+        "type": "segment",
+        "label": "선분 ㄷㅇ"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.center.o",
+          "obj.radius_candidate.d_o"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.radius_definition"
+        ]
+      },
+      "plan": {
+        "method": "definition_matching",
+        "description": "원의 중심과 원 위의 한 점을 이은 선분을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_center",
+          "identify_point_on_circle",
+          "match_radius_definition"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "definition_check",
+          "candidate_comparison"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_segment",
+      "description": "원의 반지름을 나타내는 선분"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

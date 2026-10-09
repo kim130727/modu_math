@@ -1,0 +1,90 @@
+{
+  "problem_id": "S3_초등_3_008719",
+  "problem_type": "multiple_choice_geometry",
+  "metadata": {
+    "title": "원의 중심이 되는 곳",
+    "tags": [],
+    "question": "띠 종이를 나 못으로 고정한 후 연필을 구멍에 넣어 원을 그리려고 할 때, 원의 중심이 되는 곳을 고르는 문제",
+    "required_layout_ids": [
+      "slot.band",
+      "slot.pt1",
+      "slot.pt2",
+      "slot.pt3",
+      "slot.pt4",
+      "slot.pt5",
+      "slot.pin_body",
+      "slot.pin_head",
+      "slot.pin_tip",
+      "slot.pencil_body",
+      "slot.pencil_tip",
+      "slot.pencil_eraser"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "원의 중심이 되는 곳을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.band",
+        "type": "strip_paper"
+      },
+      {
+        "id": "obj.pin",
+        "type": "pin"
+      },
+      {
+        "id": "obj.pencil",
+        "type": "pencil"
+      },
+      {
+        "id": "obj.choice_3",
+        "type": "candidate_point"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.band",
+          "obj.pin",
+          "obj.pencil",
+          "obj.choice_3"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.pin_center"
+        ]
+      },
+      "plan": {
+        "method": "identify_given_center_point",
+        "description": "누름 못이 꽂힌 위치가 원의 중심인지 그림과 해설의 대응으로 확인한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "match_pin_position_to_choice",
+          "select_center_candidate"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "compare_with_printed_explanation",
+          "verify_choice_label"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice_label",
+      "description": "원의 중심이 되는 곳"
+    },
+    "value": 3,
+    "unit": ""
+  }
+}

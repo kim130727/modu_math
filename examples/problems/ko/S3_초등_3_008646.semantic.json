@@ -1,0 +1,140 @@
+{
+  "problem_id": "S3_초등_3_008646",
+  "problem_type": "geometry_concept_selection",
+  "metadata": {
+    "title": "원을 접어 원의 성질 알아보기",
+    "tags": [
+      "geometry",
+      "circle",
+      "paper_folding"
+    ],
+    "instruction": "알맞은 말을 선택하세요.",
+    "question": "원 모양의 종이를 접어 원의 성질을 알아보고 알맞은 말을 선택하는 문제",
+    "required_layout_ids": [
+      "slot.person.left.body",
+      "slot.person.left.ear.left",
+      "slot.person.left.ear.right",
+      "slot.person.left.head",
+      "slot.person.left.hair.cap",
+      "slot.person.left.eye.left",
+      "slot.person.left.eye.right",
+      "slot.person.left.smile",
+      "slot.speech.bubble",
+      "slot.fold.stage1.paper",
+      "slot.fold.arrow1.body",
+      "slot.fold.arrow1.head",
+      "slot.fold.stage2.paper",
+      "slot.fold.stage2.edge",
+      "slot.fold.arrow2.body",
+      "slot.fold.arrow2.head",
+      "slot.fold.stage3.paper",
+      "slot.fold.stage3.fold_line",
+      "slot.fold.arrow3.body",
+      "slot.fold.arrow3.head",
+      "slot.fold.stage4.paper",
+      "slot.fold.stage4.crease",
+      "slot.fold.stage4.guide",
+      "slot.fold.arrow4.body",
+      "slot.fold.arrow4.head",
+      "slot.fold.stage5.paper",
+      "slot.fold.stage5.fold_line",
+      "slot.fold.stage5.fold_line2",
+      "slot.fold.stage5.center",
+      "slot.note.equal.arrow",
+      "slot.note.center.arrow",
+      "slot.answer.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle_paper",
+        "type": "circle",
+        "description": "원 모양의 종이"
+      },
+      {
+        "id": "obj.fold_line",
+        "type": "line_segment",
+        "description": "원을 둘로 똑같이 나누는 접힌 선"
+      },
+      {
+        "id": "obj.center",
+        "type": "point",
+        "description": "원의 중심"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.divides_equally",
+        "type": "equal_partition",
+        "from_id": "obj.fold_line",
+        "to_id": "obj.circle_paper",
+        "description": "선분이 원을 둘로 똑같이 나눈다."
+      },
+      {
+        "id": "rel.passes_center",
+        "type": "incidence",
+        "from_id": "obj.fold_line",
+        "to_id": "obj.center",
+        "description": "선분이 원의 중심을 지난다."
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle_paper",
+          "obj.fold_line"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.divides_equally",
+          "rel.passes_center"
+        ]
+      },
+      "plan": {
+        "method": "concept_matching",
+        "description": "원을 둘로 똑같이 나누며 중심을 지나는 선분은 지름임을 확인한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_center_passing_segment",
+          "match_to_diameter"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "definition_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      {
+        "id": "choice.diameter",
+        "value": "지름"
+      },
+      {
+        "id": "choice.radius",
+        "value": "반지름"
+      }
+    ],
+    "answer_key": [
+      {
+        "id": "choice.diameter",
+        "value": "지름"
+      }
+    ],
+    "confidence": 1.0,
+    "target": {
+      "type": "concept_name",
+      "description": "원을 둘로 똑같이 나누는 선분의 이름"
+    },
+    "value": "지름",
+    "unit": ""
+  }
+}

@@ -1,0 +1,435 @@
+{
+  "schema": "modu.vision_structured.v1",
+  "problem_id": "S3_초등_3_008685",
+  "source_image": {
+    "path": "examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008685.png",
+    "width_px": 940.0,
+    "height_px": 424.0,
+    "coordinate_system": "normalized_0_1"
+  },
+  "visible_text": [
+    {
+      "id": "text.1",
+      "text": "□ 74. 다음을 읽고 바로 설명하였으면 ○표, 그렇지 않으면 ×표를 선택하세",
+      "bbox": {
+        "x": 0.013,
+        "y": 0.016,
+        "w": 0.944,
+        "h": 0.073
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "text.2",
+      "text": "요.",
+      "bbox": {
+        "x": 0.013,
+        "y": 0.086,
+        "w": 0.028,
+        "h": 0.051
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "text.3",
+      "text": "원의 반지름을 나타내는 선분은 선분 ○ ㄱ입니다.",
+      "bbox": {
+        "x": 0.204,
+        "y": 0.503,
+        "w": 0.615,
+        "h": 0.081
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "text.4",
+      "text": "○",
+      "bbox": {
+        "x": 0.041,
+        "y": 0.588,
+        "w": 0.019,
+        "h": 0.04
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "text.5",
+      "text": "×",
+      "bbox": {
+        "x": 0.041,
+        "y": 0.645,
+        "w": 0.019,
+        "h": 0.04
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "text.6",
+      "text": "(정답)",
+      "bbox": {
+        "x": 0.017,
+        "y": 0.762,
+        "w": 0.052,
+        "h": 0.047
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "text.7",
+      "text": "○",
+      "bbox": {
+        "x": 0.068,
+        "y": 0.764,
+        "w": 0.021,
+        "h": 0.044
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "text.8",
+      "text": "(해설)선분 ○ㄱ은 원의 반지름을 나타냅니다.",
+      "bbox": {
+        "x": 0.017,
+        "y": 0.871,
+        "w": 0.551,
+        "h": 0.052
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "text.9",
+      "text": "○",
+      "bbox": {
+        "x": 0.503,
+        "y": 0.23,
+        "w": 0.015,
+        "h": 0.029
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "text.10",
+      "text": "ㄱ",
+      "bbox": {
+        "x": 0.571,
+        "y": 0.261,
+        "w": 0.019,
+        "h": 0.036
+      },
+      "confidence": "high"
+    }
+  ],
+  "elements": [
+    {
+      "id": "el.1",
+      "type": "text",
+      "bbox": {
+        "x": 0.013,
+        "y": 0.016,
+        "w": 0.944,
+        "h": 0.073
+      },
+      "details": "top instruction line, left aligned",
+      "confidence": "high",
+      "text": "□ 74. 다음을 읽고 바로 설명하였으면 ○표, 그렇지 않으면 ×표를 선택하세"
+    },
+    {
+      "id": "el.2",
+      "type": "text",
+      "bbox": {
+        "x": 0.013,
+        "y": 0.086,
+        "w": 0.028,
+        "h": 0.051
+      },
+      "details": "continuation of instruction, left aligned below line 1",
+      "confidence": "high",
+      "text": "요."
+    },
+    {
+      "id": "el.3",
+      "type": "other",
+      "bbox": {
+        "x": 0.452,
+        "y": 0.199,
+        "w": 0.106,
+        "h": 0.184
+      },
+      "details": "thin outlined circle centered near upper middle; no fill",
+      "confidence": "high"
+    },
+    {
+      "id": "el.4",
+      "type": "other",
+      "bbox": {
+        "x": 0.501,
+        "y": 0.26,
+        "w": 0.007,
+        "h": 0.014
+      },
+      "details": "small pink point near center of circle",
+      "confidence": "high"
+    },
+    {
+      "id": "el.5",
+      "type": "other",
+      "bbox": {
+        "x": 0.503,
+        "y": 0.23,
+        "w": 0.015,
+        "h": 0.029
+      },
+      "details": "small center marker label inside circle, above the horizontal segment",
+      "confidence": "high",
+      "text": "○"
+    },
+    {
+      "id": "el.6",
+      "type": "other",
+      "bbox": {
+        "x": 0.503,
+        "y": 0.259,
+        "w": 0.077,
+        "h": 0.005
+      },
+      "details": "horizontal segment from near center point to the right edge of circle, ending near label ㄱ",
+      "confidence": "high"
+    },
+    {
+      "id": "el.7",
+      "type": "other",
+      "bbox": {
+        "x": 0.571,
+        "y": 0.261,
+        "w": 0.019,
+        "h": 0.036
+      },
+      "details": "endpoint label placed to the right of the segment",
+      "confidence": "high",
+      "text": "ㄱ"
+    },
+    {
+      "id": "el.8",
+      "type": "text",
+      "bbox": {
+        "x": 0.204,
+        "y": 0.503,
+        "w": 0.615,
+        "h": 0.081
+      },
+      "details": "main statement centered below diagram",
+      "confidence": "high",
+      "text": "원의 반지름을 나타내는 선분은 선분 ○ ㄱ입니다."
+    },
+    {
+      "id": "el.9",
+      "type": "other",
+      "bbox": {
+        "x": 0.041,
+        "y": 0.588,
+        "w": 0.019,
+        "h": 0.04
+      },
+      "details": "blue circled selection symbol, upper of two vertically stacked markers on left",
+      "confidence": "high",
+      "text": "○"
+    },
+    {
+      "id": "el.10",
+      "type": "other",
+      "bbox": {
+        "x": 0.041,
+        "y": 0.645,
+        "w": 0.019,
+        "h": 0.04
+      },
+      "details": "blue circled selection symbol, lower of two vertically stacked markers on left",
+      "confidence": "high",
+      "text": "×"
+    },
+    {
+      "id": "el.11",
+      "type": "text",
+      "bbox": {
+        "x": 0.017,
+        "y": 0.762,
+        "w": 0.052,
+        "h": 0.047
+      },
+      "details": "answer label at lower left",
+      "confidence": "high",
+      "text": "(정답)"
+    },
+    {
+      "id": "el.12",
+      "type": "other",
+      "bbox": {
+        "x": 0.068,
+        "y": 0.764,
+        "w": 0.021,
+        "h": 0.044
+      },
+      "details": "empty circular answer slot after (정답); do not fill",
+      "confidence": "high"
+    },
+    {
+      "id": "el.13",
+      "type": "text",
+      "bbox": {
+        "x": 0.017,
+        "y": 0.871,
+        "w": 0.551,
+        "h": 0.052
+      },
+      "details": "explanation line at bottom left",
+      "confidence": "high",
+      "text": "(해설)선분 ○ㄱ은 원의 반지름을 나타냅니다."
+    }
+  ],
+  "groups": [
+    {
+      "id": "group.1",
+      "role": "stem",
+      "element_ids": [
+        "el.1",
+        "el.2"
+      ],
+      "bbox": {
+        "x": 0.013,
+        "y": 0.016,
+        "w": 0.944,
+        "h": 0.121
+      },
+      "details": "two-line instruction at top"
+    },
+    {
+      "id": "group.2",
+      "role": "diagram",
+      "element_ids": [
+        "el.3",
+        "el.4",
+        "el.5",
+        "el.6",
+        "el.7"
+      ],
+      "bbox": {
+        "x": 0.452,
+        "y": 0.199,
+        "w": 0.138,
+        "h": 0.184
+      },
+      "details": "circle diagram with center marker and rightward segment labeled ㄱ"
+    },
+    {
+      "id": "group.3",
+      "role": "statement",
+      "element_ids": [
+        "el.8"
+      ],
+      "bbox": {
+        "x": 0.204,
+        "y": 0.503,
+        "w": 0.615,
+        "h": 0.081
+      },
+      "details": "main true/false statement under diagram"
+    },
+    {
+      "id": "group.4",
+      "role": "choices",
+      "element_ids": [
+        "el.9",
+        "el.10"
+      ],
+      "bbox": {
+        "x": 0.041,
+        "y": 0.588,
+        "w": 0.019,
+        "h": 0.098
+      },
+      "details": "two vertically stacked choice markers on left"
+    },
+    {
+      "id": "group.5",
+      "role": "answer_explanation",
+      "element_ids": [
+        "el.11",
+        "el.12",
+        "el.13"
+      ],
+      "bbox": {
+        "x": 0.017,
+        "y": 0.762,
+        "w": 0.551,
+        "h": 0.161
+      },
+      "details": "bottom answer and explanation area"
+    }
+  ],
+  "math_structure": {
+    "equations": [],
+    "blanks": [
+      {
+        "id": "blank.1",
+        "kind": "answer_slot",
+        "bbox": {
+          "x": 0.068,
+          "y": 0.764,
+          "w": 0.021,
+          "h": 0.044
+        },
+        "details": "empty circular slot after (정답)"
+      }
+    ],
+    "choices": [
+      {
+        "id": "choice.1",
+        "text": "○",
+        "bbox": {
+          "x": 0.041,
+          "y": 0.588,
+          "w": 0.019,
+          "h": 0.04
+        }
+      },
+      {
+        "id": "choice.2",
+        "text": "×",
+        "bbox": {
+          "x": 0.041,
+          "y": 0.645,
+          "w": 0.019,
+          "h": 0.04
+        }
+      }
+    ],
+    "tables": [],
+    "diagrams": [
+      {
+        "id": "diagram.1",
+        "type": "circle_with_radius_segment",
+        "bbox": {
+          "x": 0.452,
+          "y": 0.199,
+          "w": 0.138,
+          "h": 0.184
+        },
+        "details": "one outlined circle with a small center marker and a horizontal segment extending rightward from the center area to the circle boundary; endpoint label ㄱ on the right"
+      }
+    ]
+  },
+  "dsl_hints": [
+    "Render the top instruction as two left-aligned lines.",
+    "Place a medium circle diagram in the upper middle of the page.",
+    "Inside the circle, add a small center marker and a horizontal segment extending to the right with label ㄱ near the endpoint.",
+    "Place the statement centered below the diagram.",
+    "Stack ○ and × choice markers vertically on the lower left.",
+    "Keep the (정답) circular slot empty.",
+    "Place the (해설) line at the bottom left."
+  ],
+  "uncertain": [
+    "The exact semantic meaning of the small ○ inside the circle is visually ambiguous, but it appears to be a center marker.",
+    "The first instruction line is truncated at the right edge in the image, so the final characters and spacing are approximate.",
+    "The bottom explanation text has no space after (해설) in the image; spacing is preserved approximately."
+  ]
+}

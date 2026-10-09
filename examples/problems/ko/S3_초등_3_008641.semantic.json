@@ -1,0 +1,152 @@
+{
+  "problem_id": "S3_초등_3_008641",
+  "problem_type": "concept_choice",
+  "metadata": {
+    "title": "원의 지름",
+    "tags": [],
+    "instruction": "지름을 재어 알맞은 말을 선택하세요.",
+    "question": "은지, 진아, 현준이가 한 원에 지름을 그은 것입니다. 지름을 재어 알맞은 말을 선택하세요.",
+    "required_layout_ids": [
+      "slot.circle",
+      "slot.center",
+      "slot.diameter.vertical",
+      "slot.diameter.green",
+      "slot.diameter.purple",
+      "slot.note.arrow",
+      "slot.choice.box",
+      "konva_1784612321567_paste_636359_0"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "presentation_sources": {
+      "question": [
+        "slot.q1"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "은지, 진아, 현준이가 한 원에 지름을 그은 것입니다. 지름을 재어 알맞은 말을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.diameter.1",
+        "type": "diameter",
+        "owner": "은지"
+      },
+      {
+        "id": "obj.diameter.2",
+        "type": "diameter",
+        "owner": "진아"
+      },
+      {
+        "id": "obj.diameter.3",
+        "type": "diameter",
+        "owner": "현준"
+      },
+      {
+        "id": "obj.center",
+        "type": "center"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.diameter.1",
+          "obj.diameter.2",
+          "obj.diameter.3"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.diameter_equality"
+        ]
+      },
+      "plan": {
+        "method": "concept_recognition",
+        "description": "한 원에서 지름의 성질을 떠올려 알맞은 선택지를 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_diameter_property",
+          "compare_choice_words"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "property_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      {
+        "id": "choice.review.423193ee-d072-4d84-8be2-e6752be1b1ba",
+        "label": "1",
+        "text": "같습니다",
+        "source_refs": []
+      },
+      {
+        "id": "choice.review.cd34be50-b0b1-4e39-a8ea-ab8a2c2901aa",
+        "label": "2",
+        "text": "다릅니다",
+        "source_refs": []
+      }
+    ],
+    "answer_key": [
+      {
+        "id": "choice.review.423193ee-d072-4d84-8be2-e6752be1b1ba",
+        "value": "같습니다"
+      }
+    ],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice_word",
+      "description": "한 원에서 원의 지름은 모두 ( 같습니다, 다릅니다 )에서 알맞은 말"
+    },
+    "value": "같습니다",
+    "unit": "",
+    "presentation": {
+      "mode": "choice",
+      "editor_managed": true,
+      "review": {
+        "mode": "choice",
+        "status": "verified",
+        "note": "",
+        "answers": [
+          {
+            "value": "같습니다",
+            "ref": "answer.value"
+          },
+          {
+            "value": "다릅니다"
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice.review.423193ee-d072-4d84-8be2-e6752be1b1ba",
+            "text": "같습니다",
+            "correct": true,
+            "label": "1",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.review.cd34be50-b0b1-4e39-a8ea-ab8a2c2901aa",
+            "text": "다릅니다",
+            "correct": false,
+            "label": "2",
+            "sourceRefs": []
+          }
+        ]
+      }
+    }
+  }
+}

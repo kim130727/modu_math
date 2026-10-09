@@ -1,0 +1,274 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008698",
+  "title": "원을 둘로 똑같이 나누는 선분",
+  "canvas": {
+    "width": 600,
+    "height": 432,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle.outer",
+        "slot.line.across",
+        "slot.line.top",
+        "slot.line.right",
+        "slot.line.leftdiag",
+        "slot.pt.center",
+        "slot.lb.ga",
+        "slot.lb.na",
+        "slot.lb.da",
+        "slot.lb.ra",
+        "slot.lb.o"
+      ]
+    },
+    {
+      "id": "region.options",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.opt1",
+        "slot.opt2",
+        "slot.opt3",
+        "slot.opt4"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원을 둘로 똑같이 나누는 선분은 어느 것인가요?",
+        "style_role": "question",
+        "x": 30.0,
+        "y": 35.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.circle.outer",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 278.97,
+        "cy": 176.24,
+        "r": 105.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.line.top",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 178.97,
+        "y1": 146.24,
+        "x2": 343.97,
+        "y2": 96.24
+      }
+    },
+    {
+      "id": "slot.line.leftdiag",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 213.97,
+        "y1": 256.24,
+        "x2": 343.97,
+        "y2": 96.24
+      }
+    },
+    {
+      "id": "slot.line.right",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 278.97,
+        "y1": 176.24,
+        "x2": 383.97,
+        "y2": 176.24
+      }
+    },
+    {
+      "id": "slot.line.across",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 233.97,
+        "y1": 166.24,
+        "x2": 233.97,
+        "y2": 166.24
+      }
+    },
+    {
+      "id": "slot.pt.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 278.97,
+        "cy": 176.24,
+        "r": 5.0,
+        "fill": "#ff4fa3"
+      }
+    },
+    {
+      "id": "slot.lb.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 338.97,
+        "y": 96.24,
+        "font_size": 30,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.lb.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 133.97,
+        "y": 166.24,
+        "font_size": 30,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.lb.da",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 173.97,
+        "y": 276.24,
+        "font_size": 30,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.lb.ra",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 393.97,
+        "y": 191.24,
+        "font_size": 30,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.lb.o",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅇ",
+        "style_role": "label",
+        "x": 243.97,
+        "y": 181.24,
+        "font_size": 30,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.opt1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 선분 ㄱㄴ",
+        "style_role": "choice",
+        "x": 128.524,
+        "y": 351.223,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.opt2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 선분 ㄱㅇ",
+        "style_role": "choice",
+        "x": 323.524,
+        "y": 346.223,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.opt3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 선분 ㄱㄷ",
+        "style_role": "choice",
+        "x": 128.524,
+        "y": 401.223,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.opt4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 선분 ㅇㄹ",
+        "style_role": "choice",
+        "x": 323.524,
+        "y": 401.223,
+        "font_size": 30
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.question",
+    "region.diagram",
+    "slot.circle.outer",
+    "slot.line.across",
+    "slot.line.top",
+    "slot.line.right",
+    "slot.line.leftdiag",
+    "slot.pt.center",
+    "slot.lb.ga",
+    "slot.lb.na",
+    "slot.lb.da",
+    "slot.lb.ra",
+    "slot.lb.o",
+    "region.options",
+    "slot.opt1",
+    "slot.opt2",
+    "slot.opt3",
+    "slot.opt4",
+    "region.footer"
+  ]
+}

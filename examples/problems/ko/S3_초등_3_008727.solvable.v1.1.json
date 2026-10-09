@@ -1,0 +1,189 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008727",
+  "problem_type": "도형_비교",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "③",
+    "target_ticks": 5,
+    "target_count": 5,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.choice.1",
+      "value": {
+        "label": "①"
+      }
+    },
+    {
+      "ref": "obj.choice.2",
+      "value": {
+        "label": "②"
+      }
+    },
+    {
+      "ref": "obj.choice.3",
+      "value": {
+        "label": "③"
+      }
+    },
+    {
+      "ref": "obj.choice.4",
+      "value": {
+        "label": "④"
+      }
+    },
+    {
+      "ref": "obj.choice.5",
+      "value": {
+        "label": "⑤"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice"
+  },
+  "method": "비교하기",
+  "plan": [
+    "각 보기의 원의 중심 개수를 확인한다.",
+    "가장 큰 개수를 가진 보기를 찾는다.",
+    "그 보기를 정답으로 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "①의 중심 개수 확인",
+      "value": 3
+    },
+    {
+      "id": "step.2",
+      "expr": "②의 중심 개수 확인",
+      "value": 4
+    },
+    {
+      "id": "step.3",
+      "expr": "③의 중심 개수 확인",
+      "value": 5
+    },
+    {
+      "id": "step.4",
+      "expr": "④의 중심 개수 확인",
+      "value": 3
+    },
+    {
+      "id": "step.5",
+      "expr": "⑤의 중심 개수 확인",
+      "value": 3
+    },
+    {
+      "id": "step.6",
+      "expr": "가장 큰 값 선택",
+      "value": "③"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "최댓값이 ③인지 확인",
+      "expected": "③",
+      "actual": "③",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      {
+        "id": "choice.review.67f3c7bd-4309-4b32-b640-e7dac2f96539",
+        "label": "1",
+        "text": "1번",
+        "source_refs": []
+      },
+      {
+        "id": "choice.review.0a273a37-98b8-40f5-8b3e-ebe940efbaa4",
+        "label": "2",
+        "text": "2번",
+        "source_refs": []
+      },
+      {
+        "id": "choice.review.0759278b-db5d-4f4c-8674-5d12cb0901d7",
+        "label": "3",
+        "text": "3번",
+        "source_refs": []
+      },
+      {
+        "id": "choice.review.cd390ff3-5415-42ae-9f9c-5947d730680e",
+        "label": "4",
+        "text": "4번",
+        "source_refs": []
+      },
+      {
+        "id": "choice.review.d1ca8fd2-3977-408d-8de3-89f4776b6c8a",
+        "label": "5",
+        "text": "5번",
+        "source_refs": []
+      }
+    ],
+    "answer_key": [],
+    "target": {
+      "type": "choice",
+      "description": "원의 중심의 개수가 가장 많은 모양"
+    },
+    "value": [],
+    "unit": "",
+    "presentation": {
+      "mode": "choice",
+      "editor_managed": true,
+      "review": {
+        "mode": "choice",
+        "status": "pending",
+        "note": "",
+        "answers": [
+          {
+            "value": "3",
+            "ref": "answer.value"
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice.review.67f3c7bd-4309-4b32-b640-e7dac2f96539",
+            "text": "1번",
+            "correct": false,
+            "label": "1",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.review.0a273a37-98b8-40f5-8b3e-ebe940efbaa4",
+            "text": "2번",
+            "correct": false,
+            "label": "2",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.review.0759278b-db5d-4f4c-8674-5d12cb0901d7",
+            "text": "3번",
+            "correct": false,
+            "label": "3",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.review.cd390ff3-5415-42ae-9f9c-5947d730680e",
+            "text": "4번",
+            "correct": false,
+            "label": "4",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.review.d1ca8fd2-3977-408d-8de3-89f4776b6c8a",
+            "text": "5번",
+            "correct": false,
+            "label": "5",
+            "sourceRefs": []
+          }
+        ]
+      }
+    }
+  }
+}

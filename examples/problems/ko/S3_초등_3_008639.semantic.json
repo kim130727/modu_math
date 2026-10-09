@@ -1,0 +1,136 @@
+{
+  "problem_id": "S3_초등_3_008639",
+  "problem_type": "multiple_choice_geometry",
+  "metadata": {
+    "title": "한 원의 반지름의 성질을 묻는 보기 선택형 문제",
+    "tags": [],
+    "question": "원에 반지름을 3개 그은 것입니다. 반지름을 재어 알맞은 말을 선택하세요",
+    "required_layout_ids": [
+      "slot.circle.boundary",
+      "slot.circle.center",
+      "slot.circle.marker",
+      "slot.radius.left",
+      "slot.radius.up_right",
+      "slot.radius.down",
+      "slot.choice.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "알맞은 말을 선택한다.",
+    "presentation_sources": {
+      "question": [
+        "slot.q1"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "원에 반지름을 3개 그은 것입니다. 반지름을 재어 알맞은 말을 선택하세요"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.radius_set",
+        "type": "radius_set",
+        "count": 3
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.radius_set"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.radius_of_circle",
+          "rel.radius_equality"
+        ]
+      },
+      "plan": {
+        "method": "geometry_property_recognition",
+        "description": "한 원에서 반지름의 성질을 확인한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_radius",
+          "compare_lengths"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "property_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      {
+        "id": "choice.review.95f088c1-e194-4060-9752-4fc447467157",
+        "label": "1",
+        "text": "같습니다.",
+        "source_refs": []
+      },
+      {
+        "id": "choice.review.2dce27fb-9a75-45d6-8031-97acbb85373b",
+        "label": "2",
+        "text": "다릅니다.",
+        "source_refs": []
+      }
+    ],
+    "answer_key": [
+      {
+        "id": "choice.review.95f088c1-e194-4060-9752-4fc447467157",
+        "value": "같습니다."
+      }
+    ],
+    "confidence": 1.0,
+    "target": {
+      "type": "multiple_choice_selection",
+      "description": "한 원에서 원의 반지름들은 모두 ( 같습니다, 다릅니다 )."
+    },
+    "value": "같습니다.",
+    "unit": "",
+    "presentation": {
+      "mode": "choice",
+      "editor_managed": true,
+      "review": {
+        "mode": "choice",
+        "status": "verified",
+        "note": "",
+        "answers": [
+          {
+            "value": "같습니다",
+            "ref": "answer.value"
+          },
+          {
+            "value": "다릅니다"
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice.review.95f088c1-e194-4060-9752-4fc447467157",
+            "text": "같습니다.",
+            "correct": true,
+            "label": "1",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.review.2dce27fb-9a75-45d6-8031-97acbb85373b",
+            "text": "다릅니다.",
+            "correct": false,
+            "label": "2",
+            "sourceRefs": []
+          }
+        ]
+      }
+    }
+  }
+}

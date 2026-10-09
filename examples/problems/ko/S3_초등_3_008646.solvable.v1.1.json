@@ -1,0 +1,81 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008646",
+  "problem_type": "geometry_concept_selection",
+  "inputs": {
+    "target_label": "지름",
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle_paper",
+      "value": {
+        "type": "circle",
+        "description": "원 모양의 종이"
+      }
+    },
+    {
+      "ref": "obj.fold_line",
+      "value": {
+        "type": "line_segment",
+        "description": "원을 둘로 똑같이 나누는 접힌 선"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "concept_name"
+  },
+  "method": "concept_matching",
+  "plan": [
+    "접힌 선이 원을 둘로 똑같이 나누는지 확인한다.",
+    "그 선이 원의 중심을 지나므로 지름임을 판단한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "원을 둘로 똑같이 나누는 선분은 원의 중심을 지난다.",
+      "value": "center_passing_segment"
+    },
+    {
+      "id": "step.2",
+      "expr": "center_passing_segment == diameter",
+      "value": "지름"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "원의 중심을 지나는 선분은 지름이다.",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      {
+        "id": "choice.diameter",
+        "value": "지름"
+      },
+      {
+        "id": "choice.radius",
+        "value": "반지름"
+      }
+    ],
+    "answer_key": [
+      {
+        "id": "choice.diameter",
+        "value": "지름"
+      }
+    ],
+    "target": {
+      "type": "concept_name",
+      "description": "원을 둘로 똑같이 나누는 선분의 이름"
+    },
+    "value": "지름",
+    "unit": ""
+  }
+}

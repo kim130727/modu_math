@@ -1,0 +1,112 @@
+{
+  "problem_id": "S3_초등_3_008702",
+  "problem_type": "geometry_circle_center",
+  "metadata": {
+    "title": "원의 지름과 중심",
+    "tags": [],
+    "question": "원에 지름을 그을 때 반드시 지나는 점을 찾아 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.circle",
+      "slot.pt.g",
+      "slot.pt.n",
+      "slot.pt.d",
+      "slot.pt.r",
+      "slot.graphpaper.v0",
+      "slot.graphpaper.v1",
+      "slot.graphpaper.v2",
+      "slot.graphpaper.v3",
+      "slot.graphpaper.v4",
+      "slot.graphpaper.v5",
+      "slot.graphpaper.v6",
+      "slot.graphpaper.v7",
+      "slot.graphpaper.v8",
+      "slot.graphpaper.v9",
+      "slot.graphpaper.v10",
+      "slot.graphpaper.h0",
+      "slot.graphpaper.h1",
+      "slot.graphpaper.h2",
+      "slot.graphpaper.h3",
+      "slot.graphpaper.h4",
+      "slot.graphpaper.h5",
+      "slot.graphpaper.h6",
+      "slot.graphpaper.h7",
+      "slot.graphpaper.h8"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "원의 지름이 반드시 지나는 점을 고른다.",
+    "points": 5
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.point.g",
+        "type": "point",
+        "label": "ㄱ"
+      },
+      {
+        "id": "obj.point.n",
+        "type": "point",
+        "label": "ㄴ"
+      },
+      {
+        "id": "obj.point.d",
+        "type": "point",
+        "label": "ㄷ"
+      },
+      {
+        "id": "obj.point.r",
+        "type": "point",
+        "label": "ㄹ"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.point.g",
+          "obj.point.n",
+          "obj.point.d",
+          "obj.point.r"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.diameter_passes_center"
+        ]
+      },
+      "plan": {
+        "method": "circle_center_identification",
+        "description": "원의 중심을 나타내는 점을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_center_like_point",
+          "match_with_diameter_property"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "property_check_diameter_through_center"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_point",
+      "description": "원에 지름을 그을 때 반드시 지나는 점"
+    },
+    "value": "ㄴ",
+    "unit": ""
+  }
+}

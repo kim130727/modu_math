@@ -262,7 +262,9 @@ def build_problem(_: HttpRequest, problem_id: str) -> JsonResponse:
         "problem_id": problem_id,
         "stdout": result.stdout,
         "stderr": result.stderr,
-        "artifacts": artifacts,
+        # Stale artifacts can be very large (SVGs may contain embedded fonts)
+        # and are not useful to a client when this build failed.
+        "artifacts": artifacts if result.ok else {},
     }
     if not result.ok:
         payload["error"] = result.error or "build failed"
@@ -347,7 +349,7 @@ def tutor_flow(request: HttpRequest, problem_id: str) -> JsonResponse:
             "built": result.ok,
             "stdout": result.stdout,
             "stderr": result.stderr,
-            "artifacts": artifacts,
+            "artifacts": artifacts if result.ok else {},
         }
     )
     if not result.ok:
@@ -436,7 +438,7 @@ def layout_patch_and_build(request: HttpRequest, problem_id: str) -> JsonRespons
                 "stdout": result.stdout,
                 "stderr": result.stderr,
             },
-            "artifacts": artifacts,
+            "artifacts": artifacts if result.ok else {},
         }
     )
     if not result.ok:

@@ -1,0 +1,598 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008704",
+  "title": "원의 중심과 반지름의 규칙",
+  "canvas": {
+    "width": 960.0,
+    "height": 624.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.graphpaper.v0",
+        "slot.graphpaper.v1",
+        "slot.graphpaper.v2",
+        "slot.graphpaper.v3",
+        "slot.graphpaper.v4",
+        "slot.graphpaper.v5",
+        "slot.graphpaper.v6",
+        "slot.graphpaper.v7",
+        "slot.graphpaper.v8",
+        "slot.graphpaper.v9",
+        "slot.graphpaper.v10",
+        "slot.graphpaper.h0",
+        "slot.graphpaper.h1",
+        "slot.graphpaper.h2",
+        "slot.graphpaper.h3",
+        "slot.graphpaper.h4",
+        "slot.graphpaper.h5",
+        "slot.graphpaper.h6",
+        "slot.graphpaper.h7",
+        "slot.graphpaper.h8",
+        "slot.graphpaper.h9",
+        "slot.graphpaper.h10",
+        "slot.title",
+        "slot.title.copy9",
+        "konva_1788083991421_avatar_1720870"
+      ]
+    },
+    {
+      "id": "region.diagram.left",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle.1",
+        "slot.circle.2",
+        "slot.circle.3",
+        "slot.center"
+      ]
+    },
+    {
+      "id": "region.diagram.right",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.bubble",
+        "slot.title.copy9.copy10",
+        "slot.nameplate.text",
+        "slot.title.copy9.copy10.copy3"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.bg",
+        "slot.choice.text1",
+        "slot.choice.text2"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "승아는 규칙에 따라 원을 그렸습니다.  ",
+        "style_role": "question",
+        "x": 45.0,
+        "y": 50.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.circle.1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 175.0,
+        "cy": 295.0,
+        "r": 25.0,
+        "stroke": "#555555",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 175.0,
+        "cy": 295.0,
+        "r": 50.0,
+        "stroke": "#555555",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 175.0,
+        "cy": 295.0,
+        "r": 70.0,
+        "stroke": "#555555",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 175.0,
+        "cy": 295.0,
+        "r": 5.0,
+        "stroke": "none",
+        "fill": "#ff4da6"
+      }
+    },
+    {
+      "id": "slot.bubble",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 375.0,
+        "y": 126.0,
+        "width": 430.0,
+        "height": 115.0,
+        "stroke": "#555555",
+        "stroke_width": 2.0,
+        "rx": 70.0,
+        "ry": 55.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.nameplate.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "승아",
+        "style_role": "label",
+        "x": 630.0,
+        "y": 410.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 45.0,
+        "y": 450.0,
+        "width": 750.0,
+        "height": 120.0,
+        "stroke": "none",
+        "fill": "#e6f1cf"
+      }
+    },
+    {
+      "id": "slot.choice.text1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 중심이 ( 같습니다, 다릅니다 ).",
+        "style_role": "question",
+        "x": 200.0,
+        "y": 495.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice.text2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 반지름이 모두 ( 1, 2, 3 )칸씩 늘어났습니다.",
+        "style_role": "question",
+        "x": 135.0,
+        "y": 535.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.graphpaper.v0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 50.0,
+        "y1": 165.0,
+        "x2": 50.0,
+        "y2": 415.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 75.0,
+        "y1": 165.0,
+        "x2": 75.0,
+        "y2": 415.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 100.0,
+        "y1": 165.0,
+        "x2": 100.0,
+        "y2": 415.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 125.0,
+        "y1": 165.0,
+        "x2": 125.0,
+        "y2": 415.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 150.0,
+        "y1": 165.0,
+        "x2": 150.0,
+        "y2": 415.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 175.0,
+        "y1": 165.0,
+        "x2": 175.0,
+        "y2": 415.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 200.0,
+        "y1": 165.0,
+        "x2": 200.0,
+        "y2": 415.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 225.0,
+        "y1": 165.0,
+        "x2": 225.0,
+        "y2": 415.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 250.0,
+        "y1": 165.0,
+        "x2": 250.0,
+        "y2": 415.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 275.0,
+        "y1": 165.0,
+        "x2": 275.0,
+        "y2": 415.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 300.0,
+        "y1": 165.0,
+        "x2": 300.0,
+        "y2": 415.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 50.0,
+        "y1": 165.0,
+        "x2": 300.0,
+        "y2": 165.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 50.0,
+        "y1": 190.0,
+        "x2": 300.0,
+        "y2": 190.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 50.0,
+        "y1": 215.0,
+        "x2": 300.0,
+        "y2": 215.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 50.0,
+        "y1": 240.0,
+        "x2": 300.0,
+        "y2": 240.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 50.0,
+        "y1": 265.0,
+        "x2": 300.0,
+        "y2": 265.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 50.0,
+        "y1": 290.0,
+        "x2": 300.0,
+        "y2": 290.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 50.0,
+        "y1": 315.0,
+        "x2": 300.0,
+        "y2": 315.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 50.0,
+        "y1": 340.0,
+        "x2": 300.0,
+        "y2": 340.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 50.0,
+        "y1": 365.0,
+        "x2": 300.0,
+        "y2": 365.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 50.0,
+        "y1": 390.0,
+        "x2": 300.0,
+        "y2": 390.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 50.0,
+        "y1": 415.0,
+        "x2": 300.0,
+        "y2": 415.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.title.copy9",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "승아가 원을 그린 규칙을 찾아 알맞은 것을 선택해보세요.",
+        "style_role": "body",
+        "x": 45.0,
+        "y": 95.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.title.copy9.copy10",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 중심이 같고 원의 반지름은",
+        "style_role": "body",
+        "x": 424.0,
+        "y": 175.0,
+        "font_size": 25,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.title.copy9.copy10.copy3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다르게 하여 그린 거야.",
+        "style_role": "body",
+        "x": 477.0,
+        "y": 220.0,
+        "font_size": 25,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "konva_1788083991421_avatar_1720870",
+      "kind": "image",
+      "prompt": "",
+      "content": {
+        "href": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20width%3D%22200%22%20height%3D%22200%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3Cstyle%3E%0A%20%20%20%20%20%20.notion-line%20%7B%20stroke%3A%20%231e293b%3B%20stroke-width%3A%202.8%3B%20stroke-linecap%3A%20round%3B%20stroke-linejoin%3A%20round%3B%20fill%3A%20none%3B%20%7D%0A%20%20%20%20%20%20.notion-fill%20%7B%20fill%3A%20%231e293b%3B%20%7D%0A%20%20%20%20%3C%2Fstyle%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%0A%20%20%20%20%20%20%20%20%3C!--%20Girl%20Afro%20Double%20Buns%20(Behind)%20--%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2254%22%20cy%3D%2236%22%20r%3D%2216%22%20fill%3D%22%231e293b%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.8%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%22146%22%20cy%3D%2236%22%20r%3D%2216%22%20fill%3D%22%231e293b%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.8%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cellipse%20cx%3D%2260%22%20cy%3D%2248%22%20rx%3D%224%22%20ry%3D%222.5%22%20fill%3D%22%23ec4899%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cellipse%20cx%3D%22140%22%20cy%3D%2248%22%20rx%3D%224%22%20ry%3D%222.5%22%20fill%3D%22%23ec4899%22%20%2F%3E%0A%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Thinking%20Pose%3A%20Left%20arm%20down%2C%20Right%20arm%20supporting%20chin%20--%3E%0A%20%20%20%20%20%20%20%20%3C!--%20Left%20Arm%20%26%20Hand%20--%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%2072%20134%20C%2062%20148%2C%2058%20170%2C%2060%20186%22%20stroke%3D%22%236366f1%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%2072%20134%20C%2062%20148%2C%2058%20170%2C%2060%20186%22%20class%3D%22notion-line%22%20stroke-width%3D%222.6%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2260%22%20cy%3D%22186%22%20r%3D%226.5%22%20fill%3D%22%23ffedd5%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.4%22%20%2F%3E%0A%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%3C!--%20Torso%20%2F%20Shirt%20--%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2068%20195%20C%2066%20156%2C%2074%20132%2C%2092%20130%20L%20108%20130%20C%20126%20132%2C%20134%20156%2C%20132%20195%20Z%22%20fill%3D%22%236366f1%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.8%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%0A%20%20%20%20%20%20%3C!--%20Girl%20Rounded%20Peter-Pan%20Collar%20--%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%2088%20132%20C%2092%20142%2C%2098%20142%2C%20100%20138%20C%20102%20142%2C%20108%20142%2C%20112%20132%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22100%22%20cy%3D%22146%22%20r%3D%222%22%20fill%3D%22%231e293b%22%20%2F%3E%0A%20%20%20%20%0A%20%20%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Right%20Arm%20bending%20up%20to%20chin%20--%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%20128%20134%20C%20140%20148%2C%20134%20162%2C%20122%20138%20C%20118%20128%2C%20114%20120%2C%20112%20118%22%20stroke%3D%22%236366f1%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%20128%20134%20C%20140%20148%2C%20134%20162%2C%20122%20138%20C%20118%20128%2C%20114%20120%2C%20112%20118%22%20class%3D%22notion-line%22%20stroke-width%3D%222.6%22%20%2F%3E%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Hand%20gently%20on%20cheek%2Fchin%20--%3E%0A%20%20%20%20%20%20%20%20%3Cellipse%20cx%3D%22110%22%20cy%3D%22118%22%20rx%3D%226%22%20ry%3D%225%22%20fill%3D%22%23ffedd5%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.4%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%20107%20115%20C%20109%20112%2C%20113%20113%2C%20112%20119%22%20class%3D%22notion-line%22%20stroke-width%3D%221.8%22%20%2F%3E%0A%20%20%20%20%20%20%0A%0A%20%20%20%20%3C!--%20Neck%20--%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2092%20120%20L%2092%20133%20L%20108%20133%20L%20108%20120%20Z%22%20fill%3D%22%23ffedd5%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.6%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%0A%20%20%20%20%3C!--%20Ears%20(Natural%20attached%20curves%20with%20inner%20crease)%20--%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2064%2078%20C%2055%2078%2C%2055%2092%2C%2064%2092%22%20fill%3D%22%23ffedd5%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%20%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2063%2082%20C%2060%2084%2C%2060%2086%2C%2063%2088%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%221.8%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20%2F%3E%0A%20%20%20%20%0A%20%20%20%20%3Cpath%20d%3D%22M%20136%2078%20C%20145%2078%2C%20145%2092%2C%20136%2092%22%20fill%3D%22%23ffedd5%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%20%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%20137%2082%20C%20140%2084%2C%20140%2086%2C%20137%2088%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%221.8%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20%2F%3E%0A%0A%20%20%20%20%3C!--%20Head%20%2F%20Face%20Contour%20(Slightly%20softer%20curve%20for%20girl%2C%20sturdy%20for%20boy)%20--%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2063%2076%20C%2063%2046%2C%20137%2046%2C%20137%2076%20C%20137%20106%2C%20126%20124%2C%20100%20124%20C%2074%20124%2C%2063%20106%2C%2063%2076%20Z%22%20fill%3D%22%23ffedd5%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.8%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%0A%20%20%20%20%3C!--%20Cheerful%20Soft%20Blush%20--%3E%0A%20%20%20%20%3Cellipse%20cx%3D%2274%22%20cy%3D%2294%22%20rx%3D%225.5%22%20ry%3D%223.5%22%20fill%3D%22%23fda4af%22%20opacity%3D%220.65%22%20%2F%3E%0A%20%20%20%20%3Cellipse%20cx%3D%22126%22%20cy%3D%2294%22%20rx%3D%225.5%22%20ry%3D%223.5%22%20fill%3D%22%23fda4af%22%20opacity%3D%220.65%22%20%2F%3E%0A%20%20%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Thinking%20Eyes%20(Looking%20Up)%20--%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%2074%2069%20Q%2082%2065%2090%2070%22%20class%3D%22notion-line%22%20stroke-width%3D%222.0%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%20110%2070%20Q%20118%2067%20126%2066%22%20class%3D%22notion-line%22%20stroke-width%3D%222.0%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%3Cellipse%20cx%3D%2283%22%20cy%3D%2279%22%20rx%3D%224.5%22%20ry%3D%225.5%22%20fill%3D%22%231e293b%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2282%22%20cy%3D%2277%22%20r%3D%221.6%22%20fill%3D%22%23ffffff%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%3Cellipse%20cx%3D%22119%22%20cy%3D%2279%22%20rx%3D%224.5%22%20ry%3D%225.5%22%20fill%3D%22%231e293b%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%22118%22%20cy%3D%2277%22%20r%3D%221.6%22%20fill%3D%22%23ffffff%22%20%2F%3E%0A%20%20%20%20%20%20%0A%3Cpath%20d%3D%22M%2099%2087%20Q%20102%2091%2099%2094%22%20class%3D%22notion-line%22%20stroke-width%3D%222.2%22%20%2F%3E%0A%3Cpath%20d%3D%22M%2093%20103%20Q%20100%20110%20107%20103%22%20class%3D%22notion-line%22%20stroke-width%3D%222.6%22%20%2F%3E%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Girl%20Afro%20Buns%20Front%20Bangs%20--%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%2058%2076%20C%2055%2042%2C%2076%2028%2C%20100%2028%20C%20124%2028%2C%20145%2042%2C%20142%2076%20C%20136%2068%2C%20124%2065%2C%20100%2065%20C%2076%2065%2C%2064%2068%2C%2058%2076%20Z%22%20fill%3D%22%231e293b%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222.8%22%20stroke-linejoin%3D%22round%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2280%22%20cy%3D%2250%22%20r%3D%224%22%20fill%3D%22%231e293b%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%22120%22%20cy%3D%2250%22%20r%3D%224%22%20fill%3D%22%231e293b%22%20%2F%3E%0A%20%20%20%20%20%20%0A%0A%20%20%20%20%20%20%20%20%3C!--%20Cool%20Sunglasses%20--%3E%0A%20%20%20%20%20%20%20%20%3Crect%20x%3D%2270%22%20y%3D%2274%22%20width%3D%2225%22%20height%3D%2218%22%20rx%3D%225%22%20fill%3D%22%231e293b%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Crect%20x%3D%22105%22%20y%3D%2274%22%20width%3D%2225%22%20height%3D%2218%22%20rx%3D%225%22%20fill%3D%22%231e293b%22%20stroke%3D%22%231e293b%22%20stroke-width%3D%222%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M%2095%2080%20L%20105%2080%22%20class%3D%22notion-line%22%20stroke-width%3D%223%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cline%20x1%3D%2272%22%20y1%3D%2278%22%20x2%3D%2288%22%20y2%3D%2278%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.8%22%20opacity%3D%220.8%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cline%20x1%3D%22107%22%20y1%3D%2278%22%20x2%3D%22123%22%20y2%3D%2278%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.8%22%20opacity%3D%220.8%22%20%2F%3E%0A%20%20%20%20%20%20%0A%3C%2Fsvg%3E",
+        "x": 498.603,
+        "y": 245.41,
+        "width": 164.1,
+        "height": 175.82,
+        "preserve_aspect_ratio": "xMidYMid meet"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.graphpaper.v0",
+    "slot.graphpaper.v1",
+    "slot.graphpaper.v2",
+    "slot.graphpaper.v3",
+    "slot.graphpaper.v4",
+    "slot.graphpaper.v5",
+    "slot.graphpaper.v6",
+    "slot.graphpaper.v7",
+    "slot.graphpaper.v8",
+    "slot.graphpaper.v9",
+    "slot.graphpaper.v10",
+    "slot.graphpaper.h0",
+    "slot.graphpaper.h1",
+    "slot.graphpaper.h2",
+    "slot.graphpaper.h3",
+    "slot.graphpaper.h4",
+    "slot.graphpaper.h5",
+    "slot.graphpaper.h6",
+    "slot.graphpaper.h7",
+    "slot.graphpaper.h8",
+    "slot.graphpaper.h9",
+    "slot.graphpaper.h10",
+    "slot.title",
+    "slot.title.copy9",
+    "region.diagram.left",
+    "slot.circle.1",
+    "slot.circle.2",
+    "slot.circle.3",
+    "slot.center",
+    "region.diagram.right",
+    "slot.bubble",
+    "slot.title.copy9.copy10",
+    "slot.nameplate.text",
+    "slot.title.copy9.copy10.copy3",
+    "region.choice",
+    "slot.choice.bg",
+    "slot.choice.text1",
+    "slot.choice.text2",
+    "region.footer",
+    "konva_1788083991421_avatar_1720870"
+  ]
+}

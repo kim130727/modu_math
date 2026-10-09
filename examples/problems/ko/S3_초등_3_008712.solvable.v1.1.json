@@ -1,0 +1,97 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008712",
+  "problem_type": "geometry_circle_diameter_selection",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "지름을 나타내는 선분",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle",
+      "value": {
+        "type": "circle"
+      }
+    },
+    {
+      "ref": "obj.center",
+      "value": {
+        "type": "center"
+      }
+    },
+    {
+      "ref": "obj.segment.gn",
+      "value": {
+        "label": "ㄱㄹ"
+      }
+    },
+    {
+      "ref": "obj.segment.nn",
+      "value": {
+        "label": "ㄴㄹ"
+      }
+    },
+    {
+      "ref": "obj.segment.od",
+      "value": {
+        "label": "ㅇㄷ"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_segment"
+  },
+  "method": "diagram_identification",
+  "plan": [
+    "원의 중심을 지나는 선분을 찾는다.",
+    "원 위의 두 점을 이은 선분인지 확인한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "선분 ㄴㄹ은 중심을 지난다.",
+      "value": "선분 ㄴㄹ"
+    },
+    {
+      "id": "step.2",
+      "expr": "선분 ㄴㄹ은 원 위의 두 점을 이은 선분이다.",
+      "value": "선분 ㄴㄹ"
+    },
+    {
+      "id": "step.3",
+      "expr": "지름에 해당하는 선분 선택",
+      "value": "선분 ㄴㄹ"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "중심 통과 여부",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "원 위의 두 점 연결 여부",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_segment",
+      "description": "원의 지름을 나타내는 선분"
+    },
+    "value": "선분 ㄴㄹ",
+    "unit": ""
+  }
+}

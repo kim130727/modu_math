@@ -1,0 +1,334 @@
+{
+  "schema": "modu.vision_structured.v1",
+  "problem_id": "S3_초등_3_008684",
+  "source_image": {
+    "path": "examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008684.png",
+    "width_px": 939.0,
+    "height_px": 593.0,
+    "coordinate_system": "normalized_0_1"
+  },
+  "visible_text": [
+    {
+      "id": "text.1",
+      "text": "72. 누름 못과 띠 종이를 이용하여 원을 그렸습니다. 그림을 보고 알맞은 말을 선택하세요.",
+      "bbox": {
+        "x": 0.006,
+        "y": 0.016,
+        "w": 0.616,
+        "h": 0.064
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "text.2",
+      "text": "① 한쪽 구멍에 누름 못을 꽂아 띠 종이를 고정 해요.",
+      "bbox": {
+        "x": 0.103,
+        "y": 0.349,
+        "w": 0.214,
+        "h": 0.101
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "text.3",
+      "text": "② 다른 구멍에 연필을 꽂고 한 바퀴 돌려 원을 그려요.",
+      "bbox": {
+        "x": 0.511,
+        "y": 0.352,
+        "w": 0.19,
+        "h": 0.098
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "text.4",
+      "text": "누름 못이 꽂힌 점에서 원 위에 찍은 4개의 점까지의 길이는 모두 ( 같습니다, 다릅니다 ).",
+      "bbox": {
+        "x": 0.124,
+        "y": 0.624,
+        "w": 0.717,
+        "h": 0.185
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "text.5",
+      "text": "(정답) 같습니다",
+      "bbox": {
+        "x": 0.008,
+        "y": 0.852,
+        "w": 0.144,
+        "h": 0.041
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "text.6",
+      "text": "(해설) 누름 못이 꽂힌 점에서 원 위에 찍은 4개의 점까지의 길이는 모두 같습니다.",
+      "bbox": {
+        "x": 0.01,
+        "y": 0.939,
+        "w": 0.817,
+        "h": 0.044
+      },
+      "confidence": "high"
+    }
+  ],
+  "elements": [
+    {
+      "id": "el.1",
+      "type": "text",
+      "bbox": {
+        "x": 0.006,
+        "y": 0.016,
+        "w": 0.616,
+        "h": 0.064
+      },
+      "details": "top-left stem text, black serif font, two-line wrap on page",
+      "confidence": "high",
+      "text": "72. 누름 못과 띠 종이를 이용하여 원을 그렸습니다. 그림을 보고 알맞은 말을 선택하세요."
+    },
+    {
+      "id": "el.2",
+      "type": "text",
+      "bbox": {
+        "x": 0.103,
+        "y": 0.349,
+        "w": 0.214,
+        "h": 0.101
+      },
+      "details": "green text near left diagram, multi-line layout",
+      "confidence": "high",
+      "text": "① 한쪽 구멍에 누름 못을 꽂아 띠 종이를 고정 해요."
+    },
+    {
+      "id": "el.3",
+      "type": "text",
+      "bbox": {
+        "x": 0.511,
+        "y": 0.352,
+        "w": 0.19,
+        "h": 0.098
+      },
+      "details": "green text near center-right diagram, multi-line layout",
+      "confidence": "high",
+      "text": "② 다른 구멍에 연필을 꽂고 한 바퀴 돌려 원을 그려요."
+    },
+    {
+      "id": "el.4",
+      "type": "diagram",
+      "bbox": {
+        "x": 0.122,
+        "y": 0.169,
+        "w": 0.398,
+        "h": 0.414
+      },
+      "details": "square frame with large circle; left hand pressing center-lower area; right hand holding pencil; blue strip paper between points; green curved arrows; small dots along strip; instructional drawing",
+      "confidence": "high",
+      "text": "left illustration"
+    },
+    {
+      "id": "el.5",
+      "type": "diagram",
+      "bbox": {
+        "x": 0.68,
+        "y": 0.186,
+        "w": 0.245,
+        "h": 0.361
+      },
+      "details": "square frame containing inscribed circle; dashed vertical and horizontal diameters crossing at center; four black points at top, bottom, left, right on circle; small center mark",
+      "confidence": "high",
+      "text": "right illustration"
+    },
+    {
+      "id": "el.6",
+      "type": "text",
+      "bbox": {
+        "x": 0.124,
+        "y": 0.624,
+        "w": 0.717,
+        "h": 0.185
+      },
+      "details": "large orange-bordered box centered in lower middle; sentence centered in two lines; no input blank visible",
+      "confidence": "high",
+      "text": "누름 못이 꽂힌 점에서 원 위에 찍은 4개의 점까지의 길이는 모두 ( 같습니다, 다릅니다 )."
+    },
+    {
+      "id": "el.7",
+      "type": "text",
+      "bbox": {
+        "x": 0.008,
+        "y": 0.852,
+        "w": 0.144,
+        "h": 0.041
+      },
+      "details": "bottom-left answer label in black",
+      "confidence": "high",
+      "text": "(정답) 같습니다"
+    },
+    {
+      "id": "el.8",
+      "type": "text",
+      "bbox": {
+        "x": 0.01,
+        "y": 0.939,
+        "w": 0.817,
+        "h": 0.044
+      },
+      "details": "bottom-left explanation text in black",
+      "confidence": "high",
+      "text": "(해설) 누름 못이 꽂힌 점에서 원 위에 찍은 4개의 점까지의 길이는 모두 같습니다."
+    },
+    {
+      "id": "el.9",
+      "type": "shape",
+      "bbox": {
+        "x": 0.104,
+        "y": 0.619,
+        "w": 0.796,
+        "h": 0.2
+      },
+      "details": "thin orange rectangular outline surrounding statement; white interior",
+      "confidence": "high",
+      "text": "orange border box"
+    }
+  ],
+  "groups": [
+    {
+      "id": "group.1",
+      "role": "stem",
+      "element_ids": [
+        "el.1"
+      ],
+      "bbox": {
+        "x": 0.006,
+        "y": 0.016,
+        "w": 0.616,
+        "h": 0.064
+      },
+      "details": "top problem statement"
+    },
+    {
+      "id": "group.2",
+      "role": "instruction_diagram_left",
+      "element_ids": [
+        "el.2",
+        "el.4"
+      ],
+      "bbox": {
+        "x": 0.103,
+        "y": 0.169,
+        "w": 0.417,
+        "h": 0.415
+      },
+      "details": "left instruction text and left construction illustration"
+    },
+    {
+      "id": "group.3",
+      "role": "instruction_diagram_right",
+      "element_ids": [
+        "el.3",
+        "el.5"
+      ],
+      "bbox": {
+        "x": 0.511,
+        "y": 0.169,
+        "w": 0.414,
+        "h": 0.414
+      },
+      "details": "right instruction text and reference diagram"
+    },
+    {
+      "id": "group.4",
+      "role": "choice_statement",
+      "element_ids": [
+        "el.6",
+        "el.9"
+      ],
+      "bbox": {
+        "x": 0.104,
+        "y": 0.619,
+        "w": 0.796,
+        "h": 0.2
+      },
+      "details": "orange boxed prompt with choices in parentheses"
+    },
+    {
+      "id": "group.5",
+      "role": "answer_explanation",
+      "element_ids": [
+        "el.7",
+        "el.8"
+      ],
+      "bbox": {
+        "x": 0.008,
+        "y": 0.852,
+        "w": 0.813,
+        "h": 0.131
+      },
+      "details": "answer and explanation at bottom"
+    }
+  ],
+  "math_structure": {
+    "equations": [],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "choice.1",
+        "type": "text_choices",
+        "options": [
+          "같습니다",
+          "다릅니다"
+        ],
+        "bbox": {
+          "x": 0.57,
+          "y": 0.694,
+          "w": 0.195,
+          "h": 0.056
+        },
+        "details": "options appear inside the orange boxed sentence in parentheses",
+        "confidence": "high"
+      }
+    ],
+    "tables": [],
+    "diagrams": [
+      {
+        "id": "diag.1",
+        "type": "construction_diagram",
+        "bbox": {
+          "x": 0.122,
+          "y": 0.169,
+          "w": 0.398,
+          "h": 0.414
+        },
+        "details": "square boundary, large circle, hands, pencil, blue strip, green arrows, point markers",
+        "confidence": "high"
+      },
+      {
+        "id": "diag.2",
+        "type": "geometry_diagram",
+        "bbox": {
+          "x": 0.68,
+          "y": 0.186,
+          "w": 0.245,
+          "h": 0.361
+        },
+        "details": "square, inscribed circle, dashed cross diameters, center point, four boundary points",
+        "confidence": "high"
+      }
+    ]
+  },
+  "dsl_hints": [
+    "Place the stem at the top-left with two-line wrapping.",
+    "Keep the left and right diagrams aligned horizontally in the middle band.",
+    "Represent the orange prompt as a bordered rectangle with centered two-line text.",
+    "Do not create an answer blank; the parenthesized options are visible choices, not an input slot.",
+    "Separate the final answer/explanation line from the main prompt area."
+  ],
+  "uncertain": [
+    "{'item': 'Some top-line wrapping and spacing are approximate due to text being small.', 'bbox': {'x': 0.006, 'y': 0.016, 'w': 0.616, 'h': 0.064}}",
+    "{'item': 'Left diagram internal details such as exact arrow endpoints and pencil contact point are approximate.', 'bbox': {'x': 0.122, 'y': 0.169, 'w': 0.398, 'h': 0.414}}",
+    "{'item': 'The orange statement box text line breaks may differ slightly from the source.', 'bbox': {'x': 0.104, 'y': 0.619, 'w': 0.796, 'h': 0.2}}"
+  ]
+}

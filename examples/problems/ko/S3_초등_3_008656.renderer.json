@@ -1,0 +1,219 @@
+{
+  "problem_id": "S3_초등_3_008656",
+  "view_box": {
+    "width": 720.0,
+    "height": 400.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.header.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 40.0,
+        "y": 40.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.header.text",
+      "refs": {
+        "layout_slot_id": "slot.header.text"
+      },
+      "text": "원의 지름이 아닌 것을 찾아 기호를 모두 선택하세요."
+    },
+    {
+      "id": "slot.circle.outer.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 360.0,
+        "cy": 240.0,
+        "r": 105.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.circle.outer",
+      "refs": {
+        "layout_slot_id": "slot.circle.outer"
+      }
+    },
+    {
+      "id": "slot.line.v.line",
+      "type": "line",
+      "attributes": {
+        "x1": 360.0,
+        "y1": 135.0,
+        "x2": 360.0,
+        "y2": 345.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.line.v",
+      "refs": {
+        "layout_slot_id": "slot.line.v"
+      }
+    },
+    {
+      "id": "slot.line.h.line",
+      "type": "line",
+      "attributes": {
+        "x1": 255.0,
+        "y1": 240.0,
+        "x2": 465.0,
+        "y2": 240.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.line.h",
+      "refs": {
+        "layout_slot_id": "slot.line.h"
+      }
+    },
+    {
+      "id": "slot.line.d1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 285.0,
+        "y1": 165.0,
+        "x2": 435.0,
+        "y2": 315.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.line.d1",
+      "refs": {
+        "layout_slot_id": "slot.line.d1"
+      }
+    },
+    {
+      "id": "slot.line.d3.line",
+      "type": "line",
+      "attributes": {
+        "x1": 400.0,
+        "y1": 340.0,
+        "x2": 445.0,
+        "y2": 180.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.line.d3",
+      "refs": {
+        "layout_slot_id": "slot.line.d3"
+      }
+    },
+    {
+      "id": "slot.line.d4.line",
+      "type": "line",
+      "attributes": {
+        "x1": 275.0,
+        "y1": 305.0,
+        "x2": 425.0,
+        "y2": 150.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.line.d4",
+      "refs": {
+        "layout_slot_id": "slot.line.d4"
+      }
+    },
+    {
+      "id": "slot.circle.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 360.0,
+        "cy": 240.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#d81b60"
+      },
+      "source_ref": "slot.circle.center",
+      "refs": {
+        "layout_slot_id": "slot.circle.center"
+      }
+    },
+    {
+      "id": "slot.lb.ㄴ.text",
+      "type": "text",
+      "attributes": {
+        "x": 255.0,
+        "y": 160.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.lb.ㄴ",
+      "refs": {
+        "layout_slot_id": "slot.lb.ㄴ"
+      },
+      "text": "㉡"
+    },
+    {
+      "id": "slot.lb.ㄷ.text",
+      "type": "text",
+      "attributes": {
+        "x": 347.0,
+        "y": 120.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.lb.ㄷ",
+      "refs": {
+        "layout_slot_id": "slot.lb.ㄷ"
+      },
+      "text": "㉢"
+    },
+    {
+      "id": "slot.lb.ㄹ.text",
+      "type": "text",
+      "attributes": {
+        "x": 435.0,
+        "y": 145.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.lb.ㄹ",
+      "refs": {
+        "layout_slot_id": "slot.lb.ㄹ"
+      },
+      "text": "㉣"
+    },
+    {
+      "id": "slot.lb.ㅁ.text",
+      "type": "text",
+      "attributes": {
+        "x": 455.0,
+        "y": 185.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.lb.ㅁ",
+      "refs": {
+        "layout_slot_id": "slot.lb.ㅁ"
+      },
+      "text": "㉤"
+    },
+    {
+      "id": "slot.lb.ㄱ.text",
+      "type": "text",
+      "attributes": {
+        "x": 215.0,
+        "y": 248.0,
+        "fill": "#111111",
+        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.lb.ㄱ",
+      "refs": {
+        "layout_slot_id": "slot.lb.ㄱ"
+      },
+      "text": "㉠"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

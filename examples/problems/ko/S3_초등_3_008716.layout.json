@@ -1,0 +1,293 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008716",
+  "title": "도형에 대한 설명으로 틀린 것은 어느 것일까요?",
+  "canvas": {
+    "width": 720,
+    "height": 490,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.header.text"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle.outer",
+        "slot.line.chord",
+        "slot.line.diameter",
+        "slot.line.radius",
+        "slot.pt.center",
+        "slot.lb.o",
+        "slot.lb.ga",
+        "slot.lb.na",
+        "slot.lb.da",
+        "slot.lb.ra"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choice",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.1",
+        "slot.choice.2",
+        "slot.choice.3",
+        "slot.choice.4",
+        "slot.choice.5"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.header.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "도형에 대한 설명으로 틀린 것은 어느 것일까요?",
+        "style_role": "question",
+        "x": 35.0,
+        "y": 35.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.circle.outer",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 520.0,
+        "cy": 130.0,
+        "r": 75.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.line.chord",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 501.0,
+        "y1": 58.0,
+        "x2": 593.0,
+        "y2": 114.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.line.diameter",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 447.0,
+        "y1": 146.0,
+        "x2": 593.0,
+        "y2": 114.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.line.radius",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 520.0,
+        "y1": 130.0,
+        "x2": 546.0,
+        "y2": 200.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.pt.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 520.0,
+        "cy": 130.0,
+        "r": 4.0,
+        "fill": "#ec407a"
+      }
+    },
+    {
+      "id": "slot.lb.o",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅇ",
+        "style_role": "label",
+        "x": 515.0,
+        "y": 120.0,
+        "font_size": 18,
+        "fill": "#111111",
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.lb.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 495.0,
+        "y": 48.0,
+        "font_size": 22,
+        "fill": "#111111",
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.lb.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 428.0,
+        "y": 152.0,
+        "font_size": 22,
+        "fill": "#111111",
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.lb.da",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 545.0,
+        "y": 218.0,
+        "font_size": 22,
+        "fill": "#111111",
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.lb.ra",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 602.0,
+        "y": 118.0,
+        "font_size": 22,
+        "fill": "#111111",
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.choice.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 원의 중심은 점 ㅇ입니다.",
+        "style_role": "choice",
+        "x": 40.0,
+        "y": 255.0,
+        "font_size": 24,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 원의 지름은 선분 ㄴㄹ입니다.",
+        "style_role": "choice",
+        "x": 40.0,
+        "y": 300.0,
+        "font_size": 24,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 선분 ㄴㅇ은 원의 반지름입니다.",
+        "style_role": "choice",
+        "x": 40.0,
+        "y": 345.0,
+        "font_size": 24,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 길이가 가장 긴 선분은 선분 ㄱㄹ입니다.",
+        "style_role": "choice",
+        "x": 40.0,
+        "y": 390.0,
+        "font_size": 24,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤ 선분 ㄷㅇ과 선분 ㄹㅇ의 길이는 같습니다.",
+        "style_role": "choice",
+        "x": 40.0,
+        "y": 435.0,
+        "font_size": 24,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.header.text",
+    "region.diagram",
+    "slot.circle.outer",
+    "slot.line.chord",
+    "slot.line.diameter",
+    "slot.line.radius",
+    "slot.pt.center",
+    "slot.lb.o",
+    "slot.lb.ga",
+    "slot.lb.na",
+    "slot.lb.da",
+    "slot.lb.ra",
+    "region.choices",
+    "slot.choice.1",
+    "slot.choice.2",
+    "slot.choice.3",
+    "slot.choice.4",
+    "slot.choice.5",
+    "region.answer"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008715",
+  "problem_type": "geometry_circle_radius_choice",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "선분 ㄷㅇ",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle",
+      "value": {
+        "type": "circle"
+      }
+    },
+    {
+      "ref": "obj.center.o",
+      "value": {
+        "label": "ㅇ",
+        "role": "center"
+      }
+    },
+    {
+      "ref": "obj.radius_candidate.d_o",
+      "value": {
+        "label": "선분 ㄷㅇ"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_segment"
+  },
+  "method": "definition_matching",
+  "plan": [
+    "원의 중심과 원 위의 한 점을 이은 선분을 찾는다.",
+    "보기의 선분들 중 정의에 맞는 것을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "원의 중심과 원 위의 점을 잇는 선분 찾기",
+      "value": "선분 ㄷㅇ"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선분 ㄷㅇ이 중심 ㅇ와 원 위의 점 ㄷ을 잇는가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_segment",
+      "description": "원의 반지름을 나타내는 선분"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

@@ -191,11 +191,36 @@ async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
     ...init,
     headers: { Accept: "application/json", ...csrfHeaders(method), ...init?.headers },
   });
-  const body = (await response.json()) as unknown;
+  const responseText = await response.text();
+  let body: unknown = responseText;
+  if (responseText) {
+    try {
+      body = JSON.parse(responseText) as unknown;
+    } catch {
+      // Keep the response text so non-JSON server errors still have context.
+    }
+  }
   if (!response.ok || (isRecord(body) && body.ok === false)) {
-    throw new Error(`HTTP ${response.status}: ${JSON.stringify(body)}`);
+    throw new Error(`HTTP ${response.status}: ${apiErrorMessage(body)}`);
   }
   return body as T;
+}
+
+function apiErrorMessage(body: unknown): string {
+  const candidates: unknown[] = [];
+  if (isRecord(body)) {
+    candidates.push(body.error, body.detail, body.message, body.stderr);
+    if (isRecord(body.build)) {
+      candidates.push(body.build.error, body.build.stderr);
+    }
+  } else {
+    candidates.push(body);
+  }
+
+  const message = candidates.find((value) => typeof value === "string" && value.trim()) as string | undefined;
+  if (!message) return "The server could not complete the request.";
+  const normalized = message.trim();
+  return normalized.length > 2000 ? `${normalized.slice(0, 2000)}…` : normalized;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

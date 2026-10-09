@@ -1,0 +1,319 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008719",
+  "title": "원의 중심이 되는 곳",
+  "canvas": {
+    "width": 800,
+    "height": 370,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "konva_1788083991421_text_2067239"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.band",
+        "slot.pin_head",
+        "slot.pencil_body",
+        "slot.pencil_tip",
+        "slot.pencil_eraser",
+        "slot.pin_body",
+        "slot.pt1",
+        "slot.pt2",
+        "slot.pt3",
+        "slot.pt4",
+        "slot.pt5",
+        "slot.pin_tip",
+        "slot.lb1",
+        "slot.lb2",
+        "slot.lb3",
+        "slot.lb4",
+        "slot.lb5"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.band",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 165.444,
+        "y": 243.008,
+        "width": 435.0,
+        "height": 105.0,
+        "stroke": "#c9bf93",
+        "stroke_width": 1.2,
+        "fill": "#f3efcf"
+      }
+    },
+    {
+      "id": "slot.pt1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 215.444,
+        "cy": 288.008,
+        "r": 5.0,
+        "fill": "#d6c79a"
+      }
+    },
+    {
+      "id": "slot.pt2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 300.444,
+        "cy": 288.008,
+        "r": 5.0,
+        "fill": "#d6c79a"
+      }
+    },
+    {
+      "id": "slot.pt3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 392.444,
+        "cy": 288.008,
+        "r": 5.0,
+        "fill": "#d6c79a"
+      }
+    },
+    {
+      "id": "slot.pt4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 482.444,
+        "cy": 288.008,
+        "r": 5.0,
+        "fill": "#d6c79a"
+      }
+    },
+    {
+      "id": "slot.pt5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 564.444,
+        "cy": 288.008,
+        "r": 5.0,
+        "fill": "#d6c79a"
+      }
+    },
+    {
+      "id": "slot.lb1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "①",
+        "style_role": "diagram",
+        "x": 200.444,
+        "y": 328.008,
+        "font_size": 30,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.lb2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "②",
+        "style_role": "diagram",
+        "x": 285.444,
+        "y": 328.008,
+        "font_size": 30,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.lb3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③",
+        "style_role": "diagram",
+        "x": 377.444,
+        "y": 328.008,
+        "font_size": 30,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.lb4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④",
+        "style_role": "diagram",
+        "x": 467.444,
+        "y": 328.008,
+        "font_size": 30,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.lb5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤",
+        "style_role": "diagram",
+        "x": 550.444,
+        "y": 328.008,
+        "font_size": 30,
+        "semantic_role": "symbol_label"
+      }
+    },
+    {
+      "id": "slot.pin_body",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 392.444,
+        "y1": 247.008,
+        "x2": 392.444,
+        "y2": 287.008,
+        "stroke": "#8e8e8e",
+        "stroke_width": 5.0
+      }
+    },
+    {
+      "id": "slot.pin_head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 392.444,
+        "cy": 237.008,
+        "r": 10.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#d8d8d8"
+      }
+    },
+    {
+      "id": "slot.pin_tip",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 392.444,
+        "cy": 237.008,
+        "r": 5.0,
+        "fill": "#a7a7a7"
+      }
+    },
+    {
+      "id": "slot.pencil_body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 558.444,
+        "y": 186.008,
+        "width": 10.0,
+        "height": 80.0,
+        "stroke": "#ee7777",
+        "stroke_width": 1.0,
+        "fill": "#ffb5b5"
+      }
+    },
+    {
+      "id": "slot.pencil_tip",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            558.111,
+            267.008
+          ],
+          [
+            570.111,
+            267.008
+          ],
+          [
+            564.111,
+            281.008
+          ]
+        ],
+        "stroke": "#c49b62",
+        "stroke_width": 1.0,
+        "fill": "#e6c08b"
+      }
+    },
+    {
+      "id": "slot.pencil_eraser",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 558.444,
+        "y": 174.008,
+        "width": 10.0,
+        "height": 10.0,
+        "stroke": "#b98160",
+        "stroke_width": 1.0,
+        "fill": "#d9a27f"
+      }
+    },
+    {
+      "id": "konva_1788083991421_text_2067239",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "그림과 같이 띠 종이를 나 못으로 고정한 후 연필을 구멍에 넣어 원을 그리려고 합니다. 원의 중심이 되는 곳을 선택하세요.",
+        "x": 33.059,
+        "y": 28.495,
+        "font_size": 30,
+        "fill": "#111827",
+        "width": 801.229,
+        "height": 121,
+        "align": "left",
+        "line_height": 1.25,
+        "kind": "text_box"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "region.diagram",
+    "slot.band",
+    "slot.pin_head",
+    "slot.pencil_body",
+    "slot.pencil_tip",
+    "slot.pencil_eraser",
+    "slot.pin_body",
+    "slot.pt1",
+    "slot.pt2",
+    "slot.pt3",
+    "slot.pt4",
+    "slot.pt5",
+    "slot.pin_tip",
+    "slot.lb1",
+    "slot.lb2",
+    "slot.lb3",
+    "slot.lb4",
+    "slot.lb5",
+    "region.footer",
+    "konva_1788083991421_text_2067239"
+  ]
+}

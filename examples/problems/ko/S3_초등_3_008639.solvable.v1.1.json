@@ -1,0 +1,115 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008639",
+  "problem_type": "multiple_choice_geometry",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "반지름의 성질",
+    "target_ticks": 0,
+    "target_count": 3,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle",
+      "value": {
+        "type": "circle"
+      }
+    },
+    {
+      "ref": "obj.radius_set",
+      "value": {
+        "count": 3
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "multiple_choice_selection"
+  },
+  "method": "geometry_property_recognition",
+  "plan": [
+    "한 원의 반지름이라는 도형 성질을 확인한다.",
+    "그림에 그려진 3개의 선분이 모두 반지름인지 본다.",
+    "반지름의 길이 관계를 판단한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "한 원의 반지름은 모두 같은 길이이다.",
+      "value": "같습니다"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "반지름의 성질과 일치하는가",
+      "expected": "같습니다",
+      "actual": "같습니다",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      {
+        "id": "choice.review.95f088c1-e194-4060-9752-4fc447467157",
+        "label": "1",
+        "text": "같습니다.",
+        "source_refs": []
+      },
+      {
+        "id": "choice.review.2dce27fb-9a75-45d6-8031-97acbb85373b",
+        "label": "2",
+        "text": "다릅니다.",
+        "source_refs": []
+      }
+    ],
+    "answer_key": [
+      {
+        "id": "choice.review.95f088c1-e194-4060-9752-4fc447467157",
+        "value": "같습니다."
+      }
+    ],
+    "target": {
+      "type": "multiple_choice_selection",
+      "description": "한 원에서 원의 반지름들은 모두 ( 같습니다, 다릅니다 )."
+    },
+    "value": "같습니다.",
+    "unit": "",
+    "presentation": {
+      "mode": "choice",
+      "editor_managed": true,
+      "review": {
+        "mode": "choice",
+        "status": "verified",
+        "note": "",
+        "answers": [
+          {
+            "value": "같습니다",
+            "ref": "answer.value"
+          },
+          {
+            "value": "다릅니다"
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice.review.95f088c1-e194-4060-9752-4fc447467157",
+            "text": "같습니다.",
+            "correct": true,
+            "label": "1",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.review.2dce27fb-9a75-45d6-8031-97acbb85373b",
+            "text": "다릅니다.",
+            "correct": false,
+            "label": "2",
+            "sourceRefs": []
+          }
+        ]
+      }
+    }
+  }
+}

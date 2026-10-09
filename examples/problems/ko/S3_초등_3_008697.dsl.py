@@ -1,0 +1,191 @@
+from __future__ import annotations
+from modu_math.dsl import Canvas, CircleSlot, LineSlot, ProblemTemplate, RectSlot, Region, TextSlot
+
+
+def build_problem_template() -> ProblemTemplate:
+    return ProblemTemplate(
+        id="S3_초등_3_008697",
+        title="원 안의 선분 중에서 가장 긴 선분",
+        canvas=Canvas(width=940, height=462, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.top",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q1", "slot.q2", "slot.q1.copy2"),
+            ),
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.circle.outer",
+                    "slot.line.1",
+                    "slot.line.2",
+                    "slot.line.3",
+                    "slot.line.4",
+                    "slot.line.5",
+                    "slot.pt.center",
+                    "slot.lb.1",
+                    "slot.lb.2",
+                    "slot.lb.3",
+                    "slot.lb.4",
+                    "slot.lb.5",
+                    "slot.choice.row",
+                ),
+            ),
+            Region(id="region.bottom", role="answer_explanation", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="원 안의 선분 중에서 가장 긴 선분을 알아보려고 합니다.",
+                style_role="question",
+                x=10,
+                y=35,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text="(1) 길이가 가장 긴 선분의 기호를 선택해 보세요.",
+                style_role="question",
+                x=30,
+                y=430,
+                font_size=30,
+            ),
+            CircleSlot(id="slot.circle.outer", prompt="", cx=260, cy=265, r=125, fill="none"),
+            LineSlot(id="slot.line.1", prompt="", x1=260, y1=390, x2=135, y2=260),
+            LineSlot(id="slot.line.2", prompt="", x1=260, y1=390, x2=180, y2=170),
+            LineSlot(id="slot.line.3", prompt="", x1=260, y1=390, x2=260, y2=140),
+            LineSlot(id="slot.line.4", prompt="", x1=260, y1=390, x2=340, y2=170),
+            LineSlot(id="slot.line.5", prompt="", x1=260, y1=390, x2=385, y2=260),
+            CircleSlot(id="slot.pt.center", prompt="", cx=260, cy=265, r=5, fill="#e91e63"),
+            TextSlot(
+                id="slot.lb.1", prompt="", text="①", style_role="label", x=95, y=260, font_size=30
+            ),
+            TextSlot(
+                id="slot.lb.2", prompt="", text="②", style_role="label", x=145, y=160, font_size=30
+            ),
+            TextSlot(
+                id="slot.lb.3", prompt="", text="③", style_role="label", x=250, y=125, font_size=30
+            ),
+            TextSlot(
+                id="slot.lb.4", prompt="", text="④", style_role="label", x=345, y=160, font_size=30
+            ),
+            TextSlot(
+                id="slot.lb.5", prompt="", text="⑤", style_role="label", x=395, y=260, font_size=30
+            ),
+            TextSlot(
+                id="slot.choice.row",
+                prompt="",
+                text="( 1 , 2 , 3 , 4 , 5 )",
+                style_role="question",
+                x=450,
+                y=370,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.q1.copy2",
+                prompt="",
+                text="알맞은 것을 선택하세요.",
+                x=10,
+                y=80,
+                font_size=30,
+                fill="#111111",
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
+PROBLEM_TEMPLATE = build_problem_template()
+
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008697",
+    "problem_type": "geometry_length_comparison",
+    "metadata": {
+        "language": "ko",
+        "question": "원 안의 선분들 중에서 가장 긴 선분을 고르는 문제",
+        "instruction": "길이가 가장 긴 선분의 기호를 선택한다.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.circle", "type": "circle"},
+            {"id": "obj.center", "type": "point"},
+            {"id": "obj.segments", "type": "segment_set", "count": 5},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.circle", "obj.segments"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.compare_lengths", "rel.longest_through_center"],
+            },
+            "plan": {
+                "method": "compare_by_center",
+                "description": "여러 선분 중 중심을 지나는 선분을 찾는다.",
+            },
+            "execute": {
+                "expected_operations": [
+                    "identify_center_passing_segment",
+                    "compare_segment_lengths",
+                ]
+            },
+            "review": {"check_methods": ["center_pass_check", "relative_length_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "symbol_choice", "description": "가장 긴 선분의 기호"},
+        "value": 3,
+        "unit": "",
+    },
+}
+
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008697",
+    "problem_type": "geometry_length_comparison",
+    "inputs": {
+        "total_ticks": 5,
+        "target_label": "가장 긴 선분의 기호",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.segments", "value": {"count": 5}},
+        {"ref": "obj.circle", "value": {"type": "circle"}},
+    ],
+    "target": {"ref": "answer.target", "type": "symbol_choice"},
+    "method": "compare_by_center",
+    "plan": ["원 안의 여러 선분을 비교한다.", "중심을 지나는 선분을 찾는다."],
+    "steps": [
+        {"id": "step.1", "expr": "중심을 지나는 선분을 찾는다", "value": "③"},
+        {"id": "step.2", "expr": "가장 긴 선분의 기호를 선택한다", "value": "③"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "중심을 지나는 선분인지 확인",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "symbol_choice", "description": "가장 긴 선분의 기호"},
+        "value": 3,
+        "unit": "",
+    },
+}
