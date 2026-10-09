@@ -4469,3 +4469,42 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     assert "Canvas(width=100, height=120)" in updated
     overrides = json.loads(overrides_path.read_text(encoding="utf-8"))
     assert overrides["canvas"] == {"width": 180, "height": 160}
+
+
+def test_fast_layout_patch_preserves_inferred_role_provenance(
+    tmp_path: Path,
+) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import TextSlot
+
+SLOTS = (
+    TextSlot(id="slot.label", text="1번", x=10, y=20),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps({
+            "fast": True,
+            "patches": [{
+                "target": "slot.label",
+                "op": "update",
+                "value": {
+                    "semantic_role": "question",
+                    "semantic_role_source": "inferred",
+                },
+            }],
+        }),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200, response.content
+    overrides = json.loads(
+        (problem_dir / "problem.editor_overrides.json").read_text(encoding="utf-8")
+    )
+    assert overrides["slots"]["slot.label"] == {
+        "semantic_role": "question",
+        "semantic_role_source": "inferred",
+    }

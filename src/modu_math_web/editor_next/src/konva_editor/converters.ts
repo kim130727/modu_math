@@ -294,9 +294,15 @@ function sourceRegionProps(props: Record<string, unknown>): { sourceRegionId?: s
   return sourceRegionId ? { sourceRegionId } : {};
 }
 
-function semanticRoleProps(props: Record<string, unknown>): { semanticRole?: string } {
+function semanticRoleProps(props: Record<string, unknown>): { semanticRole?: string; semanticRoleSource?: "explicit" | "inferred" } {
   const semanticRole = stringProp(props.semantic_role);
-  return semanticRole ? { semanticRole } : {};
+  const semanticRoleSource = props.semantic_role_source === "explicit" || props.semantic_role_source === "inferred"
+    ? props.semantic_role_source
+    : undefined;
+  return {
+    ...(semanticRole ? { semanticRole } : {}),
+    ...(semanticRoleSource ? { semanticRoleSource } : {}),
+  };
 }
 
 function answerShapeProps(shape: EditorShape): { interaction?: InputInteraction; input_style?: InputStyle } {
@@ -310,8 +316,11 @@ function sourceRegionShapeProps(shape: EditorShape): { sourceRegionId?: string }
   return shape.sourceRegionId ? { sourceRegionId: shape.sourceRegionId } : {};
 }
 
-function semanticRoleShapeProps(shape: EditorShape): { semantic_role?: string } {
-  return typeof shape.semanticRole === "string" ? { semantic_role: shape.semanticRole } : {};
+function semanticRoleShapeProps(shape: EditorShape): { semantic_role?: string; semantic_role_source?: "explicit" | "inferred" } {
+  return {
+    ...(typeof shape.semanticRole === "string" ? { semantic_role: shape.semanticRole } : {}),
+    ...(shape.semanticRoleSource ? { semantic_role_source: shape.semanticRoleSource } : {}),
+  };
 }
 
 function recordProp(value: unknown): Record<string, unknown> | undefined {

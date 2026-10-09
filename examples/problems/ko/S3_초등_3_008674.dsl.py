@@ -264,3 +264,10 @@ SOLVABLE = {
         "unit": "",
     },
 }
+EDITOR_ANSWER_REVIEW = {'mode': 'choice',
+ 'status': 'verified',
+ 'note': '',
+ 'answers': [{'value': '다'}],
+ 'choices': [{'id': 'choice.1', 'text': '가', 'correct': False, 'label': '1', 'sourceRefs': []},
+             {'id': 'choice.2', 'text': '나', 'correct': False, 'label': '2', 'sourceRefs': []},
+             {'id': 'choice.3', 'text': '다', 'correct': True, 'label': '3', 'sourceRefs': []}]}

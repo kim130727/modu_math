@@ -166,9 +166,12 @@ export function PropertyPanel({ shape, selectedShapes = [], answerOptions = [], 
 function TextPlacementFields({ shapes, onChange }: { shapes: EditorShape[]; onChange: (role: string) => void }) {
   const texts = shapes.filter((shape) => shape.type === "text");
   if (!texts.length) return null;
-  const placement = (role?: string) => role === "instruction" ? "question" : role || "auto";
-  const current = placement(texts[0].semanticRole);
-  const mixed = texts.some((text) => placement(text.semanticRole) !== current);
+  const placement = (text: Extract<EditorShape, { type: "text" }>) => {
+    if (text.semanticRoleSource !== "explicit") return "auto";
+    return text.semanticRole === "instruction" ? "question" : text.semanticRole || "auto";
+  };
+  const current = placement(texts[0]);
+  const mixed = texts.some((text) => placement(text) !== current);
   const options = [
     { role: "question", label: "문제 상단", hint: "Flutter 문제 화면의 보라색 지문 영역에 표시합니다." },
     { role: "canvas", label: "문제 캔버스", hint: "수식·단위·풀이 그림처럼 Flutter 캔버스 안에 그대로 표시합니다." },

@@ -39,7 +39,6 @@
       "role": "choices",
       "flow": "absolute",
       "slot_ids": [
-        "slot.choice_box",
         "slot.choice1",
         "slot.choice2",
         "slot.choice3"
@@ -62,7 +61,9 @@
         "style_role": "question",
         "x": 90.0,
         "y": 35,
-        "font_size": 28
+        "font_size": 28,
+        "semantic_role": "question",
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     },
     {
@@ -92,10 +93,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 507,
-        "y1": 135,
-        "x2": 507,
-        "y2": 220
+        "x1": 510.602,
+        "y1": 135.384,
+        "x2": 506.982,
+        "y2": 220.014
       }
     },
     {
@@ -127,10 +128,11 @@
       "content": {
         "text": "ㄱ",
         "style_role": "label",
-        "x": 247,
+        "x": 253,
         "y": 235,
         "font_size": 30,
-        "semantic_role": "symbol_label"
+        "semantic_role": "symbol_label",
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     },
     {
@@ -140,10 +142,11 @@
       "content": {
         "text": "ㄴ",
         "style_role": "label",
-        "x": 407,
-        "y": 270,
+        "x": 402,
+        "y": 285,
         "font_size": 30,
-        "semantic_role": "symbol_label"
+        "semantic_role": "symbol_label",
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     },
     {
@@ -153,10 +156,11 @@
       "content": {
         "text": "ㄷ",
         "style_role": "label",
-        "x": 472,
-        "y": 225,
+        "x": 475,
+        "y": 231,
         "font_size": 30,
-        "semantic_role": "symbol_label"
+        "semantic_role": "symbol_label",
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     },
     {
@@ -166,10 +170,11 @@
       "content": {
         "text": "ㄹ",
         "style_role": "label",
-        "x": 517,
-        "y": 130,
+        "x": 515,
+        "y": 138,
         "font_size": 30,
-        "semantic_role": "symbol_label"
+        "semantic_role": "symbol_label",
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     },
     {
@@ -182,19 +187,8 @@
         "x": 372,
         "y": 160,
         "font_size": 30,
-        "semantic_role": "symbol_label"
-      }
-    },
-    {
-      "id": "slot.choice_box",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 95.0,
-        "y": 305.0,
-        "width": 580.0,
-        "height": 65.0,
-        "fill": "none"
+        "semantic_role": "symbol_label",
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     },
     {
@@ -204,9 +198,11 @@
       "content": {
         "text": "1. 선분 ㄱㄹ",
         "style_role": "choice",
-        "x": 135.0,
+        "x": 149,
         "y": 345.0,
-        "font_size": 30
+        "font_size": 30,
+        "semantic_role": "choice",
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     },
     {
@@ -218,7 +214,9 @@
         "style_role": "choice",
         "x": 310.0,
         "y": 345.0,
-        "font_size": 30
+        "font_size": 30,
+        "semantic_role": "choice",
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     },
     {
@@ -228,9 +226,11 @@
       "content": {
         "text": "3. 선분 ㄷㄹ",
         "style_role": "choice",
-        "x": 490.0,
+        "x": 471,
         "y": 345.0,
-        "font_size": 30
+        "font_size": 30,
+        "semantic_role": "choice",
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     }
   ],
@@ -252,7 +252,6 @@
     "slot.lb.g4",
     "slot.lb.o",
     "region.choices",
-    "slot.choice_box",
     "slot.choice1",
     "slot.choice2",
     "slot.choice3",

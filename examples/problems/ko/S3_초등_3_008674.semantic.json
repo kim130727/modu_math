@@ -24,7 +24,15 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "정답과 해설 영역은 렌더링하지 않는다."
+    "instruction": "정답과 해설 영역은 렌더링하지 않는다.",
+    "presentation_sources": {
+      "question": [
+        "slot.header.text"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "원을 바르게 완성한 것을 선택하세요."
   },
   "domain": {
     "objects": [
@@ -63,12 +71,30 @@
   "answer": {
     "blanks": [],
     "choices": [
-      "가",
-      "나",
-      "다"
+      {
+        "id": "choice.1",
+        "label": "1",
+        "text": "가",
+        "source_refs": []
+      },
+      {
+        "id": "choice.2",
+        "label": "2",
+        "text": "나",
+        "source_refs": []
+      },
+      {
+        "id": "choice.3",
+        "label": "3",
+        "text": "다",
+        "source_refs": []
+      }
     ],
     "answer_key": [
-      "다"
+      {
+        "id": "choice.3",
+        "value": "다"
+      }
     ],
     "confidence": 1.0,
     "target": {
@@ -76,6 +102,43 @@
       "description": "원을 바르게 완성한 그림"
     },
     "value": "다",
-    "unit": ""
+    "unit": "",
+    "presentation": {
+      "mode": "choice",
+      "editor_managed": true,
+      "review": {
+        "mode": "choice",
+        "status": "verified",
+        "note": "",
+        "answers": [
+          {
+            "value": "다"
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice.1",
+            "text": "가",
+            "correct": false,
+            "label": "1",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.2",
+            "text": "나",
+            "correct": false,
+            "label": "2",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.3",
+            "text": "다",
+            "correct": true,
+            "label": "3",
+            "sourceRefs": []
+          }
+        ]
+      }
+    }
   }
 }

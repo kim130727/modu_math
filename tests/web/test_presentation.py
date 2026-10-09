@@ -26,13 +26,29 @@ def test_roles_restore_without_classifying_diagram_labels():
 
 def test_explicit_roles_and_deleted_prompt():
     layout = {"slots": [
-        {"id": "random", "kind": "text_box", "content": {"text": "Question", "semantic_role": "question"}},
-        {"id": "slot.q1", "kind": "text", "content": {"text": "Label", "semantic_role": "diagram_label"}},
+        {"id": "random", "kind": "text_box", "content": {"text": "Question", "semantic_role": "question", "semantic_role_source": "explicit"}},
+        {"id": "slot.q1", "kind": "text", "content": {"text": "Label", "semantic_role": "diagram_label", "semantic_role_source": "explicit"}},
     ]}
     result, semantic, _ = structure_presentation(layout, {})
     result["slots"] = result["slots"][1:]
     _, updated, _ = structure_presentation(result, semantic)
     assert updated["metadata"]["presentation_prompt"] == ""
+
+
+def test_legacy_role_without_provenance_is_not_promoted_to_explicit():
+    layout = {"slots": [
+        {"id": "legacy-text", "kind": "text", "content": {
+            "text": "자동 판단된 문장",
+            "semantic_role": "question",
+        }},
+    ]}
+
+    result, semantic, _ = structure_presentation(layout, {})
+
+    content = result["slots"][0]["content"]
+    assert content["semantic_role"] == "question"
+    assert content["semantic_role_source"] == "inferred"
+    assert semantic["metadata"]["presentation_prompt"] == "자동 판단된 문장"
 
 
 def test_stem_region_promotes_only_first_unclassified_text_to_prompt():
@@ -71,7 +87,7 @@ def test_explicit_canvas_role_never_moves_text_to_flutter_header():
             "slot_ids": ["slot.expression", "slot.question"],
         }],
         "slots": [
-            {"id": "slot.expression", "kind": "text_box", "content": {"text": "259 + 248 =", "semantic_role": "canvas"}},
+            {"id": "slot.expression", "kind": "text_box", "content": {"text": "259 + 248 =", "semantic_role": "canvas", "semantic_role_source": "explicit"}},
             {"id": "slot.question", "kind": "text_box", "content": {"text": "두 수의 합은 얼마인가요?"}},
         ],
     }
@@ -83,10 +99,45 @@ def test_explicit_canvas_role_never_moves_text_to_flutter_header():
     assert semantic["metadata"]["presentation_prompt"] == "두 수의 합은 얼마인가요?"
 
 
+def test_copied_stem_number_labels_stay_on_canvas():
+    layout = {
+        "regions": [{
+            "id": "region.stem",
+            "role": "stem",
+            "slot_ids": ["slot.stem.copy1", "slot.stem.copy2", "slot.stem"],
+        }],
+        "slots": [
+            {"id": "slot.stem.copy1", "kind": "text", "content": {"text": "1번"}},
+            {"id": "slot.stem.copy2", "kind": "text", "content": {"text": "2번"}},
+            {"id": "slot.stem", "kind": "text", "content": {
+                "text": "반지름만 다르게 한 그림을 선택하세요.",
+                "style_role": "question",
+            }},
+        ],
+    }
+
+    result, semantic, _ = structure_presentation(layout, {})
+    roles = {slot["id"]: slot["content"]["semantic_role"] for slot in result["slots"]}
+    sources = {slot["id"]: slot["content"]["semantic_role_source"] for slot in result["slots"]}
+
+    assert roles == {
+        "slot.stem.copy1": "canvas",
+        "slot.stem.copy2": "canvas",
+        "slot.stem": "question",
+    }
+    assert sources == {
+        "slot.stem.copy1": "inferred",
+        "slot.stem.copy2": "inferred",
+        "slot.stem": "inferred",
+    }
+    assert semantic["metadata"]["presentation_prompt"] == "반지름만 다르게 한 그림을 선택하세요."
+    assert structure_presentation(result, semantic) == (result, semantic, None)
+
+
 def test_new_text_choices_replace_blank_template_placeholders():
     layout = {"slots": [
-        {"id": "custom-a", "kind": "text_box", "content": {"text": "A", "semantic_role": "choice"}},
-        {"id": "custom-b", "kind": "text_box", "content": {"text": "B", "semantic_role": "choice"}},
+        {"id": "custom-a", "kind": "text_box", "content": {"text": "A", "semantic_role": "choice", "semantic_role_source": "explicit"}},
+        {"id": "custom-b", "kind": "text_box", "content": {"text": "B", "semantic_role": "choice", "semantic_role_source": "explicit"}},
     ]}
     semantic = {"answer": {"choices": [{"id": str(i), "text": ""} for i in range(4)]}}
     _, updated, solvable = structure_presentation(layout, semantic, semantic)

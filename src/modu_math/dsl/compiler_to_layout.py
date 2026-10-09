@@ -288,6 +288,9 @@ def _normalize_slot(slot: AuthoringSlot) -> dict[str, Any]:
         )
         if semantic_role:
             content["semantic_role"] = semantic_role
+            content["semantic_role_source"] = (
+                "explicit" if isinstance(slot.semantic_role, str) and slot.semantic_role else "inferred"
+            )
         slot_kind = "text_box" if slot.kind == "text_box" or isinstance(slot, TextBoxSlot) else "text"
         return {
             "id": slot.id,
@@ -325,6 +328,9 @@ def _normalize_slot(slot: AuthoringSlot) -> dict[str, Any]:
         )
         if semantic_role:
             content["semantic_role"] = semantic_role
+            content["semantic_role_source"] = (
+                "explicit" if isinstance(slot.semantic_role, str) and slot.semantic_role else "inferred"
+            )
         _normalize_pasted_short_text_box(slot.id, content)
         return {
             "id": slot.id,

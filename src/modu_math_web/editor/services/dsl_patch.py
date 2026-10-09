@@ -153,7 +153,7 @@ CANVAS_FIELDS = {"width", "height"}
 EDITOR_OVERRIDE_FIELDS = (
     set().union(*SUPPORTED_SLOTS.values())
     | BASE_SLOT_FIELDS
-    | {"kind"}
+    | {"kind", "semantic_role_source"}
 ) - {"move_dx", "move_dy"}
 FAST_ADD_OVERRIDE_KINDS = {
     "text",

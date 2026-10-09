@@ -13,8 +13,9 @@
         "x": 74.0,
         "y": 30.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 26
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 26.0,
+        "data-semantic-role": "question"
       },
       "source_ref": "slot.header.text",
       "refs": {
@@ -29,8 +30,8 @@
         "x": 95.0,
         "y": 245.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 25,
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 25.0,
         "data-semantic-role": "symbol_label"
       },
       "source_ref": "slot.header.text.copy1",
@@ -43,11 +44,11 @@
       "id": "slot.header.text.copy1.copy2.text",
       "type": "text",
       "attributes": {
-        "x": 365.0,
+        "x": 317.0,
         "y": 245.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 25,
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 25.0,
         "data-semantic-role": "symbol_label"
       },
       "source_ref": "slot.header.text.copy1.copy2",
@@ -60,11 +61,11 @@
       "id": "slot.header.text.copy1.copy3.text",
       "type": "text",
       "attributes": {
-        "x": 630.0,
+        "x": 539.0,
         "y": 245.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 25,
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 25.0,
         "data-semantic-role": "symbol_label"
       },
       "source_ref": "slot.header.text.copy1.copy3",
@@ -77,7 +78,7 @@
       "id": "slot.ref.square.rect",
       "type": "rect",
       "attributes": {
-        "x": 407.0,
+        "x": 359.0,
         "y": 48.0,
         "width": 152.0,
         "height": 152.0,
@@ -94,7 +95,7 @@
       "id": "slot.ref.arc.path",
       "type": "path",
       "attributes": {
-        "d": "M 483.0 48.0 A 76.0 76.0 0 1 0 559.0 124.0",
+        "d": "M 435 48 A 76 76 0 1 0 511 124",
         "stroke": "#111111",
         "stroke-width": 2.1,
         "fill": "none"
@@ -108,7 +109,7 @@
       "id": "slot.ref.center.circle",
       "type": "circle",
       "attributes": {
-        "cx": 483.0,
+        "cx": 435.0,
         "cy": 124.0,
         "r": 3.5,
         "stroke": "none",
@@ -169,7 +170,7 @@
       "id": "slot.choice.middle.square.rect",
       "type": "rect",
       "attributes": {
-        "x": 407.0,
+        "x": 359.0,
         "y": 226.0,
         "width": 152.0,
         "height": 152.0,
@@ -186,7 +187,7 @@
       "id": "slot.choice.middle.base.path",
       "type": "path",
       "attributes": {
-        "d": "M 483.0 226.0 A 76.0 76.0 0 1 0 559.0 302.0",
+        "d": "M 435 226 A 76 76 0 1 0 511 302",
         "stroke": "#111111",
         "stroke-width": 2.1,
         "fill": "none"
@@ -200,7 +201,7 @@
       "id": "slot.choice.right.square.rect",
       "type": "rect",
       "attributes": {
-        "x": 676.0,
+        "x": 585.0,
         "y": 226.0,
         "width": 152.0,
         "height": 152.0,
@@ -217,7 +218,7 @@
       "id": "slot.choice.right.base.path",
       "type": "path",
       "attributes": {
-        "d": "M 752.0 226.0 A 76.0 76.0 0 1 0 828.0 302.0",
+        "d": "M 661 226 A 76 76 0 1 0 737 302",
         "stroke": "#111111",
         "stroke-width": 2.1,
         "fill": "none"
@@ -231,7 +232,7 @@
       "id": "slot.choice.right.red.path",
       "type": "path",
       "attributes": {
-        "d": "M 752.0 226.0 A 76.0 76.0 0 0 1 828.0 302.0",
+        "d": "M 661 226 A 76 76 0 0 1 737 302",
         "stroke": "#ff0000",
         "stroke-width": 2.1,
         "fill": "none"
@@ -245,9 +246,9 @@
       "id": "slot.choice.middle.red.line",
       "type": "line",
       "attributes": {
-        "x1": 483.0,
+        "x1": 435.0,
         "y1": 226.0,
-        "x2": 559.0,
+        "x2": 511.0,
         "y2": 302.0,
         "stroke": "#ff0000",
         "stroke-width": 2.1
@@ -277,7 +278,7 @@
       "id": "slot.choice.middle.center.circle",
       "type": "circle",
       "attributes": {
-        "cx": 483.0,
+        "cx": 435.0,
         "cy": 302.0,
         "r": 3.5,
         "stroke": "none",
@@ -293,7 +294,7 @@
       "id": "slot.choice.right.center.circle",
       "type": "circle",
       "attributes": {
-        "cx": 752.0,
+        "cx": 661.0,
         "cy": 302.0,
         "r": 3.5,
         "stroke": "none",

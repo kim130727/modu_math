@@ -118,6 +118,15 @@ export function EditorKonva() {
     if (overlayIndex !== null) setActiveSidePanel("flow");
   }, []);
 
+  const changeAnswerReviewMode = useCallback((reviewing: boolean) => {
+    if (reviewing) {
+      setSelectedShapeIds([]);
+      setDrawingPreset(null);
+      setActiveTutorOverlayIndex(null);
+    }
+    setAnswerReviewMode(reviewing);
+  }, []);
+
   const setProblem = useCallback((problem: ProblemJson, nextMessage: string, artifacts = previewArtifacts) => {
     setBaseProblemJson(problem);
     setPreviewArtifacts(artifacts);
@@ -244,6 +253,7 @@ export function EditorKonva() {
     updateShapes(selectedShapes.filter((shape) => shape.type === "text").map((shape) => ({
       ...shape,
       semanticRole: role === "top" ? (shape.semanticRole === "instruction" ? "instruction" : "question") : role,
+      semanticRoleSource: role ? "explicit" : "inferred",
     })));
   }, [selectedShapes, updateShapes]);
 
@@ -990,7 +1000,7 @@ export function EditorKonva() {
         hasSelection={selectedShapeIds.length > 0}
         hasAnswerSlotCandidate={selectedAnswerSlotShapeIds.length > 0}
         answerReviewMode={answerReviewMode}
-        onAnswerReviewModeChange={setAnswerReviewMode}
+        onAnswerReviewModeChange={changeAnswerReviewMode}
         onInsertShape={insertShape}
         onOpenAvatarMaker={() => {
           const selectedTargets = avatarReplacementTargets.filter((target) => target.shapes.some((shape) => selectedShapeIds.includes(shape.id)));

@@ -13,8 +13,9 @@
         "x": 8.136,
         "y": 51.528,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 30
+        "font-family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 30.0,
+        "data-semantic-role": "question"
       },
       "source_ref": "slot.stem",
       "refs": {
@@ -26,7 +27,7 @@
       "id": "slot.left.frame.rect",
       "type": "rect",
       "attributes": {
-        "x": 115.0,
+        "x": 179.0,
         "y": 130.0,
         "width": 225.0,
         "height": 215.0,
@@ -43,7 +44,7 @@
       "id": "slot.left.circle.circle",
       "type": "circle",
       "attributes": {
-        "cx": 230.0,
+        "cx": 294.0,
         "cy": 235.0,
         "r": 105.0,
         "stroke": "#111111",
@@ -59,8 +60,8 @@
       "id": "slot.inserted.rect.2.rect",
       "type": "rect",
       "attributes": {
-        "x": 204.0,
-        "y": 224.0,
+        "x": 266.8,
+        "y": 267.383,
         "width": 185.0,
         "height": 30.0,
         "fill": "#bfdbfe",
@@ -74,25 +75,10 @@
       }
     },
     {
-      "id": "slot.left.arrow.1.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 215 310 C 115 290 55 295 30 330",
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "none",
-        "transform": "rotate(-35 130 295.43)"
-      },
-      "source_ref": "slot.left.arrow.1",
-      "refs": {
-        "layout_slot_id": "slot.left.arrow.1"
-      }
-    },
-    {
       "id": "slot.left.dot.1.circle",
       "type": "circle",
       "attributes": {
-        "cx": 262.0,
+        "cx": 326.0,
         "cy": 211.0,
         "r": 4.0,
         "stroke": "#111111",
@@ -108,7 +94,7 @@
       "id": "slot.left.dot.2.circle",
       "type": "circle",
       "attributes": {
-        "cx": 293.0,
+        "cx": 357.0,
         "cy": 191.0,
         "r": 4.0,
         "stroke": "#111111",
@@ -124,7 +110,7 @@
       "id": "slot.left.dot.3.circle",
       "type": "circle",
       "attributes": {
-        "cx": 320.0,
+        "cx": 384.0,
         "cy": 173.0,
         "r": 4.0,
         "stroke": "#111111",
@@ -140,7 +126,7 @@
       "id": "slot.left.dot.4.circle",
       "type": "circle",
       "attributes": {
-        "cx": 345.0,
+        "cx": 409.0,
         "cy": 156.0,
         "r": 4.0,
         "stroke": "#111111",
@@ -156,11 +142,12 @@
       "id": "slot.left.text.text",
       "type": "text",
       "attributes": {
-        "x": 45.0,
+        "x": 95.0,
         "y": 420.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 30
+        "font-family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 30.0,
+        "data-semantic-role": "canvas"
       },
       "source_ref": "slot.left.text",
       "refs": {
@@ -169,11 +156,25 @@
       "text": "① 한쪽 구멍에 누름 못을 꽂아 띠 종이를 고정해요."
     },
     {
+      "id": "konva_1791515301936_arrow_15144640.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 289.221 261.231 L 275.391 377.451 M 275.391 377.451 L 271.821 367.041 M 275.391 377.451 L 281.301 368.171",
+        "stroke": "#111827",
+        "stroke-width": 1.2,
+        "fill": "none"
+      },
+      "source_ref": "konva_1791515301936_arrow_15144640",
+      "refs": {
+        "layout_slot_id": "konva_1791515301936_arrow_15144640"
+      }
+    },
+    {
       "id": "slot.right.frame.rect",
       "type": "rect",
       "attributes": {
-        "x": 626.0,
-        "y": 121.0,
+        "x": 463.0,
+        "y": 131.0,
         "width": 227.0,
         "height": 214.0,
         "fill": "#ffffff",
@@ -189,8 +190,8 @@
       "id": "slot.right.circle.circle",
       "type": "circle",
       "attributes": {
-        "cx": 739.0,
-        "cy": 229.0,
+        "cx": 576.0,
+        "cy": 239.0,
         "r": 108.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -205,10 +206,10 @@
       "id": "slot.right.dash.v.line",
       "type": "line",
       "attributes": {
-        "x1": 739.0,
-        "y1": 121.0,
-        "x2": 739.0,
-        "y2": 335.0,
+        "x1": 576.0,
+        "y1": 131.0,
+        "x2": 576.0,
+        "y2": 345.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "stroke-dasharray": "5 3"
@@ -222,10 +223,10 @@
       "id": "slot.right.dash.h.line",
       "type": "line",
       "attributes": {
-        "x1": 626.0,
-        "y1": 229.0,
-        "x2": 853.0,
-        "y2": 229.0,
+        "x1": 463.0,
+        "y1": 239.0,
+        "x2": 690.0,
+        "y2": 239.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "stroke-dasharray": "5 3"
@@ -239,8 +240,8 @@
       "id": "slot.right.center.circle",
       "type": "circle",
       "attributes": {
-        "cx": 739.0,
-        "cy": 229.0,
+        "cx": 576.0,
+        "cy": 239.0,
         "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -255,8 +256,8 @@
       "id": "slot.right.dot.top.circle",
       "type": "circle",
       "attributes": {
-        "cx": 739.0,
-        "cy": 121.0,
+        "cx": 576.0,
+        "cy": 131.0,
         "r": 4.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -271,8 +272,8 @@
       "id": "slot.right.dot.bottom.circle",
       "type": "circle",
       "attributes": {
-        "cx": 739.0,
-        "cy": 335.0,
+        "cx": 576.0,
+        "cy": 345.0,
         "r": 4.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -287,8 +288,8 @@
       "id": "slot.right.dot.left.circle",
       "type": "circle",
       "attributes": {
-        "cx": 626.0,
-        "cy": 229.0,
+        "cx": 463.0,
+        "cy": 239.0,
         "r": 4.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -303,8 +304,8 @@
       "id": "slot.right.dot.right.circle",
       "type": "circle",
       "attributes": {
-        "cx": 853.0,
-        "cy": 229.0,
+        "cx": 690.0,
+        "cy": 239.0,
         "r": 4.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -319,7 +320,7 @@
       "id": "slot.right.center.copy4.circle",
       "type": "circle",
       "attributes": {
-        "cx": 227.0,
+        "cx": 291.0,
         "cy": 237.0,
         "r": 8.0,
         "stroke": "#111111",
@@ -333,27 +334,39 @@
     },
     {
       "id": "slot.right.text.text",
-      "type": "text",
+      "type": "text_box",
       "attributes": {
-        "x": 45.0,
-        "y": 470.0,
+        "x": 95.0,
+        "y": 440.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 30
+        "font-family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 30.0,
+        "width": 666.0,
+        "height": 36.0,
+        "max_width": 666.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 95.0,
+        "data-box-y": 440.0,
+        "data-box-width": 666.0,
+        "data-box-height": 36.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.2,
+        "data-semantic-role": "canvas"
       },
       "source_ref": "slot.right.text",
       "refs": {
         "layout_slot_id": "slot.right.text"
       },
-      "text": "② 다른 구멍에 연필을 꽂고 한 바퀴 돌려    원을 그려요.  "
+      "text": "② 다른 구멍에 연필을 꽂고 한 바퀴 돌려 원을 그려요.  "
     },
     {
       "id": "slot.choice.frame.rect",
       "type": "rect",
       "attributes": {
-        "x": 25.0,
+        "x": 119.0,
         "y": 495.0,
-        "width": 880.0,
+        "width": 664.68,
         "height": 85.0,
         "fill": "#ffffff",
         "stroke": "#111111",
@@ -366,13 +379,25 @@
     },
     {
       "id": "slot.choice.text.text",
-      "type": "text",
+      "type": "text_box",
       "attributes": {
-        "x": 39.86,
-        "y": 532.242,
+        "x": 133.86,
+        "y": 502.24,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 30
+        "font-family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 30.0,
+        "width": 624.0,
+        "height": 72.0,
+        "max_width": 624.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 133.86,
+        "data-box-y": 502.24,
+        "data-box-width": 624.0,
+        "data-box-height": 72.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.2,
+        "data-semantic-role": "canvas"
       },
       "source_ref": "slot.choice.text",
       "refs": {

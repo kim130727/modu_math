@@ -9,7 +9,7 @@
       "grid",
       "term_selection"
     ],
-    "question": "주어진 모양과 똑같은 그림을 그리는 방법에서 알맞은 말을 선택한다.",
+    "question": "주어진 모양과 똑같은 그림을 그리는 방법을 설명한 것입니다. 알맞은 말을 선택하세요.",
     "required_layout_ids": [
       "slot.grid.left.frame",
       "slot.grid.left.v1",
@@ -70,7 +70,15 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "큰 원의 반지름을 무엇으로 하는 작은 원을 그리는지 고른다."
+    "instruction": "큰 원의 반지름을 무엇으로 하는 작은 원을 그리는지 고른다.",
+    "presentation_sources": {
+      "question": [
+        "slot.q1"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "주어진 모양과 똑같은 그림을 그리는 방법을 설명한 것입니다. 알맞은 말을 선택하세요."
   },
   "domain": {
     "objects": [
@@ -133,11 +141,24 @@
   "answer": {
     "blanks": [],
     "choices": [
-      "민수",
-      "지혜"
+      {
+        "id": "choice.1",
+        "label": "1",
+        "text": "민수",
+        "source_refs": []
+      },
+      {
+        "id": "choice.2",
+        "label": "2",
+        "text": "지혜",
+        "source_refs": []
+      }
     ],
     "answer_key": [
-      "지혜"
+      {
+        "id": "choice.2",
+        "value": "지혜"
+      }
     ],
     "confidence": 1.0,
     "target": {
@@ -145,6 +166,36 @@
       "description": "알맞은 설명을 하는 사람"
     },
     "value": "지혜",
-    "unit": ""
+    "unit": "",
+    "presentation": {
+      "mode": "choice",
+      "editor_managed": true,
+      "review": {
+        "mode": "choice",
+        "status": "verified",
+        "note": "",
+        "answers": [
+          {
+            "value": "지혜"
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice.1",
+            "text": "민수",
+            "correct": false,
+            "label": "1",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.2",
+            "text": "지혜",
+            "correct": true,
+            "label": "2",
+            "sourceRefs": []
+          }
+        ]
+      }
+    }
   }
 }

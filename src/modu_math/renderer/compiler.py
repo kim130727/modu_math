@@ -381,6 +381,11 @@ def _compile_slots(
                 if isinstance(content.get("semantic_role"), str)
                 else None
             )
+            semantic_role_source = (
+                str(content["semantic_role_source"])
+                if content.get("semantic_role_source") in {"explicit", "inferred"}
+                else None
+            )
             attributes: dict[str, Any] = {
                 "x": tx,
                 "y": ty,
@@ -425,6 +430,8 @@ def _compile_slots(
                 attributes["text-anchor"] = text_anchor
             if semantic_role:
                 attributes["data-semantic-role"] = semantic_role
+            if semantic_role_source:
+                attributes["data-semantic-role-source"] = semantic_role_source
             if transform:
                 attributes["transform"] = transform
             elements.append(

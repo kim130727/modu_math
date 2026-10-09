@@ -4,7 +4,7 @@
   "metadata": {
     "title": "원의 지름",
     "tags": [],
-    "question": "원의 지름을 나타내는 선분을 찾는 문제",
+    "question": "원의 지름을 나타내는 선분을 찾아 선택하세요.",
     "required_layout_ids": [
       "slot.circle",
       "slot.center",
@@ -15,7 +15,20 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "원 위의 두 점을 이은 선분 중 원의 중심을 지나는 선분을 고른다."
+    "instruction": "원 위의 두 점을 이은 선분 중 원의 중심을 지나는 선분을 고른다.",
+    "presentation_sources": {
+      "question": [
+        "slot.q1"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.1",
+        "slot.choice.2",
+        "slot.choice.3",
+        "slot.choice.4"
+      ]
+    },
+    "presentation_prompt": "원의 지름을 나타내는 선분을 찾아 선택하세요."
   },
   "domain": {
     "objects": [
@@ -87,10 +100,30 @@
   "answer": {
     "blanks": [],
     "choices": [
-      "1. 선분 ㄱㄹ",
-      "2. 선분 ㅇㄱ",
-      "3. 선분 ㅇㄴ",
-      "4. 선분 ㄷㄹ"
+      {
+        "id": "slot.choice.1",
+        "slot_id": "slot.choice.1",
+        "text": "1. 선분 ㄱㄹ",
+        "value": "1. 선분 ㄱㄹ"
+      },
+      {
+        "id": "slot.choice.2",
+        "slot_id": "slot.choice.2",
+        "text": "2. 선분 ㅇㄱ",
+        "value": "2. 선분 ㅇㄱ"
+      },
+      {
+        "id": "slot.choice.3",
+        "slot_id": "slot.choice.3",
+        "text": "3. 선분 ㅇㄴ",
+        "value": "3. 선분 ㅇㄴ"
+      },
+      {
+        "id": "slot.choice.4",
+        "slot_id": "slot.choice.4",
+        "text": "4. 선분 ㄷㄹ",
+        "value": "4. 선분 ㄷㄹ"
+      }
     ],
     "answer_key": [
       "1. 선분 ㄱㄹ"

@@ -432,3 +432,10 @@ SOLVABLE = {
         "unit": "",
     },
 }
+EDITOR_ANSWER_REVIEW = {'mode': 'choice',
+ 'status': 'verified',
+ 'note': '',
+ 'answers': [{'value': '3번'}],
+ 'choices': [{'id': 'choice.1', 'text': '1번', 'correct': False, 'label': '1', 'sourceRefs': []},
+             {'id': 'choice.2', 'text': '2번', 'correct': False, 'label': '2', 'sourceRefs': []},
+             {'id': 'choice.3', 'text': '3번', 'correct': True, 'label': '3', 'sourceRefs': []}]}

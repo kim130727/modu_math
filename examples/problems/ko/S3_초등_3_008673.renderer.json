@@ -8,24 +8,15 @@
   "elements": [
     {
       "id": "konva_1787119425131_text_1061989.text",
-      "type": "text_box",
+      "type": "text",
       "attributes": {
         "x": 58.443,
-        "y": 25.665,
+        "y": 55.665,
         "fill": "#111827",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30,
-        "width": 771.388,
-        "height": 83.0,
-        "max_width": 771.388,
-        "data-slot-kind": "text_box",
-        "data-box-x": 58.443,
-        "data-box-y": 25.665,
-        "data-box-width": 771.388,
-        "data-box-height": 83.0,
-        "data-text-align": "left",
-        "data-vertical-align": "top",
-        "data-line-height": 1.25
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 30.0,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "explicit"
       },
       "source_ref": "konva_1787119425131_text_1061989",
       "refs": {
@@ -37,10 +28,10 @@
       "id": "slot.box.rect",
       "type": "rect",
       "attributes": {
-        "x": 60.0,
-        "y": 145.0,
-        "width": 780.0,
-        "height": 165.0,
+        "x": 74.086,
+        "y": 148.293,
+        "width": 530.39,
+        "height": 143.04,
         "fill": "none",
         "stroke": "#8BC34A",
         "stroke-width": 2.0
@@ -54,7 +45,7 @@
       "id": "slot.top.left.c1.circle",
       "type": "circle",
       "attributes": {
-        "cx": 165.0,
+        "cx": 159.0,
         "cy": 260.0,
         "r": 20.0,
         "stroke": "#333333",
@@ -70,7 +61,7 @@
       "id": "slot.top.left.c2.circle",
       "type": "circle",
       "attributes": {
-        "cx": 194.0,
+        "cx": 188.0,
         "cy": 231.0,
         "r": 20.0,
         "stroke": "#333333",
@@ -86,7 +77,7 @@
       "id": "slot.top.left.c3.circle",
       "type": "circle",
       "attributes": {
-        "cx": 225.0,
+        "cx": 219.0,
         "cy": 205.0,
         "r": 20.0,
         "stroke": "#333333",
@@ -102,7 +93,7 @@
       "id": "slot.top.mid.big.circle",
       "type": "circle",
       "attributes": {
-        "cx": 430.0,
+        "cx": 369.0,
         "cy": 230.0,
         "r": 45.0,
         "stroke": "#333333",
@@ -118,7 +109,7 @@
       "id": "slot.top.mid.small1.circle",
       "type": "circle",
       "attributes": {
-        "cx": 430.0,
+        "cx": 369.0,
         "cy": 210.0,
         "r": 25.0,
         "stroke": "#333333",
@@ -134,7 +125,7 @@
       "id": "slot.top.mid.small2.circle",
       "type": "circle",
       "attributes": {
-        "cx": 430.0,
+        "cx": 369.0,
         "cy": 200.0,
         "r": 15.0,
         "stroke": "#333333",
@@ -150,7 +141,7 @@
       "id": "slot.top.right.o1.circle",
       "type": "circle",
       "attributes": {
-        "cx": 680.0,
+        "cx": 544.0,
         "cy": 235.0,
         "r": 45.0,
         "stroke": "#333333",
@@ -166,7 +157,7 @@
       "id": "slot.top.right.o2.circle",
       "type": "circle",
       "attributes": {
-        "cx": 680.0,
+        "cx": 544.0,
         "cy": 235.0,
         "r": 35.0,
         "stroke": "#333333",
@@ -182,7 +173,7 @@
       "id": "slot.top.right.o3.circle",
       "type": "circle",
       "attributes": {
-        "cx": 680.0,
+        "cx": 544.0,
         "cy": 235.0,
         "r": 20.0,
         "stroke": "#333333",
@@ -195,83 +186,56 @@
       }
     },
     {
-      "id": "konva_1787270985164_text_2593650.text",
-      "type": "text_box",
+      "id": "slot.stem.copy1.text",
+      "type": "text",
       "attributes": {
         "x": 87.242,
-        "y": 170.684,
+        "y": 200.684,
         "fill": "#111827",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30,
-        "width": 98.0,
-        "height": 46.0,
-        "max_width": 98.0,
-        "data-slot-kind": "text_box",
-        "data-box-x": 87.242,
-        "data-box-y": 170.684,
-        "data-box-width": 98.0,
-        "data-box-height": 46.0,
-        "data-text-align": "left",
-        "data-vertical-align": "top",
-        "data-line-height": 1.25
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 30.0,
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "explicit"
       },
-      "source_ref": "konva_1787270985164_text_2593650",
+      "source_ref": "slot.stem.copy1",
       "refs": {
-        "layout_slot_id": "konva_1787270985164_text_2593650"
+        "layout_slot_id": "slot.stem.copy1"
       },
       "text": "1번"
     },
     {
-      "id": "konva_1787270985164_paste_2597854_0.text",
-      "type": "text_box",
+      "id": "slot.stem.copy1.copy2.text",
+      "type": "text",
       "attributes": {
-        "x": 318.373,
-        "y": 176.972,
+        "x": 262.373,
+        "y": 200.972,
         "fill": "#111827",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30,
-        "width": 98.0,
-        "height": 46.0,
-        "max_width": 98.0,
-        "data-slot-kind": "text_box",
-        "data-box-x": 318.373,
-        "data-box-y": 176.972,
-        "data-box-width": 98.0,
-        "data-box-height": 46.0,
-        "data-text-align": "left",
-        "data-vertical-align": "top",
-        "data-line-height": 1.25
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 30.0,
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "explicit"
       },
-      "source_ref": "konva_1787270985164_paste_2597854_0",
+      "source_ref": "slot.stem.copy1.copy2",
       "refs": {
-        "layout_slot_id": "konva_1787270985164_paste_2597854_0"
+        "layout_slot_id": "slot.stem.copy1.copy2"
       },
       "text": "2번"
     },
     {
-      "id": "konva_1787270985164_paste_2600134_0.text",
-      "type": "text_box",
+      "id": "slot.stem.copy1.copy3.text",
+      "type": "text",
       "attributes": {
-        "x": 569.443,
-        "y": 178.832,
+        "x": 437.443,
+        "y": 200.832,
         "fill": "#111827",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30,
-        "width": 98.0,
-        "height": 46.0,
-        "max_width": 98.0,
-        "data-slot-kind": "text_box",
-        "data-box-x": 569.443,
-        "data-box-y": 178.832,
-        "data-box-width": 98.0,
-        "data-box-height": 46.0,
-        "data-text-align": "left",
-        "data-vertical-align": "top",
-        "data-line-height": 1.25
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 30.0,
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "explicit"
       },
-      "source_ref": "konva_1787270985164_paste_2600134_0",
+      "source_ref": "slot.stem.copy1.copy3",
       "refs": {
-        "layout_slot_id": "konva_1787270985164_paste_2600134_0"
+        "layout_slot_id": "slot.stem.copy1.copy3"
       },
       "text": "3번"
     }

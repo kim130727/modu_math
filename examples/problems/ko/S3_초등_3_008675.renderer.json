@@ -13,8 +13,9 @@
         "x": 72.0,
         "y": 29.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 26
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 26.0,
+        "data-semantic-role": "question"
       },
       "source_ref": "slot.header.text",
       "refs": {
@@ -29,8 +30,8 @@
         "x": 90.0,
         "y": 95.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 25,
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 25.0,
         "data-semantic-role": "symbol_label"
       },
       "source_ref": "slot.header.text.copy4",
@@ -43,11 +44,11 @@
       "id": "slot.header.text.copy4.copy5.text",
       "type": "text",
       "attributes": {
-        "x": 345.0,
+        "x": 314.0,
         "y": 95.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 25,
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 25.0,
         "data-semantic-role": "symbol_label"
       },
       "source_ref": "slot.header.text.copy4.copy5",
@@ -60,11 +61,11 @@
       "id": "slot.header.text.copy4.copy5.copy6.text",
       "type": "text",
       "attributes": {
-        "x": 625.0,
+        "x": 533.0,
         "y": 95.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 25,
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 25.0,
         "data-semantic-role": "symbol_label"
       },
       "source_ref": "slot.header.text.copy4.copy5.copy6",
@@ -108,7 +109,7 @@
       "id": "slot.choice.middle.square.rect",
       "type": "rect",
       "attributes": {
-        "x": 410.0,
+        "x": 362.0,
         "y": 74.0,
         "width": 152.0,
         "height": 152.0,
@@ -125,7 +126,7 @@
       "id": "slot.choice.middle.base.path",
       "type": "path",
       "attributes": {
-        "d": "M 562 150 A 76 76 0 1 0 486 226",
+        "d": "M 514 150 A 76 76 0 1 0 438 226",
         "stroke": "#111111",
         "stroke-width": 2.1,
         "fill": "none"
@@ -139,7 +140,7 @@
       "id": "slot.choice.middle.red.path",
       "type": "path",
       "attributes": {
-        "d": "M 486 226 A 76 76 0 0 0 562 150",
+        "d": "M 438 226 A 76 76 0 0 0 514 150",
         "stroke": "#ff0000",
         "stroke-width": 2.1,
         "fill": "none"
@@ -153,7 +154,7 @@
       "id": "slot.choice.right.square.rect",
       "type": "rect",
       "attributes": {
-        "x": 672.0,
+        "x": 580.0,
         "y": 74.0,
         "width": 152.0,
         "height": 152.0,
@@ -170,7 +171,7 @@
       "id": "slot.choice.right.base.path",
       "type": "path",
       "attributes": {
-        "d": "M 824.0 150.0 A 76.0 76.0 0 1 0 748.0 226.0",
+        "d": "M 732 150 A 76 76 0 1 0 656 226",
         "stroke": "#111111",
         "stroke-width": 2.1,
         "fill": "none"
@@ -184,7 +185,7 @@
       "id": "slot.choice.right.red.path",
       "type": "path",
       "attributes": {
-        "d": "M 748.0 226.0 A 76.0 76.0 0 0 1 824.0 150.0",
+        "d": "M 656 226 A 76 76 0 0 1 732 150",
         "stroke": "#ff0000",
         "stroke-width": 2.1,
         "fill": "none"
@@ -214,7 +215,7 @@
       "id": "slot.choice.middle.center.circle",
       "type": "circle",
       "attributes": {
-        "cx": 486.0,
+        "cx": 438.0,
         "cy": 150.0,
         "r": 3.5,
         "stroke": "none",
@@ -230,7 +231,7 @@
       "id": "slot.choice.right.center.circle",
       "type": "circle",
       "attributes": {
-        "cx": 748.0,
+        "cx": 656.0,
         "cy": 150.0,
         "r": 3.5,
         "stroke": "none",

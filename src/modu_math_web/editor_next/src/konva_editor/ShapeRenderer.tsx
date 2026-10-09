@@ -11,6 +11,7 @@ import { pathDataForShape } from "./shapeGeometry";
 interface ShapeRendererProps {
   shape: EditorShape;
   isSelected: boolean;
+  interactive?: boolean;
   nodeRef: (node: Konva.Node | null) => void;
   onSelect: (event: Konva.KonvaEventObject<MouseEvent | TouchEvent>) => void;
   onDragStart: (event: Konva.KonvaEventObject<DragEvent>) => void;
@@ -19,7 +20,7 @@ interface ShapeRendererProps {
   onContextMenu: (event: Konva.KonvaEventObject<MouseEvent>) => void;
 }
 
-export function ShapeRenderer({ shape, nodeRef, onSelect, onDragStart, onDragMove, onDragEnd, onContextMenu }: ShapeRendererProps) {
+export function ShapeRenderer({ shape, nodeRef, interactive = true, onSelect, onDragStart, onDragMove, onDragEnd, onContextMenu }: ShapeRendererProps) {
   const common = {
     id: shape.id,
     ref: nodeRef,
@@ -30,7 +31,8 @@ export function ShapeRenderer({ shape, nodeRef, onSelect, onDragStart, onDragMov
     offsetY: shape.offsetY ?? 0,
     opacity: shape.opacity ?? 1,
     visible: shape.visible ?? true,
-    draggable: !shape.locked,
+    draggable: interactive && !shape.locked,
+    listening: interactive,
     onClick: onSelect,
     onTap: onSelect,
     onDragStart,

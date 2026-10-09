@@ -13,20 +13,21 @@
         "x": 35.0,
         "y": 35.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 25
+        "font-family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 25.0,
+        "data-semantic-role": "question"
       },
       "source_ref": "slot.stem",
       "refs": {
         "layout_slot_id": "slot.stem"
       },
-      "text": "원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 폈더니\n선이 생겼습니다. 알맞은 말을 선택하세요."
+      "text": "원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 폈더니 선이 생겼습니다. 알맞은 말을 선택하세요."
     },
     {
       "id": "slot.folded.paper.path",
       "type": "path",
       "attributes": {
-        "d": "M 193.0 153.0 A 59.0 59.0 0 0 1 311.0 153.0 Z",
+        "d": "M 106 153 A 59 59 0 0 1 224 153 Z",
         "stroke": "#FF9AB2",
         "stroke-width": 2.0,
         "fill": "#FDE8EF"
@@ -42,15 +43,15 @@
       "attributes": {
         "points": [
           [
-            410.0,
+            323.0,
             153.0
           ],
           [
-            395.0,
+            308.0,
             143.0
           ],
           [
-            395.0,
+            308.0,
             163.0
           ]
         ],
@@ -67,7 +68,7 @@
       "id": "slot.opened.paper.circle",
       "type": "circle",
       "attributes": {
-        "cx": 509.0,
+        "cx": 422.0,
         "cy": 153.0,
         "r": 59.0,
         "stroke": "#FF9AB2",
@@ -83,9 +84,9 @@
       "id": "slot.folded.edge.line",
       "type": "line",
       "attributes": {
-        "x1": 193.0,
+        "x1": 106.0,
         "y1": 153.0,
-        "x2": 311.0,
+        "x2": 224.0,
         "y2": 153.0,
         "stroke": "#FF9AB2",
         "stroke-width": 2.0
@@ -99,9 +100,9 @@
       "id": "slot.arrow.body.line",
       "type": "line",
       "attributes": {
-        "x1": 355.0,
+        "x1": 268.0,
         "y1": 153.0,
-        "x2": 395.0,
+        "x2": 308.0,
         "y2": 153.0,
         "stroke": "#9AA0A6",
         "stroke-width": 6.0
@@ -115,9 +116,9 @@
       "id": "slot.opened.fold_line.line",
       "type": "line",
       "attributes": {
-        "x1": 450.0,
+        "x1": 363.0,
         "y1": 153.0,
-        "x2": 568.0,
+        "x2": 481.0,
         "y2": 153.0,
         "stroke": "#FF9AB2",
         "stroke-width": 2.0,
@@ -130,13 +131,25 @@
     },
     {
       "id": "slot.choice.1.text",
-      "type": "text",
+      "type": "text_box",
       "attributes": {
-        "x": 35.0,
-        "y": 265.0,
+        "x": 154.2,
+        "y": 240.83,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 26
+        "font-family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 26.0,
+        "width": 290.11,
+        "height": 63.0,
+        "max_width": 290.11,
+        "data-slot-kind": "text_box",
+        "data-box-x": 154.2,
+        "data-box-y": 240.83,
+        "data-box-width": 290.11,
+        "data-box-height": 63.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.2,
+        "data-semantic-role": "canvas"
       },
       "source_ref": "slot.choice.1",
       "refs": {

@@ -258,3 +258,11 @@ SOLVABLE = {
         "unit": "",
     },
 }
+EDITOR_ANSWER_REVIEW = {'mode': 'choice',
+ 'status': 'verified',
+ 'note': '',
+ 'answers': [{'value': '4. 선분 ㄱㄷ'}],
+ 'choices': [{'id': 'choice.1', 'text': '선분 ㅇㄱ', 'correct': False, 'label': '1.', 'sourceRefs': []},
+             {'id': 'choice.2', 'text': '선분 ㅇㄷ', 'correct': False, 'label': '2.', 'sourceRefs': []},
+             {'id': 'choice.3', 'text': '선분 ㅇㄴ', 'correct': False, 'label': '3.', 'sourceRefs': []},
+             {'id': 'choice.4', 'text': '선분 ㄱㄷ', 'correct': True, 'label': '4.', 'sourceRefs': []}]}

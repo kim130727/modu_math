@@ -4,7 +4,7 @@
   "metadata": {
     "title": "원을 똑같이 둘로 나누는 선분 찾기",
     "tags": [],
-    "question": "원을 똑같이 둘로 나누는 선분의 기호를 선택하는 문제",
+    "question": "원을 똑같이 둘로 나누는 선분을 찾아 기호를 선택하세요.",
     "required_layout_ids": [
       "slot.circle",
       "slot.seg.h",
@@ -13,7 +13,17 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "그림을 보고 알맞은 선분을 선택하세요."
+    "instruction": "그림을 보고 알맞은 선분을 선택하세요.",
+    "presentation_sources": {
+      "question": [
+        "slot.q1"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice"
+      ]
+    },
+    "presentation_prompt": "원을 똑같이 둘로 나누는 선분을 찾아 기호를 선택하세요."
   },
   "domain": {
     "objects": [
@@ -79,20 +89,87 @@
   "answer": {
     "blanks": [],
     "choices": [
-      "1. 선분 ㅇㄱ",
-      "2. 선분 ㅇㄷ",
-      "3. 선분 ㅇㄴ",
-      "4. 선분 ㄱㄷ"
+      {
+        "id": "choice.1",
+        "label": "1.",
+        "text": "선분 ㅇㄱ",
+        "source_refs": []
+      },
+      {
+        "id": "choice.2",
+        "label": "2.",
+        "text": "선분 ㅇㄷ",
+        "source_refs": []
+      },
+      {
+        "id": "choice.3",
+        "label": "3.",
+        "text": "선분 ㅇㄴ",
+        "source_refs": []
+      },
+      {
+        "id": "choice.4",
+        "label": "4.",
+        "text": "선분 ㄱㄷ",
+        "source_refs": []
+      }
     ],
     "answer_key": [
-      "4. 선분 ㄱㄷ"
+      {
+        "id": "choice.4",
+        "value": "선분 ㄱㄷ"
+      }
     ],
     "confidence": 1.0,
     "target": {
       "type": "segment_symbol",
       "description": "원을 똑같이 둘로 나누는 선분"
     },
-    "value": "4. 선분 ㄱㄷ",
-    "unit": ""
+    "value": "선분 ㄱㄷ",
+    "unit": "",
+    "presentation": {
+      "mode": "choice",
+      "editor_managed": true,
+      "review": {
+        "mode": "choice",
+        "status": "verified",
+        "note": "",
+        "answers": [
+          {
+            "value": "4. 선분 ㄱㄷ"
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice.1",
+            "text": "선분 ㅇㄱ",
+            "correct": false,
+            "label": "1.",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.2",
+            "text": "선분 ㅇㄷ",
+            "correct": false,
+            "label": "2.",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.3",
+            "text": "선분 ㅇㄴ",
+            "correct": false,
+            "label": "3.",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.4",
+            "text": "선분 ㄱㄷ",
+            "correct": true,
+            "label": "4.",
+            "sourceRefs": []
+          }
+        ]
+      }
+    }
   }
 }

@@ -144,7 +144,7 @@ export function KonvaStage({
 
   useEffect(() => {
     if (!transformerRef.current) return;
-    const selectedNodes = selectedShapeIds
+    const selectedNodes = answerReviewMode ? [] : selectedShapeIds
       .map((id) => {
         const shape = shapes.find((candidate) => candidate.id === id);
         if (shape?.type === "line" || shape?.type === "connector") return null;
@@ -153,7 +153,19 @@ export function KonvaStage({
       .filter((node): node is Konva.Node => Boolean(node));
     transformerRef.current.nodes(selectedNodes);
     transformerRef.current.getLayer()?.batchDraw();
-  }, [selectedShapeIds, shapes]);
+  }, [answerReviewMode, selectedShapeIds, shapes]);
+
+  useEffect(() => {
+    if (!answerReviewMode) return;
+    selectionStartRef.current = null;
+    drawStartRef.current = null;
+    drawPointsRef.current = [];
+    dragStartRef.current = null;
+    setSelectionRect(null);
+    setDrawingPreview(null);
+    setContextMenu(null);
+    setEditingTutorLabel(null);
+  }, [answerReviewMode]);
 
   useEffect(() => {
     if (!editingTutorLabel) return;
@@ -161,15 +173,18 @@ export function KonvaStage({
     tutorTextEditorRef.current?.select();
   }, [editingTutorLabel?.index]);
 
-  const selectedIdSet = useMemo(() => new Set(selectedShapeIds), [selectedShapeIds]);
+  const selectedIdSet = useMemo(
+    () => new Set(answerReviewMode ? [] : selectedShapeIds),
+    [answerReviewMode, selectedShapeIds],
+  );
   const promptShapes = useMemo(
-    () => shapes.filter((shape) => shape.type === "text" && ["question", "instruction"].includes(shape.semanticRole ?? "")),
+    () => shapes.filter(isTopPresentationShape),
     [shapes],
   );
   const renderedShapes = useMemo(
     () => shapes.filter((shape) =>
-      !(shape.type === "text" && (["question", "instruction"].includes(shape.semanticRole ?? "") ||
-        (answerReviewMode && shape.semanticRole === "choice" && answerChoices.length > 0))),
+      !(isTopPresentationShape(shape) ||
+        (answerReviewMode && isExplicitChoiceShape(shape) && answerChoices.length > 0)),
     ).sort(compareRenderOrder),
     [answerChoices.length, answerReviewMode, shapes],
   );
@@ -189,21 +204,21 @@ export function KonvaStage({
   const answerReviews = answerReviewMode && !reviewPanel ? answerSlotReviews(shapes, answerOptions) : new Map<string, AnswerSlotReview>();
   const shapesById = new Map(shapes.map((shape) => [shape.id, shape]));
   const selectedLine =
-    selectedShapeIds.length === 1
+    !answerReviewMode && selectedShapeIds.length === 1
       ? shapes.find((shape): shape is LineShape => shape.id === selectedShapeIds[0] && shape.type === "line" && !shape.locked) ?? null
       : null;
   const selectedConnector =
-    selectedShapeIds.length === 1
+    !answerReviewMode && selectedShapeIds.length === 1
       ? shapes.find((shape): shape is ConnectorShape => shape.id === selectedShapeIds[0] && shape.type === "connector" && !shape.locked) ?? null
       : null;
   const selectedAdjustablePath =
-    selectedShapeIds.length === 1
+    !answerReviewMode && selectedShapeIds.length === 1
       ? shapes.find(
           (shape): shape is Extract<EditorShape, { type: "path" }> =>
             shape.id === selectedShapeIds[0] && shape.type === "path" && !shape.locked && Boolean(adjustableShapePoint(shape)),
         ) ?? null
       : null;
-  const hasImageSelected = selectedShapeIds.some((id) => shapes.find((shape) => shape.id === id)?.type === "image");
+  const hasImageSelected = !answerReviewMode && selectedShapeIds.some((id) => shapes.find((shape) => shape.id === id)?.type === "image");
 
   const pointFromEvent = (event: Konva.KonvaEventObject<MouseEvent | TouchEvent>) => {
     const stage = event.target.getStage();
@@ -413,6 +428,7 @@ export function KonvaStage({
         width={stageWidth}
         height={stageHeight}
         onMouseDown={(event) => {
+          if (answerReviewMode) return;
           if (event.evt.button !== 0) return;
           if (event.target !== event.target.getStage()) return;
           const point = pointFromEvent(event);
@@ -428,6 +444,7 @@ export function KonvaStage({
           setSelectionRect({ x: point.x, y: point.y, width: 0, height: 0 });
         }}
         onMouseMove={(event) => {
+          if (answerReviewMode) return;
           if (event.evt.buttons && (event.evt.buttons & 1) === 0) return;
           if (drawStartRef.current && drawingPreset) {
             const point = pointFromEvent(event);
@@ -443,6 +460,7 @@ export function KonvaStage({
           setSelectionRect(normalizeRect(start.x, start.y, point.x - start.x, point.y - start.y));
         }}
         onMouseUp={(event) => {
+          if (answerReviewMode) return;
           if (event.evt.button !== 0) return;
           if (drawStartRef.current && drawingPreset && onDrawShape) {
             const start = drawStartRef.current;
@@ -473,6 +491,7 @@ export function KonvaStage({
           onSelectShapes(start.additive ? Array.from(new Set([...selectedShapeIds, ...hits])) : hits);
         }}
         onTouchStart={(event) => {
+          if (answerReviewMode) return;
           if (event.target === event.target.getStage()) onSelectShapes([]);
         }}
       >
@@ -483,6 +502,7 @@ export function KonvaStage({
               key={shape.id}
               shape={shape}
               isSelected={selectedIdSet.has(shape.id)}
+              interactive={!answerReviewMode}
               nodeRef={(node) => {
                 shapeRefs.current[shape.id] = node;
               }}
@@ -506,9 +526,9 @@ export function KonvaStage({
           <TutorOverlayLayer
             overlays={tutorOverlays}
             shapesById={shapesById}
-            activeOverlayIndex={activeTutorOverlayIndex}
-            onOverlaySelect={onTutorOverlaySelect}
-            onOverlayTextEditStart={(index, overlay, metrics) => {
+            activeOverlayIndex={answerReviewMode ? null : activeTutorOverlayIndex}
+            onOverlaySelect={answerReviewMode ? undefined : onTutorOverlaySelect}
+            onOverlayTextEditStart={answerReviewMode ? undefined : (index, overlay, metrics) => {
               onTutorOverlaySelect?.(index);
               setEditingTutorLabel({
                 index,
@@ -520,9 +540,9 @@ export function KonvaStage({
                 color: metrics.fill,
               });
             }}
-            onOverlayMove={onTutorOverlayMove}
+            onOverlayMove={answerReviewMode ? undefined : onTutorOverlayMove}
           />
-          {selectionRect ? (
+          {!answerReviewMode && selectionRect ? (
             <Rect
               x={selectionRect.x}
               y={selectionRect.y}
@@ -539,6 +559,7 @@ export function KonvaStage({
             <ShapeRenderer
               shape={drawingPreview}
               isSelected={false}
+              interactive={false}
               nodeRef={() => undefined}
               onSelect={(event) => {
                 event.cancelBubble = true;
@@ -565,7 +586,7 @@ export function KonvaStage({
               onControlDrag={(event) => updateConnectorControl(selectedConnector, event)}
             />
           ) : null}
-          <Transformer
+          {!answerReviewMode ? <Transformer
             ref={transformerRef}
             keepRatio={hasImageSelected}
             rotateEnabled
@@ -593,7 +614,7 @@ export function KonvaStage({
                 .filter((shape): shape is EditorShape => Boolean(shape));
               if (transformed.length) onChangeShapes(transformed);
             }}
-          />
+          /> : null}
           {selectedAdjustablePath ? (
             <PathAdjustmentHandle
               shape={selectedAdjustablePath}
@@ -608,7 +629,7 @@ export function KonvaStage({
         <AnswerPanelPreview answerOptions={answerOptions} />
       ) : null}
       {answerReviewMode && !reviewPanel && answerPresentationMode === "choice" && answerChoices.length > 0 ? <AnswerChoicePanelPreview choices={answerChoices} /> : null}
-      {editingTutorLabel ? (
+      {!answerReviewMode && editingTutorLabel ? (
         <textarea
           ref={tutorTextEditorRef}
           className="konva-overlay-text-editor"
@@ -635,7 +656,7 @@ export function KonvaStage({
           }}
         />
       ) : null}
-      {contextMenu ? (
+      {!answerReviewMode && contextMenu ? (
         <div className="konva-context-menu" style={{ left: contextMenu.x, top: contextMenu.y }} onPointerDown={(event) => event.stopPropagation()}>
           {contextAnswerTargets.length ? (
             contextAnswerTargets.every((shape) => shape.interaction) ? (
@@ -1022,6 +1043,15 @@ function isAdditiveSelection(event: MouseEvent | TouchEvent): boolean {
 
 function intersectsRect(a: CanvasRect, b: CanvasRect): boolean {
   return a.x <= b.x + b.width && a.x + a.width >= b.x && a.y <= b.y + b.height && a.y + a.height >= b.y;
+}
+
+function isTopPresentationShape(shape: EditorShape): shape is Extract<EditorShape, { type: "text" }> {
+  if (shape.type !== "text" || !["question", "instruction"].includes(shape.semanticRole ?? "")) return false;
+  return shape.semanticRoleSource !== "inferred";
+}
+
+function isExplicitChoiceShape(shape: EditorShape): boolean {
+  return shape.type === "text" && shape.semanticRole === "choice" && shape.semanticRoleSource !== "inferred";
 }
 
 function contentCrop(shapes: EditorShape[], width: number, height: number, fitContent: boolean): CanvasRect {

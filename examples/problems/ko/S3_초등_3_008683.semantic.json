@@ -5,7 +5,7 @@
     "title": "원을 그리는 방법",
     "tags": [],
     "instruction": "그린 원을 보고 알맞은 말을 선택하세요.",
-    "question": "원을 그리는 방법을 보고 알맞은 말을 선택하는 문제",
+    "question": "다음과 같은 방법으로 원을 그렸습니다. 그린 원을 보고 알맞은 말을 선택하세요.",
     "required_layout_ids": [
       "slot.box1",
       "slot.diagram1.frame",
@@ -29,7 +29,15 @@
       "slot.girl.person.bow.right"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko"
+    "language": "ko",
+    "presentation_sources": {
+      "question": [
+        "slot.q1"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "다음과 같은 방법으로 원을 그렸습니다. 그린 원을 보고 알맞은 말을 선택하세요."
   },
   "domain": {
     "objects": [

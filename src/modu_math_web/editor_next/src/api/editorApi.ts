@@ -230,6 +230,9 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 function answerElementProps(element: RendererElement): Record<string, unknown> {
   return {
     ...(typeof element.attributes["data-semantic-role"] === "string" ? { semantic_role: element.attributes["data-semantic-role"] } : {}),
+    ...(element.attributes["data-semantic-role-source"] === "explicit" || element.attributes["data-semantic-role-source"] === "inferred"
+      ? { semantic_role_source: element.attributes["data-semantic-role-source"] }
+      : {}),
     ...(isRecord(element.interaction) ? { interaction: element.interaction } : {}),
     ...(isRecord(element.input_style) ? { input_style: element.input_style } : {}),
   };
@@ -238,6 +241,9 @@ function answerElementProps(element: RendererElement): Record<string, unknown> {
 function answerContentProps(content: Record<string, unknown>): Record<string, unknown> {
   return {
     ...(typeof content.semantic_role === "string" ? { semantic_role: content.semantic_role } : {}),
+    ...(content.semantic_role_source === "explicit" || content.semantic_role_source === "inferred"
+      ? { semantic_role_source: content.semantic_role_source }
+      : {}),
     ...(isRecord(content.interaction) ? { interaction: content.interaction } : {}),
     ...(isRecord(content.input_style) ? { input_style: content.input_style } : {}),
   };

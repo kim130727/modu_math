@@ -21,9 +21,6 @@ def build_problem_template() -> ProblemTemplate:
                 flow="absolute",
                 slot_ids=(
                     "slot.stem",
-                    "slot.stem.copy1",
-                    "slot.stem.copy1.copy2",
-                    "slot.stem.copy1.copy3",
                 ),
             ),
             Region(
@@ -41,6 +38,9 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.top.right.o1",
                     "slot.top.right.o2",
                     "slot.top.right.o3",
+                    "slot.stem.copy1",
+                    "slot.stem.copy1.copy2",
+                    "slot.stem.copy1.copy3",
                 ),
             ),
             Region(
@@ -175,6 +175,7 @@ def build_problem_template() -> ProblemTemplate:
                 y=210,
                 font_size=28,
                 fill="#111111",
+                semantic_role="canvas",
             ),
             TextSlot(
                 id="slot.stem.copy1.copy2",
@@ -184,6 +185,7 @@ def build_problem_template() -> ProblemTemplate:
                 y=210,
                 font_size=28,
                 fill="#111111",
+                semantic_role="canvas",
             ),
             TextSlot(
                 id="slot.stem.copy1.copy3",
@@ -193,6 +195,7 @@ def build_problem_template() -> ProblemTemplate:
                 y=210,
                 font_size=28,
                 fill="#111111",
+                semantic_role="canvas",
             ),
         ),
         diagrams=(),
@@ -312,3 +315,10 @@ SOLVABLE = {
         "unit": "",
     },
 }
+EDITOR_ANSWER_REVIEW = {'mode': 'choice',
+ 'status': 'verified',
+ 'note': '',
+ 'answers': [{'value': '3번'}],
+ 'choices': [{'id': 'choice.1', 'text': '1번', 'correct': False, 'label': '1', 'sourceRefs': []},
+             {'id': 'choice.2', 'text': '2번', 'correct': False, 'label': '2', 'sourceRefs': []},
+             {'id': 'choice.3', 'text': '3번', 'correct': True, 'label': '3', 'sourceRefs': []}]}

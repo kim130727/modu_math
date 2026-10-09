@@ -3,5 +3,58 @@
     "width": 700,
     "height": 330
   },
-  "version": 1
+  "version": 1,
+  "slots": {
+    "slot.stem": {
+      "text": "원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 폈더니 선이 생겼습니다. 알맞은 말을 선택하세요.",
+      "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+      "semantic_role": "question"
+    },
+    "slot.folded.paper": {
+      "d": "M 106 153 A 59 59 0 0 1 224 153 Z"
+    },
+    "slot.arrow.head": {
+      "points": [
+        [
+          323.0,
+          153.0
+        ],
+        [
+          308.0,
+          143.0
+        ],
+        [
+          308.0,
+          163.0
+        ]
+      ]
+    },
+    "slot.opened.paper": {
+      "cx": 422
+    },
+    "slot.folded.edge": {
+      "x1": 106,
+      "x2": 224
+    },
+    "slot.arrow.body": {
+      "x1": 268,
+      "x2": 308
+    },
+    "slot.opened.fold_line": {
+      "x1": 363,
+      "x2": 481
+    },
+    "slot.choice.1": {
+      "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+      "semantic_role": "canvas",
+      "x": 154.2,
+      "y": 240.83,
+      "width": 290.11,
+      "height": 63,
+      "align": "left",
+      "valign": "middle",
+      "line_height": 1.2,
+      "kind": "text_box"
+    }
+  }
 }

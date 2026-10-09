@@ -283,6 +283,9 @@ function mathTextFields(object: MathTextObject, includeBoxSize: boolean): Record
   if (typeof object.props.semantic_role === "string") {
     fields.semantic_role = object.props.semantic_role;
   }
+  if (object.props.semantic_role_source === "explicit" || object.props.semantic_role_source === "inferred") {
+    fields.semantic_role_source = object.props.semantic_role_source;
+  }
   appendAnswerSlotFields(fields, object.props);
   return fields;
 }

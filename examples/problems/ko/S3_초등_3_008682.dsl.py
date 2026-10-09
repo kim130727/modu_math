@@ -302,3 +302,9 @@ SOLVABLE = {
     ],
     "answer": ANSWER,
 }
+EDITOR_ANSWER_REVIEW = {'mode': 'choice',
+ 'status': 'verified',
+ 'note': '',
+ 'answers': [{'value': '지혜'}],
+ 'choices': [{'id': 'choice.1', 'text': '민수', 'correct': False, 'label': '1', 'sourceRefs': []},
+             {'id': 'choice.2', 'text': '지혜', 'correct': True, 'label': '2', 'sourceRefs': []}]}

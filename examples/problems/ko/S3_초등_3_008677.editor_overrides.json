@@ -1,7 +1,9 @@
 {
   "slots": {
     "slot.qtext": {
-      "y": 35
+      "y": 35,
+      "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+      "semantic_role": "question"
     },
     "slot.circle": {
       "cx": 397,
@@ -14,10 +16,10 @@
       "y2": 135
     },
     "slot.seg2": {
-      "x1": 507,
-      "y1": 135,
-      "x2": 507,
-      "y2": 220
+      "x1": 510.602,
+      "y1": 135.384,
+      "x2": 506.982,
+      "y2": 220.014
     },
     "slot.seg3": {
       "x1": 397,
@@ -30,25 +32,47 @@
       "cy": 175
     },
     "slot.lb.g1": {
-      "x": 247,
-      "y": 235
+      "x": 253,
+      "y": 235,
+      "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
     },
     "slot.lb.g2": {
-      "x": 407,
-      "y": 270
+      "x": 402,
+      "y": 285,
+      "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
     },
     "slot.lb.g3": {
-      "x": 472,
-      "y": 225
+      "x": 475,
+      "y": 231,
+      "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
     },
     "slot.lb.g4": {
-      "x": 517,
-      "y": 130
+      "x": 515,
+      "y": 138,
+      "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
     },
     "slot.lb.o": {
       "x": 372,
-      "y": 160
+      "y": 160,
+      "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
+    },
+    "slot.choice1": {
+      "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+      "semantic_role": "choice",
+      "x": 149
+    },
+    "slot.choice2": {
+      "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+      "semantic_role": "choice"
+    },
+    "slot.choice3": {
+      "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+      "semantic_role": "choice",
+      "x": 471
     }
   },
-  "version": 1
+  "version": 1,
+  "deleted_slots": [
+    "slot.choice_box"
+  ]
 }

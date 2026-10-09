@@ -68,6 +68,7 @@ export type BaseShape = {
   sourceTransform?: string;
   sourceRegionId?: string;
   semanticRole?: string;
+  semanticRoleSource?: "explicit" | "inferred";
   interaction?: InputInteraction;
   input_style?: InputStyle;
 };

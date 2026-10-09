@@ -28,7 +28,8 @@ def structure_presentation(layout: dict, semantic: dict, solvable: dict | None =
         if not isinstance(text, str):
             continue
         identity = str(slot.get("id", "")).lower()
-        role = content.get("semantic_role")
+        role_source = content.get("semantic_role_source")
+        role = content.get("semantic_role") if role_source == "explicit" else None
         if (
             role in {"question", "instruction"}
             or re.search(r"(?:^|[._])(?:instruction|question|stem|q\d*|q_text)(?:[._]|$)", identity)
@@ -46,15 +47,23 @@ def structure_presentation(layout: dict, semantic: dict, solvable: dict | None =
         if not isinstance(text, str):
             continue
         identity = slot.get("id", "").lower()
-        role = content.get("semantic_role")
+        declared_role = content.get("semantic_role")
+        role_source = content.get("semantic_role_source")
+        role = None if role_source == "inferred" else declared_role
+        role_was_explicit = role_source == "explicit"
         region = slot_regions.get(slot.get("id"), {})
         region_id = str(region.get("id", ""))
         if not role or role in {"text", "unknown"}:
             if re.search(r"(?:^|[._])(?:instruction)(?:[._]|$)", identity):
                 role = "instruction"
-            elif (re.search(r"(?:^|[._])(?:question|stem|q\d*|q_text)(?:[._]|$)", identity)
-                  or content.get("style_role") == "question"
-                  or text.strip() == str(metadata.get("question", "")).strip()):
+            elif (
+                (
+                    re.search(r"(?:^|[._])(?:question|stem|q\d*|q_text)(?:[._]|$)", identity)
+                    or content.get("style_role") == "question"
+                    or text.strip() == str(metadata.get("question", "")).strip()
+                )
+                and not _looks_like_canvas_label(text)
+            ):
                 role = "question"
             elif re.search(r"(?:^|[._])(?:choice|option|opt)[._]?\d+(?:[._]|$)", identity):
                 role = "choice"
@@ -70,9 +79,11 @@ def structure_presentation(layout: dict, semantic: dict, solvable: dict | None =
                 )
         if role in texts:
             content["semantic_role"] = role
+            content["semantic_role_source"] = "explicit" if role_was_explicit else "inferred"
             texts[role].append(slot)
         elif role == "canvas":
             content["semantic_role"] = role
+            content["semantic_role_source"] = "explicit" if role_was_explicit else "inferred"
         if role in {"question", "instruction"} and region_id:
             claimed_stem_regions.add(region_id)
 
@@ -163,6 +174,15 @@ def structure_presentation(layout: dict, semantic: dict, solvable: dict | None =
             if key in answer:
                 answer[key] = replace_literal(answer[key])
     return layout, semantic, solvable
+
+
+def _looks_like_canvas_label(text: str) -> bool:
+    """Labels copied from a stem stay on the canvas despite prompt-like IDs."""
+    value = text.strip()
+    return bool(re.fullmatch(
+        r"(?:[0-9]{1,2}\s*번|[①-⑳]|[ㄱ-ㅎ]|[A-Za-z]|\([0-9]{1,2}\)|[0-9]{1,2}[.)])",
+        value,
+    ))
 
 
 def structure_artifacts(artifacts: dict) -> dict:
