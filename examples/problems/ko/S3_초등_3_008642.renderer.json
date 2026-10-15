@@ -26,7 +26,8 @@
         "data-text-align": "left",
         "data-vertical-align": "middle",
         "data-line-height": 1.2,
-        "data-semantic-role": "question"
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "explicit"
       },
       "source_ref": "slot.q1",
       "refs": {
@@ -134,7 +135,8 @@
         "data-text-align": "left",
         "data-vertical-align": "top",
         "data-line-height": 1.2,
-        "data-semantic-role": "symbol_label"
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
       },
       "source_ref": "slot.center.label",
       "refs": {
@@ -210,7 +212,8 @@
         "data-text-align": "left",
         "data-vertical-align": "top",
         "data-line-height": 1.25,
-        "data-semantic-role": "canvas"
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
       },
       "source_ref": "slot.note.text",
       "refs": {
@@ -236,12 +239,13 @@
       "id": "slot.choice.1.text",
       "type": "text",
       "attributes": {
-        "x": 261.281,
-        "y": 534.357,
+        "x": 255.46,
+        "y": 533.15,
         "fill": "#111111",
         "font-family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
         "font-size": 30.0,
-        "data-semantic-role": "choice"
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
       },
       "source_ref": "slot.choice.1",
       "refs": {
@@ -253,18 +257,36 @@
       "id": "slot.choice.2.text",
       "type": "text",
       "attributes": {
-        "x": 687.714,
-        "y": 533.11,
+        "x": 664.77,
+        "y": 535.26,
         "fill": "#111111",
         "font-family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
         "font-size": 30.0,
-        "data-semantic-role": "choice"
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
       },
       "source_ref": "slot.choice.2",
       "refs": {
         "layout_slot_id": "slot.choice.2"
       },
       "text": "3개"
+    },
+    {
+      "id": "konva_1792043841084_rect_275442.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 221.33,
+        "y": 483.71,
+        "width": 547.09,
+        "height": 75.48,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.2
+      },
+      "source_ref": "konva_1792043841084_rect_275442",
+      "refs": {
+        "layout_slot_id": "konva_1792043841084_rect_275442"
+      }
     }
   ],
   "contract_version": "modu_math.renderer.v2"

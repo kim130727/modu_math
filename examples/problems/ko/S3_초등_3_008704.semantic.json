@@ -5,7 +5,7 @@
     "title": "원의 중심과 반지름의 규칙",
     "tags": [],
     "instruction": "그림을 보고 원의 중심과 반지름의 규칙을 고르기",
-    "question": "승아가 원을 그린 규칙을 찾아 알맞은 것을 선택하는 문제",
+    "question": "승아는 규칙에 따라 원을 그렸습니다. 승아가 원을 그린 규칙을 찾아 알맞은 것을 선택해보세요.\n원의 중심이 ( 같습니다, 다릅니다 ).\n원의 반지름이 모두 ( 1, 2, 3 )칸씩 늘어났습니다.",
     "required_layout_ids": [
       "slot.circle.1",
       "slot.circle.2",
@@ -38,7 +38,17 @@
       "slot.inserted.image.1"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko"
+    "language": "ko",
+    "presentation_sources": {
+      "question": [
+        "slot.title",
+        "slot.choice.text1",
+        "slot.choice.text2"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "승아는 규칙에 따라 원을 그렸습니다. 승아가 원을 그린 규칙을 찾아 알맞은 것을 선택해보세요.\n원의 중심이 ( 같습니다, 다릅니다 ).\n원의 반지름이 모두 ( 1, 2, 3 )칸씩 늘어났습니다."
   },
   "domain": {
     "objects": [

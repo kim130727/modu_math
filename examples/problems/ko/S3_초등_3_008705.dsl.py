@@ -513,9 +513,6 @@ SEMANTIC_OVERRIDE = {
         "target": {"type": "choice", "description": "규칙에 맞는지 여부 선택(○, X)"},
         "value": "X",
         "unit": "",
-        },
-        "value": 0,
-        "unit": "",
     },
 }
 
@@ -577,9 +574,6 @@ SOLVABLE = {
         "answer_key": ["X"],
         "target": {"type": "choice", "description": "규칙에 맞는지 여부 선택(○, X)"},
         "value": "X",
-        "unit": "",
-        },
-        "value": 0,
         "unit": "",
     },
 }

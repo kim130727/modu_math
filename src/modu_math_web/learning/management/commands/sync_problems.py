@@ -70,18 +70,39 @@ class Command(BaseCommand):
             )
             catalog = dict(manifest_by_id.get(problem_id, {}))
             if not catalog:
-                unit_topic = str(metadata.get("unitTopic") or metadata.get("unit") or "덧셈과 뺄셈")
+                text = (
+                    str(metadata.get("title", "")) + " " +
+                    str(metadata.get("question", "")) + " " +
+                    str(metadata.get("instruction", "")) + " " +
+                    str(semantic.get("problem_type", ""))
+                )
+                if any(k in text for k in ["원", "circle", "지름", "반지름", "중심", "컴퍼스"]):
+                    default_grade, default_sem, default_unit_num, default_topic = 3, "2학기", 3, "원"
+                elif any(k in text for k in ["들이", "무게", "capacity", "weight"]):
+                    default_grade, default_sem, default_unit_num, default_topic = 3, "2학기", 5, "들이와 무게"
+                elif any(k in text for k in ["분수", "소수", "fraction"]):
+                    default_grade, default_sem, default_unit_num, default_topic = 3, "1학기", 6, "분수와 소수"
+                elif any(k in text for k in ["곱셈", "multiplication"]):
+                    default_grade, default_sem, default_unit_num, default_topic = 3, "1학기", 4, "곱셈"
+                elif any(k in text for k in ["나눗셈", "division"]):
+                    default_grade, default_sem, default_unit_num, default_topic = 3, "1학기", 3, "나눗셈"
+                elif any(k in text for k in ["평면도형", "직각", "선분", "반직선", "직선"]):
+                    default_grade, default_sem, default_unit_num, default_topic = 3, "1학기", 2, "평면도형"
+                else:
+                    default_grade, default_sem, default_unit_num, default_topic = 3, "1학기", 1, "덧셈과 뺄셈"
+
+                unit_topic = str(metadata.get("unitTopic") or metadata.get("unit") or default_topic)
                 sub_unit = str(metadata.get("subUnit") or metadata.get("subTopic") or metadata.get("topic") or "기본 학습")
                 catalog = {
                     "id": problem_id,
-                    "grade": metadata.get("grade") or 3,
+                    "grade": metadata.get("grade") or default_grade,
                     "subject": "math",
                     "unit": unit_topic,
                     "unitTopic": unit_topic,
                     "subUnit": sub_unit,
                     "topic": sub_unit,
-                    "semester": str(metadata.get("semester") or "1학기"),
-                    "unitNumber": int(metadata.get("unitNumber") or 1),
+                    "semester": str(metadata.get("semester") or default_sem),
+                    "unitNumber": int(metadata.get("unitNumber") or default_unit_num),
                     "filePrefix": problem_id,
                 }
 

@@ -58,7 +58,100 @@ PROBLEM_UNIT_INFO = {
 }
 
 
-def _parse_unit_info(renderer_path: Path, file_prefix: str, metadata: dict[str, object]) -> tuple[int, int, int, str, str]:
+_STORAGE_CACHE: dict[str, tuple[int, int, int, str]] | None = None
+
+
+def _get_storage_mapping() -> dict[str, tuple[int, int, int, str]]:
+    global _STORAGE_CACHE
+    if _STORAGE_CACHE is not None:
+        return _STORAGE_CACHE
+    mapping = {}
+    storage_root = REPO / "examples" / "storage" / "ko"
+    if storage_root.is_dir():
+        for sem_dir in storage_root.iterdir():
+            if not sem_dir.is_dir() or sem_dir.name.startswith("."):
+                continue
+            sem_m = re.match(r"^(\d+)-(\d+)$", sem_dir.name)
+            if not sem_m:
+                continue
+            grade, semester = int(sem_m.group(1)), int(sem_m.group(2))
+            for unit_dir in sem_dir.iterdir():
+                if not unit_dir.is_dir():
+                    continue
+                unit_m = re.match(r"^(\d+)_(.+)$", unit_dir.name)
+                if not unit_m:
+                    continue
+                unit_number = int(unit_m.group(1))
+                unit_topic = unit_m.group(2).replace("_", " ")
+                for f in unit_dir.rglob("*.json"):
+                    stem = f.name.split(".")[0]
+                    mapping[stem] = (grade, semester, unit_number, unit_topic)
+    _STORAGE_CACHE = mapping
+    return mapping
+
+
+def _infer_unit_from_keywords(text: str) -> tuple[int, int, int, str]:
+    if any(k in text for k in ["원", "circle", "지름", "반지름", "중심", "컴퍼스"]):
+        return (3, 2, 3, "원")
+    if any(k in text for k in ["들이", "무게", "capacity", "weight", "생수병", "물병", "리터", "밀리리터"]):
+        return (3, 2, 5, "들이와 무게")
+    if any(k in text for k in ["분수", "소수", "fraction"]):
+        return (3, 1, 6, "분수와 소수")
+    if any(k in text for k in ["곱셈", "multiplication"]):
+        return (3, 1, 4, "곱셈")
+    if any(k in text for k in ["나눗셈", "division"]):
+        return (3, 1, 3, "나눗셈")
+    if any(k in text for k in ["평면도형", "직각", "선분", "반직선", "직선", "삼각형", "사각형"]):
+        return (3, 1, 2, "평면도형")
+    return (3, 1, 1, "덧셈과 뺄셈")
+
+
+def _infer_sub_unit(unit_topic: str, metadata: dict[str, object], semantic: dict[str, object]) -> str:
+    sub = ""
+    if isinstance(metadata, dict):
+        sub = str(metadata.get("subUnit") or metadata.get("subTopic") or metadata.get("topic") or "").strip()
+    if sub and sub != unit_topic and sub != "기본 학습":
+        return sub
+
+    text = (
+        str(metadata.get("title", "")) + " " +
+        str(metadata.get("question", "")) + " " +
+        str(metadata.get("instruction", "")) + " " +
+        str(semantic.get("problem_type", ""))
+    )
+    if unit_topic == "원":
+        if any(k in text for k in ["컴퍼스", "침을 꽂", "벌린 것"]):
+            return "컴퍼스로 원 그리기"
+        if any(k in text for k in ["규칙", "모양", "크기가 같은 원", "무늬"]):
+            return "원으로 여러 가지 모양 그리기"
+        if any(k in text for k in ["지름"]):
+            return "원의 지름"
+        if any(k in text for k in ["중심", "반지름"]):
+            return "원의 중심과 반지름"
+        return "원의 중심과 반지름"
+    elif unit_topic == "덧셈과 뺄셈":
+        if "뺄셈" in text:
+            return "세 자리 수의 뺄셈"
+        return "세 자리 수의 덧셈"
+    elif unit_topic == "평면도형":
+        return "선분, 반직선, 직선"
+    elif unit_topic == "나눗셈":
+        return "(두 자리 수)÷(한 자리 수)"
+    elif unit_topic == "곱셈":
+        return "(두 자리 수)×(한 자리 수)"
+    elif unit_topic == "분수와 소수":
+        return "분수만큼 알아보기"
+    elif unit_topic == "들이와 무게":
+        return "들이 비교하기"
+    return "기본 학습"
+
+
+def _parse_unit_info(
+    renderer_path: Path,
+    file_prefix: str,
+    metadata: dict[str, object],
+    semantic: dict[str, object] | None = None,
+) -> tuple[int, int, int, str, str]:
     suffix = file_prefix[-6:]
     if suffix in PROBLEM_UNIT_INFO:
         grade, semester, unit_number, unit_topic, default_sub_unit = PROBLEM_UNIT_INFO[suffix]
@@ -67,6 +160,12 @@ def _parse_unit_info(renderer_path: Path, file_prefix: str, metadata: dict[str, 
             sub_unit = str(metadata.get("subUnit") or metadata.get("subTopic") or metadata.get("topic") or "").strip()
         if not sub_unit or sub_unit == unit_topic:
             sub_unit = default_sub_unit or "기본 학습"
+        return grade, semester, unit_number, unit_topic, sub_unit
+
+    storage_map = _get_storage_mapping()
+    if file_prefix in storage_map:
+        grade, semester, unit_number, unit_topic = storage_map[file_prefix]
+        sub_unit = _infer_sub_unit(unit_topic, metadata, semantic or {})
         return grade, semester, unit_number, unit_topic, sub_unit
 
     parts = renderer_path.relative_to(ROOT).parts if renderer_path.is_relative_to(ROOT) else ()
@@ -93,18 +192,17 @@ def _parse_unit_info(renderer_path: Path, file_prefix: str, metadata: dict[str, 
             grade = int(p_match.group(1))
             semester = int(p_match.group(2))
             unit_number = int(p_match.group(3))
+            unit_topic = _unit_topic_for(grade, semester, unit_number)
         else:
-            s_match = re.match(r"^S(\d)_.*_(\d)_", file_prefix)
-            if s_match:
-                grade = int(s_match.group(1))
-        unit_topic = _unit_topic_for(grade, semester, unit_number)
+            text = (
+                str(metadata.get("title", "")) + " " +
+                str(metadata.get("question", "")) + " " +
+                str(metadata.get("instruction", "")) + " " +
+                str((semantic or {}).get("problem_type", ""))
+            )
+            grade, semester, unit_number, unit_topic = _infer_unit_from_keywords(text)
 
-    sub_unit = ""
-    if isinstance(metadata, dict):
-        sub_unit = str(metadata.get("subUnit") or metadata.get("subTopic") or metadata.get("topic") or "").strip()
-    if not sub_unit or sub_unit == unit_topic:
-        sub_unit = "기본 학습"
-
+    sub_unit = _infer_sub_unit(unit_topic, metadata, semantic or {})
     return grade, semester, unit_number, unit_topic, sub_unit
 
 
@@ -135,7 +233,7 @@ def generate():
         semantic = bundle.get("semantic") or {}
         metadata = semantic.get("metadata") if isinstance(semantic.get("metadata"), dict) else {}
         grade, semester, unit_number, unit_topic, sub_unit = _parse_unit_info(
-            paths.artifact_path("renderer"), file_prefix, metadata
+            paths.artifact_path("renderer"), file_prefix, metadata, semantic
         )
         title = _summary_title(metadata, unit_topic)
         problem_type = str(semantic.get("problem_type") or "unknown")

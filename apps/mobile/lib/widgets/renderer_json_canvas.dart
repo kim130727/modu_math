@@ -883,12 +883,26 @@ class RendererJsonPainter extends CustomPainter {
 
     final elements = renderer['elements'];
     if (elements is List) {
-      for (final element in rendererVisibleElements(elements)) {
+      final visible = List<Map<String, dynamic>>.from(
+        rendererVisibleElements(elements),
+      );
+      // Stable sort by render priority matching the editor (shapes < lines < text)
+      // so background paths, shapes, and speech bubbles do not obscure text.
+      visible.sort((a, b) =>
+          _elementRenderPriority(a).compareTo(_elementRenderPriority(b)));
+      for (final element in visible) {
         _paintElement(canvas, element);
       }
     }
 
     canvas.restore();
+  }
+
+  static int _elementRenderPriority(Map<String, dynamic> element) {
+    final type = element['type']?.toString().toLowerCase() ?? '';
+    if (type == 'text' || type == 'text_box' || type == 'math') return 2;
+    if (type == 'line' || type == 'connector') return 1;
+    return 0;
   }
 
   void _paintElement(Canvas canvas, Map<String, dynamic> element) {
@@ -1148,6 +1162,14 @@ class RendererJsonPainter extends CustomPainter {
     final fontFamily = attributes['font-family'];
     final x = _readDouble(attributes['x']) ?? 0;
     final explicitMaxWidth = _readDouble(attributes['max_width']);
+    final textAnchor =
+        attributes['text-anchor']?.toString().trim().toLowerCase();
+
+    final double defaultAvailableWidth = textAnchor == 'middle'
+        ? math.max(120.0, math.min(x, logicalSize.width - x) * 2 - 20.0)
+        : math.max(120.0, logicalSize.width - x - 10.0);
+
+    final availableWidth = explicitMaxWidth ?? defaultAvailableWidth;
 
     // For single-line text without explicit newlines, scale down font size if
     // multilingual expansion exceeds the available horizontal canvas space to
@@ -1167,13 +1189,17 @@ class RendererJsonPainter extends CustomPainter {
         textDirection: TextDirection.ltr,
       )..layout();
 
-      final availableWidth =
-          explicitMaxWidth ?? math.max(120.0, logicalSize.width - x - 20.0);
       if (measurePainter.width > availableWidth && availableWidth > 0) {
         final scaleRatio = availableWidth / measurePainter.width;
         fontSize = math.max(12.0, fontSize * scaleRatio);
       }
     }
+
+    final textAlign = switch (textAnchor) {
+      'middle' => TextAlign.center,
+      'end' => TextAlign.right,
+      _ => TextAlign.left,
+    };
 
     final painter = TextPainter(
       text: TextSpan(
@@ -1186,10 +1212,14 @@ class RendererJsonPainter extends CustomPainter {
           fontFamily: fontFamily,
         ),
       ),
+      textAlign: textAlign,
       textDirection: TextDirection.ltr,
     )..layout(
-        maxWidth:
-            explicitMaxWidth ?? math.max(120.0, logicalSize.width - x - 10.0));
+        maxWidth: explicitMaxWidth ??
+            (textAnchor == 'middle'
+                ? math.max(availableWidth, logicalSize.width)
+                : availableWidth),
+      );
 
     final baseline =
         painter.computeDistanceToActualBaseline(TextBaseline.alphabetic);
