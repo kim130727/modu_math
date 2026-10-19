@@ -879,6 +879,72 @@ def _normalize_editor_override_fields(
     return normalized
 
 
+def _resolve_slot_move_delta(
+    paths: Any, target: str, value: dict[str, Any]
+) -> dict[str, Any] | None:
+    if "move_dx" not in value and "move_dy" not in value:
+        return dict(value)
+
+    dx = float(value.get("move_dx", 0.0))
+    dy = float(value.get("move_dy", 0.0))
+    result = {k: v for k, v in value.items() if k not in ("move_dx", "move_dy")}
+
+    current_content: dict[str, Any] = {}
+    overrides_path = _editor_overrides_path(paths)
+    if overrides_path.exists():
+        try:
+            overrides = json.loads(overrides_path.read_text(encoding="utf-8-sig"))
+            if isinstance(overrides, dict):
+                slot_data = overrides.get("slots", {}).get(target)
+                if isinstance(slot_data, dict):
+                    current_content.update(slot_data)
+        except Exception:
+            pass
+
+    layout = _load_layout_artifact(paths)
+    if layout and isinstance(layout, dict):
+        for slot in layout.get("slots", []):
+            if isinstance(slot, dict) and slot.get("id") == target:
+                content = slot.get("content", {})
+                if isinstance(content, dict):
+                    for k, v in content.items():
+                        if k not in current_content:
+                            current_content[k] = v
+                break
+
+    if "x" in current_content and "y" in current_content:
+        result["x"] = round(float(current_content["x"]) + dx, 3)
+        result["y"] = round(float(current_content["y"]) + dy, 3)
+        return result
+
+    if "cx" in current_content and "cy" in current_content:
+        result["cx"] = round(float(current_content["cx"]) + dx, 3)
+        result["cy"] = round(float(current_content["cy"]) + dy, 3)
+        return result
+
+    if (
+        "x1" in current_content
+        and "y1" in current_content
+        and "x2" in current_content
+        and "y2" in current_content
+    ):
+        result["x1"] = round(float(current_content["x1"]) + dx, 3)
+        result["y1"] = round(float(current_content["y1"]) + dy, 3)
+        result["x2"] = round(float(current_content["x2"]) + dx, 3)
+        result["y2"] = round(float(current_content["y2"]) + dy, 3)
+        return result
+
+    if "points" in current_content and isinstance(current_content["points"], (list, tuple)):
+        result["points"] = [
+            [round(float(p[0]) + dx, 3), round(float(p[1]) + dy, 3)]
+            for p in current_content["points"]
+            if isinstance(p, (list, tuple)) and len(p) >= 2
+        ]
+        return result
+
+    return None
+
+
 def _save_editor_slot_override(paths: Any, target: str, fields: dict[str, Any]) -> None:
     fields = _normalize_editor_override_fields(paths, target, fields)
     invalid = sorted(set(fields) - EDITOR_OVERRIDE_FIELDS)
@@ -1239,11 +1305,14 @@ def _try_apply_fast_editor_overrides(
             )
             continue
 
-        if "points" in value:
+        resolved_value = _resolve_slot_move_delta(paths, target, value)
+        if resolved_value is None:
             return None
-        if not set(value).issubset(EDITOR_OVERRIDE_FIELDS):
+        if "points" in resolved_value:
             return None
-        actions.append((op, target, value, None))
+        if not set(resolved_value).issubset(EDITOR_OVERRIDE_FIELDS):
+            return None
+        actions.append((op, target, resolved_value, None))
         applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
 
     for op, target, value, region_id in actions:
@@ -2617,8 +2686,9 @@ def apply_layout_patches(
             )
             continue
 
-        if set(value).issubset(EDITOR_OVERRIDE_FIELDS):
-            _save_editor_slot_override(paths, target, value)
+        resolved_value = _resolve_slot_move_delta(paths, target, value)
+        if resolved_value is not None and set(resolved_value).issubset(EDITOR_OVERRIDE_FIELDS):
+            _save_editor_slot_override(paths, target, resolved_value)
             applied.append(
                 AppliedPatch(target=target, op=op, fields=list(value.keys()))
             )

@@ -155,38 +155,123 @@ def _thousand_cube(prefix: str, x: float, y: float, size: float = 38.0) -> tuple
 
 def _base_ten_model_slots() -> tuple:
     slots = [
-        _rect_slot("slot.diagram.top_box", 35, 98, 405, 212, fill="#ffffff", stroke="#6f6f6f", stroke_width=1.2),
-        _rect_slot("slot.diagram.bottom_box", 35, 338, 405, 112, fill="#ffffff", stroke="#6f6f6f", stroke_width=1.2),
-        LineSlot(id="slot.diagram.arrow_line", x1=238, y1=315, x2=238, y2=333, stroke="#9a9a9a", stroke_width=5),
-        PolygonSlot(id="slot.diagram.arrow_head", points=((229, 326), (247, 326), (238, 340)), fill="#9a9a9a", stroke="#9a9a9a", stroke_width=1),
+        _rect_slot("slot.diagram.top_box", 50, 74, 800, 208, fill="#ffffff", stroke="#718096", stroke_width=1.2),
+        _rect_slot("slot.diagram.bottom_box", 50, 320, 800, 86, fill="#f8fafc", stroke="#5C6AC4", stroke_width=1.5),
+        LineSlot(id="slot.diagram.divider", x1=65, y1=156, x2=835, y2=156, stroke="#e2e8f0", stroke_width=1.0),
+        LineSlot(id="slot.diagram.arrow_line", x1=450, y1=286, x2=450, y2=306, stroke="#5C6AC4", stroke_width=3.5),
+        PolygonSlot(id="slot.diagram.arrow_head", points=((443, 304), (457, 304), (450, 314)), fill="#5C6AC4", stroke="#5C6AC4", stroke_width=1),
+        TextBoxSlot(
+            id="slot.diagram.col_hundreds",
+            x=240,
+            y=78,
+            width=120,
+            height=26,
+            text="백 모형",
+            font_size=15,
+            fill="#4a5568",
+            align="center",
+            valign="middle",
+        ),
+        TextBoxSlot(
+            id="slot.diagram.col_tens",
+            x=470,
+            y=78,
+            width=100,
+            height=26,
+            text="십 모형",
+            font_size=15,
+            fill="#4a5568",
+            align="center",
+            valign="middle",
+        ),
+        TextBoxSlot(
+            id="slot.diagram.col_ones",
+            x=660,
+            y=78,
+            width=100,
+            height=26,
+            text="낱개 모형",
+            font_size=15,
+            fill="#4a5568",
+            align="center",
+            valign="middle",
+        ),
+        TextBoxSlot(
+            id="slot.diagram.label_599",
+            x=70,
+            y=110,
+            width=110,
+            height=30,
+            text="위인전 599",
+            font_size=18,
+            fill="#2d3748",
+            align="left",
+            valign="middle",
+        ),
+        TextBoxSlot(
+            id="slot.diagram.label_837",
+            x=70,
+            y=195,
+            width=110,
+            height=30,
+            text="+ 동화책 837",
+            font_size=18,
+            fill="#2d3748",
+            align="left",
+            valign="middle",
+        ),
+        TextBoxSlot(
+            id="slot.diagram.arrow_text",
+            x=465,
+            y=288,
+            width=360,
+            height=26,
+            text="10개씩 묶어 윗자리로 받아올림합니다.",
+            font_size=14,
+            fill="#5C6AC4",
+            align="left",
+            valign="middle",
+        ),
+        TextBoxSlot(
+            id="slot.diagram.label_result",
+            x=70,
+            y=348,
+            width=110,
+            height=30,
+            text="= 모두 1436",
+            font_size=18,
+            fill="#1e293b",
+            align="left",
+            valign="middle",
+        ),
     ]
 
     # 599: 5 hundreds, 9 tens, 9 ones
     for index in range(5):
-        slots.extend(_hundred_flat(f"slot.model.599.h{index + 1}", 50 + index * 45, 122))
+        slots.extend(_hundred_flat(f"slot.model.599.h{index + 1}", 200 + index * 40, 108))
     for index in range(9):
-        slots.extend(_ten_rod(f"slot.model.599.t{index + 1}", 275 + index * 13, 118))
+        slots.extend(_ten_rod(f"slot.model.599.t{index + 1}", 440 + index * 15, 106))
     for index in range(9):
-        slots.extend(_one_dot(f"slot.model.599.o{index + 1}", 396, 119 + index * 9))
+        slots.extend(_one_dot(f"slot.model.599.o{index + 1}", 640 + index * 14, 125))
 
-    # 837: 8 hundreds, 3 tens, 7 ones
+    # 837: 8 hundreds (2 rows of 4), 3 tens, 7 ones
     for index in range(8):
-        row = index // 5
-        col = index % 5
-        slots.extend(_hundred_flat(f"slot.model.837.h{index + 1}", 50 + col * 45, 178 + row * 46))
+        row = index // 4
+        col = index % 4
+        slots.extend(_hundred_flat(f"slot.model.837.h{index + 1}", 200 + col * 40, 170 + row * 40))
     for index in range(3):
-        slots.extend(_ten_rod(f"slot.model.837.t{index + 1}", 275 + index * 13, 182))
+        slots.extend(_ten_rod(f"slot.model.837.t{index + 1}", 440 + index * 15, 188))
     for index in range(7):
-        slots.extend(_one_dot(f"slot.model.837.o{index + 1}", 396, 184 + index * 9))
+        slots.extend(_one_dot(f"slot.model.837.o{index + 1}", 640 + index * 14, 207))
 
     # Regrouped 1436: 1 thousand, 4 hundreds, 3 tens, 6 ones
-    slots.extend(_thousand_cube("slot.model.result.thousand1", 52, 352))
+    slots.extend(_thousand_cube("slot.model.result.thousand1", 200, 336))
     for index in range(4):
-        slots.extend(_hundred_flat(f"slot.model.result.h{index + 1}", 142 + index * 46, 370))
+        slots.extend(_hundred_flat(f"slot.model.result.h{index + 1}", 275 + index * 40, 346))
     for index in range(3):
-        slots.extend(_ten_rod(f"slot.model.result.t{index + 1}", 336 + index * 14, 368))
+        slots.extend(_ten_rod(f"slot.model.result.t{index + 1}", 480 + index * 15, 344))
     for index in range(6):
-        slots.extend(_one_dot(f"slot.model.result.o{index + 1}", 407 + (index % 2) * 12, 368 + (index // 2) * 13))
+        slots.extend(_one_dot(f"slot.model.result.o{index + 1}", 640 + index * 14, 363))
 
     return tuple(slots)
 
@@ -217,16 +302,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.diagram",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(
-                    *BASE_TEN_MODEL_SLOT_IDS,
-                    "slot.model_legend",
-                    "slot.first_number_label",
-                    "slot.first_number_models",
-                    "slot.second_number_label",
-                    "slot.second_number_models",
-                    "slot.combine_arrow",
-                    "slot.regrouped_models",
-                ),
+                slot_ids=BASE_TEN_MODEL_SLOT_IDS,
             ),
             Region(
                 id="region.answer",
@@ -250,10 +326,10 @@ def build_problem_template() -> ProblemTemplate:
         slots=(
             TextBoxSlot(
                 id="slot.question",
-                x=28,
+                x=30,
                 y=18,
-                width=844,
-                height=66,
+                width=840,
+                height=48,
                 text=(
                     "병현이네 학교 도서관에 위인전이 599권, 동화책이 837권 있습니다. "
                     "모두 몇 권의 책이 있는지 수 모형으로 알아보시오."
@@ -266,122 +342,15 @@ def build_problem_template() -> ProblemTemplate:
             ),
             *BASE_TEN_MODEL_SLOTS,
             TextBoxSlot(
-                id="slot.model_legend",
+                id="slot.answer_1",
                 x=30,
-                y=98,
+                y=430,
                 width=840,
                 height=38,
-                text="천 모형  ▰     백 모형  ▣     십 모형  ▮     낱개 모형  ●",
-                font_size=19,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
-                fill="#4B5563",
-                align="left",
-                valign="middle",
-                transform="translate(1000 0)",
-            ),
-            TextBoxSlot(
-                id="slot.first_number_label",
-                x=30,
-                y=146,
-                width=90,
-                height=42,
-                text="599",
-                font_size=28,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
-                fill="#202124",
-                align="center",
-                valign="middle",
-                transform="translate(1000 0)",
-            ),
-            TextBoxSlot(
-                id="slot.first_number_models",
-                x=125,
-                y=140,
-                width=730,
-                height=54,
                 text=(
-                    "백 모형 5개     십 모형 9개     낱개 모형 9개"
+                    "(1) 낱개 모형끼리 더하면 십 모형          개와 낱개 모형          개입니다."
                 ),
-                font_size=22,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
-                fill="#202124",
-                align="left",
-                valign="middle",
-                transform="translate(1000 0)",
-            ),
-            TextBoxSlot(
-                id="slot.second_number_label",
-                x=30,
-                y=204,
-                width=90,
-                height=42,
-                text="+ 837",
-                font_size=28,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
-                fill="#202124",
-                align="center",
-                valign="middle",
-                transform="translate(1000 0)",
-            ),
-            TextBoxSlot(
-                id="slot.second_number_models",
-                x=125,
-                y=198,
-                width=730,
-                height=54,
-                text=(
-                    "백 모형 8개     십 모형 3개     낱개 모형 7개"
-                ),
-                font_size=22,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
-                fill="#202124",
-                align="left",
-                valign="middle",
-                transform="translate(1000 0)",
-            ),
-            TextBoxSlot(
-                id="slot.combine_arrow",
-                x=30,
-                y=266,
-                width=840,
-                height=52,
-                text="↓  같은 자리의 수 모형끼리 더하고 10개씩 묶어 윗자리로 바꿉니다.",
-                font_size=21,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
-                fill="#4B5563",
-                align="center",
-                valign="middle",
-                transform="translate(1000 0)",
-            ),
-            TextBoxSlot(
-                id="slot.regrouped_models",
-                x=30,
-                y=326,
-                width=840,
-                height=62,
-                text=(
-                    "천 모형 1개     백 모형 4개     십 모형 3개     낱개 모형 6개"
-                ),
-                font_size=24,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
-                fill="#202124",
-                align="center",
-                valign="middle",
-                transform="translate(1000 0)",
-            ),
-            TextBoxSlot(
-                id="slot.answer_1",
-                x=28,
-                y=470,
-                width=844,
-                height = 61, text=(
-                    "(1) 낱개 모형끼리 더하면 십 모형 "
-                    "      "
-                    "개와 낱개 모형 "
-                    "      "
-                    "개입니다."
-                ),
-                font_size=21,
+                font_size=20,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 align="left",
@@ -389,17 +358,14 @@ def build_problem_template() -> ProblemTemplate:
             ),
             TextBoxSlot(
                 id="slot.answer_2",
-                x=28,
-                y=516,
-                width=844,
-                height = 61, text=(
-                    "(2) 십 모형끼리 더하면 백 모형 "
-                    "      "
-                    "개와 십 모형 "
-                    "      "
-                    "개입니다."
+                x=30,
+                y=480,
+                width=840,
+                height=38,
+                text=(
+                    "(2) 십 모형끼리 더하면 백 모형          개와 십 모형          개입니다."
                 ),
-                font_size=21,
+                font_size=20,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 align="left",
@@ -407,17 +373,14 @@ def build_problem_template() -> ProblemTemplate:
             ),
             TextBoxSlot(
                 id="slot.answer_3",
-                x=28,
-                y=562,
-                width=844,
-                height = 61, text=(
-                    "(3) 백 모형끼리 더하면 천 모형 "
-                    "      "
-                    "개와 백 모형 "
-                    "      "
-                    "개입니다."
+                x=30,
+                y=530,
+                width=840,
+                height=38,
+                text=(
+                    "(3) 백 모형끼리 더하면 천 모형          개와 백 모형          개입니다."
                 ),
-                font_size=21,
+                font_size=20,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 align="left",
@@ -425,40 +388,41 @@ def build_problem_template() -> ProblemTemplate:
             ),
             TextBoxSlot(
                 id="slot.answer_4",
-                x=28,
-                y=608,
-                width=844,
-                height=42,
-                text="(4) 도서관의 책 수는 모두 " "        " "권입니다.",
-                font_size=21,
+                x=30,
+                y=580,
+                width=840,
+                height=38,
+                text="(4) 도서관의 책 수는 모두               권입니다.",
+                font_size=20,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 align="left",
                 valign="middle",
             ),
             _answer_input_slot(
-                "slot.answer.ones_to_tens", 384, 482, 46, order=0
+                "slot.answer.ones_to_tens", 370, 430, 46, order=0
             ),
             _answer_input_slot(
-                "slot.answer.remaining_ones", 598, 482, 46, order=1
+                "slot.answer.remaining_ones", 600, 430, 46, order=1
             ),
             _answer_input_slot(
-                "slot.answer.tens_to_hundreds", 363, 528, 46, order=2
+                "slot.answer.tens_to_hundreds", 360, 480, 46, order=2
             ),
             _answer_input_slot(
-                "slot.answer.remaining_tens", 553, 528, 46, order=3
+                "slot.answer.remaining_tens", 575, 480, 46, order=3
             ),
             _answer_input_slot(
-                "slot.answer.hundreds_to_thousands", 365, 574, 46, order=4
+                "slot.answer.hundreds_to_thousands", 360, 530, 46, order=4
             ),
             _answer_input_slot(
-                "slot.answer.remaining_hundreds", 555, 574, 46, order=5
+                "slot.answer.remaining_hundreds", 575, 530, 46, order=5
             ),
             _answer_input_slot(
-                "slot.answer.total_books", 310, 604, 62, order=6, max_length=4
+                "slot.answer.total_books", 300, 580, 72, order=6, max_length=4
             ),
         ),
     )
+
 
 
 PROBLEM_TEMPLATE = build_problem_template()
