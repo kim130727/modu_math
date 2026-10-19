@@ -63,9 +63,10 @@ def test_circle_area_0001_radius_helper_path_keeps_semantic_id_and_position() ->
 
 
 def test_circle_center_008667_renderer_keeps_label_r_next_to_its_point() -> None:
-    renderer_path = next(
+    found = list(Path("examples/problems/ko").glob("**/S3_초등_3_008667.renderer.json")) or list(
         Path("examples/storage/ko").glob("**/S3_초등_3_008667.renderer.json")
     )
+    renderer_path = found[0]
     renderer = json.loads(renderer_path.read_text(encoding="utf-8"))
     elements = renderer["elements"]
 
