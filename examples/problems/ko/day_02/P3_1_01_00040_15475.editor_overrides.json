@@ -1,5 +1,9 @@
 {
   "version": 1,
+  "canvas": {
+    "width": 850,
+    "height": 320
+  },
   "slots": {
     "slot.table.outer": {
       "x": 25.82,
@@ -148,12 +152,12 @@
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
+        "value_type": "integer",
+        "max_length": 3,
         "include_in_submission": true,
         "order": 0,
         "group_id": "final_answer",
-        "auto_advance": true,
+        "auto_advance": false,
         "keyboard": "number"
       },
       "input_style": {

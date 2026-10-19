@@ -1,14 +1,14 @@
 from __future__ import annotations
 
 from modu_math.dsl import (
-    BlankSlot,
     Canvas,
     LineSlot,
     ProblemTemplate,
     RectSlot,
     Region,
+    TextBoxSlot,
     TextSlot,
-TextBoxSlot)
+)
 
 
 PROBLEM_ID = "P3_1_01_00040_15475"
@@ -20,20 +20,21 @@ def build_problem_template() -> ProblemTemplate:
         id=PROBLEM_ID,
         title=PROBLEM_TITLE,
         canvas=Canvas(
-            width = 850, height = 260, coordinate_mode="logical",
+            width=850, height=320, coordinate_mode="logical",
         ),
         regions=(
             Region(
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=(),
+                slot_ids=("konva_1786319433892_text_228561",),
             ),
             Region(
                 id="region.table",
                 role="diagram",
                 flow="absolute",
-                slot_ids=("slot.table.outer",
+                slot_ids=(
+                    "slot.table.outer",
                     "slot.table.v1",
                     "slot.table.v2",
                     "slot.table.v3",
@@ -48,10 +49,34 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.table.r2c2",
                     "slot.table.r2c3",
                     "slot.table.r2c4",
-                    "slot.table.r2c5",'konva_1785217709470_rect_5785318', 'konva_1785217709470_text_5795606', 'konva_1786319433892_text_228561'),
+                    "slot.table.r2c5",
+                ),
+            ),
+            Region(
+                id="region.answer",
+                role="answer",
+                flow="absolute",
+                slot_ids=(
+                    "konva_1785217709470_rect_5785318",
+                    "konva_1785217709470_text_5795606",
+                ),
             ),
         ),
-        slots=(RectSlot(
+        slots=(
+            TextBoxSlot(
+                id="konva_1786319433892_text_228561",
+                prompt="",
+                text="다음은 지희네 반 학급 문고의 책의 수를 조사한 것입니다. 동화책과 위인전을 더하면 모두 몇 권입니까?",
+                x=27.957,
+                y=16.072,
+                font_size=30,
+                fill="#111827",
+                width=674.552,
+                height=121,
+                align="left",
+                line_height=1.25,
+            ),
+            RectSlot(
                 id="slot.table.outer",
                 prompt="",
                 x = 27.56, y = 128, width=600,
@@ -190,12 +215,55 @@ def build_problem_template() -> ProblemTemplate:
                 style_role="table",
                 fill="#111827",
             ),
-            BlankSlot(
-                id="slot.answer",
-                prompt="답",
-                answer_key="534",
-                placeholder="권",
-            ),RectSlot(id = 'konva_1785217709470_rect_5785318', prompt = '', x = 658.67, y = 196.067, width = 126.029, height = 44.355, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2), TextBoxSlot(id = 'konva_1785217709470_text_5795606', prompt = '', text = '권', x = 797.809, y = 196.569, font_size = 28, fill = '#111827', width = 68.144, height = 43, align = 'left', line_height = 1.25), TextBoxSlot(id = 'konva_1786319433892_text_228561', prompt = '', text = '다음은 지희네 반 학급 문고의 책의 수를 조사한 것입니다. 동화책과 위인전을 더하면 모두 몇 권입니까?', x = 32.985, y = 21.153, font_size = 30, fill = '#111827', width = 674.552, height = 121, align = 'left', line_height = 1.25)),
+            RectSlot(
+                id="konva_1785217709470_rect_5785318",
+                prompt="",
+                x=240.86,
+                y=244.36,
+                width=126.029,
+                height=44.355,
+                fill="#ffffff",
+                stroke="#111827",
+                stroke_width=1.2,
+                interaction={
+                    "type": "input",
+                    "role": "answer",
+                    "value_type": "integer",
+                    "max_length": 3,
+                    "include_in_submission": True,
+                    "order": 0,
+                    "group_id": "final_answer",
+                    "auto_advance": False,
+                    "keyboard": "number",
+                },
+                input_style={
+                    "font_size_mode": "auto",
+                    "font_size_adjust": 0,
+                    "min_font_size": 14,
+                    "max_font_size": 52,
+                    "font_weight": 700,
+                    "horizontal_align": "center",
+                    "vertical_align": "middle",
+                    "padding": 6,
+                    "text_color": "#222222",
+                    "width": 126.029,
+                    "height": 44.355,
+                },
+            ),
+            TextBoxSlot(
+                id="konva_1785217709470_text_5795606",
+                prompt="",
+                text="권",
+                x=376.18,
+                y=249.01,
+                font_size=28,
+                fill="#111827",
+                width=36.191,
+                height=43,
+                align="left",
+                line_height=1.25,
+            ),
+        ),
     )
 
 

@@ -632,3 +632,36 @@ def test_sanitize_layout_protects_diagram_and_absolute_regions_from_text_shifts(
     assert by_id["slot.diag.rect"]["content"]["y"] == 55.0
     assert by_id["slot.diag.poly"]["content"]["points"][0][1] == 75.6
     assert by_id["slot.diag.poly"]["content"]["points"][1][1] == 72.0
+
+
+def test_sanitize_layout_preserves_protected_answer_slot_and_expands_canvas() -> None:
+    layout = {
+        "canvas": {"width": 850, "height": 260},
+        "slots": [
+            {
+                "id": "slot.table",
+                "kind": "rect",
+                "content": {"x": 25.0, "y": 126.0, "width": 600.0, "height": 90.0},
+            },
+            {
+                "id": "konva_rect_answer",
+                "kind": "rect",
+                "content": {
+                    "x": 240.0,
+                    "y": 244.0,
+                    "width": 126.0,
+                    "height": 44.0,
+                    "interaction": {"type": "input", "role": "answer", "include_in_submission": True},
+                },
+            },
+        ],
+    }
+
+    sanitized = sanitize_layout(layout, protected_slot_ids={"konva_rect_answer"})
+    by_id = {slot["id"]: slot for slot in sanitized["slots"]}
+
+    # Answer slot y must NOT be clamped into the table at 208
+    assert by_id["konva_rect_answer"]["content"]["y"] == 244.0
+    # Canvas height must expand to accommodate y=244 + height=44 + margin=16 = 304
+    assert sanitized["canvas"]["height"] >= 304.0
+

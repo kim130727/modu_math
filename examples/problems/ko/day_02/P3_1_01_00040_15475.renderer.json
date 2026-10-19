@@ -2,10 +2,39 @@
   "problem_id": "P3_1_01_00040_15475",
   "view_box": {
     "width": 850.0,
-    "height": 260.0,
+    "height": 320.0,
     "background": "#FFFFFF"
   },
   "elements": [
+    {
+      "id": "konva_1786319433892_text_228561.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 27.957,
+        "y": 16.072,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 30.0,
+        "width": 674.552,
+        "height": 121.0,
+        "max_width": 674.552,
+        "data-slot-kind": "text_box",
+        "data-box-x": 27.957,
+        "data-box-y": 16.072,
+        "data-box-width": 674.552,
+        "data-box-height": 121.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "explicit"
+      },
+      "source_ref": "konva_1786319433892_text_228561",
+      "refs": {
+        "layout_slot_id": "konva_1786319433892_text_228561"
+      },
+      "text": "다음은 지희네 반 학급 문고의 책의 수를 조사한 것입니다. 동화책과 위인전을 더하면 모두 몇 권입니까?"
+    },
     {
       "id": "slot.table.outer.rect",
       "type": "rect",
@@ -21,47 +50,6 @@
       "source_ref": "slot.table.outer",
       "refs": {
         "layout_slot_id": "slot.table.outer"
-      }
-    },
-    {
-      "id": "konva_1785217709470_rect_5785318.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 240.86,
-        "y": 207.645,
-        "width": 126.029,
-        "height": 44.355,
-        "fill": "#ffffff",
-        "stroke": "#111827",
-        "stroke-width": 1.2
-      },
-      "source_ref": "konva_1785217709470_rect_5785318",
-      "refs": {
-        "layout_slot_id": "konva_1785217709470_rect_5785318"
-      },
-      "interaction": {
-        "type": "input",
-        "role": "answer",
-        "value_type": "integer",
-        "max_length": 3,
-        "include_in_submission": true,
-        "order": 0,
-        "group_id": "final_answer",
-        "auto_advance": false,
-        "keyboard": "number"
-      },
-      "input_style": {
-        "font_size_mode": "auto",
-        "font_size_adjust": 0,
-        "min_font_size": 14,
-        "max_font_size": 52,
-        "font_weight": 700,
-        "horizontal_align": "center",
-        "vertical_align": "middle",
-        "padding": 6,
-        "text_color": "#222222",
-        "width": 126.029,
-        "height": 44.355
       }
     },
     {
@@ -325,6 +313,47 @@
       "text": "101"
     },
     {
+      "id": "konva_1785217709470_rect_5785318.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 240.86,
+        "y": 244.36,
+        "width": 126.029,
+        "height": 44.355,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.2
+      },
+      "source_ref": "konva_1785217709470_rect_5785318",
+      "refs": {
+        "layout_slot_id": "konva_1785217709470_rect_5785318"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "integer",
+        "max_length": 3,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": false,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222",
+        "width": 126.029,
+        "height": 44.355
+      }
+    },
+    {
       "id": "konva_1785217709470_text_5795606.text",
       "type": "text_box",
       "attributes": {
@@ -350,35 +379,6 @@
         "layout_slot_id": "konva_1785217709470_text_5795606"
       },
       "text": "권"
-    },
-    {
-      "id": "konva_1786319433892_text_228561.text",
-      "type": "text_box",
-      "attributes": {
-        "x": 27.957,
-        "y": 16.072,
-        "fill": "#111827",
-        "font-family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
-        "font-size": 30.0,
-        "width": 674.552,
-        "height": 121.0,
-        "max_width": 674.552,
-        "data-slot-kind": "text_box",
-        "data-box-x": 27.957,
-        "data-box-y": 16.072,
-        "data-box-width": 674.552,
-        "data-box-height": 121.0,
-        "data-text-align": "left",
-        "data-vertical-align": "top",
-        "data-line-height": 1.25,
-        "data-semantic-role": "question",
-        "data-semantic-role-source": "explicit"
-      },
-      "source_ref": "konva_1786319433892_text_228561",
-      "refs": {
-        "layout_slot_id": "konva_1786319433892_text_228561"
-      },
-      "text": "다음은 지희네 반 학급 문고의 책의 수를 조사한 것입니다. 동화책과 위인전을 더하면 모두 몇 권입니까?"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

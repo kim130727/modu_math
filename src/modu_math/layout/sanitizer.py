@@ -19,6 +19,36 @@ def sanitize_layout(
         sanitized["slots"] = []
         slots = sanitized["slots"]
 
+    canvas = sanitized.get("canvas")
+    if isinstance(canvas, dict) and protected_slot_ids:
+        current_height = canvas.get("height")
+        if isinstance(current_height, (int, float)) and current_height > 0:
+            max_protected_bottom = 0.0
+            for slot in slots:
+                if not isinstance(slot, dict) or slot.get("id") not in protected_slot_ids:
+                    continue
+                box = _slot_box(slot)
+                if box is not None:
+                    _, y, _, height = box
+                    max_protected_bottom = max(max_protected_bottom, y + height)
+            margin = 16.0
+            if max_protected_bottom + margin > current_height:
+                canvas["height"] = round(max_protected_bottom + margin, 3)
+
+        current_width = canvas.get("width")
+        if isinstance(current_width, (int, float)) and current_width > 0:
+            max_protected_right = 0.0
+            for slot in slots:
+                if not isinstance(slot, dict) or slot.get("id") not in protected_slot_ids:
+                    continue
+                box = _slot_box(slot)
+                if box is not None:
+                    x, _, width, _ = box
+                    max_protected_right = max(max_protected_right, x + width)
+            margin = 16.0
+            if max_protected_right + margin > current_width:
+                canvas["width"] = round(max_protected_right + margin, 3)
+
     clean_slots: list[dict[str, Any]] = []
     canvas_box = _canvas_box(sanitized.get("canvas"))
     for slot in slots:
@@ -34,7 +64,11 @@ def sanitize_layout(
         content = slot.get("content")
         if isinstance(content, dict) and is_submitted_answer_slot(slot):
             sanitize_answer_input_content(content)
-            _clamp_box_content_to_canvas(content, canvas_box)
+            _clamp_box_content_to_canvas(
+                content,
+                canvas_box,
+                clamp_max=slot_id not in protected_slot_ids,
+            )
         clean_slots.append(slot)
     _separate_top_text_from_following_slots(
         clean_slots,
@@ -118,6 +152,8 @@ def _canvas_box(canvas: Any) -> tuple[float, float] | None:
 def _clamp_box_content_to_canvas(
     content: dict[str, Any],
     canvas_box: tuple[float, float] | None,
+    *,
+    clamp_max: bool = True,
 ) -> None:
     if canvas_box is None:
         return
@@ -133,8 +169,8 @@ def _clamp_box_content_to_canvas(
     clean_height = min(float(height), max(1.0, canvas_height - margin * 2))
     max_x = max(margin, canvas_width - clean_width - margin)
     max_y = max(margin, canvas_height - clean_height - margin)
-    clamped_x = min(max(float(x), margin), max_x)
-    clamped_y = min(max(float(y), margin), max_y)
+    clamped_x = min(max(float(x), margin), max_x) if clamp_max else max(float(x), margin)
+    clamped_y = min(max(float(y), margin), max_y) if clamp_max else max(float(y), margin)
     content["x"] = round(clamped_x, 3)
     content["y"] = round(clamped_y, 3)
     content["width"] = round(clean_width, 3)
