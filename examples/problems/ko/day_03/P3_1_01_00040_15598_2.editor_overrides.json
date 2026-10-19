@@ -1,8 +1,8 @@
 {
   "slots": {
     "slot.calculation.2.box.ones": {
-      "x": 192.395,
-      "y": 169.077,
+      "x": 197.395,
+      "y": 145.077,
       "interaction": {
         "type": "input",
         "role": "answer",
@@ -30,8 +30,8 @@
       "width": 21.89
     },
     "slot.calculation.2.box.tens": {
-      "x": 179.616,
-      "y": 210.077,
+      "x": 184.616,
+      "y": 179.077,
       "interaction": {
         "type": "input",
         "role": "answer",
@@ -59,8 +59,8 @@
       "width": 34.68
     },
     "slot.calculation.2.box.hundreds": {
-      "x": 161.285,
-      "y": 251.077,
+      "x": 166.285,
+      "y": 214.077,
       "interaction": {
         "type": "input",
         "role": "answer",
@@ -88,8 +88,8 @@
       "width": 53
     },
     "slot.calculation.2.box.total": {
-      "x": 159.064,
-      "y": 303.077,
+      "x": 164.064,
+      "y": 258.077,
       "interaction": {
         "type": "input",
         "role": "answer",
@@ -117,34 +117,40 @@
       "width": 55.22
     },
     "slot.calculation.2.line.top": {
-      "x1": 142.288,
-      "y1": 155.077,
-      "x2": 234.288,
-      "y2": 155.077
+      "x1": 140.288,
+      "y1": 136.077,
+      "x2": 232.288,
+      "y2": 136.077
     },
     "slot.calculation.2.line.bottom": {
-      "x1": 140.288,
-      "y1": 290.077,
-      "x2": 232.288,
-      "y2": 290.077
+      "x1": 142.288,
+      "y1": 248.077,
+      "x2": 234.288,
+      "y2": 248.077
     },
     "slot.calculation.2.top": {
       "x": 186.788,
       "y": 90.077,
-      "text": "3 8 6"
+      "text": "3 8 6",
+      "font_family": "\"Noto Sans KR\", sans-serif"
     },
     "slot.calculation.2.plus": {
       "x": 143.288,
-      "y": 132.077
+      "y": 123.077,
+      "font_family": "\"Noto Sans KR\", sans-serif"
     },
     "slot.calculation.2.bottom": {
       "x": 188.788,
-      "y": 132.077,
-      "text": "2 1 1"
+      "y": 123.077,
+      "text": "2 1 1",
+      "font_family": "\"Noto Sans KR\", sans-serif"
     },
     "slot.instruction": {
       "x": 17.672,
-      "y": 33.879
+      "y": 33.879,
+      "font_family": "\"Noto Sans KR\", sans-serif",
+      "semantic_role": "question",
+      "semantic_role_source": "explicit"
     }
   },
   "version": 1,

@@ -4,7 +4,7 @@
   "metadata": {
     "title": "동화책과 위인전의 수",
     "tags": [],
-    "question": "동화책과 위인전을 더하면 모두 몇 권입니까?",
+    "question": "다음은 지희네 반 학급 문고의 책의 수를 조사한 것입니다. 동화책과 위인전을 더하면 모두 몇 권입니까?",
     "required_layout_ids": [
       "slot.table.outer",
       "slot.table.v1",
@@ -16,7 +16,15 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko-KR",
-    "instruction": "표에서 필요한 두 수를 찾아 더합니다."
+    "instruction": "표에서 필요한 두 수를 찾아 더합니다.",
+    "presentation_sources": {
+      "question": [
+        "konva_1786319433892_text_228561"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "다음은 지희네 반 학급 문고의 책의 수를 조사한 것입니다. 동화책과 위인전을 더하면 모두 몇 권입니까?"
   },
   "domain": {
     "objects": [

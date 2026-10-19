@@ -38,6 +38,8 @@ services:
     volumes:
       - ./examples/problems:/app/examples/problems
       - ./src:/app/src
+      - ./locales:/app/locales
+      - ./overrides:/app/overrides
 
   mobile:
     build:

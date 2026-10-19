@@ -27,13 +27,13 @@
         "slot.answer_1_oval",
         "slot.operation_2_box",
         "slot.answer_2_oval",
-        "konva_1784592333289_arrow_2136844",
-        "konva_1784592333289_arrow_2144100",
-        "konva_1784592333289_arrow_2159396",
-        "konva_1784592333289_arrow_2165492",
         "slot.start_value",
         "slot.operation_1",
-        "slot.operation_2"
+        "slot.operation_2",
+        "konva_1792368892203_arrow_190201",
+        "konva_1792368892203_paste_198837_0",
+        "konva_1792368892203_paste_205776_0",
+        "konva_1792368892203_paste_212033_0"
       ]
     }
   ],
@@ -54,7 +54,9 @@
         "font_size": 15,
         "line_height": 1.15,
         "fill": "#111111",
-        "semantic_role": "instruction"
+        "semantic_role": "instruction",
+        "semantic_role_source": "explicit",
+        "font_family": "\"Noto Sans KR\", sans-serif"
       }
     },
     {
@@ -62,7 +64,7 @@
       "kind": "path",
       "prompt": "시작 수 156이 들어 있는 타원",
       "content": {
-        "d": "M 21.127 97.381 C 21.127 82.381 77.127 82.381 77.127 97.381 C 77.127 112.381 21.127 112.381 21.127 97.381 Z",
+        "d": "M -8.35 99.44 C -8.35 84.44 47.65 84.44 47.65 99.44 C 47.65 114.44 -8.35 114.44 -8.35 99.44 Z",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#ead5e9",
@@ -78,12 +80,14 @@
       "content": {
         "text": "156",
         "style_role": "body",
-        "x": 50,
-        "y": 102.072,
+        "x": 20.52,
+        "y": 104.13,
         "font_size": 15,
         "anchor": "middle",
         "fill": "#111111",
-        "semantic_role": "given_value"
+        "semantic_role": "given_value",
+        "semantic_role_source": "explicit",
+        "font_family": "\"Noto Sans KR\", sans-serif"
       }
     },
     {
@@ -91,8 +95,8 @@
       "kind": "rect",
       "prompt": "첫 번째 덧셈 +278이 들어 있는 상자",
       "content": {
-        "x": 84.366,
-        "y": 43.327,
+        "x": 36.89,
+        "y": 42.39,
         "width": 64,
         "height": 28,
         "stroke": "#a9ce93",
@@ -108,12 +112,14 @@
       "content": {
         "text": "+278",
         "style_role": "body",
-        "x": 112,
-        "y": 64.072,
+        "x": 66.52,
+        "y": 61.13,
         "font_size": 15,
         "anchor": "middle",
         "fill": "#111111",
-        "semantic_role": "operation"
+        "semantic_role": "operation",
+        "semantic_role_source": "explicit",
+        "font_family": "\"Noto Sans KR\", sans-serif"
       }
     },
     {
@@ -121,7 +127,7 @@
       "kind": "path",
       "prompt": "156에 278을 더한 결과를 쓰는 첫 번째 빈 타원",
       "content": {
-        "d": "M 146 96.072 C 146 81.072 202 81.072 202 96.072 C 202 111.072 146 111.072 146 96.072 Z",
+        "d": "M 100.52 99.13 C 100.52 84.13 156.52 84.13 156.52 99.13 C 156.52 114.13 100.52 114.13 100.52 99.13 Z",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#ead5e9",
@@ -159,8 +165,8 @@
       "kind": "rect",
       "prompt": "두 번째 덧셈 +697이 들어 있는 상자",
       "content": {
-        "x": 207,
-        "y": 45.072,
+        "x": 160.52,
+        "y": 43.13,
         "width": 64,
         "height": 28,
         "stroke": "#a9ce93",
@@ -176,12 +182,14 @@
       "content": {
         "text": "+697",
         "style_role": "body",
-        "x": 236,
-        "y": 64.072,
+        "x": 191.52,
+        "y": 62.13,
         "font_size": 15,
         "anchor": "middle",
         "fill": "#111111",
-        "semantic_role": "operation"
+        "semantic_role": "operation",
+        "semantic_role_source": "explicit",
+        "font_family": "\"Noto Sans KR\", sans-serif"
       }
     },
     {
@@ -189,7 +197,7 @@
       "kind": "path",
       "prompt": "첫 번째 결과에 697을 더한 결과를 쓰는 두 번째 빈 타원",
       "content": {
-        "d": "M 270 96.072 C 270 81.072 326 81.072 326 96.072 C 326 111.072 270 111.072 270 96.072 Z",
+        "d": "M 230.52 98.13 C 230.52 83.13 286.52 83.13 286.52 98.13 C 286.52 113.13 230.52 113.13 230.52 98.13 Z",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#ead5e9",
@@ -223,55 +231,47 @@
       }
     },
     {
-      "id": "konva_1784592333289_arrow_2136844",
+      "id": "konva_1792368892203_arrow_190201",
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 52.83 81.62 L 79.46 58.49 M 79.46 58.49 L 75.11 68.59 M 79.46 58.49 L 68.85 61.39",
-        "x": 0.0,
-        "y": 0.0,
+        "d": "M 18.06 83.029 L 34.06 64.629 M 34.06 64.629 L 31.16 75.239 M 34.06 64.629 L 23.96 68.979",
+        "fill": "none",
         "stroke": "#111827",
-        "stroke_width": 1.2,
-        "fill": "none"
+        "stroke_width": 1.2
       }
     },
     {
-      "id": "konva_1784592333289_arrow_2144100",
+      "id": "konva_1792368892203_paste_198837_0",
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 154.116 56.306 L 172.886 77.246 M 172.886 77.246 L 162.716 73.056 M 172.886 77.246 L 169.826 66.676",
-        "x": 0.0,
-        "y": 0.0,
+        "d": "M 103.278 57.029 L 124.098 75.029 M 124.098 75.029 L 113.478 72.159 M 124.098 75.029 L 119.718 64.939",
+        "fill": "none",
         "stroke": "#111827",
-        "stroke_width": 1.2,
-        "fill": "none"
+        "stroke_width": 1.2
       }
     },
     {
-      "id": "konva_1784592333289_arrow_2159396",
+      "id": "konva_1792368892203_paste_205776_0",
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 184.25 79.44 L 204.33 58.5 M 204.33 58.5 L 200.92 68.96 M 204.33 58.5 L 194.03 62.35",
-        "x": 0.0,
-        "y": 0.0,
+        "d": "M 132.484 74.229 L 158.884 57.029 M 158.884 57.029 L 153.184 66.439 M 158.884 57.029 L 147.974 58.439",
+        "fill": "none",
         "stroke": "#111827",
-        "stroke_width": 1.2,
-        "fill": "none"
+        "stroke_width": 1.2
       }
     },
     {
-      "id": "konva_1784592333289_arrow_2165492",
+      "id": "konva_1792368892203_paste_212033_0",
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 275.93 58.93 L 299.07 82.06 M 299.07 82.06 L 288.69 78.43 M 299.07 82.06 L 295.43 71.68",
-        "x": 0.0,
-        "y": 0.0,
+        "d": "M 227.704 58.229 L 258.924 75.829 M 258.924 75.829 L 247.944 75.119 M 258.924 75.829 L 252.634 66.809",
+        "fill": "none",
         "stroke": "#111827",
-        "stroke_width": 1.2,
-        "fill": "none"
+        "stroke_width": 1.2
       }
     }
   ],
@@ -284,16 +284,10 @@
         "slot.start_value",
         "slot.operation_1_box",
         "slot.operation_1",
-        "slot.arrow_1_curve",
-        "slot.arrow_1_head",
         "slot.answer_1_oval",
-        "slot.answer_1",
         "slot.operation_2_box",
         "slot.operation_2",
-        "slot.arrow_2_curve",
-        "slot.arrow_2_head",
-        "slot.answer_2_oval",
-        "slot.answer_2"
+        "slot.answer_2_oval"
       ]
     }
   ],
@@ -308,12 +302,12 @@
     "slot.answer_1_oval",
     "slot.operation_2_box",
     "slot.answer_2_oval",
-    "konva_1784592333289_arrow_2136844",
-    "konva_1784592333289_arrow_2144100",
-    "konva_1784592333289_arrow_2159396",
-    "konva_1784592333289_arrow_2165492",
     "slot.start_value",
     "slot.operation_1",
-    "slot.operation_2"
+    "slot.operation_2",
+    "konva_1792368892203_arrow_190201",
+    "konva_1792368892203_paste_198837_0",
+    "konva_1792368892203_paste_205776_0",
+    "konva_1792368892203_paste_212033_0"
   ]
 }

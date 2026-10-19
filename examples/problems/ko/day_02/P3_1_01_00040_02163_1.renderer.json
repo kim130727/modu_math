@@ -2,7 +2,7 @@
   "problem_id": "P3_1_01_00040_02163",
   "view_box": {
     "width": 380.0,
-    "height": 175.987,
+    "height": 165.0,
     "background": "#FFFFFF"
   },
   "elements": [
@@ -13,8 +13,8 @@
         "x": 8.4,
         "y": 6.6,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 17,
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 17.0,
         "width": 342.0,
         "height": 49.0,
         "max_width": 342.0,
@@ -26,7 +26,8 @@
         "data-text-align": "left",
         "data-vertical-align": "top",
         "data-line-height": 1.2,
-        "data-semantic-role": "instruction"
+        "data-semantic-role": "instruction",
+        "data-semantic-role-source": "explicit"
       },
       "source_ref": "slot.instruction",
       "refs": {
@@ -57,8 +58,8 @@
         "x": 192.903,
         "y": 66.2,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 22,
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
         "text-anchor": "end"
       },
       "source_ref": "slot.number_1_top",
@@ -74,8 +75,8 @@
         "x": 123.287,
         "y": 100.2,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 22,
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
         "text-anchor": "middle"
       },
       "source_ref": "slot.plus_1",
@@ -88,11 +89,11 @@
       "id": "slot.number_1_bottom_hundreds.text",
       "type": "text",
       "attributes": {
-        "x": 142.887,
-        "y": 100.6,
+        "x": 137.887,
+        "y": 97.6,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 22,
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
         "text-anchor": "middle"
       },
       "source_ref": "slot.number_1_bottom_hundreds",
@@ -105,7 +106,7 @@
       "id": "slot.blank_1_tens.rect",
       "type": "rect",
       "attributes": {
-        "x": 156.72,
+        "x": 152.72,
         "y": 82.516,
         "width": 18.04,
         "height": 18.04,
@@ -131,6 +132,9 @@
         "height": 18.04,
         "font_size": 12.989,
         "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
         "font_weight": 700,
         "horizontal_align": "center",
         "vertical_align": "middle",
@@ -141,11 +145,11 @@
       "id": "slot.number_1_bottom_ones.text",
       "type": "text",
       "attributes": {
-        "x": 187.887,
+        "x": 186.887,
         "y": 99.4,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 22,
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
         "text-anchor": "middle"
       },
       "source_ref": "slot.number_1_bottom_ones",
@@ -158,7 +162,7 @@
       "id": "slot.blank_1_answer_hundreds.rect",
       "type": "rect",
       "attributes": {
-        "x": 136.72,
+        "x": 126.72,
         "y": 122.316,
         "width": 18.04,
         "height": 18.04,
@@ -184,6 +188,9 @@
         "height": 18.04,
         "font_size": 12.989,
         "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 14,
+        "max_font_size": 52,
         "font_weight": 700,
         "horizontal_align": "center",
         "vertical_align": "middle",
@@ -194,11 +201,11 @@
       "id": "slot.number_1_answer_rest.text",
       "type": "text",
       "attributes": {
-        "x": 192.924,
+        "x": 193.924,
         "y": 137.987,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 22,
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
         "text-anchor": "end"
       },
       "source_ref": "slot.number_1_answer_rest",
