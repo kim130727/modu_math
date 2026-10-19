@@ -14,6 +14,13 @@ from .problems import ProblemPaths
 def paths_for(root: Path, relative_id: str) -> ProblemPaths:
     root = root.resolve()
     path = (root / relative_id).resolve()
+    if not path.is_file():
+        parts = Path(relative_id).parts
+        if parts and parts[0] in LANGUAGES:
+            lang_dir = root / parts[0]
+            candidates = list(lang_dir.rglob(parts[-1]))
+            if candidates:
+                path = candidates[0].resolve()
     if root not in path.parents or not path.name.endswith(".dsl.py"):
         raise ValueError("Invalid content path")
     return ProblemPaths(path.relative_to(root).as_posix(), "", root, path.parent,
@@ -27,7 +34,7 @@ def list_content(root: Path, language: str | None = None):
     candidates = set(virtual_paths(root))
     candidates.update(path for path in (root / "ko").rglob("*.dsl.py") if consolidated(path))
     candidates.update(path.with_name(path.name.removesuffix(".renderer.json") + ".dsl.py")
-                      for path in root.glob("*/*.renderer.json"))
+                      for path in root.glob("*/**/*.renderer.json"))
     for path in sorted(candidates):
         relative = path.relative_to(root)
         if relative.parts[0] not in LANGUAGES or (language and relative.parts[0] != language):

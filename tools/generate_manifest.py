@@ -239,6 +239,10 @@ def generate():
         problem_type = str(semantic.get("problem_type") or "unknown")
         domain = _domain_for_topic(unit_topic)
 
+        rel_dir = paths.base_dir.relative_to(ROOT).as_posix()
+        path_str = f"examples/problems/{rel_dir}".rstrip("/")
+        day = paths.base_dir.name if paths.base_dir.name.startswith("day_") else ""
+
         problems.append(
             {
                 "id": file_prefix,
@@ -248,7 +252,8 @@ def generate():
                 "domain": domain,
                 "type": problem_type,
                 "title": title,
-                "path": "examples/problems/ko",
+                "path": path_str,
+                "day": day,
                 "filePrefix": file_prefix,
                 "semester": f"{semester}학기",
                 "unitNumber": unit_number,

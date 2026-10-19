@@ -153,6 +153,8 @@ class SyncProblemsTests(TestCase):
         root = settings.BASE_DIR / "examples" / "problems"
         catalog_path = next((settings.BASE_DIR / "locales" / "uk").glob("*.json"))
         source_path = root / "ko" / (catalog_path.stem + ".dsl.py")
+        if not source_path.is_file():
+            source_path = next((root / "ko").rglob(catalog_path.stem + ".dsl.py"))
         before = source_path.read_bytes(), catalog_path.read_bytes()
         call_command("sync_problems", root=root, verbosity=0)
         from modu_math_web.editor.services.content_store import list_content, read_content

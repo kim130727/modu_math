@@ -128,7 +128,7 @@ class ProblemDevHandler(BaseHTTPRequestHandler):
         locale_dir = self.root / locale
         if locale_dir.is_dir():
             renderer_files = sorted(
-                [p for p in locale_dir.glob("*.renderer.json") if p.is_file()],
+                [p for p in locale_dir.rglob("*.renderer.json") if p.is_file()],
                 key=lambda p: p.name,
             )
         else:

@@ -587,7 +587,9 @@ class ContentRepository {
     for (final path in rendererPaths) {
       if (path.contains('/$targetLocale/$filePrefix.renderer.json') ||
           path == '$targetLocale/$filePrefix.renderer.json' ||
-          path == '$problemsPath/$targetLocale/$filePrefix.renderer.json') {
+          path == '$problemsPath/$targetLocale/$filePrefix.renderer.json' ||
+          (path.contains('/$targetLocale/') &&
+              path.endsWith('/$filePrefix.renderer.json'))) {
         return path;
       }
     }
@@ -1355,6 +1357,10 @@ String _normalizeProblemPath(String path, String targetLocale) {
       return '${normalized.substring(0, normalized.length - candidate.length)}$locale';
     }
     if (normalized.contains('/$candidate/')) {
+      if (locale != 'ko') {
+        final prefixIdx = normalized.indexOf('/$candidate/');
+        return '${normalized.substring(0, prefixIdx)}/$locale';
+      }
       return normalized.replaceAll('/$candidate/', '/$locale/');
     }
     if (normalized == candidate) {

@@ -22,6 +22,10 @@ def location(path: Path) -> tuple[Path, str, Path] | None:
         if parent.name in LANGUAGES:
             relative = path.relative_to(parent)
             canonical = parent.parent / "ko" / relative
+            if not canonical.is_file():
+                found = list((parent.parent / "ko").rglob(relative.name))
+                if found:
+                    canonical = found[0]
             return canonical, parent.name, parent.parent
     return None
 
@@ -45,7 +49,13 @@ def locale_path(path: Path, language: str | None = None) -> Path:
         raise ValueError(f"Problem path is not under a language directory: {path}")
     canonical, detected, root = info
     target = language or detected
-    return repository_root(root) / "locales" / target / _relative_json(canonical, root)
+    direct = repository_root(root) / "locales" / target / _relative_json(canonical, root)
+    if direct.is_file():
+        return direct
+    flat = repository_root(root) / "locales" / target / (canonical.name.removesuffix(".dsl.py") + ".json")
+    if flat.is_file():
+        return flat
+    return direct
 
 
 def override_path(path: Path, language: str | None = None) -> Path:
@@ -55,7 +65,13 @@ def override_path(path: Path, language: str | None = None) -> Path:
     canonical, detected, root = info
     target = language or detected
     relative = _relative_json(canonical, root)
-    return repository_root(root) / "overrides" / target / relative.with_suffix(".layout.json")
+    direct = repository_root(root) / "overrides" / target / relative.with_suffix(".layout.json")
+    if direct.is_file():
+        return direct
+    flat = repository_root(root) / "overrides" / target / f"{canonical.name.removesuffix('.dsl.py')}.layout.json"
+    if flat.is_file():
+        return flat
+    return direct
 
 
 def review_path(path: Path, language: str | None = None) -> Path:
