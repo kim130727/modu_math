@@ -3,8 +3,8 @@
   "problem_id": "P3_1_01_00040_15726",
   "title": "수 모형으로 알아보는 262와 271의 합",
   "canvas": {
-    "width": 400,
-    "height": 193,
+    "width": 405.23,
+    "height": 218.829,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -126,18 +126,18 @@
   "slots": [
     {
       "id": "slot.instruction",
-      "kind": "text_box",
+      "kind": "text",
       "prompt": "수 모형으로 덧셈을 알아보라는 안내",
       "content": {
         "text": "262+271을 수 모형으로 알아보시오.",
         "style_role": "body",
         "x": 9.474,
-        "y": 2.697,
+        "y": 16.697,
         "font_size": 14,
         "fill": "#222222",
         "semantic_role": "instruction",
-        "height": 26,
-        "kind": "text_box"
+        "semantic_role_source": "explicit",
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     },
     {
@@ -163,14 +163,15 @@
         "text": "262",
         "style_role": "body",
         "x": 94.006,
-        "y": 91.389,
+        "y": 89.389,
         "font_size": 16,
-        "anchor": "middle",
         "fill": "#222222",
-        "semantic_role": "number_label",
-        "height": 28,
+        "semantic_role": "canvas",
+        "semantic_role_source": "explicit",
+        "height": 20,
         "kind": "text_box",
-        "width": 44.964
+        "width": 28,
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     },
     {
@@ -198,12 +199,13 @@
         "x": 290.178,
         "y": 89.476,
         "font_size": 16,
-        "anchor": "middle",
         "fill": "#222222",
-        "semantic_role": "number_label",
-        "height": 28,
+        "semantic_role": "canvas",
+        "semantic_role_source": "explicit",
+        "height": 20,
         "kind": "text_box",
-        "width": 34.492
+        "width": 28,
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     },
     {
@@ -213,14 +215,16 @@
       "content": {
         "text": "(1) 낱개 모형끼리 더하면 몇 개입니까?",
         "style_role": "body",
-        "x": 14.258,
-        "y": 112.651,
+        "x": 14.26,
+        "y": 118.65,
         "font_size": 15,
         "fill": "#222222",
-        "semantic_role": "subquestion",
-        "height": 46,
+        "semantic_role": "canvas",
+        "semantic_role_source": "explicit",
+        "height": 19,
         "kind": "text_box",
-        "width": 230.507
+        "width": 237,
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     },
     {
@@ -230,14 +234,16 @@
       "content": {
         "text": "(2) 십 모형끼리 더한 것은 백 모형 몇 개와 십 모형 몇 개가 됩니까?",
         "style_role": "body",
-        "x": 14.737,
-        "y": 133.304,
+        "x": 14.23,
+        "y": 141.8,
         "font_size": 14,
         "fill": "#222222",
-        "semantic_role": "subquestion",
-        "width": 372.612,
-        "height": 43.0,
-        "kind": "text_box"
+        "semantic_role": "canvas",
+        "semantic_role_source": "explicit",
+        "width": 375,
+        "height": 18,
+        "kind": "text_box",
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     },
     {
@@ -248,12 +254,15 @@
         "text": "(3) 백 모형끼리 더하면 몇 개입니까?",
         "style_role": "body",
         "x": 14.694,
-        "y": 151.522,
+        "y": 162.522,
         "font_size": 14,
         "fill": "#222222",
-        "semantic_role": "subquestion",
-        "height": 26,
-        "kind": "text_box"
+        "semantic_role": "canvas",
+        "semantic_role_source": "explicit",
+        "height": 18,
+        "kind": "text_box",
+        "width": 209,
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     },
     {
@@ -264,12 +273,15 @@
         "text": "(4) 262+271은 얼마입니까?",
         "style_role": "body",
         "x": 14.651,
-        "y": 169.829,
+        "y": 184.829,
         "font_size": 14,
         "fill": "#222222",
-        "semantic_role": "subquestion",
-        "height": 26,
-        "kind": "text_box"
+        "semantic_role": "canvas",
+        "semantic_role_source": "explicit",
+        "height": 18,
+        "kind": "text_box",
+        "width": 163,
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
     },
     {

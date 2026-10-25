@@ -4,7 +4,7 @@
   "title": "숫자 카드로 만든 가장 큰 수와 가장 작은 수의 합",
   "canvas": {
     "width": 650,
-    "height": 400,
+    "height": 401.14,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -35,9 +35,11 @@
         "align": "left",
         "valign": "top",
         "font_size": 30,
-        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font_family": "\"Noto Sans KR\", sans-serif",
         "line_height": 1.4,
-        "fill": "#202124"
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "explicit"
       }
     },
     {
@@ -54,8 +56,10 @@
         "align": "left",
         "valign": "top",
         "font_size": 30,
-        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "fill": "#202124"
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
       }
     },
     {
@@ -87,8 +91,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 461.029,
-        "y": 320.648,
+        "x": 176.12,
+        "y": 327.99,
         "width": 160.56,
         "height": 57.15,
         "fill": "#ffffff",

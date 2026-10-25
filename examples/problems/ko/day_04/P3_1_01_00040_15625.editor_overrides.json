@@ -1,9 +1,19 @@
 {
   "version": 1,
+  "slot_regions": {
+    "konva_1787053306854_rect_2113406": "region.stem",
+    "konva_1787053306854_text_2123622": "region.stem"
+  },
+  "deleted_slots": [
+    "slot.answer"
+  ],
   "slots": {
     "slot.question": {
       "x": 10.43,
-      "y": 5.761
+      "y": 5.761,
+      "font_family": "\"Noto Sans KR\", sans-serif",
+      "semantic_role": "question",
+      "semantic_role_source": "explicit"
     },
     "konva_1787053306854_rect_2113406": {
       "x": 350.328,
@@ -41,20 +51,11 @@
     "konva_1787053306854_text_2123622": {
       "text": "장",
       "x": 490.016,
-      "y": 146.344,
+      "y": 176.344,
       "font_size": 30,
       "fill": "#111827",
-      "width": 33.574,
-      "height": 46,
-      "align": "left",
-      "line_height": 1.25
+      "font_family": "\"Noto Sans KR\", sans-serif",
+      "kind": "text"
     }
-  },
-  "deleted_slots": [
-    "slot.answer"
-  ],
-  "slot_regions": {
-    "konva_1787053306854_rect_2113406": "region.stem",
-    "konva_1787053306854_text_2123622": "region.stem"
   }
 }

@@ -11,7 +11,7 @@
       "step-by-step",
       "vertical-calculation"
     ],
-    "question": "554와 269를 받아올림하며 차례대로 계산합니다.",
+    "question": "□ 안에 알맞은 수를 써넣으시오.",
     "required_layout_ids": [
       "slot.stage1.line",
       "slot.stage2.line",
@@ -33,7 +33,16 @@
     "semester": 1,
     "subject": "수학",
     "topic": "세 자리 수의 덧셈",
-    "language": "ko-KR"
+    "language": "ko-KR",
+    "instruction": "",
+    "presentation_sources": {
+      "question": [
+        "slot.instruction"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "□ 안에 알맞은 수를 써넣으시오."
   },
   "domain": {
     "objects": [

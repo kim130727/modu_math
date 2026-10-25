@@ -203,6 +203,58 @@
     "value": 4,
     "unit": "",
     "target_ref": "choice.option_4",
-    "derived_from": "step.select_largest_sum"
+    "derived_from": "step.select_largest_sum",
+    "choices": [
+      {
+        "text": "①",
+        "slot_id": "slot.choice_1.number",
+        "id": "slot.choice_1.number"
+      },
+      {
+        "text": "320+145",
+        "slot_id": "slot.choice_1.expression",
+        "id": "slot.choice_1.expression"
+      },
+      {
+        "text": "②",
+        "slot_id": "slot.choice_2.number",
+        "id": "slot.choice_2.number"
+      },
+      {
+        "text": "300+200",
+        "slot_id": "slot.choice_2.expression",
+        "id": "slot.choice_2.expression"
+      },
+      {
+        "text": "③",
+        "slot_id": "slot.choice_3.number",
+        "id": "slot.choice_3.number"
+      },
+      {
+        "text": "163+326",
+        "slot_id": "slot.choice_3.expression",
+        "id": "slot.choice_3.expression"
+      },
+      {
+        "text": "④",
+        "slot_id": "slot.choice_4.number",
+        "id": "slot.choice_4.number"
+      },
+      {
+        "text": "236+362",
+        "slot_id": "slot.choice_4.expression",
+        "id": "slot.choice_4.expression"
+      },
+      {
+        "text": "⑤",
+        "slot_id": "slot.choice_5.number",
+        "id": "slot.choice_5.number"
+      },
+      {
+        "text": "405+104",
+        "slot_id": "slot.choice_5.expression",
+        "id": "slot.choice_5.expression"
+      }
+    ]
   }
 }

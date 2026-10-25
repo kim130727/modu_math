@@ -5,7 +5,7 @@
     "title": "처음 주차장에 있던 차의 수",
     "tags": [],
     "instruction": "식",
-    "question": "처음 주차장에 있던 차는 모두 몇 대입니까?",
+    "question": "주차장에 있던 차 중에서 146대가 나가고 231대가 남았습니다. 처음 주차장에 있던 차는 모두 몇 대입니까?",
     "required_layout_ids": [
       "konva_1786319433892_rect_505049"
     ],
@@ -14,7 +14,15 @@
     "semester": 1,
     "subject": "수학",
     "topic": "세 자리 수의 덧셈",
-    "language": "ko-KR"
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.question"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "주차장에 있던 차 중에서 146대가 나가고 231대가 남았습니다. 처음 주차장에 있던 차는 모두 몇 대입니까?"
   },
   "domain": {
     "objects": [
@@ -83,6 +91,21 @@
     "value": 377,
     "unit": "대",
     "target_ref": "quantity.initial_cars",
-    "derived_from": "step.reconstruct_initial_count"
+    "derived_from": "step.reconstruct_initial_count",
+    "blanks": [
+      {
+        "id": "konva_1786319433892_rect_505049",
+        "slot_id": "konva_1786319433892_rect_505049",
+        "expected": 377,
+        "unit": "대"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "konva_1786319433892_rect_505049",
+        "value": 377,
+        "unit": "대"
+      }
+    ]
   }
 }

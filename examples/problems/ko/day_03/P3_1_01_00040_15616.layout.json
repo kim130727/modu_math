@@ -4,7 +4,7 @@
   "title": "두 사람이 넘은 줄넘기의 총횟수",
   "canvas": {
     "width": 600,
-    "height": 170,
+    "height": 172.415,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -35,9 +35,11 @@
         "align": "left",
         "valign": "top",
         "font_size": 30,
-        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font_family": "\"Noto Sans KR\", sans-serif",
         "line_height": 1.45,
-        "fill": "#202124"
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "explicit"
       }
     },
     {
@@ -80,18 +82,18 @@
     },
     {
       "id": "konva_1787053306854_text_2028246",
-      "kind": "text_box",
+      "kind": "text",
       "prompt": "",
       "content": {
         "text": "회",
         "x": 512.639,
-        "y": 113.639,
+        "y": 143.639,
         "font_size": 30,
         "fill": "#111827",
-        "width": 35.049,
-        "height": 46,
-        "align": "left",
-        "line_height": 1.25
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "kind": "text",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
       }
     }
   ],

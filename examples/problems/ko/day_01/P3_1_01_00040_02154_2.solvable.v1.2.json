@@ -24,13 +24,6 @@
   },
   "given": [
     {
-      "ref": "addition.problem_1",
-      "value": {
-        "first_addend": 529,
-        "second_addend": 775
-      }
-    },
-    {
       "ref": "addition.problem_2",
       "value": {
         "first_addend": 257,
@@ -50,30 +43,6 @@
     "두 번째 세로셈의 받아올림한 수와 결과를 쓴다."
   ],
   "steps": [
-    {
-      "id": "step.problem_1.add_ones",
-      "expr": "9 + 5",
-      "value": 14,
-      "explanation": "일의 자리에서 9와 5를 더하면 14이므로 4를 쓰고 1을 받아올림합니다."
-    },
-    {
-      "id": "step.problem_1.add_tens",
-      "expr": "2 + 7 + 1",
-      "value": 10,
-      "explanation": "십의 자리에서 2와 7에 받아올림한 1을 더하면 10이므로 0을 쓰고 1을 받아올림합니다."
-    },
-    {
-      "id": "step.problem_1.add_hundreds",
-      "expr": "5 + 7 + 1",
-      "value": 13,
-      "explanation": "백의 자리에서 5와 7에 받아올림한 1을 더하면 13이므로 천의 자리와 백의 자리에 13을 씁니다."
-    },
-    {
-      "id": "step.problem_1.compose_sum",
-      "expr": "529 + 775",
-      "value": 1304,
-      "explanation": "첫 번째 세로셈의 결과는 1304입니다."
-    },
     {
       "id": "step.problem_2.add_ones",
       "expr": "7 + 9",
@@ -101,20 +70,6 @@
   ],
   "checks": [
     {
-      "id": "check.problem_1.total",
-      "expr": "529 + 775",
-      "expected": 1304,
-      "actual": 1304,
-      "pass": true
-    },
-    {
-      "id": "check.problem_1.inverse",
-      "expr": "1304 - 775",
-      "expected": 529,
-      "actual": 529,
-      "pass": true
-    },
-    {
       "id": "check.problem_2.total",
       "expr": "257 + 769",
       "expected": 1026,
@@ -140,30 +95,6 @@
     ],
     "unit": "",
     "items": [
-      {
-        "id": "answer.problem_1.carry_hundreds",
-        "value": 1
-      },
-      {
-        "id": "answer.problem_1.carry_tens",
-        "value": 1
-      },
-      {
-        "id": "answer.problem_1.thousands",
-        "value": 1
-      },
-      {
-        "id": "answer.problem_1.hundreds",
-        "value": 3
-      },
-      {
-        "id": "answer.problem_1.tens",
-        "value": 0
-      },
-      {
-        "id": "answer.problem_1.ones",
-        "value": 4
-      },
       {
         "id": "answer.problem_2.carry_hundreds",
         "value": 1
@@ -251,16 +182,6 @@
   "understanding": {
     "summary": "두 세로셈의 받아올림한 수와 계산 결과를 구하는 문제입니다.",
     "facts": [
-      {
-        "ref": "addition.problem_1",
-        "label": "첫 번째 세로셈",
-        "value": {
-          "first_addend": 529,
-          "second_addend": 775
-        },
-        "unit": "",
-        "source": "explicit"
-      },
       {
         "ref": "addition.problem_2",
         "label": "두 번째 세로셈",

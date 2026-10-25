@@ -1324,7 +1324,8 @@ List<Widget> _textBoxLayers(Map<String, dynamic> renderer, double scale) {
       vertical: attributes['data-vertical-align'],
     );
     final text = _normalizeTextBoxText(element['text']?.toString() ?? '');
-    final wrappedText = text.contains('\n')
+    final canWrap = height >= fontSize * lineHeight * 1.7;
+    final wrappedText = (text.contains('\n') || !canWrap)
         ? text
         : wrapRendererTextLikeEditor(
             text,

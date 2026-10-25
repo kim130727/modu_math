@@ -2,7 +2,7 @@
   "problem_id": "P3_1_01_00040_15625",
   "view_box": {
     "width": 600.0,
-    "height": 208.344,
+    "height": 206.426,
     "background": "#FFFFFF"
   },
   "elements": [
@@ -13,8 +13,8 @@
         "x": 10.43,
         "y": 5.761,
         "fill": "#202124",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30,
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 30.0,
         "width": 549.246,
         "height": 182.0,
         "max_width": 549.246,
@@ -25,7 +25,9 @@
         "data-box-height": 182.0,
         "data-text-align": "left",
         "data-vertical-align": "top",
-        "data-line-height": 1.45
+        "data-line-height": 1.45,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "explicit"
       },
       "source_ref": "slot.question",
       "refs": {
@@ -78,24 +80,15 @@
     },
     {
       "id": "konva_1787053306854_text_2123622.text",
-      "type": "text_box",
+      "type": "text",
       "attributes": {
         "x": 490.016,
-        "y": 146.344,
+        "y": 176.344,
         "fill": "#111827",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 30,
-        "width": 33.574,
-        "height": 46.0,
-        "max_width": 33.574,
-        "data-slot-kind": "text_box",
-        "data-box-x": 490.016,
-        "data-box-y": 146.344,
-        "data-box-width": 33.574,
-        "data-box-height": 46.0,
-        "data-text-align": "left",
-        "data-vertical-align": "top",
-        "data-line-height": 1.25
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 30.0,
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
       },
       "source_ref": "konva_1787053306854_text_2123622",
       "refs": {

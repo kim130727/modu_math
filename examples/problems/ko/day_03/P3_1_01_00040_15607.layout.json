@@ -4,7 +4,7 @@
   "title": "처음 주차장에 있던 차의 수",
   "canvas": {
     "width": 600,
-    "height": 180,
+    "height": 206.892,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -35,9 +35,11 @@
         "align": "left",
         "valign": "top",
         "font_size": 30,
-        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "font_family": "\"Noto Sans KR\", sans-serif",
         "line_height": 1.45,
-        "fill": "#202124"
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "explicit"
       }
     },
     {
@@ -50,12 +52,15 @@
         "x": 489.934,
         "y": 126.868,
         "width": 49.95,
-        "height": 52.0,
+        "height": 37.5,
         "align": "left",
         "valign": "top",
         "font_size": 30,
         "line_height": 1.45,
-        "fill": "#202124"
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred",
+        "font_family": "\"Noto Sans KR\", sans-serif"
       }
     },
     {
@@ -90,7 +95,9 @@
           "horizontal_align": "center",
           "vertical_align": "middle",
           "padding": 6,
-          "text_color": "#222222"
+          "text_color": "#222222",
+          "width": 98.185,
+          "height": 39.96
         }
       }
     }

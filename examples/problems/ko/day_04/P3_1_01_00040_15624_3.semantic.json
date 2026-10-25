@@ -11,15 +11,23 @@
       "addition",
       "multi-answer"
     ],
-    "instruction": "숫자의 크기를 비교하여 카드를 백의 자리부터 배열하고, 만든 두 세 자리 수를 더합니다.",
-    "question": "2, 4, 6의 숫자 카드를 한 번씩 사용하여 만들 수 있는 가장 큰 세 자리 수, 가장 작은 세 자리 수, 두 수의 합을 구합니다.",
+    "instruction": "",
+    "question": "2, 4, 6의 숫자 카드를 한 번씩만 사용하여 세 자리 수를 만들려고 합니다. 만들 수 있는 가장 큰 수와 가장 작은 수의 합을 구하려고 할 때 물음에 답하시오.",
     "required_layout_ids": [],
     "extraction_confidence": 1.0,
     "grade": 3,
     "semester": 1,
     "subject": "수학",
     "topic": "세 자리 수의 덧셈",
-    "language": "ko-KR"
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.instruction"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "2, 4, 6의 숫자 카드를 한 번씩만 사용하여 세 자리 수를 만들려고 합니다. 만들 수 있는 가장 큰 수와 가장 작은 수의 합을 구하려고 할 때 물음에 답하시오."
   },
   "domain": {
     "objects": [

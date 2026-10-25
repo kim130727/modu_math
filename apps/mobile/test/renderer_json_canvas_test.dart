@@ -170,6 +170,47 @@ void main() {
     );
   });
 
+  testWidgets(
+      'does not forcibly wrap single-line text box when height is constrained to one line',
+      (tester) async {
+    const formula = '259 + 248 =';
+
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 900,
+            height: 230,
+            child: RendererJsonCanvas(
+              renderer: {
+                'view_box': {'width': 900, 'height': 230},
+                'elements': [
+                  {
+                    'id': 'slot.expression.text',
+                    'type': 'text_box',
+                    'attributes': {
+                      'x': 324.239,
+                      'y': 166.0,
+                      'width': 163.445,
+                      'height': 36.0,
+                      'font-size': 30.0,
+                      'data-line-height': 1.25,
+                    },
+                    'text': formula,
+                  },
+                ],
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+
+    // Should NOT wrap into '259 + 248\n=' because height (36) is only one line.
+    expect(find.text(formula), findsOneWidget);
+    expect(find.text('259 + 248\n='), findsNothing);
+  });
+
   testWidgets('matches the editor wrapping for authored normal-weight text',
       (tester) async {
     const speech = '물병에 물을 가득 채운 후 우유병에 옮겨 담아보면 돼';

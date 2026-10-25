@@ -11,7 +11,7 @@
       "regrouping",
       "multi-answer"
     ],
-    "instruction": "같은 종류의 수 모형끼리 더하고 십 모형 10개를 백 모형 1개로 바꿉니다.",
+    "instruction": "262+271을 수 모형으로 알아보시오.",
     "required_layout_ids": [
       "slot.model262.container",
       "slot.model262.hundred.1",
@@ -42,7 +42,15 @@
     "subject": "수학",
     "topic": "세 자리 수의 덧셈",
     "language": "ko-KR",
-    "question": "262+271을 수 모형으로 알아보시오."
+    "question": "262+271을 수 모형으로 알아보시오.",
+    "presentation_sources": {
+      "question": [],
+      "instruction": [
+        "slot.instruction"
+      ],
+      "choice": []
+    },
+    "presentation_prompt": "262+271을 수 모형으로 알아보시오."
   },
   "domain": {
     "objects": [

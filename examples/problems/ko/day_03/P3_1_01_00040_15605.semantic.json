@@ -5,7 +5,7 @@
     "title": "동민이와 가희가 가진 구슬 수",
     "tags": [],
     "instruction": "식",
-    "question": "두 사람이 가지고 있는 구슬은 모두 몇 개입니까?",
+    "question": "동민이는 구슬을 215개 가지고 있고, 가희는 구슬을 132개 가지고 있습니다. 두 사람이 가지고 있는 구슬은 모두 몇 개입니까?",
     "required_layout_ids": [
       "konva_1786192274303_rect_374282"
     ],
@@ -14,7 +14,15 @@
     "semester": 1,
     "subject": "수학",
     "topic": "세 자리 수의 덧셈",
-    "language": "ko-KR"
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.question"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "동민이는 구슬을 215개 가지고 있고, 가희는 구슬을 132개 가지고 있습니다. 두 사람이 가지고 있는 구슬은 모두 몇 개입니까?"
   },
   "domain": {
     "objects": [
@@ -88,6 +96,21 @@
     "value": 347,
     "unit": "개",
     "target_ref": "quantity.total_marbles",
-    "derived_from": "step.add_marbles"
+    "derived_from": "step.add_marbles",
+    "blanks": [
+      {
+        "id": "konva_1786192274303_rect_374282",
+        "slot_id": "konva_1786192274303_rect_374282",
+        "expected": 347,
+        "unit": "개"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "konva_1786192274303_rect_374282",
+        "value": 347,
+        "unit": "개"
+      }
+    ]
   }
 }

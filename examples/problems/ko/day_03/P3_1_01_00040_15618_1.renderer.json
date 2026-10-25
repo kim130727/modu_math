@@ -10,10 +10,10 @@
       "id": "konva_1786192274303_rect_1194250.rect",
       "type": "rect",
       "attributes": {
-        "x": 110.557,
+        "x": 127.357,
         "y": 159.387,
-        "width": 93.705,
-        "height": 35.344,
+        "width": 76.91,
+        "height": 35.34,
         "fill": "#ffffff",
         "stroke": "#111827",
         "stroke-width": 1.2
@@ -43,8 +43,8 @@
         "vertical_align": "middle",
         "padding": 6,
         "text_color": "#222222",
-        "width": 93.705,
-        "height": 35.344
+        "width": 76.91,
+        "height": 35.34
       }
     },
     {
@@ -54,8 +54,10 @@
         "x": 24.0,
         "y": 28.0,
         "fill": "#222222",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 22
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "explicit"
       },
       "source_ref": "slot.instruction",
       "refs": {
@@ -81,15 +83,26 @@
     },
     {
       "id": "slot.expression_1.top.text",
-      "type": "text",
+      "type": "text_box",
       "attributes": {
-        "x": 197.541,
-        "y": 94.059,
+        "x": 142.541,
+        "y": 70.059,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 24,
-        "max_width": 90.0,
-        "text-anchor": "end"
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "max_width": 55.0,
+        "width": 55.0,
+        "height": 29.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 142.541,
+        "data-box-y": 70.059,
+        "data-box-width": 55.0,
+        "data-box-height": 29.0,
+        "data-text-align": "right",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.2,
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "explicit"
       },
       "source_ref": "slot.expression_1.top",
       "refs": {
@@ -104,8 +117,8 @@
         "x": 122.541,
         "y": 132.059,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 24
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0
       },
       "source_ref": "slot.expression_1.operator",
       "refs": {
@@ -115,15 +128,26 @@
     },
     {
       "id": "slot.expression_1.bottom.text",
-      "type": "text",
+      "type": "text_box",
       "attributes": {
-        "x": 197.541,
-        "y": 132.059,
+        "x": 142.541,
+        "y": 108.059,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 24,
-        "max_width": 90.0,
-        "text-anchor": "end"
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "max_width": 55.0,
+        "width": 55.0,
+        "height": 29.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 142.541,
+        "data-box-y": 108.059,
+        "data-box-width": 55.0,
+        "data-box-height": 29.0,
+        "data-text-align": "right",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.2,
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "explicit"
       },
       "source_ref": "slot.expression_1.bottom",
       "refs": {

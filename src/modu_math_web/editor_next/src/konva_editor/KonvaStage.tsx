@@ -74,6 +74,13 @@ export function KonvaStage({
   const transformerRef = useRef<Konva.Transformer | null>(null);
   const shapeRefs = useRef<Record<string, Konva.Node | null>>({});
   const dragStartRef = useRef<{ activeId: string; ids: string[]; positions: Map<string, { x: number; y: number }> } | null>(null);
+  const dragFrameRef = useRef<number | null>(null);
+  const pendingDragMoveRef = useRef<{
+    shapeId: string;
+    x: number;
+    y: number;
+    layer: Konva.Layer | null;
+  } | null>(null);
   const selectionStartRef = useRef<{ x: number; y: number; additive: boolean } | null>(null);
   const drawStartRef = useRef<CanvasPoint | null>(null);
   const drawPointsRef = useRef<CanvasPoint[]>([]);
@@ -113,6 +120,10 @@ export function KonvaStage({
       cancelAnimationFrame(frame);
       observer.disconnect();
     };
+  }, []);
+
+  useEffect(() => () => {
+    if (dragFrameRef.current !== null) cancelAnimationFrame(dragFrameRef.current);
   }, []);
 
   useEffect(() => {
@@ -272,6 +283,9 @@ export function KonvaStage({
   const startShapeDrag = (shapeId: string) => {
     const ids = selectedIdSet.has(shapeId) ? selectedShapeIds : [shapeId];
     if (!selectedIdSet.has(shapeId)) onSelectShapes([shapeId]);
+    if (dragFrameRef.current !== null) cancelAnimationFrame(dragFrameRef.current);
+    dragFrameRef.current = null;
+    pendingDragMoveRef.current = null;
     dragStartRef.current = {
       activeId: shapeId,
       ids,
@@ -281,28 +295,63 @@ export function KonvaStage({
           .map((shape) => [shape.id, { x: shape.x, y: shape.y }]),
       ),
     };
+    // A multi-node Transformer recalculates the combined bounds whenever any
+    // attached node moves. Detach it while dragging so one pointer event does
+    // not trigger the same O(n) bounds calculation for every selected node.
+    if (ids.length > 1) transformerRef.current?.nodes([]);
   };
 
-  const moveSelectedShapes = (shapeId: string, event: Konva.KonvaEventObject<DragEvent>) => {
-    const dragStart = dragStartRef.current;
+  const positionSelectedDragNodes = (
+    dragStart: NonNullable<typeof dragStartRef.current>,
+    shapeId: string,
+    x: number,
+    y: number,
+    layer: Konva.Layer | null,
+  ) => {
     const activeStart = dragStart?.positions.get(shapeId);
-    if (!dragStart || !activeStart) return;
-    const dx = event.target.x() - activeStart.x;
-    const dy = event.target.y() - activeStart.y;
+    if (!activeStart) return;
+    const dx = x - activeStart.x;
+    const dy = y - activeStart.y;
     for (const id of dragStart.ids) {
       if (id === shapeId) continue;
       const start = dragStart.positions.get(id);
       const node = shapeRefs.current[id];
       if (start && node) node.position({ x: start.x + dx, y: start.y + dy });
     }
-    event.target.getLayer()?.batchDraw();
+    layer?.batchDraw();
+  };
+
+  const flushSelectedDragMove = () => {
+    dragFrameRef.current = null;
+    const pending = pendingDragMoveRef.current;
+    pendingDragMoveRef.current = null;
+    const dragStart = dragStartRef.current;
+    if (!pending || !dragStart) return;
+    positionSelectedDragNodes(dragStart, pending.shapeId, pending.x, pending.y, pending.layer);
+  };
+
+  const moveSelectedShapes = (shapeId: string, event: Konva.KonvaEventObject<DragEvent>) => {
+    if (!dragStartRef.current) return;
+    pendingDragMoveRef.current = {
+      shapeId,
+      x: event.target.x(),
+      y: event.target.y(),
+      layer: event.target.getLayer(),
+    };
+    if (dragFrameRef.current === null) {
+      dragFrameRef.current = requestAnimationFrame(flushSelectedDragMove);
+    }
   };
 
   const finishSelectedDrag = (shapeId: string, event: Konva.KonvaEventObject<DragEvent>) => {
     const dragStart = dragStartRef.current;
+    if (dragFrameRef.current !== null) cancelAnimationFrame(dragFrameRef.current);
+    dragFrameRef.current = null;
+    pendingDragMoveRef.current = null;
     dragStartRef.current = null;
     const activeStart = dragStart?.positions.get(shapeId);
     if (!dragStart || !activeStart) return;
+    positionSelectedDragNodes(dragStart, shapeId, event.target.x(), event.target.y(), event.target.getLayer());
     const dx = event.target.x() - activeStart.x;
     const dy = event.target.y() - activeStart.y;
     const selected = new Set(dragStart.ids);

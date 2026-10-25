@@ -11,7 +11,26 @@
     "semester": 1,
     "subject": "수학",
     "topic": "세 자리 수의 덧셈",
-    "language": "ko-KR"
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice_1.number",
+        "slot.choice_1.expression",
+        "slot.choice_2.number",
+        "slot.choice_2.expression",
+        "slot.choice_3.number",
+        "slot.choice_3.expression",
+        "slot.choice_4.number",
+        "slot.choice_4.expression",
+        "slot.choice_5.number",
+        "slot.choice_5.expression"
+      ]
+    },
+    "presentation_prompt": "다음 중 합이 가장 큰 것은 어느 것입니까?"
   },
   "domain": {
     "objects": [
@@ -74,6 +93,58 @@
     "value": 5,
     "unit": "",
     "target_ref": "choice.option_5",
-    "derived_from": "step.select_largest_sum"
+    "derived_from": "step.select_largest_sum",
+    "choices": [
+      {
+        "text": "①",
+        "slot_id": "slot.choice_1.number",
+        "id": "slot.choice_1.number"
+      },
+      {
+        "text": "530+140",
+        "slot_id": "slot.choice_1.expression",
+        "id": "slot.choice_1.expression"
+      },
+      {
+        "text": "②",
+        "slot_id": "slot.choice_2.number",
+        "id": "slot.choice_2.number"
+      },
+      {
+        "text": "420+220",
+        "slot_id": "slot.choice_2.expression",
+        "id": "slot.choice_2.expression"
+      },
+      {
+        "text": "③",
+        "slot_id": "slot.choice_3.number",
+        "id": "slot.choice_3.number"
+      },
+      {
+        "text": "610+100",
+        "slot_id": "slot.choice_3.expression",
+        "id": "slot.choice_3.expression"
+      },
+      {
+        "text": "④",
+        "slot_id": "slot.choice_4.number",
+        "id": "slot.choice_4.number"
+      },
+      {
+        "text": "140+550",
+        "slot_id": "slot.choice_4.expression",
+        "id": "slot.choice_4.expression"
+      },
+      {
+        "text": "⑤",
+        "slot_id": "slot.choice_5.number",
+        "id": "slot.choice_5.number"
+      },
+      {
+        "text": "545+235",
+        "slot_id": "slot.choice_5.expression",
+        "id": "slot.choice_5.expression"
+      }
+    ]
   }
 }
