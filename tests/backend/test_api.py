@@ -1,3 +1,6 @@
+from pathlib import Path
+from tempfile import TemporaryDirectory
+
 from django.contrib.auth import get_user_model
 from django.core.management import call_command
 from django.test import TestCase, override_settings
@@ -64,6 +67,31 @@ class LearningApiTests(TestCase):
         self.assertEqual(response.data["results"][0]["path"], "examples/problems/ko")
         detail = self.client.get(f"/api/v1/problems/{self.problem.pk}/")
         self.assertEqual(detail.data["semantic_data"]["problem_id"], "sample-1")
+
+    def test_problem_path_and_assets_use_catalog_day_directory(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            day = root / "ko" / "day_01"
+            day.mkdir(parents=True)
+            (day / "sample-1.svg").write_text("<svg />", encoding="utf-8")
+            self.problem.catalog_data = {
+                "path": "examples/problems/ko/day_01",
+                "filePrefix": "sample-1",
+            }
+            self.problem.save(update_fields=["catalog_data"])
+
+            with override_settings(PROBLEMS_ROOT=root):
+                response = self.client.get("/api/v1/problems/?language=ko&grade=3")
+                self.assertEqual(
+                    response.data["results"][0]["path"],
+                    "examples/problems/ko/day_01",
+                )
+                asset = self.client.get(
+                    f"/api/v1/problems/{self.problem.pk}/asset/",
+                    {"filename": "sample-1.svg"},
+                )
+                self.assertEqual(asset.status_code, 200)
+                self.assertEqual(b"".join(asset.streaming_content), b"<svg />")
 
     def test_attempt_is_graded_by_server_and_updates_mastery(self):
         self._authenticate()

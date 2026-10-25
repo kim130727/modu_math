@@ -41,7 +41,8 @@ RUN flutter pub get
 
 COPY apps/mobile/ ./
 COPY --from=content-builder /build/generated/examples/problems ./generated/examples/problems
-RUN flutter build web --release --dart-define=BACKEND_API_BASE_URL=${BACKEND_API_BASE_URL}
+RUN flutter build web --release --dart-define=BACKEND_API_BASE_URL=${BACKEND_API_BASE_URL} && \
+    chmod -R a+rX build/web
 
 
 FROM nginx:1.27-alpine

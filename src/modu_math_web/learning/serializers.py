@@ -114,7 +114,11 @@ class ProblemListSerializer(serializers.ModelSerializer):
         return self._catalog_value(obj, "filePrefix", default=obj.problem_id)
 
     def get_path(self, obj):
-        return f"examples/problems/{obj.language}"
+        return self._catalog_value(
+            obj,
+            "path",
+            default=f"examples/problems/{obj.language}",
+        )
 
 
 class ProblemDetailSerializer(ProblemListSerializer):

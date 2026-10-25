@@ -29,13 +29,6 @@
         "first_addend": 529,
         "second_addend": 775
       }
-    },
-    {
-      "ref": "addition.problem_2",
-      "value": {
-        "first_addend": 257,
-        "second_addend": 769
-      }
     }
   ],
   "target": {
@@ -73,30 +66,6 @@
       "expr": "529 + 775",
       "value": 1304,
       "explanation": "첫 번째 세로셈의 결과는 1304입니다."
-    },
-    {
-      "id": "step.problem_2.add_ones",
-      "expr": "7 + 9",
-      "value": 16,
-      "explanation": "일의 자리에서 7과 9를 더하면 16이므로 6을 쓰고 1을 받아올림합니다."
-    },
-    {
-      "id": "step.problem_2.add_tens",
-      "expr": "5 + 6 + 1",
-      "value": 12,
-      "explanation": "십의 자리에서 5와 6에 받아올림한 1을 더하면 12이므로 2를 쓰고 1을 받아올림합니다."
-    },
-    {
-      "id": "step.problem_2.add_hundreds",
-      "expr": "2 + 7 + 1",
-      "value": 10,
-      "explanation": "백의 자리에서 2와 7에 받아올림한 1을 더하면 10이므로 천의 자리와 백의 자리에 10을 씁니다."
-    },
-    {
-      "id": "step.problem_2.compose_sum",
-      "expr": "257 + 769",
-      "value": 1026,
-      "explanation": "두 번째 세로셈의 결과는 1026입니다."
     }
   ],
   "checks": [
@@ -112,20 +81,6 @@
       "expr": "1304 - 775",
       "expected": 529,
       "actual": 529,
-      "pass": true
-    },
-    {
-      "id": "check.problem_2.total",
-      "expr": "257 + 769",
-      "expected": 1026,
-      "actual": 1026,
-      "pass": true
-    },
-    {
-      "id": "check.problem_2.inverse",
-      "expr": "1026 - 769",
-      "expected": 257,
-      "actual": 257,
       "pass": true
     }
   ],
@@ -163,30 +118,6 @@
       {
         "id": "answer.problem_1.ones",
         "value": 4
-      },
-      {
-        "id": "answer.problem_2.carry_hundreds",
-        "value": 1
-      },
-      {
-        "id": "answer.problem_2.carry_tens",
-        "value": 1
-      },
-      {
-        "id": "answer.problem_2.thousands",
-        "value": 1
-      },
-      {
-        "id": "answer.problem_2.hundreds",
-        "value": 0
-      },
-      {
-        "id": "answer.problem_2.tens",
-        "value": 2
-      },
-      {
-        "id": "answer.problem_2.ones",
-        "value": 6
       }
     ],
     "blanks": [
@@ -257,16 +188,6 @@
         "value": {
           "first_addend": 529,
           "second_addend": 775
-        },
-        "unit": "",
-        "source": "explicit"
-      },
-      {
-        "ref": "addition.problem_2",
-        "label": "두 번째 세로셈",
-        "value": {
-          "first_addend": 257,
-          "second_addend": 769
         },
         "unit": "",
         "source": "explicit"

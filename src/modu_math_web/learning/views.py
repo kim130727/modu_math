@@ -88,7 +88,20 @@ class ProblemViewSet(viewsets.ReadOnlyModelViewSet):
         filename = request.query_params.get("filename", "")
         if not filename or filename != filename.replace("\\", "/").split("/")[-1]:
             raise ValidationError({"filename": "올바른 파일 이름이 필요합니다."})
-        asset_path = settings.PROBLEMS_ROOT / problem.language / filename
+        root = settings.PROBLEMS_ROOT.resolve()
+        catalog_path = str(problem.catalog_data.get("path") or "")
+        prefix = "examples/problems/"
+        relative_directory = (
+            catalog_path[len(prefix):]
+            if catalog_path.startswith(prefix)
+            else problem.language
+        )
+        problem_directory = (root / relative_directory).resolve()
+        try:
+            problem_directory.relative_to(root)
+        except ValueError:
+            problem_directory = root / problem.language
+        asset_path = problem_directory / filename
         if not asset_path.is_file():
             from rest_framework.exceptions import NotFound
 
