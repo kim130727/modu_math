@@ -3,6 +3,7 @@ import { normalizedAnswer, type AnswerReviewSettings } from "./answerReview";
 
 export function AnswerReviewPanel({
   settings,
+  unit,
   onChange,
   onSave,
   onSelect,
@@ -12,6 +13,7 @@ export function AnswerReviewPanel({
   syncPanel,
 }: {
   settings: AnswerReviewSettings;
+  unit?: string;
   onChange: (settings: AnswerReviewSettings) => void;
   onSave: (override?: AnswerReviewSettings) => void;
   onSelect: (ids: string[]) => void;
@@ -132,7 +134,7 @@ export function AnswerReviewPanel({
     }
     if (oxMode || settings.mode === "panel_input" || settings.mode === "canvas_slots") {
       return settings.answers.length
-        ? settings.answers.map((a) => a.value).join(", ")
+        ? `${settings.answers.map((a) => a.value).join(", ")}${unit ? ` ${unit}` : ""}`
         : "미등록";
     }
     return "미등록";
@@ -670,20 +672,23 @@ export function AnswerReviewPanel({
                 <div className="test-solve-box">
                   <label>
                     정답 확인 테스트 (학생 답안):
-                    <input
-                      value={responses[0] ?? ""}
-                      placeholder="답안을 입력해 보세요"
-                      onChange={(event) => {
-                        setResult(null);
-                        setResponses([event.target.value]);
-                      }}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" && hasAnswers && responses[0]?.trim()) {
-                          check();
-                        }
-                      }}
-                      autoComplete="off"
-                    />
+                    <span className="review-answer-input-with-unit">
+                      <input
+                        value={responses[0] ?? ""}
+                        placeholder="답안을 입력해 보세요"
+                        onChange={(event) => {
+                          setResult(null);
+                          setResponses([event.target.value]);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" && hasAnswers && responses[0]?.trim()) {
+                            check();
+                          }
+                        }}
+                        autoComplete="off"
+                      />
+                      {unit ? <b>{unit}</b> : null}
+                    </span>
                   </label>
                   <button
                     type="button"

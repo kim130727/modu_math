@@ -210,6 +210,8 @@ def validate_answer_slot_contract(
     deleted_slots = deleted_slots or set()
     layout_slot_ids = _layout_slot_ids(layout)
     submit_slot_ids = _submitted_answer_slot_ids(layout)
+    if not _uses_canvas_answer_slots(semantic, solvable):
+        submit_slot_ids = set()
     semantic_answer_ids = _answer_slot_ids(semantic.get("answer"))
 
     _assert_answer_ids_exist(
@@ -237,6 +239,27 @@ def validate_answer_slot_contract(
             answer_ids=solvable_answer_ids,
             submit_slot_ids=submit_slot_ids,
         )
+
+
+def _uses_canvas_answer_slots(
+    semantic: dict[str, Any], solvable: dict[str, Any] | None
+) -> bool:
+    """Only canvas_slots mode treats layout inputs as the submission contract.
+
+    Older content has no explicit presentation mode and keeps the legacy
+    layout-driven behavior. Panel, choice and OX modes submit through the
+    separate Flutter answer panel, so stale visual input rectangles must not
+    block their builds.
+    """
+    for artifact in (semantic, solvable):
+        if not isinstance(artifact, dict):
+            continue
+        answer = artifact.get("answer")
+        presentation = answer.get("presentation") if isinstance(answer, dict) else None
+        mode = presentation.get("mode") if isinstance(presentation, dict) else None
+        if isinstance(mode, str):
+            return mode == "canvas_slots"
+    return True
 
 
 def _layout_slot_ids(layout: dict[str, Any]) -> set[str]:

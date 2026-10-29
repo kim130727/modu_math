@@ -938,8 +938,9 @@ class _ResultBanner extends StatelessWidget {
 String? _targetUnit(ProblemContent content) {
   final target = _mapAt(content.solvable, 'target');
   final unit = target['unit']?.toString() ??
-      target['label']?.toString() ??
-      _mapAt(content.solvable, 'inputs')['target_unit']?.toString();
+      content.answerMap['unit']?.toString() ??
+      _mapAt(content.solvable, 'inputs')['target_unit']?.toString() ??
+      _mapAt(content.solvable, 'inputs')['unit']?.toString();
   if (unit != null && unit.trim().isNotEmpty && unit.trim().length <= 5) {
     return unit.trim();
   }

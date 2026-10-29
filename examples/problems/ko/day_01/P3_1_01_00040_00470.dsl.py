@@ -402,3 +402,9 @@ SOLVABLE.update(
 )
 
 SEMANTIC_ANSWER = SOLVABLE["answer"]
+EDITOR_ANSWER_REVIEW = {'mode': 'panel_input',
+ 'show_canvas': False,
+ 'status': 'pending',
+ 'note': '',
+ 'answers': [{'value': '1012', 'ref': 'konva_1785110879232_paste_620338_0'}],
+ 'choices': []}

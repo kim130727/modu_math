@@ -1071,6 +1071,7 @@ export function EditorKonva() {
             showAnswerCanvas={activeReview.show_canvas !== false}
             editorPanel={editorPanel}
             reviewPanel={<AnswerReviewPanel settings={activeReview}
+              unit={answerBindingOptions.find((option) => option.unit)?.unit}
               syncPanel={<AnswerReviewSyncPanel key={selectedProblemId} problemId={selectedProblemId} parentBusy={saveStatus === "saving" || saveStatus === "building"} />}
               onChange={(settings) => { setDraftReview(settings); setSaveStatus("unsaved"); }}
               onSave={(override) => { void buildCurrentProblem(override); }}
@@ -1251,21 +1252,22 @@ function answerOptionsFromArtifacts(
 function answerOptionsFromArtifact(artifact: Record<string, unknown> | null): AnswerBindingOption[] {
   const answer = recordValue(artifact?.answer);
   if (!answer) return [];
+  const answerUnit = stringValue(answer.unit);
   const answerKey = Array.isArray(answer.answer_key) ? answer.answer_key : [];
   const options = answerKey
-    .map((item, index) => answerOptionFromItem(item, index))
+    .map((item, index) => answerOptionFromItem(item, index, answerUnit))
     .filter((option): option is AnswerBindingOption => Boolean(option));
   if (options.length) return options;
 
   const blanks = Array.isArray(answer.blanks) ? answer.blanks : [];
   const blankOptions = blanks
-    .map((item, index) => answerOptionFromItem(item, index))
+    .map((item, index) => answerOptionFromItem(item, index, answerUnit))
     .filter((option): option is AnswerBindingOption => Boolean(option));
   if (blankOptions.length) return blankOptions;
 
   const values = Array.isArray(answer.values) ? answer.values : [];
   const valueOptions = values
-    .map((item, index) => answerOptionFromItem(item, index))
+    .map((item, index) => answerOptionFromItem(item, index, answerUnit))
     .filter((option): option is AnswerBindingOption => Boolean(option));
   if (valueOptions.length) return valueOptions;
 
@@ -1285,15 +1287,15 @@ function dedupeAnswerOptions(options: AnswerBindingOption[]): AnswerBindingOptio
   });
 }
 
-function answerOptionFromItem(item: unknown, index: number): AnswerBindingOption | null {
+function answerOptionFromItem(item: unknown, index: number, fallbackUnit = ""): AnswerBindingOption | null {
   if (!item || typeof item !== "object" || Array.isArray(item)) {
     const value = answerValueText(item);
-    return value ? { index, value, label: answerOptionLabel(index, value) } : null;
+    return value ? { index, value, unit: fallbackUnit, label: answerOptionLabel(index, value, fallbackUnit) } : null;
   }
   const record = item as Record<string, unknown>;
   const value = answerValueText(record.value ?? record.expected ?? record.result ?? record.answer);
   if (!value) return null;
-  const unit = stringValue(record.unit);
+  const unit = stringValue(record.unit) || fallbackUnit;
   const ref = stringValue(record.slot_id) || stringValue(record.target_ref) || stringValue(record.ref) || stringValue(record.id) || `answer_key[${index}]`;
   const labelSource = stringValue(record.label) || stringValue(record.id) || stringValue(record.slot_id) || `답 ${index + 1}`;
   return { index, value, unit, ref, label: answerOptionLabel(index, value, unit, labelSource) };

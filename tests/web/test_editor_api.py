@@ -21,6 +21,7 @@ from modu_math.pipeline.answer_contracts import (
     normalize_answer_for_deleted_slots,
     normalize_answer_for_submit_slots,
     normalize_answer_value_units,
+    validate_answer_slot_contract,
 )
 
 
@@ -2684,6 +2685,37 @@ def test_normalize_answer_for_deleted_slots_clears_empty_answer_lists() -> None:
     assert removed == {"slot.answer"}
     assert normalized["blanks"] == []
     assert normalized["answer_key"] == []
+
+
+def test_panel_input_presentation_ignores_stale_canvas_submit_slots() -> None:
+    layout = {
+        "slots": [
+            {
+                "id": "slot.visual-answer",
+                "content": {
+                    "interaction": {
+                        "type": "input",
+                        "role": "answer",
+                        "include_in_submission": True,
+                    }
+                },
+            }
+        ]
+    }
+    semantic = {
+        "answer": {
+            "value": 1012,
+            "unit": "개",
+            "answer_key": [{"value": 1012, "unit": "개"}],
+            "presentation": {"mode": "panel_input", "show_canvas": False},
+        }
+    }
+
+    validate_answer_slot_contract(layout=layout, semantic=semantic)
+
+    semantic["answer"]["presentation"]["mode"] = "canvas_slots"
+    with pytest.raises(ValueError, match="missing submitted answer slot"):
+        validate_answer_slot_contract(layout=layout, semantic=semantic)
 
 
 def test_normalize_answer_for_submit_slots_remaps_multi_answer_values() -> None:

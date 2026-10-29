@@ -5,6 +5,39 @@ import 'package:modu_math_app/utils/answer_normalizer.dart';
 import 'package:modu_math_app/widgets/answer_panel.dart';
 
 void main() {
+  testWidgets('shows answer.unit as the panel input suffix', (tester) async {
+    const content = ProblemContent(
+      summary: _summary,
+      semantic: {},
+      solvable: {
+        'target': {'type': 'number'},
+        'answer': {
+          'value': 1012,
+          'unit': '개',
+          'presentation': {'mode': 'panel_input', 'show_canvas': false},
+        },
+      },
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: AnswerPanel(
+            content: content,
+            answerDraft: '1012',
+            isCorrect: null,
+            onAnswerChanged: (_) {},
+            onSubmit: (_) {},
+          ),
+        ),
+      ),
+    );
+
+    final field = tester.widget<TextField>(find.byType(TextField));
+    expect(field.decoration?.suffixText, '개');
+    expect(field.controller?.text, '1012');
+  });
+
   testWidgets('allows selecting multiple correct choices', (tester) async {
     var draft = '';
     var submitted = '';

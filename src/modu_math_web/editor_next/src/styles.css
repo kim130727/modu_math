@@ -1891,6 +1891,13 @@ input {
 .review-canvas-visibility-option input { margin: 0; }
 .review-canvas-visibility-option:has(input:disabled) { cursor: default; opacity: .65; }
 .review-answer-row { display: flex; align-items: center; gap: 6px; }
+.answer-review-panel .review-answer-input-with-unit {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.answer-review-panel .review-answer-input-with-unit input { flex: 1; }
+.review-answer-input-with-unit b { color: #312e81; font-size: 16px; }
 .review-answer-row label { flex: 1; }
 .answer-review-panel .answer-review-choice { display: flex; min-height: 40px; padding: 4px 8px; cursor: pointer; }
 
