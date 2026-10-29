@@ -176,16 +176,28 @@ export function AnswerReviewPanel({
                 update({ mode, ...(mode === "canvas_slots" ? { show_canvas: true } : {}) });
               }}
             >
-              <option value="choice">선택형 (객관식 1~5번)</option>
-              <option value="panel_input">Flutter 정답 패널에서 직접 입력</option>
-              <option value="ox">항목별 OX</option>
-              <option value="grouped_choice">여러 소문항 선택형</option>
-              <option value="canvas_slots">Flutter 문제 캔버스의 입력칸</option>
+              <optgroup label="직접 입력 (주관식 / 빈칸 채우기)">
+                <option value="canvas_slots">문제 속 빈칸 채우기 (캔버스 빈칸 직접 입력)</option>
+                <option value="panel_input">단답형 직접 입력 (하단 입력창 / 키패드)</option>
+              </optgroup>
+              <optgroup label="보기 선택 (객관식 / OX 판정)">
+                <option value="choice">객관식 (보기 1~5번 선택)</option>
+                <option value="ox">OX 판정 (참 / 거짓 선택)</option>
+                <option value="grouped_choice">세트형 객관식 (소문항별 보기 선택)</option>
+              </optgroup>
             </select>
           </label>
-          <p className="review-help">
-            수식 안의 빈칸에 답을 쓰면 문제 캔버스의 입력칸, 별도 답란을 쓰면 정답 패널에서 직접 입력으로 설정하세요. 보기가 있는 문제는 선택형으로 설정합니다.
-          </p>
+          <div className="review-help" style={{ fontSize: "12px", lineHeight: "1.5", color: "#475569" }}>
+            <p style={{ margin: "4px 0" }}>
+              • <strong>문제 속 빈칸 채우기</strong>: 수식이나 그림 안의 빈칸(□)에 학생이 직접 숫자를 채웁니다.
+            </p>
+            <p style={{ margin: "4px 0" }}>
+              • <strong>단답형 직접 입력</strong>: 그림 안이 아닌 하단 입력창에 키패드로 답을 직접 입력합니다.
+            </p>
+            <p style={{ margin: "4px 0" }}>
+              • <strong>객관식 / OX / 세트형</strong>: 보기나 O/X 버튼을 터치하여 고르는 방식입니다.
+            </p>
+          </div>
 
           <label className="review-canvas-visibility-option">
             <input
@@ -194,11 +206,10 @@ export function AnswerReviewPanel({
               disabled={settings.mode === "canvas_slots"}
               onChange={(event) => update({ show_canvas: event.target.checked })}
             />
-            Flutter 학습 화면에 문제 캔버스 표시
+            학습 화면에 문제 캔버스(그림) 표시
           </label>
           <p className="review-help">
-            끄면 Flutter에서는 캔버스 영역을 숨기고 정답 입력 패널과 힌트만 표시합니다.
-            캔버스 입력칸 방식에서는 끌 수 없습니다.
+            체크를 해제하면 문제 그림 영역을 숨기고 하단 정답 패널과 힌트만 보여줍니다. (빈칸 채우기 방식에서는 숨길 수 없습니다.)
           </p>
 
           {groupMode ? (
