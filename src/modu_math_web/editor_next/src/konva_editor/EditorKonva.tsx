@@ -1071,6 +1071,12 @@ export function EditorKonva() {
             showAnswerCanvas={activeReview.show_canvas !== false}
             editorPanel={editorPanel}
             reviewPanel={<AnswerReviewPanel settings={activeReview}
+              answerPrompt={document.shapes.filter((shape) => shape.type === "text" && shape.semanticRole === "answer_prompt").map((shape) => shape.type === "text" ? shape.text : "").join("\n")}
+              onEditAnswerPrompt={() => {
+                setAnswerReviewMode(false);
+                setSelectedShapeIds(document.shapes.filter((shape) => shape.semanticRole === "answer_prompt").map((shape) => shape.id));
+                setActiveSidePanel("properties");
+              }}
               unit={answerBindingOptions.find((option) => option.unit)?.unit}
               syncPanel={<AnswerReviewSyncPanel key={selectedProblemId} problemId={selectedProblemId} parentBusy={saveStatus === "saving" || saveStatus === "building"} />}
               onChange={(settings) => { setDraftReview(settings); setSaveStatus("unsaved"); }}

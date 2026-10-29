@@ -26,6 +26,7 @@ Map<String, dynamic> _projectVisual(ProblemContent content) {
   final questionSlotIds = <String>{};
   final choiceSlotIds = <String>{};
   final canvasSlotIds = <String>{};
+  final answerPromptSlotIds = <String>{};
   final regions = content.layout['regions'];
   if (regions is List) {
     for (final reg in regions) {
@@ -60,7 +61,12 @@ Map<String, dynamic> _projectVisual(ProblemContent content) {
               slotContent['semantic_role']?.toString().toLowerCase();
           final id = slot['id']?.toString().toLowerCase();
           if (id != null && id.isNotEmpty) {
-            if (semanticRole == 'canvas' ||
+            if (semanticRole == 'answer_prompt') {
+              answerPromptSlotIds.add(id);
+              questionSlotIds.remove(id);
+              choiceSlotIds.remove(id);
+              canvasSlotIds.remove(id);
+            } else if (semanticRole == 'canvas' ||
                 semanticRole == 'diagram_label') {
               canvasSlotIds.add(id);
               questionSlotIds.remove(id);
@@ -177,7 +183,11 @@ Map<String, dynamic> _projectVisual(ProblemContent content) {
                         !text.contains('(') &&
                         !text.contains(')')))));
 
-    if (isPrompt || isChoice) {
+    final isAnswerPrompt = role == 'answer_prompt' ||
+        answerPromptSlotIds.contains(sourceRef) ||
+        answerPromptSlotIds.contains(layoutSlotId);
+
+    if (isPrompt || isChoice || isAnswerPrompt) {
       removed.add(element);
     } else {
       kept.add(element);

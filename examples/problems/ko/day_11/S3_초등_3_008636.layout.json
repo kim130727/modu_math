@@ -14,8 +14,7 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q1",
-        "slot.q2"
+        "slot.q1"
       ]
     },
     {
@@ -39,8 +38,7 @@
         "slot.left.pin",
         "slot.right.center",
         "slot.right.pt1",
-        "slot.right.pt2",
-        "slot.arrow"
+        "slot.right.pt2"
       ]
     },
     {
@@ -65,23 +63,14 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "누름 못과 띠 종이로 원을 그렸습니다. 누름 못이 꽂힌 점에서 원 위에 찍힌",
+        "text": "누름 못과 띠 종이로 원을 그렸습니다. 누름 못이 꽂힌 점에서 원 위에 찍힌 2개의 점까지의 길이를 각각 재어 알맞은 말을 선택하세요.",
         "style_role": "question",
-        "x": 20.0,
-        "y": 65.0,
-        "font_size": 30
-      }
-    },
-    {
-      "id": "slot.q2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "2개의 점까지의 길이를 각각 재어 알맞은 말을 선택하세요.",
-        "style_role": "question",
-        "x": 20.0,
-        "y": 115.0,
-        "font_size": 30
+        "x": 31,
+        "y": 83.95,
+        "font_size": 30,
+        "semantic_role": "question",
+        "semantic_role_source": "explicit",
+        "font_family": "\"Noto Sans KR\", sans-serif"
       }
     },
     {
@@ -239,18 +228,6 @@
       }
     },
     {
-      "id": "slot.arrow",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "→",
-        "style_role": "question",
-        "x": 500.0,
-        "y": 245.0,
-        "font_size": 45
-      }
-    },
-    {
       "id": "slot.right.circle",
       "kind": "circle",
       "prompt": "",
@@ -277,10 +254,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 650.0,
-        "y1": 230.0,
-        "x2": 710.0,
-        "y2": 165.0,
+        "x1": 655.227,
+        "y1": 225.286,
+        "x2": 707.037,
+        "y2": 168.666,
         "stroke": "#3fa9f5",
         "stroke_width": 2.5
       }
@@ -290,10 +267,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 650.0,
-        "y1": 230.0,
-        "x2": 560.0,
-        "y2": 255.0,
+        "x1": 644.508,
+        "y1": 231.65,
+        "x2": 565.928,
+        "y2": 253.08,
         "stroke": "#3fa9f5",
         "stroke_width": 2.5
       }
@@ -322,15 +299,23 @@
     },
     {
       "id": "slot.choice",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "",
       "content": {
-        "text": "    누름 못이 꽂힌 점에서 원 위의 한 점까지의 길이는 모두",
+        "text": "누름 못이 꽂힌 점에서 원 위의 한 점까지의 길이는 모두",
         "style_role": "question",
-        "x": 500.0,
-        "y": 375.0,
+        "x": 152,
+        "y": 345,
         "font_size": 30,
-        "anchor": "middle"
+        "semantic_role": "answer_prompt",
+        "semantic_role_source": "explicit",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "width": 696,
+        "height": 36,
+        "align": "center",
+        "valign": "middle",
+        "line_height": 1.2,
+        "kind": "text_box"
       }
     },
     {
@@ -338,12 +323,15 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "( 같습니다 ,    다릅니다 ).  ",
+        "text": "같습니다",
         "style_role": "body",
-        "x": 345.0,
-        "y": 430.0,
+        "x": 348.52,
+        "y": 421.21,
         "font_size": 30,
-        "fill": "#111111"
+        "fill": "#111111",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "semantic_role": "choice",
+        "semantic_role_source": "explicit"
       }
     }
   ],
@@ -353,7 +341,6 @@
   "reading_order": [
     "region.stem",
     "slot.q1",
-    "slot.q2",
     "region.diagram",
     "slot.left.circle",
     "slot.left.paper",
@@ -372,7 +359,6 @@
     "slot.right.center",
     "slot.right.pt1",
     "slot.right.pt2",
-    "slot.arrow",
     "region.choice",
     "slot.choice",
     "slot.choice.copy4",

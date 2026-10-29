@@ -38,7 +38,7 @@ def structure_presentation(layout: dict, semantic: dict, solvable: dict | None =
         ):
             hinted_stem_regions.add(str(region.get("id", "")))
     claimed_stem_regions: set[str] = set()
-    texts: dict[str, list[dict]] = {"question": [], "instruction": [], "choice": []}
+    texts: dict[str, list[dict]] = {"question": [], "instruction": [], "choice": [], "answer_prompt": []}
     for slot in layout.get("slots", []):
         if slot.get("kind") not in {"text", "text_box", "label"}:
             continue
@@ -87,7 +87,7 @@ def structure_presentation(layout: dict, semantic: dict, solvable: dict | None =
         if role in {"question", "instruction"} and region_id:
             claimed_stem_regions.add(region_id)
 
-    for role in ("question", "instruction"):
+    for role in ("question", "instruction", "answer_prompt"):
         if texts[role]:
             metadata[role] = "\n".join(
                 slot["content"]["text"].strip() for slot in texts[role]

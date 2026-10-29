@@ -5,6 +5,30 @@ from modu_math_web.editor.services.presentation import structure_presentation
 from test_editor_api import _setup_django
 
 
+def test_answer_prompt_moves_independently_of_question_and_choices():
+    layout = {"slots": [
+        {"id": "slot.q1", "kind": "text", "content": {
+            "text": "Look at the circle", "semantic_role": "question",
+            "semantic_role_source": "explicit"}},
+        {"id": "slot.choice", "kind": "text_box", "content": {
+            "text": "All distances are", "semantic_role": "answer_prompt",
+            "semantic_role_source": "explicit"}},
+    ]}
+    answer = {"choices": ["equal", "different"], "value": "equal"}
+    result, semantic, solvable = structure_presentation(
+        layout, {"answer": answer}, {"answer": answer})
+    assert semantic["metadata"]["presentation_prompt"] == "Look at the circle"
+    assert semantic["metadata"]["answer_prompt"] == "All distances are"
+    assert semantic["metadata"]["presentation_sources"]["answer_prompt"] == ["slot.choice"]
+    assert semantic["answer"] == solvable["answer"] == answer
+    assert structure_presentation(result, semantic, solvable) == (result, semantic, solvable)
+
+    # Moving the sentence back must clear the previously generated panel text.
+    result["slots"][1]["content"]["semantic_role"] = "canvas"
+    _, moved, _ = structure_presentation(result, semantic, solvable)
+    assert moved["metadata"]["answer_prompt"] == ""
+
+
 def test_roles_restore_without_classifying_diagram_labels():
     layout = {"slots": [
         {"id": "slot.q1", "kind": "text", "content": {"text": "New question"}},

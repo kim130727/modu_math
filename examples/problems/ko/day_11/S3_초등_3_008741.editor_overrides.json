@@ -1,6 +1,44 @@
 {
   "version": 1,
   "deleted_slots": [
-    "slot.math.fraction_2"
-  ]
+    "slot.math.fraction_2",
+    "slot.q3"
+  ],
+  "slots": {
+    "slot.math.fraction": {
+      "fill": "#111827",
+      "align": "left",
+      "x": 176,
+      "y": 457
+    },
+    "slot.math.fraction_1": {
+      "fill": "#111827",
+      "align": "left",
+      "x": 313,
+      "y": 458
+    },
+    "slot.math.mixed_fraction": {
+      "fill": "#111827",
+      "align": "left",
+      "x": 490,
+      "y": 454
+    },
+    "slot.math.mixed_fraction_1": {
+      "fill": "#111827",
+      "align": "left",
+      "x": 626,
+      "y": 455
+    },
+    "slot.q2": {
+      "text": "두 분수의 크기를 비교하여 더 큰 분수를 빈칸에 써 넣으려고 합니다. ①에 들어갈 분수로 알맞은 것을 가장 아래 칸의 분수들 중에 선택해 보세요.",
+      "x": 71.27,
+      "y": 21.56,
+      "font_family": "\"Noto Sans KR\", sans-serif",
+      "semantic_role": "question",
+      "semantic_role_source": "explicit"
+    },
+    "slot.top.text": {
+      "font_family": "\"Noto Sans KR\", sans-serif"
+    }
+  }
 }

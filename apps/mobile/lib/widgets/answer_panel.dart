@@ -338,6 +338,13 @@ class _AnswerPanelState extends State<AnswerPanel> {
               ],
             ),
             const SizedBox(height: 16),
+            if (widget.content.answerPrompt.isNotEmpty) ...[
+              Text(
+                widget.content.answerPrompt,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 16),
+            ],
             if (choiceGroups.isNotEmpty) ...[
               for (var (groupIndex, group) in choiceGroups.indexed) ...[
                 if (group.label.isNotEmpty) ...[

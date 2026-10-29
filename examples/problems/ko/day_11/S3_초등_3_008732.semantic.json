@@ -5,7 +5,7 @@
     "title": "사다리를 타고 내려가 도착한 곳이 참이면 ○표, 거짓이면 ×표 하세요.",
     "tags": [],
     "instruction": "분수와 분류명의 대응을 보고 판단한다.",
-    "question": "사다리를 타고 내려가 도착한 곳이 참이면 ○표, 거짓이면 ×표 하세요.",
+    "question": "사다리를 타고 내려가 도착한 곳이 참이면 ○표, 거짓이면 ×표하세요.",
     "required_layout_ids": [
       "slot.q9",
       "slot.q10",
@@ -24,7 +24,15 @@
       "slot.math.fraction_2.bar"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko"
+    "language": "ko",
+    "presentation_sources": {
+      "question": [
+        "slot.q2"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "사다리를 타고 내려가 도착한 곳이 참이면 ○표, 거짓이면 ×표하세요."
   },
   "domain": {
     "objects": [

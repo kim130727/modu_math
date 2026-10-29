@@ -3,6 +3,8 @@ import { normalizedAnswer, type AnswerReviewSettings } from "./answerReview";
 
 export function AnswerReviewPanel({
   settings,
+  answerPrompt,
+  onEditAnswerPrompt,
   unit,
   onChange,
   onSave,
@@ -13,6 +15,8 @@ export function AnswerReviewPanel({
   syncPanel,
 }: {
   settings: AnswerReviewSettings;
+  answerPrompt?: string;
+  onEditAnswerPrompt?: () => void;
   unit?: string;
   onChange: (settings: AnswerReviewSettings) => void;
   onSave: (override?: AnswerReviewSettings) => void;
@@ -442,6 +446,11 @@ export function AnswerReviewPanel({
           )}
 
           <div className="solve-section">
+            {answerPrompt ? (
+              <button type="button" className="presentation-prompt-item" style={{ whiteSpace: "pre-wrap" }} onClick={onEditAnswerPrompt} title="정답 영역 지문 편집">
+                {answerPrompt}
+              </button>
+            ) : null}
             <strong className="solve-prompt">
               {groupMode
                 ? "각 소문항의 답을 선택하세요"

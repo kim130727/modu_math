@@ -1,4 +1,6 @@
 {
+  "version": 1,
+  "text_layout": "fit",
   "slots": {
     "slot.math.fraction": {
       "x": 254,
@@ -33,30 +35,35 @@
     },
     "slot.q2": {
       "text": "사다리를 타고 내려가 도착한 곳이 참이면 ○표, 거짓이면 X표하세요.",
-      "semantic_role": "question"
+      "semantic_role": "question",
+      "semantic_role_source": "explicit"
     },
     "slot.q30": {
       "text": "(○, X)",
-      "semantic_role": "diagram_label"
+      "semantic_role": "canvas",
+      "semantic_role_source": "explicit"
     },
     "slot.q31": {
       "text": "(○, X)",
-      "semantic_role": "diagram_label"
+      "semantic_role": "canvas",
+      "semantic_role_source": "explicit"
     },
     "slot.q32": {
       "text": "(○, X)",
-      "semantic_role": "diagram_label"
+      "semantic_role": "canvas",
+      "semantic_role_source": "explicit"
     },
     "slot.q27": {
-      "semantic_role": "diagram_label"
+      "semantic_role": "canvas",
+      "semantic_role_source": "explicit"
     },
     "slot.q28": {
-      "semantic_role": "diagram_label"
+      "semantic_role": "canvas",
+      "semantic_role_source": "explicit"
     },
     "slot.q29": {
-      "semantic_role": "diagram_label"
+      "semantic_role": "canvas",
+      "semantic_role_source": "explicit"
     }
-  },
-  "version": 1,
-  "text_layout": "fit"
+  }
 }

@@ -175,6 +175,7 @@ function TextPlacementFields({ shapes, onChange }: { shapes: EditorShape[]; onCh
   const options = [
     { role: "question", label: "문제 상단", hint: "Flutter 문제 화면의 보라색 지문 영역에 표시합니다." },
     { role: "canvas", label: "문제 캔버스", hint: "수식·단위·풀이 그림처럼 Flutter 캔버스 안에 그대로 표시합니다." },
+    { role: "answer_prompt", label: "정답 영역 지문", hint: "정답 패널의 선택지·입력칸 위에 표시합니다." },
     { role: "choice", label: "정답 선택지", hint: "Flutter 정답 패널의 선택지로 표시합니다. 정답 검수에서 연결을 확인하세요." },
     { role: "diagram_label", label: "도형 라벨", hint: "점 이름·길이처럼 도형에 붙어 함께 움직여야 하는 설명입니다." },
     { role: "auto", label: "자동 판단", hint: "기존 구조에 따라 표시 위치를 판단합니다. 새 문항에는 명시적 지정을 권장합니다." },

@@ -117,6 +117,27 @@ class ProblemContent {
   final Map<String, dynamic> layout;
   final Map<String, dynamic> renderer;
 
+  /// Authored sentence displayed above the answer controls.
+  String get answerPrompt {
+    final slots = layout['slots'];
+    if (slots is List) {
+      final texts = slots
+          .whereType<Map>()
+          .where((slot) =>
+              slot['content'] is Map &&
+              slot['content']['semantic_role'] == 'answer_prompt')
+          .map((slot) =>
+              sanitizeProblemText(slot['content']['text']?.toString() ?? '')
+                  .trim())
+          .where((text) => text.isNotEmpty)
+          .toList();
+      if (texts.isNotEmpty) return texts.join('\n');
+    }
+    return sanitizeProblemText(
+            _mapAt(semantic, 'metadata')['answer_prompt']?.toString() ?? '')
+        .trim();
+  }
+
   String get prompt {
     final metadata = _mapAt(semantic, 'metadata');
     final question = metadata['question']?.toString().trim() ?? '';

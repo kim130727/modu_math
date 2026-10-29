@@ -13,7 +13,7 @@ from .problems import (
 )
 
 TEXT_KINDS = {"text", "text_box", "label"}
-PLACEMENT_ROLES = {"", "question", "instruction", "choice", "diagram_label"}
+PLACEMENT_ROLES = {"", "question", "instruction", "choice", "answer_prompt", "canvas", "diagram_label"}
 
 
 def _effective_slots(problem_id):
@@ -106,7 +106,10 @@ def sync_text_placements(problem_id, payload):
                 if slots.get(slot_id, {}).get("kind") not in TEXT_KINDS
             ]
             patches = [
-                {"target": slot_id, "op": "update", "value": {"semantic_role": role}}
+                {"target": slot_id, "op": "update", "value": {
+                    "semantic_role": role,
+                    "semantic_role_source": "explicit" if role else "inferred",
+                }}
                 for slot_id, role in roles.items()
                 if slot_id not in result["missing"]
             ]

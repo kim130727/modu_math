@@ -74,7 +74,8 @@ PROBLEM_TEMPLATE = ProblemTemplate(
 ''')
 
 
-def test_placement_sync_preserves_ukrainian_translation(tmp_path: Path) -> None:
+@pytest.mark.parametrize("role", ["question", "answer_prompt"])
+def test_placement_sync_preserves_ukrainian_translation(tmp_path: Path, role: str) -> None:
     client = _setup_django(tmp_path)
     paths = {lang: _placement_sync_problem(tmp_path, lang) for lang in ("ko", "uk")}
     for lang in paths:
@@ -88,7 +89,7 @@ def test_placement_sync_preserves_ukrainian_translation(tmp_path: Path) -> None:
         data=json.dumps({
             "languages": ["uk"],
             "placements": [
-                {"id": "slot.caption", "role": "question"},
+                {"id": "slot.caption", "role": role},
                 {"id": "slot.extra", "role": "choice"},
             ],
         }),
@@ -109,7 +110,7 @@ def test_placement_sync_preserves_ukrainian_translation(tmp_path: Path) -> None:
         for slot in ukrainian_before["slots"]
         if slot["id"] == "slot.caption"
     )
-    assert content["semantic_role"] == "question"
+    assert content["semantic_role"] == role
     assert {k: v for k, v in content.items() if k != "semantic_role"} == {
         k: v for k, v in original.items() if k != "semantic_role"
     }

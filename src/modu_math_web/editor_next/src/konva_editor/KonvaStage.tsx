@@ -194,10 +194,14 @@ export function KonvaStage({
     () => shapes.filter(isTopPresentationShape),
     [shapes],
   );
+  const answerPromptShapes = useMemo(
+    () => shapes.filter((shape) => shape.type === "text" && shape.semanticRole === "answer_prompt"),
+    [shapes],
+  );
   const renderedShapes = useMemo(
     () => shapes.filter((shape) =>
-      !(isTopPresentationShape(shape) ||
-        (answerReviewMode && isExplicitChoiceShape(shape) && answerChoices.length > 0)),
+      !(isTopPresentationShape(shape) || shape.semanticRole === "answer_prompt" ||
+        (isExplicitChoiceShape(shape) && answerChoices.length > 0)),
     ).sort(compareRenderOrder),
     [answerChoices.length, answerReviewMode, shapes],
   );
@@ -675,6 +679,25 @@ export function KonvaStage({
           ) : null}
         </Layer>
       </Stage>
+      {(answerPromptShapes.length > 0 || answerChoices.length > 0) && !answerReviewMode ? (
+        <div className="konva-answer-prompt-preview" role="region" aria-label="정답 선택 영역">
+          <strong>Flutter · 정답 선택 영역</strong>
+          {answerPromptShapes.map((shape) => (
+            <button type="button" className="presentation-prompt-item" key={shape.id}
+              onClick={() => onEditPresentationShape?.(shape.id)}>
+              {shape.type === "text" ? shape.text : ""}
+            </button>
+          ))}
+          <div className="answer-review-choices">
+            {answerChoices.map((choice) => (
+              <button type="button" key={choice.id} className="answer-review-choice"
+                onClick={() => onEditPresentationShape?.(choice.sourceRefs?.[0] ?? choice.id)}>
+                <span>{choice.label}</span><span>{choice.text}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      ) : null}
       {presentationPanel}
       {answerReviewMode && !reviewPanel && answerPresentationMode === "panel_input" ? (
         <AnswerPanelPreview answerOptions={answerOptions} />

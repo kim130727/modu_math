@@ -5,7 +5,7 @@
     "title": "두 분수의 크기 비교",
     "tags": [],
     "instruction": "아래 도식과 비교식을 보고 ㉠에 알맞은 분수를 선택한다.",
-    "question": "두 분수의 크기를 비교하여 선택 규칙에 따라 ㉠에 들어갈 분수를 고르는 문제",
+    "question": "두 분수의 크기를 비교하여 빨간색 선을 만나면 큰 분수를, 파란색 선을 만나면 작은 분수를 빈칸에 써넣으려고 합니다. ㉠에 들어갈 분수로 알맞은 것을 가장 아래 칸의 분수들 중에 선택해 보세요.",
     "required_layout_ids": [
       "slot.math.fraction.bar",
       "slot.math.fraction_1.bar",
@@ -32,7 +32,15 @@
       "slot.top.line.copy14.copy19"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko"
+    "language": "ko",
+    "presentation_sources": {
+      "question": [
+        "slot.q2"
+      ],
+      "instruction": [],
+      "choice": []
+    },
+    "presentation_prompt": "두 분수의 크기를 비교하여 빨간색 선을 만나면 큰 분수를, 파란색 선을 만나면 작은 분수를 빈칸에 써넣으려고 합니다. ㉠에 들어갈 분수로 알맞은 것을 가장 아래 칸의 분수들 중에 선택해 보세요."
   },
   "domain": {
     "objects": [
@@ -103,6 +111,7 @@
     "blanks": [],
     "choices": [],
     "answer_key": [],
+    "confidence": 1.0,
     "target": {
       "type": "fraction_to_fill_blank",
       "description": "㉠에 들어갈 분수"
