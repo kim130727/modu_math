@@ -357,6 +357,7 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
           return LayoutBuilder(
             builder: (context, constraints) {
               final wide = constraints.maxWidth >= 960;
+              final showProblemCanvas = content.showProblemCanvas;
               final problemViewer = VerticalArithmeticExplorer(
                 repository: widget.repository,
                 content: content,
@@ -412,25 +413,42 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
                             _MissionHeroBanner(content: content),
                             const SizedBox(height: 12),
                             Expanded(
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Expanded(flex: 6, child: problemViewer),
-                                  const SizedBox(width: 18),
-                                  Expanded(
-                                    flex: 4,
-                                    child: ListView(
+                              child: showProblemCanvas
+                                  ? Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
                                       children: [
-                                        answerPanel,
-                                        const SizedBox(height: 14),
-                                        hintPanel,
-                                        const SizedBox(height: 14),
-                                        controls,
+                                        Expanded(flex: 6, child: problemViewer),
+                                        const SizedBox(width: 18),
+                                        Expanded(
+                                          flex: 4,
+                                          child: ListView(
+                                            children: [
+                                              answerPanel,
+                                              const SizedBox(height: 14),
+                                              hintPanel,
+                                              const SizedBox(height: 14),
+                                              controls,
+                                            ],
+                                          ),
+                                        ),
                                       ],
+                                    )
+                                  : Center(
+                                      child: ConstrainedBox(
+                                        constraints:
+                                            const BoxConstraints(maxWidth: 720),
+                                        child: ListView(
+                                          children: [
+                                            answerPanel,
+                                            const SizedBox(height: 14),
+                                            hintPanel,
+                                            const SizedBox(height: 14),
+                                            controls,
+                                          ],
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
                             ),
                           ],
                         ),
@@ -446,8 +464,10 @@ class _ProblemSolveScreenState extends State<ProblemSolveScreen> {
                   children: [
                     _MissionHeroBanner(content: content),
                     const SizedBox(height: 12),
-                    SizedBox(height: 580, child: problemViewer),
-                    const SizedBox(height: 14),
+                    if (showProblemCanvas) ...[
+                      SizedBox(height: 580, child: problemViewer),
+                      const SizedBox(height: 14),
+                    ],
                     answerPanel,
                     const SizedBox(height: 14),
                     hintPanel,

@@ -169,7 +169,10 @@ export function AnswerReviewPanel({
             응답 방식
             <select
               value={settings.mode}
-              onChange={(event) => update({ mode: event.target.value as AnswerReviewSettings["mode"] })}
+              onChange={(event) => {
+                const mode = event.target.value as AnswerReviewSettings["mode"];
+                update({ mode, ...(mode === "canvas_slots" ? { show_canvas: true } : {}) });
+              }}
             >
               <option value="choice">선택형 (객관식 1~5번)</option>
               <option value="panel_input">Flutter 정답 패널에서 직접 입력</option>
@@ -180,6 +183,20 @@ export function AnswerReviewPanel({
           </label>
           <p className="review-help">
             수식 안의 빈칸에 답을 쓰면 문제 캔버스의 입력칸, 별도 답란을 쓰면 정답 패널에서 직접 입력으로 설정하세요. 보기가 있는 문제는 선택형으로 설정합니다.
+          </p>
+
+          <label className="review-canvas-visibility-option">
+            <input
+              type="checkbox"
+              checked={settings.mode === "canvas_slots" || settings.show_canvas !== false}
+              disabled={settings.mode === "canvas_slots"}
+              onChange={(event) => update({ show_canvas: event.target.checked })}
+            />
+            Flutter 학습 화면에 문제 캔버스 표시
+          </label>
+          <p className="review-help">
+            끄면 Flutter에서는 캔버스 영역을 숨기고 정답 입력 패널과 힌트만 표시합니다.
+            캔버스 입력칸 방식에서는 끌 수 없습니다.
           </p>
 
           {groupMode ? (

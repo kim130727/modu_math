@@ -236,7 +236,8 @@ class _AnswerPanelState extends State<AnswerPanel> {
     final allowsMultipleChoices = _allowsMultipleChoices(widget.content);
     final hasVisual =
         widget.content.renderer.isNotEmpty || widget.content.svg.isNotEmpty;
-    final hasRendererAnswerInputs = widget.content.hasRendererAnswerInputs;
+    final hasRendererAnswerInputs = widget.content.showProblemCanvas &&
+        widget.content.hasRendererAnswerInputs;
     final oxChoices =
         choices.isNotEmpty && !allowsMultipleChoices && choiceGroups.isEmpty
             ? _detectOxChoices(choices, strings)

@@ -9,6 +9,7 @@ import 'package:modu_math_app/screens/problem_solve_screen.dart';
 import 'package:modu_math_app/services/content_repository.dart';
 import 'package:modu_math_app/services/learning_progress_repository.dart';
 import 'package:modu_math_app/widgets/tutor_chat_panel.dart';
+import 'package:modu_math_app/widgets/vertical_arithmetic_explorer.dart';
 
 void main() {
   setUp(() {
@@ -181,6 +182,26 @@ void main() {
 
     final answerField = tester.widget<TextField>(textFields.last);
     expect(answerField.controller?.text, equals('507'));
+  });
+
+  testWidgets('hides the problem canvas when presentation disables it',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(1200, 900));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: ProblemSolveScreen(
+          repository: _FakeContentRepository(content: _hiddenCanvasContent),
+          progressRepository: _FakeProgressRepository(),
+          problem: _summary,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.byType(VerticalArithmeticExplorer), findsNothing);
+    expect(find.byType(TextField), findsOneWidget);
   });
 
   testWidgets('opens next problem even when preload fails', (tester) async {
@@ -583,5 +604,26 @@ const _rendererContent = ProblemContent(
     'target': '합',
     'method': '덧셈',
     'answer': {'value': 507},
+  },
+);
+
+const _hiddenCanvasContent = ProblemContent(
+  summary: _summary,
+  semantic: {
+    'metadata': {'question': '259 + 248은 얼마일까요?'},
+    'answer': {
+      'value': 507,
+      'presentation': {'mode': 'panel_input', 'show_canvas': false},
+    },
+  },
+  renderer: {
+    'view_box': {'width': 240, 'height': 120},
+    'elements': [],
+  },
+  solvable: {
+    'answer': {
+      'value': 507,
+      'presentation': {'mode': 'panel_input', 'show_canvas': false},
+    },
   },
 );

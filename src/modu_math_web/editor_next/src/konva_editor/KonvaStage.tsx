@@ -31,6 +31,7 @@ interface KonvaStageProps {
   answerOptions?: AnswerBindingOption[];
   answerChoices?: AnswerChoiceReview[];
   answerPresentationMode?: AnswerPresentationMode;
+  showAnswerCanvas?: boolean;
   editorPanel?: ReactNode;
   reviewPanel?: ReactNode;
   onSelectShapes: (ids: string[]) => void;
@@ -57,6 +58,7 @@ export function KonvaStage({
   answerOptions = [],
   answerChoices = [],
   answerPresentationMode = "panel_input",
+  showAnswerCanvas = true,
   editorPanel,
   reviewPanel,
   onSelectShapes,
@@ -454,7 +456,7 @@ export function KonvaStage({
   };
 
   return (
-    <div className={`konva-stage-wrap presentation-layout${drawingPreset ? " drawing" : ""}${presentationPanel ? " presentation-with-panel" : ""}${answerReviewMode ? " presentation-review" : ""}`} ref={wrapRef}>
+    <div className={`konva-stage-wrap presentation-layout${drawingPreset ? " drawing" : ""}${presentationPanel ? " presentation-with-panel" : ""}${answerReviewMode ? " presentation-review" : ""}${answerReviewMode && !showAnswerCanvas ? " presentation-canvas-hidden" : ""}`} ref={wrapRef}>
       <div className="konva-question-preview" role="region" aria-label="문제 지문">
           <div className="presentation-zone-title">
             <span>Flutter · 문제 상단</span>

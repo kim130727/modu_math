@@ -1068,6 +1068,7 @@ export function EditorKonva() {
             answerOptions={answerBindingOptions}
             answerChoices={answerChoiceReviews}
             answerPresentationMode={answerPresentationMode}
+            showAnswerCanvas={activeReview.show_canvas !== false}
             editorPanel={editorPanel}
             reviewPanel={<AnswerReviewPanel settings={activeReview}
               syncPanel={<AnswerReviewSyncPanel key={selectedProblemId} problemId={selectedProblemId} parentBusy={saveStatus === "saving" || saveStatus === "building"} />}

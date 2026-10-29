@@ -76,6 +76,26 @@ def test_invalid_review_is_rejected(patch):
         normalize_review(review() | {'status': 'verified'} | patch)
 
 
+def test_canvas_visibility_defaults_to_visible_and_is_written_to_presentation():
+    from modu_math_web.editor.services.answer_review import apply_answer_review
+
+    normalized = normalize_review(review("panel_input"))
+    assert normalized["show_canvas"] is True
+
+    semantic, solvable = apply_answer_review(
+        {"answer": {}},
+        {"answer": {}},
+        review("panel_input") | {"show_canvas": False},
+    )
+    assert semantic["answer"]["presentation"]["show_canvas"] is False
+    assert solvable["answer"]["presentation"]["show_canvas"] is False
+
+
+def test_canvas_slot_mode_cannot_hide_canvas():
+    with pytest.raises(ValueError):
+        normalize_review(review("canvas_slots") | {"show_canvas": False})
+
+
 def test_unresolved_person_question_can_save_review_note_without_inventing_answer(tmp_path):
     client = _setup_django(tmp_path)
     client.post('/api/editor/problems/create/', data=json.dumps({"problem_id": "unresolved"}), content_type='application/json')

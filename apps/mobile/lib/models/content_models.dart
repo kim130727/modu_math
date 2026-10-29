@@ -385,6 +385,15 @@ class ProblemContent {
     return _mapAt(semantic, 'answer');
   }
 
+  /// Whether the authored visual canvas should be shown on the learning screen.
+  /// Missing values stay visible for backward compatibility with existing content.
+  bool get showProblemCanvas {
+    final presentation = _mapAt(answerMap, 'presentation');
+    return presentation['show_canvas'] is bool
+        ? presentation['show_canvas'] as bool
+        : true;
+  }
+
   String get correctAnswer {
     final answer = answerMap;
     if (choiceGroups.isNotEmpty) {

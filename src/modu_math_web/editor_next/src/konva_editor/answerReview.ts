@@ -194,6 +194,7 @@ export function normalizedAnswer(value: string): string {
 
 export interface AnswerReviewSettings {
   mode: AnswerPresentationMode | "ox" | "grouped_choice";
+  show_canvas: boolean;
   status: "pending" | "needs_changes" | "verified";
   note: string;
   answers: { value: string; ref?: string }[];
@@ -203,7 +204,7 @@ export interface AnswerReviewSettings {
 
 export function reviewSettings(semantic: Record<string, unknown> | null, options: AnswerBindingOption[], choices: AnswerChoiceReview[], mode: AnswerPresentationMode): AnswerReviewSettings {
   const saved = recordValue(recordValue(recordValue(semantic?.answer)?.presentation)?.review);
-  if (saved) return saved as unknown as AnswerReviewSettings;
+  if (saved) return { show_canvas: true, ...saved } as unknown as AnswerReviewSettings;
   const answer = recordValue(semantic?.answer);
   const groups = Array.isArray(answer?.choice_groups) ? answer.choice_groups.map((group, index) => {
     const record = recordValue(group) ?? {};
@@ -211,11 +212,11 @@ export function reviewSettings(semantic: Record<string, unknown> | null, options
     return { id: stringValue(record.id) || `group.${index + 1}`, label: stringValue(record.label) || `문항 ${index + 1}`, choices: items,
       correct_index: typeof record.correct_index === "number" ? record.correct_index : items.findIndex((item) => normalizedAnswer(item) === normalizedAnswer(options[index]?.value ?? "")) };
   }) : [];
-  if (groups.length) return { mode: "grouped_choice", status: "pending", note: "", answers: options.map(({value, ref}) => ({value, ref})), choices, groups };
+  if (groups.length) return { mode: "grouped_choice", show_canvas: true, status: "pending", note: "", answers: options.map(({value, ref}) => ({value, ref})), choices, groups };
   const tokens = options.length === 1 ? options[0].value.split(/\s*[,，]\s*/) : options.map((option) => option.value);
   const ox = tokens.length > 0 && tokens.every((token) => /^[ox]$/.test(normalizedAnswer(token)));
   const person = recordValue(answer?.target)?.type === "person_selection";
-  return { mode: ox ? "ox" : person ? "choice" : mode, status: person ? "needs_changes" : "pending", note: person ? "이름 선택지와 정답 연결을 확인하세요. 복수 정답 가능성도 검토해 주세요." : "",
+  return { mode: ox ? "ox" : person ? "choice" : mode, show_canvas: true, status: person ? "needs_changes" : "pending", note: person ? "이름 선택지와 정답 연결을 확인하세요. 복수 정답 가능성도 검토해 주세요." : "",
     answers: ox ? tokens.map((value) => ({ value: normalizedAnswer(value).toUpperCase() })) : options.map(({ value, ref }) => ({ value, ref })), choices };
 }
 

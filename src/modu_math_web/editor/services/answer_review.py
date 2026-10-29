@@ -90,10 +90,15 @@ def normalize_review(value):
         raise ValueError("검수 설정이 올바르지 않습니다.")
     mode = value.get("mode")
     status = value.get("status", "pending")
+    show_canvas = value.get("show_canvas", True)
     if mode not in {"panel_input", "choice", "ox", "canvas_slots", "grouped_choice"}:
         raise ValueError("응답 방식을 선택하세요.")
     if status not in {"pending", "needs_changes", "verified"}:
         raise ValueError("검수 상태가 올바르지 않습니다.")
+    if type(show_canvas) is not bool:
+        raise ValueError("Flutter 캔버스 표시 설정이 올바르지 않습니다.")
+    if mode == "canvas_slots" and not show_canvas:
+        raise ValueError("캔버스 입력칸 방식에서는 Flutter 캔버스를 숨길 수 없습니다.")
     note = value.get("note", "")
     answers = value.get("answers", [])
     choices = value.get("choices", [])
@@ -127,7 +132,7 @@ def normalize_review(value):
         raise ValueError("정답을 하나 이상 입력하세요.")
     if mode == "ox" and any(a["value"] not in {"O", "X"} for a in answers):
         raise ValueError("OX 정답은 O 또는 X로 지정하세요.")
-    result = {"mode": mode, "status": status, "note": note, "answers": answers, "choices": cleaned}
+    result = {"mode": mode, "show_canvas": show_canvas, "status": status, "note": note, "answers": answers, "choices": cleaned}
     if mode == "grouped_choice":
         from .choice_groups import normalize_choice_groups
         result["groups"] = normalize_choice_groups(value.get("groups"))
@@ -214,7 +219,7 @@ def apply_answer_review(semantic, solvable, value):
         if not isinstance(artifact, dict):
             continue
         answer = artifact.setdefault("answer", {})
-        answer["presentation"] = {"mode": {"ox": "panel_input", "grouped_choice": "choice"}.get(review["mode"], review["mode"]), "editor_managed": True, "review": deepcopy(review)}
+        answer["presentation"] = {"mode": {"ox": "panel_input", "grouped_choice": "choice"}.get(review["mode"], review["mode"]), "show_canvas": review["show_canvas"], "editor_managed": True, "review": deepcopy(review)}
         answer.pop("choice_groups", None)
         answer.pop("values", None)
         if review["mode"] == "grouped_choice":
