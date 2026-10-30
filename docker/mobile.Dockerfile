@@ -1,21 +1,3 @@
-FROM python:3.12-slim AS content-builder
-
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
-    PYTHONPATH=/app/src
-
-WORKDIR /app
-COPY pyproject.toml manage.py ./
-COPY src ./src
-COPY tools ./tools
-COPY schema ./schema
-COPY examples/problems ./examples/problems
-COPY locales ./locales
-COPY overrides ./overrides
-RUN pip install --no-cache-dir . && \
-    python tools/export_problem_content.py --root examples/problems --out /build/generated/examples/problems
-
-
 FROM debian:bookworm-slim AS flutter-builder
 
 ARG FLUTTER_VERSION=3.44.8
@@ -25,6 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     curl \
     git \
+    python3 \
     unzip \
     xz-utils \
     && rm -rf /var/lib/apt/lists/*
@@ -36,12 +19,24 @@ RUN curl -fsSL "https://storage.googleapis.com/flutter_infra_release/releases/st
 ENV PATH="/opt/flutter/bin:/opt/flutter/bin/cache/dart-sdk/bin:${PATH}"
 
 WORKDIR /app/apps/mobile
-COPY apps/mobile/pubspec.yaml apps/mobile/pubspec.lock ./
-RUN flutter pub get
 
-COPY apps/mobile/ ./
-COPY --from=content-builder /build/generated/examples/problems ./generated/examples/problems
-RUN flutter build web --release --dart-define=BACKEND_API_BASE_URL=${BACKEND_API_BASE_URL} && \
+# Prepare project without offline problem assets or answer bundles
+COPY apps/mobile/pubspec.yaml apps/mobile/pubspec.lock ./
+# Remove offline generated problem asset declarations from student build
+RUN sed -i '/- generated\//d' pubspec.yaml && \
+    flutter pub get
+
+COPY apps/mobile/lib ./lib
+COPY apps/mobile/web ./web
+COPY apps/mobile/assets/i18n ./assets/i18n
+COPY apps/mobile/assets/characters ./assets/characters
+COPY apps/mobile/scripts/prepare_student_build.py ./scripts/prepare_student_build.py
+
+# Build student release app targeting lib/main_student.dart without authored problem answers
+RUN flutter build web --release \
+    --target lib/main_student.dart \
+    --dart-define=BACKEND_API_BASE_URL=${BACKEND_API_BASE_URL} && \
+    python3 scripts/prepare_student_build.py --verify-dir build/web && \
     chmod -R a+rX build/web
 
 

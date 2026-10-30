@@ -181,6 +181,69 @@ Phase 4 (예정): PostgreSQL 동시 제출 검증, 운영용 정적 번들 분�
 
 **남은 작업:** Phase 3 Flutter 학생 과제 전용 흐름과 Phase 4 배포/동시성 검증. 정답을 포함한 기존 오프라인/편집기 자산을 학생 운영 번들과 분리해야 한다. 이미지가 포함된 과제는 JSON 스냅샷뿐 아니라 이미지 파일의 접근·버전 보존도 확인해야 한다. Vite 빌드에는 기존 Konva 공통 모듈의 500kB 초과 경고가 남아 있으며 기능 검사 실패는 아니다.
 
+## Phase 4 — 운영 보안 격리, PostgreSQL 동시성 및 통합 검증 (2026-10-30)
+
+Phase 4에서는 실제 PostgreSQL 16 환경에서의 동시성·경합 검증, 모바일(Android/iOS) 플랫폼 핵심 라이프사이클 검증, 운영 배포 시 학생의 정답 원본 및 편집기 직접 접근 차단, 그리고 전체 플랫폼(배정→두 학생 풀이→서버 채점→결과 확인→오답 재배정)의 E2E 통합 검증을 완료했다.
+
+### 1. PostgreSQL 동시성 및 트랜잭션 경합 검증
+
+PostgreSQL 16 컨테이너 환경에서 `select_for_update()` 행 락과 트랜잭션 격리를 멀티스레드 경합으로 검증했다 (`tests/backend/test_postgres_concurrency.py`).
+
+1. **동일 `submission_key` 동시 재전송:** 8개 스레드가 동일한 제출 키로 동시에 답안을 제출할 때, 정확히 1개의 Attempt만 생성되고 나머지 7개 스레드는 동일 Attempt를 멱등 반환하며 중복 생성이 발생하지 않는다.
+2. **재시도 한도 (`max_attempts=2`) 경합:** 문항당 최대 2회 시도 제한에 8개 스레드가 서로 다른 키로 동시 제출 레이스를 벌일 때, 정확히 2개만 DB에 생성되고 나머지 6개는 `ValidationError("허용된 시도 횟수를 초과했습니다.")`로 안전하게 차단된다.
+3. **답안 제출 vs 최종 제출 경합 직렬화:** 한 스레드가 마지막 답안을 제출하고 다른 스레드가 최종 제출을 시도할 때, 행 락에 의해 완벽하게 직렬화된다. 답안 제출이 먼저 완료되면 최종 제출이 성공하고, 최종 제출이 먼저 실행되면 미완료 문항으로 인해 거부된 후 답안 제출 및 재제출로 이어진다. 최종 제출이 완료된 상태에서는 추가 답안 제출이 `ValidationError("이미 제출한 과제입니다.")`로 차단되어 데이터 정합성이 보장된다.
+4. **다중 학생 독립 동시 제출:** 학생 2명이 각각 동시에 본인의 과제에 답안을 제출할 때, 서로 다른 수신자 행 잠금이 적용되어 상호 간섭이나 데드락 없이 병렬 처리된다.
+
+### 2. 운영 환경 정답 원본 및 편집기 접근 차단
+
+운영 환경(`DEBUG=False`)에서 학생 및 미인증 외부 사용자가 정답, 해설, DSL 및 저작 도구에 직접 접근할 수 없도록 다계층 보안을 적용했다 (`tests/backend/test_production_asset_protection.py`).
+
+1. **미들웨어 접근 통제 (`EditorAccessMiddleware`):**
+   - 저작 API(`/api/editor/`)뿐만 아니라 웹 편집기(`/editor/`, `/editor-konva/`), 레거시 Flutter 편집기 정적 번들(`/static/editor_next/flutter_editor/`), 및 정답 파일 패턴(`.semantic.json`, `.solvable.json`, `.dsl.py`, `generated/examples/`)에 대한 직접 접근을 통제한다.
+   - 미인증 사용자: 편집기 페이지는 `/teacher/`로 리다이렉트하여 교사 로그인을 유도하고, API/정적 파일 요청은 `401 Unauthorized`로 차단한다.
+   - 학생 계정: 편집기 웹 페이지, 저작 API, 편집기 번들 및 정답 자산에 대해 즉시 `403 Forbidden`으로 차단한다.
+   - 서명 쿠키(`modu_editor_session`): 교사 화면에서 편집기로의 네비게이션과 정적 에셋 로딩을 위해 쿠키 path를 `/`로 확장하되, 일반 저작 JSON API 쓰기/조회는 반드시 `Authorization: Token` 헤더를 계속 요구한다.
+2. **운영 기본 라우팅 변경 (`urls.py`):**
+   - `DEBUG=False` 운영 환경에서 도메인 루트(`/`) 접근 시 기존의 `/editor-konva/` 대신 학생 진입점인 `/student/`로 리다이렉트한다.
+3. **Docker 모바일 번들 및 Nginx 격리 (`docker/mobile.Dockerfile`, `docker/nginx-mobile.conf`):**
+   - 학생용 모바일 웹 컨테이너 빌드 시 `generated/examples/problems` 복사를 완전히 제거하고 `pubspec.yaml`의 `generated/` 의존성을 제거한 채 `lib/main_student.dart`를 타깃으로 릴리스 빌드한다.
+   - Nginx 설정에 `.dsl.py`, `.semantic.json`, `.solvable.json` 및 `/assets/generated/` 직접 요청을 `404`로 거부하는 보안 차단 규칙을 적용했다.
+4. **학생 번들 검증 유틸리티 (`apps/mobile/scripts/prepare_student_build.py`):**
+   - Web/Android/iOS 빌드 전에 학생용 프로젝트를 안전하게 준비하고, 빌드 산출물 내에 저작 DSL, 정답, solvable 자산이 누출되지 않았는지 자동 검증한다.
+
+### 3. 모바일(Android/iOS) 플랫폼 핵심 라이프사이클 검증
+
+`apps/mobile/test/student_mobile_lifecycle_test.dart`를 통해 모바일 플랫폼의 핵심 라이프사이클을 검증했다.
+
+1. **로그인 및 세션 복원:** SharedPreferences 기반 토큰 및 사용자 정보 보관, 앱 콜드 스타트 시 자동 세션 복원.
+2. **저장·재시작·이어 풀기:** 문항 풀이 중 로컬 초안(`draft`) 보관, 앱 종료 후 재실행 시 기존 작성 답안 복원.
+3. **네트워크 단절 및 멱등 재전송:** 제출 도중 네트워크 단절 시 미확정 제출(`pending_attempt`)과 고유 `submission_key`를 영구 보관. 미확정 제출 중 답안 변경 차단(409), 네트워크 복구 후 재시도 시 동일한 `submission_key`로 재전송하여 서버 중복 카운트 없이 안전하게 완료.
+4. **계정 전환 및 데이터 격리:** 한 기기에서 학생 A 로그아웃 후 학생 B 로그인 시 학생 A의 초안 및 미확정 제출이 완전히 격리되어 보이지 않음. 지연된 이전 계정의 401 응답이 새 계정을 로그아웃시키지 않음. 학생 A 재로그인 시 기존 작업 복원.
+
+### 4. 전체 플랫폼 통합 흐름 검증
+
+백엔드 엔드투엔드 통합 테스트 (`tests/backend/test_full_platform_flow.py`) 및 브라우저 E2E 테스트를 통해 전체 플랫폼 라이프사이클을 검증했다:
+1. **교사 배정:** 교사가 10문항 과제를 2명의 학생에게 배정 (`max_attempts=2`, `release_policy="after_submission"`).
+2. **두 학생 풀이:** 학생 A는 10문항 모두 정답(10/10, 100%) 제출 및 최종 제출; 학생 B는 8문항 정답, 2문항 오답(2회 시도 한도 소진 후 3회차 차단 확인) 제출 및 최종 제출.
+3. **서버 채점 및 결과 조회:** 학생별 채점 결과 즉시 확인; 교사가 결과 API를 통해 수신자 2명 제출 완료, 평균 정답률 90%, 학생 B의 오답 문항 2개 식별.
+4. **오답 재배정 (`reassign-wrong`):** 교사가 학생 B의 오답 문항 2개를 대상으로 재배정 호출 -> 학생 B만 수신자로 포함된 새 클리닉 과제 생성 확인 (학생 A는 접근 불가).
+5. **오답 클리닉 풀이:** 학생 B가 새 과제의 2문항을 정답으로 풀고 최종 제출 (2/2, 100%) 완료 및 교사 화면 확인.
+
+### 5. 실제 실행한 테스트와 환경 제약 항목 구분
+
+| 구분 | 실행 항목 및 대상 | 결과 | 비고 |
+| --- | --- | --- | --- |
+| **실제 실행** | PostgreSQL 16 동시성/경합 테스트 (`test_postgres_concurrency.py`) | **4 passed** (11.43s) | 실제 PostgreSQL 컨테이너에서 멀티스레드 행 락 검증 |
+| **실제 실행** | 운영 환경 보안 및 배포 자산 차단 테스트 (`test_production_asset_protection.py`) | **5 passed** (2.66s) | 익명/학생 차단, 교사 허용, 번들 검증기 |
+| **실제 실행** | 전체 플랫폼 배정→풀이→채점→결과→오답 재배정 (`test_full_platform_flow.py`) | **1 passed** (2.52s) | 교사 1명, 학생 2명, 10문항 및 오답 클리닉 |
+| **실제 실행** | 교사 관리 화면 브라우저 E2E (`teacher-browser.test.mjs`) | **1 passed** (13.07s) | 실제 Chrome 브라우저에서 전체 관리 및 편집기 진입 검증 |
+| **실제 실행** | 학생 풀이 화면 브라우저 E2E (`student-browser.test.mjs`) | **1 passed** (25.28s) | 실제 Chrome 브라우저에서 실제 Flutter 웹 앱 10문항 풀이 |
+| **실제 실행** | 모바일 플랫폼 라이프사이클 테스트 (`student_mobile_lifecycle_test.dart`) | **4 passed** | 로그인·재시작·이어풀기·네트워크단절·계정전환 |
+| **실제 실행** | Flutter 전체 테스트 | **236 passed** (19s) | 기존 232개 + 신규 4개 |
+| **실제 실행** | Python 전체 회귀 테스트 | **420 passed** (416 SQLite + 4 PG) | 기존 410개 + 신규 10개 |
+| **실제 실행** | React / Node 전체 테스트 | **48 passed** | API, 앵커, 검수, 아바타, 텍스트 인코딩 |
+| **환경 제약** | **Android / iOS 물리적 실기기 하드웨어 및 AVD 에뮬레이터 검증** | **미실행 (환경 제약)** | 호스트 환경(Windows 데스크톱)에 물리적으로 연결된 Android 실기기, iOS 디바이스 및 AVD 에뮬레이터 이미지가 없음 (`flutter devices`에 Windows/Chrome/Edge만 감지됨). 따라서 모바일 공통 엔진 및 서비스 레이어 통합 테스트로 대체 검증함. |
+
 브라우저 검증 재실행은 `src/modu_math_web/editor_next`에서 `npm run build` 후 `npm run test:teacher-browser`를 사용한다. 프로젝트 루트의 `.venv` Python과 설치된 Chrome을 사용하며, 다른 환경은 `MODU_TEST_PYTHON`, `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH`를 지정하거나 Playwright Chromium을 설치한다. 사용자 DB/원본 문제와 실행 중인 서버에는 접근하지 않고 테스트 전용 서버를 종료한다.
 ## Phase 3 — Flutter 학생 과제 (2026-10-30)
 

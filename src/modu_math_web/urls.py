@@ -8,8 +8,15 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from modu_math_web.editor import views as editor_views
 from modu_math_web.editor_next import views as editor_next_views
 
+
+def root_redirect(request):
+    if not settings.DEBUG:
+        return redirect("/student/")
+    return redirect("/editor-konva/")
+
+
 urlpatterns = [
-    path("", lambda request: redirect("/editor-konva/")),
+    path("", root_redirect),
     path("editor/", editor_views.editor_index),
     path("editor-konva/", editor_next_views.editor_konva),
     path("teacher/", editor_next_views.teacher_workspace, name="teacher-workspace"),

@@ -61,7 +61,7 @@ def test_signed_image_session_is_scoped_and_revocable(teacher, tmp_path, setting
     assert response.status_code == 204
     cookie = response.cookies["modu_editor_session"]
     assert cookie["httponly"] and cookie["secure"]
-    assert cookie["samesite"] == "Strict" and cookie["path"] == "/api/editor/"
+    assert cookie["samesite"] == "Strict" and cookie["path"] == "/"
     assert cookie["max-age"] == 3600
     client.credentials()
     asset = "/api/editor/assets/ko/sample.dsl.py/image.png"

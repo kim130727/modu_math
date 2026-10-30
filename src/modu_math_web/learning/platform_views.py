@@ -573,7 +573,7 @@ class LogoutView(APIView):
             request.auth.delete()
         response = Response(status=204)
         response.delete_cookie(
-            "modu_editor_session", path="/api/editor/", samesite="Strict"
+            "modu_editor_session", path="/", samesite="Strict"
         )
         return response
 
@@ -591,7 +591,7 @@ class EditorSessionView(APIView):
             "modu_editor_session",
             request.auth.key,
             salt="modu.editor.session.v1",
-            path="/api/editor/",
+            path="/",
             max_age=3600,
             secure=not settings.DEBUG,
             httponly=True,
