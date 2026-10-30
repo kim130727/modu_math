@@ -4,6 +4,8 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "test:teacher": "node --test scripts/teacher-api.test.mjs",
+    "test:teacher-browser": "node --test scripts/teacher-browser.test.mjs",
     "check:text": "node scripts/check-text-encoding.mjs",
     "test:text": "node --test scripts/check-text-encoding.test.mjs",
     "test:anchors": "node --test scripts/text-anchor.test.mjs",
@@ -31,6 +33,7 @@
     "@napi-rs/canvas": "1.0.9",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
+    "playwright": "^1.64.1",
     "typescript": "^5.7.3",
     "vite": "^6.4.3"
   }

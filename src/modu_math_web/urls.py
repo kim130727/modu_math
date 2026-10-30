@@ -12,6 +12,7 @@ urlpatterns = [
     path("", lambda request: redirect("/editor-konva/")),
     path("editor/", editor_views.editor_index),
     path("editor-konva/", editor_next_views.editor_konva),
+    path("teacher/", editor_next_views.teacher_workspace, name="teacher-workspace"),
     path("api/editor/", include("modu_math_web.editor.urls")),
     path("api/v1/", include("modu_math_web.learning.urls")),
 ]

@@ -1,6 +1,7 @@
 # ModuMath Editor Konva
 
 This folder contains the React + TypeScript Konva editor used by `/editor-konva/`.
+It also contains the teacher/admin learning workspace served by Django at `/teacher/`.
 The legacy Django `modu_math_web.editor` app remains available for its editor API endpoints.
 
 ## Commands
@@ -13,6 +14,23 @@ npm run typecheck
 npm run build
 npm run build:flutter-editor
 ```
+
+The teacher workspace uses the existing Django `/api/v1/` endpoints on the same
+origin. Build with `npm run build`, start Django, then visit `/teacher/`.
+Register/create a Django account and grant the teacher role with
+`python manage.py set_teacher <username>` from the repository root, or use an
+existing administrator account. Tests never create these accounts in your DB.
+
+```bash
+npm run test:teacher
+npm run test:teacher-browser
+```
+
+The browser test requires the repository Python environment and Chrome or
+Playwright Chromium. It builds a disposable SQLite fixture and starts its own
+server. Set `MODU_TEST_PYTHON` or `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to override
+the default executables. Screenshots go to ignored `.tmp/teacher-browser/`.
+Build the bundles before running the browser test.
 
 For local Vite development:
 

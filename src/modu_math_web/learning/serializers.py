@@ -69,6 +69,8 @@ class LoginSerializer(serializers.Serializer):
 
 
 class ProblemListSerializer(serializers.ModelSerializer):
+    publication_status = serializers.SerializerMethodField()
+    difficulty = serializers.SerializerMethodField()
     title = serializers.SerializerMethodField()
     subject = serializers.SerializerMethodField()
     unit = serializers.SerializerMethodField()
@@ -102,8 +104,18 @@ class ProblemListSerializer(serializers.ModelSerializer):
             "topic",
             "file_prefix",
             "path",
+            "publication_status",
+            "difficulty",
             "updated_at",
         )
+
+    def get_publication_status(self, obj):
+        publication = getattr(obj, "publication", None)
+        return publication.status if publication else "published"
+
+    def get_difficulty(self, obj):
+        publication = getattr(obj, "publication", None)
+        return publication.difficulty if publication else 1
 
     def _catalog_value(self, obj, *keys, default=""):
         for key in keys:

@@ -66,7 +66,7 @@ class LoginView(APIView):
 
 class ProblemViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = (permissions.AllowAny,)
-    queryset = Problem.objects.all()
+    queryset = Problem.objects.select_related("publication").all()
 
     def get_serializer_class(self):
         return (
@@ -75,6 +75,17 @@ class ProblemViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        ids = self.request.query_params.get("ids")
+        if ids:
+            try:
+                values = [int(value) for value in ids.split(",")]
+                if len(values) > 200 or any(value < 1 for value in values):
+                    raise ValueError()
+            except ValueError as exc:
+                raise ValidationError(
+                    {"ids": "최대 200개의 양수 ID를 입력해 주세요."}
+                ) from exc
+            queryset = queryset.filter(pk__in=values)
         if not is_manager(self.request.user):
             queryset = queryset.filter(
                 Q(publication__isnull=True) | Q(publication__status="published")

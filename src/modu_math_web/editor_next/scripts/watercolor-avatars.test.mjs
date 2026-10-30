@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { legacyAvatarLayout } from "./fixtures/legacy-avatar-layout.mjs";
 import { test } from "node:test";
 import { api } from "./watercolor-test-runtime.mjs";
 
 test("custom watercolor survives insertion, save/reload and replacement", async () => {
-  const layout = JSON.parse(readFileSync(new URL("../../../../examples/problems/ko/S3_elem_3_008728.layout.json", import.meta.url), "utf8"));
+  const layout = legacyAvatarLayout;
   const base = api.problemDetailToCanonicalProblem({ problem_id: "watercolor", layout });
   const document = api.problemJsonToEditorDocument(base);
   const src = await api.renderWatercolorAvatar({ ...api.getDefaultAvatarConfig("girl"), framing: "upper", skinTone: "#6c432b", hairColor: "#ea580c", clothColor: "#34d399", accessory: "glasses", pose: "waving" });

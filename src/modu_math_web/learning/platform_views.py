@@ -560,4 +560,30 @@ class LogoutView(APIView):
     def post(self, request):
         if request.auth:
             request.auth.delete()
-        return Response(status=204)
+        response = Response(status=204)
+        response.delete_cookie(
+            "modu_editor_session", path="/api/editor/", samesite="Strict"
+        )
+        return response
+
+
+class EditorSessionView(APIView):
+    """Short-lived image credentials; API writes still require a token header."""
+
+    permission_classes = (IsTeacherOrAdmin,)
+
+    def post(self, request):
+        from django.conf import settings
+
+        response = Response(status=204)
+        response.set_signed_cookie(
+            "modu_editor_session",
+            request.auth.key,
+            salt="modu.editor.session.v1",
+            path="/api/editor/",
+            max_age=3600,
+            secure=not settings.DEBUG,
+            httponly=True,
+            samesite="Strict",
+        )
+        return response

@@ -1,4 +1,5 @@
 import type { ProblemJson, ProblemObject } from "../types/problem";
+import { editorAuthHeaders } from "../auth/session";
 import { localizePathData } from "../utils/pathData";
 
 export interface ProblemSummary {
@@ -189,7 +190,7 @@ async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
   const method = init?.method ?? "GET";
   const response = await fetch(url, {
     ...init,
-    headers: { Accept: "application/json", ...csrfHeaders(method), ...init?.headers },
+    headers: { Accept: "application/json", ...editorAuthHeaders(), ...csrfHeaders(method), ...init?.headers },
   });
   const responseText = await response.text();
   let body: unknown = responseText;
@@ -362,7 +363,7 @@ export function sendTutorPreviewMessage(options: {
 export async function synthesizeTutorSpeech(options: { text: string; locale: string; payload?: Record<string, unknown> }): Promise<Blob> {
   const response = await fetch("/api/editor/tutor-preview/speech/", {
     method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "audio/mpeg, application/json", ...csrfHeaders("POST") },
+    headers: { "Content-Type": "application/json", Accept: "audio/mpeg, application/json", ...editorAuthHeaders(), ...csrfHeaders("POST") },
     body: JSON.stringify(options),
   });
   if (!response.ok) {

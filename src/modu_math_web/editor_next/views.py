@@ -4,12 +4,18 @@ import hashlib
 from functools import lru_cache
 from pathlib import Path
 
+from django.conf import settings
+
 from django.http import HttpRequest
 from django.shortcuts import render
 from django.views.decorators.http import require_GET
 
-_ASSET_ROOT = Path(__file__).resolve().parent / "static" / "editor_next" / "konva_assets"
-_FLUTTER_ASSET_ROOT = Path(__file__).resolve().parent / "static" / "editor_next" / "flutter_editor"
+_ASSET_ROOT = (
+    Path(__file__).resolve().parent / "static" / "editor_next" / "konva_assets"
+)
+_FLUTTER_ASSET_ROOT = (
+    Path(__file__).resolve().parent / "static" / "editor_next" / "flutter_editor"
+)
 
 
 @lru_cache(maxsize=8)
@@ -24,7 +30,9 @@ def editor_asset_version() -> str:
     for asset_name in ("editor-konva.js", "editor-konva.css"):
         asset = _ASSET_ROOT / asset_name
         stat = asset.stat()
-        fingerprints.append(_fingerprint_asset(str(asset), stat.st_mtime_ns, stat.st_size))
+        fingerprints.append(
+            _fingerprint_asset(str(asset), stat.st_mtime_ns, stat.st_size)
+        )
     return hashlib.sha256(":".join(fingerprints).encode()).hexdigest()[:12]
 
 
@@ -37,6 +45,26 @@ def flutter_editor_asset_version() -> str:
 
 
 @require_GET
+def teacher_workspace(request: HttpRequest):
+    fingerprints = []
+    for name in ("teacher.js", "teacher.css"):
+        asset = _ASSET_ROOT / name
+        stat = asset.stat()
+        fingerprints.append(
+            _fingerprint_asset(str(asset), stat.st_mtime_ns, stat.st_size)
+        )
+    return render(
+        request,
+        "editor_next/teacher.html",
+        {
+            "teacher_asset_version": hashlib.sha256(
+                ":".join(fingerprints).encode()
+            ).hexdigest()[:12],
+        },
+    )
+
+
+@require_GET
 def editor_konva(request: HttpRequest):
     return render(
         request,
@@ -44,5 +72,6 @@ def editor_konva(request: HttpRequest):
         {
             "editor_asset_version": editor_asset_version(),
             "flutter_editor_asset_version": flutter_editor_asset_version(),
+            "local_editor": settings.DEBUG,
         },
     )

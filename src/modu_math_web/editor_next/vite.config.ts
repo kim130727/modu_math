@@ -13,11 +13,12 @@ export default defineConfig({
     emptyOutDir: true,
     sourcemap: true,
     rollupOptions: {
-      input: "index.html",
+      input: { editor: "index.html", teacher: "teacher.html" },
       output: {
-        entryFileNames: "editor-konva.js",
+        entryFileNames: (chunk) => chunk.name === "teacher" ? "teacher.js" : "editor-konva.js",
         chunkFileNames: "editor-konva-[name]-[hash].js",
         assetFileNames: (assetInfo) => {
+          if (assetInfo.names?.some((name) => name === "teacher.css")) return "teacher[extname]";
           if (assetInfo.names?.some((name) => name.endsWith(".css"))) return "editor-konva[extname]";
           return "editor-konva-[name][extname]";
         },

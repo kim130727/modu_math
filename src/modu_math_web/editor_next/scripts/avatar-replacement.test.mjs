@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { legacyAvatarLayout } from "./fixtures/legacy-avatar-layout.mjs";
 import { fileURLToPath } from "node:url";
 import { test } from "node:test";
 import { build } from "esbuild";
@@ -18,7 +18,7 @@ const bundle = await build({
 const { avatarTargets, replaceAvatarShapes, problemDetailToCanonicalProblem, problemJsonToEditorDocument, editorDocumentToProblemJson, problemJsonToLayoutPatches } =
   await import(`data:text/javascript;base64,${Buffer.from(bundle.outputFiles[0].text).toString("base64")}`);
 
-const layout = JSON.parse(readFileSync(new URL("../../../../examples/problems/ko/S3_elem_3_008728.layout.json", import.meta.url), "utf8"));
+const layout = legacyAvatarLayout;
 const base = problemDetailToCanonicalProblem({ problem_id: "avatar", layout });
 const document = problemJsonToEditorDocument(base);
 const avatar = { id: "konva_100_avatar_200", type: "image", src: "data:image/svg+xml;base64,PHN2Zy8+", x: 200, y: 450, width: 100, height: 110 };

@@ -21,6 +21,7 @@ from .platform_views import (
     AssignmentViewSet,
     ClassroomViewSet,
     CurrentUserView,
+    EditorSessionView,
     JoinClassView,
     LogoutView,
     ProblemSetViewSet,
@@ -45,6 +46,7 @@ router.register(
 )
 
 urlpatterns = [
+    path("auth/editor-session/", EditorSessionView.as_view(), name="editor-session"),
     path("auth/me/", CurrentUserView.as_view(), name="current-user"),
     path("auth/logout/", LogoutView.as_view(), name="logout"),
     path("student/join-class/", JoinClassView.as_view(), name="join-class"),

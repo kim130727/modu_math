@@ -190,6 +190,14 @@ export function EditorKonva() {
     [setProblem, draftReview, loadProblemFast, openingProblemId, saveStatus, selectedProblemId],
   );
 
+  const initialLinkOpened = useRef(false);
+  useEffect(() => {
+    if (initialLinkOpened.current) return;
+    initialLinkOpened.current = true;
+    const requested = new URLSearchParams(window.location.search).get("problem");
+    if (requested) void openProblem(requested);
+  }, [openProblem]);
+
   const createNewProblem = useCallback(async () => {
     const rawName = window.prompt("새 문제 이름 또는 경로", defaultNewProblemId());
     if (rawName === null) return;

@@ -2,6 +2,7 @@ from django.conf import settings
 from django.http import JsonResponse
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.authtoken.models import Token
 
 from .platform_permissions import is_manager
 
@@ -22,6 +23,27 @@ class EditorAccessMiddleware:
                 credentials = TokenAuthentication().authenticate(request)
             except AuthenticationFailed:
                 credentials = None
+            if (
+                credentials is None
+                and not request.headers.get("Authorization")
+                and request.method in {"GET", "HEAD"}
+                and request.path.startswith("/api/editor/assets/")
+            ):
+                key = request.get_signed_cookie(
+                    "modu_editor_session",
+                    default="",
+                    salt="modu.editor.session.v1",
+                    max_age=3600,
+                )
+                token = (
+                    Token.objects.select_related("user")
+                    .filter(key=key, user__is_active=True)
+                    .first()
+                    if key
+                    else None
+                )
+                if token:
+                    credentials = (token.user, token)
             if credentials is None:
                 return JsonResponse({"detail": "Authentication required"}, status=401)
             request.user = credentials[0]
