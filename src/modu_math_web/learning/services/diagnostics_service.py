@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from .assignments import visible_attempts
+
 from typing import Any
 
 from django.contrib.auth import get_user_model
@@ -17,7 +19,9 @@ class DiagnosticService:
         self.registry = get_taxonomy_registry()
 
     def get_summary(self) -> dict[str, Any]:
-        attempts_qs = Attempt.objects.filter(user=self.user).select_related("problem")
+        attempts_qs = visible_attempts(
+            Attempt.objects.filter(user=self.user)
+        ).select_related("problem")
         total_attempts = attempts_qs.count()
 
         if total_attempts == 0:
@@ -57,15 +61,20 @@ class DiagnosticService:
         skill_diagnostics = self.get_tag_diagnostics(tag_type="skill")
 
         strengths = [
-            item for item in concept_diagnostics
-            if item["status"] == "stable" or (item["score"] >= 0.75 and item["attempt_count"] >= 2)
+            item
+            for item in concept_diagnostics
+            if item["status"] == "stable"
+            or (item["score"] >= 0.75 and item["attempt_count"] >= 2)
         ][:3]
         weaknesses = [
-            item for item in concept_diagnostics
-            if item["status"] == "needs_support" or (item["score"] < 0.60 and item["attempt_count"] >= 2)
+            item
+            for item in concept_diagnostics
+            if item["status"] == "needs_support"
+            or (item["score"] < 0.60 and item["attempt_count"] >= 2)
         ][:3]
         insufficient = [
-            item for item in concept_diagnostics
+            item
+            for item in concept_diagnostics
             if item["status"] == "insufficient" or item["attempt_count"] < 2
         ][:5]
 
@@ -121,8 +130,8 @@ class DiagnosticService:
 
     def get_tag_diagnostics(self, tag_type: str = "concept") -> list[dict[str, Any]]:
         attempts_qs = (
-            Attempt.objects.filter(user=self.user)
-            .select_related("problem", "problem__tagging")
+            visible_attempts(Attempt.objects.filter(user=self.user))
+            .select_related("problem", "problem__tagging", "assignment_item")
             .order_by("-created_at")
         )
 
@@ -131,7 +140,11 @@ class DiagnosticService:
         for attempt in attempts_qs:
             problem = attempt.problem
             if tag_type == "concept":
-                tags = problem.effective_concepts or problem.concepts
+                tags = (
+                    attempt.assignment_item.concepts
+                    if attempt.assignment_item_id
+                    else problem.effective_concepts or problem.concepts
+                )
             else:
                 tags = problem.effective_skills or problem.skills
 
@@ -149,24 +162,28 @@ class DiagnosticService:
         known_tags = self.registry.list_tags(tag_type)
         practiced_keys = set(tag_attempts.keys())
         for known in known_tags:
-            if known.key not in practiced_keys and (known.parent_key is not None or known.type == "skill"):
-                results.append({
-                    "key": known.key,
-                    "name_ko": known.name_ko,
-                    "domain": known.domain,
-                    "description": known.description,
-                    "score": 0.0,
-                    "raw_accuracy": 0.0,
-                    "attempt_count": 0,
-                    "correct_count": 0,
-                    "confidence": 0.0,
-                    "status": "insufficient",
-                    "status_label": "기록 부족",
-                    "status_message": "아직 풀이 기록이 없습니다.",
-                    "avg_elapsed_ms": 0,
-                    "avg_hint_count": 0.0,
-                    "avg_retry_count": 0.0,
-                })
+            if known.key not in practiced_keys and (
+                known.parent_key is not None or known.type == "skill"
+            ):
+                results.append(
+                    {
+                        "key": known.key,
+                        "name_ko": known.name_ko,
+                        "domain": known.domain,
+                        "description": known.description,
+                        "score": 0.0,
+                        "raw_accuracy": 0.0,
+                        "attempt_count": 0,
+                        "correct_count": 0,
+                        "confidence": 0.0,
+                        "status": "insufficient",
+                        "status_label": "기록 부족",
+                        "status_message": "아직 풀이 기록이 없습니다.",
+                        "avg_elapsed_ms": 0,
+                        "avg_hint_count": 0.0,
+                        "avg_retry_count": 0.0,
+                    }
+                )
 
         # Sort: first by attempt_count desc, then score desc
         results.sort(key=lambda item: (-item["attempt_count"], -item["score"]))
@@ -193,7 +210,9 @@ class DiagnosticService:
             total_retries += a.retry_count
 
             if a.is_correct:
-                penalty = min(0.45, a.hint_count * 0.15) + min(0.30, a.retry_count * 0.10)
+                penalty = min(0.45, a.hint_count * 0.15) + min(
+                    0.30, a.retry_count * 0.10
+                )
                 quality = max(0.50, 1.0 - penalty)
                 quality_sum += quality
             else:
@@ -248,30 +267,38 @@ class DiagnosticService:
 
     def get_history(self, limit: int = 50) -> list[dict[str, Any]]:
         attempts = (
-            Attempt.objects.filter(user=self.user)
-            .select_related("problem", "problem__tagging")
+            visible_attempts(Attempt.objects.filter(user=self.user))
+            .select_related("problem", "problem__tagging", "assignment_item")
             .order_by("-created_at")[:limit]
         )
 
         history_list = []
         for a in attempts:
-            concepts = a.problem.effective_concepts or a.problem.concepts
+            concepts = (
+                a.assignment_item.concepts
+                if a.assignment_item_id
+                else a.problem.effective_concepts or a.problem.concepts
+            )
             skills = a.problem.effective_skills or a.problem.skills
-            history_list.append({
-                "id": a.id,
-                "problem_id": a.problem.problem_id,
-                "problem_title": a.problem.semantic_data.get("metadata", {}).get("title")
-                or a.problem.problem_id,
-                "language": a.problem.language,
-                "grade": a.problem.grade,
-                "is_correct": a.is_correct,
-                "submitted_answer": a.submitted_answer,
-                "elapsed_ms": a.elapsed_ms,
-                "hint_count": a.hint_count,
-                "retry_count": a.retry_count,
-                "concepts": [self.registry.get_name_ko(c) for c in concepts],
-                "skills": [self.registry.get_name_ko(s) for s in skills],
-                "session_id": a.session_id,
-                "created_at": a.created_at.isoformat(),
-            })
+            history_list.append(
+                {
+                    "id": a.id,
+                    "problem_id": a.problem.problem_id,
+                    "problem_title": a.problem.semantic_data.get("metadata", {}).get(
+                        "title"
+                    )
+                    or a.problem.problem_id,
+                    "language": a.problem.language,
+                    "grade": a.problem.grade,
+                    "is_correct": a.is_correct,
+                    "submitted_answer": a.submitted_answer,
+                    "elapsed_ms": a.elapsed_ms,
+                    "hint_count": a.hint_count,
+                    "retry_count": a.retry_count,
+                    "concepts": [self.registry.get_name_ko(c) for c in concepts],
+                    "skills": [self.registry.get_name_ko(s) for s in skills],
+                    "session_id": a.session_id,
+                    "created_at": a.created_at.isoformat(),
+                }
+            )
         return history_list

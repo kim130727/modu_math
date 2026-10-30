@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, get_user_model
+from django.db import transaction
 from rest_framework import serializers
 
 from .models import Attempt, Mastery, Problem
@@ -6,14 +7,47 @@ from .models import Attempt, Mastery, Problem
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, min_length=8)
+    invite_code = serializers.CharField(write_only=True, required=False, max_length=64)
+    role = serializers.SerializerMethodField()
+
+    def get_role(self, obj):
+        from .platform_permissions import is_manager
+
+        return (
+            "admin"
+            if obj.is_staff or obj.is_superuser
+            else "teacher" if is_manager(obj) else "student"
+        )
 
     class Meta:
         model = get_user_model()
-        fields = ("id", "username", "email", "password")
+        fields = ("id", "username", "email", "password", "invite_code", "role")
         read_only_fields = ("id",)
 
+    def validate_invite_code(self, value):
+        from .models import Classroom
+
+        if not Classroom.objects.filter(invite_code=value, archived=False).exists():
+            raise serializers.ValidationError("사용할 수 없는 학급 초대 코드입니다.")
+        return value
+
+    @transaction.atomic
     def create(self, validated_data):
-        return get_user_model().objects.create_user(**validated_data)
+        from .models import Classroom, Enrollment, StudentProfile
+
+        code = validated_data.pop("invite_code", None)
+        user = get_user_model().objects.create_user(**validated_data)
+        student = StudentProfile.objects.create(user=user)
+        if code:
+            classroom = Classroom.objects.filter(
+                invite_code=code, archived=False
+            ).first()
+            if classroom is None:
+                raise serializers.ValidationError(
+                    {"invite_code": "사용할 수 없는 초대 코드입니다."}
+                )
+            Enrollment.objects.create(student=student, classroom=classroom)
+        return user
 
 
 class LoginSerializer(serializers.Serializer):
@@ -187,9 +221,40 @@ class AttemptSerializer(serializers.ModelSerializer):
                 )
             attrs["problem"] = problem
         attrs.pop("problem_id", None)
+        from .models import ProblemPublication
+        from .platform_permissions import is_manager
+
+        if (
+            not is_manager(self.context["request"].user)
+            and ProblemPublication.objects.filter(problem=attrs["problem"])
+            .exclude(status="published")
+            .exists()
+        ):
+            raise serializers.ValidationError(
+                "공개된 문제만 일반 학습으로 제출할 수 있습니다."
+            )
         return attrs
 
     def create(self, validated_data):
+        from .models import AssignmentRecipient
+        from .services.assignments import released
+
+        problem = validated_data["problem"]
+        for recipient in (
+            AssignmentRecipient.objects.filter(
+                student__user=self.context["request"].user,
+                assignment__items__problem=problem,
+            )
+            .select_related("assignment")
+            .distinct()
+        ):
+            if not released(recipient) or (
+                recipient.submitted_at is None
+                and recipient.assignment.status != "cancelled"
+            ):
+                raise serializers.ValidationError(
+                    "이 문제는 배정된 과제 화면에서 제출해 주세요."
+                )
         return Attempt.objects.create(
             user=self.context["request"].user, **validated_data
         )

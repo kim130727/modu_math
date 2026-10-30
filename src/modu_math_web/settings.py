@@ -36,6 +36,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
+    "modu_math_web.learning.middleware.EditorAccessMiddleware",
 ]
 INSTALLED_APPS = [
     "django.contrib.auth",

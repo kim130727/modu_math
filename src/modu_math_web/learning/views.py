@@ -3,6 +3,8 @@ from __future__ import annotations
 from django.conf import settings
 from django.http import FileResponse
 from django.utils import timezone
+from django.db.models import Q
+from django.db import connection
 from rest_framework import mixins, permissions, status, viewsets
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import action
@@ -22,6 +24,8 @@ from .serializers import (
 )
 from .services.diagnostics_service import DiagnosticService
 from .services.recommendation_service import ProblemRecommendationService
+from .platform_permissions import is_manager
+from .services.assignments import student_problem, visible_attempts
 
 
 class RegisterView(APIView):
@@ -54,6 +58,7 @@ class LoginView(APIView):
                     "username": user.get_username(),
                     "email": user.email,
                     "is_staff": user.is_staff,
+                    "role": RegisterSerializer(user).data["role"],
                 },
             }
         )
@@ -70,6 +75,10 @@ class ProblemViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        if not is_manager(self.request.user):
+            queryset = queryset.filter(
+                Q(publication__isnull=True) | Q(publication__status="published")
+            )
         for parameter in ("language", "problem_type"):
             value = self.request.query_params.get(parameter)
             if value not in (None, ""):
@@ -80,7 +89,88 @@ class ProblemViewSet(viewsets.ReadOnlyModelViewSet):
                 queryset = queryset.filter(grade=int(grade))
             except ValueError as exc:
                 raise ValidationError({"grade": "grade는 정수여야 합니다."}) from exc
+        unit = self.request.query_params.get("unit")
+        if unit:
+            queryset = queryset.filter(
+                Q(catalog_data__unit__icontains=unit)
+                | Q(catalog_data__unitTopic__icontains=unit)
+                | Q(catalog_data__topic__icontains=unit)
+            )
+        concept = self.request.query_params.get("concept")
+        if concept:
+            if connection.features.supports_json_field_contains:
+                queryset = queryset.filter(concepts__contains=[concept])
+            else:
+                # SQLite JSON storage escapes Korean text; LIKE on the JSON
+                # document does not implement tag membership consistently.
+                matches = [
+                    pk
+                    for pk, tags in queryset.values_list("pk", "concepts")
+                    if concept in tags
+                ]
+                queryset = queryset.filter(pk__in=matches)
+        for parameter, field in (
+            ("difficulty", "publication__difficulty"),
+            ("status", "publication__status"),
+        ):
+            value = self.request.query_params.get(parameter)
+            if value:
+                if parameter == "difficulty":
+                    try:
+                        value = int(value)
+                    except ValueError as exc:
+                        raise ValidationError(
+                            {parameter: "정수가 필요합니다."}
+                        ) from exc
+                if (parameter == "status" and value == "published") or (
+                    parameter == "difficulty" and value == 1
+                ):
+                    queryset = queryset.filter(
+                        Q(publication__isnull=True) | Q(**{field: value})
+                    )
+                else:
+                    queryset = queryset.filter(**{field: value})
         return queryset
+
+    def retrieve(self, request, *args, **kwargs):
+        problem = self.get_object()
+        if is_manager(request.user):
+            return Response(ProblemDetailSerializer(problem).data)
+        return Response(
+            {**ProblemListSerializer(problem).data, **student_problem(problem)}
+        )
+
+    @action(detail=True, methods=["get", "patch"])
+    def publication(self, request, pk=None):
+        from rest_framework.exceptions import PermissionDenied
+        from .models import ProblemPublication
+        from .platform_serializers import PublicationSerializer
+
+        if not is_manager(request.user):
+            raise PermissionDenied()
+        problem = self.get_object()
+        if request.method == "GET":
+            publication = ProblemPublication.objects.filter(problem=problem).first()
+            return Response(
+                PublicationSerializer(publication).data
+                if publication
+                else {"status": "published", "difficulty": 1}
+            )
+        data = PublicationSerializer(data=request.data, partial=True)
+        data.is_valid(raise_exception=True)
+        publication = ProblemPublication.objects.filter(problem=problem).first()
+        serializer = PublicationSerializer(publication, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        publication = serializer.save(
+            problem=problem,
+            updated_by=request.user,
+            **(
+                {"status": data.validated_data.get("status", "published")}
+                if publication is None
+                else {}
+            ),
+        )
+        return Response(PublicationSerializer(publication).data)
 
     @action(detail=True, methods=["get"], url_path="asset")
     def asset(self, request, pk=None):
@@ -88,11 +178,15 @@ class ProblemViewSet(viewsets.ReadOnlyModelViewSet):
         filename = request.query_params.get("filename", "")
         if not filename or filename != filename.replace("\\", "/").split("/")[-1]:
             raise ValidationError({"filename": "올바른 파일 이름이 필요합니다."})
+        if not filename.lower().endswith((".png", ".jpg", ".jpeg", ".webp", ".svg")):
+            raise ValidationError(
+                {"filename": "문제 이미지 파일만 요청할 수 있습니다."}
+            )
         root = settings.PROBLEMS_ROOT.resolve()
         catalog_path = str(problem.catalog_data.get("path") or "")
         prefix = "examples/problems/"
         relative_directory = (
-            catalog_path[len(prefix):]
+            catalog_path[len(prefix) :]
             if catalog_path.startswith(prefix)
             else problem.language
         )
@@ -101,7 +195,9 @@ class ProblemViewSet(viewsets.ReadOnlyModelViewSet):
             problem_directory.relative_to(root)
         except ValueError:
             problem_directory = root / problem.language
-        asset_path = problem_directory / filename
+        asset_path = (problem_directory / filename).resolve()
+        if not asset_path.is_relative_to(root):
+            raise ValidationError({"filename": "허용되지 않은 경로입니다."})
         if not asset_path.is_file():
             from rest_framework.exceptions import NotFound
 
@@ -118,9 +214,9 @@ class AttemptViewSet(
     serializer_class = AttemptSerializer
 
     def get_queryset(self):
-        queryset = Attempt.objects.filter(user=self.request.user).select_related(
-            "problem"
-        )
+        queryset = visible_attempts(
+            Attempt.objects.filter(user=self.request.user)
+        ).select_related("problem")
         problem_id = self.request.query_params.get("problem_id")
         if problem_id:
             queryset = queryset.filter(problem__problem_id=problem_id)
@@ -135,7 +231,34 @@ class MasteryViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
         tag_type = self.request.query_params.get("tag_type")
         if tag_type:
             queryset = queryset.filter(tag_type=tag_type)
-        return queryset
+        # Stored Mastery is an internal all-time aggregate. Public responses
+        # must not expose unreleased assignment grades through score changes.
+        attempts = Attempt.objects.filter(user=self.request.user)
+        visible = visible_attempts(attempts)
+        if visible.count() == attempts.count():
+            return queryset
+        metrics = {}
+        for attempt in visible.select_related("problem", "assignment_item").order_by(
+            "created_at"
+        ):
+            concepts = (
+                attempt.assignment_item.concepts
+                if attempt.assignment_item_id
+                else set(attempt.problem.effective_concepts + attempt.problem.concepts)
+            )
+            for concept in concepts:
+                metric = metrics.setdefault(concept, [0, 0, None])
+                metric[0] += 1
+                metric[1] += int(attempt.is_correct)
+                metric[2] = attempt.created_at
+        result = []
+        for mastery in queryset:
+            if mastery.concept in metrics:
+                count, correct, last = metrics[mastery.concept]
+                mastery.attempt_count, mastery.correct_count = count, correct
+                mastery.score, mastery.last_practiced_at = correct / count, last
+                result.append(mastery)
+        return result
 
 
 class ProblemTaggingViewSet(viewsets.ModelViewSet):

@@ -9,7 +9,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 
-from modu_math_web.learning.models import Problem
+from modu_math_web.learning.models import Problem, ProblemPublication
 
 
 def _read_json(path: Path | None) -> dict[str, Any]:
@@ -38,6 +38,12 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("--root", type=Path, default=settings.PROBLEMS_ROOT)
         parser.add_argument("--dry-run", action="store_true")
+        parser.add_argument(
+            "--new-status",
+            choices=("draft", "review", "published", "archived"),
+            default="draft",
+            help="State of new imports; existing review states are preserved.",
+        )
 
     @transaction.atomic
     def handle(self, *args, **options):
@@ -54,7 +60,12 @@ class Command(BaseCommand):
         created = updated = 0
         synced_keys: set[tuple[str, str]] = set()
 
-        from modu_math_web.editor.services.content_store import list_content, read_content, source_files
+        from modu_math_web.editor.services.content_store import (
+            list_content,
+            read_content,
+            source_files,
+        )
+
         for paths in list_content(root):
             language = paths.dsl_path.relative_to(root).parts[0]
             prefix = paths.artifact_base
@@ -71,28 +82,78 @@ class Command(BaseCommand):
             catalog = dict(manifest_by_id.get(problem_id, {}))
             if not catalog:
                 text = (
-                    str(metadata.get("title", "")) + " " +
-                    str(metadata.get("question", "")) + " " +
-                    str(metadata.get("instruction", "")) + " " +
-                    str(semantic.get("problem_type", ""))
+                    str(metadata.get("title", ""))
+                    + " "
+                    + str(metadata.get("question", ""))
+                    + " "
+                    + str(metadata.get("instruction", ""))
+                    + " "
+                    + str(semantic.get("problem_type", ""))
                 )
-                if any(k in text for k in ["원", "circle", "지름", "반지름", "중심", "컴퍼스"]):
-                    default_grade, default_sem, default_unit_num, default_topic = 3, "2학기", 3, "원"
+                if any(
+                    k in text
+                    for k in ["원", "circle", "지름", "반지름", "중심", "컴퍼스"]
+                ):
+                    default_grade, default_sem, default_unit_num, default_topic = (
+                        3,
+                        "2학기",
+                        3,
+                        "원",
+                    )
                 elif any(k in text for k in ["들이", "무게", "capacity", "weight"]):
-                    default_grade, default_sem, default_unit_num, default_topic = 3, "2학기", 5, "들이와 무게"
+                    default_grade, default_sem, default_unit_num, default_topic = (
+                        3,
+                        "2학기",
+                        5,
+                        "들이와 무게",
+                    )
                 elif any(k in text for k in ["분수", "소수", "fraction"]):
-                    default_grade, default_sem, default_unit_num, default_topic = 3, "1학기", 6, "분수와 소수"
+                    default_grade, default_sem, default_unit_num, default_topic = (
+                        3,
+                        "1학기",
+                        6,
+                        "분수와 소수",
+                    )
                 elif any(k in text for k in ["곱셈", "multiplication"]):
-                    default_grade, default_sem, default_unit_num, default_topic = 3, "1학기", 4, "곱셈"
+                    default_grade, default_sem, default_unit_num, default_topic = (
+                        3,
+                        "1학기",
+                        4,
+                        "곱셈",
+                    )
                 elif any(k in text for k in ["나눗셈", "division"]):
-                    default_grade, default_sem, default_unit_num, default_topic = 3, "1학기", 3, "나눗셈"
-                elif any(k in text for k in ["평면도형", "직각", "선분", "반직선", "직선"]):
-                    default_grade, default_sem, default_unit_num, default_topic = 3, "1학기", 2, "평면도형"
+                    default_grade, default_sem, default_unit_num, default_topic = (
+                        3,
+                        "1학기",
+                        3,
+                        "나눗셈",
+                    )
+                elif any(
+                    k in text for k in ["평면도형", "직각", "선분", "반직선", "직선"]
+                ):
+                    default_grade, default_sem, default_unit_num, default_topic = (
+                        3,
+                        "1학기",
+                        2,
+                        "평면도형",
+                    )
                 else:
-                    default_grade, default_sem, default_unit_num, default_topic = 3, "1학기", 1, "덧셈과 뺄셈"
+                    default_grade, default_sem, default_unit_num, default_topic = (
+                        3,
+                        "1학기",
+                        1,
+                        "덧셈과 뺄셈",
+                    )
 
-                unit_topic = str(metadata.get("unitTopic") or metadata.get("unit") or default_topic)
-                sub_unit = str(metadata.get("subUnit") or metadata.get("subTopic") or metadata.get("topic") or "기본 학습")
+                unit_topic = str(
+                    metadata.get("unitTopic") or metadata.get("unit") or default_topic
+                )
+                sub_unit = str(
+                    metadata.get("subUnit")
+                    or metadata.get("subTopic")
+                    or metadata.get("topic")
+                    or "기본 학습"
+                )
                 catalog = {
                     "id": problem_id,
                     "grade": metadata.get("grade") or default_grade,
@@ -158,22 +219,20 @@ class Command(BaseCommand):
                 updated += int(exists)
                 created += int(not exists)
                 continue
-            _, was_created = Problem.objects.update_or_create(
+            problem, was_created = Problem.objects.update_or_create(
                 problem_id=problem_id,
                 language=language,
                 defaults=defaults,
             )
+            if was_created:
+                ProblemPublication.objects.create(
+                    problem=problem, status=options["new_status"]
+                )
             created += int(was_created)
             updated += int(not was_created)
 
-        if not options["dry_run"] and synced_keys:
-            stale_pks = [
-                pk
-                for pk, pid, lang in Problem.objects.values_list("pk", "problem_id", "language")
-                if (pid, lang) not in synced_keys
-            ]
-            if stale_pks:
-                Problem.objects.filter(pk__in=stale_pks).delete()
+        # Partial imports/renamed sources must not delete learning history.
+        # Retire records explicitly through ProblemPublication instead.
 
         if options["dry_run"]:
             transaction.set_rollback(True)

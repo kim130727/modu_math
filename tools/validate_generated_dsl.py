@@ -488,7 +488,7 @@ def _run_build(
     out_prefix: Path,
     strict: bool,
     emit_solvable: bool,
-    emit_svg: bool,
+    emit_svg: bool = False,
     source_problem_json_path: Path | None = None,
 ) -> None:
     module = _load_module(dsl_path)

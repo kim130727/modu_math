@@ -35,15 +35,23 @@ def answer_matches(answer: dict[str, Any], submitted: Any) -> bool:
     if not isinstance(answer_key, list):
         answer_key = []
     if len(answer_key) > 1:
-        candidates.append(
-            [
-                item.get("value", item.get("id")) if isinstance(item, dict) else item
+        expected = [
+            item.get("value", item.get("id")) if isinstance(item, dict) else item
+            for item in answer_key
+        ]
+        if isinstance(submitted, dict):
+            slot_ids = [
+                item.get("slot_id", item.get("id")) if isinstance(item, dict) else None
                 for item in answer_key
             ]
-        )
+            if all(slot_ids) and set(submitted) == set(slot_ids):
+                submitted = [submitted[key] for key in slot_ids]
+        if isinstance(submitted, str) and "," in submitted:
+            submitted = submitted.split(",")
+        return _normalized(submitted) == _normalized(expected)
     for item in answer_key:
         if isinstance(item, dict):
-            candidates.extend(item[key] for key in ("id", "value") if key in item)
+            candidates.append(item.get("value", item.get("id")))
         else:
             candidates.append(item)
 
@@ -198,6 +206,22 @@ class ProblemTagging(models.Model):
 
 
 class Attempt(models.Model):
+    assignment_item = models.ForeignKey(
+        "learning.AssignmentItem",
+        null=True,
+        blank=True,
+        on_delete=models.PROTECT,
+        related_name="attempts",
+    )
+    recipient = models.ForeignKey(
+        "learning.AssignmentRecipient",
+        null=True,
+        blank=True,
+        on_delete=models.PROTECT,
+        related_name="attempts",
+    )
+    submission_key = models.CharField(max_length=64, null=True, blank=True)
+    assignment_try = models.PositiveSmallIntegerField(null=True, blank=True)
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="attempts"
     )
@@ -215,6 +239,34 @@ class Attempt(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=("recipient", "submission_key"),
+                name="attempt_recipient_key_uniq",
+            ),
+            models.UniqueConstraint(
+                fields=("recipient", "assignment_item", "assignment_try"),
+                name="attempt_assignment_try_uniq",
+            ),
+            models.CheckConstraint(
+                check=(
+                    models.Q(
+                        recipient__isnull=True,
+                        assignment_item__isnull=True,
+                        assignment_try__isnull=True,
+                        submission_key__isnull=True,
+                    )
+                    | models.Q(
+                        recipient__isnull=False,
+                        assignment_item__isnull=False,
+                        assignment_try__isnull=False,
+                        assignment_try__gte=1,
+                        submission_key__isnull=False,
+                    )
+                ),
+                name="attempt_assignment_links",
+            ),
+        ]
         indexes = [
             models.Index(
                 fields=("user", "-created_at"), name="attempt_user_recent_idx"
@@ -229,14 +281,25 @@ class Attempt(models.Model):
     def save(self, *args: Any, **kwargs: Any) -> None:
         is_new = self._state.adding
         if is_new:
-            self.is_correct = self.problem.check_answer(self.submitted_answer)
+            self.is_correct = answer_matches(
+                (
+                    self.assignment_item.answer
+                    if self.assignment_item_id
+                    else self.problem.answer
+                ),
+                self.submitted_answer,
+            )
         with transaction.atomic():
             super().save(*args, **kwargs)
             if is_new:
-                all_concepts = list(
-                    dict.fromkeys(
-                        list(self.problem.effective_concepts)
-                        + list(self.problem.concepts)
+                all_concepts = (
+                    self.assignment_item.concepts
+                    if self.assignment_item_id
+                    else list(
+                        dict.fromkeys(
+                            list(self.problem.effective_concepts)
+                            + list(self.problem.concepts)
+                        )
                     )
                 )
                 for concept in all_concepts:
@@ -307,3 +370,18 @@ class Mastery(models.Model):
             )
         )
         return mastery
+
+
+# Register the additive management models with this existing Django app.
+from .platform_models import (  # noqa: E402,F401
+    Assignment,
+    AssignmentItem,
+    AssignmentProgress,
+    AssignmentRecipient,
+    Classroom,
+    Enrollment,
+    ProblemPublication,
+    ProblemSet,
+    ProblemSetItem,
+    StudentProfile,
+)
