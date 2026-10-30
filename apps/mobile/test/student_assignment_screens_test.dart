@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:modu_math_app/l10n/app_strings.dart';
+import 'package:modu_math_app/models/assignment.dart';
+import 'package:modu_math_app/screens/assignment_solve_screen.dart';
 import 'package:modu_math_app/screens/student_assignments_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'helpers/assignment_fixture.dart';
@@ -92,5 +94,65 @@ void main() {
     expect(find.text('Запит надіслано. Зачекайте на підтвердження вчителя.'),
         findsOneWidget);
     expect(tester.takeException(), isNull);
+  });
+
+  test('extractProblemSteps filters subproblems and suppresses raw booleans and values', () {
+    final item = AssignmentItem.fromJson({
+      'id': 4,
+      'position': 3,
+      'content': {
+        'problem_id': 'P3_1_01_00040_00471_2',
+        'prompt': '크기를 비교하여 ○ 안에 >, =, <를 알맞게 써넣으시오.',
+      },
+      'solution': {
+        'steps': [
+          {
+            'id': 'step.problem_1_calculate_right',
+            'uses': ['comparison.problem_1'],
+            'expr': '248 + 274',
+            'value': 522,
+            'explanation': '첫 번째 문제에서 오른쪽 식 248 + 274를 계산하면 522입니다.'
+          },
+          {
+            'id': 'step.problem_1_compare',
+            'uses': ['comparison.problem_1'],
+            'expr': '532 > 522',
+            'value': true,
+            'explanation': '532는 522보다 크므로 첫 번째 빈칸에는 >가 들어갑니다.'
+          },
+          {
+            'id': 'step.problem_2_calculate_left',
+            'uses': ['comparison.problem_2'],
+            'expr': '346 + 667',
+            'value': 1013,
+            'explanation': '두 번째 문제에서 왼쪽 식 346 + 667을 계산하면 1013입니다.'
+          },
+          {
+            'id': 'step.problem_2_calculate_right',
+            'uses': ['comparison.problem_2'],
+            'expr': '428 + 585',
+            'value': 1013,
+            'explanation': '두 번째 문제에서 오른쪽 식 428 + 585를 계산하면 1013입니다.'
+          },
+          {
+            'id': 'step.problem_2_compare',
+            'uses': ['comparison.problem_2'],
+            'expr': '1013 == 1013',
+            'value': true,
+            'explanation': '왼쪽과 오른쪽의 값이 모두 1013으로 같으므로 두 번째 빈칸에는 =가 들어갑니다.'
+          }
+        ]
+      }
+    });
+
+    final steps = extractProblemSteps(item);
+    expect(steps, hasLength(3));
+    expect(steps[0], '왼쪽 식 346 + 667을 계산하면 1013입니다.');
+    expect(steps[1], '오른쪽 식 428 + 585를 계산하면 1013입니다.');
+    expect(steps[2], '왼쪽과 오른쪽의 값이 모두 1013으로 같으므로 빈칸에는 =가 들어갑니다.');
+    for (final text in steps) {
+      expect(text.contains('true'), isFalse);
+      expect(text.contains('522'), isFalse);
+    }
   });
 }

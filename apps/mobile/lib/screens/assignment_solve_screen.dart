@@ -339,27 +339,134 @@ class _AssignmentSolveScreenState extends State<AssignmentSolveScreen>
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                    Text(strings.t('question', {'number': item.position + 1}),
-                        style: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 10),
-                    Text(item.prompt,
-                        style: const TextStyle(fontSize: 20, height: 1.5)),
-                    const SizedBox(height: 12),
-                    Text(
-                        '${strings.t('myAnswer')}: ${displaySubmittedAnswer(item, strings)}',
-                        style: const TextStyle(fontSize: 19)),
-                    if (assignment.released) ...[
-                      Text(
-                          strings.t(
-                              item.isCorrect == true ? 'correct' : 'incorrect'),
-                          style: TextStyle(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          strings.t('question', {'number': item.position + 1}),
+                          style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: KidsPalette.ink),
+                        ),
+                        if (assignment.released && item.isCorrect != null)
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 4),
+                            decoration: BoxDecoration(
                               color: item.isCorrect == true
-                                  ? KidsPalette.success
-                                  : KidsPalette.error,
-                              fontWeight: FontWeight.bold)),
-                      ..._explanation(context, item)
-                    ],
+                                  ? KidsPalette.successSoft
+                                  : KidsPalette.errorSoft,
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: item.isCorrect == true
+                                    ? KidsPalette.success.withValues(alpha: 0.3)
+                                    : KidsPalette.error.withValues(alpha: 0.3),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  item.isCorrect == true
+                                      ? Icons.check_circle_rounded
+                                      : Icons.cancel_rounded,
+                                  size: 16,
+                                  color: item.isCorrect == true
+                                      ? KidsPalette.success
+                                      : KidsPalette.error,
+                                ),
+                                const SizedBox(width: 4),
+                                Text(
+                                  strings.t(item.isCorrect == true
+                                      ? 'correct'
+                                      : 'incorrect'),
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.bold,
+                                    color: item.isCorrect == true
+                                        ? KidsPalette.success
+                                        : KidsPalette.error,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    Text(item.prompt,
+                        style: const TextStyle(
+                            fontSize: 18, height: 1.5, color: KidsPalette.ink)),
+                    const SizedBox(height: 14),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12),
+                      decoration: BoxDecoration(
+                        color: KidsPalette.canvas,
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(color: KidsPalette.line),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: '${strings.t('myAnswer')}: ',
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      color: KidsPalette.inkSoft,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                TextSpan(
+                                  text: displaySubmittedAnswer(item, strings),
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    color: assignment.released &&
+                                            item.isCorrect != null
+                                        ? (item.isCorrect == true
+                                            ? KidsPalette.success
+                                            : KidsPalette.error)
+                                        : KidsPalette.ink,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          if (assignment.released) ...[
+                            const SizedBox(height: 8),
+                            Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: '${strings.t('expected')}: ',
+                                    style: const TextStyle(
+                                        fontSize: 16,
+                                        color: KidsPalette.inkSoft,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  TextSpan(
+                                    text: displayAssignmentAnswer(
+                                        item.answer, strings),
+                                    style: const TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold,
+                                      color: KidsPalette.primaryDark,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ],
+                      ),
+                    ),
+                    if (assignment.released) ..._explanation(context, item)
                   ])))),
       OutlinedButton(
           onPressed: () => Navigator.of(context).pop(),
@@ -369,21 +476,158 @@ class _AssignmentSolveScreenState extends State<AssignmentSolveScreen>
 
   List<Widget> _explanation(BuildContext context, AssignmentItem item) {
     final strings = AssignmentStrings.of(context);
+    final steps = extractProblemSteps(item);
+    if (steps.isEmpty) return const [];
+
     return [
-      const Divider(height: 28),
-      Text(
-          '${strings.t('expected')}: ${displayAssignmentAnswer(item.answer, strings)}',
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-      ...(item.solution['steps'] as List? ?? []).map((raw) {
-        final step = assignmentMap(raw);
-        return Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Text(
-                '${step['explanation'] ?? step['expr'] ?? step['goal'] ?? ''}${step['value'] == null ? '' : '\n${step['value']}'}',
-                style: const TextStyle(fontSize: 18, height: 1.5)));
-      }),
+      const SizedBox(height: 16),
+      Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: KidsPalette.primarySoft.withValues(alpha: 0.5),
+          borderRadius: BorderRadius.circular(16),
+          border:
+              Border.all(color: KidsPalette.primary.withValues(alpha: 0.2)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                const Icon(Icons.lightbulb_outline_rounded,
+                    size: 20, color: KidsPalette.primary),
+                const SizedBox(width: 6),
+                Text(strings.t('solution'),
+                    style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: KidsPalette.primaryDark)),
+              ],
+            ),
+            const SizedBox(height: 12),
+            ...steps.asMap().entries.map((entry) {
+              final index = entry.key + 1;
+              final text = entry.value;
+              return Padding(
+                padding: EdgeInsets.only(
+                    bottom: entry.key < steps.length - 1 ? 10 : 0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 22,
+                      height: 22,
+                      margin: const EdgeInsets.only(top: 2, right: 10),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: KidsPalette.primary.withValues(alpha: 0.15),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Text(
+                        '$index',
+                        style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: KidsPalette.primaryDark),
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        text,
+                        style: const TextStyle(
+                            fontSize: 16,
+                            height: 1.5,
+                            color: KidsPalette.ink),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
+          ],
+        ),
+      ),
     ];
   }
+}
+
+String cleanStepExplanation(String text, int? subproblemNumber) {
+  var clean = text.trim();
+  if (subproblemNumber != null) {
+    clean = clean
+        .replaceAll('첫 번째 문제에서 ', '')
+        .replaceAll('두 번째 문제에서 ', '')
+        .replaceAll('첫 번째 빈칸에는 ', '빈칸에는 ')
+        .replaceAll('두 번째 빈칸에는 ', '빈칸에는 ');
+  }
+  return clean;
+}
+
+String formatStepText(Map<String, dynamic> step, int? subproblemNumber) {
+  final rawExplanation = step['explanation']?.toString().trim();
+  if (rawExplanation != null && rawExplanation.isNotEmpty) {
+    return cleanStepExplanation(rawExplanation, subproblemNumber);
+  }
+  final expr = step['expr']?.toString().trim();
+  final value = step['value'];
+  if (expr != null && expr.isNotEmpty && value != null && value is! bool) {
+    return '$expr = $value';
+  }
+  final goal = step['goal']?.toString().trim();
+  if (goal != null && goal.isNotEmpty) {
+    return cleanStepExplanation(goal, subproblemNumber);
+  }
+  if (expr != null && expr.isNotEmpty) {
+    return expr;
+  }
+  if (value != null && value is! bool) {
+    return '$value';
+  }
+  return '';
+}
+
+List<String> extractProblemSteps(AssignmentItem item) {
+  final rawSteps = item.solution['steps'] as List? ?? [];
+  if (rawSteps.isEmpty) return const [];
+
+  final problemId = item.problem.summary.id;
+  final match = RegExp(r'_(\d+)$').firstMatch(problemId);
+  final subproblemNumber = match != null ? int.tryParse(match.group(1)!) : null;
+
+  final filteredSteps = <Map<String, dynamic>>[];
+  for (final raw in rawSteps) {
+    final step = assignmentMap(raw);
+    if (subproblemNumber != null) {
+      final stepId = '${step['id'] ?? ''}';
+      final uses = (step['uses'] as List? ?? []).map((u) => '$u').toList();
+      final hasOtherSubproblem = RegExp(r'problem_(\d+)')
+          .allMatches('$stepId $uses')
+          .any((m) {
+        final num = int.tryParse(m.group(1)!);
+        return num != null && num != subproblemNumber;
+      });
+      final hasThisSubproblem = RegExp(r'problem_(\d+)')
+          .allMatches('$stepId $uses')
+          .any((m) {
+        final num = int.tryParse(m.group(1)!);
+        return num == subproblemNumber;
+      });
+      if (hasOtherSubproblem && !hasThisSubproblem) {
+        continue;
+      }
+    }
+    filteredSteps.add(step);
+  }
+
+  final stepsToUse = filteredSteps.isNotEmpty
+      ? filteredSteps
+      : rawSteps.map(assignmentMap).toList();
+
+  return stepsToUse
+      .map((s) => formatStepText(s, subproblemNumber))
+      .where((t) => t.isNotEmpty)
+      .toList();
 }
 
 String displaySubmittedAnswer(AssignmentItem item, AssignmentStrings strings) {
@@ -396,8 +640,20 @@ String displaySubmittedAnswer(AssignmentItem item, AssignmentStrings strings) {
   }
 
   if (item.fields.length == 1) {
-    return label(item.fields.first, item.submittedAnswer);
+    dynamic ans = item.submittedAnswer;
+    if (ans is Map && ans.containsKey(item.fields.first.id)) {
+      ans = ans[item.fields.first.id];
+    } else if (ans is Map && ans.length == 1) {
+      ans = ans.values.first;
+    }
+    return label(item.fields.first, ans);
   }
+
+  if (item.submittedAnswer is Map) {
+    final map = item.submittedAnswer as Map;
+    return item.fields.map((f) => label(f, map[f.id])).join(', ');
+  }
+
   final values =
       item.submittedAnswer is List ? item.submittedAnswer as List : const [];
   return item.fields.indexed
