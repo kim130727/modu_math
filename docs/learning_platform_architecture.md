@@ -182,3 +182,43 @@ Phase 4 (예정): PostgreSQL 동시 제출 검증, 운영용 정적 번들 분�
 **남은 작업:** Phase 3 Flutter 학생 과제 전용 흐름과 Phase 4 배포/동시성 검증. 정답을 포함한 기존 오프라인/편집기 자산을 학생 운영 번들과 분리해야 한다. 이미지가 포함된 과제는 JSON 스냅샷뿐 아니라 이미지 파일의 접근·버전 보존도 확인해야 한다. Vite 빌드에는 기존 Konva 공통 모듈의 500kB 초과 경고가 남아 있으며 기능 검사 실패는 아니다.
 
 브라우저 검증 재실행은 `src/modu_math_web/editor_next`에서 `npm run build` 후 `npm run test:teacher-browser`를 사용한다. 프로젝트 루트의 `.venv` Python과 설치된 Chrome을 사용하며, 다른 환경은 `MODU_TEST_PYTHON`, `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH`를 지정하거나 Playwright Chromium을 설치한다. 사용자 DB/원본 문제와 실행 중인 서버에는 접근하지 않고 테스트 전용 서버를 종료한다.
+## Phase 3 — Flutter 학생 과제 (2026-10-30)
+
+학생 진입점은 **`/student/`** 이다. 로그인·회원가입·초대 코드 가입, 내 과제 목록, 시작/마감·진행률, 문제별 답안, 중간 저장·이어 풀기, 서버 자동 채점, 재시도, 단계별 힌트, 최종 제출·결과·오답 복습을 구현했다. 기존 DSL → semantic → solvable → layout → renderer 파이프라인과 Flutter `RendererJsonCanvas`를 재사용한다. 새 과제 흐름에서는 기존 연습 모드의 로컬 채점이나 오프라인 제출 큐를 사용하지 않는다. 한국어·우크라이나어 및 좁은 화면을 지원한다.
+
+### 변경 파일과 API
+
+- `apps/mobile/lib/main_student.dart`: 편집기·오프라인 문제 저장소를 가져오지 않는 학생 전용 진입점.
+- `models/assignment.dart`, `services/student_assignment_service.dart`, `services/assignment_session.dart`: API 계약, 계정별 저장, 풀이 상태·제출 관리.
+- `screens/student_assignments_screen.dart`, `screens/assignment_solve_screen.dart`, `widgets/assignment_answer_input.dart`, `l10n/assignment_strings.dart`: 목록·풀이·결과, 숫자/텍스트/단일·복수 선택/OX 입력. 기존 앱에도 `/assignments`와 내 과제 진입 버튼을 추가했다.
+- `services/auth_service.dart`, `models/auth_user.dart`, `screens/auth_screen.dart`: 세션 복원·권한 정보·초대 코드 가입. 늦게 도착한 이전 계정의 401 응답이 새 계정을 로그아웃시키지 않도록 보호한다.
+- `learning/services/assignment_content.py`, `assignments.py`, `platform_views.py`, `platform_serializers.py`, `models.py`: 정답을 제외한 입력 계약, 이미지·힌트 스냅샷, 서버 힌트 기록 및 선택형 채점.
+- `POST /api/v1/student/assignments/{id}/hints/`: `item_id`, `level`(1~10)을 받는다. 순차 공개와 같은 단계 재요청을 지원한다. 다른 학생·진행 불가 과제는 차단한다.
+- `editor_next/views.py`, 최상위 `urls.py`: 학생 웹 진입점. 빌드가 없으면 설명을 포함한 503을 반환한다.
+- `apps/mobile/scripts/build_student_web.py`, `tests/tools/test_student_web_build.py`, Flutter 신규 테스트, backend `test_student_assignment_support.py`, `editor_next/scripts/student-browser.test.mjs`: 빌드 격리와 회귀 검증.
+
+### 정답 보호·저장·스냅샷 정책
+
+학생 응답에는 정답 JSON 대신 `input_schema`를 보낸다. 복수 선택 문제는 선택 가능한 전체 보기만 전달하며 정답 선택 개수를 노출하지 않는다. 최종 정답·해설은 기존 서버 공개 정책을 따른다. 클라이언트는 정오 여부를 계산하지 않는다.
+
+초안과 미확정 제출은 서버 주소·사용자·과제·문항별로 분리한다. 로컬 저장과 서버 저장 상태를 구분하고 서버 저장을 지연 처리한다. 제출 전에 난수 `submission_key`와 요청 본문을 보관하므로 응답 유실·앱 재시작 후 동일 요청을 재전송한다. 미확정 제출 중에는 답 변경을 막는다. 서버 응답이 확인되어야 제출 기록을 지운다. 풀이 시간은 클라이언트가 보고하는 활동 시간이며 채점 근거로 사용하지 않는다.
+
+새 배정은 힌트와 PNG/JPEG/WebP/SVG 이미지를 스냅샷에 포함한다. 원본 이미지 변경이 기존 과제에 영향을 주지 않는다. 경로 이탈·외부 URL·과도한 용량·실행 코드 및 외부 참조가 있는 SVG를 거부한다. 힌트 사용 수는 서버가 순차 공개 기록으로 계산하며 클라이언트 값은 신뢰하지 않는다. 이전 과제는 스냅샷의 정답으로 안전한 입력 계약을 보완하지만, 당시 저장하지 않은 힌트나 이미지의 과거 버전을 복원하지는 못한다.
+
+### DB 변경
+
+`0005_student_assignment_support`는 `AssignmentItem.hints` JSON과 `AssignmentProgress.hint_count`(0~10), 범위 제약을 추가한다. 기존 행에는 빈 힌트와 0을 적용하며 기존 Attempt/Mastery 관계는 유지한다. 로컬 SQLite는 `.tmp/learning-platform-before-0005.sqlite3`에 백업한 후 적용했다. 문제 387개와 사용자·Attempt·Mastery·과제 관련 테이블의 행 수가 전후 동일하다. 기록은 `.tmp/learning-platform-migration-check-0005.json`이다. 테스트 계정은 별도의 임시 DB에서만 생성한다.
+
+### 빌드·검증과 남은 Phase 4
+
+저장소 루트에서 `python apps/mobile/scripts/build_student_web.py`를 실행하면 `/student/`용 JS 릴리스 번들이 생성된다. 이 도구는 임시 작업공간에서 `.env`, `generated/` 및 저작 정답 자료를 제외하고 번들에 비공개 JSON/DSL이 없는지 검증한다. 기존 저작용 pubspec과 자산은 수정하지 않는다. 배포 전 빌드와 static 수집·서빙 설정이 필요하다.
+
+- Flutter 분석: 이슈 없음. Flutter 전체 테스트: **232개 통과**.
+- 전체 Python 회귀: **410개 통과 (82.48초)**. 최초 실행은 기존 진단 이력 정렬 테스트 1개가 실패했다. 동일 `created_at`의 순서가 불안정한 문제를 발견해 `-pk` 보조 정렬을 추가했고, 테스트에서 시각을 같게 고정하여 수정 효과를 확인했다.
+- React 타입 검사·Vite 빌드 및 이번에 실행한 Node 회귀 **42개 통과**. 기존 공통 Konva 청크의 500kB 초과 경고는 남아 있다.
+- 학생 JS 웹 릴리스 빌드 및 비공개 자산 검사 통과. 기존 `flutter_tts`의 WASM 사전 검사 경고가 남아 있으며 WASM 빌드는 검증하지 않았다.
+- 실제 Chrome에서 두 학생이 각 10문항을 입력·제출하고 10/10, 8/10 결과를 확인했다. 교사 API에서 정답률 90%, 제출 완료 2명, 미제출 없음이 일치한다. 비공개 문제 원본 요청과 브라우저 JS 오류도 검사한다.
+- 기존 교사 브라우저 통합 테스트 통과. Django system check 및 `makemigrations --check --dry-run` 통과.
+- 이번 변경에서 문자열 보기·복수 선택의 서버 채점을 보완했다. 기존 문제 생성 엔진은 재작성하지 않았다. 신규 화면 구현 중 발견한 비동기 상태 갱신 및 브라우저 입력 동기화 문제도 회귀 테스트로 확인했다.
+
+**남은 작업:** PostgreSQL에서 동시 제출·잠금 검증, Android/iOS 실기기 통합, 운영 static 라우팅과 캐시 정책 검증. 학생 전용 웹 번들은 분리했지만, 기존 Flutter 편집기·오프라인 원본 번들과 네이티브 기본 자산 목록에는 여전히 저작 자료가 있으므로 운영에서 접근 제한 또는 배포 분리가 필요하다. 이 단계의 통과를 전체 운영 보안 검증 완료로 해석하지 않는다. 대규모 목록·결과 조회의 페이지 처리 최적화도 남아 있다.

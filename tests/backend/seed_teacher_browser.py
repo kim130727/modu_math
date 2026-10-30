@@ -130,3 +130,28 @@ for i in range(10):
             json.dumps(content, ensure_ascii=False), encoding="utf-8"
         )
 print("Disposable teacher browser fixtures ready")
+
+if os.environ.get("MODU_BROWSER_STUDENT_ASSIGNMENT") == "1":
+    from modu_math_web.learning.models import (
+        Assignment,
+        AssignmentRecipient,
+        ProblemSet,
+        ProblemSetItem,
+    )
+    from modu_math_web.learning.services.assignments import snapshot_item
+
+    problem_set = ProblemSet.objects.create(owner=teacher, title="학생 브라우저 10문항")
+    assignment = Assignment.objects.create(
+        owner=teacher,
+        problem_set=problem_set,
+        source_version=1,
+        title="학생 브라우저 10문항",
+        max_attempts=1,
+    )
+    for position, problem in enumerate(Problem.objects.order_by("problem_id")):
+        ProblemSetItem.objects.create(
+            problem_set=problem_set, problem=problem, position=position
+        )
+        snapshot_item(assignment, problem, position)
+    for student in StudentProfile.objects.all():
+        AssignmentRecipient.objects.create(assignment=assignment, student=student)

@@ -9,6 +9,7 @@ def test_additive_migration_preserves_legacy_attempts_and_mastery():
     before = [("learning", "0003_problem_catalog_data")]
     after = [("learning", "0004_learning_platform")]
     executor = MigrationExecutor(connection)
+    latest = executor.loader.graph.leaf_nodes()
     executor.migrate(before)
     try:
         apps = executor.loader.project_state(before).apps
@@ -31,4 +32,4 @@ def test_additive_migration_preserves_legacy_attempts_and_mastery():
         stored = apps.get_model("learning", "Mastery").objects.get(pk=mastery.pk)
         assert (stored.attempt_count, stored.correct_count, stored.score) == (1, 1, 1)
     finally:
-        MigrationExecutor(connection).migrate(after)
+        MigrationExecutor(connection).migrate(latest)

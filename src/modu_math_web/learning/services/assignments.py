@@ -1,6 +1,7 @@
 """Snapshot, visibility and transaction rules shared by teacher/student APIs."""
 
 from copy import deepcopy
+from types import SimpleNamespace
 
 from django.db import transaction
 from django.db.models import Q
@@ -15,6 +16,7 @@ from ..models import (
     Attempt,
     StudentProfile,
 )
+from .assignment_content import freeze_images, input_schema
 
 
 def student_problem(problem):
@@ -88,7 +90,9 @@ def student_problem(problem):
         href = element["attributes"].get("href", "")
         if href and not (
             href.startswith("data:image/")
-            or href.lower().split("?")[0].endswith((".png", ".jpg", ".jpeg", ".webp"))
+            or href.lower()
+            .split("?")[0]
+            .endswith((".png", ".jpg", ".jpeg", ".webp", ".svg"))
         ):
             element["attributes"].pop("href", None)
         elements.append(element)
@@ -117,6 +121,7 @@ def student_problem(problem):
             "metadata": {"question": prompt, "choices": choices},
         },
         "layout_data": {},
+        "input_schema": input_schema(problem),
     }
 
 
@@ -125,7 +130,7 @@ def snapshot_item(assignment, problem, position):
         assignment=assignment,
         problem=problem,
         position=position,
-        public_content=student_problem(problem),
+        public_content=freeze_images(student_problem(problem), problem),
         answer=deepcopy(problem.answer),
         solution={
             "steps": deepcopy(problem.solvable_data.get("steps", [])),
@@ -134,6 +139,11 @@ def snapshot_item(assignment, problem, position):
         concepts=list(
             dict.fromkeys(list(problem.effective_concepts) + list(problem.concepts))
         ),
+        hints=[
+            {"title": str(h.get("title") or ""), "text": str(h["text"])}
+            for h in problem.solvable_data.get("student_hints", [])
+            if isinstance(h, dict) and isinstance(h.get("text"), str)
+        ][:10],
     )
 
 
@@ -181,6 +191,7 @@ def recipient_result(recipient, *, teacher=False, detail=False):
     latest = latest_attempts(recipient)
     total = assignment.items.count()
     visible = teacher or released(recipient)
+    now = timezone.now()
     result = {
         "id": assignment.pk,
         "recipient_id": recipient.pk,
@@ -195,6 +206,11 @@ def recipient_result(recipient, *, teacher=False, detail=False):
         "completed": len(latest),
         "progress": len(latest) / total if total else 0,
         "results_released": visible,
+        "server_time": now,
+        "can_work": recipient.submitted_at is None
+        and assignment.status == "active"
+        and (assignment.starts_at is None or now >= assignment.starts_at)
+        and (assignment.due_at is None or now < assignment.due_at),
     }
     if teacher:
         result.update(
@@ -202,23 +218,56 @@ def recipient_result(recipient, *, teacher=False, detail=False):
             username=recipient.student.user.get_username(),
         )
     if visible:
+        hints_by_item = {}
+        for attempt in recipient.attempts.all():
+            hints_by_item[attempt.assignment_item_id] = max(
+                hints_by_item.get(attempt.assignment_item_id, 0), attempt.hint_count
+            )
+        for progress in recipient.progress.all():
+            hints_by_item[progress.item_id] = max(
+                hints_by_item.get(progress.item_id, 0), progress.hint_count
+            )
         correct = sum(a.is_correct for a in latest.values())
         result.update(
             correct=correct,
             accuracy=correct / total if total else 0,
             elapsed_ms=sum(a.elapsed_ms for a in recipient.attempts.all()),
-            hint_count=sum(a.hint_count for a in recipient.attempts.all()),
+            hint_count=sum(hints_by_item.values()),
             wrong_item_ids=[key for key, a in latest.items() if not a.is_correct],
         )
     if detail:
-        drafts = {p.item_id: p.answer for p in recipient.progress.all()}
+        progress = {p.item_id: p for p in recipient.progress.all()}
         result["items"] = []
         for item in assignment.items.all():
             data = {
                 "id": item.pk,
                 "position": item.position,
-                "content": item.public_content,
-                "draft_answer": drafts.get(item.pk),
+                "content": {
+                    **item.public_content,
+                    "input_schema": item.public_content.get("input_schema")
+                    or input_schema(
+                        SimpleNamespace(
+                            answer=item.answer,
+                            semantic_data={
+                                "metadata": {
+                                    "choices": item.public_content.get("choices", [])
+                                }
+                            },
+                        )
+                    ),
+                },
+                "draft_answer": (
+                    progress[item.pk].answer if item.pk in progress else None
+                ),
+                "draft_updated_at": (
+                    progress[item.pk].updated_at if item.pk in progress else None
+                ),
+                "hint_total": len(item.hints),
+                "revealed_hints": (
+                    item.hints[: progress[item.pk].hint_count]
+                    if item.pk in progress
+                    else []
+                ),
                 "attempt_count": recipient.attempts.filter(
                     assignment_item=item
                 ).count(),
@@ -226,6 +275,7 @@ def recipient_result(recipient, *, teacher=False, detail=False):
             attempt = latest.get(item.pk)
             if attempt:
                 data["submitted_answer"] = attempt.submitted_answer
+                data["last_submitted_at"] = attempt.submitted_at
             # Immediate release still requires answering this particular item.
             if visible and (teacher or attempt):
                 data.update(answer=item.answer, solution=item.solution)
@@ -269,6 +319,7 @@ def record_answer(recipient_id, user, data):
     count = recipient.attempts.filter(assignment_item=item).count()
     if count >= assignment.max_attempts:
         raise ValidationError("허용된 시도 횟수를 초과했습니다.")
+    progress = AssignmentProgress.objects.filter(recipient=recipient, item=item).first()
     attempt = Attempt.objects.create(
         user=user,
         problem=item.problem,
@@ -279,7 +330,7 @@ def record_answer(recipient_id, user, data):
         assignment_try=count + 1,
         retry_count=count,
         elapsed_ms=data.get("elapsed_ms", 0),
-        hint_count=data.get("hint_count", 0),
+        hint_count=progress.hint_count if progress else 0,
         submitted_at=timezone.now(),
     )
     AssignmentProgress.objects.update_or_create(
@@ -301,3 +352,23 @@ def submit_assignment(recipient_id, user):
     recipient.submitted_at = timezone.now()
     recipient.save(update_fields=("submitted_at",))
     return recipient
+
+
+@transaction.atomic
+def reveal_hint(recipient_id, user, item_id, level):
+    recipient = AssignmentRecipient.objects.select_for_update().get(
+        pk=recipient_id, student__user=user
+    )
+    require_open(recipient)
+    item = recipient.assignment.items.filter(pk=item_id).first()
+    if item is None or level > len(item.hints):
+        raise ValidationError("요청한 힌트를 찾을 수 없습니다.")
+    progress, _ = AssignmentProgress.objects.get_or_create(
+        recipient=recipient, item=item
+    )
+    if level > progress.hint_count + 1:
+        raise ValidationError("힌트를 순서대로 열어 주세요.")
+    if level > progress.hint_count:
+        progress.hint_count = level
+        progress.save(update_fields=("hint_count", "updated_at"))
+    return {"level": level, "hint": item.hints[level - 1]}

@@ -5,6 +5,7 @@ import '../models/content_models.dart';
 import '../models/learning_progress.dart';
 import '../models/student_profile.dart';
 import '../l10n/app_strings.dart';
+import '../l10n/assignment_strings.dart';
 import '../services/content_repository.dart';
 import '../services/learning_progress_repository.dart';
 import '../services/recommendation_service.dart';
@@ -87,6 +88,14 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
   Widget build(BuildContext context) {
     final strings = AppStrings.of(context);
     return Scaffold(
+      floatingActionButton: widget.authService == null
+          ? null
+          : FloatingActionButton.extended(
+              onPressed: () =>
+                  Navigator.of(context).pushNamed(ModuMathRoutes.assignments),
+              icon: const Icon(Icons.assignment_outlined),
+              label: Text(AssignmentStrings.of(context).t('title')),
+            ),
       body: SafeArea(
         child: FutureBuilder<List<dynamic>>(
           future: Future.wait([
@@ -310,8 +319,8 @@ class _TopNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     final strings = AppStrings.of(context);
     final isAuthenticated = authService?.isAuthenticated ?? false;
-    final username = authService?.currentUser?.username ??
-        strings.t('auth.learner');
+    final username =
+        authService?.currentUser?.username ?? strings.t('auth.learner');
 
     return Container(
       height: 68,
@@ -360,8 +369,11 @@ class _TopNavigation extends StatelessWidget {
                 : strings.t('auth.login'),
             onPressed: onAuth,
             icon: Icon(
-              isAuthenticated ? Icons.account_circle : Icons.account_circle_outlined,
-              color: isAuthenticated ? KidsPalette.primary : KidsPalette.cocoaSoft,
+              isAuthenticated
+                  ? Icons.account_circle
+                  : Icons.account_circle_outlined,
+              color:
+                  isAuthenticated ? KidsPalette.primary : KidsPalette.cocoaSoft,
             ),
           ),
           const SizedBox(width: 44),

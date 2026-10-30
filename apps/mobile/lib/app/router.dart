@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../screens/auth_screen.dart';
+import '../screens/student_assignments_screen.dart';
 import '../screens/curriculum_screen.dart';
 import '../screens/diagnostic_screen.dart';
 import '../screens/home_screen.dart';
@@ -20,6 +21,7 @@ abstract final class ModuMathRoutes {
   static const progress = '/progress';
   static const diagnostics = '/diagnostics';
   static const auth = '/auth';
+  static const assignments = '/assignments';
   static const developerStudio = '/dev/studio';
 }
 
@@ -65,6 +67,8 @@ class ModuMathRouter {
     return MaterialPageRoute<void>(
       settings: settings,
       builder: (context) => switch (settings.name) {
+        ModuMathRoutes.assignments =>
+          StudentAssignmentsScreen(authService: authService ?? AuthService()),
         ModuMathRoutes.home => HomeScreen(
             repository: contentRepository,
             progressRepository: progressRepository,
@@ -97,20 +101,20 @@ class ModuMathRouter {
             diagnosticsService: diagnosticsService,
             contentRepository: contentRepository,
           ),
-        ModuMathRoutes.diagnostics => (authService != null &&
-                diagnosticsService != null)
-            ? DiagnosticScreen(
-                authService: authService!,
-                diagnosticsService: diagnosticsService!,
-                contentRepository: contentRepository,
-                progressRepository: progressRepository,
-              )
-            : ProgressScreen(
-                progressRepository: progressRepository,
-                authService: authService,
-                diagnosticsService: diagnosticsService,
-                contentRepository: contentRepository,
-              ),
+        ModuMathRoutes.diagnostics =>
+          (authService != null && diagnosticsService != null)
+              ? DiagnosticScreen(
+                  authService: authService!,
+                  diagnosticsService: diagnosticsService!,
+                  contentRepository: contentRepository,
+                  progressRepository: progressRepository,
+                )
+              : ProgressScreen(
+                  progressRepository: progressRepository,
+                  authService: authService,
+                  diagnosticsService: diagnosticsService,
+                  contentRepository: contentRepository,
+                ),
         ModuMathRoutes.auth => authService != null
             ? AuthScreen(authService: authService!)
             : HomeScreen(

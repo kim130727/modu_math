@@ -34,7 +34,9 @@ def answer_matches(answer: dict[str, Any], submitted: Any) -> bool:
     answer_key = answer.get("answer_key", [])
     if not isinstance(answer_key, list):
         answer_key = []
-    if len(answer_key) > 1:
+    if len(answer_key) > 1 or (
+        answer_key and answer.get("target", {}).get("type") == "multiple_choice_set"
+    ):
         expected = [
             item.get("value", item.get("id")) if isinstance(item, dict) else item
             for item in answer_key
@@ -48,6 +50,30 @@ def answer_matches(answer: dict[str, Any], submitted: Any) -> bool:
                 submitted = [submitted[key] for key in slot_ids]
         if isinstance(submitted, str) and "," in submitted:
             submitted = submitted.split(",")
+
+        def choice_value(value, expected_value=False):
+            choices = answer.get("choices") or []
+            for index, choice in enumerate(choices):
+                if (isinstance(choice, dict) and value == choice.get("id")) or (
+                    not isinstance(value, bool)
+                    and (not expected_value or isinstance(value, int))
+                    and str(value) == str(index + 1)
+                ):
+                    return (
+                        choice.get("value", choice.get("text", choice.get("label")))
+                        if isinstance(choice, dict)
+                        else choice
+                    )
+            return value
+
+        expected = [choice_value(value, expected_value=True) for value in expected]
+        if not isinstance(submitted, list):
+            return False
+        submitted = [choice_value(value) for value in submitted]
+        if answer.get("target", {}).get("type") == "multiple_choice_set":
+            return len(submitted) == len(set(map(str, submitted))) and sorted(
+                map(str, _normalized(submitted))
+            ) == sorted(map(str, _normalized(expected)))
         return _normalized(submitted) == _normalized(expected)
     for item in answer_key:
         if isinstance(item, dict):
@@ -96,6 +122,10 @@ def answer_matches(answer: dict[str, Any], submitted: Any) -> bool:
                     if key in choice
                     for candidate in candidates
                 )
+            return any(
+                _normalized(choice) == _normalized(candidate)
+                for candidate in candidates
+            )
     return False
 
 

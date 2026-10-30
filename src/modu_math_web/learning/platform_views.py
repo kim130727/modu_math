@@ -28,6 +28,7 @@ from .platform_serializers import (
     AssignmentStatusSerializer,
     ClassroomSerializer,
     DraftSerializer,
+    HintRequestSerializer,
     EnrollmentRequestSerializer,
     EnrollmentSerializer,
     JoinSerializer,
@@ -42,6 +43,7 @@ from .services.assignments import (
     record_answer,
     released,
     require_open,
+    reveal_hint,
     snapshot_item,
     submit_assignment,
 )
@@ -404,6 +406,7 @@ class AssignmentViewSet(viewsets.GenericViewSet):
                 answer=source.answer,
                 solution=source.solution,
                 concepts=source.concepts,
+                hints=source.hints,
             )
         AssignmentRecipient.objects.create(assignment=review, student=recipient.student)
         return Response(self.summary(review), status=201)
@@ -437,6 +440,14 @@ class StudentAssignmentViewSet(viewsets.GenericViewSet):
         ):
             return Response(recipient_result(recipient))
         return Response(recipient_result(recipient, detail=True))
+
+    @action(detail=True, methods=["post"])
+    def hints(self, request, pk=None):
+        recipient = self.get_object()
+        data = validated(HintRequestSerializer, request.data)
+        return Response(
+            reveal_hint(recipient.pk, request.user, data["item_id"], data["level"])
+        )
 
     @action(detail=True, methods=["post"])
     def answers(self, request, pk=None):

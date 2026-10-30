@@ -269,7 +269,7 @@ class DiagnosticService:
         attempts = (
             visible_attempts(Attempt.objects.filter(user=self.user))
             .select_related("problem", "problem__tagging", "assignment_item")
-            .order_by("-created_at")[:limit]
+            .order_by("-created_at", "-pk")[:limit]
         )
 
         history_list = []

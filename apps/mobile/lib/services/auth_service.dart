@@ -22,6 +22,7 @@ class AuthService {
 
   String? _token;
   AuthUser? _currentUser;
+  Future<void>? _restoring;
   final ValueNotifier<AuthUser?> userNotifier = ValueNotifier<AuthUser?>(null);
 
   String? get token => _token;
@@ -38,7 +39,9 @@ class AuthService {
     return 'http://127.0.0.1:8000';
   }
 
-  Future<void> restoreSession() async {
+  Future<void> restoreSession() => _restoring ??= _restoreSession();
+
+  Future<void> _restoreSession() async {
     final prefs = await SharedPreferences.getInstance();
     _token = prefs.getString(tokenStorageKey);
     final userJson = prefs.getString(userStorageKey);
@@ -57,6 +60,7 @@ class AuthService {
     required String username,
     required String password,
   }) async {
+    await restoreSession();
     final uri = Uri.parse('$effectiveBaseUrl/api/v1/auth/login/');
     try {
       final response = await _client.post(
@@ -97,7 +101,9 @@ class AuthService {
     required String username,
     required String email,
     required String password,
+    String? inviteCode,
   }) async {
+    await restoreSession();
     final uri = Uri.parse('$effectiveBaseUrl/api/v1/auth/register/');
     try {
       final response = await _client.post(
@@ -107,6 +113,8 @@ class AuthService {
           'username': username.trim(),
           'email': email.trim(),
           'password': password,
+          if (inviteCode != null && inviteCode.trim().isNotEmpty)
+            'invite_code': inviteCode.trim(),
         }),
       );
 
@@ -139,13 +147,27 @@ class AuthService {
   }
 
   Future<void> logout() async {
+    final headers = authHeaders;
+    final wasAuthenticated = isAuthenticated;
+    await clearSession();
+    if (wasAuthenticated) {
+      try {
+        await _client
+            .post(Uri.parse('$effectiveBaseUrl/api/v1/auth/logout/'),
+                headers: headers)
+            .timeout(const Duration(seconds: 3));
+      } catch (_) {/* Local sign-out remains available offline. */}
+    }
+  }
+
+  Future<void> clearSession() async {
     _token = null;
     _currentUser = null;
-    userNotifier.value = null;
 
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(tokenStorageKey);
     await prefs.remove(userStorageKey);
+    userNotifier.value = null;
   }
 
   Map<String, String> get authHeaders {

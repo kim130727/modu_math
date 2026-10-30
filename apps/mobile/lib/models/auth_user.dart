@@ -4,12 +4,14 @@ class AuthUser {
     required this.username,
     required this.email,
     this.isStaff = false,
+    this.role = 'student',
   });
 
   final int id;
   final String username;
   final String email;
   final bool isStaff;
+  final String role;
 
   factory AuthUser.fromJson(Map<String, dynamic> json) {
     return AuthUser(
@@ -17,6 +19,8 @@ class AuthUser {
       username: json['username'] as String? ?? '',
       email: json['email'] as String? ?? '',
       isStaff: json['is_staff'] as bool? ?? false,
+      role: json['role'] as String? ??
+          (json['is_staff'] == true ? 'admin' : 'student'),
     );
   }
 
@@ -25,5 +29,6 @@ class AuthUser {
         'username': username,
         'email': email,
         'is_staff': isStaff,
+        'role': role,
       };
 }

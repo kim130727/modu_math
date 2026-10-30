@@ -181,6 +181,7 @@ class AssignmentItem(models.Model):
     public_content = models.JSONField(default=dict)
     answer = models.JSONField(default=dict)
     solution = models.JSONField(default=dict)
+    hints = models.JSONField(default=list)
     concepts = models.JSONField(default=list)
 
     class Meta:
@@ -216,6 +217,9 @@ class AssignmentRecipient(models.Model):
 
 
 class AssignmentProgress(models.Model):
+    hint_count = models.PositiveSmallIntegerField(
+        default=0, validators=[MaxValueValidator(10)]
+    )
     recipient = models.ForeignKey(
         AssignmentRecipient, on_delete=models.PROTECT, related_name="progress"
     )
@@ -225,7 +229,10 @@ class AssignmentProgress(models.Model):
 
     class Meta:
         constraints = [
+            models.CheckConstraint(
+                check=models.Q(hint_count__lte=10), name="assignment_hint_count_range"
+            ),
             models.UniqueConstraint(
                 fields=("recipient", "item"), name="assignment_progress_item_uniq"
-            )
+            ),
         ]

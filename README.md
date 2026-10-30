@@ -215,3 +215,16 @@ powershell -ExecutionPolicy Bypass -File scripts\modu_monorepo.ps1 -Task check
 - [수채화 아바타 사양서](file:///c:/projects/modu_math/docs/WATERCOLOR_AVATARS.md)
 - [Web Editor Konva 안내](file:///c:/projects/modu_math/src/modu_math_web/editor_next/README.md)
 - [Flutter 백엔드 연동 문서](file:///c:/projects/modu_math/apps/mobile/backend/README.md)
+## 학생 과제 웹 실행
+
+저장소 루트에서 학생 전용 번들을 빌드한 후 Django를 실행합니다.
+
+```bash
+python apps/mobile/scripts/build_student_web.py
+python manage.py migrate
+python manage.py runserver
+```
+
+교사는 `/teacher/`, 학생은 `/student/`에서 로그인합니다. 학생 번들은 정답이 포함된 저작용 generated 자산과 `.env`를 제외합니다. 운영 배포에서는 기존 편집기·오프라인 자산의 접근 정책도 별도로 설정해야 합니다.
+
+Flutter 개발 실행은 `apps/mobile`에서 `flutter run --target lib/main_student.dart --dart-define=BACKEND_API_BASE_URL=http://127.0.0.1:8000`을 사용합니다. 기기에서는 접근 가능한 서버 주소로 바꿉니다. 실제 브라우저 통합 검증은 `src/modu_math_web/editor_next`에서 `npm run test:student-browser`입니다. 상세 구현과 남은 검증은 [학습 플랫폼 구조 문서](docs/learning_platform_architecture.md)에 기록합니다.

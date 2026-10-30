@@ -35,6 +35,7 @@ class ModuMathApp extends StatefulWidget {
 
 class _ModuMathAppState extends State<ModuMathApp> {
   static const _editorMode = bool.fromEnvironment('EDITOR_MODE');
+  static const _assignmentMode = bool.fromEnvironment('ASSIGNMENT_MODE');
   late final ContentRepository _contentRepository;
   late final LearningProgressRepository _progressRepository;
   late final AuthService _authService;
@@ -55,7 +56,7 @@ class _ModuMathAppState extends State<ModuMathApp> {
         widget.progressRepository ?? PersistentProgressRepository();
     _backendAttemptService = widget.backendAttemptService ??
         BackendAttemptService(authService: _authService);
-    _backendAttemptService.syncOfflineQueue();
+    if (!_assignmentMode) _backendAttemptService.syncOfflineQueue();
     _diagnosticsService = widget.diagnosticsService ??
         DiagnosticsClientService(authService: _authService);
 
@@ -91,8 +92,11 @@ class _ModuMathAppState extends State<ModuMathApp> {
           GlobalWidgetsLocalizations.delegate,
         ],
         supportedLocales: AppStrings.supportedLocales,
-        initialRoute:
-            _editorMode ? ModuMathRoutes.developerStudio : ModuMathRoutes.home,
+        initialRoute: _editorMode
+            ? ModuMathRoutes.developerStudio
+            : _assignmentMode
+                ? ModuMathRoutes.assignments
+                : ModuMathRoutes.home,
         onGenerateRoute: _router.onGenerateRoute,
         builder: (context, child) {
           return Stack(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../l10n/app_strings.dart';
+import '../l10n/assignment_strings.dart';
 import '../services/auth_service.dart';
 import '../theme/app_theme.dart';
 
@@ -29,6 +30,7 @@ class _AuthScreenState extends State<AuthScreen>
   final _registerFormKey = GlobalKey<FormState>();
   final _registerUsernameController = TextEditingController();
   final _registerEmailController = TextEditingController();
+  final _inviteController = TextEditingController();
   final _registerPasswordController = TextEditingController();
   final _registerConfirmPasswordController = TextEditingController();
 
@@ -49,6 +51,7 @@ class _AuthScreenState extends State<AuthScreen>
     _loginPasswordController.dispose();
     _registerUsernameController.dispose();
     _registerEmailController.dispose();
+    _inviteController.dispose();
     _registerPasswordController.dispose();
     _registerConfirmPasswordController.dispose();
     super.dispose();
@@ -101,6 +104,7 @@ class _AuthScreenState extends State<AuthScreen>
     final result = await widget.authService.register(
       username: _registerUsernameController.text.trim(),
       email: _registerEmailController.text.trim(),
+      inviteCode: _inviteController.text,
       password: _registerPasswordController.text,
     );
 
@@ -314,6 +318,14 @@ class _AuthScreenState extends State<AuthScreen>
               }
               return null;
             },
+          ),
+          const SizedBox(height: 12),
+          TextFormField(
+            controller: _inviteController,
+            decoration: InputDecoration(
+                labelText: AssignmentStrings.of(context).t('invite'),
+                prefixIcon: const Icon(Icons.group_add_outlined),
+                border: const OutlineInputBorder()),
           ),
           const SizedBox(height: 12),
           TextFormField(

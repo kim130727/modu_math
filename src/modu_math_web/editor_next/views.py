@@ -6,7 +6,7 @@ from pathlib import Path
 
 from django.conf import settings
 
-from django.http import HttpRequest
+from django.http import HttpRequest, FileResponse, HttpResponse
 from django.shortcuts import render
 from django.views.decorators.http import require_GET
 
@@ -16,6 +16,7 @@ _ASSET_ROOT = (
 _FLUTTER_ASSET_ROOT = (
     Path(__file__).resolve().parent / "static" / "editor_next" / "flutter_editor"
 )
+_STUDENT_ASSET_ROOT = _FLUTTER_ASSET_ROOT.with_name("student_app")
 
 
 @lru_cache(maxsize=8)
@@ -42,6 +43,16 @@ def flutter_editor_asset_version() -> str:
         return "missing"
     stat = bundle.stat()
     return _fingerprint_asset(str(bundle), stat.st_mtime_ns, stat.st_size)
+
+
+@require_GET
+def student_workspace(request: HttpRequest):
+    index = _STUDENT_ASSET_ROOT / "index.html"
+    if not index.is_file():
+        return HttpResponse("학생 학습 화면을 준비하고 있습니다.", status=503)
+    response = FileResponse(index.open("rb"), content_type="text/html; charset=utf-8")
+    response["Cache-Control"] = "no-cache"
+    return response
 
 
 @require_GET

@@ -138,6 +138,11 @@ class DraftSerializer(serializers.Serializer):
     answer = serializers.JSONField(allow_null=True)
 
 
+class HintRequestSerializer(serializers.Serializer):
+    item_id = serializers.IntegerField(min_value=1)
+    level = serializers.IntegerField(min_value=1, max_value=10)
+
+
 class EnrollmentRequestSerializer(serializers.Serializer):
     student_id = serializers.IntegerField(min_value=1)
 

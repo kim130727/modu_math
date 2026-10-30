@@ -216,6 +216,9 @@ class TaggingAndDiagnosticsTests(TestCase):
         self.assertGreaterEqual(calc_skill["attempt_count"], 1)
 
         # History API
+        # Timestamp ties must still return the most recently inserted attempt.
+        timestamp = Attempt.objects.filter(user=self.user).first().created_at
+        Attempt.objects.filter(user=self.user).update(created_at=timestamp)
         res_history = self.client.get("/api/v1/diagnostics/history/")
         self.assertEqual(res_history.status_code, 200)
         self.assertEqual(len(res_history.data), 3)
