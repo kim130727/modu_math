@@ -47,21 +47,29 @@
         "font_size": 18,
         "line_height": 1.2,
         "fill": "#111111",
-        "semantic_role": "instruction"
+        "semantic_role": "instruction",
+        "semantic_role_source": "explicit",
+        "font_family": "\"Noto Sans KR\", sans-serif"
       }
     },
     {
       "id": "slot.addend_2_1",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "두 번째 덧셈의 위 수 479",
       "content": {
         "text": "4 7 9",
         "style_role": "body",
-        "x": 171.738,
-        "y": 67.918,
+        "x": 123.738,
+        "y": 46.918,
         "font_size": 21,
-        "anchor": "end",
-        "fill": "#111111"
+        "fill": "#111111",
+        "width": 48,
+        "height": 26,
+        "align": "right",
+        "valign": "middle",
+        "line_height": 1.2,
+        "kind": "text_box",
+        "font_family": "\"Noto Sans KR\", sans-serif"
       }
     },
     {
@@ -75,21 +83,28 @@
         "y": 95.918,
         "font_size": 21,
         "anchor": "middle",
-        "fill": "#111111"
+        "fill": "#111111",
+        "font_family": "\"Noto Sans KR\", sans-serif"
       }
     },
     {
       "id": "slot.addend_2_2",
-      "kind": "text",
+      "kind": "text_box",
       "prompt": "두 번째 덧셈의 아래 수 837",
       "content": {
         "text": "8 3 7",
         "style_role": "body",
-        "x": 171.738,
-        "y": 95.918,
+        "x": 123.738,
+        "y": 74.918,
         "font_size": 21,
-        "anchor": "end",
-        "fill": "#111111"
+        "fill": "#111111",
+        "width": 48,
+        "height": 26,
+        "align": "right",
+        "valign": "middle",
+        "line_height": 1.2,
+        "kind": "text_box",
+        "font_family": "\"Noto Sans KR\", sans-serif"
       }
     },
     {
@@ -112,8 +127,8 @@
       "content": {
         "x": 112.824,
         "y": 120.456,
-        "width": 68.042,
-        "height": 34.212,
+        "width": 68.04,
+        "height": 31.01,
         "stroke": "#111827",
         "stroke_width": 1.2,
         "fill": "#ffffff",
@@ -138,8 +153,8 @@
           "vertical_align": "middle",
           "padding": 6,
           "text_color": "#222222",
-          "width": 68.042,
-          "height": 34.212
+          "width": 68.04,
+          "height": 31.01
         }
       }
     }

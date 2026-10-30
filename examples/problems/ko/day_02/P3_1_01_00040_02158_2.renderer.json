@@ -2,7 +2,7 @@
   "problem_id": "P3_1_01_00040_02158",
   "view_box": {
     "width": 300.0,
-    "height": 170.668,
+    "height": 170.0,
     "background": "#FFFFFF"
   },
   "elements": [
@@ -13,8 +13,8 @@
         "x": 20.0,
         "y": 6.0,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 18,
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0,
         "width": 146.164,
         "height": 52.0,
         "max_width": 146.164,
@@ -26,7 +26,8 @@
         "data-text-align": "left",
         "data-vertical-align": "top",
         "data-line-height": 1.2,
-        "data-semantic-role": "instruction"
+        "data-semantic-role": "instruction",
+        "data-semantic-role-source": "explicit"
       },
       "source_ref": "slot.instruction",
       "refs": {
@@ -40,8 +41,8 @@
       "attributes": {
         "x": 112.824,
         "y": 120.456,
-        "width": 68.042,
-        "height": 34.212,
+        "width": 68.04,
+        "height": 31.01,
         "fill": "#ffffff",
         "stroke": "#111827",
         "stroke-width": 1.2
@@ -71,8 +72,8 @@
         "vertical_align": "middle",
         "padding": 6,
         "text_color": "#222222",
-        "width": 68.042,
-        "height": 34.212
+        "width": 68.04,
+        "height": 31.01
       }
     },
     {
@@ -93,14 +94,24 @@
     },
     {
       "id": "slot.addend_2_1.text",
-      "type": "text",
+      "type": "text_box",
       "attributes": {
-        "x": 171.738,
-        "y": 67.918,
+        "x": 123.738,
+        "y": 46.918,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 21,
-        "text-anchor": "end"
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0,
+        "width": 48.0,
+        "height": 26.0,
+        "max_width": 48.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 123.738,
+        "data-box-y": 46.918,
+        "data-box-width": 48.0,
+        "data-box-height": 26.0,
+        "data-text-align": "right",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.2
       },
       "source_ref": "slot.addend_2_1",
       "refs": {
@@ -115,8 +126,8 @@
         "x": 108.738,
         "y": 95.918,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 21,
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0,
         "text-anchor": "middle"
       },
       "source_ref": "slot.plus_2",
@@ -127,14 +138,24 @@
     },
     {
       "id": "slot.addend_2_2.text",
-      "type": "text",
+      "type": "text_box",
       "attributes": {
-        "x": 171.738,
-        "y": 95.918,
+        "x": 123.738,
+        "y": 74.918,
         "fill": "#111111",
-        "font-family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
-        "font-size": 21,
-        "text-anchor": "end"
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0,
+        "width": 48.0,
+        "height": 26.0,
+        "max_width": 48.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 123.738,
+        "data-box-y": 74.918,
+        "data-box-width": 48.0,
+        "data-box-height": 26.0,
+        "data-text-align": "right",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.2
       },
       "source_ref": "slot.addend_2_2",
       "refs": {
