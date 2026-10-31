@@ -70,6 +70,9 @@ type ToolName =
   | "build";
 
 interface KonvaToolbarProps {
+  busy?: boolean;
+  onOpenAnswers: () => void;
+  onAddAnswerBlank: () => void;
   hasSelection: boolean;
   hasAnswerSlotCandidate: boolean;
   answerReviewMode: boolean;
@@ -222,6 +225,7 @@ function IconButton({ label, icon, disabled, primary, onClick }: IconButtonProps
       disabled={disabled}
     >
       <ToolbarIcon name={icon} />
+      <span>{label}</span>
     </button>
   );
 }
@@ -407,6 +411,7 @@ function ToolbarIcon({ name }: { name: ToolName }) {
 }
 
 export function KonvaToolbar(props: KonvaToolbarProps) {
+  const [toolGroup, setToolGroup] = useState<"basic" | "math" | "manage">("basic");
   const [isShapeMenuOpen, setShapeMenuOpen] = useState(false);
   const shapeMenuRef = useRef<HTMLDivElement | null>(null);
 
@@ -417,25 +422,54 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
       setShapeMenuOpen(false);
     };
     window.addEventListener("pointerdown", onPointerDown);
-    return () => window.removeEventListener("pointerdown", onPointerDown);
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setShapeMenuOpen(false);
+        shapeMenuRef.current?.querySelector("button")?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("keydown", onKeyDown);
+    };
   }, [isShapeMenuOpen]);
 
   return (
-    <div className="mvp-toolbar">
+    <div className="mvp-toolbar editor-toolbox">
+      <div className="editor-action-row">
       <button type="button" className="new-file-button" title="새파일" aria-label="새파일" onClick={props.onNewFile}>
         <ToolbarIcon name="newFile" />
         <span>새파일</span>
       </button>
+      <div className="answer-review-toggle" role="group" aria-label="정답 표시 모드">
+        <button type="button" className={!props.answerReviewMode ? "active" : ""} aria-pressed={!props.answerReviewMode} onClick={() => props.onAnswerReviewModeChange(false)}>문제 편집</button>
+        <button type="button" className={props.answerReviewMode ? "active review" : ""} aria-pressed={props.answerReviewMode} onClick={() => props.onAnswerReviewModeChange(true)}>정답 검수</button>
+      </div>
+      <button type="button" className="editor-answer-setup" onClick={props.onOpenAnswers}><ToolbarIcon name="answerSlot" /><span>정답 설정</span></button>
+      <span className="toolbar-spacer" />
+      <IconButton label="저장" icon="save" onClick={props.onSave} disabled={props.busy} />
+      <IconButton label="저장하고 화면 반영" icon="saveBuild" onClick={props.onSaveAndBuild} disabled={props.busy} primary />
+      </div>
+      <div className="editor-insert-row">
+      <div className="editor-tool-groups" role="group" aria-label="도구 분류">
+        {([{ id: "basic", label: "기본 요소" }, { id: "math", label: "수학 교구" }, { id: "manage", label: "정답 및 파일" }] as const).map(group => (
+          <button type="button" key={group.id} aria-pressed={toolGroup === group.id} aria-controls="editor-tool-content" onClick={() => { setToolGroup(group.id); setShapeMenuOpen(false); }}>{group.label}</button>
+        ))}
+      </div>
+      <div className="editor-tool-content" id="editor-tool-content" role="group" aria-label={toolGroup === "basic" ? "기본 요소 도구" : toolGroup === "math" ? "수학 교구 도구" : "정답 및 파일 도구"}>
+      {toolGroup === "basic" ? <>
       <div className="shape-menu-wrap" ref={shapeMenuRef}>
         <button
           type="button"
           className={isShapeMenuOpen ? "icon-button shape-menu-trigger active" : "icon-button shape-menu-trigger"}
-          title="Insert shape"
-          aria-label="Insert shape"
+          title="도형 추가"
+          aria-label="도형 추가"
           aria-expanded={isShapeMenuOpen}
           onClick={() => setShapeMenuOpen((open) => !open)}
         >
           <ToolbarIcon name="shapes" />
+          <span>도형 ▾</span>
         </button>
         {isShapeMenuOpen ? (
           <div className="shape-palette" role="menu" aria-label="Insert shape">
@@ -464,48 +498,35 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
           </div>
         ) : null}
       </div>
-      <IconButton label="Math expression" icon="math" onClick={props.onAddMath} />
-      <IconButton label="Proper fraction" icon="properFraction" onClick={props.onAddProperFraction} />
-      <IconButton label="Mixed fraction" icon="mixedFraction" onClick={props.onAddMixedFraction} />
-      <IconButton label="Text" icon="text" onClick={props.onAddText} />
-      <IconButton label="어린이 캐릭터" icon="avatar" onClick={props.onOpenAvatarMaker} />
-      <IconButton label="Image" icon="image" onClick={props.onAddImage} />
-      <IconButton label="Table" icon="table" onClick={props.onAddTable} />
-      <IconButton label="Graph Paper" icon="graphPaper" onClick={props.onAddGraphPaper} />
-      <IconButton label="Base-ten thousand cube" icon="baseTen1000" onClick={props.onAddBaseTenThousand} />
-      <IconButton label="Base-ten hundred" icon="baseTen100" onClick={props.onAddBaseTenHundred} />
-      <IconButton label="Base-ten ten" icon="baseTen10" onClick={props.onAddBaseTenTen} />
-      <IconButton label="Base-ten one" icon="baseTen1" onClick={props.onAddBaseTenOne} />
+      <IconButton label="글자" icon="text" onClick={props.onAddText} />
+      <IconButton label="수식" icon="math" onClick={props.onAddMath} />
+      <IconButton label="이미지" icon="image" onClick={props.onAddImage} />
+      <IconButton label="표" icon="table" onClick={props.onAddTable} />
+      <IconButton label="캐릭터" icon="avatar" onClick={props.onOpenAvatarMaker} />
+      </> : null}
+      {toolGroup === "math" ? <>
+      <IconButton label="진분수" icon="properFraction" onClick={props.onAddProperFraction} />
+      <IconButton label="대분수" icon="mixedFraction" onClick={props.onAddMixedFraction} />
+      <IconButton label="모눈종이" icon="graphPaper" onClick={props.onAddGraphPaper} />
+      <IconButton label="천 모형" icon="baseTen1000" onClick={props.onAddBaseTenThousand} />
+      <IconButton label="백 모형" icon="baseTen100" onClick={props.onAddBaseTenHundred} />
+      <IconButton label="십 모형" icon="baseTen10" onClick={props.onAddBaseTenTen} />
+      <IconButton label="일 모형" icon="baseTen1" onClick={props.onAddBaseTenOne} />
+      </> : null}
+      {toolGroup === "manage" ? <>
+      <IconButton label="정답 빈칸 추가" icon="answerSlot" onClick={props.onAddAnswerBlank} />
       <IconButton
-        label="Mark selected as AnswerSlot"
+        label="선택 요소를 정답칸으로"
         icon="answerSlot"
         onClick={props.onMarkSelectedAsAnswerSlot}
         disabled={!props.hasAnswerSlotCandidate}
       />
-      <IconButton label="Delete selected" icon="delete" onClick={props.onDeleteSelected} disabled={!props.hasSelection} />
-      <span className="toolbar-spacer" />
-      <div className="answer-review-toggle" role="group" aria-label="정답 표시 모드">
-        <button
-          type="button"
-          className={!props.answerReviewMode ? "active" : ""}
-          aria-pressed={!props.answerReviewMode}
-          onClick={() => props.onAnswerReviewModeChange(false)}
-        >
-          캔버스 편집
-        </button>
-        <button
-          type="button"
-          className={props.answerReviewMode ? "active review" : ""}
-          aria-pressed={props.answerReviewMode}
-          onClick={() => props.onAnswerReviewModeChange(true)}
-        >
-          Flutter 화면 · 정답 검수
-        </button>
+      <IconButton label="JSON 새로고침" icon="refresh" onClick={props.onRefreshJson} />
+      <IconButton label="화면 다시 생성" icon="build" onClick={props.onBuild} disabled={props.busy} />
+      </> : null}
       </div>
-      <IconButton label="Refresh JSON" icon="refresh" onClick={props.onRefreshJson} />
-      <IconButton label="Save DSL" icon="save" onClick={props.onSave} primary />
-      <IconButton label="Save and Build" icon="saveBuild" onClick={props.onSaveAndBuild} primary />
-      <IconButton label="Build" icon="build" onClick={props.onBuild} />
+      <IconButton label="선택 삭제" icon="delete" onClick={props.onDeleteSelected} disabled={!props.hasSelection} />
+      </div>
     </div>
   );
 }

@@ -49,3 +49,8 @@ test('blank-slot answers can populate review settings', () => {
   assert.equal(settings.mode,'canvas_slots');
   assert.deepEqual(settings.answers,[{value:'42',ref:'slot.answer'}]);
 });
+
+test('answer units survive review hydration', () => {
+  const settings = reviewSettings(null, [{value:'12',ref:'slot.length',unit:'cm'}], [], 'canvas_slots');
+  assert.deepEqual(settings.answers, [{value:'12',ref:'slot.length',unit:'cm'}]);
+});

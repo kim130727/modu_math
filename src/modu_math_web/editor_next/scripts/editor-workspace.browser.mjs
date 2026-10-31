@@ -1,0 +1,100 @@
+import assert from "node:assert/strict";
+import { chromium } from "playwright";
+import { existsSync, mkdirSync } from "node:fs";
+import { resolve } from "node:path";
+
+// Run against a local Vite server. API calls are isolated from real problem files.
+const base = process.env.MODU_EDITOR_TEST_URL ?? "http://127.0.0.1:5174/static/editor_next/konva_assets/";
+const chrome = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ?? "C:/Program Files/Google/Chrome/Application/chrome.exe";
+const browser = await chromium.launch(existsSync(chrome) ? { executablePath: chrome } : {});
+const output = resolve("../../../.tmp/editor-workspace");
+mkdirSync(output, { recursive: true });
+try {
+  const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+  const errors = [];
+  page.on("pageerror", error => { errors.push(error.message); console.error(error.message); });
+  page.setDefaultTimeout(10000);
+  await page.route("**/api/editor/**", route => route.fulfill({ json: { problems: [] } }));
+  await page.goto(base, { waitUntil: "domcontentloaded" });
+  await page.getByText("문제 스튜디오", { exact: true }).waitFor();
+  const button = name => page.getByRole("button", { name, exact: true });
+  for (const name of ["새파일", "저장", "저장하고 화면 반영", "문제 편집", "정답 검수", "글자", "수식", "이미지", "표", "캐릭터", "도형 추가"]) {
+    assert.ok(await button(name).isVisible(), name);
+  }
+  await button("도형 추가").click();
+  const presets = await page.locator(".shape-palette-item").count();
+  assert.equal(presets, 42, "Every existing shape preset stays available");
+  await page.keyboard.press("Escape");
+  assert.equal(await page.locator(".shape-palette").count(), 0);
+  assert.equal(await button("도형 추가").evaluate(element => element === document.activeElement), true);
+  await button("수학 교구").click();
+  for (const name of ["진분수", "대분수", "모눈종이", "천 모형", "백 모형", "십 모형", "일 모형"]) assert.ok(await button(name).isVisible(), name);
+  await button("정답 및 파일").click();
+  for (const name of ["선택 요소를 정답칸으로", "JSON 새로고침", "화면 다시 생성"]) assert.ok(await button(name).isVisible(), name);
+  assert.ok(await button("선택 삭제").isDisabled());
+  await button("기본 요소").click();
+  await button("글자").click();
+  assert.ok(await button("선택 삭제").isEnabled());
+  await page.getByRole("status").filter({ hasText: "저장하지 않은 변경" }).first().waitFor();
+  await page.getByRole("tab", { name: "요소 설정", exact: true }).click();
+  await page.getByLabel("내용", { exact: true }).fill("직관적인 문제 편집");
+  await page.getByRole("tab", { name: "JSON", exact: true }).click();
+  assert.ok((await page.locator(".konva-json-panel textarea").inputValue()).includes("직관적인 문제 편집"));
+  await page.getByRole("tab", { name: "힌트 편집", exact: true }).click();
+  await page.getByRole("tab", { name: "요소 설정", exact: true }).click();
+  await page.screenshot({ path: resolve(output, "desktop.png"), fullPage: true });
+  await button("정답 설정").click();
+  await page.getByText("정답 만들기", { exact: true }).waitFor();
+  await page.getByLabel("응답 방식", { exact: true }).selectOption("panel_input");
+  await page.getByLabel("답 1", { exact: true }).fill("12");
+  await page.getByLabel("답 1 단위", { exact: true }).fill("cm");
+  assert.ok(await button("정답 저장하고 화면 반영").isEnabled());
+  await button("＋ 정답 추가").click();
+  assert.ok(await button("정답 저장하고 화면 반영").isDisabled());
+  await page.getByLabel("답 2", { exact: true }).fill("8");
+  await page.getByLabel("응답 방식", { exact: true }).selectOption("canvas_slots");
+  await button("＋ 문제에 정답 빈칸 추가").click();
+  assert.equal(await page.getByLabel("답 1", { exact: true }).inputValue(), "12");
+  assert.equal(await page.getByLabel("답 1 단위", { exact: true }).inputValue(), "cm");
+  await page.locator(".konva-side-content > .answer-review-panel").evaluate(element => { element.scrollTop = 0; });
+  await page.screenshot({ path: resolve(output, "answer-setup.png"), fullPage: true });
+  await page.getByRole("tab", { name: "JSON", exact: true }).click();
+  const shapeDocument = JSON.parse(await page.locator(".konva-json-panel textarea").inputValue());
+  const blank = shapeDocument.shapes.find(shape => shape.id.includes("answer_blank"));
+  assert.equal(blank.interaction.role, "answer");
+  assert.equal(blank.interaction.answer_key_index, 0);
+  assert.ok(blank.interaction.answer_ref);
+  await page.getByRole("tab", { name: "요소 설정", exact: true }).click();
+  await page.getByRole("combobox", { name: "정답", exact: true }).waitFor();
+  const bindingLabels = await page.getByRole("combobox", { name: "정답", exact: true }).locator("option").allTextContents();
+  assert.ok(bindingLabels.some(text => text.includes("12 cm")), `Answer bindings reflect unsaved values immediately: ${JSON.stringify(bindingLabels)}`);
+  await button("정답 검수").click();
+  await page.getByLabel("학생 답안 1", { exact: true }).fill("12");
+  assert.ok(await button("정답 확인").isDisabled());
+  await page.getByLabel("학생 답안 2", { exact: true }).fill("8");
+  await button("정답 확인").click();
+  await page.getByRole("status").filter({ hasText: "채점 일치" }).waitFor();
+  await button("정답 설정").click();
+  await button("＋ 문제에 정답 빈칸 추가").click();
+  await page.locator(".review-answer-row").first().getByRole("button", { name: "삭제", exact: true }).click();
+  assert.equal(await page.getByLabel("답 1", { exact: true }).inputValue(), "8");
+  await page.getByRole("tab", { name: "JSON", exact: true }).click();
+  const afterDelete = JSON.parse(await page.locator(".konva-json-panel textarea").inputValue());
+  const remainingBlanks = afterDelete.shapes.filter(shape => shape.id.includes("answer_blank"));
+  assert.equal(remainingBlanks.length, 1, "Deleting an answer removes only its newly created blank");
+  assert.equal(remainingBlanks[0].interaction.answer_key_index, 0, "Remaining blanks retain their answer after row deletion");
+  await button("정답 검수").click();
+  assert.equal(await button("정답 검수").getAttribute("aria-pressed"), "true");
+  await page.screenshot({ path: resolve(output, "review.png"), fullPage: true });
+  await button("문제 편집").click();
+  for (const width of [1024, 768]) {
+    await page.setViewportSize({ width, height: 900 });
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, `No page overflow at ${width}px`);
+    assert.ok(await button("저장하고 화면 반영").isVisible());
+    await page.screenshot({ path: resolve(output, `${width}.png`), fullPage: true });
+  }
+  assert.deepEqual(errors, []);
+  console.log(`Editor workspace passed: ${presets} shape presets, all tool groups, editing, JSON, hints, review, responsive layout. Screenshots: ${output}`);
+} finally {
+  await browser.close();
+}

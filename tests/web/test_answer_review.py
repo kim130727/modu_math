@@ -66,6 +66,55 @@ def test_8631_marker_and_value_form_five_choices():
     assert (layout, semantic) == original
 
 
+def test_authored_answer_units_save_build_and_reopen(tmp_path):
+    client = _setup_django(tmp_path)
+    assert client.post('/api/editor/problems/create/', data=json.dumps({"problem_id": "unit-test"}), content_type='application/json').status_code == 200
+    settings = review("panel_input") | {"answers": [{"value": "12", "unit": "cm"}, {"value": "8", "unit": "개"}], "choices": []}
+    response = client.post('/api/editor/problems/unit-test/answer-review/', data=json.dumps({"review": settings}), content_type='application/json')
+    assert response.status_code == 200, response.content
+    assert client.post('/api/editor/problems/unit-test/build/').status_code == 200
+    detail = client.get('/api/editor/problems/unit-test/').json()
+    for artifact in ('semantic', 'solvable'):
+        assert detail[artifact]['answer']['answer_key'] == settings['answers']
+        assert detail[artifact]['answer']['presentation']['review']['answers'] == settings['answers']
+
+
+@pytest.mark.parametrize('unit', [12, None, 'x' * 101])
+def test_invalid_answer_unit_is_rejected(unit):
+    with pytest.raises(ValueError):
+        normalize_review(review("panel_input") | {"answers": [{"value": "12", "unit": unit}]})
+
+
+def test_authored_canvas_blank_keeps_answer_connection_after_build(tmp_path):
+    client = _setup_django(tmp_path)
+    assert client.post('/api/editor/problems/create/', data=json.dumps({"problem_id": "blank-test"}), content_type='application/json').status_code == 200
+    slot_id = 'slot.konva_editor_answer_blank'
+    interaction = {"type": "input", "role": "answer", "value_type": "text", "keyboard": "text", "max_length": 100,
+                   "order": 0, "answer_key_index": 0, "answer_ref": slot_id, "include_in_submission": True}
+    payload = {"format": False, "fast": True, "patches": [{"target": slot_id, "op": "add", "value": {
+        "kind": "rect", "region_id": "region.diagram", "content": {"x": 80, "y": 80, "width": 100, "height": 56, "fill": "#ffffff", "stroke": "#6366f1", "stroke_width": 2, "interaction": interaction}}}]}
+    response = client.post('/api/editor/problems/blank-test/layout-patch/', data=json.dumps(payload), content_type='application/json')
+    assert response.status_code == 200, response.content
+    settings = review("canvas_slots") | {"answers": [{"value": "12", "unit": "cm", "ref": slot_id}], "choices": []}
+    response = client.post('/api/editor/problems/blank-test/answer-review/', data=json.dumps({"review": settings}), content_type='application/json')
+    assert response.status_code == 200, response.content
+    response = client.post('/api/editor/problems/blank-test/build/')
+    assert response.status_code == 200 and response.json()['ok'], response.content
+    detail = client.get('/api/editor/problems/blank-test/').json()
+    slot = next(slot for slot in detail['layout']['slots'] if slot['id'] == slot_id)
+    assert slot['content']['interaction']['answer_ref'] == slot_id
+    assert detail['solvable']['answer']['answer_key'] == [{"value": "12", "unit": "cm", "slot_id": slot_id}]
+
+
+def test_explicit_new_blank_reference_is_not_replaced_by_legacy_blank():
+    problem = ProblemTemplate(id="two-blanks", title="", canvas=Canvas(width=100, height=100), regions=(),
+                              slots=(BlankSlot(id="slot.old", answer_key="9"),))
+    settings = review("canvas_slots") | {"answers": [{"value": "12", "unit": "cm", "ref": "slot.new"}], "choices": []}
+    hydrated = review_with_slot_answer_keys(settings, problem)
+    assert hydrated['answers'][0] == {"value": "12", "unit": "cm", "ref": "slot.new"}
+    assert hydrated['answers'][1] == {"value": "9", "ref": "slot.old"}
+
+
 @pytest.mark.parametrize('patch', [
     {'mode': 'wrong'}, {'status': 'wrong'}, {'choices': []},
     {'mode': 'ox', 'answers': [{'value': 'maybe'}]},

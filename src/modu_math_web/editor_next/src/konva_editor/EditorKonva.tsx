@@ -34,7 +34,7 @@ import { AnswerReviewSyncPanel } from "./AnswerReviewSyncPanel";
 import { TutorFlowPanel } from "./TutorFlowPanel";
 
 const initialProblem = sampleProblem as ProblemJson;
-type SidePanelTab = "properties" | "flow" | "json";
+type SidePanelTab = "properties" | "answers" | "flow" | "json";
 type SaveStatus = "saved" | "saving" | "unsaved" | "building" | "built" | "error";
 type CachedProblemRequest = { expiresAt: number; promise: Promise<ProblemDetailResponse> };
 
@@ -81,8 +81,13 @@ export function EditorKonva() {
     return document.shapes.filter((shape) => selected.has(shape.id) && isAnswerSlotShape(shape)).map((shape) => shape.id);
   }, [document.shapes, selectedShapeIds]);
   const answerBindingOptions = useMemo(
-    () => answerOptionsFromArtifacts(previewArtifacts.solvable, previewArtifacts.semantic),
-    [previewArtifacts.semantic, previewArtifacts.solvable],
+    () => {
+      const saved = answerOptionsFromArtifacts(previewArtifacts.solvable, previewArtifacts.semantic);
+      if (!draftReview || draftReview.mode === "choice" || draftReview.mode === "grouped_choice") return saved;
+      return draftReview.answers.map((answer, index) => ({ index, value: answer.value, ref: answer.ref, unit: answer.unit,
+        label: `답 ${index + 1}: ${answer.value || "미입력"}${answer.unit ? ` ${answer.unit}` : ""}` }));
+    },
+    [draftReview, previewArtifacts.semantic, previewArtifacts.solvable],
   );
   const answerPresentationMode = useMemo(
     () => inferAnswerPresentationMode(document.shapes, previewArtifacts.semantic, previewArtifacts.solvable),
@@ -705,6 +710,10 @@ export function EditorKonva() {
       if (isEditableTarget(event.target)) return;
       const key = event.key.toLowerCase();
       const commandKey = event.ctrlKey || event.metaKey;
+      if (event.key === "Escape") {
+        setDrawingPreset(null);
+        return;
+      }
 
       if (isArrowKey(event.key) && selectedShapeIds.length) {
         event.preventDefault();
@@ -943,14 +952,56 @@ export function EditorKonva() {
     await buildCurrentProblem();
   }, [buildCurrentProblem]);
 
+  const changeAnswerSettings = (settings: AnswerReviewSettings) => {
+    // Keep created blanks attached to the same answer when another row is removed.
+    if (settings.mode !== "choice" && settings.mode !== "grouped_choice") {
+      setDocument(current => ({ ...current, shapes: current.shapes.flatMap(shape => {
+        const interaction = shape.interaction;
+        if (!interaction?.answer_ref || interaction.role !== "answer") return shape;
+        const index = settings.answers.findIndex(answer => answer.ref === interaction.answer_ref);
+        if (index < 0 && !activeReview.answers.some(answer => answer.ref === interaction.answer_ref)) return shape;
+        if (index < 0 && shape.id.includes("_answer_blank_")) return [];
+        return { ...shape, interaction: { ...interaction, answer_key_index: index < 0 ? undefined : index, ...(index < 0 ? {} : { order: index }) } } as EditorShape;
+      }) }));
+    }
+    setDraftReview(settings);
+    setSaveStatus("unsaved");
+  };
+
+  const addAnswerBlank = () => {
+    const unused = activeReview.answers.findIndex((answer, index) => !document.shapes.some(shape => shape.interaction?.role === "answer" &&
+      (shape.interaction.answer_key_index === index || (answer.ref && shape.interaction.answer_ref === answer.ref) || shape.interaction.order === index)));
+    const index = unused < 0 ? activeReview.answers.length : unused;
+    const id = `slot.${nextId("answer_blank")}`;
+    const ref = id;
+    const sourceRegionId = document.shapes.find(shape => shape.sourceRegionId?.includes("diagram"))?.sourceRegionId
+      ?? document.shapes.find(shape => shape.sourceRegionId)?.sourceRegionId;
+    const shape: EditorShape = { id, type: "rect", sourceRegionId, ...fitInsertBox(100, 56), fill: "#ffffff", stroke: "#6366f1", strokeWidth: 2,
+      interaction: { type: "input", role: "answer", value_type: "text", keyboard: "text", max_length: 100, order: index, answer_key_index: index, answer_ref: ref, include_in_submission: true },
+      input_style: defaultInputStyle() };
+    addShape(shape);
+    const answers = [...activeReview.answers];
+    answers[index] = { ...answers[index], value: answers[index]?.value ?? "", ref };
+    setDraftReview({ ...activeReview, mode: "canvas_slots", show_canvas: true, status: "pending", answers });
+    setAnswerReviewMode(false);
+    setActiveSidePanel("answers");
+    setMessage(`정답 빈칸 ${index + 1}을 추가했습니다. 오른쪽에서 정답을 입력하고 빈칸을 원하는 위치로 옮기세요.`);
+  };
+
   const editorPanel = (
     <div className="konva-side-panel">
       <div className="konva-side-tabs" role="tablist" aria-label="Editor side panels">
         <SidePanelButton
           active={activeSidePanel === "properties"}
-          label="편집"
+          label="요소 설정"
           onClick={() => setActiveSidePanel("properties")}
           icon="properties"
+        />
+        <SidePanelButton
+          active={activeSidePanel === "answers"}
+          label="정답"
+          onClick={() => setActiveSidePanel("answers")}
+          icon="answers"
         />
         <SidePanelButton
           active={activeSidePanel === "flow"}
@@ -960,12 +1011,20 @@ export function EditorKonva() {
         />
         <SidePanelButton
           active={activeSidePanel === "json"}
-          label="Shape JSON"
+          label="JSON"
           onClick={() => setActiveSidePanel("json")}
           icon="json"
         />
       </div>
       <div className="konva-side-content">
+        {activeSidePanel === "answers" ? <AnswerReviewPanel key={selectedProblemId} authoring settings={activeReview}
+          onAddBlank={addAnswerBlank}
+          onChange={changeAnswerSettings}
+          onSave={override => { void buildCurrentProblem(override); }}
+          busy={saveStatus === "saving" || saveStatus === "building"}
+          feedback={saveStatus === "error" ? message : saveStatus === "unsaved" ? "저장하지 않은 변경" : ""}
+          onSelect={ids => { setSelectedShapeIds(ids); setActiveSidePanel("properties"); }}
+          onEditLayout={() => setActiveSidePanel("properties")} /> : null}
         {activeSidePanel === "properties" ? (
           <PropertyPanel
             syncPanel={<PlacementSyncPanel key={selectedProblemId} problemId={selectedProblemId} shapes={document.shapes} selectedIds={selectedShapeIds} onSave={buildCurrentProblem} />}
@@ -1004,7 +1063,15 @@ export function EditorKonva() {
 
   return (
     <div className="math-problem-editor konva-editor">
+      <header className="editor-workspace-header">
+        <div className="editor-workspace-brand"><span className="editor-brand-mark" aria-hidden="true">m.</span><div><strong>문제 스튜디오</strong><span>모두의 수학 · 웹에디터</span></div></div>
+        <div className="editor-document-name"><span>현재 문제</span><strong title={selectedProblemId}>{openingProblemId ? "문제를 여는 중…" : selectedProblemId}</strong></div>
+        <span className={`editor-save-indicator ${saveStatus}`} role="status">{{ saved: "저장됨", saving: "저장 중…", unsaved: "저장하지 않은 변경", building: "화면 생성 중…", built: "화면 반영 완료", error: "저장 상태 확인 필요" }[saveStatus]}</span>
+      </header>
       <KonvaToolbar
+        onOpenAnswers={() => { setAnswerReviewMode(false); setActiveSidePanel("answers"); }}
+        onAddAnswerBlank={addAnswerBlank}
+        busy={saveStatus === "saving" || saveStatus === "building"}
         hasSelection={selectedShapeIds.length > 0}
         hasAnswerSlotCandidate={selectedAnswerSlotShapeIds.length > 0}
         answerReviewMode={answerReviewMode}
@@ -1087,7 +1154,7 @@ export function EditorKonva() {
               }}
               unit={answerBindingOptions.find((option) => option.unit)?.unit}
               syncPanel={<AnswerReviewSyncPanel key={selectedProblemId} problemId={selectedProblemId} parentBusy={saveStatus === "saving" || saveStatus === "building"} />}
-              onChange={(settings) => { setDraftReview(settings); setSaveStatus("unsaved"); }}
+              onChange={changeAnswerSettings}
               onSave={(override) => { void buildCurrentProblem(override); }}
               busy={saveStatus === "saving" || saveStatus === "building"}
               feedback={saveStatus === "error" ? message : saveStatus === "unsaved" ? "저장하지 않은 수정" : saveStatus === "built" ? "저장 및 Build 완료" : ""}
@@ -1110,6 +1177,11 @@ export function EditorKonva() {
           />
         </div>
       </div>
+      <footer className="editor-workspace-footer">
+        <span className="editor-context-help">{drawingPreset ? "캔버스를 드래그해 도형을 그리세요 · Esc 취소" : answerReviewMode ? "학생에게 보이는 정답 화면을 확인하고 검수하세요." : "요소 클릭 → 오른쪽에서 설정 · 글자 두 번 클릭 → 바로 편집 · Shift + 클릭 → 여러 요소 선택"}</span>
+        <details className="editor-activity"><summary>작업 메시지</summary><p role="status">{message}</p></details>
+        <span>{selectedShapeIds.length ? `${selectedShapeIds.length}개 선택` : `요소 ${document.shapes.length}개`}</span>
+      </footer>
     </div>
   );
 }
@@ -1136,11 +1208,13 @@ function SidePanelButton({
       onClick={onClick}
     >
       <SidePanelIcon icon={icon} />
+      <span>{label}</span>
     </button>
   );
 }
 
 function SidePanelIcon({ icon }: { icon: SidePanelTab }) {
+  if (icon === "answers") return <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3" /><path d="m8 12 3 3 5-6" /></svg>;
   if (icon === "properties") {
     return (
       <svg viewBox="0 0 24 24" aria-hidden="true">

@@ -2163,3 +2163,90 @@ input {
   font-size: 18px;
   line-height: 1.5;
 }
+
+/* Workspace shell: stable actions, named tools, and a quiet editing surface. */
+.editor-toolbox button.editor-answer-setup { width: auto; display: inline-flex; align-items: center; gap: 6px; padding: 0 12px; height: 36px; background: #eeecfc; color: #4338ca; border-color: #ddd6fe; border-radius: 8px; font-size: 12px; font-weight: 700; }
+.editor-answer-setup svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+.konva-side-content > .answer-review-panel { position: static; box-sizing: border-box; width: 100%; max-width: 100%; max-height: 100%; height: 100%; overflow: auto; border: 0; border-radius: 0; box-shadow: none; align-content: start; }
+.answer-authoring-heading strong { font-size: 16px; }
+.answer-authoring-heading p { margin: 6px 0 12px; font-size: 12px; line-height: 1.7; color: #64748b; }
+.answer-review-panel .review-answer-row { flex-wrap: wrap; align-items: end; gap: 8px; padding: 10px; background: #f8f9fc; border: 1px solid #e5e9f0; border-radius: 8px; }
+.review-answer-row > label { min-width: 0; flex: 1 1 100px; }
+.review-answer-row > label.review-answer-unit { flex: 0 1 90px; }
+.answer-review-panel .answer-add-blank { background: #eeecfc; color: #4338ca; border-color: #ddd6fe; }
+.math-problem-editor.konva-editor { grid-template-rows: auto auto minmax(0, 1fr) auto; background: #f2f4f8; }
+.editor-workspace-header { display: flex; align-items: center; gap: 28px; min-width: 0; padding: 14px 22px; background: #fff; border-bottom: 1px solid #e5e9f0; }
+.editor-workspace-brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.editor-brand-mark { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; background: #4338ca; color: #fff; font-size: 24px; font-weight: 700; }
+.editor-workspace-brand strong { display: block; font-size: 16px; letter-spacing: -.5px; }
+.editor-workspace-brand div > span { display: block; margin-top: 2px; color: #718096; font-size: 10px; }
+.editor-document-name { min-width: 0; flex: 1; padding-left: 24px; border-left: 1px solid #e5e9f0; }
+.editor-document-name > span { display: block; font-size: 10px; color: #718096; margin-bottom: 3px; }
+.editor-document-name strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; font-weight: 500; }
+.editor-save-indicator { flex-shrink: 0; display: flex; align-items: center; gap: 6px; color: #47635c; font-size: 11px; }
+.editor-save-indicator::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.editor-save-indicator.unsaved { color: #a36312; }
+.editor-save-indicator.error { color: #b42318; }
+.editor-save-indicator.saving, .editor-save-indicator.building { color: #4338ca; }
+.konva-editor .editor-toolbox { display: block; padding: 0; border-color: #e5e9f0; }
+.editor-action-row, .editor-insert-row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding: 10px 20px; }
+.editor-insert-row { border-top: 1px solid #eef0f5; background: #fcfcfe; }
+.editor-toolbox button.icon-button, .editor-toolbox button.shape-menu-trigger { display: inline-flex; align-items: center; justify-content: center; width: auto; height: 36px; gap: 6px; padding: 0 10px; border: 1px solid transparent; border-radius: 8px; background: transparent; color: #475569; font-size: 12px; white-space: nowrap; }
+.editor-toolbox button.icon-button svg, .editor-toolbox button.shape-menu-trigger svg { flex-shrink: 0; width: 19px; height: 19px; }
+.editor-toolbox button.primary { background: #4338ca; border-color: #4338ca; color: #fff; padding: 0 16px; }
+.editor-toolbox button.primary:hover:not(:disabled) { background: #3730a3; border-color: #3730a3; }
+.editor-toolbox button:disabled { opacity: .45; }
+.editor-toolbox .new-file-button { min-width: auto; border-color: #e2e8f0; box-shadow: none; background: #fff; border-radius: 8px; color: #334155; }
+.editor-toolbox .answer-review-toggle { margin-left: 12px; background: #f0f2f7; border: 0; padding: 4px; }
+.editor-toolbox .answer-review-toggle button { height: 30px; padding: 0 18px; }
+.editor-toolbox .answer-review-toggle button.active { color: #4338ca; }
+.editor-tool-groups { display: flex; gap: 2px; padding-right: 12px; border-right: 1px solid #e2e8f0; }
+.editor-tool-groups button { width: auto; height: 32px; padding: 0 10px; border: 0; background: transparent; color: #64748b; border-radius: 6px; font-size: 12px; white-space: nowrap; }
+.editor-tool-groups button[aria-pressed="true"] { background: #eeecfc; color: #4338ca; font-weight: 700; }
+.editor-tool-content { display: flex; align-items: center; flex-wrap: wrap; gap: 2px; flex: 1; min-width: 0; }
+.konva-editor button:focus-visible, .konva-editor summary:focus-visible { outline: 2px solid #6366f1; outline-offset: 3px; }
+.konva-editor .editor-body { grid-template-columns: 248px minmax(0, 1fr); }
+.konva-editor .problem-list-panel { grid-template-rows: auto auto auto auto minmax(0, 1fr); }
+.konva-editor .problem-list-panel .panel-title { padding: 18px 16px 8px; border: 0; background: #fff; font-size: 13px; }
+.konva-editor .problem-language-toggle { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 8px 14px 0; }
+.konva-editor .problem-language-toggle button { font-size: 11px; border-color: #e5e9f0; border-radius: 7px; }
+.konva-editor .problem-language-toggle button.active { background: #eeecfc; color: #4338ca; border-color: #dcd8f6; }
+.konva-editor .problem-search-wrap { padding: 12px 14px 6px; }
+.konva-editor .problem-search-input { box-sizing: border-box; font-size: 11px; background: #f8f9fc; border-color: #e5e9f0; border-radius: 8px; }
+.konva-editor .problem-count { padding-top: 7px; font-size: 10px; color: #718096; }
+.konva-editor .problem-file-row.active { background: #eeecfc; color: #4338ca; border-color: #dcd8f6; }
+.konva-editor .presentation-layout { padding: 18px; gap: 14px; background: #f2f4f8; }
+.konva-editor .konva-question-preview { background: #fff; color: #172033; border: 1px solid #e2e7ef; border-radius: 12px; box-shadow: 0 2px 6px #1e293b04; padding: 16px 20px; }
+.konva-editor .konva-question-preview .presentation-zone-title > span { color: #64748b; font-size: 11px; }
+.konva-editor .konva-question-preview .presentation-zone-title small { color: #718096; }
+.konva-editor .konva-question-preview .presentation-prompt-item { color: #172033; }
+.konva-editor .konva-question-preview .presentation-prompt-item:hover { background: #f5f3ff; border-color: #ddd6fe; }
+.konva-editor .konva-question-preview .presentation-role-badge { background: #eeecfc; color: #5b50a2; }
+.konva-editor .konva-question-preview .presentation-zone-empty { color: #718096; }
+.konva-editor .presentation-layout > .konva-side-panel { border-color: #e2e7ef; border-radius: 12px; }
+.konva-editor .konva-side-tabs { justify-content: stretch; padding: 6px; gap: 3px; background: #fff; border-color: #e5e9f0; }
+.konva-editor .konva-side-tab { flex: 1; width: auto; height: 36px; gap: 5px; border: 0; border-radius: 7px; font-size: 11px; cursor: pointer; white-space: nowrap; }
+.konva-editor .konva-side-tab svg { width: 16px; height: 16px; }
+.konva-editor .konva-side-tab.active { background: #eeecfc; color: #4338ca; }
+.editor-workspace-footer { display: flex; align-items: center; gap: 18px; padding: 8px 20px; border-top: 1px solid #e2e7ef; background: #fff; color: #64748b; font-size: 10px; }
+.editor-context-help { flex: 1; }
+.editor-activity { position: relative; }
+.editor-activity summary { cursor: pointer; }
+.editor-activity p { position: absolute; bottom: 22px; right: 0; z-index: 60; width: min(440px, 70vw); max-height: 180px; overflow: auto; overflow-wrap: anywhere; padding: 14px; background: #fff; border: 1px solid #e2e7ef; border-radius: 10px; box-shadow: 0 8px 32px #17203322; font-size: 12px; }
+@media (max-width: 1150px) {
+  .konva-editor .editor-body { grid-template-columns: 200px minmax(0, 1fr); }
+  .konva-editor .presentation-with-panel { grid-template-columns: minmax(0, 1fr) 290px; }
+  .editor-tool-content { flex-basis: 60%; }
+  .editor-insert-row { align-items: flex-start; }
+}
+@media (max-width: 800px) {
+  .editor-workspace-header { padding: 10px 12px; gap: 12px; flex-wrap: wrap; }
+  .editor-document-name { padding-left: 12px; }
+  .editor-workspace-brand div > span { display: none; }
+  .editor-action-row, .editor-insert-row { padding: 8px 12px; }
+  .editor-tool-groups { flex-basis: 100%; border: 0; }
+  .konva-editor .editor-body { overflow: auto; grid-template-columns: 180px minmax(520px, 1fr); }
+  .konva-editor .presentation-with-panel { grid-template-columns: minmax(0, 1fr) 270px; }
+  .editor-context-help { display: none; }
+  .editor-workspace-footer { justify-content: space-between; }
+}

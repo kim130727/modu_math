@@ -107,6 +107,7 @@ def normalize_review(value):
     if not isinstance(answers, list) or len(answers) > 100 or any(
         not isinstance(a, dict) or not isinstance(a.get("value"), str)
         or not a["value"].strip() or not isinstance(a.get("ref", ""), str)
+        or not isinstance(a.get("unit", ""), str) or len(a.get("unit", "")) > 100
         for a in answers
     ):
         raise ValueError("각 입력 항목의 정답을 입력하세요.")
@@ -170,9 +171,10 @@ def review_with_slot_answer_keys(value, problem):
         }
         if explicit:
             by_ref = {answer.get("ref"): answer for answer in review["answers"]}
-            if len(explicit) == 1 and len(review["answers"]) == 1:
+            if (len(explicit) == 1 and len(review["answers"]) == 1
+                    and not review["answers"][0].get("ref", "").startswith("slot.")):
                 slot_id, answer_key = next(iter(explicit.items()))
-                review["answers"][0] = {"ref": slot_id, "value": answer_key}
+                review["answers"][0] = {**review["answers"][0], "ref": slot_id, "value": answer_key}
                 by_ref = {slot_id: review["answers"][0]}
             for slot_id, answer_key in explicit.items():
                 if slot_id in by_ref:
@@ -231,7 +233,7 @@ def apply_answer_review(semantic, solvable, value):
             keys = [{"id": c["id"], "value": c["text"]} for c in review["choices"] if c["correct"]]
         else:
             answer["choices"] = []
-            keys = [{"value": a["value"], **({"slot_id": a["ref"]} if a.get("ref", "").startswith("slot.") else {})} for a in review["answers"]]
+            keys = [{"value": a["value"], **({"unit": a["unit"].strip()} if a.get("unit", "").strip() else {}), **({"slot_id": a["ref"]} if a.get("ref", "").startswith("slot.") else {})} for a in review["answers"]]
         answer["answer_key"] = keys
         answer["value"] = keys[0]["value"] if len(keys) == 1 else [k["value"] for k in keys]
         answer["blanks"] = []

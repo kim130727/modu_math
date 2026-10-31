@@ -111,7 +111,7 @@ export function ProblemList({ selectedProblemId, language, onOpenProblem, onPref
           {filteredProblems.length} / {languageProblems.length}개
         </div>
       </div>
-      {loading ? <div className="problem-list-status">Loading...</div> : null}
+      {loading ? <div className="problem-list-status">문제를 불러오는 중…</div> : null}
       {error ? <div className="problem-list-error">{error}</div> : null}
       <div className="problem-scroll tree-scroll" aria-label="Problem tree">
         {filteredProblems.length ? (

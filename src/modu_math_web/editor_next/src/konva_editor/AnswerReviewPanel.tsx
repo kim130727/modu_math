@@ -13,6 +13,8 @@ export function AnswerReviewPanel({
   busy,
   feedback,
   syncPanel,
+  authoring = false,
+  onAddBlank,
 }: {
   settings: AnswerReviewSettings;
   answerPrompt?: string;
@@ -25,8 +27,10 @@ export function AnswerReviewPanel({
   busy: boolean;
   feedback?: string;
   syncPanel?: ReactNode;
+  authoring?: boolean;
+  onAddBlank?: () => void;
 }) {
-  const [editing, setEditing] = useState(false);
+  const [editing, setEditing] = useState(authoring);
   const [responses, setResponses] = useState<string[]>([]);
   const [selected, setSelected] = useState<string[]>([]);
   const [result, setResult] = useState<string | null>(null);
@@ -47,6 +51,7 @@ export function AnswerReviewPanel({
   const groupMode = settings.mode === "grouped_choice";
   const oxMode = settings.mode === "ox";
   const groups = settings.groups ?? [];
+  const inputAnswers = settings.answers.length ? settings.answers : [{ value: "", unit: "" }];
   const expected = settings.choices.filter((choice) => choice.correct).map((choice) => choice.id);
 
   const hasAnswers = groupMode
@@ -90,13 +95,14 @@ export function AnswerReviewPanel({
   };
 
   const registerDirectInputAnswerAndSave = (valueText: string) => {
+    if (busy) return;
     const trimmed = valueText.trim();
     if (!trimmed) return;
     const existingRef = settings.answers.length === 1 ? settings.answers[0].ref : undefined;
     const next: AnswerReviewSettings = {
       ...settings,
       status: "verified",
-      answers: [{ value: trimmed, ref: existingRef || "answer.value" }],
+      answers: [{ ...(settings.answers.length === 1 ? settings.answers[0] : {}), value: trimmed, ref: existingRef || "answer.value" }],
     };
     onChange(next);
     onSave(next);
@@ -138,7 +144,10 @@ export function AnswerReviewPanel({
     }
     if (oxMode || settings.mode === "panel_input" || settings.mode === "canvas_slots") {
       return settings.answers.length
-        ? `${settings.answers.map((a) => a.value).join(", ")}${unit ? ` ${unit}` : ""}`
+        ? settings.answers.map((a) => {
+          const suffix = settings.answers.some(answer => answer.unit !== undefined) ? a.unit : unit;
+          return `${a.value}${suffix ? ` ${suffix}` : ""}`;
+        }).join(", ")
         : "미등록";
     }
     return "미등록";
@@ -146,14 +155,15 @@ export function AnswerReviewPanel({
 
   return (
     <aside className="answer-review-panel" aria-label="정답 검수">
-      <div className="review-tabs review-mode-tabs">
+      {authoring ? <div className="answer-authoring-heading"><strong>정답 만들기</strong><p>정답과 단위를 입력하세요. 빈칸은 자동으로 연결됩니다.</p></div> : null}
+      {!authoring ? <div className="review-tabs review-mode-tabs">
         <button type="button" aria-pressed={!editing} onClick={() => setEditing(false)}>
           <span>풀어보기 및 빠른</span>{" "}<span>정답 지정</span>
         </button>
         <button type="button" aria-pressed={editing} onClick={() => setEditing(true)}>
           상세 설정
         </button>
-      </div>
+      </div> : null}
 
       <div className="review-status-header">
         <span className={`review-status-badge ${settings.status}`}>
@@ -174,6 +184,7 @@ export function AnswerReviewPanel({
           <label>
             응답 방식
             <select
+              aria-label="응답 방식"
               value={settings.mode}
               onChange={(event) => {
                 const mode = event.target.value as AnswerReviewSettings["mode"];
@@ -191,18 +202,11 @@ export function AnswerReviewPanel({
               </optgroup>
             </select>
           </label>
-          <div className="review-help" style={{ fontSize: "12px", lineHeight: "1.5", color: "#475569" }}>
-            <p style={{ margin: "4px 0" }}>
-              • <strong>문제 속 빈칸 채우기</strong>: 수식이나 그림 안의 빈칸(□)에 학생이 직접 숫자를 채웁니다.
-            </p>
-            <p style={{ margin: "4px 0" }}>
-              • <strong>단답형 직접 입력</strong>: 그림 안이 아닌 하단 입력창에 키패드로 답을 직접 입력합니다.
-            </p>
-            <p style={{ margin: "4px 0" }}>
-              • <strong>객관식 / OX / 세트형</strong>: 보기나 O/X 버튼을 터치하여 고르는 방식입니다.
-            </p>
-          </div>
+          {settings.mode === "canvas_slots" && onAddBlank ? <button type="button" className="answer-add-blank" onClick={onAddBlank}>＋ 문제에 정답 빈칸 추가</button> : null}
+          {settings.mode === "canvas_slots" && authoring ? <p className="review-help">정답 항목을 삭제하면 이 기능으로 만든 연결 빈칸도 함께 삭제됩니다.</p> : null}
+          <p className="review-help">{{ canvas_slots: "문제의 빈칸에 직접 답을 입력합니다. 빈칸 추가 버튼으로 정답과 연결된 입력칸을 만들 수 있습니다.", panel_input: "학생이 문제 아래의 입력창에 답을 씁니다. 여러 정답은 항목을 나누어 입력하세요.", choice: "보기를 작성하고 맞는 보기에 정답을 체크하세요. 복수 정답도 지정할 수 있습니다.", ox: "각 항목의 정답을 O 또는 X로 선택하세요.", grouped_choice: "소문항별 질문과 보기를 입력하고 정답을 선택하세요." }[settings.mode]}</p>
 
+          <details className="review-display-settings"><summary>문제 그림 표시 설정</summary>
           <label className="review-canvas-visibility-option">
             <input
               type="checkbox"
@@ -215,6 +219,7 @@ export function AnswerReviewPanel({
           <p className="review-help">
             체크를 해제하면 문제 그림 영역을 숨기고 하단 정답 패널과 힌트만 보여줍니다. (빈칸 채우기 방식에서는 숨길 수 없습니다.)
           </p>
+          </details>
 
           {groupMode ? (
             <>
@@ -357,16 +362,17 @@ export function AnswerReviewPanel({
             </>
           ) : (
             <>
-              {settings.answers.map((answer, index) => (
+              {inputAnswers.map((answer, index) => (
                 <div className="review-answer-row" key={index}>
                   <label>
                     답 {index + 1}
                     {settings.mode === "ox" ? (
                       <select
+                        aria-label={`답 ${index + 1}`}
                         value={answer.value}
                         onChange={(event) =>
                           update({
-                            answers: settings.answers.map((item, i) =>
+                            answers: inputAnswers.map((item, i) =>
                               i === index ? { ...item, value: event.target.value } : item,
                             ),
                           })
@@ -378,10 +384,12 @@ export function AnswerReviewPanel({
                       </select>
                     ) : (
                       <input
+                        aria-label={`답 ${index + 1}`}
+                        placeholder="예: 12, 3/4, 사과"
                         value={answer.value}
                         onChange={(event) =>
                           update({
-                            answers: settings.answers.map((item, i) =>
+                            answers: inputAnswers.map((item, i) =>
                               i === index ? { ...item, value: event.target.value } : item,
                             ),
                           })
@@ -389,6 +397,7 @@ export function AnswerReviewPanel({
                       />
                     )}
                   </label>
+                  {settings.mode !== "ox" ? <label className="review-answer-unit">단위 (선택)<input aria-label={`답 ${index + 1} 단위`} placeholder="예: cm" value={answer.unit ?? ""} maxLength={100} onChange={event => update({ answers: inputAnswers.map((item, i) => i === index ? { ...item, unit: event.target.value } : item) })} /></label> : null}
                   <button type="button" onClick={() => update({ answers: settings.answers.filter((_, i) => i !== index) })}>
                     삭제
                   </button>
@@ -396,9 +405,9 @@ export function AnswerReviewPanel({
               ))}
               <button
                 type="button"
-                onClick={() => update({ answers: [...settings.answers, { value: settings.mode === "ox" ? "O" : "" }] })}
+                onClick={() => update({ answers: [...inputAnswers, { value: settings.mode === "ox" ? "O" : "" }] })}
               >
-                답 항목 추가
+                ＋ 정답 추가
               </button>
             </>
           )}
@@ -428,10 +437,10 @@ export function AnswerReviewPanel({
           <button
             type="button"
             className="btn-primary-register"
-            disabled={busy || (settings.status === "verified" && !hasAnswers)}
+            disabled={busy || !hasAnswers}
             onClick={() => onSave()}
           >
-            {busy ? "저장 중…" : "검수 저장 및 Build"}
+            {busy ? "저장 중…" : "정답 저장하고 화면 반영"}
           </button>
         </>
       ) : (
@@ -629,7 +638,7 @@ export function AnswerReviewPanel({
             ) : (
               <>
                 {/* panel_input or canvas_slots */}
-                {!hasAnswers ? (
+                {settings.answers.length > 1 ? <button type="button" onClick={() => setEditing(true)}>여러 정답을 항목별로 수정하기</button> : !hasAnswers ? (
                   <div className="direct-answer-input-box">
                     <label>
                       새 정답 값 입력:
@@ -690,29 +699,30 @@ export function AnswerReviewPanel({
                 )}
 
                 <div className="test-solve-box">
-                  <label>
-                    정답 확인 테스트 (학생 답안):
+                  {inputAnswers.map((answer, index) => <label key={index}>
+                    학생 답안 {index + 1}
                     <span className="review-answer-input-with-unit">
                       <input
-                        value={responses[0] ?? ""}
+                        aria-label={`학생 답안 ${index + 1}`}
+                        value={responses[index] ?? ""}
                         placeholder="답안을 입력해 보세요"
                         onChange={(event) => {
                           setResult(null);
-                          setResponses([event.target.value]);
+                          setResponses(values => inputAnswers.map((_, i) => i === index ? event.target.value : values[i] ?? ""));
                         }}
                         onKeyDown={(e) => {
-                          if (e.key === "Enter" && hasAnswers && responses[0]?.trim()) {
+                          if (e.key === "Enter" && hasAnswers && settings.answers.every((_, i) => responses[i]?.trim())) {
                             check();
                           }
                         }}
                         autoComplete="off"
                       />
-                      {unit ? <b>{unit}</b> : null}
+                      {answer.unit ? <b>{answer.unit}</b> : null}
                     </span>
-                  </label>
+                  </label>)}
                   <button
                     type="button"
-                    disabled={!hasAnswers || !responses[0]?.trim()}
+                    disabled={!hasAnswers || !settings.answers.every((_, index) => responses[index]?.trim())}
                     onClick={check}
                   >
                     정답 확인

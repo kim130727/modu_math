@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "test:editor-browser": "node scripts/editor-workspace.browser.mjs",
     "test:teacher": "node --test scripts/teacher-api.test.mjs",
     "test:teacher-browser": "node --test scripts/teacher-browser.test.mjs",
     "test:student-browser": "node --test scripts/student-browser.test.mjs",

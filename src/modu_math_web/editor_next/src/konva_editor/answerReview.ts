@@ -197,7 +197,7 @@ export interface AnswerReviewSettings {
   show_canvas: boolean;
   status: "pending" | "needs_changes" | "verified";
   note: string;
-  answers: { value: string; ref?: string }[];
+  answers: { value: string; ref?: string; unit?: string }[];
   choices: AnswerChoiceReview[];
   groups?: { id: string; label: string; choices: string[]; correct_index: number; source_refs?: string[] }[];
 }
@@ -212,12 +212,12 @@ export function reviewSettings(semantic: Record<string, unknown> | null, options
     return { id: stringValue(record.id) || `group.${index + 1}`, label: stringValue(record.label) || `문항 ${index + 1}`, choices: items,
       correct_index: typeof record.correct_index === "number" ? record.correct_index : items.findIndex((item) => normalizedAnswer(item) === normalizedAnswer(options[index]?.value ?? "")) };
   }) : [];
-  if (groups.length) return { mode: "grouped_choice", show_canvas: true, status: "pending", note: "", answers: options.map(({value, ref}) => ({value, ref})), choices, groups };
+  if (groups.length) return { mode: "grouped_choice", show_canvas: true, status: "pending", note: "", answers: options.map(({value, ref, unit}) => ({value, ref, ...(unit ? {unit} : {})})), choices, groups };
   const tokens = options.length === 1 ? options[0].value.split(/\s*[,，]\s*/) : options.map((option) => option.value);
   const ox = tokens.length > 0 && tokens.every((token) => /^[ox]$/.test(normalizedAnswer(token)));
   const person = recordValue(answer?.target)?.type === "person_selection";
   return { mode: ox ? "ox" : person ? "choice" : mode, show_canvas: true, status: person ? "needs_changes" : "pending", note: person ? "이름 선택지와 정답 연결을 확인하세요. 복수 정답 가능성도 검토해 주세요." : "",
-    answers: ox ? tokens.map((value) => ({ value: normalizedAnswer(value).toUpperCase() })) : options.map(({ value, ref }) => ({ value, ref })), choices };
+    answers: ox ? tokens.map((value) => ({ value: normalizedAnswer(value).toUpperCase() })) : options.map(({ value, ref, unit }) => ({ value, ref, ...(unit ? {unit} : {})})), choices };
 }
 
 function recordValue(value: unknown): Record<string, unknown> | null {

@@ -96,54 +96,54 @@ export function PropertyPanel({ shape, selectedShapes = [], answerOptions = [], 
         <details className="konva-property-details" key={shape.id} open={shape.type !== "text" ? true : undefined}>
           <summary>세부 서식 · 위치</summary>
           <div className="konva-property-detail-grid">
-        <ReadOnlyField label="id" value={shape.id} />
-        <ReadOnlyField label="type" value={shape.type} />
-        <NumberField label="x" value={shape.x} onChange={(x) => onChange({ x } as Partial<EditorShape>)} />
-        <NumberField label="y" value={shape.y} onChange={(y) => onChange({ y } as Partial<EditorShape>)} />
-        <NumberField label="rotation" value={shape.rotation ?? 0} onChange={(rotation) => onChange({ rotation } as Partial<EditorShape>)} />
-        <NumberField label="offsetX" value={shape.offsetX ?? 0} onChange={(offsetX) => onChange({ offsetX } as Partial<EditorShape>)} />
-        <NumberField label="offsetY" value={shape.offsetY ?? 0} onChange={(offsetY) => onChange({ offsetY } as Partial<EditorShape>)} />
-        {"fill" in shape ? <TextField label="fill" value={shape.fill ?? ""} onChange={(fill) => onChange({ fill } as Partial<EditorShape>)} /> : null}
+        <ReadOnlyField label="요소 ID" value={shape.id} />
+        <ReadOnlyField label="요소 유형" value={shape.type} />
+        <NumberField label="가로 위치 (x)" value={shape.x} onChange={(x) => onChange({ x } as Partial<EditorShape>)} />
+        <NumberField label="세로 위치 (y)" value={shape.y} onChange={(y) => onChange({ y } as Partial<EditorShape>)} />
+        <NumberField label="회전 (°)" value={shape.rotation ?? 0} onChange={(rotation) => onChange({ rotation } as Partial<EditorShape>)} />
+        <NumberField label="가로 기준점" value={shape.offsetX ?? 0} onChange={(offsetX) => onChange({ offsetX } as Partial<EditorShape>)} />
+        <NumberField label="세로 기준점" value={shape.offsetY ?? 0} onChange={(offsetY) => onChange({ offsetY } as Partial<EditorShape>)} />
+        {"fill" in shape ? <TextField label="채우기 색" value={shape.fill ?? ""} onChange={(fill) => onChange({ fill } as Partial<EditorShape>)} /> : null}
         {"stroke" in shape ? (
-          <TextField label="stroke" value={shape.stroke ?? ""} onChange={(stroke) => onChange({ stroke } as Partial<EditorShape>)} />
+          <TextField label="선 색" value={shape.stroke ?? ""} onChange={(stroke) => onChange({ stroke } as Partial<EditorShape>)} />
         ) : null}
         {"strokeWidth" in shape ? (
           <NumberField
-            label="stroke"
+            label="선 두께"
             value={shape.strokeWidth ?? 1}
             onChange={(strokeWidth) => onChange({ strokeWidth } as Partial<EditorShape>)}
           />
         ) : null}
         {shape.type === "line" || shape.type === "connector" || shape.type === "path" || shape.type === "rect" || shape.type === "circle" ? (
           <TextField
-            label="dash"
+            label="점선 간격"
             value={shape.strokeDasharray ?? ""}
             onChange={(strokeDasharray) => onChange({ strokeDasharray } as Partial<EditorShape>)}
           />
         ) : null}
         {scalableShape(shape) && shape.type !== "baseTenBlock" ? (
-          <NumberField label="scale %" value={shapeScalePercent(shape)} onChange={(scale) => onChange(shapeScalePatch(shape, scale))} />
+          <NumberField label="크기 (%)" value={shapeScalePercent(shape)} onChange={(scale) => onChange(shapeScalePatch(shape, scale))} />
         ) : null}
         {shape.type === "rect" || shape.type === "image" || shape.type === "math" || shape.type === "baseTenBlock" || shape.type === "text" ? (
           <>
-            <NumberField label="width" value={shape.width ?? 0} onChange={(width) => onChange({ width } as Partial<EditorShape>)} />
-            <NumberField label="height" value={shape.height ?? 0} onChange={(height) => onChange({ height } as Partial<EditorShape>)} />
+            <NumberField label="너비" value={shape.width ?? 0} onChange={(width) => onChange({ width } as Partial<EditorShape>)} />
+            <NumberField label="높이" value={shape.height ?? 0} onChange={(height) => onChange({ height } as Partial<EditorShape>)} />
           </>
         ) : null}
         {shape.type === "baseTenBlock" ? (
           <>
-            <ReadOnlyField label="kind" value={shape.kind} />
-            <NumberField label="scale %" value={baseTenScalePercent(shape)} onChange={(scale) => onChange(baseTenScalePatch(shape, scale))} />
-            <NumberField label="depth" value={shape.depth} onChange={(depth) => onChange({ depth } as Partial<EditorShape>)} />
+            <ReadOnlyField label="교구 유형" value={shape.kind} />
+            <NumberField label="크기 (%)" value={baseTenScalePercent(shape)} onChange={(scale) => onChange(baseTenScalePatch(shape, scale))} />
+            <NumberField label="깊이" value={shape.depth} onChange={(depth) => onChange({ depth } as Partial<EditorShape>)} />
           </>
         ) : null}
         {shape.type === "circle" ? (
-          <NumberField label="radius" value={shape.radius} onChange={(radius) => onChange({ radius } as Partial<EditorShape>)} />
+          <NumberField label="반지름" value={shape.radius} onChange={(radius) => onChange({ radius } as Partial<EditorShape>)} />
         ) : null}
         {shape.type === "text" ? (
           <>
             <TextField
-              label="fontFamily"
+              label="글꼴"
               value={normalizePreviewFontFamily(shape.fontFamily)}
               onChange={(fontFamily) => onChange({ fontFamily } as Partial<EditorShape>)}
             />
@@ -151,11 +151,11 @@ export function PropertyPanel({ shape, selectedShapes = [], answerOptions = [], 
         ) : null}
         {shape.type === "math" ? (
           <>
-            <TextAreaField label="latex" value={shape.latex} onChange={(latex) => onChange({ latex } as Partial<EditorShape>)} />
-            <NumberField label="font" value={shape.fontSize ?? 28} onChange={(fontSize) => onChange({ fontSize } as Partial<EditorShape>)} />
+            <TextAreaField label="수식 (LaTeX)" value={shape.latex} onChange={(latex) => onChange({ latex } as Partial<EditorShape>)} />
+            <NumberField label="수식 크기" value={shape.fontSize ?? 28} onChange={(fontSize) => onChange({ fontSize } as Partial<EditorShape>)} />
           </>
         ) : null}
-        {shape.type === "image" ? <TextAreaField label="src" value={shape.src} onChange={(src) => onChange({ src } as Partial<EditorShape>)} /> : null}
+        {shape.type === "image" ? <TextAreaField label="이미지 주소" value={shape.src} onChange={(src) => onChange({ src } as Partial<EditorShape>)} /> : null}
           </div>
         </details>
       </div>
@@ -441,12 +441,12 @@ function PropertyPanelTitle({ saveStatus }: { saveStatus: PropertyPanelProps["sa
 }
 
 function statusLabel(saveStatus: PropertyPanelProps["saveStatus"]): string {
-  if (saveStatus === "saving") return "Saving...";
-  if (saveStatus === "unsaved") return "Unsaved";
-  if (saveStatus === "building") return "Building...";
-  if (saveStatus === "built") return "Build complete";
-  if (saveStatus === "error") return "Error";
-  return "Saved";
+  if (saveStatus === "saving") return "저장 중…";
+  if (saveStatus === "unsaved") return "수정됨";
+  if (saveStatus === "building") return "화면 생성 중…";
+  if (saveStatus === "built") return "반영 완료";
+  if (saveStatus === "error") return "확인 필요";
+  return "저장됨";
 }
 
 function isAnswerSlotShape(shape: EditorShape): boolean {
@@ -531,7 +531,7 @@ function SelectField({
   return (
     <label className="konva-field">
       <span>{label}</span>
-      <select value={value} onChange={(event) => onChange(event.target.value)}>
+      <select aria-label={label} value={value} onChange={(event) => onChange(event.target.value)}>
         {options.map((option) => (
           <option key={option} value={option}>
             {optionLabels[option] ?? option}
@@ -564,7 +564,7 @@ function TextAreaField({ label, value, onChange }: { label: string; value: strin
   return (
     <label className="konva-field konva-field-wide">
       <span>{label}</span>
-      <textarea value={value} onChange={(event) => onChange(event.target.value)} />
+      <textarea aria-label={label} value={value} onChange={(event) => onChange(event.target.value)} />
     </label>
   );
 }
