@@ -74,7 +74,32 @@ class ProblemViewSet(viewsets.ReadOnlyModelViewSet):
         )
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        from .services.problem_access import accessible_problems, public_condition
+
+        queryset = accessible_problems(self.request.user)
+        scope = self.request.query_params.get("scope", "")
+        if scope == "public":
+            queryset = queryset.filter(public_condition())
+        elif scope == "mine":
+            queryset = (
+                queryset.filter(publication__owner=self.request.user)
+                if self.request.user.is_authenticated
+                else queryset.none()
+            )
+        elif scope == "class":
+            queryset = queryset.filter(publication__visibility="class")
+        classroom_id = self.request.query_params.get("classroom")
+        if classroom_id:
+            try:
+                classroom_id = int(classroom_id)
+            except ValueError as exc:
+                raise ValidationError(
+                    {"classroom": "클래스 번호가 올바르지 않습니다."}
+                ) from exc
+            queryset = queryset.filter(
+                publication__visibility="class",
+                publication__classrooms__pk=classroom_id,
+            ).distinct()
         ids = self.request.query_params.get("ids")
         if ids:
             try:
@@ -86,10 +111,9 @@ class ProblemViewSet(viewsets.ReadOnlyModelViewSet):
                     {"ids": "최대 200개의 양수 ID를 입력해 주세요."}
                 ) from exc
             queryset = queryset.filter(pk__in=values)
-        if not is_manager(self.request.user):
-            queryset = queryset.filter(
-                Q(publication__isnull=True) | Q(publication__status="published")
-            )
+        visibility = self.request.query_params.get("visibility")
+        if visibility:
+            queryset = queryset.filter(publication__visibility=visibility)
         for parameter in ("language", "problem_type"):
             value = self.request.query_params.get(parameter)
             if value not in (None, ""):
@@ -144,11 +168,30 @@ class ProblemViewSet(viewsets.ReadOnlyModelViewSet):
         return queryset
 
     def retrieve(self, request, *args, **kwargs):
+        from .services.problem_access import can_edit, reusable_problems
+
         problem = self.get_object()
-        if is_manager(request.user):
-            return Response(ProblemDetailSerializer(problem).data)
+        context = {"request": request}
+        if (
+            can_edit(request.user, problem)
+            or reusable_problems(request.user).filter(pk=problem.pk).exists()
+        ):
+            from .services.assignment_content import freeze_images
+
+            data = ProblemDetailSerializer(problem, context=context).data
+            from copy import deepcopy
+
+            data["renderer_data"] = freeze_images(
+                {"renderer_data": deepcopy(problem.renderer_data)}, problem
+            )["renderer_data"]
+            return Response(data)
+        from .services.assignment_content import freeze_images
+
         return Response(
-            {**ProblemListSerializer(problem).data, **student_problem(problem)}
+            {
+                **ProblemListSerializer(problem, context=context).data,
+                **freeze_images(student_problem(problem), problem),
+            }
         )
 
     @action(detail=True, methods=["get", "patch"])
@@ -160,23 +203,36 @@ class ProblemViewSet(viewsets.ReadOnlyModelViewSet):
         if not is_manager(request.user):
             raise PermissionDenied()
         problem = self.get_object()
+        from .services.problem_access import can_edit
+
+        if not can_edit(request.user, problem):
+            raise PermissionDenied("문제 작성자만 공개 범위를 변경할 수 있습니다.")
         if request.method == "GET":
             publication = ProblemPublication.objects.filter(problem=problem).first()
             return Response(
-                PublicationSerializer(publication).data
+                PublicationSerializer(publication, context={"request": request}).data
                 if publication
-                else {"status": "published", "difficulty": 1}
+                else {
+                    "status": "published",
+                    "difficulty": 1,
+                    "visibility": "public",
+                    "classroom_ids": [],
+                    "allow_classroom_use": True,
+                    "rights_confirmed": True,
+                    "source_credit": "",
+                    "rights_note": "",
+                }
             )
-        data = PublicationSerializer(data=request.data, partial=True)
-        data.is_valid(raise_exception=True)
         publication = ProblemPublication.objects.filter(problem=problem).first()
-        serializer = PublicationSerializer(publication, data=request.data, partial=True)
+        serializer = PublicationSerializer(
+            publication, data=request.data, partial=True, context={"request": request}
+        )
         serializer.is_valid(raise_exception=True)
         publication = serializer.save(
             problem=problem,
             updated_by=request.user,
             **(
-                {"status": data.validated_data.get("status", "published")}
+                {"status": serializer.validated_data.get("status", "published")}
                 if publication is None
                 else {}
             ),
@@ -193,6 +249,25 @@ class ProblemViewSet(viewsets.ReadOnlyModelViewSet):
             raise ValidationError(
                 {"filename": "문제 이미지 파일만 요청할 수 있습니다."}
             )
+        # A neighboring problem's preview must not be fetched using a public id.
+        from urllib.parse import unquote, urlsplit
+
+        referenced = {
+            unquote(urlsplit(str(e.get("attributes", {}).get("href", ""))).path)
+            .replace("\\", "/")
+            .split("/")[-1]
+            for e in problem.renderer_data.get("elements", [])
+            if e.get("type") == "image"
+        }
+        prefix_name = str(problem.catalog_data.get("filePrefix") or problem.problem_id)
+        if filename not in referenced:
+            from rest_framework.exceptions import NotFound
+
+            # Only authors can read the full SVG; it may contain answer overlays.
+            from .services.problem_access import can_edit
+
+            if filename != prefix_name + ".svg" or not can_edit(request.user, problem):
+                raise NotFound()
         root = settings.PROBLEMS_ROOT.resolve()
         catalog_path = str(problem.catalog_data.get("path") or "")
         prefix = "examples/problems/"

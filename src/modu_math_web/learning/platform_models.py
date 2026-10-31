@@ -74,12 +74,36 @@ class ProblemPublication(models.Model):
     problem = models.OneToOneField(
         "learning.Problem", on_delete=models.CASCADE, related_name="publication"
     )
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.PROTECT,
+        related_name="authored_problems",
+    )
+    source_path = models.CharField(max_length=512, null=True, blank=True, unique=True)
+    visibility = models.CharField(
+        max_length=16,
+        default="private",
+        choices=[
+            ("private", "나만 보기"),
+            ("class", "선택한 클래스"),
+            ("public", "모두에게 공개"),
+        ],
+    )
+    classrooms = models.ManyToManyField(
+        Classroom, blank=True, related_name="shared_problems"
+    )
+    allow_classroom_use = models.BooleanField(default=False)
+    source_credit = models.CharField(max_length=500, blank=True)
+    rights_note = models.CharField(max_length=1000, blank=True)
+    rights_confirmed = models.BooleanField(default=False)
     status = models.CharField(
         max_length=16,
         choices=[
             ("draft", "초안"),
             ("review", "검수 중"),
-            ("published", "공개"),
+            ("published", "사용 가능"),
             ("archived", "보관"),
         ],
         default="draft",

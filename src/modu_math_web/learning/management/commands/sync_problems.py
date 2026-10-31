@@ -39,6 +39,12 @@ class Command(BaseCommand):
         parser.add_argument("--root", type=Path, default=settings.PROBLEMS_ROOT)
         parser.add_argument("--dry-run", action="store_true")
         parser.add_argument(
+            "--new-visibility",
+            choices=("private", "public"),
+            default="private",
+            help="Visibility of new imports; existing ownership and visibility are preserved.",
+        )
+        parser.add_argument(
             "--new-status",
             choices=("draft", "review", "published", "archived"),
             default="draft",
@@ -68,10 +74,21 @@ class Command(BaseCommand):
 
         for paths in list_content(root):
             language = paths.dsl_path.relative_to(root).parts[0]
+            if language not in {"ko", "uk", "en", "ja", "zh", "km"}:
+                language = "ko"
             prefix = paths.artifact_base
             bundle = read_content(paths)
             semantic = dict(bundle.get("semantic") or {})
             problem_id = prefix
+            source_path = paths.dsl_path.relative_to(root).as_posix()
+            existing_publication = (
+                ProblemPublication.objects.filter(source_path=source_path)
+                .select_related("problem")
+                .first()
+            )
+            if existing_publication:
+                problem_id = existing_publication.problem.problem_id
+                language = existing_publication.problem.language
             semantic["problem_id"] = problem_id
             synced_keys.add((problem_id, language))
             metadata = (
@@ -167,6 +184,11 @@ class Command(BaseCommand):
                     "filePrefix": problem_id,
                 }
 
+            catalog["path"] = (
+                "examples/problems/"
+                + paths.dsl_path.parent.relative_to(root).as_posix()
+            )
+            catalog["filePrefix"] = paths.artifact_base
             solvable = bundle.get("solvable") or {}
             artifact_paths = source_files(paths)
 
@@ -219,6 +241,22 @@ class Command(BaseCommand):
                 updated += int(exists)
                 created += int(not exists)
                 continue
+            previous = (
+                Problem.objects.filter(problem_id=problem_id, language=language)
+                .select_related("publication")
+                .first()
+            )
+            previous_publication = (
+                getattr(previous, "publication", None) if previous else None
+            )
+            if (
+                previous_publication
+                and previous_publication.source_path
+                and previous_publication.source_path != source_path
+            ):
+                raise CommandError(
+                    f"Problem id collision: {problem_id} ({source_path}). Existing source is {previous_publication.source_path}."
+                )
             problem, was_created = Problem.objects.update_or_create(
                 problem_id=problem_id,
                 language=language,
@@ -226,7 +264,10 @@ class Command(BaseCommand):
             )
             if was_created:
                 ProblemPublication.objects.create(
-                    problem=problem, status=options["new_status"]
+                    problem=problem,
+                    status=options["new_status"],
+                    source_path=source_path,
+                    visibility=options["new_visibility"],
                 )
             created += int(was_created)
             updated += int(not was_created)

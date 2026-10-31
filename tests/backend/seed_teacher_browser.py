@@ -29,7 +29,7 @@ from modu_math.dsl import (
     compile_problem_template_to_layout,
 )
 from modu_math.renderer.compiler import compile_renderer_json
-from modu_math_web.learning.models import Problem, StudentProfile
+from modu_math_web.learning.models import Problem, ProblemPublication, StudentProfile
 
 teacher = get_user_model().objects.create_user(
     "browser_teacher", password="browser-teacher-password"
@@ -100,7 +100,7 @@ for i in range(10):
     )
     layout = compile_problem_template_to_layout(template)
     renderer = compile_renderer_json(layout)
-    Problem.objects.create(
+    problem = Problem.objects.create(
         problem_id=problem_id,
         grade=3,
         problem_type="addition",
@@ -115,6 +115,11 @@ for i in range(10):
         solvable_data=solvable,
         layout_data=layout,
         renderer_data=renderer,
+    )
+    ProblemPublication.objects.create(
+        problem=problem, owner=teacher, source_path=f"ko/day_01/{problem_id}.dsl.py",
+        status="published", visibility="public", allow_classroom_use=True,
+        rights_confirmed=True,
     )
     # The real editor can open these sources, not just fixture API responses.
     source = "from modu_math.dsl import Canvas, ProblemTemplate, RectSlot, Region, TextBoxSlot\n"

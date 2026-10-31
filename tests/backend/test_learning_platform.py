@@ -461,6 +461,7 @@ def test_foreign_item_and_recipient_injection_rejected(env):
 def test_bank_search_publication_and_public_detail(env):
     client = env["client"]
     problem = env["problems"][0]
+    ProblemPublication.objects.create(problem=problem, owner=env["teacher"])
     response = client.patch(
         f"/api/v1/problems/{problem.pk}/publication/",
         {"status": "draft", "difficulty": 4},

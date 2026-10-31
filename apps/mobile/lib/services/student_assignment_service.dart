@@ -18,6 +18,38 @@ class AssignmentApiException implements Exception {
 }
 
 class StudentAssignmentService {
+  Future<List<Map<String, dynamic>>> classes() async =>
+      (await _request('/api/v1/student/classes/') as List)
+          .map(assignmentMap)
+          .toList();
+
+  Future<Map<String, dynamic>> library(
+      {int page = 1,
+      int? classroom,
+      String language = 'ko',
+      String grade = ''}) async {
+    final query = Uri(queryParameters: {
+      'scope': classroom == null ? 'public' : 'class',
+      'page': '$page',
+      'language': language,
+      if (classroom != null) 'classroom': '$classroom',
+      if (grade.isNotEmpty) 'grade': grade,
+    }).query;
+    return assignmentMap(await _request('/api/v1/problems/?$query'));
+  }
+
+  Future<Map<String, dynamic>> libraryProblem(int id) async =>
+      assignmentMap(await _request('/api/v1/problems/$id/'));
+
+  Future<bool> practice(int id, dynamic answer) async {
+    final result = assignmentMap(
+        await _request('/api/v1/attempts/', method: 'POST', body: {
+      'problem': id,
+      'submitted_answer': answer,
+    }));
+    return result['is_correct'] == true;
+  }
+
   StudentAssignmentService(
       {required this.authService,
       http.Client? httpClient,

@@ -45,6 +45,16 @@ test("two students solve ten questions through the real Flutter app", { timeout:
       await page.getByText("수고했어요! 과제를 제출했어요.", { exact: true }).waitFor();
       await page.getByText(`${student === 1 ? 10 : 8} / 10개 정답`, { exact: true }).waitFor();
       await page.screenshot({ path: join(artifacts, `result-${student}.png`), fullPage: true });
+      if (student === 1) {
+        await page.goto(fixture.base + "/student/");
+        await page.getByRole("button", { name: "공개 문제 · 내 클래스", exact: true }).last().click();
+        await page.getByText(/덧셈 연습 01/).click();
+        await page.getByRole("textbox").waitFor();
+        await type(page.getByRole("textbox"), "30");
+        await page.getByRole("button", { name: "답 제출", exact: true }).click();
+        await page.getByText("맞았어요!", { exact: true }).waitFor();
+        await page.screenshot({ path: join(artifacts, "public-practice.png"), fullPage: true });
+      }
       assert.deepEqual(privateRequests, []);
       assert.deepEqual(errors, []);
       await context.close();

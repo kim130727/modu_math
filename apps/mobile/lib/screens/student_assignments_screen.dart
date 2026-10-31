@@ -8,6 +8,7 @@ import '../services/student_assignment_service.dart';
 import '../theme/app_theme.dart';
 import 'assignment_solve_screen.dart';
 import 'auth_screen.dart';
+import 'problem_library_screen.dart';
 
 String assignmentError(BuildContext context, Object error) {
   final strings = AssignmentStrings.of(context);
@@ -136,6 +137,13 @@ class _AssignmentListState extends State<_AssignmentList> {
         backgroundColor: KidsPalette.canvas,
         appBar: AppBar(title: Text(strings.t('title')), actions: [
           IconButton(
+              tooltip: strings.t('library'),
+              onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                      builder: (_) =>
+                          ProblemLibraryScreen(service: widget.service))),
+              icon: const Icon(Icons.public)),
+          IconButton(
               tooltip: strings.t('refresh'),
               onPressed: refresh,
               icon: const Icon(Icons.refresh)),
@@ -162,6 +170,16 @@ class _AssignmentListState extends State<_AssignmentList> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.stretch,
                                     children: [
+                                      OutlinedButton.icon(
+                                          onPressed: () => Navigator.of(context)
+                                              .push(MaterialPageRoute<void>(
+                                                  builder: (_) =>
+                                                      ProblemLibraryScreen(
+                                                          service:
+                                                              widget.service))),
+                                          icon: const Icon(Icons.public),
+                                          label: Text(strings.t('library'))),
+                                      const SizedBox(height: 16),
                                       Container(
                                           padding: const EdgeInsets.all(24),
                                           decoration: BoxDecoration(

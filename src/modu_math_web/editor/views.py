@@ -8,6 +8,9 @@ from django.http import FileResponse, HttpResponse
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.http import require_GET, require_POST
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
+from modu_math_web.learning.platform_permissions import IsTeacherOrAdmin
 
 from .services.build import build_with_artifacts
 from .services.dsl_patch import DslPatchError, apply_layout_patches, save_tutor_renderer_flow
@@ -50,10 +53,30 @@ def editor_index(request: HttpRequest):
     return render(request, "editor/index.html")
 
 
+@api_view(["GET", "PATCH"])
+@permission_classes([IsTeacherOrAdmin])
+def problem_publication(request, problem_id):
+    from modu_math_web.learning.services.authoring_access import source_publication
+    from modu_math_web.learning.platform_serializers import PublicationSerializer
+    from rest_framework.exceptions import NotFound
+    publication = source_publication(resolve_problem_paths(problem_id))
+    if publication is None:
+        raise NotFound("이 문제는 관리자에게 문제은행 등록을 요청해 주세요.")
+    if request.method == "PATCH":
+        serializer = PublicationSerializer(publication, data=request.data, partial=True, context={"request": request})
+        serializer.is_valid(raise_exception=True)
+        serializer.save(updated_by=request.user)
+    return Response({"id": publication.problem_id, **PublicationSerializer(publication).data})
+
+
 @require_GET
 def problems_list(request: HttpRequest) -> JsonResponse:
     include_artifacts = request.GET.get("artifacts") in {"1", "true", "yes"}
-    return JsonResponse({"problems": list_problem_directories(include_artifacts=include_artifacts)})
+    rows = list_problem_directories(include_artifacts=include_artifacts)
+    if getattr(request, "user", None) and request.user.is_authenticated:
+        from modu_math_web.learning.services.authoring_access import filter_authoring_rows
+        rows = filter_authoring_rows(request.user, rows)
+    return JsonResponse({"problems": rows})
 
 
 @require_POST
@@ -66,7 +89,19 @@ def create_problem(request: HttpRequest) -> JsonResponse:
             return _error("'problem_id' must be a string", status=400)
         if title is not None and not isinstance(title, str):
             return _error("'title' must be a string", status=400)
+        if getattr(request, "user", None) and request.user.is_authenticated:
+            from pathlib import PurePosixPath
+            from uuid import uuid4
+            from .services.problems import validate_problem_id
+            safe_id = validate_problem_id(problem_id)
+            language = safe_id.split("/")[0] if safe_id.split("/")[0] in {"ko", "uk", "en", "ja", "zh", "km"} else "ko"
+            name = PurePosixPath(safe_id).name.removesuffix(".dsl.py")
+            problem_id = f"{language}/authors/user_{request.user.pk}/{uuid4().hex}/{name}.dsl.py"
         detail = create_blank_problem(problem_id, title=title)
+        if getattr(request, "user", None) and request.user.is_authenticated:
+            from modu_math_web.learning.services.authoring_access import register_source
+            publication = register_source(request.user, resolve_problem_paths(detail["problem_id"]), title)
+            detail["learning_problem_id"] = publication.problem_id
     except ValueError as exc:
         return _error(str(exc), status=400)
     except FileExistsError as exc:

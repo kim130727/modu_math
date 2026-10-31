@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, get_user_model
 from django.db import transaction
+from django.utils.functional import cached_property
 from rest_framework import serializers
 
 from .models import Attempt, Mastery, Problem
@@ -69,6 +70,19 @@ class LoginSerializer(serializers.Serializer):
 
 
 class ProblemListSerializer(serializers.ModelSerializer):
+    @cached_property
+    def manager(self):
+        from .platform_permissions import is_manager
+
+        request = self.context.get("request")
+        return bool(request and is_manager(request.user))
+
+    visibility = serializers.SerializerMethodField()
+    owner_name = serializers.SerializerMethodField()
+    can_edit = serializers.SerializerMethodField()
+    can_use_in_class = serializers.SerializerMethodField()
+    source_credit = serializers.SerializerMethodField()
+    rights_note = serializers.SerializerMethodField()
     publication_status = serializers.SerializerMethodField()
     difficulty = serializers.SerializerMethodField()
     title = serializers.SerializerMethodField()
@@ -105,6 +119,12 @@ class ProblemListSerializer(serializers.ModelSerializer):
             "file_prefix",
             "path",
             "publication_status",
+            "visibility",
+            "owner_name",
+            "can_edit",
+            "can_use_in_class",
+            "source_credit",
+            "rights_note",
             "difficulty",
             "updated_at",
         )
@@ -112,6 +132,55 @@ class ProblemListSerializer(serializers.ModelSerializer):
     def get_publication_status(self, obj):
         publication = getattr(obj, "publication", None)
         return publication.status if publication else "published"
+
+    def get_visibility(self, obj):
+        publication = getattr(obj, "publication", None)
+        return publication.visibility if publication else "public"
+
+    def get_owner_name(self, obj):
+        publication = getattr(obj, "publication", None)
+        return (
+            publication.owner.username
+            if publication and publication.owner_id
+            else "모두의 수학"
+        )
+
+    def get_source_credit(self, obj):
+        publication = getattr(obj, "publication", None)
+        return publication.source_credit if publication else ""
+
+    def get_rights_note(self, obj):
+        publication = getattr(obj, "publication", None)
+        return publication.rights_note if publication else ""
+
+    def get_can_edit(self, obj):
+        request = self.context.get("request")
+        if not request or not self.manager:
+            return False
+        publication = getattr(obj, "publication", None)
+        return (
+            request.user.is_staff
+            or request.user.is_superuser
+            or bool(publication and publication.owner_id == request.user.pk)
+        )
+
+    def get_can_use_in_class(self, obj):
+        request = self.context.get("request")
+        if not request or not self.manager:
+            return False
+        publication = getattr(obj, "publication", None)
+        return (
+            (
+                self.get_can_edit(obj)
+                and (not publication or publication.status != "archived")
+            )
+            or not publication
+            or (
+                publication.status == "published"
+                and publication.visibility == "public"
+                and publication.allow_classroom_use
+            )
+        )
 
     def get_difficulty(self, obj):
         publication = getattr(obj, "publication", None)
@@ -233,13 +302,11 @@ class AttemptSerializer(serializers.ModelSerializer):
                 )
             attrs["problem"] = problem
         attrs.pop("problem_id", None)
-        from .models import ProblemPublication
-        from .platform_permissions import is_manager
+        from .services.problem_access import accessible_problems
 
         if (
-            not is_manager(self.context["request"].user)
-            and ProblemPublication.objects.filter(problem=attrs["problem"])
-            .exclude(status="published")
+            not accessible_problems(self.context["request"].user)
+            .filter(pk=attrs["problem"].pk)
             .exists()
         ):
             raise serializers.ValidationError(

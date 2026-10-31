@@ -27,6 +27,7 @@ from .platform_views import (
     ProblemSetViewSet,
     StudentAssignmentViewSet,
     StudentViewSet,
+    StudentClassesView,
     TeacherDashboardView,
 )
 
@@ -50,6 +51,7 @@ urlpatterns = [
     path("auth/me/", CurrentUserView.as_view(), name="current-user"),
     path("auth/logout/", LogoutView.as_view(), name="logout"),
     path("student/join-class/", JoinClassView.as_view(), name="join-class"),
+    path("student/classes/", StudentClassesView.as_view(), name="student-classes"),
     path(
         "teacher/dashboard/", TeacherDashboardView.as_view(), name="teacher-dashboard"
     ),

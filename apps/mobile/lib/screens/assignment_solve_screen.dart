@@ -151,6 +151,12 @@ class _AssignmentSolveScreenState extends State<AssignmentSolveScreen>
           style: const TextStyle(
               fontSize: 24, height: 1.5, fontWeight: FontWeight.w600)),
       const SizedBox(height: 18),
+      if ('${item.content['owner_name'] ?? ''}'.isNotEmpty)
+        Text('${strings.t('author')}: ${item.content['owner_name']}'),
+      if ('${item.content['source_credit'] ?? ''}'.isNotEmpty)
+        Text('${strings.t('source')}: ${item.content['source_credit']}'),
+      if ('${item.content['rights_note'] ?? ''}'.isNotEmpty)
+        Text('${item.content['rights_note']}'),
       if (item.problem.renderer.isNotEmpty)
         SizedBox(
             height: 280,
@@ -487,8 +493,7 @@ class _AssignmentSolveScreenState extends State<AssignmentSolveScreen>
         decoration: BoxDecoration(
           color: KidsPalette.primarySoft.withValues(alpha: 0.5),
           borderRadius: BorderRadius.circular(16),
-          border:
-              Border.all(color: KidsPalette.primary.withValues(alpha: 0.2)),
+          border: Border.all(color: KidsPalette.primary.withValues(alpha: 0.2)),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -536,9 +541,7 @@ class _AssignmentSolveScreenState extends State<AssignmentSolveScreen>
                       child: Text(
                         text,
                         style: const TextStyle(
-                            fontSize: 16,
-                            height: 1.5,
-                            color: KidsPalette.ink),
+                            fontSize: 16, height: 1.5, color: KidsPalette.ink),
                       ),
                     ),
                   ],
@@ -601,15 +604,13 @@ List<String> extractProblemSteps(AssignmentItem item) {
     if (subproblemNumber != null) {
       final stepId = '${step['id'] ?? ''}';
       final uses = (step['uses'] as List? ?? []).map((u) => '$u').toList();
-      final hasOtherSubproblem = RegExp(r'problem_(\d+)')
-          .allMatches('$stepId $uses')
-          .any((m) {
+      final hasOtherSubproblem =
+          RegExp(r'problem_(\d+)').allMatches('$stepId $uses').any((m) {
         final num = int.tryParse(m.group(1)!);
         return num != null && num != subproblemNumber;
       });
-      final hasThisSubproblem = RegExp(r'problem_(\d+)')
-          .allMatches('$stepId $uses')
-          .any((m) {
+      final hasThisSubproblem =
+          RegExp(r'problem_(\d+)').allMatches('$stepId $uses').any((m) {
         final num = int.tryParse(m.group(1)!);
         return num == subproblemNumber;
       });

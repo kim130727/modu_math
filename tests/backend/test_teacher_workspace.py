@@ -28,7 +28,7 @@ def test_workspace_serves_the_separate_teacher_bundle(client):
 def test_problem_catalog_has_lifecycle_fields_and_bounded_id_filter(teacher):
     first = Problem.objects.create(problem_id="workspace-first", answer={"value": 1})
     second = Problem.objects.create(problem_id="workspace-second", answer={"value": 2})
-    ProblemPublication.objects.create(problem=second, status="review", difficulty=4)
+    ProblemPublication.objects.create(problem=second, owner=teacher, status="review", difficulty=4)
     client = APIClient()
     client.force_authenticate(teacher)
     rows = client.get("/api/v1/problems/", {"ids": str(second.pk)}).data["results"]
@@ -54,6 +54,8 @@ def test_signed_image_session_is_scoped_and_revocable(teacher, tmp_path, setting
     directory.mkdir()
     (directory / "sample.dsl.py").write_text("# image fixture", encoding="utf-8")
     (directory / "image.png").write_bytes(b"test-image")
+    problem = Problem.objects.create(problem_id="sample", answer={})
+    ProblemPublication.objects.create(problem=problem, owner=teacher, source_path="ko/sample.dsl.py")
     client = APIClient()
     token = Token.objects.create(user=teacher)
     client.credentials(HTTP_AUTHORIZATION="Token " + token.key)

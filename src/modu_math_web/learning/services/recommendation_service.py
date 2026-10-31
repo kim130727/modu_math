@@ -21,9 +21,9 @@ class ProblemRecommendationService:
         self, limit: int = 10, language: str = "ko"
     ) -> list[dict[str, Any]]:
         # Retrieve all candidate problems in the specified language
-        published = Problem.objects.filter(
-            Q(publication__isnull=True) | Q(publication__status="published")
-        )
+        from .problem_access import public_problems
+
+        published = public_problems()
         candidates = list(
             published.filter(language=language).select_related("tagging").order_by("id")
         )

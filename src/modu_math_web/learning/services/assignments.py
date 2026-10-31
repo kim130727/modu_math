@@ -107,7 +107,15 @@ def student_problem(problem):
                 )
             elif isinstance(choice, str):
                 choices.append(choice)
+    publication = getattr(problem, "publication", None)
     return {
+        "owner_name": (
+            publication.owner.username
+            if publication and publication.owner_id
+            else "모두의 수학"
+        ),
+        "source_credit": publication.source_credit if publication else "",
+        "rights_note": publication.rights_note if publication else "",
         "id": problem.pk,
         "problem_id": problem.problem_id,
         "language": problem.language,

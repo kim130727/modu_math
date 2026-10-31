@@ -164,6 +164,9 @@ class JoinClassView(APIView):
         enrollment, _ = Enrollment.objects.get_or_create(
             classroom=classroom, student=student
         )
+        if enrollment.status == "inactive":
+            enrollment.status = "pending"
+            enrollment.save(update_fields=("status",))
         return Response(
             {
                 "id": enrollment.pk,
@@ -171,6 +174,26 @@ class JoinClassView(APIView):
                 "status": enrollment.status,
             },
             status=201,
+        )
+
+
+class StudentClassesView(APIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request):
+        enrollments = Enrollment.objects.filter(
+            student__user=request.user, classroom__archived=False
+        ).select_related("classroom__teacher")
+        return Response(
+            [
+                {
+                    "id": e.classroom_id,
+                    "name": e.classroom.name,
+                    "teacher_name": e.classroom.teacher.username,
+                    "status": e.status,
+                }
+                for e in enrollments.order_by("classroom_id")
+            ]
         )
 
 
@@ -214,6 +237,12 @@ class ProblemSetViewSet(viewsets.ModelViewSet):
     @transaction.atomic
     def duplicate(self, request, pk=None):
         original = self.get_object()
+        from .services.problem_access import require_reusable
+
+        require_reusable(
+            request.user,
+            [item.problem for item in original.items.select_related("problem")],
+        )
         duplicate = ProblemSet.objects.create(
             owner=request.user,
             title=original.title + " (복제)",
@@ -299,6 +328,9 @@ class AssignmentViewSet(viewsets.GenericViewSet):
         items = list(problem_set.items.select_related("problem"))
         if not items:
             raise ValidationError("빈 문제집은 배정할 수 없습니다.")
+        from .services.problem_access import require_reusable
+
+        require_reusable(request.user, [item.problem for item in items])
         assignment = Assignment.objects.create(
             owner=request.user,
             problem_set=problem_set,
@@ -572,9 +604,7 @@ class LogoutView(APIView):
         if request.auth:
             request.auth.delete()
         response = Response(status=204)
-        response.delete_cookie(
-            "modu_editor_session", path="/", samesite="Strict"
-        )
+        response.delete_cookie("modu_editor_session", path="/", samesite="Strict")
         return response
 
 

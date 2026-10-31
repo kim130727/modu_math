@@ -138,6 +138,14 @@ test("teacher workspace: real login, ten questions, two students, results and ed
     await page.getByRole("link", { name: "문제은행", exact: true }).click();
     await page.getByRole("button", { name: "미리보기", exact: true }).first().click();
     const editor = page.getByRole("link", { name: "Konva 편집기에서 열기 ↗" });
+    await page.getByRole("radio", { name: /선택한 클래스/ }).check();
+    await page.getByRole("checkbox", { name: "브라우저 수학반", exact: true }).check();
+    await page.getByRole("button", { name: "공개 설정 저장", exact: true }).click();
+    await page.getByRole("dialog").waitFor({ state: "hidden" });
+    await page.getByRole("button", { name: "미리보기", exact: true }).first().click();
+    await page.getByRole("radio", { name: /선택한 클래스/ }).waitFor();
+    assert.equal(await page.getByRole("radio", { name: /선택한 클래스/ }).isChecked(), true);
+    await page.screenshot({ path: join(artifacts, "visibility-settings.png"), fullPage: true });
     assert.match(await editor.getAttribute("href"), /problem=ko%2Fday_01/);
     await editor.click();
     await page.waitForURL(/editor-konva/);

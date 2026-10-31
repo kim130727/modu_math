@@ -57,6 +57,21 @@ class EditorAccessMiddleware:
         return False
 
     def __call__(self, request):
+        if (
+            settings.DEBUG
+            and request.path.startswith("/api/editor/")
+            and request.headers.get("Authorization")
+        ):
+            try:
+                credentials = TokenAuthentication().authenticate(request)
+                if credentials:
+                    request.user = credentials[0]
+                    if not is_manager(request.user):
+                        return JsonResponse(
+                            {"detail": "Teacher permission required"}, status=403
+                        )
+            except AuthenticationFailed:
+                return JsonResponse({"detail": "Authentication required"}, status=401)
         if not settings.DEBUG and self._is_protected_path(request.path):
             user = None
             if getattr(request, "user", None) and request.user.is_authenticated:
@@ -95,7 +110,9 @@ class EditorAccessMiddleware:
                 if request.path in {"/editor/", "/editor-konva/"}:
                     return HttpResponseRedirect("/teacher/")
                 if request.path.startswith("/api/"):
-                    return JsonResponse({"detail": "Authentication required"}, status=401)
+                    return JsonResponse(
+                        {"detail": "Authentication required"}, status=401
+                    )
                 return HttpResponse("Authentication required", status=401)
 
             request.user = user
@@ -106,4 +123,53 @@ class EditorAccessMiddleware:
                     )
                 return HttpResponse("Teacher permission required", status=403)
 
-        return self.get_response(request)
+        return self.process_response(request, self.get_response(request))
+
+    def process_view(self, request, view_func, view_args, view_kwargs):
+        problem_id = view_kwargs.get("problem_id")
+        if not problem_id or not request.path.startswith("/api/editor/"):
+            return None
+        user = getattr(request, "user", None)
+        if settings.DEBUG and not (user and user.is_authenticated):
+            return None
+        from modu_math_web.editor.services.problems import resolve_problem_paths
+        from .services.authoring_access import may_author
+
+        try:
+            paths = resolve_problem_paths(problem_id)
+        except (ValueError, FileNotFoundError):
+            return JsonResponse({"detail": "문제를 찾을 수 없습니다."}, status=404)
+        if not user or not user.is_authenticated or not may_author(user, paths):
+            return JsonResponse({"detail": "문제를 찾을 수 없습니다."}, status=404)
+        return None
+
+    def process_response(self, request, response):
+        # Successful editor builds update the same owned DB record; publishing is explicit.
+        if (
+            request.method == "POST"
+            and request.path.startswith("/api/editor/problems/")
+            and response.status_code == 200
+            and getattr(request, "user", None)
+            and request.user.is_authenticated
+        ):
+            import json
+            from modu_math_web.editor.services.problems import resolve_problem_paths
+            from .services.authoring_access import sync_authored_artifacts
+
+            try:
+                payload = json.loads(response.content)
+            except (ValueError, AttributeError):
+                return response
+            if (
+                payload.get("ok")
+                and payload.get("artifacts")
+                and payload.get("problem_id")
+            ):
+                sync_authored_artifacts(
+                    resolve_problem_paths(payload["problem_id"]), payload["artifacts"]
+                )
+        if request.path.startswith(
+            ("/api/editor/", "/api/v1/problems/", "/api/v1/student/")
+        ):
+            response["Cache-Control"] = "private, no-store"
+        return response

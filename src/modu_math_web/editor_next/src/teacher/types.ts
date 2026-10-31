@@ -3,7 +3,7 @@ export interface Page<T> { count: number; next: string | null; previous: string 
 export interface Student { id: number; user_id: number; username: string }
 export interface Classroom { id: number; name: string; teacher: number; invite_code: string; archived: boolean }
 export interface Enrollment { id: number; classroom: number; student: number; username: string; status: "pending" | "approved" | "inactive" }
-export interface Problem { id: number; problem_id: string; title: string; language: string; grade: number | null; problem_type: string; concepts: string[]; unit: string; path: string; file_prefix: string; publication_status: string; difficulty: number }
+export interface Problem { id: number; problem_id: string; title: string; language: string; grade: number | null; problem_type: string; concepts: string[]; unit: string; path: string; file_prefix: string; publication_status: string; difficulty: number; visibility: string; owner_name: string; can_edit: boolean; can_use_in_class: boolean; source_credit: string; rights_note: string }
 export interface ProblemDetail extends Problem { semantic_data: Record<string, unknown>; renderer_data: Record<string, unknown>; answer: unknown }
 export interface ProblemSet { id: number; title: string; description: string; version: number; items: { problem: number; position: number }[] }
 export interface Assignment { id: number; title: string; problem_set: number; source_version: number; status: "active" | "closed" | "cancelled"; starts_at: string | null; due_at: string | null; max_attempts: number; release_policy: string; item_count: number; recipient_count: number; submitted_count: number; accuracy: number }

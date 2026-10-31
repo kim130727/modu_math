@@ -18,6 +18,16 @@ class AssignmentStrings {
   }
 
   static const _ko = {
+    'library': '공개 문제 · 내 클래스',
+    'libraryWelcome': '혼자서도, 친구들과 함께도 배워요. 공개 문제는 클래스 가입 없이 풀 수 있어요.',
+    'publicProblems': '모두의 문제',
+    'classPending': '선생님 승인 대기',
+    'gradeFilter': '학년',
+    'allGrades': '전체 학년',
+    'libraryEmpty': '아직 공개된 문제가 없어요.',
+    'practice': '자유롭게 풀기',
+    'author': '만든 선생님',
+    'source': '출처',
     'saveRejected': '서버에 저장하지 못했어요. 과제 상태를 확인해 주세요.',
     'storage': '기기에 저장하지 못했어요. 화면을 닫기 전에 저장 공간을 확인해 주세요.',
     'title': '내 과제',
@@ -87,6 +97,17 @@ class AssignmentStrings {
     'incomplete': '모든 답을 입력해 주세요.',
   };
   static const _uk = {
+    'library': 'Відкриті задачі · Мої класи',
+    'libraryWelcome':
+        'Навчайся самостійно або з класом. Відкриті задачі доступні без вступу до класу.',
+    'publicProblems': 'Задачі для всіх',
+    'classPending': 'Очікує схвалення вчителя',
+    'gradeFilter': 'Клас',
+    'allGrades': 'Усі класи',
+    'libraryEmpty': 'Відкритих задач поки немає.',
+    'practice': 'Самостійна практика',
+    'author': 'Автор',
+    'source': 'Джерело',
     'saveRejected':
         'Не вдалося зберегти дані на сервері. Перевірте стан завдання.',
     'storage':
