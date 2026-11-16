@@ -116,31 +116,51 @@ def file_lock(path: Path):
         if key in held:
             yield
             return
-        path.parent.mkdir(parents=True, exist_ok=True)
-        with path.open("a+b") as stream:
+        # Use a local temporary directory for lock files to prevent hangs on
+        # network/virtualized/bind mounts (e.g. 9p, CIFS, Docker Desktop WSL2 mounts).
+        lock_name = hashlib.sha256(key.encode("utf-8")).hexdigest() + ".lock"
+        local_lock_path = Path(tempfile.gettempdir()) / "modu_math_locks" / lock_name
+        local_lock_path.parent.mkdir(parents=True, exist_ok=True)
+        with local_lock_path.open("a+b") as stream:
             stream.seek(0, os.SEEK_END)
             if stream.tell() == 0:
                 stream.write(b"0")
                 stream.flush()
             stream.seek(0)
+            locked = False
             if os.name == "nt":
                 import msvcrt
-                msvcrt.locking(stream.fileno(), msvcrt.LK_LOCK, 1)
+                try:
+                    msvcrt.locking(stream.fileno(), msvcrt.LK_LOCK, 1)
+                    locked = True
+                except OSError:
+                    pass
             else:
                 import fcntl
-                fcntl.flock(stream.fileno(), fcntl.LOCK_EX)
+                try:
+                    fcntl.flock(stream.fileno(), fcntl.LOCK_EX)
+                    locked = True
+                except (OSError, IOError):
+                    pass
             _held.keys = held | {key}
             try:
                 yield
             finally:
                 _held.keys = held
-                stream.seek(0)
-                if os.name == "nt":
-                    import msvcrt
-                    msvcrt.locking(stream.fileno(), msvcrt.LK_UNLCK, 1)
-                else:
-                    import fcntl
-                    fcntl.flock(stream.fileno(), fcntl.LOCK_UN)
+                if locked:
+                    stream.seek(0)
+                    if os.name == "nt":
+                        import msvcrt
+                        try:
+                            msvcrt.locking(stream.fileno(), msvcrt.LK_UNLCK, 1)
+                        except OSError:
+                            pass
+                    else:
+                        import fcntl
+                        try:
+                            fcntl.flock(stream.fileno(), fcntl.LOCK_UN)
+                        except (OSError, IOError):
+                            pass
 
 
 def atomic_write(path: Path, content: bytes):

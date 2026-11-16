@@ -1,5 +1,6 @@
 import "./EditorPublication.css";
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import { editorAuthHeaders, sessionToken } from "../auth/session";
 import { PublicationForm, type Publication } from "../teacher/PublicationForm";
 import { Modal, useLoad } from "../teacher/components";
@@ -17,5 +18,5 @@ export function EditorPublication({ sourceId, busy }: { sourceId: string; busy: 
   const path = `/api/editor/problems/${encodeURIComponent(sourceId)}/publication/`;
   const loaded = useLoad(() => open ? request(path) : Promise.resolve(null), [sourceId, open]);
   if (!sessionToken()) return null;
-  return <><button disabled={busy} onClick={() => { setSaved(false); setOpen(true); }}>공개 범위 설정</button>{open && <Modal title="공개 범위 설정" close={() => setOpen(false)}>{loaded.loading ? <p>설정을 불러오고 있어요…</p> : loaded.error ? <p role="alert">{loaded.error}</p> : loaded.data && <PublicationForm key={sourceId} value={loaded.data} save={async value => { await request(path, value); setSaved(true); }} />}{saved && <p role="status">공개 설정을 저장했습니다.</p>}</Modal>}</>;
+  return <><button className="editor-publication-button" disabled={busy} onClick={() => { setSaved(false); setOpen(true); }}>공개 범위 설정</button>{open && createPortal(<Modal title="공개 범위 설정" close={() => setOpen(false)}>{loaded.loading ? <p>설정을 불러오고 있어요…</p> : loaded.error ? <p role="alert">{loaded.error}</p> : loaded.data && <PublicationForm key={sourceId} value={loaded.data} save={async value => { await request(path, value); setSaved(true); }} />}{saved && <p role="status">공개 설정을 저장했습니다.</p>}</Modal>, document.querySelector(".konva-editor") ?? document.body)}</>;
 }

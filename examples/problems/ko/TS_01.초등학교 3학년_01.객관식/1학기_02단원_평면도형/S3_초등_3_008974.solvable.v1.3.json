@@ -1,0 +1,101 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_008974",
+  "problem_type": "multiple_choice_geometry_line_classification",
+  "given": [
+    {
+      "ref": "line_ga",
+      "value": "curved_line"
+    },
+    {
+      "ref": "line_na",
+      "value": "curved_line"
+    },
+    {
+      "ref": "line_da",
+      "value": "straight_line"
+    },
+    {
+      "ref": "line_ra",
+      "value": "curved_line"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_2",
+    "label": "곧은 선의 기호",
+    "unit": ""
+  },
+  "method": "line_classification",
+  "steps": [
+    {
+      "id": "identify_straight_line",
+      "expr": "line_da",
+      "explanation": "구부러지지 않고 반듯하게 뻗은 선은 '다'입니다.",
+      "value": "다"
+    }
+  ],
+  "answer": {
+    "value": "다",
+    "answer_index": 2,
+    "unit": "",
+    "values": [
+      "다"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "가",
+        "value": "가"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "나",
+        "value": "나"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "다",
+        "value": "다"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "라",
+        "value": "라"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "다",
+        "diagnostics": [
+          {
+            "id": "diag.curved_line_ga",
+            "condition": "answer_equals_ga",
+            "concept": "곧은 선과 굽은 선",
+            "reason": "구불구불하게 휘어진 굽은 선 '가'를 선택함",
+            "feedback": "'가'는 구불구불하게 휘어져 있으므로 굽은 선입니다. 반듯하게 뻗은 선을 찾아보세요."
+          },
+          {
+            "id": "diag.curved_line_na",
+            "condition": "answer_equals_na",
+            "concept": "곧은 선과 굽은 선",
+            "reason": "위로 완만하게 휜 굽은 선 '나'를 선택함",
+            "feedback": "'나'는 위쪽으로 완만하게 휘어져 있는 굽은 선입니다. 자를 대었을 때 반듯한 선을 찾아보세요."
+          },
+          {
+            "id": "diag.curved_line_ra",
+            "condition": "answer_equals_ra",
+            "concept": "곧은 선과 굽은 선",
+            "reason": "아래로 휘어진 굽은 선 '라'를 선택함",
+            "feedback": "'라'는 아래쪽으로 휘어져 있는 굽은 선입니다. 구부러지지 않고 곧게 뻗은 선을 찾아보세요."
+          }
+        ]
+      }
+    ]
+  }
+}

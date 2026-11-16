@@ -18,6 +18,9 @@ try {
   await page.goto(base, { waitUntil: "domcontentloaded" });
   await page.getByText("문제 스튜디오", { exact: true }).waitFor();
   const button = name => page.getByRole("button", { name, exact: true });
+  assert.ok((await page.locator(".editor-toolbox").boundingBox()).height <= 92, "Header and tools occupy only two compact rows on desktop");
+  assert.equal(await page.locator(".konva-question-preview").count(), 0, "An empty prompt reserves no canvas space");
+  assert.ok((await button("문제 탐색").boundingBox()).width > 50, "Dock labels fit horizontally");
   for (const name of ["새파일", "저장", "저장하고 화면 반영", "문제 편집", "정답 검수", "글자", "수식", "이미지", "표", "캐릭터", "도형 추가"]) {
     assert.ok(await button(name).isVisible(), name);
   }
@@ -93,6 +96,61 @@ try {
     assert.ok(await button("저장하고 화면 반영").isVisible());
     await page.screenshot({ path: resolve(output, `${width}.png`), fullPage: true });
   }
+  // Exercise the prompt/canvas/choices layout that used to overlap at short heights.
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.getByRole("tab", { name: "JSON", exact: true }).click();
+  const layoutFixture = JSON.parse(await page.locator(".konva-json-panel textarea").inputValue());
+  layoutFixture.shapes = [
+    { id: "prompt", type: "text", x: 20, y: 20, width: 650, fontSize: 20, text: "원의 반지름을 재어 알맞은 말을 선택하세요.", semanticRole: "question", semanticRoleSource: "inferred", sourceRegionId: "region.stem" },
+    { id: "circle", type: "circle", x: 300, y: 230, radius: 130, stroke: "#172033", strokeWidth: 2 },
+    { id: "radius", type: "line", x: 300, y: 230, points: [0, 0, 112, -66], stroke: "#172033", strokeWidth: 2 },
+    { id: "answer-prompt", type: "text", x: 20, y: 420, width: 600, fontSize: 20, text: "한 원의 반지름은 모두", semanticRole: "answer_prompt" },
+    ...["같습니다", "다릅니다", "알 수 없습니다", "없습니다"].map((text, index) => ({ id: `choice-${index}`, type: "text", x: 20, y: 460 + index * 30, width: 200, fontSize: 18, text, semanticRole: "choice", semanticRoleSource: "inferred", sourceRegionId: "region.choices" })),
+  ];
+  await page.locator(".konva-json-panel textarea").fill(JSON.stringify(layoutFixture));
+  await page.getByRole("tab", { name: "요소 설정", exact: true }).click();
+  const canvas = page.locator(".konva-canvas-viewport");
+  const assertCanvasFits = async () => {
+    await page.waitForFunction(() => {
+      const cell = document.querySelector(".konva-canvas-viewport");
+      const stage = cell?.querySelector(".konvajs-content");
+      return cell && stage && Math.abs(stage.getBoundingClientRect().width - cell.clientWidth) <= 2 && Math.abs(stage.getBoundingClientRect().height - cell.clientHeight) <= 2;
+    });
+    const surface = await canvas.boundingBox();
+    const answers = await page.locator(".konva-answer-prompt-preview").boundingBox();
+    const panel = await page.locator(".konva-side-panel").count() ? await page.locator(".konva-side-panel").boundingBox() : null;
+    const prompt = await page.locator(".konva-question-preview").boundingBox();
+    assert.ok(surface.height > 150, "Canvas retains useful height");
+    assert.ok(surface.y + surface.height <= answers.y + 1, "Choices never overlap the canvas");
+    if (panel) {
+      assert.ok(surface.x + surface.width <= panel.x, "Inspector never overlaps the canvas");
+      assert.ok(Math.abs(panel.y - prompt.y) <= 1, "Inspector spans the prompt and canvas rows");
+    }
+  };
+  for (const viewport of [{ width: 1906, height: 840 }, { width: 1440, height: 900 }, { width: 1024, height: 768 }, { width: 768, height: 900 }]) {
+    await page.setViewportSize(viewport);
+    await assertCanvasFits();
+  }
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await assertCanvasFits();
+  assert.ok((await canvas.boundingBox()).height > 450, "Canvas is the main editing area even with a prompt and four choices");
+  assert.ok((await page.locator(".konva-answer-prompt-preview").boundingBox()).height < 100, "Choices use a compact horizontal row");
+  const dockedWidth = (await canvas.boundingBox()).width;
+  await button("문제 탐색").click();
+  await button("속성 패널").click();
+  await assertCanvasFits();
+  assert.ok((await canvas.boundingBox()).width > dockedWidth + 400, "Closing both docks expands the canvas");
+  await page.getByTitle("실제 크기", { exact: true }).click();
+  assert.equal(await page.locator(".canvas-zoom-controls > span").textContent(), "100%");
+  await button("캔버스 확대").click();
+  assert.equal(await page.locator(".canvas-zoom-controls > span").textContent(), "125%");
+  await page.getByTitle("화면에 맞추기", { exact: true }).click();
+  await assertCanvasFits();
+  await page.screenshot({ path: resolve(output, "canvas-expanded.png"), fullPage: true });
+  await button("문제 탐색").click();
+  await button("속성 패널").click();
+  await assertCanvasFits();
+  await page.screenshot({ path: resolve(output, "canvas-layout.png"), fullPage: true });
   assert.deepEqual(errors, []);
   console.log(`Editor workspace passed: ${presets} shape presets, all tool groups, editing, JSON, hints, review, responsive layout. Screenshots: ${output}`);
 } finally {

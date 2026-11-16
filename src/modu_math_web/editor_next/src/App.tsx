@@ -20,5 +20,5 @@ export default function App() {
     }).catch(err => { if (active) setError(err.message); });
     return () => { active = false; };
   }, [local]);
-  return access ? <div className="authenticated-editor"><a className="teacher-return-link" href="/teacher/">← 교사 학습관리</a><EditorKonva /></div> : <main style={{ padding: 40 }}><h1>모두의 수학 문제 편집기</h1><p>{error || "교사 권한을 확인하고 있습니다…"}</p><a href="/teacher/">교사 관리 화면으로 이동 →</a></main>;
+  return access ? <div className="authenticated-editor"><EditorKonva /></div> : <main style={{ padding: 40 }}><h1>모두의 수학 문제 편집기</h1><p>{error || "교사 권한을 확인하고 있습니다…"}</p><a href="/teacher/">교사 관리 화면으로 이동 →</a></main>;
 }

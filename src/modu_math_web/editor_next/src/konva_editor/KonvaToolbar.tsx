@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 export type ShapePreset =
   | "line"
@@ -70,6 +70,7 @@ type ToolName =
   | "build";
 
 interface KonvaToolbarProps {
+  workspaceHeader?: ReactNode;
   busy?: boolean;
   onOpenAnswers: () => void;
   onAddAnswerBlank: () => void;
@@ -437,7 +438,8 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
 
   return (
     <div className="mvp-toolbar editor-toolbox">
-      <div className="editor-action-row">
+      <header className="editor-action-row editor-workspace-header">
+      {props.workspaceHeader}
       <button type="button" className="new-file-button" title="새파일" aria-label="새파일" onClick={props.onNewFile}>
         <ToolbarIcon name="newFile" />
         <span>새파일</span>
@@ -450,7 +452,7 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
       <span className="toolbar-spacer" />
       <IconButton label="저장" icon="save" onClick={props.onSave} disabled={props.busy} />
       <IconButton label="저장하고 화면 반영" icon="saveBuild" onClick={props.onSaveAndBuild} disabled={props.busy} primary />
-      </div>
+      </header>
       <div className="editor-insert-row">
       <div className="editor-tool-groups" role="group" aria-label="도구 분류">
         {([{ id: "basic", label: "기본 요소" }, { id: "math", label: "수학 교구" }, { id: "manage", label: "정답 및 파일" }] as const).map(group => (

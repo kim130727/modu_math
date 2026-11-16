@@ -73,6 +73,7 @@ export function KonvaStage({
   onTutorOverlayMove,
 }: KonvaStageProps) {
   const wrapRef = useRef<HTMLDivElement | null>(null);
+  const surfaceRef = useRef<HTMLDivElement | null>(null);
   const transformerRef = useRef<Konva.Transformer | null>(null);
   const shapeRefs = useRef<Record<string, Konva.Node | null>>({});
   const dragStartRef = useRef<{ activeId: string; ids: string[]; positions: Map<string, { x: number; y: number }> } | null>(null);
@@ -103,12 +104,12 @@ export function KonvaStage({
   const [, setFontLoadRevision] = useState(0);
 
   useEffect(() => {
-    if (!wrapRef.current) return;
+    if (!surfaceRef.current) return;
     let frame = 0;
     const observer = new ResizeObserver(([entry]) => {
       const next = {
-        width: Math.max(320, Math.round(entry.contentRect.width)),
-        height: Math.max(320, Math.round(entry.contentRect.height)),
+        width: Math.max(1, Math.floor(entry.contentRect.width)),
+        height: Math.max(1, Math.floor(entry.contentRect.height)),
       };
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
@@ -117,7 +118,7 @@ export function KonvaStage({
         );
       });
     });
-    observer.observe(wrapRef.current);
+    observer.observe(surfaceRef.current);
     return () => {
       cancelAnimationFrame(frame);
       observer.disconnect();
@@ -201,21 +202,22 @@ export function KonvaStage({
   const renderedShapes = useMemo(
     () => shapes.filter((shape) =>
       !(isTopPresentationShape(shape) || shape.semanticRole === "answer_prompt" ||
-        (isExplicitChoiceShape(shape) && answerChoices.length > 0)),
+        ((isChoiceShape(shape) || isChoiceDecoration(shape)) && answerChoices.length > 0)),
     ).sort(compareRenderOrder),
     [answerChoices.length, answerReviewMode, shapes],
   );
   const [fitContent, setFitContent] = useState(true);
+  const [zoom, setZoom] = useState<number | null>(null);
   const crop = useMemo(
     () => contentCrop(renderedShapes, width, height, fitContent),
     [fitContent, height, renderedShapes, width],
   );
   const presentationPanel = answerReviewMode ? reviewPanel : editorPanel;
-  const previewWidth = presentationPanel ? Math.max(280, viewport.width - 344) : viewport.width;
-  const availableHeight = Math.max(260, viewport.height - 150);
-  const scale = Math.max(0.05, Math.min((previewWidth - 40) / crop.width, (availableHeight - 40) / crop.height, 2.5));
-  const stageWidth = previewWidth;
-  const stageHeight = Math.max(280, crop.height * scale + 40);
+  // Measure the canvas grid cell so prompt, answer and panel sizes are all respected.
+  const fitScale = Math.max(0.01, Math.min(Math.max(1, viewport.width - 48) / crop.width, Math.max(1, viewport.height - 48) / crop.height, 2.5));
+  const scale = zoom ?? fitScale;
+  const stageWidth = Math.max(viewport.width, crop.width * scale + 48);
+  const stageHeight = Math.max(viewport.height, crop.height * scale + 48);
   const offsetX = (stageWidth - crop.width * scale) / 2 - crop.x * scale;
   const offsetY = (stageHeight - crop.height * scale) / 2 - crop.y * scale;
   const answerReviews = answerReviewMode && !reviewPanel ? answerSlotReviews(shapes, answerOptions) : new Map<string, AnswerSlotReview>();
@@ -461,9 +463,9 @@ export function KonvaStage({
 
   return (
     <div className={`konva-stage-wrap presentation-layout${drawingPreset ? " drawing" : ""}${presentationPanel ? " presentation-with-panel" : ""}${answerReviewMode ? " presentation-review" : ""}${answerReviewMode && !showAnswerCanvas ? " presentation-canvas-hidden" : ""}`} ref={wrapRef}>
-      <div className="konva-question-preview" role="region" aria-label="문제 지문">
+      {promptShapes.length > 0 ? <div className="konva-question-preview" role="region" aria-label="문제 지문">
           <div className="presentation-zone-title">
-            <span>Flutter · 문제 상단</span>
+            <span>문제 지문</span>
             <small>지문을 누르면 표시 영역을 바꿀 수 있습니다.</small>
           </div>
           {promptShapes.length ? promptShapes.map((shape) => (
@@ -472,12 +474,20 @@ export function KonvaStage({
               <span className="presentation-role-badge">{shape.semanticRole === "instruction" ? "풀이 지시문" : "문제 지문"}</span>
               <span>{shape.type === "text" ? shape.text : ""}</span>
             </button>
-          )) : <p className="presentation-zone-empty">문제 상단으로 지정된 지문이 없습니다.</p>}
-      </div>
+          )) : null}
+      </div> : null}
       <div className="review-canvas-toolbar">
-        <strong>Flutter · 문제 캔버스</strong>
-        <label className="review-fit-toggle"><input type="checkbox" checked={fitContent} onChange={(event) => setFitContent(event.target.checked)} />내용에 맞춰 보기 (원본 좌표 유지)</label>
+        <strong>문제 캔버스</strong>
+        <label className="review-fit-toggle"><input type="checkbox" checked={fitContent} onChange={(event) => { setFitContent(event.target.checked); setZoom(null); }} />내용에 맞춰 보기</label>
+        <div className="canvas-zoom-controls" aria-label="캔버스 확대 및 축소">
+          <button type="button" aria-label="캔버스 축소" disabled={scale <= 0.1} onClick={() => setZoom(Math.max(0.1, scale - 0.25))}>−</button>
+          <span aria-live="polite">{Math.round(scale * 100)}%</span>
+          <button type="button" aria-label="캔버스 확대" disabled={scale >= 5} onClick={() => setZoom(Math.min(5, scale + 0.25))}>+</button>
+          <button type="button" title="실제 크기" onClick={() => setZoom(1)}>1:1</button>
+          <button type="button" title="화면에 맞추기" aria-pressed={zoom === null} onClick={() => setZoom(null)}>맞춤</button>
+        </div>
       </div>
+      <div className="konva-canvas-viewport" ref={surfaceRef}>
       <Stage
         className="konva-canvas-surface"
         width={stageWidth}
@@ -679,9 +689,10 @@ export function KonvaStage({
           ) : null}
         </Layer>
       </Stage>
+      </div>
       {(answerPromptShapes.length > 0 || answerChoices.length > 0) && !answerReviewMode ? (
         <div className="konva-answer-prompt-preview" role="region" aria-label="정답 선택 영역">
-          <strong>Flutter · 정답 선택 영역</strong>
+          <strong>정답 선택 영역</strong>
           {answerPromptShapes.map((shape) => (
             <button type="button" className="presentation-prompt-item" key={shape.id}
               onClick={() => onEditPresentationShape?.(shape.id)}>
@@ -1121,11 +1132,15 @@ function intersectsRect(a: CanvasRect, b: CanvasRect): boolean {
 
 function isTopPresentationShape(shape: EditorShape): shape is Extract<EditorShape, { type: "text" }> {
   if (shape.type !== "text" || !["question", "instruction"].includes(shape.semanticRole ?? "")) return false;
-  return shape.semanticRoleSource !== "inferred";
+  return shape.semanticRoleSource !== "inferred" || /(?:^|[._])stem(?:[._]|$)/.test(shape.sourceRegionId ?? "");
 }
 
-function isExplicitChoiceShape(shape: EditorShape): boolean {
-  return shape.type === "text" && shape.semanticRole === "choice" && shape.semanticRoleSource !== "inferred";
+function isChoiceShape(shape: EditorShape): boolean {
+  return shape.type === "text" && shape.semanticRole === "choice";
+}
+
+function isChoiceDecoration(shape: EditorShape): boolean {
+  return shape.type === "text" && /(?:^|[._])choices(?:[._]|$)/.test(shape.sourceRegionId ?? "") && /^[\s(),，]+$/.test(shape.text);
 }
 
 function contentCrop(shapes: EditorShape[], width: number, height: number, fitContent: boolean): CanvasRect {

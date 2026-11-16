@@ -61,6 +61,8 @@ export function EditorKonva() {
   const [draftReview, setDraftReview] = useState<AnswerReviewSettings | null>(null);
   const [problemListVersion, setProblemListVersion] = useState(0);
   const [activeSidePanel, setActiveSidePanel] = useState<SidePanelTab>("properties");
+  const [explorerOpen, setExplorerOpen] = useState(true);
+  const [inspectorOpen, setInspectorOpen] = useState(true);
   const [isAvatarModalOpen, setAvatarModalOpen] = useState(false);
   const [avatarTargetId, setAvatarTargetId] = useState("");
   const avatarReplacementTargets = useMemo(() => avatarTargets(document.shapes), [document.shapes]);
@@ -1063,15 +1065,20 @@ export function EditorKonva() {
   );
 
   return (
-    <div className="math-problem-editor konva-editor">
-      <header className="editor-workspace-header">
-        <div className="editor-workspace-brand"><span className="editor-brand-mark" aria-hidden="true">m.</span><div><strong>문제 스튜디오</strong><span>모두의 수학 · 웹에디터</span></div></div>
-        <div className="editor-document-name"><span>현재 문제</span><strong title={selectedProblemId}>{openingProblemId ? "문제를 여는 중…" : selectedProblemId}</strong></div>
+    <div className={`math-problem-editor konva-editor${explorerOpen ? "" : " explorer-collapsed"}`}>
+      <KonvaToolbar
+        workspaceHeader={<>
+
+        <a className="editor-workspace-brand" href="/teacher/" title="교사 학습관리로 돌아가기"><span className="editor-brand-mark" aria-hidden="true">m.</span><strong>문제 스튜디오</strong></a>
+        <div className="editor-document-name"><strong title={selectedProblemId}>{openingProblemId ? "문제를 여는 중…" : selectedProblemId.split("/").at(-1)?.replace(/\.dsl\.py$/, "")}</strong></div>
+        <div className="editor-layout-controls" aria-label="작업 영역 배치">
+          <button type="button" aria-pressed={explorerOpen} onClick={() => setExplorerOpen(value => !value)}>문제 탐색</button>
+          <button type="button" aria-pressed={inspectorOpen} disabled={answerReviewMode} onClick={() => setInspectorOpen(value => !value)}>속성 패널</button>
+        </div>
         <EditorPublication sourceId={selectedProblemId} busy={saveStatus === "saving" || saveStatus === "building" || saveStatus === "unsaved"} />
         <span className={`editor-save-indicator ${saveStatus}`} role="status">{{ saved: "저장됨", saving: "저장 중…", unsaved: "저장하지 않은 변경", building: "화면 생성 중…", built: "화면 반영 완료", error: "저장 상태 확인 필요" }[saveStatus]}</span>
-      </header>
-      <KonvaToolbar
-        onOpenAnswers={() => { setAnswerReviewMode(false); setActiveSidePanel("answers"); }}
+        </>}
+        onOpenAnswers={() => { setAnswerReviewMode(false); setInspectorOpen(true); setActiveSidePanel("answers"); }}
         onAddAnswerBlank={addAnswerBlank}
         busy={saveStatus === "saving" || saveStatus === "building"}
         hasSelection={selectedShapeIds.length > 0}
@@ -1146,7 +1153,7 @@ export function EditorKonva() {
             answerChoices={answerChoiceReviews}
             answerPresentationMode={answerPresentationMode}
             showAnswerCanvas={activeReview.show_canvas !== false}
-            editorPanel={editorPanel}
+            editorPanel={inspectorOpen ? editorPanel : undefined}
             reviewPanel={<AnswerReviewPanel settings={activeReview}
               answerPrompt={document.shapes.filter((shape) => shape.type === "text" && shape.semanticRole === "answer_prompt").map((shape) => shape.type === "text" ? shape.text : "").join("\n")}
               onEditAnswerPrompt={() => {
@@ -1167,6 +1174,7 @@ export function EditorKonva() {
             onConvertShapesToAnswer={(ids) => setAnswerSlotState(ids, true)}
             onRestoreShapesFromAnswer={(ids) => setAnswerSlotState(ids, false)}
             onEditPresentationShape={(id) => {
+              setInspectorOpen(true);
               setAnswerReviewMode(false);
               setSelectedShapeIds([id]);
               setActiveSidePanel("properties");
