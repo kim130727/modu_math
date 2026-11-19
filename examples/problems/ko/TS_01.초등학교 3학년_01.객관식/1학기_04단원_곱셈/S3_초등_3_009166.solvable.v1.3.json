@@ -1,0 +1,104 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009166",
+  "given": [
+    {
+      "ref": "expr.opt0",
+      "value": "13 × 8"
+    },
+    {
+      "ref": "expr.opt1",
+      "value": "18 × 6"
+    },
+    {
+      "ref": "expr.opt2",
+      "value": "27 × 4"
+    },
+    {
+      "ref": "expr.opt3",
+      "value": "36 × 3"
+    },
+    {
+      "ref": "expr.opt4",
+      "value": "54 × 2"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "type": "choice"
+  },
+  "method": "compute_and_find_different_product",
+  "steps": [
+    {
+      "id": "step.calc_0",
+      "expr": "13 * 8",
+      "value": 104,
+      "explanation": "① 13 × 8 = 104입니다."
+    },
+    {
+      "id": "step.calc_others",
+      "expr": "18 * 6 = 27 * 4 = 36 * 3 = 54 * 2",
+      "value": 108,
+      "explanation": "②, ③, ④, ⑤의 계산 결과는 모두 108이므로 다른 하나는 ①입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "①",
+    "unit": "",
+    "answer_index": 0,
+    "values": [
+      "①"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "①",
+        "value": "①"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "②",
+        "value": "②"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "③",
+        "value": "③"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "④",
+        "value": "④"
+      },
+      {
+        "id": "slot.choice.option_4",
+        "slot_id": "slot.choice.option_4",
+        "text": "⑤",
+        "value": "⑤"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "multiplication.two_by_one_with_carry"
+    ],
+    "errors": {
+      "②": "multiplication.calculation_error",
+      "③": "multiplication.calculation_error",
+      "④": "multiplication.calculation_error",
+      "⑤": "multiplication.calculation_error"
+    }
+  }
+}

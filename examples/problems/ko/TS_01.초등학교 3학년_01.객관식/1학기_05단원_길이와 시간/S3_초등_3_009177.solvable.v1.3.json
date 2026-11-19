@@ -1,0 +1,61 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009177",
+  "given": [
+    {
+      "ref": "object.mountain_height",
+      "value": 1
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "type": "choice"
+  },
+  "method": "estimate_appropriate_length_unit",
+  "steps": [
+    {
+      "id": "step.estimate",
+      "expr": "height(mountain) >> 1 m",
+      "value": "km",
+      "explanation": "학교 뒷산의 높이는 1 m보다 훨씬 크므로 알맞은 단위는 km입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "km",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "km"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "m",
+        "value": "m"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "km",
+        "value": "km"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "km"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "measurement.unit_estimation_m_km"
+    ],
+    "errors": {
+      "m": "measurement.underestimated_large_object"
+    }
+  }
+}

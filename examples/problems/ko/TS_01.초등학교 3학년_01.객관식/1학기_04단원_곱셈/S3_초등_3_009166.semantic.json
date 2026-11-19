@@ -1,0 +1,112 @@
+{
+  "problem_id": "S3_초등_3_009166",
+  "problem_type": "multiple_choice_multiplication_odd_one_out",
+  "metadata": {
+    "title": "계산 결과가 다른 곱셈식 찾기",
+    "tags": [],
+    "question": "27. 계산 결과가 다른 하나는 어느 것일까요?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "chapter": "04단원_곱셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "expr.opt0",
+        "type": "multiplication",
+        "label": "①",
+        "equation": "13 × 8",
+        "value": 104
+      },
+      {
+        "id": "expr.opt1",
+        "type": "multiplication",
+        "label": "②",
+        "equation": "18 × 6",
+        "value": 108
+      },
+      {
+        "id": "expr.opt2",
+        "type": "multiplication",
+        "label": "③",
+        "equation": "27 × 4",
+        "value": 108
+      },
+      {
+        "id": "expr.opt3",
+        "type": "multiplication",
+        "label": "④",
+        "equation": "36 × 3",
+        "value": 108
+      },
+      {
+        "id": "expr.opt4",
+        "type": "multiplication",
+        "label": "⑤",
+        "equation": "54 × 2",
+        "value": 108
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.odd_one_out",
+        "type": "different_product",
+        "from_id": "expr.opt0",
+        "to_id": "value.108"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "①",
+    "unit": "",
+    "answer_index": 0,
+    "values": [
+      "①"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "①",
+        "value": "①"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "②",
+        "value": "②"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "③",
+        "value": "③"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "④",
+        "value": "④"
+      },
+      {
+        "id": "slot.choice.option_4",
+        "slot_id": "slot.choice.option_4",
+        "text": "⑤",
+        "value": "⑤"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①"
+      }
+    ]
+  }
+}

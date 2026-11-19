@@ -1,0 +1,95 @@
+{
+  "problem_id": "S3_초등_3_009161",
+  "problem_type": "multiple_choice_multiplication_place_value",
+  "metadata": {
+    "title": "곱셈 세로셈에서 올림한 숫자 2가 나타내는 수 구하기",
+    "tags": [],
+    "question": "22. 계산에서 □ 안의 숫자 2가 실제로 나타내는 수는 얼마일까요?",
+    "required_layout_ids": [
+      "slot.diagram.frame",
+      "slot.diagram.carry_box",
+      "slot.diagram.sep_line"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "chapter": "04단원_곱셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "expr.vertical",
+        "type": "vertical_multiplication",
+        "multiplicand": 18,
+        "multiplier": 3,
+        "product": 54
+      },
+      {
+        "id": "digit.carry_2",
+        "type": "carry_digit",
+        "digit": 2,
+        "place": "tens",
+        "actual_value": 20
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.place_value",
+        "type": "represents_value",
+        "from_id": "digit.carry_2",
+        "to_id": "value.20"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "②",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "②"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "①",
+        "value": "①"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "②",
+        "value": "②"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "③",
+        "value": "③"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "④",
+        "value": "④"
+      },
+      {
+        "id": "slot.choice.option_4",
+        "slot_id": "slot.choice.option_4",
+        "text": "⑤",
+        "value": "⑤"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②"
+      }
+    ]
+  }
+}

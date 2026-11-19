@@ -1,0 +1,465 @@
+{
+  "problem_id": "S3_초등_3_009181",
+  "view_box": {
+    "width": 886.0,
+    "height": 380.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 18.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 820.0,
+        "height": 60.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 18.0,
+        "data-box-width": 820.0,
+        "data-box-height": 60.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "43. 학교에서 주변에 있는 장소까지의 거리를 어림해 보려고 합니다. 알맞은 장소를 선택하세요."
+    },
+    {
+      "id": "slot.diagram.map_bg.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 315.0,
+        "y": 88.0,
+        "width": 256.0,
+        "height": 195.0,
+        "fill": "#d9ead3",
+        "stroke": "none",
+        "stroke-width": 0.0
+      },
+      "source_ref": "slot.diagram.map_bg",
+      "refs": {
+        "layout_slot_id": "slot.diagram.map_bg"
+      }
+    },
+    {
+      "id": "slot.diagram.road_main.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 440.0,
+        "y": 108.0,
+        "width": 16.0,
+        "height": 175.0,
+        "fill": "#ffffff",
+        "stroke": "none",
+        "stroke-width": 0.0
+      },
+      "source_ref": "slot.diagram.road_main",
+      "refs": {
+        "layout_slot_id": "slot.diagram.road_main"
+      }
+    },
+    {
+      "id": "slot.diagram.road_branch.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 444 226 L 325 283 L 345 283 L 452 232 Z",
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.diagram.road_branch",
+      "refs": {
+        "layout_slot_id": "slot.diagram.road_branch"
+      }
+    },
+    {
+      "id": "slot.diagram.arc_500.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 448 122 Q 422 152, 448 182",
+        "stroke": "#38bdf8",
+        "stroke-width": 1.4,
+        "fill": "none",
+        "stroke-dasharray": "3,3"
+      },
+      "source_ref": "slot.diagram.arc_500",
+      "refs": {
+        "layout_slot_id": "slot.diagram.arc_500"
+      }
+    },
+    {
+      "id": "slot.diagram.icon_school.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 425.0,
+        "y": 94.0,
+        "width": 46.0,
+        "height": 22.0,
+        "fill": "#fca5a5",
+        "stroke": "#ef4444",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.diagram.icon_school",
+      "refs": {
+        "layout_slot_id": "slot.diagram.icon_school"
+      }
+    },
+    {
+      "id": "slot.diagram.icon_stat.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 460.0,
+        "y": 170.0,
+        "width": 24.0,
+        "height": 18.0,
+        "fill": "#fdba74",
+        "stroke": "#ea580c",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.diagram.icon_stat",
+      "refs": {
+        "layout_slot_id": "slot.diagram.icon_stat"
+      }
+    },
+    {
+      "id": "slot.diagram.icon_lib.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 460.0,
+        "y": 218.0,
+        "width": 28.0,
+        "height": 20.0,
+        "fill": "#fcd34d",
+        "stroke": "#d97706",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.diagram.icon_lib",
+      "refs": {
+        "layout_slot_id": "slot.diagram.icon_lib"
+      }
+    },
+    {
+      "id": "slot.diagram.icon_hall.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 368.0,
+        "y": 228.0,
+        "width": 22.0,
+        "height": 24.0,
+        "fill": "#cbd5e1",
+        "stroke": "#64748b",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.diagram.icon_hall",
+      "refs": {
+        "layout_slot_id": "slot.diagram.icon_hall"
+      }
+    },
+    {
+      "id": "slot.diagram.dot_school.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 448.0,
+        "cy": 122.0,
+        "r": 2.8,
+        "stroke": "#111827",
+        "stroke-width": 1.0,
+        "fill": "#111827"
+      },
+      "source_ref": "slot.diagram.dot_school",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot_school"
+      }
+    },
+    {
+      "id": "slot.diagram.dot_stat.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 448.0,
+        "cy": 182.0,
+        "r": 2.8,
+        "stroke": "#111827",
+        "stroke-width": 1.0,
+        "fill": "#111827"
+      },
+      "source_ref": "slot.diagram.dot_stat",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot_stat"
+      }
+    },
+    {
+      "id": "slot.diagram.dot_lib.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 448.0,
+        "cy": 230.0,
+        "r": 2.8,
+        "stroke": "#111827",
+        "stroke-width": 1.0,
+        "fill": "#111827"
+      },
+      "source_ref": "slot.diagram.dot_lib",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot_lib"
+      }
+    },
+    {
+      "id": "slot.diagram.dot_hall.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 396.0,
+        "cy": 258.0,
+        "r": 2.8,
+        "stroke": "#111827",
+        "stroke-width": 1.0,
+        "fill": "#111827"
+      },
+      "source_ref": "slot.diagram.dot_hall",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot_hall"
+      }
+    },
+    {
+      "id": "slot.diagram.label_500.text",
+      "type": "text",
+      "attributes": {
+        "x": 402.0,
+        "y": 152.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 14.0
+      },
+      "source_ref": "slot.diagram.label_500",
+      "refs": {
+        "layout_slot_id": "slot.diagram.label_500"
+      },
+      "text": "약 500 m"
+    },
+    {
+      "id": "slot.diagram.lbl_school.text",
+      "type": "text",
+      "attributes": {
+        "x": 496.0,
+        "y": 106.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 14.0
+      },
+      "source_ref": "slot.diagram.lbl_school",
+      "refs": {
+        "layout_slot_id": "slot.diagram.lbl_school"
+      },
+      "text": "학교"
+    },
+    {
+      "id": "slot.diagram.lbl_stat.text",
+      "type": "text",
+      "attributes": {
+        "x": 512.0,
+        "y": 180.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 14.0
+      },
+      "source_ref": "slot.diagram.lbl_stat",
+      "refs": {
+        "layout_slot_id": "slot.diagram.lbl_stat"
+      },
+      "text": "문구점"
+    },
+    {
+      "id": "slot.diagram.lbl_lib.text",
+      "type": "text",
+      "attributes": {
+        "x": 516.0,
+        "y": 228.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 14.0
+      },
+      "source_ref": "slot.diagram.lbl_lib",
+      "refs": {
+        "layout_slot_id": "slot.diagram.lbl_lib"
+      },
+      "text": "도서관"
+    },
+    {
+      "id": "slot.diagram.lbl_hall.text",
+      "type": "text",
+      "attributes": {
+        "x": 379.0,
+        "y": 216.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 14.0
+      },
+      "source_ref": "slot.diagram.lbl_hall",
+      "refs": {
+        "layout_slot_id": "slot.diagram.lbl_hall"
+      },
+      "text": "시청"
+    },
+    {
+      "id": "slot.diagram.sent_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 443.0,
+        "y": 310.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.diagram.sent_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.sent_1"
+      },
+      "text": "학교에서 약 1 km 500 m 떨어진 곳에 있는 장소는"
+    },
+    {
+      "id": "slot.choice.paren_l.text",
+      "type": "text",
+      "attributes": {
+        "x": 268.0,
+        "y": 346.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.choice.paren_l",
+      "refs": {
+        "layout_slot_id": "slot.choice.paren_l"
+      },
+      "text": "("
+    },
+    {
+      "id": "slot.choice.option_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 320.0,
+        "y": 346.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "문구점",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "문구점"
+    },
+    {
+      "id": "slot.choice.comma_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 366.0,
+        "y": 346.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.choice.comma_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.comma_1"
+      },
+      "text": ","
+    },
+    {
+      "id": "slot.choice.option_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 416.0,
+        "y": 346.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "도서관",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "도서관"
+    },
+    {
+      "id": "slot.choice.comma_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 462.0,
+        "y": 346.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.choice.comma_2",
+      "refs": {
+        "layout_slot_id": "slot.choice.comma_2"
+      },
+      "text": ","
+    },
+    {
+      "id": "slot.choice.option_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 505.0,
+        "y": 346.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.choice.option_2",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_2"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 2,
+        "value": "시청",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "시청"
+    },
+    {
+      "id": "slot.choice.paren_r.text",
+      "type": "text",
+      "attributes": {
+        "x": 578.0,
+        "y": 346.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.choice.paren_r",
+      "refs": {
+        "layout_slot_id": "slot.choice.paren_r"
+      },
+      "text": ")입니다."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

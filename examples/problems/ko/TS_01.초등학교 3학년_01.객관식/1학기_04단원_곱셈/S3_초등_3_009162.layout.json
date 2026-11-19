@@ -1,0 +1,393 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009162",
+  "title": "곱셈 세로셈을 바르게 계산한 것 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 245,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.line0",
+        "slot.diagram.line1",
+        "slot.diagram.top0.place.1",
+        "slot.diagram.top0.place.0",
+        "slot.diagram.mul0",
+        "slot.diagram.bot0.place.0",
+        "slot.diagram.res0.place.2",
+        "slot.diagram.res0.place.1",
+        "slot.diagram.res0.place.0",
+        "slot.diagram.top1.place.1",
+        "slot.diagram.top1.place.0",
+        "slot.diagram.mul1",
+        "slot.diagram.bot1.place.0",
+        "slot.diagram.res1.place.2",
+        "slot.diagram.res1.place.1",
+        "slot.diagram.res1.place.0"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "23. 계산을 바르게 한 것을 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 22.0,
+        "width": 820.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 24,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 275.0,
+        "y": 76.0,
+        "width": 180.0,
+        "height": 148.0,
+        "stroke": "#bae6fd",
+        "stroke_width": 1.5,
+        "fill": "#f0f9ff",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "28 × 5 = 100",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 675.0,
+        "y": 76.0,
+        "width": 180.0,
+        "height": 148.0,
+        "stroke": "#bae6fd",
+        "stroke_width": 1.5,
+        "fill": "#f0f9ff",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "72 × 6 = 432",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.diagram.top0.place.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "diagram",
+        "x": 393.0,
+        "y": 106.0,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#111111",
+        "semantic_role": "diagram_label",
+        "semantic_role_source": "explicit"
+      }
+    },
+    {
+      "id": "slot.diagram.top0.place.0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8",
+        "style_role": "diagram",
+        "x": 425.0,
+        "y": 106.0,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#111111",
+        "semantic_role": "diagram_label",
+        "semantic_role_source": "explicit"
+      }
+    },
+    {
+      "id": "slot.diagram.mul0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "×",
+        "style_role": "body",
+        "x": 320.0,
+        "y": 142.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.bot0.place.0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "diagram",
+        "x": 425.0,
+        "y": 142.0,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#111111",
+        "semantic_role": "diagram_label",
+        "semantic_role_source": "explicit"
+      }
+    },
+    {
+      "id": "slot.diagram.line0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 308.0,
+        "y1": 162.0,
+        "x2": 430.0,
+        "y2": 162.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.res0.place.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "diagram",
+        "x": 361.0,
+        "y": 190.0,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#111111",
+        "semantic_role": "diagram_label",
+        "semantic_role_source": "explicit"
+      }
+    },
+    {
+      "id": "slot.diagram.res0.place.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "diagram",
+        "x": 393.0,
+        "y": 190.0,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#111111",
+        "semantic_role": "diagram_label",
+        "semantic_role_source": "explicit"
+      }
+    },
+    {
+      "id": "slot.diagram.res0.place.0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "diagram",
+        "x": 425.0,
+        "y": 190.0,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#111111",
+        "semantic_role": "diagram_label",
+        "semantic_role_source": "explicit"
+      }
+    },
+    {
+      "id": "slot.diagram.top1.place.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "diagram",
+        "x": 793.0,
+        "y": 106.0,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#111111",
+        "semantic_role": "diagram_label",
+        "semantic_role_source": "explicit"
+      }
+    },
+    {
+      "id": "slot.diagram.top1.place.0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "diagram",
+        "x": 825.0,
+        "y": 106.0,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#111111",
+        "semantic_role": "diagram_label",
+        "semantic_role_source": "explicit"
+      }
+    },
+    {
+      "id": "slot.diagram.mul1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "×",
+        "style_role": "body",
+        "x": 720.0,
+        "y": 142.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.bot1.place.0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "diagram",
+        "x": 825.0,
+        "y": 142.0,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#111111",
+        "semantic_role": "diagram_label",
+        "semantic_role_source": "explicit"
+      }
+    },
+    {
+      "id": "slot.diagram.line1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 708.0,
+        "y1": 162.0,
+        "x2": 830.0,
+        "y2": 162.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.res1.place.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "diagram",
+        "x": 761.0,
+        "y": 190.0,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#111111",
+        "semantic_role": "diagram_label",
+        "semantic_role_source": "explicit"
+      }
+    },
+    {
+      "id": "slot.diagram.res1.place.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "diagram",
+        "x": 793.0,
+        "y": 190.0,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#111111",
+        "semantic_role": "diagram_label",
+        "semantic_role_source": "explicit"
+      }
+    },
+    {
+      "id": "slot.diagram.res1.place.0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "diagram",
+        "x": 825.0,
+        "y": 190.0,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#111111",
+        "semantic_role": "diagram_label",
+        "semantic_role_source": "explicit"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.line0",
+    "slot.diagram.line1",
+    "slot.diagram.top0.place.1",
+    "slot.diagram.top0.place.0",
+    "slot.diagram.mul0",
+    "slot.diagram.bot0.place.0",
+    "slot.diagram.res0.place.2",
+    "slot.diagram.res0.place.1",
+    "slot.diagram.res0.place.0",
+    "slot.diagram.top1.place.1",
+    "slot.diagram.top1.place.0",
+    "slot.diagram.mul1",
+    "slot.diagram.bot1.place.0",
+    "slot.diagram.res1.place.2",
+    "slot.diagram.res1.place.1",
+    "slot.diagram.res1.place.0",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1"
+  ]
+}

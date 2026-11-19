@@ -6,7 +6,13 @@ from django.core.management import call_command
 from django.test import TestCase, override_settings
 from rest_framework.test import APIClient
 
-from modu_math_web.learning.models import Attempt, Mastery, Problem, answer_matches
+from modu_math_web.learning.models import (
+    Attempt,
+    Mastery,
+    Problem,
+    ProblemPublication,
+    answer_matches,
+)
 
 
 class AnswerMatchingTests(TestCase):
@@ -45,6 +51,9 @@ class LearningApiTests(TestCase):
             answer={"value": 2, "answer_key": []},
             semantic_data={"problem_id": "sample-1", "answer": {"value": 2}},
         )
+        ProblemPublication.objects.create(
+            problem=self.problem, status="published", visibility="public"
+        )
 
     def _authenticate(self):
         response = self.client.post(
@@ -74,7 +83,9 @@ class LearningApiTests(TestCase):
             day = root / "ko" / "day_01"
             day.mkdir(parents=True)
             (day / "diagram.png").write_bytes(b"image fixture")
-            self.problem.renderer_data = {"elements": [{"type": "image", "attributes": {"href": "diagram.png"}}]}
+            self.problem.renderer_data = {
+                "elements": [{"type": "image", "attributes": {"href": "diagram.png"}}]
+            }
             self.problem.catalog_data = {
                 "path": "examples/problems/ko/day_01",
                 "filePrefix": "sample-1",
@@ -127,11 +138,14 @@ class LearningApiTests(TestCase):
         )
 
     def test_problem_id_submission_uses_requested_language(self):
-        Problem.objects.create(
+        translated = Problem.objects.create(
             problem_id="sample-1",
             language="uk",
             grade=3,
             answer={"value": "english-answer"},
+        )
+        ProblemPublication.objects.create(
+            problem=translated, status="published", visibility="public"
         )
         self._authenticate()
         response = self.client.post(
@@ -186,7 +200,10 @@ class SyncProblemsTests(TestCase):
             source_path = next((root / "ko").rglob(catalog_path.stem + ".dsl.py"))
         before = source_path.read_bytes(), catalog_path.read_bytes()
         call_command("sync_problems", root=root, verbosity=0)
-        from modu_math_web.editor.services.content_store import list_content, read_content
+        from modu_math_web.editor.services.content_store import (
+            list_content,
+            read_content,
+        )
 
         expected = {
             (
@@ -199,9 +216,7 @@ class SyncProblemsTests(TestCase):
             set(Problem.objects.values_list("problem_id", "language")), expected
         )
         self.assertEqual((source_path.read_bytes(), catalog_path.read_bytes()), before)
-        imported = Problem.objects.get(
-            problem_id=catalog_path.stem, language="ko"
-        )
+        imported = Problem.objects.get(problem_id=catalog_path.stem, language="ko")
         self.assertEqual(imported.semantic_data["problem_id"], imported.problem_id)
         self.assertEqual(imported.catalog_data["id"], imported.problem_id)
         self.assertTrue(imported.answer)

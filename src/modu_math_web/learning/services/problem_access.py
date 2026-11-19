@@ -1,7 +1,7 @@
 """One policy for discovery, solving, authoring and reuse.
 
-Existing catalog entries without a publication are legacy public content.
-New authored content always has an explicit private publication.
+Only explicitly published public content is shared. Missing publication
+metadata never grants discovery or reuse access.
 """
 
 from django.db.models import Q
@@ -21,9 +21,7 @@ def is_admin(user):
 
 
 def public_condition():
-    return Q(publication__isnull=True) | Q(
-        publication__status="published", publication__visibility="public"
-    )
+    return Q(publication__status="published", publication__visibility="public")
 
 
 def public_problems():
@@ -63,7 +61,6 @@ def reusable_problems(user):
     return (
         Problem.objects.filter(
             Q(publication__owner=user)
-            | Q(publication__isnull=True)
             | Q(
                 publication__status="published",
                 publication__visibility="public",

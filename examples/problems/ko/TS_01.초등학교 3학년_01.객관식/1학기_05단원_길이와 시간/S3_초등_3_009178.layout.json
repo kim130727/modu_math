@@ -1,0 +1,275 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009178",
+  "title": "지우개의 두께에 알맞은 단위 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 265,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.outer_box",
+        "slot.diagram.eraser_front",
+        "slot.diagram.eraser_band",
+        "slot.diagram.eraser_top",
+        "slot.diagram.blank",
+        "slot.diagram.divider",
+        "slot.diagram.eraser_label",
+        "slot.diagram.sent_left",
+        "slot.diagram.sent_right"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "40. □ 안에 들어갈 알맞은 단위를 선택해 보세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 22.0,
+        "width": 820.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 24,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.diagram.outer_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 210.0,
+        "y": 72.0,
+        "width": 655.0,
+        "height": 175.0,
+        "stroke": "#7c3aed",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.divider",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 210.0,
+        "y1": 195.0,
+        "x2": 865.0,
+        "y2": 195.0,
+        "stroke": "#7c3aed",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.eraser_front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 470.0,
+        "y": 94.0,
+        "width": 90.0,
+        "height": 40.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.0,
+        "fill": "#e0e7ff"
+      }
+    },
+    {
+      "id": "slot.diagram.eraser_band",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 518.0,
+        "y": 94.0,
+        "width": 36.0,
+        "height": 40.0,
+        "stroke": "#db2777",
+        "stroke_width": 1.0,
+        "fill": "#f472b6"
+      }
+    },
+    {
+      "id": "slot.diagram.eraser_label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "지우개",
+        "style_role": "body",
+        "x": 536.0,
+        "y": 114.0,
+        "font_size": 12,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.eraser_top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            470.0,
+            94.0
+          ],
+          [
+            495.0,
+            80.0
+          ],
+          [
+            585.0,
+            80.0
+          ],
+          [
+            560.0,
+            94.0
+          ]
+        ],
+        "stroke": "#94a3b8",
+        "stroke_width": 1.0,
+        "fill": "#f1f5f9"
+      }
+    },
+    {
+      "id": "slot.diagram.sent_left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "지우개의 두께는 약 9",
+        "style_role": "body",
+        "x": 450.0,
+        "y": 166.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.blank",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 578.0,
+        "y": 148.0,
+        "width": 64.0,
+        "height": 34.0,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.sent_right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "입니다.",
+        "style_role": "body",
+        "x": 695.0,
+        "y": 166.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "mm",
+        "style_role": "body",
+        "x": 455.0,
+        "y": 220.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "mm",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "cm",
+        "style_role": "body",
+        "x": 610.0,
+        "y": 220.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "cm",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.outer_box",
+    "slot.diagram.eraser_front",
+    "slot.diagram.eraser_band",
+    "slot.diagram.eraser_top",
+    "slot.diagram.blank",
+    "slot.diagram.divider",
+    "slot.diagram.eraser_label",
+    "slot.diagram.sent_left",
+    "slot.diagram.sent_right",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1"
+  ]
+}

@@ -1,0 +1,274 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008975",
+  "title": "반직선 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 220,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.fig0_curve",
+        "slot.diagram.fig1_path",
+        "slot.diagram.fig2_line",
+        "slot.diagram.fig0_dot1",
+        "slot.diagram.fig0_dot2",
+        "slot.diagram.fig1_dot1",
+        "slot.diagram.fig1_dot2",
+        "slot.diagram.fig2_dot1",
+        "slot.diagram.fig2_dot2"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1",
+        "slot.choice.option_2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "반직선을 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 22.0,
+        "width": 212,
+        "height": 36,
+        "align": "left",
+        "valign": "top",
+        "font_size": 24,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "explicit"
+      }
+    },
+    {
+      "id": "slot.diagram.fig0_curve",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 195 170 Q 235 95, 315 88",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.fig0_dot1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 215.0,
+        "cy": 138.0,
+        "r": 3.2,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.fig0_dot2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 315.0,
+        "cy": 88.0,
+        "r": 3.2,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.fig1_path",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 415 95 L 432 162 L 575 135",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.fig1_dot1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 415.0,
+        "cy": 95.0,
+        "r": 3.2,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.fig1_dot2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 542.0,
+        "cy": 141.0,
+        "r": 3.2,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.fig2_line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 662.0,
+        "y1": 94.0,
+        "x2": 815.0,
+        "y2": 155.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.fig2_dot1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 682.0,
+        "cy": 102.0,
+        "r": 3.2,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.fig2_dot2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 815.0,
+        "cy": 155.0,
+        "r": 3.2,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 175.0,
+        "y": 76.0,
+        "width": 160.0,
+        "height": 110.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "transparent",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "1번 도형(굽은 선)",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 395.0,
+        "y": 76.0,
+        "width": 200.0,
+        "height": 110.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "transparent",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "2번 도형(꺾인 선)",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 645.0,
+        "y": 76.0,
+        "width": 190.0,
+        "height": 110.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "transparent",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 2,
+          "value": "3번 도형(반직선)",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.fig0_curve",
+    "slot.diagram.fig1_path",
+    "slot.diagram.fig2_line",
+    "slot.diagram.fig0_dot1",
+    "slot.diagram.fig0_dot2",
+    "slot.diagram.fig1_dot1",
+    "slot.diagram.fig1_dot2",
+    "slot.diagram.fig2_dot1",
+    "slot.diagram.fig2_dot2",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1",
+    "slot.choice.option_2"
+  ]
+}

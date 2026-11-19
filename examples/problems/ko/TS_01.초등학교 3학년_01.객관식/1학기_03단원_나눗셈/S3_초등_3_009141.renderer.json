@@ -1,0 +1,127 @@
+{
+  "problem_id": "S3_초등_3_009141",
+  "view_box": {
+    "width": 886.0,
+    "height": 180.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 22.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "width": 820.0,
+        "height": 44.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 22.0,
+        "data-box-width": 820.0,
+        "data-box-height": 44.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "96. 24 ÷ 4의 몫을 구할 때 필요한 곱셈식을 찾아 선택하세요."
+    },
+    {
+      "id": "slot.diagram.frame.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 110.0,
+        "y": 76.0,
+        "width": 740.0,
+        "height": 76.0,
+        "fill": "#ffffff",
+        "stroke": "#f8b4a6",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.frame",
+      "refs": {
+        "layout_slot_id": "slot.diagram.frame"
+      }
+    },
+    {
+      "id": "slot.choice.option_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 245.0,
+        "y": 114.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "㉠",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "㉠ 3 × 8 = 24"
+    },
+    {
+      "id": "slot.choice.option_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 480.0,
+        "y": 114.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "㉡",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "㉡ 4 × 6 = 24"
+    },
+    {
+      "id": "slot.choice.option_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 715.0,
+        "y": 114.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.choice.option_2",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_2"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 2,
+        "value": "㉢",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "㉢ 4 × 7 = 28"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

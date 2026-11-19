@@ -1,0 +1,79 @@
+{
+  "problem_id": "S3_초등_3_009158",
+  "problem_type": "multiple_choice_multiplication_verification",
+  "metadata": {
+    "title": "계산이 옳은 곱셈식 기호 선택하기",
+    "tags": [],
+    "question": "18. 계산이 옳은 것을 찾아 기호를 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.frame"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "chapter": "04단원_곱셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "expr.ga",
+        "type": "multiplication_claim",
+        "label": "㉠",
+        "lhs": "29 × 5",
+        "claimed_rhs": 105,
+        "actual_rhs": 145,
+        "is_correct": false
+      },
+      {
+        "id": "expr.na",
+        "type": "multiplication_claim",
+        "label": "㉡",
+        "lhs": "48 × 4",
+        "claimed_rhs": 192,
+        "actual_rhs": 192,
+        "is_correct": true
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.correct_equation",
+        "type": "is_valid_calculation",
+        "from_id": "expr.na",
+        "to_id": "concept.true_equation"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "㉡",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "㉡"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "㉠",
+        "value": "㉠"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "㉡",
+        "value": "㉡"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "㉡"
+      }
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009143",
+  "given": [
+    {
+      "ref": "expr.given",
+      "value": "20 ÷ 5 = 4"
+    },
+    {
+      "ref": "expr.option_0",
+      "value": "20 - 5 - 5 - 5 - 5 = 0"
+    },
+    {
+      "ref": "expr.option_1",
+      "value": "20 - 4 - 4 - 4 - 4 - 4 = 0"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "type": "choice"
+  },
+  "method": "division_as_repeated_subtraction",
+  "steps": [
+    {
+      "id": "step.repeated_subtraction",
+      "expr": "20 - 5 - 5 - 5 - 5 = 0",
+      "value": "20 - 5 - 5 - 5 - 5 = 0",
+      "explanation": "20 ÷ 5 = 4는 20에서 5를 4번 빼면 0이 된다는 뜻이므로 20 - 5 - 5 - 5 - 5 = 0이 바른 식입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "20 - 5 - 5 - 5 - 5 = 0",
+    "unit": "",
+    "answer_index": 0,
+    "values": [
+      "20 - 5 - 5 - 5 - 5 = 0"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "20 - 5 - 5 - 5 - 5 = 0",
+        "value": "20 - 5 - 5 - 5 - 5 = 0"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "20 - 4 - 4 - 4 - 4 - 4 = 0",
+        "value": "20 - 4 - 4 - 4 - 4 - 4 = 0"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "20 - 5 - 5 - 5 - 5 = 0"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "division.repeated_subtraction"
+    ],
+    "errors": {
+      "20 - 4 - 4 - 4 - 4 - 4 = 0": "division.swapped_divisor_and_quotient"
+    }
+  }
+}

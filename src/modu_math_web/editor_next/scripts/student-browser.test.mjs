@@ -30,6 +30,7 @@ test("two students solve ten questions through the real Flutter app", { timeout:
       await type(page.getByRole("textbox", { name: /아이디/ }), `browser_student_${student}`);
       await type(page.getByLabel("비밀번호", { exact: true }), "browser-student-password");
       await page.getByRole("button", { name: "로그인하기", exact: true }).click();
+      await page.getByRole("button", { name: "내 과제", exact: true }).click();
       await page.getByRole("button", { name: "과제 열기", exact: true }).click();
       await page.getByRole("textbox").waitFor();
       if (student === 1) await page.screenshot({ path: join(artifacts, "solve.png"), fullPage: true });
@@ -48,10 +49,29 @@ test("two students solve ten questions through the real Flutter app", { timeout:
       if (student === 1) {
         await page.goto(fixture.base + "/student/");
         await page.getByRole("button", { name: "공개 문제", exact: true }).click();
+        await page.getByText(/3학년/).click();
+        await page.getByText(/전체 분류/).click();
         await page.getByText(/덧셈 연습 01/).click();
         await page.getByRole("textbox").waitFor();
         await type(page.getByRole("textbox"), "30");
         await page.getByRole("button", { name: "답 제출", exact: true }).click();
+        await page.getByText("맞았어요!", { exact: true }).waitFor();
+        for (let index = 1; index < 5; index++) {
+          await page.getByRole("button", { name: "다음 문제", exact: true }).click();
+          await type(page.getByRole("textbox"), String(30 + 2 * index));
+          const goalResponse = page.waitForResponse(response => response.url().includes("/api/v1/problems/catalog/"));
+          await page.getByRole("button", { name: "답 제출", exact: true }).click();
+          await page.getByText("맞았어요!", { exact: true }).waitFor();
+          const progress = await (await goalResponse).json();
+          assert.equal(progress.goal.completed_ids.length, index + 1);
+          assert.equal(progress.goal.target, 5);
+        }
+        await page.mouse.move(700, 400);
+        await page.mouse.wheel(0, -1800);
+        await page.screenshot({ path: join(artifacts, "daily-goal.png"), fullPage: true });
+        await page.mouse.wheel(0, 1400);
+        await page.getByRole("button", { name: "이전 문제", exact: true }).click();
+        await page.getByText(/고구마 13개와 23개/).waitFor();
         await page.getByText("맞았어요!", { exact: true }).waitFor();
         await page.screenshot({ path: join(artifacts, "public-practice.png"), fullPage: true });
       }

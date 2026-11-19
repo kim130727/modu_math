@@ -1,0 +1,61 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009178",
+  "given": [
+    {
+      "ref": "object.eraser_thickness",
+      "value": 9
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "type": "choice"
+  },
+  "method": "estimate_appropriate_length_unit",
+  "steps": [
+    {
+      "id": "step.estimate",
+      "expr": "thickness(eraser) < 9 cm",
+      "value": "mm",
+      "explanation": "지우개의 두께는 9 cm보다 얇으므로 알맞은 단위는 mm입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "mm",
+    "unit": "",
+    "answer_index": 0,
+    "values": [
+      "mm"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "mm",
+        "value": "mm"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "cm",
+        "value": "cm"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "mm"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "measurement.unit_estimation_mm_cm"
+    ],
+    "errors": {
+      "cm": "measurement.overestimated_small_object"
+    }
+  }
+}

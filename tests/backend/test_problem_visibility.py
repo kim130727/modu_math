@@ -47,6 +47,135 @@ def client(user=None):
     return api
 
 
+def test_missing_publication_never_grants_public_or_reuse_access(community):
+    teacher, other, student, _, _, _, _ = community
+    problem = Problem.objects.create(problem_id="unclassified", answer={"value": 7})
+    for user in (None, teacher, other, student):
+        api = client(user)
+        assert api.get(f"/api/v1/problems/{problem.pk}/").status_code == 404
+        assert api.get("/api/v1/problems/", {"scope": "public"}).data["count"] == 0
+    assert (
+        client(other)
+        .post(
+            "/api/v1/problem-sets/",
+            {"title": "unclassified", "problem_ids": [problem.pk]},
+            format="json",
+        )
+        .status_code
+        == 403
+    )
+    assert (
+        client(student)
+        .post(
+            "/api/v1/attempts/",
+            {"problem": problem.pk, "submitted_answer": 7},
+            format="json",
+        )
+        .status_code
+        == 400
+    )
+    admin = get_user_model().objects.create_user("admin", is_staff=True)
+    api = client(admin)
+    detail = api.get(f"/api/v1/problems/{problem.pk}/").data
+    assert (detail["visibility"], detail["publication_status"]) == ("private", "draft")
+    settings = api.get(f"/api/v1/problems/{problem.pk}/publication/").data
+    assert (
+        api.get(
+            "/api/v1/problems/",
+            {
+                "ids": str(problem.pk),
+                "visibility": "private",
+                "status": "draft",
+            },
+        ).data["count"]
+        == 1
+    )
+    assert settings["visibility"] == "private" and not settings["rights_confirmed"]
+    assert (
+        api.patch(
+            f"/api/v1/problems/{problem.pk}/publication/",
+            {"difficulty": 2},
+            format="json",
+        ).status_code
+        == 200
+    )
+    problem.refresh_from_db()
+    assert problem.publication.visibility == "private"
+    assert problem.publication.status == "draft"
+
+
+def test_legacy_backfill_preserves_existing_classification(community):
+    from importlib import import_module
+    from types import SimpleNamespace
+    from django.apps import apps
+    from django.db import connection
+
+    *_, publication = community
+    legacy = Problem.objects.create(problem_id="legacy", answer={})
+    migrate = import_module(
+        "modu_math_web.learning.migrations.0007_explicit_legacy_publications"
+    ).preserve_legacy_publications
+    editor = SimpleNamespace(connection=connection)
+    migrate(apps, editor)
+    migrate(apps, editor)
+    legacy.refresh_from_db()
+    publication.refresh_from_db()
+    assert legacy.publication.visibility == "public"
+    assert legacy.publication.status == "published"
+    assert legacy.publication.allow_classroom_use
+    assert publication.visibility == "private"
+    assert ProblemPublication.objects.filter(problem=legacy).count() == 1
+
+
+def test_assignment_keeps_public_source_public_and_private_source_private(community):
+    teacher, other, student, _, enrollment, private, publication = community
+    public = Problem.objects.create(
+        problem_id="shared",
+        answer={"value": 7},
+        semantic_data={"metadata": {"question": "3 + 4 = ?"}},
+        renderer_data={"elements": []},
+    )
+    shared = ProblemPublication.objects.create(
+        problem=public,
+        owner=teacher,
+        visibility="public",
+        status="published",
+    )
+    api = client(teacher)
+    problem_set = api.post(
+        "/api/v1/problem-sets/",
+        {"title": "mixed", "problem_ids": [private.pk, public.pk]},
+        format="json",
+    )
+    assert problem_set.status_code == 201
+    assignment = api.post(
+        "/api/v1/assignments/",
+        {
+            "title": "private homework",
+            "problem_set": problem_set.data["id"],
+            "student_ids": [enrollment.student_id],
+        },
+        format="json",
+    )
+    assert assignment.status_code == 201, assignment.data
+    shared.refresh_from_db()
+    publication.refresh_from_db()
+    assert shared.visibility == "public" and publication.visibility == "private"
+    assert client().get(f"/api/v1/problems/{public.pk}/").status_code == 200
+    assert client(student).get(f"/api/v1/problems/{private.pk}/").status_code == 404
+    url = f"/api/v1/student/assignments/{assignment.data['id']}/"
+    detail = client(student).get(url)
+    assert detail.status_code == 200 and len(detail.data["items"]) == 2
+    for user in (None, other, get_user_model().objects.create_user("outsider")):
+        assert client(user).get(url).status_code in (401, 404)
+    assert (
+        client(other)
+        .get(f"/api/v1/assignments/{assignment.data['id']}/results/")
+        .status_code
+        == 404
+    )
+
+
 def test_private_problem_is_owned_even_for_other_teachers(community):
     teacher, other, student, _, _, problem, pub = community
     url = f"/api/v1/problems/{problem.pk}/"
@@ -127,7 +256,11 @@ def test_class_shelf_requires_approval_and_active_class(community):
     enrollment.status = "inactive"
     enrollment.save()
     assert api.get(url).status_code == 404
-    joined = api.post("/api/v1/student/join-class/", {"invite_code": classroom.invite_code}, format="json")
+    joined = api.post(
+        "/api/v1/student/join-class/",
+        {"invite_code": classroom.invite_code},
+        format="json",
+    )
     assert joined.status_code == 201 and joined.data["status"] == "pending"
     enrollment.refresh_from_db()
     enrollment.status = "approved"

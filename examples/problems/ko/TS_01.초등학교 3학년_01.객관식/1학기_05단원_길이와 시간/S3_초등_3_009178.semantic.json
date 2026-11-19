@@ -1,0 +1,72 @@
+{
+  "problem_id": "S3_초등_3_009178",
+  "problem_type": "multiple_choice_unit_estimation",
+  "metadata": {
+    "title": "지우개의 두께에 알맞은 단위 선택하기",
+    "tags": [],
+    "question": "40. □ 안에 들어갈 알맞은 단위를 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.diagram.outer_box",
+      "slot.diagram.divider",
+      "slot.diagram.eraser_front",
+      "slot.diagram.eraser_band",
+      "slot.diagram.eraser_top",
+      "slot.diagram.blank"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "chapter": "05단원_길이와 시간",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "object.eraser_thickness",
+        "type": "measured_length",
+        "label": "지우개의 두께",
+        "numeric_value": 9
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.appropriate_unit",
+        "type": "has_unit",
+        "from_id": "object.eraser_thickness",
+        "to_id": "unit.mm"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "mm",
+    "unit": "",
+    "answer_index": 0,
+    "values": [
+      "mm"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "mm",
+        "value": "mm"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "cm",
+        "value": "cm"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "mm"
+      }
+    ]
+  }
+}

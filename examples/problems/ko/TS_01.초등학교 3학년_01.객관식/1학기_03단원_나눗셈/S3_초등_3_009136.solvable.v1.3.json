@@ -1,0 +1,80 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009136",
+  "given": [
+    {
+      "ref": "expr.division",
+      "value": "18 ÷ 3"
+    },
+    {
+      "ref": "expr.ga",
+      "value": "3 × 4 = 12"
+    },
+    {
+      "ref": "expr.na",
+      "value": "3 × 5 = 15"
+    },
+    {
+      "ref": "expr.da",
+      "value": "3 × 6 = 18"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_2",
+    "type": "choice"
+  },
+  "method": "division_via_multiplication_table",
+  "steps": [
+    {
+      "id": "step.find_multiplication",
+      "expr": "3 * 6 = 18",
+      "value": "㉢",
+      "explanation": "나누는 수가 3이므로 3의 단 곱셈구구에서 곱이 18인 식 3 × 6 = 18(㉢)을 이용하면 18 ÷ 3 = 6임을 알 수 있습니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "㉢",
+    "unit": "",
+    "answer_index": 2,
+    "values": [
+      "㉢"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "㉠",
+        "value": "㉠"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "㉡",
+        "value": "㉡"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "㉢",
+        "value": "㉢"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "㉢"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "division.multiplication_relation"
+    ],
+    "errors": {
+      "㉠": "multiplication.wrong_product",
+      "㉡": "multiplication.wrong_product"
+    }
+  }
+}

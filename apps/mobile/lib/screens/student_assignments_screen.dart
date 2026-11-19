@@ -86,31 +86,41 @@ class AssignmentAccountGate extends StatelessWidget {
 
 class StudentAssignmentsScreen extends StatelessWidget {
   const StudentAssignmentsScreen(
-      {super.key, required this.authService, this.service});
+      {super.key,
+      required this.authService,
+      this.service,
+      this.initialSection = 0});
   final AuthService authService;
   final StudentAssignmentService? service;
+  final int initialSection;
   @override
   Widget build(BuildContext context) => AssignmentAccountGate(
       auth: authService,
       builder: (user) => _AssignmentList(
             key: ValueKey(user.id),
             auth: authService,
+            initialSection: initialSection,
             service:
                 service ?? StudentAssignmentService(authService: authService),
           ));
 }
 
 class _AssignmentList extends StatefulWidget {
-  const _AssignmentList({super.key, required this.auth, required this.service});
+  const _AssignmentList(
+      {super.key,
+      required this.auth,
+      required this.service,
+      required this.initialSection});
   final AuthService auth;
   final StudentAssignmentService service;
+  final int initialSection;
   @override
   State<_AssignmentList> createState() => _AssignmentListState();
 }
 
 class _AssignmentListState extends State<_AssignmentList> {
-  int section = 1;
-  bool libraryVisited = false;
+  late int section = widget.initialSection;
+  late bool libraryVisited = section == 0;
   late Future<List<StudentAssignment>> future = widget.service.list();
   Future<void> refresh() async {
     final next = widget.service.list();

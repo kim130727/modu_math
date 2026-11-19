@@ -1,0 +1,164 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009159",
+  "given": [
+    {
+      "ref": "expr.lhs",
+      "value": "36 × 3"
+    },
+    {
+      "ref": "expr.rhs",
+      "value": "18 × □"
+    },
+    {
+      "ref": "domain.candidates",
+      "value": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    }
+  ],
+  "target": {
+    "ref": "answer.values",
+    "type": "choice_list"
+  },
+  "method": "solve_multiplication_inequality",
+  "steps": [
+    {
+      "id": "step.calc_lhs",
+      "expr": "36 * 3",
+      "value": 108,
+      "explanation": "36 × 3 = 108입니다."
+    },
+    {
+      "id": "step.find_boundary",
+      "expr": "18 * 6 = 108",
+      "value": 6,
+      "explanation": "18 × 6 = 108이므로 108 > 18 × □를 만족하려면 □는 6보다 작아야 합니다."
+    },
+    {
+      "id": "step.filter_domain",
+      "expr": "1 <= x < 6",
+      "value": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "explanation": "1부터 9까지의 자연수 중 6보다 작은 수는 1, 2, 3, 4, 5입니다."
+    }
+  ],
+  "answer": {
+    "type": "multi_choice",
+    "value": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "unit": "",
+    "values": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "1",
+        "value": "1"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "2",
+        "value": "2"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "3",
+        "value": "3"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "4",
+        "value": "4"
+      },
+      {
+        "id": "slot.choice.option_4",
+        "slot_id": "slot.choice.option_4",
+        "text": "5",
+        "value": "5"
+      },
+      {
+        "id": "slot.choice.option_5",
+        "slot_id": "slot.choice.option_5",
+        "text": "6",
+        "value": "6"
+      },
+      {
+        "id": "slot.choice.option_6",
+        "slot_id": "slot.choice.option_6",
+        "text": "7",
+        "value": "7"
+      },
+      {
+        "id": "slot.choice.option_7",
+        "slot_id": "slot.choice.option_7",
+        "text": "8",
+        "value": "8"
+      },
+      {
+        "id": "slot.choice.option_8",
+        "slot_id": "slot.choice.option_8",
+        "text": "9",
+        "value": "9"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "1"
+      },
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "2"
+      },
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "3"
+      },
+      {
+        "slot_id": "slot.choice.option_3",
+        "value": "4"
+      },
+      {
+        "slot_id": "slot.choice.option_4",
+        "value": "5"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "multiplication.inequality_reasoning"
+    ],
+    "errors": {
+      "6": "inequality.included_boundary"
+    }
+  }
+}

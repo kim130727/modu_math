@@ -1,0 +1,139 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009172",
+  "title": "5 cm 8 mm를 바르게 읽은 것 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 175,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1",
+        "slot.choice.label_0",
+        "slot.choice.label_1"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "34. 5 cm 8 mm를 바르게 읽은 것을 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 22.0,
+        "width": 820.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 24,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 95.0,
+        "y": 80.0,
+        "width": 330.0,
+        "height": 64.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.2,
+        "fill": "#fce7f3",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "5 센티미터 8 밀리미터",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.label_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5 센티미터 8 밀리미터",
+        "style_role": "body",
+        "x": 260.0,
+        "y": 112.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 515.0,
+        "y": 80.0,
+        "width": 330.0,
+        "height": 64.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.2,
+        "fill": "#fce7f3",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "5 센티미터 8 미터",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.label_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5 센티미터 8 미터",
+        "style_role": "body",
+        "x": 680.0,
+        "y": 112.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1",
+    "slot.choice.label_0",
+    "slot.choice.label_1"
+  ]
+}

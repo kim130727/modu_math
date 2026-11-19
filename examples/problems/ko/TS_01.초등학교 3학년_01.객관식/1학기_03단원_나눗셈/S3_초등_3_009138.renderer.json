@@ -1,0 +1,152 @@
+{
+  "problem_id": "S3_초등_3_009138",
+  "view_box": {
+    "width": 886.0,
+    "height": 210.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 22.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "width": 820.0,
+        "height": 44.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 22.0,
+        "data-box-width": 820.0,
+        "data-box-height": 44.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "93. <보기>와 나눗셈의 몫이 같은 식을 선택하세요."
+    },
+    {
+      "id": "slot.diagram.example_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 110.0,
+        "y": 76.0,
+        "width": 210.0,
+        "height": 115.0,
+        "fill": "#ffffff",
+        "stroke": "#6b7280",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.example_box",
+      "refs": {
+        "layout_slot_id": "slot.diagram.example_box"
+      }
+    },
+    {
+      "id": "slot.diagram.choice_frame.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 500.0,
+        "y": 92.0,
+        "width": 320.0,
+        "height": 76.0,
+        "fill": "#ffedd5",
+        "stroke": "#f59e0b",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.choice_frame",
+      "refs": {
+        "layout_slot_id": "slot.diagram.choice_frame"
+      }
+    },
+    {
+      "id": "slot.diagram.example_title.text",
+      "type": "text",
+      "attributes": {
+        "x": 162.0,
+        "y": 108.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.diagram.example_title",
+      "refs": {
+        "layout_slot_id": "slot.diagram.example_title"
+      },
+      "text": "<보기>"
+    },
+    {
+      "id": "slot.diagram.example_expr.text",
+      "type": "text",
+      "attributes": {
+        "x": 215.0,
+        "y": 154.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0
+      },
+      "source_ref": "slot.diagram.example_expr",
+      "refs": {
+        "layout_slot_id": "slot.diagram.example_expr"
+      },
+      "text": "45 ÷ 5"
+    },
+    {
+      "id": "slot.choice.option_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 598.0,
+        "y": 130.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "18 ÷ 2",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "18 ÷ 2"
+    },
+    {
+      "id": "slot.choice.option_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 722.0,
+        "y": 130.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "27 ÷ 9",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "27 ÷ 9"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

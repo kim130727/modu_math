@@ -18,7 +18,9 @@ void main() {
         onLocaleChanged: (_) {},
         child: MaterialApp(
             home: StudentAssignmentsScreen(
-                authService: fixture.auth, service: fixture.service))));
+                authService: fixture.auth,
+                service: fixture.service,
+                initialSection: 1))));
     await tester.pumpAndSettle();
     return fixture;
   }
@@ -96,7 +98,9 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  test('extractProblemSteps filters subproblems and suppresses raw booleans and values', () {
+  test(
+      'extractProblemSteps filters subproblems and suppresses raw booleans and values',
+      () {
     final item = AssignmentItem.fromJson({
       'id': 4,
       'position': 3,

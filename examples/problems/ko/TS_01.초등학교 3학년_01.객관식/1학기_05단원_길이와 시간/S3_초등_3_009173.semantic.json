@@ -1,0 +1,71 @@
+{
+  "problem_id": "S3_초등_3_009173",
+  "problem_type": "multiple_choice_unit_estimation",
+  "metadata": {
+    "title": "표시된 길이에 알맞은 단위 선택하기 (클립)",
+    "tags": [],
+    "question": "35. 알맞은 단위에 ○표 하세요.",
+    "required_layout_ids": [
+      "slot.diagram.clip_outer",
+      "slot.diagram.clip_inner",
+      "slot.diagram.dim_top",
+      "slot.diagram.dim_bot",
+      "slot.diagram.dim_vert"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "chapter": "05단원_길이와 시간",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "object.paperclip_width",
+        "type": "measured_length",
+        "label": "클립의 폭",
+        "numeric_value": 8
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.appropriate_unit",
+        "type": "has_unit",
+        "from_id": "object.paperclip_width",
+        "to_id": "unit.mm"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "mm",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "mm"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "cm",
+        "value": "cm"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "mm",
+        "value": "mm"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "mm"
+      }
+    ]
+  }
+}

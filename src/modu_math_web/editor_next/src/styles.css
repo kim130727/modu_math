@@ -2325,7 +2325,7 @@ input {
 .canvas-zoom-controls button { min-width: 28px; height: 28px; padding: 0 6px; border: 0; background: transparent; color: #475569; font-size: 11px; cursor: pointer; }
 .canvas-zoom-controls button:hover { background: #eeecfc; }
 .canvas-zoom-controls button:disabled { opacity: .35; cursor: default; }
-.konva-editor .presentation-prompt-item > span:last-child { font-size: 18px; }
+.konva-editor .presentation-prompt-item > span:last-child { font-size: clamp(20px, 1.6vw, 24px); line-height: 1.45; }
 @media (max-width: 1150px) {
   .editor-workspace-header { gap: 12px; }
   .editor-workspace-brand div > span { display: none; }
@@ -2335,5 +2335,5 @@ input {
   .konva-editor .presentation-zone-title small { display: none; }
   .konva-editor .presentation-zone-title { margin-bottom: 2px; }
   .konva-editor .presentation-prompt-item { margin: 0; padding: 4px; }
-  .konva-editor .presentation-prompt-item > span:last-child { font-size: 16px; }
+  .konva-editor .presentation-prompt-item > span:last-child { font-size: 20px; }
 }

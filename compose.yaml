@@ -42,6 +42,7 @@ services:
       - ./overrides:/app/overrides
 
   mobile:
+    restart: unless-stopped
     build:
       context: .
       dockerfile: docker/mobile.Dockerfile

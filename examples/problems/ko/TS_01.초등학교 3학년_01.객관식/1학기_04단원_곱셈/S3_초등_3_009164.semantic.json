@@ -1,0 +1,81 @@
+{
+  "problem_id": "S3_초등_3_009164",
+  "problem_type": "multiple_choice_multiplication_comparison",
+  "metadata": {
+    "title": "곱이 30 × 5보다 더 큰 것 선택하기",
+    "tags": [],
+    "question": "25. 곱이 30 × 5보다 더 큰 것을 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.frame"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "chapter": "04단원_곱셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "expr.reference",
+        "type": "multiplication",
+        "label": "30 × 5",
+        "value": 150
+      },
+      {
+        "id": "expr.ga",
+        "type": "multiplication",
+        "label": "㉠",
+        "equation": "71 × 2",
+        "value": 142
+      },
+      {
+        "id": "expr.na",
+        "type": "multiplication",
+        "label": "㉡",
+        "equation": "42 × 4",
+        "value": 168
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.greater_than_ref",
+        "type": "greater_than",
+        "from_id": "expr.na",
+        "to_id": "expr.reference"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "㉡",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "㉡"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "㉠",
+        "value": "㉠"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "㉡",
+        "value": "㉡"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "㉡"
+      }
+    ]
+  }
+}

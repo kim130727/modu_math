@@ -1,0 +1,77 @@
+{
+  "problem_id": "S3_초등_3_009176",
+  "problem_type": "multiple_choice_unit_reading",
+  "metadata": {
+    "title": "4 km 300 m를 바르게 읽은 것 선택하기",
+    "tags": [],
+    "question": "38. 4 km 300 m를 바르게 읽은 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "chapter": "05단원_길이와 시간",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "qty.given",
+        "type": "length",
+        "label": "4 km 300 m"
+      },
+      {
+        "id": "reading.option_0",
+        "type": "unit_reading",
+        "text": "4 킬로 300 미터"
+      },
+      {
+        "id": "reading.option_1",
+        "type": "unit_reading",
+        "text": "4 킬로미터 300 미터"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.reading",
+        "type": "correct_reading_of",
+        "from_id": "reading.option_1",
+        "to_id": "qty.given"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "4 킬로미터 300 미터",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "4 킬로미터 300 미터"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "4 킬로 300 미터",
+        "value": "4 킬로 300 미터"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "4 킬로미터 300 미터",
+        "value": "4 킬로미터 300 미터"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "4 킬로미터 300 미터"
+      }
+    ]
+  }
+}

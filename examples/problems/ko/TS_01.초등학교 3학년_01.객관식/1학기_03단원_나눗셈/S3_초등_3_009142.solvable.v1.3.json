@@ -1,0 +1,65 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009142",
+  "given": [
+    {
+      "ref": "expr.option_0",
+      "value": "30 ÷ 6 = 5"
+    },
+    {
+      "ref": "expr.option_1",
+      "value": "30 ÷ 5 = 6"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "type": "choice"
+  },
+  "method": "division_quotient_identification",
+  "steps": [
+    {
+      "id": "step.check_quotient",
+      "expr": "30 / 6 = 5",
+      "value": "30 ÷ 6 = 5",
+      "explanation": "30 ÷ 6 = 5의 몫은 5이고, 30 ÷ 5 = 6의 몫은 6입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "30 ÷ 6 = 5",
+    "unit": "",
+    "answer_index": 0,
+    "values": [
+      "30 ÷ 6 = 5"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "30 ÷ 6 = 5",
+        "value": "30 ÷ 6 = 5"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "30 ÷ 5 = 6",
+        "value": "30 ÷ 5 = 6"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "30 ÷ 6 = 5"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "division.quotient_meaning"
+    ],
+    "errors": {
+      "30 ÷ 5 = 6": "division.confused_divisor_with_quotient"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009139",
+  "given": [
+    {
+      "ref": "expr.option_0",
+      "value": "18 ÷ 6 = 3"
+    },
+    {
+      "ref": "expr.option_1",
+      "value": "42 ÷ 7 = 6"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "type": "choice"
+  },
+  "method": "division_quotient_identification",
+  "steps": [
+    {
+      "id": "step.check_quotient",
+      "expr": "42 / 7 = 6",
+      "value": "42 ÷ 7 = 6",
+      "explanation": "18 ÷ 6 = 3의 몫은 3이고, 42 ÷ 7 = 6의 몫은 6입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "42 ÷ 7 = 6",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "42 ÷ 7 = 6"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "18 ÷ 6 = 3",
+        "value": "18 ÷ 6 = 3"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "42 ÷ 7 = 6",
+        "value": "42 ÷ 7 = 6"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "42 ÷ 7 = 6"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "division.quotient_meaning"
+    ],
+    "errors": {
+      "18 ÷ 6 = 3": "division.confused_divisor_with_quotient"
+    }
+  }
+}

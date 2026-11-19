@@ -1,0 +1,78 @@
+{
+  "problem_id": "S3_초등_3_009139",
+  "problem_type": "multiple_choice_division_quotient",
+  "metadata": {
+    "title": "몫이 6인 나눗셈식 선택하기",
+    "tags": [],
+    "question": "94. 몫이 6인 나눗셈식을 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "chapter": "03단원_나눗셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "expr.option_0",
+        "type": "division_equation",
+        "label": "18 ÷ 6 = 3",
+        "dividend": 18,
+        "divisor": 6,
+        "quotient": 3
+      },
+      {
+        "id": "expr.option_1",
+        "type": "division_equation",
+        "label": "42 ÷ 7 = 6",
+        "dividend": 42,
+        "divisor": 7,
+        "quotient": 6
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.target_quotient",
+        "type": "has_quotient",
+        "from_id": "expr.option_1",
+        "to_id": "value.6"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "42 ÷ 7 = 6",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "42 ÷ 7 = 6"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "18 ÷ 6 = 3",
+        "value": "18 ÷ 6 = 3"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "42 ÷ 7 = 6",
+        "value": "42 ÷ 7 = 6"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "42 ÷ 7 = 6"
+      }
+    ]
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009135",
+  "given": [
+    {
+      "ref": "expr.option_0",
+      "value": "16 ÷ 8 = 2"
+    },
+    {
+      "ref": "expr.option_1",
+      "value": "24 ÷ 3 = 8"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "type": "choice"
+  },
+  "method": "division_quotient_identification",
+  "steps": [
+    {
+      "id": "step.check_quotient",
+      "expr": "24 / 3",
+      "value": 8,
+      "explanation": "나눗셈식에서 등호 오른쪽에 있는 수가 몫입니다. 16 ÷ 8 = 2의 몫은 2이고, 24 ÷ 3 = 8의 몫은 8입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "24 ÷ 3 = 8",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "24 ÷ 3 = 8"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "16 ÷ 8 = 2",
+        "value": "16 ÷ 8 = 2"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "24 ÷ 3 = 8",
+        "value": "24 ÷ 3 = 8"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "24 ÷ 3 = 8"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "division.quotient_meaning"
+    ],
+    "errors": {
+      "16 ÷ 8 = 2": "division.confused_divisor_with_quotient"
+    }
+  }
+}

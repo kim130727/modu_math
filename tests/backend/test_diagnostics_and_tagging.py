@@ -3,7 +3,12 @@ from django.core.management import call_command
 from django.test import TestCase
 from rest_framework.test import APIClient
 
-from modu_math_web.learning.models import Attempt, Problem, ProblemTagging
+from modu_math_web.learning.models import (
+    Attempt,
+    Problem,
+    ProblemTagging,
+    ProblemPublication,
+)
 
 
 class TaggingAndDiagnosticsTests(TestCase):
@@ -78,6 +83,11 @@ class TaggingAndDiagnosticsTests(TestCase):
             solvable_data={"method": "circle_radius"},
         )
 
+        for problem in (self.p_mult, self.p_div, self.p_circle):
+            ProblemPublication.objects.create(
+                problem=problem, status="published", visibility="public"
+            )
+
     def _auth(self, user):
         login_res = self.client.post(
             "/api/v1/auth/login/",
@@ -94,7 +104,9 @@ class TaggingAndDiagnosticsTests(TestCase):
 
         tagging_mult = ProblemTagging.objects.get(problem=self.p_mult)
         self.assertIn("arithmetic.multiplication", tagging_mult.auto_concepts)
-        self.assertIn("arithmetic.multiplication.place_value", tagging_mult.auto_concepts)
+        self.assertIn(
+            "arithmetic.multiplication.place_value", tagging_mult.auto_concepts
+        )
         self.assertIn("skill.place_value_matching", tagging_mult.auto_skills)
         self.assertEqual(tagging_mult.review_status, "pending")
         self.assertGreaterEqual(tagging_mult.confidence, 0.9)
@@ -106,7 +118,9 @@ class TaggingAndDiagnosticsTests(TestCase):
 
         call_command("tag_problems")
         tagging_mult.refresh_from_db()
-        self.assertEqual(tagging_mult.reviewed_concepts, ["arithmetic.multiplication.custom"])
+        self.assertEqual(
+            tagging_mult.reviewed_concepts, ["arithmetic.multiplication.custom"]
+        )
         self.assertEqual(tagging_mult.review_status, "confirmed")
 
     def test_admin_tagging_api_permissions_and_confirmation(self):
@@ -127,7 +141,10 @@ class TaggingAndDiagnosticsTests(TestCase):
         res = self.client.post(
             f"/api/v1/admin/problem-tags/{tagging.id}/confirm/",
             {
-                "reviewed_concepts": ["arithmetic.multiplication", "arithmetic.multiplication.place_value"],
+                "reviewed_concepts": [
+                    "arithmetic.multiplication",
+                    "arithmetic.multiplication.place_value",
+                ],
                 "reviewed_skills": ["skill.place_value_matching"],
             },
             format="json",
@@ -172,19 +189,34 @@ class TaggingAndDiagnosticsTests(TestCase):
         # Submit 2 correct attempts on multiplication
         self.client.post(
             "/api/v1/attempts/",
-            {"problem_id": "p_mult_1", "submitted_answer": 1, "hint_count": 0, "elapsed_ms": 3000},
+            {
+                "problem_id": "p_mult_1",
+                "submitted_answer": 1,
+                "hint_count": 0,
+                "elapsed_ms": 3000,
+            },
             format="json",
         )
         self.client.post(
             "/api/v1/attempts/",
-            {"problem_id": "p_mult_1", "submitted_answer": 1, "hint_count": 1, "elapsed_ms": 5000},
+            {
+                "problem_id": "p_mult_1",
+                "submitted_answer": 1,
+                "hint_count": 1,
+                "elapsed_ms": 5000,
+            },
             format="json",
         )
 
         # Submit 1 incorrect attempt on division
         self.client.post(
             "/api/v1/attempts/",
-            {"problem_id": "p_div_1", "submitted_answer": 99, "hint_count": 2, "elapsed_ms": 7000},
+            {
+                "problem_id": "p_div_1",
+                "submitted_answer": 99,
+                "hint_count": 2,
+                "elapsed_ms": 7000,
+            },
             format="json",
         )
 
@@ -201,7 +233,8 @@ class TaggingAndDiagnosticsTests(TestCase):
         res_concepts = self.client.get("/api/v1/diagnostics/concepts/")
         self.assertEqual(res_concepts.status_code, 200)
         mult_concept = next(
-            (c for c in res_concepts.data if c["key"] == "arithmetic.multiplication"), None
+            (c for c in res_concepts.data if c["key"] == "arithmetic.multiplication"),
+            None,
         )
         self.assertIsNotNone(mult_concept)
         self.assertEqual(mult_concept["attempt_count"], 2)
@@ -211,7 +244,9 @@ class TaggingAndDiagnosticsTests(TestCase):
         # Skills API
         res_skills = self.client.get("/api/v1/diagnostics/skills/")
         self.assertEqual(res_skills.status_code, 200)
-        calc_skill = next((s for s in res_skills.data if s["key"] == "skill.calculate"), None)
+        calc_skill = next(
+            (s for s in res_skills.data if s["key"] == "skill.calculate"), None
+        )
         self.assertIsNotNone(calc_skill)
         self.assertGreaterEqual(calc_skill["attempt_count"], 1)
 
@@ -275,7 +310,13 @@ class TaggingAndDiagnosticsTests(TestCase):
 
         # Unauthenticated request fails with 401
         self.client.credentials()  # clear auth
-        self.assertEqual(self.client.get("/api/v1/diagnostics/summary/").status_code, 401)
-        self.assertEqual(self.client.get("/api/v1/diagnostics/concepts/").status_code, 401)
-        self.assertEqual(self.client.get("/api/v1/diagnostics/skills/").status_code, 401)
+        self.assertEqual(
+            self.client.get("/api/v1/diagnostics/summary/").status_code, 401
+        )
+        self.assertEqual(
+            self.client.get("/api/v1/diagnostics/concepts/").status_code, 401
+        )
+        self.assertEqual(
+            self.client.get("/api/v1/diagnostics/skills/").status_code, 401
+        )
         self.assertEqual(self.client.get("/api/v1/recommendations/").status_code, 401)

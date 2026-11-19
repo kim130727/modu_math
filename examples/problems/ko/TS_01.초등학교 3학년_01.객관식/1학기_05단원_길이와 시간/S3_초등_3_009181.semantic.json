@@ -1,0 +1,102 @@
+{
+  "problem_id": "S3_초등_3_009181",
+  "problem_type": "multiple_choice_distance_estimation",
+  "metadata": {
+    "title": "학교에서 약 1 km 500 m 떨어진 장소 선택하기",
+    "tags": [],
+    "question": "43. 학교에서 주변에 있는 장소까지의 거리를 어림해 보려고 합니다. 알맞은 장소를 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.map_bg",
+      "slot.diagram.road_main",
+      "slot.diagram.road_branch",
+      "slot.diagram.arc_500",
+      "slot.diagram.dot_school",
+      "slot.diagram.dot_stat",
+      "slot.diagram.dot_lib",
+      "slot.diagram.dot_hall",
+      "slot.diagram.icon_school",
+      "slot.diagram.icon_stat",
+      "slot.diagram.icon_lib",
+      "slot.diagram.icon_hall"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "chapter": "05단원_길이와 시간",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "place.school",
+        "type": "place",
+        "label": "학교",
+        "distance_m": 0
+      },
+      {
+        "id": "place.stationery",
+        "type": "place",
+        "label": "문구점",
+        "distance_m": 500
+      },
+      {
+        "id": "place.library",
+        "type": "place",
+        "label": "도서관",
+        "distance_m": 1000
+      },
+      {
+        "id": "place.city_hall",
+        "type": "place",
+        "label": "시청",
+        "distance_m": 1500
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.distance_1km_500m",
+        "type": "approx_distance",
+        "from_id": "place.school",
+        "to_id": "place.city_hall"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "시청",
+    "unit": "",
+    "answer_index": 2,
+    "values": [
+      "시청"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "문구점",
+        "value": "문구점"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "도서관",
+        "value": "도서관"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "시청",
+        "value": "시청"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "시청"
+      }
+    ]
+  }
+}

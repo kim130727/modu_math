@@ -214,10 +214,11 @@ export function KonvaStage({
   );
   const presentationPanel = answerReviewMode ? reviewPanel : editorPanel;
   // Measure the canvas grid cell so prompt, answer and panel sizes are all respected.
-  const fitScale = Math.max(0.01, Math.min(Math.max(1, viewport.width - 48) / crop.width, Math.max(1, viewport.height - 48) / crop.height, 2.5));
+  const canvasGutter = 32;
+  const fitScale = Math.max(0.01, Math.min(Math.max(1, viewport.width - canvasGutter) / crop.width, Math.max(1, viewport.height - canvasGutter) / crop.height, 5));
   const scale = zoom ?? fitScale;
-  const stageWidth = Math.max(viewport.width, crop.width * scale + 48);
-  const stageHeight = Math.max(viewport.height, crop.height * scale + 48);
+  const stageWidth = Math.max(viewport.width, crop.width * scale + canvasGutter);
+  const stageHeight = Math.max(viewport.height, crop.height * scale + canvasGutter);
   const offsetX = (stageWidth - crop.width * scale) / 2 - crop.x * scale;
   const offsetY = (stageHeight - crop.height * scale) / 2 - crop.y * scale;
   const answerReviews = answerReviewMode && !reviewPanel ? answerSlotReviews(shapes, answerOptions) : new Map<string, AnswerSlotReview>();

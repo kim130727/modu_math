@@ -10,7 +10,7 @@ import '../services/student_assignment_service.dart';
 import '../theme/app_theme.dart';
 import '../utils/problem_presentation.dart';
 import '../widgets/assignment_answer_input.dart';
-import '../widgets/renderer_json_canvas.dart';
+import '../widgets/problem_canvas.dart';
 import 'student_assignments_screen.dart';
 
 class AssignmentSolveScreen extends StatefulWidget {
@@ -148,8 +148,10 @@ class _AssignmentSolveScreenState extends State<AssignmentSolveScreen>
               fontSize: 18)),
       const SizedBox(height: 14),
       Text(item.prompt.isNotEmpty ? item.prompt : item.problem.prompt,
-          style: const TextStyle(
-              fontSize: 24, height: 1.5, fontWeight: FontWeight.w600)),
+          style: TextStyle(
+              fontSize: MediaQuery.sizeOf(context).width < 600 ? 20 : 24,
+              height: 1.45,
+              fontWeight: FontWeight.w600)),
       const SizedBox(height: 18),
       if ('${item.content['owner_name'] ?? ''}'.isNotEmpty)
         Text('${strings.t('author')}: ${item.content['owner_name']}'),
@@ -158,12 +160,9 @@ class _AssignmentSolveScreenState extends State<AssignmentSolveScreen>
       if ('${item.content['rights_note'] ?? ''}'.isNotEmpty)
         Text('${item.content['rights_note']}'),
       if (item.problem.renderer.isNotEmpty)
-        SizedBox(
-            height: 280,
-            child: RendererJsonCanvas(
-                key: ValueKey('assignment-canvas-${item.id}'),
-                renderer: problemVisualRenderer(item.problem),
-                suppressInputs: true)),
+        ProblemCanvas(
+            key: ValueKey('assignment-canvas-${item.id}'),
+            renderer: problemVisualRenderer(item.problem)),
     ]));
     final controls = _Paper(
         child:

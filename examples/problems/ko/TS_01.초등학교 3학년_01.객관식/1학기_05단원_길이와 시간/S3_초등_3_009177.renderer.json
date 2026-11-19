@@ -1,0 +1,205 @@
+{
+  "problem_id": "S3_초등_3_009177",
+  "view_box": {
+    "width": 886.0,
+    "height": 195.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 22.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "width": 820.0,
+        "height": 44.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 22.0,
+        "data-box-width": 820.0,
+        "data-box-height": 44.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "39. 알맞은 단위를 선택하세요."
+    },
+    {
+      "id": "slot.diagram.mountain_back.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            60.0,
+            175.0
+          ],
+          [
+            125.0,
+            118.0
+          ],
+          [
+            185.0,
+            175.0
+          ]
+        ],
+        "stroke": "#3f6212",
+        "stroke-width": 1.0,
+        "fill": "#4d7c0f"
+      },
+      "source_ref": "slot.diagram.mountain_back",
+      "refs": {
+        "layout_slot_id": "slot.diagram.mountain_back"
+      }
+    },
+    {
+      "id": "slot.diagram.mountain_main.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            105.0,
+            175.0
+          ],
+          [
+            185.0,
+            76.0
+          ],
+          [
+            275.0,
+            175.0
+          ]
+        ],
+        "stroke": "#3f6212",
+        "stroke-width": 1.0,
+        "fill": "#65a30d"
+      },
+      "source_ref": "slot.diagram.mountain_main",
+      "refs": {
+        "layout_slot_id": "slot.diagram.mountain_main"
+      }
+    },
+    {
+      "id": "slot.diagram.frame.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 325.0,
+        "y": 84.0,
+        "width": 540.0,
+        "height": 76.0,
+        "fill": "#ffffff",
+        "stroke": "#7c3aed",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.frame",
+      "refs": {
+        "layout_slot_id": "slot.diagram.frame"
+      }
+    },
+    {
+      "id": "slot.diagram.sent_left.text",
+      "type": "text",
+      "attributes": {
+        "x": 485.0,
+        "y": 122.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0
+      },
+      "source_ref": "slot.diagram.sent_left",
+      "refs": {
+        "layout_slot_id": "slot.diagram.sent_left"
+      },
+      "text": "학교 뒷산의 높이는 1 ("
+    },
+    {
+      "id": "slot.diagram.sent_right.text",
+      "type": "text",
+      "attributes": {
+        "x": 780.0,
+        "y": 122.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0
+      },
+      "source_ref": "slot.diagram.sent_right",
+      "refs": {
+        "layout_slot_id": "slot.diagram.sent_right"
+      },
+      "text": ")입니다."
+    },
+    {
+      "id": "slot.choice.option_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 632.0,
+        "y": 122.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "m",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "m"
+    },
+    {
+      "id": "slot.choice.comma_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 664.0,
+        "y": 122.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0
+      },
+      "source_ref": "slot.choice.comma_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.comma_1"
+      },
+      "text": ","
+    },
+    {
+      "id": "slot.choice.option_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 702.0,
+        "y": 122.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "km",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "km"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,74 @@
+{
+  "problem_id": "S3_초등_3_009163",
+  "problem_type": "multiple_choice_multiplication_comparison",
+  "metadata": {
+    "title": "크기가 더 큰 것 기호 선택하기",
+    "tags": [],
+    "question": "24. 크기가 더 큰 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.bg"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "chapter": "04단원_곱셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "expr.ga",
+        "type": "multiplication",
+        "label": "㉠",
+        "equation": "34 × 9",
+        "value": 306
+      },
+      {
+        "id": "expr.na",
+        "type": "number",
+        "label": "㉡",
+        "value": 290
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.comparison",
+        "type": "greater_than",
+        "from_id": "expr.ga",
+        "to_id": "expr.na"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "㉠",
+    "unit": "",
+    "answer_index": 0,
+    "values": [
+      "㉠"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "㉠",
+        "value": "㉠"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "㉡",
+        "value": "㉡"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "㉠"
+      }
+    ]
+  }
+}

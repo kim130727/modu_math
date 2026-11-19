@@ -1,0 +1,91 @@
+{
+  "problem_id": "S3_초등_3_009136",
+  "problem_type": "multiple_choice_division_via_multiplication",
+  "metadata": {
+    "title": "18 ÷ 3의 몫을 구하는 데 필요한 곱셈식 선택하기",
+    "tags": [],
+    "question": "91. 18 ÷ 3의 몫을 구하려고 합니다. 필요한 곱셈식을 찾아 기호를 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.box"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "chapter": "03단원_나눗셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "expr.division",
+        "type": "division",
+        "dividend": 18,
+        "divisor": 3
+      },
+      {
+        "id": "expr.ga",
+        "type": "multiplication",
+        "label": "㉠",
+        "equation": "3 × 4 = 12"
+      },
+      {
+        "id": "expr.na",
+        "type": "multiplication",
+        "label": "㉡",
+        "equation": "3 × 5 = 15"
+      },
+      {
+        "id": "expr.da",
+        "type": "multiplication",
+        "label": "㉢",
+        "equation": "3 × 6 = 18"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.inverse_multiplication",
+        "type": "solves_division",
+        "from_id": "expr.da",
+        "to_id": "expr.division"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "㉢",
+    "unit": "",
+    "answer_index": 2,
+    "values": [
+      "㉢"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "㉠",
+        "value": "㉠"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "㉡",
+        "value": "㉡"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "㉢",
+        "value": "㉢"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "㉢"
+      }
+    ]
+  }
+}

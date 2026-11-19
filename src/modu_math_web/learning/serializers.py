@@ -131,11 +131,11 @@ class ProblemListSerializer(serializers.ModelSerializer):
 
     def get_publication_status(self, obj):
         publication = getattr(obj, "publication", None)
-        return publication.status if publication else "published"
+        return publication.status if publication else "draft"
 
     def get_visibility(self, obj):
         publication = getattr(obj, "publication", None)
-        return publication.visibility if publication else "public"
+        return publication.visibility if publication else "private"
 
     def get_owner_name(self, obj):
         publication = getattr(obj, "publication", None)
@@ -170,16 +170,13 @@ class ProblemListSerializer(serializers.ModelSerializer):
             return False
         publication = getattr(obj, "publication", None)
         return (
-            (
-                self.get_can_edit(obj)
-                and (not publication or publication.status != "archived")
-            )
-            or not publication
-            or (
-                publication.status == "published"
-                and publication.visibility == "public"
-                and publication.allow_classroom_use
-            )
+            self.get_can_edit(obj)
+            and (not publication or publication.status != "archived")
+        ) or (
+            publication is not None
+            and publication.status == "published"
+            and publication.visibility == "public"
+            and publication.allow_classroom_use
         )
 
     def get_difficulty(self, obj):

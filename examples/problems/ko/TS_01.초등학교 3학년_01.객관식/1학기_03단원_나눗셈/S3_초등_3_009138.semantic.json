@@ -1,0 +1,86 @@
+{
+  "problem_id": "S3_초등_3_009138",
+  "problem_type": "multiple_choice_division_same_quotient",
+  "metadata": {
+    "title": "보기와 몫이 같은 나눗셈식 선택하기",
+    "tags": [],
+    "question": "93. <보기>와 나눗셈의 몫이 같은 식을 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.example_box",
+      "slot.diagram.choice_frame"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "chapter": "03단원_나눗셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "expr.example",
+        "type": "division",
+        "label": "45 ÷ 5",
+        "dividend": 45,
+        "divisor": 5,
+        "quotient": 9
+      },
+      {
+        "id": "expr.option_0",
+        "type": "division",
+        "label": "18 ÷ 2",
+        "dividend": 18,
+        "divisor": 2,
+        "quotient": 9
+      },
+      {
+        "id": "expr.option_1",
+        "type": "division",
+        "label": "27 ÷ 9",
+        "dividend": 27,
+        "divisor": 9,
+        "quotient": 3
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.same_quotient",
+        "type": "equal_quotient",
+        "from_id": "expr.option_0",
+        "to_id": "expr.example"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "18 ÷ 2",
+    "unit": "",
+    "answer_index": 0,
+    "values": [
+      "18 ÷ 2"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "18 ÷ 2",
+        "value": "18 ÷ 2"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "27 ÷ 9",
+        "value": "27 ÷ 9"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "18 ÷ 2"
+      }
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009164",
+  "given": [
+    {
+      "ref": "expr.reference",
+      "value": "30 × 5"
+    },
+    {
+      "ref": "expr.ga",
+      "value": "71 × 2"
+    },
+    {
+      "ref": "expr.na",
+      "value": "42 × 4"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "type": "choice"
+  },
+  "method": "compare_products_against_reference",
+  "steps": [
+    {
+      "id": "step.calc_ref",
+      "expr": "30 * 5",
+      "value": 150,
+      "explanation": "30 × 5 = 150입니다."
+    },
+    {
+      "id": "step.calc_ga",
+      "expr": "71 * 2",
+      "value": 142,
+      "explanation": "㉠ 71 × 2 = 142로 150보다 작습니다."
+    },
+    {
+      "id": "step.calc_na",
+      "expr": "42 * 4",
+      "value": 168,
+      "explanation": "㉡ 42 × 4 = 168로 150보다 큽니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "㉡",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "㉡"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "㉠",
+        "value": "㉠"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "㉡",
+        "value": "㉡"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "㉡"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "multiplication.two_by_one",
+      "multiplication.comparison"
+    ],
+    "errors": {
+      "㉠": "multiplication.comparison_error"
+    }
+  }
+}

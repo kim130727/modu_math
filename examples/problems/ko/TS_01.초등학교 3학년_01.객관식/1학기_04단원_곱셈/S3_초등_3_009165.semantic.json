@@ -1,0 +1,73 @@
+{
+  "problem_id": "S3_초등_3_009165",
+  "problem_type": "multiple_choice_multiplication_comparison",
+  "metadata": {
+    "title": "계산 결과가 더 작은 식 선택하기",
+    "tags": [],
+    "question": "26. 계산 결과가 더 작은 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.frame"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "chapter": "04단원_곱셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "expr.option_0",
+        "type": "multiplication",
+        "label": "32 × 3",
+        "value": 96
+      },
+      {
+        "id": "expr.option_1",
+        "type": "multiplication",
+        "label": "20 × 4",
+        "value": 80
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.comparison",
+        "type": "less_than",
+        "from_id": "expr.option_1",
+        "to_id": "expr.option_0"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "20 × 4",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "20 × 4"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "32 × 3",
+        "value": "32 × 3"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "20 × 4",
+        "value": "20 × 4"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "20 × 4"
+      }
+    ]
+  }
+}

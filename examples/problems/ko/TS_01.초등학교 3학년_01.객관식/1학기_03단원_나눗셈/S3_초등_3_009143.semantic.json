@@ -1,0 +1,84 @@
+{
+  "problem_id": "S3_초등_3_009143",
+  "problem_type": "multiple_choice_division_repeated_subtraction",
+  "metadata": {
+    "title": "나눗셈식을 뺄셈식으로 바르게 나타낸 것 선택하기",
+    "tags": [],
+    "question": "99. 20 ÷ 5 = 4를 바르게 나타낸 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "chapter": "03단원_나눗셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "expr.given",
+        "type": "division_equation",
+        "label": "20 ÷ 5 = 4",
+        "dividend": 20,
+        "divisor": 5,
+        "quotient": 4
+      },
+      {
+        "id": "expr.option_0",
+        "type": "repeated_subtraction",
+        "label": "20 - 5 - 5 - 5 - 5 = 0",
+        "subtrahend": 5,
+        "count": 4
+      },
+      {
+        "id": "expr.option_1",
+        "type": "repeated_subtraction",
+        "label": "20 - 4 - 4 - 4 - 4 - 4 = 0",
+        "subtrahend": 4,
+        "count": 5
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.repeated_subtraction",
+        "type": "represents_division",
+        "from_id": "expr.option_0",
+        "to_id": "expr.given"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "20 - 5 - 5 - 5 - 5 = 0",
+    "unit": "",
+    "answer_index": 0,
+    "values": [
+      "20 - 5 - 5 - 5 - 5 = 0"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "20 - 5 - 5 - 5 - 5 = 0",
+        "value": "20 - 5 - 5 - 5 - 5 = 0"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "20 - 4 - 4 - 4 - 4 - 4 = 0",
+        "value": "20 - 4 - 4 - 4 - 4 - 4 = 0"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "20 - 5 - 5 - 5 - 5 = 0"
+      }
+    ]
+  }
+}

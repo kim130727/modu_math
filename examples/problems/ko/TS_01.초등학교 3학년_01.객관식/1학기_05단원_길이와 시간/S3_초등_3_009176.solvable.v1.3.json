@@ -1,0 +1,61 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009176",
+  "given": [
+    {
+      "ref": "qty.given",
+      "value": "4 km 300 m"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "type": "choice"
+  },
+  "method": "read_length_units",
+  "steps": [
+    {
+      "id": "step.read_units",
+      "expr": "km -> 킬로미터, m -> 미터",
+      "value": "4 킬로미터 300 미터",
+      "explanation": "km는 킬로미터, m는 미터라고 읽으므로 4 km 300 m는 '4 킬로미터 300 미터'라고 읽습니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "4 킬로미터 300 미터",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "4 킬로미터 300 미터"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "4 킬로 300 미터",
+        "value": "4 킬로 300 미터"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "4 킬로미터 300 미터",
+        "value": "4 킬로미터 300 미터"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "4 킬로미터 300 미터"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "measurement.unit_reading_km_m"
+    ],
+    "errors": {
+      "4 킬로 300 미터": "measurement.abbreviated_unit_reading"
+    }
+  }
+}

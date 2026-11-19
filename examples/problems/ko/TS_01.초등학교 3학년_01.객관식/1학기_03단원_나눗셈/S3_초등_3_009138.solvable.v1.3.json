@@ -1,0 +1,81 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009138",
+  "given": [
+    {
+      "ref": "expr.example",
+      "value": "45 ÷ 5"
+    },
+    {
+      "ref": "expr.option_0",
+      "value": "18 ÷ 2"
+    },
+    {
+      "ref": "expr.option_1",
+      "value": "27 ÷ 9"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "type": "choice"
+  },
+  "method": "compare_division_quotients",
+  "steps": [
+    {
+      "id": "step.calc_example",
+      "expr": "45 / 5",
+      "value": 9,
+      "explanation": "45 ÷ 5의 몫은 9입니다."
+    },
+    {
+      "id": "step.calc_option_0",
+      "expr": "18 / 2",
+      "value": 9,
+      "explanation": "18 ÷ 2의 몫은 9입니다."
+    },
+    {
+      "id": "step.calc_option_1",
+      "expr": "27 / 9",
+      "value": 3,
+      "explanation": "27 ÷ 9의 몫은 3이므로 45 ÷ 5와 몫이 같은 식은 18 ÷ 2입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "18 ÷ 2",
+    "unit": "",
+    "answer_index": 0,
+    "values": [
+      "18 ÷ 2"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "18 ÷ 2",
+        "value": "18 ÷ 2"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "27 ÷ 9",
+        "value": "27 ÷ 9"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "18 ÷ 2"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "division.basic_facts"
+    ],
+    "errors": {
+      "27 ÷ 9": "division.quotient_calculation_error"
+    }
+  }
+}

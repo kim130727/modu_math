@@ -1,0 +1,61 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009172",
+  "given": [
+    {
+      "ref": "qty.given",
+      "value": "5 cm 8 mm"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "type": "choice"
+  },
+  "method": "read_length_units",
+  "steps": [
+    {
+      "id": "step.read_units",
+      "expr": "cm -> 센티미터, mm -> 밀리미터",
+      "value": "5 센티미터 8 밀리미터",
+      "explanation": "cm는 센티미터, mm는 밀리미터라고 읽으므로 5 cm 8 mm는 '5 센티미터 8 밀리미터'라고 읽습니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "5 센티미터 8 밀리미터",
+    "unit": "",
+    "answer_index": 0,
+    "values": [
+      "5 센티미터 8 밀리미터"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "5 센티미터 8 밀리미터",
+        "value": "5 센티미터 8 밀리미터"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "5 센티미터 8 미터",
+        "value": "5 센티미터 8 미터"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "5 센티미터 8 밀리미터"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "measurement.unit_reading_cm_mm"
+    ],
+    "errors": {
+      "5 센티미터 8 미터": "measurement.confused_mm_with_m"
+    }
+  }
+}

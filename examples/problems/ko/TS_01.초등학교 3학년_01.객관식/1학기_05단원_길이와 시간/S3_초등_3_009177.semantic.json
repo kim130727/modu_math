@@ -1,0 +1,69 @@
+{
+  "problem_id": "S3_초등_3_009177",
+  "problem_type": "multiple_choice_unit_estimation",
+  "metadata": {
+    "title": "학교 뒷산의 높이에 알맞은 단위 선택하기",
+    "tags": [],
+    "question": "39. 알맞은 단위를 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.mountain_back",
+      "slot.diagram.mountain_main",
+      "slot.diagram.frame"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "chapter": "05단원_길이와 시간",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "object.mountain_height",
+        "type": "measured_length",
+        "label": "학교 뒷산의 높이",
+        "numeric_value": 1
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.appropriate_unit",
+        "type": "has_unit",
+        "from_id": "object.mountain_height",
+        "to_id": "unit.km"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "km",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "km"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "m",
+        "value": "m"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "km",
+        "value": "km"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "km"
+      }
+    ]
+  }
+}

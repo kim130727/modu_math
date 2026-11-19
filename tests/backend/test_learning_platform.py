@@ -82,6 +82,13 @@ def env():
         )
         for i in range(10)
     ]
+    for problem in problems:
+        ProblemPublication.objects.create(
+            problem=problem,
+            status="published",
+            visibility="public",
+            allow_classroom_use=True,
+        )
     client = APIClient()
     client.force_authenticate(teacher)
     return {
@@ -461,7 +468,9 @@ def test_foreign_item_and_recipient_injection_rejected(env):
 def test_bank_search_publication_and_public_detail(env):
     client = env["client"]
     problem = env["problems"][0]
-    ProblemPublication.objects.create(problem=problem, owner=env["teacher"])
+    ProblemPublication.objects.filter(problem=problem).update(
+        owner=env["teacher"], status="draft", visibility="private"
+    )
     response = client.patch(
         f"/api/v1/problems/{problem.pk}/publication/",
         {"status": "draft", "difficulty": 4},

@@ -1,0 +1,72 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009165",
+  "given": [
+    {
+      "ref": "expr.option_0",
+      "value": "32 × 3"
+    },
+    {
+      "ref": "expr.option_1",
+      "value": "20 × 4"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "type": "choice"
+  },
+  "method": "compare_products",
+  "steps": [
+    {
+      "id": "step.calc_0",
+      "expr": "32 * 3",
+      "value": 96,
+      "explanation": "32 × 3 = 96입니다."
+    },
+    {
+      "id": "step.calc_1",
+      "expr": "20 * 4",
+      "value": 80,
+      "explanation": "20 × 4 = 80이므로 96 > 80, 계산 결과가 더 작은 것은 20 × 4입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "20 × 4",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "20 × 4"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "32 × 3",
+        "value": "32 × 3"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "20 × 4",
+        "value": "20 × 4"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "20 × 4"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "multiplication.two_by_one",
+      "multiplication.comparison"
+    ],
+    "errors": {
+      "32 × 3": "multiplication.chose_larger_instead_of_smaller"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009162",
+  "given": [
+    {
+      "ref": "expr.option_0",
+      "value": "28 × 5 = 100"
+    },
+    {
+      "ref": "expr.option_1",
+      "value": "72 × 6 = 432"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "type": "choice"
+  },
+  "method": "verify_vertical_multiplication",
+  "steps": [
+    {
+      "id": "step.calc_0",
+      "expr": "28 * 5",
+      "value": 140,
+      "explanation": "28 × 5 = 140이므로 왼쪽 식은 틀렸습니다."
+    },
+    {
+      "id": "step.calc_1",
+      "expr": "72 * 6",
+      "value": 432,
+      "explanation": "72 × 6 = 432이므로 바르게 계산한 것은 오른쪽 식입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "72 × 6 = 432",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "72 × 6 = 432"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "28 × 5 = 100",
+        "value": "28 × 5 = 100"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "72 × 6 = 432",
+        "value": "72 × 6 = 432"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "72 × 6 = 432"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "multiplication.two_by_one_with_carry"
+    ],
+    "errors": {
+      "28 × 5 = 100": "multiplication.carry_omission"
+    }
+  }
+}

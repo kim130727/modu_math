@@ -1,0 +1,245 @@
+{
+  "problem_id": "S3_초등_3_009136",
+  "view_box": {
+    "width": 886.0,
+    "height": 230.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 20.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 820.0,
+        "height": 64.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 20.0,
+        "data-box-width": 820.0,
+        "data-box-height": 64.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "91. 18 ÷ 3의 몫을 구하려고 합니다. 필요한 곱셈식을 찾아 기호를 선택하세요."
+    },
+    {
+      "id": "slot.diagram.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 95.0,
+        "y": 95.0,
+        "width": 730.0,
+        "height": 62.0,
+        "fill": "#fbcfe8",
+        "stroke": "none",
+        "stroke-width": 0.0
+      },
+      "source_ref": "slot.diagram.box",
+      "refs": {
+        "layout_slot_id": "slot.diagram.box"
+      }
+    },
+    {
+      "id": "slot.diagram.item_ga.text",
+      "type": "text",
+      "attributes": {
+        "x": 250.0,
+        "y": 126.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.diagram.item_ga",
+      "refs": {
+        "layout_slot_id": "slot.diagram.item_ga"
+      },
+      "text": "㉠ 3 × 4 = 12"
+    },
+    {
+      "id": "slot.diagram.item_na.text",
+      "type": "text",
+      "attributes": {
+        "x": 455.0,
+        "y": 126.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.diagram.item_na",
+      "refs": {
+        "layout_slot_id": "slot.diagram.item_na"
+      },
+      "text": "㉡ 3 × 5 = 15"
+    },
+    {
+      "id": "slot.diagram.item_da.text",
+      "type": "text",
+      "attributes": {
+        "x": 660.0,
+        "y": 126.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.diagram.item_da",
+      "refs": {
+        "layout_slot_id": "slot.diagram.item_da"
+      },
+      "text": "㉢ 3 × 6 = 18"
+    },
+    {
+      "id": "slot.choice.paren_l.text",
+      "type": "text",
+      "attributes": {
+        "x": 370.0,
+        "y": 188.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0
+      },
+      "source_ref": "slot.choice.paren_l",
+      "refs": {
+        "layout_slot_id": "slot.choice.paren_l"
+      },
+      "text": "("
+    },
+    {
+      "id": "slot.choice.option_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 405.0,
+        "y": 188.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "data-semantic-role": "choice_marker",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "㉠",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "㉠"
+    },
+    {
+      "id": "slot.choice.comma_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 435.0,
+        "y": 188.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.choice.comma_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.comma_1"
+      },
+      "text": ","
+    },
+    {
+      "id": "slot.choice.option_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 465.0,
+        "y": 188.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "data-semantic-role": "choice_marker",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "㉡",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "㉡"
+    },
+    {
+      "id": "slot.choice.comma_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 495.0,
+        "y": 188.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.choice.comma_2",
+      "refs": {
+        "layout_slot_id": "slot.choice.comma_2"
+      },
+      "text": ","
+    },
+    {
+      "id": "slot.choice.option_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 525.0,
+        "y": 188.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "data-semantic-role": "choice_marker",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_2",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_2"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 2,
+        "value": "㉢",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "㉢"
+    },
+    {
+      "id": "slot.choice.paren_r.text",
+      "type": "text",
+      "attributes": {
+        "x": 560.0,
+        "y": 188.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0
+      },
+      "source_ref": "slot.choice.paren_r",
+      "refs": {
+        "layout_slot_id": "slot.choice.paren_r"
+      },
+      "text": ")"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

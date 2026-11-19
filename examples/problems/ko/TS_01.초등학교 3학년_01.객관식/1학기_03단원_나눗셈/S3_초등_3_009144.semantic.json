@@ -1,0 +1,113 @@
+{
+  "problem_id": "S3_초등_3_009144",
+  "problem_type": "multiple_choice_division_via_multiplication",
+  "metadata": {
+    "title": "35 ÷ 7의 몫을 구할 때 필요한 곱셈식 찾기",
+    "tags": [],
+    "question": "1. 35 ÷ 7의 몫을 구할 때 필요한 곱셈식은 어느 것일까요?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "chapter": "03단원_나눗셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "expr.division",
+        "type": "division",
+        "dividend": 35,
+        "divisor": 7
+      },
+      {
+        "id": "expr.opt0",
+        "type": "multiplication",
+        "label": "①",
+        "equation": "7 × 3 = 21"
+      },
+      {
+        "id": "expr.opt1",
+        "type": "multiplication",
+        "label": "②",
+        "equation": "7 × 4 = 28"
+      },
+      {
+        "id": "expr.opt2",
+        "type": "multiplication",
+        "label": "③",
+        "equation": "7 × 5 = 35"
+      },
+      {
+        "id": "expr.opt3",
+        "type": "multiplication",
+        "label": "④",
+        "equation": "7 × 6 = 42"
+      },
+      {
+        "id": "expr.opt4",
+        "type": "multiplication",
+        "label": "⑤",
+        "equation": "7 × 7 = 49"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.inverse_multiplication",
+        "type": "solves_division",
+        "from_id": "expr.opt2",
+        "to_id": "expr.division"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "③",
+    "unit": "",
+    "answer_index": 2,
+    "values": [
+      "③"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "①",
+        "value": "①"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "②",
+        "value": "②"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "③",
+        "value": "③"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "④",
+        "value": "④"
+      },
+      {
+        "id": "slot.choice.option_4",
+        "slot_id": "slot.choice.option_4",
+        "text": "⑤",
+        "value": "⑤"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "③"
+      }
+    ]
+  }
+}

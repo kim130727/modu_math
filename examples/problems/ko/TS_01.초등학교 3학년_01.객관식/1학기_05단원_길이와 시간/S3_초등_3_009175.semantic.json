@@ -1,0 +1,84 @@
+{
+  "problem_id": "S3_초등_3_009175",
+  "problem_type": "multiple_choice_unit_notation",
+  "metadata": {
+    "title": "1 km를 바르게 쓴 것 선택하기",
+    "tags": [],
+    "question": "37. 1 km를 바르게 쓴 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.guide0_line_0",
+      "slot.diagram.guide0_line_1",
+      "slot.diagram.guide0_line_2",
+      "slot.diagram.guide0_line_3",
+      "slot.diagram.guide1_line_0",
+      "slot.diagram.guide1_line_1",
+      "slot.diagram.guide1_line_2",
+      "slot.diagram.guide1_line_3",
+      "slot.choice.option_0",
+      "slot.choice.option_1"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "chapter": "05단원_길이와 시간",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "notation.option_0",
+        "type": "unit_writing",
+        "label": "왼쪽 표기",
+        "number_height_lines": 1,
+        "is_correct": false
+      },
+      {
+        "id": "notation.option_1",
+        "type": "unit_writing",
+        "label": "오른쪽 표기",
+        "number_height_lines": 2,
+        "is_correct": true
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.correct_notation",
+        "type": "is_proper_notation",
+        "from_id": "notation.option_1",
+        "to_id": "unit.1km"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "오른쪽 표기(1은 2칸)",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "오른쪽 표기(1은 2칸)"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "왼쪽 표기(1은 1칸)",
+        "value": "왼쪽 표기(1은 1칸)"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "오른쪽 표기(1은 2칸)",
+        "value": "오른쪽 표기(1은 2칸)"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "오른쪽 표기(1은 2칸)"
+      }
+    ]
+  }
+}

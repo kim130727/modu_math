@@ -1,0 +1,148 @@
+{
+  "problem_id": "S3_초등_3_009159",
+  "problem_type": "multiple_select_multiplication_inequality",
+  "metadata": {
+    "title": "곱셈 부등식 □ 안에 들어갈 수 있는 수 모두 선택하기",
+    "tags": [],
+    "question": "19. 1부터 9까지의 자연수 중에서 □ 안에 들어갈 수 있는 수를 모두 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.expr_box",
+      "slot.diagram.blank_box"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "chapter": "04단원_곱셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "expr.lhs",
+        "type": "multiplication",
+        "label": "36 × 3",
+        "value": 108
+      },
+      {
+        "id": "expr.rhs",
+        "type": "multiplication_with_unknown",
+        "label": "18 × □",
+        "known_factor": 18,
+        "unknown": "□"
+      },
+      {
+        "id": "domain.candidates",
+        "type": "integer_range",
+        "min": 1,
+        "max": 9
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.inequality",
+        "type": "greater_than",
+        "from_id": "expr.lhs",
+        "to_id": "expr.rhs"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "multi_choice",
+    "value": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "unit": "",
+    "values": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "1",
+        "value": "1"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "2",
+        "value": "2"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "3",
+        "value": "3"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "4",
+        "value": "4"
+      },
+      {
+        "id": "slot.choice.option_4",
+        "slot_id": "slot.choice.option_4",
+        "text": "5",
+        "value": "5"
+      },
+      {
+        "id": "slot.choice.option_5",
+        "slot_id": "slot.choice.option_5",
+        "text": "6",
+        "value": "6"
+      },
+      {
+        "id": "slot.choice.option_6",
+        "slot_id": "slot.choice.option_6",
+        "text": "7",
+        "value": "7"
+      },
+      {
+        "id": "slot.choice.option_7",
+        "slot_id": "slot.choice.option_7",
+        "text": "8",
+        "value": "8"
+      },
+      {
+        "id": "slot.choice.option_8",
+        "slot_id": "slot.choice.option_8",
+        "text": "9",
+        "value": "9"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "1"
+      },
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "2"
+      },
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "3"
+      },
+      {
+        "slot_id": "slot.choice.option_3",
+        "value": "4"
+      },
+      {
+        "slot_id": "slot.choice.option_4",
+        "value": "5"
+      }
+    ]
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008979",
+  "title": "직각인지 아닌지 판별하기 (14번)",
+  "canvas": {
+    "width": 886,
+    "height": 230,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.angle"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "직각이면 ○, 직각이 아니면 ×를 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 22.0,
+        "width": 443,
+        "height": 36,
+        "align": "left",
+        "valign": "top",
+        "font_size": 24,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "explicit"
+      }
+    },
+    {
+      "id": "slot.diagram.angle",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 495 76 L 380 156 L 540 156",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8,
+        "fill": "none"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.angle",
+    "region.choices"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_008979",
+  "given": [
+    {
+      "ref": "figure.target",
+      "value": "acute_angle"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "type": "choice"
+  },
+  "method": "right_angle_check",
+  "steps": [
+    {
+      "id": "step.compare_with_right_angle",
+      "expr": "angle < 90_deg",
+      "value": "×",
+      "explanation": "직각 삼각자의 직각 부분을 대어 보았을 때 꼭 맞게 겹쳐지지 않고 더 좁으므로 직각이 아닙니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "×",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "×"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "○",
+        "value": "○"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "×",
+        "value": "×"
+      }
+    ],
+    "answer_key": []
+  },
+  "diagnostics": {
+    "skills": [
+      "geometry.right_angle_identification"
+    ],
+    "errors": {
+      "○": "geometry.confused_acute_with_right_angle"
+    }
+  }
+}

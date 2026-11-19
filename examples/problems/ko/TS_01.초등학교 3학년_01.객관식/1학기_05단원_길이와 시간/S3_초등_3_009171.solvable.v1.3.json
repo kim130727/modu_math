@@ -1,0 +1,65 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009171",
+  "given": [
+    {
+      "ref": "notation.option_0",
+      "value": "1은 1칸, mm은 1칸"
+    },
+    {
+      "ref": "notation.option_1",
+      "value": "1은 2칸, mm은 1칸"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "type": "choice"
+  },
+  "method": "check_unit_writing_proportion",
+  "steps": [
+    {
+      "id": "step.check_lines",
+      "expr": "height(1) == 2_spaces and height(mm) == 1_space",
+      "value": "오른쪽 표기(1은 2칸, mm은 1칸)",
+      "explanation": "숫자 1은 두 칸에 걸쳐 크게 쓰고, 소문자 단위 mm은 아래 한 칸에 씁니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "오른쪽 표기(1은 2칸, mm은 1칸)",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "오른쪽 표기(1은 2칸, mm은 1칸)"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "왼쪽 표기(1은 1칸, mm은 1칸)",
+        "value": "왼쪽 표기(1은 1칸, mm은 1칸)"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "오른쪽 표기(1은 2칸, mm은 1칸)",
+        "value": "오른쪽 표기(1은 2칸, mm은 1칸)"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "오른쪽 표기(1은 2칸, mm은 1칸)"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "measurement.unit_notation_mm"
+    ],
+    "errors": {
+      "왼쪽 표기(1은 1칸, mm은 1칸)": "notation.number_written_too_small"
+    }
+  }
+}

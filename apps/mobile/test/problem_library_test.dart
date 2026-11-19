@@ -9,6 +9,28 @@ import 'package:modu_math_app/screens/student_assignments_screen.dart';
 import 'package:modu_math_app/services/student_assignment_service.dart';
 import 'helpers/assignment_fixture.dart';
 
+Map<String, dynamic> testCatalog([List<int> completed = const []]) => {
+      'grades': [
+        {
+          'grade': 3,
+          'count': 1,
+          'categories': [
+            {'key': '덧셈', 'count': 1}
+          ]
+        }
+      ],
+      'goal': {'target': 1, 'completed_ids': completed, 'date': '2026-11-19'},
+    };
+
+Future<void> chooseAllProblems(WidgetTester tester) async {
+  for (final text in ['전체 학년', '전체 분류']) {
+    final target = find.text(text).last;
+    await tester.ensureVisible(target);
+    await tester.tap(target);
+    await tester.pumpAndSettle();
+  }
+}
+
 void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
 
@@ -23,6 +45,9 @@ void main() {
         authService: fixture.auth,
         httpClient: MockClient((request) async {
           requests.add(request);
+          if (request.url.path == '/api/v1/problems/catalog/') {
+            return assignmentJson(testCatalog());
+          }
           if (request.url.path == '/api/v1/student/classes/') {
             return assignmentJson([]);
           }
@@ -40,7 +65,7 @@ void main() {
         }));
     await tester.pumpWidget(MaterialApp(
         home: StudentAssignmentsScreen(
-            authService: fixture.auth, service: service)));
+            authService: fixture.auth, service: service, initialSection: 1)));
     await tester.pumpAndSettle();
     expect(find.text('공개 문제'), findsOneWidget);
     expect(find.text('내 과제'), findsOneWidget);
@@ -50,6 +75,7 @@ void main() {
 
     await tester.tap(find.text('공개 문제'));
     await tester.pumpAndSettle();
+    await chooseAllProblems(tester);
     expect(find.text('공통 덧셈 연습'), findsOneWidget);
     expect(find.text('과제 열기'), findsNothing);
 
@@ -74,6 +100,7 @@ void main() {
     final fixture = AssignmentFixture();
     await fixture.login();
     final requests = <http.Request>[];
+    var practiced = false;
     final service = StudentAssignmentService(
         authService: fixture.auth,
         httpClient: MockClient((request) async {
@@ -81,7 +108,9 @@ void main() {
           expect(request.headers['Authorization'], isNotNull);
           final path = request.url.path;
           Object data;
-          if (path == '/api/v1/student/classes/') {
+          if (path == '/api/v1/problems/catalog/') {
+            data = testCatalog(practiced ? [7] : []);
+          } else if (path == '/api/v1/student/classes/') {
             data = [
               {
                 'id': 1,
@@ -123,6 +152,7 @@ void main() {
             final body = jsonDecode(request.body) as Map;
             expect(body['submitted_answer'], '7');
             expect(body.containsKey('is_correct'), isFalse);
+            practiced = true;
             data = {'is_correct': true};
           } else {
             throw StateError(path);
@@ -138,13 +168,15 @@ void main() {
     expect(find.widgetWithText(ChoiceChip, '새 클래스'), findsNothing);
     expect(
         requests
-            .firstWhere((r) => r.url.path == '/api/v1/problems/')
+            .firstWhere((r) => r.url.path == '/api/v1/problems/catalog/')
             .url
             .queryParameters['scope'],
         'public');
     await tester.tap(find.text('탐험대 · 김선생님'));
     await tester.pumpAndSettle();
     expect(requests.last.url.queryParameters['classroom'], '1');
+    await chooseAllProblems(tester);
+    await tester.ensureVisible(find.text('덧셈 문제'));
     await tester.tap(find.text('덧셈 문제'));
     await tester.pumpAndSettle();
     expect(find.text('출처: 직접 제작'), findsOneWidget);
@@ -154,8 +186,9 @@ void main() {
     await tester.ensureVisible(find.text('답 제출'));
     await tester.tap(find.text('답 제출'));
     await tester.pumpAndSettle();
-    expect(requests.last.url.path, '/api/v1/attempts/');
+    expect(requests.any((r) => r.url.path == '/api/v1/attempts/'), isTrue);
     expect(find.text('맞았어요!'), findsOneWidget);
+    expect(find.text('오늘의 목표 달성!'), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 }

@@ -1,0 +1,56 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_008978",
+  "given": [
+    {
+      "ref": "figure.target",
+      "value": "two_rays_from_one_vertex"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "type": "choice"
+  },
+  "method": "angle_definition_check",
+  "steps": [
+    {
+      "id": "step.check_vertex",
+      "expr": "shares_vertex(ray_left, ray_right)",
+      "value": "○",
+      "explanation": "한 점에서 그은 두 반직선으로 이루어져 있으므로 각입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "○",
+    "unit": "",
+    "answer_index": 0,
+    "values": [
+      "○"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "○",
+        "value": "○"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "×",
+        "value": "×"
+      }
+    ],
+    "answer_key": []
+  },
+  "diagnostics": {
+    "skills": [
+      "geometry.angle_definition"
+    ],
+    "errors": {
+      "×": "geometry.misidentified_rotated_angle"
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "problem_id": "S3_초등_3_009162",
+  "problem_type": "multiple_choice_vertical_multiplication",
+  "metadata": {
+    "title": "곱셈 세로셈을 바르게 계산한 것 선택하기",
+    "tags": [],
+    "question": "23. 계산을 바르게 한 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1",
+      "slot.diagram.line0",
+      "slot.diagram.line1"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "chapter": "04단원_곱셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "expr.option_0",
+        "type": "vertical_multiplication",
+        "label": "28 × 5 = 100",
+        "actual": 140,
+        "is_correct": false
+      },
+      {
+        "id": "expr.option_1",
+        "type": "vertical_multiplication",
+        "label": "72 × 6 = 432",
+        "actual": 432,
+        "is_correct": true
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.correct_calculation",
+        "type": "is_valid_calculation",
+        "from_id": "expr.option_1",
+        "to_id": "concept.true_equation"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "72 × 6 = 432",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "72 × 6 = 432"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "28 × 5 = 100",
+        "value": "28 × 5 = 100"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "72 × 6 = 432",
+        "value": "72 × 6 = 432"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "72 × 6 = 432"
+      }
+    ]
+  }
+}

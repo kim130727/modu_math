@@ -1,0 +1,210 @@
+{
+  "problem_id": "S3_초등_3_009173",
+  "view_box": {
+    "width": 886.0,
+    "height": 195.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 22.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "width": 820.0,
+        "height": 44.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 22.0,
+        "data-box-width": 820.0,
+        "data-box-height": 44.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "35. 알맞은 단위에 ○표 하세요."
+    },
+    {
+      "id": "slot.diagram.clip_outer.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 455 82 L 595 82 A 16 16 0 0 1 595 114 L 460 114 A 16 16 0 0 1 460 82",
+        "stroke": "#64748b",
+        "stroke-width": 4.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.clip_outer",
+      "refs": {
+        "layout_slot_id": "slot.diagram.clip_outer"
+      }
+    },
+    {
+      "id": "slot.diagram.clip_inner.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 595 90 L 490 90 A 8 8 0 0 0 490 106 L 575 106",
+        "stroke": "#94a3b8",
+        "stroke-width": 3.5,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.clip_inner",
+      "refs": {
+        "layout_slot_id": "slot.diagram.clip_inner"
+      }
+    },
+    {
+      "id": "slot.diagram.dim_top.line",
+      "type": "line",
+      "attributes": {
+        "x1": 612.0,
+        "y1": 82.0,
+        "x2": 628.0,
+        "y2": 82.0,
+        "stroke": "#ec4899",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.dim_top",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dim_top"
+      }
+    },
+    {
+      "id": "slot.diagram.dim_bot.line",
+      "type": "line",
+      "attributes": {
+        "x1": 612.0,
+        "y1": 114.0,
+        "x2": 628.0,
+        "y2": 114.0,
+        "stroke": "#ec4899",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.dim_bot",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dim_bot"
+      }
+    },
+    {
+      "id": "slot.diagram.dim_vert.line",
+      "type": "line",
+      "attributes": {
+        "x1": 620.0,
+        "y1": 82.0,
+        "x2": 620.0,
+        "y2": 114.0,
+        "stroke": "#ec4899",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.dim_vert",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dim_vert"
+      }
+    },
+    {
+      "id": "slot.diagram.sent_left.text",
+      "type": "text",
+      "attributes": {
+        "x": 382.0,
+        "y": 158.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0
+      },
+      "source_ref": "slot.diagram.sent_left",
+      "refs": {
+        "layout_slot_id": "slot.diagram.sent_left"
+      },
+      "text": "표시된 길이는 8 ("
+    },
+    {
+      "id": "slot.diagram.sent_right.text",
+      "type": "text",
+      "attributes": {
+        "x": 668.0,
+        "y": 158.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0
+      },
+      "source_ref": "slot.diagram.sent_right",
+      "refs": {
+        "layout_slot_id": "slot.diagram.sent_right"
+      },
+      "text": ")입니다."
+    },
+    {
+      "id": "slot.choice.option_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 518.0,
+        "y": 158.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "cm",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "cm"
+    },
+    {
+      "id": "slot.choice.comma_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 552.0,
+        "y": 158.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0
+      },
+      "source_ref": "slot.choice.comma_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.comma_1"
+      },
+      "text": ","
+    },
+    {
+      "id": "slot.choice.option_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 590.0,
+        "y": 158.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "mm",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "mm"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

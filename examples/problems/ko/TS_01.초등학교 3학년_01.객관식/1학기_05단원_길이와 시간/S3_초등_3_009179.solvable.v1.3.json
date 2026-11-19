@@ -1,0 +1,76 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009179",
+  "given": [
+    {
+      "ref": "place.stationery",
+      "value": "약 500 m"
+    },
+    {
+      "ref": "place.library",
+      "value": "문구점의 약 2배"
+    },
+    {
+      "ref": "place.city_hall",
+      "value": "문구점의 약 3배"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "type": "choice"
+  },
+  "method": "read_map_distance_reference",
+  "steps": [
+    {
+      "id": "step.read_map",
+      "expr": "distance(학교, 문구점) == 500 m",
+      "value": "문구점",
+      "explanation": "지도에서 학교에서 약 500 m 떨어진 곳에 있는 장소는 문구점입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "문구점",
+    "unit": "",
+    "answer_index": 0,
+    "values": [
+      "문구점"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "문구점",
+        "value": "문구점"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "도서관",
+        "value": "도서관"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "시청",
+        "value": "시청"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "문구점"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "measurement.distance_estimation"
+    ],
+    "errors": {
+      "도서관": "measurement.wrong_map_distance",
+      "시청": "measurement.wrong_map_distance"
+    }
+  }
+}

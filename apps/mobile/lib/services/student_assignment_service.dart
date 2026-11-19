@@ -27,15 +27,27 @@ class StudentAssignmentService {
       {int page = 1,
       int? classroom,
       String language = 'ko',
-      String grade = ''}) async {
+      String grade = '',
+      String? category}) async {
     final query = Uri(queryParameters: {
       'scope': classroom == null ? 'public' : 'class',
       'page': '$page',
       'language': language,
       if (classroom != null) 'classroom': '$classroom',
       if (grade.isNotEmpty) 'grade': grade,
+      if (category != null) 'category': category,
     }).query;
     return assignmentMap(await _request('/api/v1/problems/?$query'));
+  }
+
+  Future<Map<String, dynamic>> catalog(
+      {int? classroom, String language = 'ko'}) async {
+    final query = Uri(queryParameters: {
+      'scope': classroom == null ? 'public' : 'class',
+      'language': language,
+      if (classroom != null) 'classroom': '$classroom',
+    }).query;
+    return assignmentMap(await _request('/api/v1/problems/catalog/?$query'));
   }
 
   Future<Map<String, dynamic>> libraryProblem(int id) async =>

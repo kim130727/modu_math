@@ -1,0 +1,83 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009181",
+  "given": [
+    {
+      "ref": "place.stationery",
+      "value": "약 500 m"
+    },
+    {
+      "ref": "place.library",
+      "value": "문구점 거리의 약 2배"
+    },
+    {
+      "ref": "place.city_hall",
+      "value": "문구점 거리의 약 3배"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_2",
+    "type": "choice"
+  },
+  "method": "convert_km_to_m_and_estimate_distance",
+  "steps": [
+    {
+      "id": "step.convert",
+      "expr": "1 km 500 m = 1500 m",
+      "value": 1500,
+      "explanation": "1 km 500 m = 1500 m이므로 500 m의 세 배입니다."
+    },
+    {
+      "id": "step.estimate",
+      "expr": "500 * 3 = 1500",
+      "value": "시청",
+      "explanation": "학교에서 문구점까지의 거리의 약 세 배쯤 되는 곳에 위치한 시청이 약 1 km 500 m 떨어진 곳입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "시청",
+    "unit": "",
+    "answer_index": 2,
+    "values": [
+      "시청"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "문구점",
+        "value": "문구점"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "도서관",
+        "value": "도서관"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "시청",
+        "value": "시청"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "시청"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "measurement.km_to_m_conversion",
+      "measurement.distance_estimation"
+    ],
+    "errors": {
+      "문구점": "measurement.wrong_distance_multiple",
+      "도서관": "measurement.wrong_distance_multiple"
+    }
+  }
+}

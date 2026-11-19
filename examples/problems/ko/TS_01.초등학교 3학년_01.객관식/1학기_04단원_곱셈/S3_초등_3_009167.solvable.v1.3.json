@@ -1,0 +1,72 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009167",
+  "given": [
+    {
+      "ref": "expr.option_0",
+      "value": "68 × 3"
+    },
+    {
+      "ref": "expr.option_1",
+      "value": 200
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "type": "choice"
+  },
+  "method": "compare_product_and_number",
+  "steps": [
+    {
+      "id": "step.calc_0",
+      "expr": "68 * 3",
+      "value": 204,
+      "explanation": "68 × 3 = 204입니다."
+    },
+    {
+      "id": "step.compare",
+      "expr": "204 > 200",
+      "value": "68 × 3",
+      "explanation": "204 > 200이므로 더 큰 것은 68 × 3입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "68 × 3",
+    "unit": "",
+    "answer_index": 0,
+    "values": [
+      "68 × 3"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "68 × 3",
+        "value": "68 × 3"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "200",
+        "value": "200"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "68 × 3"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "multiplication.two_by_one_with_carry",
+      "multiplication.comparison"
+    ],
+    "errors": {
+      "200": "multiplication.calculation_error"
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "problem_id": "S3_초등_3_008977",
+  "problem_type": "multiple_choice_geometry_angle_ox",
+  "metadata": {
+    "title": "각인지 아닌지 판별하기 (12번)",
+    "tags": [],
+    "question": "각이면 ○, 각이 아니면 ×를 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.ray_top",
+      "slot.diagram.ray_bottom",
+      "slot.choice.circle_0",
+      "slot.choice.circle_1"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "chapter": "02단원_평면도형",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "각이면 ○, 각이 아니면 ×를 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "figure.target",
+        "type": "two_disconnected_rays",
+        "label": "주어진 도형",
+        "shares_vertex": false,
+        "is_angle": false
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.angle_check",
+        "type": "is_not_angle",
+        "from_id": "figure.target",
+        "to_id": "concept.angle"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "○",
+        "value": "○"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "×",
+        "value": "×"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "×"
+      }
+    ],
+    "confidence": 1.0,
+    "type": "choice",
+    "value": "×",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "×"
+    ]
+  }
+}

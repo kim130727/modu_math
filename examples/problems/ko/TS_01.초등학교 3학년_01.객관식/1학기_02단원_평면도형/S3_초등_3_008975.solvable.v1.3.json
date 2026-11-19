@@ -1,0 +1,76 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_008975",
+  "given": [
+    {
+      "ref": "figure.option_0",
+      "value": "curved_line"
+    },
+    {
+      "ref": "figure.option_1",
+      "value": "broken_line"
+    },
+    {
+      "ref": "figure.option_2",
+      "value": "ray"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_2",
+    "type": "choice"
+  },
+  "method": "ray_classification",
+  "steps": [
+    {
+      "id": "step.identify_ray",
+      "expr": "is_straight(figure) and extends_one_direction(figure)",
+      "value": "3번 도형(반직선)",
+      "explanation": "한 점에서 시작하여 한쪽으로 끝없이 늘인 곧은 선을 반직선이라고 합니다. 1번은 굽은 선, 2번은 꺾인 선이므로 3번 도형이 반직선입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "3번 도형(반직선)",
+    "unit": "",
+    "answer_index": 2,
+    "values": [
+      "3번 도형(반직선)"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "1번 도형(굽은 선)",
+        "value": "1번 도형(굽은 선)"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "2번 도형(꺾인 선)",
+        "value": "2번 도형(꺾인 선)"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "3번 도형(반직선)",
+        "value": "3번 도형(반직선)"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "3번 도형(반직선)"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "geometry.ray_identification"
+    ],
+    "errors": {
+      "1번 도형(굽은 선)": "geometry.confused_curved_with_ray",
+      "2번 도형(꺾인 선)": "geometry.confused_broken_with_ray"
+    }
+  }
+}

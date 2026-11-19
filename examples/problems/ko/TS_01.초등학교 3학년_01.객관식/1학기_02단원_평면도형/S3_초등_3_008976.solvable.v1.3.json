@@ -1,0 +1,76 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_008976",
+  "given": [
+    {
+      "ref": "figure.option_0",
+      "value": "line_segment"
+    },
+    {
+      "ref": "figure.option_1",
+      "value": "curved_line"
+    },
+    {
+      "ref": "figure.option_2",
+      "value": "straight_line"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_2",
+    "type": "choice"
+  },
+  "method": "straight_line_classification",
+  "steps": [
+    {
+      "id": "step.identify_straight_line",
+      "expr": "is_straight(figure) and extends_both_directions(figure)",
+      "value": "3번 도형(직선)",
+      "explanation": "선분을 양쪽으로 끝없이 늘인 곧은 선을 직선이라고 합니다. 1번은 선분, 2번은 굽은 선이므로 3번 도형이 직선입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "3번 도형(직선)",
+    "unit": "",
+    "answer_index": 2,
+    "values": [
+      "3번 도형(직선)"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "1번 도형(선분)",
+        "value": "1번 도형(선분)"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "2번 도형(굽은 선)",
+        "value": "2번 도형(굽은 선)"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "3번 도형(직선)",
+        "value": "3번 도형(직선)"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "3번 도형(직선)"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "geometry.line_identification"
+    ],
+    "errors": {
+      "1번 도형(선분)": "geometry.confused_segment_with_line",
+      "2번 도형(굽은 선)": "geometry.confused_curved_with_line"
+    }
+  }
+}

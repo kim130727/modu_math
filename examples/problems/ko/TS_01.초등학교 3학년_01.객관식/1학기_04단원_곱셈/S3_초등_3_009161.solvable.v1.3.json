@@ -1,0 +1,90 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009161",
+  "given": [
+    {
+      "ref": "expr.vertical",
+      "value": "18 × 3 = 54"
+    },
+    {
+      "ref": "digit.carry_2",
+      "value": 2
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "type": "choice"
+  },
+  "method": "place_value_of_carry",
+  "steps": [
+    {
+      "id": "step.ones_mul",
+      "expr": "8 * 3",
+      "value": 24,
+      "explanation": "일의 자리 계산 8 × 3 = 24에서 2를 십의 자리로 올림한 것입니다."
+    },
+    {
+      "id": "step.place_value",
+      "expr": "2 * 10",
+      "value": 20,
+      "explanation": "십의 자리에 올림한 2가 실제로 나타내는 수는 20(②)입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "②",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "②"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "①",
+        "value": "①"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "②",
+        "value": "②"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "③",
+        "value": "③"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "④",
+        "value": "④"
+      },
+      {
+        "id": "slot.choice.option_4",
+        "slot_id": "slot.choice.option_4",
+        "text": "⑤",
+        "value": "⑤"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "multiplication.carry_place_value"
+    ],
+    "errors": {
+      "①": "place_value.ignored_tens_place",
+      "⑤": "place_value.confused_tens_with_hundreds"
+    }
+  }
+}

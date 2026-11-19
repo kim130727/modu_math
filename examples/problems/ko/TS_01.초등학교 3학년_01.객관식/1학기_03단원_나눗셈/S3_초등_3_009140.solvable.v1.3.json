@@ -1,0 +1,69 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009140",
+  "given": [
+    {
+      "ref": "expr.given",
+      "value": "2 × 4 = 8"
+    },
+    {
+      "ref": "expr.option_0",
+      "value": "8 ÷ 2 = 4"
+    },
+    {
+      "ref": "expr.option_1",
+      "value": "4 ÷ 2 = 2"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "type": "choice"
+  },
+  "method": "multiplication_to_division_conversion",
+  "steps": [
+    {
+      "id": "step.convert",
+      "expr": "8 / 2 = 4",
+      "value": "8 ÷ 2 = 4",
+      "explanation": "곱셈식 2 × 4 = 8에서 곱인 8을 나누어지는 수로 하여 8 ÷ 2 = 4로 나타낼 수 있습니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "8 ÷ 2 = 4",
+    "unit": "",
+    "answer_index": 0,
+    "values": [
+      "8 ÷ 2 = 4"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "8 ÷ 2 = 4",
+        "value": "8 ÷ 2 = 4"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "4 ÷ 2 = 2",
+        "value": "4 ÷ 2 = 2"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "8 ÷ 2 = 4"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "division.multiplication_relation"
+    ],
+    "errors": {
+      "4 ÷ 2 = 2": "division.wrong_dividend_from_multiplication"
+    }
+  }
+}

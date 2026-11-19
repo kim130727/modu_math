@@ -1,0 +1,54 @@
+{
+  "problem_id": "S3_초등_3_008978",
+  "view_box": {
+    "width": 886.0,
+    "height": 230.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 22.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "width": 399.0,
+        "height": 36.0,
+        "max_width": 399.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 22.0,
+        "data-box-width": 399.0,
+        "data-box-height": 36.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "explicit"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "각이면 ○, 각이 아니면 ×를 선택하세요."
+    },
+    {
+      "id": "slot.diagram.angle.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 402 162 L 502 76 L 606 162",
+        "stroke": "#111827",
+        "stroke-width": 1.8,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.angle",
+      "refs": {
+        "layout_slot_id": "slot.diagram.angle"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

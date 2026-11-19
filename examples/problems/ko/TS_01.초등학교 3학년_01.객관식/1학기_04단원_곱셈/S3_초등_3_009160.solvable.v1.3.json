@@ -1,0 +1,72 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_009160",
+  "given": [
+    {
+      "ref": "expr.ga",
+      "value": "71 × 4"
+    },
+    {
+      "ref": "expr.na",
+      "value": "39 × 4"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "type": "choice"
+  },
+  "method": "compare_products",
+  "steps": [
+    {
+      "id": "step.calc_ga",
+      "expr": "71 * 4",
+      "value": 284,
+      "explanation": "㉠ 71 × 4 = 284입니다."
+    },
+    {
+      "id": "step.calc_na",
+      "expr": "39 * 4",
+      "value": 156,
+      "explanation": "㉡ 39 × 4 = 156이므로 284 > 156, 곱이 더 큰 것은 ㉠입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "㉠",
+    "unit": "",
+    "answer_index": 0,
+    "values": [
+      "㉠"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "㉠",
+        "value": "㉠"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "㉡",
+        "value": "㉡"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "㉠"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "multiplication.two_by_one",
+      "multiplication.comparison"
+    ],
+    "errors": {
+      "㉡": "multiplication.comparison_error"
+    }
+  }
+}

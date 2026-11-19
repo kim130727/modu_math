@@ -113,13 +113,18 @@ class ProblemViewSet(viewsets.ReadOnlyModelViewSet):
             queryset = queryset.filter(pk__in=values)
         visibility = self.request.query_params.get("visibility")
         if visibility:
-            queryset = queryset.filter(publication__visibility=visibility)
+            condition = Q(publication__visibility=visibility)
+            if visibility == "private":
+                condition |= Q(publication__isnull=True)
+            queryset = queryset.filter(condition)
         for parameter in ("language", "problem_type"):
             value = self.request.query_params.get(parameter)
             if value not in (None, ""):
                 queryset = queryset.filter(**{parameter: value})
         grade = self.request.query_params.get("grade")
-        if grade not in (None, ""):
+        if grade == "null":
+            queryset = queryset.filter(grade__isnull=True)
+        elif grade not in (None, ""):
             try:
                 queryset = queryset.filter(grade=int(grade))
             except ValueError as exc:
@@ -132,6 +137,16 @@ class ProblemViewSet(viewsets.ReadOnlyModelViewSet):
                 | Q(catalog_data__topic__icontains=unit)
             )
         concept = self.request.query_params.get("concept")
+        category = self.request.query_params.get("category")
+        if category is not None:
+            from .services.practice_catalog import category_key
+
+            matching_ids = [
+                pk
+                for pk, catalog in queryset.values_list("pk", "catalog_data")
+                if category_key(catalog) == category
+            ]
+            queryset = queryset.filter(pk__in=matching_ids)
         if concept:
             if connection.features.supports_json_field_contains:
                 queryset = queryset.filter(concepts__contains=[concept])
@@ -157,15 +172,19 @@ class ProblemViewSet(viewsets.ReadOnlyModelViewSet):
                         raise ValidationError(
                             {parameter: "정수가 필요합니다."}
                         ) from exc
-                if (parameter == "status" and value == "published") or (
+                condition = Q(**{field: value})
+                if (parameter == "status" and value == "draft") or (
                     parameter == "difficulty" and value == 1
                 ):
-                    queryset = queryset.filter(
-                        Q(publication__isnull=True) | Q(**{field: value})
-                    )
-                else:
-                    queryset = queryset.filter(**{field: value})
+                    condition |= Q(publication__isnull=True)
+                queryset = queryset.filter(condition)
         return queryset
+
+    @action(detail=False, methods=["get"])
+    def catalog(self, request):
+        from .services.practice_catalog import practice_catalog
+
+        return Response(practice_catalog(self.get_queryset(), request.user))
 
     def retrieve(self, request, *args, **kwargs):
         from .services.problem_access import can_edit, reusable_problems
@@ -213,12 +232,12 @@ class ProblemViewSet(viewsets.ReadOnlyModelViewSet):
                 PublicationSerializer(publication, context={"request": request}).data
                 if publication
                 else {
-                    "status": "published",
+                    "status": "draft",
                     "difficulty": 1,
-                    "visibility": "public",
+                    "visibility": "private",
                     "classroom_ids": [],
-                    "allow_classroom_use": True,
-                    "rights_confirmed": True,
+                    "allow_classroom_use": False,
+                    "rights_confirmed": False,
                     "source_credit": "",
                     "rights_note": "",
                 }
@@ -232,7 +251,7 @@ class ProblemViewSet(viewsets.ReadOnlyModelViewSet):
             problem=problem,
             updated_by=request.user,
             **(
-                {"status": serializer.validated_data.get("status", "published")}
+                {"status": serializer.validated_data.get("status", "draft")}
                 if publication is None
                 else {}
             ),

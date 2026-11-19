@@ -1,0 +1,78 @@
+{
+  "problem_id": "S3_초등_3_009135",
+  "problem_type": "multiple_choice_division_quotient",
+  "metadata": {
+    "title": "나눗셈의 몫이 8인 식 선택하기",
+    "tags": [],
+    "question": "90. 나눗셈의 몫이 8인 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "chapter": "03단원_나눗셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "expr.option_0",
+        "type": "division_equation",
+        "label": "16 ÷ 8 = 2",
+        "dividend": 16,
+        "divisor": 8,
+        "quotient": 2
+      },
+      {
+        "id": "expr.option_1",
+        "type": "division_equation",
+        "label": "24 ÷ 3 = 8",
+        "dividend": 24,
+        "divisor": 3,
+        "quotient": 8
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.target_quotient",
+        "type": "has_quotient",
+        "from_id": "expr.option_1",
+        "to_id": "value.8"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "24 ÷ 3 = 8",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "24 ÷ 3 = 8"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "16 ÷ 8 = 2",
+        "value": "16 ÷ 8 = 2"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "24 ÷ 3 = 8",
+        "value": "24 ÷ 3 = 8"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "24 ÷ 3 = 8"
+      }
+    ]
+  }
+}

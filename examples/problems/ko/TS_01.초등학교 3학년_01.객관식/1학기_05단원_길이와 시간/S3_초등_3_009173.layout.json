@@ -1,0 +1,241 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009173",
+  "title": "표시된 길이에 알맞은 단위 선택하기 (클립)",
+  "canvas": {
+    "width": 886,
+    "height": 195,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.clip_outer",
+        "slot.diagram.clip_inner",
+        "slot.diagram.dim_top",
+        "slot.diagram.dim_bot",
+        "slot.diagram.dim_vert",
+        "slot.diagram.sent_left",
+        "slot.diagram.sent_right"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.comma_1",
+        "slot.choice.option_1"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "35. 알맞은 단위에 ○표 하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 22.0,
+        "width": 820.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 24,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.diagram.clip_outer",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 455 82 L 595 82 A 16 16 0 0 1 595 114 L 460 114 A 16 16 0 0 1 460 82",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#64748b",
+        "stroke_width": 4.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.clip_inner",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 595 90 L 490 90 A 8 8 0 0 0 490 106 L 575 106",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 3.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.dim_top",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 612.0,
+        "y1": 82.0,
+        "x2": 628.0,
+        "y2": 82.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.dim_bot",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 612.0,
+        "y1": 114.0,
+        "x2": 628.0,
+        "y2": 114.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.dim_vert",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 620.0,
+        "y1": 82.0,
+        "x2": 620.0,
+        "y2": 114.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.sent_left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "표시된 길이는 8 (",
+        "style_role": "body",
+        "x": 382.0,
+        "y": 158.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.sent_right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ")입니다.",
+        "style_role": "body",
+        "x": 668.0,
+        "y": 158.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "cm",
+        "style_role": "body",
+        "x": 518.0,
+        "y": 158.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "cm",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.comma_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 552.0,
+        "y": 158.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "mm",
+        "style_role": "body",
+        "x": 590.0,
+        "y": 158.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "mm",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.clip_outer",
+    "slot.diagram.clip_inner",
+    "slot.diagram.dim_top",
+    "slot.diagram.dim_bot",
+    "slot.diagram.dim_vert",
+    "slot.diagram.sent_left",
+    "slot.diagram.sent_right",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.comma_1",
+    "slot.choice.option_1"
+  ]
+}
