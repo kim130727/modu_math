@@ -68,6 +68,7 @@ export function AssignmentForm({ initialSet, sets, students, classes, busy, run,
     });
   }
   return <Modal title="새 과제 배정" close={close}><form onSubmit={submit}>
+    <p className="info-note">이 과제는 선택한 학생에게만 배정됩니다. 각 학생은 본인의 답안과 결과만 볼 수 있습니다. 포함된 공개 문제는 공통 문제은행에 그대로 남고, 비공개 문제는 배정된 과제 안에서만 학생에게 제공됩니다.</p>
     <div className="form-grid"><Field label="문제집"><select required value={setId} onChange={e => setSetId(e.target.value)}><option value="" disabled>문제집 선택</option>{sets.map(s => <option key={s.id} value={s.id}>{s.title} · {s.items.length}문항</option>)}</select></Field><Field label="과제 이름"><input required maxLength={160} value={title} onChange={e => setTitle(e.target.value)} placeholder="학생에게 보여줄 과제 이름" /></Field></div>
     <fieldset><legend>배정할 학생 <span className="muted">{studentIds.length}명 선택</span></legend><div className="choice-list">{students.map(s => <label key={s.id}><input type="checkbox" checked={studentIds.includes(s.id)} onChange={() => setStudentIds(ids => toggle(ids, s.id))} />{s.username}</label>)}{!students.length && <p className="muted">먼저 학생을 등록하거나 학급 가입을 승인해 주세요.</p>}</div></fieldset>
     <fieldset><legend>또는 학급 전체에 배정</legend><div className="choice-list">{classes.filter(c => !c.archived).map(c => <label key={c.id}><input type="checkbox" checked={classIds.includes(c.id)} onChange={() => setClassIds(ids => toggle(ids, c.id))} />{c.name}</label>)}{!classes.some(c => !c.archived) && <p className="muted">등록한 학급이 없습니다.</p>}</div><small>현재 승인된 학생에게 배정됩니다. 중복 선택한 학생은 한 번만 배정됩니다.</small></fieldset>

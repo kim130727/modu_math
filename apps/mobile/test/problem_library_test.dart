@@ -5,11 +5,68 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:modu_math_app/screens/problem_library_screen.dart';
+import 'package:modu_math_app/screens/student_assignments_screen.dart';
 import 'package:modu_math_app/services/student_assignment_service.dart';
 import 'helpers/assignment_fixture.dart';
 
 void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
+
+  testWidgets('learning home separates public practice and private assignments',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(390, 844));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final fixture = AssignmentFixture();
+    await fixture.login();
+    final requests = <http.Request>[];
+    final service = StudentAssignmentService(
+        authService: fixture.auth,
+        httpClient: MockClient((request) async {
+          requests.add(request);
+          if (request.url.path == '/api/v1/student/classes/') {
+            return assignmentJson([]);
+          }
+          if (request.url.path == '/api/v1/problems/') {
+            expect(request.url.queryParameters['scope'], 'public');
+            return assignmentJson({
+              'results': [
+                {'id': 7, 'title': '공통 덧셈 연습', 'owner_name': '선생님'}
+              ],
+              'next': null,
+              'previous': null,
+            });
+          }
+          return fixture.handle(request);
+        }));
+    await tester.pumpWidget(MaterialApp(
+        home: StudentAssignmentsScreen(
+            authService: fixture.auth, service: service)));
+    await tester.pumpAndSettle();
+    expect(find.text('공개 문제'), findsOneWidget);
+    expect(find.text('내 과제'), findsOneWidget);
+    expect(find.textContaining('나에게 배정된 과제'), findsOneWidget);
+    expect(find.text('과제 열기'), findsOneWidget);
+    expect(requests.any((r) => r.url.path == '/api/v1/problems/'), isFalse);
+
+    await tester.tap(find.text('공개 문제'));
+    await tester.pumpAndSettle();
+    expect(find.text('공통 덧셈 연습'), findsOneWidget);
+    expect(find.text('과제 열기'), findsNothing);
+
+    await tester.tap(find.text('내 과제'));
+    await tester.pumpAndSettle();
+    expect(find.text('공통 덧셈 연습'), findsNothing);
+    expect(find.text('과제 열기'), findsOneWidget);
+    expect(requests.where((r) => r.url.path == '/api/v1/student/assignments/'),
+        hasLength(1));
+
+    await fixture.auth.logout();
+    await tester.pumpAndSettle();
+    expect(find.text('공개 문제'), findsNothing);
+    expect(find.text('과제 열기'), findsNothing);
+    expect(find.text('로그인 / 회원가입'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
 
   testWidgets(
       'public practice and approved class shelves use authenticated server grading',

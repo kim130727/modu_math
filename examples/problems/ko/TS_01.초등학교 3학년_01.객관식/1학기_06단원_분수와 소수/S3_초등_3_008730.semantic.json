@@ -5,7 +5,7 @@
     "title": "학교와 놀이터 중 집에서 더 가까운 곳 선택하기",
     "tags": [],
     "instruction": "더 가까운 곳을 고르세요.",
-    "question": "학교와 놀이터 중 상구네 집에서 더 가까운 곳을 선택하는 문제",
+    "question": "학교와 놀이터 중 상구네 집에서 더 가까운 곳을 선택해 보세요.",
     "required_layout_ids": [
       "slot.figure.school.yard",
       "slot.figure.school.body",
@@ -50,7 +50,16 @@
       "slot.dist.right.bar"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko"
+    "language": "ko",
+    "presentation_sources": {
+      "question": [
+        "slot.qtext"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "학교와 놀이터 중 상구네 집에서 더 가까운 곳을 선택해 보세요."
   },
   "domain": {
     "objects": [

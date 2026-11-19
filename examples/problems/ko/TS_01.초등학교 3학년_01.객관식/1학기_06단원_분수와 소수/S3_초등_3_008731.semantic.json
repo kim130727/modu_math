@@ -5,7 +5,7 @@
     "title": "두 분수의 크기 비교",
     "tags": [],
     "instruction": "㉠에 들어갈 분수로 알맞은 것을 선택해 보세요.",
-    "question": "두 분수의 크기를 비교하여 더 큰 분수를 빈칸에 써넣으려고 합니다. ㉠에 들어갈 분수로 알맞은 것을 선택해 보세요.",
+    "question": "두 분수의 크기를 비교하여 더 큰 분수를 빈칸에 써넣으려고 합니다.\n㉠에 들어갈 분수로 알맞은 것을 선택해 보세요.",
     "required_layout_ids": [
       "slot.diagram.top.box1",
       "slot.diagram.top.box2",
@@ -32,7 +32,17 @@
       "slot.math.mixed_fraction_1.bar"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko"
+    "language": "ko",
+    "presentation_sources": {
+      "question": [
+        "slot.q1",
+        "slot.q1.copy27"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "두 분수의 크기를 비교하여 더 큰 분수를 빈칸에 써넣으려고 합니다.\n㉠에 들어갈 분수로 알맞은 것을 선택해 보세요."
   },
   "domain": {
     "objects": [

@@ -109,6 +109,8 @@ class _AssignmentList extends StatefulWidget {
 }
 
 class _AssignmentListState extends State<_AssignmentList> {
+  int section = 1;
+  bool libraryVisited = false;
   late Future<List<StudentAssignment>> future = widget.service.list();
   Future<void> refresh() async {
     final next = widget.service.list();
@@ -135,193 +137,223 @@ class _AssignmentListState extends State<_AssignmentList> {
     final strings = AssignmentStrings.of(context);
     return Scaffold(
         backgroundColor: KidsPalette.canvas,
-        appBar: AppBar(title: Text(strings.t('title')), actions: [
-          IconButton(
-              tooltip: strings.t('library'),
-              onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute<void>(
-                      builder: (_) =>
-                          ProblemLibraryScreen(service: widget.service))),
-              icon: const Icon(Icons.public)),
-          IconButton(
-              tooltip: strings.t('refresh'),
-              onPressed: refresh,
-              icon: const Icon(Icons.refresh)),
-          IconButton(
-              tooltip: strings.t('logout'),
-              onPressed: widget.auth.logout,
-              icon: const Icon(Icons.logout)),
-          const SizedBox(width: 52),
-        ]),
-        body: RefreshIndicator(
-            onRefresh: refresh,
-            child: FutureBuilder<List<StudentAssignment>>(
-                future: future,
-                builder: (context, state) {
-                  return ListView(
-                      padding: const EdgeInsets.all(20),
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      children: [
-                        Center(
-                            child: ConstrainedBox(
-                                constraints:
-                                    const BoxConstraints(maxWidth: 950),
-                                child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children: [
-                                      OutlinedButton.icon(
-                                          onPressed: () => Navigator.of(context)
-                                              .push(MaterialPageRoute<void>(
-                                                  builder: (_) =>
-                                                      ProblemLibraryScreen(
-                                                          service:
-                                                              widget.service))),
-                                          icon: const Icon(Icons.public),
-                                          label: Text(strings.t('library'))),
-                                      const SizedBox(height: 16),
-                                      Container(
-                                          padding: const EdgeInsets.all(24),
-                                          decoration: BoxDecoration(
-                                              color: KidsPalette.primarySoft,
-                                              borderRadius:
-                                                  BorderRadius.circular(24)),
-                                          child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                    '${widget.auth.currentUser?.username ?? ''} 👋',
-                                                    style: const TextStyle(
-                                                        fontSize: 26,
-                                                        fontWeight:
-                                                            FontWeight.bold)),
-                                                const SizedBox(height: 10),
-                                                Text(strings.t('welcome'),
-                                                    style: const TextStyle(
-                                                        fontSize: 18,
-                                                        height: 1.5)),
+        appBar: AppBar(
+            title: Text(strings.t('learningHome')),
+            actions: [
+              IconButton(
+                  tooltip: strings.t('refresh'),
+                  onPressed: section == 1 ? refresh : null,
+                  icon: const Icon(Icons.refresh)),
+              IconButton(
+                  tooltip: strings.t('logout'),
+                  onPressed: widget.auth.logout,
+                  icon: const Icon(Icons.logout)),
+              const SizedBox(width: 52),
+            ],
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(72),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: SegmentedButton<int>(
+                    showSelectedIcon: false,
+                    segments: [
+                      ButtonSegment(
+                          value: 0,
+                          icon: const Icon(Icons.public),
+                          label: Text(strings.t('publicTab'))),
+                      ButtonSegment(
+                          value: 1,
+                          icon: const Icon(Icons.lock_outline),
+                          label: Text(strings.t('title'))),
+                    ],
+                    selected: {section},
+                    onSelectionChanged: (value) => setState(() {
+                      section = value.single;
+                      libraryVisited |= section == 0;
+                    }),
+                  ),
+                ),
+              ),
+            )),
+        body: IndexedStack(index: section, children: [
+          libraryVisited
+              ? ProblemLibraryScreen(service: widget.service, embedded: true)
+              : const SizedBox.shrink(),
+          RefreshIndicator(
+              onRefresh: refresh,
+              child: FutureBuilder<List<StudentAssignment>>(
+                  future: future,
+                  builder: (context, state) {
+                    return ListView(
+                        padding: const EdgeInsets.all(20),
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        children: [
+                          Center(
+                              child: ConstrainedBox(
+                                  constraints:
+                                      const BoxConstraints(maxWidth: 950),
+                                  child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      children: [
+                                        Container(
+                                            padding: const EdgeInsets.all(24),
+                                            decoration: BoxDecoration(
+                                                color: KidsPalette.primarySoft,
+                                                borderRadius:
+                                                    BorderRadius.circular(24)),
+                                            child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                      '${widget.auth.currentUser?.username ?? ''} 👋',
+                                                      style: const TextStyle(
+                                                          fontSize: 26,
+                                                          fontWeight:
+                                                              FontWeight.bold)),
+                                                  const SizedBox(height: 10),
+                                                  Text(strings.t('welcome'),
+                                                      style: const TextStyle(
+                                                          fontSize: 18,
+                                                          height: 1.5)),
+                                                  const SizedBox(height: 10),
+                                                  Text(strings
+                                                      .t('privateAssignments')),
+                                                  const SizedBox(height: 16),
+                                                  OutlinedButton.icon(
+                                                      onPressed: join,
+                                                      icon: const Icon(Icons
+                                                          .group_add_outlined),
+                                                      label: Text(
+                                                          strings.t('join'))),
+                                                ])),
+                                        const SizedBox(height: 24),
+                                        if (state.connectionState !=
+                                            ConnectionState.done)
+                                          Padding(
+                                              padding: const EdgeInsets.all(30),
+                                              child: Column(children: [
+                                                const CircularProgressIndicator(),
                                                 const SizedBox(height: 16),
-                                                OutlinedButton.icon(
-                                                    onPressed: join,
-                                                    icon: const Icon(Icons
-                                                        .group_add_outlined),
-                                                    label: Text(
-                                                        strings.t('join'))),
-                                              ])),
-                                      const SizedBox(height: 24),
-                                      if (state.connectionState !=
-                                          ConnectionState.done)
-                                        Padding(
-                                            padding: const EdgeInsets.all(30),
-                                            child: Column(children: [
-                                              const CircularProgressIndicator(),
-                                              const SizedBox(height: 16),
-                                              Text(strings.t('loading'))
-                                            ]))
-                                      else if (state.hasError)
-                                        Column(children: [
-                                          Text(
-                                              assignmentError(
-                                                  context, state.error!),
-                                              textAlign: TextAlign.center),
-                                          TextButton(
-                                              onPressed: refresh,
-                                              child: Text(strings.t('retry')))
-                                        ])
-                                      else if (state.data!.isEmpty)
-                                        Padding(
-                                            padding: const EdgeInsets.all(40),
-                                            child: Text(strings.t('empty'),
-                                                textAlign: TextAlign.center,
-                                                style: const TextStyle(
-                                                    fontSize: 20)))
-                                      else
-                                        ...state.data!.map((assignment) => Card(
-                                            margin: const EdgeInsets.only(
-                                                bottom: 16),
-                                            child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(22),
-                                                child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text(assignment.title,
-                                                          style: const TextStyle(
-                                                              fontSize: 22,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold)),
-                                                      const SizedBox(
-                                                          height: 12),
-                                                      Text(assignment
-                                                                  .submittedAt !=
-                                                              null
-                                                          ? strings
-                                                              .t('submitted')
-                                                          : assignment.canWork
-                                                              ? strings
-                                                                  .t('ready')
-                                                              : strings
-                                                                  .t('closed')),
-                                                      if (assignment.startsAt !=
-                                                          null)
-                                                        Text(
-                                                            '${strings.t('start')}: ${assignmentDate(assignment.startsAt!)}'),
-                                                      Text(assignment.dueAt ==
-                                                              null
-                                                          ? strings
-                                                              .t('noDeadline')
-                                                          : '${strings.t('due')}: ${assignmentDate(assignment.dueAt!)}'),
-                                                      const SizedBox(
-                                                          height: 14),
-                                                      LinearProgressIndicator(
-                                                          value: assignment
-                                                              .progress),
-                                                      const SizedBox(height: 8),
-                                                      Text(strings.t(
-                                                          'progress', {
-                                                        'done': assignment
-                                                            .completed,
-                                                        'total':
-                                                            assignment.total
-                                                      })),
-                                                      const SizedBox(
-                                                          height: 14),
-                                                      FilledButton.icon(
-                                                          onPressed: () async {
-                                                            await Navigator.of(context).push(MaterialPageRoute<
-                                                                    void>(
-                                                                builder: (_) => AssignmentSolveScreen(
-                                                                    assignmentId:
-                                                                        assignment
-                                                                            .id,
-                                                                    auth: widget
-                                                                        .auth,
-                                                                    service: widget
-                                                                        .service)));
-                                                            if (mounted) {
-                                                              await refresh();
-                                                            }
-                                                          },
-                                                          icon: Icon(assignment
-                                                                      .submittedAt !=
-                                                                  null
-                                                              ? Icons
-                                                                  .fact_check_outlined
-                                                              : Icons
-                                                                  .edit_outlined),
-                                                          label: Text(strings.t(
-                                                              assignment.submittedAt !=
-                                                                      null
-                                                                  ? 'results'
-                                                                  : 'open'))),
-                                                    ])))),
-                                    ])))
-                      ]);
-                })));
+                                                Text(strings.t('loading'))
+                                              ]))
+                                        else if (state.hasError)
+                                          Column(children: [
+                                            Text(
+                                                assignmentError(
+                                                    context, state.error!),
+                                                textAlign: TextAlign.center),
+                                            TextButton(
+                                                onPressed: refresh,
+                                                child: Text(strings.t('retry')))
+                                          ])
+                                        else if (state.data!.isEmpty)
+                                          Padding(
+                                              padding: const EdgeInsets.all(40),
+                                              child: Text(strings.t('empty'),
+                                                  textAlign: TextAlign.center,
+                                                  style: const TextStyle(
+                                                      fontSize: 20)))
+                                        else
+                                          ...state.data!.map((assignment) =>
+                                              Card(
+                                                  margin: const EdgeInsets.only(
+                                                      bottom: 16),
+                                                  child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              22),
+                                                      child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                                assignment
+                                                                    .title,
+                                                                style: const TextStyle(
+                                                                    fontSize:
+                                                                        22,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold)),
+                                                            const SizedBox(
+                                                                height: 12),
+                                                            Text(assignment
+                                                                        .submittedAt !=
+                                                                    null
+                                                                ? strings.t(
+                                                                    'submitted')
+                                                                : assignment
+                                                                        .canWork
+                                                                    ? strings.t(
+                                                                        'ready')
+                                                                    : strings.t(
+                                                                        'closed')),
+                                                            if (assignment
+                                                                    .startsAt !=
+                                                                null)
+                                                              Text(
+                                                                  '${strings.t('start')}: ${assignmentDate(assignment.startsAt!)}'),
+                                                            Text(assignment
+                                                                        .dueAt ==
+                                                                    null
+                                                                ? strings.t(
+                                                                    'noDeadline')
+                                                                : '${strings.t('due')}: ${assignmentDate(assignment.dueAt!)}'),
+                                                            const SizedBox(
+                                                                height: 14),
+                                                            LinearProgressIndicator(
+                                                                value: assignment
+                                                                    .progress),
+                                                            const SizedBox(
+                                                                height: 8),
+                                                            Text(strings.t(
+                                                                'progress', {
+                                                              'done': assignment
+                                                                  .completed,
+                                                              'total':
+                                                                  assignment
+                                                                      .total
+                                                            })),
+                                                            const SizedBox(
+                                                                height: 14),
+                                                            FilledButton.icon(
+                                                                onPressed:
+                                                                    () async {
+                                                                  await Navigator.of(context).push(MaterialPageRoute<
+                                                                          void>(
+                                                                      builder: (_) => AssignmentSolveScreen(
+                                                                          assignmentId: assignment
+                                                                              .id,
+                                                                          auth: widget
+                                                                              .auth,
+                                                                          service:
+                                                                              widget.service)));
+                                                                  if (mounted) {
+                                                                    await refresh();
+                                                                  }
+                                                                },
+                                                                icon: Icon(assignment
+                                                                            .submittedAt !=
+                                                                        null
+                                                                    ? Icons
+                                                                        .fact_check_outlined
+                                                                    : Icons
+                                                                        .edit_outlined),
+                                                                label: Text(strings.t(
+                                                                    assignment.submittedAt !=
+                                                                            null
+                                                                        ? 'results'
+                                                                        : 'open'))),
+                                                          ])))),
+                                      ])))
+                        ]);
+                  })),
+        ]));
   }
 }
 

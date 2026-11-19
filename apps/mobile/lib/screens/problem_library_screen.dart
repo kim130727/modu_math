@@ -12,8 +12,10 @@ import 'student_assignments_screen.dart';
 /// Public practice and approved classroom groups share the server access policy.
 /// Content is fetched on entry and is never persisted in the offline bundle.
 class ProblemLibraryScreen extends StatefulWidget {
-  const ProblemLibraryScreen({super.key, required this.service});
+  const ProblemLibraryScreen(
+      {super.key, required this.service, this.embedded = false});
   final StudentAssignmentService service;
+  final bool embedded;
   @override
   State<ProblemLibraryScreen> createState() => _ProblemLibraryScreenState();
 }
@@ -49,14 +51,26 @@ class _ProblemLibraryScreenState extends State<ProblemLibraryScreen> {
   Widget build(BuildContext context) {
     final strings = AssignmentStrings.of(context);
     return Scaffold(
-      appBar: AppBar(title: Text(strings.t('library')), actions: [
-        IconButton(
-            tooltip: strings.t('refresh'),
-            onPressed: reload,
-            icon: const Icon(Icons.refresh)),
-        const SizedBox(width: 48)
-      ]),
+      appBar: widget.embedded
+          ? null
+          : AppBar(title: Text(strings.t('library')), actions: [
+              IconButton(
+                  tooltip: strings.t('refresh'),
+                  onPressed: reload,
+                  icon: const Icon(Icons.refresh)),
+              const SizedBox(width: 48)
+            ]),
       body: ListView(padding: const EdgeInsets.all(24), children: [
+        if (widget.embedded)
+          Row(children: [
+            Expanded(
+                child: Text(strings.t('library'),
+                    style: Theme.of(context).textTheme.titleLarge)),
+            IconButton(
+                tooltip: strings.t('refresh'),
+                onPressed: reload,
+                icon: const Icon(Icons.refresh)),
+          ]),
         Text(strings.t('libraryWelcome'),
             style: Theme.of(context).textTheme.titleMedium),
         const SizedBox(height: 20),

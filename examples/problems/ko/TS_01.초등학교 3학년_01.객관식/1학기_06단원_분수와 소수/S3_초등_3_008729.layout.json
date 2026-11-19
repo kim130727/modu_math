@@ -14,9 +14,9 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.math.fraction.bar",
         "slot.title",
         "slot.math.fraction.num",
+        "slot.math.fraction.bar",
         "slot.math.fraction.den"
       ]
     },
@@ -66,7 +66,10 @@
         "style_role": "question",
         "x": 80.0,
         "y": 40,
-        "font_size": 28
+        "font_size": 28,
+        "semantic_role": "question",
+        "semantic_role_source": "explicit",
+        "font_family": "\"Noto Sans KR\", sans-serif"
       }
     },
     {
@@ -251,48 +254,10 @@
         "x": 110.0,
         "y": 215.0,
         "font_size": 28,
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.math.fraction.num",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "1",
-        "style_role": "body",
-        "x": 200.0,
-        "y": 190.0,
-        "font_size": 30,
-        "anchor": "middle",
-        "fill": "#222222"
-      }
-    },
-    {
-      "id": "slot.math.fraction.bar",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 180.0,
-        "y1": 205.0,
-        "x2": 220.0,
-        "y2": 205.0,
-        "stroke": "#222222",
-        "stroke_width": 2.2
-      }
-    },
-    {
-      "id": "slot.math.fraction.den",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "3",
-        "style_role": "body",
-        "x": 200.0,
-        "y": 230.0,
-        "font_size": 30,
-        "anchor": "middle",
-        "fill": "#222222"
+        "fill": "#111111",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred",
+        "font_family": "\"Noto Sans KR\", sans-serif"
       }
     },
     {
@@ -305,7 +270,55 @@
         "x": 235.0,
         "y": 215.0,
         "font_size": 28,
-        "fill": "#111111"
+        "fill": "#111111",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred",
+        "font_family": "\"Noto Sans KR\", sans-serif"
+      }
+    },
+    {
+      "id": "slot.math.fraction.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "x": 200.0,
+        "y": 190.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#111827",
+        "style_role": "body",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.math.fraction.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 180.0,
+        "y1": 205.0,
+        "x2": 220.0,
+        "y2": 205.0,
+        "stroke": "#111827",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.math.fraction.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "x": 200.0,
+        "y": 230.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#111827",
+        "style_role": "body",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
       }
     }
   ],
@@ -314,10 +327,7 @@
   "diagrams": [],
   "reading_order": [
     "region.header",
-    "slot.math.fraction.bar",
     "slot.title",
-    "slot.math.fraction.num",
-    "slot.math.fraction.den",
     "region.diagram",
     "slot.card",
     "slot.bead.1",
@@ -335,6 +345,9 @@
     "region.question",
     "slot.stem",
     "slot.stem.copy1",
-    "region.footer"
+    "region.footer",
+    "slot.math.fraction.num",
+    "slot.math.fraction.bar",
+    "slot.math.fraction.den"
   ]
 }

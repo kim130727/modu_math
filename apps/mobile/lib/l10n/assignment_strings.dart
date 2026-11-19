@@ -18,6 +18,9 @@ class AssignmentStrings {
   }
 
   static const _ko = {
+    'learningHome': '나의 학습',
+    'publicTab': '공개 문제',
+    'privateAssignments': '나에게 배정된 과제예요. 제출한 답과 결과는 나와 담당 선생님만 확인해요.',
     'library': '공개 문제 · 내 클래스',
     'libraryWelcome': '혼자서도, 친구들과 함께도 배워요. 공개 문제는 클래스 가입 없이 풀 수 있어요.',
     'publicProblems': '모두의 문제',
@@ -97,6 +100,10 @@ class AssignmentStrings {
     'incomplete': '모든 답을 입력해 주세요.',
   };
   static const _uk = {
+    'learningHome': 'Моє навчання',
+    'publicTab': 'Відкриті задачі',
+    'privateAssignments':
+        'Ці завдання призначені вам. Ваші відповіді та результати бачите лише ви та ваш учитель.',
     'library': 'Відкриті задачі · Мої класи',
     'libraryWelcome':
         'Навчайся самостійно або з класом. Відкриті задачі доступні без вступу до класу.',

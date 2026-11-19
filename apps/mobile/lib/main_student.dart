@@ -27,7 +27,7 @@ class _StudentAssignmentAppState extends State<StudentAssignmentApp> {
       locale: locale,
       onLocaleChanged: (value) => setState(() => locale = value),
       child: MaterialApp(
-        title: 'Modu Math · Assignments',
+        title: 'Modu Math · Learning',
         debugShowCheckedModeBanner: false,
         theme: buildKidsTheme(),
         locale: locale,

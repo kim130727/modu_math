@@ -25,10 +25,6 @@
         "slot.diagram.top.line2.copy2",
         "slot.diagram.top.line1.copy3",
         "slot.diagram.top.line1.copy3.copy4",
-        "slot.math.fraction.bar",
-        "slot.math.fraction_1.bar",
-        "slot.math.mixed_fraction.bar",
-        "slot.math.mixed_fraction_1.bar",
         "slot.diagram.top.line1",
         "slot.diagram.top.line2",
         "slot.diagram.top.line3",
@@ -39,17 +35,21 @@
         "slot.diagram.top.line8",
         "slot.q1",
         "slot.q1.copy27",
+        "slot.diagram.top.box1.text",
         "slot.math.fraction.num",
+        "slot.math.fraction.bar",
         "slot.math.fraction.den",
         "slot.math.fraction_1.num",
+        "slot.math.fraction_1.bar",
         "slot.math.fraction_1.den",
         "slot.math.mixed_fraction.whole",
         "slot.math.mixed_fraction.num",
+        "slot.math.mixed_fraction.bar",
         "slot.math.mixed_fraction.den",
         "slot.math.mixed_fraction_1.whole",
         "slot.math.mixed_fraction_1.num",
-        "slot.math.mixed_fraction_1.den",
-        "slot.diagram.top.box1.text"
+        "slot.math.mixed_fraction_1.bar",
+        "slot.math.mixed_fraction_1.den"
       ]
     }
   ],
@@ -64,7 +64,10 @@
         "x": 62.079,
         "y": 88.89,
         "font_size": 28,
-        "fill": "#111111"
+        "fill": "#111111",
+        "semantic_role": "question",
+        "semantic_role_source": "explicit",
+        "font_family": "\"Noto Sans KR\", sans-serif"
       }
     },
     {
@@ -91,7 +94,10 @@
         "x": 405.0,
         "y": 225.0,
         "font_size": 30,
-        "fill": "#111111"
+        "fill": "#111111",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred",
+        "font_family": "\"Noto Sans KR\", sans-serif"
       }
     },
     {
@@ -286,7 +292,10 @@
         "x": 62.19,
         "y": 130.89,
         "font_size": 30,
-        "fill": "#111111"
+        "fill": "#111111",
+        "semantic_role": "question",
+        "semantic_role_source": "explicit",
+        "font_family": "\"Noto Sans KR\", sans-serif"
       }
     },
     {
@@ -347,12 +356,14 @@
       "prompt": "",
       "content": {
         "text": "15",
-        "style_role": "body",
         "x": 208.0,
         "y": 560.0,
         "font_size": 30,
         "anchor": "middle",
-        "fill": "#222222"
+        "fill": "#111827",
+        "style_role": "body",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
       }
     },
     {
@@ -364,7 +375,7 @@
         "y1": 575.0,
         "x2": 228.0,
         "y2": 575.0,
-        "stroke": "#222222",
+        "stroke": "#111827",
         "stroke_width": 2.2
       }
     },
@@ -374,12 +385,14 @@
       "prompt": "",
       "content": {
         "text": "7",
-        "style_role": "body",
         "x": 208.0,
         "y": 600.0,
         "font_size": 30,
         "anchor": "middle",
-        "fill": "#222222"
+        "fill": "#111827",
+        "style_role": "body",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
       }
     },
     {
@@ -388,12 +401,14 @@
       "prompt": "",
       "content": {
         "text": "22",
-        "style_role": "body",
         "x": 352.0,
         "y": 555.0,
         "font_size": 30,
         "anchor": "middle",
-        "fill": "#222222"
+        "fill": "#111827",
+        "style_role": "body",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
       }
     },
     {
@@ -405,7 +420,7 @@
         "y1": 570.0,
         "x2": 372.0,
         "y2": 570.0,
-        "stroke": "#222222",
+        "stroke": "#111827",
         "stroke_width": 2.2
       }
     },
@@ -415,12 +430,14 @@
       "prompt": "",
       "content": {
         "text": "7",
-        "style_role": "body",
         "x": 352.0,
         "y": 595.0,
         "font_size": 30,
         "anchor": "middle",
-        "fill": "#222222"
+        "fill": "#111827",
+        "style_role": "body",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
       }
     },
     {
@@ -429,12 +446,14 @@
       "prompt": "",
       "content": {
         "text": "2",
-        "style_role": "body",
         "x": 465.0,
         "y": 580.0,
         "font_size": 30,
         "anchor": "middle",
-        "fill": "#222222"
+        "fill": "#111827",
+        "style_role": "body",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
       }
     },
     {
@@ -443,12 +462,14 @@
       "prompt": "",
       "content": {
         "text": "3",
-        "style_role": "body",
         "x": 505.0,
         "y": 555.0,
         "font_size": 30,
         "anchor": "middle",
-        "fill": "#222222"
+        "fill": "#111827",
+        "style_role": "body",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
       }
     },
     {
@@ -460,7 +481,7 @@
         "y1": 570.0,
         "x2": 525.0,
         "y2": 570.0,
-        "stroke": "#222222",
+        "stroke": "#111827",
         "stroke_width": 2.2
       }
     },
@@ -470,12 +491,14 @@
       "prompt": "",
       "content": {
         "text": "7",
-        "style_role": "body",
         "x": 505.0,
         "y": 595.0,
         "font_size": 30,
         "anchor": "middle",
-        "fill": "#222222"
+        "fill": "#111827",
+        "style_role": "body",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
       }
     },
     {
@@ -484,12 +507,14 @@
       "prompt": "",
       "content": {
         "text": "2",
-        "style_role": "body",
         "x": 600.0,
         "y": 580.0,
         "font_size": 30,
         "anchor": "middle",
-        "fill": "#222222"
+        "fill": "#111827",
+        "style_role": "body",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
       }
     },
     {
@@ -498,12 +523,14 @@
       "prompt": "",
       "content": {
         "text": "6",
-        "style_role": "body",
         "x": 640.0,
         "y": 555.0,
         "font_size": 30,
         "anchor": "middle",
-        "fill": "#222222"
+        "fill": "#111827",
+        "style_role": "body",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
       }
     },
     {
@@ -515,7 +542,7 @@
         "y1": 570.0,
         "x2": 660.0,
         "y2": 570.0,
-        "stroke": "#222222",
+        "stroke": "#111827",
         "stroke_width": 2.2
       }
     },
@@ -525,12 +552,14 @@
       "prompt": "",
       "content": {
         "text": "7",
-        "style_role": "body",
         "x": 640.0,
         "y": 595.0,
         "font_size": 30,
         "anchor": "middle",
-        "fill": "#222222"
+        "fill": "#111827",
+        "style_role": "body",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
       }
     }
   ],
@@ -550,10 +579,6 @@
     "slot.diagram.top.line2.copy2",
     "slot.diagram.top.line1.copy3",
     "slot.diagram.top.line1.copy3.copy4",
-    "slot.math.fraction.bar",
-    "slot.math.fraction_1.bar",
-    "slot.math.mixed_fraction.bar",
-    "slot.math.mixed_fraction_1.bar",
     "slot.diagram.top.line1",
     "slot.diagram.top.line2",
     "slot.diagram.top.line3",
@@ -564,16 +589,20 @@
     "slot.diagram.top.line8",
     "slot.q1",
     "slot.q1.copy27",
+    "slot.diagram.top.box1.text",
     "slot.math.fraction.num",
+    "slot.math.fraction.bar",
     "slot.math.fraction.den",
     "slot.math.fraction_1.num",
+    "slot.math.fraction_1.bar",
     "slot.math.fraction_1.den",
     "slot.math.mixed_fraction.whole",
     "slot.math.mixed_fraction.num",
+    "slot.math.mixed_fraction.bar",
     "slot.math.mixed_fraction.den",
     "slot.math.mixed_fraction_1.whole",
     "slot.math.mixed_fraction_1.num",
-    "slot.math.mixed_fraction_1.den",
-    "slot.diagram.top.box1.text"
+    "slot.math.mixed_fraction_1.bar",
+    "slot.math.mixed_fraction_1.den"
   ]
 }

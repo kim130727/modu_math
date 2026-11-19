@@ -47,7 +47,7 @@ test("two students solve ten questions through the real Flutter app", { timeout:
       await page.screenshot({ path: join(artifacts, `result-${student}.png`), fullPage: true });
       if (student === 1) {
         await page.goto(fixture.base + "/student/");
-        await page.getByRole("button", { name: "공개 문제 · 내 클래스", exact: true }).last().click();
+        await page.getByRole("button", { name: "공개 문제", exact: true }).click();
         await page.getByText(/덧셈 연습 01/).click();
         await page.getByRole("textbox").waitFor();
         await type(page.getByRole("textbox"), "30");
