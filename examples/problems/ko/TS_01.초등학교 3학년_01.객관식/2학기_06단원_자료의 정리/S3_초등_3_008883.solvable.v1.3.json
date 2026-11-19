@@ -1,0 +1,85 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_008883",
+  "given": [
+    {
+      "ref": "cat.soccer_girls",
+      "value": 18
+    },
+    {
+      "ref": "cat.golf_girls",
+      "value": 10
+    },
+    {
+      "ref": "cat.baseball_girls",
+      "value": 27
+    },
+    {
+      "ref": "cat.squash_girls",
+      "value": 35
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_3",
+    "type": "choice"
+  },
+  "method": "find_row_maximum_in_table",
+  "steps": [
+    {
+      "id": "step.find_max",
+      "expr": "max(18, 10, 27, 35)",
+      "value": "스쿼시",
+      "explanation": "여학생 수를 살펴보면 가장 큰 수가 35이므로 여학생이 가장 많이 배우고 싶어 하는 운동은 스쿼시입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "스쿼시",
+    "unit": "",
+    "answer_index": 3,
+    "values": [
+      "스쿼시"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "축구",
+        "value": "축구"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "골프",
+        "value": "골프"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "야구",
+        "value": "야구"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "스쿼시",
+        "value": "스쿼시"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_3",
+        "value": "스쿼시"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "data.two_way_table_interpretation"
+    ],
+    "errors": {
+      "축구": "data.read_wrong_row_boys"
+    }
+  }
+}

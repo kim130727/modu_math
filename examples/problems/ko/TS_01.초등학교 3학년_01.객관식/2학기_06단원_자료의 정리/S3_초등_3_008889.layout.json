@@ -1,0 +1,489 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008889",
+  "title": "표를 보고 그림그래프에 필요한 그림의 가지 수 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 275,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.table.outer",
+        "slot.diagram.table.v1",
+        "slot.diagram.table.v2",
+        "slot.diagram.table.v3",
+        "slot.diagram.table.v4",
+        "slot.diagram.table.v5",
+        "slot.diagram.table.h1",
+        "slot.diagram.table_title",
+        "slot.diagram.table.r1c1",
+        "slot.diagram.table.r1c2",
+        "slot.diagram.table.r1c3",
+        "slot.diagram.table.r1c4",
+        "slot.diagram.table.r1c5",
+        "slot.diagram.table.r1c6",
+        "slot.diagram.table.r2c1",
+        "slot.diagram.table.r2c2",
+        "slot.diagram.table.r2c3",
+        "slot.diagram.table.r2c4",
+        "slot.diagram.table.r2c5",
+        "slot.diagram.table.r2c6",
+        "slot.diagram.sent_left",
+        "slot.diagram.sent_right"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.comma_1",
+        "slot.choice.option_1"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "53. 호정이네 마을의 목장에서 생산한 우유의 양을 조사하여 표로 나타내었습니다. 알맞은 것을 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 18.0,
+        "width": 820.0,
+        "height": 60.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 21,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.45,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.diagram.table_title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "목장별 우유 생산량",
+        "style_role": "body",
+        "x": 443.0,
+        "y": 94.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 185.0,
+        "y": 114.0,
+        "width": 528.0,
+        "height": 80.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.table.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 345.0,
+        "y1": 114.0,
+        "x2": 345.0,
+        "y2": 194.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.table.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 417.0,
+        "y1": 114.0,
+        "x2": 417.0,
+        "y2": 194.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.table.v3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 489.0,
+        "y1": 114.0,
+        "x2": 489.0,
+        "y2": 194.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.table.v4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 561.0,
+        "y1": 114.0,
+        "x2": 561.0,
+        "y2": 194.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.table.v5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 633.0,
+        "y1": 114.0,
+        "x2": 633.0,
+        "y2": 194.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.table.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 185.0,
+        "y1": 154.0,
+        "x2": 713.0,
+        "y2": 154.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.table.r1c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "목장",
+        "style_role": "table",
+        "x": 265.0,
+        "y": 140.65,
+        "font_size": 19,
+        "max_width": 136.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r1c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "table",
+        "x": 381.0,
+        "y": 140.65,
+        "font_size": 19,
+        "max_width": 48.0,
+        "anchor": "middle",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r1c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "table",
+        "x": 453.0,
+        "y": 140.65,
+        "font_size": 19,
+        "max_width": 48.0,
+        "anchor": "middle",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r1c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "table",
+        "x": 525.0,
+        "y": 140.65,
+        "font_size": 19,
+        "max_width": 48.0,
+        "anchor": "middle",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r1c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "라",
+        "style_role": "table",
+        "x": 597.0,
+        "y": 140.65,
+        "font_size": 19,
+        "max_width": 48.0,
+        "anchor": "middle",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r1c6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "합계",
+        "style_role": "table",
+        "x": 673.0,
+        "y": 140.65,
+        "font_size": 19,
+        "max_width": 56.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r2c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "생산량(kg)",
+        "style_role": "table",
+        "x": 265.0,
+        "y": 180.65,
+        "font_size": 19,
+        "max_width": 136.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r2c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "36",
+        "style_role": "table",
+        "x": 381.0,
+        "y": 180.65,
+        "font_size": 19,
+        "max_width": 48.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r2c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "31",
+        "style_role": "table",
+        "x": 453.0,
+        "y": 180.65,
+        "font_size": 19,
+        "max_width": 48.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r2c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "25",
+        "style_role": "table",
+        "x": 525.0,
+        "y": 180.65,
+        "font_size": 19,
+        "max_width": 48.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r2c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "43",
+        "style_role": "table",
+        "x": 597.0,
+        "y": 180.65,
+        "font_size": 19,
+        "max_width": 48.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r2c6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "135",
+        "style_role": "table",
+        "x": 673.0,
+        "y": 180.65,
+        "font_size": 19,
+        "max_width": 56.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.sent_left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "우유 생산량이 두 자리 수이므로 그림을 (",
+        "style_role": "body",
+        "x": 318.0,
+        "y": 236.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.sent_right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ")가지로 나타냅니다.",
+        "style_role": "body",
+        "x": 702.0,
+        "y": 236.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "body",
+        "x": 538.0,
+        "y": 236.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "1",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.comma_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 562.0,
+        "y": 236.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "body",
+        "x": 586.0,
+        "y": 236.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "2",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.table.outer",
+    "slot.diagram.table.v1",
+    "slot.diagram.table.v2",
+    "slot.diagram.table.v3",
+    "slot.diagram.table.v4",
+    "slot.diagram.table.v5",
+    "slot.diagram.table.h1",
+    "slot.diagram.table_title",
+    "slot.diagram.table.r1c1",
+    "slot.diagram.table.r1c2",
+    "slot.diagram.table.r1c3",
+    "slot.diagram.table.r1c4",
+    "slot.diagram.table.r1c5",
+    "slot.diagram.table.r1c6",
+    "slot.diagram.table.r2c1",
+    "slot.diagram.table.r2c2",
+    "slot.diagram.table.r2c3",
+    "slot.diagram.table.r2c4",
+    "slot.diagram.table.r2c5",
+    "slot.diagram.table.r2c6",
+    "slot.diagram.sent_left",
+    "slot.diagram.sent_right",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.comma_1",
+    "slot.choice.option_1"
+  ]
+}

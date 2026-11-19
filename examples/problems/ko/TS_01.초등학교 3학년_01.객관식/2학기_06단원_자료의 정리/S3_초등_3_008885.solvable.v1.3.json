@@ -1,0 +1,80 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_008885",
+  "given": [
+    {
+      "ref": "cat.kite",
+      "value": 7
+    },
+    {
+      "ref": "cat.yut",
+      "value": 6
+    },
+    {
+      "ref": "cat.neol",
+      "value": 8
+    },
+    {
+      "ref": "cat.total",
+      "value": 30
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "type": "choice"
+  },
+  "method": "complete_table_and_verify_order",
+  "steps": [
+    {
+      "id": "step.find_missing",
+      "expr": "30 - (7 + 6 + 8)",
+      "value": 9,
+      "explanation": "합계가 30명이므로 씨름을 좋아하는 학생 수는 30 - 21 = 9명입니다."
+    },
+    {
+      "id": "step.verify_order",
+      "expr": "9 > 8 > 7 > 6",
+      "value": "○",
+      "explanation": "9 > 8 > 7 > 6이므로 씨름, 널뛰기, 연날리기, 윷놀이 순서는 바릅니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "○",
+    "unit": "",
+    "answer_index": 0,
+    "values": [
+      "○"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "○",
+        "value": "○"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "×",
+        "value": "×"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "○"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "data.table_missing_value",
+      "data.ordering"
+    ],
+    "errors": {
+      "×": "data.forgot_to_compute_missing_cell"
+    }
+  }
+}

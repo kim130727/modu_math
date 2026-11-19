@@ -1,0 +1,85 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_008884",
+  "given": [
+    {
+      "ref": "cat.red",
+      "value": 24
+    },
+    {
+      "ref": "cat.yellow",
+      "value": 30
+    },
+    {
+      "ref": "cat.green",
+      "value": 16
+    },
+    {
+      "ref": "cat.purple",
+      "value": 14
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_3",
+    "type": "choice"
+  },
+  "method": "find_minimum_in_table",
+  "steps": [
+    {
+      "id": "step.find_min",
+      "expr": "min(24, 30, 16, 14)",
+      "value": "보라색",
+      "explanation": "색종이 수에서 가장 작은 수는 14이므로 가장 적은 색종이는 보라색 색종이입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "보라색",
+    "unit": "",
+    "answer_index": 3,
+    "values": [
+      "보라색"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "빨간색",
+        "value": "빨간색"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "노란색",
+        "value": "노란색"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "초록색",
+        "value": "초록색"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "보라색",
+        "value": "보라색"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_3",
+        "value": "보라색"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "data.table_interpretation_min"
+    ],
+    "errors": {
+      "노란색": "data.chose_max_instead_of_min"
+    }
+  }
+}

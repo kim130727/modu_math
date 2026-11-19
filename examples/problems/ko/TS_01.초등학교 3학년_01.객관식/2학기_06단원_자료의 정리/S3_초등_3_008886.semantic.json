@@ -1,0 +1,118 @@
+{
+  "problem_id": "S3_초등_3_008886",
+  "problem_type": "multiple_choice_table_aggregation",
+  "metadata": {
+    "title": "표를 보고 현장 체험 학습 장소에 대해 바르게 말한 사람 선택하기",
+    "tags": [],
+    "question": "50. 하은이네 반과 소율이네 반은 함께 현장 체험 학습을 가려고 학생들이 가고 싶어 하는 장소를 조사하여 표로 나타내었습니다. 하은이네 반과 소율이네 반이 어디로 현장 체험 학습을 가면 좋을지 바르게 말한 사람을 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.diagram.table.outer",
+      "slot.diagram.table.v1",
+      "slot.diagram.table.v2",
+      "slot.diagram.table.v3",
+      "slot.diagram.table.v4",
+      "slot.diagram.table.v5",
+      "slot.diagram.table.h1",
+      "slot.diagram.table.h2",
+      "slot.diagram.bubble_haeun",
+      "slot.diagram.head_haeun",
+      "slot.diagram.bubble_soyul",
+      "slot.diagram.head_soyul",
+      "slot.choice.option_0",
+      "slot.choice.option_1"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 2,
+    "subject": "수학",
+    "chapter": "06단원_자료의 정리",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "place.museum",
+        "type": "survey_item",
+        "label": "박물관",
+        "haeun_class": 6,
+        "soyul_class": 10,
+        "total": 16
+      },
+      {
+        "id": "place.art",
+        "type": "survey_item",
+        "label": "미술관",
+        "haeun_class": 7,
+        "soyul_class": 2,
+        "total": 9
+      },
+      {
+        "id": "place.botanical",
+        "type": "survey_item",
+        "label": "식물원",
+        "haeun_class": 9,
+        "soyul_class": 8,
+        "total": 17
+      },
+      {
+        "id": "place.science",
+        "type": "survey_item",
+        "label": "과학관",
+        "haeun_class": 5,
+        "soyul_class": 3,
+        "total": 8
+      },
+      {
+        "id": "person.haeun",
+        "type": "speaker",
+        "name": "하은",
+        "claim": "식물원"
+      },
+      {
+        "id": "person.soyul",
+        "type": "speaker",
+        "name": "소율",
+        "claim": "박물관"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.correct_speaker",
+        "type": "correctly_interprets",
+        "from_id": "person.haeun",
+        "to_id": "place.botanical"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "하은",
+    "unit": "",
+    "answer_index": 0,
+    "values": [
+      "하은"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "하은",
+        "value": "하은"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "소율",
+        "value": "소율"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "하은"
+      }
+    ]
+  }
+}

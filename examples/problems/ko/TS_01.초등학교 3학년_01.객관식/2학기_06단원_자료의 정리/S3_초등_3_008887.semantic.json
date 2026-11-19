@@ -1,0 +1,111 @@
+{
+  "problem_id": "S3_초등_3_008887",
+  "problem_type": "multiple_choice_data_representation_comparison",
+  "metadata": {
+    "title": "조사한 자료와 표 중 편리한 것 선택하기",
+    "tags": [],
+    "question": "51. 지은이네 학교 3학년 학생들이 태어난 계절을 조사하였습니다. 계절별 태어난 여학생 수와 남학생 수를 알아보려고 할 때 조사한 자료와 표 중에서 어느 것이 더 편리할까요?",
+    "required_layout_ids": [
+      "slot.diagram.raw_bg",
+      "slot.diagram.raw_box_0",
+      "slot.diagram.raw_dot_0_0",
+      "slot.diagram.raw_dot_0_1",
+      "slot.diagram.raw_dot_0_2",
+      "slot.diagram.raw_dot_0_3",
+      "slot.diagram.raw_dot_0_4",
+      "slot.diagram.raw_dot_0_5",
+      "slot.diagram.raw_box_1",
+      "slot.diagram.raw_dot_1_0",
+      "slot.diagram.raw_dot_1_1",
+      "slot.diagram.raw_dot_1_2",
+      "slot.diagram.raw_dot_1_3",
+      "slot.diagram.raw_dot_1_4",
+      "slot.diagram.raw_dot_1_5",
+      "slot.diagram.raw_box_2",
+      "slot.diagram.raw_dot_2_0",
+      "slot.diagram.raw_dot_2_1",
+      "slot.diagram.raw_dot_2_2",
+      "slot.diagram.raw_dot_2_3",
+      "slot.diagram.raw_dot_2_4",
+      "slot.diagram.raw_dot_2_5",
+      "slot.diagram.raw_box_3",
+      "slot.diagram.raw_dot_3_0",
+      "slot.diagram.raw_dot_3_1",
+      "slot.diagram.raw_dot_3_2",
+      "slot.diagram.raw_dot_3_3",
+      "slot.diagram.raw_dot_3_4",
+      "slot.diagram.raw_dot_3_5",
+      "slot.diagram.legend_g_dot",
+      "slot.diagram.legend_b_dot",
+      "slot.diagram.table.outer",
+      "slot.diagram.table.v1",
+      "slot.diagram.table.v2",
+      "slot.diagram.table.v3",
+      "slot.diagram.table.v4",
+      "slot.diagram.table.v5",
+      "slot.diagram.table.h1",
+      "slot.diagram.table.h2"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 2,
+    "subject": "수학",
+    "chapter": "06단원_자료의 정리",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "rep.raw_data",
+        "type": "data_representation",
+        "label": "조사한 자료",
+        "is_summarized": false
+      },
+      {
+        "id": "rep.table",
+        "type": "data_representation",
+        "label": "표",
+        "is_summarized": true
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.convenience",
+        "type": "more_convenient_for_reading_counts",
+        "from_id": "rep.table",
+        "to_id": "rep.raw_data"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "표",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "표"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "조사한 자료",
+        "value": "조사한 자료"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "표",
+        "value": "표"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "표"
+      }
+    ]
+  }
+}

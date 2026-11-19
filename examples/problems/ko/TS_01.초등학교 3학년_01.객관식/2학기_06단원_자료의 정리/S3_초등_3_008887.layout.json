@@ -1,0 +1,1181 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008887",
+  "title": "조사한 자료와 표 중 편리한 것 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 465,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.raw_bg",
+        "slot.diagram.raw_box_0",
+        "slot.diagram.raw_box_1",
+        "slot.diagram.raw_box_2",
+        "slot.diagram.raw_box_3",
+        "slot.diagram.table.outer",
+        "slot.diagram.table.v1",
+        "slot.diagram.table.v2",
+        "slot.diagram.table.v3",
+        "slot.diagram.table.v4",
+        "slot.diagram.table.v5",
+        "slot.diagram.table.h1",
+        "slot.diagram.table.h2",
+        "slot.diagram.raw_dot_0_0",
+        "slot.diagram.raw_dot_0_1",
+        "slot.diagram.raw_dot_0_2",
+        "slot.diagram.raw_dot_0_3",
+        "slot.diagram.raw_dot_0_4",
+        "slot.diagram.raw_dot_0_5",
+        "slot.diagram.raw_dot_1_0",
+        "slot.diagram.raw_dot_1_1",
+        "slot.diagram.raw_dot_1_2",
+        "slot.diagram.raw_dot_1_3",
+        "slot.diagram.raw_dot_1_4",
+        "slot.diagram.raw_dot_1_5",
+        "slot.diagram.raw_dot_2_0",
+        "slot.diagram.raw_dot_2_1",
+        "slot.diagram.raw_dot_2_2",
+        "slot.diagram.raw_dot_2_3",
+        "slot.diagram.raw_dot_2_4",
+        "slot.diagram.raw_dot_2_5",
+        "slot.diagram.raw_dot_3_0",
+        "slot.diagram.raw_dot_3_1",
+        "slot.diagram.raw_dot_3_2",
+        "slot.diagram.raw_dot_3_3",
+        "slot.diagram.raw_dot_3_4",
+        "slot.diagram.raw_dot_3_5",
+        "slot.diagram.legend_g_dot",
+        "slot.diagram.legend_b_dot",
+        "slot.diagram.raw_title",
+        "slot.diagram.raw_lbl_0",
+        "slot.diagram.raw_lbl_1",
+        "slot.diagram.raw_lbl_2",
+        "slot.diagram.raw_lbl_3",
+        "slot.diagram.legend_g_txt",
+        "slot.diagram.legend_b_txt",
+        "slot.diagram.table_title",
+        "slot.diagram.table.r1c1",
+        "slot.diagram.table.r1c2",
+        "slot.diagram.table.r1c3",
+        "slot.diagram.table.r1c4",
+        "slot.diagram.table.r1c5",
+        "slot.diagram.table.r1c6",
+        "slot.diagram.table.r2c1",
+        "slot.diagram.table.r2c2",
+        "slot.diagram.table.r2c3",
+        "slot.diagram.table.r2c4",
+        "slot.diagram.table.r2c5",
+        "slot.diagram.table.r2c6",
+        "slot.diagram.table.r3c1",
+        "slot.diagram.table.r3c2",
+        "slot.diagram.table.r3c3",
+        "slot.diagram.table.r3c4",
+        "slot.diagram.table.r3c5",
+        "slot.diagram.table.r3c6"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.paren_l",
+        "slot.choice.option_0",
+        "slot.choice.comma_1",
+        "slot.choice.option_1",
+        "slot.choice.paren_r"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "51. 지은이네 학교 3학년 학생들이 태어난 계절을 조사하였습니다. 계절별 태어난 여학생 수와 남학생 수를 알아보려고 할 때 조사한 자료와 표 중에서 어느 것이 더 편리할까요?",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 16.0,
+        "width": 820.0,
+        "height": 76.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 21,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.45,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 175.0,
+        "y": 104.0,
+        "width": 540.0,
+        "height": 130.0,
+        "stroke": "#6ee7b7",
+        "stroke_width": 1.2,
+        "fill": "#d1fae5"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "태어난 계절",
+        "style_role": "body",
+        "x": 445.0,
+        "y": 116.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_box_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 190.0,
+        "y": 134.0,
+        "width": 116.0,
+        "height": 90.0,
+        "stroke": "#a78bfa",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_lbl_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "봄",
+        "style_role": "body",
+        "x": 248.0,
+        "y": 146.0,
+        "font_size": 15,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#4c1d95"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_0_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 212.0,
+        "cy": 172.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#f472b6"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_0_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 246.0,
+        "cy": 172.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#38bdf8"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_0_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 280.0,
+        "cy": 172.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#f472b6"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_0_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 212.0,
+        "cy": 198.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#38bdf8"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_0_4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 246.0,
+        "cy": 198.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#f472b6"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_0_5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 280.0,
+        "cy": 198.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#38bdf8"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_box_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 320.0,
+        "y": 134.0,
+        "width": 116.0,
+        "height": 90.0,
+        "stroke": "#a78bfa",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_lbl_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "여름",
+        "style_role": "body",
+        "x": 378.0,
+        "y": 146.0,
+        "font_size": 15,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#4c1d95"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_1_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 342.0,
+        "cy": 172.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#38bdf8"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_1_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 376.0,
+        "cy": 172.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#f472b6"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_1_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 410.0,
+        "cy": 172.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#38bdf8"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_1_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 342.0,
+        "cy": 198.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#f472b6"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_1_4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 376.0,
+        "cy": 198.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#38bdf8"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_1_5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 410.0,
+        "cy": 198.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#f472b6"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_box_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 450.0,
+        "y": 134.0,
+        "width": 116.0,
+        "height": 90.0,
+        "stroke": "#a78bfa",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_lbl_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가을",
+        "style_role": "body",
+        "x": 508.0,
+        "y": 146.0,
+        "font_size": 15,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#4c1d95"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_2_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 472.0,
+        "cy": 172.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#f472b6"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_2_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 506.0,
+        "cy": 172.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#38bdf8"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_2_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 540.0,
+        "cy": 172.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#f472b6"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_2_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 472.0,
+        "cy": 198.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#38bdf8"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_2_4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 506.0,
+        "cy": 198.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#f472b6"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_2_5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 540.0,
+        "cy": 198.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#38bdf8"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_box_3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 580.0,
+        "y": 134.0,
+        "width": 116.0,
+        "height": 90.0,
+        "stroke": "#a78bfa",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_lbl_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "겨울",
+        "style_role": "body",
+        "x": 638.0,
+        "y": 146.0,
+        "font_size": 15,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#4c1d95"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_3_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 602.0,
+        "cy": 172.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#38bdf8"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_3_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 636.0,
+        "cy": 172.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#f472b6"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_3_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 670.0,
+        "cy": 172.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#38bdf8"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_3_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 602.0,
+        "cy": 198.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#f472b6"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_3_4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 636.0,
+        "cy": 198.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#38bdf8"
+      }
+    },
+    {
+      "id": "slot.diagram.raw_dot_3_5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 670.0,
+        "cy": 198.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#f472b6"
+      }
+    },
+    {
+      "id": "slot.diagram.legend_g_dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 585.0,
+        "cy": 246.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#f472b6"
+      }
+    },
+    {
+      "id": "slot.diagram.legend_g_txt",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ": 여학생",
+        "style_role": "body",
+        "x": 622.0,
+        "y": 246.0,
+        "font_size": 14,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.legend_b_dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 672.0,
+        "cy": 246.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#38bdf8"
+      }
+    },
+    {
+      "id": "slot.diagram.legend_b_txt",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ": 남학생",
+        "style_role": "body",
+        "x": 708.0,
+        "y": 246.0,
+        "font_size": 14,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.table_title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학생들이 태어난 계절",
+        "style_role": "body",
+        "x": 443.0,
+        "y": 274.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 158.0,
+        "y": 294.0,
+        "width": 595.0,
+        "height": 108.0,
+        "stroke": "#8b5cf6",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.table.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 333.0,
+        "y1": 294.0,
+        "x2": 333.0,
+        "y2": 402.0,
+        "stroke": "#8b5cf6",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.table.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 417.0,
+        "y1": 294.0,
+        "x2": 417.0,
+        "y2": 402.0,
+        "stroke": "#8b5cf6",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.table.v3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 501.0,
+        "y1": 294.0,
+        "x2": 501.0,
+        "y2": 402.0,
+        "stroke": "#8b5cf6",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.table.v4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 585.0,
+        "y1": 294.0,
+        "x2": 585.0,
+        "y2": 402.0,
+        "stroke": "#8b5cf6",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.table.v5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 669.0,
+        "y1": 294.0,
+        "x2": 669.0,
+        "y2": 402.0,
+        "stroke": "#8b5cf6",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.table.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 158.0,
+        "y1": 330.0,
+        "x2": 753.0,
+        "y2": 330.0,
+        "stroke": "#8b5cf6",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.table.h2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 158.0,
+        "y1": 366.0,
+        "x2": 753.0,
+        "y2": 366.0,
+        "stroke": "#8b5cf6",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.table.r1c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "계절",
+        "style_role": "table",
+        "x": 245.5,
+        "y": 318.3,
+        "font_size": 18,
+        "max_width": 151.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r1c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "봄",
+        "style_role": "table",
+        "x": 375.0,
+        "y": 318.3,
+        "font_size": 18,
+        "max_width": 60.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r1c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "여름",
+        "style_role": "table",
+        "x": 459.0,
+        "y": 318.3,
+        "font_size": 18,
+        "max_width": 60.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r1c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가을",
+        "style_role": "table",
+        "x": 543.0,
+        "y": 318.3,
+        "font_size": 18,
+        "max_width": 60.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r1c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "겨울",
+        "style_role": "table",
+        "x": 627.0,
+        "y": 318.3,
+        "font_size": 18,
+        "max_width": 60.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r1c6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "합계",
+        "style_role": "table",
+        "x": 711.0,
+        "y": 318.3,
+        "font_size": 18,
+        "max_width": 60.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r2c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "여학생 수(명)",
+        "style_role": "table",
+        "x": 245.5,
+        "y": 354.3,
+        "font_size": 18,
+        "max_width": 151.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r2c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "11",
+        "style_role": "table",
+        "x": 375.0,
+        "y": 354.3,
+        "font_size": 18,
+        "max_width": 60.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r2c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "table",
+        "x": 459.0,
+        "y": 354.3,
+        "font_size": 18,
+        "max_width": 60.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r2c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "20",
+        "style_role": "table",
+        "x": 543.0,
+        "y": 354.3,
+        "font_size": 18,
+        "max_width": 60.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r2c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "17",
+        "style_role": "table",
+        "x": 627.0,
+        "y": 354.3,
+        "font_size": 18,
+        "max_width": 60.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r2c6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "54",
+        "style_role": "table",
+        "x": 711.0,
+        "y": 354.3,
+        "font_size": 18,
+        "max_width": 60.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r3c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "남학생 수(명)",
+        "style_role": "table",
+        "x": 245.5,
+        "y": 390.3,
+        "font_size": 18,
+        "max_width": 151.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r3c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "12",
+        "style_role": "table",
+        "x": 375.0,
+        "y": 390.3,
+        "font_size": 18,
+        "max_width": 60.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r3c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10",
+        "style_role": "table",
+        "x": 459.0,
+        "y": 390.3,
+        "font_size": 18,
+        "max_width": 60.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r3c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "14",
+        "style_role": "table",
+        "x": 543.0,
+        "y": 390.3,
+        "font_size": 18,
+        "max_width": 60.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r3c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "20",
+        "style_role": "table",
+        "x": 627.0,
+        "y": 390.3,
+        "font_size": 18,
+        "max_width": 60.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r3c6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "56",
+        "style_role": "table",
+        "x": 711.0,
+        "y": 390.3,
+        "font_size": 18,
+        "max_width": 60.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.choice.paren_l",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(",
+        "style_role": "body",
+        "x": 340.0,
+        "y": 428.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "조사한 자료",
+        "style_role": "body",
+        "x": 420.0,
+        "y": 428.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "조사한 자료",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.comma_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 492.0,
+        "y": 428.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "표",
+        "style_role": "body",
+        "x": 525.0,
+        "y": 428.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "표",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.paren_r",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ")",
+        "style_role": "body",
+        "x": 558.0,
+        "y": 428.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.raw_bg",
+    "slot.diagram.raw_box_0",
+    "slot.diagram.raw_box_1",
+    "slot.diagram.raw_box_2",
+    "slot.diagram.raw_box_3",
+    "slot.diagram.table.outer",
+    "slot.diagram.table.v1",
+    "slot.diagram.table.v2",
+    "slot.diagram.table.v3",
+    "slot.diagram.table.v4",
+    "slot.diagram.table.v5",
+    "slot.diagram.table.h1",
+    "slot.diagram.table.h2",
+    "slot.diagram.raw_dot_0_0",
+    "slot.diagram.raw_dot_0_1",
+    "slot.diagram.raw_dot_0_2",
+    "slot.diagram.raw_dot_0_3",
+    "slot.diagram.raw_dot_0_4",
+    "slot.diagram.raw_dot_0_5",
+    "slot.diagram.raw_dot_1_0",
+    "slot.diagram.raw_dot_1_1",
+    "slot.diagram.raw_dot_1_2",
+    "slot.diagram.raw_dot_1_3",
+    "slot.diagram.raw_dot_1_4",
+    "slot.diagram.raw_dot_1_5",
+    "slot.diagram.raw_dot_2_0",
+    "slot.diagram.raw_dot_2_1",
+    "slot.diagram.raw_dot_2_2",
+    "slot.diagram.raw_dot_2_3",
+    "slot.diagram.raw_dot_2_4",
+    "slot.diagram.raw_dot_2_5",
+    "slot.diagram.raw_dot_3_0",
+    "slot.diagram.raw_dot_3_1",
+    "slot.diagram.raw_dot_3_2",
+    "slot.diagram.raw_dot_3_3",
+    "slot.diagram.raw_dot_3_4",
+    "slot.diagram.raw_dot_3_5",
+    "slot.diagram.legend_g_dot",
+    "slot.diagram.legend_b_dot",
+    "slot.diagram.raw_title",
+    "slot.diagram.raw_lbl_0",
+    "slot.diagram.raw_lbl_1",
+    "slot.diagram.raw_lbl_2",
+    "slot.diagram.raw_lbl_3",
+    "slot.diagram.legend_g_txt",
+    "slot.diagram.legend_b_txt",
+    "slot.diagram.table_title",
+    "slot.diagram.table.r1c1",
+    "slot.diagram.table.r1c2",
+    "slot.diagram.table.r1c3",
+    "slot.diagram.table.r1c4",
+    "slot.diagram.table.r1c5",
+    "slot.diagram.table.r1c6",
+    "slot.diagram.table.r2c1",
+    "slot.diagram.table.r2c2",
+    "slot.diagram.table.r2c3",
+    "slot.diagram.table.r2c4",
+    "slot.diagram.table.r2c5",
+    "slot.diagram.table.r2c6",
+    "slot.diagram.table.r3c1",
+    "slot.diagram.table.r3c2",
+    "slot.diagram.table.r3c3",
+    "slot.diagram.table.r3c4",
+    "slot.diagram.table.r3c5",
+    "slot.diagram.table.r3c6",
+    "region.choices",
+    "slot.choice.paren_l",
+    "slot.choice.option_0",
+    "slot.choice.comma_1",
+    "slot.choice.option_1",
+    "slot.choice.paren_r"
+  ]
+}

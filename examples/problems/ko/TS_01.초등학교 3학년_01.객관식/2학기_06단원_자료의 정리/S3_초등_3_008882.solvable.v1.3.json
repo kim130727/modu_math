@@ -1,0 +1,85 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_008882",
+  "given": [
+    {
+      "ref": "cat.soccer",
+      "value": 50
+    },
+    {
+      "ref": "cat.golf",
+      "value": 30
+    },
+    {
+      "ref": "cat.baseball",
+      "value": 55
+    },
+    {
+      "ref": "cat.squash",
+      "value": 50
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_2",
+    "type": "choice"
+  },
+  "method": "find_maximum_in_table",
+  "steps": [
+    {
+      "id": "step.find_max",
+      "expr": "max(50, 30, 55, 50)",
+      "value": "야구",
+      "explanation": "학생 수에서 55가 가장 큰 수이므로 가장 많은 학생이 배우고 싶어 하는 운동은 야구입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "야구",
+    "unit": "",
+    "answer_index": 2,
+    "values": [
+      "야구"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "축구",
+        "value": "축구"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "골프",
+        "value": "골프"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "야구",
+        "value": "야구"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "스쿼시",
+        "value": "스쿼시"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "야구"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "data.table_interpretation_max"
+    ],
+    "errors": {
+      "골프": "data.chose_min_instead_of_max"
+    }
+  }
+}

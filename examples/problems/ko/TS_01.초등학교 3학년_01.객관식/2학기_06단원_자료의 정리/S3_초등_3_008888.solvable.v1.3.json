@@ -1,0 +1,96 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_008888",
+  "given": [
+    {
+      "ref": "day.mon",
+      "value": 32
+    },
+    {
+      "ref": "day.tue",
+      "value": 24
+    },
+    {
+      "ref": "day.wed",
+      "value": 41
+    },
+    {
+      "ref": "day.thu",
+      "value": 21
+    },
+    {
+      "ref": "day.fri",
+      "value": 15
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_2",
+    "type": "choice"
+  },
+  "method": "read_picture_graph_max",
+  "steps": [
+    {
+      "id": "step.find_max",
+      "expr": "max(32, 24, 41, 21, 15) == 41",
+      "value": "수요일",
+      "explanation": "10명을 나타내는 큰 그림의 수가 4개로 가장 많은 수요일(41명)이 학생 수가 가장 많은 요일입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "수요일",
+    "unit": "",
+    "answer_index": 2,
+    "values": [
+      "수요일"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "월요일",
+        "value": "월요일"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "화요일",
+        "value": "화요일"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "수요일",
+        "value": "수요일"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "목요일",
+        "value": "목요일"
+      },
+      {
+        "id": "slot.choice.option_4",
+        "slot_id": "slot.choice.option_4",
+        "text": "금요일",
+        "value": "금요일"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "수요일"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "data.picture_graph_interpretation"
+    ],
+    "errors": {
+      "화요일": "data.counted_total_icons_ignoring_scale",
+      "금요일": "data.counted_total_icons_ignoring_scale"
+    }
+  }
+}

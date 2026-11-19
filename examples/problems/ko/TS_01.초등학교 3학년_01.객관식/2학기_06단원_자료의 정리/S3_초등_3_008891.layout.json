@@ -1,0 +1,735 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008891",
+  "title": "그림그래프를 보고 가장 많이 팔린 음식과 가장 적게 팔린 음식 순서 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 470,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.graph_table.outer",
+        "slot.diagram.big_0_0",
+        "slot.diagram.big_0_1",
+        "slot.diagram.big_0_2",
+        "slot.diagram.small_0_0",
+        "slot.diagram.small_0_1",
+        "slot.diagram.big_1_0",
+        "slot.diagram.big_1_1",
+        "slot.diagram.small_1_0",
+        "slot.diagram.big_2_0",
+        "slot.diagram.big_2_1",
+        "slot.diagram.small_2_0",
+        "slot.diagram.small_2_1",
+        "slot.diagram.small_2_2",
+        "slot.diagram.big_3_0",
+        "slot.diagram.small_3_0",
+        "slot.diagram.small_3_1",
+        "slot.diagram.small_3_2",
+        "slot.diagram.small_3_3",
+        "slot.diagram.small_3_4",
+        "slot.diagram.legend_big",
+        "slot.diagram.legend_small",
+        "slot.diagram.graph_table.v1",
+        "slot.diagram.graph_table.v2",
+        "slot.diagram.graph_table.v3",
+        "slot.diagram.graph_table.h1",
+        "slot.diagram.graph_title",
+        "slot.diagram.graph_table.r1c1",
+        "slot.diagram.graph_table.r1c2",
+        "slot.diagram.graph_table.r1c3",
+        "slot.diagram.graph_table.r1c4",
+        "slot.diagram.graph_table.r2c1",
+        "slot.diagram.graph_table.r2c2",
+        "slot.diagram.graph_table.r2c3",
+        "slot.diagram.graph_table.r2c4",
+        "slot.diagram.legend_big_txt",
+        "slot.diagram.legend_small_txt"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1",
+        "slot.choice.option_2",
+        "slot.choice.option_3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "55. 어느 음식점에서 일주일 동안 팔린 음식의 수를 그림그래프로 나타내었습니다. 일주일 동안 가장 많이 팔린 음식과 가장 적게 팔린 음식을 순서대로 나열한 것을 고르세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 16.0,
+        "width": 820.0,
+        "height": 76.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 21,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.45,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "일주일 동안 팔린 음식의 수",
+        "style_role": "body",
+        "x": 443.0,
+        "y": 104.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 213.0,
+        "y": 124.0,
+        "width": 460.0,
+        "height": 206.0,
+        "stroke": "#a8a29e",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 328.0,
+        "y1": 124.0,
+        "x2": 328.0,
+        "y2": 330.0,
+        "stroke": "#a8a29e",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 443.0,
+        "y1": 124.0,
+        "x2": 443.0,
+        "y2": 330.0,
+        "stroke": "#a8a29e",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.v3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 558.0,
+        "y1": 124.0,
+        "x2": 558.0,
+        "y2": 330.0,
+        "stroke": "#a8a29e",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 213.0,
+        "y1": 274.0,
+        "x2": 673.0,
+        "y2": 274.0,
+        "stroke": "#a8a29e",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.r1c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "table",
+        "x": 270.5,
+        "y": 205.3,
+        "font_size": 18,
+        "max_width": 91.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.r1c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "table",
+        "x": 385.5,
+        "y": 205.3,
+        "font_size": 18,
+        "max_width": 91.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.r1c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "table",
+        "x": 500.5,
+        "y": 205.3,
+        "font_size": 18,
+        "max_width": 91.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.r1c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "table",
+        "x": 615.5,
+        "y": 205.3,
+        "font_size": 18,
+        "max_width": 91.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.r2c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "김치찌개",
+        "style_role": "table",
+        "x": 270.5,
+        "y": 308.3,
+        "font_size": 18,
+        "max_width": 91.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.r2c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "비빔밥",
+        "style_role": "table",
+        "x": 385.5,
+        "y": 308.3,
+        "font_size": 18,
+        "max_width": 91.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.r2c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "만둣국",
+        "style_role": "table",
+        "x": 500.5,
+        "y": 308.3,
+        "font_size": 18,
+        "max_width": 91.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.r2c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "된장찌개",
+        "style_role": "table",
+        "x": 615.5,
+        "y": 308.3,
+        "font_size": 18,
+        "max_width": 91.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.big_0_0",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 248 244.0 L 292 244.0 Q 287.6 268, 270 268 Q 252.4 268, 248 244.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0e7490",
+        "stroke_width": 1.2,
+        "fill": "#67e8f9"
+      }
+    },
+    {
+      "id": "slot.diagram.big_0_1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 248 216.0 L 292 216.0 Q 287.6 240, 270 240 Q 252.4 240, 248 216.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0e7490",
+        "stroke_width": 1.2,
+        "fill": "#67e8f9"
+      }
+    },
+    {
+      "id": "slot.diagram.big_0_2",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 248 188.0 L 292 188.0 Q 287.6 212, 270 212 Q 252.4 212, 248 188.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0e7490",
+        "stroke_width": 1.2,
+        "fill": "#67e8f9"
+      }
+    },
+    {
+      "id": "slot.diagram.small_0_0",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 256 163.0 L 284 163.0 Q 281.2 178, 270 178 Q 258.8 178, 256 163.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0e7490",
+        "stroke_width": 1.2,
+        "fill": "#67e8f9"
+      }
+    },
+    {
+      "id": "slot.diagram.small_0_1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 256 145.0 L 284 145.0 Q 281.2 160, 270 160 Q 258.8 160, 256 145.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0e7490",
+        "stroke_width": 1.2,
+        "fill": "#67e8f9"
+      }
+    },
+    {
+      "id": "slot.diagram.big_1_0",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 363 244.0 L 407 244.0 Q 402.6 268, 385 268 Q 367.4 268, 363 244.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0e7490",
+        "stroke_width": 1.2,
+        "fill": "#67e8f9"
+      }
+    },
+    {
+      "id": "slot.diagram.big_1_1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 363 216.0 L 407 216.0 Q 402.6 240, 385 240 Q 367.4 240, 363 216.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0e7490",
+        "stroke_width": 1.2,
+        "fill": "#67e8f9"
+      }
+    },
+    {
+      "id": "slot.diagram.small_1_0",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 371 191.0 L 399 191.0 Q 396.2 206, 385 206 Q 373.8 206, 371 191.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0e7490",
+        "stroke_width": 1.2,
+        "fill": "#67e8f9"
+      }
+    },
+    {
+      "id": "slot.diagram.big_2_0",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 478 244.0 L 522 244.0 Q 517.6 268, 500 268 Q 482.4 268, 478 244.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0e7490",
+        "stroke_width": 1.2,
+        "fill": "#67e8f9"
+      }
+    },
+    {
+      "id": "slot.diagram.big_2_1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 478 216.0 L 522 216.0 Q 517.6 240, 500 240 Q 482.4 240, 478 216.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0e7490",
+        "stroke_width": 1.2,
+        "fill": "#67e8f9"
+      }
+    },
+    {
+      "id": "slot.diagram.small_2_0",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 486 191.0 L 514 191.0 Q 511.2 206, 500 206 Q 488.8 206, 486 191.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0e7490",
+        "stroke_width": 1.2,
+        "fill": "#67e8f9"
+      }
+    },
+    {
+      "id": "slot.diagram.small_2_1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 486 173.0 L 514 173.0 Q 511.2 188, 500 188 Q 488.8 188, 486 173.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0e7490",
+        "stroke_width": 1.2,
+        "fill": "#67e8f9"
+      }
+    },
+    {
+      "id": "slot.diagram.small_2_2",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 486 155.0 L 514 155.0 Q 511.2 170, 500 170 Q 488.8 170, 486 155.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0e7490",
+        "stroke_width": 1.2,
+        "fill": "#67e8f9"
+      }
+    },
+    {
+      "id": "slot.diagram.big_3_0",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 593 244.0 L 637 244.0 Q 632.6 268, 615 268 Q 597.4 268, 593 244.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0e7490",
+        "stroke_width": 1.2,
+        "fill": "#67e8f9"
+      }
+    },
+    {
+      "id": "slot.diagram.small_3_0",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 601 219.0 L 629 219.0 Q 626.2 234, 615 234 Q 603.8 234, 601 219.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0e7490",
+        "stroke_width": 1.2,
+        "fill": "#67e8f9"
+      }
+    },
+    {
+      "id": "slot.diagram.small_3_1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 601 201.0 L 629 201.0 Q 626.2 216, 615 216 Q 603.8 216, 601 201.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0e7490",
+        "stroke_width": 1.2,
+        "fill": "#67e8f9"
+      }
+    },
+    {
+      "id": "slot.diagram.small_3_2",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 601 183.0 L 629 183.0 Q 626.2 198, 615 198 Q 603.8 198, 601 183.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0e7490",
+        "stroke_width": 1.2,
+        "fill": "#67e8f9"
+      }
+    },
+    {
+      "id": "slot.diagram.small_3_3",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 601 165.0 L 629 165.0 Q 626.2 180, 615 180 Q 603.8 180, 601 165.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0e7490",
+        "stroke_width": 1.2,
+        "fill": "#67e8f9"
+      }
+    },
+    {
+      "id": "slot.diagram.small_3_4",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 601 147.0 L 629 147.0 Q 626.2 162, 615 162 Q 603.8 162, 601 147.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0e7490",
+        "stroke_width": 1.2,
+        "fill": "#67e8f9"
+      }
+    },
+    {
+      "id": "slot.diagram.legend_big",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 418 340.0 L 462 340.0 Q 457.6 364, 440 364 Q 422.4 364, 418 340.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0e7490",
+        "stroke_width": 1.2,
+        "fill": "#67e8f9"
+      }
+    },
+    {
+      "id": "slot.diagram.legend_big_txt",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "100그릇",
+        "style_role": "body",
+        "x": 505.0,
+        "y": 352.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.legend_small",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 571 345.0 L 599 345.0 Q 596.2 360, 585 360 Q 573.8 360, 571 345.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0e7490",
+        "stroke_width": 1.2,
+        "fill": "#67e8f9"
+      }
+    },
+    {
+      "id": "slot.diagram.legend_small_txt",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10그릇",
+        "style_role": "body",
+        "x": 638.0,
+        "y": 352.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 된장찌개, 비빔밥",
+        "style_role": "body",
+        "x": 40.0,
+        "y": 396.0,
+        "font_size": 21,
+        "align": "left",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "①",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 김치찌개, 된장찌개",
+        "style_role": "body",
+        "x": 450.0,
+        "y": 396.0,
+        "font_size": 21,
+        "align": "left",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "②",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 된장찌개, 김치찌개",
+        "style_role": "body",
+        "x": 40.0,
+        "y": 434.0,
+        "font_size": 21,
+        "align": "left",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 2,
+          "value": "③",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 김치찌개, 비빔밥",
+        "style_role": "body",
+        "x": 450.0,
+        "y": 434.0,
+        "font_size": 21,
+        "align": "left",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 3,
+          "value": "④",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.graph_table.outer",
+    "slot.diagram.big_0_0",
+    "slot.diagram.big_0_1",
+    "slot.diagram.big_0_2",
+    "slot.diagram.small_0_0",
+    "slot.diagram.small_0_1",
+    "slot.diagram.big_1_0",
+    "slot.diagram.big_1_1",
+    "slot.diagram.small_1_0",
+    "slot.diagram.big_2_0",
+    "slot.diagram.big_2_1",
+    "slot.diagram.small_2_0",
+    "slot.diagram.small_2_1",
+    "slot.diagram.small_2_2",
+    "slot.diagram.big_3_0",
+    "slot.diagram.small_3_0",
+    "slot.diagram.small_3_1",
+    "slot.diagram.small_3_2",
+    "slot.diagram.small_3_3",
+    "slot.diagram.small_3_4",
+    "slot.diagram.legend_big",
+    "slot.diagram.legend_small",
+    "slot.diagram.graph_table.v1",
+    "slot.diagram.graph_table.v2",
+    "slot.diagram.graph_table.v3",
+    "slot.diagram.graph_table.h1",
+    "slot.diagram.graph_title",
+    "slot.diagram.graph_table.r1c1",
+    "slot.diagram.graph_table.r1c2",
+    "slot.diagram.graph_table.r1c3",
+    "slot.diagram.graph_table.r1c4",
+    "slot.diagram.graph_table.r2c1",
+    "slot.diagram.graph_table.r2c2",
+    "slot.diagram.graph_table.r2c3",
+    "slot.diagram.graph_table.r2c4",
+    "slot.diagram.legend_big_txt",
+    "slot.diagram.legend_small_txt",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1",
+    "slot.choice.option_2",
+    "slot.choice.option_3"
+  ]
+}

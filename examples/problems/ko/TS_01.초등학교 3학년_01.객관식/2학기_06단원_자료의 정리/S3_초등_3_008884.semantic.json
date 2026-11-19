@@ -1,0 +1,103 @@
+{
+  "problem_id": "S3_초등_3_008884",
+  "problem_type": "multiple_choice_table_min",
+  "metadata": {
+    "title": "표를 보고 가장 적은 색종이 색깔 선택하기",
+    "tags": [],
+    "question": "48. 서영이는 교실에 색종이가 색깔별로 몇 장 있는지 조사하였습니다. 표를 보고 알맞은 말을 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.diagram.table.outer",
+      "slot.diagram.table.v1",
+      "slot.diagram.table.v2",
+      "slot.diagram.table.v3",
+      "slot.diagram.table.v4",
+      "slot.diagram.table.v5",
+      "slot.diagram.table.h1"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 2,
+    "subject": "수학",
+    "chapter": "06단원_자료의 정리",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "cat.red",
+        "type": "survey_item",
+        "label": "빨간색",
+        "count": 24
+      },
+      {
+        "id": "cat.yellow",
+        "type": "survey_item",
+        "label": "노란색",
+        "count": 30
+      },
+      {
+        "id": "cat.green",
+        "type": "survey_item",
+        "label": "초록색",
+        "count": 16
+      },
+      {
+        "id": "cat.purple",
+        "type": "survey_item",
+        "label": "보라색",
+        "count": 14
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.minimum",
+        "type": "has_min_count",
+        "from_id": "cat.purple",
+        "to_id": "value.14"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "보라색",
+    "unit": "",
+    "answer_index": 3,
+    "values": [
+      "보라색"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "빨간색",
+        "value": "빨간색"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "노란색",
+        "value": "노란색"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "초록색",
+        "value": "초록색"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "보라색",
+        "value": "보라색"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_3",
+        "value": "보라색"
+      }
+    ]
+  }
+}

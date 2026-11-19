@@ -1,0 +1,1016 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008890",
+  "title": "그림그래프를 보고 기준보다 생산량이 적은 농장 모두 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 435,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.graph_table.outer",
+        "slot.diagram.big_0_0",
+        "slot.diagram.big_0_1",
+        "slot.diagram.big_0_2",
+        "slot.diagram.big_1_0",
+        "slot.diagram.big_2_0",
+        "slot.diagram.big_2_1",
+        "slot.diagram.big_3_0",
+        "slot.diagram.big_3_1",
+        "slot.diagram.big_3_2",
+        "slot.diagram.big_3_3",
+        "slot.diagram.big_4_0",
+        "slot.diagram.big_4_1",
+        "slot.diagram.legend_big",
+        "slot.diagram.graph_table.v1",
+        "slot.diagram.graph_table.h1",
+        "slot.diagram.graph_table.h2",
+        "slot.diagram.graph_table.h3",
+        "slot.diagram.graph_table.h4",
+        "slot.diagram.graph_table.h5",
+        "slot.diagram.small_0_0",
+        "slot.diagram.small_1_0",
+        "slot.diagram.small_1_1",
+        "slot.diagram.small_1_2",
+        "slot.diagram.small_1_3",
+        "slot.diagram.small_2_0",
+        "slot.diagram.small_2_1",
+        "slot.diagram.small_2_2",
+        "slot.diagram.small_3_0",
+        "slot.diagram.small_3_1",
+        "slot.diagram.legend_small",
+        "slot.diagram.graph_title",
+        "slot.diagram.graph_table.r1c1",
+        "slot.diagram.graph_table.r1c2",
+        "slot.diagram.graph_table.r2c1",
+        "slot.diagram.graph_table.r2c2",
+        "slot.diagram.graph_table.r3c1",
+        "slot.diagram.graph_table.r3c2",
+        "slot.diagram.graph_table.r4c1",
+        "slot.diagram.graph_table.r4c2",
+        "slot.diagram.graph_table.r5c1",
+        "slot.diagram.graph_table.r5c2",
+        "slot.diagram.graph_table.r6c1",
+        "slot.diagram.graph_table.r6c2",
+        "slot.diagram.legend_big_txt",
+        "slot.diagram.legend_small_txt"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.paren_l",
+        "slot.choice.option_0",
+        "slot.choice.comma_1",
+        "slot.choice.option_1",
+        "slot.choice.comma_2",
+        "slot.choice.option_2",
+        "slot.choice.comma_3",
+        "slot.choice.option_3",
+        "slot.choice.comma_4",
+        "slot.choice.option_4",
+        "slot.choice.paren_r"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "54. 진아네 마을의 농장에서 하루 동안 생산한 토마토의 양을 조사하여 그림그래프로 나타내었습니다. 토마토 생산량이 다 농장보다 적은 농장을 모두 선택해 보세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 16.0,
+        "width": 820.0,
+        "height": 76.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 21,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.45,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "농장별 토마토 생산량",
+        "style_role": "body",
+        "x": 375.0,
+        "y": 102.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 165.0,
+        "y": 122.0,
+        "width": 412.0,
+        "height": 244.0,
+        "stroke": "#65a30d",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 247.0,
+        "y1": 122.0,
+        "x2": 247.0,
+        "y2": 366.0,
+        "stroke": "#65a30d",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 165.0,
+        "y1": 156.0,
+        "x2": 577.0,
+        "y2": 156.0,
+        "stroke": "#65a30d",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.h2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 165.0,
+        "y1": 198.0,
+        "x2": 577.0,
+        "y2": 198.0,
+        "stroke": "#65a30d",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.h3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 165.0,
+        "y1": 240.0,
+        "x2": 577.0,
+        "y2": 240.0,
+        "stroke": "#65a30d",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.h4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 165.0,
+        "y1": 282.0,
+        "x2": 577.0,
+        "y2": 282.0,
+        "stroke": "#65a30d",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.h5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 165.0,
+        "y1": 324.0,
+        "x2": 577.0,
+        "y2": 324.0,
+        "stroke": "#65a30d",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.r1c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "농장",
+        "style_role": "table",
+        "x": 206.0,
+        "y": 145.3,
+        "font_size": 18,
+        "max_width": 58.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.r1c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "토마토 생산량",
+        "style_role": "table",
+        "x": 412.0,
+        "y": 145.3,
+        "font_size": 18,
+        "max_width": 306.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.r2c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "table",
+        "x": 206.0,
+        "y": 183.3,
+        "font_size": 18,
+        "max_width": 58.0,
+        "anchor": "middle",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.r2c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "table",
+        "x": 412.0,
+        "y": 183.3,
+        "font_size": 18,
+        "max_width": 306.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.r3c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "table",
+        "x": 206.0,
+        "y": 225.3,
+        "font_size": 18,
+        "max_width": 58.0,
+        "anchor": "middle",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.r3c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "table",
+        "x": 412.0,
+        "y": 225.3,
+        "font_size": 18,
+        "max_width": 306.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.r4c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "table",
+        "x": 206.0,
+        "y": 267.3,
+        "font_size": 18,
+        "max_width": 58.0,
+        "anchor": "middle",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.r4c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "table",
+        "x": 412.0,
+        "y": 267.3,
+        "font_size": 18,
+        "max_width": 306.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.r5c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "라",
+        "style_role": "table",
+        "x": 206.0,
+        "y": 309.3,
+        "font_size": 18,
+        "max_width": 58.0,
+        "anchor": "middle",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.r5c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "table",
+        "x": 412.0,
+        "y": 309.3,
+        "font_size": 18,
+        "max_width": 306.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.r6c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "마",
+        "style_role": "table",
+        "x": 206.0,
+        "y": 351.3,
+        "font_size": 18,
+        "max_width": 58.0,
+        "anchor": "middle",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.graph_table.r6c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "table",
+        "x": 412.0,
+        "y": 351.3,
+        "font_size": 18,
+        "max_width": 306.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.big_0_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 285.0,
+        "cy": 177.0,
+        "r": 14.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.2,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.big_0_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 319.0,
+        "cy": 177.0,
+        "r": 14.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.2,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.big_0_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 353.0,
+        "cy": 177.0,
+        "r": 14.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.2,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.small_0_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 387.0,
+        "cy": 177.0,
+        "r": 8.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.0,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.big_1_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 285.0,
+        "cy": 219.0,
+        "r": 14.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.2,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.small_1_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 319.0,
+        "cy": 219.0,
+        "r": 8.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.0,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.small_1_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 341.0,
+        "cy": 219.0,
+        "r": 8.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.0,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.small_1_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 363.0,
+        "cy": 219.0,
+        "r": 8.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.0,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.small_1_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 385.0,
+        "cy": 219.0,
+        "r": 8.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.0,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.big_2_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 285.0,
+        "cy": 261.0,
+        "r": 14.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.2,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.big_2_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 319.0,
+        "cy": 261.0,
+        "r": 14.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.2,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.small_2_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 353.0,
+        "cy": 261.0,
+        "r": 8.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.0,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.small_2_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 375.0,
+        "cy": 261.0,
+        "r": 8.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.0,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.small_2_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 397.0,
+        "cy": 261.0,
+        "r": 8.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.0,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.big_3_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 285.0,
+        "cy": 303.0,
+        "r": 14.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.2,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.big_3_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 319.0,
+        "cy": 303.0,
+        "r": 14.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.2,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.big_3_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 353.0,
+        "cy": 303.0,
+        "r": 14.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.2,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.big_3_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 387.0,
+        "cy": 303.0,
+        "r": 14.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.2,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.small_3_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 421.0,
+        "cy": 303.0,
+        "r": 8.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.0,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.small_3_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 443.0,
+        "cy": 303.0,
+        "r": 8.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.0,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.big_4_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 285.0,
+        "cy": 345.0,
+        "r": 14.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.2,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.big_4_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 319.0,
+        "cy": 345.0,
+        "r": 14.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.2,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.legend_big",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 635.0,
+        "cy": 300.0,
+        "r": 14.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.2,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.legend_big_txt",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10상자",
+        "style_role": "body",
+        "x": 685.0,
+        "y": 300.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.legend_small",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 635.0,
+        "cy": 342.0,
+        "r": 8.0,
+        "stroke": "#b91c1c",
+        "stroke_width": 1.0,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.diagram.legend_small_txt",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1상자",
+        "style_role": "body",
+        "x": 680.0,
+        "y": 342.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.paren_l",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(",
+        "style_role": "body",
+        "x": 285.0,
+        "y": 396.0,
+        "font_size": 21,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가 농장",
+        "style_role": "body",
+        "x": 340.0,
+        "y": 396.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "가 농장",
+          "group_id": "slot.choice.group",
+          "multi_select": true,
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나 농장",
+        "style_role": "body",
+        "x": 452.0,
+        "y": 396.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "나 농장",
+          "group_id": "slot.choice.group",
+          "multi_select": true,
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다 농장",
+        "style_role": "body",
+        "x": 564.0,
+        "y": 396.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 2,
+          "value": "다 농장",
+          "group_id": "slot.choice.group",
+          "multi_select": true,
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "라 농장",
+        "style_role": "body",
+        "x": 676.0,
+        "y": 396.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 3,
+          "value": "라 농장",
+          "group_id": "slot.choice.group",
+          "multi_select": true,
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "마 농장",
+        "style_role": "body",
+        "x": 788.0,
+        "y": 396.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 4,
+          "value": "마 농장",
+          "group_id": "slot.choice.group",
+          "multi_select": true,
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.comma_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 396.0,
+        "y": 396.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.comma_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 508.0,
+        "y": 396.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.comma_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 620.0,
+        "y": 396.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.comma_4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 732.0,
+        "y": 396.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.paren_r",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ")",
+        "style_role": "body",
+        "x": 844.0,
+        "y": 396.0,
+        "font_size": 21,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.graph_table.outer",
+    "slot.diagram.big_0_0",
+    "slot.diagram.big_0_1",
+    "slot.diagram.big_0_2",
+    "slot.diagram.big_1_0",
+    "slot.diagram.big_2_0",
+    "slot.diagram.big_2_1",
+    "slot.diagram.big_3_0",
+    "slot.diagram.big_3_1",
+    "slot.diagram.big_3_2",
+    "slot.diagram.big_3_3",
+    "slot.diagram.big_4_0",
+    "slot.diagram.big_4_1",
+    "slot.diagram.legend_big",
+    "slot.diagram.graph_table.v1",
+    "slot.diagram.graph_table.h1",
+    "slot.diagram.graph_table.h2",
+    "slot.diagram.graph_table.h3",
+    "slot.diagram.graph_table.h4",
+    "slot.diagram.graph_table.h5",
+    "slot.diagram.small_0_0",
+    "slot.diagram.small_1_0",
+    "slot.diagram.small_1_1",
+    "slot.diagram.small_1_2",
+    "slot.diagram.small_1_3",
+    "slot.diagram.small_2_0",
+    "slot.diagram.small_2_1",
+    "slot.diagram.small_2_2",
+    "slot.diagram.small_3_0",
+    "slot.diagram.small_3_1",
+    "slot.diagram.legend_small",
+    "slot.diagram.graph_title",
+    "slot.diagram.graph_table.r1c1",
+    "slot.diagram.graph_table.r1c2",
+    "slot.diagram.graph_table.r2c1",
+    "slot.diagram.graph_table.r2c2",
+    "slot.diagram.graph_table.r3c1",
+    "slot.diagram.graph_table.r3c2",
+    "slot.diagram.graph_table.r4c1",
+    "slot.diagram.graph_table.r4c2",
+    "slot.diagram.graph_table.r5c1",
+    "slot.diagram.graph_table.r5c2",
+    "slot.diagram.graph_table.r6c1",
+    "slot.diagram.graph_table.r6c2",
+    "slot.diagram.legend_big_txt",
+    "slot.diagram.legend_small_txt",
+    "region.choices",
+    "slot.choice.paren_l",
+    "slot.choice.option_0",
+    "slot.choice.comma_1",
+    "slot.choice.option_1",
+    "slot.choice.comma_2",
+    "slot.choice.option_2",
+    "slot.choice.comma_3",
+    "slot.choice.option_3",
+    "slot.choice.comma_4",
+    "slot.choice.option_4",
+    "slot.choice.paren_r"
+  ]
+}

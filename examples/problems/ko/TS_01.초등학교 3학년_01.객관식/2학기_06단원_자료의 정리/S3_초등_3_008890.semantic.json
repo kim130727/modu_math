@@ -1,0 +1,152 @@
+{
+  "problem_id": "S3_초등_3_008890",
+  "problem_type": "multiple_select_picture_graph_comparison",
+  "metadata": {
+    "title": "그림그래프를 보고 기준보다 생산량이 적은 농장 모두 선택하기",
+    "tags": [],
+    "question": "54. 진아네 마을의 농장에서 하루 동안 생산한 토마토의 양을 조사하여 그림그래프로 나타내었습니다. 토마토 생산량이 다 농장보다 적은 농장을 모두 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.diagram.graph_table.outer",
+      "slot.diagram.graph_table.v1",
+      "slot.diagram.graph_table.h1",
+      "slot.diagram.graph_table.h2",
+      "slot.diagram.graph_table.h3",
+      "slot.diagram.graph_table.h4",
+      "slot.diagram.graph_table.h5",
+      "slot.diagram.big_0_0",
+      "slot.diagram.big_0_1",
+      "slot.diagram.big_0_2",
+      "slot.diagram.small_0_0",
+      "slot.diagram.big_1_0",
+      "slot.diagram.small_1_0",
+      "slot.diagram.small_1_1",
+      "slot.diagram.small_1_2",
+      "slot.diagram.small_1_3",
+      "slot.diagram.big_2_0",
+      "slot.diagram.big_2_1",
+      "slot.diagram.small_2_0",
+      "slot.diagram.small_2_1",
+      "slot.diagram.small_2_2",
+      "slot.diagram.big_3_0",
+      "slot.diagram.big_3_1",
+      "slot.diagram.big_3_2",
+      "slot.diagram.big_3_3",
+      "slot.diagram.small_3_0",
+      "slot.diagram.small_3_1",
+      "slot.diagram.big_4_0",
+      "slot.diagram.big_4_1",
+      "slot.diagram.legend_big",
+      "slot.diagram.legend_small"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 2,
+    "subject": "수학",
+    "chapter": "06단원_자료의 정리",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "farm.ga",
+        "type": "picture_graph_row",
+        "label": "가 농장",
+        "value": 31
+      },
+      {
+        "id": "farm.na",
+        "type": "picture_graph_row",
+        "label": "나 농장",
+        "value": 14
+      },
+      {
+        "id": "farm.da",
+        "type": "picture_graph_row",
+        "label": "다 농장",
+        "value": 23
+      },
+      {
+        "id": "farm.ra",
+        "type": "picture_graph_row",
+        "label": "라 농장",
+        "value": 42
+      },
+      {
+        "id": "farm.ma",
+        "type": "picture_graph_row",
+        "label": "마 농장",
+        "value": 20
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.less_na",
+        "type": "less_than",
+        "from_id": "farm.na",
+        "to_id": "farm.da"
+      },
+      {
+        "id": "relation.less_ma",
+        "type": "less_than",
+        "from_id": "farm.ma",
+        "to_id": "farm.da"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "multi_choice",
+    "value": [
+      "나 농장",
+      "마 농장"
+    ],
+    "unit": "",
+    "values": [
+      "나 농장",
+      "마 농장"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "가 농장",
+        "value": "가 농장"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "나 농장",
+        "value": "나 농장"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "다 농장",
+        "value": "다 농장"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "라 농장",
+        "value": "라 농장"
+      },
+      {
+        "id": "slot.choice.option_4",
+        "slot_id": "slot.choice.option_4",
+        "text": "마 농장",
+        "value": "마 농장"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "나 농장"
+      },
+      {
+        "slot_id": "slot.choice.option_4",
+        "value": "마 농장"
+      }
+    ]
+  }
+}

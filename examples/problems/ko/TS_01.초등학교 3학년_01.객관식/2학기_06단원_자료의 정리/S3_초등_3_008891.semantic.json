@@ -1,0 +1,128 @@
+{
+  "problem_id": "S3_초등_3_008891",
+  "problem_type": "multiple_choice_picture_graph_extremes",
+  "metadata": {
+    "title": "그림그래프를 보고 가장 많이 팔린 음식과 가장 적게 팔린 음식 순서 선택하기",
+    "tags": [],
+    "question": "55. 어느 음식점에서 일주일 동안 팔린 음식의 수를 그림그래프로 나타내었습니다. 일주일 동안 가장 많이 팔린 음식과 가장 적게 팔린 음식을 순서대로 나열한 것을 고르세요.",
+    "required_layout_ids": [
+      "slot.diagram.graph_table.outer",
+      "slot.diagram.graph_table.v1",
+      "slot.diagram.graph_table.v2",
+      "slot.diagram.graph_table.v3",
+      "slot.diagram.graph_table.h1",
+      "slot.diagram.big_0_0",
+      "slot.diagram.big_0_1",
+      "slot.diagram.big_0_2",
+      "slot.diagram.small_0_0",
+      "slot.diagram.small_0_1",
+      "slot.diagram.big_1_0",
+      "slot.diagram.big_1_1",
+      "slot.diagram.small_1_0",
+      "slot.diagram.big_2_0",
+      "slot.diagram.big_2_1",
+      "slot.diagram.small_2_0",
+      "slot.diagram.small_2_1",
+      "slot.diagram.small_2_2",
+      "slot.diagram.big_3_0",
+      "slot.diagram.small_3_0",
+      "slot.diagram.small_3_1",
+      "slot.diagram.small_3_2",
+      "slot.diagram.small_3_3",
+      "slot.diagram.small_3_4",
+      "slot.diagram.legend_big",
+      "slot.diagram.legend_small"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 2,
+    "subject": "수학",
+    "chapter": "06단원_자료의 정리",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "food.kimchi",
+        "type": "picture_graph_col",
+        "label": "김치찌개",
+        "value": 320
+      },
+      {
+        "id": "food.bibim",
+        "type": "picture_graph_col",
+        "label": "비빔밥",
+        "value": 210
+      },
+      {
+        "id": "food.mandu",
+        "type": "picture_graph_col",
+        "label": "만둣국",
+        "value": 230
+      },
+      {
+        "id": "food.doenjang",
+        "type": "picture_graph_col",
+        "label": "된장찌개",
+        "value": 150
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.max",
+        "type": "has_max_count",
+        "from_id": "food.kimchi",
+        "to_id": "value.320"
+      },
+      {
+        "id": "relation.min",
+        "type": "has_min_count",
+        "from_id": "food.doenjang",
+        "to_id": "value.150"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "②",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "②"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "①",
+        "value": "①"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "②",
+        "value": "②"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "③",
+        "value": "③"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "④",
+        "value": "④"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②"
+      }
+    ]
+  }
+}

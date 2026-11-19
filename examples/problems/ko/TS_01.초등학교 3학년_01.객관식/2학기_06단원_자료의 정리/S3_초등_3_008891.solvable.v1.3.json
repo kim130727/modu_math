@@ -1,0 +1,86 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_008891",
+  "given": [
+    {
+      "ref": "food.kimchi",
+      "value": 320
+    },
+    {
+      "ref": "food.bibim",
+      "value": 210
+    },
+    {
+      "ref": "food.mandu",
+      "value": 230
+    },
+    {
+      "ref": "food.doenjang",
+      "value": 150
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "type": "choice"
+  },
+  "method": "find_max_and_min_in_picture_graph",
+  "steps": [
+    {
+      "id": "step.order",
+      "expr": "320 > 230 > 210 > 150",
+      "value": "②",
+      "explanation": "김치찌개(320) > 만둣국(230) > 비빔밥(210) > 된장찌개(150)이므로 가장 많이 팔린 음식은 김치찌개, 가장 적게 팔린 음식은 된장찌개(②)입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "②",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "②"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "①",
+        "value": "①"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "②",
+        "value": "②"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "③",
+        "value": "③"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "④",
+        "value": "④"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "data.picture_graph_interpretation"
+    ],
+    "errors": {
+      "③": "data.reversed_max_and_min_order",
+      "④": "data.counted_total_icons_ignoring_scale"
+    }
+  }
+}

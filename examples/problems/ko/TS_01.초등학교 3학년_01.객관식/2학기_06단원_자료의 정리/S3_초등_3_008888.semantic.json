@@ -1,0 +1,152 @@
+{
+  "problem_id": "S3_초등_3_008888",
+  "problem_type": "multiple_choice_picture_graph_max",
+  "metadata": {
+    "title": "그림그래프를 보고 도서관을 이용한 학생 수가 가장 많은 요일 선택하기",
+    "tags": [],
+    "question": "52. 지애가 요일별로 도서관을 이용한 학생 수를 그림으로 나타내어 그래프를 만들었습니다. 그래프를 보고 알맞은 말을 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.graph_table.outer",
+      "slot.diagram.graph_table.v1",
+      "slot.diagram.graph_table.h1",
+      "slot.diagram.graph_table.h2",
+      "slot.diagram.graph_table.h3",
+      "slot.diagram.graph_table.h4",
+      "slot.diagram.graph_table.h5",
+      "slot.diagram.big_0_0",
+      "slot.diagram.big_0_1",
+      "slot.diagram.big_0_2",
+      "slot.diagram.small_0_0",
+      "slot.diagram.small_0_1",
+      "slot.diagram.big_1_0",
+      "slot.diagram.big_1_1",
+      "slot.diagram.small_1_0",
+      "slot.diagram.small_1_1",
+      "slot.diagram.small_1_2",
+      "slot.diagram.small_1_3",
+      "slot.diagram.big_2_0",
+      "slot.diagram.big_2_1",
+      "slot.diagram.big_2_2",
+      "slot.diagram.big_2_3",
+      "slot.diagram.small_2_0",
+      "slot.diagram.big_3_0",
+      "slot.diagram.big_3_1",
+      "slot.diagram.small_3_0",
+      "slot.diagram.big_4_0",
+      "slot.diagram.small_4_0",
+      "slot.diagram.small_4_1",
+      "slot.diagram.small_4_2",
+      "slot.diagram.small_4_3",
+      "slot.diagram.small_4_4",
+      "slot.diagram.legend_big",
+      "slot.diagram.legend_small"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 2,
+    "subject": "수학",
+    "chapter": "06단원_자료의 정리",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "day.mon",
+        "type": "picture_graph_row",
+        "label": "월요일",
+        "tens": 3,
+        "ones": 2,
+        "value": 32
+      },
+      {
+        "id": "day.tue",
+        "type": "picture_graph_row",
+        "label": "화요일",
+        "tens": 2,
+        "ones": 4,
+        "value": 24
+      },
+      {
+        "id": "day.wed",
+        "type": "picture_graph_row",
+        "label": "수요일",
+        "tens": 4,
+        "ones": 1,
+        "value": 41
+      },
+      {
+        "id": "day.thu",
+        "type": "picture_graph_row",
+        "label": "목요일",
+        "tens": 2,
+        "ones": 1,
+        "value": 21
+      },
+      {
+        "id": "day.fri",
+        "type": "picture_graph_row",
+        "label": "금요일",
+        "tens": 1,
+        "ones": 5,
+        "value": 15
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.maximum",
+        "type": "has_max_count",
+        "from_id": "day.wed",
+        "to_id": "value.41"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "수요일",
+    "unit": "",
+    "answer_index": 2,
+    "values": [
+      "수요일"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "월요일",
+        "value": "월요일"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "화요일",
+        "value": "화요일"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "수요일",
+        "value": "수요일"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "목요일",
+        "value": "목요일"
+      },
+      {
+        "id": "slot.choice.option_4",
+        "slot_id": "slot.choice.option_4",
+        "text": "금요일",
+        "value": "금요일"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "수요일"
+      }
+    ]
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_008889",
+  "given": [
+    {
+      "ref": "farm.ga",
+      "value": 36
+    },
+    {
+      "ref": "farm.na",
+      "value": 31
+    },
+    {
+      "ref": "farm.da",
+      "value": 25
+    },
+    {
+      "ref": "farm.ra",
+      "value": 43
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "type": "choice"
+  },
+  "method": "determine_picture_graph_icon_count",
+  "steps": [
+    {
+      "id": "step.count_digits",
+      "expr": "digits(two_digit_number) == 2",
+      "value": "2",
+      "explanation": "우유 생산량이 십의 자리와 일의 자리로 이루어진 두 자리 수이므로 십의 자리(10 kg)와 일의 자리(1 kg)를 나타내는 그림 2가지로 나타냅니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "2",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "2"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "1",
+        "value": "1"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "2",
+        "value": "2"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "2"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "data.picture_graph_design"
+    ],
+    "errors": {
+      "1": "data.forgot_place_value_icons"
+    }
+  }
+}

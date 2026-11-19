@@ -1,0 +1,109 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_008886",
+  "given": [
+    {
+      "ref": "place.museum",
+      "value": [
+        6,
+        10
+      ]
+    },
+    {
+      "ref": "place.art",
+      "value": [
+        7,
+        2
+      ]
+    },
+    {
+      "ref": "place.botanical",
+      "value": [
+        9,
+        8
+      ]
+    },
+    {
+      "ref": "place.science",
+      "value": [
+        5,
+        3
+      ]
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "type": "choice"
+  },
+  "method": "sum_two_classes_and_compare",
+  "steps": [
+    {
+      "id": "step.sum_museum",
+      "expr": "6 + 10",
+      "value": 16,
+      "explanation": "박물관은 6 + 10 = 16명입니다."
+    },
+    {
+      "id": "step.sum_art",
+      "expr": "7 + 2",
+      "value": 9,
+      "explanation": "미술관은 7 + 2 = 9명입니다."
+    },
+    {
+      "id": "step.sum_botanical",
+      "expr": "9 + 8",
+      "value": 17,
+      "explanation": "식물원은 9 + 8 = 17명입니다."
+    },
+    {
+      "id": "step.sum_science",
+      "expr": "5 + 3",
+      "value": 8,
+      "explanation": "과학관은 5 + 3 = 8명입니다."
+    },
+    {
+      "id": "step.compare",
+      "expr": "max(16, 9, 17, 8) == 17",
+      "value": "하은",
+      "explanation": "두 반의 학생 수를 합한 수가 가장 큰 장소는 식물원(17명)이므로 바르게 말한 사람은 하은입니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "하은",
+    "unit": "",
+    "answer_index": 0,
+    "values": [
+      "하은"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "하은",
+        "value": "하은"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "소율",
+        "value": "소율"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "하은"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "data.two_way_table_aggregation"
+    ],
+    "errors": {
+      "소율": "data.considered_only_one_class"
+    }
+  }
+}

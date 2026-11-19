@@ -1,0 +1,709 @@
+{
+  "problem_id": "S3_초등_3_008886",
+  "view_box": {
+    "width": 886.0,
+    "height": 415.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 16.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0,
+        "width": 820.0,
+        "height": 76.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 16.0,
+        "data-box-width": 820.0,
+        "data-box-height": 76.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.45
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "50. 하은이네 반과 소율이네 반은 함께 현장 체험 학습을 가려고 학생들이 가고 싶어 하는 장소를 조사하여 표로 나타내었습니다. 하은이네 반과 소율이네 반이 어디로 현장 체험 학습을 가면 좋을지 바르게 말한 사람을 선택해 보세요."
+    },
+    {
+      "id": "slot.diagram.table.outer.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 98.0,
+        "y": 124.0,
+        "width": 690.0,
+        "height": 114.0,
+        "fill": "none",
+        "stroke": "#65a30d",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.table.outer",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.outer"
+      }
+    },
+    {
+      "id": "slot.diagram.bubble_haeun.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 95.0,
+        "y": 262.0,
+        "width": 275.0,
+        "height": 118.0,
+        "fill": "#ffffff",
+        "stroke": "#475569",
+        "stroke-width": 1.4
+      },
+      "source_ref": "slot.diagram.bubble_haeun",
+      "refs": {
+        "layout_slot_id": "slot.diagram.bubble_haeun"
+      }
+    },
+    {
+      "id": "slot.diagram.head_haeun.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 405.0,
+        "cy": 325.0,
+        "r": 18.0,
+        "stroke": "#d97706",
+        "stroke-width": 1.2,
+        "fill": "#fde68a"
+      },
+      "source_ref": "slot.diagram.head_haeun",
+      "refs": {
+        "layout_slot_id": "slot.diagram.head_haeun"
+      }
+    },
+    {
+      "id": "slot.diagram.bubble_soyul.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 548.0,
+        "y": 256.0,
+        "width": 275.0,
+        "height": 118.0,
+        "fill": "#ffffff",
+        "stroke": "#475569",
+        "stroke-width": 1.4
+      },
+      "source_ref": "slot.diagram.bubble_soyul",
+      "refs": {
+        "layout_slot_id": "slot.diagram.bubble_soyul"
+      }
+    },
+    {
+      "id": "slot.diagram.head_soyul.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 510.0,
+        "cy": 325.0,
+        "r": 18.0,
+        "stroke": "#d97706",
+        "stroke-width": 1.2,
+        "fill": "#fde68a"
+      },
+      "source_ref": "slot.diagram.head_soyul",
+      "refs": {
+        "layout_slot_id": "slot.diagram.head_soyul"
+      }
+    },
+    {
+      "id": "slot.diagram.table.v1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 358.0,
+        "y1": 124.0,
+        "x2": 358.0,
+        "y2": 238.0,
+        "stroke": "#65a30d",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.table.v1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.v1"
+      }
+    },
+    {
+      "id": "slot.diagram.table.v2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 444.0,
+        "y1": 124.0,
+        "x2": 444.0,
+        "y2": 238.0,
+        "stroke": "#65a30d",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.table.v2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.v2"
+      }
+    },
+    {
+      "id": "slot.diagram.table.v3.line",
+      "type": "line",
+      "attributes": {
+        "x1": 530.0,
+        "y1": 124.0,
+        "x2": 530.0,
+        "y2": 238.0,
+        "stroke": "#65a30d",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.table.v3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.v3"
+      }
+    },
+    {
+      "id": "slot.diagram.table.v4.line",
+      "type": "line",
+      "attributes": {
+        "x1": 616.0,
+        "y1": 124.0,
+        "x2": 616.0,
+        "y2": 238.0,
+        "stroke": "#65a30d",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.table.v4",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.v4"
+      }
+    },
+    {
+      "id": "slot.diagram.table.v5.line",
+      "type": "line",
+      "attributes": {
+        "x1": 702.0,
+        "y1": 124.0,
+        "x2": 702.0,
+        "y2": 238.0,
+        "stroke": "#65a30d",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.table.v5",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.v5"
+      }
+    },
+    {
+      "id": "slot.diagram.table.h1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 98.0,
+        "y1": 162.0,
+        "x2": 788.0,
+        "y2": 162.0,
+        "stroke": "#65a30d",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.table.h1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.h1"
+      }
+    },
+    {
+      "id": "slot.diagram.table.h2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 98.0,
+        "y1": 200.0,
+        "x2": 788.0,
+        "y2": 200.0,
+        "stroke": "#65a30d",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.table.h2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.h2"
+      }
+    },
+    {
+      "id": "slot.diagram.table_title.text",
+      "type": "text",
+      "attributes": {
+        "x": 443.0,
+        "y": 104.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0
+      },
+      "source_ref": "slot.diagram.table_title",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table_title"
+      },
+      "text": "현장 체험 학습으로 가고 싶어 하는 장소"
+    },
+    {
+      "id": "slot.diagram.table.r1c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 228.0,
+        "y": 149.3,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 18.0,
+        "max_width": 236.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r1c1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r1c1"
+      },
+      "text": "장소"
+    },
+    {
+      "id": "slot.diagram.table.r1c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 401.0,
+        "y": 149.3,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 18.0,
+        "max_width": 62.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r1c2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r1c2"
+      },
+      "text": "박물관"
+    },
+    {
+      "id": "slot.diagram.table.r1c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 487.0,
+        "y": 149.3,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 18.0,
+        "max_width": 62.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r1c3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r1c3"
+      },
+      "text": "미술관"
+    },
+    {
+      "id": "slot.diagram.table.r1c4.text",
+      "type": "text",
+      "attributes": {
+        "x": 573.0,
+        "y": 149.3,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 18.0,
+        "max_width": 62.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r1c4",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r1c4"
+      },
+      "text": "식물원"
+    },
+    {
+      "id": "slot.diagram.table.r1c5.text",
+      "type": "text",
+      "attributes": {
+        "x": 659.0,
+        "y": 149.3,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 18.0,
+        "max_width": 62.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r1c5",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r1c5"
+      },
+      "text": "과학관"
+    },
+    {
+      "id": "slot.diagram.table.r1c6.text",
+      "type": "text",
+      "attributes": {
+        "x": 745.0,
+        "y": 149.3,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 18.0,
+        "max_width": 62.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r1c6",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r1c6"
+      },
+      "text": "합계"
+    },
+    {
+      "id": "slot.diagram.table.r2c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 228.0,
+        "y": 187.3,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 18.0,
+        "max_width": 236.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r2c1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r2c1"
+      },
+      "text": "하은이네 반 학생 수(명)"
+    },
+    {
+      "id": "slot.diagram.table.r2c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 401.0,
+        "y": 187.3,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 18.0,
+        "max_width": 62.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r2c2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r2c2"
+      },
+      "text": "6"
+    },
+    {
+      "id": "slot.diagram.table.r2c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 487.0,
+        "y": 187.3,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 18.0,
+        "max_width": 62.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r2c3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r2c3"
+      },
+      "text": "7"
+    },
+    {
+      "id": "slot.diagram.table.r2c4.text",
+      "type": "text",
+      "attributes": {
+        "x": 573.0,
+        "y": 187.3,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 18.0,
+        "max_width": 62.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r2c4",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r2c4"
+      },
+      "text": "9"
+    },
+    {
+      "id": "slot.diagram.table.r2c5.text",
+      "type": "text",
+      "attributes": {
+        "x": 659.0,
+        "y": 187.3,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 18.0,
+        "max_width": 62.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r2c5",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r2c5"
+      },
+      "text": "5"
+    },
+    {
+      "id": "slot.diagram.table.r2c6.text",
+      "type": "text",
+      "attributes": {
+        "x": 745.0,
+        "y": 187.3,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 18.0,
+        "max_width": 62.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r2c6",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r2c6"
+      },
+      "text": "27"
+    },
+    {
+      "id": "slot.diagram.table.r3c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 228.0,
+        "y": 225.3,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 18.0,
+        "max_width": 236.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r3c1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r3c1"
+      },
+      "text": "소율이네 반 학생 수(명)"
+    },
+    {
+      "id": "slot.diagram.table.r3c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 401.0,
+        "y": 225.3,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 18.0,
+        "max_width": 62.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r3c2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r3c2"
+      },
+      "text": "10"
+    },
+    {
+      "id": "slot.diagram.table.r3c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 487.0,
+        "y": 225.3,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 18.0,
+        "max_width": 62.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r3c3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r3c3"
+      },
+      "text": "2"
+    },
+    {
+      "id": "slot.diagram.table.r3c4.text",
+      "type": "text",
+      "attributes": {
+        "x": 573.0,
+        "y": 225.3,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 18.0,
+        "max_width": 62.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r3c4",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r3c4"
+      },
+      "text": "8"
+    },
+    {
+      "id": "slot.diagram.table.r3c5.text",
+      "type": "text",
+      "attributes": {
+        "x": 659.0,
+        "y": 225.3,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 18.0,
+        "max_width": 62.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r3c5",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r3c5"
+      },
+      "text": "3"
+    },
+    {
+      "id": "slot.diagram.table.r3c6.text",
+      "type": "text",
+      "attributes": {
+        "x": 745.0,
+        "y": 225.3,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 18.0,
+        "max_width": 62.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r3c6",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r3c6"
+      },
+      "text": "23"
+    },
+    {
+      "id": "slot.diagram.text_haeun.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 105.0,
+        "y": 272.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 16.0,
+        "width": 255.0,
+        "height": 98.0,
+        "max_width": 255.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 105.0,
+        "data-box-y": 272.0,
+        "data-box-width": 255.0,
+        "data-box-height": 98.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.35
+      },
+      "source_ref": "slot.diagram.text_haeun",
+      "refs": {
+        "layout_slot_id": "slot.diagram.text_haeun"
+      },
+      "text": "가고 싶은 장소별\n두 반의 학생 수를 합한 수가\n가장 큰 식물원으로\n가면 좋을 것 같아."
+    },
+    {
+      "id": "slot.diagram.text_soyul.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 558.0,
+        "y": 266.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 16.0,
+        "width": 255.0,
+        "height": 98.0,
+        "max_width": 255.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 558.0,
+        "data-box-y": 266.0,
+        "data-box-width": 255.0,
+        "data-box-height": 98.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.35
+      },
+      "source_ref": "slot.diagram.text_soyul",
+      "refs": {
+        "layout_slot_id": "slot.diagram.text_soyul"
+      },
+      "text": "우리 반 학생들이\n가장 많이 가고 싶어 하는\n박물관으로 가면\n좋을 것 같아."
+    },
+    {
+      "id": "slot.choice.option_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 332.0,
+        "y": 362.0,
+        "width": 72.0,
+        "height": 34.0,
+        "fill": "#ffffff",
+        "stroke": "#64748b",
+        "stroke-width": 1.3
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "하은",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 546.0,
+        "y": 362.0,
+        "width": 72.0,
+        "height": 34.0,
+        "fill": "#ffffff",
+        "stroke": "#64748b",
+        "stroke-width": 1.3
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "소율",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.label_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 368.0,
+        "y": 379.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0
+      },
+      "source_ref": "slot.choice.label_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.label_0"
+      },
+      "text": "하은"
+    },
+    {
+      "id": "slot.choice.label_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 582.0,
+        "y": 379.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0
+      },
+      "source_ref": "slot.choice.label_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.label_1"
+      },
+      "text": "소율"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

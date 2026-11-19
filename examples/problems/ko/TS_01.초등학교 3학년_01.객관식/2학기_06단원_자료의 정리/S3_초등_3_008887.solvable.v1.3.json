@@ -1,0 +1,65 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_3_008887",
+  "given": [
+    {
+      "ref": "rep.raw_data",
+      "value": "계절별 점 자료"
+    },
+    {
+      "ref": "rep.table",
+      "value": "계절별 여학생·남학생 수 표"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "type": "choice"
+  },
+  "method": "compare_data_representations",
+  "steps": [
+    {
+      "id": "step.compare",
+      "expr": "is_summarized(표) == True",
+      "value": "표",
+      "explanation": "표를 보면 계절별 태어난 여학생 수와 남학생 수를 한눈에 알 수 있으므로 표가 더 편리합니다."
+    }
+  ],
+  "answer": {
+    "type": "choice",
+    "value": "표",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "표"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "조사한 자료",
+        "value": "조사한 자료"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "표",
+        "value": "표"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "표"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skills": [
+      "data.table_utility"
+    ],
+    "errors": {
+      "조사한 자료": "data.confused_raw_with_table"
+    }
+  }
+}

@@ -1,0 +1,506 @@
+{
+  "problem_id": "S3_초등_3_008885",
+  "view_box": {
+    "width": 886.0,
+    "height": 320.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.context.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 16.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0,
+        "width": 820.0,
+        "height": 54.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 16.0,
+        "data-box-width": 820.0,
+        "data-box-height": 54.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.4
+      },
+      "source_ref": "slot.stem.context",
+      "refs": {
+        "layout_slot_id": "slot.stem.context"
+      },
+      "text": "영채네 반 학생들이 좋아하는 민속놀이를 조사하여 표로 나타내었습니다. 물음에 답하세요."
+    },
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 200.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0,
+        "width": 820.0,
+        "height": 60.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 200.0,
+        "data-box-width": 820.0,
+        "data-box-height": 60.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "49. 좋아하는 학생이 가장 많은 민속놀이부터 순서대로 써보았습니다. 바르게 썼으면 ○표, 그렇지 않으면 ×표를 선택하세요."
+    },
+    {
+      "id": "slot.diagram.table.outer.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 118.0,
+        "y": 102.0,
+        "width": 650.0,
+        "height": 80.0,
+        "fill": "none",
+        "stroke": "#a8a29e",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.table.outer",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.outer"
+      }
+    },
+    {
+      "id": "slot.diagram.table.v1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 288.0,
+        "y1": 102.0,
+        "x2": 288.0,
+        "y2": 182.0,
+        "stroke": "#a8a29e",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.table.v1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.v1"
+      }
+    },
+    {
+      "id": "slot.diagram.table.v2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 384.0,
+        "y1": 102.0,
+        "x2": 384.0,
+        "y2": 182.0,
+        "stroke": "#a8a29e",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.table.v2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.v2"
+      }
+    },
+    {
+      "id": "slot.diagram.table.v3.line",
+      "type": "line",
+      "attributes": {
+        "x1": 480.0,
+        "y1": 102.0,
+        "x2": 480.0,
+        "y2": 182.0,
+        "stroke": "#a8a29e",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.table.v3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.v3"
+      }
+    },
+    {
+      "id": "slot.diagram.table.v4.line",
+      "type": "line",
+      "attributes": {
+        "x1": 576.0,
+        "y1": 102.0,
+        "x2": 576.0,
+        "y2": 182.0,
+        "stroke": "#a8a29e",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.table.v4",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.v4"
+      }
+    },
+    {
+      "id": "slot.diagram.table.v5.line",
+      "type": "line",
+      "attributes": {
+        "x1": 672.0,
+        "y1": 102.0,
+        "x2": 672.0,
+        "y2": 182.0,
+        "stroke": "#a8a29e",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.table.v5",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.v5"
+      }
+    },
+    {
+      "id": "slot.diagram.table.h1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 118.0,
+        "y1": 142.0,
+        "x2": 768.0,
+        "y2": 142.0,
+        "stroke": "#a8a29e",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.table.h1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.h1"
+      }
+    },
+    {
+      "id": "slot.diagram.table_title.text",
+      "type": "text",
+      "attributes": {
+        "x": 443.0,
+        "y": 82.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0
+      },
+      "source_ref": "slot.diagram.table_title",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table_title"
+      },
+      "text": "학생들이 좋아하는 민속놀이"
+    },
+    {
+      "id": "slot.diagram.table.r1c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 203.0,
+        "y": 128.65,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 19.0,
+        "max_width": 146.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r1c1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r1c1"
+      },
+      "text": "민속놀이"
+    },
+    {
+      "id": "slot.diagram.table.r1c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 336.0,
+        "y": 128.65,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 19.0,
+        "max_width": 72.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r1c2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r1c2"
+      },
+      "text": "씨름"
+    },
+    {
+      "id": "slot.diagram.table.r1c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 432.0,
+        "y": 128.65,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 19.0,
+        "max_width": 72.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r1c3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r1c3"
+      },
+      "text": "연날리기"
+    },
+    {
+      "id": "slot.diagram.table.r1c4.text",
+      "type": "text",
+      "attributes": {
+        "x": 528.0,
+        "y": 128.65,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 19.0,
+        "max_width": 72.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r1c4",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r1c4"
+      },
+      "text": "윷놀이"
+    },
+    {
+      "id": "slot.diagram.table.r1c5.text",
+      "type": "text",
+      "attributes": {
+        "x": 624.0,
+        "y": 128.65,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 19.0,
+        "max_width": 72.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r1c5",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r1c5"
+      },
+      "text": "널뛰기"
+    },
+    {
+      "id": "slot.diagram.table.r1c6.text",
+      "type": "text",
+      "attributes": {
+        "x": 720.0,
+        "y": 128.65,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 19.0,
+        "max_width": 72.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r1c6",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r1c6"
+      },
+      "text": "합계"
+    },
+    {
+      "id": "slot.diagram.table.r2c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 203.0,
+        "y": 168.65,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 19.0,
+        "max_width": 146.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r2c1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r2c1"
+      },
+      "text": "학생 수(명)"
+    },
+    {
+      "id": "slot.diagram.table.r2c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 336.0,
+        "y": 168.65,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 19.0,
+        "max_width": 72.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r2c2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r2c2"
+      },
+      "text": ""
+    },
+    {
+      "id": "slot.diagram.table.r2c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 432.0,
+        "y": 168.65,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 19.0,
+        "max_width": 72.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r2c3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r2c3"
+      },
+      "text": "7"
+    },
+    {
+      "id": "slot.diagram.table.r2c4.text",
+      "type": "text",
+      "attributes": {
+        "x": 528.0,
+        "y": 168.65,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 19.0,
+        "max_width": 72.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r2c4",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r2c4"
+      },
+      "text": "6"
+    },
+    {
+      "id": "slot.diagram.table.r2c5.text",
+      "type": "text",
+      "attributes": {
+        "x": 624.0,
+        "y": 168.65,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 19.0,
+        "max_width": 72.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r2c5",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r2c5"
+      },
+      "text": "8"
+    },
+    {
+      "id": "slot.diagram.table.r2c6.text",
+      "type": "text",
+      "attributes": {
+        "x": 720.0,
+        "y": 168.65,
+        "fill": "#111111",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 19.0,
+        "max_width": 72.0,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.diagram.table.r2c6",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table.r2c6"
+      },
+      "text": "30"
+    },
+    {
+      "id": "slot.diagram.order_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 410.0,
+        "y": 282.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.diagram.order_text",
+      "refs": {
+        "layout_slot_id": "slot.diagram.order_text"
+      },
+      "text": "씨름, 널뛰기, 연날리기, 윷놀이 ("
+    },
+    {
+      "id": "slot.choice.option_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 595.0,
+        "y": 282.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "○",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "○"
+    },
+    {
+      "id": "slot.choice.comma_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 628.0,
+        "y": 282.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.choice.comma_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.comma_1"
+      },
+      "text": ","
+    },
+    {
+      "id": "slot.choice.option_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 660.0,
+        "y": 282.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "×",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "×"
+    },
+    {
+      "id": "slot.choice.paren_r.text",
+      "type": "text",
+      "attributes": {
+        "x": 690.0,
+        "y": 282.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.choice.paren_r",
+      "refs": {
+        "layout_slot_id": "slot.choice.paren_r"
+      },
+      "text": ")"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,693 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008883",
+  "title": "표를 보고 여학생이 가장 많이 배우고 싶어 하는 운동 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 355,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.table.outer",
+        "slot.diagram.table.v1",
+        "slot.diagram.table.v2",
+        "slot.diagram.table.v3",
+        "slot.diagram.table.v4",
+        "slot.diagram.table.v5",
+        "slot.diagram.table.h1",
+        "slot.diagram.table.h2",
+        "slot.diagram.table_title",
+        "slot.diagram.table.r1c1",
+        "slot.diagram.table.r1c2",
+        "slot.diagram.table.r1c3",
+        "slot.diagram.table.r1c4",
+        "slot.diagram.table.r1c5",
+        "slot.diagram.table.r1c6",
+        "slot.diagram.table.r2c1",
+        "slot.diagram.table.r2c2",
+        "slot.diagram.table.r2c3",
+        "slot.diagram.table.r2c4",
+        "slot.diagram.table.r2c5",
+        "slot.diagram.table.r2c6",
+        "slot.diagram.table.r3c1",
+        "slot.diagram.table.r3c2",
+        "slot.diagram.table.r3c3",
+        "slot.diagram.table.r3c4",
+        "slot.diagram.table.r3c5",
+        "slot.diagram.table.r3c6",
+        "slot.diagram.sent_1"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.paren_l",
+        "slot.choice.option_0",
+        "slot.choice.comma_1",
+        "slot.choice.option_1",
+        "slot.choice.comma_2",
+        "slot.choice.option_2",
+        "slot.choice.comma_3",
+        "slot.choice.option_3",
+        "slot.choice.paren_r"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "47. 연우네 학교 학생들이 방과 후 수업으로 배우고 싶어 하는 운동을 조사하여 나타낸 표입니다. 표를 보고 알맞은 말을 선택해 보세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 18.0,
+        "width": 820.0,
+        "height": 64.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.diagram.table_title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "여학생과 남학생이 배우고 싶어 하는 운동",
+        "style_role": "body",
+        "x": 443.0,
+        "y": 98.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 118.0,
+        "y": 118.0,
+        "width": 650.0,
+        "height": 126.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.table.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 288.0,
+        "y1": 118.0,
+        "x2": 288.0,
+        "y2": 244.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.table.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 384.0,
+        "y1": 118.0,
+        "x2": 384.0,
+        "y2": 244.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.table.v3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 480.0,
+        "y1": 118.0,
+        "x2": 480.0,
+        "y2": 244.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.table.v4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 576.0,
+        "y1": 118.0,
+        "x2": 576.0,
+        "y2": 244.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.table.v5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 672.0,
+        "y1": 118.0,
+        "x2": 672.0,
+        "y2": 244.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.table.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 118.0,
+        "y1": 160.0,
+        "x2": 768.0,
+        "y2": 160.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.table.h2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 118.0,
+        "y1": 202.0,
+        "x2": 768.0,
+        "y2": 202.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.table.r1c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "운동",
+        "style_role": "table",
+        "x": 203.0,
+        "y": 146.0,
+        "font_size": 20,
+        "max_width": 146.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r1c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "축구",
+        "style_role": "table",
+        "x": 336.0,
+        "y": 146.0,
+        "font_size": 20,
+        "max_width": 72.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r1c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "골프",
+        "style_role": "table",
+        "x": 432.0,
+        "y": 146.0,
+        "font_size": 20,
+        "max_width": 72.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r1c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "야구",
+        "style_role": "table",
+        "x": 528.0,
+        "y": 146.0,
+        "font_size": 20,
+        "max_width": 72.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r1c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "스쿼시",
+        "style_role": "table",
+        "x": 624.0,
+        "y": 146.0,
+        "font_size": 20,
+        "max_width": 72.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r1c6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "합계",
+        "style_role": "table",
+        "x": 720.0,
+        "y": 146.0,
+        "font_size": 20,
+        "max_width": 72.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r2c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "여학생 수(명)",
+        "style_role": "table",
+        "x": 203.0,
+        "y": 188.0,
+        "font_size": 20,
+        "max_width": 146.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r2c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "18",
+        "style_role": "table",
+        "x": 336.0,
+        "y": 188.0,
+        "font_size": 20,
+        "max_width": 72.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r2c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10",
+        "style_role": "table",
+        "x": 432.0,
+        "y": 188.0,
+        "font_size": 20,
+        "max_width": 72.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r2c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "27",
+        "style_role": "table",
+        "x": 528.0,
+        "y": 188.0,
+        "font_size": 20,
+        "max_width": 72.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r2c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "35",
+        "style_role": "table",
+        "x": 624.0,
+        "y": 188.0,
+        "font_size": 20,
+        "max_width": 72.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r2c6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "90",
+        "style_role": "table",
+        "x": 720.0,
+        "y": 188.0,
+        "font_size": 20,
+        "max_width": 72.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r3c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "남학생 수(명)",
+        "style_role": "table",
+        "x": 203.0,
+        "y": 230.0,
+        "font_size": 20,
+        "max_width": 146.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r3c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "32",
+        "style_role": "table",
+        "x": 336.0,
+        "y": 230.0,
+        "font_size": 20,
+        "max_width": 72.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r3c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "20",
+        "style_role": "table",
+        "x": 432.0,
+        "y": 230.0,
+        "font_size": 20,
+        "max_width": 72.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r3c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "28",
+        "style_role": "table",
+        "x": 528.0,
+        "y": 230.0,
+        "font_size": 20,
+        "max_width": 72.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r3c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "15",
+        "style_role": "table",
+        "x": 624.0,
+        "y": 230.0,
+        "font_size": 20,
+        "max_width": 72.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.table.r3c6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "95",
+        "style_role": "table",
+        "x": 720.0,
+        "y": 230.0,
+        "font_size": 20,
+        "max_width": 72.0,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.diagram.sent_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "여학생이 가장 많이 배우고 싶어 하는 운동은",
+        "style_role": "body",
+        "x": 443.0,
+        "y": 276.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.paren_l",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(",
+        "style_role": "body",
+        "x": 230.0,
+        "y": 314.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "축구",
+        "style_role": "body",
+        "x": 275.0,
+        "y": 314.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "축구",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.comma_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 315.0,
+        "y": 314.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "골프",
+        "style_role": "body",
+        "x": 355.0,
+        "y": 314.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "골프",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.comma_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 395.0,
+        "y": 314.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "야구",
+        "style_role": "body",
+        "x": 435.0,
+        "y": 314.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 2,
+          "value": "야구",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.comma_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 475.0,
+        "y": 314.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "스쿼시",
+        "style_role": "body",
+        "x": 525.0,
+        "y": 314.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 3,
+          "value": "스쿼시",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.paren_r",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ")입니다.",
+        "style_role": "body",
+        "x": 612.0,
+        "y": 314.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.table.outer",
+    "slot.diagram.table.v1",
+    "slot.diagram.table.v2",
+    "slot.diagram.table.v3",
+    "slot.diagram.table.v4",
+    "slot.diagram.table.v5",
+    "slot.diagram.table.h1",
+    "slot.diagram.table.h2",
+    "slot.diagram.table_title",
+    "slot.diagram.table.r1c1",
+    "slot.diagram.table.r1c2",
+    "slot.diagram.table.r1c3",
+    "slot.diagram.table.r1c4",
+    "slot.diagram.table.r1c5",
+    "slot.diagram.table.r1c6",
+    "slot.diagram.table.r2c1",
+    "slot.diagram.table.r2c2",
+    "slot.diagram.table.r2c3",
+    "slot.diagram.table.r2c4",
+    "slot.diagram.table.r2c5",
+    "slot.diagram.table.r2c6",
+    "slot.diagram.table.r3c1",
+    "slot.diagram.table.r3c2",
+    "slot.diagram.table.r3c3",
+    "slot.diagram.table.r3c4",
+    "slot.diagram.table.r3c5",
+    "slot.diagram.table.r3c6",
+    "slot.diagram.sent_1",
+    "region.choices",
+    "slot.choice.paren_l",
+    "slot.choice.option_0",
+    "slot.choice.comma_1",
+    "slot.choice.option_1",
+    "slot.choice.comma_2",
+    "slot.choice.option_2",
+    "slot.choice.comma_3",
+    "slot.choice.option_3",
+    "slot.choice.paren_r"
+  ]
+}

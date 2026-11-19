@@ -1,0 +1,104 @@
+{
+  "problem_id": "S3_초등_3_008883",
+  "problem_type": "multiple_choice_table_row_max",
+  "metadata": {
+    "title": "표를 보고 여학생이 가장 많이 배우고 싶어 하는 운동 선택하기",
+    "tags": [],
+    "question": "47. 연우네 학교 학생들이 방과 후 수업으로 배우고 싶어 하는 운동을 조사하여 나타낸 표입니다. 표를 보고 알맞은 말을 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.diagram.table.outer",
+      "slot.diagram.table.v1",
+      "slot.diagram.table.v2",
+      "slot.diagram.table.v3",
+      "slot.diagram.table.v4",
+      "slot.diagram.table.v5",
+      "slot.diagram.table.h1",
+      "slot.diagram.table.h2"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 2,
+    "subject": "수학",
+    "chapter": "06단원_자료의 정리",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "cat.soccer_girls",
+        "type": "survey_item",
+        "label": "축구(여학생)",
+        "count": 18
+      },
+      {
+        "id": "cat.golf_girls",
+        "type": "survey_item",
+        "label": "골프(여학생)",
+        "count": 10
+      },
+      {
+        "id": "cat.baseball_girls",
+        "type": "survey_item",
+        "label": "야구(여학생)",
+        "count": 27
+      },
+      {
+        "id": "cat.squash_girls",
+        "type": "survey_item",
+        "label": "스쿼시(여학생)",
+        "count": 35
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.maximum_girls",
+        "type": "has_max_count",
+        "from_id": "cat.squash_girls",
+        "to_id": "value.35"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "스쿼시",
+    "unit": "",
+    "answer_index": 3,
+    "values": [
+      "스쿼시"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "축구",
+        "value": "축구"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "골프",
+        "value": "골프"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "야구",
+        "value": "야구"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "스쿼시",
+        "value": "스쿼시"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_3",
+        "value": "스쿼시"
+      }
+    ]
+  }
+}

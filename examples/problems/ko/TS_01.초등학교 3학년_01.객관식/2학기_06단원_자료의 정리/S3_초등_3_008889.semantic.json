@@ -1,0 +1,91 @@
+{
+  "problem_id": "S3_초등_3_008889",
+  "problem_type": "multiple_choice_picture_graph_design",
+  "metadata": {
+    "title": "표를 보고 그림그래프에 필요한 그림의 가지 수 선택하기",
+    "tags": [],
+    "question": "53. 호정이네 마을의 목장에서 생산한 우유의 양을 조사하여 표로 나타내었습니다. 알맞은 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.table.outer",
+      "slot.diagram.table.v1",
+      "slot.diagram.table.v2",
+      "slot.diagram.table.v3",
+      "slot.diagram.table.v4",
+      "slot.diagram.table.v5",
+      "slot.diagram.table.h1"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 2,
+    "subject": "수학",
+    "chapter": "06단원_자료의 정리",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "farm.ga",
+        "type": "survey_item",
+        "label": "가",
+        "production_kg": 36
+      },
+      {
+        "id": "farm.na",
+        "type": "survey_item",
+        "label": "나",
+        "production_kg": 31
+      },
+      {
+        "id": "farm.da",
+        "type": "survey_item",
+        "label": "다",
+        "production_kg": 25
+      },
+      {
+        "id": "farm.ra",
+        "type": "survey_item",
+        "label": "라",
+        "production_kg": 43
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.icon_kinds",
+        "type": "requires_icon_types",
+        "from_id": "farm.ga",
+        "to_id": "value.2"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": "2",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "2"
+    ],
+    "blanks": [],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "1",
+        "value": "1"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "2",
+        "value": "2"
+      }
+    ],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "2"
+      }
+    ]
+  }
+}
