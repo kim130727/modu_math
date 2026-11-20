@@ -1,0 +1,95 @@
+{
+  "problem_id": "S3_초등_3_011982",
+  "problem_type": "short_answer_multiplication_missing_factor",
+  "metadata": {
+    "title": "41 × □ = 82에서 □ 구하기",
+    "tags": [],
+    "instruction": "41 ×",
+    "question": "□ 안에 알맞은 수를 구하세요.",
+    "required_layout_ids": [
+      "slot.diagram.equation_box",
+      "slot.diagram.blank_square",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "04단원_곱셈",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "□ 안에 알맞은 수를 구하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "quantity.multiplicand",
+        "type": "quantity",
+        "label": "곱해지는 수",
+        "value": 41
+      },
+      {
+        "id": "quantity.multiplier",
+        "type": "quantity",
+        "label": "곱하는 수 □",
+        "value": 2
+      },
+      {
+        "id": "quantity.product",
+        "type": "quantity",
+        "label": "곱",
+        "value": 82
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.multiplication",
+        "type": "product_of",
+        "multiplicand": "quantity.multiplicand",
+        "multiplier": "quantity.multiplier",
+        "product": "quantity.product"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": 2
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": 2,
+        "diagnostics": [
+          {
+            "id": "diag.missing_multiplier_error",
+            "condition": "answer_not_equals_2",
+            "concept": "몇십몇 × 몇의 역산",
+            "reason": "41에 곱해서 82가 되는 수를 잘못 구함",
+            "feedback": "40 × □ = 80, 1 × □ = 2를 만족하는 수를 생각해 보세요. □ = 2입니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": 2,
+    "unit": "",
+    "values": [
+      2
+    ]
+  }
+}

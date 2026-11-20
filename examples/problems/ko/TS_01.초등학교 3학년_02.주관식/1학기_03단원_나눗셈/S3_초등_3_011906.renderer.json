@@ -1,0 +1,165 @@
+{
+  "problem_id": "S3_초등_3_011906",
+  "view_box": {
+    "width": 900.0,
+    "height": 240.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.answer.input.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 552.0,
+        "y": 154.0,
+        "width": 120.0,
+        "height": 54.0,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.4
+      },
+      "source_ref": "slot.answer.input",
+      "refs": {
+        "layout_slot_id": "slot.answer.input"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "integer",
+        "max_length": 3,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": false,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 16,
+        "max_font_size": 28,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222",
+        "width": 120.0,
+        "height": 54.0
+      }
+    },
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 26.0,
+        "width": 836.0,
+        "height": 96.0,
+        "max_width": 836.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 836.0,
+        "data-box-height": 96.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "경수는 빈 병을 상자에 담으려고 합니다. 빈 병 72개를 한 상자에 8개씩 담는다면 몇 상자가 될까요?"
+    },
+    {
+      "id": "slot.answer.paren_left.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 520.0,
+        "y": 154.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 26.0,
+        "width": 26.0,
+        "height": 54.0,
+        "max_width": 26.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 520.0,
+        "data-box-y": 154.0,
+        "data-box-width": 26.0,
+        "data-box-height": 54.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.answer.paren_left",
+      "refs": {
+        "layout_slot_id": "slot.answer.paren_left"
+      },
+      "text": "("
+    },
+    {
+      "id": "slot.answer.unit.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 680.0,
+        "y": 154.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 26.0,
+        "width": 64.0,
+        "height": 54.0,
+        "max_width": 64.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 680.0,
+        "data-box-y": 154.0,
+        "data-box-width": 64.0,
+        "data-box-height": 54.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.answer.unit",
+      "refs": {
+        "layout_slot_id": "slot.answer.unit"
+      },
+      "text": "상자"
+    },
+    {
+      "id": "slot.answer.paren_right.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 748.0,
+        "y": 154.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 26.0,
+        "width": 26.0,
+        "height": 54.0,
+        "max_width": 26.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 748.0,
+        "data-box-y": 154.0,
+        "data-box-width": 26.0,
+        "data-box-height": 54.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.answer.paren_right",
+      "refs": {
+        "layout_slot_id": "slot.answer.paren_right"
+      },
+      "text": ")"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

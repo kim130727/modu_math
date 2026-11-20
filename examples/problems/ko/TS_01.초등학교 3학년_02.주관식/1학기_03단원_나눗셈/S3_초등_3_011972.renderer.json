@@ -1,0 +1,206 @@
+{
+  "problem_id": "S3_초등_3_011972",
+  "view_box": {
+    "width": 900.0,
+    "height": 320.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.answer.input_expr.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 252.0,
+        "y": 164.0,
+        "width": 360.0,
+        "height": 52.0,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.4
+      },
+      "source_ref": "slot.answer.input_expr",
+      "refs": {
+        "layout_slot_id": "slot.answer.input_expr"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "text",
+        "max_length": 20,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": false,
+        "keyboard": "text"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 16,
+        "max_font_size": 26,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222",
+        "width": 360.0,
+        "height": 52.0
+      }
+    },
+    {
+      "id": "slot.answer.input_ans.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 252.0,
+        "y": 236.0,
+        "width": 130.0,
+        "height": 52.0,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.4
+      },
+      "source_ref": "slot.answer.input_ans",
+      "refs": {
+        "layout_slot_id": "slot.answer.input_ans"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "integer",
+        "max_length": 3,
+        "include_in_submission": true,
+        "order": 1,
+        "group_id": "final_answer",
+        "auto_advance": false,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 16,
+        "max_font_size": 28,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222",
+        "width": 130.0,
+        "height": 52.0
+      }
+    },
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 26.0,
+        "width": 836.0,
+        "height": 104.0,
+        "max_width": 836.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 836.0,
+        "data-box-height": 104.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "공책이 36권 있습니다. 한 명에게 4권씩 나누어 주려고 합니다. 몇 명에게 나누어 줄 수 있는지 식을 쓰고, 답을 구하세요."
+    },
+    {
+      "id": "slot.answer.expr_label.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 180.0,
+        "y": 164.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 26.0,
+        "width": 60.0,
+        "height": 52.0,
+        "max_width": 60.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 180.0,
+        "data-box-y": 164.0,
+        "data-box-width": 60.0,
+        "data-box-height": 52.0,
+        "data-text-align": "right",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.answer.expr_label",
+      "refs": {
+        "layout_slot_id": "slot.answer.expr_label"
+      },
+      "text": "식 :"
+    },
+    {
+      "id": "slot.answer.ans_label.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 180.0,
+        "y": 236.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 26.0,
+        "width": 60.0,
+        "height": 52.0,
+        "max_width": 60.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 180.0,
+        "data-box-y": 236.0,
+        "data-box-width": 60.0,
+        "data-box-height": 52.0,
+        "data-text-align": "right",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.answer.ans_label",
+      "refs": {
+        "layout_slot_id": "slot.answer.ans_label"
+      },
+      "text": "답 :"
+    },
+    {
+      "id": "slot.answer.unit.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 392.0,
+        "y": 236.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 26.0,
+        "width": 40.0,
+        "height": 52.0,
+        "max_width": 40.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 392.0,
+        "data-box-y": 236.0,
+        "data-box-width": 40.0,
+        "data-box-height": 52.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.answer.unit",
+      "refs": {
+        "layout_slot_id": "slot.answer.unit"
+      },
+      "text": "명"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

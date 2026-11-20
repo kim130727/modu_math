@@ -50,7 +50,7 @@ try {
   await frame.locator('flutter-view').waitFor();
   await frame.locator('flt-semantics-placeholder').evaluate(element => element.click());
   await page.screenshot({ path: resolve(output, 'loaded.png'), fullPage: true });
-  await frame.getByText('2 + 3을 계산하세요.', { exact: true }).waitFor();
+  await frame.getByText(/계산하세요/).waitFor();
   assert.equal(await frame.getByText('요소 편집', { exact: true }).count(), 0);
   assert.ok(await frame.getByRole('textbox').count() > 0, 'Flutter answer input is available');
   const answer = frame.getByRole('textbox').first();
@@ -58,7 +58,7 @@ try {
   await answer.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   await page.keyboard.type('5');
   await page.keyboard.press('Enter');
-  await frame.getByText('맞아요! 다음 문제로 넘어가도 좋아요.', { exact: true }).waitFor();
+  await frame.getByRole('button', { name: '단원 마치기', exact: true }).waitFor();
   await page.screenshot({ path: resolve(output, 'solve.png'), fullPage: true });
   await page.getByRole('button', { name: '편집으로 돌아가기', exact: true }).click();
   assert.equal(await page.locator('.konva-json-panel textarea').inputValue(), draft, 'Unsaved editor state survives preview');

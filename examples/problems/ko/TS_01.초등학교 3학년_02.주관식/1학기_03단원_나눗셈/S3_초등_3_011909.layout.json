@@ -1,0 +1,157 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_011909",
+  "title": "전체 다리 수로 닭의 수 구하기",
+  "canvas": {
+    "width": 900,
+    "height": 246,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer.input",
+        "slot.stem.question",
+        "slot.answer.paren_left",
+        "slot.answer.unit",
+        "slot.answer.paren_right"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "마당에 닭과 강아지가 있습니다. 다리를 세어 보니 모두 30개였습니다. 강아지가 4마리라면 닭은 몇 마리일까요?",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 836.0,
+        "height": 104.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 26,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.answer.paren_left",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(",
+        "style_role": "body",
+        "x": 520.0,
+        "y": 160.0,
+        "width": 26.0,
+        "height": 54.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 26,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.answer.input",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 552.0,
+        "y": 160.0,
+        "width": 120.0,
+        "height": 54.0,
+        "stroke": "#111827",
+        "stroke_width": 1.4,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "integer",
+          "max_length": 3,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "auto_advance": false,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 16,
+          "max_font_size": 28,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 120.0,
+          "height": 54.0
+        }
+      }
+    },
+    {
+      "id": "slot.answer.unit",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "마리",
+        "style_role": "body",
+        "x": 680.0,
+        "y": 160.0,
+        "width": 64.0,
+        "height": 54.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 26,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.answer.paren_right",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": ")",
+        "style_role": "body",
+        "x": 748.0,
+        "y": 160.0,
+        "width": 26.0,
+        "height": 54.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 26,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.answer.input",
+    "slot.stem.question",
+    "slot.answer.paren_left",
+    "slot.answer.unit",
+    "slot.answer.paren_right"
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "problem_id": "S3_초등_3_011967",
+  "problem_type": "short_answer_division_word_problem",
+  "metadata": {
+    "title": "한 바구니에 담을 참외 수 구하기",
+    "tags": [],
+    "instruction": "(",
+    "question": "참외 30개를 바구니에 똑같이 나누어 담으려면 5바구니가 필요합니다. 한 바구니에 몇 개씩 담아야 할까요?",
+    "required_layout_ids": [
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "03단원_나눗셈",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "참외 30개를 바구니에 똑같이 나누어 담으려면 5바구니가 필요합니다. 한 바구니에 몇 개씩 담아야 할까요?"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "quantity.total_melons",
+        "type": "quantity",
+        "label": "전체 참외 수",
+        "value": 30,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.baskets",
+        "type": "quantity",
+        "label": "바구니 수",
+        "value": 5,
+        "unit": "바구니"
+      },
+      {
+        "id": "quantity.melons_per_basket",
+        "type": "quantity",
+        "label": "한 바구니에 담는 참외 수",
+        "value": 6,
+        "unit": "개"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.division",
+        "type": "quotient_of",
+        "dividend": "quantity.total_melons",
+        "divisor": "quantity.baskets",
+        "quotient": "quantity.melons_per_basket"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": 6
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": 6,
+        "diagnostics": [
+          {
+            "id": "diag.division_error",
+            "condition": "answer_not_equals_6",
+            "concept": "똑같이 나누기",
+            "reason": "30 ÷ 5의 계산을 잘못함",
+            "feedback": "참외 30개를 5바구니에 똑같이 나누어 담으므로 30 ÷ 5를 계산해 보세요."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": 6,
+    "unit": "개",
+    "values": [
+      6
+    ]
+  }
+}

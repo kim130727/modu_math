@@ -1,0 +1,157 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_011980",
+  "title": "비스킷 20개씩 3줄의 전체 개수 구하기",
+  "canvas": {
+    "width": 900,
+    "height": 228,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer.input",
+        "slot.stem.question",
+        "slot.answer.paren_left",
+        "slot.answer.unit",
+        "slot.answer.paren_right"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "비스킷이 한 줄에 20개씩 3줄 있습니다. 비스킷은 모두 몇 개일까요?",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 836.0,
+        "height": 88.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 26,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.answer.paren_left",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(",
+        "style_role": "body",
+        "x": 560.0,
+        "y": 142.0,
+        "width": 26.0,
+        "height": 54.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 26,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.answer.input",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 592.0,
+        "y": 142.0,
+        "width": 110.0,
+        "height": 54.0,
+        "stroke": "#111827",
+        "stroke_width": 1.4,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "integer",
+          "max_length": 3,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "auto_advance": false,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 16,
+          "max_font_size": 28,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 110.0,
+          "height": 54.0
+        }
+      }
+    },
+    {
+      "id": "slot.answer.unit",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "개",
+        "style_role": "body",
+        "x": 710.0,
+        "y": 142.0,
+        "width": 36.0,
+        "height": 54.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 26,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.answer.paren_right",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": ")",
+        "style_role": "body",
+        "x": 750.0,
+        "y": 142.0,
+        "width": 26.0,
+        "height": 54.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 26,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.answer.input",
+    "slot.stem.question",
+    "slot.answer.paren_left",
+    "slot.answer.unit",
+    "slot.answer.paren_right"
+  ]
+}

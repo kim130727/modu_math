@@ -1,0 +1,130 @@
+{
+  "problem_id": "S3_초등_3_011971",
+  "problem_type": "short_answer_chained_division",
+  "metadata": {
+    "title": "연속 나눗셈에서 ㉠, ㉡ 구하기",
+    "tags": [],
+    "instruction": "÷6",
+    "question": "㉠, ㉡에 알맞은 수를 각각 구하세요.",
+    "required_layout_ids": [
+      "slot.diagram.arc_1",
+      "slot.diagram.arc_2",
+      "slot.diagram.op_1_bg",
+      "slot.diagram.op_2_bg",
+      "slot.diagram.box_start",
+      "slot.diagram.box_g",
+      "slot.diagram.box_n",
+      "slot.answer.input_g",
+      "slot.answer.input_n"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "03단원_나눗셈",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "㉠, ㉡에 알맞은 수를 각각 구하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "quantity.start",
+        "type": "quantity",
+        "label": "처음 수",
+        "value": 48
+      },
+      {
+        "id": "quantity.g",
+        "type": "quantity",
+        "label": "㉠",
+        "value": 8
+      },
+      {
+        "id": "quantity.n",
+        "type": "quantity",
+        "label": "㉡",
+        "value": 4
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.step1",
+        "type": "quotient_of",
+        "dividend": "quantity.start",
+        "divisor": 6,
+        "quotient": "quantity.g"
+      },
+      {
+        "id": "relation.step2",
+        "type": "quotient_of",
+        "dividend": "quantity.g",
+        "divisor": 2,
+        "quotient": "quantity.n"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input_g",
+        "slot_id": "slot.answer.input_g",
+        "expected": 8
+      },
+      {
+        "id": "slot.answer.input_n",
+        "slot_id": "slot.answer.input_n",
+        "expected": 4
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input_g",
+        "value": 8,
+        "diagnostics": [
+          {
+            "id": "diag.step1_division_error",
+            "condition": "answer_not_equals_8",
+            "concept": "나눗셈 계산 (48 ÷ 6)",
+            "reason": "48 ÷ 6의 몫을 잘못 계산함",
+            "feedback": "6 × □ = 48이 되는 수를 생각해 보세요. 6 × 8 = 48이므로 ㉠은 8입니다."
+          }
+        ]
+      },
+      {
+        "slot_id": "slot.answer.input_n",
+        "value": 4,
+        "diagnostics": [
+          {
+            "id": "diag.step2_division_error",
+            "condition": "answer_not_equals_4",
+            "concept": "연속 나눗셈 (8 ÷ 2)",
+            "reason": "㉠의 결과를 2로 나누는 계산을 잘못함",
+            "feedback": "㉠에서 구한 8을 2로 나누어 보세요. 8 ÷ 2 = 4입니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": [
+      8,
+      4
+    ],
+    "unit": "",
+    "values": [
+      8,
+      4
+    ]
+  }
+}

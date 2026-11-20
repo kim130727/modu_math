@@ -1,0 +1,119 @@
+{
+  "problem_id": "S3_초등_3_011972",
+  "problem_type": "short_answer_division_equation_and_answer",
+  "metadata": {
+    "title": "공책 나누어 주기 식 쓰고 답 구하기",
+    "tags": [],
+    "instruction": "식 :",
+    "question": "공책이 36권 있습니다. 한 명에게 4권씩 나누어 주려고 합니다. 몇 명에게 나누어 줄 수 있는지 식을 쓰고, 답을 구하세요.",
+    "required_layout_ids": [
+      "slot.answer.input_expr",
+      "slot.answer.input_ans"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "03단원_나눗셈",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "공책이 36권 있습니다. 한 명에게 4권씩 나누어 주려고 합니다. 몇 명에게 나누어 줄 수 있는지 식을 쓰고, 답을 구하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "quantity.total_notebooks",
+        "type": "quantity",
+        "label": "전체 공책 수",
+        "value": 36,
+        "unit": "권"
+      },
+      {
+        "id": "quantity.per_person",
+        "type": "quantity",
+        "label": "한 명에게 주는 공책 수",
+        "value": 4,
+        "unit": "권"
+      },
+      {
+        "id": "quantity.people",
+        "type": "quantity",
+        "label": "나누어 줄 수 있는 사람 수",
+        "value": 9,
+        "unit": "명"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.division",
+        "type": "quotient_of",
+        "dividend": "quantity.total_notebooks",
+        "divisor": "quantity.per_person",
+        "quotient": "quantity.people"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input_expr",
+        "slot_id": "slot.answer.input_expr",
+        "expected": "36 ÷ 4 = 9"
+      },
+      {
+        "id": "slot.answer.input_ans",
+        "slot_id": "slot.answer.input_ans",
+        "expected": 9
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input_expr",
+        "value": "36 ÷ 4 = 9",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_expression",
+            "condition": "answer_not_equals_36_div_4_eq_9",
+            "concept": "나눗셈식 세우기",
+            "reason": "전체 36권을 4권씩 나누는 식을 올바르게 세우지 못함",
+            "feedback": "공책 36권을 한 명에게 4권씩 나누어 주므로 식은 36 ÷ 4 = 9입니다."
+          }
+        ]
+      },
+      {
+        "slot_id": "slot.answer.input_ans",
+        "value": 9,
+        "diagnostics": [
+          {
+            "id": "diag.division_error",
+            "condition": "answer_not_equals_9",
+            "concept": "4의 단 곱셈구구",
+            "reason": "36 ÷ 4의 몫을 잘못 구함",
+            "feedback": "4 × □ = 36이 되는 수를 생각해 보세요. 4 × 9 = 36이므로 9명에게 나누어 줄 수 있습니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": [
+      "36 ÷ 4 = 9",
+      9
+    ],
+    "unit": "명",
+    "values": [
+      "36 ÷ 4 = 9",
+      9
+    ]
+  }
+}

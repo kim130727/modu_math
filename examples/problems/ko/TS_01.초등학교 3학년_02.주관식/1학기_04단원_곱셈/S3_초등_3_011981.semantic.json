@@ -1,0 +1,108 @@
+{
+  "problem_id": "S3_초등_3_011981",
+  "problem_type": "short_answer_multiplication_money",
+  "metadata": {
+    "title": "동전 23원씩 2묶음의 전체 금액 구하기",
+    "tags": [],
+    "instruction": "10",
+    "question": "동전이 23원씩 2묶음 있습니다. 모두 얼마일까요?",
+    "required_layout_ids": [
+      "slot.diagram.group_1_box",
+      "slot.diagram.group_1_coin10_1",
+      "slot.diagram.group_1_coin10_2",
+      "slot.diagram.group_1_coin1_1",
+      "slot.diagram.group_1_coin1_2",
+      "slot.diagram.group_1_coin1_3",
+      "slot.diagram.group_2_box",
+      "slot.diagram.group_2_coin10_1",
+      "slot.diagram.group_2_coin10_2",
+      "slot.diagram.group_2_coin1_1",
+      "slot.diagram.group_2_coin1_2",
+      "slot.diagram.group_2_coin1_3",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "04단원_곱셈",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "동전이 23원씩 2묶음 있습니다. 모두 얼마일까요?"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "quantity.amount_per_group",
+        "type": "quantity",
+        "label": "한 묶음의 금액",
+        "value": 23,
+        "unit": "원"
+      },
+      {
+        "id": "quantity.groups",
+        "type": "quantity",
+        "label": "묶음 수",
+        "value": 2,
+        "unit": "묶음"
+      },
+      {
+        "id": "quantity.total_amount",
+        "type": "quantity",
+        "label": "전체 금액",
+        "value": 46,
+        "unit": "원"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.multiplication",
+        "type": "product_of",
+        "multiplicand": "quantity.amount_per_group",
+        "multiplier": "quantity.groups",
+        "product": "quantity.total_amount"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": 46
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": 46,
+        "diagnostics": [
+          {
+            "id": "diag.multiplication_error",
+            "condition": "answer_not_equals_46",
+            "concept": "올림이 없는 (두 자리 수) × (한 자리 수)",
+            "reason": "23 × 2의 계산을 잘못함",
+            "feedback": "10원짜리 2개가 2묶음이므로 40원, 1원짜리 3개가 2묶음이므로 6원입니다. 모두 46원입니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": 46,
+    "unit": "원",
+    "values": [
+      46
+    ]
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "problem_id": "S3_초등_3_011980",
+  "view_box": {
+    "width": 900.0,
+    "height": 228.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.answer.input.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 592.0,
+        "y": 142.0,
+        "width": 110.0,
+        "height": 54.0,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.4
+      },
+      "source_ref": "slot.answer.input",
+      "refs": {
+        "layout_slot_id": "slot.answer.input"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "integer",
+        "max_length": 3,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": false,
+        "keyboard": "number"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 16,
+        "max_font_size": 28,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222",
+        "width": 110.0,
+        "height": 54.0
+      }
+    },
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 26.0,
+        "width": 836.0,
+        "height": 88.0,
+        "max_width": 836.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 836.0,
+        "data-box-height": 88.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "비스킷이 한 줄에 20개씩 3줄 있습니다. 비스킷은 모두 몇 개일까요?"
+    },
+    {
+      "id": "slot.answer.paren_left.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 560.0,
+        "y": 142.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 26.0,
+        "width": 26.0,
+        "height": 54.0,
+        "max_width": 26.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 560.0,
+        "data-box-y": 142.0,
+        "data-box-width": 26.0,
+        "data-box-height": 54.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.answer.paren_left",
+      "refs": {
+        "layout_slot_id": "slot.answer.paren_left"
+      },
+      "text": "("
+    },
+    {
+      "id": "slot.answer.unit.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 710.0,
+        "y": 142.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 26.0,
+        "width": 36.0,
+        "height": 54.0,
+        "max_width": 36.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 710.0,
+        "data-box-y": 142.0,
+        "data-box-width": 36.0,
+        "data-box-height": 54.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.answer.unit",
+      "refs": {
+        "layout_slot_id": "slot.answer.unit"
+      },
+      "text": "개"
+    },
+    {
+      "id": "slot.answer.paren_right.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 750.0,
+        "y": 142.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 26.0,
+        "width": 26.0,
+        "height": 54.0,
+        "max_width": 26.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 750.0,
+        "data-box-y": 142.0,
+        "data-box-width": 26.0,
+        "data-box-height": 54.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.answer.paren_right",
+      "refs": {
+        "layout_slot_id": "slot.answer.paren_right"
+      },
+      "text": ")"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

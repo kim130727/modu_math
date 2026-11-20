@@ -1,0 +1,96 @@
+{
+  "problem_id": "S3_초등_3_011907",
+  "problem_type": "short_answer_multiplication_word_problem",
+  "metadata": {
+    "title": "주차장 자동차 바퀴 수 구하기",
+    "tags": [],
+    "instruction": "(",
+    "question": "주차장에 자동차가 18대 있습니다. 자동차의 바퀴는 4개씩입니다. 주차장에 있는 자동차의 바퀴는 모두 몇 개일까요?",
+    "required_layout_ids": [
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "04단원_곱셈",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "주차장에 자동차가 18대 있습니다. 자동차의 바퀴는 4개씩입니다. 주차장에 있는 자동차의 바퀴는 모두 몇 개일까요?"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "quantity.cars",
+        "type": "quantity",
+        "label": "자동차 수",
+        "value": 18,
+        "unit": "대"
+      },
+      {
+        "id": "quantity.wheels_per_car",
+        "type": "quantity",
+        "label": "자동차 1대의 바퀴 수",
+        "value": 4,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.total_wheels",
+        "type": "quantity",
+        "label": "전체 바퀴 수",
+        "value": 72,
+        "unit": "개"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.multiplication",
+        "type": "product_of",
+        "multiplicand": "quantity.cars",
+        "multiplier": "quantity.wheels_per_car",
+        "product": "quantity.total_wheels"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": 72
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": 72,
+        "diagnostics": [
+          {
+            "id": "diag.forgot_carry",
+            "condition": "answer_equals_42",
+            "concept": "올림이 있는 곱셈",
+            "reason": "8 × 4 = 32에서 십의 자리로 올린 3을 더하지 않음",
+            "feedback": "일의 자리 계산 8 × 4 = 32에서 올린 3을 십의 자리 계산 10 × 4 = 40에 꼭 더해 보세요."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": 72,
+    "unit": "개",
+    "values": [
+      72
+    ]
+  }
+}

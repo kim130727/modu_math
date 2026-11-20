@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_web_libraries_in_flutter, deprecated_member_use
 
 import 'dart:async';
+import 'dart:convert';
 import 'dart:html' as html;
 
 import '../widgets/renderer_json_canvas.dart';
@@ -16,8 +17,9 @@ class EditorHostBridge {
         _onSelection = onSelection,
         _onMode = onMode {
     _subscription = html.window.onMessage.listen((event) {
-      if (event.origin != html.window.location.origin ||
-          event.source != html.window.parent) {
+      // dart:html may expose another frame's Window as a null event.source.
+      // The host also checks both origin and source on incoming messages.
+      if (event.origin != html.window.location.origin) {
         return;
       }
       final raw = event.data;
@@ -27,7 +29,10 @@ class EditorHostBridge {
         case 'modu-math:host-problem':
           final problem = message['problem'];
           if (problem is Map) {
-            _onProblem?.call(Map<String, dynamic>.from(problem));
+            // Structured-clone maps have dynamic keys in nested objects.
+            // Normalize the entire bundle just like repository JSON decoding.
+            _onProblem
+                ?.call(jsonDecode(jsonEncode(problem)) as Map<String, dynamic>);
           }
           break;
         case 'modu-math:host-renderer':

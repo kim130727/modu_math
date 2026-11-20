@@ -1,0 +1,94 @@
+{
+  "problem_id": "S3_초등_3_012065",
+  "problem_type": "short_answer_division_computation",
+  "metadata": {
+    "title": "나눗셈 계산하기 (40 ÷ 8)",
+    "tags": [],
+    "instruction": "40 ÷ 8 =",
+    "question": "나눗셈을 하세요.\n40 ÷ 8 =",
+    "required_layout_ids": [
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "03단원_나눗셈",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question",
+        "slot.stem.expression"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "나눗셈을 하세요.\n40 ÷ 8 ="
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "quantity.dividend",
+        "type": "quantity",
+        "label": "나누어지는 수",
+        "value": 40
+      },
+      {
+        "id": "quantity.divisor",
+        "type": "quantity",
+        "label": "나누는 수",
+        "value": 8
+      },
+      {
+        "id": "quantity.quotient",
+        "type": "quantity",
+        "label": "몫",
+        "value": 5
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.division",
+        "type": "quotient_of",
+        "dividend": "quantity.dividend",
+        "divisor": "quantity.divisor",
+        "quotient": "quantity.quotient"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": 5
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": 5,
+        "diagnostics": [
+          {
+            "id": "diag.multiplication_fact_error",
+            "condition": "answer_not_equals_5",
+            "concept": "8의 단 곱셈구구",
+            "reason": "40 ÷ 8의 몫을 잘못 구함",
+            "feedback": "나누는 수 8을 보고 8의 단 곱셈구구를 떠올려 보세요. 8 × 5 = 40이므로 몫은 5입니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": 5,
+    "unit": "",
+    "values": [
+      5
+    ]
+  }
+}

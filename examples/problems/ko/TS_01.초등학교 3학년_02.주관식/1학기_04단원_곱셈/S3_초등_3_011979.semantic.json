@@ -1,0 +1,96 @@
+{
+  "problem_id": "S3_초등_3_011979",
+  "problem_type": "short_answer_multiplication_word_problem",
+  "metadata": {
+    "title": "배 10개씩 5봉지의 전체 개수 구하기",
+    "tags": [],
+    "instruction": "(",
+    "question": "한 봉지에 배가 10개씩 들어 있습니다. 5봉지에 들어 있는 배는 모두 몇 개일까요?",
+    "required_layout_ids": [
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "04단원_곱셈",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "한 봉지에 배가 10개씩 들어 있습니다. 5봉지에 들어 있는 배는 모두 몇 개일까요?"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "quantity.pears_per_bag",
+        "type": "quantity",
+        "label": "한 봉지의 배 수",
+        "value": 10,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.bags",
+        "type": "quantity",
+        "label": "봉지 수",
+        "value": 5,
+        "unit": "봉지"
+      },
+      {
+        "id": "quantity.total_pears",
+        "type": "quantity",
+        "label": "전체 배 수",
+        "value": 50,
+        "unit": "개"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.multiplication",
+        "type": "product_of",
+        "multiplicand": "quantity.pears_per_bag",
+        "multiplier": "quantity.bags",
+        "product": "quantity.total_pears"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": 50
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": 50,
+        "diagnostics": [
+          {
+            "id": "diag.multiplication_error",
+            "condition": "answer_not_equals_50",
+            "concept": "몇십 곱하기 몇",
+            "reason": "10 × 5의 계산을 잘못함",
+            "feedback": "10개씩 5봉지이므로 10 × 5 = 50(개)입니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": 50,
+    "unit": "개",
+    "values": [
+      50
+    ]
+  }
+}

@@ -1,0 +1,781 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_011974",
+  "title": "사과 묶음을 곱셈식으로 나타내기",
+  "canvas": {
+    "width": 900,
+    "height": 468,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.box_outer",
+        "slot.diagram.plate_1",
+        "slot.diagram.plate_1_apple_1",
+        "slot.diagram.plate_1_apple_2",
+        "slot.diagram.plate_1_apple_3",
+        "slot.diagram.plate_2",
+        "slot.diagram.plate_2_apple_1",
+        "slot.diagram.plate_2_apple_2",
+        "slot.diagram.plate_2_apple_3",
+        "slot.diagram.plate_3",
+        "slot.diagram.plate_3_apple_1",
+        "slot.diagram.plate_3_apple_2",
+        "slot.diagram.plate_3_apple_3",
+        "slot.diagram.plate_4",
+        "slot.diagram.plate_4_apple_1",
+        "slot.diagram.plate_4_apple_2",
+        "slot.diagram.plate_4_apple_3",
+        "slot.diagram.plate_5",
+        "slot.diagram.plate_5_apple_1",
+        "slot.diagram.plate_5_apple_2",
+        "slot.diagram.plate_5_apple_3",
+        "slot.diagram.plate_6",
+        "slot.diagram.plate_6_apple_1",
+        "slot.diagram.plate_6_apple_2",
+        "slot.diagram.plate_6_apple_3",
+        "slot.answer.input",
+        "slot.diagram.plate_1_stem_1",
+        "slot.diagram.plate_1_stem_2",
+        "slot.diagram.plate_1_stem_3",
+        "slot.diagram.plate_2_stem_1",
+        "slot.diagram.plate_2_stem_2",
+        "slot.diagram.plate_2_stem_3",
+        "slot.diagram.plate_3_stem_1",
+        "slot.diagram.plate_3_stem_2",
+        "slot.diagram.plate_3_stem_3",
+        "slot.diagram.plate_4_stem_1",
+        "slot.diagram.plate_4_stem_2",
+        "slot.diagram.plate_4_stem_3",
+        "slot.diagram.plate_5_stem_1",
+        "slot.diagram.plate_5_stem_2",
+        "slot.diagram.plate_5_stem_3",
+        "slot.diagram.plate_6_stem_1",
+        "slot.diagram.plate_6_stem_2",
+        "slot.diagram.plate_6_stem_3",
+        "slot.stem.question",
+        "slot.answer.paren_left",
+        "slot.answer.paren_right"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "그림을 보고 사과는 모두 몇 개인지 곱셈식으로 나타내세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 836.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 26,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.45,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.box_outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 70.0,
+        "y": 84.0,
+        "width": 760.0,
+        "height": 278.0,
+        "stroke": "#7dd3fc",
+        "stroke_width": 2.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 125 152 Q 220 176 315 152 Q 220 136 125 152 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0284c7",
+        "stroke_width": 1.4,
+        "fill": "#bae6fd"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_1_apple_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 178.0,
+        "cy": 130.0,
+        "r": 18.0,
+        "stroke": "#be123c",
+        "stroke_width": 1.3,
+        "fill": "#fb7185"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_1_stem_1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 178.0,
+        "y1": 113.0,
+        "x2": 182.0,
+        "y2": 104.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.plate_1_apple_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 220.0,
+        "cy": 130.0,
+        "r": 18.0,
+        "stroke": "#be123c",
+        "stroke_width": 1.3,
+        "fill": "#fb7185"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_1_stem_2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 220.0,
+        "y1": 113.0,
+        "x2": 224.0,
+        "y2": 104.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.plate_1_apple_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 262.0,
+        "cy": 130.0,
+        "r": 18.0,
+        "stroke": "#be123c",
+        "stroke_width": 1.3,
+        "fill": "#fb7185"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_1_stem_3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 262.0,
+        "y1": 113.0,
+        "x2": 266.0,
+        "y2": 104.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.plate_2",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 395 152 Q 490 176 585 152 Q 490 136 395 152 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0284c7",
+        "stroke_width": 1.4,
+        "fill": "#bae6fd"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_2_apple_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 448.0,
+        "cy": 130.0,
+        "r": 18.0,
+        "stroke": "#be123c",
+        "stroke_width": 1.3,
+        "fill": "#fb7185"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_2_stem_1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 448.0,
+        "y1": 113.0,
+        "x2": 452.0,
+        "y2": 104.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.plate_2_apple_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 490.0,
+        "cy": 130.0,
+        "r": 18.0,
+        "stroke": "#be123c",
+        "stroke_width": 1.3,
+        "fill": "#fb7185"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_2_stem_2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 490.0,
+        "y1": 113.0,
+        "x2": 494.0,
+        "y2": 104.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.plate_2_apple_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 532.0,
+        "cy": 130.0,
+        "r": 18.0,
+        "stroke": "#be123c",
+        "stroke_width": 1.3,
+        "fill": "#fb7185"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_2_stem_3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 532.0,
+        "y1": 113.0,
+        "x2": 536.0,
+        "y2": 104.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.plate_3",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 265 242 Q 360 266 455 242 Q 360 226 265 242 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0284c7",
+        "stroke_width": 1.4,
+        "fill": "#bae6fd"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_3_apple_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 318.0,
+        "cy": 220.0,
+        "r": 18.0,
+        "stroke": "#be123c",
+        "stroke_width": 1.3,
+        "fill": "#fb7185"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_3_stem_1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 318.0,
+        "y1": 203.0,
+        "x2": 322.0,
+        "y2": 194.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.plate_3_apple_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 360.0,
+        "cy": 220.0,
+        "r": 18.0,
+        "stroke": "#be123c",
+        "stroke_width": 1.3,
+        "fill": "#fb7185"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_3_stem_2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 360.0,
+        "y1": 203.0,
+        "x2": 364.0,
+        "y2": 194.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.plate_3_apple_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 402.0,
+        "cy": 220.0,
+        "r": 18.0,
+        "stroke": "#be123c",
+        "stroke_width": 1.3,
+        "fill": "#fb7185"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_3_stem_3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 402.0,
+        "y1": 203.0,
+        "x2": 406.0,
+        "y2": 194.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.plate_4",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 545 242 Q 640 266 735 242 Q 640 226 545 242 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0284c7",
+        "stroke_width": 1.4,
+        "fill": "#bae6fd"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_4_apple_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 598.0,
+        "cy": 220.0,
+        "r": 18.0,
+        "stroke": "#be123c",
+        "stroke_width": 1.3,
+        "fill": "#fb7185"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_4_stem_1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 598.0,
+        "y1": 203.0,
+        "x2": 602.0,
+        "y2": 194.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.plate_4_apple_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 640.0,
+        "cy": 220.0,
+        "r": 18.0,
+        "stroke": "#be123c",
+        "stroke_width": 1.3,
+        "fill": "#fb7185"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_4_stem_2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 640.0,
+        "y1": 203.0,
+        "x2": 644.0,
+        "y2": 194.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.plate_4_apple_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 682.0,
+        "cy": 220.0,
+        "r": 18.0,
+        "stroke": "#be123c",
+        "stroke_width": 1.3,
+        "fill": "#fb7185"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_4_stem_3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 682.0,
+        "y1": 203.0,
+        "x2": 686.0,
+        "y2": 194.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.plate_5",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 125 332 Q 220 356 315 332 Q 220 316 125 332 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0284c7",
+        "stroke_width": 1.4,
+        "fill": "#bae6fd"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_5_apple_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 178.0,
+        "cy": 310.0,
+        "r": 18.0,
+        "stroke": "#be123c",
+        "stroke_width": 1.3,
+        "fill": "#fb7185"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_5_stem_1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 178.0,
+        "y1": 293.0,
+        "x2": 182.0,
+        "y2": 284.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.plate_5_apple_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 220.0,
+        "cy": 310.0,
+        "r": 18.0,
+        "stroke": "#be123c",
+        "stroke_width": 1.3,
+        "fill": "#fb7185"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_5_stem_2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 220.0,
+        "y1": 293.0,
+        "x2": 224.0,
+        "y2": 284.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.plate_5_apple_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 262.0,
+        "cy": 310.0,
+        "r": 18.0,
+        "stroke": "#be123c",
+        "stroke_width": 1.3,
+        "fill": "#fb7185"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_5_stem_3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 262.0,
+        "y1": 293.0,
+        "x2": 266.0,
+        "y2": 284.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.plate_6",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 435 332 Q 530 356 625 332 Q 530 316 435 332 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0284c7",
+        "stroke_width": 1.4,
+        "fill": "#bae6fd"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_6_apple_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 488.0,
+        "cy": 310.0,
+        "r": 18.0,
+        "stroke": "#be123c",
+        "stroke_width": 1.3,
+        "fill": "#fb7185"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_6_stem_1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 488.0,
+        "y1": 293.0,
+        "x2": 492.0,
+        "y2": 284.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.plate_6_apple_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 530.0,
+        "cy": 310.0,
+        "r": 18.0,
+        "stroke": "#be123c",
+        "stroke_width": 1.3,
+        "fill": "#fb7185"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_6_stem_2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 530.0,
+        "y1": 293.0,
+        "x2": 534.0,
+        "y2": 284.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.plate_6_apple_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 572.0,
+        "cy": 310.0,
+        "r": 18.0,
+        "stroke": "#be123c",
+        "stroke_width": 1.3,
+        "fill": "#fb7185"
+      }
+    },
+    {
+      "id": "slot.diagram.plate_6_stem_3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 572.0,
+        "y1": 293.0,
+        "x2": 576.0,
+        "y2": 284.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.answer.paren_left",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(",
+        "style_role": "body",
+        "x": 480.0,
+        "y": 386.0,
+        "width": 28.0,
+        "height": 54.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 28,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.answer.input",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 514.0,
+        "y": 386.0,
+        "width": 250.0,
+        "height": 54.0,
+        "stroke": "#111827",
+        "stroke_width": 1.4,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "text",
+          "max_length": 16,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "auto_advance": false,
+          "keyboard": "text"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 16,
+          "max_font_size": 26,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 250.0,
+          "height": 54.0
+        }
+      }
+    },
+    {
+      "id": "slot.answer.paren_right",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": ")",
+        "style_role": "body",
+        "x": 770.0,
+        "y": 386.0,
+        "width": 28.0,
+        "height": 54.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 28,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.diagram.box_outer",
+    "slot.diagram.plate_1",
+    "slot.diagram.plate_1_apple_1",
+    "slot.diagram.plate_1_apple_2",
+    "slot.diagram.plate_1_apple_3",
+    "slot.diagram.plate_2",
+    "slot.diagram.plate_2_apple_1",
+    "slot.diagram.plate_2_apple_2",
+    "slot.diagram.plate_2_apple_3",
+    "slot.diagram.plate_3",
+    "slot.diagram.plate_3_apple_1",
+    "slot.diagram.plate_3_apple_2",
+    "slot.diagram.plate_3_apple_3",
+    "slot.diagram.plate_4",
+    "slot.diagram.plate_4_apple_1",
+    "slot.diagram.plate_4_apple_2",
+    "slot.diagram.plate_4_apple_3",
+    "slot.diagram.plate_5",
+    "slot.diagram.plate_5_apple_1",
+    "slot.diagram.plate_5_apple_2",
+    "slot.diagram.plate_5_apple_3",
+    "slot.diagram.plate_6",
+    "slot.diagram.plate_6_apple_1",
+    "slot.diagram.plate_6_apple_2",
+    "slot.diagram.plate_6_apple_3",
+    "slot.answer.input",
+    "slot.diagram.plate_1_stem_1",
+    "slot.diagram.plate_1_stem_2",
+    "slot.diagram.plate_1_stem_3",
+    "slot.diagram.plate_2_stem_1",
+    "slot.diagram.plate_2_stem_2",
+    "slot.diagram.plate_2_stem_3",
+    "slot.diagram.plate_3_stem_1",
+    "slot.diagram.plate_3_stem_2",
+    "slot.diagram.plate_3_stem_3",
+    "slot.diagram.plate_4_stem_1",
+    "slot.diagram.plate_4_stem_2",
+    "slot.diagram.plate_4_stem_3",
+    "slot.diagram.plate_5_stem_1",
+    "slot.diagram.plate_5_stem_2",
+    "slot.diagram.plate_5_stem_3",
+    "slot.diagram.plate_6_stem_1",
+    "slot.diagram.plate_6_stem_2",
+    "slot.diagram.plate_6_stem_3",
+    "slot.stem.question",
+    "slot.answer.paren_left",
+    "slot.answer.paren_right"
+  ]
+}

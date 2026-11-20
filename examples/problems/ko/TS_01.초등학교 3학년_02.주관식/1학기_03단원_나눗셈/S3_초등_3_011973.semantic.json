@@ -1,0 +1,102 @@
+{
+  "problem_id": "S3_초등_3_011973",
+  "problem_type": "short_answer_division_missing_dividend",
+  "metadata": {
+    "title": "□ ÷ 4 = 8에서 □ 구하기",
+    "tags": [],
+    "instruction": "÷ 4 = 8",
+    "question": "□ 안에 알맞은 수를 구하세요.",
+    "required_layout_ids": [
+      "slot.diagram.equation_box",
+      "slot.diagram.blank_square",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "03단원_나눗셈",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "□ 안에 알맞은 수를 구하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "quantity.dividend",
+        "type": "quantity",
+        "label": "나누어지는 수 □",
+        "value": 32
+      },
+      {
+        "id": "quantity.divisor",
+        "type": "quantity",
+        "label": "나누는 수",
+        "value": 4
+      },
+      {
+        "id": "quantity.quotient",
+        "type": "quantity",
+        "label": "몫",
+        "value": 8
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.division",
+        "type": "quotient_of",
+        "dividend": "quantity.dividend",
+        "divisor": "quantity.divisor",
+        "quotient": "quantity.quotient"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": 32
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": 32,
+        "diagnostics": [
+          {
+            "id": "diag.divided_instead_of_multiplied",
+            "condition": "answer_equals_2",
+            "concept": "곱셈과 나눗셈의 관계",
+            "reason": "8 ÷ 4를 계산하여 2라고 답함",
+            "feedback": "□ ÷ 4 = 8은 4 × 8 = □로 바꾸어 풀 수 있습니다. 4 × 8을 계산해 보세요."
+          },
+          {
+            "id": "diag.multiplication_fact_error",
+            "condition": "answer_not_equals_32",
+            "concept": "곱셈과 나눗셈의 관계",
+            "reason": "4 × 8의 계산을 틀림",
+            "feedback": "4 × 8 = 32이므로 □ 안에 알맞은 수는 32입니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": 32,
+    "unit": "",
+    "values": [
+      32
+    ]
+  }
+}

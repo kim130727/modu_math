@@ -1,0 +1,173 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_011966",
+  "title": "나눗셈식 읽기",
+  "canvas": {
+    "width": 900,
+    "height": 300,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.equation_box",
+        "slot.answer.input",
+        "slot.stem.question",
+        "slot.diagram.equation_text",
+        "slot.answer.paren_left",
+        "slot.answer.paren_right"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "나눗셈식을 읽어 보세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 26,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.45,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.equation_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 210.0,
+        "y": 92.0,
+        "width": 480.0,
+        "height": 92.0,
+        "stroke": "#a799c8",
+        "stroke_width": 2.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.equation_text",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "14 ÷ 2 = 7",
+        "style_role": "body",
+        "x": 220.0,
+        "y": 102.0,
+        "width": 460.0,
+        "height": 72.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 36,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.answer.paren_left",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(",
+        "style_role": "body",
+        "x": 180.0,
+        "y": 214.0,
+        "width": 28.0,
+        "height": 54.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 28,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.answer.input",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 214.0,
+        "y": 214.0,
+        "width": 550.0,
+        "height": 54.0,
+        "stroke": "#111827",
+        "stroke_width": 1.4,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "text",
+          "max_length": 40,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "auto_advance": false,
+          "keyboard": "text"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 16,
+          "max_font_size": 24,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 8,
+          "text_color": "#222222",
+          "width": 550.0,
+          "height": 54.0
+        }
+      }
+    },
+    {
+      "id": "slot.answer.paren_right",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": ")",
+        "style_role": "body",
+        "x": 770.0,
+        "y": 214.0,
+        "width": 28.0,
+        "height": 54.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 28,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.diagram.equation_box",
+    "slot.answer.input",
+    "slot.stem.question",
+    "slot.diagram.equation_text",
+    "slot.answer.paren_left",
+    "slot.answer.paren_right"
+  ]
+}

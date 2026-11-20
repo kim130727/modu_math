@@ -1,0 +1,147 @@
+{
+  "problem_id": "S3_초등_3_011975",
+  "problem_type": "short_answer_multiplication_modeling",
+  "metadata": {
+    "title": "세발자전거 8대의 바퀴 수 곱셈식으로 나타내기",
+    "tags": [],
+    "instruction": "(",
+    "question": "세발자전거 8대가 있습니다. 바퀴는 모두 몇 개인지 곱셈식으로 나타내세요.",
+    "required_layout_ids": [
+      "slot.diagram.box_outer",
+      "slot.diagram.tri_1_wheel_front",
+      "slot.diagram.tri_1_wheel_back1",
+      "slot.diagram.tri_1_wheel_back2",
+      "slot.diagram.tri_1_frame_1",
+      "slot.diagram.tri_1_frame_2",
+      "slot.diagram.tri_1_handle",
+      "slot.diagram.tri_2_wheel_front",
+      "slot.diagram.tri_2_wheel_back1",
+      "slot.diagram.tri_2_wheel_back2",
+      "slot.diagram.tri_2_frame_1",
+      "slot.diagram.tri_2_frame_2",
+      "slot.diagram.tri_2_handle",
+      "slot.diagram.tri_3_wheel_front",
+      "slot.diagram.tri_3_wheel_back1",
+      "slot.diagram.tri_3_wheel_back2",
+      "slot.diagram.tri_3_frame_1",
+      "slot.diagram.tri_3_frame_2",
+      "slot.diagram.tri_3_handle",
+      "slot.diagram.tri_4_wheel_front",
+      "slot.diagram.tri_4_wheel_back1",
+      "slot.diagram.tri_4_wheel_back2",
+      "slot.diagram.tri_4_frame_1",
+      "slot.diagram.tri_4_frame_2",
+      "slot.diagram.tri_4_handle",
+      "slot.diagram.tri_5_wheel_front",
+      "slot.diagram.tri_5_wheel_back1",
+      "slot.diagram.tri_5_wheel_back2",
+      "slot.diagram.tri_5_frame_1",
+      "slot.diagram.tri_5_frame_2",
+      "slot.diagram.tri_5_handle",
+      "slot.diagram.tri_6_wheel_front",
+      "slot.diagram.tri_6_wheel_back1",
+      "slot.diagram.tri_6_wheel_back2",
+      "slot.diagram.tri_6_frame_1",
+      "slot.diagram.tri_6_frame_2",
+      "slot.diagram.tri_6_handle",
+      "slot.diagram.tri_7_wheel_front",
+      "slot.diagram.tri_7_wheel_back1",
+      "slot.diagram.tri_7_wheel_back2",
+      "slot.diagram.tri_7_frame_1",
+      "slot.diagram.tri_7_frame_2",
+      "slot.diagram.tri_7_handle",
+      "slot.diagram.tri_8_wheel_front",
+      "slot.diagram.tri_8_wheel_back1",
+      "slot.diagram.tri_8_wheel_back2",
+      "slot.diagram.tri_8_frame_1",
+      "slot.diagram.tri_8_frame_2",
+      "slot.diagram.tri_8_handle",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "04단원_곱셈",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "세발자전거 8대가 있습니다. 바퀴는 모두 몇 개인지 곱셈식으로 나타내세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "quantity.wheels_per_tricycle",
+        "type": "quantity",
+        "label": "세발자전거 1대의 바퀴 수",
+        "value": 3,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.tricycles",
+        "type": "quantity",
+        "label": "세발자전거 수",
+        "value": 8,
+        "unit": "대"
+      },
+      {
+        "id": "quantity.total_wheels",
+        "type": "quantity",
+        "label": "전체 바퀴 수",
+        "value": 24,
+        "unit": "개"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.multiplication",
+        "type": "product_of",
+        "multiplicand": "quantity.wheels_per_tricycle",
+        "multiplier": "quantity.tricycles",
+        "product": "quantity.total_wheels"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": "3 × 8 = 24"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": "3 × 8 = 24",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_wheels_per_tricycle",
+            "condition": "answer_not_equals_24",
+            "concept": "세발자전거의 바퀴 수",
+            "reason": "바퀴 수 3개 또는 대수 8대를 잘못 적용함",
+            "feedback": "세발자전거 1대에 바퀴가 3개씩 있고 모두 8대 있으므로 3 × 8 = 24입니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": "3 × 8 = 24",
+    "unit": "",
+    "values": [
+      "3 × 8 = 24",
+      "3×8=24",
+      "3 * 8 = 24"
+    ]
+  }
+}

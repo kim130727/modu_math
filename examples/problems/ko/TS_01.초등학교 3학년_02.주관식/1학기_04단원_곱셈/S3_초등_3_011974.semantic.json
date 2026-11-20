@@ -1,0 +1,141 @@
+{
+  "problem_id": "S3_초등_3_011974",
+  "problem_type": "short_answer_multiplication_modeling",
+  "metadata": {
+    "title": "사과 묶음을 곱셈식으로 나타내기",
+    "tags": [],
+    "instruction": "(",
+    "question": "그림을 보고 사과는 모두 몇 개인지 곱셈식으로 나타내세요.",
+    "required_layout_ids": [
+      "slot.diagram.box_outer",
+      "slot.diagram.plate_1",
+      "slot.diagram.plate_1_apple_1",
+      "slot.diagram.plate_1_stem_1",
+      "slot.diagram.plate_1_apple_2",
+      "slot.diagram.plate_1_stem_2",
+      "slot.diagram.plate_1_apple_3",
+      "slot.diagram.plate_1_stem_3",
+      "slot.diagram.plate_2",
+      "slot.diagram.plate_2_apple_1",
+      "slot.diagram.plate_2_stem_1",
+      "slot.diagram.plate_2_apple_2",
+      "slot.diagram.plate_2_stem_2",
+      "slot.diagram.plate_2_apple_3",
+      "slot.diagram.plate_2_stem_3",
+      "slot.diagram.plate_3",
+      "slot.diagram.plate_3_apple_1",
+      "slot.diagram.plate_3_stem_1",
+      "slot.diagram.plate_3_apple_2",
+      "slot.diagram.plate_3_stem_2",
+      "slot.diagram.plate_3_apple_3",
+      "slot.diagram.plate_3_stem_3",
+      "slot.diagram.plate_4",
+      "slot.diagram.plate_4_apple_1",
+      "slot.diagram.plate_4_stem_1",
+      "slot.diagram.plate_4_apple_2",
+      "slot.diagram.plate_4_stem_2",
+      "slot.diagram.plate_4_apple_3",
+      "slot.diagram.plate_4_stem_3",
+      "slot.diagram.plate_5",
+      "slot.diagram.plate_5_apple_1",
+      "slot.diagram.plate_5_stem_1",
+      "slot.diagram.plate_5_apple_2",
+      "slot.diagram.plate_5_stem_2",
+      "slot.diagram.plate_5_apple_3",
+      "slot.diagram.plate_5_stem_3",
+      "slot.diagram.plate_6",
+      "slot.diagram.plate_6_apple_1",
+      "slot.diagram.plate_6_stem_1",
+      "slot.diagram.plate_6_apple_2",
+      "slot.diagram.plate_6_stem_2",
+      "slot.diagram.plate_6_apple_3",
+      "slot.diagram.plate_6_stem_3",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "04단원_곱셈",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "그림을 보고 사과는 모두 몇 개인지 곱셈식으로 나타내세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "quantity.apples_per_plate",
+        "type": "quantity",
+        "label": "한 접시의 사과 수",
+        "value": 3,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.plates",
+        "type": "quantity",
+        "label": "접시 수",
+        "value": 6,
+        "unit": "접시"
+      },
+      {
+        "id": "quantity.total_apples",
+        "type": "quantity",
+        "label": "전체 사과 수",
+        "value": 18,
+        "unit": "개"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.multiplication",
+        "type": "product_of",
+        "multiplicand": "quantity.apples_per_plate",
+        "multiplier": "quantity.plates",
+        "product": "quantity.total_apples"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": "3 × 6 = 18"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": "3 × 6 = 18",
+        "diagnostics": [
+          {
+            "id": "diag.swapped_factors",
+            "condition": "answer_equals_6_times_3",
+            "concept": "곱셈식의 의미",
+            "reason": "묶음당 개수(3)와 묶음 수(6)의 순서를 바꾸어 씀",
+            "feedback": "한 접시에 사과가 3개씩 6접시 있으므로 '3씩 6묶음'을 나타내는 3 × 6 = 18로 써 보세요."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": "3 × 6 = 18",
+    "unit": "",
+    "values": [
+      "3 × 6 = 18",
+      "3×6=18",
+      "3 * 6 = 18"
+    ]
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "problem_id": "S3_초등_3_011968",
+  "problem_type": "short_answer_division_grouping",
+  "metadata": {
+    "title": "빵 36개를 6개씩 나누어 줄 사람 수 구하기",
+    "tags": [],
+    "instruction": "(",
+    "question": "빵 36개를 한 사람에게 6개씩 나누어 주려고 합니다. 모두 몇 명에게 나누어 줄 수 있을까요?",
+    "required_layout_ids": [
+      "slot.diagram.group_1_box",
+      "slot.diagram.group_1_bread_0_0_body",
+      "slot.diagram.group_1_bread_0_0_top",
+      "slot.diagram.group_1_bread_0_1_body",
+      "slot.diagram.group_1_bread_0_1_top",
+      "slot.diagram.group_1_bread_0_2_body",
+      "slot.diagram.group_1_bread_0_2_top",
+      "slot.diagram.group_1_bread_1_0_body",
+      "slot.diagram.group_1_bread_1_0_top",
+      "slot.diagram.group_1_bread_1_1_body",
+      "slot.diagram.group_1_bread_1_1_top",
+      "slot.diagram.group_1_bread_1_2_body",
+      "slot.diagram.group_1_bread_1_2_top",
+      "slot.diagram.group_2_box",
+      "slot.diagram.group_2_bread_0_0_body",
+      "slot.diagram.group_2_bread_0_0_top",
+      "slot.diagram.group_2_bread_0_1_body",
+      "slot.diagram.group_2_bread_0_1_top",
+      "slot.diagram.group_2_bread_0_2_body",
+      "slot.diagram.group_2_bread_0_2_top",
+      "slot.diagram.group_2_bread_1_0_body",
+      "slot.diagram.group_2_bread_1_0_top",
+      "slot.diagram.group_2_bread_1_1_body",
+      "slot.diagram.group_2_bread_1_1_top",
+      "slot.diagram.group_2_bread_1_2_body",
+      "slot.diagram.group_2_bread_1_2_top",
+      "slot.diagram.group_3_box",
+      "slot.diagram.group_3_bread_0_0_body",
+      "slot.diagram.group_3_bread_0_0_top",
+      "slot.diagram.group_3_bread_0_1_body",
+      "slot.diagram.group_3_bread_0_1_top",
+      "slot.diagram.group_3_bread_0_2_body",
+      "slot.diagram.group_3_bread_0_2_top",
+      "slot.diagram.group_3_bread_1_0_body",
+      "slot.diagram.group_3_bread_1_0_top",
+      "slot.diagram.group_3_bread_1_1_body",
+      "slot.diagram.group_3_bread_1_1_top",
+      "slot.diagram.group_3_bread_1_2_body",
+      "slot.diagram.group_3_bread_1_2_top",
+      "slot.diagram.group_4_box",
+      "slot.diagram.group_4_bread_0_0_body",
+      "slot.diagram.group_4_bread_0_0_top",
+      "slot.diagram.group_4_bread_0_1_body",
+      "slot.diagram.group_4_bread_0_1_top",
+      "slot.diagram.group_4_bread_0_2_body",
+      "slot.diagram.group_4_bread_0_2_top",
+      "slot.diagram.group_4_bread_1_0_body",
+      "slot.diagram.group_4_bread_1_0_top",
+      "slot.diagram.group_4_bread_1_1_body",
+      "slot.diagram.group_4_bread_1_1_top",
+      "slot.diagram.group_4_bread_1_2_body",
+      "slot.diagram.group_4_bread_1_2_top",
+      "slot.diagram.group_5_box",
+      "slot.diagram.group_5_bread_0_0_body",
+      "slot.diagram.group_5_bread_0_0_top",
+      "slot.diagram.group_5_bread_0_1_body",
+      "slot.diagram.group_5_bread_0_1_top",
+      "slot.diagram.group_5_bread_0_2_body",
+      "slot.diagram.group_5_bread_0_2_top",
+      "slot.diagram.group_5_bread_1_0_body",
+      "slot.diagram.group_5_bread_1_0_top",
+      "slot.diagram.group_5_bread_1_1_body",
+      "slot.diagram.group_5_bread_1_1_top",
+      "slot.diagram.group_5_bread_1_2_body",
+      "slot.diagram.group_5_bread_1_2_top",
+      "slot.diagram.group_6_box",
+      "slot.diagram.group_6_bread_0_0_body",
+      "slot.diagram.group_6_bread_0_0_top",
+      "slot.diagram.group_6_bread_0_1_body",
+      "slot.diagram.group_6_bread_0_1_top",
+      "slot.diagram.group_6_bread_0_2_body",
+      "slot.diagram.group_6_bread_0_2_top",
+      "slot.diagram.group_6_bread_1_0_body",
+      "slot.diagram.group_6_bread_1_0_top",
+      "slot.diagram.group_6_bread_1_1_body",
+      "slot.diagram.group_6_bread_1_1_top",
+      "slot.diagram.group_6_bread_1_2_body",
+      "slot.diagram.group_6_bread_1_2_top",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "03단원_나눗셈",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "빵 36개를 한 사람에게 6개씩 나누어 주려고 합니다. 모두 몇 명에게 나누어 줄 수 있을까요?"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "quantity.total_breads",
+        "type": "quantity",
+        "label": "전체 빵 수",
+        "value": 36,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.breads_per_person",
+        "type": "quantity",
+        "label": "한 사람에게 줄 빵 수",
+        "value": 6,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.people",
+        "type": "quantity",
+        "label": "나누어 줄 수 있는 사람 수",
+        "value": 6,
+        "unit": "명"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.division",
+        "type": "quotient_of",
+        "dividend": "quantity.total_breads",
+        "divisor": "quantity.breads_per_person",
+        "quotient": "quantity.people"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": 6
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": 6,
+        "diagnostics": [
+          {
+            "id": "diag.division_error",
+            "condition": "answer_not_equals_6",
+            "concept": "같은 수로 묶어 나누기",
+            "reason": "6개씩 묶인 묶음의 수를 잘못 구함",
+            "feedback": "빵 36개를 6개씩 묶은 상자가 모두 몇 묶음인지 세어 보세요. 36 ÷ 6 = 6입니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": 6,
+    "unit": "명",
+    "values": [
+      6
+    ]
+  }
+}
