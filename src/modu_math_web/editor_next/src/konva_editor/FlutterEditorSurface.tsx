@@ -1,30 +1,33 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import type { ProblemDetailResponse } from "../api/editorApi";
 
 interface FlutterEditorSurfaceProps {
   problemId: string;
   renderer: Record<string, unknown> | null;
+  savedProblem?: ProblemDetailResponse;
   mode: "edit" | "studentTest";
   onModeChange: (mode: "edit" | "studentTest") => void;
   onSelectTarget: (targetId: string) => void;
   onLayoutPatch: (targetId: string, value: Record<string, number>) => void;
 }
 
-export function FlutterEditorSurface({ problemId, renderer, mode, onModeChange, onSelectTarget, onLayoutPatch }: FlutterEditorSurfaceProps) {
+export function FlutterEditorSurface({ problemId, renderer, savedProblem, mode, onModeChange, onSelectTarget, onLayoutPatch }: FlutterEditorSurfaceProps) {
   const frameRef = useRef<HTMLIFrameElement | null>(null);
   const [ready, setReady] = useState(false);
+  const [timedOut, setTimedOut] = useState(false);
   const assetVersion = document.querySelector<HTMLElement>("#root")?.dataset.flutterEditorVersion ?? "dev";
   const problemPrefix = useMemo(() => {
     const last = problemId.replace(/\\/g, "/").split("/").filter(Boolean).at(-1) ?? problemId;
     return last.endsWith(".dsl.py") ? last.slice(0, -".dsl.py".length) : last;
   }, [problemId]);
   const src = useMemo(
-    () => `/static/editor_next/flutter_editor/index.html?embedded=1&problem=${encodeURIComponent(problemPrefix)}&problemId=${encodeURIComponent(problemId)}&v=${encodeURIComponent(assetVersion)}`,
-    [assetVersion, problemId, problemPrefix],
+    () => `/static/editor_next/flutter_editor/index.html?embedded=1${savedProblem ? "&studentPreview=1" : ""}&problem=${encodeURIComponent(problemPrefix)}&problemId=${encodeURIComponent(problemId)}&v=${encodeURIComponent(assetVersion)}`,
+    [assetVersion, problemId, problemPrefix, savedProblem],
   );
 
   useEffect(() => {
     const receive = (event: MessageEvent) => {
-      if (event.source !== frameRef.current?.contentWindow || !event.data || typeof event.data !== "object") return;
+      if (event.origin !== window.location.origin || event.source !== frameRef.current?.contentWindow || !event.data || typeof event.data !== "object") return;
       const message = event.data as Record<string, unknown>;
       if (message.type === "modu-math:flutter-editor-ready") {
         setReady(true);
@@ -55,6 +58,17 @@ export function FlutterEditorSurface({ problemId, renderer, mode, onModeChange, 
   }, [mode, onLayoutPatch, onModeChange, onSelectTarget]);
 
   useEffect(() => {
+    if (!ready || !savedProblem) return;
+    frameRef.current?.contentWindow?.postMessage({ type: "modu-math:host-problem", problem: savedProblem }, window.location.origin);
+  }, [ready, savedProblem]);
+
+  useEffect(() => {
+    if (ready) return;
+    const timer = window.setTimeout(() => setTimedOut(true), 30000);
+    return () => window.clearTimeout(timer);
+  }, [ready, src]);
+
+  useEffect(() => {
     if (!ready) return;
     frameRef.current?.contentWindow?.postMessage({ type: "modu-math:host-mode", mode }, "*");
   }, [mode, ready]);
@@ -76,8 +90,8 @@ export function FlutterEditorSurface({ problemId, renderer, mode, onModeChange, 
   useEffect(() => setReady(false), [src]);
 
   return (
-    <section className="flutter-editor-surface" aria-label="Flutter 직접 편집 화면">
-      {!ready ? <div className="flutter-editor-loading">Flutter 편집 화면을 불러오는 중…</div> : null}
+    <section className="flutter-editor-surface" aria-label={savedProblem ? "앱 문제풀이 화면" : "Flutter 직접 편집 화면"}>
+      {!ready ? <div className="flutter-editor-loading" role="status">{timedOut ? "풀이 화면을 불러오지 못했습니다. 편집으로 돌아간 뒤 다시 시도해주세요." : "Flutter 화면을 불러오는 중…"}</div> : null}
       <iframe
         ref={frameRef}
         key={src}

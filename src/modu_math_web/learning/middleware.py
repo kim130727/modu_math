@@ -149,8 +149,10 @@ class EditorAccessMiddleware:
             request.method == "POST"
             and request.path.startswith("/api/editor/problems/")
             and response.status_code == 200
-            and getattr(request, "user", None)
-            and request.user.is_authenticated
+            and (
+                settings.DEBUG
+                or getattr(getattr(request, "user", None), "is_authenticated", False)
+            )
         ):
             import json
             from modu_math_web.editor.services.problems import resolve_problem_paths

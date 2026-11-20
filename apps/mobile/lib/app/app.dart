@@ -56,7 +56,7 @@ class _ModuMathAppState extends State<ModuMathApp> {
         widget.progressRepository ?? PersistentProgressRepository();
     _backendAttemptService = widget.backendAttemptService ??
         BackendAttemptService(authService: _authService);
-    if (!_assignmentMode) _backendAttemptService.syncOfflineQueue();
+    if (!_assignmentMode && !_editorMode) _backendAttemptService.syncOfflineQueue();
     _diagnosticsService = widget.diagnosticsService ??
         DiagnosticsClientService(authService: _authService);
 

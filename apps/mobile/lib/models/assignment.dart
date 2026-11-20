@@ -48,6 +48,10 @@ class AssignmentItem {
   final dynamic answer;
   final Map<String, dynamic> solution;
   String get prompt => '${content['prompt'] ?? ''}';
+  Map<String, dynamic> get presentation =>
+      assignmentMap(content['presentation']);
+  bool get canvasInputs => presentation['mode'] == 'canvas_slots';
+  bool get showCanvas => presentation['show_canvas'] != false;
   String get unit => '${assignmentMap(content['input_schema'])['unit'] ?? ''}';
   List<AssignmentField> get fields {
     final values = assignmentMap(content['input_schema'])['fields'];
@@ -69,7 +73,7 @@ class AssignmentItem {
         semantic: assignmentMap(content['semantic_data']),
         solvable: const {},
         renderer: assignmentMap(content['renderer_data']),
-        layout: const {},
+        layout: assignmentMap(content['layout_data']),
       );
 }
 

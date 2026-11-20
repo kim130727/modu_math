@@ -67,8 +67,19 @@ The Django template loads that bundle from:
 
 ## Flutter editing surface
 
-The primary canvas is the real Flutter renderer. It sends platform-neutral
-layout patches (`target`, `op`, and `value`) to the React host, where the
-existing save/build flow persists them as editor overrides. Rebuild the
-embedded Flutter bundle with `npm run build:flutter-editor` after changing
-files under `apps/mobile/lib`. Konva remains available as an advanced fallback.
+The toolbar's **앱처럼 풀어보기** button opens the saved problem in a Flutter
+dialog. Unsaved Konva edits stay in the editor and are restored on return.
+Use **저장하고 화면 반영** before opening it to try the latest edits. The host
+loads the saved semantic, solvable, layout, and renderer together; this preview
+does not load a fallback catalog or persist practice attempts. Build both the
+React bundle and Flutter editor bundle before serving this feature.
+
+After serving this folder on port 5189, run
+`node scripts/editor-student-preview.browser.mjs` to check the real iframe,
+answer input, preserved draft, and load failure/retry without changing problems.
+
+Konva remains the editing canvas. The existing Flutter bridge also supports
+platform-neutral layout patches (`target`, `op`, and `value`), but the student
+preview runs in a fixed solve mode and does not apply editing patches. Rebuild
+the embedded Flutter bundle with `npm run build:flutter-editor` after changing
+files under `apps/mobile/lib`.

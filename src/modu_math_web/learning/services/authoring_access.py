@@ -89,11 +89,7 @@ def register_source(user, paths, title=""):
 
 
 def sync_authored_artifacts(paths, artifacts):
-    publication = (
-        ProblemPublication.objects.filter(source_path=source_key(paths))
-        .select_related("problem")
-        .first()
-    )
+    publication = source_publication(paths)
     if (
         not publication
         or not artifacts.get("semantic")
@@ -101,6 +97,9 @@ def sync_authored_artifacts(paths, artifacts):
     ):
         return
     problem = publication.problem
+    if not publication.source_path:
+        publication.source_path = source_key(paths)
+        publication.save(update_fields=["source_path"])
     semantic = artifacts["semantic"]
     metadata = semantic.get("metadata") or {}
     problem.semantic_data = semantic
@@ -118,3 +117,4 @@ def sync_authored_artifacts(paths, artifacts):
         or problem.catalog_data.get("title", problem.problem_id),
     }
     problem.save()
+    return problem

@@ -50,11 +50,16 @@ for i in range(10):
     semantic = {
         "problem_id": problem_id,
         "metadata": {"title": f"덧셈 연습 {i + 1:02d}", "question": question},
-        "answer": {"value": 30 + 2 * i},
+        "answer": {"value": 30 + 2 * i, "unit": "", "choices": [],
+            "blanks": [{"id": "slot.answer", "slot_id": "slot.answer", "expected": 30 + 2 * i, "unit": ""}],
+            "answer_key": [{"slot_id": "slot.answer", "value": 30 + 2 * i, "unit": ""}]},
     }
     solvable = {
         "schema": "modu.solvable.v1.3",
         "problem_id": problem_id,
+        "given": [{"id": "left", "value": 10 + i}, {"id": "right", "value": 20 + i}],
+        "target": {"id": "total"},
+        "method": "addition",
         "steps": [{"expr": f"{10 + i} + {20 + i}", "value": 30 + 2 * i}],
         "answer": semantic["answer"],
     }

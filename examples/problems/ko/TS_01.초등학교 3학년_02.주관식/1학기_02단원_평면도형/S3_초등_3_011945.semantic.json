@@ -1,0 +1,97 @@
+{
+  "problem_id": "S3_초등_3_011945",
+  "problem_type": "short_answer_geometry_right_angle_comparison",
+  "metadata": {
+    "title": "직각의 수가 가장 많은 도형 찾기",
+    "tags": [],
+    "instruction": "(",
+    "question": "직각의 수가 가장 많은 도형을 찾아 기호를 쓰세요.",
+    "required_layout_ids": [
+      "slot.diagram.box_outer",
+      "slot.diagram.shape_g",
+      "slot.diagram.shape_n",
+      "slot.diagram.shape_d",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "02단원_평면도형",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "직각의 수가 가장 많은 도형을 찾아 기호를 쓰세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "shape.g",
+        "type": "pentagon",
+        "label": "ㄱ",
+        "right_angle_count": 2
+      },
+      {
+        "id": "shape.n",
+        "type": "pentagon",
+        "label": "ㄴ",
+        "right_angle_count": 1
+      },
+      {
+        "id": "shape.d",
+        "type": "square",
+        "label": "ㄷ",
+        "right_angle_count": 4
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.max_right_angles",
+        "type": "has_most_right_angles",
+        "from_id": "shape.d",
+        "to_id": "concept.right_angle"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": "ㄷ"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": "ㄷ",
+        "diagnostics": [
+          {
+            "id": "diag.missed_rotated_right_angles",
+            "condition": "answer_in_ga_na",
+            "concept": "직각의 개수 세기",
+            "reason": "기울어진 사각형 ㄷ의 직각을 찾지 못함",
+            "feedback": "도형이 기울어져 있어도 삼각자의 직각 부분을 대어 확인하면 ㄷ에는 직각이 4개 있습니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": "ㄷ",
+    "unit": "",
+    "values": [
+      "ㄷ",
+      "㉢"
+    ]
+  }
+}

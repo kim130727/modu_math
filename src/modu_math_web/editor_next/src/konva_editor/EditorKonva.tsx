@@ -33,6 +33,7 @@ import { AnswerReviewPanel } from "./AnswerReviewPanel";
 import { AnswerReviewSyncPanel } from "./AnswerReviewSyncPanel";
 import { TutorFlowPanel } from "./TutorFlowPanel";
 import { EditorPublication } from "./EditorPublication";
+import { FlutterStudentPreview } from "./FlutterStudentPreview";
 
 const initialProblem = sampleProblem as ProblemJson;
 type SidePanelTab = "properties" | "answers" | "flow" | "json";
@@ -58,6 +59,7 @@ export function EditorKonva() {
   const [saveStatus, setSaveStatus] = useState<SaveStatus>("saved");
   const [drawingPreset, setDrawingPreset] = useState<ShapePreset | null>(null);
   const [answerReviewMode, setAnswerReviewMode] = useState(false);
+  const [studentPreviewOpen, setStudentPreviewOpen] = useState(false);
   const [draftReview, setDraftReview] = useState<AnswerReviewSettings | null>(null);
   const [problemListVersion, setProblemListVersion] = useState(0);
   const [activeSidePanel, setActiveSidePanel] = useState<SidePanelTab>("properties");
@@ -710,6 +712,7 @@ export function EditorKonva() {
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
+      if (studentPreviewOpen) return;
       if (isEditableTarget(event.target)) return;
       const key = event.key.toLowerCase();
       const commandKey = event.ctrlKey || event.metaKey;
@@ -753,7 +756,7 @@ export function EditorKonva() {
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [copySelected, deleteSelected, document.shapes, duplicateSelected, pasteClipboard, selectedShapeIds, updateShapes]);
+  }, [copySelected, deleteSelected, document.shapes, duplicateSelected, pasteClipboard, selectedShapeIds, updateShapes, studentPreviewOpen]);
 
   const refreshJson = useCallback(() => {
     setDocument((current) => ({ ...current }));
@@ -1076,6 +1079,7 @@ export function EditorKonva() {
           <button type="button" aria-pressed={inspectorOpen} disabled={answerReviewMode} onClick={() => setInspectorOpen(value => !value)}>속성 패널</button>
         </div>
         <EditorPublication sourceId={selectedProblemId} busy={saveStatus === "saving" || saveStatus === "building" || saveStatus === "unsaved"} />
+        <button type="button" disabled={!!openingProblemId || saveStatus === "saving" || saveStatus === "building"} onClick={() => setStudentPreviewOpen(true)}>앱처럼 풀어보기</button>
         <span className={`editor-save-indicator ${saveStatus}`} role="status">{{ saved: "저장됨", saving: "저장 중…", unsaved: "저장하지 않은 변경", building: "화면 생성 중…", built: "화면 반영 완료", error: "저장 상태 확인 필요" }[saveStatus]}</span>
         </>}
         onOpenAnswers={() => { setAnswerReviewMode(false); setInspectorOpen(true); setActiveSidePanel("answers"); }}
@@ -1105,7 +1109,7 @@ export function EditorKonva() {
         onMarkSelectedAsAnswerSlot={markSelectedAsAnswerSlot}
         onDeleteSelected={deleteSelected}
         onRefreshJson={refreshJson}
-        onSave={saveJson}
+        onSave={buildCurrentProblem}
         onSaveAndBuild={saveAndBuildCurrentProblem}
         onBuild={buildCurrentProblem}
         onNewFile={createNewProblem}
@@ -1118,6 +1122,7 @@ export function EditorKonva() {
         replacementTargetId={avatarTargetId}
         onReplacementTargetChange={setAvatarTargetId}
       />
+      {studentPreviewOpen ? <FlutterStudentPreview problemId={selectedProblemId} onClose={() => setStudentPreviewOpen(false)} /> : null}
       <input
         ref={imageFileInputRef}
         type="file"

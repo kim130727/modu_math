@@ -53,6 +53,15 @@ def practice_catalog(queryset, user):
             .distinct()
         )
     return {
+        "revision": next(
+            (
+                value.isoformat()
+                for value in queryset.order_by("-updated_at").values_list(
+                    "updated_at", flat=True
+                )[:1]
+            ),
+            None,
+        ),
         "grades": grades,
         "goal": {
             "date": now.date().isoformat(),

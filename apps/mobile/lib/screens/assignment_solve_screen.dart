@@ -8,9 +8,8 @@ import '../services/assignment_session.dart';
 import '../services/auth_service.dart';
 import '../services/student_assignment_service.dart';
 import '../theme/app_theme.dart';
-import '../utils/problem_presentation.dart';
 import '../widgets/assignment_answer_input.dart';
-import '../widgets/problem_canvas.dart';
+import '../widgets/student_problem_canvas.dart';
 import 'student_assignments_screen.dart';
 
 class AssignmentSolveScreen extends StatefulWidget {
@@ -159,10 +158,13 @@ class _AssignmentSolveScreenState extends State<AssignmentSolveScreen>
         Text('${strings.t('source')}: ${item.content['source_credit']}'),
       if ('${item.content['rights_note'] ?? ''}'.isNotEmpty)
         Text('${item.content['rights_note']}'),
-      if (item.problem.renderer.isNotEmpty)
-        ProblemCanvas(
+      if (item.showCanvas && item.problem.renderer.isNotEmpty)
+        StudentProblemCanvas(
             key: ValueKey('assignment-canvas-${item.id}'),
-            renderer: problemVisualRenderer(item.problem)),
+            item: item,
+            value: session.answers[item.id],
+            enabled: session.canEdit,
+            changed: session.change),
     ]));
     final controls = _Paper(
         child:
@@ -176,12 +178,13 @@ class _AssignmentSolveScreenState extends State<AssignmentSolveScreen>
         const Padding(
             padding: EdgeInsets.only(bottom: 16),
             child: Center(child: CircularProgressIndicator())),
-      AssignmentAnswerInput(
-          key: ValueKey(item.id),
-          item: item,
-          value: session.answers[item.id],
-          enabled: session.canEdit,
-          changed: session.change),
+      if (!item.canvasInputs)
+        AssignmentAnswerInput(
+            key: ValueKey(item.id),
+            item: item,
+            value: session.answers[item.id],
+            enabled: session.canEdit,
+            changed: session.change),
       if (session.pending.contains(item.id))
         _ErrorBox(message: strings.t('pending')),
       if (submitted && !session.pending.contains(item.id))

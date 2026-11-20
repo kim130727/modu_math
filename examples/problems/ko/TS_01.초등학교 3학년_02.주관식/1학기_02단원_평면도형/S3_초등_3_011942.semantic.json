@@ -1,0 +1,126 @@
+{
+  "problem_id": "S3_초등_3_011942",
+  "problem_type": "short_answer_geometry_line_classification",
+  "metadata": {
+    "title": "선분 찾아 기호 쓰기",
+    "tags": [],
+    "instruction": "(",
+    "question": "선분을 찾아 기호를 쓰세요.",
+    "required_layout_ids": [
+      "slot.diagram.line_g",
+      "slot.diagram.line_n",
+      "slot.diagram.line_d",
+      "slot.diagram.line_r",
+      "slot.diagram.dot_left",
+      "slot.diagram.dot_right",
+      "slot.diagram.g_badge",
+      "slot.diagram.n_badge",
+      "slot.diagram.d_badge",
+      "slot.diagram.r_badge",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "02단원_평면도형",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "선분을 찾아 기호를 쓰세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "point.left",
+        "type": "point",
+        "label": "왼쪽 점"
+      },
+      {
+        "id": "point.right",
+        "type": "point",
+        "label": "오른쪽 점"
+      },
+      {
+        "id": "line.giyeok",
+        "type": "curved_line",
+        "label": "ㄱ",
+        "is_straight": false
+      },
+      {
+        "id": "line.nieun",
+        "type": "curved_line",
+        "label": "ㄴ",
+        "is_straight": false
+      },
+      {
+        "id": "line.digeut",
+        "type": "line_segment",
+        "label": "ㄷ",
+        "is_straight": true
+      },
+      {
+        "id": "line.rieul",
+        "type": "polyline",
+        "label": "ㄹ",
+        "is_straight": false
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.target_segment",
+        "type": "is_line_segment",
+        "from_id": "line.digeut",
+        "to_id": "concept.line_segment"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": "ㄷ"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": "ㄷ",
+        "diagnostics": [
+          {
+            "id": "diag.curved_line_selected",
+            "condition": "answer_in_ga_na",
+            "concept": "선분의 정의",
+            "reason": "굽은 선인 ㄱ 또는 ㄴ을 선택함",
+            "feedback": "선분은 두 점을 곧게 이은 선입니다. 휘어지지 않고 곧게 뻗은 선을 찾아보세요."
+          },
+          {
+            "id": "diag.bent_line_selected",
+            "condition": "answer_equals_ra",
+            "concept": "선분의 정의",
+            "reason": "중간에 꺾인 선 ㄹ을 선분으로 착각함",
+            "feedback": "ㄹ은 중간에서 한 번 꺾인 선입니다. 두 점을 한 번에 곧게 이은 선을 찾아보세요."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": "ㄷ",
+    "unit": "",
+    "values": [
+      "ㄷ",
+      "㉢"
+    ]
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "problem_id": "S3_초등_3_011939",
+  "problem_type": "short_answer_geometry_shape_counting",
+  "metadata": {
+    "title": "여러 도형 중에서 사각형 개수 세기",
+    "tags": [],
+    "instruction": "(2) 사각형은 모두 몇 개일까요?",
+    "question": "도형을 보고 물음에 답하세요.\n(2) 사각형은 모두 몇 개일까요?",
+    "required_layout_ids": [
+      "slot.diagram.box_outer",
+      "slot.diagram.shape_1",
+      "slot.diagram.shape_2",
+      "slot.diagram.shape_3",
+      "slot.diagram.shape_4",
+      "slot.diagram.shape_5",
+      "slot.diagram.shape_6",
+      "slot.diagram.shape_7",
+      "slot.diagram.shape_8",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "02단원_평면도형",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question",
+        "slot.stem.subquestion"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "도형을 보고 물음에 답하세요.\n(2) 사각형은 모두 몇 개일까요?"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "shape.1",
+        "type": "quadrilateral",
+        "label": "도형 1 (직사각형)",
+        "is_quadrilateral": true
+      },
+      {
+        "id": "shape.2",
+        "type": "triangle",
+        "label": "도형 2 (삼각형)",
+        "is_quadrilateral": false
+      },
+      {
+        "id": "shape.3",
+        "type": "sector",
+        "label": "도형 3 (부채꼴)",
+        "is_quadrilateral": false
+      },
+      {
+        "id": "shape.4",
+        "type": "triangle",
+        "label": "도형 4 (삼각형)",
+        "is_quadrilateral": false
+      },
+      {
+        "id": "shape.5",
+        "type": "triangle",
+        "label": "도형 5 (직각삼각형)",
+        "is_quadrilateral": false
+      },
+      {
+        "id": "shape.6",
+        "type": "quadrilateral",
+        "label": "도형 6 (사각형)",
+        "is_quadrilateral": true
+      },
+      {
+        "id": "shape.7",
+        "type": "semicircle",
+        "label": "도형 7 (반원)",
+        "is_quadrilateral": false
+      },
+      {
+        "id": "shape.8",
+        "type": "pentagon",
+        "label": "도형 8 (오각형)",
+        "is_quadrilateral": false
+      },
+      {
+        "id": "quantity.quadrilateral_count",
+        "type": "quantity",
+        "label": "사각형의 개수",
+        "value": 2,
+        "unit": "개"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.quadrilateral_count",
+        "type": "count_of",
+        "from_id": "quantity.quadrilateral_count",
+        "to_id": "concept.quadrilateral"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": 2
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": 2,
+        "diagnostics": [
+          {
+            "id": "diag.counted_pentagon_as_quadrilateral",
+            "condition": "answer_equals_3",
+            "concept": "사각형의 정의",
+            "reason": "변이 5개인 오각형까지 사각형으로 셈",
+            "feedback": "사각형은 4개의 곧은 선으로 둘러싸인 도형입니다. 변의 개수가 5개인 도형은 제외하고 다시 세어 보세요."
+          },
+          {
+            "id": "diag.missed_irregular_quadrilateral",
+            "condition": "answer_equals_1",
+            "concept": "사각형 찾기",
+            "reason": "직사각형만 사각형으로 보고 일반 사각형을 놓침",
+            "feedback": "네 각이 직각이 아니더라도 4개의 곧은 선으로 둘러싸인 도형은 모두 사각형입니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": 2,
+    "unit": "개",
+    "values": [
+      2
+    ]
+  }
+}

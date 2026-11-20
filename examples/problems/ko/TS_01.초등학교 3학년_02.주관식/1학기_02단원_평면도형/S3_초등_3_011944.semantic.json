@@ -1,0 +1,112 @@
+{
+  "problem_id": "S3_초등_3_011944",
+  "problem_type": "short_answer_geometry_angle_properties",
+  "metadata": {
+    "title": "각에 대한 잘못된 설명 찾기",
+    "tags": [],
+    "instruction": "㉠ 점 ㄷ은 꼭짓점입니다.",
+    "question": "다음 도형을 보고 잘못 설명한 것을 찾아 기호를 쓰세요.",
+    "required_layout_ids": [
+      "slot.diagram.ray_up",
+      "slot.diagram.ray_left",
+      "slot.diagram.dot_n",
+      "slot.diagram.dot_d",
+      "slot.diagram.dot_r",
+      "slot.diagram.statement_box",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "02단원_평면도형",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "다음 도형을 보고 잘못 설명한 것을 찾아 기호를 쓰세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "angle.nd_r",
+        "type": "angle",
+        "label": "각 ㄴㄷㄹ",
+        "vertex": "점 ㄷ",
+        "sides": [
+          "반직선 ㄷㄴ",
+          "반직선 ㄷㄹ"
+        ]
+      },
+      {
+        "id": "statement.g",
+        "type": "statement",
+        "label": "ㄱ",
+        "text": "점 ㄷ은 꼭짓점입니다.",
+        "is_correct": true
+      },
+      {
+        "id": "statement.n",
+        "type": "statement",
+        "label": "ㄴ",
+        "text": "꼭짓점이 3개 있습니다.",
+        "is_correct": false
+      },
+      {
+        "id": "statement.d",
+        "type": "statement",
+        "label": "ㄷ",
+        "text": "반직선 ㄷㄴ은 각의 변입니다.",
+        "is_correct": true
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.incorrect_statement",
+        "type": "is_false_statement",
+        "from_id": "statement.n",
+        "to_id": "angle.nd_r"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": "ㄴ"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": "ㄴ",
+        "diagnostics": [
+          {
+            "id": "diag.confused_vertex_and_points",
+            "condition": "answer_in_ga_da",
+            "concept": "각의 꼭짓점과 변",
+            "reason": "반직선 위의 점 ㄴ, ㄹ까지 각의 꼭짓점으로 착각함",
+            "feedback": "각에서 두 반직선이 만나는 점 ㄷ만 각의 꼭짓점입니다. 따라서 각의 꼭짓점은 1개입니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": "ㄴ",
+    "unit": "",
+    "values": [
+      "ㄴ",
+      "㉡"
+    ]
+  }
+}

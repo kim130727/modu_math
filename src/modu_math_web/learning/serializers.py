@@ -248,6 +248,7 @@ class ProblemDetailSerializer(ProblemListSerializer):
 
 
 class AttemptSerializer(serializers.ModelSerializer):
+    content_revision = serializers.CharField(write_only=True, required=False)
     problem = serializers.PrimaryKeyRelatedField(
         queryset=Problem.objects.all(), required=False
     )
@@ -264,6 +265,7 @@ class AttemptSerializer(serializers.ModelSerializer):
             "problem_language",
             "language",
             "submitted_answer",
+            "content_revision",
             "is_correct",
             "elapsed_ms",
             "hint_count",
@@ -309,13 +311,38 @@ class AttemptSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 "공개된 문제만 일반 학습으로 제출할 수 있습니다."
             )
+        revision = attrs.pop("content_revision", None)
+        self.content_revision = revision
+        if revision and revision != attrs["problem"].updated_at.isoformat():
+            from rest_framework.exceptions import APIException
+
+            error = APIException(
+                "문제가 수정되었습니다. 새 문제를 불러온 뒤 다시 제출해 주세요."
+            )
+            error.status_code = 409
+            raise error
         return attrs
 
+    @transaction.atomic
     def create(self, validated_data):
         from .models import AssignmentRecipient
         from .services.assignments import released
 
-        problem = validated_data["problem"]
+        problem = Problem.objects.select_for_update().get(
+            pk=validated_data["problem"].pk
+        )
+        validated_data["problem"] = problem
+        if (
+            getattr(self, "content_revision", None)
+            and self.content_revision != problem.updated_at.isoformat()
+        ):
+            from rest_framework.exceptions import APIException
+
+            error = APIException(
+                "문제가 수정되었습니다. 새 문제를 불러온 뒤 다시 제출해 주세요."
+            )
+            error.status_code = 409
+            raise error
         for recipient in (
             AssignmentRecipient.objects.filter(
                 student__user=self.context["request"].user,

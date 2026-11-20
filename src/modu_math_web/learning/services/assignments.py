@@ -17,6 +17,7 @@ from ..models import (
     StudentProfile,
 )
 from .assignment_content import freeze_images, input_schema
+from .student_presentation import authored_prompt, presentation_contract, safe_layout
 
 
 def student_problem(problem):
@@ -24,12 +25,15 @@ def student_problem(problem):
     semantic = problem.semantic_data
     metadata = semantic.get("metadata", {})
     prompt = (
-        metadata.get("presentation_prompt")
+        authored_prompt(problem)
+        or metadata.get("presentation_prompt")
         or metadata.get("question")
         or metadata.get("instruction")
         or ""
     )
     renderer = deepcopy(problem.renderer_data)
+    schema = input_schema(problem)
+    presentation = presentation_contract(problem, schema)
     public_renderer = {
         key: renderer[key]
         for key in ("view_box", "contract_version", "problem_id")
@@ -44,12 +48,16 @@ def student_problem(problem):
     )
     for raw in renderer.get("elements", []):
         attrs = raw.get("attributes", {})
-        if attrs.get("data-semantic-role") in forbidden:
+        is_input = (raw.get("interaction") or {}).get("role") == "answer"
+        if attrs.get("data-semantic-role") in forbidden and not is_input:
             continue
         element = {k: raw[k] for k in ("id", "type", "text", "source_ref") if k in raw}
         if isinstance(raw.get("refs"), dict) and "layout_slot_id" in raw["refs"]:
             element["refs"] = {"layout_slot_id": raw["refs"]["layout_slot_id"]}
         element["attributes"] = {k: v for k, v in attrs.items() if k in attr_keys}
+        if is_input:
+            placeholder = str(raw.get("text") or "").strip()
+            element["text"] = placeholder if placeholder in {"□", "○", "◯"} else ""
         if isinstance(raw.get("interaction"), dict):
             element["interaction"] = {
                 k: v
@@ -67,6 +75,16 @@ def student_problem(problem):
                     "keyboard",
                 }
             }
+            if is_input:
+                element["interaction"].setdefault(
+                    "max_length",
+                    (
+                        1
+                        if element["interaction"].get("value_type")
+                        in {"digit", "digits", "operator", "comparison_operator"}
+                        else 64
+                    ),
+                )
         if isinstance(raw.get("input_style"), dict):
             element["input_style"] = {
                 k: v
@@ -74,6 +92,7 @@ def student_problem(problem):
                 if k
                 in {
                     "font_size_mode",
+                    "font_size",
                     "font_size_adjust",
                     "min_font_size",
                     "max_font_size",
@@ -121,6 +140,8 @@ def student_problem(problem):
         "language": problem.language,
         "grade": problem.grade,
         "problem_type": problem.problem_type,
+        "revision": problem.updated_at.isoformat(),
+        "presentation": presentation,
         "prompt": prompt,
         "choices": choices,
         "renderer_data": public_renderer,
@@ -128,8 +149,8 @@ def student_problem(problem):
             "problem_id": problem.problem_id,
             "metadata": {"question": prompt, "choices": choices},
         },
-        "layout_data": {},
-        "input_schema": input_schema(problem),
+        "layout_data": safe_layout(problem.layout_data),
+        "input_schema": schema,
     }
 
 

@@ -186,12 +186,21 @@ class ProblemViewSet(viewsets.ReadOnlyModelViewSet):
 
         return Response(practice_catalog(self.get_queryset(), request.user))
 
+    @action(detail=True, methods=["get"])
+    def version(self, request, pk=None):
+        from django.shortcuts import get_object_or_404
+
+        problem = get_object_or_404(
+            self.get_queryset().select_related(None).only("pk", "updated_at"), pk=pk
+        )
+        return Response({"id": problem.pk, "revision": problem.updated_at.isoformat()})
+
     def retrieve(self, request, *args, **kwargs):
         from .services.problem_access import can_edit, reusable_problems
 
         problem = self.get_object()
         context = {"request": request}
-        if (
+        if request.query_params.get("presentation") != "student" and (
             can_edit(request.user, problem)
             or reusable_problems(request.user).filter(pk=problem.pk).exists()
         ):

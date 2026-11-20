@@ -1,0 +1,98 @@
+{
+  "problem_id": "S3_초등_3_011937",
+  "problem_type": "short_answer_geometry_shape_naming",
+  "metadata": {
+    "title": "사각형의 이름 쓰기",
+    "tags": [],
+    "instruction": "(",
+    "question": "그림과 같은 도형의 이름을 쓰세요.",
+    "required_layout_ids": [
+      "slot.diagram.quad_1",
+      "slot.diagram.quad_2",
+      "slot.diagram.quad_3",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "02단원_평면도형",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "그림과 같은 도형의 이름을 쓰세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "shape.quad_1",
+        "type": "quadrilateral",
+        "label": "정사각형 모양 사각형",
+        "sides": 4,
+        "vertices": 4
+      },
+      {
+        "id": "shape.quad_2",
+        "type": "quadrilateral",
+        "label": "사다리꼴 모양 사각형",
+        "sides": 4,
+        "vertices": 4
+      },
+      {
+        "id": "shape.quad_3",
+        "type": "quadrilateral",
+        "label": "평행사변형 모양 사각형",
+        "sides": 4,
+        "vertices": 4
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.common_shape_name",
+        "type": "has_shape_name",
+        "from_id": "shape.quad_1",
+        "to_id": "concept.quadrilateral"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": "사각형"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": "사각형",
+        "diagnostics": [
+          {
+            "id": "diag.triangle_confusion",
+            "condition": "answer_equals_triangle",
+            "concept": "사각형",
+            "reason": "변과 꼭짓점의 개수를 세지 않고 삼각형으로 답함",
+            "feedback": "도형의 변과 꼭짓점이 각각 몇 개인지 세어 보세요. 4개의 곧은 선으로 둘러싸인 도형은 사각형입니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": "사각형",
+    "unit": "",
+    "values": [
+      "사각형"
+    ]
+  }
+}

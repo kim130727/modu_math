@@ -7,10 +7,10 @@ import { fileURLToPath } from "node:url";
 
 export const repository = resolve(fileURLToPath(new URL("../../../..", import.meta.url)));
 
-export async function startStudentFixture() {
+export async function startStudentFixture({ assignment = true } = {}) {
   const scratch = mkdtempSync(join(tmpdir(), "modu-student-browser-"));
   const python = process.env.MODU_TEST_PYTHON ?? join(repository, ".venv", process.platform === "win32" ? "Scripts/python.exe" : "bin/python");
-  const env = { ...process.env, PYTHONPATH: join(repository, "src"), PYTHONIOENCODING: "utf-8", DATABASE_URL: `sqlite:///${join(scratch, "test.sqlite3").replaceAll("\\", "/")}`, MODU_BROWSER_TEST_ROOT: scratch, MODU_PROBLEMS_ROOT: join(scratch, "problems"), MODU_GOLDEN_PROBLEMS_ROOT: join(scratch, "golden"), MODU_BROWSER_STUDENT_ASSIGNMENT: "1", DJANGO_DEBUG: "false", DJANGO_ALLOWED_HOSTS: "127.0.0.1,localhost" };
+  const env = { ...process.env, PYTHONPATH: join(repository, "src"), PYTHONIOENCODING: "utf-8", DATABASE_URL: `sqlite:///${join(scratch, "test.sqlite3").replaceAll("\\", "/")}`, MODU_BROWSER_TEST_ROOT: scratch, MODU_PROBLEMS_ROOT: join(scratch, "problems"), MODU_GOLDEN_PROBLEMS_ROOT: join(scratch, "golden"), MODU_BROWSER_STUDENT_ASSIGNMENT: assignment ? "1" : "0", DJANGO_DEBUG: "false", DJANGO_ALLOWED_HOSTS: "127.0.0.1,localhost" };
   await new Promise((accept, reject) => {
     const child = spawn(python, ["tests/backend/seed_teacher_browser.py"], { cwd: repository, env, windowsHide: true });
     let output = "";

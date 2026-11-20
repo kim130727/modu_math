@@ -8,16 +8,28 @@ import '../widgets/renderer_json_canvas.dart';
 class EditorHostBridge {
   EditorHostBridge({
     void Function(Map<String, dynamic> renderer)? onRenderer,
+    void Function(Map<String, dynamic> problem)? onProblem,
     void Function(String? elementId)? onSelection,
     void Function(RendererCanvasMode mode)? onMode,
-  })  : _onRenderer = onRenderer,
+  })  : _onProblem = onProblem,
+        _onRenderer = onRenderer,
         _onSelection = onSelection,
         _onMode = onMode {
     _subscription = html.window.onMessage.listen((event) {
+      if (event.origin != html.window.location.origin ||
+          event.source != html.window.parent) {
+        return;
+      }
       final raw = event.data;
       if (raw is! Map) return;
       final message = Map<String, dynamic>.from(raw);
       switch (message['type']) {
+        case 'modu-math:host-problem':
+          final problem = message['problem'];
+          if (problem is Map) {
+            _onProblem?.call(Map<String, dynamic>.from(problem));
+          }
+          break;
         case 'modu-math:host-renderer':
           final renderer = message['renderer'];
           if (renderer is Map) {
@@ -39,6 +51,7 @@ class EditorHostBridge {
   }
 
   final void Function(Map<String, dynamic> renderer)? _onRenderer;
+  final void Function(Map<String, dynamic> problem)? _onProblem;
   final void Function(String? elementId)? _onSelection;
   final void Function(RendererCanvasMode mode)? _onMode;
   late final StreamSubscription<html.MessageEvent> _subscription;

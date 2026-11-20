@@ -7,9 +7,17 @@ import 'renderer_json_canvas.dart';
 /// Size the presentation around its fitted artwork, rather than reserving a
 /// fixed-height canvas for every question. Authored coordinates stay intact.
 class ProblemCanvas extends StatelessWidget {
-  const ProblemCanvas({super.key, required this.renderer});
+  const ProblemCanvas(
+      {super.key,
+      required this.renderer,
+      this.fieldValues,
+      this.onFieldsChanged,
+      this.inputsEnabled = true});
 
   final Map<String, dynamic> renderer;
+  final List<String>? fieldValues;
+  final ValueChanged<List<String>>? onFieldsChanged;
+  final bool inputsEnabled;
 
   @override
   Widget build(BuildContext context) => Center(
@@ -36,7 +44,10 @@ class ProblemCanvas extends StatelessWidget {
               height: displayHeight,
               child: RendererJsonCanvas(
                 renderer: renderer,
-                suppressInputs: true,
+                suppressInputs: fieldValues == null,
+                fieldValues: fieldValues,
+                onFieldsChanged: onFieldsChanged,
+                inputsEnabled: inputsEnabled,
               ),
             );
           }),

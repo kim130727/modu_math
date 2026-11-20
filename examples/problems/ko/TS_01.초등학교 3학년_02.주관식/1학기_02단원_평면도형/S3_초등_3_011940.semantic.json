@@ -1,0 +1,102 @@
+{
+  "problem_id": "S3_초등_3_011940",
+  "problem_type": "short_answer_geometry_line_naming",
+  "metadata": {
+    "title": "두 점을 곧게 이은 선의 이름 쓰기",
+    "tags": [],
+    "instruction": "(",
+    "question": "그림과 같이 두 점을 곧게 이은 선을 무엇이라고 할까요?",
+    "required_layout_ids": [
+      "slot.diagram.bar_between",
+      "slot.diagram.pillar_left",
+      "slot.diagram.pillar_right",
+      "slot.diagram.segment_line",
+      "slot.diagram.point_left",
+      "slot.diagram.point_right",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "02단원_평면도형",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "그림과 같이 두 점을 곧게 이은 선을 무엇이라고 할까요?"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "point.left",
+        "type": "point",
+        "label": "왼쪽 점"
+      },
+      {
+        "id": "point.right",
+        "type": "point",
+        "label": "오른쪽 점"
+      },
+      {
+        "id": "line.segment",
+        "type": "line_segment",
+        "label": "두 점을 곧게 이은 선"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.connects_points",
+        "type": "line_segment_between",
+        "from_id": "point.left",
+        "to_id": "point.right"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": "선분"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": "선분",
+        "diagnostics": [
+          {
+            "id": "diag.straight_line_confusion",
+            "condition": "answer_equals_straight_line",
+            "concept": "선분의 정의",
+            "reason": "두 점을 곧게 이은 선을 직선으로 답함",
+            "feedback": "양쪽으로 끝없이 늘인 선이 아니라 두 점 사이를 곧게 이은 선이므로 선분입니다."
+          },
+          {
+            "id": "diag.ray_confusion",
+            "condition": "answer_equals_ray",
+            "concept": "선분의 정의",
+            "reason": "두 점을 곧게 이은 선을 반직선으로 답함",
+            "feedback": "한쪽 끝으로 계속 뻗어 나가는 선이 아니라 두 점 사이에서 끝나는 선이므로 선분입니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": "선분",
+    "unit": "",
+    "values": [
+      "선분"
+    ]
+  }
+}

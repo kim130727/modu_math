@@ -18,6 +18,8 @@ class AssignmentStrings {
   }
 
   static const _ko = {
+    'problemUpdated': '선생님이 문제를 수정했어요. 새 내용을 적용하면 현재 입력한 답은 지워집니다.',
+    'applyProblemUpdate': '새 내용 적용',
     'learningPathHelp': '학년을 고르고, 배우고 싶은 분류를 선택해 한 문제씩 도전해요.',
     'chooseLevel': '학년 · 레벨 선택',
     'chooseCategory': '어떤 내용을 배울까요?',
@@ -120,6 +122,9 @@ class AssignmentStrings {
     'incomplete': '모든 답을 입력해 주세요.',
   };
   static const _uk = {
+    'problemUpdated':
+        'Учитель змінив задачу. Після оновлення введену відповідь буде очищено.',
+    'applyProblemUpdate': 'Застосувати оновлення',
     'learningPathHelp':
         'Оберіть клас і тему та розв’язуйте задачі крок за кроком.',
     'chooseLevel': 'Оберіть клас · рівень',

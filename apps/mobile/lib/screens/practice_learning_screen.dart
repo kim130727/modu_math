@@ -1,11 +1,11 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import '../l10n/assignment_strings.dart';
 import '../models/assignment.dart';
 import '../services/student_assignment_service.dart';
 import '../theme/app_theme.dart';
-import '../utils/problem_presentation.dart';
 import '../widgets/assignment_answer_input.dart';
-import '../widgets/problem_canvas.dart';
+import '../widgets/student_problem_canvas.dart';
 import '../widgets/practice_goal_card.dart';
 import 'student_assignments_screen.dart';
 
@@ -40,7 +40,12 @@ class PracticeLearningScreen extends StatefulWidget {
   State<PracticeLearningScreen> createState() => _PracticeLearningScreenState();
 }
 
-class _PracticeLearningScreenState extends State<PracticeLearningScreen> {
+class _PracticeLearningScreenState extends State<PracticeLearningScreen>
+    with WidgetsBindingObserver {
+  Timer? versionTimer;
+  bool checkingVersion = false;
+  final revisions = <int, String>{};
+  final pendingRevisions = <int, String>{};
   late final int? expectedUser = widget.service.authService.currentUser?.id;
   late final problems = List<Map<String, dynamic>>.from(widget.initialProblems);
   late int index = widget.initialIndex;
@@ -56,9 +61,73 @@ class _PracticeLearningScreenState extends State<PracticeLearningScreen> {
   String? error;
   int get id => problems[index]['id'] as int;
   Future<Map<String, dynamic>> get future =>
-      details.putIfAbsent(id, () => widget.service.libraryProblem(id));
+      details.putIfAbsent(id, () => loadProblem(id));
+  Future<Map<String, dynamic>> loadProblem(int problemId) async {
+    final data = await widget.service.libraryProblem(problemId);
+    if (data['revision'] is String) {
+      revisions[problemId] = data['revision'] as String;
+    }
+    return data;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    versionTimer =
+        Timer.periodic(const Duration(seconds: 5), (_) => checkVersion());
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) checkVersion();
+  }
+
+  Future<void> checkVersion() async {
+    final lifecycle = WidgetsBinding.instance.lifecycleState;
+    if (!mounted ||
+        busy ||
+        checkingVersion ||
+        !revisions.containsKey(id) ||
+        (lifecycle != null && lifecycle != AppLifecycleState.resumed)) {
+      return;
+    }
+    final problemId = id;
+    checkingVersion = true;
+    try {
+      final revision = await widget.service.problemVersion(problemId);
+      if (!mounted || id != problemId || revision == revisions[problemId]) {
+        return;
+      }
+      if (answers[problemId] != null) {
+        setState(() => pendingRevisions[problemId] = revision);
+      } else {
+        applyUpdate();
+      }
+    } on AssignmentApiException catch (e) {
+      if (mounted && id == problemId && (e.status == 403 || e.status == 404)) {
+        applyUpdate();
+      }
+    } finally {
+      checkingVersion = false;
+    }
+  }
+
+  void applyUpdate() {
+    setState(() {
+      details.remove(id);
+      revisions.remove(id);
+      pendingRevisions.remove(id);
+      answers.remove(id);
+      feedback.remove(id);
+      error = null;
+    });
+  }
+
   @override
   void dispose() {
+    versionTimer?.cancel();
+    WidgetsBinding.instance.removeObserver(this);
     scroll.dispose();
     super.dispose();
   }
@@ -107,6 +176,7 @@ class _PracticeLearningScreenState extends State<PracticeLearningScreen> {
         error = null;
       });
       if (scroll.hasClients) scroll.jumpTo(0);
+      checkVersion();
     }
   }
 
@@ -118,8 +188,9 @@ class _PracticeLearningScreenState extends State<PracticeLearningScreen> {
       error = null;
     });
     try {
-      final correct =
-          await widget.service.practice(problemId, answers[problemId]);
+      final correct = await widget.service.practice(
+          problemId, answers[problemId],
+          revision: revisions[problemId]);
       if (!mounted) return;
       setState(() => feedback[problemId] = correct);
       if (correct) {
@@ -150,7 +221,14 @@ class _PracticeLearningScreenState extends State<PracticeLearningScreen> {
         }
       }
     } catch (e) {
-      if (mounted) setState(() => error = assignmentError(context, e));
+      if (mounted) {
+        setState(() {
+          error = assignmentError(context, e);
+          if (e is AssignmentApiException && e.status == 409) {
+            pendingRevisions[problemId] = '';
+          }
+        });
+      }
     } finally {
       if (mounted) setState(() => busy = false);
     }
@@ -191,6 +269,18 @@ class _PracticeLearningScreenState extends State<PracticeLearningScreen> {
                           controller: scroll,
                           padding: const EdgeInsets.all(24),
                           children: [
+                            if (pendingRevisions.containsKey(id))
+                              Card(
+                                  child: Padding(
+                                      padding: const EdgeInsets.all(16),
+                                      child: Column(children: [
+                                        Text(s.t('problemUpdated')),
+                                        TextButton(
+                                            onPressed:
+                                                busy ? null : applyUpdate,
+                                            child: Text(
+                                                s.t('applyProblemUpdate'))),
+                                      ]))),
                             PracticeGoalCard(goal: goal),
                             const SizedBox(height: 20),
                             Text(
@@ -221,20 +311,27 @@ class _PracticeLearningScreenState extends State<PracticeLearningScreen> {
                             if ('${data['rights_note'] ?? ''}'.isNotEmpty)
                               Text('${data['rights_note']}'),
                             const SizedBox(height: 16),
-                            if (item.problem.renderer.isNotEmpty)
-                              ProblemCanvas(
-                                  renderer:
-                                      problemVisualRenderer(item.problem)),
+                            if (item.showCanvas &&
+                                item.problem.renderer.isNotEmpty)
+                              StudentProblemCanvas(
+                                  item: item,
+                                  value: answers[id],
+                                  enabled: !busy && result != true,
+                                  changed: (value) => setState(() {
+                                        answers[id] = value;
+                                        feedback.remove(id);
+                                      })),
                             const SizedBox(height: 20),
-                            AssignmentAnswerInput(
-                                key: ValueKey('practice-input-$id'),
-                                item: item,
-                                value: answers[id],
-                                enabled: !busy && result != true,
-                                changed: (value) => setState(() {
-                                      answers[id] = value;
-                                      feedback.remove(id);
-                                    })),
+                            if (!item.canvasInputs)
+                              AssignmentAnswerInput(
+                                  key: ValueKey('practice-input-$id'),
+                                  item: item,
+                                  value: answers[id],
+                                  enabled: !busy && result != true,
+                                  changed: (value) => setState(() {
+                                        answers[id] = value;
+                                        feedback.remove(id);
+                                      })),
                             const SizedBox(height: 16),
                             if (result != null)
                               Padding(
@@ -249,6 +346,7 @@ class _PracticeLearningScreenState extends State<PracticeLearningScreen> {
                                               : KidsPalette.error))),
                             FilledButton(
                                 onPressed: busy ||
+                                        pendingRevisions.containsKey(id) ||
                                         answers[id] == null ||
                                         result == true
                                     ? null

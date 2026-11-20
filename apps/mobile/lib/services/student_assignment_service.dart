@@ -51,13 +51,17 @@ class StudentAssignmentService {
   }
 
   Future<Map<String, dynamic>> libraryProblem(int id) async =>
-      assignmentMap(await _request('/api/v1/problems/$id/'));
+      assignmentMap(await _request('/api/v1/problems/$id/?presentation=student'));
 
-  Future<bool> practice(int id, dynamic answer) async {
+  Future<String> problemVersion(int id) async =>
+      '${assignmentMap(await _request('/api/v1/problems/$id/version/'))['revision']}';
+
+  Future<bool> practice(int id, dynamic answer, {String? revision}) async {
     final result = assignmentMap(
         await _request('/api/v1/attempts/', method: 'POST', body: {
       'problem': id,
       'submitted_answer': answer,
+      if (revision != null) 'content_revision': revision,
     }));
     return result['is_correct'] == true;
   }

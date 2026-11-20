@@ -189,7 +189,8 @@ class _AssignmentListState extends State<_AssignmentList> {
             )),
         body: IndexedStack(index: section, children: [
           libraryVisited
-              ? ProblemLibraryScreen(service: widget.service, embedded: true)
+              ? ProblemLibraryScreen(
+                  service: widget.service, embedded: true, active: section == 0)
               : const SizedBox.shrink(),
           RefreshIndicator(
               onRefresh: refresh,

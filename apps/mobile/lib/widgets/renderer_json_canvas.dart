@@ -38,6 +38,9 @@ class RendererJsonCanvas extends StatefulWidget {
     this.imageLoader,
     this.imageCacheKey,
     this.onInputChanged,
+    this.fieldValues,
+    this.onFieldsChanged,
+    this.inputsEnabled = true,
     this.mode = RendererCanvasMode.preview,
     this.selectedElementId,
     this.onElementSelected,
@@ -51,6 +54,9 @@ class RendererJsonCanvas extends StatefulWidget {
   final RendererImageLoader? imageLoader;
   final Object? imageCacheKey;
   final ValueChanged<String>? onInputChanged;
+  final List<String>? fieldValues;
+  final ValueChanged<List<String>>? onFieldsChanged;
+  final bool inputsEnabled;
   final RendererCanvasMode mode;
   final String? selectedElementId;
   final ValueChanged<String?>? onElementSelected;
@@ -95,6 +101,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
             oldWidget.renderer == widget.renderer;
     _syncInputControllers(
       force: oldWidget.renderer != widget.renderer ||
+          jsonEncode(oldWidget.fieldValues) != jsonEncode(widget.fieldValues) ||
           (oldWidget.inputValue != widget.inputValue &&
               !inputChangedFromThisCanvas),
     );
@@ -130,92 +137,96 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
     _ensureControllerCount(inputSlots.length);
     final hasOperatorSlots = inputSlots.any((slot) => slot.operatorOnly);
 
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final double maxW =
-            constraints.maxWidth.isFinite ? constraints.maxWidth : width;
-        final double maxH = constraints.maxHeight.isFinite
-            ? constraints.maxHeight
-            : double.infinity;
+    return AbsorbPointer(
+        absorbing: !widget.inputsEnabled,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final double maxW =
+                constraints.maxWidth.isFinite ? constraints.maxWidth : width;
+            final double maxH = constraints.maxHeight.isFinite
+                ? constraints.maxHeight
+                : double.infinity;
 
-        final double operatorBarReservedHeight = hasOperatorSlots ? 74.0 : 0.0;
-        final double availableHeight =
-            (maxH - operatorBarReservedHeight).clamp(0.0, double.infinity);
+            final double operatorBarReservedHeight =
+                hasOperatorSlots ? 74.0 : 0.0;
+            final double availableHeight =
+                (maxH - operatorBarReservedHeight).clamp(0.0, double.infinity);
 
-        double canvasWidth = maxW;
-        double canvasHeight = canvasWidth * (height / width);
+            double canvasWidth = maxW;
+            double canvasHeight = canvasWidth * (height / width);
 
-        if (canvasHeight > availableHeight && availableHeight > 0) {
-          canvasHeight = availableHeight;
-          canvasWidth = canvasHeight * (width / height);
-        }
+            if (canvasHeight > availableHeight && availableHeight > 0) {
+              canvasHeight = availableHeight;
+              canvasWidth = canvasHeight * (width / height);
+            }
 
-        final scale = canvasWidth / width;
+            final scale = canvasWidth / width;
 
-        return Center(
-          child: SizedBox(
-            width: canvasWidth,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: background,
-                    border: Border.all(
-                      color: Theme.of(context).colorScheme.outlineVariant,
-                    ),
-                  ),
-                  child: SizedBox(
-                    width: canvasWidth,
-                    height: canvasHeight,
-                    child: Stack(
-                      clipBehavior: Clip.hardEdge,
-                      children: [
-                        Positioned(
-                          left: -originX * scale,
-                          top: -originY * scale,
-                          width: originalWidth * scale,
-                          height: originalHeight * scale,
-                          child: Stack(
-                            clipBehavior: Clip.none,
-                            children: [
-                              ..._imageLayers(
-                                effectiveRenderer,
-                                scale,
-                                loadRelativeImage: widget.imageLoader == null
-                                    ? null
-                                    : _loadRelativeImage,
-                              ),
-                              Positioned.fill(
-                                child: CustomPaint(
-                                  painter: RendererJsonPainter(
-                                    renderer: effectiveRenderer,
-                                    logicalSize:
-                                        Size(originalWidth, originalHeight),
-                                  ),
-                                ),
-                              ),
-                              ..._textBoxLayers(effectiveRenderer, scale),
-                              ..._inputLayers(inputSlots, scale),
-                              if (widget.mode == RendererCanvasMode.edit)
-                                ..._editorLayers(effectiveRenderer, scale),
-                            ],
-                          ),
+            return Center(
+              child: SizedBox(
+                width: canvasWidth,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: background,
+                        border: Border.all(
+                          color: Theme.of(context).colorScheme.outlineVariant,
                         ),
-                      ],
+                      ),
+                      child: SizedBox(
+                        width: canvasWidth,
+                        height: canvasHeight,
+                        child: Stack(
+                          clipBehavior: Clip.hardEdge,
+                          children: [
+                            Positioned(
+                              left: -originX * scale,
+                              top: -originY * scale,
+                              width: originalWidth * scale,
+                              height: originalHeight * scale,
+                              child: Stack(
+                                clipBehavior: Clip.none,
+                                children: [
+                                  ..._imageLayers(
+                                    effectiveRenderer,
+                                    scale,
+                                    loadRelativeImage:
+                                        widget.imageLoader == null
+                                            ? null
+                                            : _loadRelativeImage,
+                                  ),
+                                  Positioned.fill(
+                                    child: CustomPaint(
+                                      painter: RendererJsonPainter(
+                                        renderer: effectiveRenderer,
+                                        logicalSize:
+                                            Size(originalWidth, originalHeight),
+                                      ),
+                                    ),
+                                  ),
+                                  ..._textBoxLayers(effectiveRenderer, scale),
+                                  ..._inputLayers(inputSlots, scale),
+                                  if (widget.mode == RendererCanvasMode.edit)
+                                    ..._editorLayers(effectiveRenderer, scale),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
+                    if (hasOperatorSlots) ...[
+                      const SizedBox(height: 10),
+                      _operatorChoiceBar(inputSlots),
+                    ],
+                  ],
                 ),
-                if (hasOperatorSlots) ...[
-                  const SizedBox(height: 10),
-                  _operatorChoiceBar(inputSlots),
-                ],
-              ],
-            ),
-          ),
-        );
-      },
-    );
+              ),
+            );
+          },
+        ));
   }
 
   Map<String, dynamic> _rendererWithEditorGeometry() {
@@ -418,10 +429,16 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
       final index = entry.$1;
       final slot = entry.$2;
       final rect = slot.rect;
-      final fontSize = _inputFontSize(slot, scale);
+      final fontSize = _inputFontSize(slot, scale,
+          displayLength: widget.fieldValues == null
+              ? null
+              : inputControllers[index].text.runes.length);
       final fontWeight = _inputFontWeight(slot);
       final maxLength = slot.maxLength;
-      final inset = (2 * scale).clamp(1.0, 3.0);
+      final inset = widget.fieldValues == null
+          ? (2 * scale).clamp(1.0, 3.0)
+          : ((_readDouble(slot.inputStyle['padding']) ?? 6) * scale)
+              .clamp(0.0, math.min(rect.width, rect.height) * scale / 3);
       if (slot.operatorOnly) {
         return _operatorInputLayer(
           index: index,
@@ -434,7 +451,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
       }
       final textColor = slot.drawPlaceholderBehind
           ? Colors.transparent
-          : colorScheme.onSurface;
+          : _readColor(slot.inputStyle['text_color']) ?? colorScheme.onSurface;
       final layer = Positioned(
         left: rect.left * scale + inset,
         top: rect.top * scale + inset,
@@ -458,62 +475,87 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                   ),
                 ),
               ),
-            TextField(
-              key: ValueKey('renderer-input-slot-$index'),
-              controller: inputControllers[index],
-              textAlign: TextAlign.center,
-              textAlignVertical: TextAlignVertical.center,
-              keyboardType:
-                  slot.digitsOnly ? TextInputType.number : TextInputType.text,
-              inputFormatters: [
-                if (slot.digitsOnly) FilteringTextInputFormatter.digitsOnly,
-                if (slot.operatorOnly)
-                  FilteringTextInputFormatter.allow(RegExp(r'[<>=]')),
-                LengthLimitingTextInputFormatter(maxLength),
-              ],
-              style: _problemTextStyle(
-                color: textColor,
-                fontSize: fontSize,
-                fontWeight: fontWeight,
-                height: 1,
-              ),
-              cursorHeight: fontSize,
-              cursorColor:
-                  slot.drawPlaceholderBehind ? Colors.transparent : null,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                enabledBorder: InputBorder.none,
-                focusedBorder: InputBorder.none,
-                disabledBorder: InputBorder.none,
-                errorBorder: InputBorder.none,
-                focusedErrorBorder: InputBorder.none,
-                filled: false,
-                hoverColor: Colors.transparent,
-                hintText: slot.drawPlaceholderBehind ? null : slot.placeholder,
-                hintStyle: _problemTextStyle(
-                  color: colorScheme.onSurface,
+            Builder(builder: (context) {
+              final field = TextField(
+                key: ValueKey('renderer-input-slot-$index'),
+                enabled: widget.inputsEnabled,
+                controller: inputControllers[index],
+                textAlign: switch (slot.inputStyle['horizontal_align']) {
+                  'left' => TextAlign.left,
+                  'right' => TextAlign.right,
+                  _ => TextAlign.center
+                },
+                textAlignVertical: switch (slot.inputStyle['vertical_align']) {
+                  'top' => TextAlignVertical.top,
+                  'bottom' => TextAlignVertical.bottom,
+                  _ => TextAlignVertical.center
+                },
+                keyboardType:
+                    slot.digitsOnly ? TextInputType.number : TextInputType.text,
+                inputFormatters: [
+                  if (slot.digitsOnly) FilteringTextInputFormatter.digitsOnly,
+                  if (slot.operatorOnly)
+                    FilteringTextInputFormatter.allow(RegExp(r'[<>=]')),
+                  LengthLimitingTextInputFormatter(maxLength),
+                ],
+                style: _problemTextStyle(
+                  color: textColor,
                   fontSize: fontSize,
                   fontWeight: fontWeight,
                   height: 1,
                 ),
-                counterText: '',
-                contentPadding: EdgeInsets.zero,
-                isCollapsed: true,
-              ),
-              onChanged: (value) {
-                if (slot.autoAdvance &&
-                    value.length >= maxLength &&
-                    index + 1 < inputControllers.length) {
-                  FocusScope.of(context).nextFocus();
-                }
-                final nextValue = _combinedInputValue();
-                lastEmittedInputValue = nextValue;
-                if (slot.drawPlaceholderBehind) {
-                  setState(() {});
-                }
-                widget.onInputChanged?.call(nextValue);
-              },
-            ),
+                cursorHeight: fontSize,
+                cursorColor:
+                    slot.drawPlaceholderBehind ? Colors.transparent : null,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  disabledBorder: InputBorder.none,
+                  errorBorder: InputBorder.none,
+                  focusedErrorBorder: InputBorder.none,
+                  filled: false,
+                  hoverColor: Colors.transparent,
+                  hintText:
+                      slot.drawPlaceholderBehind ? null : slot.placeholder,
+                  hintStyle: _problemTextStyle(
+                    color: colorScheme.onSurface,
+                    fontSize: fontSize,
+                    fontWeight: fontWeight,
+                    height: 1,
+                  ),
+                  counterText: '',
+                  contentPadding: EdgeInsets.zero,
+                  isCollapsed: true,
+                ),
+                onChanged: (value) {
+                  if (slot.autoAdvance &&
+                      value.length >= maxLength &&
+                      index + 1 < inputControllers.length) {
+                    FocusScope.of(context).nextFocus();
+                  }
+                  final nextValue = _combinedInputValue();
+                  lastEmittedInputValue = nextValue;
+                  if (slot.drawPlaceholderBehind) {
+                    setState(() {});
+                  }
+                  widget.onInputChanged?.call(nextValue);
+                  _emitFields();
+                },
+              );
+              if (widget.fieldValues == null) return field;
+              final vertical = switch (slot.inputStyle['vertical_align']) {
+                'top' => -1.0,
+                'bottom' => 1.0,
+                _ => 0.0
+              };
+              return Align(
+                  alignment: Alignment(0, vertical),
+                  child: SizedBox(
+                      height: math.min(
+                          rect.height * scale - inset * 2, fontSize * 1.25),
+                      child: field));
+            }),
             if (slot.drawPlaceholderBehind)
               IgnorePointer(
                 child: Center(
@@ -704,6 +746,28 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
     inputSignature = signature;
     _ensureControllerCount(slots.length);
 
+    if (widget.fieldValues != null) {
+      final bindings = _mapAt(widget.renderer, 'field_bindings');
+      for (var field = 0; field < widget.fieldValues!.length; field++) {
+        final indexes = slots.indexed
+            .where((e) => bindings[e.$2.id] == field)
+            .map((e) => e.$1)
+            .toList();
+        final value = widget.fieldValues![field];
+        final lengths = _inferSlotSliceLengths(
+            indexes.map((i) => slots[i]).toList(), value, '');
+        var cursor = 0;
+        for (var pos = 0; pos < indexes.length; pos++) {
+          final end = (cursor + lengths[pos]).clamp(0, value.length);
+          final text = value.substring(cursor, end);
+          final controller = inputControllers[indexes[pos]];
+          if (controller.text != text) controller.text = text;
+          cursor = end;
+        }
+      }
+      return;
+    }
+
     final answerIndexes = slots.indexed
         .where((entry) => entry.$2.contributesToAnswer)
         .map((entry) => entry.$1)
@@ -818,6 +882,21 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
     return indexes.map((index) => inputControllers[index].text).join().trim();
   }
 
+  void _emitFields() {
+    if (widget.fieldValues == null || widget.onFieldsChanged == null) return;
+    final bindings = _mapAt(widget.renderer, 'field_bindings');
+    final slots =
+        _inputSlots(widget.renderer, suppressInputs: widget.suppressInputs);
+    final values = List.filled(widget.fieldValues!.length, '');
+    for (var i = 0; i < slots.length; i++) {
+      final field = bindings[slots[i].id];
+      if (field is int && field >= 0 && field < values.length) {
+        values[field] += inputControllers[i].text;
+      }
+    }
+    widget.onFieldsChanged!(values);
+  }
+
   int _activeOperatorSlotIndex(List<_InputSlot> slots) {
     final operatorIndexes = slots.indexed
         .where((entry) => entry.$2.operatorOnly)
@@ -857,6 +936,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
       activeOperatorSlotIndex = nextIndex ?? index;
     });
     widget.onInputChanged?.call(nextValue);
+    _emitFields();
   }
 }
 
@@ -1689,6 +1769,8 @@ List<_InputSlot> _inputSlots(
   }
   final slots = <_InputSlot>[];
   for (final element in rendererVisibleElements(elements)) {
+    final bindings = renderer['field_bindings'];
+    if (bindings is Map && !bindings.containsKey(element['id'])) continue;
     final type = element['type']?.toString();
     if (type == 'text_box' && _looksLikeInputTextBox(element)) {
       final attributes = _mapAt(element, 'attributes');
@@ -2342,12 +2424,37 @@ bool _autoAdvanceForInput(Map<String, dynamic> element) {
   return interaction['auto_advance'] == true;
 }
 
-double _inputFontSize(_InputSlot slot, double scale) {
+double _inputFontSize(_InputSlot slot, double scale, {int? displayLength}) {
   final style = slot.inputStyle;
   final authoredSize = _readDouble(style['font_size']);
   final minSize = _readDouble(style['min_font_size']);
   final maxSize = _readDouble(style['max_font_size']);
   final adjustment = _readDouble(style['font_size_adjust']) ?? 0;
+  if (displayLength != null) {
+    if (style['font_size_mode'] == 'fixed' && authoredSize != null) {
+      return authoredSize * scale;
+    }
+    final padding = (_readDouble(style['padding']) ?? 6).clamp(0.0, 24.0);
+    final type = style['_value_type'];
+    final ratio = switch (type) {
+      'digit' => .58,
+      'integer' => .6,
+      'decimal' => .62,
+      'fraction' => .72,
+      'text' => .92,
+      _ => .7
+    };
+    final hint =
+        slot.maxLength >= 64 ? (type == 'integer' ? 3 : 1) : slot.maxLength;
+    final characters = math.max(1, math.max(displayLength, hint));
+    final byHeight = math.max(1.0, slot.rect.height - 2 * padding) * .68;
+    final byWidth =
+        math.max(1.0, slot.rect.width - 2 * padding) / characters / ratio;
+    return (math.min(byHeight, byWidth) + adjustment)
+            .clamp(minSize ?? 14, maxSize ?? 52)
+            .round() *
+        scale;
+  }
   final padding = (_readDouble(style['padding']) ?? 3).clamp(0.0, 24.0);
 
   // Renderer dimensions and authored font sizes are logical coordinates. The

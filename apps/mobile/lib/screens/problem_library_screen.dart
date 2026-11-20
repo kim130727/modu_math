@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import '../l10n/app_strings.dart';
 import '../l10n/assignment_strings.dart';
@@ -10,14 +12,66 @@ import 'student_assignments_screen.dart';
 
 class ProblemLibraryScreen extends StatefulWidget {
   const ProblemLibraryScreen(
-      {super.key, required this.service, this.embedded = false});
+      {super.key,
+      required this.service,
+      this.embedded = false,
+      this.active = true});
   final StudentAssignmentService service;
   final bool embedded;
+  final bool active;
   @override
   State<ProblemLibraryScreen> createState() => _ProblemLibraryScreenState();
 }
 
-class _ProblemLibraryScreenState extends State<ProblemLibraryScreen> {
+class _ProblemLibraryScreenState extends State<ProblemLibraryScreen>
+    with WidgetsBindingObserver {
+  Timer? refreshTimer;
+  bool polling = false;
+  Map<String, dynamic>? catalogSnapshot;
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    refreshTimer =
+        Timer.periodic(const Duration(seconds: 5), (_) => pollCatalog());
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) pollCatalog();
+  }
+
+  Future<void> pollCatalog() async {
+    if (!mounted ||
+        !widget.active ||
+        polling ||
+        catalogSnapshot == null ||
+        ModalRoute.of(context)?.isCurrent == false) {
+      return;
+    }
+    final lifecycle = WidgetsBinding.instance.lifecycleState;
+    if (lifecycle != null && lifecycle != AppLifecycleState.resumed) return;
+    final scope = '$classroom|$language';
+    polling = true;
+    try {
+      final next = await widget.service
+          .catalog(classroom: classroom, language: language);
+      if (!mounted || scope != '$classroom|$language') return;
+      final contentChanged = catalogSnapshot?['revision'] != next['revision'];
+      if (jsonEncode(catalogSnapshot) != jsonEncode(next)) {
+        setState(() {
+          catalogSnapshot = next;
+          catalogFuture = Future.value(next);
+        });
+        if (contentChanged && step == 2) loadProblems();
+      }
+    } catch (_) {
+      /* Existing content remains readable while offline. */
+    } finally {
+      polling = false;
+    }
+  }
+
   final scroll = ScrollController();
   int? classroom;
   int step = 0;
@@ -40,8 +94,12 @@ class _ProblemLibraryScreenState extends State<ProblemLibraryScreen> {
   }
 
   void refreshCatalog() => setState(() {
-        catalogFuture =
-            widget.service.catalog(classroom: classroom, language: language);
+        catalogFuture = widget.service
+            .catalog(classroom: classroom, language: language)
+            .then((data) {
+          catalogSnapshot = data;
+          return data;
+        });
       });
   void loadProblems() {
     setState(() {
@@ -62,6 +120,8 @@ class _ProblemLibraryScreenState extends State<ProblemLibraryScreen> {
 
   @override
   void dispose() {
+    refreshTimer?.cancel();
+    WidgetsBinding.instance.removeObserver(this);
     scroll.dispose();
     super.dispose();
   }

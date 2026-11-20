@@ -1,0 +1,113 @@
+{
+  "problem_id": "S3_초등_3_011946",
+  "problem_type": "short_answer_geometry_right_triangle_classification",
+  "metadata": {
+    "title": "직각삼각형 모두 찾아 쓰기",
+    "tags": [],
+    "instruction": "(2) 직각삼각형을 모두 찾아 쓰세요.",
+    "question": "도형을 보고 물음에 답하세요.\n(2) 직각삼각형을 모두 찾아 쓰세요.",
+    "required_layout_ids": [
+      "slot.diagram.box_outer",
+      "slot.diagram.tri_ga",
+      "slot.diagram.tri_na",
+      "slot.diagram.tri_da",
+      "slot.diagram.tri_ra",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "02단원_평면도형",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question",
+        "slot.stem.subquestion"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "도형을 보고 물음에 답하세요.\n(2) 직각삼각형을 모두 찾아 쓰세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "triangle.ga",
+        "type": "right_triangle",
+        "label": "가",
+        "has_right_angle": true
+      },
+      {
+        "id": "triangle.na",
+        "type": "obtuse_triangle",
+        "label": "나",
+        "has_right_angle": false
+      },
+      {
+        "id": "triangle.da",
+        "type": "acute_triangle",
+        "label": "다",
+        "has_right_angle": false
+      },
+      {
+        "id": "triangle.ra",
+        "type": "right_triangle",
+        "label": "라",
+        "has_right_angle": true
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.ga_is_right_triangle",
+        "type": "is_right_triangle",
+        "from_id": "triangle.ga",
+        "to_id": "concept.right_triangle"
+      },
+      {
+        "id": "relation.ra_is_right_triangle",
+        "type": "is_right_triangle",
+        "from_id": "triangle.ra",
+        "to_id": "concept.right_triangle"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": "가, 라"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": "가, 라",
+        "diagnostics": [
+          {
+            "id": "diag.missed_rotated_right_triangle",
+            "condition": "answer_equals_ga",
+            "concept": "직각삼각형",
+            "reason": "기울어져 있는 직각삼각형 라를 찾지 못함",
+            "feedback": "삼각형이 기울어져 있더라도 한 각이 직각이면 직각삼각형입니다. 라의 각을 삼각자로 확인해 보세요."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": "가, 라",
+    "unit": "",
+    "values": [
+      "가, 라",
+      "가,라",
+      "라, 가",
+      "라,가"
+    ]
+  }
+}

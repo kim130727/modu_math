@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 
 import '../l10n/app_strings.dart';
 import '../models/content_models.dart';
@@ -53,13 +55,30 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
   bool _hostRendererReceived = false;
   final Map<String, RendererElementPatch> pendingRendererPatches = {};
   late final EditorHostBridge editorHostBridge;
+  final _savedPreviewBundle = Completer<ProblemJsonBundle>();
+  bool get _studentPreview => Uri.base.queryParameters['studentPreview'] == '1';
 
   @override
   void initState() {
     super.initState();
     _activeProblemLocale = widget.repository.activeProblemLocale;
     tutorService = _createTutorService();
+    if (_studentPreview) canvasMode = RendererCanvasMode.studentTest;
     editorHostBridge = EditorHostBridge(
+      onProblem: (problem) {
+        if (!_studentPreview || _savedPreviewBundle.isCompleted) return;
+        final id = problem['problem_id']?.toString() ?? '';
+        if (id != Uri.base.queryParameters['problemId']) return;
+        selectedFilePrefix = id;
+        _savedPreviewBundle.complete(ProblemJsonBundle(
+          filePrefix: id,
+          basePath: id.replaceFirst(RegExp(r'\.dsl\.py$'), ''),
+          semantic: _mapAt(problem, 'semantic'),
+          layout: _mapAt(problem, 'layout'),
+          renderer: _mapAt(problem, 'renderer'),
+          solvable: _mapAt(problem, 'solvable'),
+        ));
+      },
       onRenderer: (renderer) {
         if (!mounted) return;
         setState(() {
@@ -73,14 +92,18 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
         setState(() => selectedRendererElementId = elementId);
       },
       onMode: (mode) {
-        if (!mounted) return;
+        if (!mounted || _studentPreview) return;
         setState(() => canvasMode = mode);
       },
     );
     WidgetsBinding.instance
         .addPostFrameCallback((_) => editorHostBridge.ready());
-    prefixesFuture = widget.repository.loadGrade3JsonProblemPrefixes();
-    bundleFuture = _loadInitialBundle();
+    prefixesFuture = _studentPreview
+        ? Future.value(<String>[])
+        : widget.repository.loadGrade3JsonProblemPrefixes();
+    bundleFuture = _studentPreview
+        ? _savedPreviewBundle.future.timeout(const Duration(seconds: 30))
+        : _loadInitialBundle();
   }
 
   @override
@@ -90,7 +113,7 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
     final localeChanged = _activeProblemLocale != locale;
     _activeProblemLocale = locale;
     widget.repository.activeProblemLocale = locale;
-    if (localeChanged) {
+    if (localeChanged && !_studentPreview) {
       setState(() {
         prefixesFuture = widget.repository.loadGrade3JsonProblemPrefixes();
         bundleFuture = _loadInitialBundle();
@@ -118,10 +141,10 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
         .where((part) => part.isNotEmpty)
         .lastOrNull
         ?.replaceFirst(RegExp(r'\.dsl\.py$'), '');
-    selectedFilePrefix = normalizedRequested != null &&
-            prefixes.contains(normalizedRequested)
-        ? normalizedRequested
-        : prefixes.first;
+    selectedFilePrefix =
+        normalizedRequested != null && prefixes.contains(normalizedRequested)
+            ? normalizedRequested
+            : prefixes.first;
     return widget.repository.loadProblemJsonBundle(selectedFilePrefix);
   }
 
@@ -434,12 +457,14 @@ class _JsonRendererPreviewScreenState extends State<JsonRendererPreviewScreen> {
 
   Future<void> _submit(ProblemContent content, String answer) async {
     final correct = isSameAnswer(answer, content.correctAnswer);
-    await widget.progressRepository.recordAttempt(
-      problem: content.summary,
-      answer: answer,
-      isCorrect: correct,
-      hintLevelUsed: hintLevel,
-    );
+    if (!_studentPreview) {
+      await widget.progressRepository.recordAttempt(
+        problem: content.summary,
+        answer: answer,
+        isCorrect: correct,
+        hintLevelUsed: hintLevel,
+      );
+    }
     setState(() {
       answerDraft = answer;
       submittedAnswer = answer;
@@ -798,7 +823,8 @@ class _RenderTabBody extends StatelessWidget {
             children: [
               _HeroPanel(bundle: bundle, instruction: metadata['instruction']),
               const SizedBox(height: 14),
-              _CanvasModeToolbar(mode: mode, onChanged: onModeChanged),
+              if (Uri.base.queryParameters['studentPreview'] != '1')
+                _CanvasModeToolbar(mode: mode, onChanged: onModeChanged),
               const SizedBox(height: 10),
               Expanded(
                 child: _CanvasShell(
@@ -810,8 +836,21 @@ class _RenderTabBody extends StatelessWidget {
                     onElementPatch: onElementPatch,
                     inputValue: answerDraft,
                     onInputChanged: onAnswerChanged,
-                    imageLoader: (href) =>
-                        repository.loadProblemAsset(content.summary, href),
+                    imageLoader: (href) async {
+                      if (Uri.base.queryParameters['studentPreview'] == '1' &&
+                          !href.contains('/') &&
+                          !href.contains(r'\')) {
+                        final uri = Uri.base.resolve(
+                            '/api/editor/assets/${Uri.encodeComponent(Uri.base.queryParameters['problemId']!)}/${Uri.encodeComponent(href)}');
+                        final response = await http.get(uri);
+                        if (response.statusCode != 200) {
+                          throw StateError(
+                              'Image load failed: ${response.statusCode}');
+                        }
+                        return response.bodyBytes;
+                      }
+                      return repository.loadProblemAsset(content.summary, href);
+                    },
                     imageCacheKey: content.summary.path,
                     expectedAnswer: content.correctAnswer,
                   ),
@@ -839,7 +878,9 @@ class _RenderTabBody extends StatelessWidget {
           ),
         );
 
-        if (embedded) return preview;
+        if (embedded && Uri.base.queryParameters['studentPreview'] != '1') {
+          return preview;
+        }
 
         if (!wide) {
           return Column(
