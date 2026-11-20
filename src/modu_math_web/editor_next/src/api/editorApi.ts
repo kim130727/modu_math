@@ -258,6 +258,17 @@ export function loadProblem(problemId: string): Promise<ProblemDetailResponse> {
   return requestJson<ProblemDetailResponse>(encodedProblemPath(problemId, "/"));
 }
 
+export function loadStudentPreview(problemId: string): Promise<Record<string, unknown>> {
+  return requestJson(encodedProblemPath(problemId, "/student-preview/"));
+}
+
+export function checkStudentPreview(problemId: string, answer: unknown, revision: string): Promise<{ correct: boolean }> {
+  return requestJson(encodedProblemPath(problemId, "/student-preview/"), {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ answer, revision }),
+  });
+}
+
 export function createProblem(problemId: string, title?: string): Promise<ProblemDetailResponse> {
   return requestJson<ProblemDetailResponse>("/api/editor/problems/create/", {
     method: "POST",

@@ -1,0 +1,104 @@
+{
+  "problem_id": "S3_초등_3_011999",
+  "problem_type": "short_answer_length_comparison",
+  "metadata": {
+    "title": "단위가 다른 길이 비교하여 가장 긴 것 찾기",
+    "tags": [],
+    "instruction": "㉠  2 m 5 cm",
+    "question": "길이가 가장 긴 것을 찾아 기호를 쓰세요.",
+    "required_layout_ids": [
+      "slot.diagram.box_outer",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "05단원_길이와 시간",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "길이가 가장 긴 것을 찾아 기호를 쓰세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "length.g",
+        "type": "length",
+        "label": "ㄱ",
+        "text": "2 m 5 cm",
+        "cm_value": 205
+      },
+      {
+        "id": "length.n",
+        "type": "length",
+        "label": "ㄴ",
+        "text": "250 cm",
+        "cm_value": 250
+      },
+      {
+        "id": "length.d",
+        "type": "length",
+        "label": "ㄷ",
+        "text": "97 cm",
+        "cm_value": 97
+      },
+      {
+        "id": "length.r",
+        "type": "length",
+        "label": "ㄹ",
+        "text": "2 m 10 cm",
+        "cm_value": 210
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.longest",
+        "type": "longest_among",
+        "from_id": "length.n",
+        "to_id": "concept.length"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": "ㄴ"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": "ㄴ",
+        "diagnostics": [
+          {
+            "id": "diag.unit_conversion_error",
+            "condition": "answer_in_ga_da_ra",
+            "concept": "m와 cm의 단위 환산",
+            "reason": "m와 cm를 같은 단위로 통일하지 않고 숫자 크기만 비교함",
+            "feedback": "1 m = 100 cm이므로 ㉠은 205 cm, ㉡은 250 cm, ㉢은 97 cm, ㉣은 210 cm입니다. 가장 긴 것은 ㉡입니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": "ㄴ",
+    "unit": "",
+    "values": [
+      "ㄴ",
+      "㉡"
+    ]
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "problem_id": "S3_초등_3_011908",
+  "problem_type": "short_answer_time_clock_reading",
+  "metadata": {
+    "title": "초침까지 있는 시계의 시각 읽기",
+    "tags": [],
+    "instruction": "1",
+    "question": "시계의 시각을 읽어 보세요.",
+    "required_layout_ids": [
+      "slot.diagram.clock_outer",
+      "slot.diagram.clock_inner",
+      "slot.diagram.clock_tick_0",
+      "slot.diagram.clock_tick_1",
+      "slot.diagram.clock_tick_2",
+      "slot.diagram.clock_tick_3",
+      "slot.diagram.clock_tick_4",
+      "slot.diagram.clock_tick_5",
+      "slot.diagram.clock_tick_6",
+      "slot.diagram.clock_tick_7",
+      "slot.diagram.clock_tick_8",
+      "slot.diagram.clock_tick_9",
+      "slot.diagram.clock_tick_10",
+      "slot.diagram.clock_tick_11",
+      "slot.diagram.clock_tick_12",
+      "slot.diagram.clock_tick_13",
+      "slot.diagram.clock_tick_14",
+      "slot.diagram.clock_tick_15",
+      "slot.diagram.clock_tick_16",
+      "slot.diagram.clock_tick_17",
+      "slot.diagram.clock_tick_18",
+      "slot.diagram.clock_tick_19",
+      "slot.diagram.clock_tick_20",
+      "slot.diagram.clock_tick_21",
+      "slot.diagram.clock_tick_22",
+      "slot.diagram.clock_tick_23",
+      "slot.diagram.clock_tick_24",
+      "slot.diagram.clock_tick_25",
+      "slot.diagram.clock_tick_26",
+      "slot.diagram.clock_tick_27",
+      "slot.diagram.clock_tick_28",
+      "slot.diagram.clock_tick_29",
+      "slot.diagram.clock_tick_30",
+      "slot.diagram.clock_tick_31",
+      "slot.diagram.clock_tick_32",
+      "slot.diagram.clock_tick_33",
+      "slot.diagram.clock_tick_34",
+      "slot.diagram.clock_tick_35",
+      "slot.diagram.clock_tick_36",
+      "slot.diagram.clock_tick_37",
+      "slot.diagram.clock_tick_38",
+      "slot.diagram.clock_tick_39",
+      "slot.diagram.clock_tick_40",
+      "slot.diagram.clock_tick_41",
+      "slot.diagram.clock_tick_42",
+      "slot.diagram.clock_tick_43",
+      "slot.diagram.clock_tick_44",
+      "slot.diagram.clock_tick_45",
+      "slot.diagram.clock_tick_46",
+      "slot.diagram.clock_tick_47",
+      "slot.diagram.clock_tick_48",
+      "slot.diagram.clock_tick_49",
+      "slot.diagram.clock_tick_50",
+      "slot.diagram.clock_tick_51",
+      "slot.diagram.clock_tick_52",
+      "slot.diagram.clock_tick_53",
+      "slot.diagram.clock_tick_54",
+      "slot.diagram.clock_tick_55",
+      "slot.diagram.clock_tick_56",
+      "slot.diagram.clock_tick_57",
+      "slot.diagram.clock_tick_58",
+      "slot.diagram.clock_tick_59",
+      "slot.diagram.hand_hour",
+      "slot.diagram.hand_minute",
+      "slot.diagram.hand_second",
+      "slot.diagram.clock_center",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "05단원_길이와 시간",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "시계의 시각을 읽어 보세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "clock.main",
+        "type": "analog_clock",
+        "label": "아날로그 시계",
+        "hour": 1,
+        "minute": 48,
+        "second": 29
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.shows_time",
+        "type": "displays_time",
+        "from_id": "clock.main",
+        "to_id": "time.01_48_29"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": "1시 48분 29초"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": "1시 48분 29초",
+        "diagnostics": [
+          {
+            "id": "diag.hour_hand_misread",
+            "condition": "answer_starts_with_2",
+            "concept": "시침 읽기",
+            "reason": "시침이 2에 가까워 2시로 잘못 읽음",
+            "feedback": "짧은바늘(시침)이 숫자 1과 2 사이에 있으므로 아직 2시가 되지 않은 1시입니다."
+          },
+          {
+            "id": "diag.second_hand_omitted",
+            "condition": "answer_missing_seconds",
+            "concept": "초침 읽기",
+            "reason": "초바늘이 가리키는 초를 읽지 않음",
+            "feedback": "가장 가는 바늘(초바늘)이 숫자 5에서 작은 눈금 4칸 더 간 곳에 있으므로 29초도 함께 읽어 보세요."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": "1시 48분 29초",
+    "unit": "",
+    "values": [
+      "1시 48분 29초",
+      "1시48분29초"
+    ]
+  }
+}

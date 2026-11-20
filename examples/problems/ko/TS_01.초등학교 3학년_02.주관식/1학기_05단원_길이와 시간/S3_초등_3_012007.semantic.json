@@ -1,0 +1,90 @@
+{
+  "problem_id": "S3_초등_3_012007",
+  "problem_type": "short_answer_time_arithmetic_comparison",
+  "metadata": {
+    "title": "시간의 덧셈과 뺄셈 결과 비교하기 (2)",
+    "tags": [],
+    "instruction": "㉠  34분 15초 + 2분 34초",
+    "question": "시간이 더 긴 것의 기호를 쓰세요.",
+    "required_layout_ids": [
+      "slot.diagram.box_outer",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "05단원_길이와 시간",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "시간이 더 긴 것의 기호를 쓰세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "expr.g",
+        "type": "time_expression",
+        "label": "ㄱ",
+        "text": "34분 15초 + 2분 34초",
+        "result_sec": 2209
+      },
+      {
+        "id": "expr.n",
+        "type": "time_expression",
+        "label": "ㄴ",
+        "text": "56분 45초 - 21분 12초",
+        "result_sec": 2133
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.longer_time",
+        "type": "greater_than",
+        "from_id": "expr.g",
+        "to_id": "expr.n"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": "ㄱ"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": "ㄱ",
+        "diagnostics": [
+          {
+            "id": "diag.time_comparison_error",
+            "condition": "answer_equals_na",
+            "concept": "시간의 덧셈과 뺄셈",
+            "reason": "분과 초 단위의 덧셈/뺄셈 계산을 잘못하여 ㉡을 선택함",
+            "feedback": "㉠은 34분 15초 + 2분 34초 = 36분 49초이고, ㉡은 56분 45초 - 21분 12초 = 35분 33초이므로 ㉠이 더 깁니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": "ㄱ",
+    "unit": "",
+    "values": [
+      "ㄱ",
+      "㉠"
+    ]
+  }
+}

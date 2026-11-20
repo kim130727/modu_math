@@ -32,9 +32,10 @@ COPY apps/mobile/assets/i18n ./assets/i18n
 COPY apps/mobile/assets/characters ./assets/characters
 COPY apps/mobile/scripts/prepare_student_build.py ./scripts/prepare_student_build.py
 
-# Build student release app targeting lib/main_student.dart without authored problem answers
+# Build student release app targeting lib/main.dart without authored problem answers
 RUN flutter build web --release \
-    --target lib/main_student.dart \
+    --base-href /static/editor_next/student_app/ \
+    --target lib/main.dart \
     --dart-define=BACKEND_API_BASE_URL=${BACKEND_API_BASE_URL} && \
     python3 scripts/prepare_student_build.py --verify-dir build/web && \
     chmod -R a+rX build/web

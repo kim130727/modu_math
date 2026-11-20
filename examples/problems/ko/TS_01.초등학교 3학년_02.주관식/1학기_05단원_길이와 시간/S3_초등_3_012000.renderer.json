@@ -1,0 +1,443 @@
+{
+  "problem_id": "S3_초등_3_012000",
+  "view_box": {
+    "width": 900.0,
+    "height": 410.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.diagram.table_header_bg.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 90.0,
+        "y": 136.0,
+        "width": 720.0,
+        "height": 52.0,
+        "fill": "#f9bfa3",
+        "stroke": "#f9bfa3",
+        "stroke-width": 1.4
+      },
+      "source_ref": "slot.diagram.table_header_bg",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table_header_bg"
+      }
+    },
+    {
+      "id": "slot.diagram.table_body_bg.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 90.0,
+        "y": 188.0,
+        "width": 720.0,
+        "height": 112.0,
+        "fill": "#ffffff",
+        "stroke": "#f9bfa3",
+        "stroke-width": 1.8
+      },
+      "source_ref": "slot.diagram.table_body_bg",
+      "refs": {
+        "layout_slot_id": "slot.diagram.table_body_bg"
+      }
+    },
+    {
+      "id": "slot.answer.input.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 574.0,
+        "y": 328.0,
+        "width": 190.0,
+        "height": 54.0,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.4
+      },
+      "source_ref": "slot.answer.input",
+      "refs": {
+        "layout_slot_id": "slot.answer.input"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "text",
+        "max_length": 10,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": false,
+        "keyboard": "text"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 16,
+        "max_font_size": 26,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222",
+        "width": 190.0,
+        "height": 54.0
+      }
+    },
+    {
+      "id": "slot.diagram.row_divider.line",
+      "type": "line",
+      "attributes": {
+        "x1": 90.0,
+        "y1": 244.0,
+        "x2": 810.0,
+        "y2": 244.0,
+        "stroke": "#f9bfa3",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.row_divider",
+      "refs": {
+        "layout_slot_id": "slot.diagram.row_divider"
+      }
+    },
+    {
+      "id": "slot.diagram.col_divider_1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 290.0,
+        "y1": 136.0,
+        "x2": 290.0,
+        "y2": 300.0,
+        "stroke": "#f9bfa3",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.col_divider_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.col_divider_1"
+      }
+    },
+    {
+      "id": "slot.diagram.col_divider_2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 550.0,
+        "y1": 136.0,
+        "x2": 550.0,
+        "y2": 300.0,
+        "stroke": "#f9bfa3",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.col_divider_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.col_divider_2"
+      }
+    },
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 26.0,
+        "width": 836.0,
+        "height": 96.0,
+        "max_width": 836.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 836.0,
+        "data-box-height": 96.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "민재와 초림이가 청소를 시작한 시각과 끝낸 시각을 나타낸 것입니다. 누가 청소를 더 오랫동안 하였을까요?"
+    },
+    {
+      "id": "slot.diagram.hdr_start.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 290.0,
+        "y": 136.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "width": 260.0,
+        "height": 52.0,
+        "max_width": 260.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 290.0,
+        "data-box-y": 136.0,
+        "data-box-width": 260.0,
+        "data-box-height": 52.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.hdr_start",
+      "refs": {
+        "layout_slot_id": "slot.diagram.hdr_start"
+      },
+      "text": "시작 시각"
+    },
+    {
+      "id": "slot.diagram.hdr_end.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 550.0,
+        "y": 136.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "width": 260.0,
+        "height": 52.0,
+        "max_width": 260.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 550.0,
+        "data-box-y": 136.0,
+        "data-box-width": 260.0,
+        "data-box-height": 52.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.hdr_end",
+      "refs": {
+        "layout_slot_id": "slot.diagram.hdr_end"
+      },
+      "text": "끝낸 시각"
+    },
+    {
+      "id": "slot.diagram.r1_name.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 90.0,
+        "y": 188.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "width": 200.0,
+        "height": 56.0,
+        "max_width": 200.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 90.0,
+        "data-box-y": 188.0,
+        "data-box-width": 200.0,
+        "data-box-height": 56.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.r1_name",
+      "refs": {
+        "layout_slot_id": "slot.diagram.r1_name"
+      },
+      "text": "민재"
+    },
+    {
+      "id": "slot.diagram.r1_start.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 290.0,
+        "y": 188.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "width": 260.0,
+        "height": 56.0,
+        "max_width": 260.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 290.0,
+        "data-box-y": 188.0,
+        "data-box-width": 260.0,
+        "data-box-height": 56.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.r1_start",
+      "refs": {
+        "layout_slot_id": "slot.diagram.r1_start"
+      },
+      "text": "3시 50분"
+    },
+    {
+      "id": "slot.diagram.r1_end.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 550.0,
+        "y": 188.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "width": 260.0,
+        "height": 56.0,
+        "max_width": 260.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 550.0,
+        "data-box-y": 188.0,
+        "data-box-width": 260.0,
+        "data-box-height": 56.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.r1_end",
+      "refs": {
+        "layout_slot_id": "slot.diagram.r1_end"
+      },
+      "text": "4시 15분"
+    },
+    {
+      "id": "slot.diagram.r2_name.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 90.0,
+        "y": 244.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "width": 200.0,
+        "height": 56.0,
+        "max_width": 200.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 90.0,
+        "data-box-y": 244.0,
+        "data-box-width": 200.0,
+        "data-box-height": 56.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.r2_name",
+      "refs": {
+        "layout_slot_id": "slot.diagram.r2_name"
+      },
+      "text": "초림"
+    },
+    {
+      "id": "slot.diagram.r2_start.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 290.0,
+        "y": 244.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "width": 260.0,
+        "height": 56.0,
+        "max_width": 260.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 290.0,
+        "data-box-y": 244.0,
+        "data-box-width": 260.0,
+        "data-box-height": 56.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.r2_start",
+      "refs": {
+        "layout_slot_id": "slot.diagram.r2_start"
+      },
+      "text": "3시 45분"
+    },
+    {
+      "id": "slot.diagram.r2_end.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 550.0,
+        "y": 244.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "width": 260.0,
+        "height": 56.0,
+        "max_width": 260.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 550.0,
+        "data-box-y": 244.0,
+        "data-box-width": 260.0,
+        "data-box-height": 56.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.r2_end",
+      "refs": {
+        "layout_slot_id": "slot.diagram.r2_end"
+      },
+      "text": "4시 30분"
+    },
+    {
+      "id": "slot.answer.paren_left.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 540.0,
+        "y": 328.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 28.0,
+        "width": 28.0,
+        "height": 54.0,
+        "max_width": 28.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 540.0,
+        "data-box-y": 328.0,
+        "data-box-width": 28.0,
+        "data-box-height": 54.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.answer.paren_left",
+      "refs": {
+        "layout_slot_id": "slot.answer.paren_left"
+      },
+      "text": "("
+    },
+    {
+      "id": "slot.answer.paren_right.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 770.0,
+        "y": 328.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 28.0,
+        "width": 28.0,
+        "height": 54.0,
+        "max_width": 28.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 770.0,
+        "data-box-y": 328.0,
+        "data-box-width": 28.0,
+        "data-box-height": 54.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.answer.paren_right",
+      "refs": {
+        "layout_slot_id": "slot.answer.paren_right"
+      },
+      "text": ")"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

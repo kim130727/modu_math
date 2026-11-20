@@ -1,0 +1,369 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_012003",
+  "title": "도서관에서 학교까지의 거리를 m로 나타내기",
+  "canvas": {
+    "width": 900,
+    "height": 364,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.lib_building",
+        "slot.diagram.lib_sign",
+        "slot.diagram.school_building",
+        "slot.diagram.school_clock",
+        "slot.diagram.arc_dist",
+        "slot.answer.input",
+        "slot.diagram.dist_line",
+        "slot.diagram.dot_left",
+        "slot.diagram.dot_right",
+        "slot.stem.question",
+        "slot.diagram.lib_sign_text",
+        "slot.diagram.lib_label",
+        "slot.diagram.school_label",
+        "slot.diagram.dist_label",
+        "slot.answer.paren_left",
+        "slot.answer.unit",
+        "slot.answer.paren_right"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "도서관에서 학교까지의 거리는 몇 m일까요?",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 26,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.45,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.lib_building",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 72.0,
+        "y": 120.0,
+        "width": 116.0,
+        "height": 88.0,
+        "stroke": "#0284c7",
+        "stroke_width": 1.6,
+        "fill": "#e0f2fe"
+      }
+    },
+    {
+      "id": "slot.diagram.lib_sign",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 92.0,
+        "y": 96.0,
+        "width": 76.0,
+        "height": 24.0,
+        "stroke": "#ea580c",
+        "stroke_width": 1.2,
+        "fill": "#fed7aa"
+      }
+    },
+    {
+      "id": "slot.diagram.lib_sign_text",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "도서관",
+        "style_role": "body",
+        "x": 92.0,
+        "y": 96.0,
+        "width": 76.0,
+        "height": 24.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 14,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#7c2d12",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.lib_label",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "도서관",
+        "style_role": "body",
+        "x": 70.0,
+        "y": 216.0,
+        "width": 120.0,
+        "height": 34.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.school_building",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 705.0,
+        "y": 136.0,
+        "width": 120.0,
+        "height": 72.0,
+        "stroke": "#7c3aed",
+        "stroke_width": 1.6,
+        "fill": "#ddd6fe"
+      }
+    },
+    {
+      "id": "slot.diagram.school_clock",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 765.0,
+        "cy": 154.0,
+        "r": 10.0,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.school_label",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "학교",
+        "style_role": "body",
+        "x": 705.0,
+        "y": 216.0,
+        "width": 120.0,
+        "height": 34.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.dist_line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 210.0,
+        "y1": 200.0,
+        "x2": 685.0,
+        "y2": 200.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.dot_left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 210.0,
+        "cy": 200.0,
+        "r": 4.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.dot_right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 685.0,
+        "cy": 200.0,
+        "r": 4.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.arc_dist",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 210 200 Q 447 120 685 200",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "5 4",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.dist_label",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "2 km 300 m",
+        "style_role": "body",
+        "x": 340.0,
+        "y": 118.0,
+        "width": 215.0,
+        "height": 40.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 28,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.answer.paren_left",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(",
+        "style_role": "body",
+        "x": 520.0,
+        "y": 278.0,
+        "width": 26.0,
+        "height": 54.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 26,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.answer.input",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 552.0,
+        "y": 278.0,
+        "width": 160.0,
+        "height": 54.0,
+        "stroke": "#111827",
+        "stroke_width": 1.4,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "integer",
+          "max_length": 5,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "auto_advance": false,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 16,
+          "max_font_size": 28,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 160.0,
+          "height": 54.0
+        }
+      }
+    },
+    {
+      "id": "slot.answer.unit",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "m",
+        "style_role": "body",
+        "x": 720.0,
+        "y": 278.0,
+        "width": 40.0,
+        "height": 54.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 26,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.answer.paren_right",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": ")",
+        "style_role": "body",
+        "x": 766.0,
+        "y": 278.0,
+        "width": 26.0,
+        "height": 54.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 26,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.diagram.lib_building",
+    "slot.diagram.lib_sign",
+    "slot.diagram.school_building",
+    "slot.diagram.school_clock",
+    "slot.diagram.arc_dist",
+    "slot.answer.input",
+    "slot.diagram.dist_line",
+    "slot.diagram.dot_left",
+    "slot.diagram.dot_right",
+    "slot.stem.question",
+    "slot.diagram.lib_sign_text",
+    "slot.diagram.lib_label",
+    "slot.diagram.school_label",
+    "slot.diagram.dist_label",
+    "slot.answer.paren_left",
+    "slot.answer.unit",
+    "slot.answer.paren_right"
+  ]
+}

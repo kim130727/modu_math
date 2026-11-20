@@ -1,0 +1,154 @@
+{
+  "problem_id": "S3_초등_3_011911",
+  "problem_type": "short_answer_fraction_representation",
+  "metadata": {
+    "title": "분수 2/5를 나타내는 그림 찾기",
+    "tags": [],
+    "instruction": "2/5를 나타내는 것을 찾아 기호를 쓰세요.",
+    "question": "그림을 보고 물음에 답하세요.\n2/5를 나타내는 것을 찾아 기호를 쓰세요.",
+    "required_layout_ids": [
+      "slot.diagram.box_outer",
+      "slot.diagram.ga_rect",
+      "slot.diagram.ga_s1",
+      "slot.diagram.ga_s2",
+      "slot.diagram.ga_l1",
+      "slot.diagram.ga_l2",
+      "slot.diagram.ga_l3",
+      "slot.diagram.ga_l4",
+      "slot.diagram.na_tri",
+      "slot.diagram.na_s1",
+      "slot.diagram.na_s2",
+      "slot.diagram.da_slice_0",
+      "slot.diagram.da_slice_1",
+      "slot.diagram.da_slice_2",
+      "slot.diagram.da_slice_3",
+      "slot.diagram.da_slice_4",
+      "slot.diagram.ra_hex",
+      "slot.diagram.ra_l1",
+      "slot.diagram.ra_l2",
+      "slot.diagram.ra_l3",
+      "slot.diagram.ma_tri",
+      "slot.diagram.ma_s1",
+      "slot.diagram.ma_s2",
+      "slot.diagram.ba_cell_0_0",
+      "slot.diagram.ba_cell_0_1",
+      "slot.diagram.ba_cell_0_2",
+      "slot.diagram.ba_cell_1_0",
+      "slot.diagram.ba_cell_1_1",
+      "slot.diagram.ba_cell_2_0",
+      "slot.diagram.ba_cell_2_1",
+      "slot.diagram.ba_cell_2_2",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "06단원_분수와 소수",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question",
+        "slot.stem.subquestion"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "그림을 보고 물음에 답하세요.\n2/5를 나타내는 것을 찾아 기호를 쓰세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "figure.ga",
+        "type": "fraction_model",
+        "label": "가",
+        "total_parts": 8,
+        "shaded_parts": 2,
+        "equal_parts": true
+      },
+      {
+        "id": "figure.na",
+        "type": "fraction_model",
+        "label": "나",
+        "total_parts": 9,
+        "shaded_parts": 2,
+        "equal_parts": true
+      },
+      {
+        "id": "figure.da",
+        "type": "fraction_model",
+        "label": "다",
+        "total_parts": 5,
+        "shaded_parts": 2,
+        "equal_parts": true
+      },
+      {
+        "id": "figure.ra",
+        "type": "fraction_model",
+        "label": "라",
+        "total_parts": 3,
+        "shaded_parts": 3,
+        "equal_parts": true
+      },
+      {
+        "id": "figure.ma",
+        "type": "fraction_model",
+        "label": "마",
+        "total_parts": 3,
+        "shaded_parts": 2,
+        "equal_parts": false
+      },
+      {
+        "id": "figure.ba",
+        "type": "fraction_model",
+        "label": "바",
+        "total_parts": 7,
+        "shaded_parts": 3,
+        "equal_parts": true
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.represents_two_fifths",
+        "type": "represents_fraction",
+        "from_id": "figure.da",
+        "fraction": "2/5"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": "다"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": "다",
+        "diagnostics": [
+          {
+            "id": "diag.unequal_parts_confusion",
+            "condition": "answer_not_equals_da",
+            "concept": "분수의 의미 (전체와 부분)",
+            "reason": "전체를 똑같이 5로 나눈 것 중의 2를 찾지 못함",
+            "feedback": "전체를 똑같이 5조각으로 나눈 뒤 그중 2조각을 색칠한 그림은 원 모양인 '다'입니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": "다",
+    "unit": "",
+    "values": [
+      "다"
+    ]
+  }
+}

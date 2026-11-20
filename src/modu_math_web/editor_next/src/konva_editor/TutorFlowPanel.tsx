@@ -1,8 +1,21 @@
-import { useEffect, useState, type ComponentProps } from "react";
+import { useEffect, useState } from "react";
 import type { TutorRendererStep, TutorRendererOverlay } from "../api/editorApi";
-import type { LegacyTutorFlowPanel } from "./LegacyTutorFlowPanel";
+interface TutorFlowPanelProps {
+  problemId: string;
+  tutorFlow: TutorRendererStep[];
+  message: string;
+  activeStepId: string | null;
+  activeFrameIndex: number;
+  activeOverlayIndex: number | null;
+  selectedShapeIds: string[];
+  onDraftChange: (tutorFlow: TutorRendererStep[]) => void;
+  onSelectFrame: (stepId: string, frameIndex: number) => void;
+  onSelectOverlay: (overlayIndex: number | null) => void;
+  onSave: (tutorFlow: TutorRendererStep[]) => Promise<void>;
+  studentHints?: unknown;
+}
 
-export function TutorFlowPanel(props: ComponentProps<typeof LegacyTutorFlowPanel> & { studentHints?: unknown }) {
+export function TutorFlowPanel(props: TutorFlowPanelProps) {
   const { tutorFlow, activeStepId, onSelectFrame, onDraftChange } = props;
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);

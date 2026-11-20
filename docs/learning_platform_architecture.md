@@ -1,5 +1,21 @@
 # 학습관리 플랫폼 전환
 
+## 현재 실행 구조 (2026-11-20)
+
+- 학생 앱은 `apps/mobile/lib/main.dart` 한 진입점으로 실행한다. `localhost:3000`,
+  Django `/student/`, Konva의 ‘앱처럼 풀어보기’는 같은 학생 번들을 사용한다.
+- 공개 학습과 미리보기는 `StudentProblemBody`를 공유한다. 지문·출처·캔버스·보기·
+  빈칸은 `StudentProblemCanvas`와 `AssignmentAnswerInput`의 동일한 구현이다.
+- 미리보기 API `GET/POST /api/editor/problems/<source>/student-preview/`는 저장된
+  파일을 학생 공개 계약으로 변환하고 실제 서버 채점기를 호출한다. 문제·풀이 기록은
+  저장하지 않으며, 열어둔 문제 버전이 바뀌면 제출을 거절한다.
+- 구형 학습 앱 라우터·개발 스튜디오·Flutter 직접 편집·오프라인 문제 저장소·음성
+  튜터 화면과 별도 `flutter_editor` 번들은 제거했다. 현재 학생 앱의 로그인·공개
+  학습·과제·이력과 Konva 저작 기능은 유지한다.
+
+이하 내용은 구축 과정의 설계·검증 이력이며, 과거 화면·경로 설명보다 위 실행 구조를 우선한다.
+
+
 ## Phase 0 — 실제 소스 분석 (2026-10-30)
 
 저장소의 작업 시작 시점에 day_01/00469 및 day_02 문제 원본·파생물과 Flutter 정적 번들의 미커밋 변경이 있었다. 이 파일들은 이번 플랫폼 개발의 수정 대상에서 제외한다. DB를 초기화하거나 기존 데이터 마이그레이션을 되돌리지 않는다.
@@ -206,7 +222,7 @@ PostgreSQL 16 컨테이너 환경에서 `select_for_update()` 행 락과 트랜�
 2. **운영 기본 라우팅 변경 (`urls.py`):**
    - `DEBUG=False` 운영 환경에서 도메인 루트(`/`) 접근 시 기존의 `/editor-konva/` 대신 학생 진입점인 `/student/`로 리다이렉트한다.
 3. **Docker 모바일 번들 및 Nginx 격리 (`docker/mobile.Dockerfile`, `docker/nginx-mobile.conf`):**
-   - 학생용 모바일 웹 컨테이너 빌드 시 `generated/examples/problems` 복사를 완전히 제거하고 `pubspec.yaml`의 `generated/` 의존성을 제거한 채 `lib/main_student.dart`를 타깃으로 릴리스 빌드한다.
+   - 학생용 모바일 웹 컨테이너 빌드 시 `generated/examples/problems` 복사를 완전히 제거하고 `pubspec.yaml`의 `generated/` 의존성을 제거한 채 `lib/main.dart`를 타깃으로 릴리스 빌드한다.
    - Nginx 설정에 `.dsl.py`, `.semantic.json`, `.solvable.json` 및 `/assets/generated/` 직접 요청을 `404`로 거부하는 보안 차단 규칙을 적용했다.
 4. **학생 번들 검증 유틸리티 (`apps/mobile/scripts/prepare_student_build.py`):**
    - Web/Android/iOS 빌드 전에 학생용 프로젝트를 안전하게 준비하고, 빌드 산출물 내에 저작 DSL, 정답, solvable 자산이 누출되지 않았는지 자동 검증한다.
@@ -251,7 +267,7 @@ PostgreSQL 16 컨테이너 환경에서 `select_for_update()` 행 락과 트랜�
 
 ### 변경 파일과 API
 
-- `apps/mobile/lib/main_student.dart`: 편집기·오프라인 문제 저장소를 가져오지 않는 학생 전용 진입점.
+- `apps/mobile/lib/main.dart`: 편집기·오프라인 문제 저장소를 가져오지 않는 학생 전용 진입점.
 - `models/assignment.dart`, `services/student_assignment_service.dart`, `services/assignment_session.dart`: API 계약, 계정별 저장, 풀이 상태·제출 관리.
 - `screens/student_assignments_screen.dart`, `screens/assignment_solve_screen.dart`, `widgets/assignment_answer_input.dart`, `l10n/assignment_strings.dart`: 목록·풀이·결과, 숫자/텍스트/단일·복수 선택/OX 입력. 기존 앱에도 `/assignments`와 내 과제 진입 버튼을 추가했다.
 - `services/auth_service.dart`, `models/auth_user.dart`, `screens/auth_screen.dart`: 세션 복원·권한 정보·초대 코드 가입. 늦게 도착한 이전 계정의 401 응답이 새 계정을 로그아웃시키지 않도록 보호한다.

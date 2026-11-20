@@ -103,8 +103,8 @@ def validate_svg(data):
             raise ValidationError("SVG의 외부 참조는 사용할 수 없습니다.")
 
 
-def freeze_images(content, problem):
-    root = settings.PROBLEMS_ROOT.resolve()
+def freeze_images(content, problem, *, root=None):
+    root = (root or settings.PROBLEMS_ROOT).resolve()
     relative = str(
         problem.catalog_data.get("path") or f"examples/problems/{problem.language}"
     )

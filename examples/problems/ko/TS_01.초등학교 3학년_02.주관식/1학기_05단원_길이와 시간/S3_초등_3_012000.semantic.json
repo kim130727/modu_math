@@ -1,0 +1,96 @@
+{
+  "problem_id": "S3_초등_3_012000",
+  "problem_type": "short_answer_elapsed_time_comparison",
+  "metadata": {
+    "title": "청소한 시간이 더 긴 사람 찾기",
+    "tags": [],
+    "instruction": "시작 시각",
+    "question": "민재와 초림이가 청소를 시작한 시각과 끝낸 시각을 나타낸 것입니다. 누가 청소를 더 오랫동안 하였을까요?",
+    "required_layout_ids": [
+      "slot.diagram.table_header_bg",
+      "slot.diagram.table_body_bg",
+      "slot.diagram.row_divider",
+      "slot.diagram.col_divider_1",
+      "slot.diagram.col_divider_2",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "05단원_길이와 시간",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "민재와 초림이가 청소를 시작한 시각과 끝낸 시각을 나타낸 것입니다. 누가 청소를 더 오랫동안 하였을까요?"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "person.minjae",
+        "type": "person",
+        "label": "민재",
+        "start": "3시 50분",
+        "end": "4시 15분",
+        "duration_min": 25
+      },
+      {
+        "id": "person.chorim",
+        "type": "person",
+        "label": "초림",
+        "start": "3시 45분",
+        "end": "4시 30분",
+        "duration_min": 45
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.longer_duration",
+        "type": "longer_duration_than",
+        "from_id": "person.chorim",
+        "to_id": "person.minjae"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": "초림"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": "초림",
+        "diagnostics": [
+          {
+            "id": "diag.elapsed_time_error",
+            "condition": "answer_equals_minjae",
+            "concept": "걸린 시간 구하기",
+            "reason": "시작 시각과 끝낸 시각 사이의 시간 계산을 잘못함",
+            "feedback": "민재는 3시 50분부터 4시 15분까지 25분, 초림이는 3시 45분부터 4시 30분까지 45분 동안 청소했습니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": "초림",
+    "unit": "",
+    "values": [
+      "초림",
+      "초림이"
+    ]
+  }
+}

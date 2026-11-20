@@ -1,0 +1,724 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_012092",
+  "title": "똑같이 나누어진 피자 모두 찾기",
+  "canvas": {
+    "width": 900,
+    "height": 420,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.box_outer",
+        "slot.diagram.g_crust",
+        "slot.diagram.g_cheese",
+        "slot.diagram.n_crust",
+        "slot.diagram.n_cheese",
+        "slot.diagram.d_crust",
+        "slot.diagram.d_cheese",
+        "slot.diagram.r_crust",
+        "slot.diagram.r_cheese",
+        "slot.diagram.m_crust",
+        "slot.diagram.m_cheese",
+        "slot.diagram.b_crust",
+        "slot.diagram.b_cheese",
+        "slot.answer.input",
+        "slot.diagram.g_c1",
+        "slot.diagram.g_c2",
+        "slot.diagram.n_c1",
+        "slot.diagram.n_c2",
+        "slot.diagram.d_c1",
+        "slot.diagram.d_c2",
+        "slot.diagram.r_c1",
+        "slot.diagram.r_c2",
+        "slot.diagram.r_c3",
+        "slot.diagram.m_c0",
+        "slot.diagram.m_c1",
+        "slot.diagram.m_c2",
+        "slot.diagram.b_c0",
+        "slot.diagram.b_c1",
+        "slot.diagram.b_c2",
+        "slot.diagram.b_c3",
+        "slot.diagram.b_c4",
+        "slot.stem.question",
+        "slot.diagram.lbl_g",
+        "slot.diagram.lbl_n",
+        "slot.diagram.lbl_d",
+        "slot.diagram.lbl_r",
+        "slot.diagram.lbl_m",
+        "slot.diagram.lbl_b",
+        "slot.answer.paren_left",
+        "slot.answer.paren_right"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "똑같이 나누어진 피자를 모두 찾아보세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 26,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.45,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.box_outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 48.0,
+        "y": 84.0,
+        "width": 804.0,
+        "height": 230.0,
+        "stroke": "#f3c6b6",
+        "stroke_width": 2.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.lbl_g",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "㉠",
+        "style_role": "body",
+        "x": 76.0,
+        "y": 102.0,
+        "width": 32.0,
+        "height": 30.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.g_crust",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 116.0,
+        "y": 108.0,
+        "width": 120.0,
+        "height": 76.0,
+        "stroke": "#78350f",
+        "stroke_width": 1.3,
+        "fill": "#eab308"
+      }
+    },
+    {
+      "id": "slot.diagram.g_cheese",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 123.0,
+        "y": 115.0,
+        "width": 106.0,
+        "height": 62.0,
+        "stroke": "#ca8a04",
+        "stroke_width": 1.0,
+        "fill": "#fef08a"
+      }
+    },
+    {
+      "id": "slot.diagram.g_c1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 156.0,
+        "y1": 108.0,
+        "x2": 156.0,
+        "y2": 184.0,
+        "stroke": "#dc2626",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.diagram.g_c2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 196.0,
+        "y1": 108.0,
+        "x2": 196.0,
+        "y2": 184.0,
+        "stroke": "#dc2626",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.diagram.lbl_n",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "㉡",
+        "style_role": "body",
+        "x": 316.0,
+        "y": 102.0,
+        "width": 32.0,
+        "height": 30.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.n_crust",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 356.0,
+        "y": 108.0,
+        "width": 120.0,
+        "height": 76.0,
+        "stroke": "#78350f",
+        "stroke_width": 1.3,
+        "fill": "#eab308"
+      }
+    },
+    {
+      "id": "slot.diagram.n_cheese",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 363.0,
+        "y": 115.0,
+        "width": 106.0,
+        "height": 62.0,
+        "stroke": "#ca8a04",
+        "stroke_width": 1.0,
+        "fill": "#fef08a"
+      }
+    },
+    {
+      "id": "slot.diagram.n_c1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 416.0,
+        "y1": 108.0,
+        "x2": 416.0,
+        "y2": 184.0,
+        "stroke": "#dc2626",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.diagram.n_c2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 356.0,
+        "y1": 146.0,
+        "x2": 476.0,
+        "y2": 146.0,
+        "stroke": "#dc2626",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.diagram.lbl_d",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "㉢",
+        "style_role": "body",
+        "x": 556.0,
+        "y": 102.0,
+        "width": 32.0,
+        "height": 30.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.d_crust",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 596.0,
+        "y": 108.0,
+        "width": 120.0,
+        "height": 76.0,
+        "stroke": "#78350f",
+        "stroke_width": 1.3,
+        "fill": "#eab308"
+      }
+    },
+    {
+      "id": "slot.diagram.d_cheese",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 603.0,
+        "y": 115.0,
+        "width": 106.0,
+        "height": 62.0,
+        "stroke": "#ca8a04",
+        "stroke_width": 1.0,
+        "fill": "#fef08a"
+      }
+    },
+    {
+      "id": "slot.diagram.d_c1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 596.0,
+        "y1": 108.0,
+        "x2": 716.0,
+        "y2": 184.0,
+        "stroke": "#dc2626",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.diagram.d_c2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 716.0,
+        "y1": 108.0,
+        "x2": 596.0,
+        "y2": 184.0,
+        "stroke": "#dc2626",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.diagram.lbl_r",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "㉣",
+        "style_role": "body",
+        "x": 76.0,
+        "y": 206.0,
+        "width": 32.0,
+        "height": 30.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.r_crust",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 176.0,
+        "cy": 252.0,
+        "r": 44.0,
+        "stroke": "#78350f",
+        "stroke_width": 1.3,
+        "fill": "#eab308"
+      }
+    },
+    {
+      "id": "slot.diagram.r_cheese",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 176.0,
+        "cy": 252.0,
+        "r": 38.0,
+        "stroke": "#ca8a04",
+        "stroke_width": 1.0,
+        "fill": "#fef08a"
+      }
+    },
+    {
+      "id": "slot.diagram.r_c1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 176.0,
+        "y1": 208.0,
+        "x2": 138.0,
+        "y2": 274.0,
+        "stroke": "#dc2626",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.diagram.r_c2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 176.0,
+        "y1": 208.0,
+        "x2": 214.0,
+        "y2": 274.0,
+        "stroke": "#dc2626",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.diagram.r_c3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 138.0,
+        "y1": 274.0,
+        "x2": 214.0,
+        "y2": 274.0,
+        "stroke": "#dc2626",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.diagram.lbl_m",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "㉤",
+        "style_role": "body",
+        "x": 316.0,
+        "y": 206.0,
+        "width": 32.0,
+        "height": 30.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.m_crust",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 416.0,
+        "cy": 252.0,
+        "r": 44.0,
+        "stroke": "#78350f",
+        "stroke_width": 1.3,
+        "fill": "#eab308"
+      }
+    },
+    {
+      "id": "slot.diagram.m_cheese",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 416.0,
+        "cy": 252.0,
+        "r": 38.0,
+        "stroke": "#ca8a04",
+        "stroke_width": 1.0,
+        "fill": "#fef08a"
+      }
+    },
+    {
+      "id": "slot.diagram.m_c0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 416.0,
+        "y1": 208.0,
+        "x2": 416.0,
+        "y2": 296.0,
+        "stroke": "#dc2626",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.diagram.m_c1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 454.1,
+        "y1": 230.0,
+        "x2": 377.9,
+        "y2": 274.0,
+        "stroke": "#dc2626",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.diagram.m_c2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 454.1,
+        "y1": 274.0,
+        "x2": 377.9,
+        "y2": 230.0,
+        "stroke": "#dc2626",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.diagram.lbl_b",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "㉥",
+        "style_role": "body",
+        "x": 556.0,
+        "y": 206.0,
+        "width": 32.0,
+        "height": 30.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.b_crust",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 656.0,
+        "cy": 252.0,
+        "r": 44.0,
+        "stroke": "#78350f",
+        "stroke_width": 1.3,
+        "fill": "#eab308"
+      }
+    },
+    {
+      "id": "slot.diagram.b_cheese",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 656.0,
+        "cy": 252.0,
+        "r": 38.0,
+        "stroke": "#ca8a04",
+        "stroke_width": 1.0,
+        "fill": "#fef08a"
+      }
+    },
+    {
+      "id": "slot.diagram.b_c0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 656.0,
+        "y1": 252.0,
+        "x2": 656.0,
+        "y2": 208.0,
+        "stroke": "#dc2626",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.diagram.b_c1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 656.0,
+        "y1": 252.0,
+        "x2": 697.8,
+        "y2": 238.4,
+        "stroke": "#dc2626",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.diagram.b_c2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 656.0,
+        "y1": 252.0,
+        "x2": 681.9,
+        "y2": 287.6,
+        "stroke": "#dc2626",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.diagram.b_c3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 656.0,
+        "y1": 252.0,
+        "x2": 630.1,
+        "y2": 287.6,
+        "stroke": "#dc2626",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.diagram.b_c4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 656.0,
+        "y1": 252.0,
+        "x2": 614.2,
+        "y2": 238.4,
+        "stroke": "#dc2626",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.answer.paren_left",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(",
+        "style_role": "body",
+        "x": 480.0,
+        "y": 340.0,
+        "width": 28.0,
+        "height": 54.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 28,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.answer.input",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 514.0,
+        "y": 340.0,
+        "width": 250.0,
+        "height": 54.0,
+        "stroke": "#111827",
+        "stroke_width": 1.4,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "text",
+          "max_length": 20,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "auto_advance": false,
+          "keyboard": "text"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 16,
+          "max_font_size": 26,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 250.0,
+          "height": 54.0
+        }
+      }
+    },
+    {
+      "id": "slot.answer.paren_right",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": ")",
+        "style_role": "body",
+        "x": 770.0,
+        "y": 340.0,
+        "width": 28.0,
+        "height": 54.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 28,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.diagram.box_outer",
+    "slot.diagram.g_crust",
+    "slot.diagram.g_cheese",
+    "slot.diagram.n_crust",
+    "slot.diagram.n_cheese",
+    "slot.diagram.d_crust",
+    "slot.diagram.d_cheese",
+    "slot.diagram.r_crust",
+    "slot.diagram.r_cheese",
+    "slot.diagram.m_crust",
+    "slot.diagram.m_cheese",
+    "slot.diagram.b_crust",
+    "slot.diagram.b_cheese",
+    "slot.answer.input",
+    "slot.diagram.g_c1",
+    "slot.diagram.g_c2",
+    "slot.diagram.n_c1",
+    "slot.diagram.n_c2",
+    "slot.diagram.d_c1",
+    "slot.diagram.d_c2",
+    "slot.diagram.r_c1",
+    "slot.diagram.r_c2",
+    "slot.diagram.r_c3",
+    "slot.diagram.m_c0",
+    "slot.diagram.m_c1",
+    "slot.diagram.m_c2",
+    "slot.diagram.b_c0",
+    "slot.diagram.b_c1",
+    "slot.diagram.b_c2",
+    "slot.diagram.b_c3",
+    "slot.diagram.b_c4",
+    "slot.stem.question",
+    "slot.diagram.lbl_g",
+    "slot.diagram.lbl_n",
+    "slot.diagram.lbl_d",
+    "slot.diagram.lbl_r",
+    "slot.diagram.lbl_m",
+    "slot.diagram.lbl_b",
+    "slot.answer.paren_left",
+    "slot.answer.paren_right"
+  ]
+}

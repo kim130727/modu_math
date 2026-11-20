@@ -1,0 +1,502 @@
+{
+  "problem_id": "S3_초등_3_012002",
+  "view_box": {
+    "width": 900.0,
+    "height": 380.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.diagram.arc_1.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 180 174 Q 310 112 440 174",
+        "stroke": "#6b7280",
+        "stroke-width": 1.5,
+        "fill": "none",
+        "stroke-dasharray": "5 4"
+      },
+      "source_ref": "slot.diagram.arc_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.arc_1"
+      }
+    },
+    {
+      "id": "slot.diagram.arc_2.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 440 174 Q 570 112 700 174",
+        "stroke": "#6b7280",
+        "stroke-width": 1.5,
+        "fill": "none",
+        "stroke-dasharray": "5 4"
+      },
+      "source_ref": "slot.diagram.arc_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.arc_2"
+      }
+    },
+    {
+      "id": "slot.answer.write_badge.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 110.0,
+        "y": 236.0,
+        "width": 90.0,
+        "height": 44.0,
+        "fill": "#7dd3fc",
+        "stroke": "#7dd3fc",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.answer.write_badge",
+      "refs": {
+        "layout_slot_id": "slot.answer.write_badge"
+      }
+    },
+    {
+      "id": "slot.answer.input_write.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 244.0,
+        "y": 232.0,
+        "width": 270.0,
+        "height": 52.0,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.4
+      },
+      "source_ref": "slot.answer.input_write",
+      "refs": {
+        "layout_slot_id": "slot.answer.input_write"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "text",
+        "max_length": 15,
+        "include_in_submission": true,
+        "order": 0,
+        "group_id": "final_answer",
+        "auto_advance": false,
+        "keyboard": "text"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 16,
+        "max_font_size": 24,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222",
+        "width": 270.0,
+        "height": 52.0
+      }
+    },
+    {
+      "id": "slot.answer.read_badge.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 110.0,
+        "y": 302.0,
+        "width": 90.0,
+        "height": 44.0,
+        "fill": "#fdba74",
+        "stroke": "#fdba74",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.answer.read_badge",
+      "refs": {
+        "layout_slot_id": "slot.answer.read_badge"
+      }
+    },
+    {
+      "id": "slot.answer.input_read.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 244.0,
+        "y": 298.0,
+        "width": 270.0,
+        "height": 52.0,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.4
+      },
+      "source_ref": "slot.answer.input_read",
+      "refs": {
+        "layout_slot_id": "slot.answer.input_read"
+      },
+      "interaction": {
+        "type": "input",
+        "role": "answer",
+        "value_type": "text",
+        "max_length": 20,
+        "include_in_submission": true,
+        "order": 1,
+        "group_id": "final_answer",
+        "auto_advance": false,
+        "keyboard": "text"
+      },
+      "input_style": {
+        "font_size_mode": "auto",
+        "font_size_adjust": 0,
+        "min_font_size": 16,
+        "max_font_size": 24,
+        "font_weight": 700,
+        "horizontal_align": "center",
+        "vertical_align": "middle",
+        "padding": 6,
+        "text_color": "#222222",
+        "width": 270.0,
+        "height": 52.0
+      }
+    },
+    {
+      "id": "slot.diagram.base_line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 180.0,
+        "y1": 174.0,
+        "x2": 700.0,
+        "y2": 174.0,
+        "stroke": "#111827",
+        "stroke-width": 1.8
+      },
+      "source_ref": "slot.diagram.base_line",
+      "refs": {
+        "layout_slot_id": "slot.diagram.base_line"
+      }
+    },
+    {
+      "id": "slot.diagram.dot_1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 180.0,
+        "cy": 174.0,
+        "r": 4.0,
+        "stroke": "#111827",
+        "stroke-width": 1.0,
+        "fill": "#111827"
+      },
+      "source_ref": "slot.diagram.dot_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot_1"
+      }
+    },
+    {
+      "id": "slot.diagram.dot_2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 440.0,
+        "cy": 174.0,
+        "r": 4.0,
+        "stroke": "#111827",
+        "stroke-width": 1.0,
+        "fill": "#111827"
+      },
+      "source_ref": "slot.diagram.dot_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot_2"
+      }
+    },
+    {
+      "id": "slot.diagram.dot_3.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 700.0,
+        "cy": 174.0,
+        "r": 4.0,
+        "stroke": "#111827",
+        "stroke-width": 1.0,
+        "fill": "#111827"
+      },
+      "source_ref": "slot.diagram.dot_3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot_3"
+      }
+    },
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 26.0,
+        "width": 820.0,
+        "height": 44.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 820.0,
+        "data-box-height": 44.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.45,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "그림에서 나타내는 길이를 쓰고 읽어 보세요."
+    },
+    {
+      "id": "slot.stem.sublabel.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 48.0,
+        "y": 96.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 26.0,
+        "width": 50.0,
+        "height": 40.0,
+        "max_width": 50.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 48.0,
+        "data-box-y": 96.0,
+        "data-box-width": 50.0,
+        "data-box-height": 40.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.sublabel",
+      "refs": {
+        "layout_slot_id": "slot.stem.sublabel"
+      },
+      "text": "(2)"
+    },
+    {
+      "id": "slot.diagram.label_1.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 260.0,
+        "y": 108.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "width": 100.0,
+        "height": 36.0,
+        "max_width": 100.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 260.0,
+        "data-box-y": 108.0,
+        "data-box-width": 100.0,
+        "data-box-height": 36.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.label_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.label_1"
+      },
+      "text": "1 km"
+    },
+    {
+      "id": "slot.diagram.label_2.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 520.0,
+        "y": 108.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "width": 100.0,
+        "height": 36.0,
+        "max_width": 100.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 520.0,
+        "data-box-y": 108.0,
+        "data-box-width": 100.0,
+        "data-box-height": 36.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.label_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.label_2"
+      },
+      "text": "1 km"
+    },
+    {
+      "id": "slot.answer.write_badge_text.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 110.0,
+        "y": 236.0,
+        "fill": "#ffffff",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 90.0,
+        "height": 44.0,
+        "max_width": 90.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 110.0,
+        "data-box-y": 236.0,
+        "data-box-width": 90.0,
+        "data-box-height": 44.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.answer.write_badge_text",
+      "refs": {
+        "layout_slot_id": "slot.answer.write_badge_text"
+      },
+      "text": "쓰기"
+    },
+    {
+      "id": "slot.answer.write_paren_l.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 212.0,
+        "y": 232.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 26.0,
+        "width": 26.0,
+        "height": 52.0,
+        "max_width": 26.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 212.0,
+        "data-box-y": 232.0,
+        "data-box-width": 26.0,
+        "data-box-height": 52.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.answer.write_paren_l",
+      "refs": {
+        "layout_slot_id": "slot.answer.write_paren_l"
+      },
+      "text": "("
+    },
+    {
+      "id": "slot.answer.write_paren_r.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 520.0,
+        "y": 232.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 26.0,
+        "width": 26.0,
+        "height": 52.0,
+        "max_width": 26.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 520.0,
+        "data-box-y": 232.0,
+        "data-box-width": 26.0,
+        "data-box-height": 52.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.answer.write_paren_r",
+      "refs": {
+        "layout_slot_id": "slot.answer.write_paren_r"
+      },
+      "text": ")"
+    },
+    {
+      "id": "slot.answer.read_badge_text.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 110.0,
+        "y": 302.0,
+        "fill": "#ffffff",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 90.0,
+        "height": 44.0,
+        "max_width": 90.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 110.0,
+        "data-box-y": 302.0,
+        "data-box-width": 90.0,
+        "data-box-height": 44.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.answer.read_badge_text",
+      "refs": {
+        "layout_slot_id": "slot.answer.read_badge_text"
+      },
+      "text": "읽기"
+    },
+    {
+      "id": "slot.answer.read_paren_l.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 212.0,
+        "y": 298.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 26.0,
+        "width": 26.0,
+        "height": 52.0,
+        "max_width": 26.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 212.0,
+        "data-box-y": 298.0,
+        "data-box-width": 26.0,
+        "data-box-height": 52.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.answer.read_paren_l",
+      "refs": {
+        "layout_slot_id": "slot.answer.read_paren_l"
+      },
+      "text": "("
+    },
+    {
+      "id": "slot.answer.read_paren_r.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 520.0,
+        "y": 298.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 26.0,
+        "width": 26.0,
+        "height": 52.0,
+        "max_width": 26.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 520.0,
+        "data-box-y": 298.0,
+        "data-box-width": 26.0,
+        "data-box-height": 52.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.answer.read_paren_r",
+      "refs": {
+        "layout_slot_id": "slot.answer.read_paren_r"
+      },
+      "text": ")"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

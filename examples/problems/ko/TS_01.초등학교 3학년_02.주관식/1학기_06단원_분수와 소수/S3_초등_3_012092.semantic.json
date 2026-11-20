@@ -1,0 +1,145 @@
+{
+  "problem_id": "S3_초등_3_012092",
+  "problem_type": "short_answer_fraction_equal_division",
+  "metadata": {
+    "title": "똑같이 나누어진 피자 모두 찾기",
+    "tags": [],
+    "instruction": "(",
+    "question": "똑같이 나누어진 피자를 모두 찾아보세요.",
+    "required_layout_ids": [
+      "slot.diagram.box_outer",
+      "slot.diagram.g_crust",
+      "slot.diagram.g_cheese",
+      "slot.diagram.g_c1",
+      "slot.diagram.g_c2",
+      "slot.diagram.n_crust",
+      "slot.diagram.n_cheese",
+      "slot.diagram.n_c1",
+      "slot.diagram.n_c2",
+      "slot.diagram.d_crust",
+      "slot.diagram.d_cheese",
+      "slot.diagram.d_c1",
+      "slot.diagram.d_c2",
+      "slot.diagram.r_crust",
+      "slot.diagram.r_cheese",
+      "slot.diagram.r_c1",
+      "slot.diagram.r_c2",
+      "slot.diagram.r_c3",
+      "slot.diagram.m_crust",
+      "slot.diagram.m_cheese",
+      "slot.diagram.m_c0",
+      "slot.diagram.m_c1",
+      "slot.diagram.m_c2",
+      "slot.diagram.b_crust",
+      "slot.diagram.b_cheese",
+      "slot.diagram.b_c0",
+      "slot.diagram.b_c1",
+      "slot.diagram.b_c2",
+      "slot.diagram.b_c3",
+      "slot.diagram.b_c4",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "06단원_분수와 소수",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "똑같이 나누어진 피자를 모두 찾아보세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "pizza.g",
+        "type": "pizza",
+        "label": "ㄱ",
+        "equal_parts": true
+      },
+      {
+        "id": "pizza.n",
+        "type": "pizza",
+        "label": "ㄴ",
+        "equal_parts": true
+      },
+      {
+        "id": "pizza.d",
+        "type": "pizza",
+        "label": "ㄷ",
+        "equal_parts": false
+      },
+      {
+        "id": "pizza.r",
+        "type": "pizza",
+        "label": "ㄹ",
+        "equal_parts": false
+      },
+      {
+        "id": "pizza.m",
+        "type": "pizza",
+        "label": "ㅁ",
+        "equal_parts": true
+      },
+      {
+        "id": "pizza.b",
+        "type": "pizza",
+        "label": "ㅂ",
+        "equal_parts": true
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.equal_pizzas",
+        "type": "equally_divided",
+        "items": [
+          "pizza.g",
+          "pizza.n",
+          "pizza.m",
+          "pizza.b"
+        ]
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": "ㄱ, ㄴ, ㅁ, ㅂ"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": "ㄱ, ㄴ, ㅁ, ㅂ",
+        "diagnostics": [
+          {
+            "id": "diag.included_unequal_pizza",
+            "condition": "answer_contains_d_or_r",
+            "concept": "똑같이 나누기",
+            "reason": "모양이나 크기가 다르게 나누어진 ㄷ 또는 ㄹ을 포함함",
+            "feedback": "ㄷ은 마주 보는 두 쌍의 삼각형 모양이 서로 다르고, ㄹ은 가운데와 가장자리 조각의 모양과 크기가 다릅니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": "ㄱ, ㄴ, ㅁ, ㅂ",
+    "unit": "",
+    "values": [
+      "ㄱ, ㄴ, ㅁ, ㅂ",
+      "㉠, ㉡, ㉤, ㉥"
+    ]
+  }
+}

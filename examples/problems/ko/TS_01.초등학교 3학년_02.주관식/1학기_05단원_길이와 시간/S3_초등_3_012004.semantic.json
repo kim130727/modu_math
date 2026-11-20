@@ -1,0 +1,159 @@
+{
+  "problem_id": "S3_초등_3_012004",
+  "problem_type": "short_answer_distance_estimation_map",
+  "metadata": {
+    "title": "어림한 거리에 해당하는 장소 찾기",
+    "tags": [],
+    "instruction": "약 400 m",
+    "question": "우리집에서 약 600 m 떨어진 곳과 1 km 떨어진 곳에 있는 장소를 적어 보세요.",
+    "required_layout_ids": [
+      "slot.diagram.map_bg",
+      "slot.diagram.road_v1",
+      "slot.diagram.road_v2",
+      "slot.diagram.road_h1",
+      "slot.diagram.road_h2",
+      "slot.diagram.road_diag",
+      "slot.diagram.arc_400",
+      "slot.diagram.badge_400_bg",
+      "slot.diagram.home_box",
+      "slot.diagram.dot_home",
+      "slot.diagram.hosp_box",
+      "slot.diagram.dot_hosp",
+      "slot.diagram.lib_box",
+      "slot.diagram.dot_lib",
+      "slot.diagram.school_box",
+      "slot.diagram.dot_school",
+      "slot.diagram.post_box",
+      "slot.diagram.dot_post",
+      "slot.answer.input_600",
+      "slot.answer.input_1000"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "05단원_길이와 시간",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "우리집에서 약 600 m 떨어진 곳과 1 km 떨어진 곳에 있는 장소를 적어 보세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "place.home",
+        "type": "location",
+        "label": "우리 집"
+      },
+      {
+        "id": "place.hospital",
+        "type": "location",
+        "label": "병원",
+        "approx_distance_m": 400
+      },
+      {
+        "id": "place.library",
+        "type": "location",
+        "label": "도서관",
+        "approx_distance_m": 600
+      },
+      {
+        "id": "place.school",
+        "type": "location",
+        "label": "학교",
+        "approx_distance_m": 1000
+      },
+      {
+        "id": "place.post_office",
+        "type": "location",
+        "label": "우체국",
+        "approx_distance_m": 1000
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.approx_600",
+        "type": "approx_distance_from_home",
+        "from_id": "place.home",
+        "to_id": "place.library",
+        "distance_m": 600
+      },
+      {
+        "id": "relation.approx_1km_school",
+        "type": "approx_distance_from_home",
+        "from_id": "place.home",
+        "to_id": "place.school",
+        "distance_m": 1000
+      },
+      {
+        "id": "relation.approx_1km_post",
+        "type": "approx_distance_from_home",
+        "from_id": "place.home",
+        "to_id": "place.post_office",
+        "distance_m": 1000
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input_600",
+        "slot_id": "slot.answer.input_600",
+        "expected": "도서관"
+      },
+      {
+        "id": "slot.answer.input_1000",
+        "slot_id": "slot.answer.input_1000",
+        "expected": "학교, 우체국"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input_600",
+        "value": "도서관",
+        "diagnostics": [
+          {
+            "id": "diag.distance_estimation_error_600",
+            "condition": "answer_not_equals_library",
+            "concept": "거리 어림하기",
+            "reason": "약 400 m 구간과 비교하여 약 600 m 떨어진 장소를 찾지 못함",
+            "feedback": "우리 집에서 병원까지가 약 400 m이므로, 그보다 조금 더 먼 약 600 m 떨어진 곳은 도서관입니다."
+          }
+        ]
+      },
+      {
+        "slot_id": "slot.answer.input_1000",
+        "value": "학교, 우체국",
+        "diagnostics": [
+          {
+            "id": "diag.distance_estimation_error_1km",
+            "condition": "answer_not_equals_school_post",
+            "concept": "1 km = 1000 m 어림하기",
+            "reason": "1 km 거리에 있는 학교와 우체국을 모두 찾지 못함",
+            "feedback": "1 km는 1000 m로 약 400 m의 2배보다 조금 더 먼 거리입니다. 학교와 우체국이 약 1 km 떨어져 있습니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": [
+      "도서관",
+      "학교, 우체국"
+    ],
+    "unit": "",
+    "values": [
+      "도서관",
+      "학교, 우체국"
+    ]
+  }
+}

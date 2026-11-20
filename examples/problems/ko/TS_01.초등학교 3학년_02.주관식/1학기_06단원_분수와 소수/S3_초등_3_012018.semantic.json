@@ -1,0 +1,83 @@
+{
+  "problem_id": "S3_초등_3_012018",
+  "problem_type": "short_answer_decimal_length_conversion",
+  "metadata": {
+    "title": "5 cm 6 mm를 cm 단위 소수로 나타내기",
+    "tags": [],
+    "instruction": "(",
+    "question": "은혜가 리본의 길이를 재어 보았더니 5 cm 6 mm였습니다. 이 리본의 길이는 몇 cm일까요?",
+    "required_layout_ids": [
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "06단원_분수와 소수",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "은혜가 리본의 길이를 재어 보았더니 5 cm 6 mm였습니다. 이 리본의 길이는 몇 cm일까요?"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "quantity.ribbon_length",
+        "type": "quantity",
+        "label": "리본 길이",
+        "cm": 5,
+        "mm": 6,
+        "decimal_cm": 5.6
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.unit_conversion",
+        "type": "equals_decimal_cm",
+        "from_id": "quantity.ribbon_length",
+        "value": 5.6
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": 5.6
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": 5.6,
+        "diagnostics": [
+          {
+            "id": "diag.mm_to_cm_decimal_error",
+            "condition": "answer_not_equals_5_6",
+            "concept": "소수로 나타내기 (1 mm = 0.1 cm)",
+            "reason": "6 mm를 0.6 cm로 바꾸어 더하지 못함",
+            "feedback": "1 mm = 0.1 cm이므로 6 mm = 0.6 cm입니다. 따라서 5 cm 6 mm = 5.6 cm입니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": 5.6,
+    "unit": "cm",
+    "values": [
+      5.6,
+      "5.6"
+    ]
+  }
+}

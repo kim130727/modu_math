@@ -13,10 +13,7 @@ from django.views.decorators.http import require_GET
 _ASSET_ROOT = (
     Path(__file__).resolve().parent / "static" / "editor_next" / "konva_assets"
 )
-_FLUTTER_ASSET_ROOT = (
-    Path(__file__).resolve().parent / "static" / "editor_next" / "flutter_editor"
-)
-_STUDENT_ASSET_ROOT = _FLUTTER_ASSET_ROOT.with_name("student_app")
+_STUDENT_ASSET_ROOT = _ASSET_ROOT.with_name("student_app")
 
 
 @lru_cache(maxsize=8)
@@ -37,8 +34,8 @@ def editor_asset_version() -> str:
     return hashlib.sha256(":".join(fingerprints).encode()).hexdigest()[:12]
 
 
-def flutter_editor_asset_version() -> str:
-    bundle = _FLUTTER_ASSET_ROOT / "main.dart.js"
+def student_app_asset_version() -> str:
+    bundle = _STUDENT_ASSET_ROOT / "main.dart.js"
     if not bundle.exists():
         return "missing"
     stat = bundle.stat()
@@ -82,7 +79,7 @@ def editor_konva(request: HttpRequest):
         "editor_next/konva.html",
         {
             "editor_asset_version": editor_asset_version(),
-            "flutter_editor_asset_version": flutter_editor_asset_version(),
+            "student_app_version": student_app_asset_version(),
             "local_editor": settings.DEBUG,
         },
     )

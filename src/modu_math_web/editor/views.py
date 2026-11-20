@@ -8,6 +8,7 @@ from django.http import FileResponse, HttpResponse
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.http import require_GET, require_POST
+from django.views.decorators.http import require_http_methods
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from modu_math_web.learning.platform_permissions import IsTeacherOrAdmin
@@ -211,6 +212,29 @@ def problem_detail(_: HttpRequest, problem_id: str) -> JsonResponse:
     except Exception as exc:
         return _error(str(exc), status=500)
     return JsonResponse(detail)
+
+
+@require_http_methods(["GET", "POST"])
+def student_preview(request: HttpRequest, problem_id: str) -> JsonResponse:
+    from .services.student_preview import preview_content, saved_student_preview
+    try:
+        if request.method == "GET":
+            payload = preview_content(problem_id)
+        else:
+            data = _json_body(request)
+            problem, _, revision = saved_student_preview(problem_id)
+            if data.get("revision") != revision:
+                return _error("문제가 변경되었습니다. 미리보기를 닫고 다시 열어주세요.", status=409)
+            if "answer" not in data:
+                raise ValueError("답안을 입력해주세요.")
+            payload = {"correct": problem.check_answer(data["answer"])}
+    except (ValueError, TypeError) as exc:
+        return _error(str(exc), status=400)
+    except FileNotFoundError as exc:
+        return _error(str(exc), status=404)
+    response = JsonResponse(payload)
+    response["Cache-Control"] = "no-store"
+    return response
 
 
 @require_GET

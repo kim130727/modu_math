@@ -1,0 +1,388 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_012000",
+  "title": "청소한 시간이 더 긴 사람 찾기",
+  "canvas": {
+    "width": 900,
+    "height": 410,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.table_header_bg",
+        "slot.diagram.table_body_bg",
+        "slot.answer.input",
+        "slot.diagram.row_divider",
+        "slot.diagram.col_divider_1",
+        "slot.diagram.col_divider_2",
+        "slot.stem.question",
+        "slot.diagram.hdr_start",
+        "slot.diagram.hdr_end",
+        "slot.diagram.r1_name",
+        "slot.diagram.r1_start",
+        "slot.diagram.r1_end",
+        "slot.diagram.r2_name",
+        "slot.diagram.r2_start",
+        "slot.diagram.r2_end",
+        "slot.answer.paren_left",
+        "slot.answer.paren_right"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "민재와 초림이가 청소를 시작한 시각과 끝낸 시각을 나타낸 것입니다. 누가 청소를 더 오랫동안 하였을까요?",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 836.0,
+        "height": 96.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 26,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.table_header_bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 90.0,
+        "y": 136.0,
+        "width": 720.0,
+        "height": 52.0,
+        "stroke": "#f9bfa3",
+        "stroke_width": 1.4,
+        "fill": "#f9bfa3"
+      }
+    },
+    {
+      "id": "slot.diagram.table_body_bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 90.0,
+        "y": 188.0,
+        "width": 720.0,
+        "height": 112.0,
+        "stroke": "#f9bfa3",
+        "stroke_width": 1.8,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.row_divider",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 90.0,
+        "y1": 244.0,
+        "x2": 810.0,
+        "y2": 244.0,
+        "stroke": "#f9bfa3",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.col_divider_1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 290.0,
+        "y1": 136.0,
+        "x2": 290.0,
+        "y2": 300.0,
+        "stroke": "#f9bfa3",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.col_divider_2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 550.0,
+        "y1": 136.0,
+        "x2": 550.0,
+        "y2": 300.0,
+        "stroke": "#f9bfa3",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.hdr_start",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "시작 시각",
+        "style_role": "body",
+        "x": 290.0,
+        "y": 136.0,
+        "width": 260.0,
+        "height": 52.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.hdr_end",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "끝낸 시각",
+        "style_role": "body",
+        "x": 550.0,
+        "y": 136.0,
+        "width": 260.0,
+        "height": 52.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.r1_name",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "민재",
+        "style_role": "body",
+        "x": 90.0,
+        "y": 188.0,
+        "width": 200.0,
+        "height": 56.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.r1_start",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "3시 50분",
+        "style_role": "body",
+        "x": 290.0,
+        "y": 188.0,
+        "width": 260.0,
+        "height": 56.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.r1_end",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "4시 15분",
+        "style_role": "body",
+        "x": 550.0,
+        "y": 188.0,
+        "width": 260.0,
+        "height": 56.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.r2_name",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "초림",
+        "style_role": "body",
+        "x": 90.0,
+        "y": 244.0,
+        "width": 200.0,
+        "height": 56.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.r2_start",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "3시 45분",
+        "style_role": "body",
+        "x": 290.0,
+        "y": 244.0,
+        "width": 260.0,
+        "height": 56.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.r2_end",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "4시 30분",
+        "style_role": "body",
+        "x": 550.0,
+        "y": 244.0,
+        "width": 260.0,
+        "height": 56.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.answer.paren_left",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(",
+        "style_role": "body",
+        "x": 540.0,
+        "y": 328.0,
+        "width": 28.0,
+        "height": 54.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 28,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.answer.input",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 574.0,
+        "y": 328.0,
+        "width": 190.0,
+        "height": 54.0,
+        "stroke": "#111827",
+        "stroke_width": 1.4,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "text",
+          "max_length": 10,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "auto_advance": false,
+          "keyboard": "text"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 16,
+          "max_font_size": 26,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 190.0,
+          "height": 54.0
+        }
+      }
+    },
+    {
+      "id": "slot.answer.paren_right",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": ")",
+        "style_role": "body",
+        "x": 770.0,
+        "y": 328.0,
+        "width": 28.0,
+        "height": 54.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 28,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.diagram.table_header_bg",
+    "slot.diagram.table_body_bg",
+    "slot.answer.input",
+    "slot.diagram.row_divider",
+    "slot.diagram.col_divider_1",
+    "slot.diagram.col_divider_2",
+    "slot.stem.question",
+    "slot.diagram.hdr_start",
+    "slot.diagram.hdr_end",
+    "slot.diagram.r1_name",
+    "slot.diagram.r1_start",
+    "slot.diagram.r1_end",
+    "slot.diagram.r2_name",
+    "slot.diagram.r2_start",
+    "slot.diagram.r2_end",
+    "slot.answer.paren_left",
+    "slot.answer.paren_right"
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "problem_id": "S3_초등_3_012002",
+  "problem_type": "short_answer_length_unit_write_and_read",
+  "metadata": {
+    "title": "킬로미터(km) 길이 쓰고 읽기",
+    "tags": [],
+    "instruction": "(2)",
+    "question": "그림에서 나타내는 길이를 쓰고 읽어 보세요.",
+    "required_layout_ids": [
+      "slot.diagram.base_line",
+      "slot.diagram.dot_1",
+      "slot.diagram.dot_2",
+      "slot.diagram.dot_3",
+      "slot.diagram.arc_1",
+      "slot.diagram.arc_2",
+      "slot.answer.write_badge",
+      "slot.answer.input_write",
+      "slot.answer.read_badge",
+      "slot.answer.input_read"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "05단원_길이와 시간",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "그림에서 나타내는 길이를 쓰고 읽어 보세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "quantity.length",
+        "type": "quantity",
+        "label": "전체 길이",
+        "value": 2,
+        "unit": "km"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.unit_reading",
+        "type": "written_and_read_as",
+        "from_id": "quantity.length",
+        "written": "2 km",
+        "read": "2 킬로미터"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input_write",
+        "slot_id": "slot.answer.input_write",
+        "expected": "2 km"
+      },
+      {
+        "id": "slot.answer.input_read",
+        "slot_id": "slot.answer.input_read",
+        "expected": "2 킬로미터"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input_write",
+        "value": "2 km",
+        "diagnostics": [
+          {
+            "id": "diag.km_sum_error",
+            "condition": "answer_not_equals_2km",
+            "concept": "킬로미터(km) 쓰기",
+            "reason": "1 km가 2번 이어진 전체 길이를 잘못 구함",
+            "feedback": "1 km가 2번 이어져 있으므로 전체 길이는 2 km입니다."
+          }
+        ]
+      },
+      {
+        "slot_id": "slot.answer.input_read",
+        "value": "2 킬로미터",
+        "diagnostics": [
+          {
+            "id": "diag.unit_reading_error",
+            "condition": "answer_not_equals_2_kilometer",
+            "concept": "킬로미터(km) 읽기",
+            "reason": "km 단위를 한글로 '킬로미터'라고 읽지 못함",
+            "feedback": "기호 km는 '킬로미터'라고 읽습니다. 따라서 '2 킬로미터'입니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": [
+      "2 km",
+      "2 킬로미터"
+    ],
+    "unit": "",
+    "values": [
+      "2 km",
+      "2 킬로미터"
+    ]
+  }
+}

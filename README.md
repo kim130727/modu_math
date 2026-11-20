@@ -15,7 +15,7 @@
 | **Core DSL & Compiler** | `src/modu_math/` | Python 3.12, libcst, jsonschema | **완료/안정화**<br>• Canonical 파이프라인 구축 (`PNG` → `DSL` → `semantic/solvable/layout/renderer JSON`, 선택적 `SVG`)<br>• 빈칸/선택지/연산 세로셈(Columnar)/사다리타기/OX 판정/선택지 그룹 등 다양한 수학 UI 지원<br>• Vision LLM 보조 저작 도구 (`tools/generate_vision_draft.py` 등)<br>• 배치 및 실시간 감시 빌더 (`mb.bat`, `mw.bat`, `mb_all.bat`) |
 | **Web Backend & Learning API** | `src/modu_math_web/` | Django 4.2+, DRF, PostgreSQL, SQLite | **완료/안정화**<br>• 문제 카탈로그 API (`/api/v1/problems/`) 및 다국어 필터링<br>• 학생 풀이 세션, 제출 채점 및 학습 로그 기록 (`/api/v1/attempts/`)<br>• 단원/개념별 숙련도(Mastery) 집계 및 통계<br>• 문제 자동 태깅, 진단 및 추천 서비스 (`ProblemTagging`, Diagnostic & Recommendation)<br>• AI 튜터 프록시 엔드포인트 (`/api/v1/tutor/`) |
 | **Web Editor (Konva)** | `src/modu_math_web/editor_next/` | React 19, Konva, TypeScript, Vite | **완료/개선 중**<br>• 캔버스 기반 시각적 문제 레이아웃 편집기 (`/editor-konva/`)<br>• 정답 검수 패널 (`AnswerReviewPanel`) 및 다국어 배치 동기화<br>• 텍스트 앵커 조작, 눈금자 라벨 보존, 힌트 편집기<br>• 수채화 캐릭터 아바타 교체 및 레이어 렌더링 |
-| **Mobile App** | `apps/mobile/` | Flutter 3.44+, Dart, flutter_dotenv | **완료/고도화 중**<br>• Django REST API 연동 및 오프라인 번들 에셋 fallback 지원<br>• 6개 다국어 지원 (한국어, 영어, 일본어, 크메르어, 우크라이나어, 중국어)<br>• 어린이 친화적 UI: OX 전용 카드, 세로셈 입력 슬롯, 아바타 반응<br>• 음성 안내 (TTS) 및 음성 입력 (STT) 지원 |
+| **Mobile App** | `apps/mobile/` | Flutter 3.44+, Dart, flutter_dotenv | **완료/고도화 중**<br>• 학생 전용 앱 하나로 공개 문제 학습·과제·서버 채점 제공<br>• 6개 다국어 지원 (한국어, 영어, 일본어, 크메르어, 우크라이나어, 중국어)<br>• 어린이 친화적 UI: OX 전용 카드, 세로셈 입력 슬롯, 아바타 반응<br>• Konva의 앱처럼 풀어보기와 동일한 문제·입력 위젯 공유 |
 | **CI/CD & DevOps** | `.github/workflows/ci.yml`, `compose.yaml` | GitHub Actions, Docker Compose | **구축 완료**<br>• Python 테스트, Web Editor 테스트/타입체크/빌드, Flutter 분석 및 테스트 자동화<br>• Docker Compose (PostgreSQL 16 + Django Gunicorn) 원클릭 환경 |
 
 ---
@@ -183,10 +183,9 @@ flutter test
 flutter run
 ```
 
-앱 설정은 `apps/mobile/.env` 파일에서 지정할 수 있습니다:
-```dotenv
-AI_TUTOR_MODE=backend
-BACKEND_API_BASE_URL=http://127.0.0.1:8000
+서버 주소를 지정해 동일한 학생 앱을 실행합니다:
+```bash
+flutter run --dart-define=BACKEND_API_BASE_URL=http://127.0.0.1:8000
 ```
 
 ---
@@ -214,7 +213,6 @@ powershell -ExecutionPolicy Bypass -File scripts\modu_monorepo.ps1 -Task check
 - [문제 진단 분류 및 추천 체계](file:///c:/projects/modu_math/docs/taxonomy_and_diagnostics.md)
 - [수채화 아바타 사양서](file:///c:/projects/modu_math/docs/WATERCOLOR_AVATARS.md)
 - [Web Editor Konva 안내](file:///c:/projects/modu_math/src/modu_math_web/editor_next/README.md)
-- [Flutter 백엔드 연동 문서](file:///c:/projects/modu_math/apps/mobile/backend/README.md)
 ## 학생 과제 웹 실행
 
 저장소 루트에서 학생 전용 번들을 빌드한 후 Django를 실행합니다.
@@ -227,4 +225,4 @@ python manage.py runserver
 
 교사는 `/teacher/`, 학생은 `/student/`에서 로그인합니다. 학생 번들은 정답이 포함된 저작용 generated 자산과 `.env`를 제외합니다. 운영 배포에서는 기존 편집기·오프라인 자산의 접근 정책도 별도로 설정해야 합니다.
 
-Flutter 개발 실행은 `apps/mobile`에서 `flutter run --target lib/main_student.dart --dart-define=BACKEND_API_BASE_URL=http://127.0.0.1:8000`을 사용합니다. 기기에서는 접근 가능한 서버 주소로 바꿉니다. 실제 브라우저 통합 검증은 `src/modu_math_web/editor_next`에서 `npm run test:student-browser`입니다. 상세 구현과 남은 검증은 [학습 플랫폼 구조 문서](docs/learning_platform_architecture.md)에 기록합니다.
+Flutter 개발 실행은 `apps/mobile`에서 `flutter run --target lib/main.dart --dart-define=BACKEND_API_BASE_URL=http://127.0.0.1:8000`을 사용합니다. 기기에서는 접근 가능한 서버 주소로 바꿉니다. 실제 브라우저 통합 검증은 `src/modu_math_web/editor_next`에서 `npm run test:student-browser`입니다. 상세 구현과 남은 검증은 [학습 플랫폼 구조 문서](docs/learning_platform_architecture.md)에 기록합니다.

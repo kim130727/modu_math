@@ -1,0 +1,104 @@
+{
+  "problem_id": "S3_초등_3_012038",
+  "problem_type": "short_answer_fraction_equal_division",
+  "metadata": {
+    "title": "도형을 똑같이 둘로 나눌 수 없는 점선 찾기",
+    "tags": [],
+    "instruction": "(",
+    "question": "오른쪽 그림에서 도형을 똑같이 둘로 나눌 수 없는 점선을 찾아 기호를 쓰세요.",
+    "required_layout_ids": [
+      "slot.diagram.hexagon",
+      "slot.diagram.line_g",
+      "slot.diagram.line_n",
+      "slot.diagram.line_d",
+      "slot.diagram.line_r",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "06단원_분수와 소수",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "오른쪽 그림에서 도형을 똑같이 둘로 나눌 수 없는 점선을 찾아 기호를 쓰세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "line.g",
+        "type": "dividing_line",
+        "label": "ㄱ",
+        "divides_equally": true
+      },
+      {
+        "id": "line.n",
+        "type": "dividing_line",
+        "label": "ㄴ",
+        "divides_equally": false
+      },
+      {
+        "id": "line.d",
+        "type": "dividing_line",
+        "label": "ㄷ",
+        "divides_equally": true
+      },
+      {
+        "id": "line.r",
+        "type": "dividing_line",
+        "label": "ㄹ",
+        "divides_equally": true
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.not_equal_division",
+        "type": "does_not_divide_equally",
+        "from_id": "line.n",
+        "to_id": "shape.hexagon"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": "ㄴ"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": "ㄴ",
+        "diagnostics": [
+          {
+            "id": "diag.equal_halves_error",
+            "condition": "answer_in_g_d_r",
+            "concept": "똑같이 둘로 나누기",
+            "reason": "도형의 중심을 지나 똑같이 둘로 나누는 점선을 답함",
+            "feedback": "㉠, ㉢, ㉣은 도형을 크기와 모양이 같게 둘로 나누지만, ㉡으로 나누면 위쪽 삼각형과 아래쪽 오각형으로 크기와 모양이 다릅니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": "ㄴ",
+    "unit": "",
+    "values": [
+      "ㄴ",
+      "㉡"
+    ]
+  }
+}

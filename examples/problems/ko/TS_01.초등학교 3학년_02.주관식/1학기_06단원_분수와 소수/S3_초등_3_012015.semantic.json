@@ -1,0 +1,113 @@
+{
+  "problem_id": "S3_초등_3_012015",
+  "problem_type": "short_answer_fraction_write_and_read",
+  "metadata": {
+    "title": "색칠한 부분을 분수로 쓰고 읽기 (3/8)",
+    "tags": [],
+    "instruction": "(1)",
+    "question": "색칠한 부분을 분수로 쓰고, 읽어 보세요.",
+    "required_layout_ids": [
+      "slot.diagram.cross_bg",
+      "slot.diagram.shade_1",
+      "slot.diagram.shade_2",
+      "slot.diagram.shade_3",
+      "slot.diagram.div_v",
+      "slot.diagram.div_h",
+      "slot.diagram.div_d1",
+      "slot.diagram.div_d2",
+      "slot.answer.input_write",
+      "slot.answer.input_read"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "06단원_분수와 소수",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "색칠한 부분을 분수로 쓰고, 읽어 보세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "figure.cross",
+        "type": "fraction_model",
+        "label": "8등분된 도형",
+        "total_parts": 8,
+        "shaded_parts": 3
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.fraction_value",
+        "type": "represents_fraction",
+        "from_id": "figure.cross",
+        "written": "3/8",
+        "read": "8분의 3"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input_write",
+        "slot_id": "slot.answer.input_write",
+        "expected": "3/8"
+      },
+      {
+        "id": "slot.answer.input_read",
+        "slot_id": "slot.answer.input_read",
+        "expected": "8분의 3"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input_write",
+        "value": "3/8",
+        "diagnostics": [
+          {
+            "id": "diag.swapped_numerator_denominator",
+            "condition": "answer_equals_8_over_3",
+            "concept": "분모와 분자",
+            "reason": "분모와 분자의 위치를 바꾸어 씀",
+            "feedback": "전체 8조각 중 3조각을 색칠했으므로 전체(8)를 분모에, 부분(3)을 분자에 써서 3/8으로 나타냅니다."
+          }
+        ]
+      },
+      {
+        "slot_id": "slot.answer.input_read",
+        "value": "8분의 3",
+        "diagnostics": [
+          {
+            "id": "diag.fraction_reading_order_error",
+            "condition": "answer_equals_3_over_8_read",
+            "concept": "분수 읽기",
+            "reason": "분자부터 읽어 '3분의 8'이라고 답함",
+            "feedback": "분수는 분모부터 읽습니다. 3/8은 '8분의 3'이라고 읽습니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": [
+      "3/8",
+      "8분의 3"
+    ],
+    "unit": "",
+    "values": [
+      "3/8",
+      "8분의 3"
+    ]
+  }
+}

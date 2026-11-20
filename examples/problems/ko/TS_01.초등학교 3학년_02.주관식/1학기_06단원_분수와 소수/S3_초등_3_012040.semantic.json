@@ -1,0 +1,109 @@
+{
+  "problem_id": "S3_초등_3_012040",
+  "problem_type": "short_answer_fraction_odd_one_out",
+  "metadata": {
+    "title": "분수로 나타낼 때 다른 도형 찾기",
+    "tags": [],
+    "instruction": "(",
+    "question": "전체에 대하여 색칠한 부분의 크기를 분수로 나타낼 때 다른 것을 찾아 기호를 쓰세요.",
+    "required_layout_ids": [
+      "slot.diagram.box_outer",
+      "slot.diagram.ga_tri_0",
+      "slot.diagram.ga_tri_1",
+      "slot.diagram.ga_tri_2",
+      "slot.diagram.ga_tri_3",
+      "slot.diagram.ga_tri_4",
+      "slot.diagram.ga_tri_5",
+      "slot.diagram.na_slice_0",
+      "slot.diagram.na_slice_1",
+      "slot.diagram.na_slice_2",
+      "slot.diagram.na_slice_3",
+      "slot.diagram.na_slice_4",
+      "slot.diagram.na_slice_5",
+      "slot.diagram.da_t1",
+      "slot.diagram.da_t2",
+      "slot.diagram.da_t3",
+      "slot.diagram.da_t4",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "06단원_분수와 소수",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "전체에 대하여 색칠한 부분의 크기를 분수로 나타낼 때 다른 것을 찾아 기호를 쓰세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "figure.ga",
+        "type": "fraction_model",
+        "label": "가",
+        "fraction": "5/6"
+      },
+      {
+        "id": "figure.na",
+        "type": "fraction_model",
+        "label": "나",
+        "fraction": "5/6"
+      },
+      {
+        "id": "figure.da",
+        "type": "fraction_model",
+        "label": "다",
+        "fraction": "3/4"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.different_fraction",
+        "type": "odd_one_out",
+        "from_id": "figure.da",
+        "to_id": "concept.fraction"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": "다"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": "다",
+        "diagnostics": [
+          {
+            "id": "diag.fraction_comparison_error",
+            "condition": "answer_in_ga_na",
+            "concept": "분수로 나타내기",
+            "reason": "가, 나, 다의 전체 등분 수와 색칠한 조각 수를 잘못 셈",
+            "feedback": "가와 나는 전체 6조각 중 5조각을 색칠하여 5/6이지만, 다는 전체 4조각 중 3조각을 색칠하여 3/4입니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": "다",
+    "unit": "",
+    "values": [
+      "다"
+    ]
+  }
+}

@@ -4,8 +4,7 @@ import '../l10n/assignment_strings.dart';
 import '../models/assignment.dart';
 import '../services/student_assignment_service.dart';
 import '../theme/app_theme.dart';
-import '../widgets/assignment_answer_input.dart';
-import '../widgets/student_problem_canvas.dart';
+import '../widgets/student_problem_body.dart';
 import '../widgets/practice_goal_card.dart';
 import 'student_assignments_screen.dart';
 
@@ -292,46 +291,15 @@ class _PracticeLearningScreenState extends State<PracticeLearningScreen>
                                     color: KidsPalette.primary,
                                     fontWeight: FontWeight.bold)),
                             const SizedBox(height: 12),
-                            Text(
-                                item.prompt.isNotEmpty
-                                    ? item.prompt
-                                    : '${data['title']}',
-                                style: TextStyle(
-                                    fontSize:
-                                        MediaQuery.sizeOf(context).width < 600
-                                            ? 20
-                                            : 24,
-                                    height: 1.45,
-                                    fontWeight: FontWeight.bold)),
-                            Text(
-                                '${s.t('author')}: ${data['owner_name'] ?? ''}'),
-                            if ('${data['source_credit'] ?? ''}'.isNotEmpty)
-                              Text(
-                                  '${s.t('source')}: ${data['source_credit']}'),
-                            if ('${data['rights_note'] ?? ''}'.isNotEmpty)
-                              Text('${data['rights_note']}'),
-                            const SizedBox(height: 16),
-                            if (item.showCanvas &&
-                                item.problem.renderer.isNotEmpty)
-                              StudentProblemCanvas(
-                                  item: item,
-                                  value: answers[id],
-                                  enabled: !busy && result != true,
-                                  changed: (value) => setState(() {
-                                        answers[id] = value;
-                                        feedback.remove(id);
-                                      })),
-                            const SizedBox(height: 20),
-                            if (!item.canvasInputs)
-                              AssignmentAnswerInput(
-                                  key: ValueKey('practice-input-$id'),
-                                  item: item,
-                                  value: answers[id],
-                                  enabled: !busy && result != true,
-                                  changed: (value) => setState(() {
-                                        answers[id] = value;
-                                        feedback.remove(id);
-                                      })),
+                            StudentProblemBody(
+                                key: ValueKey('practice-problem-$id'),
+                                item: item,
+                                value: answers[id],
+                                enabled: !busy && result != true,
+                                changed: (value) => setState(() {
+                                      answers[id] = value;
+                                      feedback.remove(id);
+                                    })),
                             const SizedBox(height: 16),
                             if (result != null)
                               Padding(

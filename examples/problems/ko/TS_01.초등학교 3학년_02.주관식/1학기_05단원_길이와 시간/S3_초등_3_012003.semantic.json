@@ -1,0 +1,100 @@
+{
+  "problem_id": "S3_초등_3_012003",
+  "problem_type": "short_answer_length_unit_conversion",
+  "metadata": {
+    "title": "도서관에서 학교까지의 거리를 m로 나타내기",
+    "tags": [],
+    "instruction": "도서관",
+    "question": "도서관에서 학교까지의 거리는 몇 m일까요?",
+    "required_layout_ids": [
+      "slot.diagram.lib_building",
+      "slot.diagram.lib_sign",
+      "slot.diagram.school_building",
+      "slot.diagram.school_clock",
+      "slot.diagram.dist_line",
+      "slot.diagram.dot_left",
+      "slot.diagram.dot_right",
+      "slot.diagram.arc_dist",
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "05단원_길이와 시간",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "도서관에서 학교까지의 거리는 몇 m일까요?"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "place.library",
+        "type": "location",
+        "label": "도서관"
+      },
+      {
+        "id": "place.school",
+        "type": "location",
+        "label": "학교"
+      },
+      {
+        "id": "quantity.distance_m",
+        "type": "quantity",
+        "label": "도서관에서 학교까지의 거리",
+        "value": 2300,
+        "unit": "m"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.distance",
+        "type": "distance_between",
+        "from_id": "place.library",
+        "to_id": "place.school",
+        "quantity": "quantity.distance_m"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": 2300
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": 2300,
+        "diagnostics": [
+          {
+            "id": "diag.km_to_m_zero_error",
+            "condition": "answer_equals_230",
+            "concept": "1 km = 1000 m",
+            "reason": "1 km를 100 m로 잘못 바꾸어 230 m로 답함",
+            "feedback": "1 km는 1000 m입니다. 따라서 2 km 300 m = 2000 m + 300 m = 2300 m입니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": 2300,
+    "unit": "m",
+    "values": [
+      2300
+    ]
+  }
+}

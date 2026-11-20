@@ -25,7 +25,7 @@ From `src/modu_math_web/editor_next`:
 npm install
 npm run typecheck
 npm run build
-npm run build:flutter-editor
+npm run build:student
 ```
 
 The teacher workspace uses the existing Django `/api/v1/` endpoints on the same
@@ -65,21 +65,20 @@ The Django template loads that bundle from:
 /editor-konva/
 ```
 
-## Flutter editing surface
+## Student app preview
 
-The toolbar's **앱처럼 풀어보기** button opens the saved problem in a Flutter
-dialog. Unsaved Konva edits stay in the editor and are restored on return.
-Use **저장하고 화면 반영** before opening it to try the latest edits. The host
-loads the saved semantic, solvable, layout, and renderer together; this preview
-does not load a fallback catalog or persist practice attempts. Build both the
-React bundle and Flutter editor bundle before serving this feature.
+**앱처럼 풀어보기** opens the same student application as `localhost:3000`.
+There is one Flutter entry (`apps/mobile/lib/main.dart`) and one deployed bundle
+(`static/editor_next/student_app/`). Practice and editor preview share
+`StudentProblemBody`, `StudentProblemCanvas`, and `AssignmentAnswerInput`.
+The host loads the saved student presentation and grades with the same backend
+checker through `/api/editor/problems/<id>/student-preview/`. Preview grading
+never creates attempts. Save and build before previewing the latest edits.
 
-After serving this folder on port 5189, run
-`node scripts/editor-student-preview.browser.mjs` to check the real iframe,
-answer input, preserved draft, and load failure/retry without changing problems.
-
-Konva remains the editing canvas. The existing Flutter bridge also supports
-platform-neutral layout patches (`target`, `op`, and `value`), but the student
-preview runs in a fixed solve mode and does not apply editing patches. Rebuild
-the embedded Flutter bundle with `npm run build:flutter-editor` after changing
-files under `apps/mobile/lib`.
+Build with `npm run build` and `npm run build:student`. The former development
+studio, Flutter layout editing, and separate Flutter editor build are removed.
+Run `npm run test:editor-preview` against a static server on port 5189 for the
+isolated browser test, or set `MODU_EDITOR_TEST_URL` to its editor bundle URL.
+With the local apps running on ports 8000 and 3000, `npm run test:editor-parity`
+checks that both serve identical Flutter JavaScript and verifies the highlighted
+multiplication example and its answer choices against the real preview API.

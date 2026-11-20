@@ -1,0 +1,122 @@
+{
+  "problem_id": "S3_초등_3_012001",
+  "problem_type": "short_answer_length_unit_write_and_read",
+  "metadata": {
+    "title": "밀리미터(mm) 길이 쓰고 읽기",
+    "tags": [],
+    "instruction": "(1)",
+    "question": "그림에서 나타내는 길이를 쓰고 읽어 보세요.",
+    "required_layout_ids": [
+      "slot.diagram.bar",
+      "slot.diagram.ruler_body",
+      "slot.diagram.ruler_tick_0",
+      "slot.diagram.ruler_tick_1",
+      "slot.diagram.ruler_tick_2",
+      "slot.diagram.ruler_tick_3",
+      "slot.diagram.ruler_tick_4",
+      "slot.diagram.ruler_tick_5",
+      "slot.diagram.ruler_tick_6",
+      "slot.diagram.ruler_tick_7",
+      "slot.diagram.ruler_tick_8",
+      "slot.diagram.ruler_tick_9",
+      "slot.diagram.ruler_tick_10",
+      "slot.diagram.ruler_tick_11",
+      "slot.diagram.ruler_tick_12",
+      "slot.answer.write_badge",
+      "slot.answer.input_write",
+      "slot.answer.read_badge",
+      "slot.answer.input_read"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "05단원_길이와 시간",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "그림에서 나타내는 길이를 쓰고 읽어 보세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "quantity.length",
+        "type": "quantity",
+        "label": "측정한 길이",
+        "value": 8,
+        "unit": "mm"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.unit_reading",
+        "type": "written_and_read_as",
+        "from_id": "quantity.length",
+        "written": "8 mm",
+        "read": "8 밀리미터"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input_write",
+        "slot_id": "slot.answer.input_write",
+        "expected": "8 mm"
+      },
+      {
+        "id": "slot.answer.input_read",
+        "slot_id": "slot.answer.input_read",
+        "expected": "8 밀리미터"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input_write",
+        "value": "8 mm",
+        "diagnostics": [
+          {
+            "id": "diag.ruler_tick_count_error",
+            "condition": "answer_not_equals_8mm",
+            "concept": "밀리미터(mm) 읽기",
+            "reason": "0에서부터 작은 눈금 칸 수를 잘못 셈",
+            "feedback": "눈금 0에서부터 작은 눈금이 몇 칸인지 세어 보세요. 8칸이므로 8 mm입니다."
+          }
+        ]
+      },
+      {
+        "slot_id": "slot.answer.input_read",
+        "value": "8 밀리미터",
+        "diagnostics": [
+          {
+            "id": "diag.unit_reading_error",
+            "condition": "answer_not_equals_8_millimeter",
+            "concept": "밀리미터(mm) 읽기",
+            "reason": "mm 단위를 한글로 '밀리미터'라고 읽지 못함",
+            "feedback": "기호 mm는 '밀리미터'라고 읽습니다. 따라서 '8 밀리미터'입니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": [
+      "8 mm",
+      "8 밀리미터"
+    ],
+    "unit": "",
+    "values": [
+      "8 mm",
+      "8 밀리미터"
+    ]
+  }
+}

@@ -1,0 +1,585 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_012004",
+  "title": "어림한 거리에 해당하는 장소 찾기",
+  "canvas": {
+    "width": 900,
+    "height": 604,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.map_bg",
+        "slot.diagram.arc_400",
+        "slot.diagram.badge_400_bg",
+        "slot.diagram.home_box",
+        "slot.diagram.hosp_box",
+        "slot.diagram.lib_box",
+        "slot.diagram.school_box",
+        "slot.diagram.post_box",
+        "slot.answer.input_600",
+        "slot.answer.input_1000",
+        "slot.diagram.road_v1",
+        "slot.diagram.road_v2",
+        "slot.diagram.road_h1",
+        "slot.diagram.road_h2",
+        "slot.diagram.road_diag",
+        "slot.diagram.dot_home",
+        "slot.diagram.dot_hosp",
+        "slot.diagram.dot_lib",
+        "slot.diagram.dot_school",
+        "slot.diagram.dot_post",
+        "slot.stem.question",
+        "slot.diagram.badge_400_text",
+        "slot.diagram.home_label",
+        "slot.diagram.hosp_label",
+        "slot.diagram.lib_label",
+        "slot.diagram.school_label",
+        "slot.diagram.post_label",
+        "slot.answer.lbl_600",
+        "slot.answer.lbl_1000"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "우리집에서 약 600 m 떨어진 곳과 1 km 떨어진 곳에 있는 장소를 적어 보세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 22.0,
+        "width": 836.0,
+        "height": 80.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 26,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.45,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.map_bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 170.0,
+        "y": 112.0,
+        "width": 560.0,
+        "height": 340.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 1.4,
+        "fill": "#a3d977"
+      }
+    },
+    {
+      "id": "slot.diagram.road_v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 405.0,
+        "y1": 112.0,
+        "x2": 405.0,
+        "y2": 452.0,
+        "stroke": "#ffffff",
+        "stroke_width": 12.0
+      }
+    },
+    {
+      "id": "slot.diagram.road_v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 535.0,
+        "y1": 112.0,
+        "x2": 535.0,
+        "y2": 452.0,
+        "stroke": "#ffffff",
+        "stroke_width": 12.0
+      }
+    },
+    {
+      "id": "slot.diagram.road_h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 170.0,
+        "y1": 200.0,
+        "x2": 730.0,
+        "y2": 200.0,
+        "stroke": "#ffffff",
+        "stroke_width": 12.0
+      }
+    },
+    {
+      "id": "slot.diagram.road_h2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 170.0,
+        "y1": 325.0,
+        "x2": 730.0,
+        "y2": 325.0,
+        "stroke": "#ffffff",
+        "stroke_width": 12.0
+      }
+    },
+    {
+      "id": "slot.diagram.road_diag",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 355.0,
+        "y1": 325.0,
+        "x2": 410.0,
+        "y2": 452.0,
+        "stroke": "#ffffff",
+        "stroke_width": 10.0
+      }
+    },
+    {
+      "id": "slot.diagram.arc_400",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 535 152 Q 515 208 535 262",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.8,
+        "stroke_dasharray": "4 4",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.badge_400_bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 470.0,
+        "y": 192.0,
+        "width": 92.0,
+        "height": 24.0,
+        "stroke": "#d1d5db",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.badge_400_text",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "약 400 m",
+        "style_role": "body",
+        "x": 470.0,
+        "y": 192.0,
+        "width": 92.0,
+        "height": 24.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 14,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.home_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 505.0,
+        "y": 120.0,
+        "width": 60.0,
+        "height": 30.0,
+        "stroke": "#dc2626",
+        "stroke_width": 1.2,
+        "fill": "#fecaca"
+      }
+    },
+    {
+      "id": "slot.diagram.home_label",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "우리 집",
+        "style_role": "body",
+        "x": 568.0,
+        "y": 124.0,
+        "width": 70.0,
+        "height": 24.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 15,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.dot_home",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 535.0,
+        "cy": 152.0,
+        "r": 3.2,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.hosp_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 560.0,
+        "y": 248.0,
+        "width": 60.0,
+        "height": 30.0,
+        "stroke": "#db2777",
+        "stroke_width": 1.2,
+        "fill": "#fbcfe8"
+      }
+    },
+    {
+      "id": "slot.diagram.hosp_label",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "병원",
+        "style_role": "body",
+        "x": 565.0,
+        "y": 222.0,
+        "width": 50.0,
+        "height": 24.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 15,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.dot_hosp",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 535.0,
+        "cy": 262.0,
+        "r": 3.2,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.lib_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 448.0,
+        "y": 286.0,
+        "width": 64.0,
+        "height": 34.0,
+        "stroke": "#0284c7",
+        "stroke_width": 1.2,
+        "fill": "#e0f2fe"
+      }
+    },
+    {
+      "id": "slot.diagram.lib_label",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "도서관",
+        "style_role": "body",
+        "x": 448.0,
+        "y": 322.0,
+        "width": 64.0,
+        "height": 24.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 15,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.dot_lib",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 535.0,
+        "cy": 304.0,
+        "r": 3.2,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.school_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 255.0,
+        "y": 366.0,
+        "width": 76.0,
+        "height": 34.0,
+        "stroke": "#7c3aed",
+        "stroke_width": 1.2,
+        "fill": "#ddd6fe"
+      }
+    },
+    {
+      "id": "slot.diagram.school_label",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "학교",
+        "style_role": "body",
+        "x": 200.0,
+        "y": 372.0,
+        "width": 50.0,
+        "height": 24.0,
+        "align": "right",
+        "valign": "middle",
+        "font_size": 15,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.dot_school",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 340.0,
+        "cy": 366.0,
+        "r": 3.2,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.post_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 495.0,
+        "y": 404.0,
+        "width": 60.0,
+        "height": 34.0,
+        "stroke": "#d97706",
+        "stroke_width": 1.2,
+        "fill": "#fef3c7"
+      }
+    },
+    {
+      "id": "slot.diagram.post_label",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "우체국",
+        "style_role": "body",
+        "x": 560.0,
+        "y": 410.0,
+        "width": 64.0,
+        "height": 24.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 15,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.dot_post",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 535.0,
+        "cy": 400.0,
+        "r": 3.2,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.answer.lbl_600",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "약 600 m :",
+        "style_role": "body",
+        "x": 180.0,
+        "y": 476.0,
+        "width": 130.0,
+        "height": 46.0,
+        "align": "right",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.answer.input_600",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 324.0,
+        "y": 476.0,
+        "width": 360.0,
+        "height": 46.0,
+        "stroke": "#111827",
+        "stroke_width": 1.4,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "text",
+          "max_length": 20,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "auto_advance": false,
+          "keyboard": "text"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 16,
+          "max_font_size": 24,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 360.0,
+          "height": 46.0
+        }
+      }
+    },
+    {
+      "id": "slot.answer.lbl_1000",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "약 1 km :",
+        "style_role": "body",
+        "x": 180.0,
+        "y": 534.0,
+        "width": 130.0,
+        "height": 46.0,
+        "align": "right",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.answer.input_1000",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 324.0,
+        "y": 534.0,
+        "width": 360.0,
+        "height": 46.0,
+        "stroke": "#111827",
+        "stroke_width": 1.4,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "text",
+          "max_length": 25,
+          "include_in_submission": true,
+          "order": 1,
+          "group_id": "final_answer",
+          "auto_advance": false,
+          "keyboard": "text"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 16,
+          "max_font_size": 24,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 360.0,
+          "height": 46.0
+        }
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.diagram.map_bg",
+    "slot.diagram.arc_400",
+    "slot.diagram.badge_400_bg",
+    "slot.diagram.home_box",
+    "slot.diagram.hosp_box",
+    "slot.diagram.lib_box",
+    "slot.diagram.school_box",
+    "slot.diagram.post_box",
+    "slot.answer.input_600",
+    "slot.answer.input_1000",
+    "slot.diagram.road_v1",
+    "slot.diagram.road_v2",
+    "slot.diagram.road_h1",
+    "slot.diagram.road_h2",
+    "slot.diagram.road_diag",
+    "slot.diagram.dot_home",
+    "slot.diagram.dot_hosp",
+    "slot.diagram.dot_lib",
+    "slot.diagram.dot_school",
+    "slot.diagram.dot_post",
+    "slot.stem.question",
+    "slot.diagram.badge_400_text",
+    "slot.diagram.home_label",
+    "slot.diagram.hosp_label",
+    "slot.diagram.lib_label",
+    "slot.diagram.school_label",
+    "slot.diagram.post_label",
+    "slot.answer.lbl_600",
+    "slot.answer.lbl_1000"
+  ]
+}

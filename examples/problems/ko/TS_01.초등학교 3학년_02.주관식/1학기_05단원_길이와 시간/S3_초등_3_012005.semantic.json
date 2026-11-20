@@ -1,0 +1,94 @@
+{
+  "problem_id": "S3_초등_3_012005",
+  "problem_type": "short_answer_time_addition_word_problem",
+  "metadata": {
+    "title": "출발 시각과 걸린 시간으로 도착 시각 구하기",
+    "tags": [],
+    "instruction": "(",
+    "question": "수지네 집에서 민경이네 집까지는 걸어서 25분이 걸립니다. 수지가 민경이네 집에 가려고 3시 20분에 나왔다면 민경이네 집에는 몇 시 몇 분에 도착할까요?",
+    "required_layout_ids": [
+      "slot.answer.input"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 3,
+    "semester": 1,
+    "chapter": "05단원_길이와 시간",
+    "subject": "수학",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "수지네 집에서 민경이네 집까지는 걸어서 25분이 걸립니다. 수지가 민경이네 집에 가려고 3시 20분에 나왔다면 민경이네 집에는 몇 시 몇 분에 도착할까요?"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "time.departure",
+        "type": "time",
+        "label": "출발 시각",
+        "value": "3시 20분"
+      },
+      {
+        "id": "duration.walk",
+        "type": "duration",
+        "label": "걸리는 시간",
+        "value_min": 25
+      },
+      {
+        "id": "time.arrival",
+        "type": "time",
+        "label": "도착 시각",
+        "value": "3시 45분"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.time_addition",
+        "type": "arrival_time_of",
+        "departure": "time.departure",
+        "duration": "duration.walk",
+        "arrival": "time.arrival"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer.input",
+        "slot_id": "slot.answer.input",
+        "expected": "3시 45분"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.answer.input",
+        "value": "3시 45분",
+        "diagnostics": [
+          {
+            "id": "diag.time_addition_error",
+            "condition": "answer_not_equals_3_45",
+            "concept": "시간의 덧셈",
+            "reason": "3시 20분에 25분을 더하는 계산을 잘못함",
+            "feedback": "3시 20분에서 25분이 지나면 분끼리 더해서 20분 + 25분 = 45분이 되므로 3시 45분입니다."
+          }
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "type": "short_answer",
+    "value": "3시 45분",
+    "unit": "",
+    "values": [
+      "3시 45분",
+      "3시45분"
+    ]
+  }
+}

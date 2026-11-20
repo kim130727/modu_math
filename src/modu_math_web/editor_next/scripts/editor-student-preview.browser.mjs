@@ -24,19 +24,25 @@ try {
   const writes = [];
   await page.route('**/api/**', async route => {
     const request = route.request();
-    if (request.method() !== 'GET') writes.push(request.url());
     const url = new URL(request.url());
-    if (url.pathname.startsWith('/api/editor/problems/') && url.pathname !== '/api/editor/problems/') {
+    if (url.pathname.endsWith('/student-preview/')) {
+      if (request.method() === 'POST') {
+        const data = request.postDataJSON();
+        assert.equal(data.revision, 'saved-v1');
+        return route.fulfill({ json: { correct: data.answer === '5' } });
+      }
       loads++;
       if (fail) return route.fulfill({ status: 500, json: { error: 'Preview fixture unavailable' } });
-      const id = decodeURIComponent(url.pathname.slice('/api/editor/problems/'.length).replace(/\/$/, ''));
       return route.fulfill({ json: {
-        problem_id: id, base_dir: '', dsl: '', svg: null,
-        semantic: { problem_id: id, problem_type: 'addition', metadata: { title: '저장된 미리보기 문제', instruction: '2 + 3을 계산하세요.' }, answer: { value: '5' } },
-        solvable: { problem_id: id, answer: { value: '5' } }, layout: {},
-        renderer: { problem_id: id, view_box: { x: 0, y: 0, width: 600, height: 200 }, elements: [{ id: 'sum', type: 'text', text: '2 + 3 = ?', attributes: { x: 40, y: 70, font_size: 32 } }] },
+        id: 0, problem_id: 'preview', language: 'ko', revision: 'saved-v1',
+        prompt: '2 + 3을 계산하세요.', owner_name: '모두의 수학',
+        presentation: { mode: 'panel_input', show_canvas: true },
+        input_schema: { fields: [{ id: 'field-1', type: 'number' }], unit: '' },
+        semantic_data: { metadata: { question: '2 + 3을 계산하세요.' } }, layout_data: {},
+        renderer_data: { view_box: { x: 0, y: 0, width: 600, height: 200 }, elements: [{ id: 'sum', type: 'text', text: '2 + 3 = ?', attributes: { x: 40, y: 70, 'font-size': 32 } }] },
       } });
     }
+    if (request.method() !== 'GET') writes.push(request.url());
     return route.fulfill({ json: { problems: [] } });
   });
   await page.goto(base);
@@ -48,7 +54,8 @@ try {
   await page.getByRole('dialog').waitFor();
   const frame = page.frameLocator('.flutter-editor-frame');
   await frame.locator('flutter-view').waitFor();
-  await frame.locator('flt-semantics-placeholder').evaluate(element => element.click());
+  // The single student entry enables Flutter semantics itself.
+  assert.ok(page.frames().some(frame => frame.url().includes('/student_app/')));
   await page.screenshot({ path: resolve(output, 'loaded.png'), fullPage: true });
   await frame.getByText(/계산하세요/).waitFor();
   assert.equal(await frame.getByText('요소 편집', { exact: true }).count(), 0);
@@ -57,8 +64,8 @@ try {
   await answer.click();
   await answer.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   await page.keyboard.type('5');
-  await page.keyboard.press('Enter');
-  await frame.getByRole('button', { name: '단원 마치기', exact: true }).waitFor();
+  await frame.getByRole('button', { name: '답 제출', exact: true }).click();
+  await frame.getByText('맞았어요!', { exact: true }).or(frame.getByLabel(/맞았어요/)).first().waitFor();
   await page.screenshot({ path: resolve(output, 'solve.png'), fullPage: true });
   await page.getByRole('button', { name: '편집으로 돌아가기', exact: true }).click();
   assert.equal(await page.locator('.konva-json-panel textarea').inputValue(), draft, 'Unsaved editor state survives preview');
@@ -71,7 +78,7 @@ try {
   await page.locator('.flutter-editor-frame').waitFor();
   await page.getByRole('button', { name: '편집으로 돌아가기', exact: true }).click();
   assert.equal(loads, 3, 'Every opening/retry reloads the saved problem');
-  assert.deepEqual(writes, [], 'Preview never saves edits or submits student attempts');
+  assert.deepEqual(writes, [], 'Only the isolated preview grading endpoint receives a POST');
   assert.deepEqual(errors, []);
   console.log(`Flutter student preview passed. Screenshot: ${output}`);
 } catch (error) {

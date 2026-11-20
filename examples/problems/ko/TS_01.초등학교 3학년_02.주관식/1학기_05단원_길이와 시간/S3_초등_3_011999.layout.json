@@ -1,0 +1,239 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_011999",
+  "title": "단위가 다른 길이 비교하여 가장 긴 것 찾기",
+  "canvas": {
+    "width": 900,
+    "height": 364,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.box_outer",
+        "slot.answer.input",
+        "slot.stem.question",
+        "slot.diagram.opt_g",
+        "slot.diagram.opt_n",
+        "slot.diagram.opt_d",
+        "slot.diagram.opt_r",
+        "slot.answer.paren_left",
+        "slot.answer.paren_right"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "길이가 가장 긴 것을 찾아 기호를 쓰세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 26,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.45,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.box_outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 70.0,
+        "y": 88.0,
+        "width": 760.0,
+        "height": 164.0,
+        "stroke": "#7dd3fc",
+        "stroke_width": 2.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_g",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "㉠  2 m 5 cm",
+        "style_role": "body",
+        "x": 130.0,
+        "y": 114.0,
+        "width": 280.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 28,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_n",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "㉡  250 cm",
+        "style_role": "body",
+        "x": 480.0,
+        "y": 114.0,
+        "width": 280.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 28,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_d",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "㉢  97 cm",
+        "style_role": "body",
+        "x": 130.0,
+        "y": 180.0,
+        "width": 280.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 28,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_r",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "㉣  2 m 10 cm",
+        "style_role": "body",
+        "x": 480.0,
+        "y": 180.0,
+        "width": 280.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 28,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.answer.paren_left",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(",
+        "style_role": "body",
+        "x": 560.0,
+        "y": 282.0,
+        "width": 28.0,
+        "height": 54.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 28,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.answer.input",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 594.0,
+        "y": 282.0,
+        "width": 170.0,
+        "height": 54.0,
+        "stroke": "#111827",
+        "stroke_width": 1.4,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "text",
+          "max_length": 4,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "auto_advance": false,
+          "keyboard": "text"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 16,
+          "max_font_size": 26,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 170.0,
+          "height": 54.0
+        }
+      }
+    },
+    {
+      "id": "slot.answer.paren_right",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": ")",
+        "style_role": "body",
+        "x": 770.0,
+        "y": 282.0,
+        "width": 28.0,
+        "height": 54.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 28,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "canvas",
+        "semantic_role_source": "inferred"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.diagram.box_outer",
+    "slot.answer.input",
+    "slot.stem.question",
+    "slot.diagram.opt_g",
+    "slot.diagram.opt_n",
+    "slot.diagram.opt_d",
+    "slot.diagram.opt_r",
+    "slot.answer.paren_left",
+    "slot.answer.paren_right"
+  ]
+}

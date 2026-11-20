@@ -6,6 +6,7 @@
   "scripts": {
     "test:editor-browser": "node scripts/editor-workspace.browser.mjs",
     "test:editor-preview": "node scripts/editor-student-preview.browser.mjs",
+    "test:editor-parity": "node scripts/editor-student-parity.browser.mjs",
     "test:teacher": "node --test scripts/teacher-api.test.mjs",
     "test:teacher-browser": "node --test scripts/teacher-browser.test.mjs",
     "test:student-browser": "node --test --test-concurrency=1 scripts/student-browser.test.mjs scripts/student-live-update.test.mjs",
@@ -19,7 +20,7 @@
     "predev": "npm run check:text",
     "pretypecheck": "npm run check:text",
     "build": "vite build",
-    "build:flutter-editor": "cd ../../../apps/mobile && flutter build web --release --no-wasm-dry-run --base-href /static/editor_next/flutter_editor/ --dart-define=EDITOR_MODE=true --dart-define=BACKEND_API_BASE_URL=same-origin && node ../../src/modu_math_web/editor_next/scripts/copy-flutter-editor.mjs",
+    "build:student": "python ../../../apps/mobile/scripts/build_student_web.py",
     "postbuild": "node scripts/check-text-encoding.mjs static/editor_next/konva_assets",
     "dev": "vite --host 127.0.0.1 --port 5174",
     "typecheck": "tsc --noEmit"
