@@ -1,10 +1,10 @@
 {
   "schema": "modu.layout.v1",
-  "problem_id": "P3_1_01_00040_02152",
-  "title": "수 모형으로 알아보는 세 자리 수의 덧셈",
+  "problem_id": "P3_1_01_00040_02152_1",
+  "title": "수 모형으로 알아보는 세 자리 수의 덧셈 (1)",
   "canvas": {
     "width": 900,
-    "height": 650,
+    "height": 500,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -135,15 +135,7 @@
       "slot_ids": [
         "slot.answer.ones_to_tens",
         "slot.answer.remaining_ones",
-        "slot.answer.tens_to_hundreds",
-        "slot.answer.remaining_tens",
-        "slot.answer.hundreds_to_thousands",
-        "slot.answer.remaining_hundreds",
-        "slot.answer.total_books",
-        "slot.answer_1",
-        "slot.answer_2",
-        "slot.answer_3",
-        "slot.answer_4"
+        "slot.answer_1"
       ]
     }
   ],
@@ -164,8 +156,8 @@
         "font_size": 22,
         "font_family": "\"Noto Sans KR\", sans-serif",
         "fill": "#202124",
-        "semantic_role": "question",
-        "semantic_role_source": "explicit"
+        "semantic_role_source": "explicit",
+        "semantic_role": "question"
       }
     },
     {
@@ -1657,60 +1649,6 @@
       }
     },
     {
-      "id": "slot.answer_2",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "(2) 십 모형끼리 더하면 백 모형          개와 십 모형          개입니다.",
-        "style_role": "body",
-        "x": 30.0,
-        "y": 486.5,
-        "width": 521,
-        "height": 25,
-        "align": "left",
-        "valign": "middle",
-        "font_size": 20,
-        "font_family": "\"Noto Sans KR\", sans-serif",
-        "fill": "#202124"
-      }
-    },
-    {
-      "id": "slot.answer_3",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "(3) 백 모형끼리 더하면 천 모형          개와 백 모형          개입니다.",
-        "style_role": "body",
-        "x": 30.0,
-        "y": 536.5,
-        "width": 521,
-        "height": 25,
-        "align": "left",
-        "valign": "middle",
-        "font_size": 20,
-        "font_family": "\"Noto Sans KR\", sans-serif",
-        "fill": "#202124"
-      }
-    },
-    {
-      "id": "slot.answer_4",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "(4) 도서관의 책 수는 모두               권입니다.",
-        "style_role": "body",
-        "x": 30.0,
-        "y": 586.5,
-        "width": 356,
-        "height": 25,
-        "align": "left",
-        "valign": "middle",
-        "font_size": 20,
-        "font_family": "\"Noto Sans KR\", sans-serif",
-        "fill": "#202124"
-      }
-    },
-    {
       "id": "slot.answer.ones_to_tens",
       "kind": "rect",
       "prompt": "숫자를 입력하세요.",
@@ -1789,216 +1727,6 @@
           "padding": 3,
           "text_color": "#202124",
           "width": 46.0,
-          "height": 38.0,
-          "font_size_adjust": 0
-        }
-      }
-    },
-    {
-      "id": "slot.answer.tens_to_hundreds",
-      "kind": "rect",
-      "prompt": "숫자를 입력하세요.",
-      "content": {
-        "x": 360.0,
-        "y": 480.0,
-        "width": 46.0,
-        "height": 38.0,
-        "stroke": "#5C6AC4",
-        "stroke_width": 1.6,
-        "rx": 6.0,
-        "ry": 6.0,
-        "fill": "#ffffff",
-        "interaction": {
-          "type": "input",
-          "role": "answer",
-          "value_type": "digit",
-          "max_length": 1,
-          "keyboard": "number",
-          "include_in_submission": true,
-          "order": 2,
-          "group_id": "final_answer",
-          "answer_key_index": 2,
-          "answer_ref": "answer_key[2]",
-          "auto_advance": true
-        },
-        "input_style": {
-          "font_size_mode": "auto",
-          "min_font_size": 16,
-          "max_font_size": 28,
-          "font_weight": 700,
-          "horizontal_align": "center",
-          "vertical_align": "middle",
-          "padding": 3,
-          "text_color": "#202124",
-          "width": 46.0,
-          "height": 38.0,
-          "font_size_adjust": 0
-        }
-      }
-    },
-    {
-      "id": "slot.answer.remaining_tens",
-      "kind": "rect",
-      "prompt": "숫자를 입력하세요.",
-      "content": {
-        "x": 575.0,
-        "y": 480.0,
-        "width": 46.0,
-        "height": 38.0,
-        "stroke": "#5C6AC4",
-        "stroke_width": 1.6,
-        "rx": 6.0,
-        "ry": 6.0,
-        "fill": "#ffffff",
-        "interaction": {
-          "type": "input",
-          "role": "answer",
-          "value_type": "digit",
-          "max_length": 1,
-          "keyboard": "number",
-          "include_in_submission": true,
-          "order": 3,
-          "group_id": "final_answer",
-          "answer_key_index": 3,
-          "answer_ref": "answer_key[3]",
-          "auto_advance": true
-        },
-        "input_style": {
-          "font_size_mode": "auto",
-          "min_font_size": 16,
-          "max_font_size": 28,
-          "font_weight": 700,
-          "horizontal_align": "center",
-          "vertical_align": "middle",
-          "padding": 3,
-          "text_color": "#202124",
-          "width": 46.0,
-          "height": 38.0,
-          "font_size_adjust": 0
-        }
-      }
-    },
-    {
-      "id": "slot.answer.hundreds_to_thousands",
-      "kind": "rect",
-      "prompt": "숫자를 입력하세요.",
-      "content": {
-        "x": 360.0,
-        "y": 530.0,
-        "width": 46.0,
-        "height": 38.0,
-        "stroke": "#5C6AC4",
-        "stroke_width": 1.6,
-        "rx": 6.0,
-        "ry": 6.0,
-        "fill": "#ffffff",
-        "interaction": {
-          "type": "input",
-          "role": "answer",
-          "value_type": "digit",
-          "max_length": 1,
-          "keyboard": "number",
-          "include_in_submission": true,
-          "order": 4,
-          "group_id": "final_answer",
-          "answer_key_index": 4,
-          "answer_ref": "answer_key[4]",
-          "auto_advance": true
-        },
-        "input_style": {
-          "font_size_mode": "auto",
-          "min_font_size": 16,
-          "max_font_size": 28,
-          "font_weight": 700,
-          "horizontal_align": "center",
-          "vertical_align": "middle",
-          "padding": 3,
-          "text_color": "#202124",
-          "width": 46.0,
-          "height": 38.0,
-          "font_size_adjust": 0
-        }
-      }
-    },
-    {
-      "id": "slot.answer.remaining_hundreds",
-      "kind": "rect",
-      "prompt": "숫자를 입력하세요.",
-      "content": {
-        "x": 575.0,
-        "y": 530.0,
-        "width": 46.0,
-        "height": 38.0,
-        "stroke": "#5C6AC4",
-        "stroke_width": 1.6,
-        "rx": 6.0,
-        "ry": 6.0,
-        "fill": "#ffffff",
-        "interaction": {
-          "type": "input",
-          "role": "answer",
-          "value_type": "digit",
-          "max_length": 1,
-          "keyboard": "number",
-          "include_in_submission": true,
-          "order": 5,
-          "group_id": "final_answer",
-          "answer_key_index": 5,
-          "answer_ref": "answer_key[5]",
-          "auto_advance": true
-        },
-        "input_style": {
-          "font_size_mode": "auto",
-          "min_font_size": 16,
-          "max_font_size": 28,
-          "font_weight": 700,
-          "horizontal_align": "center",
-          "vertical_align": "middle",
-          "padding": 3,
-          "text_color": "#202124",
-          "width": 46.0,
-          "height": 38.0,
-          "font_size_adjust": 0
-        }
-      }
-    },
-    {
-      "id": "slot.answer.total_books",
-      "kind": "rect",
-      "prompt": "숫자를 입력하세요.",
-      "content": {
-        "x": 300.0,
-        "y": 580.0,
-        "width": 72.0,
-        "height": 38.0,
-        "stroke": "#5C6AC4",
-        "stroke_width": 1.6,
-        "rx": 6.0,
-        "ry": 6.0,
-        "fill": "#ffffff",
-        "interaction": {
-          "type": "input",
-          "role": "answer",
-          "value_type": "integer",
-          "max_length": 4,
-          "keyboard": "number",
-          "include_in_submission": true,
-          "order": 6,
-          "group_id": "final_answer",
-          "answer_key_index": 6,
-          "answer_ref": "answer_key[6]",
-          "auto_advance": false
-        },
-        "input_style": {
-          "font_size_mode": "auto",
-          "min_font_size": 16,
-          "max_font_size": 28,
-          "font_weight": 700,
-          "horizontal_align": "center",
-          "vertical_align": "middle",
-          "padding": 3,
-          "text_color": "#202124",
-          "width": 72.0,
           "height": 38.0,
           "font_size_adjust": 0
         }
@@ -2119,14 +1847,6 @@
     "region.answer",
     "slot.answer.ones_to_tens",
     "slot.answer.remaining_ones",
-    "slot.answer.tens_to_hundreds",
-    "slot.answer.remaining_tens",
-    "slot.answer.hundreds_to_thousands",
-    "slot.answer.remaining_hundreds",
-    "slot.answer.total_books",
-    "slot.answer_1",
-    "slot.answer_2",
-    "slot.answer_3",
-    "slot.answer_4"
+    "slot.answer_1"
   ]
 }

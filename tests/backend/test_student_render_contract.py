@@ -93,6 +93,68 @@ def test_partial_canvas_bindings_fall_back_to_reachable_panel_fields(render_prob
     assert len(payload["input_schema"]["fields"]) == 2
 
 
+@pytest.mark.parametrize("answer", [5, 1124, -1234567, "7/8"])
+def test_whole_answer_capacity_is_not_limited_by_stale_metadata_or_secret_length(render_problem, answer):
+    render_problem.answer = {"value": answer}
+    render_problem.renderer_data["elements"] = [{
+        "id": "whole", "type": "rect",
+        "attributes": {"x": 10, "y": 20, "width": 160, "height": 80},
+        "interaction": {"type": "input", "role": "answer", "value_type": "integer", "max_length": 3},
+    }]
+    payload = student_problem(render_problem)
+    assert payload["presentation"]["canvas_bindings"] == {"whole": 0}
+    assert payload["renderer_data"]["elements"][0]["interaction"]["max_length"] == 64
+    assert render_problem.renderer_data["elements"][0]["interaction"]["max_length"] == 3
+
+
+def test_split_digit_cells_and_operator_constraints_remain_intact(render_problem):
+    render_problem.answer = {"value": 1124}
+    render_problem.renderer_data["elements"] = [{
+        "id": f"digit-{i}", "type": "rect",
+        "attributes": {"x": i * 30, "y": 20, "width": 25, "height": 40},
+        "interaction": {"type": "input", "role": "answer", "value_type": "digit", "max_length": 1},
+    } for i in range(4)]
+    payload = student_problem(render_problem)
+    assert set(payload["presentation"]["canvas_bindings"].values()) == {0}
+    assert [e["interaction"]["max_length"] for e in payload["renderer_data"]["elements"]] == [1, 1, 1, 1]
+    render_problem.renderer_data["elements"] = [{
+        "id": "operator", "type": "rect",
+        "attributes": {"x": 10, "y": 20, "width": 60, "height": 60},
+        "interaction": {"type": "input", "role": "answer", "value_type": "operator", "max_length": 1},
+    }]
+    payload = student_problem(render_problem)
+    assert payload["renderer_data"]["elements"][0]["interaction"]["max_length"] == 1
+
+
+def test_individual_digit_fields_keep_capacity_and_bind_by_complete_authored_order(render_problem):
+    # The stored array/slot IDs are in copy order; the authored order is the
+    # intended sequence [carry, carry, hundreds, tens, units].
+    render_problem.answer = {"value": [1, 1, 9, 2, 1], "answer_key": [
+        {"slot_id": name, "value": value}
+        for name, value in zip(["right-carry", "left-carry", "tens", "hundreds", "units"], [1, 1, 9, 2, 1])
+    ]}
+    render_problem.renderer_data["elements"] = [{
+        "id": name, "type": "rect", "source_ref": name,
+        "attributes": {"x": order * 25, "y": 20, "width": 19, "height": 19},
+        "interaction": {"type": "input", "role": "answer", "value_type": "digit",
+                        "max_length": 1, "auto_advance": True, "order": order},
+    } for name, order in [("right-carry", 1), ("left-carry", 0), ("tens", 3), ("hundreds", 2), ("units", 4)]]
+    payload = student_problem(render_problem)
+    assert payload["presentation"]["canvas_bindings"] == {
+        "right-carry": 1, "left-carry": 0, "tens": 3, "hundreds": 2, "units": 4,
+    }
+    assert all(e["interaction"]["value_type"] == "digit"
+               and e["interaction"]["max_length"] == 1
+               and e["interaction"]["auto_advance"]
+               for e in payload["renderer_data"]["elements"])
+    assert render_problem.check_answer(["1", "1", "9", "2", "1"])
+    assert not render_problem.check_answer(["1", "1", "2", "9", "1"])
+    # Explicit field bindings take precedence over legacy traversal order.
+    render_problem.renderer_data["elements"][0]["interaction"]["answer_key_index"] = 0
+    render_problem.renderer_data["elements"][1]["interaction"]["answer_key_index"] = 1
+    assert student_problem(render_problem)["presentation"]["canvas_bindings"]["right-carry"] == 0
+
+
 def test_owner_also_gets_answer_free_student_presentation_and_revision_conflict(
     render_problem,
 ):

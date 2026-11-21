@@ -51,8 +51,8 @@
         "style_role": "body",
         "x": 738.732,
         "y": 178.358,
-        "width": 98.0,
-        "height": 43.0,
+        "width": 53,
+        "height": 35,
         "align": "left",
         "valign": "top",
         "font_size": 28,
@@ -68,22 +68,22 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 591.411,
+        "x": 617.385,
         "y": 174.62,
-        "width": 131.555,
-        "height": 45.431,
+        "width": 105.58,
+        "height": 45.43,
         "stroke": "#111827",
         "stroke_width": 1.2,
         "fill": "#ffffff",
         "interaction": {
           "type": "input",
           "role": "answer",
-          "value_type": "integer",
-          "max_length": 3,
+          "value_type": "digit",
+          "max_length": 1,
           "include_in_submission": true,
           "order": 0,
           "group_id": "final_answer",
-          "auto_advance": false,
+          "auto_advance": true,
           "keyboard": "number"
         },
         "input_style": {
@@ -96,8 +96,8 @@
           "vertical_align": "middle",
           "padding": 6,
           "text_color": "#222222",
-          "width": 131.555,
-          "height": 45.431
+          "width": 105.58,
+          "height": 45.43
         }
       }
     }

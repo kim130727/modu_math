@@ -1,5 +1,31 @@
 """Answer-free presentation and field bindings shared with student renderers."""
 
+from collections import Counter
+import re
+
+
+def normalize_answer_capacity(elements, presentation):
+    """A whole-answer box must not inherit a digit-cell's length restriction.
+
+    Use a uniform public limit, independent of the secret answer's length.
+    Preserve explicit digit cells, and capacities of cells composing one field.
+    """
+    bindings = presentation.get("canvas_bindings", {})
+    counts = Counter(bindings.values())
+    for element in elements:
+        field = bindings.get(str(element.get("id")))
+        interaction = element.get("interaction") or {}
+        if (
+            field is None or counts[field] != 1
+            or interaction.get("role") != "answer"
+            or interaction.get("value_type") in {"digit", "digits", "operator", "comparison_operator"}
+            or interaction.get("keyboard") == "operator"
+        ):
+            continue
+        interaction["max_length"] = 64
+        interaction["auto_advance"] = False
+        element["interaction"] = interaction
+
 
 def presentation_contract(problem, schema):
     answer = problem.answer
@@ -9,6 +35,16 @@ def presentation_contract(problem, schema):
     fields = schema["fields"]
     keys = answer.get("answer_key") or []
     keys = keys if isinstance(keys, list) else []
+    candidates = [e for e in problem.renderer_data.get("elements", [])
+                  if (e.get("interaction") or {}).get("role") == "answer"
+                  and (e.get("interaction") or {}).get("include_in_submission") is not False]
+    orders = [(e.get("interaction") or {}).get("order") for e in candidates]
+    # A complete authored field order is an explicit legacy binding. Copied
+    # visual slots may still have stale answer-key IDs; renderer array order
+    # and tiny coordinate differences must never determine grading order.
+    ordered_fields = (len(orders) == len(fields)
+                      and all(isinstance(o, int) and not isinstance(o, bool) for o in orders)
+                      and set(orders) == set(range(len(fields))))
     bindings = {}
     for element in problem.renderer_data.get("elements", []):
         interaction = element.get("interaction") or {}
@@ -31,6 +67,16 @@ def presentation_contract(problem, schema):
         index = interaction.get("answer_key_index")
         if not isinstance(index, int) or isinstance(index, bool):
             reference = interaction.get("answer_ref")
+            index = next((i for i, key in enumerate(keys)
+                          if isinstance(key, dict) and reference
+                          and reference in {key.get("slot_id"), key.get("id")}), None)
+            if index is None and isinstance(reference, str):
+                pointer = re.fullmatch(r"answer_key\[(\d+)\]", reference)
+                if pointer:
+                    index = int(pointer.group(1))
+            if index is None and ordered_fields:
+                index = interaction["order"]
+        if index is None:
             slot = (element.get("refs") or {}).get("layout_slot_id")
             index = next(
                 (
@@ -40,7 +86,6 @@ def presentation_contract(problem, schema):
                     and any(
                         ref and ref in {key.get("slot_id"), key.get("id")}
                         for ref in (
-                            reference,
                             slot,
                             element.get("source_ref"),
                             element.get("id"),

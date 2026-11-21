@@ -472,7 +472,7 @@ function defaultInteractionForShape(shape: EditorShape, answerOptions: AnswerBin
     type: "input",
     role: "answer",
     value_type: "integer",
-    max_length: 3,
+    max_length: 64,
     include_in_submission: true,
     order: firstAnswer?.index ?? 0,
     group_id: "final_answer",

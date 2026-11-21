@@ -1,8 +1,8 @@
 {
-  "problem_id": "P3_1_01_00040_02152",
+  "problem_id": "P3_1_01_00040_02152_1",
   "problem_type": "multi_answer_base_ten_model_addition",
   "metadata": {
-    "title": "수 모형으로 알아보는 세 자리 수의 덧셈",
+    "title": "수 모형으로 알아보는 세 자리 수의 덧셈 (1)",
     "tags": [],
     "question": "병현이네 학교 도서관에 위인전이 599권, 동화책이 837권 있습니다. 모두 몇 권의 책이 있는지 수 모형으로 알아보시오.",
     "required_layout_ids": [
@@ -104,35 +104,26 @@
       "slot.model.result.o5.dot",
       "slot.model.result.o6.dot",
       "slot.answer.ones_to_tens",
-      "slot.answer.remaining_ones",
-      "slot.answer.tens_to_hundreds",
-      "slot.answer.remaining_tens",
-      "slot.answer.hundreds_to_thousands",
-      "slot.answer.remaining_hundreds",
-      "slot.answer.total_books"
+      "slot.answer.remaining_ones"
     ],
     "extraction_confidence": 1.0,
     "grade": 3,
     "semester": 1,
     "subject": "수학",
-    "topic": "받아올림이 두 번 있는 세 자리 수의 덧셈",
+    "topic": "받아올림이 있는 세 자리 수의 덧셈 (낱개 모형)",
     "language": "ko-KR",
     "presentation_sources": {
       "question": [
         "slot.question"
       ],
       "instruction": [],
-      "choice": []
+      "choice": [],
+      "answer_prompt": []
     },
     "presentation_prompt": "병현이네 학교 도서관에 위인전이 599권, 동화책이 837권 있습니다. 모두 몇 권의 책이 있는지 수 모형으로 알아보시오."
   },
   "domain": {
     "objects": [
-      {
-        "id": "place.school_library",
-        "type": "place",
-        "label": "병현이네 학교 도서관"
-      },
       {
         "id": "book.biography",
         "type": "book_collection",
@@ -167,79 +158,9 @@
         "label": "남은 낱개 모형",
         "place": "ones",
         "count": 6
-      },
-      {
-        "id": "model.tens_before_regrouping",
-        "type": "base_ten_model_group",
-        "label": "받아올림을 포함하여 더한 십 모형",
-        "place": "tens",
-        "count": 13
-      },
-      {
-        "id": "model.tens_regrouped_hundreds",
-        "type": "base_ten_model_group",
-        "label": "십 모형에서 바꾼 백 모형",
-        "place": "hundreds",
-        "count": 1
-      },
-      {
-        "id": "model.tens_remaining",
-        "type": "base_ten_model_group",
-        "label": "남은 십 모형",
-        "place": "tens",
-        "count": 3
-      },
-      {
-        "id": "model.hundreds_before_regrouping",
-        "type": "base_ten_model_group",
-        "label": "받아올림을 포함하여 더한 백 모형",
-        "place": "hundreds",
-        "count": 14
-      },
-      {
-        "id": "model.hundreds_regrouped_thousands",
-        "type": "base_ten_model_group",
-        "label": "백 모형에서 바꾼 천 모형",
-        "place": "thousands",
-        "count": 1
-      },
-      {
-        "id": "model.hundreds_remaining",
-        "type": "base_ten_model_group",
-        "label": "남은 백 모형",
-        "place": "hundreds",
-        "count": 4
-      },
-      {
-        "id": "book.total",
-        "type": "book_collection",
-        "label": "도서관에 있는 전체 책",
-        "count": 1436,
-        "unit": "권"
       }
     ],
     "relations": [
-      {
-        "id": "relation.biography_in_library",
-        "type": "located_in",
-        "subject": "book.biography",
-        "object": "place.school_library"
-      },
-      {
-        "id": "relation.fairy_tale_in_library",
-        "type": "located_in",
-        "subject": "book.fairy_tale",
-        "object": "place.school_library"
-      },
-      {
-        "id": "relation.total_books_sum",
-        "type": "sum_of",
-        "subject": "book.total",
-        "objects": [
-          "book.biography",
-          "book.fairy_tale"
-        ]
-      },
       {
         "id": "relation.ones_regrouping",
         "type": "regroup",
@@ -248,157 +169,43 @@
           "model.ones_regrouped_tens",
           "model.ones_remaining"
         ]
-      },
-      {
-        "id": "relation.tens_regrouping",
-        "type": "regroup",
-        "subject": "model.tens_before_regrouping",
-        "result": [
-          "model.tens_regrouped_hundreds",
-          "model.tens_remaining"
-        ]
-      },
-      {
-        "id": "relation.hundreds_regrouping",
-        "type": "regroup",
-        "subject": "model.hundreds_before_regrouping",
-        "result": [
-          "model.hundreds_regrouped_thousands",
-          "model.hundreds_remaining"
-        ]
       }
     ],
     "confidence": 1.0
   },
   "answer": {
-    "value": [
-      1,
-      6,
-      1,
-      3,
-      1,
-      4,
-      1436
-    ],
-    "unit": "",
-    "expression": "599 + 837 = 1436",
-    "items": [
-      {
-        "id": "answer.ones_to_tens",
-        "value": 1,
-        "unit": "개"
-      },
-      {
-        "id": "answer.remaining_ones",
-        "value": 6,
-        "unit": "개"
-      },
-      {
-        "id": "answer.tens_to_hundreds",
-        "value": 1,
-        "unit": "개"
-      },
-      {
-        "id": "answer.remaining_tens",
-        "value": 3,
-        "unit": "개"
-      },
-      {
-        "id": "answer.hundreds_to_thousands",
-        "value": 1,
-        "unit": "개"
-      },
-      {
-        "id": "answer.remaining_hundreds",
-        "value": 4,
-        "unit": "개"
-      },
-      {
-        "id": "answer.total_books",
-        "value": 1436,
-        "unit": "권"
-      }
-    ],
     "blanks": [
       {
         "id": "slot.answer.ones_to_tens",
         "slot_id": "slot.answer.ones_to_tens",
-        "expected": 1,
-        "unit": ""
+        "expected": 1
       },
       {
         "id": "slot.answer.remaining_ones",
         "slot_id": "slot.answer.remaining_ones",
-        "expected": 6,
-        "unit": ""
-      },
-      {
-        "id": "slot.answer.tens_to_hundreds",
-        "slot_id": "slot.answer.tens_to_hundreds",
-        "expected": 1,
-        "unit": ""
-      },
-      {
-        "id": "slot.answer.remaining_tens",
-        "slot_id": "slot.answer.remaining_tens",
-        "expected": 3,
-        "unit": ""
-      },
-      {
-        "id": "slot.answer.hundreds_to_thousands",
-        "slot_id": "slot.answer.hundreds_to_thousands",
-        "expected": 1,
-        "unit": ""
-      },
-      {
-        "id": "slot.answer.remaining_hundreds",
-        "slot_id": "slot.answer.remaining_hundreds",
-        "expected": 4,
-        "unit": ""
-      },
-      {
-        "id": "slot.answer.total_books",
-        "slot_id": "slot.answer.total_books",
-        "expected": 1436,
-        "unit": ""
+        "expected": 6
       }
     ],
+    "choices": [],
     "answer_key": [
       {
         "slot_id": "slot.answer.ones_to_tens",
-        "value": 1,
-        "unit": ""
+        "value": 1
       },
       {
         "slot_id": "slot.answer.remaining_ones",
-        "value": 6,
-        "unit": ""
-      },
-      {
-        "slot_id": "slot.answer.tens_to_hundreds",
-        "value": 1,
-        "unit": ""
-      },
-      {
-        "slot_id": "slot.answer.remaining_tens",
-        "value": 3,
-        "unit": ""
-      },
-      {
-        "slot_id": "slot.answer.hundreds_to_thousands",
-        "value": 1,
-        "unit": ""
-      },
-      {
-        "slot_id": "slot.answer.remaining_hundreds",
-        "value": 4,
-        "unit": ""
-      },
-      {
-        "slot_id": "slot.answer.total_books",
-        "value": 1436,
-        "unit": ""
+        "value": 6
       }
+    ],
+    "confidence": 1.0,
+    "value": [
+      1,
+      6
+    ],
+    "unit": "",
+    "values": [
+      1,
+      6
     ]
   }
 }

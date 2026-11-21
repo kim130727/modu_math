@@ -17,7 +17,7 @@ from ..models import (
     StudentProfile,
 )
 from .assignment_content import freeze_images, input_schema
-from .student_presentation import authored_prompt, presentation_contract, safe_layout
+from .student_presentation import authored_prompt, presentation_contract, safe_layout, normalize_answer_capacity
 
 
 def student_problem(problem):
@@ -115,6 +115,7 @@ def student_problem(problem):
         ):
             element["attributes"].pop("href", None)
         elements.append(element)
+    normalize_answer_capacity(elements, presentation)
     public_renderer["elements"] = elements
     choices = []
     source_choices = metadata.get("choices", semantic.get("choices", []))

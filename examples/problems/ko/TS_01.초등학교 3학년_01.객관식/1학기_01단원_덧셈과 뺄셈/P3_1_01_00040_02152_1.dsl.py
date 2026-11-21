@@ -13,8 +13,8 @@ from modu_math.dsl import (
 )
 
 
-PROBLEM_ID = "P3_1_01_00040_02152"
-PROBLEM_TITLE = "수 모형으로 알아보는 세 자리 수의 덧셈"
+PROBLEM_ID = "P3_1_01_00040_02152_1"
+PROBLEM_TITLE = "수 모형으로 알아보는 세 자리 수의 덧셈 (1)"
 
 
 def _rect_slot(id: str, x: float, y: float, width: float, height: float, fill: str = "#ffffff", stroke: str = "#444444", stroke_width: float = 1.0) -> RectSlot:
@@ -160,93 +160,15 @@ def _base_ten_model_slots() -> tuple:
         LineSlot(id="slot.diagram.divider", x1=65, y1=156, x2=835, y2=156, stroke="#e2e8f0", stroke_width=1.0),
         LineSlot(id="slot.diagram.arrow_line", x1=450, y1=286, x2=450, y2=306, stroke="#5C6AC4", stroke_width=3.5),
         PolygonSlot(id="slot.diagram.arrow_head", points=((443, 304), (457, 304), (450, 314)), fill="#5C6AC4", stroke="#5C6AC4", stroke_width=1),
-        TextBoxSlot(
-            id="slot.diagram.col_hundreds",
-            x=240,
-            y=78,
-            width=120,
-            height=26,
-            text="백 모형",
-            font_size=15,
-            fill="#4a5568",
-            align="center",
-            valign="middle",
-        ),
-        TextBoxSlot(
-            id="slot.diagram.col_tens",
-            x=470,
-            y=78,
-            width=100,
-            height=26,
-            text="십 모형",
-            font_size=15,
-            fill="#4a5568",
-            align="center",
-            valign="middle",
-        ),
-        TextBoxSlot(
-            id="slot.diagram.col_ones",
-            x=660,
-            y=78,
-            width=100,
-            height=26,
-            text="낱개 모형",
-            font_size=15,
-            fill="#4a5568",
-            align="center",
-            valign="middle",
-        ),
-        TextBoxSlot(
-            id="slot.diagram.label_599",
-            x=70,
-            y=110,
-            width=110,
-            height=30,
-            text="위인전 599",
-            font_size=18,
-            fill="#2d3748",
-            align="left",
-            valign="middle",
-        ),
-        TextBoxSlot(
-            id="slot.diagram.label_837",
-            x=70,
-            y=195,
-            width=110,
-            height=30,
-            text="+ 동화책 837",
-            font_size=18,
-            fill="#2d3748",
-            align="left",
-            valign="middle",
-        ),
-        TextBoxSlot(
-            id="slot.diagram.arrow_text",
-            x=465,
-            y=288,
-            width=360,
-            height=26,
-            text="10개씩 묶어 윗자리로 받아올림합니다.",
-            font_size=14,
-            fill="#5C6AC4",
-            align="left",
-            valign="middle",
-        ),
-        TextBoxSlot(
-            id="slot.diagram.label_result",
-            x=70,
-            y=348,
-            width=110,
-            height=30,
-            text="= 모두 1436",
-            font_size=18,
-            fill="#1e293b",
-            align="left",
-            valign="middle",
-        ),
+        TextBoxSlot(id="slot.diagram.col_hundreds", x=240, y=78, width=120, height=26, text="백 모형", font_size=15, fill="#4a5568", align="center", valign="middle"),
+        TextBoxSlot(id="slot.diagram.col_tens", x=470, y=78, width=100, height=26, text="십 모형", font_size=15, fill="#4a5568", align="center", valign="middle"),
+        TextBoxSlot(id="slot.diagram.col_ones", x=660, y=78, width=100, height=26, text="낱개 모형", font_size=15, fill="#4a5568", align="center", valign="middle"),
+        TextBoxSlot(id="slot.diagram.label_599", x=70, y=110, width=110, height=30, text="위인전 599", font_size=18, fill="#2d3748", align="left", valign="middle"),
+        TextBoxSlot(id="slot.diagram.label_837", x=70, y=195, width=110, height=30, text="+ 동화책 837", font_size=18, fill="#2d3748", align="left", valign="middle"),
+        TextBoxSlot(id="slot.diagram.arrow_text", x=465, y=288, width=360, height=26, text="10개씩 묶어 윗자리로 받아올림합니다.", font_size=14, fill="#5C6AC4", align="left", valign="middle"),
+        TextBoxSlot(id="slot.diagram.label_result", x=70, y=348, width=110, height=30, text="= 모두 1436", font_size=18, fill="#1e293b", align="left", valign="middle"),
     ]
 
-    # 599: 5 hundreds, 9 tens, 9 ones
     for index in range(5):
         slots.extend(_hundred_flat(f"slot.model.599.h{index + 1}", 200 + index * 40, 108))
     for index in range(9):
@@ -254,7 +176,6 @@ def _base_ten_model_slots() -> tuple:
     for index in range(9):
         slots.extend(_one_dot(f"slot.model.599.o{index + 1}", 640 + index * 14, 125))
 
-    # 837: 8 hundreds (2 rows of 4), 3 tens, 7 ones
     for index in range(8):
         row = index // 4
         col = index % 4
@@ -264,7 +185,6 @@ def _base_ten_model_slots() -> tuple:
     for index in range(7):
         slots.extend(_one_dot(f"slot.model.837.o{index + 1}", 640 + index * 14, 207))
 
-    # Regrouped 1436: 1 thousand, 4 hundreds, 3 tens, 6 ones
     slots.extend(_thousand_cube("slot.model.result.thousand1", 200, 336))
     for index in range(4):
         slots.extend(_hundred_flat(f"slot.model.result.h{index + 1}", 275 + index * 40, 346))
@@ -280,13 +200,29 @@ BASE_TEN_MODEL_SLOTS = _base_ten_model_slots()
 BASE_TEN_MODEL_SLOT_IDS = tuple(slot.id for slot in BASE_TEN_MODEL_SLOTS)
 
 
+ANSWER = {
+    "value": [1, 6],
+    "unit": "",
+    "values": [1, 6],
+    "choices": [],
+    "blanks": [
+        {"id": "slot.answer.ones_to_tens", "slot_id": "slot.answer.ones_to_tens", "expected": 1},
+        {"id": "slot.answer.remaining_ones", "slot_id": "slot.answer.remaining_ones", "expected": 6},
+    ],
+    "answer_key": [
+        {"slot_id": "slot.answer.ones_to_tens", "value": 1},
+        {"slot_id": "slot.answer.remaining_ones", "value": 6},
+    ],
+}
+
+
 def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
         id=PROBLEM_ID,
         title=PROBLEM_TITLE,
         canvas=Canvas(
             width=900,
-            height=650,
+            height=500,
             coordinate_mode="logical",
         ),
         regions=(
@@ -294,9 +230,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=(
-                    "slot.question",
-                ),
+                slot_ids=("slot.question",),
             ),
             Region(
                 id="region.diagram",
@@ -310,16 +244,8 @@ def build_problem_template() -> ProblemTemplate:
                 flow="absolute",
                 slot_ids=(
                     "slot.answer_1",
-                    "slot.answer_2",
-                    "slot.answer_3",
-                    "slot.answer_4",
                     "slot.answer.ones_to_tens",
                     "slot.answer.remaining_ones",
-                    "slot.answer.tens_to_hundreds",
-                    "slot.answer.remaining_tens",
-                    "slot.answer.hundreds_to_thousands",
-                    "slot.answer.remaining_hundreds",
-                    "slot.answer.total_books",
                 ),
             ),
         ),
@@ -347,82 +273,17 @@ def build_problem_template() -> ProblemTemplate:
                 y=430,
                 width=840,
                 height=38,
-                text=(
-                    "(1) 낱개 모형끼리 더하면 십 모형          개와 낱개 모형          개입니다."
-                ),
+                text="(1) 낱개 모형끼리 더하면 십 모형          개와 낱개 모형          개입니다.",
                 font_size=20,
                 font_family='"Poor Story", "Noto Sans KR", sans-serif',
                 fill="#202124",
                 align="left",
                 valign="middle",
             ),
-            TextBoxSlot(
-                id="slot.answer_2",
-                x=30,
-                y=480,
-                width=840,
-                height=38,
-                text=(
-                    "(2) 십 모형끼리 더하면 백 모형          개와 십 모형          개입니다."
-                ),
-                font_size=20,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
-                fill="#202124",
-                align="left",
-                valign="middle",
-            ),
-            TextBoxSlot(
-                id="slot.answer_3",
-                x=30,
-                y=530,
-                width=840,
-                height=38,
-                text=(
-                    "(3) 백 모형끼리 더하면 천 모형          개와 백 모형          개입니다."
-                ),
-                font_size=20,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
-                fill="#202124",
-                align="left",
-                valign="middle",
-            ),
-            TextBoxSlot(
-                id="slot.answer_4",
-                x=30,
-                y=580,
-                width=840,
-                height=38,
-                text="(4) 도서관의 책 수는 모두               권입니다.",
-                font_size=20,
-                font_family='"Poor Story", "Noto Sans KR", sans-serif',
-                fill="#202124",
-                align="left",
-                valign="middle",
-            ),
-            _answer_input_slot(
-                "slot.answer.ones_to_tens", 370, 430, 46, order=0
-            ),
-            _answer_input_slot(
-                "slot.answer.remaining_ones", 600, 430, 46, order=1
-            ),
-            _answer_input_slot(
-                "slot.answer.tens_to_hundreds", 360, 480, 46, order=2
-            ),
-            _answer_input_slot(
-                "slot.answer.remaining_tens", 575, 480, 46, order=3
-            ),
-            _answer_input_slot(
-                "slot.answer.hundreds_to_thousands", 360, 530, 46, order=4
-            ),
-            _answer_input_slot(
-                "slot.answer.remaining_hundreds", 575, 530, 46, order=5
-            ),
-            _answer_input_slot(
-                "slot.answer.total_books", 300, 580, 72, order=6, max_length=4
-            ),
+            _answer_input_slot("slot.answer.ones_to_tens", 370, 430, 46, order=0),
+            _answer_input_slot("slot.answer.remaining_ones", 600, 430, 46, order=1),
         ),
     )
-
 
 
 PROBLEM_TEMPLATE = build_problem_template()
@@ -435,328 +296,27 @@ SEMANTIC = {
         "grade": 3,
         "semester": 1,
         "subject": "수학",
-        "topic": "받아올림이 두 번 있는 세 자리 수의 덧셈",
+        "topic": "받아올림이 있는 세 자리 수의 덧셈 (낱개 모형)",
         "language": "ko-KR",
     },
     "domain": {
         "objects": [
-            {
-                "id": "place.school_library",
-                "type": "place",
-                "label": "병현이네 학교 도서관",
-            },
-            {
-                "id": "book.biography",
-                "type": "book_collection",
-                "label": "위인전",
-                "count": 599,
-                "unit": "권",
-            },
-            {
-                "id": "book.fairy_tale",
-                "type": "book_collection",
-                "label": "동화책",
-                "count": 837,
-                "unit": "권",
-            },
-            {
-                "id": "model.ones_before_regrouping",
-                "type": "base_ten_model_group",
-                "label": "더한 낱개 모형",
-                "place": "ones",
-                "count": 16,
-            },
-            {
-                "id": "model.ones_regrouped_tens",
-                "type": "base_ten_model_group",
-                "label": "낱개 모형에서 바꾼 십 모형",
-                "place": "tens",
-                "count": 1,
-            },
-            {
-                "id": "model.ones_remaining",
-                "type": "base_ten_model_group",
-                "label": "남은 낱개 모형",
-                "place": "ones",
-                "count": 6,
-            },
-            {
-                "id": "model.tens_before_regrouping",
-                "type": "base_ten_model_group",
-                "label": "받아올림을 포함하여 더한 십 모형",
-                "place": "tens",
-                "count": 13,
-            },
-            {
-                "id": "model.tens_regrouped_hundreds",
-                "type": "base_ten_model_group",
-                "label": "십 모형에서 바꾼 백 모형",
-                "place": "hundreds",
-                "count": 1,
-            },
-            {
-                "id": "model.tens_remaining",
-                "type": "base_ten_model_group",
-                "label": "남은 십 모형",
-                "place": "tens",
-                "count": 3,
-            },
-            {
-                "id": "model.hundreds_before_regrouping",
-                "type": "base_ten_model_group",
-                "label": "받아올림을 포함하여 더한 백 모형",
-                "place": "hundreds",
-                "count": 14,
-            },
-            {
-                "id": "model.hundreds_regrouped_thousands",
-                "type": "base_ten_model_group",
-                "label": "백 모형에서 바꾼 천 모형",
-                "place": "thousands",
-                "count": 1,
-            },
-            {
-                "id": "model.hundreds_remaining",
-                "type": "base_ten_model_group",
-                "label": "남은 백 모형",
-                "place": "hundreds",
-                "count": 4,
-            },
-            {
-                "id": "book.total",
-                "type": "book_collection",
-                "label": "도서관에 있는 전체 책",
-                "count": 1436,
-                "unit": "권",
-            },
+            {"id": "book.biography", "type": "book_collection", "label": "위인전", "count": 599, "unit": "권"},
+            {"id": "book.fairy_tale", "type": "book_collection", "label": "동화책", "count": 837, "unit": "권"},
+            {"id": "model.ones_before_regrouping", "type": "base_ten_model_group", "label": "더한 낱개 모형", "place": "ones", "count": 16},
+            {"id": "model.ones_regrouped_tens", "type": "base_ten_model_group", "label": "낱개 모형에서 바꾼 십 모형", "place": "tens", "count": 1},
+            {"id": "model.ones_remaining", "type": "base_ten_model_group", "label": "남은 낱개 모형", "place": "ones", "count": 6},
         ],
         "relations": [
-            {
-                "id": "relation.biography_in_library",
-                "type": "located_in",
-                "subject": "book.biography",
-                "object": "place.school_library",
-            },
-            {
-                "id": "relation.fairy_tale_in_library",
-                "type": "located_in",
-                "subject": "book.fairy_tale",
-                "object": "place.school_library",
-            },
-            {
-                "id": "relation.total_books_sum",
-                "type": "sum_of",
-                "subject": "book.total",
-                "objects": [
-                    "book.biography",
-                    "book.fairy_tale",
-                ],
-            },
             {
                 "id": "relation.ones_regrouping",
                 "type": "regroup",
                 "subject": "model.ones_before_regrouping",
-                "result": [
-                    "model.ones_regrouped_tens",
-                    "model.ones_remaining",
-                ],
-            },
-            {
-                "id": "relation.tens_regrouping",
-                "type": "regroup",
-                "subject": "model.tens_before_regrouping",
-                "result": [
-                    "model.tens_regrouped_hundreds",
-                    "model.tens_remaining",
-                ],
-            },
-            {
-                "id": "relation.hundreds_regrouping",
-                "type": "regroup",
-                "subject": "model.hundreds_before_regrouping",
-                "result": [
-                    "model.hundreds_regrouped_thousands",
-                    "model.hundreds_remaining",
-                ],
+                "result": ["model.ones_regrouped_tens", "model.ones_remaining"],
             },
         ],
     },
-    "answer": {
-        "value": [1, 6, 1, 3, 1, 4, 1436],
-        "unit": "",
-        "expression": "599 + 837 = 1436",
-        "items": [
-            {
-                "id": "answer.ones_to_tens",
-                "value": 1,
-                "unit": "개",
-            },
-            {
-                "id": "answer.remaining_ones",
-                "value": 6,
-                "unit": "개",
-            },
-            {
-                "id": "answer.tens_to_hundreds",
-                "value": 1,
-                "unit": "개",
-            },
-            {
-                "id": "answer.remaining_tens",
-                "value": 3,
-                "unit": "개",
-            },
-            {
-                "id": "answer.hundreds_to_thousands",
-                "value": 1,
-                "unit": "개",
-            },
-            {
-                "id": "answer.remaining_hundreds",
-                "value": 4,
-                "unit": "개",
-            },
-            {
-                "id": "answer.total_books",
-                "value": 1436,
-                "unit": "권",
-            },
-        ],
-    },
+    "answer": ANSWER,
 }
 
 SEMANTIC_OVERRIDE = SEMANTIC
-
-
-SOLVABLE = {'schema': 'modu.solvable.v1.2',
- 'problem_id': 'P3_1_01_00040_02152',
- 'problem_type': 'multi_answer_base_ten_model_addition',
- 'inputs': {'target_label': '수 모형을 다시 묶은 결과와 도서관의 전체 책 수',
-            'unit': '',
-            'answer_type': 'mixed_integer_list',
-            'quantities': {'biography_count': 599,
-                           'fairy_tale_count': 837,
-                           'ones_from_biographies': 9,
-                           'ones_from_fairy_tales': 7,
-                           'tens_from_biographies': 9,
-                           'tens_from_fairy_tales': 3,
-                           'hundreds_from_biographies': 5,
-                           'hundreds_from_fairy_tales': 8},
-            'conditions': ['위인전 599권은 백 모형 5개, 십 모형 9개, 낱개 모형 9개로 나타냅니다.',
-                           '동화책 837권은 백 모형 8개, 십 모형 3개, 낱개 모형 7개로 나타냅니다.',
-                           '낱개 모형 10개는 십 모형 1개로 바꿉니다.',
-                           '십 모형 10개는 백 모형 1개로 바꿉니다.',
-                           '백 모형 10개는 천 모형 1개로 바꿉니다.']},
- 'given': [{'ref': 'book.biography',
-            'value': {'count': 599,
-                      'unit': '권',
-                      'place_values': {'hundreds': 5, 'tens': 9, 'ones': 9}}},
-           {'ref': 'book.fairy_tale',
-            'value': {'count': 837,
-                      'unit': '권',
-                      'place_values': {'hundreds': 8, 'tens': 3, 'ones': 7}}}],
- 'target': {'ref': 'answer.base_ten_regrouping_and_total', 'type': 'mixed_integer_list'},
- 'method': '같은 자리의 수 모형끼리 더한 뒤, 모형 10개를 바로 윗자리 모형 1개로 바꾼다.',
- 'plan': ['두 수의 낱개 모형을 더하고 10개를 십 모형으로 바꾼다.',
-          '두 수의 십 모형과 낱개 자리에서 바꾼 십 모형을 더한다.',
-          '십 모형 10개를 백 모형으로 바꾼다.',
-          '두 수의 백 모형과 십의 자리에서 바꾼 백 모형을 더한다.',
-          '백 모형 10개를 천 모형으로 바꾼다.',
-          '천, 백, 십, 낱개 모형의 수를 차례대로 읽어 전체 책 수를 구한다.'],
- 'steps': [{'id': 'step.add_ones',
-            'expr': '9 + 7',
-            'value': 16,
-            'explanation': '낱개 모형 9개와 7개를 더하면 16개입니다.'},
-           {'id': 'step.regroup_ones',
-            'expr': '16 = 1 * 10 + 6',
-            'value': {'tens_models': 1, 'ones_models': 6},
-            'explanation': '낱개 모형 16개는 십 모형 1개와 낱개 모형 6개입니다.'},
-           {'id': 'step.add_tens',
-            'expr': '9 + 3 + 1',
-            'value': 13,
-            'explanation': '십 모형 9개와 3개에 낱개 자리에서 바꾼 십 모형 1개를 더하면 13개입니다.'},
-           {'id': 'step.regroup_tens',
-            'expr': '13 = 1 * 10 + 3',
-            'value': {'hundreds_models': 1, 'tens_models': 3},
-            'explanation': '십 모형 13개는 백 모형 1개와 십 모형 3개입니다.'},
-           {'id': 'step.add_hundreds',
-            'expr': '5 + 8 + 1',
-            'value': 14,
-            'explanation': '백 모형 5개와 8개에 십의 자리에서 바꾼 백 모형 1개를 더하면 14개입니다.'},
-           {'id': 'step.regroup_hundreds',
-            'expr': '14 = 1 * 10 + 4',
-            'value': {'thousands_models': 1, 'hundreds_models': 4},
-            'explanation': '백 모형 14개는 천 모형 1개와 백 모형 4개입니다.'},
-           {'id': 'step.compose_total',
-            'expr': '1000 + 400 + 30 + 6',
-            'value': 1436,
-            'explanation': '천 모형 1개, 백 모형 4개, 십 모형 3개, 낱개 모형 6개이므로 모두 1436권입니다.'}],
- 'checks': [{'id': 'check.ones_regrouping',
-             'expr': '9 + 7 == 1 * 10 + 6',
-             'expected': True,
-             'actual': True,
-             'pass': True},
-            {'id': 'check.tens_regrouping',
-             'expr': '9 + 3 + 1 == 1 * 10 + 3',
-             'expected': True,
-             'actual': True,
-             'pass': True},
-            {'id': 'check.hundreds_regrouping',
-             'expr': '5 + 8 + 1 == 1 * 10 + 4',
-             'expected': True,
-             'actual': True,
-             'pass': True},
-            {'id': 'check_place_value_total',
-             'expr': '1 * 1000 + 4 * 100 + 3 * 10 + 6',
-             'expected': 1436,
-             'actual': 1436,
-             'pass': True},
-            {'id': 'check_total_addition',
-             'expr': '599 + 837',
-             'expected': 1436,
-             'actual': 1436,
-             'pass': True},
-            {'id': 'check_inverse_operation',
-             'expr': '1436 - 837',
-             'expected': 599,
-             'actual': 599,
-             'pass': True}],
- 'answer': {'value': [1, 6, 1, 3, 1, 4, 1436],
-            'unit': '',
-            'expression': '599 + 837 = 1436',
-            'items': [{'id': 'answer.ones_to_tens', 'value': 1, 'unit': '개'},
-                      {'id': 'answer.remaining_ones', 'value': 6, 'unit': '개'},
-                      {'id': 'answer.tens_to_hundreds', 'value': 1, 'unit': '개'},
-                      {'id': 'answer.remaining_tens', 'value': 3, 'unit': '개'},
-                      {'id': 'answer.hundreds_to_thousands', 'value': 1, 'unit': '개'},
-                      {'id': 'answer.remaining_hundreds', 'value': 4, 'unit': '개'},
-                      {'id': 'answer.total_books', 'value': 1436, 'unit': '권'}]},
- 'understanding': {'summary': 'Find 수 모형을 다시 묶은 결과와 도서관의 전체 책 수 using the given information.',
-                   'facts': [{'ref': 'book.biography',
-                              'label': 'biography',
-                              'value': 599,
-                              'unit': '권',
-                              'source': 'explicit'},
-                             {'ref': 'book.fairy_tale',
-                              'label': 'fairy tale',
-                              'value': 837,
-                              'unit': '권',
-                              'source': 'explicit'}],
-                   'unknowns': [{'ref': 'answer.base_ten_regrouping_and_total',
-                                 'label': '수 모형을 다시 묶은 결과와 도서관의 전체 책 수',
-                                 'unit': '',
-                                 'source': 'unknown'}],
-                   'relation': {'type': '같은 자리의 수 모형끼리 더한 뒤, 모형 10개를 바로 윗자리 모형 1개로 바꾼다.',
-                                'statement': '두 수의 낱개 모형을 더하고 10개를 십 모형으로 바꾼다.',
-                                'symbolic': '9 + 7',
-                                'uses': ['book.biography', 'book.fairy_tale'],
-                                'result': 'answer.base_ten_regrouping_and_total'},
-                   'diagnostic_questions': [{'id': 'understand.target',
-                                             'type': 'multiple_choice',
-                                             'prompt': 'What should we find?',
-                                             'choices': ['biography',
-                                                         'fairy tale',
-                                                         '수 모형을 다시 묶은 결과와 도서관의 전체 책 수'],
-                                             'answer_index': 2}]}}
-
-SEMANTIC_ANSWER = SOLVABLE["answer"]

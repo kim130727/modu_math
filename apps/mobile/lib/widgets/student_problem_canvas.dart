@@ -17,9 +17,26 @@ class StudentProblemCanvas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final renderer = problemVisualRenderer(item.problem);
+    final bindings = assignmentMap(item.presentation['canvas_bindings']);
+    final bindingCounts = <dynamic, int>{};
+    for (final field in bindings.values) {
+      bindingCounts[field] = (bindingCounts[field] ?? 0) + 1;
+    }
     final elements = (renderer['elements'] as List? ?? []).map((raw) {
       final element = assignmentMap(raw);
       final interaction = assignmentMap(element['interaction']);
+      // Older assignment snapshots may still carry a three-character limit.
+      // A single bound box holds a whole answer; split digit cells keep theirs.
+      final field = bindings['${element['id']}'];
+      if (field != null &&
+          bindingCounts[field] == 1 &&
+          interaction['role'] == 'answer' &&
+          !const ['digit', 'digits', 'operator', 'comparison_operator']
+              .contains(interaction['value_type']) &&
+          interaction['keyboard'] != 'operator') {
+        interaction['max_length'] = 64;
+        interaction['auto_advance'] = false;
+      }
       if (interaction['keyboard'] == 'number' &&
           const ['number', 'integer', 'decimal', 'fraction']
               .contains(interaction['value_type'])) {

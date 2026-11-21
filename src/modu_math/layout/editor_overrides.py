@@ -78,18 +78,7 @@ def _normalize_answer_input_interaction(content: dict[str, Any]) -> None:
         return
     if interaction.get("type") == "input" and interaction.get("role") == "answer":
         sanitize_answer_input_content(content)
-    width = content.get("width")
-    if (
-        interaction.get("type") == "input"
-        and interaction.get("role") == "answer"
-        and interaction.get("value_type") == "digit"
-        and interaction.get("max_length") == 1
-        and isinstance(width, int | float)
-        and width >= 60
-    ):
-        interaction["value_type"] = "integer"
-        interaction["max_length"] = 3
-        interaction["auto_advance"] = False
+    # Resizing a box must preserve its authored digit/segment semantics.
 
 
 def _rect_size_for_text_blank(content: dict[str, Any]) -> float:

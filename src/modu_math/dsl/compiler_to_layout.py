@@ -588,16 +588,8 @@ def _normalize_answer_input_interaction(slot: dict[str, Any]) -> None:
     if interaction.get("type") != "input" or interaction.get("role") != "answer":
         return
     sanitize_answer_input_content(content)
-    width = content.get("width")
-    if (
-        interaction.get("value_type") == "digit"
-        and interaction.get("max_length") == 1
-        and isinstance(width, int | float)
-        and width >= 60
-    ):
-        interaction["value_type"] = "integer"
-        interaction["max_length"] = 3
-        interaction["auto_advance"] = False
+    # Visual width does not determine whether this is a digit cell or a whole
+    # answer. Student field bindings decide that when constructing input rules.
 
 
 def _normalize_pasted_short_text_box(slot_id: str, content: dict[str, Any]) -> None:

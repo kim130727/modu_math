@@ -21,7 +21,8 @@
       "instruction": [
         "slot.instruction"
       ],
-      "choice": []
+      "choice": [],
+      "answer_prompt": []
     },
     "presentation_prompt": "크기를 비교하여 ○ 안에 >, =, <를 알맞게 써넣으시오."
   },
@@ -89,24 +90,73 @@
     "confidence": 1.0
   },
   "answer": {
-    "value": [
-      ">"
-    ],
+    "value": ">",
     "unit": "",
-    "values": [
-      ">"
-    ],
-    "blanks": [
-      {
-        "id": "konva_1785110879232_circle_652757",
-        "slot_id": "konva_1785110879232_circle_652757",
-        "expected": ">"
-      }
-    ],
+    "blanks": [],
     "answer_key": [
       {
-        "slot_id": "konva_1785110879232_circle_652757",
+        "id": "choice.review.66561219-0af8-4bdc-b818-e7e7cbb744ef",
         "value": ">"
+      }
+    ],
+    "presentation": {
+      "mode": "choice",
+      "show_canvas": true,
+      "editor_managed": true,
+      "review": {
+        "mode": "choice",
+        "show_canvas": true,
+        "status": "verified",
+        "note": "",
+        "answers": [
+          {
+            "value": ">",
+            "ref": "konva_1785110879232_circle_652757"
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice.review.66561219-0af8-4bdc-b818-e7e7cbb744ef",
+            "text": ">",
+            "correct": true,
+            "label": "1",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.review.2d6323f4-a10e-4373-b504-f042e2eb9794",
+            "text": "=",
+            "correct": false,
+            "label": "2",
+            "sourceRefs": []
+          },
+          {
+            "id": "choice.review.0634856c-2f67-42e2-8093-f81f4dcaa46c",
+            "text": "<",
+            "correct": false,
+            "label": "3",
+            "sourceRefs": []
+          }
+        ]
+      }
+    },
+    "choices": [
+      {
+        "id": "choice.review.66561219-0af8-4bdc-b818-e7e7cbb744ef",
+        "label": "1",
+        "text": ">",
+        "source_refs": []
+      },
+      {
+        "id": "choice.review.2d6323f4-a10e-4373-b504-f042e2eb9794",
+        "label": "2",
+        "text": "=",
+        "source_refs": []
+      },
+      {
+        "id": "choice.review.0634856c-2f67-42e2-8093-f81f4dcaa46c",
+        "label": "3",
+        "text": "<",
+        "source_refs": []
       }
     ]
   }

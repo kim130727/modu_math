@@ -1023,7 +1023,9 @@ function calculateAnswerPreviewFontSize(shape: EditorShape, answerValue = ""): n
   const bounds = shapeBounds(shape);
   const style = shape.input_style;
   if (style?.font_size_mode === "fixed" && typeof style.font_size === "number") return Math.round(style.font_size);
-  const maxLength = Math.max(1, answerValue.length, shape.interaction?.max_length ?? (shape.interaction?.value_type === "integer" ? 3 : 1));
+  const capacity = shape.interaction?.max_length ?? 64;
+  const displayHint = capacity >= 64 ? (shape.interaction?.value_type === "integer" ? 3 : 1) : capacity;
+  const maxLength = Math.max(1, answerValue.length, displayHint);
   const padding = style?.padding ?? 6;
   const availableWidth = Math.max(1, bounds.width - padding * 2);
   const availableHeight = Math.max(1, bounds.height - padding * 2);

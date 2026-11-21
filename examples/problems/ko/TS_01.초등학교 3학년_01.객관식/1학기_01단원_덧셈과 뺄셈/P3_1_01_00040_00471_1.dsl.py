@@ -549,3 +549,23 @@ SOLVABLE.update({
 })
 
 SEMANTIC_ANSWER = SOLVABLE["answer"]
+EDITOR_ANSWER_REVIEW = {'mode': 'choice',
+ 'show_canvas': True,
+ 'status': 'verified',
+ 'note': '',
+ 'answers': [{'value': '>', 'ref': 'konva_1785110879232_circle_652757'}],
+ 'choices': [{'id': 'choice.review.66561219-0af8-4bdc-b818-e7e7cbb744ef',
+              'text': '>',
+              'correct': True,
+              'label': '1',
+              'sourceRefs': []},
+             {'id': 'choice.review.2d6323f4-a10e-4373-b504-f042e2eb9794',
+              'text': '=',
+              'correct': False,
+              'label': '2',
+              'sourceRefs': []},
+             {'id': 'choice.review.0634856c-2f67-42e2-8093-f81f4dcaa46c',
+              'text': '<',
+              'correct': False,
+              'label': '3',
+              'sourceRefs': []}]}

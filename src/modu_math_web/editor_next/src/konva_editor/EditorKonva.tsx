@@ -1333,14 +1333,14 @@ function defaultInteractionForShape(shape: EditorShape, order: number, answerOpt
   return {
     type: "input",
     role: "answer",
-    value_type: "digit",
-    max_length: 1,
+    value_type: "integer",
+    max_length: 64,
     include_in_submission: true,
     order: orderedAnswer?.index ?? order,
     group_id: "final_answer",
     answer_key_index: orderedAnswer?.index,
     answer_ref: orderedAnswer?.ref,
-    auto_advance: true,
+    auto_advance: false,
     keyboard: "number",
   };
 }

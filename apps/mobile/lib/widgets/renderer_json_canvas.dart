@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show listEquals;
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -40,6 +41,7 @@ class RendererJsonCanvas extends StatefulWidget {
 
 class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
   final List<TextEditingController> inputControllers = [];
+  final List<FocusNode> inputFocusNodes = [];
   String inputSignature = '';
   String? lastEmittedInputValue;
   int? activeOperatorSlotIndex;
@@ -72,6 +74,9 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
   void dispose() {
     for (final controller in inputControllers) {
       controller.dispose();
+    }
+    for (final node in inputFocusNodes) {
+      node.dispose();
     }
     super.dispose();
   }
@@ -208,8 +213,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
       final maxLength = slot.maxLength;
       final inset = widget.fieldValues == null
           ? (2 * scale).clamp(1.0, 3.0)
-          : ((_readDouble(slot.inputStyle['padding']) ?? 6) * scale)
-              .clamp(0.0, math.min(rect.width, rect.height) * scale / 3);
+          : _boundedInputPadding(slot) * scale;
       if (slot.operatorOnly) {
         return _operatorInputLayer(
           index: index,
@@ -251,6 +255,15 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                 key: ValueKey('renderer-input-slot-$index'),
                 enabled: widget.inputsEnabled,
                 controller: inputControllers[index],
+                focusNode: inputFocusNodes[index],
+                onTap: () {
+                  if (maxLength == 1 &&
+                      inputControllers[index].text.isNotEmpty) {
+                    inputControllers[index].selection = TextSelection(
+                        baseOffset: 0,
+                        extentOffset: inputControllers[index].text.length);
+                  }
+                },
                 textAlign: switch (slot.inputStyle['horizontal_align']) {
                   'left' => TextAlign.left,
                   'right' => TextAlign.right,
@@ -267,7 +280,10 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                   if (slot.digitsOnly) FilteringTextInputFormatter.digitsOnly,
                   if (slot.operatorOnly)
                     FilteringTextInputFormatter.allow(RegExp(r'[<>=]')),
-                  LengthLimitingTextInputFormatter(maxLength),
+                  if (slot.digitsOnly && maxLength == 1 && slot.autoAdvance)
+                    _digitCellFormatter(index, slots)
+                  else
+                    LengthLimitingTextInputFormatter(maxLength),
                 ],
                 style: _problemTextStyle(
                   color: textColor,
@@ -303,7 +319,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                   if (slot.autoAdvance &&
                       value.length >= maxLength &&
                       index + 1 < inputControllers.length) {
-                    FocusScope.of(context).nextFocus();
+                    inputFocusNodes[index + 1].requestFocus();
                   }
                   final nextValue = _combinedInputValue();
                   lastEmittedInputValue = nextValue;
@@ -353,6 +369,42 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
     }).toList(growable: false);
   }
 
+  TextInputFormatter _digitCellFormatter(int index, List<_InputSlot> slots) {
+    final signature = inputSignature;
+    return TextInputFormatter.withFunction((oldValue, newValue) {
+      if (newValue.text.length <= 1) return newValue;
+      // Web/IME events may reach the previous field before focus switches.
+      // Distribute those digits (and pasted digits) instead of discarding them.
+      var last = index;
+      for (var offset = 1; offset < newValue.text.length; offset++) {
+        final target = index + offset;
+        if (target >= slots.length ||
+            !slots[target].digitsOnly ||
+            slots[target].maxLength != 1) {
+          break;
+        }
+        if (inputControllers[target].text != newValue.text[offset]) {
+          inputControllers[target].text = newValue.text[offset];
+        }
+        last = target;
+      }
+      final next = math.min(last + 1, slots.length - 1);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted || inputSignature != signature) return;
+        final combined = _combinedInputValue();
+        if (combined != lastEmittedInputValue) {
+          lastEmittedInputValue = combined;
+          widget.onInputChanged?.call(combined);
+        }
+        _emitFields();
+        inputFocusNodes[next].requestFocus();
+      });
+      return TextEditingValue(
+          text: newValue.text[0],
+          selection: const TextSelection.collapsed(offset: 1));
+    });
+  }
+
   Widget _operatorInputLayer({
     required int index,
     required _InputSlot slot,
@@ -377,6 +429,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
+          focusNode: inputFocusNodes[index],
           key: ValueKey('operator-slot-$index'),
           borderRadius: BorderRadius.circular(999),
           onTap: () => setState(() => activeOperatorSlotIndex = index),
@@ -629,10 +682,25 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
 
   void _ensureControllerCount(int count) {
     while (inputControllers.length < count) {
-      inputControllers.add(TextEditingController());
+      final index = inputControllers.length;
+      final controller = TextEditingController();
+      final node = FocusNode();
+      node.addListener(() {
+        if (!mounted || !node.hasFocus || controller.text.isEmpty) return;
+        final slots = _inputSlots(widget.renderer,
+            suppressInputs: widget.suppressInputs,
+            expectedAnswer: widget.expectedAnswer);
+        if (index < slots.length && slots[index].maxLength == 1) {
+          controller.selection = TextSelection(
+              baseOffset: 0, extentOffset: controller.text.length);
+        }
+      });
+      inputControllers.add(controller);
+      inputFocusNodes.add(node);
     }
     while (inputControllers.length > count) {
       inputControllers.removeLast().dispose();
+      inputFocusNodes.removeLast().dispose();
     }
   }
 
@@ -665,7 +733,9 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
         values[field] += inputControllers[i].text;
       }
     }
-    widget.onFieldsChanged!(values);
+    if (!listEquals(values, widget.fieldValues)) {
+      widget.onFieldsChanged!(values);
+    }
   }
 
   int _activeOperatorSlotIndex(List<_InputSlot> slots) {
@@ -2164,6 +2234,11 @@ bool _autoAdvanceForInput(Map<String, dynamic> element) {
   return interaction['auto_advance'] == true;
 }
 
+double _boundedInputPadding(_InputSlot slot) =>
+    (_readDouble(slot.inputStyle['padding']) ?? 6)
+        .clamp(0.0, math.min(slot.rect.width, slot.rect.height) * .12)
+        .toDouble();
+
 double _inputFontSize(_InputSlot slot, double scale, {int? displayLength}) {
   final style = slot.inputStyle;
   final authoredSize = _readDouble(style['font_size']);
@@ -2171,10 +2246,7 @@ double _inputFontSize(_InputSlot slot, double scale, {int? displayLength}) {
   final maxSize = _readDouble(style['max_font_size']);
   final adjustment = _readDouble(style['font_size_adjust']) ?? 0;
   if (displayLength != null) {
-    if (style['font_size_mode'] == 'fixed' && authoredSize != null) {
-      return authoredSize * scale;
-    }
-    final padding = (_readDouble(style['padding']) ?? 6).clamp(0.0, 24.0);
+    final padding = _boundedInputPadding(slot);
     final type = style['_value_type'];
     final ratio = switch (type) {
       'digit' => .58,
@@ -2190,10 +2262,12 @@ double _inputFontSize(_InputSlot slot, double scale, {int? displayLength}) {
     final byHeight = math.max(1.0, slot.rect.height - 2 * padding) * .68;
     final byWidth =
         math.max(1.0, slot.rect.width - 2 * padding) / characters / ratio;
-    return (math.min(byHeight, byWidth) + adjustment)
-            .clamp(minSize ?? 14, maxSize ?? 52)
-            .round() *
-        scale;
+    final fitLimit = math.min(byHeight, byWidth);
+    final preferred = style['font_size_mode'] == 'fixed' && authoredSize != null
+        ? authoredSize
+        : (fitLimit + adjustment).clamp(minSize ?? 14, maxSize ?? 52);
+    // An authored minimum is a preference, never permission to clip a glyph.
+    return preferred.clamp(1.0, math.max(1.0, fitLimit)).toDouble() * scale;
   }
   final padding = (_readDouble(style['padding']) ?? 3).clamp(0.0, 24.0);
 

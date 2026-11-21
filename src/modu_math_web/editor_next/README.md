@@ -82,3 +82,17 @@ isolated browser test, or set `MODU_EDITOR_TEST_URL` to its editor bundle URL.
 With the local apps running on ports 8000 and 3000, `npm run test:editor-parity`
 checks that both serve identical Flutter JavaScript and verifies the highlighted
 multiplication example and its answer choices against the real preview API.
+
+`npm run test:answer-capacity` verifies typing `1124`, pasting a longer value,
+and grading the saved `P3_1_01_00040_00472` problem. A single box bound to a full
+answer uses a uniform 64-character capacity independent of the secret answer.
+Explicit `digit` cells always retain their one-digit capacity, including cells
+bound to separate fields. Multiple cells bound to one field keep their capacities.
+The app applies the same rule to older assignment snapshots. Box width and
+automatic font size do not determine input capacity.
+
+`npm run test:carry-input` verifies sequential carry/result input, replacement,
+and wrong/correct grading for `P3_1_01_00040_02135`. Explicit answer references
+take precedence when mapping fields; a complete unique authored order resolves
+legacy copied slot IDs. Numeric glyphs must fit inside the padded cell even when
+the authored minimum font size is larger than the available space.

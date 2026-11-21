@@ -14,72 +14,20 @@
       "role": "stem",
       "flow": "vertical",
       "slot_ids": [
-        "konva_1785217709470_rect_1259829",
-        "konva_1785217709470_text_1269532",
         "konva_1785806283023_text_2138848"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "konva_1785217709470_rect_1259829",
+        "konva_1785217709470_text_1269532"
       ]
     }
   ],
   "slots": [
-    {
-      "id": "konva_1785217709470_rect_1259829",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 515.568,
-        "y": 170.317,
-        "width": 100.82,
-        "height": 41.13,
-        "stroke": "#111827",
-        "stroke_width": 1.2,
-        "fill": "#ffffff",
-        "interaction": {
-          "type": "input",
-          "role": "answer",
-          "value_type": "integer",
-          "max_length": 3,
-          "include_in_submission": true,
-          "order": 0,
-          "group_id": "final_answer",
-          "auto_advance": false,
-          "keyboard": "number"
-        },
-        "input_style": {
-          "font_size_mode": "auto",
-          "font_size_adjust": 0,
-          "min_font_size": 14,
-          "max_font_size": 52,
-          "font_weight": 700,
-          "horizontal_align": "center",
-          "vertical_align": "middle",
-          "padding": 6,
-          "text_color": "#222222",
-          "width": 100.82,
-          "height": 41.13
-        }
-      }
-    },
-    {
-      "id": "konva_1785217709470_text_1269532",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "쪽",
-        "style_role": "body",
-        "x": 625.694,
-        "y": 169.751,
-        "width": 27,
-        "height": 35,
-        "align": "left",
-        "valign": "top",
-        "font_size": 28,
-        "line_height": 1.25,
-        "fill": "#111827",
-        "semantic_role": "question",
-        "semantic_role_source": "inferred",
-        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
-      }
-    },
     {
       "id": "konva_1785806283023_text_2138848",
       "kind": "text_box",
@@ -100,6 +48,65 @@
         "semantic_role_source": "explicit",
         "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
       }
+    },
+    {
+      "id": "konva_1785217709470_rect_1259829",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 515.568,
+        "y": 170.317,
+        "width": 59.32,
+        "height": 33.54,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "digit",
+          "max_length": 1,
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "auto_advance": true,
+          "keyboard": "number"
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "font_size_adjust": 0,
+          "min_font_size": 14,
+          "max_font_size": 52,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 6,
+          "text_color": "#222222",
+          "width": 59.32,
+          "height": 33.54
+        }
+      }
+    },
+    {
+      "id": "konva_1785217709470_text_1269532",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "쪽",
+        "style_role": "body",
+        "x": 582.69,
+        "y": 168.55,
+        "width": 27,
+        "height": 35,
+        "align": "left",
+        "valign": "top",
+        "font_size": 28,
+        "line_height": 1.25,
+        "fill": "#111827",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "explicit",
+        "font_family": "\"Noto Sans KR\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif"
+      }
     }
   ],
   "groups": [],
@@ -107,8 +114,9 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
+    "konva_1785806283023_text_2138848",
+    "region.answer",
     "konva_1785217709470_rect_1259829",
-    "konva_1785217709470_text_1269532",
-    "konva_1785806283023_text_2138848"
+    "konva_1785217709470_text_1269532"
   ]
 }

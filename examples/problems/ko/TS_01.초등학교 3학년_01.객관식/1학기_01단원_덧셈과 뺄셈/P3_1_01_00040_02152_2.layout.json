@@ -1,0 +1,1852 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_02152_2",
+  "title": "수 모형으로 알아보는 세 자리 수의 덧셈 (2)",
+  "canvas": {
+    "width": 900,
+    "height": 500,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.top_box",
+        "slot.diagram.bottom_box",
+        "slot.diagram.arrow_head",
+        "slot.model.599.h1.body",
+        "slot.model.599.h1.grid",
+        "slot.model.599.h2.body",
+        "slot.model.599.h2.grid",
+        "slot.model.599.h3.body",
+        "slot.model.599.h3.grid",
+        "slot.model.599.h4.body",
+        "slot.model.599.h4.grid",
+        "slot.model.599.h5.body",
+        "slot.model.599.h5.grid",
+        "slot.model.599.t1.body",
+        "slot.model.599.t1.grid",
+        "slot.model.599.t2.body",
+        "slot.model.599.t2.grid",
+        "slot.model.599.t3.body",
+        "slot.model.599.t3.grid",
+        "slot.model.599.t4.body",
+        "slot.model.599.t4.grid",
+        "slot.model.599.t5.body",
+        "slot.model.599.t5.grid",
+        "slot.model.599.t6.body",
+        "slot.model.599.t6.grid",
+        "slot.model.599.t7.body",
+        "slot.model.599.t7.grid",
+        "slot.model.599.t8.body",
+        "slot.model.599.t8.grid",
+        "slot.model.599.t9.body",
+        "slot.model.599.t9.grid",
+        "slot.model.837.h1.body",
+        "slot.model.837.h1.grid",
+        "slot.model.837.h2.body",
+        "slot.model.837.h2.grid",
+        "slot.model.837.h3.body",
+        "slot.model.837.h3.grid",
+        "slot.model.837.h4.body",
+        "slot.model.837.h4.grid",
+        "slot.model.837.h5.body",
+        "slot.model.837.h5.grid",
+        "slot.model.837.h6.body",
+        "slot.model.837.h6.grid",
+        "slot.model.837.h7.body",
+        "slot.model.837.h7.grid",
+        "slot.model.837.h8.body",
+        "slot.model.837.h8.grid",
+        "slot.model.837.t1.body",
+        "slot.model.837.t1.grid",
+        "slot.model.837.t2.body",
+        "slot.model.837.t2.grid",
+        "slot.model.837.t3.body",
+        "slot.model.837.t3.grid",
+        "slot.model.result.thousand1.front",
+        "slot.model.result.thousand1.top",
+        "slot.model.result.thousand1.side",
+        "slot.model.result.thousand1.front.grid",
+        "slot.model.result.thousand1.top.grid",
+        "slot.model.result.thousand1.side.grid",
+        "slot.model.result.h1.body",
+        "slot.model.result.h1.grid",
+        "slot.model.result.h2.body",
+        "slot.model.result.h2.grid",
+        "slot.model.result.h3.body",
+        "slot.model.result.h3.grid",
+        "slot.model.result.h4.body",
+        "slot.model.result.h4.grid",
+        "slot.model.result.t1.body",
+        "slot.model.result.t1.grid",
+        "slot.model.result.t2.body",
+        "slot.model.result.t2.grid",
+        "slot.model.result.t3.body",
+        "slot.model.result.t3.grid",
+        "slot.diagram.divider",
+        "slot.diagram.arrow_line",
+        "slot.model.599.o1.dot",
+        "slot.model.599.o2.dot",
+        "slot.model.599.o3.dot",
+        "slot.model.599.o4.dot",
+        "slot.model.599.o5.dot",
+        "slot.model.599.o6.dot",
+        "slot.model.599.o7.dot",
+        "slot.model.599.o8.dot",
+        "slot.model.599.o9.dot",
+        "slot.model.837.o1.dot",
+        "slot.model.837.o2.dot",
+        "slot.model.837.o3.dot",
+        "slot.model.837.o4.dot",
+        "slot.model.837.o5.dot",
+        "slot.model.837.o6.dot",
+        "slot.model.837.o7.dot",
+        "slot.model.result.o1.dot",
+        "slot.model.result.o2.dot",
+        "slot.model.result.o3.dot",
+        "slot.model.result.o4.dot",
+        "slot.model.result.o5.dot",
+        "slot.model.result.o6.dot",
+        "slot.diagram.col_hundreds",
+        "slot.diagram.col_tens",
+        "slot.diagram.col_ones",
+        "slot.diagram.label_599",
+        "slot.diagram.label_837",
+        "slot.diagram.arrow_text",
+        "slot.diagram.label_result"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer.tens_to_hundreds",
+        "slot.answer.remaining_tens",
+        "slot.answer_2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "병현이네 학교 도서관에 위인전이 599권, 동화책이 837권 있습니다. 모두 몇 권의 책이 있는지 수 모형으로 알아보시오.",
+        "style_role": "body",
+        "x": 30.0,
+        "y": 18.0,
+        "width": 840.0,
+        "height": 48.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 22,
+        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.top_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 50.0,
+        "y": 74.0,
+        "width": 800.0,
+        "height": 208.0,
+        "stroke": "#718096",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.bottom_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 50.0,
+        "y": 320.0,
+        "width": 800.0,
+        "height": 86.0,
+        "stroke": "#5C6AC4",
+        "stroke_width": 1.5,
+        "fill": "#f8fafc"
+      }
+    },
+    {
+      "id": "slot.diagram.divider",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 65.0,
+        "y1": 156.0,
+        "x2": 835.0,
+        "y2": 156.0,
+        "stroke": "#e2e8f0",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.arrow_line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 450.0,
+        "y1": 286.0,
+        "x2": 450.0,
+        "y2": 306.0,
+        "stroke": "#5C6AC4",
+        "stroke_width": 3.5
+      }
+    },
+    {
+      "id": "slot.diagram.arrow_head",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            443.0,
+            304.0
+          ],
+          [
+            457.0,
+            304.0
+          ],
+          [
+            450.0,
+            314.0
+          ]
+        ],
+        "stroke": "#5C6AC4",
+        "stroke_width": 1.0,
+        "fill": "#5C6AC4"
+      }
+    },
+    {
+      "id": "slot.diagram.col_hundreds",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "백 모형",
+        "style_role": "body",
+        "x": 240.0,
+        "y": 78.0,
+        "width": 120.0,
+        "height": 26.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 15,
+        "fill": "#4a5568"
+      }
+    },
+    {
+      "id": "slot.diagram.col_tens",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "십 모형",
+        "style_role": "body",
+        "x": 470.0,
+        "y": 78.0,
+        "width": 100.0,
+        "height": 26.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 15,
+        "fill": "#4a5568"
+      }
+    },
+    {
+      "id": "slot.diagram.col_ones",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "낱개 모형",
+        "style_role": "body",
+        "x": 660.0,
+        "y": 78.0,
+        "width": 100.0,
+        "height": 26.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 15,
+        "fill": "#4a5568"
+      }
+    },
+    {
+      "id": "slot.diagram.label_599",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "위인전 599",
+        "style_role": "body",
+        "x": 70.0,
+        "y": 110.0,
+        "width": 110.0,
+        "height": 30.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 18,
+        "fill": "#2d3748"
+      }
+    },
+    {
+      "id": "slot.diagram.label_837",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "+ 동화책 837",
+        "style_role": "body",
+        "x": 70.0,
+        "y": 195.0,
+        "width": 110.0,
+        "height": 30.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 18,
+        "fill": "#2d3748"
+      }
+    },
+    {
+      "id": "slot.diagram.arrow_text",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "10개씩 묶어 윗자리로 받아올림합니다.",
+        "style_role": "body",
+        "x": 465.0,
+        "y": 288.0,
+        "width": 360.0,
+        "height": 26.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 14,
+        "fill": "#5C6AC4"
+      }
+    },
+    {
+      "id": "slot.diagram.label_result",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "= 모두 1436",
+        "style_role": "body",
+        "x": 70.0,
+        "y": 348.0,
+        "width": 110.0,
+        "height": 30.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 18,
+        "fill": "#1e293b"
+      }
+    },
+    {
+      "id": "slot.model.599.h1.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 200.0,
+        "y": 108.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#9cc37f",
+        "stroke_width": 1.0,
+        "fill": "#e7f5d8"
+      }
+    },
+    {
+      "id": "slot.model.599.h1.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 203.4 108 L 203.4 142 M 200 111.4 L 234 111.4 M 206.8 108 L 206.8 142 M 200 114.8 L 234 114.8 M 210.2 108 L 210.2 142 M 200 118.2 L 234 118.2 M 213.6 108 L 213.6 142 M 200 121.6 L 234 121.6 M 217 108 L 217 142 M 200 125 L 234 125 M 220.4 108 L 220.4 142 M 200 128.4 L 234 128.4 M 223.8 108 L 223.8 142 M 200 131.8 L 234 131.8 M 227.2 108 L 227.2 142 M 200 135.2 L 234 135.2 M 230.6 108 L 230.6 142 M 200 138.6 L 234 138.6",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#c9dfb9",
+        "stroke_width": 0.45,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.599.h2.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 240.0,
+        "y": 108.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#9cc37f",
+        "stroke_width": 1.0,
+        "fill": "#e7f5d8"
+      }
+    },
+    {
+      "id": "slot.model.599.h2.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 243.4 108 L 243.4 142 M 240 111.4 L 274 111.4 M 246.8 108 L 246.8 142 M 240 114.8 L 274 114.8 M 250.2 108 L 250.2 142 M 240 118.2 L 274 118.2 M 253.6 108 L 253.6 142 M 240 121.6 L 274 121.6 M 257 108 L 257 142 M 240 125 L 274 125 M 260.4 108 L 260.4 142 M 240 128.4 L 274 128.4 M 263.8 108 L 263.8 142 M 240 131.8 L 274 131.8 M 267.2 108 L 267.2 142 M 240 135.2 L 274 135.2 M 270.6 108 L 270.6 142 M 240 138.6 L 274 138.6",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#c9dfb9",
+        "stroke_width": 0.45,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.599.h3.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 280.0,
+        "y": 108.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#9cc37f",
+        "stroke_width": 1.0,
+        "fill": "#e7f5d8"
+      }
+    },
+    {
+      "id": "slot.model.599.h3.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 283.4 108 L 283.4 142 M 280 111.4 L 314 111.4 M 286.8 108 L 286.8 142 M 280 114.8 L 314 114.8 M 290.2 108 L 290.2 142 M 280 118.2 L 314 118.2 M 293.6 108 L 293.6 142 M 280 121.6 L 314 121.6 M 297 108 L 297 142 M 280 125 L 314 125 M 300.4 108 L 300.4 142 M 280 128.4 L 314 128.4 M 303.8 108 L 303.8 142 M 280 131.8 L 314 131.8 M 307.2 108 L 307.2 142 M 280 135.2 L 314 135.2 M 310.6 108 L 310.6 142 M 280 138.6 L 314 138.6",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#c9dfb9",
+        "stroke_width": 0.45,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.599.h4.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 320.0,
+        "y": 108.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#9cc37f",
+        "stroke_width": 1.0,
+        "fill": "#e7f5d8"
+      }
+    },
+    {
+      "id": "slot.model.599.h4.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 323.4 108 L 323.4 142 M 320 111.4 L 354 111.4 M 326.8 108 L 326.8 142 M 320 114.8 L 354 114.8 M 330.2 108 L 330.2 142 M 320 118.2 L 354 118.2 M 333.6 108 L 333.6 142 M 320 121.6 L 354 121.6 M 337 108 L 337 142 M 320 125 L 354 125 M 340.4 108 L 340.4 142 M 320 128.4 L 354 128.4 M 343.8 108 L 343.8 142 M 320 131.8 L 354 131.8 M 347.2 108 L 347.2 142 M 320 135.2 L 354 135.2 M 350.6 108 L 350.6 142 M 320 138.6 L 354 138.6",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#c9dfb9",
+        "stroke_width": 0.45,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.599.h5.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 360.0,
+        "y": 108.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#9cc37f",
+        "stroke_width": 1.0,
+        "fill": "#e7f5d8"
+      }
+    },
+    {
+      "id": "slot.model.599.h5.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 363.4 108 L 363.4 142 M 360 111.4 L 394 111.4 M 366.8 108 L 366.8 142 M 360 114.8 L 394 114.8 M 370.2 108 L 370.2 142 M 360 118.2 L 394 118.2 M 373.6 108 L 373.6 142 M 360 121.6 L 394 121.6 M 377 108 L 377 142 M 360 125 L 394 125 M 380.4 108 L 380.4 142 M 360 128.4 L 394 128.4 M 383.8 108 L 383.8 142 M 360 131.8 L 394 131.8 M 387.2 108 L 387.2 142 M 360 135.2 L 394 135.2 M 390.6 108 L 390.6 142 M 360 138.6 L 394 138.6",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#c9dfb9",
+        "stroke_width": 0.45,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.599.t1.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 440.0,
+        "y": 106.0,
+        "width": 9.0,
+        "height": 38.0,
+        "stroke": "#6fb6df",
+        "stroke_width": 1.0,
+        "fill": "#d9efff"
+      }
+    },
+    {
+      "id": "slot.model.599.t1.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 440 109.8 L 449 109.8 M 440 113.6 L 449 113.6 M 440 117.4 L 449 117.4 M 440 121.2 L 449 121.2 M 440 125 L 449 125 M 440 128.8 L 449 128.8 M 440 132.6 L 449 132.6 M 440 136.4 L 449 136.4 M 440 140.2 L 449 140.2",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#9fd0ed",
+        "stroke_width": 0.55,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.599.t2.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 455.0,
+        "y": 106.0,
+        "width": 9.0,
+        "height": 38.0,
+        "stroke": "#6fb6df",
+        "stroke_width": 1.0,
+        "fill": "#d9efff"
+      }
+    },
+    {
+      "id": "slot.model.599.t2.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 455 109.8 L 464 109.8 M 455 113.6 L 464 113.6 M 455 117.4 L 464 117.4 M 455 121.2 L 464 121.2 M 455 125 L 464 125 M 455 128.8 L 464 128.8 M 455 132.6 L 464 132.6 M 455 136.4 L 464 136.4 M 455 140.2 L 464 140.2",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#9fd0ed",
+        "stroke_width": 0.55,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.599.t3.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 470.0,
+        "y": 106.0,
+        "width": 9.0,
+        "height": 38.0,
+        "stroke": "#6fb6df",
+        "stroke_width": 1.0,
+        "fill": "#d9efff"
+      }
+    },
+    {
+      "id": "slot.model.599.t3.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 470 109.8 L 479 109.8 M 470 113.6 L 479 113.6 M 470 117.4 L 479 117.4 M 470 121.2 L 479 121.2 M 470 125 L 479 125 M 470 128.8 L 479 128.8 M 470 132.6 L 479 132.6 M 470 136.4 L 479 136.4 M 470 140.2 L 479 140.2",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#9fd0ed",
+        "stroke_width": 0.55,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.599.t4.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 485.0,
+        "y": 106.0,
+        "width": 9.0,
+        "height": 38.0,
+        "stroke": "#6fb6df",
+        "stroke_width": 1.0,
+        "fill": "#d9efff"
+      }
+    },
+    {
+      "id": "slot.model.599.t4.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 485 109.8 L 494 109.8 M 485 113.6 L 494 113.6 M 485 117.4 L 494 117.4 M 485 121.2 L 494 121.2 M 485 125 L 494 125 M 485 128.8 L 494 128.8 M 485 132.6 L 494 132.6 M 485 136.4 L 494 136.4 M 485 140.2 L 494 140.2",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#9fd0ed",
+        "stroke_width": 0.55,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.599.t5.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 500.0,
+        "y": 106.0,
+        "width": 9.0,
+        "height": 38.0,
+        "stroke": "#6fb6df",
+        "stroke_width": 1.0,
+        "fill": "#d9efff"
+      }
+    },
+    {
+      "id": "slot.model.599.t5.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 500 109.8 L 509 109.8 M 500 113.6 L 509 113.6 M 500 117.4 L 509 117.4 M 500 121.2 L 509 121.2 M 500 125 L 509 125 M 500 128.8 L 509 128.8 M 500 132.6 L 509 132.6 M 500 136.4 L 509 136.4 M 500 140.2 L 509 140.2",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#9fd0ed",
+        "stroke_width": 0.55,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.599.t6.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 515.0,
+        "y": 106.0,
+        "width": 9.0,
+        "height": 38.0,
+        "stroke": "#6fb6df",
+        "stroke_width": 1.0,
+        "fill": "#d9efff"
+      }
+    },
+    {
+      "id": "slot.model.599.t6.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 515 109.8 L 524 109.8 M 515 113.6 L 524 113.6 M 515 117.4 L 524 117.4 M 515 121.2 L 524 121.2 M 515 125 L 524 125 M 515 128.8 L 524 128.8 M 515 132.6 L 524 132.6 M 515 136.4 L 524 136.4 M 515 140.2 L 524 140.2",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#9fd0ed",
+        "stroke_width": 0.55,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.599.t7.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 530.0,
+        "y": 106.0,
+        "width": 9.0,
+        "height": 38.0,
+        "stroke": "#6fb6df",
+        "stroke_width": 1.0,
+        "fill": "#d9efff"
+      }
+    },
+    {
+      "id": "slot.model.599.t7.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 530 109.8 L 539 109.8 M 530 113.6 L 539 113.6 M 530 117.4 L 539 117.4 M 530 121.2 L 539 121.2 M 530 125 L 539 125 M 530 128.8 L 539 128.8 M 530 132.6 L 539 132.6 M 530 136.4 L 539 136.4 M 530 140.2 L 539 140.2",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#9fd0ed",
+        "stroke_width": 0.55,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.599.t8.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 545.0,
+        "y": 106.0,
+        "width": 9.0,
+        "height": 38.0,
+        "stroke": "#6fb6df",
+        "stroke_width": 1.0,
+        "fill": "#d9efff"
+      }
+    },
+    {
+      "id": "slot.model.599.t8.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 545 109.8 L 554 109.8 M 545 113.6 L 554 113.6 M 545 117.4 L 554 117.4 M 545 121.2 L 554 121.2 M 545 125 L 554 125 M 545 128.8 L 554 128.8 M 545 132.6 L 554 132.6 M 545 136.4 L 554 136.4 M 545 140.2 L 554 140.2",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#9fd0ed",
+        "stroke_width": 0.55,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.599.t9.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 560.0,
+        "y": 106.0,
+        "width": 9.0,
+        "height": 38.0,
+        "stroke": "#6fb6df",
+        "stroke_width": 1.0,
+        "fill": "#d9efff"
+      }
+    },
+    {
+      "id": "slot.model.599.t9.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 560 109.8 L 569 109.8 M 560 113.6 L 569 113.6 M 560 117.4 L 569 117.4 M 560 121.2 L 569 121.2 M 560 125 L 569 125 M 560 128.8 L 569 128.8 M 560 132.6 L 569 132.6 M 560 136.4 L 569 136.4 M 560 140.2 L 569 140.2",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#9fd0ed",
+        "stroke_width": 0.55,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.599.o1.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 640.0,
+        "cy": 125.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.model.599.o2.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 654.0,
+        "cy": 125.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.model.599.o3.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 668.0,
+        "cy": 125.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.model.599.o4.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 682.0,
+        "cy": 125.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.model.599.o5.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 696.0,
+        "cy": 125.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.model.599.o6.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 710.0,
+        "cy": 125.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.model.599.o7.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 724.0,
+        "cy": 125.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.model.599.o8.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 738.0,
+        "cy": 125.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.model.599.o9.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 752.0,
+        "cy": 125.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.model.837.h1.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 200.0,
+        "y": 170.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#9cc37f",
+        "stroke_width": 1.0,
+        "fill": "#e7f5d8"
+      }
+    },
+    {
+      "id": "slot.model.837.h1.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 203.4 170 L 203.4 204 M 200 173.4 L 234 173.4 M 206.8 170 L 206.8 204 M 200 176.8 L 234 176.8 M 210.2 170 L 210.2 204 M 200 180.2 L 234 180.2 M 213.6 170 L 213.6 204 M 200 183.6 L 234 183.6 M 217 170 L 217 204 M 200 187 L 234 187 M 220.4 170 L 220.4 204 M 200 190.4 L 234 190.4 M 223.8 170 L 223.8 204 M 200 193.8 L 234 193.8 M 227.2 170 L 227.2 204 M 200 197.2 L 234 197.2 M 230.6 170 L 230.6 204 M 200 200.6 L 234 200.6",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#c9dfb9",
+        "stroke_width": 0.45,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.837.h2.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 240.0,
+        "y": 170.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#9cc37f",
+        "stroke_width": 1.0,
+        "fill": "#e7f5d8"
+      }
+    },
+    {
+      "id": "slot.model.837.h2.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 243.4 170 L 243.4 204 M 240 173.4 L 274 173.4 M 246.8 170 L 246.8 204 M 240 176.8 L 274 176.8 M 250.2 170 L 250.2 204 M 240 180.2 L 274 180.2 M 253.6 170 L 253.6 204 M 240 183.6 L 274 183.6 M 257 170 L 257 204 M 240 187 L 274 187 M 260.4 170 L 260.4 204 M 240 190.4 L 274 190.4 M 263.8 170 L 263.8 204 M 240 193.8 L 274 193.8 M 267.2 170 L 267.2 204 M 240 197.2 L 274 197.2 M 270.6 170 L 270.6 204 M 240 200.6 L 274 200.6",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#c9dfb9",
+        "stroke_width": 0.45,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.837.h3.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 280.0,
+        "y": 170.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#9cc37f",
+        "stroke_width": 1.0,
+        "fill": "#e7f5d8"
+      }
+    },
+    {
+      "id": "slot.model.837.h3.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 283.4 170 L 283.4 204 M 280 173.4 L 314 173.4 M 286.8 170 L 286.8 204 M 280 176.8 L 314 176.8 M 290.2 170 L 290.2 204 M 280 180.2 L 314 180.2 M 293.6 170 L 293.6 204 M 280 183.6 L 314 183.6 M 297 170 L 297 204 M 280 187 L 314 187 M 300.4 170 L 300.4 204 M 280 190.4 L 314 190.4 M 303.8 170 L 303.8 204 M 280 193.8 L 314 193.8 M 307.2 170 L 307.2 204 M 280 197.2 L 314 197.2 M 310.6 170 L 310.6 204 M 280 200.6 L 314 200.6",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#c9dfb9",
+        "stroke_width": 0.45,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.837.h4.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 320.0,
+        "y": 170.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#9cc37f",
+        "stroke_width": 1.0,
+        "fill": "#e7f5d8"
+      }
+    },
+    {
+      "id": "slot.model.837.h4.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 323.4 170 L 323.4 204 M 320 173.4 L 354 173.4 M 326.8 170 L 326.8 204 M 320 176.8 L 354 176.8 M 330.2 170 L 330.2 204 M 320 180.2 L 354 180.2 M 333.6 170 L 333.6 204 M 320 183.6 L 354 183.6 M 337 170 L 337 204 M 320 187 L 354 187 M 340.4 170 L 340.4 204 M 320 190.4 L 354 190.4 M 343.8 170 L 343.8 204 M 320 193.8 L 354 193.8 M 347.2 170 L 347.2 204 M 320 197.2 L 354 197.2 M 350.6 170 L 350.6 204 M 320 200.6 L 354 200.6",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#c9dfb9",
+        "stroke_width": 0.45,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.837.h5.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 200.0,
+        "y": 210.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#9cc37f",
+        "stroke_width": 1.0,
+        "fill": "#e7f5d8"
+      }
+    },
+    {
+      "id": "slot.model.837.h5.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 203.4 210 L 203.4 244 M 200 213.4 L 234 213.4 M 206.8 210 L 206.8 244 M 200 216.8 L 234 216.8 M 210.2 210 L 210.2 244 M 200 220.2 L 234 220.2 M 213.6 210 L 213.6 244 M 200 223.6 L 234 223.6 M 217 210 L 217 244 M 200 227 L 234 227 M 220.4 210 L 220.4 244 M 200 230.4 L 234 230.4 M 223.8 210 L 223.8 244 M 200 233.8 L 234 233.8 M 227.2 210 L 227.2 244 M 200 237.2 L 234 237.2 M 230.6 210 L 230.6 244 M 200 240.6 L 234 240.6",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#c9dfb9",
+        "stroke_width": 0.45,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.837.h6.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 240.0,
+        "y": 210.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#9cc37f",
+        "stroke_width": 1.0,
+        "fill": "#e7f5d8"
+      }
+    },
+    {
+      "id": "slot.model.837.h6.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 243.4 210 L 243.4 244 M 240 213.4 L 274 213.4 M 246.8 210 L 246.8 244 M 240 216.8 L 274 216.8 M 250.2 210 L 250.2 244 M 240 220.2 L 274 220.2 M 253.6 210 L 253.6 244 M 240 223.6 L 274 223.6 M 257 210 L 257 244 M 240 227 L 274 227 M 260.4 210 L 260.4 244 M 240 230.4 L 274 230.4 M 263.8 210 L 263.8 244 M 240 233.8 L 274 233.8 M 267.2 210 L 267.2 244 M 240 237.2 L 274 237.2 M 270.6 210 L 270.6 244 M 240 240.6 L 274 240.6",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#c9dfb9",
+        "stroke_width": 0.45,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.837.h7.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 280.0,
+        "y": 210.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#9cc37f",
+        "stroke_width": 1.0,
+        "fill": "#e7f5d8"
+      }
+    },
+    {
+      "id": "slot.model.837.h7.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 283.4 210 L 283.4 244 M 280 213.4 L 314 213.4 M 286.8 210 L 286.8 244 M 280 216.8 L 314 216.8 M 290.2 210 L 290.2 244 M 280 220.2 L 314 220.2 M 293.6 210 L 293.6 244 M 280 223.6 L 314 223.6 M 297 210 L 297 244 M 280 227 L 314 227 M 300.4 210 L 300.4 244 M 280 230.4 L 314 230.4 M 303.8 210 L 303.8 244 M 280 233.8 L 314 233.8 M 307.2 210 L 307.2 244 M 280 237.2 L 314 237.2 M 310.6 210 L 310.6 244 M 280 240.6 L 314 240.6",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#c9dfb9",
+        "stroke_width": 0.45,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.837.h8.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 320.0,
+        "y": 210.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#9cc37f",
+        "stroke_width": 1.0,
+        "fill": "#e7f5d8"
+      }
+    },
+    {
+      "id": "slot.model.837.h8.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 323.4 210 L 323.4 244 M 320 213.4 L 354 213.4 M 326.8 210 L 326.8 244 M 320 216.8 L 354 216.8 M 330.2 210 L 330.2 244 M 320 220.2 L 354 220.2 M 333.6 210 L 333.6 244 M 320 223.6 L 354 223.6 M 337 210 L 337 244 M 320 227 L 354 227 M 340.4 210 L 340.4 244 M 320 230.4 L 354 230.4 M 343.8 210 L 343.8 244 M 320 233.8 L 354 233.8 M 347.2 210 L 347.2 244 M 320 237.2 L 354 237.2 M 350.6 210 L 350.6 244 M 320 240.6 L 354 240.6",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#c9dfb9",
+        "stroke_width": 0.45,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.837.t1.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 440.0,
+        "y": 188.0,
+        "width": 9.0,
+        "height": 38.0,
+        "stroke": "#6fb6df",
+        "stroke_width": 1.0,
+        "fill": "#d9efff"
+      }
+    },
+    {
+      "id": "slot.model.837.t1.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 440 191.8 L 449 191.8 M 440 195.6 L 449 195.6 M 440 199.4 L 449 199.4 M 440 203.2 L 449 203.2 M 440 207 L 449 207 M 440 210.8 L 449 210.8 M 440 214.6 L 449 214.6 M 440 218.4 L 449 218.4 M 440 222.2 L 449 222.2",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#9fd0ed",
+        "stroke_width": 0.55,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.837.t2.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 455.0,
+        "y": 188.0,
+        "width": 9.0,
+        "height": 38.0,
+        "stroke": "#6fb6df",
+        "stroke_width": 1.0,
+        "fill": "#d9efff"
+      }
+    },
+    {
+      "id": "slot.model.837.t2.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 455 191.8 L 464 191.8 M 455 195.6 L 464 195.6 M 455 199.4 L 464 199.4 M 455 203.2 L 464 203.2 M 455 207 L 464 207 M 455 210.8 L 464 210.8 M 455 214.6 L 464 214.6 M 455 218.4 L 464 218.4 M 455 222.2 L 464 222.2",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#9fd0ed",
+        "stroke_width": 0.55,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.837.t3.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 470.0,
+        "y": 188.0,
+        "width": 9.0,
+        "height": 38.0,
+        "stroke": "#6fb6df",
+        "stroke_width": 1.0,
+        "fill": "#d9efff"
+      }
+    },
+    {
+      "id": "slot.model.837.t3.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 470 191.8 L 479 191.8 M 470 195.6 L 479 195.6 M 470 199.4 L 479 199.4 M 470 203.2 L 479 203.2 M 470 207 L 479 207 M 470 210.8 L 479 210.8 M 470 214.6 L 479 214.6 M 470 218.4 L 479 218.4 M 470 222.2 L 479 222.2",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#9fd0ed",
+        "stroke_width": 0.55,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.837.o1.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 640.0,
+        "cy": 207.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.model.837.o2.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 654.0,
+        "cy": 207.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.model.837.o3.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 668.0,
+        "cy": 207.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.model.837.o4.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 682.0,
+        "cy": 207.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.model.837.o5.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 696.0,
+        "cy": 207.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.model.837.o6.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 710.0,
+        "cy": 207.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.model.837.o7.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 724.0,
+        "cy": 207.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.model.result.thousand1.front",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            200.0,
+            350.0
+          ],
+          [
+            238.0,
+            350.0
+          ],
+          [
+            238.0,
+            388.0
+          ],
+          [
+            200.0,
+            388.0
+          ]
+        ],
+        "stroke": "#8fba72",
+        "stroke_width": 1.0,
+        "fill": "#d9f0c8"
+      }
+    },
+    {
+      "id": "slot.model.result.thousand1.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            200.0,
+            350.0
+          ],
+          [
+            214.0,
+            336.0
+          ],
+          [
+            252.0,
+            336.0
+          ],
+          [
+            238.0,
+            350.0
+          ]
+        ],
+        "stroke": "#8fba72",
+        "stroke_width": 1.0,
+        "fill": "#e8f8dc"
+      }
+    },
+    {
+      "id": "slot.model.result.thousand1.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            238.0,
+            350.0
+          ],
+          [
+            252.0,
+            336.0
+          ],
+          [
+            252.0,
+            374.0
+          ],
+          [
+            238.0,
+            388.0
+          ]
+        ],
+        "stroke": "#8fba72",
+        "stroke_width": 1.0,
+        "fill": "#c6e6b2"
+      }
+    },
+    {
+      "id": "slot.model.result.thousand1.front.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 203.8 350 L 203.8 388 M 200 353.8 L 238 353.8 M 207.6 350 L 207.6 388 M 200 357.6 L 238 357.6 M 211.4 350 L 211.4 388 M 200 361.4 L 238 361.4 M 215.2 350 L 215.2 388 M 200 365.2 L 238 365.2 M 219 350 L 219 388 M 200 369 L 238 369 M 222.8 350 L 222.8 388 M 200 372.8 L 238 372.8 M 226.6 350 L 226.6 388 M 200 376.6 L 238 376.6 M 230.4 350 L 230.4 388 M 200 380.4 L 238 380.4 M 234.2 350 L 234.2 388 M 200 384.2 L 238 384.2",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#a8cc90",
+        "stroke_width": 0.45,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.result.thousand1.top.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 201.4 348.6 L 239.4 348.6 M 203.8 350 L 217.8 336 M 202.8 347.2 L 240.8 347.2 M 207.6 350 L 221.6 336 M 204.2 345.8 L 242.2 345.8 M 211.4 350 L 225.4 336 M 205.6 344.4 L 243.6 344.4 M 215.2 350 L 229.2 336 M 207 343 L 245 343 M 219 350 L 233 336 M 208.4 341.6 L 246.4 341.6 M 222.8 350 L 236.8 336 M 209.8 340.2 L 247.8 340.2 M 226.6 350 L 240.6 336 M 211.2 338.8 L 249.2 338.8 M 230.4 350 L 244.4 336 M 212.6 337.4 L 250.6 337.4 M 234.2 350 L 248.2 336",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#a8cc90",
+        "stroke_width": 0.45,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.result.thousand1.side.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 239.4 348.6 L 239.4 386.6 M 238 353.8 L 252 339.8 M 240.8 347.2 L 240.8 385.2 M 238 357.6 L 252 343.6 M 242.2 345.8 L 242.2 383.8 M 238 361.4 L 252 347.4 M 243.6 344.4 L 243.6 382.4 M 238 365.2 L 252 351.2 M 245 343 L 245 381 M 238 369 L 252 355 M 246.4 341.6 L 246.4 379.6 M 238 372.8 L 252 358.8 M 247.8 340.2 L 247.8 378.2 M 238 376.6 L 252 362.6 M 249.2 338.8 L 249.2 376.8 M 238 380.4 L 252 366.4 M 250.6 337.4 L 250.6 375.4 M 238 384.2 L 252 370.2",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#a8cc90",
+        "stroke_width": 0.45,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.result.h1.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 275.0,
+        "y": 346.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#9cc37f",
+        "stroke_width": 1.0,
+        "fill": "#e7f5d8"
+      }
+    },
+    {
+      "id": "slot.model.result.h1.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 278.4 346 L 278.4 380 M 275 349.4 L 309 349.4 M 281.8 346 L 281.8 380 M 275 352.8 L 309 352.8 M 285.2 346 L 285.2 380 M 275 356.2 L 309 356.2 M 288.6 346 L 288.6 380 M 275 359.6 L 309 359.6 M 292 346 L 292 380 M 275 363 L 309 363 M 295.4 346 L 295.4 380 M 275 366.4 L 309 366.4 M 298.8 346 L 298.8 380 M 275 369.8 L 309 369.8 M 302.2 346 L 302.2 380 M 275 373.2 L 309 373.2 M 305.6 346 L 305.6 380 M 275 376.6 L 309 376.6",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#c9dfb9",
+        "stroke_width": 0.45,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.result.h2.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 315.0,
+        "y": 346.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#9cc37f",
+        "stroke_width": 1.0,
+        "fill": "#e7f5d8"
+      }
+    },
+    {
+      "id": "slot.model.result.h2.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 318.4 346 L 318.4 380 M 315 349.4 L 349 349.4 M 321.8 346 L 321.8 380 M 315 352.8 L 349 352.8 M 325.2 346 L 325.2 380 M 315 356.2 L 349 356.2 M 328.6 346 L 328.6 380 M 315 359.6 L 349 359.6 M 332 346 L 332 380 M 315 363 L 349 363 M 335.4 346 L 335.4 380 M 315 366.4 L 349 366.4 M 338.8 346 L 338.8 380 M 315 369.8 L 349 369.8 M 342.2 346 L 342.2 380 M 315 373.2 L 349 373.2 M 345.6 346 L 345.6 380 M 315 376.6 L 349 376.6",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#c9dfb9",
+        "stroke_width": 0.45,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.result.h3.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 355.0,
+        "y": 346.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#9cc37f",
+        "stroke_width": 1.0,
+        "fill": "#e7f5d8"
+      }
+    },
+    {
+      "id": "slot.model.result.h3.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 358.4 346 L 358.4 380 M 355 349.4 L 389 349.4 M 361.8 346 L 361.8 380 M 355 352.8 L 389 352.8 M 365.2 346 L 365.2 380 M 355 356.2 L 389 356.2 M 368.6 346 L 368.6 380 M 355 359.6 L 389 359.6 M 372 346 L 372 380 M 355 363 L 389 363 M 375.4 346 L 375.4 380 M 355 366.4 L 389 366.4 M 378.8 346 L 378.8 380 M 355 369.8 L 389 369.8 M 382.2 346 L 382.2 380 M 355 373.2 L 389 373.2 M 385.6 346 L 385.6 380 M 355 376.6 L 389 376.6",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#c9dfb9",
+        "stroke_width": 0.45,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.result.h4.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 395.0,
+        "y": 346.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#9cc37f",
+        "stroke_width": 1.0,
+        "fill": "#e7f5d8"
+      }
+    },
+    {
+      "id": "slot.model.result.h4.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 398.4 346 L 398.4 380 M 395 349.4 L 429 349.4 M 401.8 346 L 401.8 380 M 395 352.8 L 429 352.8 M 405.2 346 L 405.2 380 M 395 356.2 L 429 356.2 M 408.6 346 L 408.6 380 M 395 359.6 L 429 359.6 M 412 346 L 412 380 M 395 363 L 429 363 M 415.4 346 L 415.4 380 M 395 366.4 L 429 366.4 M 418.8 346 L 418.8 380 M 395 369.8 L 429 369.8 M 422.2 346 L 422.2 380 M 395 373.2 L 429 373.2 M 425.6 346 L 425.6 380 M 395 376.6 L 429 376.6",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#c9dfb9",
+        "stroke_width": 0.45,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.result.t1.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 480.0,
+        "y": 344.0,
+        "width": 9.0,
+        "height": 38.0,
+        "stroke": "#6fb6df",
+        "stroke_width": 1.0,
+        "fill": "#d9efff"
+      }
+    },
+    {
+      "id": "slot.model.result.t1.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 480 347.8 L 489 347.8 M 480 351.6 L 489 351.6 M 480 355.4 L 489 355.4 M 480 359.2 L 489 359.2 M 480 363 L 489 363 M 480 366.8 L 489 366.8 M 480 370.6 L 489 370.6 M 480 374.4 L 489 374.4 M 480 378.2 L 489 378.2",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#9fd0ed",
+        "stroke_width": 0.55,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.result.t2.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 495.0,
+        "y": 344.0,
+        "width": 9.0,
+        "height": 38.0,
+        "stroke": "#6fb6df",
+        "stroke_width": 1.0,
+        "fill": "#d9efff"
+      }
+    },
+    {
+      "id": "slot.model.result.t2.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 495 347.8 L 504 347.8 M 495 351.6 L 504 351.6 M 495 355.4 L 504 355.4 M 495 359.2 L 504 359.2 M 495 363 L 504 363 M 495 366.8 L 504 366.8 M 495 370.6 L 504 370.6 M 495 374.4 L 504 374.4 M 495 378.2 L 504 378.2",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#9fd0ed",
+        "stroke_width": 0.55,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.result.t3.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 510.0,
+        "y": 344.0,
+        "width": 9.0,
+        "height": 38.0,
+        "stroke": "#6fb6df",
+        "stroke_width": 1.0,
+        "fill": "#d9efff"
+      }
+    },
+    {
+      "id": "slot.model.result.t3.grid",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 510 347.8 L 519 347.8 M 510 351.6 L 519 351.6 M 510 355.4 L 519 355.4 M 510 359.2 L 519 359.2 M 510 363 L 519 363 M 510 366.8 L 519 366.8 M 510 370.6 L 519 370.6 M 510 374.4 L 519 374.4 M 510 378.2 L 519 378.2",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#9fd0ed",
+        "stroke_width": 0.55,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.model.result.o1.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 640.0,
+        "cy": 363.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.model.result.o2.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 654.0,
+        "cy": 363.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.model.result.o3.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 668.0,
+        "cy": 363.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.model.result.o4.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 682.0,
+        "cy": 363.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.model.result.o5.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 696.0,
+        "cy": 363.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.model.result.o6.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 710.0,
+        "cy": 363.0,
+        "r": 2.2,
+        "stroke": "#d66d91",
+        "stroke_width": 0.7,
+        "fill": "#f59ab5"
+      }
+    },
+    {
+      "id": "slot.answer_2",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(2) 십 모형끼리 더하면 백 모형          개와 십 모형          개입니다.",
+        "style_role": "body",
+        "x": 30.0,
+        "y": 430.0,
+        "width": 840.0,
+        "height": 38.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 20,
+        "font_family": "\"Poor Story\", \"Noto Sans KR\", sans-serif",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.answer.tens_to_hundreds",
+      "kind": "rect",
+      "prompt": "숫자를 입력하세요.",
+      "content": {
+        "x": 360.0,
+        "y": 430.0,
+        "width": 46.0,
+        "height": 38.0,
+        "stroke": "#5C6AC4",
+        "stroke_width": 1.6,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "digit",
+          "max_length": 1,
+          "keyboard": "number",
+          "include_in_submission": true,
+          "order": 0,
+          "group_id": "final_answer",
+          "answer_key_index": 0,
+          "answer_ref": "answer_key[0]",
+          "auto_advance": true
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "min_font_size": 16,
+          "max_font_size": 28,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 3,
+          "text_color": "#202124",
+          "width": 46.0,
+          "height": 38.0,
+          "font_size_adjust": 0
+        }
+      }
+    },
+    {
+      "id": "slot.answer.remaining_tens",
+      "kind": "rect",
+      "prompt": "숫자를 입력하세요.",
+      "content": {
+        "x": 575.0,
+        "y": 430.0,
+        "width": 46.0,
+        "height": 38.0,
+        "stroke": "#5C6AC4",
+        "stroke_width": 1.6,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "input",
+          "role": "answer",
+          "value_type": "digit",
+          "max_length": 1,
+          "keyboard": "number",
+          "include_in_submission": true,
+          "order": 1,
+          "group_id": "final_answer",
+          "answer_key_index": 1,
+          "answer_ref": "answer_key[1]",
+          "auto_advance": true
+        },
+        "input_style": {
+          "font_size_mode": "auto",
+          "min_font_size": 16,
+          "max_font_size": 28,
+          "font_weight": 700,
+          "horizontal_align": "center",
+          "vertical_align": "middle",
+          "padding": 3,
+          "text_color": "#202124",
+          "width": 46.0,
+          "height": 38.0,
+          "font_size_adjust": 0
+        }
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "region.diagram",
+    "slot.diagram.top_box",
+    "slot.diagram.bottom_box",
+    "slot.diagram.arrow_head",
+    "slot.model.599.h1.body",
+    "slot.model.599.h1.grid",
+    "slot.model.599.h2.body",
+    "slot.model.599.h2.grid",
+    "slot.model.599.h3.body",
+    "slot.model.599.h3.grid",
+    "slot.model.599.h4.body",
+    "slot.model.599.h4.grid",
+    "slot.model.599.h5.body",
+    "slot.model.599.h5.grid",
+    "slot.model.599.t1.body",
+    "slot.model.599.t1.grid",
+    "slot.model.599.t2.body",
+    "slot.model.599.t2.grid",
+    "slot.model.599.t3.body",
+    "slot.model.599.t3.grid",
+    "slot.model.599.t4.body",
+    "slot.model.599.t4.grid",
+    "slot.model.599.t5.body",
+    "slot.model.599.t5.grid",
+    "slot.model.599.t6.body",
+    "slot.model.599.t6.grid",
+    "slot.model.599.t7.body",
+    "slot.model.599.t7.grid",
+    "slot.model.599.t8.body",
+    "slot.model.599.t8.grid",
+    "slot.model.599.t9.body",
+    "slot.model.599.t9.grid",
+    "slot.model.837.h1.body",
+    "slot.model.837.h1.grid",
+    "slot.model.837.h2.body",
+    "slot.model.837.h2.grid",
+    "slot.model.837.h3.body",
+    "slot.model.837.h3.grid",
+    "slot.model.837.h4.body",
+    "slot.model.837.h4.grid",
+    "slot.model.837.h5.body",
+    "slot.model.837.h5.grid",
+    "slot.model.837.h6.body",
+    "slot.model.837.h6.grid",
+    "slot.model.837.h7.body",
+    "slot.model.837.h7.grid",
+    "slot.model.837.h8.body",
+    "slot.model.837.h8.grid",
+    "slot.model.837.t1.body",
+    "slot.model.837.t1.grid",
+    "slot.model.837.t2.body",
+    "slot.model.837.t2.grid",
+    "slot.model.837.t3.body",
+    "slot.model.837.t3.grid",
+    "slot.model.result.thousand1.front",
+    "slot.model.result.thousand1.top",
+    "slot.model.result.thousand1.side",
+    "slot.model.result.thousand1.front.grid",
+    "slot.model.result.thousand1.top.grid",
+    "slot.model.result.thousand1.side.grid",
+    "slot.model.result.h1.body",
+    "slot.model.result.h1.grid",
+    "slot.model.result.h2.body",
+    "slot.model.result.h2.grid",
+    "slot.model.result.h3.body",
+    "slot.model.result.h3.grid",
+    "slot.model.result.h4.body",
+    "slot.model.result.h4.grid",
+    "slot.model.result.t1.body",
+    "slot.model.result.t1.grid",
+    "slot.model.result.t2.body",
+    "slot.model.result.t2.grid",
+    "slot.model.result.t3.body",
+    "slot.model.result.t3.grid",
+    "slot.diagram.divider",
+    "slot.diagram.arrow_line",
+    "slot.model.599.o1.dot",
+    "slot.model.599.o2.dot",
+    "slot.model.599.o3.dot",
+    "slot.model.599.o4.dot",
+    "slot.model.599.o5.dot",
+    "slot.model.599.o6.dot",
+    "slot.model.599.o7.dot",
+    "slot.model.599.o8.dot",
+    "slot.model.599.o9.dot",
+    "slot.model.837.o1.dot",
+    "slot.model.837.o2.dot",
+    "slot.model.837.o3.dot",
+    "slot.model.837.o4.dot",
+    "slot.model.837.o5.dot",
+    "slot.model.837.o6.dot",
+    "slot.model.837.o7.dot",
+    "slot.model.result.o1.dot",
+    "slot.model.result.o2.dot",
+    "slot.model.result.o3.dot",
+    "slot.model.result.o4.dot",
+    "slot.model.result.o5.dot",
+    "slot.model.result.o6.dot",
+    "slot.diagram.col_hundreds",
+    "slot.diagram.col_tens",
+    "slot.diagram.col_ones",
+    "slot.diagram.label_599",
+    "slot.diagram.label_837",
+    "slot.diagram.arrow_text",
+    "slot.diagram.label_result",
+    "region.answer",
+    "slot.answer.tens_to_hundreds",
+    "slot.answer.remaining_tens",
+    "slot.answer_2"
+  ]
+}
