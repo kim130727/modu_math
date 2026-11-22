@@ -51,7 +51,7 @@ try {
   const draft = await page.locator('.konva-json-panel textarea').inputValue();
   const storageBefore = await page.evaluate(() => JSON.stringify(localStorage));
   await page.getByRole('button', { name: '앱처럼 풀어보기', exact: true }).click();
-  await page.getByRole('dialog').waitFor();
+  await page.locator('.flutter-student-preview').waitFor();
   const frame = page.frameLocator('.flutter-editor-frame');
   await frame.locator('flutter-view').waitFor();
   // The single student entry enables Flutter semantics itself.

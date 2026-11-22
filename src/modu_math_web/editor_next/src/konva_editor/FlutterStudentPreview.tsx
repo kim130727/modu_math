@@ -1,30 +1,39 @@
 import { useEffect, useRef, useState } from "react";
 import { checkStudentPreview, loadStudentPreview } from "../api/editorApi";
 
+type PreviewViewport = "full" | "tablet" | "mobile";
+
 export function FlutterStudentPreview({ problemId, onClose }: { problemId: string; onClose: () => void }) {
-  const dialogRef = useRef<HTMLDialogElement>(null);
   const frameRef = useRef<HTMLIFrameElement>(null);
   const [problem, setProblem] = useState<Record<string, unknown> | null>(null);
+  const [loadingProblem, setLoadingProblem] = useState(true);
   const [ready, setReady] = useState(false);
   const [error, setError] = useState("");
   const [attempt, setAttempt] = useState(0);
-
-  useEffect(() => {
-    dialogRef.current?.showModal();
-  }, []);
+  const [viewport, setViewport] = useState<PreviewViewport>("full");
 
   useEffect(() => {
     let cancelled = false;
-    setProblem(null);
+    setLoadingProblem(true);
     setError("");
-    setReady(false);
     void loadStudentPreview(problemId).then(detail => {
-      if (!cancelled) setProblem(detail);
+      if (!cancelled) {
+        setProblem(detail);
+        setLoadingProblem(false);
+      }
     }).catch(reason => {
-      if (!cancelled) setError(`저장된 문제를 불러오지 못했습니다. ${String(reason)}`);
+      if (!cancelled) {
+        setProblem(null);
+        setLoadingProblem(false);
+        setError(`저장된 문제를 불러오지 못했습니다. ${String(reason)}`);
+      }
     });
     return () => { cancelled = true; };
   }, [problemId, attempt]);
+
+  useEffect(() => {
+    setReady(false);
+  }, [attempt]);
 
   useEffect(() => {
     let active = true;
@@ -57,18 +66,52 @@ export function FlutterStudentPreview({ problemId, onClose }: { problemId: strin
   const version = document.querySelector<HTMLElement>("#root")?.dataset.studentAppVersion ?? "dev";
 
   return (
-    <dialog ref={dialogRef} className="flutter-student-preview" aria-labelledby="student-preview-title" onCancel={onClose}>
+    <section className="flutter-student-preview" aria-labelledby="student-preview-title">
       <header className="student-preview-header">
-        <div><strong id="student-preview-title">앱처럼 풀어보기</strong><p>마지막으로 저장하고 화면 반영한 문제입니다. 풀이 기록은 저장하지 않습니다.</p></div>
-        <button type="button" autoFocus onClick={onClose}>편집으로 돌아가기</button>
+        <div className="student-preview-heading">
+          <strong id="student-preview-title">앱처럼 풀어보기</strong>
+          <p>마지막으로 저장하고 화면 반영한 문제입니다. 풀이 기록은 저장하지 않습니다.</p>
+        </div>
+        <div className="student-preview-actions">
+          <div className="student-preview-viewport" role="group" aria-label="미리보기 화면 크기">
+            {([["full", "전체"], ["tablet", "태블릿"], ["mobile", "모바일"]] as const).map(([key, label]) => (
+              <button
+                key={key}
+                type="button"
+                aria-pressed={viewport === key}
+                onClick={() => setViewport(key)}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+          <button type="button" onClick={() => setAttempt(value => value + 1)}>새로고침</button>
+          <button type="button" onClick={onClose}>편집으로 돌아가기</button>
+        </div>
       </header>
-      {error ? <div className="student-preview-message" role="alert"><p>{error}</p><button type="button" onClick={() => setAttempt(value => value + 1)}>다시 시도</button></div>
-        : problem ? <section className="flutter-editor-surface" aria-label="학생 앱 문제풀이 화면">
-          {!ready ? <div className="flutter-editor-loading" role="status">학생 앱을 불러오는 중…</div> : null}
-          <iframe ref={frameRef} key={attempt} className="flutter-editor-frame" title="학생 앱 문제풀이"
-            src={`/static/editor_next/student_app/index.html?studentPreview=1&v=${encodeURIComponent(version)}`} />
+      {error ? (
+        <div className="student-preview-message" role="alert">
+          <p>{error}</p>
+          <button type="button" onClick={() => setAttempt(value => value + 1)}>다시 시도</button>
+        </div>
+      ) : (
+        <section className={`flutter-editor-surface viewport-${viewport}`} aria-label="학생 앱 문제풀이 화면">
+          {!ready || loadingProblem ? (
+            <div className="flutter-editor-loading" role="status">
+              {loadingProblem && !ready ? "저장된 문제를 불러오는 중…" : !ready ? "학생 앱을 불러오는 중…" : "문제를 전환하는 중…"}
+            </div>
+          ) : null}
+          {problem || ready ? (
+            <iframe
+              ref={frameRef}
+              key={attempt}
+              className="flutter-editor-frame"
+              title="학생 앱 문제풀이"
+              src={`/static/editor_next/student_app/index.html?studentPreview=1&v=${encodeURIComponent(version)}`}
+            />
+          ) : null}
         </section>
-          : <p className="student-preview-message" role="status">저장된 문제를 불러오는 중…</p>}
-    </dialog>
+      )}
+    </section>
   );
 }

@@ -28,6 +28,7 @@ interface KonvaStageProps {
   activeTutorOverlayIndex?: number | null;
   drawingPreset?: ShapePreset | null;
   answerReviewMode?: boolean;
+  highlightedAnswerIndex?: number | null;
   answerOptions?: AnswerBindingOption[];
   answerChoices?: AnswerChoiceReview[];
   answerPresentationMode?: AnswerPresentationMode;
@@ -55,6 +56,7 @@ export function KonvaStage({
   activeTutorOverlayIndex = null,
   drawingPreset = null,
   answerReviewMode = false,
+  highlightedAnswerIndex = null,
   answerOptions = [],
   answerChoices = [],
   answerPresentationMode = "panel_input",
@@ -579,16 +581,21 @@ export function KonvaStage({
               onContextMenu={(event) => openShapeContextMenu(shape, event)}
             />
           ))}
-          {renderedShapes.map((shape) =>
-            shape.interaction ? (
+          {renderedShapes.map((shape) => {
+            if (!shape.interaction) return null;
+            const review = answerReviews.get(shape.id);
+            const answerIndex = review?.option?.index ?? (review ? review.displayOrder - 1 : null);
+            const highlighted = highlightedAnswerIndex !== null && answerIndex === highlightedAnswerIndex;
+            return (
               <AnswerSlotOverlay
                 key={`${shape.id}.answer-overlay`}
                 shape={shape}
-                review={answerReviews.get(shape.id)}
+                review={review}
                 reviewMode={answerReviewMode}
+                highlighted={highlighted}
               />
-            ) : null,
-          )}
+            );
+          })}
           <TutorOverlayLayer
             overlays={tutorOverlays}
             shapesById={shapesById}
@@ -938,12 +945,14 @@ function AnswerSlotOverlay({
   shape,
   review,
   reviewMode,
+  highlighted = false,
 }: {
   shape: EditorShape;
   review?: AnswerSlotReview;
   reviewMode: boolean;
+  highlighted?: boolean;
 }) {
-  const bounds = paddedRect(shapeBounds(shape), 5);
+  const bounds = paddedRect(shapeBounds(shape), reviewMode ? 5 : 2);
   if (!shape.interaction) return null;
   if (reviewMode && review) {
     const colors = answerReviewColors(review.status);
@@ -1004,18 +1013,49 @@ function AnswerSlotOverlay({
       </>
     );
   }
+  const orderLabel = review ? String(review.displayOrder) : "";
+  const badgeSize = 14;
   return (
-    <Rect
-      x={bounds.x}
-      y={bounds.y}
-      width={bounds.width}
-      height={bounds.height}
-      stroke="#2563eb"
-      strokeWidth={1.2}
-      dash={[5, 4]}
-      fill="rgba(37, 99, 235, 0.05)"
-      listening={false}
-    />
+    <>
+      <Rect
+        x={bounds.x}
+        y={bounds.y}
+        width={bounds.width}
+        height={bounds.height}
+        stroke={highlighted ? "#4338ca" : "#2563eb"}
+        strokeWidth={highlighted ? 2.2 : 1.2}
+        dash={highlighted ? undefined : [5, 4]}
+        fill={highlighted ? "rgba(67, 56, 202, 0.14)" : "rgba(37, 99, 235, 0.05)"}
+        cornerRadius={3}
+        listening={false}
+      />
+      {orderLabel ? (
+        <>
+          <Rect
+            x={bounds.x + 1}
+            y={bounds.y + 1}
+            width={Math.max(badgeSize, orderLabel.length * 7 + 6)}
+            height={badgeSize}
+            fill={highlighted ? "#4338ca" : "rgba(37, 99, 235, 0.88)"}
+            cornerRadius={3}
+            listening={false}
+          />
+          <Text
+            x={bounds.x + 1}
+            y={bounds.y + 2}
+            width={Math.max(badgeSize, orderLabel.length * 7 + 6)}
+            height={badgeSize}
+            text={orderLabel}
+            fontFamily={KONVA_PREVIEW_FONT_FAMILY}
+            fontSize={10}
+            fontStyle="bold"
+            fill="#ffffff"
+            align="center"
+            listening={false}
+          />
+        </>
+      ) : null}
+    </>
   );
 }
 

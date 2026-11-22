@@ -15,6 +15,7 @@ export function AnswerReviewPanel({
   syncPanel,
   authoring = false,
   onAddBlank,
+  onHighlightAnswer,
 }: {
   settings: AnswerReviewSettings;
   answerPrompt?: string;
@@ -29,6 +30,7 @@ export function AnswerReviewPanel({
   syncPanel?: ReactNode;
   authoring?: boolean;
   onAddBlank?: () => void;
+  onHighlightAnswer?: (index: number | null) => void;
 }) {
   const [editing, setEditing] = useState(authoring);
   const [responses, setResponses] = useState<string[]>([]);
@@ -343,7 +345,14 @@ export function AnswerReviewPanel({
           ) : (
             <>
               {inputAnswers.map((answer, index) => (
-                <div className="review-answer-row" key={index}>
+                <div
+                  className="review-answer-row"
+                  key={index}
+                  onMouseEnter={() => onHighlightAnswer?.(index)}
+                  onMouseLeave={() => onHighlightAnswer?.(null)}
+                  onFocus={() => onHighlightAnswer?.(index)}
+                  onBlur={() => onHighlightAnswer?.(null)}
+                >
                   <label>
                     답 {index + 1}
                     {settings.mode === "ox" ? (

@@ -60,6 +60,7 @@ export function EditorKonva() {
   const [drawingPreset, setDrawingPreset] = useState<ShapePreset | null>(null);
   const [answerReviewMode, setAnswerReviewMode] = useState(false);
   const [studentPreviewOpen, setStudentPreviewOpen] = useState(false);
+  const [highlightedAnswerIndex, setHighlightedAnswerIndex] = useState<number | null>(null);
   const [draftReview, setDraftReview] = useState<AnswerReviewSettings | null>(null);
   const [problemListVersion, setProblemListVersion] = useState(0);
   const [activeSidePanel, setActiveSidePanel] = useState<SidePanelTab>("properties");
@@ -1030,7 +1031,8 @@ export function EditorKonva() {
           busy={saveStatus === "saving" || saveStatus === "building"}
           feedback={saveStatus === "error" ? message : saveStatus === "unsaved" ? "저장하지 않은 변경" : ""}
           onSelect={ids => { setSelectedShapeIds(ids); setActiveSidePanel("properties"); }}
-          onEditLayout={() => setActiveSidePanel("properties")} /> : null}
+          onEditLayout={() => setActiveSidePanel("properties")}
+          onHighlightAnswer={setHighlightedAnswerIndex} /> : null}
         {activeSidePanel === "properties" ? (
           <PropertyPanel
             syncPanel={<PlacementSyncPanel key={selectedProblemId} problemId={selectedProblemId} shapes={document.shapes} selectedIds={selectedShapeIds} onSave={buildCurrentProblem} />}
@@ -1071,24 +1073,34 @@ export function EditorKonva() {
     <div className={`math-problem-editor konva-editor${explorerOpen ? "" : " explorer-collapsed"}`}>
       <KonvaToolbar
         workspaceHeader={<>
-
-        <a className="editor-workspace-brand" href="/teacher/" title="교사 학습관리로 돌아가기"><span className="editor-brand-mark" aria-hidden="true">m.</span><strong>문제 스튜디오</strong></a>
-        <div className="editor-document-name"><strong title={selectedProblemId}>{openingProblemId ? "문제를 여는 중…" : selectedProblemId.split("/").at(-1)?.replace(/\.dsl\.py$/, "")}</strong></div>
-        <div className="editor-layout-controls" aria-label="작업 영역 배치">
-          <button type="button" aria-pressed={explorerOpen} onClick={() => setExplorerOpen(value => !value)}>문제 탐색</button>
-          <button type="button" aria-pressed={inspectorOpen} disabled={answerReviewMode} onClick={() => setInspectorOpen(value => !value)}>속성 패널</button>
-        </div>
-        <EditorPublication sourceId={selectedProblemId} busy={saveStatus === "saving" || saveStatus === "building" || saveStatus === "unsaved"} />
-        <button type="button" disabled={!!openingProblemId || saveStatus === "saving" || saveStatus === "building"} onClick={() => setStudentPreviewOpen(true)}>앱처럼 풀어보기</button>
-        <span className={`editor-save-indicator ${saveStatus}`} role="status">{{ saved: "저장됨", saving: "저장 중…", unsaved: "저장하지 않은 변경", building: "화면 생성 중…", built: "화면 반영 완료", error: "저장 상태 확인 필요" }[saveStatus]}</span>
+          <a className="editor-workspace-brand" href="/teacher/" title="교사 학습관리로 돌아가기"><span className="editor-brand-mark" aria-hidden="true">m.</span><strong>문제 스튜디오</strong></a>
+          <div className="editor-layout-controls" aria-label="작업 영역 배치">
+            <button type="button" aria-pressed={explorerOpen} onClick={() => setExplorerOpen(value => !value)}>문제 탐색</button>
+          </div>
+          <div className="editor-document-name"><strong title={selectedProblemId}>{openingProblemId ? "문제를 여는 중…" : selectedProblemId.split("/").at(-1)?.replace(/\.dsl\.py$/, "")}</strong></div>
+          <EditorPublication sourceId={selectedProblemId} busy={saveStatus === "saving" || saveStatus === "building" || saveStatus === "unsaved"} />
         </>}
-        onOpenAnswers={() => { setAnswerReviewMode(false); setInspectorOpen(true); setActiveSidePanel("answers"); }}
+        headerStatus={
+          <span className={`editor-save-indicator ${saveStatus}`} role="status">{{ saved: "저장됨", saving: "저장 중…", unsaved: "저장하지 않은 변경", building: "화면 생성 중…", built: "화면 반영 완료", error: "저장 상태 확인 필요" }[saveStatus]}</span>
+        }
+        inspectorControl={
+          <div className="editor-layout-controls" aria-label="속성 패널 표시">
+            <button type="button" aria-pressed={inspectorOpen} disabled={answerReviewMode || studentPreviewOpen} onClick={() => setInspectorOpen(value => !value)}>속성 패널</button>
+          </div>
+        }
+        onOpenAnswers={() => { setStudentPreviewOpen(false); setAnswerReviewMode(false); setInspectorOpen(true); setActiveSidePanel("answers"); }}
         onAddAnswerBlank={addAnswerBlank}
         busy={saveStatus === "saving" || saveStatus === "building"}
         hasSelection={selectedShapeIds.length > 0}
         hasAnswerSlotCandidate={selectedAnswerSlotShapeIds.length > 0}
         answerReviewMode={answerReviewMode}
+        studentPreviewMode={studentPreviewOpen}
+        studentPreviewDisabled={!!openingProblemId || saveStatus === "saving" || saveStatus === "building"}
         onAnswerReviewModeChange={changeAnswerReviewMode}
+        onStudentPreviewModeChange={(enabled) => {
+          setStudentPreviewOpen(enabled);
+          if (enabled) setDrawingPreset(null);
+        }}
         onInsertShape={insertShape}
         onOpenAvatarMaker={() => {
           const selectedTargets = avatarReplacementTargets.filter((target) => target.shapes.some((shape) => selectedShapeIds.includes(shape.id)));
@@ -1109,7 +1121,7 @@ export function EditorKonva() {
         onMarkSelectedAsAnswerSlot={markSelectedAsAnswerSlot}
         onDeleteSelected={deleteSelected}
         onRefreshJson={refreshJson}
-        onSave={buildCurrentProblem}
+        onSave={() => { void saveJson(); }}
         onSaveAndBuild={saveAndBuildCurrentProblem}
         onBuild={buildCurrentProblem}
         onNewFile={createNewProblem}
@@ -1122,7 +1134,6 @@ export function EditorKonva() {
         replacementTargetId={avatarTargetId}
         onReplacementTargetChange={setAvatarTargetId}
       />
-      {studentPreviewOpen ? <FlutterStudentPreview problemId={selectedProblemId} onClose={() => setStudentPreviewOpen(false)} /> : null}
       <input
         ref={imageFileInputRef}
         type="file"
@@ -1134,7 +1145,7 @@ export function EditorKonva() {
           if (file) void importLocalImage(file);
         }}
       />
-      <div className={`editor-body konva-editor-body${answerReviewMode ? " reviewing-answers" : ""}`}>
+      <div className={`editor-body konva-editor-body${answerReviewMode && !studentPreviewOpen ? " reviewing-answers" : ""}${studentPreviewOpen ? " previewing-student" : ""}`}>
         <ProblemList
           key={problemListVersion}
           selectedProblemId={openingProblemId ?? selectedProblemId}
@@ -1144,6 +1155,9 @@ export function EditorKonva() {
           onLanguageChange={setActiveProblemLanguage}
         />
         <div className="konva-main-panel">
+          {studentPreviewOpen ? (
+            <FlutterStudentPreview problemId={selectedProblemId} onClose={() => setStudentPreviewOpen(false)} />
+          ) : (
           <KonvaStage
             key={selectedProblemId}
             width={document.canvas.width}
@@ -1154,6 +1168,7 @@ export function EditorKonva() {
             activeTutorOverlayIndex={activeTutorOverlayIndex}
             drawingPreset={drawingPreset}
             answerReviewMode={answerReviewMode}
+            highlightedAnswerIndex={highlightedAnswerIndex}
             answerOptions={answerBindingOptions}
             answerChoices={answerChoiceReviews}
             answerPresentationMode={answerPresentationMode}
@@ -1173,7 +1188,8 @@ export function EditorKonva() {
               busy={saveStatus === "saving" || saveStatus === "building"}
               feedback={saveStatus === "error" ? message : saveStatus === "unsaved" ? "저장하지 않은 수정" : saveStatus === "built" ? "저장 및 Build 완료" : ""}
               onSelect={(ids) => { setAnswerReviewMode(false); setSelectedShapeIds(ids); setActiveSidePanel("properties"); }}
-              onEditLayout={() => { setAnswerReviewMode(false); setActiveSidePanel("properties"); }} />}
+              onEditLayout={() => { setAnswerReviewMode(false); setActiveSidePanel("properties"); }}
+              onHighlightAnswer={setHighlightedAnswerIndex} />}
             onSelectShapes={setSelectedShapeIds}
             onChangeShapes={updateShapes}
             onConvertShapesToAnswer={(ids) => setAnswerSlotState(ids, true)}
@@ -1190,10 +1206,11 @@ export function EditorKonva() {
             onTutorOverlayChange={changeActiveTutorOverlay}
             onTutorOverlayMove={moveActiveTutorOverlay}
           />
+          )}
         </div>
       </div>
       <footer className="editor-workspace-footer">
-        <span className="editor-context-help">{drawingPreset ? "캔버스를 드래그해 도형을 그리세요 · Esc 취소" : answerReviewMode ? "학생에게 보이는 정답 화면을 확인하고 검수하세요." : "요소 클릭 → 오른쪽에서 설정 · 글자 두 번 클릭 → 바로 편집 · Shift + 클릭 → 여러 요소 선택"}</span>
+        <span className="editor-context-help">{studentPreviewOpen ? "학생 앱과 동일한 화면에서 문제를 풀어볼 수 있습니다 · 왼쪽 목록에서 다른 문제로 바로 전환할 수 있습니다." : drawingPreset ? "캔버스를 드래그해 도형을 그리세요 · Esc 취소" : answerReviewMode ? "학생에게 보이는 정답 화면을 확인하고 검수하세요." : "요소 클릭 → 오른쪽에서 설정 · 글자 두 번 클릭 → 바로 편집 · Shift + 클릭 → 여러 요소 선택"}</span>
         <details className="editor-activity"><summary>작업 메시지</summary><p role="status">{message}</p></details>
         <span>{selectedShapeIds.length ? `${selectedShapeIds.length}개 선택` : `요소 ${document.shapes.length}개`}</span>
       </footer>

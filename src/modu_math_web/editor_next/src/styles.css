@@ -619,23 +619,74 @@ input {
 }
 
 .flutter-student-preview {
-  position: fixed;
-  inset: 0;
-  width: min(1440px, 100vw);
-  max-width: 100vw;
-  height: 100dvh;
-  max-height: 100dvh;
-  margin: auto;
-  padding: 0;
-  border: 0;
-  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  background: #f2f4f8;
 }
 
-.flutter-student-preview[open] { display: flex; flex-direction: column; }
-.flutter-student-preview::backdrop { background: #0f172acc; }
-.student-preview-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #cbd5e1; }
-.student-preview-header p { margin: 4px 0 0; font-size: 13px; color: #475569; }
-.student-preview-header button { flex-shrink: 0; }
+.student-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding: 8px 14px;
+  background: #fff;
+  border-bottom: 1px solid #e2e7ef;
+}
+.student-preview-heading {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+.student-preview-heading strong { font-size: 13px; color: #172033; }
+.student-preview-header p { margin: 0; font-size: 12px; color: #64748b; }
+.student-preview-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.student-preview-actions > button {
+  height: 28px;
+  padding: 0 10px;
+  border: 1px solid #dce2eb;
+  border-radius: 6px;
+  background: #fff;
+  color: #334155;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.student-preview-actions > button:hover { background: #f8fafc; }
+.student-preview-viewport {
+  display: inline-flex;
+  padding: 2px;
+  border: 1px solid #e2e7ef;
+  border-radius: 7px;
+  background: #f8fafc;
+  gap: 2px;
+}
+.student-preview-viewport button {
+  height: 24px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #64748b;
+  font-size: 11px;
+  cursor: pointer;
+}
+.student-preview-viewport button[aria-pressed="true"] {
+  background: #fff;
+  color: #4338ca;
+  font-weight: 600;
+  box-shadow: 0 1px 2px #0f172a12;
+}
 .student-preview-message { padding: 24px; }
 .flutter-student-preview .flutter-editor-frame { display: block; min-height: 0; }
 
@@ -643,17 +694,22 @@ input {
   position: relative;
   flex: 1;
   min-height: 0;
-  margin: 10px 12px 12px;
+  width: calc(100% - 24px);
+  margin: 10px auto 12px;
   overflow: hidden;
   border: 1px solid #cbd5e1;
   border-radius: 14px;
-  background: #f8fafc;
+  background: #fff;
+  box-shadow: 0 2px 10px #0f172a0a;
+  transition: width 160ms ease;
 }
+.flutter-editor-surface.viewport-tablet { width: min(820px, calc(100% - 24px)); }
+.flutter-editor-surface.viewport-mobile { width: min(430px, calc(100% - 24px)); }
 
 .flutter-editor-frame {
   width: 100%;
   height: 100%;
-  min-height: 560px;
+  min-height: 480px;
   border: 0;
   background: #fff;
 }
@@ -2305,7 +2361,14 @@ input {
 .konva-editor .presentation-with-panel { grid-template-columns: minmax(0, 1fr) 288px; }
 .konva-editor .problem-folder-row, .konva-editor .problem-file-row { font-size: 12px; line-height: 1.5; min-height: 27px; padding-top: 3px; padding-bottom: 3px; }
 .konva-editor .problem-folder-row { font-weight: 500; }
-.konva-editor .problem-folder-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.konva-editor .problem-folder-name,
+.konva-editor .problem-file-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.konva-editor .editor-action-row .answer-review-toggle button.active.preview { background: #0f766e; color: #fff; }
+.answer-review-panel .review-answer-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 6px; padding: 8px; background: #f8f9fc; border: 1px solid #e5e9f0; border-radius: 8px; transition: border-color 120ms ease, background-color 120ms ease; }
+.answer-review-panel .review-answer-row:has(> .review-answer-unit) { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr) auto; }
+.answer-review-panel .review-answer-row:hover,
+.answer-review-panel .review-answer-row:focus-within { border-color: #8b83ee; background: #f5f3ff; }
+.answer-review-panel .review-answer-row > button { height: 34px; padding: 0 10px; }
 .konva-editor .problem-list-panel .panel-title { padding: 10px 12px 4px; font-size: 12px; }
 .konva-editor .problem-search-wrap { padding-top: 8px; }
 .konva-editor .presentation-layout { padding: 8px; gap: 8px; }

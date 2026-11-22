@@ -71,13 +71,18 @@ type ToolName =
 
 interface KonvaToolbarProps {
   workspaceHeader?: ReactNode;
+  headerStatus?: ReactNode;
+  inspectorControl?: ReactNode;
   busy?: boolean;
   onOpenAnswers: () => void;
   onAddAnswerBlank: () => void;
   hasSelection: boolean;
   hasAnswerSlotCandidate: boolean;
   answerReviewMode: boolean;
+  studentPreviewMode: boolean;
+  studentPreviewDisabled?: boolean;
   onAnswerReviewModeChange: (enabled: boolean) => void;
+  onStudentPreviewModeChange: (enabled: boolean) => void;
   onInsertShape: (preset: ShapePreset) => void;
   onOpenAvatarMaker: () => void;
   onAddMath: () => void;
@@ -114,23 +119,6 @@ interface ShapePaletteSection {
 }
 
 const SHAPE_SECTIONS: ShapePaletteSection[] = [
-  {
-    title: "\uc120",
-    items: [
-      { preset: "line", label: "\uc120" },
-      { preset: "arrow", label: "\uc120 \ud654\uc0b4\ud45c" },
-      { preset: "doubleArrow", label: "\uc120 \ud654\uc0b4\ud45c: \uc591\ubc29\ud5a5" },
-      { preset: "elbow", label: "\uc5f0\uacb0\uc120: \uaebe\uc784" },
-      { preset: "elbowArrow", label: "\uc5f0\uacb0\uc120: \uaebe\uc778 \ud654\uc0b4\ud45c" },
-      { preset: "elbowDoubleArrow", label: "\uc5f0\uacb0\uc120: \uaebe\uc778 \uc591\ucabd \ud654\uc0b4\ud45c" },
-      { preset: "curvedConnector", label: "\uc5f0\uacb0\uc120: \uad6c\ubd80\ub7ec\uc9d0" },
-      { preset: "curvedArrow", label: "\uc5f0\uacb0\uc120: \uad6c\ubd80\ub7ec\uc9c4 \ud654\uc0b4\ud45c" },
-      { preset: "curvedDoubleArrow", label: "\uc5f0\uacb0\uc120: \uad6c\ubd80\ub7ec\uc9c4 \uc591\ucabd \ud654\uc0b4\ud45c" },
-      { preset: "curve", label: "\uace1\uc120" },
-      { preset: "freeformShape", label: "\uc790\uc720\ud615: \ub3c4\ud615" },
-      { preset: "freeformScribble", label: "\uc790\uc720\ud615: \uc790\uc720 \uace1\uc120" },
-    ],
-  },
   {
     title: "선",
     items: [
@@ -444,15 +432,47 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
         <ToolbarIcon name="newFile" />
         <span>새파일</span>
       </button>
-      <div className="answer-review-toggle" role="group" aria-label="정답 표시 모드">
-        <button type="button" className={!props.answerReviewMode ? "active" : ""} aria-pressed={!props.answerReviewMode} onClick={() => props.onAnswerReviewModeChange(false)}>문제 편집</button>
-        <button type="button" className={props.answerReviewMode ? "active review" : ""} aria-pressed={props.answerReviewMode} onClick={() => props.onAnswerReviewModeChange(true)}>정답 검수</button>
+      <div className="answer-review-toggle" role="group" aria-label="작업 모드">
+        <button
+          type="button"
+          className={!props.answerReviewMode && !props.studentPreviewMode ? "active" : ""}
+          aria-pressed={!props.answerReviewMode && !props.studentPreviewMode}
+          onClick={() => {
+            props.onStudentPreviewModeChange(false);
+            props.onAnswerReviewModeChange(false);
+          }}
+        >
+          문제 편집
+        </button>
+        <button
+          type="button"
+          className={props.answerReviewMode && !props.studentPreviewMode ? "active review" : ""}
+          aria-pressed={props.answerReviewMode && !props.studentPreviewMode}
+          onClick={() => {
+            props.onStudentPreviewModeChange(false);
+            props.onAnswerReviewModeChange(true);
+          }}
+        >
+          정답 검수
+        </button>
+        <button
+          type="button"
+          className={props.studentPreviewMode ? "active preview" : ""}
+          aria-pressed={props.studentPreviewMode}
+          disabled={props.studentPreviewDisabled}
+          onClick={() => props.onStudentPreviewModeChange(true)}
+        >
+          앱처럼 풀어보기
+        </button>
       </div>
-      <button type="button" className="editor-answer-setup" onClick={props.onOpenAnswers}><ToolbarIcon name="answerSlot" /><span>정답 설정</span></button>
       <span className="toolbar-spacer" />
+      {props.headerStatus}
+      <button type="button" className="editor-answer-setup" onClick={props.onOpenAnswers}><ToolbarIcon name="answerSlot" /><span>정답 설정</span></button>
       <IconButton label="저장" icon="save" onClick={props.onSave} disabled={props.busy} />
       <IconButton label="저장하고 화면 반영" icon="saveBuild" onClick={props.onSaveAndBuild} disabled={props.busy} primary />
+      {props.inspectorControl}
       </header>
+      {props.studentPreviewMode ? null : (
       <div className="editor-insert-row">
       <div className="editor-tool-groups" role="group" aria-label="도구 분류">
         {([{ id: "basic", label: "기본 요소" }, { id: "math", label: "수학 교구" }, { id: "manage", label: "정답 및 파일" }] as const).map(group => (
@@ -475,7 +495,7 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
         </button>
         {isShapeMenuOpen ? (
           <div className="shape-palette" role="menu" aria-label="Insert shape">
-            {SHAPE_SECTIONS.filter((_, index) => index !== 1).map((section) => (
+            {SHAPE_SECTIONS.map((section) => (
               <div className="shape-palette-section" key={section.title}>
                 <div className="shape-palette-title">{section.title}</div>
                 <div className="shape-palette-grid">
@@ -529,6 +549,7 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
       </div>
       <IconButton label="선택 삭제" icon="delete" onClick={props.onDeleteSelected} disabled={!props.hasSelection} />
       </div>
+      )}
     </div>
   );
 }

@@ -186,7 +186,7 @@ function ProblemTree({
             onPointerEnter={() => onPrefetchProblem?.(problem.problem_id)}
             onFocus={() => onPrefetchProblem?.(problem.problem_id)}
           >
-            {problemFileName(problem)}
+            <span className="problem-file-name">{problemDisplayName(problem)}</span>
           </button>
         </li>
       ))}
@@ -232,6 +232,10 @@ function problemFileName(problem: ProblemSummary): string {
   const parts = problem.problem_id.replace(/\\/g, "/").split("/").filter(Boolean);
   const last = parts[parts.length - 1] || problem.problem_id;
   return last.endsWith(".dsl.py") ? last : `${last}.dsl.py`;
+}
+
+function problemDisplayName(problem: ProblemSummary): string {
+  return problemFileName(problem).replace(/\.dsl\.py$/, "");
 }
 
 function problemTitle(problem: ProblemSummary): string {
