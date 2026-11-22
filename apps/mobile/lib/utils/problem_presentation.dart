@@ -361,24 +361,31 @@ bool _hasVisualPresence(Map element) {
         xs.reduce(math.max),
         ys.reduce(math.max)
       );
-    case 'text':
-      final textContent = '${element['text'] ?? ''}'.trim();
-      if (textContent.isEmpty) return null;
-      final size = n('font-size', 16);
-      final lines = '${element['text'] ?? ''}'.split('\n');
-      final width = lines
-              .map((s) => s.runes.fold<double>(
-                  0, (sum, rune) => sum + (rune < 128 ? 0.65 : 1.05)))
-              .reduce(math.max) *
-          size;
-      final anchor = a['text-anchor'];
-      final left = x -
-          (anchor == 'middle'
-              ? width / 2
-              : anchor == 'end'
-                  ? width
-                  : 0);
-      return (left, y - size * 1.3, left + width, y + size * lines.length);
+    case 'text':
+      final textContent = '${element['text'] ?? ''}'.trim();
+      if (textContent.isEmpty) return null;
+      final size = n('font-size', 16);
+      final lines = '${element['text'] ?? ''}'.split('\n');
+      final width = lines
+              .map((s) => s.runes.fold<double>(
+                  0,
+                  (sum, rune) =>
+                      sum + (rune == 32 ? 0.30 : (rune < 128 ? 0.56 : 1.0))))
+              .reduce(math.max) *
+          size;
+      final anchor = a['text-anchor'];
+      final left = x -
+          (anchor == 'middle'
+              ? width / 2
+              : anchor == 'end'
+                  ? width
+                  : 0);
+      return (
+        left,
+        y - size * 1.05,
+        left + width,
+        y + size * (0.30 + (lines.length - 1) * 1.25),
+      );
     default:
       return null;
   }

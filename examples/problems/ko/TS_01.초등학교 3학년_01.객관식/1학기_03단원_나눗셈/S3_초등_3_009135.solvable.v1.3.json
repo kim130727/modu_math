@@ -29,30 +29,68 @@
     "value": "24 ÷ 3 = 8",
     "unit": "",
     "answer_index": 1,
-    "values": [
-      "24 ÷ 3 = 8"
-    ],
     "blanks": [],
     "choices": [
       {
         "id": "slot.choice.option_0",
-        "slot_id": "slot.choice.option_0",
+        "label": "1",
         "text": "16 ÷ 8 = 2",
-        "value": "16 ÷ 8 = 2"
+        "source_refs": [
+          "slot.choice.option_0"
+        ]
       },
       {
         "id": "slot.choice.option_1",
-        "slot_id": "slot.choice.option_1",
+        "label": "2",
         "text": "24 ÷ 3 = 8",
-        "value": "24 ÷ 3 = 8"
+        "source_refs": [
+          "slot.choice.option_1"
+        ]
       }
     ],
     "answer_key": [
       {
-        "slot_id": "slot.choice.option_1",
+        "id": "slot.choice.option_1",
         "value": "24 ÷ 3 = 8"
       }
-    ]
+    ],
+    "presentation": {
+      "mode": "canvas_select",
+      "show_canvas": true,
+      "editor_managed": true,
+      "review": {
+        "mode": "canvas_select",
+        "show_canvas": true,
+        "status": "pending",
+        "note": "",
+        "answers": [
+          {
+            "value": "24 ÷ 3 = 8",
+            "ref": "slot.choice.option_1"
+          }
+        ],
+        "choices": [
+          {
+            "id": "slot.choice.option_0",
+            "text": "16 ÷ 8 = 2",
+            "correct": false,
+            "label": "1",
+            "sourceRefs": [
+              "slot.choice.option_0"
+            ]
+          },
+          {
+            "id": "slot.choice.option_1",
+            "text": "24 ÷ 3 = 8",
+            "correct": true,
+            "label": "2",
+            "sourceRefs": [
+              "slot.choice.option_1"
+            ]
+          }
+        ]
+      }
+    }
   },
   "diagnostics": {
     "skills": [

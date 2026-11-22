@@ -214,3 +214,18 @@ SOLVABLE = {
         },
     },
 }
+EDITOR_ANSWER_REVIEW = {'mode': 'canvas_select',
+ 'show_canvas': True,
+ 'status': 'pending',
+ 'note': '',
+ 'answers': [{'value': '24 ÷ 3 = 8', 'ref': 'slot.choice.option_1'}],
+ 'choices': [{'id': 'slot.choice.option_0',
+              'text': '16 ÷ 8 = 2',
+              'correct': False,
+              'label': '1',
+              'sourceRefs': ['slot.choice.option_0']},
+             {'id': 'slot.choice.option_1',
+              'text': '24 ÷ 3 = 8',
+              'correct': True,
+              'label': '2',
+              'sourceRefs': ['slot.choice.option_1']}]}

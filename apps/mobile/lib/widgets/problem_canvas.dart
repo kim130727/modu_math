@@ -43,10 +43,12 @@ class ProblemCanvas extends StatelessWidget {
             final height = dimension('height', 426);
             final availableWidth =
                 constraints.maxWidth.isFinite ? constraints.maxWidth : width;
+            final displayWidth = math.min(
+                960.0, math.min(availableWidth, math.max(320.0, width * 1.5)));
             final displayHeight =
-                (availableWidth * height / width).clamp(96.0, 420.0);
+                (displayWidth * height / width).clamp(96.0, 420.0);
             return SizedBox(
-              width: math.min(960, availableWidth),
+              width: displayWidth,
               height: displayHeight,
               child: RendererJsonCanvas(
                 renderer: renderer,

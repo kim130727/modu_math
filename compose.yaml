@@ -38,6 +38,7 @@ services:
     volumes:
       - ./examples/problems:/app/examples/problems
       - ./src:/app/src
+      - ./schema:/app/schema
       - ./locales:/app/locales
       - ./overrides:/app/overrides
 

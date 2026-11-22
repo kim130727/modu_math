@@ -180,7 +180,11 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                                   ),
                                   ..._textBoxLayers(effectiveRenderer, scale),
                                   ..._inputLayers(inputSlots, scale),
-                                  ..._canvasChoiceLayers(effectiveRenderer, scale),
+                                  ..._canvasChoiceLayers(
+                                    effectiveRenderer,
+                                    scale,
+                                    Size(originalWidth, originalHeight),
+                                  ),
                                 ],
                               ),
                             ),
@@ -200,36 +204,181 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
         ));
   }
 
-  List<Widget> _canvasChoiceLayers(Map<String, dynamic> renderer, double scale) {
+  (double, double, double, double)? _exactElementBounds(
+    Map<String, dynamic> element,
+    Size logicalSize,
+  ) {
+    if (element['type'] == 'text') {
+      final attributes = _mapAt(element, 'attributes');
+      final text = (element['text']?.toString() ?? '').replaceAll('\r\n', '\n');
+      if (text.trim().isEmpty) return null;
+      var fontSize = _readDouble(attributes['font-size']) ?? 18;
+      final fill = _readColor(attributes['fill']) ?? Colors.black;
+      final fontFamily = attributes['font-family'];
+      final x = _readDouble(attributes['x']) ?? 0;
+      final y = _readDouble(attributes['y']) ?? 0;
+      final explicitMaxWidth = _readDouble(attributes['max_width']);
+      final textAnchor =
+          attributes['text-anchor']?.toString().trim().toLowerCase();
+      final double defaultAvailableWidth = textAnchor == 'middle'
+          ? math.max(120.0, math.min(x, logicalSize.width - x) * 2 - 20.0)
+          : math.max(120.0, logicalSize.width - x - 10.0);
+      final availableWidth = explicitMaxWidth ?? defaultAvailableWidth;
+      if (!text.contains('\n')) {
+        final measurePainter = TextPainter(
+          text: TextSpan(
+            text: text,
+            style: _problemTextStyle(
+              color: fill,
+              fontSize: fontSize,
+              fontWeight: _readFontWeight(attributes['font-weight']),
+              height: 1.25,
+              fontFamily: fontFamily,
+            ),
+          ),
+          textDirection: TextDirection.ltr,
+        )..layout();
+        if (measurePainter.width > availableWidth && availableWidth > 0) {
+          fontSize = math.max(12.0, fontSize * (availableWidth / measurePainter.width));
+        }
+      }
+      final textAlign = switch (textAnchor) {
+        'middle' => TextAlign.center,
+        'end' => TextAlign.right,
+        _ => TextAlign.left,
+      };
+      final painter = TextPainter(
+        text: TextSpan(
+          text: text,
+          style: _problemTextStyle(
+            color: fill,
+            fontSize: fontSize,
+            fontWeight: _readFontWeight(attributes['font-weight']),
+            height: 1.25,
+            fontFamily: fontFamily,
+          ),
+        ),
+        textAlign: textAlign,
+        textDirection: TextDirection.ltr,
+      )..layout(
+          maxWidth: explicitMaxWidth ??
+              (textAnchor == 'middle'
+                  ? math.max(availableWidth, logicalSize.width)
+                  : availableWidth),
+        );
+      final baseline =
+          painter.computeDistanceToActualBaseline(TextBaseline.alphabetic);
+      final lines = painter.computeLineMetrics();
+      final anchorWidth = lines.isEmpty
+          ? painter.width
+          : lines.map((l) => l.width).reduce(math.max);
+      final estimatedWidth = text
+              .split('\n')
+              .map((line) => line.runes.fold<double>(
+                    0,
+                    (sum, rune) => sum +
+                        (rune == 32 ? 0.30 : (rune < 128 ? 0.60 : 1.02)),
+                  ))
+              .reduce(math.max) *
+          fontSize;
+      final measuredWidth = math.max(anchorWidth, estimatedWidth);
+      final offset = rendererTextPaintOffset(
+        x: x,
+        y: y,
+        baseline: baseline,
+        anchorWidth: measuredWidth,
+        textAnchor: attributes['text-anchor'],
+      );
+      return (
+        offset.dx,
+        offset.dy,
+        offset.dx + measuredWidth,
+        offset.dy + painter.height,
+      );
+    }
+    return elementVisualBounds(element);
+  }
+
+  List<Widget> _canvasChoiceLayers(
+    Map<String, dynamic> renderer,
+    double scale,
+    Size logicalSize,
+  ) {
     if (widget.canvasChoices.isEmpty) return const [];
     final rawElements = renderer['elements'];
     if (rawElements is! List) return const [];
-    final elementsById = <String, Map>{};
+    final elementsById = <String, Map<String, dynamic>>{};
     for (final raw in rawElements) {
       if (raw is Map && raw['id'] != null) {
-        elementsById['${raw['id']}'] = raw;
+        elementsById['${raw['id']}'] = Map<String, dynamic>.from(raw);
       }
     }
-    final layers = <Widget>[];
+    final entries = <({
+      Map<String, dynamic> choice,
+      double minX,
+      double minY,
+      double maxX,
+      double maxY,
+      double basePad,
+    })>[];
     for (final choice in widget.canvasChoices) {
       final ids = (choice['element_ids'] as List? ?? []).map((e) => '$e');
       final boxes = <(double, double, double, double)>[];
+      var hasBareText = false;
       for (final id in ids) {
         final el = elementsById[id];
         if (el == null) continue;
-        final b = elementVisualBounds(el);
+        if (el['type'] == 'text') hasBareText = true;
+        final b = _exactElementBounds(el, logicalSize);
         if (b != null) boxes.add(b);
       }
       if (boxes.isEmpty) continue;
-      final minX = boxes.map((b) => b.$1).reduce(math.min);
-      final minY = boxes.map((b) => b.$2).reduce(math.min);
-      final maxX = boxes.map((b) => b.$3).reduce(math.max);
-      final maxY = boxes.map((b) => b.$4).reduce(math.max);
-      const pad = 6.0;
-      final left = (minX - pad) * scale;
-      final top = (minY - pad) * scale;
-      final width = math.max(32.0, (maxX - minX + pad * 2) * scale);
-      final height = math.max(32.0, (maxY - minY + pad * 2) * scale);
+      entries.add((
+        choice: choice,
+        minX: boxes.map((b) => b.$1).reduce(math.min),
+        minY: boxes.map((b) => b.$2).reduce(math.min),
+        maxX: boxes.map((b) => b.$3).reduce(math.max),
+        maxY: boxes.map((b) => b.$4).reduce(math.max),
+        basePad: hasBareText ? 4.0 : 2.5,
+      ));
+    }
+    const minGap = 4.0;
+    final layers = <Widget>[];
+    for (var i = 0; i < entries.length; i++) {
+      final entry = entries[i];
+      var padLeft = entry.basePad;
+      var padRight = entry.basePad;
+      var padTop = entry.basePad;
+      var padBottom = entry.basePad;
+      for (var j = 0; j < entries.length; j++) {
+        if (i == j) continue;
+        final other = entries[j];
+        final yOverlap = entry.minY < other.maxY && entry.maxY > other.minY;
+        if (yOverlap) {
+          if (other.minX >= entry.maxX) {
+            final allowed = math.max(0.0, (other.minX - entry.maxX - minGap) / 2);
+            padRight = math.min(padRight, allowed);
+          } else if (entry.minX >= other.maxX) {
+            final allowed = math.max(0.0, (entry.minX - other.maxX - minGap) / 2);
+            padLeft = math.min(padLeft, allowed);
+          }
+        }
+        final xOverlap = entry.minX < other.maxX && entry.maxX > other.minX;
+        if (xOverlap) {
+          if (other.minY >= entry.maxY) {
+            final allowed = math.max(0.0, (other.minY - entry.maxY - minGap) / 2);
+            padBottom = math.min(padBottom, allowed);
+          } else if (entry.minY >= other.maxY) {
+            final allowed = math.max(0.0, (entry.minY - other.maxY - minGap) / 2);
+            padTop = math.min(padTop, allowed);
+          }
+        }
+      }
+      final choice = entry.choice;
+      final left = (entry.minX - padLeft) * scale;
+      final top = (entry.minY - padTop) * scale;
+      final width = math.max(32.0, (entry.maxX - entry.minX + padLeft + padRight) * scale);
+      final height = math.max(32.0, (entry.maxY - entry.minY + padTop + padBottom) * scale);
       final choiceValue = '${choice['value'] ?? choice['choice_id'] ?? ''}';
       final choiceId = '${choice['choice_id'] ?? ''}';
       final label = '${choice['label'] ?? choiceValue}';
