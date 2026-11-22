@@ -149,7 +149,69 @@
     "type": "choice",
     "value": "소방서",
     "unit": "",
-    "target_ref": "place.fire_station"
+    "target_ref": "place.fire_station",
+    "presentation": {
+      "mode": "canvas_select",
+      "show_canvas": true,
+      "editor_managed": true,
+      "review": {
+        "mode": "canvas_select",
+        "show_canvas": true,
+        "status": "pending",
+        "note": "",
+        "answers": [
+          {
+            "value": "소방서",
+            "ref": "answer.value"
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice.canvas.konva_1795337647636_select_64114",
+            "text": "소방서",
+            "correct": true,
+            "label": "1",
+            "sourceRefs": [
+              "konva_1792368892203_text_422073"
+            ]
+          },
+          {
+            "id": "choice.canvas.konva_1795337647636_select_67978",
+            "text": "주민센터",
+            "correct": false,
+            "label": "2",
+            "sourceRefs": [
+              "konva_1795337647636_paste_22161_0"
+            ]
+          }
+        ]
+      }
+    },
+    "choices": [
+      {
+        "id": "choice.canvas.konva_1795337647636_select_64114",
+        "label": "1",
+        "text": "소방서",
+        "source_refs": [
+          "konva_1792368892203_text_422073"
+        ]
+      },
+      {
+        "id": "choice.canvas.konva_1795337647636_select_67978",
+        "label": "2",
+        "text": "주민센터",
+        "source_refs": [
+          "konva_1795337647636_paste_22161_0"
+        ]
+      }
+    ],
+    "answer_key": [
+      {
+        "id": "choice.canvas.konva_1795337647636_select_64114",
+        "value": "소방서"
+      }
+    ],
+    "blanks": []
   },
   "understanding": {
     "summary": "소방서를 거치는 길과 주민센터를 거치는 길의 전체 거리를 각각 더하여 어느 길이 더 먼지 비교하는 문제입니다.",

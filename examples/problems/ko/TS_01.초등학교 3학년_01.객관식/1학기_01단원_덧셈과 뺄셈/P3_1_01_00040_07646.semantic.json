@@ -17,7 +17,8 @@
         "slot.question"
       ],
       "instruction": [],
-      "choice": []
+      "choice": [],
+      "answer_prompt": []
     },
     "presentation_prompt": "집에서 학교로 가는 길은 소방서를 거쳐 가는 것과 주민센터를 거쳐서 가는 것 두 가지입니다. 집에서 소방서까지 168m이고 소방서에서 학교까지는 726m입니다. 그리고 집에서 주민센터까지는 625m이고 주민센터에서 학교까지의 거리는 186m입니다. 소방서를 거쳐서 가는 것과 주민센터를 거쳐서 가는 것 중 어느 곳을 거쳐서 가는 것이 더 멀겠습니까?"
   },
@@ -134,6 +135,68 @@
     "type": "choice",
     "value": "소방서",
     "unit": "",
-    "target_ref": "place.fire_station"
+    "target_ref": "place.fire_station",
+    "presentation": {
+      "mode": "canvas_select",
+      "show_canvas": true,
+      "editor_managed": true,
+      "review": {
+        "mode": "canvas_select",
+        "show_canvas": true,
+        "status": "pending",
+        "note": "",
+        "answers": [
+          {
+            "value": "소방서",
+            "ref": "answer.value"
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice.canvas.konva_1795337647636_select_64114",
+            "text": "소방서",
+            "correct": true,
+            "label": "1",
+            "sourceRefs": [
+              "konva_1792368892203_text_422073"
+            ]
+          },
+          {
+            "id": "choice.canvas.konva_1795337647636_select_67978",
+            "text": "주민센터",
+            "correct": false,
+            "label": "2",
+            "sourceRefs": [
+              "konva_1795337647636_paste_22161_0"
+            ]
+          }
+        ]
+      }
+    },
+    "choices": [
+      {
+        "id": "choice.canvas.konva_1795337647636_select_64114",
+        "label": "1",
+        "text": "소방서",
+        "source_refs": [
+          "konva_1792368892203_text_422073"
+        ]
+      },
+      {
+        "id": "choice.canvas.konva_1795337647636_select_67978",
+        "label": "2",
+        "text": "주민센터",
+        "source_refs": [
+          "konva_1795337647636_paste_22161_0"
+        ]
+      }
+    ],
+    "answer_key": [
+      {
+        "id": "choice.canvas.konva_1795337647636_select_64114",
+        "value": "소방서"
+      }
+    ],
+    "blanks": []
   }
 }

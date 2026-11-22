@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart' show listEquals;
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../utils/problem_presentation.dart' show elementVisualBounds;
 
 typedef RendererImageLoader = Future<Uint8List> Function(String relativePath);
 
@@ -22,6 +23,9 @@ class RendererJsonCanvas extends StatefulWidget {
     this.fieldValues,
     this.onFieldsChanged,
     this.inputsEnabled = true,
+    this.canvasChoices = const [],
+    this.selectedChoices = const {},
+    this.onChoiceTap,
   });
 
   final Map<String, dynamic> renderer;
@@ -34,6 +38,9 @@ class RendererJsonCanvas extends StatefulWidget {
   final List<String>? fieldValues;
   final ValueChanged<List<String>>? onFieldsChanged;
   final bool inputsEnabled;
+  final List<Map<String, dynamic>> canvasChoices;
+  final Set<String> selectedChoices;
+  final ValueChanged<String>? onChoiceTap;
 
   @override
   State<RendererJsonCanvas> createState() => _RendererJsonCanvasState();
@@ -173,6 +180,7 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
                                   ),
                                   ..._textBoxLayers(effectiveRenderer, scale),
                                   ..._inputLayers(inputSlots, scale),
+                                  ..._canvasChoiceLayers(effectiveRenderer, scale),
                                 ],
                               ),
                             ),
@@ -190,6 +198,104 @@ class _RendererJsonCanvasState extends State<RendererJsonCanvas> {
             );
           },
         ));
+  }
+
+  List<Widget> _canvasChoiceLayers(Map<String, dynamic> renderer, double scale) {
+    if (widget.canvasChoices.isEmpty) return const [];
+    final rawElements = renderer['elements'];
+    if (rawElements is! List) return const [];
+    final elementsById = <String, Map>{};
+    for (final raw in rawElements) {
+      if (raw is Map && raw['id'] != null) {
+        elementsById['${raw['id']}'] = raw;
+      }
+    }
+    final layers = <Widget>[];
+    for (final choice in widget.canvasChoices) {
+      final ids = (choice['element_ids'] as List? ?? []).map((e) => '$e');
+      final boxes = <(double, double, double, double)>[];
+      for (final id in ids) {
+        final el = elementsById[id];
+        if (el == null) continue;
+        final b = elementVisualBounds(el);
+        if (b != null) boxes.add(b);
+      }
+      if (boxes.isEmpty) continue;
+      final minX = boxes.map((b) => b.$1).reduce(math.min);
+      final minY = boxes.map((b) => b.$2).reduce(math.min);
+      final maxX = boxes.map((b) => b.$3).reduce(math.max);
+      final maxY = boxes.map((b) => b.$4).reduce(math.max);
+      const pad = 6.0;
+      final left = (minX - pad) * scale;
+      final top = (minY - pad) * scale;
+      final width = math.max(32.0, (maxX - minX + pad * 2) * scale);
+      final height = math.max(32.0, (maxY - minY + pad * 2) * scale);
+      final choiceValue = '${choice['value'] ?? choice['choice_id'] ?? ''}';
+      final choiceId = '${choice['choice_id'] ?? ''}';
+      final label = '${choice['label'] ?? choiceValue}';
+      final selected = widget.selectedChoices.contains(choiceValue) ||
+          (choiceId.isNotEmpty && widget.selectedChoices.contains(choiceId));
+      layers.add(
+        Positioned(
+          left: left,
+          top: top,
+          width: width,
+          height: height,
+          child: Semantics(
+            button: true,
+            selected: selected,
+            enabled: widget.inputsEnabled,
+            label: label,
+            child: MouseRegion(
+              cursor: widget.inputsEnabled
+                  ? SystemMouseCursors.click
+                  : SystemMouseCursors.basic,
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: widget.inputsEnabled && widget.onChoiceTap != null
+                    ? () => widget.onChoiceTap!(choiceValue)
+                    : null,
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 140),
+                  decoration: BoxDecoration(
+                    color: selected
+                        ? const Color(0x1F4338CA)
+                        : const Color(0x054338CA),
+                    border: Border.all(
+                      color: selected
+                          ? const Color(0xFF4338CA)
+                          : const Color(0x556366F1),
+                      width: selected ? 3.0 : 1.5,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: selected
+                      ? Align(
+                          alignment: Alignment.topRight,
+                          child: Container(
+                            margin: const EdgeInsets.all(4),
+                            width: 24,
+                            height: 24,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFF4338CA),
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(
+                              Icons.check,
+                              size: 16,
+                              color: Colors.white,
+                            ),
+                          ),
+                        )
+                      : null,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+    return layers;
   }
 
   Future<Uint8List> _loadRelativeImage(String href) {

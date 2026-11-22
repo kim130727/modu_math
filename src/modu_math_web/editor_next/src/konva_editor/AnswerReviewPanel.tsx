@@ -15,6 +15,8 @@ export function AnswerReviewPanel({
   syncPanel,
   authoring = false,
   onAddBlank,
+  onAddSelectedAsCanvasChoice,
+  hasCanvasSelection = false,
   onHighlightAnswer,
   canvasChoiceCandidates = [],
 }: {
@@ -31,6 +33,8 @@ export function AnswerReviewPanel({
   syncPanel?: ReactNode;
   authoring?: boolean;
   onAddBlank?: () => void;
+  onAddSelectedAsCanvasChoice?: () => void;
+  hasCanvasSelection?: boolean;
   onHighlightAnswer?: (index: number | null) => void;
   canvasChoiceCandidates?: AnswerChoiceReview[];
 }) {
@@ -51,7 +55,8 @@ export function AnswerReviewPanel({
 
   const update = (patch: Partial<AnswerReviewSettings>) => onChange({ ...settings, ...patch });
 
-  const choiceMode = settings.mode === "choice";
+  const choiceMode = settings.mode === "choice" || settings.mode === "canvas_select";
+  const canvasSelectMode = settings.mode === "canvas_select";
   const groupMode = settings.mode === "grouped_choice";
   const oxMode = settings.mode === "ox";
   const groups = settings.groups ?? [];
@@ -193,7 +198,7 @@ export function AnswerReviewPanel({
               value={settings.mode}
               onChange={(event) => {
                 const mode = event.target.value as AnswerReviewSettings["mode"];
-                update({ mode, ...(mode === "canvas_slots" ? { show_canvas: true } : {}) });
+                update({ mode, ...(mode === "canvas_slots" || mode === "canvas_select" ? { show_canvas: true } : {}) });
               }}
             >
               <optgroup label="직접 입력 (주관식 / 빈칸 채우기)">
@@ -201,13 +206,36 @@ export function AnswerReviewPanel({
                 <option value="panel_input">단답형 직접 입력 (하단 입력창 / 키패드)</option>
               </optgroup>
               <optgroup label="보기 선택 (객관식 / OX 판정)">
-                <option value="choice">객관식 (보기에서 선택)</option>
+                <option value="canvas_select">캔버스에서 직접 클릭 선택 (카드·도형·글자 클릭)</option>
+                <option value="choice">객관식 (하단 보기에서 선택)</option>
                 <option value="ox">OX 판정 (참 / 거짓 선택)</option>
                 <option value="grouped_choice">세트형 객관식 (소문항별 보기 선택)</option>
               </optgroup>
             </select>
           </label>
           {settings.mode === "canvas_slots" && onAddBlank ? <button type="button" className="answer-add-blank" onClick={onAddBlank}>＋ 문제에 정답 빈칸 추가</button> : null}
+          {canvasSelectMode && onAddSelectedAsCanvasChoice ? (
+            <button
+              type="button"
+              className="answer-add-blank"
+              disabled={!hasCanvasSelection}
+              title={hasCanvasSelection ? "캔버스에서 선택한 카드·도형·글자를 클릭 보기로 추가합니다." : "먼저 캔버스에서 클릭할 카드, 도형 또는 글자를 선택하세요."}
+              onClick={onAddSelectedAsCanvasChoice}
+            >
+              ＋ 선택한 요소를 클릭 보기로 추가
+            </button>
+          ) : null}
+          {canvasSelectMode && canvasChoiceCandidates.length >= 2 ? (
+            <div className="review-quick-choices">
+              <button
+                type="button"
+                className="review-secondary-action"
+                onClick={() => update({ mode: "canvas_select", show_canvas: true, choices: canvasChoiceCandidates })}
+              >
+                캔버스 보기 자동 연결 ({canvasChoiceCandidates.length}개)
+              </button>
+            </div>
+          ) : null}
           {settings.mode === "panel_input" || settings.mode === "choice" ? (
             <div className="review-quick-choices">
               {canvasChoiceCandidates.length >= 2 ? (
@@ -244,7 +272,7 @@ export function AnswerReviewPanel({
             </div>
           ) : null}
           {settings.mode === "canvas_slots" && authoring ? <p className="review-help">정답 항목을 삭제하면 이 기능으로 만든 연결 빈칸도 함께 삭제됩니다.</p> : null}
-          <p className="review-help">{{ canvas_slots: "문제의 빈칸에 직접 답을 입력합니다. 빈칸 추가 버튼으로 정답과 연결된 입력칸을 만들 수 있습니다.", panel_input: "학생이 문제 아래의 입력창에 답을 씁니다. 여러 정답은 항목을 나누어 입력하세요.", choice: "보기를 작성하고 맞는 보기에 정답을 체크하세요. 복수 정답도 지정할 수 있습니다.", ox: "각 항목의 정답을 O 또는 X로 선택하세요.", grouped_choice: "소문항별 질문과 보기를 입력하고 정답을 선택하세요." }[settings.mode]}</p>
+          <p className="review-help">{{ canvas_slots: "문제의 빈칸에 직접 답을 입력합니다. 빈칸 추가 버튼으로 정답과 연결된 입력칸을 만들 수 있습니다.", canvas_select: "캔버스에서 카드·도형·글자를 선택한 뒤 '선택한 요소를 클릭 보기로 추가'를 누르고 정답에 체크하세요. 학생이 캔버스 요소를 직접 클릭해 답합니다.", panel_input: "학생이 문제 아래의 입력창에 답을 씁니다. 여러 정답은 항목을 나누어 입력하세요.", choice: "보기를 작성하고 맞는 보기에 정답을 체크하세요. 복수 정답도 지정할 수 있습니다.", ox: "각 항목의 정답을 O 또는 X로 선택하세요.", grouped_choice: "소문항별 질문과 보기를 입력하고 정답을 선택하세요." }[settings.mode]}</p>
 
           <h3 className="answer-step-heading"><span>2</span> {choiceMode ? "보기를 쓰고 정답을 체크하세요" : groupMode ? "소문항과 정답을 입력하세요" : "정답을 입력하세요"}</h3>
 
@@ -442,8 +470,8 @@ export function AnswerReviewPanel({
           <label className="review-canvas-visibility-option">
             <input
               type="checkbox"
-              checked={settings.mode === "canvas_slots" || settings.show_canvas !== false}
-              disabled={settings.mode === "canvas_slots"}
+              checked={settings.mode === "canvas_slots" || settings.mode === "canvas_select" || settings.show_canvas !== false}
+              disabled={settings.mode === "canvas_slots" || settings.mode === "canvas_select"}
               onChange={(event) => update({ show_canvas: event.target.checked })}
             />
             학습 화면에 문제 캔버스(그림) 표시

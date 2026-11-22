@@ -12,12 +12,18 @@ class ProblemCanvas extends StatelessWidget {
       required this.renderer,
       this.fieldValues,
       this.onFieldsChanged,
-      this.inputsEnabled = true});
+      this.inputsEnabled = true,
+      this.canvasChoices = const [],
+      this.selectedChoices = const {},
+      this.onChoiceTap});
 
   final Map<String, dynamic> renderer;
   final List<String>? fieldValues;
   final ValueChanged<List<String>>? onFieldsChanged;
   final bool inputsEnabled;
+  final List<Map<String, dynamic>> canvasChoices;
+  final Set<String> selectedChoices;
+  final ValueChanged<String>? onChoiceTap;
 
   @override
   Widget build(BuildContext context) => Center(
@@ -48,6 +54,9 @@ class ProblemCanvas extends StatelessWidget {
                 fieldValues: fieldValues,
                 onFieldsChanged: onFieldsChanged,
                 inputsEnabled: inputsEnabled,
+                canvasChoices: canvasChoices,
+                selectedChoices: selectedChoices,
+                onChoiceTap: onChoiceTap,
               ),
             );
           }),

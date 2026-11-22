@@ -51,6 +51,12 @@ class AssignmentItem {
   Map<String, dynamic> get presentation =>
       assignmentMap(content['presentation']);
   bool get canvasInputs => presentation['mode'] == 'canvas_slots';
+  bool get canvasSelect => presentation['mode'] == 'canvas_select';
+  List<Map<String, dynamic>> get canvasChoices =>
+      (presentation['canvas_choices'] as List? ?? [])
+          .map(assignmentMap)
+          .toList();
+  bool get canvasSelectMulti => presentation['multi'] == true;
   bool get showCanvas => presentation['show_canvas'] != false;
   String get unit => '${assignmentMap(content['input_schema'])['unit'] ?? ''}';
   List<AssignmentField> get fields {

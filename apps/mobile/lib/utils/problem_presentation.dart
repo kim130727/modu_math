@@ -2,15 +2,19 @@ import 'dart:math' as math;
 
 import '../models/content_models.dart';
 
-final _visualCache = Expando<Map<String, dynamic>>();
-
-/// A display-only projection. Authored data remains available for grading,
-/// hints and editing. Unknown visual content is deliberately preserved.
-Map<String, dynamic> problemVisualRenderer(ProblemContent content) {
-  return _visualCache[content] ??= _projectVisual(content);
-}
-
-Map<String, dynamic> _projectVisual(ProblemContent content) {
+final _visualCache = Expando<Map<String, dynamic>>();
+final _visualCacheWithChoices = Expando<Map<String, dynamic>>();
+
+/// A display-only projection. Authored data remains available for grading,
+/// hints and editing. Unknown visual content is deliberately preserved.
+Map<String, dynamic> problemVisualRenderer(ProblemContent content, {bool keepCanvasChoices = false}) {
+  if (keepCanvasChoices) {
+    return _visualCacheWithChoices[content] ??= _projectVisual(content, keepCanvasChoices: true);
+  }
+  return _visualCache[content] ??= _projectVisual(content);
+}
+
+Map<String, dynamic> _projectVisual(ProblemContent content, {bool keepCanvasChoices = false}) {
   final renderer = content.renderer;
   final raw = renderer['elements'];
   if (raw is! List) return renderer;
@@ -170,7 +174,7 @@ Map<String, dynamic> _projectVisual(ProblemContent content) {
                 .hasMatch(identity)) &&
         !hasLabelMarker;
 
-    final isChoice = !isExplicitCanvas &&
+    final isChoice = !keepCanvasChoices && !isExplicitCanvas &&
         text.isNotEmpty &&
         !isDiagramLabel &&
         isChoiceRole &&
@@ -273,6 +277,8 @@ bool _hasVisualPresence(Map element) {
   return true;
 }
 
+(double, double, double, double)? elementVisualBounds(Map element) => _bounds(element);
+
 (double, double, double, double)? _bounds(Map element) {
   final a = element['attributes'];
   if (a is! Map || a.containsKey('transform')) return null;

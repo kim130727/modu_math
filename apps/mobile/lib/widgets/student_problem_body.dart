@@ -41,7 +41,7 @@ class StudentProblemBody extends StatelessWidget {
             StudentProblemCanvas(
                 item: item, value: value, enabled: enabled, changed: changed),
           const SizedBox(height: 20),
-          if (!item.canvasInputs)
+          if (!item.canvasInputs && !item.canvasSelect)
             AssignmentAnswerInput(
                 key: ValueKey('student-input-${item.id}'),
                 item: item,

@@ -16,7 +16,10 @@ class StudentProblemCanvas extends StatelessWidget {
   final ValueChanged<dynamic> changed;
   @override
   Widget build(BuildContext context) {
-    final renderer = problemVisualRenderer(item.problem);
+    final renderer = problemVisualRenderer(
+      item.problem,
+      keepCanvasChoices: item.canvasSelect,
+    );
     final bindings = assignmentMap(item.presentation['canvas_bindings']);
     final bindingCounts = <dynamic, int>{};
     for (final field in bindings.values) {
@@ -63,6 +66,12 @@ class StudentProblemCanvas extends StatelessWidget {
             : value is List && i < value.length
                 ? '${value[i] ?? ''}'
                 : '');
+    final selectedChoices = <String>{
+      if (value is List)
+        ...value.map((entry) => '$entry')
+      else if (value != null && '$value'.isNotEmpty)
+        '$value',
+    };
     return ProblemCanvas(
         renderer: item.canvasInputs
             ? {
@@ -74,6 +83,24 @@ class StudentProblemCanvas extends StatelessWidget {
             : renderer,
         fieldValues: item.canvasInputs ? values : null,
         inputsEnabled: enabled,
+        canvasChoices: item.canvasSelect ? item.canvasChoices : const [],
+        selectedChoices: selectedChoices,
+        onChoiceTap: item.canvasSelect
+            ? (choiceValue) {
+                if (!enabled) return;
+                if (item.canvasSelectMulti) {
+                  final next = Set<String>.from(selectedChoices);
+                  if (next.contains(choiceValue)) {
+                    next.remove(choiceValue);
+                  } else {
+                    next.add(choiceValue);
+                  }
+                  changed(next.isEmpty ? null : next.toList());
+                } else {
+                  changed(choiceValue);
+                }
+              }
+            : null,
         onFieldsChanged: (values) =>
             changed(values.length == 1 ? values.single : values));
   }

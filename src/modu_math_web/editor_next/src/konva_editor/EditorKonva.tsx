@@ -999,6 +999,48 @@ export function EditorKonva() {
     setMessage(`정답 빈칸 ${index + 1}을 추가했습니다. 오른쪽에서 정답을 입력하고 빈칸을 원하는 위치로 옮기세요.`);
   };
 
+  const addSelectedAsCanvasChoice = () => {
+    if (!selectedShapes.length) return;
+    const refs = selectedShapes.map((shape) => shape.id);
+    const nextNumber = activeReview.choices.length + 1;
+    const textShape = selectedShapes.find((shape): shape is Extract<EditorShape, { type: "text" }> => shape.type === "text" && shape.text.trim().length > 0);
+    let labelText = textShape?.text.trim() ?? "";
+    if (!labelText) {
+      const rectShape = selectedShapes.find((shape) => shape.type === "rect");
+      if (rectShape && rectShape.type === "rect") {
+        const innerTexts = document.shapes
+          .filter((candidate): candidate is Extract<EditorShape, { type: "text" }> => {
+            if (candidate.type !== "text" || !candidate.text.trim()) return false;
+            return (
+              candidate.x >= rectShape.x - 4 &&
+              candidate.x <= rectShape.x + rectShape.width + 4 &&
+              candidate.y >= rectShape.y - 4 &&
+              candidate.y <= rectShape.y + rectShape.height + 4
+            );
+          })
+          .map((candidate) => candidate.text.trim());
+        labelText = innerTexts.join(" ").trim();
+      }
+    }
+    const text = labelText || `보기 ${nextNumber}`;
+    const choice: AnswerChoiceReview = {
+      id: `choice.canvas.${nextId("select")}`,
+      label: String(nextNumber),
+      text,
+      correct: false,
+      sourceRefs: refs,
+    };
+    setDraftReview({
+      ...activeReview,
+      mode: "canvas_select",
+      show_canvas: true,
+      status: "pending",
+      choices: [...activeReview.choices, choice],
+    });
+    setSaveStatus("unsaved");
+    setMessage(`'${text}' 요소를 캔버스 클릭 보기로 추가했습니다. 정답인 보기에 체크한 뒤 저장하세요.`);
+  };
+
   const editorPanel = (
     <div className={`konva-side-panel${activeSidePanel === "answers" ? " answer-authoring-dock" : ""}`}>
       <div className="konva-side-tabs" role="tablist" aria-label="Editor side panels">
@@ -1030,6 +1072,8 @@ export function EditorKonva() {
       <div className="konva-side-content">
         {activeSidePanel === "answers" ? <AnswerReviewPanel key={selectedProblemId} authoring settings={activeReview}
           onAddBlank={addAnswerBlank}
+          onAddSelectedAsCanvasChoice={addSelectedAsCanvasChoice}
+          hasCanvasSelection={selectedShapeIds.length > 0}
           onChange={changeAnswerSettings}
           onSave={override => { void buildCurrentProblem(override); }}
           busy={saveStatus === "saving" || saveStatus === "building"}
@@ -1174,8 +1218,8 @@ export function EditorKonva() {
             answerReviewMode={answerReviewMode}
             highlightedAnswerIndex={highlightedAnswerIndex}
             answerOptions={answerBindingOptions}
-            answerChoices={answerChoiceReviews}
-            answerPresentationMode={answerPresentationMode}
+            answerChoices={activeReview.mode === "canvas_select" ? activeReview.choices : answerChoiceReviews}
+            answerPresentationMode={activeReview.mode === "canvas_select" ? "canvas_select" : answerPresentationMode}
             showAnswerCanvas={activeReview.show_canvas !== false}
             editorPanel={inspectorOpen ? editorPanel : undefined}
             reviewPanel={<AnswerReviewPanel settings={activeReview}

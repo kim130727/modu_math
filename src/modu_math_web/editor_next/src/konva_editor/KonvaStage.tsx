@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { Circle, Layer, Line, Path, Rect, Stage, Text, Transformer } from "react-konva";
+import { Circle, Group, Layer, Line, Path, Rect, Stage, Text, Transformer } from "react-konva";
 import type Konva from "konva";
 import type { TutorRendererOverlay } from "../api/editorApi";
 import type { BaseTenBlockKind, ConnectorShape, EditorShape, LineShape } from "../types/editorShape";
@@ -201,6 +201,7 @@ export function KonvaStage({
     () => shapes.filter((shape) => shape.type === "text" && shape.semanticRole === "answer_prompt"),
     [shapes],
   );
+  const isCanvasSelect = answerPresentationMode === "canvas_select";
   const renderedShapes = useMemo(() => {
     const hiddenChoices: EditorShape[] = [];
     const kept: EditorShape[] = [];
@@ -208,7 +209,7 @@ export function KonvaStage({
       if (isTopPresentationShape(shape) || shape.semanticRole === "answer_prompt") {
         continue;
       }
-      if (answerChoices.length > 0 && (isChoiceShape(shape) || isChoiceDecoration(shape))) {
+      if (!isCanvasSelect && answerChoices.length > 0 && (isChoiceShape(shape) || isChoiceDecoration(shape))) {
         hiddenChoices.push(shape);
         continue;
       }
@@ -218,7 +219,7 @@ export function KonvaStage({
       ? kept.filter((shape) => !isEmptyChoiceFrame(shape, hiddenChoices, kept))
       : kept;
     return visible.sort(compareRenderOrder);
-  }, [answerChoices.length, shapes]);
+  }, [answerChoices.length, isCanvasSelect, shapes]);
   const [fitContent, setFitContent] = useState(true);
   const [zoom, setZoom] = useState<number | null>(null);
   const crop = useMemo(
@@ -592,6 +593,55 @@ export function KonvaStage({
               onContextMenu={(event) => openShapeContextMenu(shape, event)}
             />
           ))}
+          {isCanvasSelect
+            ? answerChoices.map((choice, index) => {
+                const refs = choice.sourceRefs?.length ? choice.sourceRefs : [choice.id];
+                const matched = renderedShapes.filter((shape) => refs.includes(shape.id));
+                if (!matched.length) return null;
+                const boxes = matched.map(shapeBounds);
+                const minX = Math.min(...boxes.map((b) => b.x)) - 3;
+                const minY = Math.min(...boxes.map((b) => b.y)) - 3;
+                const maxX = Math.max(...boxes.map((b) => b.x + b.width)) + 3;
+                const maxY = Math.max(...boxes.map((b) => b.y + b.height)) + 3;
+                const badgeText = choice.correct ? `✓ 정답` : `보기 ${index + 1}`;
+                const badgeWidth = Math.max(46, badgeText.length * 9 + 12);
+                const color = choice.correct ? "#15803d" : "#2563eb";
+                return (
+                  <Group key={`canvas-choice-${choice.id}`} listening={false}>
+                    <Rect
+                      x={minX}
+                      y={minY}
+                      width={Math.max(16, maxX - minX)}
+                      height={Math.max(16, maxY - minY)}
+                      stroke={color}
+                      strokeWidth={choice.correct ? 2.5 : 1.6}
+                      dash={choice.correct ? undefined : [6, 4]}
+                      fill={choice.correct ? "rgba(21, 128, 61, 0.08)" : "rgba(37, 99, 235, 0.05)"}
+                      cornerRadius={6}
+                    />
+                    <Rect
+                      x={minX}
+                      y={Math.max(2, minY - 20)}
+                      width={badgeWidth}
+                      height={18}
+                      fill={color}
+                      cornerRadius={4}
+                    />
+                    <Text
+                      x={minX}
+                      y={Math.max(4, minY - 18)}
+                      width={badgeWidth}
+                      text={badgeText}
+                      fontFamily={KONVA_PREVIEW_FONT_FAMILY}
+                      fontSize={11}
+                      fontStyle="bold"
+                      fill="#ffffff"
+                      align="center"
+                    />
+                  </Group>
+                );
+              })
+            : null}
           {renderedShapes.map((shape) => {
             if (!shape.interaction) return null;
             const review = answerReviews.get(shape.id);
@@ -709,7 +759,7 @@ export function KonvaStage({
         </Layer>
       </Stage>
       </div>
-      {(answerPromptShapes.length > 0 || answerChoices.length > 0) && !answerReviewMode ? (
+      {(answerPromptShapes.length > 0 || (!isCanvasSelect && answerChoices.length > 0)) && !answerReviewMode ? (
         <div className="konva-answer-prompt-preview" role="region" aria-label="정답 선택 영역">
           <strong>정답 선택 영역</strong>
           {answerPromptShapes.map((shape) => (
