@@ -194,29 +194,46 @@ Map<String, dynamic> _projectVisual(ProblemContent content) {
     }
   }
   if (removed.isEmpty) return renderer;
-  // Remove a choice frame only when it contains solely the moved text.
-  kept.removeWhere((element) {
-    if (element is! Map ||
-        element['type'] != 'rect' ||
-        !RegExp(r'choice|option')
-            .hasMatch('${element['id']} ${element['source_ref']}')) {
-      return false;
-    }
-    final box = _bounds(element);
-    if (box == null) return false;
-    bool inside(Map other) {
-      final bounds = _bounds(other);
-      return bounds != null &&
-          bounds.$1 >= box.$1 &&
-          bounds.$2 >= box.$2 &&
-          bounds.$3 <= box.$3 &&
-          bounds.$4 <= box.$4;
-    }
-
-    return removed.any(inside) &&
-        !kept.any((other) =>
-            other is Map && !identical(other, element) && inside(other));
-  });
+  // Remove a choice frame only when it contains solely the moved text.
+  kept.removeWhere((element) {
+    if (element is! Map ||
+        element['type'] != 'rect' ||
+        !RegExp(r'choice|option', caseSensitive: false)
+            .hasMatch('${element['id']} ${element['source_ref']}')) {
+      return false;
+    }
+    final box = _bounds(element);
+    if (box == null) return false;
+    bool belongsInside(Map other) {
+      final bounds = _bounds(other);
+      if (bounds == null) return false;
+      final cx = (bounds.$1 + bounds.$3) / 2;
+      final cy = (bounds.$2 + bounds.$4) / 2;
+      if (cx >= box.$1 && cx <= box.$3 && cy >= box.$2 && cy <= box.$4) {
+        return true;
+      }
+      if (other['type'] == 'text') {
+        final a = other['attributes'];
+        if (a is Map) {
+          final tx = double.tryParse('${a['x']}');
+          final ty = double.tryParse('${a['y']}');
+          if (tx != null &&
+              ty != null &&
+              tx >= box.$1 &&
+              tx <= box.$3 &&
+              ty >= box.$2 &&
+              ty <= box.$4) {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    return removed.any(belongsInside) &&
+        !kept.any((other) =>
+            other is Map && !identical(other, element) && belongsInside(other));
+  });
   final result = <String, dynamic>{...renderer, 'elements': kept};
   // Fit the remaining artwork without altering any authored coordinates.
   final visualElements =

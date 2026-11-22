@@ -28,7 +28,7 @@ import type { AvatarConfig } from "./avatar/avatarParts";
 import { avatarTargets, replaceAvatarShapes } from "./avatar/avatarReplacement";
 import { PropertyPanel } from "./PropertyPanel";
 import { PlacementSyncPanel } from "./PlacementSyncPanel";
-import { answerChoicesFromArtifacts, inferAnswerPresentationMode, reviewSettings, type AnswerReviewSettings, type AnswerBindingOption } from "./answerReview";
+import { answerChoicesFromArtifacts, inferAnswerPresentationMode, reviewSettings, sortChoicesByLabel, type AnswerChoiceReview, type AnswerReviewSettings, type AnswerBindingOption } from "./answerReview";
 import { AnswerReviewPanel } from "./AnswerReviewPanel";
 import { AnswerReviewSyncPanel } from "./AnswerReviewSyncPanel";
 import { TutorFlowPanel } from "./TutorFlowPanel";
@@ -112,6 +112,10 @@ export function EditorKonva() {
   );
   const effectiveTutorFlow = draftTutorFlow ?? previewArtifacts.renderer?.tutor_flow ?? [];
   const activeReview = useMemo(() => draftReview ?? reviewSettings(previewArtifacts.semantic, answerBindingOptions, answerChoiceReviews, answerPresentationMode), [draftReview, previewArtifacts.semantic, answerBindingOptions, answerChoiceReviews, answerPresentationMode]);
+  const canvasChoiceCandidates = useMemo(
+    () => detectCanvasChoiceCandidates(document.shapes, activeReview.answers),
+    [document.shapes, activeReview.answers],
+  );
   const activeTutorFrames = useMemo(() => {
     if (!activeTutorStepId) return [];
     const step = effectiveTutorFlow.find((item) => item.step_id === activeTutorStepId);
@@ -1032,7 +1036,8 @@ export function EditorKonva() {
           feedback={saveStatus === "error" ? message : saveStatus === "unsaved" ? "저장하지 않은 변경" : ""}
           onSelect={ids => { setSelectedShapeIds(ids); setActiveSidePanel("properties"); }}
           onEditLayout={() => setActiveSidePanel("properties")}
-          onHighlightAnswer={setHighlightedAnswerIndex} /> : null}
+          onHighlightAnswer={setHighlightedAnswerIndex}
+          canvasChoiceCandidates={canvasChoiceCandidates} /> : null}
         {activeSidePanel === "properties" ? (
           <PropertyPanel
             syncPanel={<PlacementSyncPanel key={selectedProblemId} problemId={selectedProblemId} shapes={document.shapes} selectedIds={selectedShapeIds} onSave={buildCurrentProblem} />}
@@ -1088,7 +1093,6 @@ export function EditorKonva() {
             <button type="button" aria-pressed={inspectorOpen} disabled={answerReviewMode || studentPreviewOpen} onClick={() => setInspectorOpen(value => !value)}>속성 패널</button>
           </div>
         }
-        onOpenAnswers={() => { setStudentPreviewOpen(false); setAnswerReviewMode(false); setInspectorOpen(true); setActiveSidePanel("answers"); }}
         onAddAnswerBlank={addAnswerBlank}
         busy={saveStatus === "saving" || saveStatus === "building"}
         hasSelection={selectedShapeIds.length > 0}
@@ -1189,7 +1193,8 @@ export function EditorKonva() {
               feedback={saveStatus === "error" ? message : saveStatus === "unsaved" ? "저장하지 않은 수정" : saveStatus === "built" ? "저장 및 Build 완료" : ""}
               onSelect={(ids) => { setAnswerReviewMode(false); setSelectedShapeIds(ids); setActiveSidePanel("properties"); }}
               onEditLayout={() => { setAnswerReviewMode(false); setActiveSidePanel("properties"); }}
-              onHighlightAnswer={setHighlightedAnswerIndex} />}
+              onHighlightAnswer={setHighlightedAnswerIndex}
+              canvasChoiceCandidates={canvasChoiceCandidates} />}
             onSelectShapes={setSelectedShapeIds}
             onChangeShapes={updateShapes}
             onConvertShapesToAnswer={(ids) => setAnswerSlotState(ids, true)}
@@ -1284,6 +1289,45 @@ function SidePanelIcon({ icon }: { icon: SidePanelTab }) {
 function problemLanguageFromId(problemId: string): ProblemLanguage | null {
   const firstPart = problemId.replace(/\\/g, "/").split("/").filter(Boolean)[0];
   return problemLanguages.includes(firstPart as ProblemLanguage) ? firstPart as ProblemLanguage : null;
+}
+
+function detectCanvasChoiceCandidates(
+  shapes: EditorShape[],
+  answers: Array<{ value: string }>,
+): AnswerChoiceReview[] {
+  const firstAnswer = answers[0]?.value?.trim() ?? "";
+  const selectedNumber = /^[①-⑳]$/.test(firstAnswer)
+    ? firstAnswer.charCodeAt(0) - "①".charCodeAt(0) + 1
+    : Number(firstAnswer);
+  const candidates = shapes
+    .filter((shape): shape is Extract<EditorShape, { type: "text" }> => {
+      if (shape.type !== "text") return false;
+      const text = shape.text.trim();
+      if (!text) return false;
+      return (
+        shape.semanticRole === "choice" ||
+        /(?:^|[._])(?:choice|option|opt)[._]?\d+(?:[._]|$)/i.test(shape.id) ||
+        /^[①-⑳]\s*\S/.test(text)
+      );
+    })
+    .map((shape, index) => {
+      const raw = shape.text.trim();
+      const prefix = raw.match(/^([①-⑳]|\([1-9][0-9]?\)|[1-9][0-9]?[.)])\s*/);
+      const label = prefix?.[1] ?? String(index + 1);
+      const text = prefix ? raw.slice(prefix[0].length) || label : raw;
+      const labelNumber = /^[①-⑳]$/.test(label)
+        ? label.charCodeAt(0) - "①".charCodeAt(0) + 1
+        : Number(label.replace(/[^0-9]/g, ""));
+      const correct = Number.isFinite(selectedNumber) && selectedNumber > 0 && labelNumber === selectedNumber;
+      return {
+        id: shape.id,
+        label,
+        text,
+        correct,
+        sourceRefs: [shape.id],
+      };
+    });
+  return sortChoicesByLabel(candidates);
 }
 
 function normalizeNewProblemId(value: string): string {

@@ -4,7 +4,7 @@
   "metadata": {
     "title": "몫이 6인 나눗셈식 선택하기",
     "tags": [],
-    "question": "94. 몫이 6인 나눗셈식을 찾아 선택하세요.",
+    "question": "몫이 6인 나눗셈식을 찾아 선택하세요.",
     "required_layout_ids": [
       "slot.choice.option_0",
       "slot.choice.option_1"
@@ -14,7 +14,16 @@
     "semester": 1,
     "subject": "수학",
     "chapter": "03단원_나눗셈",
-    "language": "ko-KR"
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "몫이 6인 나눗셈식을 찾아 선택하세요."
   },
   "domain": {
     "objects": [
@@ -46,13 +55,6 @@
     "confidence": 1.0
   },
   "answer": {
-    "type": "choice",
-    "value": "42 ÷ 7 = 6",
-    "unit": "",
-    "answer_index": 1,
-    "values": [
-      "42 ÷ 7 = 6"
-    ],
     "blanks": [],
     "choices": [
       {
@@ -73,6 +75,14 @@
         "slot_id": "slot.choice.option_1",
         "value": "42 ÷ 7 = 6"
       }
+    ],
+    "confidence": 1.0,
+    "type": "choice",
+    "value": "42 ÷ 7 = 6",
+    "unit": "",
+    "answer_index": 1,
+    "values": [
+      "42 ÷ 7 = 6"
     ]
   }
 }

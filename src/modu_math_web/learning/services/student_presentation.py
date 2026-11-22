@@ -102,6 +102,40 @@ def presentation_contract(problem, schema):
             and 0 <= index < len(fields)
         ):
             bindings[str(element["id"])] = index
+    canvas_choices = []
+    if mode == "canvas_select":
+        elements = problem.renderer_data.get("elements", [])
+        raw_choices = answer.get("choices") or []
+        for index, choice in enumerate(raw_choices if isinstance(raw_choices, list) else []):
+            if not isinstance(choice, dict):
+                continue
+            choice_id = str(choice.get("id") or f"choice.{index + 1}")
+            refs = set()
+            for ref in choice.get("source_refs") or []:
+                if isinstance(ref, str) and ref.strip():
+                    refs.add(ref.strip())
+            if isinstance(choice.get("slot_id"), str) and choice["slot_id"].strip():
+                refs.add(choice["slot_id"].strip())
+            refs.add(choice_id)
+            matched_ids = []
+            for element in elements:
+                if not isinstance(element, dict):
+                    continue
+                el_id = str(element.get("id") or "")
+                source_ref = str(element.get("source_ref") or "")
+                layout_slot_id = str((element.get("refs") or {}).get("layout_slot_id") or "")
+                if any(candidate and candidate in refs for candidate in (el_id, source_ref, layout_slot_id)):
+                    if el_id:
+                        matched_ids.append(el_id)
+            if matched_ids:
+                canvas_choices.append({
+                    "choice_id": choice_id,
+                    "value": str(choice.get("text") or choice.get("label") or choice_id),
+                    "label": str(choice.get("label") or choice.get("text") or f"{index + 1}"),
+                    "element_ids": matched_ids,
+                })
+        if not canvas_choices or review.get("show_canvas") is False:
+            mode = "choice"
     if not mode:
         mode = "canvas_slots" if bindings else "panel_input"
     # Keep every answer reachable when an older document has partial bindings.
@@ -115,6 +149,14 @@ def presentation_contract(problem, schema):
         "mode": mode,
         "show_canvas": review.get("show_canvas", True),
         "canvas_bindings": bindings if mode == "canvas_slots" else {},
+        **(
+            {
+                "canvas_choices": canvas_choices,
+                "multi": len(keys) > 1 or answer.get("target", {}).get("type") == "multiple_choice_set",
+            }
+            if mode == "canvas_select"
+            else {}
+        ),
     }
 
 

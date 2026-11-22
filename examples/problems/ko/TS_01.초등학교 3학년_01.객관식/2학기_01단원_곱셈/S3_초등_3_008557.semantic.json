@@ -19,7 +19,16 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "색칠된 부분이 나타내는 곱셈식을 고르세요."
+    "instruction": "색칠된 부분이 나타내는 곱셈식을 고르세요.",
+    "presentation_sources": {
+      "question": [
+        "slot.q.text"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "색칠된 부분은 실제 어떤 수의 곱인지 찾아 선택하세요."
   },
   "domain": {
     "objects": [
@@ -36,6 +45,7 @@
     "blanks": [],
     "choices": [],
     "answer_key": [],
+    "confidence": 1.0,
     "target": {
       "type": "selected_expression",
       "description": "색칠된 부분이 나타내는 곱"

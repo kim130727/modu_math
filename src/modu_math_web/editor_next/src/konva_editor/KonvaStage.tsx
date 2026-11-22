@@ -201,13 +201,24 @@ export function KonvaStage({
     () => shapes.filter((shape) => shape.type === "text" && shape.semanticRole === "answer_prompt"),
     [shapes],
   );
-  const renderedShapes = useMemo(
-    () => shapes.filter((shape) =>
-      !(isTopPresentationShape(shape) || shape.semanticRole === "answer_prompt" ||
-        ((isChoiceShape(shape) || isChoiceDecoration(shape)) && answerChoices.length > 0)),
-    ).sort(compareRenderOrder),
-    [answerChoices.length, answerReviewMode, shapes],
-  );
+  const renderedShapes = useMemo(() => {
+    const hiddenChoices: EditorShape[] = [];
+    const kept: EditorShape[] = [];
+    for (const shape of shapes) {
+      if (isTopPresentationShape(shape) || shape.semanticRole === "answer_prompt") {
+        continue;
+      }
+      if (answerChoices.length > 0 && (isChoiceShape(shape) || isChoiceDecoration(shape))) {
+        hiddenChoices.push(shape);
+        continue;
+      }
+      kept.push(shape);
+    }
+    const visible = hiddenChoices.length
+      ? kept.filter((shape) => !isEmptyChoiceFrame(shape, hiddenChoices, kept))
+      : kept;
+    return visible.sort(compareRenderOrder);
+  }, [answerChoices.length, shapes]);
   const [fitContent, setFitContent] = useState(true);
   const [zoom, setZoom] = useState<number | null>(null);
   const crop = useMemo(
@@ -1184,6 +1195,26 @@ function isChoiceShape(shape: EditorShape): boolean {
 
 function isChoiceDecoration(shape: EditorShape): boolean {
   return shape.type === "text" && /(?:^|[._])choices(?:[._]|$)/.test(shape.sourceRegionId ?? "") && /^[\s(),，]+$/.test(shape.text);
+}
+
+function isEmptyChoiceFrame(shape: EditorShape, hiddenChoices: EditorShape[], kept: EditorShape[]): boolean {
+  if (shape.type !== "rect" || shape.interaction) return false;
+  if (!/choice|option/i.test(`${shape.id} ${shape.sourceRegionId ?? ""}`)) return false;
+  const box = shapeBounds(shape);
+  const belongsInside = (other: EditorShape) => {
+    const b = shapeBounds(other);
+    const cx = b.x + b.width / 2;
+    const cy = b.y + b.height / 2;
+    if (cx >= box.x && cx <= box.x + box.width && cy >= box.y && cy <= box.y + box.height) return true;
+    if (other.type === "text") {
+      return other.x >= box.x && other.x <= box.x + box.width && other.y >= box.y && other.y <= box.y + box.height;
+    }
+    return false;
+  };
+  return (
+    hiddenChoices.some(belongsInside) &&
+    !kept.some((other) => other.id !== shape.id && belongsInside(other))
+  );
 }
 
 function contentCrop(shapes: EditorShape[], width: number, height: number, fitContent: boolean): CanvasRect {

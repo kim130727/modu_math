@@ -11,6 +11,36 @@ export function FlutterStudentPreview({ problemId, onClose }: { problemId: strin
   const [error, setError] = useState("");
   const [attempt, setAttempt] = useState(0);
   const [viewport, setViewport] = useState<PreviewViewport>("full");
+  const [cacheCleaned, setCacheCleaned] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    const clearLegacyStudentCache = async () => {
+      try {
+        if ("serviceWorker" in navigator) {
+          const registrations = await navigator.serviceWorker.getRegistrations();
+          await Promise.all(
+            registrations
+              .filter(reg => reg.scope.includes("/student_app/") || reg.scope.endsWith("/student/"))
+              .map(reg => reg.unregister().catch(() => false)),
+          );
+        }
+        if ("caches" in window) {
+          const keys = await caches.keys();
+          await Promise.all(
+            keys
+              .filter(key => key.toLowerCase().includes("flutter"))
+              .map(key => caches.delete(key).catch(() => false)),
+          );
+        }
+      } catch {
+        // Ignore storage/service-worker access errors in restricted contexts.
+      }
+      if (active) setCacheCleaned(true);
+    };
+    void clearLegacyStudentCache();
+    return () => { active = false; };
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -101,7 +131,7 @@ export function FlutterStudentPreview({ problemId, onClose }: { problemId: strin
               {loadingProblem && !ready ? "저장된 문제를 불러오는 중…" : !ready ? "학생 앱을 불러오는 중…" : "문제를 전환하는 중…"}
             </div>
           ) : null}
-          {problem || ready ? (
+          {cacheCleaned && (problem || ready) ? (
             <iframe
               ref={frameRef}
               key={attempt}

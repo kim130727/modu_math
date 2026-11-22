@@ -53,7 +53,15 @@ def structure_presentation(layout: dict, semantic: dict, solvable: dict | None =
         role_was_explicit = role_source == "explicit"
         region = slot_regions.get(slot.get("id"), {})
         region_id = str(region.get("id", ""))
-        if not role or role in {"text", "unknown"}:
+        if (
+            not role
+            or role in {"text", "unknown"}
+            or (
+                role == "choice_marker"
+                and not role_was_explicit
+                and not re.fullmatch(r"[①-⑳]|\([1-9][0-9]?\)|[1-9][0-9]?[.)]", text.strip())
+            )
+        ):
             if re.search(r"(?:^|[._])(?:instruction)(?:[._]|$)", identity):
                 role = "instruction"
             elif (

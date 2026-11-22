@@ -74,7 +74,6 @@ interface KonvaToolbarProps {
   headerStatus?: ReactNode;
   inspectorControl?: ReactNode;
   busy?: boolean;
-  onOpenAnswers: () => void;
   onAddAnswerBlank: () => void;
   hasSelection: boolean;
   hasAnswerSlotCandidate: boolean;
@@ -435,6 +434,7 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
       <div className="answer-review-toggle" role="group" aria-label="작업 모드">
         <button
           type="button"
+          title="도형·글자·정답 편집"
           className={!props.answerReviewMode && !props.studentPreviewMode ? "active" : ""}
           aria-pressed={!props.answerReviewMode && !props.studentPreviewMode}
           onClick={() => {
@@ -446,6 +446,7 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
         </button>
         <button
           type="button"
+          title="캔버스 정답 표시 및 채점·다국어 검수"
           className={props.answerReviewMode && !props.studentPreviewMode ? "active review" : ""}
           aria-pressed={props.answerReviewMode && !props.studentPreviewMode}
           onClick={() => {
@@ -457,6 +458,7 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
         </button>
         <button
           type="button"
+          title="실제 학생 앱 화면에서 풀어보기"
           className={props.studentPreviewMode ? "active preview" : ""}
           aria-pressed={props.studentPreviewMode}
           disabled={props.studentPreviewDisabled}
@@ -467,7 +469,6 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
       </div>
       <span className="toolbar-spacer" />
       {props.headerStatus}
-      <button type="button" className="editor-answer-setup" onClick={props.onOpenAnswers}><ToolbarIcon name="answerSlot" /><span>정답 설정</span></button>
       <IconButton label="저장" icon="save" onClick={props.onSave} disabled={props.busy} />
       <IconButton label="저장하고 화면 반영" icon="saveBuild" onClick={props.onSaveAndBuild} disabled={props.busy} primary />
       {props.inspectorControl}

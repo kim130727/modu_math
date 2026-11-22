@@ -56,12 +56,12 @@ class AnswerSlotKeyUpdater(cst.CSTTransformer):
 def _review_slot_answer_keys(review):
     blank_keys = {}
     choice_candidates = {}
-    if review["mode"] not in {"choice", "grouped_choice"}:
+    if review["mode"] not in {"choice", "canvas_select", "grouped_choice"}:
         for answer in review["answers"]:
             ref = answer.get("ref", "")
             if ref.startswith("slot."):
                 blank_keys[ref] = answer["value"]
-    elif review["mode"] == "choice":
+    elif review["mode"] in {"choice", "canvas_select"}:
         for choice in review["choices"]:
             for ref in choice.get("sourceRefs", []):
                 if ref.startswith("slot."):
@@ -91,14 +91,14 @@ def normalize_review(value):
     mode = value.get("mode")
     status = value.get("status", "pending")
     show_canvas = value.get("show_canvas", True)
-    if mode not in {"panel_input", "choice", "ox", "canvas_slots", "grouped_choice"}:
+    if mode not in {"panel_input", "choice", "canvas_select", "ox", "canvas_slots", "grouped_choice"}:
         raise ValueError("응답 방식을 선택하세요.")
     if status not in {"pending", "needs_changes", "verified"}:
         raise ValueError("검수 상태가 올바르지 않습니다.")
     if type(show_canvas) is not bool:
         raise ValueError("Flutter 캔버스 표시 설정이 올바르지 않습니다.")
-    if mode == "canvas_slots" and not show_canvas:
-        raise ValueError("캔버스 입력칸 방식에서는 Flutter 캔버스를 숨길 수 없습니다.")
+    if mode in {"canvas_slots", "canvas_select"} and not show_canvas:
+        raise ValueError("캔버스 입력·선택 방식에서는 Flutter 캔버스를 숨길 수 없습니다.")
     note = value.get("note", "")
     answers = value.get("answers", [])
     choices = value.get("choices", [])
@@ -127,9 +127,9 @@ def normalize_review(value):
             raise ValueError("선택지 연결이 올바르지 않습니다.")
         ids.add(choice["id"])
         cleaned.append({k: choice[k] for k in ("id", "text", "correct")} | {"label": choice.get("label", ""), "sourceRefs": refs})
-    if status == "verified" and mode == "choice" and (len(cleaned) < 2 or not any(c["correct"] for c in cleaned)):
+    if status == "verified" and mode in {"choice", "canvas_select"} and (len(cleaned) < 2 or not any(c["correct"] for c in cleaned)):
         raise ValueError("선택지를 두 개 이상 작성하고 정답을 선택하세요.")
-    if status == "verified" and mode not in {"choice", "grouped_choice"} and not answers:
+    if status == "verified" and mode not in {"choice", "canvas_select", "grouped_choice"} and not answers:
         raise ValueError("정답을 하나 이상 입력하세요.")
     if mode == "ox" and any(a["value"] not in {"O", "X"} for a in answers):
         raise ValueError("OX 정답은 O 또는 X로 지정하세요.")
@@ -161,7 +161,7 @@ def review_with_slot_answer_keys(value, problem):
     """
     review = deepcopy(normalize_review(value))
     slots = getattr(problem, "slots", ())
-    if review["mode"] not in {"choice", "grouped_choice"}:
+    if review["mode"] not in {"choice", "canvas_select", "grouped_choice"}:
         explicit = {
             slot.id: slot.answer_key
             for slot in slots
@@ -181,7 +181,7 @@ def review_with_slot_answer_keys(value, problem):
                     by_ref[slot_id]["value"] = answer_key
                 else:
                     review["answers"].append({"ref": slot_id, "value": answer_key})
-    elif review["mode"] == "choice":
+    elif review["mode"] in {"choice", "canvas_select"}:
         keys = {
             slot.id: set(slot.answer_key)
             for slot in slots
@@ -228,9 +228,12 @@ def apply_answer_review(semantic, solvable, value):
             answer["choice_groups"] = deepcopy(review["groups"])
             answer["choices"] = []
             keys = [{"id": g["id"], "value": g["choices"][g["correct_index"]]} for g in review["groups"]]
-        elif review["mode"] == "choice":
+        elif review["mode"] in {"choice", "canvas_select"}:
             answer["choices"] = [{"id": c["id"], "label": c["label"], "text": c["text"], "source_refs": c["sourceRefs"]} for c in review["choices"]]
             keys = [{"id": c["id"], "value": c["text"]} for c in review["choices"] if c["correct"]]
+            if len(keys) > 1:
+                target = answer.get("target")
+                answer["target"] = {**(target if isinstance(target, dict) else {}), "type": "multiple_choice_set"}
         else:
             answer["choices"] = []
             keys = [{"value": a["value"], **({"unit": a["unit"].strip()} if a.get("unit", "").strip() else {}), **({"slot_id": a["ref"]} if a.get("ref", "").startswith("slot.") else {})} for a in review["answers"]]

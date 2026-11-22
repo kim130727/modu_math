@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 from pathlib import Path
 import shutil
 import subprocess
@@ -51,6 +52,21 @@ def verify_bundle(output: Path) -> None:
         raise RuntimeError("Student JavaScript bundle is missing")
 
 
+def stamp_web_cache_bust(output: Path) -> None:
+    bundle = output / "main.dart.js"
+    version = hashlib.sha256(bundle.read_bytes()).hexdigest()[:12]
+    bootstrap = output / "flutter_bootstrap.js"
+    if bootstrap.is_file():
+        text = bootstrap.read_text(encoding="utf-8")
+        text = text.replace('"mainJsPath":"main.dart.js"', f'"mainJsPath":"main.dart.js?v={version}"')
+        bootstrap.write_text(text, encoding="utf-8")
+    index = output / "index.html"
+    if index.is_file():
+        html = index.read_text(encoding="utf-8")
+        html = html.replace('src="flutter_bootstrap.js"', f'src="flutter_bootstrap.js?v={version}"')
+        index.write_text(html, encoding="utf-8")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--backend", default="same-origin")
@@ -71,6 +87,7 @@ def main() -> None:
                 "build",
                 "web",
                 "--release",
+                "--pwa-strategy=none",
                 "--no-wasm-dry-run",
                 "--target",
                 "lib/main.dart",
@@ -83,6 +100,7 @@ def main() -> None:
             cwd=stage,
             check=True,
         )
+    stamp_web_cache_bust(OUTPUT)
     verify_bundle(OUTPUT)
     print(f"Student bundle verified: {OUTPUT}")
 

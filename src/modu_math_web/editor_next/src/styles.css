@@ -2432,6 +2432,8 @@ input {
 .review-choice-correct input { width: 18px; height: 18px; accent-color: #4f46e5; }
 .answer-review-panel .review-choice-main textarea { flex: 1; min-width: 0; min-height: 40px; height: 40px; margin: 0; font-size: 16px; }
 .answer-review-panel button.review-secondary-action { height: 30px; padding: 0 8px; background: #edf0f6; color: #475569; font-size: 12px; font-weight: 500; }
+.review-quick-choices { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.review-quick-choices button { flex: 1 1 auto; }
 .review-choice-details { margin-top: 6px; font-size: 12px; color: #64748b; }
 .review-choice-details summary, .review-advanced-settings summary, .review-display-settings summary { cursor: pointer; line-height: 1.6; }
 .review-choice-details summary > span { margin-left: 4px; color: #4338ca; }

@@ -11,7 +11,16 @@
     "extraction_confidence": 1.0,
     "language": "ko",
     "instruction": "보기의 곱을 비교하여 더 큰 기호를 고른다.",
-    "points": 1
+    "points": 1,
+    "presentation_sources": {
+      "question": [
+        "slot.q1"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "곱이 더 큰 것의 기호를 선택해 보세요."
   },
   "domain": {
     "objects": [
@@ -67,6 +76,7 @@
     "blanks": [],
     "choices": [],
     "answer_key": [],
+    "confidence": 1.0,
     "target": {
       "type": "choice_symbol",
       "description": "곱이 더 큰 것의 기호"

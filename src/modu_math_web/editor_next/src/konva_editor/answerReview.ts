@@ -9,7 +9,7 @@ export interface AnswerBindingOption {
 }
 
 export type AnswerBindingStatus = "connected" | "inferred" | "unlinked" | "duplicate";
-export type AnswerPresentationMode = "canvas_slots" | "panel_input" | "choice";
+export type AnswerPresentationMode = "canvas_slots" | "panel_input" | "choice" | "canvas_select";
 
 export interface AnswerSlotReview {
   shapeId: string;
@@ -50,7 +50,7 @@ export function answerChoicesFromArtifacts(
     const target = recordValue(recordValue(semantic?.answer)?.target)?.type ?? recordValue(recordValue(solvable?.answer)?.target)?.type;
     const labelNumber = /^[①-⑳]$/.test(label) ? label.charCodeAt(0) - "①".charCodeAt(0) + 1 : Number(label.replace(/[^0-9]/g, ""));
     const correct = answerOptions.some((option) => option.ref === id ||
-      (target === "choice_number" ? Number(option.value) === labelNumber :
+      (target === "choice_number" || target === "choice_order" ? Number(option.value) === labelNumber :
         !choices.some((candidate) => recordValue(candidate)?.id === option.ref) && [rawText, text].some((value) => normalizedAnswer(option.value) === normalizedAnswer(value))));
     const sourceRefs = Array.isArray(record?.source_refs) ? record.source_refs.filter((ref): ref is string => typeof ref === "string") : typeof record?.slot_id === "string" ? [record.slot_id] : [];
     return { id, label, text, correct, sourceRefs };
@@ -162,7 +162,7 @@ function explicitPresentationMode(artifact: Record<string, unknown> | null): Ans
   const answer = recordValue(artifact?.answer);
   const presentation = recordValue(answer?.presentation);
   const mode = presentation?.mode;
-  return mode === "canvas_slots" || mode === "panel_input" || mode === "choice" ? mode : null;
+  return mode === "canvas_slots" || mode === "panel_input" || mode === "choice" || mode === "canvas_select" ? mode : null;
 }
 
 function hasChoices(artifact: Record<string, unknown> | null): boolean {

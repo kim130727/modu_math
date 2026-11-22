@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { normalizedAnswer, type AnswerReviewSettings } from "./answerReview";
+import { normalizedAnswer, type AnswerChoiceReview, type AnswerReviewSettings } from "./answerReview";
 
 export function AnswerReviewPanel({
   settings,
@@ -16,6 +16,7 @@ export function AnswerReviewPanel({
   authoring = false,
   onAddBlank,
   onHighlightAnswer,
+  canvasChoiceCandidates = [],
 }: {
   settings: AnswerReviewSettings;
   answerPrompt?: string;
@@ -31,6 +32,7 @@ export function AnswerReviewPanel({
   authoring?: boolean;
   onAddBlank?: () => void;
   onHighlightAnswer?: (index: number | null) => void;
+  canvasChoiceCandidates?: AnswerChoiceReview[];
 }) {
   const [editing, setEditing] = useState(authoring);
   const [responses, setResponses] = useState<string[]>([]);
@@ -206,6 +208,41 @@ export function AnswerReviewPanel({
             </select>
           </label>
           {settings.mode === "canvas_slots" && onAddBlank ? <button type="button" className="answer-add-blank" onClick={onAddBlank}>＋ 문제에 정답 빈칸 추가</button> : null}
+          {settings.mode === "panel_input" || settings.mode === "choice" ? (
+            <div className="review-quick-choices">
+              {canvasChoiceCandidates.length >= 2 ? (
+                <button
+                  type="button"
+                  className="review-secondary-action"
+                  onClick={() => update({ mode: "choice", choices: canvasChoiceCandidates })}
+                >
+                  캔버스 보기 가져오기 ({canvasChoiceCandidates.length}개)
+                </button>
+              ) : null}
+              <button
+                type="button"
+                className="review-secondary-action"
+                onClick={() => {
+                  const firstAnswer = settings.answers[0]?.value?.trim() ?? "";
+                  const selectedNumber = /^[①-④]$/.test(firstAnswer)
+                    ? firstAnswer.charCodeAt(0) - "①".charCodeAt(0) + 1
+                    : Number(firstAnswer);
+                  const labels = ["①", "②", "③", "④"];
+                  update({
+                    mode: "choice",
+                    choices: labels.map((label, index) => ({
+                      id: `choice.num.${index + 1}`,
+                      label,
+                      text: label,
+                      correct: selectedNumber === index + 1,
+                    })),
+                  });
+                }}
+              >
+                ①~④ 번호 보기 만들기
+              </button>
+            </div>
+          ) : null}
           {settings.mode === "canvas_slots" && authoring ? <p className="review-help">정답 항목을 삭제하면 이 기능으로 만든 연결 빈칸도 함께 삭제됩니다.</p> : null}
           <p className="review-help">{{ canvas_slots: "문제의 빈칸에 직접 답을 입력합니다. 빈칸 추가 버튼으로 정답과 연결된 입력칸을 만들 수 있습니다.", panel_input: "학생이 문제 아래의 입력창에 답을 씁니다. 여러 정답은 항목을 나누어 입력하세요.", choice: "보기를 작성하고 맞는 보기에 정답을 체크하세요. 복수 정답도 지정할 수 있습니다.", ox: "각 항목의 정답을 O 또는 X로 선택하세요.", grouped_choice: "소문항별 질문과 보기를 입력하고 정답을 선택하세요." }[settings.mode]}</p>
 

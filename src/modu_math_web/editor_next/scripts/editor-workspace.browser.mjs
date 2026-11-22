@@ -46,7 +46,7 @@ try {
   await page.getByRole("tab", { name: "힌트 편집", exact: true }).click();
   await page.getByRole("tab", { name: "요소 설정", exact: true }).click();
   await page.screenshot({ path: resolve(output, "desktop.png"), fullPage: true });
-  await button("정답 설정").click();
+  await page.getByRole("tab", { name: "정답", exact: true }).click();
   await page.getByText("정답 만들기", { exact: true }).waitFor();
   await page.getByLabel("응답 방식", { exact: true }).selectOption("choice");
   for (let index = 1; index <= 3; index++) {
@@ -108,7 +108,8 @@ try {
   await page.getByLabel("학생 답안 2", { exact: true }).fill("8");
   await button("정답 확인").click();
   await page.getByRole("status").filter({ hasText: "채점 일치" }).waitFor();
-  await button("정답 설정").click();
+  await button("문제 편집").click();
+  await page.getByRole("tab", { name: "정답", exact: true }).click();
   await button("＋ 문제에 정답 빈칸 추가").click();
   await page.locator(".review-answer-row").first().getByRole("button", { name: "삭제", exact: true }).click();
   assert.equal(await page.getByLabel("답 1", { exact: true }).inputValue(), "8");

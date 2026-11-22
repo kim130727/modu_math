@@ -11,7 +11,19 @@
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "두 계산 결과를 500과 비교해 큰 것을 선택한다."
+    "instruction": "두 계산 결과를 500과 비교해 큰 것을 선택한다.",
+    "presentation_sources": {
+      "question": [
+        "slot.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice1_text",
+        "slot.choice2_text"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "계산 결과가 500보다 큰 것을 선택해 보세요."
   },
   "domain": {
     "objects": [
@@ -82,12 +94,14 @@
       {
         "id": "choice.1",
         "label": "1",
-        "text": "35 × 13"
+        "text": "35 × 13",
+        "slot_id": "slot.choice1_text"
       },
       {
         "id": "choice.2",
         "label": "2",
-        "text": "28 × 19"
+        "text": "28 × 19",
+        "slot_id": "slot.choice2_text"
       }
     ],
     "answer_key": [
@@ -96,6 +110,7 @@
         "value": "28 × 19"
       }
     ],
+    "confidence": 1.0,
     "target": {
       "type": "correct_choice",
       "description": "500보다 큰 계산 결과"
