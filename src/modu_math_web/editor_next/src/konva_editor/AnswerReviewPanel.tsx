@@ -154,8 +154,8 @@ export function AnswerReviewPanel({
   };
 
   return (
-    <aside className="answer-review-panel" aria-label="정답 검수">
-      {authoring ? <div className="answer-authoring-heading"><strong>정답 만들기</strong><p>정답과 단위를 입력하세요. 빈칸은 자동으로 연결됩니다.</p></div> : null}
+    <aside className={`answer-review-panel${authoring ? " answer-authoring-panel" : ""}`} aria-label={authoring ? "정답 작성" : "정답 검수"}>
+      {authoring ? <div className="answer-authoring-heading"><strong>정답 만들기</strong><p>응답 방식을 고르고 정답을 입력한 뒤 저장하세요.</p></div> : null}
       {!authoring ? <div className="review-tabs review-mode-tabs">
         <button type="button" aria-pressed={!editing} onClick={() => setEditing(false)}>
           <span>풀어보기 및 빠른</span>{" "}<span>정답 지정</span>
@@ -181,6 +181,7 @@ export function AnswerReviewPanel({
 
       {editing ? (
         <>
+          <h3 className="answer-step-heading"><span>1</span> 학생은 어떻게 답하나요?</h3>
           <label>
             응답 방식
             <select
@@ -196,7 +197,7 @@ export function AnswerReviewPanel({
                 <option value="panel_input">단답형 직접 입력 (하단 입력창 / 키패드)</option>
               </optgroup>
               <optgroup label="보기 선택 (객관식 / OX 판정)">
-                <option value="choice">객관식 (보기 1~5번 선택)</option>
+                <option value="choice">객관식 (보기에서 선택)</option>
                 <option value="ox">OX 판정 (참 / 거짓 선택)</option>
                 <option value="grouped_choice">세트형 객관식 (소문항별 보기 선택)</option>
               </optgroup>
@@ -206,20 +207,7 @@ export function AnswerReviewPanel({
           {settings.mode === "canvas_slots" && authoring ? <p className="review-help">정답 항목을 삭제하면 이 기능으로 만든 연결 빈칸도 함께 삭제됩니다.</p> : null}
           <p className="review-help">{{ canvas_slots: "문제의 빈칸에 직접 답을 입력합니다. 빈칸 추가 버튼으로 정답과 연결된 입력칸을 만들 수 있습니다.", panel_input: "학생이 문제 아래의 입력창에 답을 씁니다. 여러 정답은 항목을 나누어 입력하세요.", choice: "보기를 작성하고 맞는 보기에 정답을 체크하세요. 복수 정답도 지정할 수 있습니다.", ox: "각 항목의 정답을 O 또는 X로 선택하세요.", grouped_choice: "소문항별 질문과 보기를 입력하고 정답을 선택하세요." }[settings.mode]}</p>
 
-          <details className="review-display-settings"><summary>문제 그림 표시 설정</summary>
-          <label className="review-canvas-visibility-option">
-            <input
-              type="checkbox"
-              checked={settings.mode === "canvas_slots" || settings.show_canvas !== false}
-              disabled={settings.mode === "canvas_slots"}
-              onChange={(event) => update({ show_canvas: event.target.checked })}
-            />
-            학습 화면에 문제 캔버스(그림) 표시
-          </label>
-          <p className="review-help">
-            체크를 해제하면 문제 그림 영역을 숨기고 하단 정답 패널과 힌트만 보여줍니다. (빈칸 채우기 방식에서는 숨길 수 없습니다.)
-          </p>
-          </details>
+          <h3 className="answer-step-heading"><span>2</span> {choiceMode ? "보기를 쓰고 정답을 체크하세요" : groupMode ? "소문항과 정답을 입력하세요" : "정답을 입력하세요"}</h3>
 
           {groupMode ? (
             <>
@@ -290,8 +278,30 @@ export function AnswerReviewPanel({
           ) : choiceMode ? (
             <>
               {settings.choices.map((choice, index) => (
-                <fieldset key={choice.id}>
-                  <legend>선택지 {index + 1}</legend>
+                <fieldset key={choice.id} className={`review-choice-editor${choice.correct ? " is-correct" : ""}`}>
+                  <legend>선택지 {index + 1}{choice.correct ? " · 정답" : ""}</legend>
+                  <div className="review-choice-main">
+                  <label className="checkbox-label review-choice-correct">
+                    <input
+                      aria-label={`선택지 ${index + 1} 정답`}
+                      type="checkbox"
+                      checked={choice.correct}
+                      onChange={(event) => update({ choices: settings.choices.map((item, i) => i === index ? { ...item, correct: event.target.checked } : item) })}
+                    />
+                    정답
+                  </label>
+                  <textarea
+                    rows={1}
+                    placeholder="보기 내용"
+                    aria-label={`선택지 ${index + 1} 내용`}
+                    value={choice.text}
+                    onChange={(event) => update({ choices: settings.choices.map((item, i) => i === index ? { ...item, text: event.target.value } : item) })}
+                  />
+                  <button type="button" className="review-secondary-action" aria-label={`선택지 ${index + 1} 삭제`}
+                    onClick={() => update({ choices: settings.choices.filter((_, i) => i !== index) })}>삭제</button>
+                  </div>
+                  <details className="review-choice-details"><summary>번호·원본 설정 <span>{choice.label}</span></summary>
+                  <label>보기 번호
                   <input
                     aria-label={`선택지 ${index + 1} 번호`}
                     value={choice.label}
@@ -303,46 +313,16 @@ export function AnswerReviewPanel({
                       })
                     }
                   />
-                  <textarea
-                    aria-label={`선택지 ${index + 1} 내용`}
-                    value={choice.text}
-                    onChange={(event) =>
-                      update({
-                        choices: settings.choices.map((item, i) =>
-                          i === index ? { ...item, text: event.target.value } : item,
-                        ),
-                      })
-                    }
-                  />
-                  <label className="checkbox-label">
-                    <input
-                      type="checkbox"
-                      checked={choice.correct}
-                      onChange={(event) =>
-                        update({
-                          choices: settings.choices.map((item, i) =>
-                            i === index ? { ...item, correct: event.target.checked } : item,
-                          ),
-                        })
-                      }
-                    />{" "}
-                    정답
                   </label>
-                  <div className="review-tabs">
                     <button
                       type="button"
+                      className="review-secondary-action"
                       disabled={!choice.sourceRefs?.length}
                       onClick={() => onSelect(choice.sourceRefs ?? [])}
                     >
                       원본 선택
                     </button>
-                    <button
-                      type="button"
-                      onClick={() => update({ choices: settings.choices.filter((_, i) => i !== index) })}
-                    >
-                      삭제
-                    </button>
-                  </div>
+                  </details>
                 </fieldset>
               ))}
               <button
@@ -412,6 +392,22 @@ export function AnswerReviewPanel({
             </>
           )}
 
+          <details className="review-display-settings"><summary>문제 그림 표시 설정</summary>
+          <label className="review-canvas-visibility-option">
+            <input
+              type="checkbox"
+              checked={settings.mode === "canvas_slots" || settings.show_canvas !== false}
+              disabled={settings.mode === "canvas_slots"}
+              onChange={(event) => update({ show_canvas: event.target.checked })}
+            />
+            학습 화면에 문제 캔버스(그림) 표시
+          </label>
+          <p className="review-help">
+            체크를 해제하면 문제 그림 영역을 숨기고 하단 정답 패널과 힌트만 보여줍니다. (빈칸 채우기 방식에서는 숨길 수 없습니다.)
+          </p>
+          </details>
+
+          <details className="review-advanced-settings"><summary>검수 상태·메모 및 화면 편집</summary>
           <label>
             검수 상태
             <select
@@ -434,6 +430,12 @@ export function AnswerReviewPanel({
           <button type="button" onClick={onEditLayout}>
             지문·그림·여백 편집
           </button>
+          </details>
+          <div className="answer-save-bar">
+          <div className="answer-save-summary" role="status">
+            <strong>{hasAnswers ? "정답 입력 완료" : "정답 입력을 확인하세요"}</strong>
+            <span>{hasAnswers ? registeredAnswerSummary() : choiceMode ? "보기 2개 이상을 작성하고 정답을 체크하세요." : groupMode ? "각 소문항에 보기 2개 이상과 정답이 필요합니다." : "모든 정답 항목을 입력하세요."}</span>
+          </div>
           <button
             type="button"
             className="btn-primary-register"
@@ -442,6 +444,7 @@ export function AnswerReviewPanel({
           >
             {busy ? "저장 중…" : "정답 저장하고 화면 반영"}
           </button>
+          </div>
         </>
       ) : (
         <>

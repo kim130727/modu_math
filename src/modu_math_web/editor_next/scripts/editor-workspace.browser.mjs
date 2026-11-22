@@ -48,6 +48,37 @@ try {
   await page.screenshot({ path: resolve(output, "desktop.png"), fullPage: true });
   await button("정답 설정").click();
   await page.getByText("정답 만들기", { exact: true }).waitFor();
+  await page.getByLabel("응답 방식", { exact: true }).selectOption("choice");
+  for (let index = 1; index <= 3; index++) {
+    await button("선택지 추가").click();
+    await page.getByLabel(`선택지 ${index} 내용`, { exact: true }).fill([">", "=", "<"][index - 1]);
+  }
+  assert.ok(await button("정답 저장하고 화면 반영").isDisabled(), "Choices require a correct answer");
+  await page.getByLabel("선택지 1 정답", { exact: true }).check();
+  await page.getByLabel("선택지 3 정답", { exact: true }).check();
+  assert.ok(await button("정답 저장하고 화면 반영").isEnabled(), "Multiple correct choices remain supported");
+  assert.equal(await page.locator(".review-choice-editor.is-correct").count(), 2);
+  const firstChoice = page.locator(".review-choice-editor").first();
+  assert.ok((await firstChoice.boundingBox()).height < 125, "Short choices use compact rows");
+  await firstChoice.locator("summary").click();
+  await page.getByLabel("선택지 1 번호", { exact: true }).fill("①");
+  assert.ok(await firstChoice.getByRole("button", { name: "원본 선택", exact: true }).isDisabled());
+  await firstChoice.locator("summary").click();
+  const answerDock = await page.locator(".answer-authoring-dock").boundingBox();
+  assert.ok(answerDock.width >= 380, "Answer writing has a wider dock on desktop");
+  const saveButton = await button("정답 저장하고 화면 반영").boundingBox();
+  assert.ok(saveButton.y + saveButton.height <= answerDock.y + answerDock.height, "Save remains visible without scrolling");
+  await page.getByText("검수 상태·메모 및 화면 편집", { exact: true }).click();
+  await page.getByPlaceholder("문항의 모호함, 정답 오류, 그림 수정 사항").fill("복수 정답 확인");
+  await page.getByText("검수 상태·메모 및 화면 편집", { exact: true }).click();
+  await page.locator(".answer-authoring-panel").evaluate(element => { element.scrollTop = 0; });
+  await page.screenshot({ path: resolve(output, "choice-authoring.png"), fullPage: true });
+  for (const width of [1024, 768]) {
+    await page.setViewportSize({ width, height: 900 });
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, `Answer writing fits at ${width}px`);
+    assert.ok(await button("정답 저장하고 화면 반영").isVisible());
+  }
+  await page.setViewportSize({ width: 1440, height: 1000 });
   await page.getByLabel("응답 방식", { exact: true }).selectOption("panel_input");
   await page.getByLabel("답 1", { exact: true }).fill("12");
   await page.getByLabel("답 1 단위", { exact: true }).fill("cm");
@@ -102,6 +133,7 @@ try {
   const layoutFixture = JSON.parse(await page.locator(".konva-json-panel textarea").inputValue());
   layoutFixture.shapes = [
     { id: "prompt", type: "text", x: 20, y: 20, width: 650, fontSize: 20, text: "원의 반지름을 재어 알맞은 말을 선택하세요.", semanticRole: "question", semanticRoleSource: "inferred", sourceRegionId: "region.stem" },
+    { id: "instruction", type: "text", x: 20, y: 50, width: 650, fontSize: 14, text: "맞는 보기를 골라 답하세요.", semanticRole: "instruction" },
     { id: "circle", type: "circle", x: 300, y: 230, radius: 130, stroke: "#172033", strokeWidth: 2 },
     { id: "radius", type: "line", x: 300, y: 230, points: [0, 0, 112, -66], stroke: "#172033", strokeWidth: 2 },
     { id: "answer-prompt", type: "text", x: 20, y: 420, width: 600, fontSize: 20, text: "한 원의 반지름은 모두", semanticRole: "answer_prompt" },
@@ -130,6 +162,7 @@ try {
   for (const viewport of [{ width: 1906, height: 840 }, { width: 1440, height: 900 }, { width: 1024, height: 768 }, { width: 768, height: 900 }]) {
     await page.setViewportSize(viewport);
     await assertCanvasFits();
+    assert.ok(await page.locator(".konva-question-preview .presentation-prompt-item > span:last-child").evaluateAll(elements => elements.length === 2 && elements.every(element => parseFloat(getComputedStyle(element).fontSize) >= 24)), "Question and instruction stay readable at every viewport width");
   }
   await page.setViewportSize({ width: 1440, height: 900 });
   await assertCanvasFits();

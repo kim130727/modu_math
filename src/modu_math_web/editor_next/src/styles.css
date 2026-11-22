@@ -2346,7 +2346,43 @@ input {
 .canvas-zoom-controls button { min-width: 28px; height: 28px; padding: 0 6px; border: 0; background: transparent; color: #475569; font-size: 11px; cursor: pointer; }
 .canvas-zoom-controls button:hover { background: #eeecfc; }
 .canvas-zoom-controls button:disabled { opacity: .35; cursor: default; }
-.konva-editor .presentation-prompt-item > span:last-child { font-size: clamp(20px, 1.6vw, 24px); line-height: 1.45; }
+.konva-editor .presentation-prompt-item > span:last-child { min-width: 0; font-size: 28px; line-height: 1.55; overflow-wrap: anywhere; }
+.konva-editor .konva-question-preview { max-height: 22vh; padding: 12px 14px; }
+.konva-editor .konva-question-preview .presentation-role-badge { margin-top: 8px; font-size: 12px; }
+
+/* Keep answer authoring readable while retaining the full toolset in its dock. */
+.konva-editor .presentation-with-panel:has(> .answer-authoring-dock) { grid-template-columns: minmax(0, 1fr) 390px; }
+.answer-authoring-heading strong { font-size: 20px; }
+.answer-authoring-heading p { margin-bottom: 0; font-size: 14px; }
+.answer-step-heading { display: flex; align-items: center; gap: 8px; margin: 8px 0 0; font-size: 15px; line-height: 1.5; }
+.answer-step-heading > span { display: grid; place-items: center; width: 24px; height: 24px; flex-shrink: 0; border-radius: 50%; background: #eeecfc; color: #4338ca; font-size: 13px; }
+.answer-authoring-panel { font-size: 14px; }
+.answer-authoring-panel label { font-size: 14px; }
+.answer-authoring-panel input:not([type=checkbox]):not([type=radio]),
+.answer-authoring-panel textarea, .answer-authoring-panel select { font-size: 15px; }
+.answer-review-panel .review-choice-editor { margin: 0; padding: 6px 10px 8px; background: #fafbfe; }
+.answer-review-panel .review-choice-editor.is-correct { border-color: #8b83ee; background: #f5f3ff; }
+.review-choice-editor legend { padding: 0 4px; font-size: 12px; color: #64748b; }
+.review-choice-editor.is-correct legend { color: #4338ca; font-weight: 700; }
+.review-choice-main { display: flex; align-items: center; gap: 8px; }
+.answer-review-panel .review-choice-correct { display: flex; flex-shrink: 0; align-items: center; gap: 4px; font-size: 13px; cursor: pointer; }
+.review-choice-correct input { width: 18px; height: 18px; accent-color: #4f46e5; }
+.answer-review-panel .review-choice-main textarea { flex: 1; min-width: 0; min-height: 40px; height: 40px; margin: 0; font-size: 16px; }
+.answer-review-panel button.review-secondary-action { height: 30px; padding: 0 8px; background: #edf0f6; color: #475569; font-size: 12px; font-weight: 500; }
+.review-choice-details { margin-top: 6px; font-size: 12px; color: #64748b; }
+.review-choice-details summary, .review-advanced-settings summary, .review-display-settings summary { cursor: pointer; line-height: 1.6; }
+.review-choice-details summary > span { margin-left: 4px; color: #4338ca; }
+.review-advanced-settings, .review-display-settings { padding: 10px; border: 1px solid #e2e7ef; border-radius: 8px; color: #475569; font-size: 13px; }
+.review-advanced-settings > label { margin-top: 10px; }
+.answer-save-bar { position: sticky; bottom: -16px; z-index: 2; display: grid; gap: 8px; margin: 0 -16px -16px; padding: 12px 16px 16px; background: #fff; border-top: 1px solid #e2e7ef; box-shadow: 0 -6px 12px #17203306; }
+.answer-save-summary { display: grid; gap: 3px; min-width: 0; font-size: 13px; }
+.answer-save-summary strong { color: #4338ca; }
+.answer-save-summary > span { color: #64748b; max-height: 48px; overflow: auto; overflow-wrap: anywhere; line-height: 1.5; }
+.answer-review-panel .answer-save-bar button { min-height: 42px; height: auto; padding: 8px; }
+@media (max-width: 1150px) {
+  .konva-editor .presentation-with-panel:has(> .answer-authoring-dock) { grid-template-columns: minmax(0, 1fr) 330px; }
+  .konva-editor .presentation-prompt-item > span:last-child { font-size: 24px; }
+}
 @media (max-width: 1150px) {
   .editor-workspace-header { gap: 12px; }
   .editor-workspace-brand div > span { display: none; }

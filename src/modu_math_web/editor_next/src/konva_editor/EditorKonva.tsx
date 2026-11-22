@@ -995,7 +995,7 @@ export function EditorKonva() {
   };
 
   const editorPanel = (
-    <div className="konva-side-panel">
+    <div className={`konva-side-panel${activeSidePanel === "answers" ? " answer-authoring-dock" : ""}`}>
       <div className="konva-side-tabs" role="tablist" aria-label="Editor side panels">
         <SidePanelButton
           active={activeSidePanel === "properties"}
