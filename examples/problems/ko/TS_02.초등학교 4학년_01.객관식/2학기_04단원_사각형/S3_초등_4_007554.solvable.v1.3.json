@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007554",
+  "problem_type": "multiple_choice_parallel_pair_count",
+  "given": [
+    {
+      "ref": "ga",
+      "value": "평행한 변 2쌍"
+    },
+    {
+      "ref": "na",
+      "value": "평행한 변 2쌍"
+    },
+    {
+      "ref": "da",
+      "value": "평행한 변 1쌍"
+    },
+    {
+      "ref": "ra",
+      "value": "평행한 변 2쌍"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_2",
+    "label": "평행한 변이 1쌍 있는 사각형",
+    "unit": ""
+  },
+  "method": "quadrilateral_classification",
+  "steps": [
+    {
+      "id": "count_parallel_pairs",
+      "expr": "평행한 변이 1쌍 있는 사각형 = 다",
+      "explanation": "평행한 변이 1쌍 있는 사각형은 다입니다.",
+      "value": "다"
+    }
+  ],
+  "answer": {
+    "value": "다",
+    "answer_index": 2,
+    "unit": "",
+    "values": [
+      "다"
+    ],
+    "choices": [
+      "가",
+      "나",
+      "다",
+      "라"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "다",
+        "diagnostics": [
+          {
+            "id": "diag.chose_two_pairs",
+            "condition": "answer_not_da",
+            "concept": "평행한 변의 수에 따른 사각형 분류",
+            "reason": "평행한 변이 2쌍 있는 사각형(가, 나, 라)과 1쌍 있는 사각형(다)을 구분하지 못함",
+            "feedback": "가, 나, 라는 마주 보는 두 쌍의 변이 모두 평행합니다. 평행한 변이 1쌍만 있는 사각형은 다입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

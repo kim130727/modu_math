@@ -1,0 +1,61 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007483",
+  "problem_type": "multiple_choice_decimal_concept",
+  "given": [
+    {
+      "ref": "target_decimal",
+      "value": "2.63"
+    },
+    {
+      "ref": "minyoung",
+      "value": "'이 점 육십삼'이라고 읽어."
+    },
+    {
+      "ref": "dujun",
+      "value": "소수 둘째 자리 숫자는 3이야."
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "바르게 설명한 사람",
+    "unit": ""
+  },
+  "method": "decimal_place_value",
+  "steps": [
+    {
+      "id": "verify_claims",
+      "expr": "2.63 -> 소수 첫째 자리 6, 소수 둘째 자리 3",
+      "explanation": "소수점 아래는 숫자만 차례대로 '이 점 육삼'으로 읽으며, 소수 둘째 자리 숫자는 3입니다.",
+      "value": "두준"
+    }
+  ],
+  "answer": {
+    "value": "두준",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "두준"
+    ],
+    "choices": [
+      "민영",
+      "두준"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "두준",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_decimal_reading",
+            "condition": "answer_equals_minyoung",
+            "concept": "소수 두 자리 수 읽기",
+            "reason": "소수점 아래를 '육십삼'처럼 자릿값을 붙여 읽은 민영을 선택함",
+            "feedback": "소수점 아래는 숫자만 차례대로 읽으므로 2.63은 '이 점 육삼'이라고 읽습니다. 2.63의 소수 둘째 자리 숫자는 3이므로 두준이 바르게 설명했습니다."
+          }
+        ]
+      }
+    ]
+  }
+}

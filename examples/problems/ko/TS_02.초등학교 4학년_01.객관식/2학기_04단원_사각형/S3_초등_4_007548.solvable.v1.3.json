@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007548",
+  "problem_type": "multiple_choice_find_all_trapezoids",
+  "given": [
+    {
+      "ref": "ga",
+      "value": "평행한 변이 없는 사각형"
+    },
+    {
+      "ref": "na",
+      "value": "평행한 변이 1쌍 있는 사각형"
+    },
+    {
+      "ref": "da",
+      "value": "평행한 변이 없는 사각형"
+    },
+    {
+      "ref": "ra",
+      "value": "평행한 변이 2쌍 있는 사각형"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_2",
+    "label": "사다리꼴 모두 찾기",
+    "unit": ""
+  },
+  "method": "quadrilateral_classification",
+  "steps": [
+    {
+      "id": "find_trapezoids",
+      "expr": "평행한 변이 있는 사각형 = 나, 라",
+      "explanation": "평행한 변이 있는 사각형은 나와 라입니다.",
+      "value": "③"
+    }
+  ],
+  "answer": {
+    "value": "③",
+    "answer_index": 2,
+    "unit": "",
+    "values": [
+      "③"
+    ],
+    "choices": [
+      "① 가, 나",
+      "② 나, 다",
+      "③ 나, 라",
+      "④ 다, 라"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "③",
+        "diagnostics": [
+          {
+            "id": "diag.missed_rectangle_as_trapezoid",
+            "condition": "answer_not_3",
+            "concept": "사다리꼴의 정의",
+            "reason": "직사각형(라)도 평행한 변이 있으므로 사다리꼴임을 놓침",
+            "feedback": "평행한 변이 한 쌍이라도 있는 사각형은 모두 사다리꼴입니다. 나와 라가 평행한 변이 있으므로 ③을 선택하세요."
+          }
+        ]
+      }
+    ]
+  }
+}

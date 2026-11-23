@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007338",
+  "problem_type": "multiple_choice_fraction_comparison",
+  "given": [
+    {
+      "ref": "expr_0",
+      "value": "8과 3/8"
+    },
+    {
+      "ref": "expr_1",
+      "value": "8"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "계산 결과가 더 큰 식",
+    "unit": ""
+  },
+  "method": "fraction_addition_comparison",
+  "steps": [
+    {
+      "id": "compare_sums",
+      "expr": "8과 3/8 > 8",
+      "explanation": "5와 6/8 + 2와 5/8 = 8과 3/8이고 3과 7/8 + 4와 1/8 = 8이므로 ①이 더 큽니다.",
+      "value": "①"
+    }
+  ],
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.chose_smaller_sum",
+            "condition": "answer_equals_2",
+            "concept": "대분수의 덧셈과 크기 비교",
+            "reason": "5와 6/8 + 2와 5/8 = 8과 3/8이 3와 7/8 + 4와 1/8 = 8보다 큼에도 ②를 선택함",
+            "feedback": "5와 6/8 + 2와 5/8 = 8과 3/8이고, 3과 7/8 + 4와 1/8 = 8입니다. 따라서 ①이 더 큽니다."
+          }
+        ]
+      }
+    ]
+  }
+}

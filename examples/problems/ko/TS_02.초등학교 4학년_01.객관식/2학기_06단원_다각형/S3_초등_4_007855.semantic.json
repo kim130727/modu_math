@@ -1,0 +1,408 @@
+{
+  "problem_id": "S3_초등_4_007855",
+  "problem_type": "multiple_choice_pattern_block_polygon",
+  "metadata": {
+    "title": "모양을 만드는 데 사용한 다각형의 이름 선택하기",
+    "tags": [],
+    "question": "69. 모양을 만드는 데 사용한 다각형의 이름을 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1",
+      "slot.choice.option_2",
+      "slot.diagram.p_left",
+      "slot.diagram.p_mid",
+      "slot.diagram.p_right",
+      "slot.diagram.frame"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "2학기",
+    "chapter": "06단원_다각형",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.diagram.opt_0",
+        "slot.diagram.opt_1",
+        "slot.diagram.opt_2"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "69. 모양을 만드는 데 사용한 다각형의 이름을 찾아 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 168,
+          "y": 219,
+          "width": 158,
+          "height": 48,
+          "stroke": "#cbd5e1",
+          "stroke_width": 1.4,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 364,
+          "y": 219,
+          "width": 158,
+          "height": 48,
+          "stroke": "#cbd5e1",
+          "stroke_width": 1.4,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 560,
+          "y": 219,
+          "width": 158,
+          "height": 48,
+          "stroke": "#cbd5e1",
+          "stroke_width": 1.4,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.frame",
+        "type": "rect_slot",
+        "properties": {
+          "x": 142,
+          "y": 206,
+          "width": 602,
+          "height": 74,
+          "stroke": "#a78bfa",
+          "stroke_width": 1.6,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.frame"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_0",
+        "type": "text",
+        "properties": {
+          "text": "삼각형"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_1",
+        "type": "text",
+        "properties": {
+          "text": "사각형"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_2",
+        "type": "text",
+        "properties": {
+          "text": "육각형"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.p_left",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              366,
+              126
+            ],
+            [
+              416,
+              126
+            ],
+            [
+              443,
+              174
+            ],
+            [
+              393,
+              174
+            ]
+          ],
+          "stroke": "#0284c7",
+          "stroke_width": 1.8,
+          "fill": "#38bdf8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.p_left"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.p_mid",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              443,
+              78
+            ],
+            [
+              470,
+              126
+            ],
+            [
+              443,
+              174
+            ],
+            [
+              416,
+              126
+            ]
+          ],
+          "stroke": "#0284c7",
+          "stroke_width": 1.8,
+          "fill": "#38bdf8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.p_mid"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.p_right",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              470,
+              126
+            ],
+            [
+              520,
+              126
+            ],
+            [
+              493,
+              174
+            ],
+            [
+              443,
+              174
+            ]
+          ],
+          "stroke": "#0284c7",
+          "stroke_width": 1.8,
+          "fill": "#38bdf8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.p_right"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "69. 모양을 만드는 데 사용한 다각형의 이름을 찾아 선택하세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "사각형",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "사각형"
+    ],
+    "choices": [
+      {
+        "id": "slot.diagram.opt_0",
+        "slot_id": "slot.diagram.opt_0",
+        "text": "삼각형",
+        "value": "삼각형"
+      },
+      {
+        "id": "slot.diagram.opt_1",
+        "slot_id": "slot.diagram.opt_1",
+        "text": "사각형",
+        "value": "사각형"
+      },
+      {
+        "id": "slot.diagram.opt_2",
+        "slot_id": "slot.diagram.opt_2",
+        "text": "육각형",
+        "value": "육각형"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "사각형",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_polygon_name",
+            "condition": "answer_not_quad",
+            "concept": "다각형의 이름",
+            "reason": "모양을 이루는 각 조각의 변의 수를 잘못 셈",
+            "feedback": "모양을 자세히 보면 변이 4개인 사각형 3개를 이어 붙여 만든 모양입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "shape": {
+      "label": "만든 모양",
+      "piece_type": "사각형",
+      "piece_count": 3
+    }
+  },
+  "relations": [
+    {
+      "type": "composition",
+      "whole": "shape",
+      "part": "사각형",
+      "count": 3
+    }
+  ]
+}

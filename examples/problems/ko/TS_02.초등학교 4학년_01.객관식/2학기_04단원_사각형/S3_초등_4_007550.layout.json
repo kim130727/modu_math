@@ -1,0 +1,334 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007550",
+  "title": "사각형에서 잘라 내면 사다리꼴이 되는 선의 기호 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 356,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1",
+        "slot.choice.option_2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.quad",
+        "slot.diagram.cut_g",
+        "slot.diagram.cut_n",
+        "slot.diagram.cut_d",
+        "slot.diagram.lbl_g",
+        "slot.diagram.lbl_n",
+        "slot.diagram.lbl_d",
+        "slot.diagram.opt_text_0",
+        "slot.diagram.opt_text_1",
+        "slot.diagram.opt_text_2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "93. 사각형에서 어느 선을 따라 잘라 내면 사다리꼴이 되는지 기호를 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 64.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 218.0,
+        "y": 286.0,
+        "width": 120.0,
+        "height": 46.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "ㄱ",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 383.0,
+        "y": 286.0,
+        "width": 120.0,
+        "height": 46.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "ㄴ",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 548.0,
+        "y": 286.0,
+        "width": 120.0,
+        "height": 46.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 2,
+          "value": "ㄷ",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.diagram.quad",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            344.0,
+            128.0
+          ],
+          [
+            546.0,
+            128.0
+          ],
+          [
+            484.0,
+            248.0
+          ],
+          [
+            344.0,
+            224.0
+          ]
+        ],
+        "stroke": "#111827",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.cut_g",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 332.0,
+        "y1": 114.0,
+        "x2": 454.0,
+        "y2": 258.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.lbl_g",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "body",
+        "x": 322.0,
+        "y": 94.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.cut_n",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 426.0,
+        "y1": 110.0,
+        "x2": 498.0,
+        "y2": 264.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.lbl_n",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "body",
+        "x": 422.0,
+        "y": 88.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.cut_d",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 316.0,
+        "y1": 224.0,
+        "x2": 562.0,
+        "y2": 224.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.lbl_d",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "body",
+        "x": 582.0,
+        "y": 214.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_text_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "body",
+        "x": 278.0,
+        "y": 297.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_text_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "body",
+        "x": 443.0,
+        "y": 297.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_text_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "body",
+        "x": 608.0,
+        "y": 297.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1",
+    "slot.choice.option_2",
+    "region.diagram",
+    "slot.diagram.quad",
+    "slot.diagram.cut_g",
+    "slot.diagram.cut_n",
+    "slot.diagram.cut_d",
+    "slot.diagram.lbl_g",
+    "slot.diagram.lbl_n",
+    "slot.diagram.lbl_d",
+    "slot.diagram.opt_text_0",
+    "slot.diagram.opt_text_1",
+    "slot.diagram.opt_text_2"
+  ]
+}

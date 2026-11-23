@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007333",
+  "problem_type": "multiple_choice_fraction_comparison",
+  "given": [
+    {
+      "ref": "expr_0",
+      "value": "5와 5/7"
+    },
+    {
+      "ref": "expr_1",
+      "value": "5와 6/7"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "계산 결과가 더 작은 식",
+    "unit": ""
+  },
+  "method": "fraction_subtraction_comparison",
+  "steps": [
+    {
+      "id": "compare_differences",
+      "expr": "5와 5/7 < 5와 6/7",
+      "explanation": "9 - 3과 2/7 = 5와 5/7이고 6 - 1/7 = 5와 6/7이므로 ①이 더 작습니다.",
+      "value": "①"
+    }
+  ],
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.chose_larger_diff",
+            "condition": "answer_equals_2",
+            "concept": "자연수와 분수의 뺄셈",
+            "reason": "6 - 1/7 = 5와 6/7이 9 - 3과 2/7 = 5와 5/7보다 큼에도 ②를 선택함",
+            "feedback": "9 - 3과 2/7 = 5와 5/7이고, 6 - 1/7 = 5와 6/7입니다. 따라서 계산 결과가 더 작은 것은 ①입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

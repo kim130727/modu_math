@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007332",
+  "problem_type": "multiple_choice_fraction_comparison",
+  "given": [
+    {
+      "ref": "expr_0",
+      "value": "4와 1/4"
+    },
+    {
+      "ref": "expr_1",
+      "value": "4와 2/4"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "계산 결과가 더 큰 식",
+    "unit": ""
+  },
+  "method": "fraction_subtraction_comparison",
+  "steps": [
+    {
+      "id": "compare_differences",
+      "expr": "4와 1/4 < 4와 2/4",
+      "explanation": "8 - 3과 3/4 = 4와 1/4, 6과 1/4 - 7/4 = 4와 2/4이므로 ②가 더 큽니다.",
+      "value": "②"
+    }
+  ],
+  "answer": {
+    "value": "②",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "②"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②",
+        "diagnostics": [
+          {
+            "id": "diag.chose_smaller_diff",
+            "condition": "answer_equals_1",
+            "concept": "분수의 뺄셈과 크기 비교",
+            "reason": "8 - 3과 3/4 = 4와 1/4이 6과 1/4 - 7/4 = 4와 2/4보다 작음에도 ①을 선택함",
+            "feedback": "8 - 3과 3/4 = 4와 1/4이고, 6과 1/4 - 7/4 = 4와 2/4입니다. 따라서 계산 결과가 더 큰 것은 ②입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,590 @@
+{
+  "problem_id": "S3_초등_4_007365",
+  "problem_type": "multiple_choice_isosceles_angles",
+  "metadata": {
+    "title": "색종이로 만든 이등변삼각형에서 두 각의 크기 비교하기",
+    "tags": [],
+    "question": "41. 색종이 한 장을 반으로 접고 선을 따라 가위로 잘라 이등변삼각형을 만들었습니다. 그림을 보고 알맞은 말을 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1",
+      "slot.diagram.s1",
+      "slot.diagram.s1_f",
+      "slot.diagram.s2",
+      "slot.diagram.s2_line",
+      "slot.diagram.s3",
+      "slot.diagram.s3_line",
+      "slot.diagram.s4_tri",
+      "slot.diagram.s4_fold",
+      "slot.diagram.boy_head",
+      "slot.diagram.bubble"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "2학기",
+    "chapter": "02단원_삼각형",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "41. 색종이 한 장을 반으로 접고 선을 따라 가위로 잘라 이등변삼각형을 만들었습니다. 그림을 보고 알맞은 말을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 280,
+          "y": 322,
+          "width": 136,
+          "height": 48,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 470,
+          "y": 322,
+          "width": 136,
+          "height": 48,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ang_l",
+        "type": "symbol_label",
+        "properties": {
+          "text": "ㄱ"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ang_l"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ang_r",
+        "type": "symbol_label",
+        "properties": {
+          "text": "ㄴ"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ang_r"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ar1",
+        "type": "text",
+        "properties": {
+          "text": "→"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ar1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ar2",
+        "type": "text",
+        "properties": {
+          "text": "→"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ar2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ar3",
+        "type": "text",
+        "properties": {
+          "text": "→"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ar3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.boy_head",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 222,
+          "cy": 254,
+          "r": 26,
+          "stroke": "#92400e",
+          "stroke_width": 1.4,
+          "fill": "#fde68a",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.boy_head"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.bubble",
+        "type": "rect_slot",
+        "properties": {
+          "x": 286,
+          "y": 224,
+          "width": 480,
+          "height": 74,
+          "stroke": "#111827",
+          "stroke_width": 1.6,
+          "rx": 28,
+          "ry": 28,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.bubble"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.bubble_txt",
+        "type": "text",
+        "properties": {
+          "text": "겹쳐서 잘랐기 때문에 위 이등변삼각형에\n표시된 두 각의 크기는 ( 같아 , 달라 ).",
+          "width": 440,
+          "height": 52
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.bubble_txt"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c0_txt",
+        "type": "text",
+        "properties": {
+          "text": "같아"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c0_txt"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c1_txt",
+        "type": "text",
+        "properties": {
+          "text": "달라"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c1_txt"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.s1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 142,
+          "y": 102,
+          "width": 100,
+          "height": 96,
+          "stroke": "#6b7280",
+          "stroke_width": 1.2,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.s1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.s1_f",
+        "type": "rect_slot",
+        "properties": {
+          "x": 142,
+          "y": 102,
+          "width": 50,
+          "height": 96,
+          "stroke": "#ea580c",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fed7aa",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.s1_f"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.s2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 306,
+          "y": 102,
+          "width": 60,
+          "height": 96,
+          "stroke": "#ea580c",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fed7aa",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.s2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.s2_line",
+        "type": "line_slot",
+        "properties": {
+          "x1": 306,
+          "y1": 198,
+          "x2": 366,
+          "y2": 102,
+          "stroke": "#111827",
+          "stroke_width": 1.8,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.s2_line"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.s3",
+        "type": "rect_slot",
+        "properties": {
+          "x": 432,
+          "y": 102,
+          "width": 60,
+          "height": 96,
+          "stroke": "#ea580c",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fed7aa",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.s3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.s3_line",
+        "type": "line_slot",
+        "properties": {
+          "x1": 432,
+          "y1": 198,
+          "x2": 492,
+          "y2": 102,
+          "stroke": "#111827",
+          "stroke_width": 1.8,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.s3_line"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.s4_fold",
+        "type": "line_slot",
+        "properties": {
+          "x1": 626,
+          "y1": 102,
+          "x2": 626,
+          "y2": 198,
+          "stroke": "#16a34a",
+          "stroke_width": 1.2,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.s4_fold"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.s4_tri",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              626,
+              102
+            ],
+            [
+              566,
+              198
+            ],
+            [
+              686,
+              198
+            ]
+          ],
+          "stroke": "#16a34a",
+          "stroke_width": 1.8,
+          "fill": "#bbf7d0",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.s4_tri"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "41. 색종이 한 장을 반으로 접고 선을 따라 가위로 잘라 이등변삼각형을 만들었습니다. 그림을 보고 알맞은 말을 선택하세요.",
+          "width": 820,
+          "height": 64
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "같아",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "같아"
+    ],
+    "choices": [
+      "같아",
+      "달라"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "같아",
+        "diagnostics": [
+          {
+            "id": "diag.chose_different",
+            "condition": "answer_equals_diff",
+            "concept": "이등변삼각형의 성질",
+            "reason": "겹쳐서 자른 두 각의 크기가 같다는 성질을 놓침",
+            "feedback": "색종이를 반으로 접어 겹쳐서 잘랐기 때문에 양쪽 두 각 ㄱ과 ㄴ의 크기는 같습니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "angle_a": {
+      "label": "ㄱ",
+      "equals": "ㄴ"
+    },
+    "angle_b": {
+      "label": "ㄴ",
+      "equals": "ㄱ"
+    }
+  },
+  "relations": [
+    {
+      "type": "angle_equality",
+      "property": "isosceles_base_angles",
+      "correct_choice": "같아"
+    }
+  ]
+}

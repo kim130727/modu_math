@@ -1,0 +1,62 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007860",
+  "problem_type": "multiple_choice_most_used_pattern_block",
+  "given": [
+    {
+      "ref": "piece_0",
+      "value": "정삼각형 2개"
+    },
+    {
+      "ref": "piece_1",
+      "value": "마름모 4개"
+    },
+    {
+      "ref": "piece_2",
+      "value": "정육각형 1개"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "가장 많이 사용한 모양 조각",
+    "unit": ""
+  },
+  "method": "shape_decomposition",
+  "steps": [
+    {
+      "id": "count_pieces",
+      "expr": "정삼각형 2개, 마름모 4개, 정육각형 1개",
+      "explanation": "가장 많이 사용해야 하는 모양 조각은 4개인 마름모(②)입니다.",
+      "value": "②"
+    }
+  ],
+  "answer": {
+    "value": "②",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "②"
+    ],
+    "choices": [
+      "① 정삼각형",
+      "② 마름모",
+      "③ 정육각형"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_piece_count",
+            "condition": "answer_not_2",
+            "concept": "모양 조각으로 모양 채우기",
+            "reason": "난초의 잎 부분을 채우는 마름모(4개)가 가장 많음을 놓침",
+            "feedback": "정삼각형 2개, 마름모 4개, 정육각형 1개로 채울 수 있으므로 가장 많이 사용한 조각은 마름모(②)입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

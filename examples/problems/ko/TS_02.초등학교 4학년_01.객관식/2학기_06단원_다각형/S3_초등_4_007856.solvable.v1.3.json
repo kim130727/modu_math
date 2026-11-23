@@ -1,0 +1,61 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007856",
+  "problem_type": "multiple_choice_tiling_rule",
+  "given": [
+    {
+      "ref": "jihyun",
+      "value": "사다리꼴 2개"
+    },
+    {
+      "ref": "dongmin",
+      "value": "평행사변형 3개"
+    },
+    {
+      "ref": "sua",
+      "value": "정삼각형 6개"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "모양 채우기 방법",
+    "unit": ""
+  },
+  "method": "tiling_rule",
+  "steps": [
+    {
+      "id": "check_tiling",
+      "expr": "모양 조각을 서로 겹치지 않게 빈틈없이 이어 붙임",
+      "explanation": "모양 조각을 서로 겹치지 않게 빈틈없이 이어 붙여서 모양을 채웠습니다.",
+      "value": "겹치지 않게"
+    }
+  ],
+  "answer": {
+    "value": "겹치지 않게",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "겹치지 않게"
+    ],
+    "choices": [
+      "겹치게",
+      "겹치지 않게"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "겹치지 않게",
+        "diagnostics": [
+          {
+            "id": "diag.overlap_error",
+            "condition": "answer_equals_0",
+            "concept": "모양 채우기의 규칙",
+            "reason": "모양 조각을 겹쳐서 채웠다고 잘못 이해함",
+            "feedback": "지현, 동민, 수아 모두 모양 조각을 서로 겹치지 않게 빈틈없이 이어 붙여 정육각형 모양을 채웠습니다."
+          }
+        ]
+      }
+    ]
+  }
+}

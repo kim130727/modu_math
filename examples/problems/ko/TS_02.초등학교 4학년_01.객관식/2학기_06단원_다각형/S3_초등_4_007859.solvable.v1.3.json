@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007859",
+  "problem_type": "multiple_choice_pattern_block_explanation",
+  "given": [
+    {
+      "ref": "minji",
+      "value": "거북 모양을 만들었어."
+    },
+    {
+      "ref": "doyoung",
+      "value": "삼각형, 사각형, 육각형 모양 조각을 사용하여 만들었어."
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "바르게 설명한 사람",
+    "unit": ""
+  },
+  "method": "truth_evaluation",
+  "steps": [
+    {
+      "id": "verify_pieces",
+      "expr": "사용한 조각 = 삼각형, 사각형 (육각형 미사용)",
+      "explanation": "육각형 모양 조각은 사용하지 않았으므로 바르게 설명한 사람은 민지입니다.",
+      "value": "민지"
+    }
+  ],
+  "answer": {
+    "value": "민지",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "민지"
+    ],
+    "choices": [
+      "민지",
+      "도영"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "민지",
+        "diagnostics": [
+          {
+            "id": "diag.chose_hexagon_claim",
+            "condition": "answer_equals_doyoung",
+            "concept": "모양 조각 분류",
+            "reason": "육각형 모양 조각을 사용하지 않았는데 육각형을 사용했다고 말한 도영을 선택함",
+            "feedback": "거북 모양을 만드는 데 사용한 조각은 삼각형과 사각형뿐입니다. 육각형 모양 조각은 사용하지 않았으므로 바르게 설명한 사람은 민지입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

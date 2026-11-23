@@ -1,0 +1,321 @@
+{
+  "problem_id": "S3_초등_4_007484",
+  "problem_type": "multiple_choice_decimal_place_value",
+  "metadata": {
+    "title": "7이 나타내는 수가 0.07인 소수 선택하기",
+    "tags": [],
+    "question": "5. 7이 나타내는 수가 0.07인 수를 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1",
+      "slot.choice.option_2",
+      "slot.diagram.animal_0",
+      "slot.diagram.animal_1",
+      "slot.diagram.animal_2"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "2학기",
+    "chapter": "03단원_소수의 덧셈과 뺄셈",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "5. 7이 나타내는 수가 0.07인 수를 선택해 보세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 72,
+          "y": 158,
+          "width": 208,
+          "height": 68,
+          "stroke": "#b45309",
+          "stroke_width": 1.8,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f3e8d2",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 339,
+          "y": 158,
+          "width": 208,
+          "height": 68,
+          "stroke": "#b45309",
+          "stroke_width": 1.8,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f3e8d2",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 606,
+          "y": 158,
+          "width": 208,
+          "height": 68,
+          "stroke": "#b45309",
+          "stroke_width": 1.8,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f3e8d2",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.animal_0",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 176,
+          "cy": 124,
+          "r": 26,
+          "stroke": "#7c3aed",
+          "stroke_width": 1.4,
+          "fill": "#ddd6fe",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.animal_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.animal_1",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 443,
+          "cy": 124,
+          "r": 26,
+          "stroke": "#a16207",
+          "stroke_width": 1.4,
+          "fill": "#fef08a",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.animal_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.animal_2",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 710,
+          "cy": 124,
+          "r": 26,
+          "stroke": "#c2410c",
+          "stroke_width": 1.4,
+          "fill": "#fed7aa",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.animal_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.val_0",
+        "type": "text",
+        "properties": {
+          "text": "0.715"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.val_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.val_1",
+        "type": "text",
+        "properties": {
+          "text": "3.47"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.val_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.val_2",
+        "type": "text",
+        "properties": {
+          "text": "11.607"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.val_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "5. 7이 나타내는 수가 0.07인 수를 선택해 보세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "3.47",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "3.47"
+    ],
+    "choices": [
+      "0.715",
+      "3.47",
+      "11.607"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "3.47",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_place_value",
+            "condition": "answer_not_3.47",
+            "concept": "소수의 자릿값",
+            "reason": "0.07이 나타내는 소수 둘째 자리를 찾지 못함",
+            "feedback": "0.715에서 7은 0.7, 3.47에서 7은 0.07, 11.607에서 7은 0.007을 나타냅니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "num_0": {
+      "label": "0.715",
+      "digit_7_value": 0.7
+    },
+    "num_1": {
+      "label": "3.47",
+      "digit_7_value": 0.07
+    },
+    "num_2": {
+      "label": "11.607",
+      "digit_7_value": 0.007
+    }
+  },
+  "relations": [
+    {
+      "type": "place_value_match",
+      "target_value": 0.07,
+      "correct_entity": "num_1"
+    }
+  ]
+}

@@ -1,0 +1,998 @@
+{
+  "problem_id": "S3_초등_4_007364",
+  "problem_type": "multiple_choice_paper_folding_equilateral",
+  "metadata": {
+    "title": "색종이로 만든 삼각형의 종류와 이유 고르기",
+    "tags": [],
+    "question": "40. 색종이로 그림과 같이 삼각형을 만들었을 때 만든 삼각형이 어떤 삼각형인지 찾고 알맞은 말을 고르세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1",
+      "slot.choice.option_2",
+      "slot.choice.option_3",
+      "slot.diagram.paper_0",
+      "slot.diagram.fold_0",
+      "slot.diagram.paper_1",
+      "slot.diagram.fold_1",
+      "slot.diagram.paper_2",
+      "slot.diagram.fold_2",
+      "slot.diagram.paper_3",
+      "slot.diagram.fold_3",
+      "slot.diagram.paper_4",
+      "slot.diagram.fold_4",
+      "slot.diagram.step2_tri",
+      "slot.diagram.step3_tri",
+      "slot.diagram.step4_tri",
+      "slot.diagram.tbl_r1_l",
+      "slot.diagram.tbl_r1_r",
+      "slot.diagram.tbl_r2_l",
+      "slot.diagram.tbl_r2_r",
+      "slot.diagram.lbl_bg1",
+      "slot.diagram.lbl_bg2"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "2학기",
+    "chapter": "02단원_삼각형",
+    "difficulty": "중",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "40. 색종이로 그림과 같이 삼각형을 만들었을 때 만든 삼각형이 어떤 삼각형인지 찾고 알맞은 말을 고르세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 56,
+          "y": 374,
+          "width": 378,
+          "height": 44,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 452,
+          "y": 374,
+          "width": 378,
+          "height": 44,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 56,
+          "y": 430,
+          "width": 378,
+          "height": 44,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_3",
+        "type": "rect_slot",
+        "properties": {
+          "x": 452,
+          "y": 430,
+          "width": 378,
+          "height": 44,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.arrow_0",
+        "type": "text",
+        "properties": {
+          "text": "→"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.arrow_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.arrow_1",
+        "type": "text",
+        "properties": {
+          "text": "→"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.arrow_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.arrow_2",
+        "type": "text",
+        "properties": {
+          "text": "→"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.arrow_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.arrow_3",
+        "type": "text",
+        "properties": {
+          "text": "→"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.arrow_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.fold_0",
+        "type": "line_slot",
+        "properties": {
+          "x1": 152,
+          "y1": 96,
+          "x2": 152,
+          "y2": 180,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.0,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.fold_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.fold_1",
+        "type": "line_slot",
+        "properties": {
+          "x1": 290,
+          "y1": 96,
+          "x2": 290,
+          "y2": 180,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.0,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.fold_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.fold_2",
+        "type": "line_slot",
+        "properties": {
+          "x1": 428,
+          "y1": 96,
+          "x2": 428,
+          "y2": 180,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.0,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.fold_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.fold_3",
+        "type": "line_slot",
+        "properties": {
+          "x1": 566,
+          "y1": 96,
+          "x2": 566,
+          "y2": 180,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.0,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.fold_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.fold_4",
+        "type": "line_slot",
+        "properties": {
+          "x1": 704,
+          "y1": 96,
+          "x2": 704,
+          "y2": 180,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.0,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.fold_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.lbl_1",
+        "type": "text",
+        "properties": {
+          "text": "만든 삼각형"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.lbl_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.lbl_2",
+        "type": "text",
+        "properties": {
+          "text": "이유"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.lbl_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.lbl_bg1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 68,
+          "y": 212,
+          "width": 124,
+          "height": 30,
+          "stroke": "none",
+          "stroke_width": null,
+          "rx": null,
+          "ry": null,
+          "fill": "#c084fc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.lbl_bg1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.lbl_bg2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 100,
+          "y": 289,
+          "width": 60,
+          "height": 30,
+          "stroke": "none",
+          "stroke_width": null,
+          "rx": null,
+          "ry": null,
+          "fill": "#c084fc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.lbl_bg2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_text_0",
+        "type": "text",
+        "properties": {
+          "text": "① 정삼각형, 같으므로, 같기"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_text_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_text_1",
+        "type": "text",
+        "properties": {
+          "text": "② 정삼각형, 다르므로, 같기"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_text_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_text_2",
+        "type": "text",
+        "properties": {
+          "text": "③ 이등변삼각형, 같으므로, 다르기"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_text_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_text_3",
+        "type": "text",
+        "properties": {
+          "text": "④ 이등변삼각형, 다르므로, 다르기"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_text_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.paper_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 110,
+          "y": 96,
+          "width": 84,
+          "height": 84,
+          "stroke": "#6b7280",
+          "stroke_width": 1.2,
+          "rx": null,
+          "ry": null,
+          "fill": "#ddd6fe",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.paper_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.paper_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 248,
+          "y": 96,
+          "width": 84,
+          "height": 84,
+          "stroke": "#6b7280",
+          "stroke_width": 1.2,
+          "rx": null,
+          "ry": null,
+          "fill": "#ddd6fe",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.paper_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.paper_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 386,
+          "y": 96,
+          "width": 84,
+          "height": 84,
+          "stroke": "#6b7280",
+          "stroke_width": 1.2,
+          "rx": null,
+          "ry": null,
+          "fill": "#ddd6fe",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.paper_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.paper_3",
+        "type": "rect_slot",
+        "properties": {
+          "x": 524,
+          "y": 96,
+          "width": 84,
+          "height": 84,
+          "stroke": "#6b7280",
+          "stroke_width": 1.2,
+          "rx": null,
+          "ry": null,
+          "fill": "#ddd6fe",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.paper_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.paper_4",
+        "type": "rect_slot",
+        "properties": {
+          "x": 662,
+          "y": 96,
+          "width": 84,
+          "height": 84,
+          "stroke": "#6b7280",
+          "stroke_width": 1.2,
+          "rx": null,
+          "ry": null,
+          "fill": "#ddd6fe",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.paper_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.step2_tri",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              386,
+              180
+            ],
+            [
+              428,
+              96
+            ],
+            [
+              470,
+              146
+            ]
+          ],
+          "stroke": "#111827",
+          "stroke_width": 1.2,
+          "fill": "#fef08a",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.step2_tri"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.step3_tri",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              608,
+              180
+            ],
+            [
+              566,
+              96
+            ],
+            [
+              524,
+              146
+            ]
+          ],
+          "stroke": "#111827",
+          "stroke_width": 1.2,
+          "fill": "#fef08a",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.step3_tri"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.step4_tri",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              662,
+              180
+            ],
+            [
+              704,
+              96
+            ],
+            [
+              746,
+              180
+            ]
+          ],
+          "stroke": "#111827",
+          "stroke_width": 2.0,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.step4_tri"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tbl_r1_l",
+        "type": "rect_slot",
+        "properties": {
+          "x": 56,
+          "y": 200,
+          "width": 148,
+          "height": 54,
+          "stroke": "#86efac",
+          "stroke_width": 1.5,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tbl_r1_l"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tbl_r1_r",
+        "type": "rect_slot",
+        "properties": {
+          "x": 204,
+          "y": 200,
+          "width": 626,
+          "height": 54,
+          "stroke": "#86efac",
+          "stroke_width": 1.5,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tbl_r1_r"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tbl_r2_l",
+        "type": "rect_slot",
+        "properties": {
+          "x": 56,
+          "y": 254,
+          "width": 148,
+          "height": 100,
+          "stroke": "#86efac",
+          "stroke_width": 1.5,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tbl_r2_l"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tbl_r2_r",
+        "type": "rect_slot",
+        "properties": {
+          "x": 204,
+          "y": 254,
+          "width": 626,
+          "height": 100,
+          "stroke": "#86efac",
+          "stroke_width": 1.5,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tbl_r2_r"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.val_1",
+        "type": "text",
+        "properties": {
+          "text": "( 정삼각형, 이등변삼각형 )"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.val_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.val_2",
+        "type": "text",
+        "properties": {
+          "text": "색종이에 그린 두 변의 길이는 색종이의 한 변의 길이와 ( 같으므로, 다르므로 ) 세 변의 길이가 모두 ( 같기, 다르기 ) 때문입니다.",
+          "width": 590,
+          "height": 74
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.val_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "40. 색종이로 그림과 같이 삼각형을 만들었을 때 만든 삼각형이 어떤 삼각형인지 찾고 알맞은 말을 고르세요.",
+          "width": 820,
+          "height": 64
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "① 정삼각형, 같으므로, 같기",
+      "② 정삼각형, 다르므로, 같기",
+      "③ 이등변삼각형, 같으므로, 다르기",
+      "④ 이등변삼각형, 다르므로, 다르기"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.missed_equilateral_folding",
+            "condition": "answer_not_1",
+            "concept": "정삼각형 만들기와 성질",
+            "reason": "색종이의 한 변과 그린 두 변의 길이가 모두 같아 정삼각형이 됨을 놓침",
+            "feedback": "서로 겹치도록 접어서 그린 두 변의 길이는 색종이의 한 변의 길이와 같으므로 세 변의 길이가 모두 같은 정삼각형입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "triangle": {
+      "label": "만든 삼각형",
+      "type": "정삼각형"
+    },
+    "reason": {
+      "label": "이유",
+      "value": "세 변의 길이가 모두 같음"
+    }
+  },
+  "relations": [
+    {
+      "type": "construction_property",
+      "method": "paper_folding",
+      "result": "정삼각형"
+    }
+  ]
+}

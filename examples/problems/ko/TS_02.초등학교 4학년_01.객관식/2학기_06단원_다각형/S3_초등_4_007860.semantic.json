@@ -1,0 +1,465 @@
+{
+  "problem_id": "S3_초등_4_007860",
+  "problem_type": "multiple_choice_most_used_pattern_block",
+  "metadata": {
+    "title": "난초 모양을 채울 때 가장 많이 사용해야 하는 모양 조각 선택하기",
+    "tags": [],
+    "question": "75. 3가지 모양 조각을 모두 사용하여 오른쪽 난초 모양을 채우려고 합니다. 가장 많이 사용해야 하는 모양 조각을 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1",
+      "slot.choice.option_2",
+      "slot.diagram.tri",
+      "slot.diagram.rhom",
+      "slot.diagram.hex",
+      "slot.diagram.orchid"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "2학기",
+    "chapter": "06단원_다각형",
+    "difficulty": "중",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "75. 3가지 모양 조각을 모두 사용하여 오른쪽 난초 모양을 채우려고 합니다. 가장 많이 사용해야 하는 모양 조각을 찾아 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 106,
+          "y": 108,
+          "width": 104,
+          "height": 130,
+          "stroke": "#cbd5e1",
+          "stroke_width": 1.5,
+          "rx": 10,
+          "ry": 10,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 230,
+          "y": 108,
+          "width": 104,
+          "height": 130,
+          "stroke": "#cbd5e1",
+          "stroke_width": 1.5,
+          "rx": 10,
+          "ry": 10,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 354,
+          "y": 108,
+          "width": 124,
+          "height": 130,
+          "stroke": "#cbd5e1",
+          "stroke_width": 1.5,
+          "rx": 10,
+          "ry": 10,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.arrow",
+        "type": "text",
+        "properties": {
+          "text": "→"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.arrow"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b0",
+        "type": "symbol_label",
+        "properties": {
+          "text": "①"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b1",
+        "type": "symbol_label",
+        "properties": {
+          "text": "②"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b2",
+        "type": "symbol_label",
+        "properties": {
+          "text": "③"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.hex",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              396,
+              138
+            ],
+            [
+              436,
+              138
+            ],
+            [
+              456,
+              174
+            ],
+            [
+              436,
+              210
+            ],
+            [
+              396,
+              210
+            ],
+            [
+              376,
+              174
+            ]
+          ],
+          "stroke": "#ca8a04",
+          "stroke_width": 1.6,
+          "fill": "#fde047",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.hex"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.orchid",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              630,
+              248
+            ],
+            [
+              694,
+              248
+            ],
+            [
+              736,
+              176
+            ],
+            [
+              710,
+              176
+            ],
+            [
+              762,
+              148
+            ],
+            [
+              700,
+              148
+            ],
+            [
+              740,
+              100
+            ],
+            [
+              662,
+              176
+            ],
+            [
+              584,
+              100
+            ],
+            [
+              624,
+              148
+            ],
+            [
+              562,
+              148
+            ],
+            [
+              614,
+              176
+            ],
+            [
+              588,
+              176
+            ]
+          ],
+          "stroke": "#111827",
+          "stroke_width": 1.8,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.orchid"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.rhom",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              282,
+              128
+            ],
+            [
+              298,
+              174
+            ],
+            [
+              282,
+              220
+            ],
+            [
+              266,
+              174
+            ]
+          ],
+          "stroke": "#64748b",
+          "stroke_width": 1.6,
+          "fill": "#cbd5e1",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.rhom"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tri",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              158,
+              148
+            ],
+            [
+              132,
+              196
+            ],
+            [
+              184,
+              196
+            ]
+          ],
+          "stroke": "#15803d",
+          "stroke_width": 1.6,
+          "fill": "#4ade80",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tri"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "75. 3가지 모양 조각을 모두 사용하여 오른쪽 난초 모양을 채우려고 합니다. 가장 많이 사용해야 하는 모양 조각을 찾아 선택하세요.",
+          "width": 820,
+          "height": 64
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "②",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "②"
+    ],
+    "choices": [
+      "① 정삼각형",
+      "② 마름모",
+      "③ 정육각형"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_piece_count",
+            "condition": "answer_not_2",
+            "concept": "모양 조각으로 모양 채우기",
+            "reason": "난초의 잎 부분을 채우는 마름모(4개)가 가장 많음을 놓침",
+            "feedback": "정삼각형 2개, 마름모 4개, 정육각형 1개로 채울 수 있으므로 가장 많이 사용한 조각은 마름모(②)입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "piece_0": {
+      "label": "① 정삼각형",
+      "count": 2
+    },
+    "piece_1": {
+      "label": "② 마름모",
+      "count": 4
+    },
+    "piece_2": {
+      "label": "③ 정육각형",
+      "count": 1
+    }
+  },
+  "relations": [
+    {
+      "type": "argmax",
+      "property": "count",
+      "correct_entity": "piece_1"
+    }
+  ]
+}

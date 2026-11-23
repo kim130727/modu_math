@@ -1,0 +1,559 @@
+{
+  "problem_id": "S3_초등_4_007858",
+  "problem_type": "multiple_choice_tiling_ox",
+  "metadata": {
+    "title": "주어진 모양 조각을 모두 사용하여 말 모양을 채울 수 있는지 선택하기",
+    "tags": [],
+    "question": "73. 주어진 모양 조각을 모두 사용하여 다음 모양을 채울 수 있으면 ○, 채울 수 없으면 ×를 선택하세요.(단, 모양 조각은 여러 번 사용할 수 있습니다.)",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1",
+      "slot.diagram.box",
+      "slot.diagram.p1",
+      "slot.diagram.p2",
+      "slot.diagram.p3",
+      "slot.diagram.p4",
+      "slot.diagram.p5",
+      "slot.diagram.p6",
+      "slot.diagram.horse"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "2학기",
+    "chapter": "06단원_다각형",
+    "difficulty": "중",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "73. 주어진 모양 조각을 모두 사용하여 다음 모양을 채울 수 있으면 ○, 채울 수 없으면 ×를 선택하세요.(단, 모양 조각은 여러 번 사용할 수 있습니다.)"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 286,
+          "y": 352,
+          "width": 124,
+          "height": 52,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.6,
+          "rx": 10,
+          "ry": 10,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 476,
+          "y": 352,
+          "width": 124,
+          "height": 52,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.6,
+          "rx": 10,
+          "ry": 10,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.box",
+        "type": "rect_slot",
+        "properties": {
+          "x": 98,
+          "y": 98,
+          "width": 690,
+          "height": 78,
+          "stroke": "#22c55e",
+          "stroke_width": 1.6,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.box"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c0_t",
+        "type": "text",
+        "properties": {
+          "text": "○"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c0_t"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c1_t",
+        "type": "text",
+        "properties": {
+          "text": "×"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c1_t"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.horse",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              344,
+              190
+            ],
+            [
+              382,
+              200
+            ],
+            [
+              398,
+              240
+            ],
+            [
+              452,
+              228
+            ],
+            [
+              492,
+              198
+            ],
+            [
+              542,
+              210
+            ],
+            [
+              576,
+              244
+            ],
+            [
+              588,
+              280
+            ],
+            [
+              552,
+              250
+            ],
+            [
+              578,
+              326
+            ],
+            [
+              538,
+              322
+            ],
+            [
+              516,
+              270
+            ],
+            [
+              472,
+              260
+            ],
+            [
+              422,
+              276
+            ],
+            [
+              350,
+              332
+            ],
+            [
+              334,
+              294
+            ],
+            [
+              376,
+              258
+            ],
+            [
+              358,
+              220
+            ],
+            [
+              324,
+              244
+            ],
+            [
+              312,
+              210
+            ]
+          ],
+          "stroke": "#111827",
+          "stroke_width": 1.8,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.horse"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.p1",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              156,
+              118
+            ],
+            [
+              134,
+              156
+            ],
+            [
+              178,
+              156
+            ]
+          ],
+          "stroke": "#15803d",
+          "stroke_width": 1.4,
+          "fill": "#4ade80",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.p1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.p2",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              246,
+              118
+            ],
+            [
+              290,
+              118
+            ],
+            [
+              312,
+              156
+            ],
+            [
+              224,
+              156
+            ]
+          ],
+          "stroke": "#be123c",
+          "stroke_width": 1.4,
+          "fill": "#fb7185",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.p2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.p3",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              372,
+              118
+            ],
+            [
+              416,
+              118
+            ],
+            [
+              394,
+              156
+            ],
+            [
+              350,
+              156
+            ]
+          ],
+          "stroke": "#0284c7",
+          "stroke_width": 1.4,
+          "fill": "#38bdf8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.p3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.p4",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              476,
+              106
+            ],
+            [
+              488,
+              137
+            ],
+            [
+              476,
+              168
+            ],
+            [
+              464,
+              137
+            ]
+          ],
+          "stroke": "#64748b",
+          "stroke_width": 1.4,
+          "fill": "#cbd5e1",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.p4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.p5",
+        "type": "rect_slot",
+        "properties": {
+          "x": 538,
+          "y": 118,
+          "width": 38,
+          "height": 38,
+          "stroke": "#d97706",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fbbf24",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.p5"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.p6",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              650,
+              110
+            ],
+            [
+              694,
+              110
+            ],
+            [
+              716,
+              137
+            ],
+            [
+              694,
+              164
+            ],
+            [
+              650,
+              164
+            ],
+            [
+              628,
+              137
+            ]
+          ],
+          "stroke": "#ca8a04",
+          "stroke_width": 1.4,
+          "fill": "#fde047",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.p6"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "73. 주어진 모양 조각을 모두 사용하여 다음 모양을 채울 수 있으면 ○, 채울 수 없으면 ×를 선택하세요.(단, 모양 조각은 여러 번 사용할 수 있습니다.)",
+          "width": 820,
+          "height": 64
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "○",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "○"
+    ],
+    "choices": [
+      "○",
+      "×"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "○",
+        "diagnostics": [
+          {
+            "id": "diag.missed_tiling_possibility",
+            "condition": "answer_equals_x",
+            "concept": "모양 채우기",
+            "reason": "여러 가지 모양 조각을 이용해 주어진 도형을 채울 수 있음을 놓침",
+            "feedback": "주어진 모양 조각을 여러 번 사용하면 말 모양을 빈틈없이 채울 수 있으므로 ○입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "target_shape": {
+      "label": "말 모양",
+      "can_tile": true
+    }
+  },
+  "relations": [
+    {
+      "type": "tiling_feasibility",
+      "target": "target_shape",
+      "result": true
+    }
+  ]
+}

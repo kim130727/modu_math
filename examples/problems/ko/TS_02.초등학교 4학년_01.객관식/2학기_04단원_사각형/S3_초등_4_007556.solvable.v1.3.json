@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007556",
+  "problem_type": "multiple_choice_find_all_parallelograms",
+  "given": [
+    {
+      "ref": "ga",
+      "value": "평행한 변 2쌍"
+    },
+    {
+      "ref": "na",
+      "value": "평행한 변 2쌍"
+    },
+    {
+      "ref": "da",
+      "value": "평행한 변 1쌍"
+    },
+    {
+      "ref": "ra",
+      "value": "평행한 변 2쌍"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_2",
+    "label": "평행사변형 모두 찾기",
+    "unit": ""
+  },
+  "method": "quadrilateral_classification",
+  "steps": [
+    {
+      "id": "find_parallelograms",
+      "expr": "마주 보는 두 쌍의 변이 평행한 사각형 = 가, 나, 라",
+      "explanation": "가, 나, 라가 평행사변형입니다.",
+      "value": "③"
+    }
+  ],
+  "answer": {
+    "value": "③",
+    "answer_index": 2,
+    "unit": "",
+    "values": [
+      "③"
+    ],
+    "choices": [
+      "① 가, 나",
+      "② 나, 다",
+      "③ 가, 나, 라",
+      "④ 나, 다, 라"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "③",
+        "diagnostics": [
+          {
+            "id": "diag.missed_parallelogram",
+            "condition": "answer_not_3",
+            "concept": "평행사변형의 정의",
+            "reason": "마주 보는 두 쌍의 변이 평행한 사각형이 모두 평행사변형임을 놓침",
+            "feedback": "마주 보는 두 쌍의 변이 서로 평행한 사각형이 평행사변형입니다. 가, 나, 라 모두 두 쌍의 변이 평행하므로 ③을 선택하세요."
+          }
+        ]
+      }
+    ]
+  }
+}

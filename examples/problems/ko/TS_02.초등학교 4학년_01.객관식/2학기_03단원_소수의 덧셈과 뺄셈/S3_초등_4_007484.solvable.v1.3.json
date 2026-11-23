@@ -1,0 +1,62 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007484",
+  "problem_type": "multiple_choice_decimal_place_value",
+  "given": [
+    {
+      "ref": "num_0",
+      "value": "0.715"
+    },
+    {
+      "ref": "num_1",
+      "value": "3.47"
+    },
+    {
+      "ref": "num_2",
+      "value": "11.607"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "7이 0.07을 나타내는 수",
+    "unit": ""
+  },
+  "method": "decimal_place_value",
+  "steps": [
+    {
+      "id": "check_place",
+      "expr": "3.47에서 7은 소수 둘째 자리 숫자 -> 0.07",
+      "explanation": "7이 소수 둘째 자리에 있는 수는 3.47입니다.",
+      "value": "3.47"
+    }
+  ],
+  "answer": {
+    "value": "3.47",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "3.47"
+    ],
+    "choices": [
+      "0.715",
+      "3.47",
+      "11.607"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "3.47",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_place_value",
+            "condition": "answer_not_3.47",
+            "concept": "소수의 자릿값",
+            "reason": "0.07이 나타내는 소수 둘째 자리를 찾지 못함",
+            "feedback": "0.715에서 7은 0.7, 3.47에서 7은 0.07, 11.607에서 7은 0.007을 나타냅니다."
+          }
+        ]
+      }
+    ]
+  }
+}

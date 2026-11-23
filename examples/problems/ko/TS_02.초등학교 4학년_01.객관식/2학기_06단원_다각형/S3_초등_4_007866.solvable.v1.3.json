@@ -1,0 +1,53 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007866",
+  "problem_type": "multiple_choice_tiling_ox",
+  "given": [
+    {
+      "ref": "target_shape",
+      "value": "주어진 물고기 모양"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "만들기 가능 여부",
+    "unit": ""
+  },
+  "method": "tiling_feasibility",
+  "steps": [
+    {
+      "id": "check_tiling",
+      "expr": "가, 나, 다, 라, 마, 바 조각을 조합해 물고기 모양 완성 가능",
+      "explanation": "모양 조각을 여러 번 사용하여 물고기 모양을 만들 수 있으므로 ○입니다.",
+      "value": "○"
+    }
+  ],
+  "answer": {
+    "value": "○",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "○"
+    ],
+    "choices": [
+      "○",
+      "×"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "○",
+        "diagnostics": [
+          {
+            "id": "diag.missed_tiling_possibility",
+            "condition": "answer_equals_x",
+            "concept": "모양 만들기",
+            "reason": "정육각형, 사다리꼴, 평행사변형, 정삼각형, 정사각형, 마름모를 조합해 만들 수 있음을 놓침",
+            "feedback": "가(정육각형), 나(사다리꼴), 다(평행사변형), 라(정삼각형), 마(정사각형), 바(마름모)를 조합하면 물고기 모양을 만들 수 있으므로 ○입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

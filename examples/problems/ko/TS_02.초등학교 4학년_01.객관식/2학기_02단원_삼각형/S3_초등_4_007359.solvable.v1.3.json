@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007359",
+  "problem_type": "multiple_choice_isosceles_triangle",
+  "given": [
+    {
+      "ref": "tri_ga",
+      "value": "가로 5칸, 세로 6칸인 직각삼각형"
+    },
+    {
+      "ref": "tri_na",
+      "value": "두 변의 길이가 같은 삼각형"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "이등변삼각형",
+    "unit": ""
+  },
+  "method": "triangle_classification",
+  "steps": [
+    {
+      "id": "find_isosceles",
+      "expr": "두 변의 길이가 같은 삼각형 = 나",
+      "explanation": "두 변의 길이가 같은 삼각형이 이등변삼각형이므로 나입니다.",
+      "value": "나"
+    }
+  ],
+  "answer": {
+    "value": "나",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "나"
+    ],
+    "choices": [
+      "가",
+      "나"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "나",
+        "diagnostics": [
+          {
+            "id": "diag.chose_scalene",
+            "condition": "answer_equals_ga",
+            "concept": "이등변삼각형의 뜻",
+            "reason": "두 변의 길이가 다른 직각삼각형(가)을 선택함",
+            "feedback": "삼각형 가는 가로 5칸, 세로 6칸으로 세 변의 길이가 모두 다릅니다. 두 변의 길이가 같은 삼각형 나를 선택해 보세요."
+          }
+        ]
+      }
+    ]
+  }
+}

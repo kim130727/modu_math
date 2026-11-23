@@ -1,0 +1,459 @@
+{
+  "problem_id": "S3_초등_4_007333",
+  "problem_type": "multiple_choice_fraction_comparison",
+  "metadata": {
+    "title": "분수의 뺄셈 중 계산 결과가 더 작은 것 선택하기",
+    "tags": [],
+    "question": "4. 계산 결과가 더 작은 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1",
+      "slot.diagram.bear",
+      "slot.diagram.squirrel",
+      "slot.diagram.l2_bar",
+      "slot.diagram.r2_bar"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "2학기",
+    "chapter": "01단원_분수의 덧셈과 뺄셈",
+    "difficulty": "중",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "4. 계산 결과가 더 작은 것을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 176,
+          "y": 138,
+          "width": 230,
+          "height": 96,
+          "stroke": "#b48a5a",
+          "stroke_width": 1.5,
+          "rx": 6,
+          "ry": 6,
+          "fill": "#f3e0c2",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 480,
+          "y": 138,
+          "width": 230,
+          "height": 96,
+          "stroke": "#b48a5a",
+          "stroke_width": 1.5,
+          "rx": 6,
+          "ry": 6,
+          "fill": "#f3e0c2",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b0",
+        "type": "symbol_label",
+        "properties": {
+          "text": "①"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b1",
+        "type": "symbol_label",
+        "properties": {
+          "text": "②"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.bear",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 291,
+          "cy": 114,
+          "r": 24,
+          "stroke": "#92400e",
+          "stroke_width": 1.8,
+          "fill": "#fde68a",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.bear"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l1_w",
+        "type": "text",
+        "properties": {
+          "text": "9"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l1_w"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l2_bar",
+        "type": "line_slot",
+        "properties": {
+          "x1": 330,
+          "y1": 186,
+          "x2": 354,
+          "y2": 186,
+          "stroke": "#111827",
+          "stroke_width": 1.6,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l2_bar"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l2_d",
+        "type": "text",
+        "properties": {
+          "text": "7"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l2_d"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l2_n",
+        "type": "text",
+        "properties": {
+          "text": "2"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l2_n"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l2_w",
+        "type": "text",
+        "properties": {
+          "text": "3"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l2_w"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.op0",
+        "type": "text",
+        "properties": {
+          "text": "−"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.op0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.op1",
+        "type": "text",
+        "properties": {
+          "text": "−"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.op1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r1_w",
+        "type": "text",
+        "properties": {
+          "text": "6"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r1_w"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r2_bar",
+        "type": "line_slot",
+        "properties": {
+          "x1": 624,
+          "y1": 186,
+          "x2": 648,
+          "y2": 186,
+          "stroke": "#111827",
+          "stroke_width": 1.6,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r2_bar"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r2_d",
+        "type": "text",
+        "properties": {
+          "text": "7"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r2_d"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r2_n",
+        "type": "text",
+        "properties": {
+          "text": "1"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r2_n"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.squirrel",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 595,
+          "cy": 114,
+          "r": 24,
+          "stroke": "#9a3412",
+          "stroke_width": 1.8,
+          "fill": "#fed7aa",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.squirrel"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "4. 계산 결과가 더 작은 것을 선택하세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.chose_larger_diff",
+            "condition": "answer_equals_2",
+            "concept": "자연수와 분수의 뺄셈",
+            "reason": "6 - 1/7 = 5와 6/7이 9 - 3과 2/7 = 5와 5/7보다 큼에도 ②를 선택함",
+            "feedback": "9 - 3과 2/7 = 5와 5/7이고, 6 - 1/7 = 5와 6/7입니다. 따라서 계산 결과가 더 작은 것은 ①입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "expr_0": {
+      "label": "① 9 - 3과 2/7",
+      "value": "5와 5/7"
+    },
+    "expr_1": {
+      "label": "② 6 - 1/7",
+      "value": "5와 6/7"
+    }
+  },
+  "relations": [
+    {
+      "type": "less_than",
+      "smaller": "expr_0",
+      "larger": "expr_1"
+    }
+  ]
+}

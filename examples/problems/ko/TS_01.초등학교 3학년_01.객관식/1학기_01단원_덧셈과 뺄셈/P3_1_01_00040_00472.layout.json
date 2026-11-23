@@ -37,7 +37,8 @@
         "font_size": 24,
         "font_family": "\"Noto Sans KR\", sans-serif",
         "fill": "#202124",
-        "semantic_role": "question"
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
       }
     },
     {
@@ -56,8 +57,9 @@
         "font_size": 24,
         "line_height": 1.25,
         "fill": "#202124",
+        "font_family": "\"Noto Sans KR\", sans-serif",
         "semantic_role": "canvas",
-        "font_family": "\"Noto Sans KR\", sans-serif"
+        "semantic_role_source": "inferred"
       }
     },
     {
@@ -76,7 +78,7 @@
           "type": "input",
           "role": "answer",
           "value_type": "integer",
-          "max_length": 3,
+          "max_length": 4,
           "include_in_submission": true,
           "order": 0,
           "group_id": "final_answer",

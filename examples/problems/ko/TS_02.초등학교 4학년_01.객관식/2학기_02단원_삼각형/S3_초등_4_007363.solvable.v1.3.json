@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007363",
+  "problem_type": "multiple_choice_isosceles_lengths",
+  "given": [
+    {
+      "ref": "mihee",
+      "value": "5 cm, 9 cm, 9 cm"
+    },
+    {
+      "ref": "sunwoo",
+      "value": "9 cm, 8 cm, 4 cm"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "이등변삼각형을 들고 있는 사람",
+    "unit": ""
+  },
+  "method": "triangle_classification",
+  "steps": [
+    {
+      "id": "compare_sides",
+      "expr": "5 cm, 9 cm, 9 cm -> 두 변이 9 cm로 같음",
+      "explanation": "두 변의 길이가 같은 삼각형은 이등변삼각형이므로 미희입니다.",
+      "value": "미희"
+    }
+  ],
+  "answer": {
+    "value": "미희",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "미희"
+    ],
+    "choices": [
+      "미희",
+      "선우"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "미희",
+        "diagnostics": [
+          {
+            "id": "diag.chose_scalene",
+            "condition": "answer_equals_sunwoo",
+            "concept": "이등변삼각형의 성질",
+            "reason": "세 변의 길이가 모두 다른 선우(9 cm, 8 cm, 4 cm)를 선택함",
+            "feedback": "선우가 든 길이는 9 cm, 8 cm, 4 cm로 세 변의 길이가 모두 다릅니다. 두 변의 길이가 9 cm로 같은 미희를 선택하세요."
+          }
+        ]
+      }
+    ]
+  }
+}

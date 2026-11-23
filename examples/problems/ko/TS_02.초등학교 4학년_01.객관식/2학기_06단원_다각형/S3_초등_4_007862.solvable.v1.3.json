@@ -1,0 +1,53 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007862",
+  "problem_type": "multiple_choice_triangle_composition",
+  "given": [
+    {
+      "ref": "given_piece",
+      "value": "정삼각형 1개"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "필요한 모양 조각",
+    "unit": ""
+  },
+  "method": "shape_composition",
+  "steps": [
+    {
+      "id": "compose_triangle",
+      "expr": "정삼각형 1개 + 사다리꼴 1개 = 큰 정삼각형",
+      "explanation": "사다리꼴 모양 조각 1개를 아래에 붙이면 정삼각형이 됩니다.",
+      "value": "①"
+    }
+  ],
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "① 사다리꼴",
+      "② 평행사변형"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.chose_parallelogram",
+            "condition": "answer_equals_2",
+            "concept": "모양 조각으로 정삼각형 만들기",
+            "reason": "정삼각형 1개와 평행사변형 1개로는 정삼각형을 만들 수 없음을 놓침",
+            "feedback": "정삼각형 모양 조각 1개의 아래에 사다리꼴 모양 조각 1개를 붙이면 큰 정삼각형이 됩니다. 따라서 ①을 선택하세요."
+          }
+        ]
+      }
+    ]
+  }
+}

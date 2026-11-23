@@ -47,24 +47,24 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 391.639,
-        "y": 135.246,
-        "width": 134.26,
-        "height": 54.69,
+        "x": 439.01,
+        "y": 143.344,
+        "width": 86.89,
+        "height": 39.98,
         "stroke": "#111827",
         "stroke_width": 1.2,
         "fill": "#ffffff",
         "interaction": {
           "type": "input",
           "role": "answer",
-          "value_type": "integer",
-          "max_length": 3,
+          "value_type": "digit",
+          "max_length": 1,
           "include_in_submission": true,
           "order": 0,
           "group_id": "final_answer",
           "answer_key_index": 0,
           "answer_ref": "answer.value",
-          "auto_advance": false,
+          "auto_advance": true,
           "keyboard": "number"
         },
         "input_style": {
@@ -77,8 +77,8 @@
           "vertical_align": "middle",
           "padding": 6,
           "text_color": "#222222",
-          "width": 134.26,
-          "height": 54.69
+          "width": 86.89,
+          "height": 39.98
         }
       }
     },

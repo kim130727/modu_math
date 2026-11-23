@@ -1,0 +1,591 @@
+{
+  "problem_id": "S3_초등_4_007335",
+  "problem_type": "multiple_choice_fraction_verification",
+  "metadata": {
+    "title": "자연수와 분수의 뺄셈 중 바르게 계산한 것 선택하기",
+    "tags": [],
+    "question": "6. 바르게 계산한 것을 찾아 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.diagram.outer_box",
+      "slot.diagram.g2_bar",
+      "slot.diagram.g3_bar",
+      "slot.diagram.n2_bar",
+      "slot.diagram.n3_bar"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "2학기",
+    "chapter": "01단원_분수의 덧셈과 뺄셈",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "6. 바르게 계산한 것을 찾아 선택해 보세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "choice_marker",
+        "properties": {
+          "text": "㉠"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "choice_marker",
+        "properties": {
+          "text": "㉡"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.g1_w",
+        "type": "text",
+        "properties": {
+          "text": "2"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.g1_w"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.g2_bar",
+        "type": "line_slot",
+        "properties": {
+          "x1": 270,
+          "y1": 148,
+          "x2": 294,
+          "y2": 148,
+          "stroke": "#111827",
+          "stroke_width": 1.6,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.g2_bar"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.g2_d",
+        "type": "text",
+        "properties": {
+          "text": "4"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.g2_d"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.g2_n",
+        "type": "text",
+        "properties": {
+          "text": "3"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.g2_n"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.g3_bar",
+        "type": "line_slot",
+        "properties": {
+          "x1": 358,
+          "y1": 148,
+          "x2": 382,
+          "y2": 148,
+          "stroke": "#111827",
+          "stroke_width": 1.6,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.g3_bar"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.g3_d",
+        "type": "text",
+        "properties": {
+          "text": "4"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.g3_d"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.g3_n",
+        "type": "text",
+        "properties": {
+          "text": "3"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.g3_n"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.g3_w",
+        "type": "text",
+        "properties": {
+          "text": "1"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.g3_w"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.g_eq",
+        "type": "text",
+        "properties": {
+          "text": "="
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.g_eq"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.g_op",
+        "type": "text",
+        "properties": {
+          "text": "−"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.g_op"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.n1_w",
+        "type": "text",
+        "properties": {
+          "text": "5"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.n1_w"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.n2_bar",
+        "type": "line_slot",
+        "properties": {
+          "x1": 590,
+          "y1": 148,
+          "x2": 614,
+          "y2": 148,
+          "stroke": "#111827",
+          "stroke_width": 1.6,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.n2_bar"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.n2_d",
+        "type": "text",
+        "properties": {
+          "text": "7"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.n2_d"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.n2_n",
+        "type": "text",
+        "properties": {
+          "text": "4"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.n2_n"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.n2_w",
+        "type": "text",
+        "properties": {
+          "text": "1"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.n2_w"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.n3_bar",
+        "type": "line_slot",
+        "properties": {
+          "x1": 684,
+          "y1": 148,
+          "x2": 708,
+          "y2": 148,
+          "stroke": "#111827",
+          "stroke_width": 1.6,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.n3_bar"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.n3_d",
+        "type": "text",
+        "properties": {
+          "text": "7"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.n3_d"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.n3_n",
+        "type": "text",
+        "properties": {
+          "text": "3"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.n3_n"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.n3_w",
+        "type": "text",
+        "properties": {
+          "text": "3"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.n3_w"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.n_eq",
+        "type": "text",
+        "properties": {
+          "text": "="
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.n_eq"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.n_op",
+        "type": "text",
+        "properties": {
+          "text": "−"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.n_op"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.outer_box",
+        "type": "rect_slot",
+        "properties": {
+          "x": 116,
+          "y": 88,
+          "width": 654,
+          "height": 118,
+          "stroke": "#f59e0b",
+          "stroke_width": 1.8,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.outer_box"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "6. 바르게 계산한 것을 찾아 선택해 보세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "㉡",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "㉡"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "㉠",
+        "value": "㉠"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "㉡",
+        "value": "㉡"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "㉡",
+        "diagnostics": [
+          {
+            "id": "diag.forgot_fraction_subtraction",
+            "condition": "answer_equals_giyeok",
+            "concept": "자연수에서 분수 빼기",
+            "reason": "2에서 1을 받아내림만 하고 분수 부분을 빼지 않은 식(㉠)을 선택함",
+            "feedback": "2 - 3/4 = 1과 4/4 - 3/4 = 1과 1/4입니다. 바르게 계산한 것은 ㉡입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "eq_0": {
+      "label": "㉠",
+      "expr": "2 - 3/4 = 1과 3/4",
+      "is_correct": false
+    },
+    "eq_1": {
+      "label": "㉡",
+      "expr": "5 - 1과 4/7 = 3과 3/7",
+      "is_correct": true
+    }
+  },
+  "relations": [
+    {
+      "type": "correct_calculation",
+      "correct_entity": "eq_1",
+      "distractor": "eq_0"
+    }
+  ]
+}

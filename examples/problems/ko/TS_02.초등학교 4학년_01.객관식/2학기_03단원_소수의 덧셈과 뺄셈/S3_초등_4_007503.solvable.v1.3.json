@@ -1,0 +1,55 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007503",
+  "problem_type": "multiple_choice_decimal_shift_rule",
+  "given": [
+    {
+      "ref": "sequence",
+      "value": "1, 0.1, 0.01, 0.001"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "소수점 이동 방향과 자릿수",
+    "unit": ""
+  },
+  "method": "decimal_shift_rule",
+  "steps": [
+    {
+      "id": "observe_shift",
+      "expr": "소수의 1/10 -> 소수점이 왼쪽으로 한 자리 이동",
+      "explanation": "소수의 1/10을 하면 소수점이 왼쪽으로 한 자리 이동합니다.",
+      "value": "①"
+    }
+  ],
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "① 왼쪽, 한",
+      "② 왼쪽, 두",
+      "③ 오른쪽, 한",
+      "④ 오른쪽, 두"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_shift_direction",
+            "condition": "answer_not_1",
+            "concept": "소수의 1/10과 소수점 이동",
+            "reason": "1/10을 할 때 소수점이 왼쪽으로 한 자리 이동한다는 성질을 놓침",
+            "feedback": "1 → 0.1 → 0.01 → 0.001처럼 소수의 1/10을 하면 소수점이 왼쪽으로 한 자리 이동합니다."
+          }
+        ]
+      }
+    ]
+  }
+}

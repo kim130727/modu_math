@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007551",
+  "problem_type": "multiple_choice_find_two_trapezoids",
+  "given": [
+    {
+      "ref": "fig_1",
+      "value": "평행한 변이 1쌍 있는 사각형"
+    },
+    {
+      "ref": "fig_2",
+      "value": "평행한 변이 없는 사각형"
+    },
+    {
+      "ref": "fig_3",
+      "value": "평행한 변이 1쌍 있는 사각형"
+    },
+    {
+      "ref": "fig_4",
+      "value": "평행한 변이 없는 사각형"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "사다리꼴 2개",
+    "unit": ""
+  },
+  "method": "quadrilateral_classification",
+  "steps": [
+    {
+      "id": "find_trapezoids",
+      "expr": "평행한 변이 있는 사각형 = 1번, 3번",
+      "explanation": "평행한 변이 한 쌍이라도 있는 사각형은 1번과 3번입니다.",
+      "value": "①"
+    }
+  ],
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "① 1번, 3번",
+      "② 1번, 2번",
+      "③ 2번, 4번",
+      "④ 3번, 4번"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.missed_trapezoids",
+            "condition": "answer_not_1",
+            "concept": "사다리꼴의 성질",
+            "reason": "평행한 변이 한 쌍이라도 있는 도형(1번, 3번)을 정확히 찾지 못함",
+            "feedback": "평행한 변이 한 쌍이라도 있는 사각형은 1번과 3번입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

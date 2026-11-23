@@ -1,0 +1,216 @@
+{
+  "problem_id": "S3_초등_4_007549",
+  "view_box": {
+    "width": 886.0,
+    "height": 282.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 820.0,
+        "height": 44.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 820.0,
+        "data-box-height": 44.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "92. 사다리꼴에 대한 설명으로 옳은 것을 찾아 선택하세요."
+    },
+    {
+      "id": "slot.choice.option_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 136.0,
+        "y": 144.0,
+        "width": 258.0,
+        "height": 106.0,
+        "fill": "#f3e8d2",
+        "stroke": "#b45309",
+        "stroke-width": 1.8,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "①",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 492.0,
+        "y": 144.0,
+        "width": 258.0,
+        "height": 106.0,
+        "fill": "#f3e8d2",
+        "stroke": "#b45309",
+        "stroke-width": 1.8,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "②",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.diagram.puppy.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 265.0,
+        "cy": 112.0,
+        "r": 24.0,
+        "stroke": "#c2410c",
+        "stroke-width": 1.4,
+        "fill": "#fed7aa"
+      },
+      "source_ref": "slot.diagram.puppy",
+      "refs": {
+        "layout_slot_id": "slot.diagram.puppy"
+      }
+    },
+    {
+      "id": "slot.diagram.tiger.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 621.0,
+        "cy": 112.0,
+        "r": 24.0,
+        "stroke": "#b45309",
+        "stroke-width": 1.4,
+        "fill": "#fde047"
+      },
+      "source_ref": "slot.diagram.tiger",
+      "refs": {
+        "layout_slot_id": "slot.diagram.tiger"
+      }
+    },
+    {
+      "id": "slot.diagram.b0.text",
+      "type": "text",
+      "attributes": {
+        "x": 156.0,
+        "y": 156.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.b0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.b0"
+      },
+      "text": "①"
+    },
+    {
+      "id": "slot.diagram.t0.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 156.0,
+        "y": 170.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0,
+        "width": 218.0,
+        "height": 64.0,
+        "max_width": 218.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 156.0,
+        "data-box-y": 170.0,
+        "data-box-width": 218.0,
+        "data-box-height": 64.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.4
+      },
+      "source_ref": "slot.diagram.t0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.t0"
+      },
+      "text": "한 쌍의 마주 보는\n변의 길이가 같아."
+    },
+    {
+      "id": "slot.diagram.b1.text",
+      "type": "text",
+      "attributes": {
+        "x": 512.0,
+        "y": 156.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.b1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.b1"
+      },
+      "text": "②"
+    },
+    {
+      "id": "slot.diagram.t1.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 512.0,
+        "y": 170.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0,
+        "width": 218.0,
+        "height": 64.0,
+        "max_width": 218.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 512.0,
+        "data-box-y": 170.0,
+        "data-box-width": 218.0,
+        "data-box-height": 64.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.4
+      },
+      "source_ref": "slot.diagram.t1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.t1"
+      },
+      "text": "한 쌍의 마주 보는\n변이 평행해."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

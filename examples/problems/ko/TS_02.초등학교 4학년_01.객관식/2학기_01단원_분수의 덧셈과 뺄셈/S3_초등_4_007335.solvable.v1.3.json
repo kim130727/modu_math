@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007335",
+  "problem_type": "multiple_choice_fraction_verification",
+  "given": [
+    {
+      "ref": "eq_0",
+      "value": "2 - 3/4 = 1과 3/4"
+    },
+    {
+      "ref": "eq_1",
+      "value": "5 - 1과 4/7 = 3과 3/7"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "바르게 계산한 것",
+    "unit": ""
+  },
+  "method": "fraction_subtraction_verification",
+  "steps": [
+    {
+      "id": "verify_subtraction",
+      "expr": "5 - 1과 4/7 = 4와 7/7 - 1과 4/7 = 3과 3/7",
+      "explanation": "5에서 1을 받아내림하여 4와 7/7로 바꾼 뒤 빼면 3과 3/7이므로 ㉡이 바릅니다.",
+      "value": "㉡"
+    }
+  ],
+  "answer": {
+    "value": "㉡",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "㉡"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "㉠",
+        "value": "㉠"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "㉡",
+        "value": "㉡"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "㉡",
+        "diagnostics": [
+          {
+            "id": "diag.forgot_fraction_subtraction",
+            "condition": "answer_equals_giyeok",
+            "concept": "자연수에서 분수 빼기",
+            "reason": "2에서 1을 받아내림만 하고 분수 부분을 빼지 않은 식(㉠)을 선택함",
+            "feedback": "2 - 3/4 = 1과 4/4 - 3/4 = 1과 1/4입니다. 바르게 계산한 것은 ㉡입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,294 @@
+{
+  "problem_id": "S3_초등_4_007496",
+  "problem_type": "multiple_choice_decimal_scaling",
+  "metadata": {
+    "title": "0.94와 같은 수 선택하기",
+    "tags": [],
+    "question": "20. 0.94와 같은 수를 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1",
+      "slot.diagram.l0_bar"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "2학기",
+    "chapter": "03단원_소수의 덧셈과 뺄셈",
+    "difficulty": "중",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "20. 0.94와 같은 수를 찾아 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 126,
+          "y": 94,
+          "width": 284,
+          "height": 118,
+          "stroke": "#a78bfa",
+          "stroke_width": 1.8,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 476,
+          "y": 94,
+          "width": 284,
+          "height": 118,
+          "stroke": "#a78bfa",
+          "stroke_width": 1.8,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b0",
+        "type": "symbol_label",
+        "properties": {
+          "text": "①"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b1",
+        "type": "symbol_label",
+        "properties": {
+          "text": "②"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l0_a",
+        "type": "text",
+        "properties": {
+          "text": "9.4의"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l0_a"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l0_bar",
+        "type": "line_slot",
+        "properties": {
+          "x1": 280,
+          "y1": 146,
+          "x2": 316,
+          "y2": 146,
+          "stroke": "#111827",
+          "stroke_width": 1.5,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l0_bar"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l0_d",
+        "type": "text",
+        "properties": {
+          "text": "10"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l0_d"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l0_n",
+        "type": "text",
+        "properties": {
+          "text": "1"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l0_n"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r0",
+        "type": "text",
+        "properties": {
+          "text": "0.094의 100배"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "20. 0.94와 같은 수를 찾아 선택하세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.decimal_shift_error",
+            "condition": "answer_equals_2",
+            "concept": "소수의 10배, 100배, 1/10",
+            "reason": "0.094의 100배를 0.94로 잘못 계산함",
+            "feedback": "0.094의 100배는 소수점이 오른쪽으로 두 자리 이동하므로 9.4입니다. 9.4의 1/10은 소수점이 왼쪽으로 한 자리 이동하므로 0.94입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "target": {
+      "label": "기준 수",
+      "value": 0.94
+    },
+    "expr_0": {
+      "label": "① 9.4의 1/10",
+      "value": 0.94
+    },
+    "expr_1": {
+      "label": "② 0.094의 100배",
+      "value": 9.4
+    }
+  },
+  "relations": [
+    {
+      "type": "equality",
+      "target": "target",
+      "correct_entity": "expr_0"
+    }
+  ]
+}

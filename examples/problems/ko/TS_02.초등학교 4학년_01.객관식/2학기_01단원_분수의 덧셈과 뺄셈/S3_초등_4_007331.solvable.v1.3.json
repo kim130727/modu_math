@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007331",
+  "problem_type": "multiple_choice_fraction_estimation",
+  "given": [
+    {
+      "ref": "expr_0",
+      "value": "2와 1/7 + 1과 2/7"
+    },
+    {
+      "ref": "expr_1",
+      "value": "1과 2/3 + 2와 2/3"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "3과 4 사이인 덧셈식",
+    "unit": ""
+  },
+  "method": "fraction_estimation",
+  "steps": [
+    {
+      "id": "estimate_sum",
+      "expr": "2 + 1 = 3, 1/7 + 2/7 = 3/7 < 1",
+      "explanation": "2와 1/7 + 1과 2/7은 3과 4 사이에 있습니다.",
+      "value": "①"
+    }
+  ],
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.exceeds_4",
+            "condition": "answer_equals_2",
+            "concept": "대분수 덧셈의 어림",
+            "reason": "진분수 부분의 합이 1보다 커서 4를 넘는 식(②)을 선택함",
+            "feedback": "1 2/3 + 2 2/3에서 1 + 2 = 3이고 2/3 + 2/3 = 1 1/3으로 1보다 크기 때문에 4보다 큽니다. 2 1/7 + 1 2/7은 3과 4 사이입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

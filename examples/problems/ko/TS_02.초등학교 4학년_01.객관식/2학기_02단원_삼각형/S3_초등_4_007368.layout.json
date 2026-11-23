@@ -1,0 +1,1077 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007368",
+  "title": "양 끝의 각이 35°인 이등변삼각형 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 354,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.p0_arc",
+        "slot.diagram.p0_inner",
+        "slot.diagram.p0_tri",
+        "slot.diagram.p1_arc",
+        "slot.diagram.p1_inner",
+        "slot.diagram.p1_tri",
+        "slot.diagram.p0_t_0",
+        "slot.diagram.p0_t_10",
+        "slot.diagram.p0_t_20",
+        "slot.diagram.p0_t_30",
+        "slot.diagram.p0_t_40",
+        "slot.diagram.p0_t_50",
+        "slot.diagram.p0_t_60",
+        "slot.diagram.p0_t_70",
+        "slot.diagram.p0_t_80",
+        "slot.diagram.p0_t_90",
+        "slot.diagram.p0_t_100",
+        "slot.diagram.p0_t_110",
+        "slot.diagram.p0_t_120",
+        "slot.diagram.p0_t_130",
+        "slot.diagram.p0_t_140",
+        "slot.diagram.p0_t_150",
+        "slot.diagram.p0_t_160",
+        "slot.diagram.p0_t_170",
+        "slot.diagram.p0_t_180",
+        "slot.diagram.p1_t_0",
+        "slot.diagram.p1_t_10",
+        "slot.diagram.p1_t_20",
+        "slot.diagram.p1_t_30",
+        "slot.diagram.p1_t_40",
+        "slot.diagram.p1_t_50",
+        "slot.diagram.p1_t_60",
+        "slot.diagram.p1_t_70",
+        "slot.diagram.p1_t_80",
+        "slot.diagram.p1_t_90",
+        "slot.diagram.p1_t_100",
+        "slot.diagram.p1_t_110",
+        "slot.diagram.p1_t_120",
+        "slot.diagram.p1_t_130",
+        "slot.diagram.p1_t_140",
+        "slot.diagram.p1_t_150",
+        "slot.diagram.p1_t_160",
+        "slot.diagram.p1_t_170",
+        "slot.diagram.p1_t_180",
+        "slot.diagram.b0",
+        "slot.diagram.b1",
+        "slot.diagram.p0_lbl_0",
+        "slot.diagram.p0_lbl_30",
+        "slot.diagram.p0_lbl_60",
+        "slot.diagram.p0_lbl_90",
+        "slot.diagram.p0_lbl_120",
+        "slot.diagram.p0_lbl_150",
+        "slot.diagram.p0_lbl_180",
+        "slot.diagram.p1_lbl_0",
+        "slot.diagram.p1_lbl_30",
+        "slot.diagram.p1_lbl_60",
+        "slot.diagram.p1_lbl_90",
+        "slot.diagram.p1_lbl_120",
+        "slot.diagram.p1_lbl_150",
+        "slot.diagram.p1_lbl_180"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "45. 다음 그림은 한 선분의 양 끝의 각이 같은 이등변삼각형입니다. 양 끝의 각이 35°인 삼각형을 찾아 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 64.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 48.0,
+        "y": 96.0,
+        "width": 376.0,
+        "height": 232.0,
+        "stroke": "#cbd5e1",
+        "stroke_width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "①",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 462.0,
+        "y": 96.0,
+        "width": 376.0,
+        "height": 232.0,
+        "stroke": "#cbd5e1",
+        "stroke_width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "②",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.diagram.b0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "①",
+        "style_role": "body",
+        "x": 68.0,
+        "y": 108.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#4b5563",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.b1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "②",
+        "style_role": "body",
+        "x": 482.0,
+        "y": 108.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#4b5563",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_arc",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 80 294 A 118 118 0 0 1 316 294 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#38bdf8",
+        "stroke_width": 1.4,
+        "fill": "#e0f2fe"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_inner",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 170 294 A 28 28 0 0 1 226 294",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#38bdf8",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 304.0,
+        "y1": 294.0,
+        "x2": 316.0,
+        "y2": 294.0,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p0_lbl_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "180",
+        "style_role": "body",
+        "x": 294.0,
+        "y": 288.0,
+        "font_size": 10,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#0369a1"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 302.38962181929406,
+        "y1": 275.5932931673054,
+        "x2": 314.20731485544053,
+        "y2": 273.50951503530223,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_20",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 297.6074178033063,
+        "y1": 257.7458648074791,
+        "x2": 308.8837292527372,
+        "y2": 253.64162308757108,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_30",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 289.79869280115054,
+        "y1": 241.0,
+        "x2": 300.1909976465638,
+        "y2": 235.0,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p0_lbl_30",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "150",
+        "style_role": "body",
+        "x": 281.1384387633061,
+        "y": 240.0,
+        "font_size": 10,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#0369a1"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_40",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 279.2007109706117,
+        "y1": 225.86451337322683,
+        "x2": 288.3932442880394,
+        "y2": 218.15106205698837,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_50",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 266.1354866267732,
+        "y1": 212.79928902938832,
+        "x2": 273.84893794301166,
+        "y2": 203.6067557119606,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_60",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 251.0,
+        "y1": 202.20130719884952,
+        "x2": 257.0,
+        "y2": 191.80900235343626,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p0_lbl_60",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "120",
+        "style_role": "body",
+        "x": 246.0,
+        "y": 204.8615612366939,
+        "font_size": 10,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#0369a1"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_70",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 234.2541351925209,
+        "y1": 194.39258219669372,
+        "x2": 238.35837691242892,
+        "y2": 183.11627074726283,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_80",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 216.40670683269462,
+        "y1": 189.61037818070594,
+        "x2": 218.4904849646978,
+        "y2": 177.79268514455947,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_90",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 198.0,
+        "y1": 188.0,
+        "x2": 198.0,
+        "y2": 176.0,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p0_lbl_90",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "90",
+        "style_role": "body",
+        "x": 198.0,
+        "y": 192.0,
+        "font_size": 10,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#0369a1"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_100",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 179.59329316730538,
+        "y1": 189.61037818070594,
+        "x2": 177.50951503530223,
+        "y2": 177.79268514455947,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_110",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 161.7458648074791,
+        "y1": 194.3925821966937,
+        "x2": 157.64162308757108,
+        "y2": 183.1162707472628,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_120",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 145.00000000000003,
+        "y1": 202.2013071988495,
+        "x2": 139.00000000000003,
+        "y2": 191.80900235343623,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p0_lbl_120",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "60",
+        "style_role": "body",
+        "x": 150.00000000000003,
+        "y": 204.8615612366939,
+        "font_size": 10,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#0369a1"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_130",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 129.86451337322683,
+        "y1": 212.79928902938832,
+        "x2": 122.15106205698835,
+        "y2": 203.6067557119606,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_140",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 116.79928902938835,
+        "y1": 225.86451337322683,
+        "x2": 107.6067557119606,
+        "y2": 218.15106205698834,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_150",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 106.20130719884949,
+        "y1": 241.0,
+        "x2": 95.80900235343623,
+        "y2": 235.0,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p0_lbl_150",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "30",
+        "style_role": "body",
+        "x": 114.86156123669389,
+        "y": 240.0,
+        "font_size": 10,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#0369a1"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_160",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 98.39258219669372,
+        "y1": 257.7458648074791,
+        "x2": 87.11627074726282,
+        "y2": 253.64162308757108,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_170",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 93.61037818070595,
+        "y1": 275.5932931673054,
+        "x2": 81.79268514455946,
+        "y2": 273.50951503530223,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_180",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 92.0,
+        "y1": 294.0,
+        "x2": 80.0,
+        "y2": 294.0,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p0_lbl_180",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "body",
+        "x": 102.0,
+        "y": 288.0,
+        "font_size": 10,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#0369a1"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_tri",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            198.0,
+            294.0
+          ],
+          [
+            368.0,
+            294.0
+          ],
+          [
+            283.0,
+            234.48235925217466
+          ]
+        ],
+        "stroke": "#111827",
+        "stroke_width": 2.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_arc",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 494 294 A 118 118 0 0 1 730 294 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#38bdf8",
+        "stroke_width": 1.4,
+        "fill": "#e0f2fe"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_inner",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 584 294 A 28 28 0 0 1 640 294",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#38bdf8",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 718.0,
+        "y1": 294.0,
+        "x2": 730.0,
+        "y2": 294.0,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p1_lbl_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "180",
+        "style_role": "body",
+        "x": 708.0,
+        "y": 288.0,
+        "font_size": 10,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#0369a1"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 716.389621819294,
+        "y1": 275.5932931673054,
+        "x2": 728.2073148554406,
+        "y2": 273.50951503530223,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_20",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 711.6074178033062,
+        "y1": 257.7458648074791,
+        "x2": 722.8837292527372,
+        "y2": 253.64162308757108,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_30",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 703.7986928011505,
+        "y1": 241.0,
+        "x2": 714.1909976465638,
+        "y2": 235.0,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p1_lbl_30",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "150",
+        "style_role": "body",
+        "x": 695.1384387633061,
+        "y": 240.0,
+        "font_size": 10,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#0369a1"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_40",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 693.2007109706117,
+        "y1": 225.86451337322683,
+        "x2": 702.3932442880395,
+        "y2": 218.15106205698837,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_50",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 680.1354866267732,
+        "y1": 212.79928902938832,
+        "x2": 687.8489379430116,
+        "y2": 203.6067557119606,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_60",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 665.0,
+        "y1": 202.20130719884952,
+        "x2": 671.0,
+        "y2": 191.80900235343626,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p1_lbl_60",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "120",
+        "style_role": "body",
+        "x": 660.0,
+        "y": 204.8615612366939,
+        "font_size": 10,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#0369a1"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_70",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 648.254135192521,
+        "y1": 194.39258219669372,
+        "x2": 652.3583769124289,
+        "y2": 183.11627074726283,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_80",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 630.4067068326947,
+        "y1": 189.61037818070594,
+        "x2": 632.4904849646978,
+        "y2": 177.79268514455947,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_90",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 612.0,
+        "y1": 188.0,
+        "x2": 612.0,
+        "y2": 176.0,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p1_lbl_90",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "90",
+        "style_role": "body",
+        "x": 612.0,
+        "y": 192.0,
+        "font_size": 10,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#0369a1"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_100",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 593.5932931673054,
+        "y1": 189.61037818070594,
+        "x2": 591.5095150353022,
+        "y2": 177.79268514455947,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_110",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 575.7458648074792,
+        "y1": 194.3925821966937,
+        "x2": 571.6416230875711,
+        "y2": 183.1162707472628,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_120",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 559.0,
+        "y1": 202.2013071988495,
+        "x2": 553.0,
+        "y2": 191.80900235343623,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p1_lbl_120",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "60",
+        "style_role": "body",
+        "x": 564.0,
+        "y": 204.8615612366939,
+        "font_size": 10,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#0369a1"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_130",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 543.8645133732268,
+        "y1": 212.79928902938832,
+        "x2": 536.1510620569884,
+        "y2": 203.6067557119606,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_140",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 530.7992890293883,
+        "y1": 225.86451337322683,
+        "x2": 521.6067557119607,
+        "y2": 218.15106205698834,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_150",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 520.2013071988495,
+        "y1": 241.0,
+        "x2": 509.8090023534362,
+        "y2": 235.0,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p1_lbl_150",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "30",
+        "style_role": "body",
+        "x": 528.8615612366939,
+        "y": 240.0,
+        "font_size": 10,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#0369a1"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_160",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 512.3925821966938,
+        "y1": 257.7458648074791,
+        "x2": 501.11627074726283,
+        "y2": 253.64162308757108,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_170",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 507.61037818070594,
+        "y1": 275.5932931673054,
+        "x2": 495.79268514455947,
+        "y2": 273.50951503530223,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_180",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 506.0,
+        "y1": 294.0,
+        "x2": 494.0,
+        "y2": 294.0,
+        "stroke": "#0284c7",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.p1_lbl_180",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "body",
+        "x": 516.0,
+        "y": 288.0,
+        "font_size": 10,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#0369a1"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_tri",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            612.0,
+            294.0
+          ],
+          [
+            782.0,
+            294.0
+          ],
+          [
+            697.0,
+            172.60741942692027
+          ]
+        ],
+        "stroke": "#111827",
+        "stroke_width": 2.2,
+        "fill": "none"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1",
+    "region.diagram",
+    "slot.diagram.p0_arc",
+    "slot.diagram.p0_inner",
+    "slot.diagram.p0_tri",
+    "slot.diagram.p1_arc",
+    "slot.diagram.p1_inner",
+    "slot.diagram.p1_tri",
+    "slot.diagram.p0_t_0",
+    "slot.diagram.p0_t_10",
+    "slot.diagram.p0_t_20",
+    "slot.diagram.p0_t_30",
+    "slot.diagram.p0_t_40",
+    "slot.diagram.p0_t_50",
+    "slot.diagram.p0_t_60",
+    "slot.diagram.p0_t_70",
+    "slot.diagram.p0_t_80",
+    "slot.diagram.p0_t_90",
+    "slot.diagram.p0_t_100",
+    "slot.diagram.p0_t_110",
+    "slot.diagram.p0_t_120",
+    "slot.diagram.p0_t_130",
+    "slot.diagram.p0_t_140",
+    "slot.diagram.p0_t_150",
+    "slot.diagram.p0_t_160",
+    "slot.diagram.p0_t_170",
+    "slot.diagram.p0_t_180",
+    "slot.diagram.p1_t_0",
+    "slot.diagram.p1_t_10",
+    "slot.diagram.p1_t_20",
+    "slot.diagram.p1_t_30",
+    "slot.diagram.p1_t_40",
+    "slot.diagram.p1_t_50",
+    "slot.diagram.p1_t_60",
+    "slot.diagram.p1_t_70",
+    "slot.diagram.p1_t_80",
+    "slot.diagram.p1_t_90",
+    "slot.diagram.p1_t_100",
+    "slot.diagram.p1_t_110",
+    "slot.diagram.p1_t_120",
+    "slot.diagram.p1_t_130",
+    "slot.diagram.p1_t_140",
+    "slot.diagram.p1_t_150",
+    "slot.diagram.p1_t_160",
+    "slot.diagram.p1_t_170",
+    "slot.diagram.p1_t_180",
+    "slot.diagram.b0",
+    "slot.diagram.b1",
+    "slot.diagram.p0_lbl_0",
+    "slot.diagram.p0_lbl_30",
+    "slot.diagram.p0_lbl_60",
+    "slot.diagram.p0_lbl_90",
+    "slot.diagram.p0_lbl_120",
+    "slot.diagram.p0_lbl_150",
+    "slot.diagram.p0_lbl_180",
+    "slot.diagram.p1_lbl_0",
+    "slot.diagram.p1_lbl_30",
+    "slot.diagram.p1_lbl_60",
+    "slot.diagram.p1_lbl_90",
+    "slot.diagram.p1_lbl_120",
+    "slot.diagram.p1_lbl_150",
+    "slot.diagram.p1_lbl_180"
+  ]
+}

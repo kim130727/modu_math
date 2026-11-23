@@ -1,0 +1,308 @@
+{
+  "problem_id": "S3_초등_4_007550",
+  "view_box": {
+    "width": 886.0,
+    "height": 356.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 820.0,
+        "height": 64.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 820.0,
+        "data-box-height": 64.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "93. 사각형에서 어느 선을 따라 잘라 내면 사다리꼴이 되는지 기호를 선택하세요."
+    },
+    {
+      "id": "slot.choice.option_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 218.0,
+        "y": 286.0,
+        "width": 120.0,
+        "height": 46.0,
+        "fill": "#f8fafc",
+        "stroke": "#94a3b8",
+        "stroke-width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "ㄱ",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 383.0,
+        "y": 286.0,
+        "width": 120.0,
+        "height": 46.0,
+        "fill": "#f8fafc",
+        "stroke": "#94a3b8",
+        "stroke-width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "ㄴ",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 548.0,
+        "y": 286.0,
+        "width": 120.0,
+        "height": 46.0,
+        "fill": "#f8fafc",
+        "stroke": "#94a3b8",
+        "stroke-width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.choice.option_2",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_2"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 2,
+        "value": "ㄷ",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.diagram.quad.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            344.0,
+            128.0
+          ],
+          [
+            546.0,
+            128.0
+          ],
+          [
+            484.0,
+            248.0
+          ],
+          [
+            344.0,
+            224.0
+          ]
+        ],
+        "stroke": "#111827",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.quad",
+      "refs": {
+        "layout_slot_id": "slot.diagram.quad"
+      }
+    },
+    {
+      "id": "slot.diagram.cut_g.line",
+      "type": "line",
+      "attributes": {
+        "x1": 332.0,
+        "y1": 114.0,
+        "x2": 454.0,
+        "y2": 258.0,
+        "stroke": "#ec4899",
+        "stroke-width": 1.8
+      },
+      "source_ref": "slot.diagram.cut_g",
+      "refs": {
+        "layout_slot_id": "slot.diagram.cut_g"
+      }
+    },
+    {
+      "id": "slot.diagram.cut_n.line",
+      "type": "line",
+      "attributes": {
+        "x1": 426.0,
+        "y1": 110.0,
+        "x2": 498.0,
+        "y2": 264.0,
+        "stroke": "#ec4899",
+        "stroke-width": 1.8
+      },
+      "source_ref": "slot.diagram.cut_n",
+      "refs": {
+        "layout_slot_id": "slot.diagram.cut_n"
+      }
+    },
+    {
+      "id": "slot.diagram.cut_d.line",
+      "type": "line",
+      "attributes": {
+        "x1": 316.0,
+        "y1": 224.0,
+        "x2": 562.0,
+        "y2": 224.0,
+        "stroke": "#ec4899",
+        "stroke-width": 1.8
+      },
+      "source_ref": "slot.diagram.cut_d",
+      "refs": {
+        "layout_slot_id": "slot.diagram.cut_d"
+      }
+    },
+    {
+      "id": "slot.diagram.lbl_g.text",
+      "type": "text",
+      "attributes": {
+        "x": 322.0,
+        "y": 94.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 19.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.lbl_g",
+      "refs": {
+        "layout_slot_id": "slot.diagram.lbl_g"
+      },
+      "text": "ㄱ"
+    },
+    {
+      "id": "slot.diagram.lbl_n.text",
+      "type": "text",
+      "attributes": {
+        "x": 422.0,
+        "y": 88.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 19.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.lbl_n",
+      "refs": {
+        "layout_slot_id": "slot.diagram.lbl_n"
+      },
+      "text": "ㄴ"
+    },
+    {
+      "id": "slot.diagram.lbl_d.text",
+      "type": "text",
+      "attributes": {
+        "x": 582.0,
+        "y": 214.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 19.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.lbl_d",
+      "refs": {
+        "layout_slot_id": "slot.diagram.lbl_d"
+      },
+      "text": "ㄷ"
+    },
+    {
+      "id": "slot.diagram.opt_text_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 278.0,
+        "y": 297.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.opt_text_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt_text_0"
+      },
+      "text": "ㄱ"
+    },
+    {
+      "id": "slot.diagram.opt_text_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 443.0,
+        "y": 297.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.opt_text_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt_text_1"
+      },
+      "text": "ㄴ"
+    },
+    {
+      "id": "slot.diagram.opt_text_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 608.0,
+        "y": 297.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.opt_text_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt_text_2"
+      },
+      "text": "ㄷ"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

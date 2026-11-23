@@ -1,0 +1,62 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007550",
+  "problem_type": "multiple_choice_trapezoid_cut_line",
+  "given": [
+    {
+      "ref": "line_g",
+      "value": "대각선 ㄱ"
+    },
+    {
+      "ref": "line_n",
+      "value": "대각선 ㄴ"
+    },
+    {
+      "ref": "line_d",
+      "value": "위쪽 변과 평행한 선 ㄷ"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_2",
+    "label": "사다리꼴이 되는 선",
+    "unit": ""
+  },
+  "method": "parallel_check",
+  "steps": [
+    {
+      "id": "find_parallel",
+      "expr": "선 ㄷ ∥ 위쪽 변",
+      "explanation": "한 쌍의 마주 보는 변이 평행하려면 ㄷ을 따라 잘라야 합니다.",
+      "value": "ㄷ"
+    }
+  ],
+  "answer": {
+    "value": "ㄷ",
+    "answer_index": 2,
+    "unit": "",
+    "values": [
+      "ㄷ"
+    ],
+    "choices": [
+      "ㄱ",
+      "ㄴ",
+      "ㄷ"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "ㄷ",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_cut_line",
+            "condition": "answer_not_digeut",
+            "concept": "사다리꼴의 성질",
+            "reason": "사각형의 위쪽 변과 평행하지 않은 선(ㄱ 또는 ㄴ)을 선택함",
+            "feedback": "한 쌍의 마주 보는 변이 평행하려면 위쪽 변과 평행한 가로선 ㄷ을 따라 잘라야 합니다."
+          }
+        ]
+      }
+    ]
+  }
+}

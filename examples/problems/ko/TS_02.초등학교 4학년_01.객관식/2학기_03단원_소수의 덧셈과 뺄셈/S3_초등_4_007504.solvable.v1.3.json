@@ -1,0 +1,55 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007504",
+  "problem_type": "multiple_choice_decimal_shift_rule",
+  "given": [
+    {
+      "ref": "sequence",
+      "value": "1, 0.1, 0.01, 0.001"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "0.01과 1의 관계",
+    "unit": ""
+  },
+  "method": "decimal_shift_rule",
+  "steps": [
+    {
+      "id": "observe_shift",
+      "expr": "0.01은 1에서 왼쪽으로 두 자리 이동 -> 1/100",
+      "explanation": "0.01은 1에서 소수점이 왼쪽으로 두 자리 이동한 것이므로 1의 1/100입니다.",
+      "value": "①"
+    }
+  ],
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "① 두, 1/100",
+      "② 두, 1/1000",
+      "③ 세, 1/100",
+      "④ 세, 1/1000"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_shift_count",
+            "condition": "answer_not_1",
+            "concept": "소수점 이동과 분수 관계",
+            "reason": "1에서 0.01로의 소수점 이동 자릿수를 두 자리가 아닌 세 자리(1/1000)로 혼동함",
+            "feedback": "0.01은 1에서 소수점이 왼쪽으로 두 자리 이동한 것이므로 0.01은 1의 1/100입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

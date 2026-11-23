@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007547",
+  "problem_type": "multiple_choice_trapezoid_cut",
+  "given": [
+    {
+      "ref": "cut_0",
+      "value": "오른쪽 변과 평행하게 자른 선"
+    },
+    {
+      "ref": "cut_1",
+      "value": "대각선으로 자른 선"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "사다리꼴이 되는 선",
+    "unit": ""
+  },
+  "method": "parallel_check",
+  "steps": [
+    {
+      "id": "find_parallel_cut",
+      "expr": "①의 자른 선과 오른쪽 변이 서로 평행",
+      "explanation": "한 쌍의 마주 보는 변이 평행하도록 잘라 낸 것은 ①입니다.",
+      "value": "①"
+    }
+  ],
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.not_parallel_cut",
+            "condition": "answer_equals_2",
+            "concept": "사다리꼴의 성질",
+            "reason": "마주 보는 변이 평행하지 않게 자른 ②를 선택함",
+            "feedback": "한 쌍의 마주 보는 변이 평행하도록 잘라 내야 사다리꼴이 됩니다. 오른쪽 변과 평행하게 세로선을 그은 ①을 선택하세요."
+          }
+        ]
+      }
+    ]
+  }
+}

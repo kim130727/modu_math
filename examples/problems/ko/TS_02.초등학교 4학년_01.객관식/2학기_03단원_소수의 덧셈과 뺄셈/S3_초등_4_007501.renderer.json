@@ -1,0 +1,325 @@
+{
+  "problem_id": "S3_초등_4_007501",
+  "view_box": {
+    "width": 886.0,
+    "height": 362.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 820.0,
+        "height": 44.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 820.0,
+        "data-box-height": 44.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "26. 알맞은 것을 선택하세요."
+    },
+    {
+      "id": "slot.choice.option_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 118.0,
+        "y": 236.0,
+        "width": 310.0,
+        "height": 44.0,
+        "fill": "#f8fafc",
+        "stroke": "#94a3b8",
+        "stroke-width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "①",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 458.0,
+        "y": 236.0,
+        "width": 310.0,
+        "height": 44.0,
+        "fill": "#f8fafc",
+        "stroke": "#94a3b8",
+        "stroke-width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "②",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 118.0,
+        "y": 292.0,
+        "width": 310.0,
+        "height": 44.0,
+        "fill": "#f8fafc",
+        "stroke": "#94a3b8",
+        "stroke-width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.choice.option_2",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_2"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 2,
+        "value": "③",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 458.0,
+        "y": 292.0,
+        "width": 310.0,
+        "height": 44.0,
+        "fill": "#f8fafc",
+        "stroke": "#94a3b8",
+        "stroke-width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.choice.option_3",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_3"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 3,
+        "value": "④",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.diagram.gold_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 98.0,
+        "y": 82.0,
+        "width": 690.0,
+        "height": 130.0,
+        "fill": "#ffffff",
+        "stroke": "#eab308",
+        "stroke-width": 1.8
+      },
+      "source_ref": "slot.diagram.gold_box",
+      "refs": {
+        "layout_slot_id": "slot.diagram.gold_box"
+      }
+    },
+    {
+      "id": "slot.diagram.frac_bar.line",
+      "type": "line",
+      "attributes": {
+        "x1": 220.0,
+        "y1": 120.0,
+        "x2": 268.0,
+        "y2": 120.0,
+        "stroke": "#111827",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.frac_bar",
+      "refs": {
+        "layout_slot_id": "slot.diagram.frac_bar"
+      }
+    },
+    {
+      "id": "slot.diagram.r1_l.text",
+      "type": "text",
+      "attributes": {
+        "x": 188.0,
+        "y": 114.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0
+      },
+      "source_ref": "slot.diagram.r1_l",
+      "refs": {
+        "layout_slot_id": "slot.diagram.r1_l"
+      },
+      "text": "분수"
+    },
+    {
+      "id": "slot.diagram.frac_n.text",
+      "type": "text",
+      "attributes": {
+        "x": 244.0,
+        "y": 96.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 19.0
+      },
+      "source_ref": "slot.diagram.frac_n",
+      "refs": {
+        "layout_slot_id": "slot.diagram.frac_n"
+      },
+      "text": "1"
+    },
+    {
+      "id": "slot.diagram.frac_d.text",
+      "type": "text",
+      "attributes": {
+        "x": 244.0,
+        "y": 126.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 19.0
+      },
+      "source_ref": "slot.diagram.frac_d",
+      "refs": {
+        "layout_slot_id": "slot.diagram.frac_d"
+      },
+      "text": "1000"
+    },
+    {
+      "id": "slot.diagram.r1_r.text",
+      "type": "text",
+      "attributes": {
+        "x": 480.0,
+        "y": 114.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0
+      },
+      "source_ref": "slot.diagram.r1_r",
+      "refs": {
+        "layout_slot_id": "slot.diagram.r1_r"
+      },
+      "text": "은 소수로 ( 0.01 , 0.001 )이라 쓰고,"
+    },
+    {
+      "id": "slot.diagram.r2.text",
+      "type": "text",
+      "attributes": {
+        "x": 443.0,
+        "y": 166.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0
+      },
+      "source_ref": "slot.diagram.r2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.r2"
+      },
+      "text": "( 영 점 영일 , 영 점 영영일 )이라고 읽습니다."
+    },
+    {
+      "id": "slot.diagram.opt_text_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 140.0,
+        "y": 248.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0
+      },
+      "source_ref": "slot.diagram.opt_text_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt_text_0"
+      },
+      "text": "① 0.01, 영 점 영일"
+    },
+    {
+      "id": "slot.diagram.opt_text_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 480.0,
+        "y": 248.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0
+      },
+      "source_ref": "slot.diagram.opt_text_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt_text_1"
+      },
+      "text": "② 0.001, 영 점 영영일"
+    },
+    {
+      "id": "slot.diagram.opt_text_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 140.0,
+        "y": 304.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0
+      },
+      "source_ref": "slot.diagram.opt_text_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt_text_2"
+      },
+      "text": "③ 0.01, 영 점 영영일"
+    },
+    {
+      "id": "slot.diagram.opt_text_3.text",
+      "type": "text",
+      "attributes": {
+        "x": 480.0,
+        "y": 304.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0
+      },
+      "source_ref": "slot.diagram.opt_text_3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt_text_3"
+      },
+      "text": "④ 0.001, 영 점 영일"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

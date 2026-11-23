@@ -1,0 +1,241 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007484",
+  "title": "7이 나타내는 수가 0.07인 소수 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 260,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1",
+        "slot.choice.option_2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.animal_0",
+        "slot.diagram.animal_1",
+        "slot.diagram.animal_2",
+        "slot.diagram.val_0",
+        "slot.diagram.val_1",
+        "slot.diagram.val_2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "5. 7이 나타내는 수가 0.07인 수를 선택해 보세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 72.0,
+        "y": 158.0,
+        "width": 208.0,
+        "height": 68.0,
+        "stroke": "#b45309",
+        "stroke_width": 1.8,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f3e8d2",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "0.715",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 339.0,
+        "y": 158.0,
+        "width": 208.0,
+        "height": 68.0,
+        "stroke": "#b45309",
+        "stroke_width": 1.8,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f3e8d2",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "3.47",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 606.0,
+        "y": 158.0,
+        "width": 208.0,
+        "height": 68.0,
+        "stroke": "#b45309",
+        "stroke_width": 1.8,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f3e8d2",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 2,
+          "value": "11.607",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.diagram.animal_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 176.0,
+        "cy": 124.0,
+        "r": 26.0,
+        "stroke": "#7c3aed",
+        "stroke_width": 1.4,
+        "fill": "#ddd6fe"
+      }
+    },
+    {
+      "id": "slot.diagram.val_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0.715",
+        "style_role": "body",
+        "x": 176.0,
+        "y": 180.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.animal_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 443.0,
+        "cy": 124.0,
+        "r": 26.0,
+        "stroke": "#a16207",
+        "stroke_width": 1.4,
+        "fill": "#fef08a"
+      }
+    },
+    {
+      "id": "slot.diagram.val_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3.47",
+        "style_role": "body",
+        "x": 443.0,
+        "y": 180.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.animal_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 710.0,
+        "cy": 124.0,
+        "r": 26.0,
+        "stroke": "#c2410c",
+        "stroke_width": 1.4,
+        "fill": "#fed7aa"
+      }
+    },
+    {
+      "id": "slot.diagram.val_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "11.607",
+        "style_role": "body",
+        "x": 710.0,
+        "y": 180.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1",
+    "slot.choice.option_2",
+    "region.diagram",
+    "slot.diagram.animal_0",
+    "slot.diagram.animal_1",
+    "slot.diagram.animal_2",
+    "slot.diagram.val_0",
+    "slot.diagram.val_1",
+    "slot.diagram.val_2"
+  ]
+}

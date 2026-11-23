@@ -1,0 +1,283 @@
+{
+  "problem_id": "S3_초등_4_007549",
+  "problem_type": "multiple_choice_trapezoid_definition",
+  "metadata": {
+    "title": "사다리꼴에 대한 설명으로 옳은 것 선택하기",
+    "tags": [],
+    "question": "92. 사다리꼴에 대한 설명으로 옳은 것을 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1",
+      "slot.diagram.puppy",
+      "slot.diagram.tiger"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "2학기",
+    "chapter": "04단원_사각형",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "92. 사다리꼴에 대한 설명으로 옳은 것을 찾아 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 136,
+          "y": 144,
+          "width": 258,
+          "height": 106,
+          "stroke": "#b45309",
+          "stroke_width": 1.8,
+          "rx": 10,
+          "ry": 10,
+          "fill": "#f3e8d2",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 492,
+          "y": 144,
+          "width": 258,
+          "height": 106,
+          "stroke": "#b45309",
+          "stroke_width": 1.8,
+          "rx": 10,
+          "ry": 10,
+          "fill": "#f3e8d2",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b0",
+        "type": "symbol_label",
+        "properties": {
+          "text": "①"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b1",
+        "type": "symbol_label",
+        "properties": {
+          "text": "②"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.puppy",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 265,
+          "cy": 112,
+          "r": 24,
+          "stroke": "#c2410c",
+          "stroke_width": 1.4,
+          "fill": "#fed7aa",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.puppy"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.t0",
+        "type": "text",
+        "properties": {
+          "text": "한 쌍의 마주 보는\n변의 길이가 같아.",
+          "width": 218,
+          "height": 64
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.t0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.t1",
+        "type": "text",
+        "properties": {
+          "text": "한 쌍의 마주 보는\n변이 평행해.",
+          "width": 218,
+          "height": 64
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.t1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tiger",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 621,
+          "cy": 112,
+          "r": 24,
+          "stroke": "#b45309",
+          "stroke_width": 1.4,
+          "fill": "#fde047",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tiger"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "92. 사다리꼴에 대한 설명으로 옳은 것을 찾아 선택하세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "②",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "②"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②",
+        "diagnostics": [
+          {
+            "id": "diag.confused_length_and_parallel",
+            "condition": "answer_equals_1",
+            "concept": "사다리꼴의 정의",
+            "reason": "변의 길이와 평행을 혼동함",
+            "feedback": "사다리꼴은 변의 길이와 상관없이 한 쌍의 마주 보는 변이 평행한 사각형입니다. 따라서 ②가 옳은 설명입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "opt_0": {
+      "label": "① 한 쌍의 마주 보는 변의 길이가 같아.",
+      "is_correct": false
+    },
+    "opt_1": {
+      "label": "② 한 쌍의 마주 보는 변이 평행해.",
+      "is_correct": true
+    }
+  },
+  "relations": [
+    {
+      "type": "definition",
+      "term": "사다리꼴",
+      "correct_entity": "opt_1"
+    }
+  ]
+}

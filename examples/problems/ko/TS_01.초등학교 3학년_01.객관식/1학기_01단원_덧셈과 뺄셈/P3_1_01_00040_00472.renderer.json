@@ -26,7 +26,7 @@
         "type": "input",
         "role": "answer",
         "value_type": "integer",
-        "max_length": 3,
+        "max_length": 4,
         "include_in_submission": true,
         "order": 0,
         "group_id": "final_answer",
@@ -66,7 +66,8 @@
         "data-box-height": 98.0,
         "data-text-align": "left",
         "data-vertical-align": "middle",
-        "data-semantic-role": "question"
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
       },
       "source_ref": "slot.question",
       "refs": {
@@ -94,7 +95,8 @@
         "data-text-align": "left",
         "data-vertical-align": "top",
         "data-line-height": 1.25,
-        "data-semantic-role": "canvas"
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
       },
       "source_ref": "konva_1785110879232_paste_716370_0",
       "refs": {

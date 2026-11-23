@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007367",
+  "problem_type": "multiple_choice_isosceles_by_angles",
+  "given": [
+    {
+      "ref": "card_0",
+      "value": "100°, 55°, 25°"
+    },
+    {
+      "ref": "card_1",
+      "value": "55°, 70°, 55°"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "이등변삼각형",
+    "unit": ""
+  },
+  "method": "triangle_classification",
+  "steps": [
+    {
+      "id": "check_angles",
+      "expr": "55° = 55° -> 두 각의 크기가 같음",
+      "explanation": "두 각의 크기가 같으면 이등변삼각형이므로 ②입니다.",
+      "value": "②"
+    }
+  ],
+  "answer": {
+    "value": "②",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "②"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②",
+        "diagnostics": [
+          {
+            "id": "diag.chose_scalene_angles",
+            "condition": "answer_equals_1",
+            "concept": "이등변삼각형의 각의 성질",
+            "reason": "세 각의 크기가 모두 다른 ①(100°, 55°, 25°)을 선택함",
+            "feedback": "①은 세 각의 크기가 모두 다르므로 이등변삼각형이 아닙니다. 두 각의 크기가 55°로 같은 ②를 선택하세요."
+          }
+        ]
+      }
+    ]
+  }
+}

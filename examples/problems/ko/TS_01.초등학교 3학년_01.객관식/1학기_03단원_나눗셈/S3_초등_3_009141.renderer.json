@@ -15,31 +15,33 @@
         "fill": "#202124",
         "font-family": "\"Noto Sans KR\", sans-serif",
         "font-size": 24.0,
-        "width": 820.0,
-        "height": 44.0,
-        "max_width": 820.0,
+        "width": 562.0,
+        "height": 36.0,
+        "max_width": 562.0,
         "data-slot-kind": "text_box",
         "data-box-x": 32.0,
         "data-box-y": 22.0,
-        "data-box-width": 820.0,
-        "data-box-height": 44.0,
+        "data-box-width": 562.0,
+        "data-box-height": 36.0,
         "data-text-align": "left",
         "data-vertical-align": "top",
-        "data-line-height": 1.5
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "explicit"
       },
       "source_ref": "slot.stem.question",
       "refs": {
         "layout_slot_id": "slot.stem.question"
       },
-      "text": "96. 24 ÷ 4의 몫을 구할 때 필요한 곱셈식을 찾아 선택하세요."
+      "text": "24 ÷ 4의 몫을 구할 때 필요한 곱셈식을 찾아 선택하세요."
     },
     {
       "id": "slot.diagram.frame.rect",
       "type": "rect",
       "attributes": {
-        "x": 110.0,
+        "x": 218.651,
         "y": 76.0,
-        "width": 740.0,
+        "width": 521.49,
         "height": 76.0,
         "fill": "#ffffff",
         "stroke": "#f8b4a6",
@@ -54,11 +56,13 @@
       "id": "slot.choice.option_0.text",
       "type": "text",
       "attributes": {
-        "x": 245.0,
-        "y": 114.0,
+        "x": 245.69,
+        "y": 120.18,
         "fill": "#111827",
         "font-family": "\"Noto Sans KR\", sans-serif",
-        "font-size": 22.0
+        "font-size": 22.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
       },
       "source_ref": "slot.choice.option_0",
       "refs": {
@@ -78,11 +82,13 @@
       "id": "slot.choice.option_1.text",
       "type": "text",
       "attributes": {
-        "x": 480.0,
-        "y": 114.0,
+        "x": 409.63,
+        "y": 120.18,
         "fill": "#111827",
         "font-family": "\"Noto Sans KR\", sans-serif",
-        "font-size": 22.0
+        "font-size": 22.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
       },
       "source_ref": "slot.choice.option_1",
       "refs": {
@@ -102,11 +108,13 @@
       "id": "slot.choice.option_2.text",
       "type": "text",
       "attributes": {
-        "x": 715.0,
-        "y": 114.0,
+        "x": 575.58,
+        "y": 119.58,
         "fill": "#111827",
         "font-family": "\"Noto Sans KR\", sans-serif",
-        "font-size": 22.0
+        "font-size": 22.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
       },
       "source_ref": "slot.choice.option_2",
       "refs": {

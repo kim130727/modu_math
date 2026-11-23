@@ -1,0 +1,1400 @@
+{
+  "problem_id": "S3_초등_4_007548",
+  "problem_type": "multiple_choice_find_all_trapezoids",
+  "metadata": {
+    "title": "모눈종이 위의 사각형 중 사다리꼴을 모두 찾아 선택하기",
+    "tags": [],
+    "question": "91. 사다리꼴을 모두 찾아 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1",
+      "slot.choice.option_2",
+      "slot.choice.option_3",
+      "slot.diagram.grid_bg",
+      "slot.diagram.grid_vc_1",
+      "slot.diagram.grid_vc_2",
+      "slot.diagram.grid_vc_3",
+      "slot.diagram.grid_vc_4",
+      "slot.diagram.grid_vc_5",
+      "slot.diagram.grid_vc_6",
+      "slot.diagram.grid_vc_7",
+      "slot.diagram.grid_vc_8",
+      "slot.diagram.grid_vc_9",
+      "slot.diagram.grid_vc_10",
+      "slot.diagram.grid_vc_11",
+      "slot.diagram.grid_vc_12",
+      "slot.diagram.grid_vc_13",
+      "slot.diagram.grid_vc_14",
+      "slot.diagram.grid_vc_15",
+      "slot.diagram.grid_vc_16",
+      "slot.diagram.grid_vc_17",
+      "slot.diagram.grid_vc_18",
+      "slot.diagram.grid_vc_19",
+      "slot.diagram.grid_vc_20",
+      "slot.diagram.grid_vc_21",
+      "slot.diagram.grid_vc_22",
+      "slot.diagram.grid_vc_23",
+      "slot.diagram.grid_vc_24",
+      "slot.diagram.grid_vc_25",
+      "slot.diagram.grid_vc_26",
+      "slot.diagram.grid_hr_1",
+      "slot.diagram.grid_hr_2",
+      "slot.diagram.grid_hr_3",
+      "slot.diagram.grid_hr_4",
+      "slot.diagram.grid_hr_5",
+      "slot.diagram.ga",
+      "slot.diagram.na",
+      "slot.diagram.da",
+      "slot.diagram.ra"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "2학기",
+    "chapter": "04단원_사각형",
+    "difficulty": "중",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "91. 사다리꼴을 모두 찾아 선택해 보세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 108,
+          "y": 252,
+          "width": 148,
+          "height": 46,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 284,
+          "y": 252,
+          "width": 148,
+          "height": 46,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 460,
+          "y": 252,
+          "width": 148,
+          "height": 46,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_3",
+        "type": "rect_slot",
+        "properties": {
+          "x": 636,
+          "y": 252,
+          "width": 148,
+          "height": 46,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.da",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              527,
+              106
+            ],
+            [
+              623,
+              130
+            ],
+            [
+              599,
+              202
+            ],
+            [
+              527,
+              202
+            ]
+          ],
+          "stroke": "#111827",
+          "stroke_width": 1.8,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.da"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ga",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              167,
+              130
+            ],
+            [
+              239,
+              106
+            ],
+            [
+              263,
+              178
+            ],
+            [
+              143,
+              202
+            ]
+          ],
+          "stroke": "#111827",
+          "stroke_width": 1.8,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ga"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_bg",
+        "type": "rect_slot",
+        "properties": {
+          "x": 119,
+          "y": 82,
+          "width": 648,
+          "height": 144,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.9,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_bg"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_hr_1",
+        "type": "line_slot",
+        "properties": {
+          "x1": 119,
+          "y1": 106,
+          "x2": 767,
+          "y2": 106,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_hr_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_hr_2",
+        "type": "line_slot",
+        "properties": {
+          "x1": 119,
+          "y1": 130,
+          "x2": 767,
+          "y2": 130,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_hr_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_hr_3",
+        "type": "line_slot",
+        "properties": {
+          "x1": 119,
+          "y1": 154,
+          "x2": 767,
+          "y2": 154,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_hr_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_hr_4",
+        "type": "line_slot",
+        "properties": {
+          "x1": 119,
+          "y1": 178,
+          "x2": 767,
+          "y2": 178,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_hr_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_hr_5",
+        "type": "line_slot",
+        "properties": {
+          "x1": 119,
+          "y1": 202,
+          "x2": 767,
+          "y2": 202,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_hr_5"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_1",
+        "type": "line_slot",
+        "properties": {
+          "x1": 143,
+          "y1": 82,
+          "x2": 143,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_10",
+        "type": "line_slot",
+        "properties": {
+          "x1": 359,
+          "y1": 82,
+          "x2": 359,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_10"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_11",
+        "type": "line_slot",
+        "properties": {
+          "x1": 383,
+          "y1": 82,
+          "x2": 383,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_11"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_12",
+        "type": "line_slot",
+        "properties": {
+          "x1": 407,
+          "y1": 82,
+          "x2": 407,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_12"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_13",
+        "type": "line_slot",
+        "properties": {
+          "x1": 431,
+          "y1": 82,
+          "x2": 431,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_13"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_14",
+        "type": "line_slot",
+        "properties": {
+          "x1": 455,
+          "y1": 82,
+          "x2": 455,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_14"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_15",
+        "type": "line_slot",
+        "properties": {
+          "x1": 479,
+          "y1": 82,
+          "x2": 479,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_15"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_16",
+        "type": "line_slot",
+        "properties": {
+          "x1": 503,
+          "y1": 82,
+          "x2": 503,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_16"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_17",
+        "type": "line_slot",
+        "properties": {
+          "x1": 527,
+          "y1": 82,
+          "x2": 527,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_17"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_18",
+        "type": "line_slot",
+        "properties": {
+          "x1": 551,
+          "y1": 82,
+          "x2": 551,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_18"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_19",
+        "type": "line_slot",
+        "properties": {
+          "x1": 575,
+          "y1": 82,
+          "x2": 575,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_19"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_2",
+        "type": "line_slot",
+        "properties": {
+          "x1": 167,
+          "y1": 82,
+          "x2": 167,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_20",
+        "type": "line_slot",
+        "properties": {
+          "x1": 599,
+          "y1": 82,
+          "x2": 599,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_20"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_21",
+        "type": "line_slot",
+        "properties": {
+          "x1": 623,
+          "y1": 82,
+          "x2": 623,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_21"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_22",
+        "type": "line_slot",
+        "properties": {
+          "x1": 647,
+          "y1": 82,
+          "x2": 647,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_22"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_23",
+        "type": "line_slot",
+        "properties": {
+          "x1": 671,
+          "y1": 82,
+          "x2": 671,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_23"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_24",
+        "type": "line_slot",
+        "properties": {
+          "x1": 695,
+          "y1": 82,
+          "x2": 695,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_24"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_25",
+        "type": "line_slot",
+        "properties": {
+          "x1": 719,
+          "y1": 82,
+          "x2": 719,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_25"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_26",
+        "type": "line_slot",
+        "properties": {
+          "x1": 743,
+          "y1": 82,
+          "x2": 743,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_26"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_3",
+        "type": "line_slot",
+        "properties": {
+          "x1": 191,
+          "y1": 82,
+          "x2": 191,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_4",
+        "type": "line_slot",
+        "properties": {
+          "x1": 215,
+          "y1": 82,
+          "x2": 215,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_5",
+        "type": "line_slot",
+        "properties": {
+          "x1": 239,
+          "y1": 82,
+          "x2": 239,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_5"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_6",
+        "type": "line_slot",
+        "properties": {
+          "x1": 263,
+          "y1": 82,
+          "x2": 263,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_6"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_7",
+        "type": "line_slot",
+        "properties": {
+          "x1": 287,
+          "y1": 82,
+          "x2": 287,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_7"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_8",
+        "type": "line_slot",
+        "properties": {
+          "x1": 311,
+          "y1": 82,
+          "x2": 311,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_8"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_vc_9",
+        "type": "line_slot",
+        "properties": {
+          "x1": 335,
+          "y1": 82,
+          "x2": 335,
+          "y2": 226,
+          "stroke": "#7dd3fc",
+          "stroke_width": 0.8,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_vc_9"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.lbl_da",
+        "type": "symbol_label",
+        "properties": {
+          "text": "다"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.lbl_da"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.lbl_ga",
+        "type": "symbol_label",
+        "properties": {
+          "text": "가"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.lbl_ga"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.lbl_na",
+        "type": "symbol_label",
+        "properties": {
+          "text": "나"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.lbl_na"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.lbl_ra",
+        "type": "symbol_label",
+        "properties": {
+          "text": "라"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.lbl_ra"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.na",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              359,
+              106
+            ],
+            [
+              431,
+              106
+            ],
+            [
+              479,
+              202
+            ],
+            [
+              311,
+              202
+            ]
+          ],
+          "stroke": "#111827",
+          "stroke_width": 1.8,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.na"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_text_0",
+        "type": "text",
+        "properties": {
+          "text": "① 가, 나"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_text_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_text_1",
+        "type": "text",
+        "properties": {
+          "text": "② 나, 다"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_text_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_text_2",
+        "type": "text",
+        "properties": {
+          "text": "③ 나, 라"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_text_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_text_3",
+        "type": "text",
+        "properties": {
+          "text": "④ 다, 라"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_text_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ra",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              671,
+              130
+            ],
+            [
+              743,
+              130
+            ],
+            [
+              743,
+              202
+            ],
+            [
+              671,
+              202
+            ]
+          ],
+          "stroke": "#111827",
+          "stroke_width": 1.8,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ra"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "91. 사다리꼴을 모두 찾아 선택해 보세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "③",
+    "answer_index": 2,
+    "unit": "",
+    "values": [
+      "③"
+    ],
+    "choices": [
+      "① 가, 나",
+      "② 나, 다",
+      "③ 나, 라",
+      "④ 다, 라"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "③",
+        "diagnostics": [
+          {
+            "id": "diag.missed_rectangle_as_trapezoid",
+            "condition": "answer_not_3",
+            "concept": "사다리꼴의 정의",
+            "reason": "직사각형(라)도 평행한 변이 있으므로 사다리꼴임을 놓침",
+            "feedback": "평행한 변이 한 쌍이라도 있는 사각형은 모두 사다리꼴입니다. 나와 라가 평행한 변이 있으므로 ③을 선택하세요."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "ga": {
+      "label": "가",
+      "is_trapezoid": false
+    },
+    "na": {
+      "label": "나",
+      "is_trapezoid": true
+    },
+    "da": {
+      "label": "다",
+      "is_trapezoid": false
+    },
+    "ra": {
+      "label": "라",
+      "is_trapezoid": true
+    }
+  },
+  "relations": [
+    {
+      "type": "classification",
+      "property": "at_least_one_parallel_pair",
+      "correct_entities": [
+        "na",
+        "ra"
+      ]
+    }
+  ]
+}

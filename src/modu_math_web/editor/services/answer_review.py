@@ -238,7 +238,7 @@ def apply_answer_review(semantic, solvable, value):
                 answer["target"] = {**target, "type": "choice"}
         else:
             answer["choices"] = []
-            keys = [{"value": a["value"], **({"unit": a["unit"].strip()} if a.get("unit", "").strip() else {}), **({"slot_id": a["ref"]} if a.get("ref", "").startswith("slot.") else {})} for a in review["answers"]]
+            keys = [{"value": a["value"], **({"unit": a["unit"].strip()} if a.get("unit", "").strip() else {}), **({"slot_id": a["ref"]} if a.get("ref", "").startswith(("slot.", "konva_")) else {})} for a in review["answers"]]
         answer["answer_key"] = keys
         answer["value"] = keys[0]["value"] if len(keys) == 1 else [k["value"] for k in keys]
         answer["blanks"] = []

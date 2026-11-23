@@ -1,0 +1,53 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007857",
+  "problem_type": "multiple_choice_polygon_construction_ox",
+  "given": [
+    {
+      "ref": "pieces",
+      "value": "정삼각형 2개, 사다리꼴 1개, 평행사변형 1개"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "오각형 만들기 가능 여부",
+    "unit": ""
+  },
+  "method": "shape_composition",
+  "steps": [
+    {
+      "id": "check_pentagon",
+      "expr": "정삼각형 2개 + 평행사변형 1개 + 사다리꼴 1개 -> 오각형 가능",
+      "explanation": "주어진 모양 조각을 모두 사용하여 오각형을 만들 수 있으므로 ○입니다.",
+      "value": "○"
+    }
+  ],
+  "answer": {
+    "value": "○",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "○"
+    ],
+    "choices": [
+      "○",
+      "×"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "○",
+        "diagnostics": [
+          {
+            "id": "diag.missed_pentagon_construction",
+            "condition": "answer_equals_x",
+            "concept": "모양 조각으로 다각형 만들기",
+            "reason": "정삼각형 2개, 마름모 1개, 사다리꼴 1개로 오각형을 만들 수 있음을 놓침",
+            "feedback": "정삼각형 2개, 평행사변형(마름모) 1개, 사다리꼴 1개를 이어 붙이면 오각형을 만들 수 있으므로 ○입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "problem_id": "P3_1_01_00040_15608_3",
+  "problem_type": "multiple_choice_largest_addition_sum",
+  "metadata": {
+    "title": "합이 더 큰 덧셈식 (3)",
+    "tags": [],
+    "question": "다음 중 합이 더 큰 것은 어느 것입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "다음 중 합이 더 큰 것은 어느 것입니까?"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "choice.option_1",
+        "type": "arithmetic_choice",
+        "label": "① 140+550",
+        "expression": "140 + 550",
+        "value": 690
+      },
+      {
+        "id": "choice.option_2",
+        "type": "arithmetic_choice",
+        "label": "② 545+235",
+        "expression": "545 + 235",
+        "value": 780
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.option_2_has_largest_sum",
+        "type": "maximum_of",
+        "from_id": "choice.option_2",
+        "to_id": "choice.option_1",
+        "subject": "choice.option_2",
+        "objects": [
+          "choice.option_1",
+          "choice.option_2"
+        ]
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "choice",
+    "value": 2,
+    "unit": "",
+    "target_ref": "choice.option_2",
+    "derived_from": "step.select_largest_sum"
+  }
+}

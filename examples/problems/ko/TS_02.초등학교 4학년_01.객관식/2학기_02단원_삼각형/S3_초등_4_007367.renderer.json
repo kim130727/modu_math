@@ -1,0 +1,232 @@
+{
+  "problem_id": "S3_초등_4_007367",
+  "view_box": {
+    "width": 886.0,
+    "height": 286.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 820.0,
+        "height": 64.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 820.0,
+        "data-box-height": 64.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "44. 삼각형의 세 각의 크기가 다음과 같을 때 이등변삼각형을 찾아 선택하세요."
+    },
+    {
+      "id": "slot.choice.option_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 142.0,
+        "y": 100.0,
+        "width": 264.0,
+        "height": 156.0,
+        "fill": "#f8fafc",
+        "stroke": "#cbd5e1",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "①",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 480.0,
+        "y": 100.0,
+        "width": 264.0,
+        "height": 156.0,
+        "fill": "#f8fafc",
+        "stroke": "#cbd5e1",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "②",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.diagram.bear.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 274.0,
+        "cy": 142.0,
+        "r": 24.0,
+        "stroke": "#b45309",
+        "stroke-width": 1.4,
+        "fill": "#fde047"
+      },
+      "source_ref": "slot.diagram.bear",
+      "refs": {
+        "layout_slot_id": "slot.diagram.bear"
+      }
+    },
+    {
+      "id": "slot.diagram.board_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 164.0,
+        "y": 174.0,
+        "width": 220.0,
+        "height": 58.0,
+        "fill": "#f3e8d2",
+        "stroke": "#b45309",
+        "stroke-width": 1.6,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.diagram.board_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.board_0"
+      }
+    },
+    {
+      "id": "slot.diagram.squirrel.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 612.0,
+        "cy": 142.0,
+        "r": 24.0,
+        "stroke": "#c2410c",
+        "stroke-width": 1.4,
+        "fill": "#fdba74"
+      },
+      "source_ref": "slot.diagram.squirrel",
+      "refs": {
+        "layout_slot_id": "slot.diagram.squirrel"
+      }
+    },
+    {
+      "id": "slot.diagram.board_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 502.0,
+        "y": 174.0,
+        "width": 220.0,
+        "height": 58.0,
+        "fill": "#f3e8d2",
+        "stroke": "#b45309",
+        "stroke-width": 1.6,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.diagram.board_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.board_1"
+      }
+    },
+    {
+      "id": "slot.diagram.b0.text",
+      "type": "text",
+      "attributes": {
+        "x": 162.0,
+        "y": 112.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.b0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.b0"
+      },
+      "text": "①"
+    },
+    {
+      "id": "slot.diagram.ang_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 274.0,
+        "y": 192.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0
+      },
+      "source_ref": "slot.diagram.ang_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.ang_0"
+      },
+      "text": "100°,  55°,  25°"
+    },
+    {
+      "id": "slot.diagram.b1.text",
+      "type": "text",
+      "attributes": {
+        "x": 500.0,
+        "y": 112.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.b1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.b1"
+      },
+      "text": "②"
+    },
+    {
+      "id": "slot.diagram.ang_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 612.0,
+        "y": 192.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0
+      },
+      "source_ref": "slot.diagram.ang_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.ang_1"
+      },
+      "text": "55°,  70°,  55°"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,121 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15608_3",
+  "title": "합이 더 큰 덧셈식 (3)",
+  "canvas": {
+    "width": 400,
+    "height": 130,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice_1.number",
+        "slot.choice_1.expression",
+        "slot.choice_2.number",
+        "slot.choice_2.expression"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다음 중 합이 더 큰 것은 어느 것입니까?",
+        "style_role": "question",
+        "x": 24.0,
+        "y": 28.0,
+        "font_size": 22,
+        "fill": "#222222",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice_1.number",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "①",
+        "style_role": "diagram_label",
+        "x": 40.0,
+        "y": 80.0,
+        "font_size": 22,
+        "fill": "#2F80C9",
+        "semantic_role": "canvas",
+        "semantic_role_source": "explicit"
+      }
+    },
+    {
+      "id": "slot.choice_1.expression",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "140+550",
+        "style_role": "diagram_label",
+        "x": 70.0,
+        "y": 80.0,
+        "font_size": 22,
+        "fill": "#111111",
+        "semantic_role": "canvas",
+        "semantic_role_source": "explicit"
+      }
+    },
+    {
+      "id": "slot.choice_2.number",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "②",
+        "style_role": "diagram_label",
+        "x": 210.0,
+        "y": 80.0,
+        "font_size": 22,
+        "fill": "#2F80C9",
+        "semantic_role": "canvas",
+        "semantic_role_source": "explicit"
+      }
+    },
+    {
+      "id": "slot.choice_2.expression",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "545+235",
+        "style_role": "diagram_label",
+        "x": 240.0,
+        "y": 80.0,
+        "font_size": 22,
+        "fill": "#111111",
+        "semantic_role": "canvas",
+        "semantic_role_source": "explicit"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "region.choices",
+    "slot.choice_1.number",
+    "slot.choice_1.expression",
+    "slot.choice_2.number",
+    "slot.choice_2.expression"
+  ]
+}

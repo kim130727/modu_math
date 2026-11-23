@@ -1,0 +1,433 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007365",
+  "title": "색종이로 만든 이등변삼각형에서 두 각의 크기 비교하기",
+  "canvas": {
+    "width": 886,
+    "height": 396,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.s1",
+        "slot.diagram.s1_f",
+        "slot.diagram.s2",
+        "slot.diagram.s3",
+        "slot.diagram.s4_tri",
+        "slot.diagram.boy_head",
+        "slot.diagram.bubble",
+        "slot.diagram.s2_line",
+        "slot.diagram.s3_line",
+        "slot.diagram.s4_fold",
+        "slot.diagram.ar1",
+        "slot.diagram.ar2",
+        "slot.diagram.ar3",
+        "slot.diagram.ang_l",
+        "slot.diagram.ang_r",
+        "slot.diagram.bubble_txt",
+        "slot.diagram.c0_txt",
+        "slot.diagram.c1_txt"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "41. 색종이 한 장을 반으로 접고 선을 따라 가위로 잘라 이등변삼각형을 만들었습니다. 그림을 보고 알맞은 말을 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 64.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 280.0,
+        "y": 322.0,
+        "width": 136.0,
+        "height": 48.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "같아",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 470.0,
+        "y": 322.0,
+        "width": 136.0,
+        "height": 48.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "달라",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.diagram.s1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 142.0,
+        "y": 102.0,
+        "width": 100.0,
+        "height": 96.0,
+        "stroke": "#6b7280",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "4,3",
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.s1_f",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 142.0,
+        "y": 102.0,
+        "width": 50.0,
+        "height": 96.0,
+        "stroke": "#ea580c",
+        "stroke_width": 1.4,
+        "fill": "#fed7aa"
+      }
+    },
+    {
+      "id": "slot.diagram.ar1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "→",
+        "style_role": "body",
+        "x": 272.0,
+        "y": 136.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#6b7280"
+      }
+    },
+    {
+      "id": "slot.diagram.s2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 306.0,
+        "y": 102.0,
+        "width": 60.0,
+        "height": 96.0,
+        "stroke": "#ea580c",
+        "stroke_width": 1.4,
+        "fill": "#fed7aa"
+      }
+    },
+    {
+      "id": "slot.diagram.s2_line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 306.0,
+        "y1": 198.0,
+        "x2": 366.0,
+        "y2": 102.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.ar2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "→",
+        "style_role": "body",
+        "x": 398.0,
+        "y": 136.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#6b7280"
+      }
+    },
+    {
+      "id": "slot.diagram.s3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 432.0,
+        "y": 102.0,
+        "width": 60.0,
+        "height": 96.0,
+        "stroke": "#ea580c",
+        "stroke_width": 1.4,
+        "fill": "#fed7aa"
+      }
+    },
+    {
+      "id": "slot.diagram.s3_line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 432.0,
+        "y1": 198.0,
+        "x2": 492.0,
+        "y2": 102.0,
+        "stroke": "#111827",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.ar3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "→",
+        "style_role": "body",
+        "x": 524.0,
+        "y": 136.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#6b7280"
+      }
+    },
+    {
+      "id": "slot.diagram.s4_tri",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            626.0,
+            102.0
+          ],
+          [
+            566.0,
+            198.0
+          ],
+          [
+            686.0,
+            198.0
+          ]
+        ],
+        "stroke": "#16a34a",
+        "stroke_width": 1.8,
+        "fill": "#bbf7d0"
+      }
+    },
+    {
+      "id": "slot.diagram.s4_fold",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 626.0,
+        "y1": 102.0,
+        "x2": 626.0,
+        "y2": 198.0,
+        "stroke": "#16a34a",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "3,3"
+      }
+    },
+    {
+      "id": "slot.diagram.ang_l",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "body",
+        "x": 590.0,
+        "y": 174.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.ang_r",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "body",
+        "x": 662.0,
+        "y": 174.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.boy_head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 222.0,
+        "cy": 254.0,
+        "r": 26.0,
+        "stroke": "#92400e",
+        "stroke_width": 1.4,
+        "fill": "#fde68a"
+      }
+    },
+    {
+      "id": "slot.diagram.bubble",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 286.0,
+        "y": 224.0,
+        "width": 480.0,
+        "height": 74.0,
+        "stroke": "#111827",
+        "stroke_width": 1.6,
+        "rx": 28.0,
+        "ry": 28.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.bubble_txt",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "겹쳐서 잘랐기 때문에 위 이등변삼각형에\n표시된 두 각의 크기는 ( 같아 , 달라 ).",
+        "style_role": "body",
+        "x": 306.0,
+        "y": 236.0,
+        "width": 440.0,
+        "height": 52.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 18,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.4,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c0_txt",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "같아",
+        "style_role": "body",
+        "x": 348.0,
+        "y": 334.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c1_txt",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "달라",
+        "style_role": "body",
+        "x": 538.0,
+        "y": 334.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1",
+    "region.diagram",
+    "slot.diagram.s1",
+    "slot.diagram.s1_f",
+    "slot.diagram.s2",
+    "slot.diagram.s3",
+    "slot.diagram.s4_tri",
+    "slot.diagram.boy_head",
+    "slot.diagram.bubble",
+    "slot.diagram.s2_line",
+    "slot.diagram.s3_line",
+    "slot.diagram.s4_fold",
+    "slot.diagram.ar1",
+    "slot.diagram.ar2",
+    "slot.diagram.ar3",
+    "slot.diagram.ang_l",
+    "slot.diagram.ang_r",
+    "slot.diagram.bubble_txt",
+    "slot.diagram.c0_txt",
+    "slot.diagram.c1_txt"
+  ]
+}

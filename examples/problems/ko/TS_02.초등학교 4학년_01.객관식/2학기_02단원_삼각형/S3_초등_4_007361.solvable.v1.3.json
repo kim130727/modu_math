@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007361",
+  "problem_type": "multiple_choice_equilateral_triangle",
+  "given": [
+    {
+      "ref": "tri_0",
+      "value": "8 cm, 7 cm, 7 cm"
+    },
+    {
+      "ref": "tri_1",
+      "value": "9 cm, 9 cm, 9 cm"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "정삼각형",
+    "unit": ""
+  },
+  "method": "triangle_classification",
+  "steps": [
+    {
+      "id": "check_sides",
+      "expr": "9 cm = 9 cm = 9 cm",
+      "explanation": "정삼각형은 세 변의 길이가 모두 같으므로 ②입니다.",
+      "value": "②"
+    }
+  ],
+  "answer": {
+    "value": "②",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "②"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②",
+        "diagnostics": [
+          {
+            "id": "diag.chose_isosceles",
+            "condition": "answer_equals_1",
+            "concept": "정삼각형의 성질",
+            "reason": "두 변의 길이만 같은 이등변삼각형(①: 8 cm, 7 cm, 7 cm)을 선택함",
+            "feedback": "①은 두 변의 길이만 7 cm로 같으므로 이등변삼각형입니다. 정삼각형은 세 변의 길이가 모두 9 cm로 같은 ②입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

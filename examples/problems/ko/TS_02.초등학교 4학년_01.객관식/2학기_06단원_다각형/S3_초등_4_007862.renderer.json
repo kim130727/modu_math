@@ -1,0 +1,192 @@
+{
+  "problem_id": "S3_초등_4_007862",
+  "view_box": {
+    "width": 886.0,
+    "height": 268.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0,
+        "width": 820.0,
+        "height": 76.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 820.0,
+        "data-box-height": 76.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "78. 정삼각형, 사다리꼴, 평행사변형 모양 조각 중에서 2가지를 골라 정삼각형을 만들려고 합니다. 다음 물음에 답하세요.\n(1) 정삼각형 모양 조각 1개를 사용할 때, 필요한 모양 조각을 선택하세요."
+    },
+    {
+      "id": "slot.choice.option_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 230.0,
+        "y": 126.0,
+        "width": 184.0,
+        "height": 112.0,
+        "fill": "#f8fafc",
+        "stroke": "#cbd5e1",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "①",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 472.0,
+        "y": 126.0,
+        "width": 184.0,
+        "height": 112.0,
+        "fill": "#f8fafc",
+        "stroke": "#cbd5e1",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "②",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.diagram.trap.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            292.0,
+            152.0
+          ],
+          [
+            352.0,
+            152.0
+          ],
+          [
+            382.0,
+            206.0
+          ],
+          [
+            262.0,
+            206.0
+          ]
+        ],
+        "stroke": "#be123c",
+        "stroke-width": 1.6,
+        "fill": "#fb7185"
+      },
+      "source_ref": "slot.diagram.trap",
+      "refs": {
+        "layout_slot_id": "slot.diagram.trap"
+      }
+    },
+    {
+      "id": "slot.diagram.para.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            544.0,
+            152.0
+          ],
+          [
+            604.0,
+            152.0
+          ],
+          [
+            574.0,
+            206.0
+          ],
+          [
+            514.0,
+            206.0
+          ]
+        ],
+        "stroke": "#0284c7",
+        "stroke-width": 1.6,
+        "fill": "#38bdf8"
+      },
+      "source_ref": "slot.diagram.para",
+      "refs": {
+        "layout_slot_id": "slot.diagram.para"
+      }
+    },
+    {
+      "id": "slot.diagram.b0.text",
+      "type": "text",
+      "attributes": {
+        "x": 250.0,
+        "y": 138.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.b0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.b0"
+      },
+      "text": "①"
+    },
+    {
+      "id": "slot.diagram.b1.text",
+      "type": "text",
+      "attributes": {
+        "x": 492.0,
+        "y": 138.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.b1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.b1"
+      },
+      "text": "②"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

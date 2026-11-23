@@ -1,0 +1,519 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007866",
+  "title": "모양 조각을 여러 번 사용하여 물고기 모양을 만들 수 있는지 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 432,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.box",
+        "slot.diagram.ga",
+        "slot.diagram.na",
+        "slot.diagram.da",
+        "slot.diagram.ra",
+        "slot.diagram.ma",
+        "slot.diagram.ba",
+        "slot.diagram.fish",
+        "slot.diagram.l_ga",
+        "slot.diagram.l_na",
+        "slot.diagram.l_da",
+        "slot.diagram.l_ra",
+        "slot.diagram.l_ma",
+        "slot.diagram.l_ba",
+        "slot.diagram.c0_t",
+        "slot.diagram.c1_t"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "81. 모양 조각을 여러 번 사용하여 다음 모양을 만들 수 있으면 ○, 그렇지 않으면 ×를 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 64.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 21,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 286.0,
+        "y": 356.0,
+        "width": 124.0,
+        "height": 52.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.6,
+        "rx": 10.0,
+        "ry": 10.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "○",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 476.0,
+        "y": 356.0,
+        "width": 124.0,
+        "height": 52.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.6,
+        "rx": 10.0,
+        "ry": 10.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "×",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.diagram.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 98.0,
+        "y": 98.0,
+        "width": 690.0,
+        "height": 82.0,
+        "stroke": "#fb923c",
+        "stroke_width": 1.6,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ga",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            142.0,
+            112.0
+          ],
+          [
+            182.0,
+            112.0
+          ],
+          [
+            202.0,
+            139.0
+          ],
+          [
+            182.0,
+            166.0
+          ],
+          [
+            142.0,
+            166.0
+          ],
+          [
+            122.0,
+            139.0
+          ]
+        ],
+        "stroke": "#ca8a04",
+        "stroke_width": 1.4,
+        "fill": "#fde047"
+      }
+    },
+    {
+      "id": "slot.diagram.l_ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "body",
+        "x": 162.0,
+        "y": 130.0,
+        "font_size": 15,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.na",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            252.0,
+            118.0
+          ],
+          [
+            294.0,
+            118.0
+          ],
+          [
+            314.0,
+            158.0
+          ],
+          [
+            232.0,
+            158.0
+          ]
+        ],
+        "stroke": "#c2410c",
+        "stroke_width": 1.4,
+        "fill": "#f97316"
+      }
+    },
+    {
+      "id": "slot.diagram.l_na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "body",
+        "x": 273.0,
+        "y": 130.0,
+        "font_size": 15,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.da",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            366.0,
+            118.0
+          ],
+          [
+            408.0,
+            118.0
+          ],
+          [
+            388.0,
+            158.0
+          ],
+          [
+            346.0,
+            158.0
+          ]
+        ],
+        "stroke": "#0284c7",
+        "stroke_width": 1.4,
+        "fill": "#38bdf8"
+      }
+    },
+    {
+      "id": "slot.diagram.l_da",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "body",
+        "x": 377.0,
+        "y": 130.0,
+        "font_size": 15,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.ra",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            468.0,
+            118.0
+          ],
+          [
+            446.0,
+            158.0
+          ],
+          [
+            490.0,
+            158.0
+          ]
+        ],
+        "stroke": "#15803d",
+        "stroke_width": 1.4,
+        "fill": "#4ade80"
+      }
+    },
+    {
+      "id": "slot.diagram.l_ra",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "라",
+        "style_role": "body",
+        "x": 468.0,
+        "y": 134.0,
+        "font_size": 15,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.ma",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 540.0,
+        "y": 118.0,
+        "width": 38.0,
+        "height": 38.0,
+        "stroke": "#d97706",
+        "stroke_width": 1.4,
+        "fill": "#fbbf24"
+      }
+    },
+    {
+      "id": "slot.diagram.l_ma",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "마",
+        "style_role": "body",
+        "x": 559.0,
+        "y": 128.0,
+        "font_size": 15,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.ba",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            630.0,
+            138.0
+          ],
+          [
+            674.0,
+            126.0
+          ],
+          [
+            718.0,
+            138.0
+          ],
+          [
+            674.0,
+            150.0
+          ]
+        ],
+        "stroke": "#64748b",
+        "stroke_width": 1.4,
+        "fill": "#cbd5e1"
+      }
+    },
+    {
+      "id": "slot.diagram.l_ba",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "바",
+        "style_role": "body",
+        "x": 674.0,
+        "y": 130.0,
+        "font_size": 15,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.fish",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            356.0,
+            264.0
+          ],
+          [
+            434.0,
+            218.0
+          ],
+          [
+            452.0,
+            192.0
+          ],
+          [
+            492.0,
+            192.0
+          ],
+          [
+            474.0,
+            224.0
+          ],
+          [
+            514.0,
+            248.0
+          ],
+          [
+            546.0,
+            224.0
+          ],
+          [
+            546.0,
+            304.0
+          ],
+          [
+            514.0,
+            280.0
+          ],
+          [
+            474.0,
+            304.0
+          ],
+          [
+            492.0,
+            336.0
+          ],
+          [
+            452.0,
+            336.0
+          ],
+          [
+            434.0,
+            310.0
+          ]
+        ],
+        "stroke": "#111827",
+        "stroke_width": 1.8,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.c0_t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "○",
+        "style_role": "body",
+        "x": 348.0,
+        "y": 368.0,
+        "font_size": 26,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c1_t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "×",
+        "style_role": "body",
+        "x": 538.0,
+        "y": 368.0,
+        "font_size": 26,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1",
+    "region.diagram",
+    "slot.diagram.box",
+    "slot.diagram.ga",
+    "slot.diagram.na",
+    "slot.diagram.da",
+    "slot.diagram.ra",
+    "slot.diagram.ma",
+    "slot.diagram.ba",
+    "slot.diagram.fish",
+    "slot.diagram.l_ga",
+    "slot.diagram.l_na",
+    "slot.diagram.l_da",
+    "slot.diagram.l_ra",
+    "slot.diagram.l_ma",
+    "slot.diagram.l_ba",
+    "slot.diagram.c0_t",
+    "slot.diagram.c1_t"
+  ]
+}

@@ -1,0 +1,740 @@
+{
+  "problem_id": "S3_초등_4_007503",
+  "problem_type": "multiple_choice_decimal_shift_rule",
+  "metadata": {
+    "title": "소수의 1/10을 할 때 소수점 이동 방향과 자릿수 선택하기",
+    "tags": [],
+    "question": "28. 1, 0.1, 0.01, 0.001 사이의 관계를 보고 알맞은 것을 선택하세요.\n(1) 소수의 1/10을 하면 소수점이 ( 왼쪽 , 오른쪽 )으로 ( 한 , 두 ) 자리 이동합니다.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1",
+      "slot.choice.option_2",
+      "slot.choice.option_3",
+      "slot.diagram.tbl_outer",
+      "slot.diagram.tbl_hr_1",
+      "slot.diagram.tbl_hr_2",
+      "slot.diagram.tbl_hr_3",
+      "slot.diagram.tbl_vc_1",
+      "slot.diagram.tbl_vc_2",
+      "slot.diagram.tbl_vc_3"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "2학기",
+    "chapter": "03단원_소수의 덧셈과 뺄셈",
+    "difficulty": "중",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question",
+        "slot.diagram.question_sub"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "28. 1, 0.1, 0.01, 0.001 사이의 관계를 보고 알맞은 것을 선택하세요.\n(1) 소수의 1/10을 하면 소수점이 ( 왼쪽 , 오른쪽 )으로 ( 한 , 두 ) 자리 이동합니다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 76,
+          "y": 294,
+          "width": 168,
+          "height": 46,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 266,
+          "y": 294,
+          "width": 168,
+          "height": 46,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 456,
+          "y": 294,
+          "width": 168,
+          "height": 46,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_3",
+        "type": "rect_slot",
+        "properties": {
+          "x": 646,
+          "y": 294,
+          "width": 168,
+          "height": 46,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.cell_0_0",
+        "type": "text",
+        "properties": {
+          "text": "1"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.cell_0_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.cell_1_0",
+        "type": "text",
+        "properties": {
+          "text": "0."
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.cell_1_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.cell_1_1",
+        "type": "text",
+        "properties": {
+          "text": "1"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.cell_1_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.cell_2_0",
+        "type": "text",
+        "properties": {
+          "text": "0."
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.cell_2_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.cell_2_1",
+        "type": "text",
+        "properties": {
+          "text": "0"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.cell_2_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.cell_2_2",
+        "type": "text",
+        "properties": {
+          "text": "1"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.cell_2_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.cell_3_0",
+        "type": "text",
+        "properties": {
+          "text": "0."
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.cell_3_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.cell_3_1",
+        "type": "text",
+        "properties": {
+          "text": "0"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.cell_3_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.cell_3_2",
+        "type": "text",
+        "properties": {
+          "text": "0"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.cell_3_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.cell_3_3",
+        "type": "text",
+        "properties": {
+          "text": "1"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.cell_3_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_text_0",
+        "type": "text",
+        "properties": {
+          "text": "① 왼쪽, 한"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_text_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_text_1",
+        "type": "text",
+        "properties": {
+          "text": "② 왼쪽, 두"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_text_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_text_2",
+        "type": "text",
+        "properties": {
+          "text": "③ 오른쪽, 한"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_text_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_text_3",
+        "type": "text",
+        "properties": {
+          "text": "④ 오른쪽, 두"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_text_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.question_sub",
+        "type": "text",
+        "properties": {
+          "text": "(1) 소수의 1/10을 하면 소수점이 ( 왼쪽 , 오른쪽 )으로 ( 한 , 두 ) 자리 이동합니다.",
+          "width": 750,
+          "height": 48
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.question_sub"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ratio_0",
+        "type": "text",
+        "properties": {
+          "text": "↘ 1/10"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ratio_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ratio_1",
+        "type": "text",
+        "properties": {
+          "text": "↘ 1/10"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ratio_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ratio_2",
+        "type": "text",
+        "properties": {
+          "text": "↘ 1/10"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ratio_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tbl_hr_1",
+        "type": "line_slot",
+        "properties": {
+          "x1": 336,
+          "y1": 112,
+          "x2": 512,
+          "y2": 112,
+          "stroke": "#fb923c",
+          "stroke_width": 1.0,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tbl_hr_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tbl_hr_2",
+        "type": "line_slot",
+        "properties": {
+          "x1": 336,
+          "y1": 146,
+          "x2": 512,
+          "y2": 146,
+          "stroke": "#fb923c",
+          "stroke_width": 1.0,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tbl_hr_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tbl_hr_3",
+        "type": "line_slot",
+        "properties": {
+          "x1": 336,
+          "y1": 180,
+          "x2": 512,
+          "y2": 180,
+          "stroke": "#fb923c",
+          "stroke_width": 1.0,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tbl_hr_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tbl_outer",
+        "type": "rect_slot",
+        "properties": {
+          "x": 336,
+          "y": 78,
+          "width": 176,
+          "height": 136,
+          "stroke": "#fb923c",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tbl_outer"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tbl_vc_1",
+        "type": "line_slot",
+        "properties": {
+          "x1": 380,
+          "y1": 78,
+          "x2": 380,
+          "y2": 214,
+          "stroke": "#fb923c",
+          "stroke_width": 0.9,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tbl_vc_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tbl_vc_2",
+        "type": "line_slot",
+        "properties": {
+          "x1": 424,
+          "y1": 78,
+          "x2": 424,
+          "y2": 214,
+          "stroke": "#fb923c",
+          "stroke_width": 0.9,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tbl_vc_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tbl_vc_3",
+        "type": "line_slot",
+        "properties": {
+          "x1": 468,
+          "y1": 78,
+          "x2": 468,
+          "y2": 214,
+          "stroke": "#fb923c",
+          "stroke_width": 0.9,
+          "stroke_dasharray": "3,3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tbl_vc_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "28. 1, 0.1, 0.01, 0.001 사이의 관계를 보고 알맞은 것을 선택하세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "① 왼쪽, 한",
+      "② 왼쪽, 두",
+      "③ 오른쪽, 한",
+      "④ 오른쪽, 두"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_shift_direction",
+            "condition": "answer_not_1",
+            "concept": "소수의 1/10과 소수점 이동",
+            "reason": "1/10을 할 때 소수점이 왼쪽으로 한 자리 이동한다는 성질을 놓침",
+            "feedback": "1 → 0.1 → 0.01 → 0.001처럼 소수의 1/10을 하면 소수점이 왼쪽으로 한 자리 이동합니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "sequence": {
+      "label": "소수 관계표",
+      "values": [
+        "1",
+        "0.1",
+        "0.01",
+        "0.001"
+      ]
+    },
+    "rule": {
+      "label": "1/10 규칙",
+      "direction": "왼쪽",
+      "places": "한"
+    }
+  },
+  "relations": [
+    {
+      "type": "decimal_shift",
+      "factor": "1/10",
+      "direction": "왼쪽",
+      "digits": 1
+    }
+  ]
+}

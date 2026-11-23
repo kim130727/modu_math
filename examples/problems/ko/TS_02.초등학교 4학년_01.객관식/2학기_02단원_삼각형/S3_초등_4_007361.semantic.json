@@ -1,0 +1,534 @@
+{
+  "problem_id": "S3_초등_4_007361",
+  "problem_type": "multiple_choice_equilateral_triangle",
+  "metadata": {
+    "title": "변의 길이를 보고 정삼각형 찾아 선택하기",
+    "tags": [],
+    "question": "35. 정삼각형을 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1",
+      "slot.diagram.tri0",
+      "slot.diagram.arc0_l",
+      "slot.diagram.arc0_t",
+      "slot.diagram.arc0_b",
+      "slot.diagram.tri1",
+      "slot.diagram.arc1_t",
+      "slot.diagram.arc1_l",
+      "slot.diagram.arc1_r"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "2학기",
+    "chapter": "02단원_삼각형",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "35. 정삼각형을 찾아 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 154,
+          "y": 82,
+          "width": 250,
+          "height": 224,
+          "stroke": "#cbd5e1",
+          "stroke_width": 1.5,
+          "rx": 10,
+          "ry": 10,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 482,
+          "y": 82,
+          "width": 250,
+          "height": 224,
+          "stroke": "#cbd5e1",
+          "stroke_width": 1.5,
+          "rx": 10,
+          "ry": 10,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.arc0_b",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 236 272 Q 305 256 344 192",
+          "stroke": "#38bdf8",
+          "stroke_width": 1.2,
+          "stroke_dasharray": "4,4",
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.arc0_b"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.arc0_l",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 236 112 Q 204 192 236 272",
+          "stroke": "#38bdf8",
+          "stroke_width": 1.2,
+          "stroke_dasharray": "4,4",
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.arc0_l"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.arc0_t",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 236 112 Q 305 128 344 192",
+          "stroke": "#38bdf8",
+          "stroke_width": 1.2,
+          "stroke_dasharray": "4,4",
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.arc0_t"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.arc1_l",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 526 134 Q 536 218 607 274",
+          "stroke": "#38bdf8",
+          "stroke_width": 1.2,
+          "stroke_dasharray": "4,4",
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.arc1_l"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.arc1_r",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 688 134 Q 678 218 607 274",
+          "stroke": "#38bdf8",
+          "stroke_width": 1.2,
+          "stroke_dasharray": "4,4",
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.arc1_r"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.arc1_t",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 526 134 Q 607 96 688 134",
+          "stroke": "#38bdf8",
+          "stroke_width": 1.2,
+          "stroke_dasharray": "4,4",
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.arc1_t"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b0",
+        "type": "symbol_label",
+        "properties": {
+          "text": "①"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b1",
+        "type": "symbol_label",
+        "properties": {
+          "text": "②"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l0_a",
+        "type": "text",
+        "properties": {
+          "text": "8 cm"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l0_a"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l0_b",
+        "type": "text",
+        "properties": {
+          "text": "7 cm"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l0_b"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l0_c",
+        "type": "text",
+        "properties": {
+          "text": "7 cm"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l0_c"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l1_l",
+        "type": "text",
+        "properties": {
+          "text": "9 cm"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l1_l"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l1_r",
+        "type": "text",
+        "properties": {
+          "text": "9 cm"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l1_r"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l1_t",
+        "type": "text",
+        "properties": {
+          "text": "9 cm"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l1_t"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tri0",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              236,
+              112
+            ],
+            [
+              236,
+              272
+            ],
+            [
+              344,
+              192
+            ]
+          ],
+          "stroke": "#111827",
+          "stroke_width": 1.8,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tri0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tri1",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              526,
+              134
+            ],
+            [
+              688,
+              134
+            ],
+            [
+              607,
+              274
+            ]
+          ],
+          "stroke": "#111827",
+          "stroke_width": 1.8,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tri1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "35. 정삼각형을 찾아 선택하세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "②",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "②"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②",
+        "diagnostics": [
+          {
+            "id": "diag.chose_isosceles",
+            "condition": "answer_equals_1",
+            "concept": "정삼각형의 성질",
+            "reason": "두 변의 길이만 같은 이등변삼각형(①: 8 cm, 7 cm, 7 cm)을 선택함",
+            "feedback": "①은 두 변의 길이만 7 cm로 같으므로 이등변삼각형입니다. 정삼각형은 세 변의 길이가 모두 9 cm로 같은 ②입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "tri_0": {
+      "label": "① 8 cm, 7 cm, 7 cm",
+      "sides": [
+        8,
+        7,
+        7
+      ],
+      "is_equilateral": false
+    },
+    "tri_1": {
+      "label": "② 9 cm, 9 cm, 9 cm",
+      "sides": [
+        9,
+        9,
+        9
+      ],
+      "is_equilateral": true
+    }
+  },
+  "relations": [
+    {
+      "type": "classification",
+      "property": "three_equal_sides",
+      "correct_entity": "tri_1",
+      "distractor": "tri_0"
+    }
+  ]
+}

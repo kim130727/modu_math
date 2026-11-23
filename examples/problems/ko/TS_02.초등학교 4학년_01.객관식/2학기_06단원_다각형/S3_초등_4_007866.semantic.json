@@ -1,0 +1,639 @@
+{
+  "problem_id": "S3_초등_4_007866",
+  "problem_type": "multiple_choice_tiling_ox",
+  "metadata": {
+    "title": "모양 조각을 여러 번 사용하여 물고기 모양을 만들 수 있는지 선택하기",
+    "tags": [],
+    "question": "81. 모양 조각을 여러 번 사용하여 다음 모양을 만들 수 있으면 ○, 그렇지 않으면 ×를 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1",
+      "slot.diagram.box",
+      "slot.diagram.ga",
+      "slot.diagram.na",
+      "slot.diagram.da",
+      "slot.diagram.ra",
+      "slot.diagram.ma",
+      "slot.diagram.ba",
+      "slot.diagram.fish"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "2학기",
+    "chapter": "06단원_다각형",
+    "difficulty": "중",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "81. 모양 조각을 여러 번 사용하여 다음 모양을 만들 수 있으면 ○, 그렇지 않으면 ×를 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 286,
+          "y": 356,
+          "width": 124,
+          "height": 52,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.6,
+          "rx": 10,
+          "ry": 10,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 476,
+          "y": 356,
+          "width": 124,
+          "height": 52,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.6,
+          "rx": 10,
+          "ry": 10,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ba",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              630,
+              138
+            ],
+            [
+              674,
+              126
+            ],
+            [
+              718,
+              138
+            ],
+            [
+              674,
+              150
+            ]
+          ],
+          "stroke": "#64748b",
+          "stroke_width": 1.4,
+          "fill": "#cbd5e1",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ba"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.box",
+        "type": "rect_slot",
+        "properties": {
+          "x": 98,
+          "y": 98,
+          "width": 690,
+          "height": 82,
+          "stroke": "#fb923c",
+          "stroke_width": 1.6,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.box"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c0_t",
+        "type": "text",
+        "properties": {
+          "text": "○"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c0_t"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c1_t",
+        "type": "text",
+        "properties": {
+          "text": "×"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c1_t"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.da",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              366,
+              118
+            ],
+            [
+              408,
+              118
+            ],
+            [
+              388,
+              158
+            ],
+            [
+              346,
+              158
+            ]
+          ],
+          "stroke": "#0284c7",
+          "stroke_width": 1.4,
+          "fill": "#38bdf8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.da"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.fish",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              356,
+              264
+            ],
+            [
+              434,
+              218
+            ],
+            [
+              452,
+              192
+            ],
+            [
+              492,
+              192
+            ],
+            [
+              474,
+              224
+            ],
+            [
+              514,
+              248
+            ],
+            [
+              546,
+              224
+            ],
+            [
+              546,
+              304
+            ],
+            [
+              514,
+              280
+            ],
+            [
+              474,
+              304
+            ],
+            [
+              492,
+              336
+            ],
+            [
+              452,
+              336
+            ],
+            [
+              434,
+              310
+            ]
+          ],
+          "stroke": "#111827",
+          "stroke_width": 1.8,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.fish"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ga",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              142,
+              112
+            ],
+            [
+              182,
+              112
+            ],
+            [
+              202,
+              139
+            ],
+            [
+              182,
+              166
+            ],
+            [
+              142,
+              166
+            ],
+            [
+              122,
+              139
+            ]
+          ],
+          "stroke": "#ca8a04",
+          "stroke_width": 1.4,
+          "fill": "#fde047",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ga"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l_ba",
+        "type": "symbol_label",
+        "properties": {
+          "text": "바"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l_ba"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l_da",
+        "type": "symbol_label",
+        "properties": {
+          "text": "다"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l_da"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l_ga",
+        "type": "symbol_label",
+        "properties": {
+          "text": "가"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l_ga"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l_ma",
+        "type": "symbol_label",
+        "properties": {
+          "text": "마"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l_ma"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l_na",
+        "type": "symbol_label",
+        "properties": {
+          "text": "나"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l_na"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l_ra",
+        "type": "symbol_label",
+        "properties": {
+          "text": "라"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l_ra"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ma",
+        "type": "rect_slot",
+        "properties": {
+          "x": 540,
+          "y": 118,
+          "width": 38,
+          "height": 38,
+          "stroke": "#d97706",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fbbf24",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ma"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.na",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              252,
+              118
+            ],
+            [
+              294,
+              118
+            ],
+            [
+              314,
+              158
+            ],
+            [
+              232,
+              158
+            ]
+          ],
+          "stroke": "#c2410c",
+          "stroke_width": 1.4,
+          "fill": "#f97316",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.na"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ra",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              468,
+              118
+            ],
+            [
+              446,
+              158
+            ],
+            [
+              490,
+              158
+            ]
+          ],
+          "stroke": "#15803d",
+          "stroke_width": 1.4,
+          "fill": "#4ade80",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ra"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "81. 모양 조각을 여러 번 사용하여 다음 모양을 만들 수 있으면 ○, 그렇지 않으면 ×를 선택하세요.",
+          "width": 820,
+          "height": 64
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "○",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "○"
+    ],
+    "choices": [
+      "○",
+      "×"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "○",
+        "diagnostics": [
+          {
+            "id": "diag.missed_tiling_possibility",
+            "condition": "answer_equals_x",
+            "concept": "모양 만들기",
+            "reason": "정육각형, 사다리꼴, 평행사변형, 정삼각형, 정사각형, 마름모를 조합해 만들 수 있음을 놓침",
+            "feedback": "가(정육각형), 나(사다리꼴), 다(평행사변형), 라(정삼각형), 마(정사각형), 바(마름모)를 조합하면 물고기 모양을 만들 수 있으므로 ○입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "target_shape": {
+      "label": "물고기 모양",
+      "can_make": true
+    }
+  },
+  "relations": [
+    {
+      "type": "tiling_feasibility",
+      "target": "target_shape",
+      "result": true
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007501",
+  "problem_type": "multiple_choice_fraction_to_decimal",
+  "given": [
+    {
+      "ref": "fraction",
+      "value": "1/1000"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "소수 표기와 읽기",
+    "unit": ""
+  },
+  "method": "fraction_to_decimal",
+  "steps": [
+    {
+      "id": "convert",
+      "expr": "1/1000 = 0.001 (영 점 영영일)",
+      "explanation": "분수 1/1000은 소수로 0.001이라 쓰고, 영 점 영영일이라고 읽습니다.",
+      "value": "②"
+    }
+  ],
+  "answer": {
+    "value": "②",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "②"
+    ],
+    "choices": [
+      "① 0.01, 영 점 영일",
+      "② 0.001, 영 점 영영일",
+      "③ 0.01, 영 점 영영일",
+      "④ 0.001, 영 점 영일"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②",
+        "diagnostics": [
+          {
+            "id": "diag.confused_hundredth_thousandth",
+            "condition": "answer_not_2",
+            "concept": "소수 세 자리 수의 쓰기와 읽기",
+            "reason": "1/1000을 0.01(1/100)과 혼동함",
+            "feedback": "1/1000은 소수 세 자리 수이므로 0.001이라 쓰고 '영 점 영영일'이라고 읽습니다."
+          }
+        ]
+      }
+    ]
+  }
+}

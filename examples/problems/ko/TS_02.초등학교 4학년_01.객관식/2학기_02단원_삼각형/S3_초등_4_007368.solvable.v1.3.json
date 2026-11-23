@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007368",
+  "problem_type": "multiple_choice_protractor_isosceles",
+  "given": [
+    {
+      "ref": "tri_0",
+      "value": "양 끝 각이 35°인 이등변삼각형"
+    },
+    {
+      "ref": "tri_1",
+      "value": "양 끝 각이 55°인 이등변삼각형"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "양 끝의 각이 35°인 삼각형",
+    "unit": ""
+  },
+  "method": "protractor_reading",
+  "steps": [
+    {
+      "id": "read_protractor",
+      "expr": "①의 각도기 눈금 = 35°",
+      "explanation": "주어진 선분의 양 끝에 각각 35°인 각을 그린 삼각형은 ①입니다.",
+      "value": "①"
+    }
+  ],
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_angle_reading",
+            "condition": "answer_equals_2",
+            "concept": "각도기로 이등변삼각형 그리기",
+            "reason": "양 끝의 각이 55°인 삼각형(②)을 선택함",
+            "feedback": "①은 각도기의 안쪽 눈금 35°에 맞추어 그렸고, ②는 55°에 맞추어 그렸습니다."
+          }
+        ]
+      }
+    ]
+  }
+}

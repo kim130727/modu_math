@@ -1,0 +1,55 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007364",
+  "problem_type": "multiple_choice_paper_folding_equilateral",
+  "given": [
+    {
+      "ref": "triangle",
+      "value": "색종이를 접어 한 변의 길이와 같게 그린 삼각형"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "만든 삼각형과 이유",
+    "unit": ""
+  },
+  "method": "geometric_reasoning",
+  "steps": [
+    {
+      "id": "reason_equilateral",
+      "expr": "그린 두 변 = 색종이의 한 변 -> 세 변의 길이가 모두 같음",
+      "explanation": "그린 변의 길이와 색종이의 한 변의 길이가 같으므로 세 변의 길이가 모두 같은 정삼각형입니다.",
+      "value": "①"
+    }
+  ],
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "① 정삼각형, 같으므로, 같기",
+      "② 정삼각형, 다르므로, 같기",
+      "③ 이등변삼각형, 같으므로, 다르기",
+      "④ 이등변삼각형, 다르므로, 다르기"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.missed_equilateral_folding",
+            "condition": "answer_not_1",
+            "concept": "정삼각형 만들기와 성질",
+            "reason": "색종이의 한 변과 그린 두 변의 길이가 모두 같아 정삼각형이 됨을 놓침",
+            "feedback": "서로 겹치도록 접어서 그린 두 변의 길이는 색종이의 한 변의 길이와 같으므로 세 변의 길이가 모두 같은 정삼각형입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,348 @@
+{
+  "problem_id": "S3_초등_4_007363",
+  "problem_type": "multiple_choice_isosceles_lengths",
+  "metadata": {
+    "title": "삼각형의 세 변의 길이를 보고 이등변삼각형을 들고 있는 사람 선택하기",
+    "tags": [],
+    "question": "38. 삼각형의 세 변의 길이가 다음과 같을 때 이등변삼각형의 길이를 들고 있는 사람을 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1",
+      "slot.diagram.face_0",
+      "slot.diagram.board_0",
+      "slot.diagram.face_1",
+      "slot.diagram.board_1"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "2학기",
+    "chapter": "02단원_삼각형",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "38. 삼각형의 세 변의 길이가 다음과 같을 때 이등변삼각형의 길이를 들고 있는 사람을 선택해 보세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 244,
+          "y": 244,
+          "width": 108,
+          "height": 44,
+          "stroke": "#fb923c",
+          "stroke_width": 2.0,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 534,
+          "y": 244,
+          "width": 108,
+          "height": 44,
+          "stroke": "#fb923c",
+          "stroke_width": 2.0,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.board_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 174,
+          "y": 172,
+          "width": 248,
+          "height": 58,
+          "stroke": "#b45309",
+          "stroke_width": 1.6,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f3e8d2",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.board_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.board_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 464,
+          "y": 172,
+          "width": 248,
+          "height": 58,
+          "stroke": "#b45309",
+          "stroke_width": 1.6,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f3e8d2",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.board_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.face_0",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 298,
+          "cy": 136,
+          "r": 24,
+          "stroke": "#d97706",
+          "stroke_width": 1.5,
+          "fill": "#fde68a",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.face_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.face_1",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 588,
+          "cy": 136,
+          "r": 24,
+          "stroke": "#15803d",
+          "stroke_width": 1.5,
+          "fill": "#fde68a",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.face_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.len_0",
+        "type": "text",
+        "properties": {
+          "text": "5 cm, 9 cm, 9 cm"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.len_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.len_1",
+        "type": "text",
+        "properties": {
+          "text": "9 cm, 8 cm, 4 cm"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.len_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.name_0",
+        "type": "text",
+        "properties": {
+          "text": "미희"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.name_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.name_1",
+        "type": "text",
+        "properties": {
+          "text": "선우"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.name_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "38. 삼각형의 세 변의 길이가 다음과 같을 때 이등변삼각형의 길이를 들고 있는 사람을 선택해 보세요.",
+          "width": 820,
+          "height": 64
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "미희",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "미희"
+    ],
+    "choices": [
+      "미희",
+      "선우"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "미희",
+        "diagnostics": [
+          {
+            "id": "diag.chose_scalene",
+            "condition": "answer_equals_sunwoo",
+            "concept": "이등변삼각형의 성질",
+            "reason": "세 변의 길이가 모두 다른 선우(9 cm, 8 cm, 4 cm)를 선택함",
+            "feedback": "선우가 든 길이는 9 cm, 8 cm, 4 cm로 세 변의 길이가 모두 다릅니다. 두 변의 길이가 9 cm로 같은 미희를 선택하세요."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "mihee": {
+      "label": "미희",
+      "sides": [
+        5,
+        9,
+        9
+      ],
+      "is_isosceles": true
+    },
+    "sunwoo": {
+      "label": "선우",
+      "sides": [
+        9,
+        8,
+        4
+      ],
+      "is_isosceles": false
+    }
+  },
+  "relations": [
+    {
+      "type": "classification",
+      "property": "two_equal_sides",
+      "correct_entity": "mihee",
+      "distractor": "sunwoo"
+    }
+  ]
+}

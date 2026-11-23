@@ -1,0 +1,448 @@
+{
+  "problem_id": "S3_초등_4_007863",
+  "problem_type": "multiple_choice_triangle_composition",
+  "metadata": {
+    "title": "정삼각형을 만들 때 평행사변형 1개와 함께 필요한 모양 조각과 개수 선택하기",
+    "tags": [],
+    "question": "78. 정삼각형, 사다리꼴, 평행사변형 모양 조각 중에서 2가지를 골라 정삼각형을 만들려고 합니다. 다음 물음에 답하세요.\n(2) 평행사변형 모양 조각 1개를 사용할 때, 필요한 모양 조각과 개수를 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1",
+      "slot.choice.option_2",
+      "slot.choice.option_3",
+      "slot.diagram.pink_box",
+      "slot.diagram.trap",
+      "slot.diagram.tri"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "2학기",
+    "chapter": "06단원_다각형",
+    "difficulty": "중",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "78. 정삼각형, 사다리꼴, 평행사변형 모양 조각 중에서 2가지를 골라 정삼각형을 만들려고 합니다. 다음 물음에 답하세요.\n(2) 평행사변형 모양 조각 1개를 사용할 때, 필요한 모양 조각과 개수를 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 138,
+          "y": 232,
+          "width": 290,
+          "height": 42,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 458,
+          "y": 232,
+          "width": 290,
+          "height": 42,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 138,
+          "y": 286,
+          "width": 290,
+          "height": 42,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_3",
+        "type": "rect_slot",
+        "properties": {
+          "x": 458,
+          "y": 286,
+          "width": 290,
+          "height": 42,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.box_txt_l",
+        "type": "text",
+        "properties": {
+          "text": "모양 조각은 ("
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.box_txt_l"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.box_txt_r",
+        "type": "text",
+        "properties": {
+          "text": ")이며 모두 ( 1 , 2 , 3 )개가 필요합니다."
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.box_txt_r"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.comma",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.comma"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_text_0",
+        "type": "text",
+        "properties": {
+          "text": "① 사다리꼴, 2개"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_text_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_text_1",
+        "type": "text",
+        "properties": {
+          "text": "② 정삼각형, 2개"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_text_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_text_2",
+        "type": "text",
+        "properties": {
+          "text": "③ 정삼각형, 3개"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_text_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_text_3",
+        "type": "text",
+        "properties": {
+          "text": "④ 사다리꼴, 1개"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_text_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.pink_box",
+        "type": "rect_slot",
+        "properties": {
+          "x": 78,
+          "y": 114,
+          "width": 730,
+          "height": 94,
+          "stroke": "#ec4899",
+          "stroke_width": 1.6,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.pink_box"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.trap",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              276,
+              134
+            ],
+            [
+              324,
+              134
+            ],
+            [
+              348,
+              178
+            ],
+            [
+              252,
+              178
+            ]
+          ],
+          "stroke": "#be123c",
+          "stroke_width": 1.4,
+          "fill": "#fb7185",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.trap"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tri",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              398,
+              134
+            ],
+            [
+              374,
+              178
+            ],
+            [
+              422,
+              178
+            ]
+          ],
+          "stroke": "#15803d",
+          "stroke_width": 1.4,
+          "fill": "#4ade80",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tri"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "78. 정삼각형, 사다리꼴, 평행사변형 모양 조각 중에서 2가지를 골라 정삼각형을 만들려고 합니다. 다음 물음에 답하세요.\n(2) 평행사변형 모양 조각 1개를 사용할 때, 필요한 모양 조각과 개수를 선택하세요.",
+          "width": 820,
+          "height": 76
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "②",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "②"
+    ],
+    "choices": [
+      "① 사다리꼴, 2개",
+      "② 정삼각형, 2개",
+      "③ 정삼각형, 3개",
+      "④ 사다리꼴, 1개"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_piece_or_count",
+            "condition": "answer_not_2",
+            "concept": "모양 조각으로 정삼각형 만들기",
+            "reason": "평행사변형 1개(정삼각형 2개 크기)에 정삼각형 2개를 붙이면 큰 정삼각형(정삼각형 4개 크기)이 됨을 놓침",
+            "feedback": "평행사변형 1개에 정삼각형 모양 조각 2개를 붙이면 큰 정삼각형을 만들 수 있습니다. 따라서 ②를 선택하세요."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "given_piece": {
+      "label": "평행사변형 1개"
+    },
+    "needed": {
+      "label": "정삼각형",
+      "count": 2
+    }
+  },
+  "relations": [
+    {
+      "type": "composition",
+      "base": "given_piece",
+      "addition": "정삼각형 2개",
+      "result": "큰 정삼각형"
+    }
+  ]
+}

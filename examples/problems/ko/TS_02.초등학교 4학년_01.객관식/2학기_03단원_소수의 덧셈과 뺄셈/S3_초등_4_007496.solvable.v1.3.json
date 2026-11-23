@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007496",
+  "problem_type": "multiple_choice_decimal_scaling",
+  "given": [
+    {
+      "ref": "expr_0",
+      "value": "9.4의 1/10"
+    },
+    {
+      "ref": "expr_1",
+      "value": "0.094의 100배"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "0.94와 같은 수",
+    "unit": ""
+  },
+  "method": "decimal_scaling",
+  "steps": [
+    {
+      "id": "shift_decimal",
+      "expr": "9.4 × 1/10 = 0.94, 0.094 × 100 = 9.4",
+      "explanation": "9.4의 1/10은 0.94이므로 ①입니다.",
+      "value": "①"
+    }
+  ],
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.decimal_shift_error",
+            "condition": "answer_equals_2",
+            "concept": "소수의 10배, 100배, 1/10",
+            "reason": "0.094의 100배를 0.94로 잘못 계산함",
+            "feedback": "0.094의 100배는 소수점이 오른쪽으로 두 자리 이동하므로 9.4입니다. 9.4의 1/10은 소수점이 왼쪽으로 한 자리 이동하므로 0.94입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

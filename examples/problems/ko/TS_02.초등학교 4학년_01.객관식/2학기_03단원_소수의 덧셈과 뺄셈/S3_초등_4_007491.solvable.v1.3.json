@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007491",
+  "problem_type": "multiple_choice_decimal_comparison",
+  "given": [
+    {
+      "ref": "expr_0",
+      "value": "0.7 + 1.4"
+    },
+    {
+      "ref": "expr_1",
+      "value": "4 - 1.6"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "계산 결과가 더 큰 것",
+    "unit": ""
+  },
+  "method": "decimal_arithmetic",
+  "steps": [
+    {
+      "id": "calc_and_compare",
+      "expr": "0.7 + 1.4 = 2.1, 4 - 1.6 = 2.4 -> 2.1 < 2.4",
+      "explanation": "계산 결과를 비교하면 2.4가 더 크므로 4 - 1.6입니다.",
+      "value": "4 - 1.6"
+    }
+  ],
+  "answer": {
+    "value": "4 - 1.6",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "4 - 1.6"
+    ],
+    "choices": [
+      "0.7 + 1.4",
+      "4 - 1.6"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "4 - 1.6",
+        "diagnostics": [
+          {
+            "id": "diag.calculation_error",
+            "condition": "answer_equals_0",
+            "concept": "소수의 덧셈과 뺄셈",
+            "reason": "0.7 + 1.4 = 2.1과 4 - 1.6 = 2.4의 크기 비교 오류",
+            "feedback": "0.7 + 1.4 = 2.1이고, 4 - 1.6 = 2.4입니다. 2.1 < 2.4이므로 계산 결과가 더 큰 것은 4 - 1.6입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007555",
+  "problem_type": "multiple_choice_parallel_pair_count",
+  "given": [
+    {
+      "ref": "ga",
+      "value": "평행한 변 2쌍"
+    },
+    {
+      "ref": "na",
+      "value": "평행한 변 2쌍"
+    },
+    {
+      "ref": "da",
+      "value": "평행한 변 1쌍"
+    },
+    {
+      "ref": "ra",
+      "value": "평행한 변 2쌍"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_2",
+    "label": "평행한 변이 2쌍 있는 사각형",
+    "unit": ""
+  },
+  "method": "quadrilateral_classification",
+  "steps": [
+    {
+      "id": "count_parallel_pairs",
+      "expr": "평행한 변이 2쌍 있는 사각형 = 가, 나, 라",
+      "explanation": "평행한 변이 2쌍 있는 사각형은 가, 나, 라입니다.",
+      "value": "③"
+    }
+  ],
+  "answer": {
+    "value": "③",
+    "answer_index": 2,
+    "unit": "",
+    "values": [
+      "③"
+    ],
+    "choices": [
+      "① 가, 나",
+      "② 나, 다",
+      "③ 가, 나, 라",
+      "④ 나, 다, 라"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "③",
+        "diagnostics": [
+          {
+            "id": "diag.missed_two_pairs",
+            "condition": "answer_not_3",
+            "concept": "평행사변형의 성질",
+            "reason": "마름모(가)나 직사각형(라)도 평행한 변이 2쌍 있음을 놓침",
+            "feedback": "가(마름모), 나(평행사변형), 라(직사각형)는 모두 마주 보는 두 쌍의 변이 서로 평행합니다. 따라서 ③을 선택하세요."
+          }
+        ]
+      }
+    ]
+  }
+}

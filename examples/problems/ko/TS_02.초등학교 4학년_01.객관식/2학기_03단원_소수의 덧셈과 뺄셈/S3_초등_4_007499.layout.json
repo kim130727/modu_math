@@ -1,0 +1,240 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007499",
+  "title": "소수 51.94의 바른 읽기 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 360,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.green_box",
+        "slot.diagram.girl_head",
+        "slot.diagram.bubble",
+        "slot.diagram.sentence",
+        "slot.diagram.bubble_txt",
+        "slot.diagram.c0_txt",
+        "slot.diagram.c1_txt"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "24. 알맞은 것을 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 178.0,
+        "y": 288.0,
+        "width": 230.0,
+        "height": 48.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "오십일 점 구십사",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 478.0,
+        "y": 288.0,
+        "width": 230.0,
+        "height": 48.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "오십일 점 구사",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.diagram.green_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 78.0,
+        "y": 80.0,
+        "width": 730.0,
+        "height": 58.0,
+        "stroke": "#84cc16",
+        "stroke_width": 2.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.sentence",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "51.94는 ( 오십일 점 구십사 , 오십일 점 구사 )라고 읽습니다.",
+        "style_role": "body",
+        "x": 443.0,
+        "y": 98.0,
+        "font_size": 21,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.girl_head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 316.0,
+        "cy": 204.0,
+        "r": 26.0,
+        "stroke": "#92400e",
+        "stroke_width": 1.4,
+        "fill": "#fde68a"
+      }
+    },
+    {
+      "id": "slot.diagram.bubble",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 378.0,
+        "y": 156.0,
+        "width": 282.0,
+        "height": 110.0,
+        "stroke": "#111827",
+        "stroke_width": 1.6,
+        "rx": 30.0,
+        "ry": 30.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.bubble_txt",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "자연수 부분은\n자릿값을 붙여 읽고,\n소수점 아래부터는\n숫자만 읽어야 해.",
+        "style_role": "body",
+        "x": 396.0,
+        "y": 168.0,
+        "width": 246.0,
+        "height": 86.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 16,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.35,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c0_txt",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "오십일 점 구십사",
+        "style_role": "body",
+        "x": 293.0,
+        "y": 300.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c1_txt",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "오십일 점 구사",
+        "style_role": "body",
+        "x": 593.0,
+        "y": 300.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1",
+    "region.diagram",
+    "slot.diagram.green_box",
+    "slot.diagram.girl_head",
+    "slot.diagram.bubble",
+    "slot.diagram.sentence",
+    "slot.diagram.bubble_txt",
+    "slot.diagram.c0_txt",
+    "slot.diagram.c1_txt"
+  ]
+}

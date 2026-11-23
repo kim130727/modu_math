@@ -1,0 +1,565 @@
+{
+  "problem_id": "S3_초등_4_007504",
+  "view_box": {
+    "width": 886.0,
+    "height": 384.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 820.0,
+        "height": 44.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 820.0,
+        "data-box-height": 44.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "28. 1, 0.1, 0.01, 0.001 사이의 관계를 보고 알맞은 것을 선택하세요."
+    },
+    {
+      "id": "slot.choice.option_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 76.0,
+        "y": 310.0,
+        "width": 168.0,
+        "height": 46.0,
+        "fill": "#f8fafc",
+        "stroke": "#94a3b8",
+        "stroke-width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "①",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 266.0,
+        "y": 310.0,
+        "width": 168.0,
+        "height": 46.0,
+        "fill": "#f8fafc",
+        "stroke": "#94a3b8",
+        "stroke-width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "②",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 456.0,
+        "y": 310.0,
+        "width": 168.0,
+        "height": 46.0,
+        "fill": "#f8fafc",
+        "stroke": "#94a3b8",
+        "stroke-width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.choice.option_2",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_2"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 2,
+        "value": "③",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 646.0,
+        "y": 310.0,
+        "width": 168.0,
+        "height": 46.0,
+        "fill": "#f8fafc",
+        "stroke": "#94a3b8",
+        "stroke-width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.choice.option_3",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_3"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 3,
+        "value": "④",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.diagram.tbl_outer.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 336.0,
+        "y": 78.0,
+        "width": 176.0,
+        "height": 136.0,
+        "fill": "#ffffff",
+        "stroke": "#fb923c",
+        "stroke-width": 1.4
+      },
+      "source_ref": "slot.diagram.tbl_outer",
+      "refs": {
+        "layout_slot_id": "slot.diagram.tbl_outer"
+      }
+    },
+    {
+      "id": "slot.diagram.tbl_hr_1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 336.0,
+        "y1": 112.0,
+        "x2": 512.0,
+        "y2": 112.0,
+        "stroke": "#fb923c",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.diagram.tbl_hr_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.tbl_hr_1"
+      }
+    },
+    {
+      "id": "slot.diagram.tbl_hr_2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 336.0,
+        "y1": 146.0,
+        "x2": 512.0,
+        "y2": 146.0,
+        "stroke": "#fb923c",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.diagram.tbl_hr_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.tbl_hr_2"
+      }
+    },
+    {
+      "id": "slot.diagram.tbl_hr_3.line",
+      "type": "line",
+      "attributes": {
+        "x1": 336.0,
+        "y1": 180.0,
+        "x2": 512.0,
+        "y2": 180.0,
+        "stroke": "#fb923c",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.diagram.tbl_hr_3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.tbl_hr_3"
+      }
+    },
+    {
+      "id": "slot.diagram.tbl_vc_1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 380.0,
+        "y1": 78.0,
+        "x2": 380.0,
+        "y2": 214.0,
+        "stroke": "#fb923c",
+        "stroke-width": 0.9,
+        "stroke-dasharray": "3,3"
+      },
+      "source_ref": "slot.diagram.tbl_vc_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.tbl_vc_1"
+      }
+    },
+    {
+      "id": "slot.diagram.tbl_vc_2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 424.0,
+        "y1": 78.0,
+        "x2": 424.0,
+        "y2": 214.0,
+        "stroke": "#fb923c",
+        "stroke-width": 0.9,
+        "stroke-dasharray": "3,3"
+      },
+      "source_ref": "slot.diagram.tbl_vc_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.tbl_vc_2"
+      }
+    },
+    {
+      "id": "slot.diagram.tbl_vc_3.line",
+      "type": "line",
+      "attributes": {
+        "x1": 468.0,
+        "y1": 78.0,
+        "x2": 468.0,
+        "y2": 214.0,
+        "stroke": "#fb923c",
+        "stroke-width": 0.9,
+        "stroke-dasharray": "3,3"
+      },
+      "source_ref": "slot.diagram.tbl_vc_3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.tbl_vc_3"
+      }
+    },
+    {
+      "id": "slot.diagram.cell_0_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 358.0,
+        "y": 86.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 19.0
+      },
+      "source_ref": "slot.diagram.cell_0_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.cell_0_0"
+      },
+      "text": "1"
+    },
+    {
+      "id": "slot.diagram.cell_1_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 358.0,
+        "y": 120.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 19.0
+      },
+      "source_ref": "slot.diagram.cell_1_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.cell_1_0"
+      },
+      "text": "0."
+    },
+    {
+      "id": "slot.diagram.cell_1_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 402.0,
+        "y": 120.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 19.0
+      },
+      "source_ref": "slot.diagram.cell_1_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.cell_1_1"
+      },
+      "text": "1"
+    },
+    {
+      "id": "slot.diagram.cell_2_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 358.0,
+        "y": 154.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 19.0
+      },
+      "source_ref": "slot.diagram.cell_2_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.cell_2_0"
+      },
+      "text": "0."
+    },
+    {
+      "id": "slot.diagram.cell_2_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 402.0,
+        "y": 154.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 19.0
+      },
+      "source_ref": "slot.diagram.cell_2_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.cell_2_1"
+      },
+      "text": "0"
+    },
+    {
+      "id": "slot.diagram.cell_2_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 446.0,
+        "y": 154.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 19.0
+      },
+      "source_ref": "slot.diagram.cell_2_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.cell_2_2"
+      },
+      "text": "1"
+    },
+    {
+      "id": "slot.diagram.cell_3_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 358.0,
+        "y": 188.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 19.0
+      },
+      "source_ref": "slot.diagram.cell_3_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.cell_3_0"
+      },
+      "text": "0."
+    },
+    {
+      "id": "slot.diagram.cell_3_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 402.0,
+        "y": 188.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 19.0
+      },
+      "source_ref": "slot.diagram.cell_3_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.cell_3_1"
+      },
+      "text": "0"
+    },
+    {
+      "id": "slot.diagram.cell_3_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 446.0,
+        "y": 188.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 19.0
+      },
+      "source_ref": "slot.diagram.cell_3_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.cell_3_2"
+      },
+      "text": "0"
+    },
+    {
+      "id": "slot.diagram.cell_3_3.text",
+      "type": "text",
+      "attributes": {
+        "x": 490.0,
+        "y": 188.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 19.0
+      },
+      "source_ref": "slot.diagram.cell_3_3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.cell_3_3"
+      },
+      "text": "1"
+    },
+    {
+      "id": "slot.diagram.ratio_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 546.0,
+        "y": 102.0,
+        "fill": "#ec4899",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 14.0
+      },
+      "source_ref": "slot.diagram.ratio_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.ratio_0"
+      },
+      "text": "↘ 1/10"
+    },
+    {
+      "id": "slot.diagram.ratio_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 546.0,
+        "y": 136.0,
+        "fill": "#ec4899",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 14.0
+      },
+      "source_ref": "slot.diagram.ratio_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.ratio_1"
+      },
+      "text": "↘ 1/10"
+    },
+    {
+      "id": "slot.diagram.ratio_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 546.0,
+        "y": 170.0,
+        "fill": "#ec4899",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 14.0
+      },
+      "source_ref": "slot.diagram.ratio_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.ratio_2"
+      },
+      "text": "↘ 1/10"
+    },
+    {
+      "id": "slot.diagram.question_sub.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 68.0,
+        "y": 228.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0,
+        "width": 750.0,
+        "height": 64.0,
+        "max_width": 750.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 68.0,
+        "data-box-y": 228.0,
+        "data-box-width": 750.0,
+        "data-box-height": 64.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.question_sub",
+      "refs": {
+        "layout_slot_id": "slot.diagram.question_sub"
+      },
+      "text": "(2) 0.01은 1에서 소수점이 왼쪽으로 ( 두 , 세 ) 자리 이동한 것이므로\n0.01은 1의 ( 1/100 , 1/1000 )입니다."
+    },
+    {
+      "id": "slot.diagram.opt_text_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 160.0,
+        "y": 321.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0
+      },
+      "source_ref": "slot.diagram.opt_text_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt_text_0"
+      },
+      "text": "① 두, 1/100"
+    },
+    {
+      "id": "slot.diagram.opt_text_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 350.0,
+        "y": 321.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0
+      },
+      "source_ref": "slot.diagram.opt_text_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt_text_1"
+      },
+      "text": "② 두, 1/1000"
+    },
+    {
+      "id": "slot.diagram.opt_text_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 540.0,
+        "y": 321.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0
+      },
+      "source_ref": "slot.diagram.opt_text_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt_text_2"
+      },
+      "text": "③ 세, 1/100"
+    },
+    {
+      "id": "slot.diagram.opt_text_3.text",
+      "type": "text",
+      "attributes": {
+        "x": 730.0,
+        "y": 321.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0
+      },
+      "source_ref": "slot.diagram.opt_text_3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt_text_3"
+      },
+      "text": "④ 세, 1/1000"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,228 @@
+{
+  "problem_id": "S3_초등_4_007363",
+  "view_box": {
+    "width": 886.0,
+    "height": 320.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 820.0,
+        "height": 64.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 820.0,
+        "data-box-height": 64.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "38. 삼각형의 세 변의 길이가 다음과 같을 때 이등변삼각형의 길이를 들고 있는 사람을 선택해 보세요."
+    },
+    {
+      "id": "slot.choice.option_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 244.0,
+        "y": 244.0,
+        "width": 108.0,
+        "height": 44.0,
+        "fill": "#ffffff",
+        "stroke": "#fb923c",
+        "stroke-width": 2.0,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "미희",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 534.0,
+        "y": 244.0,
+        "width": 108.0,
+        "height": 44.0,
+        "fill": "#ffffff",
+        "stroke": "#fb923c",
+        "stroke-width": 2.0,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "선우",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.diagram.face_0.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 298.0,
+        "cy": 136.0,
+        "r": 24.0,
+        "stroke": "#d97706",
+        "stroke-width": 1.5,
+        "fill": "#fde68a"
+      },
+      "source_ref": "slot.diagram.face_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.face_0"
+      }
+    },
+    {
+      "id": "slot.diagram.board_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 174.0,
+        "y": 172.0,
+        "width": 248.0,
+        "height": 58.0,
+        "fill": "#f3e8d2",
+        "stroke": "#b45309",
+        "stroke-width": 1.6,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.diagram.board_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.board_0"
+      }
+    },
+    {
+      "id": "slot.diagram.face_1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 588.0,
+        "cy": 136.0,
+        "r": 24.0,
+        "stroke": "#15803d",
+        "stroke-width": 1.5,
+        "fill": "#fde68a"
+      },
+      "source_ref": "slot.diagram.face_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.face_1"
+      }
+    },
+    {
+      "id": "slot.diagram.board_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 464.0,
+        "y": 172.0,
+        "width": 248.0,
+        "height": 58.0,
+        "fill": "#f3e8d2",
+        "stroke": "#b45309",
+        "stroke-width": 1.6,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.diagram.board_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.board_1"
+      }
+    },
+    {
+      "id": "slot.diagram.len_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 298.0,
+        "y": 190.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0
+      },
+      "source_ref": "slot.diagram.len_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.len_0"
+      },
+      "text": "5 cm, 9 cm, 9 cm"
+    },
+    {
+      "id": "slot.diagram.name_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 298.0,
+        "y": 254.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0
+      },
+      "source_ref": "slot.diagram.name_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.name_0"
+      },
+      "text": "미희"
+    },
+    {
+      "id": "slot.diagram.len_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 588.0,
+        "y": 190.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0
+      },
+      "source_ref": "slot.diagram.len_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.len_1"
+      },
+      "text": "9 cm, 8 cm, 4 cm"
+    },
+    {
+      "id": "slot.diagram.name_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 588.0,
+        "y": 254.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0
+      },
+      "source_ref": "slot.diagram.name_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.name_1"
+      },
+      "text": "선우"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

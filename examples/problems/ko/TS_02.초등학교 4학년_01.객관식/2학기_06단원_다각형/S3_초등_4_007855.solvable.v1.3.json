@@ -1,0 +1,69 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007855",
+  "problem_type": "multiple_choice_pattern_block_polygon",
+  "given": [
+    {
+      "ref": "shape",
+      "value": "사각형 3개로 만든 모양"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "사용한 다각형의 이름",
+    "unit": ""
+  },
+  "method": "shape_decomposition",
+  "steps": [
+    {
+      "id": "identify_piece",
+      "expr": "변이 4개인 다각형(사각형) 3개 사용",
+      "explanation": "사각형 3개로 만든 모양이므로 정답은 사각형입니다.",
+      "value": "사각형"
+    }
+  ],
+  "answer": {
+    "value": "사각형",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "사각형"
+    ],
+    "choices": [
+      {
+        "id": "slot.diagram.opt_0",
+        "slot_id": "slot.diagram.opt_0",
+        "text": "삼각형",
+        "value": "삼각형"
+      },
+      {
+        "id": "slot.diagram.opt_1",
+        "slot_id": "slot.diagram.opt_1",
+        "text": "사각형",
+        "value": "사각형"
+      },
+      {
+        "id": "slot.diagram.opt_2",
+        "slot_id": "slot.diagram.opt_2",
+        "text": "육각형",
+        "value": "육각형"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "사각형",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_polygon_name",
+            "condition": "answer_not_quad",
+            "concept": "다각형의 이름",
+            "reason": "모양을 이루는 각 조각의 변의 수를 잘못 셈",
+            "feedback": "모양을 자세히 보면 변이 4개인 사각형 3개를 이어 붙여 만든 모양입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

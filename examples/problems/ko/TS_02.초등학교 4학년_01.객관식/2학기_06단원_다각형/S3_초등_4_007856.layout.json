@@ -1,0 +1,643 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007856",
+  "title": "정육각형 모양 채우기를 보고 알맞은 말 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 424,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.th0",
+        "slot.diagram.th1",
+        "slot.diagram.th2",
+        "slot.diagram.th3",
+        "slot.diagram.tb0",
+        "slot.diagram.tb1",
+        "slot.diagram.tb2",
+        "slot.diagram.tb3",
+        "slot.diagram.hex1",
+        "slot.diagram.hex2",
+        "slot.diagram.hex3",
+        "slot.diagram.boy",
+        "slot.diagram.bubble",
+        "slot.diagram.hex1_l",
+        "slot.diagram.hex2_l1",
+        "slot.diagram.hex2_l2",
+        "slot.diagram.hex2_l3",
+        "slot.diagram.hex3_l1",
+        "slot.diagram.hex3_l2",
+        "slot.diagram.hex3_l3",
+        "slot.diagram.th0_t",
+        "slot.diagram.th1_t",
+        "slot.diagram.th2_t",
+        "slot.diagram.th3_t",
+        "slot.diagram.tb0_t",
+        "slot.diagram.bubble_txt",
+        "slot.diagram.c0_t",
+        "slot.diagram.c1_t"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "70. 3가지 모양 조각 중 1가지 모양을 사용하여 지현, 동민, 수아가 정육각형 모양을 채웠습니다. 지현, 동민, 수아의 모양 채우기를 보고 알맞은 말을 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 72.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 21,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 238.0,
+        "y": 354.0,
+        "width": 176.0,
+        "height": 46.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "겹치게",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 472.0,
+        "y": 354.0,
+        "width": 176.0,
+        "height": 46.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "겹치지 않게",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.diagram.th0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 98.0,
+        "y": 106.0,
+        "width": 210.0,
+        "height": 38.0,
+        "stroke": "#db2777",
+        "stroke_width": 1.4,
+        "fill": "#fdf2f8"
+      }
+    },
+    {
+      "id": "slot.diagram.th1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 308.0,
+        "y": 106.0,
+        "width": 160.0,
+        "height": 38.0,
+        "stroke": "#db2777",
+        "stroke_width": 1.4,
+        "fill": "#fdf2f8"
+      }
+    },
+    {
+      "id": "slot.diagram.th2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 468.0,
+        "y": 106.0,
+        "width": 160.0,
+        "height": 38.0,
+        "stroke": "#db2777",
+        "stroke_width": 1.4,
+        "fill": "#fdf2f8"
+      }
+    },
+    {
+      "id": "slot.diagram.th3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 628.0,
+        "y": 106.0,
+        "width": 160.0,
+        "height": 38.0,
+        "stroke": "#db2777",
+        "stroke_width": 1.4,
+        "fill": "#fdf2f8"
+      }
+    },
+    {
+      "id": "slot.diagram.th0_t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "이름",
+        "style_role": "body",
+        "x": 203.0,
+        "y": 115.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.th1_t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "지현",
+        "style_role": "body",
+        "x": 388.0,
+        "y": 115.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.th2_t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "동민",
+        "style_role": "body",
+        "x": 548.0,
+        "y": 115.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.th3_t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "수아",
+        "style_role": "body",
+        "x": 708.0,
+        "y": 115.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.tb0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 98.0,
+        "y": 144.0,
+        "width": 210.0,
+        "height": 94.0,
+        "stroke": "#db2777",
+        "stroke_width": 1.4,
+        "fill": "#fdf2f8"
+      }
+    },
+    {
+      "id": "slot.diagram.tb1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 308.0,
+        "y": 144.0,
+        "width": 160.0,
+        "height": 94.0,
+        "stroke": "#db2777",
+        "stroke_width": 1.4,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.tb2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 468.0,
+        "y": 144.0,
+        "width": 160.0,
+        "height": 94.0,
+        "stroke": "#db2777",
+        "stroke_width": 1.4,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.tb3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 628.0,
+        "y": 144.0,
+        "width": 160.0,
+        "height": 94.0,
+        "stroke": "#db2777",
+        "stroke_width": 1.4,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.tb0_t",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "정육각형 모양을\n채운 방법",
+        "style_role": "body",
+        "x": 108.0,
+        "y": 162.0,
+        "width": 190.0,
+        "height": 58.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 18,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.4,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.hex1",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            368.0,
+            155.0
+          ],
+          [
+            408.0,
+            155.0
+          ],
+          [
+            428.0,
+            191.0
+          ],
+          [
+            408.0,
+            227.0
+          ],
+          [
+            368.0,
+            227.0
+          ],
+          [
+            348.0,
+            191.0
+          ]
+        ],
+        "stroke": "#be123c",
+        "stroke_width": 1.4,
+        "fill": "#fb7185"
+      }
+    },
+    {
+      "id": "slot.diagram.hex1_l",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 348.0,
+        "y1": 191.0,
+        "x2": 428.0,
+        "y2": 191.0,
+        "stroke": "#be123c",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.diagram.hex2",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            528.0,
+            155.0
+          ],
+          [
+            568.0,
+            155.0
+          ],
+          [
+            588.0,
+            191.0
+          ],
+          [
+            568.0,
+            227.0
+          ],
+          [
+            528.0,
+            227.0
+          ],
+          [
+            508.0,
+            191.0
+          ]
+        ],
+        "stroke": "#0369a1",
+        "stroke_width": 1.4,
+        "fill": "#38bdf8"
+      }
+    },
+    {
+      "id": "slot.diagram.hex2_l1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 548.0,
+        "y1": 191.0,
+        "x2": 508.0,
+        "y2": 191.0,
+        "stroke": "#0369a1",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.diagram.hex2_l2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 548.0,
+        "y1": 191.0,
+        "x2": 568.0,
+        "y2": 155.0,
+        "stroke": "#0369a1",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.diagram.hex2_l3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 548.0,
+        "y1": 191.0,
+        "x2": 568.0,
+        "y2": 227.0,
+        "stroke": "#0369a1",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.diagram.hex3",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            688.0,
+            155.0
+          ],
+          [
+            728.0,
+            155.0
+          ],
+          [
+            748.0,
+            191.0
+          ],
+          [
+            728.0,
+            227.0
+          ],
+          [
+            688.0,
+            227.0
+          ],
+          [
+            668.0,
+            191.0
+          ]
+        ],
+        "stroke": "#15803d",
+        "stroke_width": 1.4,
+        "fill": "#4ade80"
+      }
+    },
+    {
+      "id": "slot.diagram.hex3_l1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 668.0,
+        "y1": 191.0,
+        "x2": 748.0,
+        "y2": 191.0,
+        "stroke": "#15803d",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.diagram.hex3_l2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 688.0,
+        "y1": 155.0,
+        "x2": 728.0,
+        "y2": 227.0,
+        "stroke": "#15803d",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.diagram.hex3_l3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 728.0,
+        "y1": 155.0,
+        "x2": 688.0,
+        "y2": 227.0,
+        "stroke": "#15803d",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.diagram.boy",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 256.0,
+        "cy": 292.0,
+        "r": 24.0,
+        "stroke": "#92400e",
+        "stroke_width": 1.4,
+        "fill": "#fde68a"
+      }
+    },
+    {
+      "id": "slot.diagram.bubble",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 316.0,
+        "y": 252.0,
+        "width": 424.0,
+        "height": 82.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5,
+        "rx": 28.0,
+        "ry": 28.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.bubble_txt",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "모양 조각을 서로 ( 겹치게 , 겹치지 않게 )\n빈틈없이 이어 붙여서 모양을 채웠어.",
+        "style_role": "body",
+        "x": 332.0,
+        "y": 266.0,
+        "width": 392.0,
+        "height": 54.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 18,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.4,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c0_t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "겹치게",
+        "style_role": "body",
+        "x": 326.0,
+        "y": 366.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c1_t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "겹치지 않게",
+        "style_role": "body",
+        "x": 560.0,
+        "y": 366.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1",
+    "region.diagram",
+    "slot.diagram.th0",
+    "slot.diagram.th1",
+    "slot.diagram.th2",
+    "slot.diagram.th3",
+    "slot.diagram.tb0",
+    "slot.diagram.tb1",
+    "slot.diagram.tb2",
+    "slot.diagram.tb3",
+    "slot.diagram.hex1",
+    "slot.diagram.hex2",
+    "slot.diagram.hex3",
+    "slot.diagram.boy",
+    "slot.diagram.bubble",
+    "slot.diagram.hex1_l",
+    "slot.diagram.hex2_l1",
+    "slot.diagram.hex2_l2",
+    "slot.diagram.hex2_l3",
+    "slot.diagram.hex3_l1",
+    "slot.diagram.hex3_l2",
+    "slot.diagram.hex3_l3",
+    "slot.diagram.th0_t",
+    "slot.diagram.th1_t",
+    "slot.diagram.th2_t",
+    "slot.diagram.th3_t",
+    "slot.diagram.tb0_t",
+    "slot.diagram.bubble_txt",
+    "slot.diagram.c0_t",
+    "slot.diagram.c1_t"
+  ]
+}

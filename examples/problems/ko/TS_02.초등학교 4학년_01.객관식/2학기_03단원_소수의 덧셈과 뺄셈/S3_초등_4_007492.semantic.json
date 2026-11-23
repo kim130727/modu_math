@@ -1,0 +1,244 @@
+{
+  "problem_id": "S3_초등_4_007492",
+  "problem_type": "multiple_choice_trailing_zero_decimal",
+  "metadata": {
+    "title": "소수에서 생략할 수 있는 0이 있는 수 선택하기",
+    "tags": [],
+    "question": "14. 소수에서 생략할 수 있는 0이 있는 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1",
+      "slot.diagram.rabbit",
+      "slot.diagram.puppy"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "2학기",
+    "chapter": "03단원_소수의 덧셈과 뺄셈",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "14. 소수에서 생략할 수 있는 0이 있는 것을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 164,
+          "y": 148,
+          "width": 228,
+          "height": 74,
+          "stroke": "#b45309",
+          "stroke_width": 1.8,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f3e8d2",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 494,
+          "y": 148,
+          "width": 228,
+          "height": 74,
+          "stroke": "#b45309",
+          "stroke_width": 1.8,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f3e8d2",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.num_0",
+        "type": "text",
+        "properties": {
+          "text": "10.05"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.num_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.num_1",
+        "type": "text",
+        "properties": {
+          "text": "7.060"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.num_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.puppy",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 608,
+          "cy": 114,
+          "r": 24,
+          "stroke": "#c2410c",
+          "stroke_width": 1.4,
+          "fill": "#fed7aa",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.puppy"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.rabbit",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 278,
+          "cy": 114,
+          "r": 24,
+          "stroke": "#7c3aed",
+          "stroke_width": 1.4,
+          "fill": "#ddd6fe",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.rabbit"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "14. 소수에서 생략할 수 있는 0이 있는 것을 선택하세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "7.060",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "7.060"
+    ],
+    "choices": [
+      "10.05",
+      "7.060"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "7.060",
+        "diagnostics": [
+          {
+            "id": "diag.middle_zero_error",
+            "condition": "answer_equals_0",
+            "concept": "소수의 끝자리 0 생략",
+            "reason": "일의 자리나 소수 첫째 자리의 0은 생략할 수 없음을 놓침",
+            "feedback": "10.05의 0은 자릿값을 지키기 위해 생략할 수 없습니다. 소수의 오른쪽 끝자리 0만 생략할 수 있으므로 7.060을 선택하세요."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "num_0": {
+      "label": "10.05",
+      "has_trailing_zero": false
+    },
+    "num_1": {
+      "label": "7.060",
+      "has_trailing_zero": true
+    }
+  },
+  "relations": [
+    {
+      "type": "property_check",
+      "property": "omittable_trailing_zero",
+      "correct_entity": "num_1",
+      "distractor": "num_0"
+    }
+  ]
+}

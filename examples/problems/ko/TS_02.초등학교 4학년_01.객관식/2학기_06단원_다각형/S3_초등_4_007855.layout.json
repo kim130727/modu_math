@@ -1,0 +1,308 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007855",
+  "title": "모양을 만드는 데 사용한 다각형의 이름 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 308,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1",
+        "slot.choice.option_2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.p_left",
+        "slot.diagram.p_mid",
+        "slot.diagram.p_right",
+        "slot.diagram.frame",
+        "slot.diagram.opt_0",
+        "slot.diagram.opt_1",
+        "slot.diagram.opt_2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "69. 모양을 만드는 데 사용한 다각형의 이름을 찾아 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 168.0,
+        "y": 219.0,
+        "width": 158.0,
+        "height": 48.0,
+        "stroke": "#cbd5e1",
+        "stroke_width": 1.4,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "삼각형",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 364.0,
+        "y": 219.0,
+        "width": 158.0,
+        "height": 48.0,
+        "stroke": "#cbd5e1",
+        "stroke_width": 1.4,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "사각형",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 560.0,
+        "y": 219.0,
+        "width": 158.0,
+        "height": 48.0,
+        "stroke": "#cbd5e1",
+        "stroke_width": 1.4,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 2,
+          "value": "육각형",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.diagram.p_left",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            366.0,
+            126.0
+          ],
+          [
+            416.0,
+            126.0
+          ],
+          [
+            443.0,
+            174.0
+          ],
+          [
+            393.0,
+            174.0
+          ]
+        ],
+        "stroke": "#0284c7",
+        "stroke_width": 1.8,
+        "fill": "#38bdf8"
+      }
+    },
+    {
+      "id": "slot.diagram.p_mid",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            443.0,
+            78.0
+          ],
+          [
+            470.0,
+            126.0
+          ],
+          [
+            443.0,
+            174.0
+          ],
+          [
+            416.0,
+            126.0
+          ]
+        ],
+        "stroke": "#0284c7",
+        "stroke_width": 1.8,
+        "fill": "#38bdf8"
+      }
+    },
+    {
+      "id": "slot.diagram.p_right",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            470.0,
+            126.0
+          ],
+          [
+            520.0,
+            126.0
+          ],
+          [
+            493.0,
+            174.0
+          ],
+          [
+            443.0,
+            174.0
+          ]
+        ],
+        "stroke": "#0284c7",
+        "stroke_width": 1.8,
+        "fill": "#38bdf8"
+      }
+    },
+    {
+      "id": "slot.diagram.frame",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 142.0,
+        "y": 206.0,
+        "width": 602.0,
+        "height": 74.0,
+        "stroke": "#a78bfa",
+        "stroke_width": 1.6,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "삼각형",
+        "style_role": "body",
+        "x": 247.0,
+        "y": 231.0,
+        "font_size": 21,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "사각형",
+        "style_role": "body",
+        "x": 443.0,
+        "y": 231.0,
+        "font_size": 21,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "육각형",
+        "style_role": "body",
+        "x": 639.0,
+        "y": 231.0,
+        "font_size": 21,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1",
+    "slot.choice.option_2",
+    "region.diagram",
+    "slot.diagram.p_left",
+    "slot.diagram.p_mid",
+    "slot.diagram.p_right",
+    "slot.diagram.frame",
+    "slot.diagram.opt_0",
+    "slot.diagram.opt_1",
+    "slot.diagram.opt_2"
+  ]
+}

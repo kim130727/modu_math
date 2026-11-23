@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007337",
+  "problem_type": "multiple_choice_fraction_estimation",
+  "given": [
+    {
+      "ref": "expr_0",
+      "value": "3과 1/12 - 4/12"
+    },
+    {
+      "ref": "expr_1",
+      "value": "4와 6/12 - 1과 5/12"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "2와 3 사이인 뺄셈식",
+    "unit": ""
+  },
+  "method": "fraction_estimation",
+  "steps": [
+    {
+      "id": "estimate_difference",
+      "expr": "3과 1/12 - 4/12 < 3",
+      "explanation": "1/12은 4/12보다 작으므로 3과 1/12 - 4/12는 2와 3 사이에 있습니다.",
+      "value": "①"
+    }
+  ],
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.exceeds_3",
+            "condition": "answer_equals_2",
+            "concept": "대분수 뺄셈의 어림",
+            "reason": "4와 6/12 - 1과 5/12가 3보다 큰 수임에도 2와 3 사이로 오인함",
+            "feedback": "4와 6/12 - 1과 5/12에서 4 - 1 = 3이고 6/12 > 5/12이므로 3보다 큽니다. 3과 1/12 - 4/12는 1/12 < 4/12이므로 3보다 작아 2와 3 사이입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

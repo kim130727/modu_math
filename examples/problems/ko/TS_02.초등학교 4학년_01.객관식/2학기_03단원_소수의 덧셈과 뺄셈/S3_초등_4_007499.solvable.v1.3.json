@@ -1,0 +1,53 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007499",
+  "problem_type": "multiple_choice_decimal_reading",
+  "given": [
+    {
+      "ref": "decimal_value",
+      "value": "51.94"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "51.94의 바른 읽기",
+    "unit": ""
+  },
+  "method": "decimal_reading",
+  "steps": [
+    {
+      "id": "read_decimal",
+      "expr": "51.94 -> 오십일 점 구사",
+      "explanation": "자연수 부분은 '오십일', 소수점 아래는 숫자만 '구사'라고 읽습니다.",
+      "value": "오십일 점 구사"
+    }
+  ],
+  "answer": {
+    "value": "오십일 점 구사",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "오십일 점 구사"
+    ],
+    "choices": [
+      "오십일 점 구십사",
+      "오십일 점 구사"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "오십일 점 구사",
+        "diagnostics": [
+          {
+            "id": "diag.place_value_after_dot",
+            "condition": "answer_equals_0",
+            "concept": "소수 두 자리 수 읽기",
+            "reason": "소수점 아래에 자릿값('구십사')을 붙여 읽음",
+            "feedback": "소수를 읽을 때는 자연수 부분은 자릿값을 붙여 읽고, 소수점 아래부터는 숫자만 차례로 읽으므로 '오십일 점 구사'라고 읽습니다."
+          }
+        ]
+      }
+    ]
+  }
+}

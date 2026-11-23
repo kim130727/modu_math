@@ -1,0 +1,397 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007360",
+  "title": "정삼각형을 설명한 것을 읽고 알맞은 말 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 368,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1",
+        "slot.choice.option_2",
+        "slot.choice.option_3"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.char_head",
+        "slot.diagram.char_body",
+        "slot.diagram.bubble",
+        "slot.diagram.char_eye_l",
+        "slot.diagram.char_eye_r",
+        "slot.diagram.char_pupil_l",
+        "slot.diagram.char_pupil_r",
+        "slot.diagram.bubble_text",
+        "slot.diagram.sentence",
+        "slot.diagram.opt_text_0",
+        "slot.diagram.opt_text_1",
+        "slot.diagram.opt_text_2",
+        "slot.diagram.opt_text_3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "34. 정삼각형을 설명한 것을 읽고 알맞은 말을 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 76.0,
+        "y": 288.0,
+        "width": 168.0,
+        "height": 48.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "①",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 266.0,
+        "y": 288.0,
+        "width": 168.0,
+        "height": 48.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "②",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 456.0,
+        "y": 288.0,
+        "width": 168.0,
+        "height": 48.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 2,
+          "value": "③",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 646.0,
+        "y": 288.0,
+        "width": 168.0,
+        "height": 48.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 3,
+          "value": "④",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.diagram.char_head",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            300.0,
+            82.0
+          ],
+          [
+            250.0,
+            170.0
+          ],
+          [
+            350.0,
+            170.0
+          ]
+        ],
+        "stroke": "#3f6212",
+        "stroke_width": 2.0,
+        "fill": "#65a30d"
+      }
+    },
+    {
+      "id": "slot.diagram.char_eye_l",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 288.0,
+        "cy": 132.0,
+        "r": 7.0,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.char_eye_r",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 312.0,
+        "cy": 132.0,
+        "r": 7.0,
+        "stroke": "#111827",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.char_pupil_l",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 288.0,
+        "cy": 132.0,
+        "r": 3.5,
+        "stroke": "none",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.char_pupil_r",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 312.0,
+        "cy": 132.0,
+        "r": 3.5,
+        "stroke": "none",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.char_body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 280.0,
+        "y": 170.0,
+        "width": 40.0,
+        "height": 34.0,
+        "stroke": "#ca8a04",
+        "stroke_width": 1.5,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "#facc15"
+      }
+    },
+    {
+      "id": "slot.diagram.bubble",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 388.0,
+        "y": 92.0,
+        "width": 320.0,
+        "height": 84.0,
+        "stroke": "#111827",
+        "stroke_width": 1.6,
+        "rx": 28.0,
+        "ry": 28.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.bubble_text",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "내 얼굴처럼 세 변의\n길이가 같은 삼각형이야.",
+        "style_role": "body",
+        "x": 408.0,
+        "y": 108.0,
+        "width": 280.0,
+        "height": 56.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 18,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.4,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.sentence",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 두 , 세 ) 변의 길이가 ( 같은 , 다른 ) 삼각형을 정삼각형이라고 합니다.",
+        "style_role": "body",
+        "x": 443.0,
+        "y": 232.0,
+        "font_size": 21,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_text_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 두, 같은",
+        "style_role": "body",
+        "x": 160.0,
+        "y": 300.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_text_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 두, 다른",
+        "style_role": "body",
+        "x": 350.0,
+        "y": 300.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_text_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 세, 같은",
+        "style_role": "body",
+        "x": 540.0,
+        "y": 300.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_text_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 세, 다른",
+        "style_role": "body",
+        "x": 730.0,
+        "y": 300.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1",
+    "slot.choice.option_2",
+    "slot.choice.option_3",
+    "region.diagram",
+    "slot.diagram.char_head",
+    "slot.diagram.char_body",
+    "slot.diagram.bubble",
+    "slot.diagram.char_eye_l",
+    "slot.diagram.char_eye_r",
+    "slot.diagram.char_pupil_l",
+    "slot.diagram.char_pupil_r",
+    "slot.diagram.bubble_text",
+    "slot.diagram.sentence",
+    "slot.diagram.opt_text_0",
+    "slot.diagram.opt_text_1",
+    "slot.diagram.opt_text_2",
+    "slot.diagram.opt_text_3"
+  ]
+}

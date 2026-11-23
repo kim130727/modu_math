@@ -1,0 +1,348 @@
+{
+  "problem_id": "S3_초등_4_007367",
+  "problem_type": "multiple_choice_isosceles_by_angles",
+  "metadata": {
+    "title": "세 각의 크기를 보고 이등변삼각형 선택하기",
+    "tags": [],
+    "question": "44. 삼각형의 세 각의 크기가 다음과 같을 때 이등변삼각형을 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1",
+      "slot.diagram.bear",
+      "slot.diagram.board_0",
+      "slot.diagram.squirrel",
+      "slot.diagram.board_1"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "2학기",
+    "chapter": "02단원_삼각형",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "44. 삼각형의 세 각의 크기가 다음과 같을 때 이등변삼각형을 찾아 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 142,
+          "y": 100,
+          "width": 264,
+          "height": 156,
+          "stroke": "#cbd5e1",
+          "stroke_width": 1.5,
+          "rx": 10,
+          "ry": 10,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 480,
+          "y": 100,
+          "width": 264,
+          "height": 156,
+          "stroke": "#cbd5e1",
+          "stroke_width": 1.5,
+          "rx": 10,
+          "ry": 10,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ang_0",
+        "type": "text",
+        "properties": {
+          "text": "100°,  55°,  25°"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ang_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ang_1",
+        "type": "text",
+        "properties": {
+          "text": "55°,  70°,  55°"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ang_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b0",
+        "type": "symbol_label",
+        "properties": {
+          "text": "①"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b1",
+        "type": "symbol_label",
+        "properties": {
+          "text": "②"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.bear",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 274,
+          "cy": 142,
+          "r": 24,
+          "stroke": "#b45309",
+          "stroke_width": 1.4,
+          "fill": "#fde047",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.bear"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.board_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 164,
+          "y": 174,
+          "width": 220,
+          "height": 58,
+          "stroke": "#b45309",
+          "stroke_width": 1.6,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f3e8d2",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.board_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.board_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 502,
+          "y": 174,
+          "width": 220,
+          "height": 58,
+          "stroke": "#b45309",
+          "stroke_width": 1.6,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f3e8d2",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.board_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.squirrel",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 612,
+          "cy": 142,
+          "r": 24,
+          "stroke": "#c2410c",
+          "stroke_width": 1.4,
+          "fill": "#fdba74",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.squirrel"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "44. 삼각형의 세 각의 크기가 다음과 같을 때 이등변삼각형을 찾아 선택하세요.",
+          "width": 820,
+          "height": 64
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "②",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "②"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②",
+        "diagnostics": [
+          {
+            "id": "diag.chose_scalene_angles",
+            "condition": "answer_equals_1",
+            "concept": "이등변삼각형의 각의 성질",
+            "reason": "세 각의 크기가 모두 다른 ①(100°, 55°, 25°)을 선택함",
+            "feedback": "①은 세 각의 크기가 모두 다르므로 이등변삼각형이 아닙니다. 두 각의 크기가 55°로 같은 ②를 선택하세요."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "card_0": {
+      "label": "① 100°, 55°, 25°",
+      "angles": [
+        100,
+        55,
+        25
+      ],
+      "is_isosceles": false
+    },
+    "card_1": {
+      "label": "② 55°, 70°, 55°",
+      "angles": [
+        55,
+        70,
+        55
+      ],
+      "is_isosceles": true
+    }
+  },
+  "relations": [
+    {
+      "type": "classification",
+      "property": "two_equal_angles",
+      "correct_entity": "card_1",
+      "distractor": "card_0"
+    }
+  ]
+}

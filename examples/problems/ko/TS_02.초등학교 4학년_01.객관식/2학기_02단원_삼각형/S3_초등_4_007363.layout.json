@@ -1,0 +1,253 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007363",
+  "title": "삼각형의 세 변의 길이를 보고 이등변삼각형을 들고 있는 사람 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 320,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.face_0",
+        "slot.diagram.board_0",
+        "slot.diagram.face_1",
+        "slot.diagram.board_1",
+        "slot.diagram.len_0",
+        "slot.diagram.name_0",
+        "slot.diagram.len_1",
+        "slot.diagram.name_1"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "38. 삼각형의 세 변의 길이가 다음과 같을 때 이등변삼각형의 길이를 들고 있는 사람을 선택해 보세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 64.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 244.0,
+        "y": 244.0,
+        "width": 108.0,
+        "height": 44.0,
+        "stroke": "#fb923c",
+        "stroke_width": 2.0,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "미희",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 534.0,
+        "y": 244.0,
+        "width": 108.0,
+        "height": 44.0,
+        "stroke": "#fb923c",
+        "stroke_width": 2.0,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "선우",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.diagram.face_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 298.0,
+        "cy": 136.0,
+        "r": 24.0,
+        "stroke": "#d97706",
+        "stroke_width": 1.5,
+        "fill": "#fde68a"
+      }
+    },
+    {
+      "id": "slot.diagram.board_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 174.0,
+        "y": 172.0,
+        "width": 248.0,
+        "height": 58.0,
+        "stroke": "#b45309",
+        "stroke_width": 1.6,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f3e8d2"
+      }
+    },
+    {
+      "id": "slot.diagram.len_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5 cm, 9 cm, 9 cm",
+        "style_role": "body",
+        "x": 298.0,
+        "y": 190.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.name_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "미희",
+        "style_role": "body",
+        "x": 298.0,
+        "y": 254.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.face_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 588.0,
+        "cy": 136.0,
+        "r": 24.0,
+        "stroke": "#15803d",
+        "stroke_width": 1.5,
+        "fill": "#fde68a"
+      }
+    },
+    {
+      "id": "slot.diagram.board_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 464.0,
+        "y": 172.0,
+        "width": 248.0,
+        "height": 58.0,
+        "stroke": "#b45309",
+        "stroke_width": 1.6,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f3e8d2"
+      }
+    },
+    {
+      "id": "slot.diagram.len_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "9 cm, 8 cm, 4 cm",
+        "style_role": "body",
+        "x": 588.0,
+        "y": 190.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.name_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "선우",
+        "style_role": "body",
+        "x": 588.0,
+        "y": 254.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1",
+    "region.diagram",
+    "slot.diagram.face_0",
+    "slot.diagram.board_0",
+    "slot.diagram.face_1",
+    "slot.diagram.board_1",
+    "slot.diagram.len_0",
+    "slot.diagram.name_0",
+    "slot.diagram.len_1",
+    "slot.diagram.name_1"
+  ]
+}

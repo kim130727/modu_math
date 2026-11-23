@@ -1,0 +1,55 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007360",
+  "problem_type": "multiple_choice_equilateral_definition",
+  "given": [
+    {
+      "ref": "definition",
+      "value": "세 변의 길이가 같은 삼각형"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_2",
+    "label": "알맞은 말",
+    "unit": ""
+  },
+  "method": "definition_matching",
+  "steps": [
+    {
+      "id": "match_definition",
+      "expr": "세 변의 길이가 같은 삼각형 = 정삼각형",
+      "explanation": "세 변의 길이가 같은 삼각형을 정삼각형이라고 합니다.",
+      "value": "③"
+    }
+  ],
+  "answer": {
+    "value": "③",
+    "answer_index": 2,
+    "unit": "",
+    "values": [
+      "③"
+    ],
+    "choices": [
+      "① 두, 같은",
+      "② 두, 다른",
+      "③ 세, 같은",
+      "④ 세, 다른"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "③",
+        "diagnostics": [
+          {
+            "id": "diag.confused_isosceles",
+            "condition": "answer_equals_1",
+            "concept": "정삼각형과 이등변삼각형의 구분",
+            "reason": "두 변의 길이가 같은 이등변삼각형과 혼동함",
+            "feedback": "두 변의 길이가 같은 삼각형은 이등변삼각형입니다. 정삼각형은 세 변의 길이가 모두 같은 삼각형입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

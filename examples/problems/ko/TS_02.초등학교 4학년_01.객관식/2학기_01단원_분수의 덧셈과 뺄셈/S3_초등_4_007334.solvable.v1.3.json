@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007334",
+  "problem_type": "multiple_choice_fraction_comparison",
+  "given": [
+    {
+      "ref": "expr_0",
+      "value": "6과 4/9"
+    },
+    {
+      "ref": "expr_1",
+      "value": "6과 2/9"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "계산 결과가 더 큰 식",
+    "unit": ""
+  },
+  "method": "fraction_addition_comparison",
+  "steps": [
+    {
+      "id": "compare_sums",
+      "expr": "6과 4/9 > 6과 2/9",
+      "explanation": "1과 6/9 + 4와 7/9 = 6과 4/9이고, 2와 3/9 + 3과 8/9 = 6과 2/9이므로 ①이 더 큽니다.",
+      "value": "①"
+    }
+  ],
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.chose_smaller_sum",
+            "condition": "answer_equals_2",
+            "concept": "대분수의 덧셈과 크기 비교",
+            "reason": "1과 6/9 + 4와 7/9 = 6과 4/9가 2와 3/9 + 3와 8/9 = 6과 2/9보다 큼에도 ②를 선택함",
+            "feedback": "1과 6/9 + 4와 7/9 = 6과 4/9이고, 2와 3/9 + 3과 8/9 = 6과 2/9입니다. 따라서 ①이 더 큽니다."
+          }
+        ]
+      }
+    ]
+  }
+}

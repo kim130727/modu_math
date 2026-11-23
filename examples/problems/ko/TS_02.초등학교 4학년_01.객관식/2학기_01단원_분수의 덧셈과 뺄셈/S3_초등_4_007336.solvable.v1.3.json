@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007336",
+  "problem_type": "multiple_choice_fraction_estimation",
+  "given": [
+    {
+      "ref": "expr_0",
+      "value": "6과 4/5 - 1과 3/5"
+    },
+    {
+      "ref": "expr_1",
+      "value": "3과 3/7 - 1/7"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "3과 4 사이인 뺄셈식",
+    "unit": ""
+  },
+  "method": "fraction_estimation",
+  "steps": [
+    {
+      "id": "estimate_difference",
+      "expr": "3과 3/7 - 1/7 = 3과 2/7",
+      "explanation": "3과 3/7 - 1/7은 3/7 > 1/7이므로 결과가 3과 4 사이에 있습니다.",
+      "value": "②"
+    }
+  ],
+  "answer": {
+    "value": "②",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "②"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②",
+        "diagnostics": [
+          {
+            "id": "diag.exceeds_5",
+            "condition": "answer_equals_1",
+            "concept": "대분수 뺄셈의 어림",
+            "reason": "6과 4/5 - 1과 3/5은 5보다 큰 수임에도 3과 4 사이로 오인함",
+            "feedback": "6과 4/5 - 1과 3/5은 6 - 1 = 5이고 4/5 > 3/5이므로 5보다 큽니다. 3과 3/7 - 1/7은 3과 4 사이입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

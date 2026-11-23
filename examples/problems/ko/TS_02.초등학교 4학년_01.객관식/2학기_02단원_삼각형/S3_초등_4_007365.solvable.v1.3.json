@@ -1,0 +1,53 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007365",
+  "problem_type": "multiple_choice_isosceles_angles",
+  "given": [
+    {
+      "ref": "angle_a",
+      "value": "겹쳐서 자른 이등변삼각형의 두 밑각 ㄱ, ㄴ"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "두 각의 크기 비교",
+    "unit": ""
+  },
+  "method": "triangle_property",
+  "steps": [
+    {
+      "id": "compare_angles",
+      "expr": "각 ㄱ = 각 ㄴ",
+      "explanation": "이등변삼각형은 길이가 같은 두 변과 마주 보는 두 각의 크기가 같습니다.",
+      "value": "같아"
+    }
+  ],
+  "answer": {
+    "value": "같아",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "같아"
+    ],
+    "choices": [
+      "같아",
+      "달라"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "같아",
+        "diagnostics": [
+          {
+            "id": "diag.chose_different",
+            "condition": "answer_equals_diff",
+            "concept": "이등변삼각형의 성질",
+            "reason": "겹쳐서 자른 두 각의 크기가 같다는 성질을 놓침",
+            "feedback": "색종이를 반으로 접어 겹쳐서 잘랐기 때문에 양쪽 두 각 ㄱ과 ㄴ의 크기는 같습니다."
+          }
+        ]
+      }
+    ]
+  }
+}

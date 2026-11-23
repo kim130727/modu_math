@@ -1,0 +1,370 @@
+{
+  "problem_id": "S3_초등_4_007361",
+  "view_box": {
+    "width": 886.0,
+    "height": 330.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 820.0,
+        "height": 44.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 820.0,
+        "data-box-height": 44.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "35. 정삼각형을 찾아 선택하세요."
+    },
+    {
+      "id": "slot.choice.option_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 154.0,
+        "y": 82.0,
+        "width": 250.0,
+        "height": 224.0,
+        "fill": "#f8fafc",
+        "stroke": "#cbd5e1",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "①",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 482.0,
+        "y": 82.0,
+        "width": 250.0,
+        "height": 224.0,
+        "fill": "#f8fafc",
+        "stroke": "#cbd5e1",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "②",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.diagram.tri0.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            236.0,
+            112.0
+          ],
+          [
+            236.0,
+            272.0
+          ],
+          [
+            344.0,
+            192.0
+          ]
+        ],
+        "stroke": "#111827",
+        "stroke-width": 1.8,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.tri0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.tri0"
+      }
+    },
+    {
+      "id": "slot.diagram.arc0_l.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 236 112 Q 204 192 236 272",
+        "stroke": "#38bdf8",
+        "stroke-width": 1.2,
+        "fill": "none",
+        "stroke-dasharray": "4,4"
+      },
+      "source_ref": "slot.diagram.arc0_l",
+      "refs": {
+        "layout_slot_id": "slot.diagram.arc0_l"
+      }
+    },
+    {
+      "id": "slot.diagram.arc0_t.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 236 112 Q 305 128 344 192",
+        "stroke": "#38bdf8",
+        "stroke-width": 1.2,
+        "fill": "none",
+        "stroke-dasharray": "4,4"
+      },
+      "source_ref": "slot.diagram.arc0_t",
+      "refs": {
+        "layout_slot_id": "slot.diagram.arc0_t"
+      }
+    },
+    {
+      "id": "slot.diagram.arc0_b.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 236 272 Q 305 256 344 192",
+        "stroke": "#38bdf8",
+        "stroke-width": 1.2,
+        "fill": "none",
+        "stroke-dasharray": "4,4"
+      },
+      "source_ref": "slot.diagram.arc0_b",
+      "refs": {
+        "layout_slot_id": "slot.diagram.arc0_b"
+      }
+    },
+    {
+      "id": "slot.diagram.tri1.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            526.0,
+            134.0
+          ],
+          [
+            688.0,
+            134.0
+          ],
+          [
+            607.0,
+            274.0
+          ]
+        ],
+        "stroke": "#111827",
+        "stroke-width": 1.8,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.tri1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.tri1"
+      }
+    },
+    {
+      "id": "slot.diagram.arc1_t.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 526 134 Q 607 96 688 134",
+        "stroke": "#38bdf8",
+        "stroke-width": 1.2,
+        "fill": "none",
+        "stroke-dasharray": "4,4"
+      },
+      "source_ref": "slot.diagram.arc1_t",
+      "refs": {
+        "layout_slot_id": "slot.diagram.arc1_t"
+      }
+    },
+    {
+      "id": "slot.diagram.arc1_l.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 526 134 Q 536 218 607 274",
+        "stroke": "#38bdf8",
+        "stroke-width": 1.2,
+        "fill": "none",
+        "stroke-dasharray": "4,4"
+      },
+      "source_ref": "slot.diagram.arc1_l",
+      "refs": {
+        "layout_slot_id": "slot.diagram.arc1_l"
+      }
+    },
+    {
+      "id": "slot.diagram.arc1_r.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 688 134 Q 678 218 607 274",
+        "stroke": "#38bdf8",
+        "stroke-width": 1.2,
+        "fill": "none",
+        "stroke-dasharray": "4,4"
+      },
+      "source_ref": "slot.diagram.arc1_r",
+      "refs": {
+        "layout_slot_id": "slot.diagram.arc1_r"
+      }
+    },
+    {
+      "id": "slot.diagram.b0.text",
+      "type": "text",
+      "attributes": {
+        "x": 174.0,
+        "y": 94.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.b0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.b0"
+      },
+      "text": "①"
+    },
+    {
+      "id": "slot.diagram.l0_a.text",
+      "type": "text",
+      "attributes": {
+        "x": 196.0,
+        "y": 182.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 17.0
+      },
+      "source_ref": "slot.diagram.l0_a",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l0_a"
+      },
+      "text": "8 cm"
+    },
+    {
+      "id": "slot.diagram.l0_b.text",
+      "type": "text",
+      "attributes": {
+        "x": 316.0,
+        "y": 126.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 17.0
+      },
+      "source_ref": "slot.diagram.l0_b",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l0_b"
+      },
+      "text": "7 cm"
+    },
+    {
+      "id": "slot.diagram.l0_c.text",
+      "type": "text",
+      "attributes": {
+        "x": 316.0,
+        "y": 242.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 17.0
+      },
+      "source_ref": "slot.diagram.l0_c",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l0_c"
+      },
+      "text": "7 cm"
+    },
+    {
+      "id": "slot.diagram.b1.text",
+      "type": "text",
+      "attributes": {
+        "x": 502.0,
+        "y": 94.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.b1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.b1"
+      },
+      "text": "②"
+    },
+    {
+      "id": "slot.diagram.l1_t.text",
+      "type": "text",
+      "attributes": {
+        "x": 607.0,
+        "y": 98.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 17.0
+      },
+      "source_ref": "slot.diagram.l1_t",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l1_t"
+      },
+      "text": "9 cm"
+    },
+    {
+      "id": "slot.diagram.l1_l.text",
+      "type": "text",
+      "attributes": {
+        "x": 524.0,
+        "y": 214.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 17.0
+      },
+      "source_ref": "slot.diagram.l1_l",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l1_l"
+      },
+      "text": "9 cm"
+    },
+    {
+      "id": "slot.diagram.l1_r.text",
+      "type": "text",
+      "attributes": {
+        "x": 690.0,
+        "y": 214.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 17.0
+      },
+      "source_ref": "slot.diagram.l1_r",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l1_r"
+      },
+      "text": "9 cm"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007492",
+  "problem_type": "multiple_choice_trailing_zero_decimal",
+  "given": [
+    {
+      "ref": "num_0",
+      "value": "10.05"
+    },
+    {
+      "ref": "num_1",
+      "value": "7.060"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "생략할 수 있는 0이 있는 소수",
+    "unit": ""
+  },
+  "method": "decimal_property",
+  "steps": [
+    {
+      "id": "find_trailing_zero",
+      "expr": "7.060 = 7.06",
+      "explanation": "소수의 오른쪽 끝자리 0만 생략할 수 있으므로 7.060입니다.",
+      "value": "7.060"
+    }
+  ],
+  "answer": {
+    "value": "7.060",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "7.060"
+    ],
+    "choices": [
+      "10.05",
+      "7.060"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "7.060",
+        "diagnostics": [
+          {
+            "id": "diag.middle_zero_error",
+            "condition": "answer_equals_0",
+            "concept": "소수의 끝자리 0 생략",
+            "reason": "일의 자리나 소수 첫째 자리의 0은 생략할 수 없음을 놓침",
+            "feedback": "10.05의 0은 자릿값을 지키기 위해 생략할 수 없습니다. 소수의 오른쪽 끝자리 0만 생략할 수 있으므로 7.060을 선택하세요."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,435 @@
+{
+  "problem_id": "S3_초등_4_007501",
+  "problem_type": "multiple_choice_fraction_to_decimal",
+  "metadata": {
+    "title": "분수 1/1000을 소수로 쓰고 읽는 방법 선택하기",
+    "tags": [],
+    "question": "26. 알맞은 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1",
+      "slot.choice.option_2",
+      "slot.choice.option_3",
+      "slot.diagram.gold_box",
+      "slot.diagram.frac_bar"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "2학기",
+    "chapter": "03단원_소수의 덧셈과 뺄셈",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "26. 알맞은 것을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 118,
+          "y": 236,
+          "width": 310,
+          "height": 44,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 458,
+          "y": 236,
+          "width": 310,
+          "height": 44,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 118,
+          "y": 292,
+          "width": 310,
+          "height": 44,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_3",
+        "type": "rect_slot",
+        "properties": {
+          "x": 458,
+          "y": 292,
+          "width": 310,
+          "height": 44,
+          "stroke": "#94a3b8",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#f8fafc",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.frac_bar",
+        "type": "line_slot",
+        "properties": {
+          "x1": 220,
+          "y1": 120,
+          "x2": 268,
+          "y2": 120,
+          "stroke": "#111827",
+          "stroke_width": 1.5,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.frac_bar"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.frac_d",
+        "type": "text",
+        "properties": {
+          "text": "1000"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.frac_d"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.frac_n",
+        "type": "text",
+        "properties": {
+          "text": "1"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.frac_n"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.gold_box",
+        "type": "rect_slot",
+        "properties": {
+          "x": 98,
+          "y": 82,
+          "width": 690,
+          "height": 130,
+          "stroke": "#eab308",
+          "stroke_width": 1.8,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.gold_box"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_text_0",
+        "type": "text",
+        "properties": {
+          "text": "① 0.01, 영 점 영일"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_text_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_text_1",
+        "type": "text",
+        "properties": {
+          "text": "② 0.001, 영 점 영영일"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_text_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_text_2",
+        "type": "text",
+        "properties": {
+          "text": "③ 0.01, 영 점 영영일"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_text_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt_text_3",
+        "type": "text",
+        "properties": {
+          "text": "④ 0.001, 영 점 영일"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt_text_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r1_l",
+        "type": "text",
+        "properties": {
+          "text": "분수"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r1_l"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r1_r",
+        "type": "text",
+        "properties": {
+          "text": "은 소수로 ( 0.01 , 0.001 )이라 쓰고,"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r1_r"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r2",
+        "type": "text",
+        "properties": {
+          "text": "( 영 점 영일 , 영 점 영영일 )이라고 읽습니다."
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "26. 알맞은 것을 선택하세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "②",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "②"
+    ],
+    "choices": [
+      "① 0.01, 영 점 영일",
+      "② 0.001, 영 점 영영일",
+      "③ 0.01, 영 점 영영일",
+      "④ 0.001, 영 점 영일"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②",
+        "diagnostics": [
+          {
+            "id": "diag.confused_hundredth_thousandth",
+            "condition": "answer_not_2",
+            "concept": "소수 세 자리 수의 쓰기와 읽기",
+            "reason": "1/1000을 0.01(1/100)과 혼동함",
+            "feedback": "1/1000은 소수 세 자리 수이므로 0.001이라 쓰고 '영 점 영영일'이라고 읽습니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "fraction": {
+      "label": "주어진 분수",
+      "value": "1/1000"
+    },
+    "decimal": {
+      "label": "소수 표현",
+      "value": "0.001",
+      "reading": "영 점 영영일"
+    }
+  },
+  "relations": [
+    {
+      "type": "conversion",
+      "from": "fraction",
+      "to": "decimal",
+      "correct_choice": "②"
+    }
+  ]
+}

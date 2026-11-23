@@ -1,0 +1,335 @@
+{
+  "problem_id": "S3_초등_4_007863",
+  "view_box": {
+    "width": 886.0,
+    "height": 350.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0,
+        "width": 820.0,
+        "height": 76.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 820.0,
+        "data-box-height": 76.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "78. 정삼각형, 사다리꼴, 평행사변형 모양 조각 중에서 2가지를 골라 정삼각형을 만들려고 합니다. 다음 물음에 답하세요.\n(2) 평행사변형 모양 조각 1개를 사용할 때, 필요한 모양 조각과 개수를 선택하세요."
+    },
+    {
+      "id": "slot.choice.option_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 138.0,
+        "y": 232.0,
+        "width": 290.0,
+        "height": 42.0,
+        "fill": "#f8fafc",
+        "stroke": "#94a3b8",
+        "stroke-width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "①",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 458.0,
+        "y": 232.0,
+        "width": 290.0,
+        "height": 42.0,
+        "fill": "#f8fafc",
+        "stroke": "#94a3b8",
+        "stroke-width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "②",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 138.0,
+        "y": 286.0,
+        "width": 290.0,
+        "height": 42.0,
+        "fill": "#f8fafc",
+        "stroke": "#94a3b8",
+        "stroke-width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.choice.option_2",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_2"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 2,
+        "value": "③",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 458.0,
+        "y": 286.0,
+        "width": 290.0,
+        "height": 42.0,
+        "fill": "#f8fafc",
+        "stroke": "#94a3b8",
+        "stroke-width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.choice.option_3",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_3"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 3,
+        "value": "④",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.diagram.pink_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 78.0,
+        "y": 114.0,
+        "width": 730.0,
+        "height": 94.0,
+        "fill": "#ffffff",
+        "stroke": "#ec4899",
+        "stroke-width": 1.6
+      },
+      "source_ref": "slot.diagram.pink_box",
+      "refs": {
+        "layout_slot_id": "slot.diagram.pink_box"
+      }
+    },
+    {
+      "id": "slot.diagram.trap.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            276.0,
+            134.0
+          ],
+          [
+            324.0,
+            134.0
+          ],
+          [
+            348.0,
+            178.0
+          ],
+          [
+            252.0,
+            178.0
+          ]
+        ],
+        "stroke": "#be123c",
+        "stroke-width": 1.4,
+        "fill": "#fb7185"
+      },
+      "source_ref": "slot.diagram.trap",
+      "refs": {
+        "layout_slot_id": "slot.diagram.trap"
+      }
+    },
+    {
+      "id": "slot.diagram.tri.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            398.0,
+            134.0
+          ],
+          [
+            374.0,
+            178.0
+          ],
+          [
+            422.0,
+            178.0
+          ]
+        ],
+        "stroke": "#15803d",
+        "stroke-width": 1.4,
+        "fill": "#4ade80"
+      },
+      "source_ref": "slot.diagram.tri",
+      "refs": {
+        "layout_slot_id": "slot.diagram.tri"
+      }
+    },
+    {
+      "id": "slot.diagram.box_txt_l.text",
+      "type": "text",
+      "attributes": {
+        "x": 174.0,
+        "y": 148.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0
+      },
+      "source_ref": "slot.diagram.box_txt_l",
+      "refs": {
+        "layout_slot_id": "slot.diagram.box_txt_l"
+      },
+      "text": "모양 조각은 ("
+    },
+    {
+      "id": "slot.diagram.comma.text",
+      "type": "text",
+      "attributes": {
+        "x": 362.0,
+        "y": 148.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0
+      },
+      "source_ref": "slot.diagram.comma",
+      "refs": {
+        "layout_slot_id": "slot.diagram.comma"
+      },
+      "text": ","
+    },
+    {
+      "id": "slot.diagram.box_txt_r.text",
+      "type": "text",
+      "attributes": {
+        "x": 604.0,
+        "y": 148.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0
+      },
+      "source_ref": "slot.diagram.box_txt_r",
+      "refs": {
+        "layout_slot_id": "slot.diagram.box_txt_r"
+      },
+      "text": ")이며 모두 ( 1 , 2 , 3 )개가 필요합니다."
+    },
+    {
+      "id": "slot.diagram.opt_text_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 160.0,
+        "y": 243.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0
+      },
+      "source_ref": "slot.diagram.opt_text_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt_text_0"
+      },
+      "text": "① 사다리꼴, 2개"
+    },
+    {
+      "id": "slot.diagram.opt_text_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 480.0,
+        "y": 243.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0
+      },
+      "source_ref": "slot.diagram.opt_text_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt_text_1"
+      },
+      "text": "② 정삼각형, 2개"
+    },
+    {
+      "id": "slot.diagram.opt_text_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 160.0,
+        "y": 297.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0
+      },
+      "source_ref": "slot.diagram.opt_text_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt_text_2"
+      },
+      "text": "③ 정삼각형, 3개"
+    },
+    {
+      "id": "slot.diagram.opt_text_3.text",
+      "type": "text",
+      "attributes": {
+        "x": 480.0,
+        "y": 297.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0
+      },
+      "source_ref": "slot.diagram.opt_text_3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt_text_3"
+      },
+      "text": "④ 사다리꼴, 1개"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007552",
+  "problem_type": "multiple_choice_square_as_trapezoid",
+  "given": [
+    {
+      "ref": "shape",
+      "value": "정사각형"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "알맞은 말",
+    "unit": ""
+  },
+  "method": "quadrilateral_inclusion",
+  "steps": [
+    {
+      "id": "check_trapezoid",
+      "expr": "정사각형은 평행한 변이 있음 -> 사다리꼴임",
+      "explanation": "정사각형은 평행한 변이 있으므로 사다리꼴입니다.",
+      "value": "①"
+    }
+  ],
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "① 있습니다, 입니다",
+      "② 있습니다, 아닙니다",
+      "③ 없습니다, 입니다",
+      "④ 없습니다, 아닙니다"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.square_is_trapezoid",
+            "condition": "answer_not_1",
+            "concept": "정사각형과 사다리꼴의 포함 관계",
+            "reason": "정사각형도 평행한 변이 있으므로 사다리꼴임을 놓침",
+            "feedback": "정사각형은 마주 보는 변이 평행하므로 평행한 변이 있습니다. 따라서 주어진 도형은 사다리꼴입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

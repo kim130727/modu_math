@@ -1,0 +1,55 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007863",
+  "problem_type": "multiple_choice_triangle_composition",
+  "given": [
+    {
+      "ref": "given_piece",
+      "value": "평행사변형 1개"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "필요한 모양 조각과 개수",
+    "unit": ""
+  },
+  "method": "shape_composition",
+  "steps": [
+    {
+      "id": "compose_triangle",
+      "expr": "평행사변형 1개 + 정삼각형 2개 = 큰 정삼각형",
+      "explanation": "필요한 모양 조각은 정삼각형이며 모두 2개가 필요합니다.",
+      "value": "②"
+    }
+  ],
+  "answer": {
+    "value": "②",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "②"
+    ],
+    "choices": [
+      "① 사다리꼴, 2개",
+      "② 정삼각형, 2개",
+      "③ 정삼각형, 3개",
+      "④ 사다리꼴, 1개"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_piece_or_count",
+            "condition": "answer_not_2",
+            "concept": "모양 조각으로 정삼각형 만들기",
+            "reason": "평행사변형 1개(정삼각형 2개 크기)에 정삼각형 2개를 붙이면 큰 정삼각형(정삼각형 4개 크기)이 됨을 놓침",
+            "feedback": "평행사변형 1개에 정삼각형 모양 조각 2개를 붙이면 큰 정삼각형을 만들 수 있습니다. 따라서 ②를 선택하세요."
+          }
+        ]
+      }
+    ]
+  }
+}

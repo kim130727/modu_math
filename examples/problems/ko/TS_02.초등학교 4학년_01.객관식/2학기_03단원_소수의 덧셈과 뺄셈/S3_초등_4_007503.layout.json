@@ -1,0 +1,592 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007503",
+  "title": "소수의 1/10을 할 때 소수점 이동 방향과 자릿수 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 368,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1",
+        "slot.choice.option_2",
+        "slot.choice.option_3"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.tbl_outer",
+        "slot.diagram.tbl_hr_1",
+        "slot.diagram.tbl_hr_2",
+        "slot.diagram.tbl_hr_3",
+        "slot.diagram.tbl_vc_1",
+        "slot.diagram.tbl_vc_2",
+        "slot.diagram.tbl_vc_3",
+        "slot.diagram.cell_0_0",
+        "slot.diagram.cell_1_0",
+        "slot.diagram.cell_1_1",
+        "slot.diagram.cell_2_0",
+        "slot.diagram.cell_2_1",
+        "slot.diagram.cell_2_2",
+        "slot.diagram.cell_3_0",
+        "slot.diagram.cell_3_1",
+        "slot.diagram.cell_3_2",
+        "slot.diagram.cell_3_3",
+        "slot.diagram.ratio_0",
+        "slot.diagram.ratio_1",
+        "slot.diagram.ratio_2",
+        "slot.diagram.question_sub",
+        "slot.diagram.opt_text_0",
+        "slot.diagram.opt_text_1",
+        "slot.diagram.opt_text_2",
+        "slot.diagram.opt_text_3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "28. 1, 0.1, 0.01, 0.001 사이의 관계를 보고 알맞은 것을 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 76.0,
+        "y": 294.0,
+        "width": 168.0,
+        "height": 46.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "①",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 266.0,
+        "y": 294.0,
+        "width": 168.0,
+        "height": 46.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "②",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 456.0,
+        "y": 294.0,
+        "width": 168.0,
+        "height": 46.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 2,
+          "value": "③",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 646.0,
+        "y": 294.0,
+        "width": 168.0,
+        "height": 46.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 3,
+          "value": "④",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.diagram.tbl_outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 336.0,
+        "y": 78.0,
+        "width": 176.0,
+        "height": 136.0,
+        "stroke": "#fb923c",
+        "stroke_width": 1.4,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.tbl_hr_1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 336.0,
+        "y1": 112.0,
+        "x2": 512.0,
+        "y2": 112.0,
+        "stroke": "#fb923c",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.tbl_hr_2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 336.0,
+        "y1": 146.0,
+        "x2": 512.0,
+        "y2": 146.0,
+        "stroke": "#fb923c",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.tbl_hr_3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 336.0,
+        "y1": 180.0,
+        "x2": 512.0,
+        "y2": 180.0,
+        "stroke": "#fb923c",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.tbl_vc_1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 380.0,
+        "y1": 78.0,
+        "x2": 380.0,
+        "y2": 214.0,
+        "stroke": "#fb923c",
+        "stroke_width": 0.9,
+        "stroke_dasharray": "3,3"
+      }
+    },
+    {
+      "id": "slot.diagram.tbl_vc_2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 424.0,
+        "y1": 78.0,
+        "x2": 424.0,
+        "y2": 214.0,
+        "stroke": "#fb923c",
+        "stroke_width": 0.9,
+        "stroke_dasharray": "3,3"
+      }
+    },
+    {
+      "id": "slot.diagram.tbl_vc_3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 468.0,
+        "y1": 78.0,
+        "x2": 468.0,
+        "y2": 214.0,
+        "stroke": "#fb923c",
+        "stroke_width": 0.9,
+        "stroke_dasharray": "3,3"
+      }
+    },
+    {
+      "id": "slot.diagram.cell_0_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "body",
+        "x": 358.0,
+        "y": 86.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.cell_1_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0.",
+        "style_role": "body",
+        "x": 358.0,
+        "y": 120.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.cell_1_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "body",
+        "x": 402.0,
+        "y": 120.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.cell_2_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0.",
+        "style_role": "body",
+        "x": 358.0,
+        "y": 154.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.cell_2_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "body",
+        "x": 402.0,
+        "y": 154.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.cell_2_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "body",
+        "x": 446.0,
+        "y": 154.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.cell_3_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0.",
+        "style_role": "body",
+        "x": 358.0,
+        "y": 188.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.cell_3_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "body",
+        "x": 402.0,
+        "y": 188.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.cell_3_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "body",
+        "x": 446.0,
+        "y": 188.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.cell_3_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "body",
+        "x": 490.0,
+        "y": 188.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.ratio_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "↘ 1/10",
+        "style_role": "body",
+        "x": 546.0,
+        "y": 102.0,
+        "font_size": 14,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#ec4899"
+      }
+    },
+    {
+      "id": "slot.diagram.ratio_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "↘ 1/10",
+        "style_role": "body",
+        "x": 546.0,
+        "y": 136.0,
+        "font_size": 14,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#ec4899"
+      }
+    },
+    {
+      "id": "slot.diagram.ratio_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "↘ 1/10",
+        "style_role": "body",
+        "x": 546.0,
+        "y": 170.0,
+        "font_size": 14,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#ec4899"
+      }
+    },
+    {
+      "id": "slot.diagram.question_sub",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(1) 소수의 1/10을 하면 소수점이 ( 왼쪽 , 오른쪽 )으로 ( 한 , 두 ) 자리 이동합니다.",
+        "style_role": "body",
+        "x": 68.0,
+        "y": 232.0,
+        "width": 750.0,
+        "height": 48.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 20,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.4,
+        "fill": "#111827",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_text_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 왼쪽, 한",
+        "style_role": "body",
+        "x": 160.0,
+        "y": 305.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_text_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 왼쪽, 두",
+        "style_role": "body",
+        "x": 350.0,
+        "y": 305.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_text_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 오른쪽, 한",
+        "style_role": "body",
+        "x": 540.0,
+        "y": 305.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_text_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 오른쪽, 두",
+        "style_role": "body",
+        "x": 730.0,
+        "y": 305.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1",
+    "slot.choice.option_2",
+    "slot.choice.option_3",
+    "region.diagram",
+    "slot.diagram.tbl_outer",
+    "slot.diagram.tbl_hr_1",
+    "slot.diagram.tbl_hr_2",
+    "slot.diagram.tbl_hr_3",
+    "slot.diagram.tbl_vc_1",
+    "slot.diagram.tbl_vc_2",
+    "slot.diagram.tbl_vc_3",
+    "slot.diagram.cell_0_0",
+    "slot.diagram.cell_1_0",
+    "slot.diagram.cell_1_1",
+    "slot.diagram.cell_2_0",
+    "slot.diagram.cell_2_1",
+    "slot.diagram.cell_2_2",
+    "slot.diagram.cell_3_0",
+    "slot.diagram.cell_3_1",
+    "slot.diagram.cell_3_2",
+    "slot.diagram.cell_3_3",
+    "slot.diagram.ratio_0",
+    "slot.diagram.ratio_1",
+    "slot.diagram.ratio_2",
+    "slot.diagram.question_sub",
+    "slot.diagram.opt_text_0",
+    "slot.diagram.opt_text_1",
+    "slot.diagram.opt_text_2",
+    "slot.diagram.opt_text_3"
+  ]
+}

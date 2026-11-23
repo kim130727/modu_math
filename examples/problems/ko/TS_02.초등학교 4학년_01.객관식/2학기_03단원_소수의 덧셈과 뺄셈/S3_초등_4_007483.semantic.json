@@ -1,0 +1,394 @@
+{
+  "problem_id": "S3_초등_4_007483",
+  "problem_type": "multiple_choice_decimal_concept",
+  "metadata": {
+    "title": "주어진 소수(2.63)를 바르게 설명한 사람 선택하기",
+    "tags": [],
+    "question": "4. 주어진 소수를 바르게 설명한 사람을 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1",
+      "slot.diagram.bub_0",
+      "slot.diagram.face_0",
+      "slot.diagram.card",
+      "slot.diagram.face_1",
+      "slot.diagram.bub_1"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "2학기",
+    "chapter": "03단원_소수의 덧셈과 뺄셈",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "4. 주어진 소수를 바르게 설명한 사람을 선택해 보세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 284,
+          "y": 224,
+          "width": 84,
+          "height": 40,
+          "stroke": "#d8b4fe",
+          "stroke_width": 1.8,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 520,
+          "y": 224,
+          "width": 84,
+          "height": 40,
+          "stroke": "#d8b4fe",
+          "stroke_width": 1.8,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.bub_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 78,
+          "y": 96,
+          "width": 182,
+          "height": 96,
+          "stroke": "#111827",
+          "stroke_width": 1.5,
+          "rx": 28,
+          "ry": 28,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.bub_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.bub_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 626,
+          "y": 96,
+          "width": 188,
+          "height": 96,
+          "stroke": "#111827",
+          "stroke_width": 1.5,
+          "rx": 28,
+          "ry": 28,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.bub_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.bub_txt_0",
+        "type": "text",
+        "properties": {
+          "text": "'이 점 육십삼'\n이라고 읽어.",
+          "width": 158,
+          "height": 62
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.bub_txt_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.bub_txt_1",
+        "type": "text",
+        "properties": {
+          "text": "소수 둘째 자리\n숫자는 3이야.",
+          "width": 164,
+          "height": 62
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.bub_txt_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.card",
+        "type": "rect_slot",
+        "properties": {
+          "x": 388,
+          "y": 116,
+          "width": 110,
+          "height": 58,
+          "stroke": "#fdba74",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffedd5",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.card"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.face_0",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 326,
+          "cy": 144,
+          "r": 26,
+          "stroke": "#92400e",
+          "stroke_width": 1.4,
+          "fill": "#fde68a",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.face_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.face_1",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 562,
+          "cy": 144,
+          "r": 26,
+          "stroke": "#92400e",
+          "stroke_width": 1.4,
+          "fill": "#fde68a",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.face_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.name_0",
+        "type": "text",
+        "properties": {
+          "text": "민영"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.name_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.name_1",
+        "type": "text",
+        "properties": {
+          "text": "두준"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.name_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.num",
+        "type": "text",
+        "properties": {
+          "text": "2.63"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.num"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "4. 주어진 소수를 바르게 설명한 사람을 선택해 보세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "두준",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "두준"
+    ],
+    "choices": [
+      "민영",
+      "두준"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "두준",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_decimal_reading",
+            "condition": "answer_equals_minyoung",
+            "concept": "소수 두 자리 수 읽기",
+            "reason": "소수점 아래를 '육십삼'처럼 자릿값을 붙여 읽은 민영을 선택함",
+            "feedback": "소수점 아래는 숫자만 차례대로 읽으므로 2.63은 '이 점 육삼'이라고 읽습니다. 2.63의 소수 둘째 자리 숫자는 3이므로 두준이 바르게 설명했습니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "target_decimal": {
+      "label": "주어진 소수",
+      "value": "2.63"
+    },
+    "minyoung": {
+      "label": "민영",
+      "claim": "'이 점 육십삼'이라고 읽어.",
+      "is_correct": false
+    },
+    "dujun": {
+      "label": "두준",
+      "claim": "소수 둘째 자리 숫자는 3이야.",
+      "is_correct": true
+    }
+  },
+  "relations": [
+    {
+      "type": "truth_evaluation",
+      "correct_entity": "dujun",
+      "distractor": "minyoung"
+    }
+  ]
+}

@@ -1,0 +1,362 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007863",
+  "title": "정삼각형을 만들 때 평행사변형 1개와 함께 필요한 모양 조각과 개수 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 350,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1",
+        "slot.choice.option_2",
+        "slot.choice.option_3"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.pink_box",
+        "slot.diagram.trap",
+        "slot.diagram.tri",
+        "slot.diagram.box_txt_l",
+        "slot.diagram.comma",
+        "slot.diagram.box_txt_r",
+        "slot.diagram.opt_text_0",
+        "slot.diagram.opt_text_1",
+        "slot.diagram.opt_text_2",
+        "slot.diagram.opt_text_3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "78. 정삼각형, 사다리꼴, 평행사변형 모양 조각 중에서 2가지를 골라 정삼각형을 만들려고 합니다. 다음 물음에 답하세요.\n(2) 평행사변형 모양 조각 1개를 사용할 때, 필요한 모양 조각과 개수를 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 76.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 21,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 138.0,
+        "y": 232.0,
+        "width": 290.0,
+        "height": 42.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "①",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 458.0,
+        "y": 232.0,
+        "width": 290.0,
+        "height": 42.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "②",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 138.0,
+        "y": 286.0,
+        "width": 290.0,
+        "height": 42.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 2,
+          "value": "③",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 458.0,
+        "y": 286.0,
+        "width": 290.0,
+        "height": 42.0,
+        "stroke": "#94a3b8",
+        "stroke_width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#f8fafc",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 3,
+          "value": "④",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.diagram.pink_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 78.0,
+        "y": 114.0,
+        "width": 730.0,
+        "height": 94.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.6,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.box_txt_l",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "모양 조각은 (",
+        "style_role": "body",
+        "x": 174.0,
+        "y": 148.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.trap",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            276.0,
+            134.0
+          ],
+          [
+            324.0,
+            134.0
+          ],
+          [
+            348.0,
+            178.0
+          ],
+          [
+            252.0,
+            178.0
+          ]
+        ],
+        "stroke": "#be123c",
+        "stroke_width": 1.4,
+        "fill": "#fb7185"
+      }
+    },
+    {
+      "id": "slot.diagram.comma",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 362.0,
+        "y": 148.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.tri",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            398.0,
+            134.0
+          ],
+          [
+            374.0,
+            178.0
+          ],
+          [
+            422.0,
+            178.0
+          ]
+        ],
+        "stroke": "#15803d",
+        "stroke_width": 1.4,
+        "fill": "#4ade80"
+      }
+    },
+    {
+      "id": "slot.diagram.box_txt_r",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ")이며 모두 ( 1 , 2 , 3 )개가 필요합니다.",
+        "style_role": "body",
+        "x": 604.0,
+        "y": 148.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_text_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 사다리꼴, 2개",
+        "style_role": "body",
+        "x": 160.0,
+        "y": 243.0,
+        "font_size": 18,
+        "align": "left",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_text_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 정삼각형, 2개",
+        "style_role": "body",
+        "x": 480.0,
+        "y": 243.0,
+        "font_size": 18,
+        "align": "left",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_text_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 정삼각형, 3개",
+        "style_role": "body",
+        "x": 160.0,
+        "y": 297.0,
+        "font_size": 18,
+        "align": "left",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.opt_text_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 사다리꼴, 1개",
+        "style_role": "body",
+        "x": 480.0,
+        "y": 297.0,
+        "font_size": 18,
+        "align": "left",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1",
+    "slot.choice.option_2",
+    "slot.choice.option_3",
+    "region.diagram",
+    "slot.diagram.pink_box",
+    "slot.diagram.trap",
+    "slot.diagram.tri",
+    "slot.diagram.box_txt_l",
+    "slot.diagram.comma",
+    "slot.diagram.box_txt_r",
+    "slot.diagram.opt_text_0",
+    "slot.diagram.opt_text_1",
+    "slot.diagram.opt_text_2",
+    "slot.diagram.opt_text_3"
+  ]
+}

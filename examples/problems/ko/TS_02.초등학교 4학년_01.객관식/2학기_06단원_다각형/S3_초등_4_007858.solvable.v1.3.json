@@ -1,0 +1,53 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007858",
+  "problem_type": "multiple_choice_tiling_ox",
+  "given": [
+    {
+      "ref": "target_shape",
+      "value": "주어진 말 모양"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "채우기 가능 여부",
+    "unit": ""
+  },
+  "method": "tiling_feasibility",
+  "steps": [
+    {
+      "id": "check_tiling",
+      "expr": "정삼각형, 사각형 모양 조각으로 말 모양 채우기 가능",
+      "explanation": "주어진 모양 조각을 여러 번 사용하여 말 모양을 채울 수 있으므로 ○입니다.",
+      "value": "○"
+    }
+  ],
+  "answer": {
+    "value": "○",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "○"
+    ],
+    "choices": [
+      "○",
+      "×"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "○",
+        "diagnostics": [
+          {
+            "id": "diag.missed_tiling_possibility",
+            "condition": "answer_equals_x",
+            "concept": "모양 채우기",
+            "reason": "여러 가지 모양 조각을 이용해 주어진 도형을 채울 수 있음을 놓침",
+            "feedback": "주어진 모양 조각을 여러 번 사용하면 말 모양을 빈틈없이 채울 수 있으므로 ○입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

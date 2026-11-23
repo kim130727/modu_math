@@ -30,7 +30,7 @@ def build_problem_template() -> ProblemTemplate:
             ),
             Region(
                 id="region.problem_1",
-                role="question",
+                role="diagram",
                 flow="absolute",
                 slot_ids=(
                     "slot.problem_1_number",

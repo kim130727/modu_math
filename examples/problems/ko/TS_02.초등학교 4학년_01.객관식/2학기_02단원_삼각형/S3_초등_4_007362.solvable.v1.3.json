@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007362",
+  "problem_type": "multiple_choice_find_all_isosceles",
+  "given": [
+    {
+      "ref": "ga",
+      "value": "두 변의 길이가 같은 삼각형"
+    },
+    {
+      "ref": "na",
+      "value": "세 변의 길이가 다른 삼각형"
+    },
+    {
+      "ref": "da",
+      "value": "두 변의 길이가 같은 삼각형"
+    },
+    {
+      "ref": "ra",
+      "value": "세 변의 길이가 다른 직각삼각형"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "이등변삼각형 모두 찾기",
+    "unit": ""
+  },
+  "method": "triangle_classification",
+  "steps": [
+    {
+      "id": "find_all",
+      "expr": "이등변삼각형 = 가, 다",
+      "explanation": "두 변의 길이가 같은 삼각형은 가와 다입니다.",
+      "value": "②"
+    }
+  ],
+  "answer": {
+    "value": "②",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "②"
+    ],
+    "choices": [
+      "① 가, 나",
+      "② 가, 다",
+      "③ 나, 라",
+      "④ 다, 라"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②",
+        "diagnostics": [
+          {
+            "id": "diag.missed_isosceles",
+            "condition": "answer_not_2",
+            "concept": "이등변삼각형의 성질",
+            "reason": "두 변의 길이가 같은 삼각형 가와 다를 정확히 찾지 못함",
+            "feedback": "정삼각형(가)도 두 변의 길이가 같으므로 이등변삼각형에 포함됩니다. 두 변의 길이가 같은 삼각형은 가와 다입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

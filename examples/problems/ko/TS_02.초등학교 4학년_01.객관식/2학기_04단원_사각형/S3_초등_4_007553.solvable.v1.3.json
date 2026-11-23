@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007553",
+  "problem_type": "multiple_choice_trapezoid_misconception",
+  "given": [
+    {
+      "ref": "dongho",
+      "value": "4개의 변과 4개의 각이 있어."
+    },
+    {
+      "ref": "heejin",
+      "value": "서로 평행한 변이 없어."
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "잘못 말한 학생",
+    "unit": ""
+  },
+  "method": "definition_check",
+  "steps": [
+    {
+      "id": "find_false_claim",
+      "expr": "사다리꼴은 평행한 변이 한 쌍 이상 있음 -> 희진의 말이 틀림",
+      "explanation": "평행한 변이 한 쌍이라도 있는 사각형을 사다리꼴이라고 하므로 희진이 잘못 말했습니다.",
+      "value": "희진"
+    }
+  ],
+  "answer": {
+    "value": "희진",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "희진"
+    ],
+    "choices": [
+      "동호",
+      "희진"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "희진",
+        "diagnostics": [
+          {
+            "id": "diag.chose_correct_speaker",
+            "condition": "answer_equals_dongho",
+            "concept": "사다리꼴의 성질",
+            "reason": "사다리꼴은 사각형이므로 변이 4개, 각이 4개인 것은 맞음을 놓침",
+            "feedback": "동호의 말처럼 사다리꼴은 4개의 변과 4개의 각이 있습니다. 평행한 변이 한 쌍이라도 있는 사각형이 사다리꼴이므로 잘못 말한 학생은 희진입니다."
+          }
+        ]
+      }
+    ]
+  }
+}
