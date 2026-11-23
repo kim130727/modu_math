@@ -219,3 +219,14 @@ def authored_prompt(problem):
             if isinstance(text, str) and text.strip() and text not in texts:
                 texts.append(text)
     return "\n".join(texts)
+
+
+def student_prompt(problem):
+    metadata = problem.semantic_data.get("metadata") or {}
+    return (
+        authored_prompt(problem)
+        or metadata.get("presentation_prompt")
+        or metadata.get("question")
+        or metadata.get("instruction")
+        or ""
+    )

@@ -51,6 +51,11 @@ class AnswerMatchingTests(TestCase):
         self.assertFalse(answer_matches(answer, choices[1]["id"]))
         self.assertFalse(answer_matches(answer, "Same"))
 
+        choices[0]["slot_id"] = "slot.authored.for.same"
+        answer["answer_key"] = [{"slot_id": choices[0]["slot_id"], "value": "Same"}]
+        self.assertTrue(answer_matches(answer, key["id"]))
+        self.assertFalse(answer_matches(answer, choices[1]["id"]))
+
         answer["target"] = {"type": "multiple_choice_set"}
         answer["answer_key"].append({"id": choices[2]["id"], "value": "Different"})
         self.assertTrue(answer_matches(answer, [choices[2]["id"], key["id"]]))

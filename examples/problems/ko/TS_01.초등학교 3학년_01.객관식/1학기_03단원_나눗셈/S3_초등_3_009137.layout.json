@@ -22,7 +22,8 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.diagram.frame"
+        "slot.diagram.frame",
+        "konva_1795397215423_paste_894505_0"
       ]
     },
     {
@@ -41,18 +42,20 @@
       "kind": "text_box",
       "prompt": "",
       "content": {
-        "text": "92. 나눗셈의 몫이 7인 것을 선택하세요.",
+        "text": "나눗셈의 몫이 7인 것을 선택하세요.",
         "style_role": "body",
         "x": 32.0,
         "y": 22.0,
-        "width": 820.0,
-        "height": 44.0,
+        "width": 358,
+        "height": 36,
         "align": "left",
         "valign": "top",
         "font_size": 24,
         "font_family": "\"Noto Sans KR\", sans-serif",
         "line_height": 1.5,
-        "fill": "#202124"
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "explicit"
       }
     },
     {
@@ -60,10 +63,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 220.0,
-        "y": 76.0,
-        "width": 630.0,
-        "height": 76.0,
+        "x": 229.818,
+        "y": 81.424,
+        "width": 170.67,
+        "height": 47.04,
         "stroke": "#f59e0b",
         "stroke_width": 1.8,
         "fill": "#ffffff"
@@ -76,8 +79,8 @@
       "content": {
         "text": "㉠ 42 ÷ 6 = 7",
         "style_role": "body",
-        "x": 365.0,
-        "y": 114.0,
+        "x": 236.13,
+        "y": 114.1,
         "font_size": 24,
         "align": "center",
         "font_family": "\"Noto Sans KR\", sans-serif",
@@ -89,7 +92,9 @@
           "value": "㉠",
           "group_id": "slot.choice.group",
           "include_in_submission": true
-        }
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
       }
     },
     {
@@ -99,8 +104,8 @@
       "content": {
         "text": "㉡ 35 ÷ 7 = 5",
         "style_role": "body",
-        "x": 685.0,
-        "y": 114.0,
+        "x": 418.52,
+        "y": 114.69,
         "font_size": 24,
         "align": "center",
         "font_family": "\"Noto Sans KR\", sans-serif",
@@ -112,7 +117,23 @@
           "value": "㉡",
           "group_id": "slot.choice.group",
           "include_in_submission": true
-        }
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "konva_1795397215423_paste_894505_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 409.95,
+        "y": 81.58,
+        "width": 170.67,
+        "height": 47.04,
+        "fill": "#ffffff",
+        "stroke": "#f59e0b",
+        "stroke_width": 1.8
       }
     }
   ],
@@ -126,6 +147,7 @@
     "slot.diagram.frame",
     "region.choices",
     "slot.choice.option_0",
-    "slot.choice.option_1"
+    "slot.choice.option_1",
+    "konva_1795397215423_paste_894505_0"
   ]
 }

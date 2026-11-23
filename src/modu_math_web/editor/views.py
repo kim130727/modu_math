@@ -201,10 +201,34 @@ def tutor_preview_speech(request: HttpRequest) -> HttpResponse | JsonResponse:
     return response
 
 
+def _canvas_presentation(artifacts):
+    from types import SimpleNamespace
+    from modu_math_web.learning.services.assignment_content import input_schema
+    from modu_math_web.learning.services.canvas_presentation import project_canvas
+    from modu_math_web.learning.services.student_presentation import presentation_contract, student_prompt
+
+    layout = artifacts.get("layout")
+    renderer = artifacts.get("renderer")
+    semantic = artifacts.get("semantic")
+    if not all(isinstance(value, dict) for value in (layout, renderer, semantic)):
+        return None
+    problem = SimpleNamespace(
+        answer=semantic.get("answer") or {}, semantic_data=semantic,
+        layout_data=layout, renderer_data=renderer,
+    )
+    schema = input_schema(problem)
+    _, canvas = project_canvas(
+        renderer.get("elements", []), layout, renderer.get("view_box"),
+        presentation_contract(problem, schema), schema, student_prompt(problem),
+    )
+    return canvas
+
+
 @require_GET
 def problem_detail(_: HttpRequest, problem_id: str) -> JsonResponse:
     try:
         detail = read_problem_detail(problem_id)
+        detail["canvas_presentation"] = _canvas_presentation(detail)
     except ValueError as exc:
         return _error(str(exc), status=400)
     except FileNotFoundError as exc:
@@ -309,6 +333,7 @@ def format_dsl(request: HttpRequest, problem_id: str) -> JsonResponse:
 def build_problem(_: HttpRequest, problem_id: str) -> JsonResponse:
     try:
         result, artifacts = build_with_artifacts(problem_id)
+        canvas = _canvas_presentation(artifacts) if result.ok else None
     except ValueError as exc:
         return _error(str(exc), status=400)
     except FileNotFoundError as exc:
@@ -324,6 +349,7 @@ def build_problem(_: HttpRequest, problem_id: str) -> JsonResponse:
         # Stale artifacts can be very large (SVGs may contain embedded fonts)
         # and are not useful to a client when this build failed.
         "artifacts": artifacts if result.ok else {},
+        "canvas_presentation": canvas,
     }
     if not result.ok:
         payload["error"] = result.error or "build failed"

@@ -43,11 +43,13 @@ type CachedProblemRequest = { expiresAt: number; promise: Promise<ProblemDetailR
 export function EditorKonva() {
   const [baseProblemJson, setBaseProblemJson] = useState<ProblemJson>(initialProblem);
   const [document, setDocument] = useState<EditorShapeDocument>(() => problemJsonToEditorDocument(initialProblem));
+  const builtDocumentRef = useRef<EditorShapeDocument | null>(null);
   const [previewArtifacts, setPreviewArtifacts] = useState<{
     semantic: Record<string, unknown> | null;
     solvable: Record<string, unknown> | null;
     layout: import("../api/editorApi").LayoutDocument | null;
     renderer: import("../api/editorApi").RendererDocument | null;
+    canvas_presentation?: import("../api/editorApi").CanvasPresentation | null;
   }>({ semantic: null, solvable: null, layout: null, renderer: null });
   const [selectedShapeIds, setSelectedShapeIds] = useState<string[]>([]);
   const [selectedProblemId, setSelectedProblemId] = useState(initialProblem.id);
@@ -145,7 +147,9 @@ export function EditorKonva() {
   const setProblem = useCallback((problem: ProblemJson, nextMessage: string, artifacts = previewArtifacts) => {
     setBaseProblemJson(problem);
     setPreviewArtifacts(artifacts);
-    setDocument(problemJsonToEditorDocument(problem));
+    const nextDocument = problemJsonToEditorDocument(problem);
+    builtDocumentRef.current = nextDocument;
+    setDocument(nextDocument);
     setSelectedProblemId(problem.id);
     setOpeningProblemId(null);
     setSelectedShapeIds([]);
@@ -193,6 +197,7 @@ export function EditorKonva() {
           solvable: detail.solvable,
           layout: detail.layout,
           renderer: detail.renderer,
+          canvas_presentation: detail.canvas_presentation,
         });
         const problemLanguage = problemLanguageFromId(detail.problem_id);
         if (problemLanguage) setActiveProblemLanguage(problemLanguage);
@@ -927,6 +932,7 @@ export function EditorKonva() {
         solvable: (response.artifacts.solvable as Record<string, unknown> | null | undefined) ?? null,
         layout: (response.artifacts.layout as import("../api/editorApi").LayoutDocument | null | undefined) ?? null,
         renderer: (response.artifacts.renderer as import("../api/editorApi").RendererDocument | null | undefined) ?? null,
+        canvas_presentation: response.canvas_presentation,
       };
       const builtProblem = problemDetailToCanonicalProblem({
         problem_id: response.problem_id,
@@ -939,7 +945,9 @@ export function EditorKonva() {
         ...builtArtifacts,
       });
       setBaseProblemJson(builtProblem);
-      setDocument(problemJsonToEditorDocument(builtProblem));
+      const nextDocument = problemJsonToEditorDocument(builtProblem);
+      builtDocumentRef.current = nextDocument;
+      setDocument(nextDocument);
       setSelectedShapeIds([]);
       setDraftTutorFlow(null);
       setDraftReview(null);
@@ -1219,6 +1227,7 @@ export function EditorKonva() {
             highlightedAnswerIndex={highlightedAnswerIndex}
             answerOptions={answerBindingOptions}
             answerChoices={activeReview.mode === "canvas_select" ? activeReview.choices : answerChoiceReviews}
+            canvasPresentation={!draftReview && builtDocumentRef.current === document ? previewArtifacts.canvas_presentation : null}
             answerPresentationMode={activeReview.mode === "canvas_select" ? "canvas_select" : answerPresentationMode}
             showAnswerCanvas={activeReview.show_canvas !== false}
             editorPanel={inspectorOpen ? editorPanel : undefined}

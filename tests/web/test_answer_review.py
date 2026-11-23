@@ -42,6 +42,62 @@ def test_circle_problem_grades_the_choice_values_sent_by_student_preview(tmp_pat
         assert response.json()["correct"] is expected
 
 
+def test_line_problem_hides_legacy_panel_punctuation_and_grades_slot_ids(tmp_path):
+    client = _setup_django(tmp_path)
+    from django.conf import settings
+
+    root = Path(__file__).resolve().parents[2] / "examples" / "problems"
+    source = next(root.rglob("*008974.dsl.py"))
+    relative = source.relative_to(root)
+    target = settings.PROBLEMS_ROOT / relative
+    target.parent.mkdir(parents=True)
+    for kind in ("dsl.py", "semantic.json", "layout.json", "renderer.json"):
+        name = source.name.removesuffix("dsl.py") + kind
+        shutil.copyfile(source.with_name(name), target.with_name(name))
+    url = "/api/editor/problems/" + quote(relative.as_posix()) + "/student-preview/"
+    preview = client.get(url).json()
+    elements = preview["renderer_data"]["elements"]
+    assert not any(e.get("text") in {"(", ")", ","} for e in elements)
+    assert len([e for e in elements if e.get("source_ref", "").startswith("slot.diagram.label_")]) == 4
+    choices = preview["input_schema"]["fields"][0]["choices"]
+    assert len(choices) == 4
+    for index, choice in enumerate(choices):
+        response = client.post(url, {
+            "revision": preview["revision"], "answer": choice["value"],
+        }, content_type="application/json")
+        assert response.status_code == 200
+        assert response.json()["correct"] is (index == 2)
+
+
+def test_two_rays_use_the_same_visible_canvas_and_viewport(tmp_path):
+    client = _setup_django(tmp_path)
+    from django.conf import settings
+
+    root = Path(__file__).resolve().parents[2] / "examples" / "problems"
+    source = next(root.rglob("*008977.dsl.py"))
+    relative = source.relative_to(root)
+    target = settings.PROBLEMS_ROOT / relative
+    target.parent.mkdir(parents=True)
+    for kind in ("dsl.py", "semantic.json", "layout.json", "renderer.json"):
+        name = source.name.removesuffix("dsl.py") + kind
+        shutil.copyfile(source.with_name(name), target.with_name(name))
+    url = "/api/editor/problems/" + quote(relative.as_posix())
+    editor = client.get(url + "/").json()
+    student = client.get(url + "/student-preview/").json()
+
+    assert {e["source_ref"] for e in student["renderer_data"]["elements"]} == {
+        "slot.diagram.ray_top", "slot.diagram.ray_bottom",
+    }
+    assert set(editor["canvas_presentation"]["hidden_slot_ids"]) == {
+        "slot.stem.question", "slot.choice.option_0", "slot.choice.option_1",
+    }
+    assert student["renderer_data"]["presentation_viewport"] == editor["canvas_presentation"]["viewport"]
+    assert student["renderer_data"]["presentation_viewport"] == {
+        "x": 390, "y": 56, "width": 222, "height": 130,
+    }
+    assert len(student["input_schema"]["fields"][0]["choices"]) == 2
+
+
 def test_route_problem_saved_canvas_choice_reaches_student_grader(tmp_path):
     client = _setup_django(tmp_path)
     from django.conf import settings

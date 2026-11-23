@@ -34,6 +34,12 @@ export interface ProblemDetailResponse {
   semantic: Record<string, unknown> | null;
   solvable: Record<string, unknown> | null;
   svg: string | null;
+  canvas_presentation?: CanvasPresentation | null;
+}
+
+export interface CanvasPresentation {
+  hidden_slot_ids: string[];
+  viewport: { x: number; y: number; width: number; height: number };
 }
 
 export interface LayoutDocument {
@@ -127,6 +133,7 @@ export interface TutorFlowSaveResponse {
 }
 
 export interface BuildProblemResponse {
+  canvas_presentation?: CanvasPresentation | null;
   ok: boolean;
   problem_id: string;
   stdout: string;

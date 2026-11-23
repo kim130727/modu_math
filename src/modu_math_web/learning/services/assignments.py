@@ -17,20 +17,20 @@ from ..models import (
     StudentProfile,
 )
 from .assignment_content import freeze_images, input_schema, with_integer_input_limits
-from .student_presentation import authored_prompt, presentation_contract, safe_layout, normalize_answer_capacity
+from .canvas_presentation import project_canvas
+from .student_presentation import (
+    normalize_answer_capacity,
+    presentation_contract,
+    safe_layout,
+    student_prompt,
+)
 
 
 def student_problem(problem):
     """Do not return domain quantities, solvable, tutor flow or arbitrary metadata."""
     semantic = problem.semantic_data
     metadata = semantic.get("metadata", {})
-    prompt = (
-        authored_prompt(problem)
-        or metadata.get("presentation_prompt")
-        or metadata.get("question")
-        or metadata.get("instruction")
-        or ""
-    )
+    prompt = student_prompt(problem)
     renderer = deepcopy(problem.renderer_data)
     schema = input_schema(problem)
     presentation = presentation_contract(problem, schema)
@@ -116,7 +116,11 @@ def student_problem(problem):
             element["attributes"].pop("href", None)
         elements.append(element)
     normalize_answer_capacity(elements, presentation, problem.answer, schema)
-    public_renderer["elements"] = elements
+    elements, canvas = project_canvas(
+        elements, problem.layout_data, public_renderer.get("view_box"), presentation, schema, prompt
+    )
+    public_renderer.update(elements=elements, presentation_viewport=canvas["viewport"],
+                           presentation_resolved=True)
     choices = []
     source_choices = metadata.get("choices", semantic.get("choices", []))
     if isinstance(source_choices, list):
@@ -230,11 +234,19 @@ def _student_item_content(item):
         )
     presentation = content.get("presentation") or {}
     renderer = content.get("renderer_data") or {}
-    if presentation.get("mode") == "canvas_slots" and renderer.get("elements"):
-        # Apply the same input rules to previously assigned problems, using
-        # the frozen answer contract and leaving the stored snapshot intact.
-        elements = [dict(element) for element in renderer["elements"]]
-        normalize_answer_capacity(elements, presentation, item.answer, schema)
+    if renderer.get("elements"):
+        elements = renderer["elements"]
+        if not renderer.get("presentation_resolved"):
+            elements, canvas = project_canvas(
+                elements, content.get("layout_data") or {}, renderer.get("view_box"),
+                presentation, schema, content.get("prompt"),
+            )
+            renderer = {**renderer, "presentation_viewport": canvas["viewport"],
+                        "presentation_resolved": True}
+        if presentation.get("mode") == "canvas_slots":
+            # Use the frozen answer contract and leave the stored snapshot intact.
+            elements = [dict(element) for element in elements]
+            normalize_answer_capacity(elements, presentation, item.answer, schema)
         content = {**content, "renderer_data": {**renderer, "elements": elements}}
     return {**content, "input_schema": schema}
 

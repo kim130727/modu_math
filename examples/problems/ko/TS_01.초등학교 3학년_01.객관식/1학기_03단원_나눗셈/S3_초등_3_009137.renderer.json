@@ -15,32 +15,34 @@
         "fill": "#202124",
         "font-family": "\"Noto Sans KR\", sans-serif",
         "font-size": 24.0,
-        "width": 820.0,
-        "height": 44.0,
-        "max_width": 820.0,
+        "width": 358.0,
+        "height": 36.0,
+        "max_width": 358.0,
         "data-slot-kind": "text_box",
         "data-box-x": 32.0,
         "data-box-y": 22.0,
-        "data-box-width": 820.0,
-        "data-box-height": 44.0,
+        "data-box-width": 358.0,
+        "data-box-height": 36.0,
         "data-text-align": "left",
         "data-vertical-align": "top",
-        "data-line-height": 1.5
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "explicit"
       },
       "source_ref": "slot.stem.question",
       "refs": {
         "layout_slot_id": "slot.stem.question"
       },
-      "text": "92. 나눗셈의 몫이 7인 것을 선택하세요."
+      "text": "나눗셈의 몫이 7인 것을 선택하세요."
     },
     {
       "id": "slot.diagram.frame.rect",
       "type": "rect",
       "attributes": {
-        "x": 220.0,
-        "y": 76.0,
-        "width": 630.0,
-        "height": 76.0,
+        "x": 229.818,
+        "y": 81.424,
+        "width": 170.67,
+        "height": 47.04,
         "fill": "#ffffff",
         "stroke": "#f59e0b",
         "stroke-width": 1.8
@@ -51,14 +53,33 @@
       }
     },
     {
+      "id": "konva_1795397215423_paste_894505_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 409.95,
+        "y": 81.58,
+        "width": 170.67,
+        "height": 47.04,
+        "fill": "#ffffff",
+        "stroke": "#f59e0b",
+        "stroke-width": 1.8
+      },
+      "source_ref": "konva_1795397215423_paste_894505_0",
+      "refs": {
+        "layout_slot_id": "konva_1795397215423_paste_894505_0"
+      }
+    },
+    {
       "id": "slot.choice.option_0.text",
       "type": "text",
       "attributes": {
-        "x": 365.0,
-        "y": 114.0,
+        "x": 236.13,
+        "y": 114.1,
         "fill": "#111827",
         "font-family": "\"Noto Sans KR\", sans-serif",
-        "font-size": 24.0
+        "font-size": 24.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
       },
       "source_ref": "slot.choice.option_0",
       "refs": {
@@ -78,11 +99,13 @@
       "id": "slot.choice.option_1.text",
       "type": "text",
       "attributes": {
-        "x": 685.0,
-        "y": 114.0,
+        "x": 418.52,
+        "y": 114.69,
         "fill": "#111827",
         "font-family": "\"Noto Sans KR\", sans-serif",
-        "font-size": 24.0
+        "font-size": 24.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
       },
       "source_ref": "slot.choice.option_1",
       "refs": {

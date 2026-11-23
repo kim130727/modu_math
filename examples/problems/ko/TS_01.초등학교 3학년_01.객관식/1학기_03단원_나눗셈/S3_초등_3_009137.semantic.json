@@ -4,7 +4,7 @@
   "metadata": {
     "title": "나눗셈의 몫이 7인 식 선택하기",
     "tags": [],
-    "question": "92. 나눗셈의 몫이 7인 것을 선택하세요.",
+    "question": "나눗셈의 몫이 7인 것을 선택하세요.",
     "required_layout_ids": [
       "slot.diagram.frame"
     ],
@@ -13,7 +13,19 @@
     "semester": 1,
     "subject": "수학",
     "chapter": "03단원_나눗셈",
-    "language": "ko-KR"
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "나눗셈의 몫이 7인 것을 선택하세요."
   },
   "domain": {
     "objects": [
@@ -45,33 +57,34 @@
     "confidence": 1.0
   },
   "answer": {
-    "type": "choice",
-    "value": "㉠",
-    "unit": "",
-    "answer_index": 0,
-    "values": [
-      "㉠"
-    ],
     "blanks": [],
     "choices": [
       {
         "id": "slot.choice.option_0",
         "slot_id": "slot.choice.option_0",
-        "text": "㉠",
+        "text": "㉠ 42 ÷ 6 = 7",
         "value": "㉠"
       },
       {
         "id": "slot.choice.option_1",
         "slot_id": "slot.choice.option_1",
-        "text": "㉡",
+        "text": "㉡ 35 ÷ 7 = 5",
         "value": "㉡"
       }
     ],
     "answer_key": [
       {
         "slot_id": "slot.choice.option_0",
-        "value": "㉠"
+        "value": "㉠ 42 ÷ 6 = 7"
       }
+    ],
+    "confidence": 1.0,
+    "type": "choice",
+    "value": "㉠ 42 ÷ 6 = 7",
+    "unit": "",
+    "answer_index": 0,
+    "values": [
+      "㉠ 42 ÷ 6 = 7"
     ]
   }
 }

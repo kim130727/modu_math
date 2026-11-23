@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Circle, Group, Layer, Line, Path, Rect, Stage, Text, Transformer } from "react-konva";
 import type Konva from "konva";
-import type { TutorRendererOverlay } from "../api/editorApi";
+import type { CanvasPresentation, TutorRendererOverlay } from "../api/editorApi";
 import type { BaseTenBlockKind, ConnectorShape, EditorShape, LineShape } from "../types/editorShape";
 import { scalePathData } from "../utils/pathData";
 import { connectorArrowForPreset, connectorBounds, connectorControl, connectorEnd, connectorKindForPreset, connectorPathData, connectorStart } from "./connectorGeometry";
@@ -32,6 +32,7 @@ interface KonvaStageProps {
   answerOptions?: AnswerBindingOption[];
   answerChoices?: AnswerChoiceReview[];
   answerPresentationMode?: AnswerPresentationMode;
+  canvasPresentation?: CanvasPresentation | null;
   showAnswerCanvas?: boolean;
   editorPanel?: ReactNode;
   reviewPanel?: ReactNode;
@@ -60,6 +61,7 @@ export function KonvaStage({
   answerOptions = [],
   answerChoices = [],
   answerPresentationMode = "panel_input",
+  canvasPresentation,
   showAnswerCanvas = true,
   editorPanel,
   reviewPanel,
@@ -203,6 +205,10 @@ export function KonvaStage({
   );
   const isCanvasSelect = answerPresentationMode === "canvas_select";
   const renderedShapes = useMemo(() => {
+    if (canvasPresentation) {
+      const hidden = new Set(canvasPresentation.hidden_slot_ids);
+      return shapes.filter((shape) => !hidden.has(shape.id)).sort(compareRenderOrder);
+    }
     const hiddenChoices: EditorShape[] = [];
     const kept: EditorShape[] = [];
     for (const shape of shapes) {
@@ -219,12 +225,12 @@ export function KonvaStage({
       ? kept.filter((shape) => !isEmptyChoiceFrame(shape, hiddenChoices, kept))
       : kept;
     return visible.sort(compareRenderOrder);
-  }, [answerChoices.length, isCanvasSelect, shapes]);
+  }, [answerChoices.length, canvasPresentation, isCanvasSelect, shapes]);
   const [fitContent, setFitContent] = useState(true);
   const [zoom, setZoom] = useState<number | null>(null);
   const crop = useMemo(
-    () => contentCrop(renderedShapes, width, height, fitContent),
-    [fitContent, height, renderedShapes, width],
+    () => (fitContent && canvasPresentation?.viewport) || contentCrop(renderedShapes, width, height, fitContent),
+    [canvasPresentation, fitContent, height, renderedShapes, width],
   );
   const presentationPanel = answerReviewMode ? reviewPanel : editorPanel;
   // Measure the canvas grid cell so prompt, answer and panel sizes are all respected.

@@ -17,6 +17,7 @@ Map<String, dynamic> problemVisualRenderer(ProblemContent content,
 Map<String, dynamic> _projectVisual(ProblemContent content,
     {Set<String> canvasChoiceElementIds = const {}}) {
   final renderer = content.renderer;
+  if (renderer['presentation_resolved'] == true) return renderer;
   final raw = renderer['elements'];
   if (raw is! List) return renderer;
   String normalize(String value) => value.replaceAll(RegExp(r'\s+'), '');

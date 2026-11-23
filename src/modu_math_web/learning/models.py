@@ -63,6 +63,22 @@ def _keyed_choice_matches(choices, submitted, expected_ids):
     return {_choice_id(value, choices) for value in values} == expected_ids
 
 
+def _answer_choice_id(key, choices):
+    if not isinstance(key, dict):
+        return None
+    identity = key.get("id")
+    slot = key.get("slot_id")
+    for ref in (identity, slot):
+        if isinstance(ref, str) and ref in choices:
+            return ref
+    if isinstance(slot, str):
+        matches = [choice_id for choice_id, choice in choices.items()
+                   if choice.get("slot_id") == slot]
+        if len(matches) == 1:
+            return matches[0]
+    return None
+
+
 def answer_matches(answer: dict[str, Any], submitted: Any) -> bool:
     """Compare a client answer with the existing answer contract without rewriting it."""
     candidates: list[Any] = []
@@ -81,8 +97,8 @@ def answer_matches(answer: dict[str, Any], submitted: Any) -> bool:
     # The input schema sends the actual choice ID. Grade that identity before
     # interpreting any legacy answer text or one-based choice number.
     if answer_key and (len(answer_key) == 1 or choice_set or review.get("mode") == "canvas_select"):
-        expected_ids = [key.get("id") if isinstance(key, dict) else None for key in answer_key]
-        if all(isinstance(key, str) and key in choices_by_id for key in expected_ids):
+        expected_ids = [_answer_choice_id(key, choices_by_id) for key in answer_key]
+        if all(expected_ids):
             return _keyed_choice_matches(choices_by_id, submitted, set(expected_ids))
     if review.get("mode") == "canvas_select" and not answer_key:
         return False
