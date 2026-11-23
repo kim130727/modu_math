@@ -4,7 +4,7 @@
   "metadata": {
     "title": "보기와 몫이 같은 나눗셈식 선택하기",
     "tags": [],
-    "question": "93. <보기>와 나눗셈의 몫이 같은 식을 선택하세요.",
+    "question": "<보기>와 나눗셈의 몫이 같은 식을 선택하세요.",
     "required_layout_ids": [
       "slot.diagram.example_box",
       "slot.diagram.choice_frame"
@@ -14,7 +14,19 @@
     "semester": 1,
     "subject": "수학",
     "chapter": "03단원_나눗셈",
-    "language": "ko-KR"
+    "language": "ko-KR",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "<보기>와 나눗셈의 몫이 같은 식을 선택하세요."
   },
   "domain": {
     "objects": [
@@ -54,13 +66,6 @@
     "confidence": 1.0
   },
   "answer": {
-    "type": "choice",
-    "value": "18 ÷ 2",
-    "unit": "",
-    "answer_index": 0,
-    "values": [
-      "18 ÷ 2"
-    ],
     "blanks": [],
     "choices": [
       {
@@ -81,6 +86,14 @@
         "slot_id": "slot.choice.option_0",
         "value": "18 ÷ 2"
       }
+    ],
+    "confidence": 1.0,
+    "type": "choice",
+    "value": "18 ÷ 2",
+    "unit": "",
+    "answer_index": 0,
+    "values": [
+      "18 ÷ 2"
     ]
   }
 }

@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007528",
+  "problem_type": "multiple_choice_perpendicular_lines",
+  "given": [
+    {
+      "ref": "pair_0",
+      "value": "비스듬히 만나는 두 직선"
+    },
+    {
+      "ref": "pair_1",
+      "value": "직각으로 만나는 두 직선"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "서로 수직인 두 직선",
+    "unit": ""
+  },
+  "method": "right_angle_identification",
+  "steps": [
+    {
+      "id": "identify_perpendicular",
+      "expr": "②",
+      "explanation": "두 직선이 만나서 이루는 각이 직각(90°)인 것은 ②입니다.",
+      "value": "②"
+    }
+  ],
+  "answer": {
+    "value": "②",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "②"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②",
+        "diagnostics": [
+          {
+            "id": "diag.chose_non_perpendicular",
+            "condition": "answer_equals_1",
+            "concept": "수직",
+            "reason": "직각을 이루지 않고 비스듬히 만나는 두 직선(①)을 선택함",
+            "feedback": "두 직선이 만나서 이루는 각이 직각(90°)일 때 서로 수직이라고 합니다. ②의 두 직선이 서로 수직입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

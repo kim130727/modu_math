@@ -1,0 +1,128 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007950",
+  "problem_type": "multiple_choice_skip_counting_pattern",
+  "given": [
+    {
+      "ref": "seq_0",
+      "value": 206000
+    },
+    {
+      "ref": "seq_1",
+      "value": 306000
+    },
+    {
+      "ref": "seq_2",
+      "value": 406000
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.g2_option_1",
+    "label": "변하는 자리와 뛰어 센 값",
+    "unit": ""
+  },
+  "method": "skip_counting_pattern",
+  "steps": [
+    {
+      "id": "find_place_and_step",
+      "expr": "306000 - 206000 = 100000",
+      "explanation": "십만의 자리 숫자가 1씩 커지므로 100000씩 뛰어 세었습니다.",
+      "value": [
+        "십만",
+        "100000"
+      ]
+    }
+  ],
+  "answer": {
+    "value": [
+      "십만",
+      "100000"
+    ],
+    "unit": "",
+    "values": [
+      "십만",
+      "100000"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.g1_option_0",
+        "slot_id": "slot.choice.g1_option_0",
+        "text": "만",
+        "value": "만"
+      },
+      {
+        "id": "slot.choice.g1_option_1",
+        "slot_id": "slot.choice.g1_option_1",
+        "text": "십만",
+        "value": "십만"
+      },
+      {
+        "id": "slot.choice.g1_option_2",
+        "slot_id": "slot.choice.g1_option_2",
+        "text": "백만",
+        "value": "백만"
+      },
+      {
+        "id": "slot.choice.g2_option_0",
+        "slot_id": "slot.choice.g2_option_0",
+        "text": "10000",
+        "value": "10000"
+      },
+      {
+        "id": "slot.choice.g2_option_1",
+        "slot_id": "slot.choice.g2_option_1",
+        "text": "100000",
+        "value": "100000"
+      },
+      {
+        "id": "slot.choice.g2_option_2",
+        "slot_id": "slot.choice.g2_option_2",
+        "text": "1000000",
+        "value": "1000000"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.g1_option_1",
+        "value": "십만",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_place_man",
+            "condition": "answer_equals_man",
+            "concept": "자릿값과 뛰어 세기",
+            "reason": "십만의 자리를 만의 자리로 혼동함",
+            "feedback": "206000에서 306000으로 바뀔 때 커진 숫자 2→3은 오른쪽에서 여섯째 자리인 십만의 자리입니다."
+          },
+          {
+            "id": "diag.wrong_place_baekman",
+            "condition": "answer_equals_baekman",
+            "concept": "자릿값과 뛰어 세기",
+            "reason": "십만의 자리를 백만의 자리로 혼동함",
+            "feedback": "206000은 여섯 자리 수이므로 가장 높은 자리는 십만의 자리입니다."
+          }
+        ]
+      },
+      {
+        "slot_id": "slot.choice.g2_option_1",
+        "value": "100000",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_step_10000",
+            "condition": "answer_equals_10000",
+            "concept": "뛰어 세기",
+            "reason": "100000씩 뛰어 센 것을 10000씩으로 오인함",
+            "feedback": "십만의 자리 숫자가 1씩 커졌으므로 100000씩 뛰어 세었습니다."
+          },
+          {
+            "id": "diag.wrong_step_1000000",
+            "condition": "answer_equals_1000000",
+            "concept": "뛰어 세기",
+            "reason": "100000씩 뛰어 센 것을 1000000씩으로 오인함",
+            "feedback": "1000000은 백만입니다. 십만의 자리 숫자가 1씩 커졌으므로 100000씩 뛰어 세었습니다."
+          }
+        ]
+      }
+    ]
+  }
+}

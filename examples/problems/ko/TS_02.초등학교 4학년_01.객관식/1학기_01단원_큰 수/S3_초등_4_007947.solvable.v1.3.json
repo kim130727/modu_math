@@ -1,0 +1,89 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007947",
+  "problem_type": "multiple_choice_place_value",
+  "given": [
+    {
+      "ref": "number",
+      "value": "5555000000000000"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "500조를 나타내는 기호",
+    "unit": ""
+  },
+  "method": "place_value_identification",
+  "steps": [
+    {
+      "id": "find_500jo_place",
+      "expr": "digit_1",
+      "explanation": "오른쪽부터 네 자리씩 나누어 조 단위를 확인하면 백조의 자리는 ㉡입니다.",
+      "value": "㉡"
+    }
+  ],
+  "answer": {
+    "value": "㉡",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "㉡"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "㉠",
+        "value": "㉠"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "㉡",
+        "value": "㉡"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "㉢",
+        "value": "㉢"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "㉣",
+        "value": "㉣"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "㉡",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_place_5000jo",
+            "condition": "answer_equals_giyeok",
+            "concept": "조 단위의 자릿값",
+            "reason": "천조의 자리 숫자를 백조의 자리로 혼동함",
+            "feedback": "오른쪽부터 네 자리씩 나누면 5555 | 0000 | 0000 | 0000입니다. ㉠은 5000조를 나타냅니다."
+          },
+          {
+            "id": "diag.wrong_place_50jo",
+            "condition": "answer_equals_digeut",
+            "concept": "조 단위의 자릿값",
+            "reason": "십조의 자리 숫자를 백조의 자리로 혼동함",
+            "feedback": "㉢은 십조의 자리이므로 50조를 나타냅니다. 백조의 자리를 찾아보세요."
+          },
+          {
+            "id": "diag.wrong_place_5jo",
+            "condition": "answer_equals_rieul",
+            "concept": "조 단위의 자릿값",
+            "reason": "일조의 자리 숫자를 백조의 자리로 혼동함",
+            "feedback": "㉣은 일조의 자리이므로 5조를 나타냅니다. 백조의 자리를 찾아보세요."
+          }
+        ]
+      }
+    ]
+  }
+}

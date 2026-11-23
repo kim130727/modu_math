@@ -1,0 +1,298 @@
+{
+  "problem_id": "S3_초등_4_007531",
+  "view_box": {
+    "width": 886.0,
+    "height": 290.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 820.0,
+        "height": 56.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 820.0,
+        "data-box-height": 56.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "66. 삼각자를 사용하여 점 ㄱ을 지나고 직선 가에 수직인 직선을 그은 것을 선택하세요."
+    },
+    {
+      "id": "slot.choice.option_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 116.0,
+        "y": 92.0,
+        "width": 290.0,
+        "height": 168.0,
+        "fill": "#ffffff",
+        "stroke": "#e5e7eb",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "①",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 480.0,
+        "y": 92.0,
+        "width": 290.0,
+        "height": 168.0,
+        "fill": "#ffffff",
+        "stroke": "#e5e7eb",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "②",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.diagram.l0_base.line",
+      "type": "line",
+      "attributes": {
+        "x1": 160.0,
+        "y1": 226.0,
+        "x2": 384.0,
+        "y2": 226.0,
+        "stroke": "#111827",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.l0_base",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l0_base"
+      }
+    },
+    {
+      "id": "slot.diagram.l0_perp.line",
+      "type": "line",
+      "attributes": {
+        "x1": 272.0,
+        "y1": 108.0,
+        "x2": 272.0,
+        "y2": 226.0,
+        "stroke": "#111827",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.l0_perp",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l0_perp"
+      }
+    },
+    {
+      "id": "slot.diagram.l1_base.line",
+      "type": "line",
+      "attributes": {
+        "x1": 524.0,
+        "y1": 226.0,
+        "x2": 748.0,
+        "y2": 226.0,
+        "stroke": "#111827",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.l1_base",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l1_base"
+      }
+    },
+    {
+      "id": "slot.diagram.l1_ob.line",
+      "type": "line",
+      "attributes": {
+        "x1": 566.0,
+        "y1": 226.0,
+        "x2": 682.0,
+        "y2": 110.0,
+        "stroke": "#111827",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.l1_ob",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l1_ob"
+      }
+    },
+    {
+      "id": "slot.diagram.l0_pt.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 272.0,
+        "cy": 136.0,
+        "r": 3.5,
+        "stroke": "#111827",
+        "stroke-width": 1.0,
+        "fill": "#111827"
+      },
+      "source_ref": "slot.diagram.l0_pt",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l0_pt"
+      }
+    },
+    {
+      "id": "slot.diagram.l1_pt.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 656.0,
+        "cy": 136.0,
+        "r": 3.5,
+        "stroke": "#111827",
+        "stroke-width": 1.0,
+        "fill": "#111827"
+      },
+      "source_ref": "slot.diagram.l1_pt",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l1_pt"
+      }
+    },
+    {
+      "id": "slot.diagram.badge_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 140.0,
+        "y": 106.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.badge_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.badge_0"
+      },
+      "text": "①"
+    },
+    {
+      "id": "slot.diagram.l0_ga.text",
+      "type": "text",
+      "attributes": {
+        "x": 142.0,
+        "y": 214.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.l0_ga",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l0_ga"
+      },
+      "text": "가"
+    },
+    {
+      "id": "slot.diagram.l0_pt_lbl.text",
+      "type": "text",
+      "attributes": {
+        "x": 254.0,
+        "y": 124.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.l0_pt_lbl",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l0_pt_lbl"
+      },
+      "text": "ㄱ"
+    },
+    {
+      "id": "slot.diagram.badge_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 504.0,
+        "y": 106.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.badge_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.badge_1"
+      },
+      "text": "②"
+    },
+    {
+      "id": "slot.diagram.l1_ga.text",
+      "type": "text",
+      "attributes": {
+        "x": 506.0,
+        "y": 214.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.l1_ga",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l1_ga"
+      },
+      "text": "가"
+    },
+    {
+      "id": "slot.diagram.l1_pt_lbl.text",
+      "type": "text",
+      "attributes": {
+        "x": 636.0,
+        "y": 124.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.l1_pt_lbl",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l1_pt_lbl"
+      },
+      "text": "ㄱ"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

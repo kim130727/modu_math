@@ -1,0 +1,59 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007975",
+  "problem_type": "multiple_choice_angle_comparison",
+  "given": [
+    {
+      "ref": "angle_0",
+      "value": 108,
+      "unit": "도"
+    },
+    {
+      "ref": "angle_1",
+      "value": 94,
+      "unit": "도"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "더 큰 각",
+    "unit": ""
+  },
+  "method": "visual_angle_comparison",
+  "steps": [
+    {
+      "id": "compare_opening",
+      "expr": "① > ②",
+      "explanation": "왼쪽 각(①)이 오른쪽 각(②)보다 두 변이 더 많이 벌어져 있으므로 더 큰 각입니다.",
+      "value": "①"
+    }
+  ],
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.chose_smaller_angle",
+            "condition": "answer_equals_2",
+            "concept": "각의 크기 비교",
+            "reason": "더 적게 벌어진 오른쪽 각을 더 큰 각으로 선택함",
+            "feedback": "각의 크기는 두 변이 많이 벌어질수록 큰 각입니다. 왼쪽 각(①)이 오른쪽 각(②)보다 더 많이 벌어져 있습니다."
+          }
+        ]
+      }
+    ]
+  }
+}

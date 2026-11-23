@@ -1,0 +1,449 @@
+{
+  "problem_id": "S3_초등_4_007954",
+  "problem_type": "multiple_choice_concept_verification",
+  "metadata": {
+    "title": "1억에 대한 바른 설명 찾기",
+    "tags": [],
+    "question": "18. 1억을 바르게 설명한 사람의 이름을 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.gr_bubble",
+      "slot.diagram.gr_head",
+      "slot.diagram.gr_badge",
+      "slot.diagram.dj_head",
+      "slot.diagram.dj_badge",
+      "slot.diagram.dj_bubble"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "01단원_큰 수",
+    "difficulty": "중",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "18. 1억을 바르게 설명한 사람의 이름을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.comma",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.comma"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_0",
+        "type": "text",
+        "properties": {
+          "text": "규리"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "text",
+        "properties": {
+          "text": "동준"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.paren_left",
+        "type": "text",
+        "properties": {
+          "text": "("
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.paren_left"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.paren_right",
+        "type": "text",
+        "properties": {
+          "text": ")"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.paren_right"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.dj_badge",
+        "type": "rect_slot",
+        "properties": {
+          "x": 468,
+          "y": 172,
+          "width": 72,
+          "height": 32,
+          "stroke": "#22c55e",
+          "stroke_width": 1.2,
+          "rx": 6,
+          "ry": 6,
+          "fill": "#ecfdf5",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.dj_badge"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.dj_bubble",
+        "type": "rect_slot",
+        "properties": {
+          "x": 560,
+          "y": 88,
+          "width": 220,
+          "height": 96,
+          "stroke": "#374151",
+          "stroke_width": 1.5,
+          "rx": 18,
+          "ry": 18,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.dj_bubble"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.dj_head",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 504,
+          "cy": 136,
+          "r": 24,
+          "stroke": "#78350f",
+          "stroke_width": 1.5,
+          "fill": "#fde68a",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.dj_head"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.dj_name",
+        "type": "text",
+        "properties": {
+          "text": "동준"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.dj_name"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.dj_text",
+        "type": "text",
+        "properties": {
+          "text": "9999만보다\n10만 큰 수야.",
+          "width": 200,
+          "height": 68
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.dj_text"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.gr_badge",
+        "type": "rect_slot",
+        "properties": {
+          "x": 346,
+          "y": 172,
+          "width": 72,
+          "height": 32,
+          "stroke": "#22c55e",
+          "stroke_width": 1.2,
+          "rx": 6,
+          "ry": 6,
+          "fill": "#ecfdf5",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.gr_badge"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.gr_bubble",
+        "type": "rect_slot",
+        "properties": {
+          "x": 116,
+          "y": 88,
+          "width": 210,
+          "height": 96,
+          "stroke": "#374151",
+          "stroke_width": 1.5,
+          "rx": 18,
+          "ry": 18,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.gr_bubble"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.gr_head",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 382,
+          "cy": 136,
+          "r": 24,
+          "stroke": "#78350f",
+          "stroke_width": 1.5,
+          "fill": "#fde68a",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.gr_head"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.gr_name",
+        "type": "text",
+        "properties": {
+          "text": "규리"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.gr_name"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.gr_text",
+        "type": "text",
+        "properties": {
+          "text": "1000만이\n10개인 수야.",
+          "width": 190,
+          "height": 68
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.gr_text"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "18. 1억을 바르게 설명한 사람의 이름을 선택하세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "규리",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "규리"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "규리",
+        "value": "규리"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "동준",
+        "value": "동준"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "규리",
+        "diagnostics": [
+          {
+            "id": "diag.chose_9999man_plus_10man",
+            "condition": "answer_equals_dongjun",
+            "concept": "1억의 이해",
+            "reason": "9999만보다 10만 큰 수를 1억으로 착각함",
+            "feedback": "9999만보다 1만 큰 수가 1억이고, 10만 큰 수는 1억 9만입니다. 1000만이 10개인 수가 1억입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "gyuri": {
+      "label": "규리",
+      "statement": "1000만이 10개인 수야.",
+      "value": "1억",
+      "is_correct": true
+    },
+    "dongjun": {
+      "label": "동준",
+      "statement": "9999만보다 10만 큰 수야.",
+      "value": "1억 9만",
+      "is_correct": false
+    }
+  },
+  "relations": [
+    {
+      "type": "concept_match",
+      "target": "1억",
+      "correct_entity": "gyuri",
+      "distractor": "dongjun"
+    }
+  ]
+}

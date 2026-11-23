@@ -1,0 +1,87 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007981",
+  "problem_type": "multiple_choice_angle_comparison",
+  "given": [
+    {
+      "ref": "angle_ga",
+      "value": 84,
+      "unit": "도"
+    },
+    {
+      "ref": "angle_na",
+      "value": 42,
+      "unit": "도"
+    },
+    {
+      "ref": "angle_da",
+      "value": 124,
+      "unit": "도"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_2",
+    "label": "가장 큰 각",
+    "unit": ""
+  },
+  "method": "visual_angle_comparison",
+  "steps": [
+    {
+      "id": "find_largest_angle",
+      "expr": "다 > 가 > 나",
+      "explanation": "두 변이 가장 많이 벌어진 각은 다입니다.",
+      "value": "다"
+    }
+  ],
+  "answer": {
+    "value": "다",
+    "answer_index": 2,
+    "unit": "",
+    "values": [
+      "다"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "가",
+        "value": "가"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "나",
+        "value": "나"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "다",
+        "value": "다"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "다",
+        "diagnostics": [
+          {
+            "id": "diag.chose_ga",
+            "condition": "answer_equals_ga",
+            "concept": "각의 크기 비교",
+            "reason": "예각에 가까운 가를 가장 큰 각으로 선택함",
+            "feedback": "두 변이 가장 많이 벌어진 각을 찾습니다. 다는 둔각으로 가장 크게 벌어져 있습니다."
+          },
+          {
+            "id": "diag.chose_na",
+            "condition": "answer_equals_na",
+            "concept": "각의 크기 비교",
+            "reason": "가장 작은 예각인 나를 가장 큰 각으로 선택함",
+            "feedback": "나는 세 각 중에서 가장 작습니다. 두 변이 가장 많이 벌어진 다를 선택하세요."
+          }
+        ]
+      }
+    ]
+  }
+}

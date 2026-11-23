@@ -1,0 +1,754 @@
+{
+  "problem_id": "S3_초등_4_007948",
+  "problem_type": "multiple_choice_number_comparison_on_number_line",
+  "metadata": {
+    "title": "수직선을 보고 28300과 28600의 크기 비교하기",
+    "tags": [],
+    "question": "8. 수직선을 보고 28300과 28600의 크기를 비교하여 알맞은 수를 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.left_badge_bg",
+      "slot.diagram.right_badge_bg",
+      "slot.diagram.axis_line",
+      "slot.diagram.tick_0",
+      "slot.diagram.tick_1",
+      "slot.diagram.tick_2",
+      "slot.diagram.tick_3",
+      "slot.diagram.tick_4",
+      "slot.diagram.tick_5",
+      "slot.diagram.tick_6",
+      "slot.diagram.tick_7",
+      "slot.diagram.tick_8",
+      "slot.diagram.tick_9",
+      "slot.diagram.dot_28300",
+      "slot.diagram.dot_28600"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "01단원_큰 수",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "8. 수직선을 보고 28300과 28600의 크기를 비교하여 알맞은 수를 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.comma",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.comma"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_0",
+        "type": "text",
+        "properties": {
+          "text": "28300"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "text",
+        "properties": {
+          "text": "28600"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.paren_left",
+        "type": "text",
+        "properties": {
+          "text": "("
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.paren_left"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.paren_right",
+        "type": "text",
+        "properties": {
+          "text": ")이 더 큰 수입니다."
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.paren_right"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.axis_line",
+        "type": "line_slot",
+        "properties": {
+          "x1": 136,
+          "y1": 133,
+          "x2": 750,
+          "y2": 133,
+          "stroke": "#111827",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.axis_line"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.desc_text",
+        "type": "text",
+        "properties": {
+          "text": "수직선에서 오른쪽에 위치한 수가 왼쪽에 위치한 수보다 더 큰 수이므로",
+          "width": 766,
+          "height": 36
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.desc_text"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.dot_28300",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 293,
+          "cy": 133,
+          "r": 5,
+          "stroke": "#ec4899",
+          "stroke_width": 1,
+          "fill": "#ec4899",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.dot_28300"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.dot_28600",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 473,
+          "cy": 133,
+          "r": 5,
+          "stroke": "#ec4899",
+          "stroke_width": 1,
+          "fill": "#ec4899",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.dot_28600"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.label_28100",
+        "type": "text",
+        "properties": {
+          "text": "28100"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.label_28100"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.label_28500",
+        "type": "text",
+        "properties": {
+          "text": "28500"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.label_28500"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.label_29000",
+        "type": "text",
+        "properties": {
+          "text": "29000"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.label_29000"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.left_badge_bg",
+        "type": "rect_slot",
+        "properties": {
+          "x": 36,
+          "y": 114,
+          "width": 88,
+          "height": 38,
+          "stroke": "#f59e0b",
+          "stroke_width": 1.5,
+          "rx": 16,
+          "ry": 16,
+          "fill": "#fef3c7",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.left_badge_bg"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.left_badge_text",
+        "type": "text",
+        "properties": {
+          "text": "작은 수"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.left_badge_text"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.right_badge_bg",
+        "type": "rect_slot",
+        "properties": {
+          "x": 762,
+          "y": 114,
+          "width": 88,
+          "height": 38,
+          "stroke": "#f59e0b",
+          "stroke_width": 1.5,
+          "rx": 16,
+          "ry": 16,
+          "fill": "#fef3c7",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.right_badge_bg"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.right_badge_text",
+        "type": "text",
+        "properties": {
+          "text": "큰 수"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.right_badge_text"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tick_0",
+        "type": "line_slot",
+        "properties": {
+          "x1": 173,
+          "y1": 125,
+          "x2": 173,
+          "y2": 141,
+          "stroke": "#111827",
+          "stroke_width": 1.5,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tick_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tick_1",
+        "type": "line_slot",
+        "properties": {
+          "x1": 233,
+          "y1": 125,
+          "x2": 233,
+          "y2": 141,
+          "stroke": "#111827",
+          "stroke_width": 1.5,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tick_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tick_2",
+        "type": "line_slot",
+        "properties": {
+          "x1": 293,
+          "y1": 125,
+          "x2": 293,
+          "y2": 141,
+          "stroke": "#111827",
+          "stroke_width": 1.5,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tick_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tick_3",
+        "type": "line_slot",
+        "properties": {
+          "x1": 353,
+          "y1": 125,
+          "x2": 353,
+          "y2": 141,
+          "stroke": "#111827",
+          "stroke_width": 1.5,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tick_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tick_4",
+        "type": "line_slot",
+        "properties": {
+          "x1": 413,
+          "y1": 125,
+          "x2": 413,
+          "y2": 141,
+          "stroke": "#111827",
+          "stroke_width": 1.5,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tick_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tick_5",
+        "type": "line_slot",
+        "properties": {
+          "x1": 473,
+          "y1": 125,
+          "x2": 473,
+          "y2": 141,
+          "stroke": "#111827",
+          "stroke_width": 1.5,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tick_5"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tick_6",
+        "type": "line_slot",
+        "properties": {
+          "x1": 533,
+          "y1": 125,
+          "x2": 533,
+          "y2": 141,
+          "stroke": "#111827",
+          "stroke_width": 1.5,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tick_6"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tick_7",
+        "type": "line_slot",
+        "properties": {
+          "x1": 593,
+          "y1": 125,
+          "x2": 593,
+          "y2": 141,
+          "stroke": "#111827",
+          "stroke_width": 1.5,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tick_7"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tick_8",
+        "type": "line_slot",
+        "properties": {
+          "x1": 653,
+          "y1": 125,
+          "x2": 653,
+          "y2": 141,
+          "stroke": "#111827",
+          "stroke_width": 1.5,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tick_8"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.tick_9",
+        "type": "line_slot",
+        "properties": {
+          "x1": 713,
+          "y1": 125,
+          "x2": 713,
+          "y2": 141,
+          "stroke": "#111827",
+          "stroke_width": 1.5,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.tick_9"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.top_28300",
+        "type": "text",
+        "properties": {
+          "text": "28300"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.top_28300"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.top_28600",
+        "type": "text",
+        "properties": {
+          "text": "28600"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.top_28600"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "8. 수직선을 보고 28300과 28600의 크기를 비교하여 알맞은 수를 선택하세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "28600",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "28600"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "28300",
+        "value": "28300"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "28600",
+        "value": "28600"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "28600",
+        "diagnostics": [
+          {
+            "id": "diag.chose_smaller_number",
+            "condition": "answer_equals_28300",
+            "concept": "수의 크기 비교",
+            "reason": "더 큰 수 대신 더 작은 수인 28300을 선택함",
+            "feedback": "수직선에서 오른쪽에 위치한 수가 왼쪽에 위치한 수보다 더 큰 수입니다. 28600이 더 오른쪽에 있습니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "num_left": {
+      "label": "28300",
+      "value": 28300
+    },
+    "num_right": {
+      "label": "28600",
+      "value": 28600
+    }
+  },
+  "relations": [
+    {
+      "type": "greater_than",
+      "expression": "28600 > 28300",
+      "larger": "num_right",
+      "smaller": "num_left"
+    }
+  ]
+}

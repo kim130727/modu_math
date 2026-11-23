@@ -1,0 +1,338 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007947",
+  "title": "숫자 5가 500조를 나타내는 자리 찾기",
+  "canvas": {
+    "width": 886,
+    "height": 280,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.bg_box",
+        "slot.diagram.u_0",
+        "slot.diagram.u_1",
+        "slot.diagram.u_2",
+        "slot.diagram.u_3",
+        "slot.diagram.d_5_0",
+        "slot.diagram.d_5_1",
+        "slot.diagram.d_5_2",
+        "slot.diagram.d_5_3",
+        "slot.diagram.d_zeros"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1",
+        "slot.choice.option_2",
+        "slot.choice.option_3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "5. 숫자 5가 500조를 나타내는 것을 찾아 기호를 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.bg_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 260.0,
+        "y": 92.0,
+        "width": 366.0,
+        "height": 136.0,
+        "stroke": "#d8d0ec",
+        "stroke_width": 1.0,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "#e8e4f3"
+      }
+    },
+    {
+      "id": "slot.diagram.d_5_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "body",
+        "x": 305.0,
+        "y": 118.0,
+        "font_size": 28,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#db2777"
+      }
+    },
+    {
+      "id": "slot.diagram.d_5_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "body",
+        "x": 335.0,
+        "y": 118.0,
+        "font_size": 28,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#db2777"
+      }
+    },
+    {
+      "id": "slot.diagram.d_5_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "body",
+        "x": 365.0,
+        "y": 118.0,
+        "font_size": 28,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#db2777"
+      }
+    },
+    {
+      "id": "slot.diagram.d_5_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "body",
+        "x": 395.0,
+        "y": 118.0,
+        "font_size": 28,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#db2777"
+      }
+    },
+    {
+      "id": "slot.diagram.d_zeros",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "000000000000",
+        "style_role": "body",
+        "x": 505.0,
+        "y": 118.0,
+        "font_size": 28,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.u_0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 295.0,
+        "y1": 158.0,
+        "x2": 315.0,
+        "y2": 158.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.u_1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 325.0,
+        "y1": 158.0,
+        "x2": 345.0,
+        "y2": 158.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.u_2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 355.0,
+        "y1": 158.0,
+        "x2": 375.0,
+        "y2": 158.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.u_3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 385.0,
+        "y1": 158.0,
+        "x2": 405.0,
+        "y2": 158.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠",
+        "style_role": "body",
+        "x": 305.0,
+        "y": 172.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "㉠",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡",
+        "style_role": "body",
+        "x": 335.0,
+        "y": 172.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "㉡",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉢",
+        "style_role": "body",
+        "x": 365.0,
+        "y": 172.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 2,
+          "value": "㉢",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.choice.option_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉣",
+        "style_role": "body",
+        "x": 395.0,
+        "y": 172.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 3,
+          "value": "㉣",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.bg_box",
+    "slot.diagram.u_0",
+    "slot.diagram.u_1",
+    "slot.diagram.u_2",
+    "slot.diagram.u_3",
+    "slot.diagram.d_5_0",
+    "slot.diagram.d_5_1",
+    "slot.diagram.d_5_2",
+    "slot.diagram.d_5_3",
+    "slot.diagram.d_zeros",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1",
+    "slot.choice.option_2",
+    "slot.choice.option_3"
+  ]
+}

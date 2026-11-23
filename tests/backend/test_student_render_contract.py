@@ -93,6 +93,36 @@ def test_partial_canvas_bindings_fall_back_to_reachable_panel_fields(render_prob
     assert len(payload["input_schema"]["fields"]) == 2
 
 
+def test_canvas_projection_keeps_diagram_symbols_and_canvas_choices():
+    from modu_math_web.learning.services.canvas_presentation import project_canvas
+
+    choice = {
+        "id": "option.text", "source_ref": "option", "type": "text", "text": "○",
+        "attributes": {"x": 30, "y": 40, "data-semantic-role": "choice"},
+        "interaction": {"type": "choice", "role": "answer"},
+    }
+    frame = {
+        "id": "frame.rect", "source_ref": "frame", "type": "rect",
+        "attributes": {"x": 5, "y": 10, "width": 70, "height": 50},
+    }
+    diagram = {
+        "id": "diagram.text", "source_ref": "diagram", "type": "text", "text": "○",
+        "attributes": {"x": 155, "y": 40, "data-semantic-role": "symbol_label"},
+    }
+    layout = {"regions": [{"role": "choices", "slot_ids": ["option", "frame"]}]}
+    schema = {"fields": [{"choices": [{"label": "○", "value": "option"}]}]}
+    elements = [frame, choice, diagram]
+    visible, canvas = project_canvas(elements, layout, {}, {"mode": "choice"}, schema, "")
+    assert visible == [diagram]
+    assert canvas["hidden_slot_ids"] == ["frame", "option"]
+
+    visible, canvas = project_canvas(elements, layout, {}, {
+        "mode": "canvas_select", "canvas_choices": [{"element_ids": ["option.text"]}],
+    }, schema, "")
+    assert visible == elements
+    assert canvas["hidden_slot_ids"] == []
+
+
 @pytest.mark.parametrize(("answer", "limit"), [(5, 1), (1124, 4), ("306", 3), (-1234567, None), ("7/8", None)])
 def test_whole_answer_capacity_follows_integer_length(render_problem, answer, limit):
     render_problem.answer = {"value": answer}

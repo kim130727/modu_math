@@ -1,0 +1,704 @@
+{
+  "problem_id": "S3_초등_4_008108",
+  "problem_type": "multiple_choice_multiplication_place_value",
+  "metadata": {
+    "title": "700 × 40의 세로셈에서 숫자 8의 자리 찾기",
+    "tags": [],
+    "question": "16. 700 × 40을 계산하려고 합니다. 7 × 4 = 28에서 숫자 8은 어느 자리에 써야 하는지 알맞은 기호를 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.outer_box",
+      "slot.diagram.h_line",
+      "slot.diagram.v_line_0",
+      "slot.diagram.v_line_1",
+      "slot.diagram.v_line_2",
+      "slot.diagram.v_line_3",
+      "slot.diagram.v_line_4",
+      "slot.diagram.v_line_5",
+      "slot.diagram.cbox_0",
+      "slot.diagram.cbox_1",
+      "slot.diagram.cbox_2",
+      "slot.diagram.cbox_3",
+      "slot.diagram.cbox_4"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "03단원_곱셈과 나눗셈",
+    "difficulty": "중",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.option_0",
+        "slot.choice.option_1",
+        "slot.choice.option_2",
+        "slot.choice.option_3",
+        "slot.choice.option_4"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "16. 700 × 40을 계산하려고 합니다. 7 × 4 = 28에서 숫자 8은 어느 자리에 써야 하는지 알맞은 기호를 찾아 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "choice_marker",
+        "properties": {
+          "text": "㉠"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "choice_marker",
+        "properties": {
+          "text": "㉡"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_2",
+        "type": "choice_marker",
+        "properties": {
+          "text": "㉢"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_3",
+        "type": "choice_marker",
+        "properties": {
+          "text": "㉣"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_4",
+        "type": "choice_marker",
+        "properties": {
+          "text": "㉤"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.cbox_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 315,
+          "y": 208,
+          "width": 40,
+          "height": 38,
+          "stroke": "#111827",
+          "stroke_width": 1.2,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.cbox_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.cbox_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 369,
+          "y": 208,
+          "width": 40,
+          "height": 38,
+          "stroke": "#111827",
+          "stroke_width": 1.2,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.cbox_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.cbox_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 423,
+          "y": 208,
+          "width": 40,
+          "height": 38,
+          "stroke": "#111827",
+          "stroke_width": 1.2,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.cbox_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.cbox_3",
+        "type": "rect_slot",
+        "properties": {
+          "x": 477,
+          "y": 208,
+          "width": 40,
+          "height": 38,
+          "stroke": "#111827",
+          "stroke_width": 1.2,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.cbox_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.cbox_4",
+        "type": "rect_slot",
+        "properties": {
+          "x": 531,
+          "y": 208,
+          "width": 40,
+          "height": 38,
+          "stroke": "#111827",
+          "stroke_width": 1.2,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.cbox_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.h_line",
+        "type": "line_slot",
+        "properties": {
+          "x1": 308,
+          "y1": 196,
+          "x2": 578,
+          "y2": 196,
+          "stroke": "#111827",
+          "stroke_width": 1.8,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.h_line"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.mul_sign",
+        "type": "text",
+        "properties": {
+          "text": "×"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.mul_sign"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.n0_1",
+        "type": "text",
+        "properties": {
+          "text": "0"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.n0_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.n0_2",
+        "type": "text",
+        "properties": {
+          "text": "0"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.n0_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.n0_3",
+        "type": "text",
+        "properties": {
+          "text": "0"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.n0_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.n4",
+        "type": "text",
+        "properties": {
+          "text": "4"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.n4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.n7",
+        "type": "text",
+        "properties": {
+          "text": "7"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.n7"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.outer_box",
+        "type": "rect_slot",
+        "properties": {
+          "x": 283,
+          "y": 94,
+          "width": 320,
+          "height": 176,
+          "stroke": "#8b5cf6",
+          "stroke_width": 1.8,
+          "rx": 4,
+          "ry": 4,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.outer_box"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.v_line_0",
+        "type": "line_slot",
+        "properties": {
+          "x1": 308,
+          "y1": 108,
+          "x2": 308,
+          "y2": 254,
+          "stroke": "#9ca3af",
+          "stroke_width": 1,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.v_line_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.v_line_1",
+        "type": "line_slot",
+        "properties": {
+          "x1": 362,
+          "y1": 108,
+          "x2": 362,
+          "y2": 254,
+          "stroke": "#9ca3af",
+          "stroke_width": 1,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.v_line_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.v_line_2",
+        "type": "line_slot",
+        "properties": {
+          "x1": 416,
+          "y1": 108,
+          "x2": 416,
+          "y2": 254,
+          "stroke": "#9ca3af",
+          "stroke_width": 1,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.v_line_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.v_line_3",
+        "type": "line_slot",
+        "properties": {
+          "x1": 470,
+          "y1": 108,
+          "x2": 470,
+          "y2": 254,
+          "stroke": "#9ca3af",
+          "stroke_width": 1,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.v_line_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.v_line_4",
+        "type": "line_slot",
+        "properties": {
+          "x1": 524,
+          "y1": 108,
+          "x2": 524,
+          "y2": 254,
+          "stroke": "#9ca3af",
+          "stroke_width": 1,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.v_line_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.v_line_5",
+        "type": "line_slot",
+        "properties": {
+          "x1": 578,
+          "y1": 108,
+          "x2": 578,
+          "y2": 254,
+          "stroke": "#9ca3af",
+          "stroke_width": 1,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.v_line_5"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "16. 700 × 40을 계산하려고 합니다. 7 × 4 = 28에서 숫자 8은 어느 자리에 써야 하는지 알맞은 기호를 찾아 선택하세요.",
+          "width": 820,
+          "height": 56
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "㉡",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "㉡"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "㉠",
+        "value": "㉠"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "㉡",
+        "value": "㉡"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "㉢",
+        "value": "㉢"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "㉣",
+        "value": "㉣"
+      },
+      {
+        "id": "slot.choice.option_4",
+        "slot_id": "slot.choice.option_4",
+        "text": "㉤",
+        "value": "㉤"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "㉡",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_place_20000",
+            "condition": "answer_equals_giyeok",
+            "concept": "몇백 × 몇십의 계산",
+            "reason": "만의 자리(2)를 천의 자리(8)와 혼동함",
+            "feedback": "700 × 40 = 28000이므로 ㉠ 자리에는 2, ㉡ 자리에는 8이 들어갑니다."
+          },
+          {
+            "id": "diag.wrong_place_hundreds",
+            "condition": "answer_equals_digeut",
+            "concept": "몇백 × 몇십의 계산",
+            "reason": "7 × 40을 계산한 자리로 오인하여 0의 개수를 하나 적게 셈",
+            "feedback": "700 × 40은 7 × 4 = 28에 0이 3개 붙어 28000이 됩니다. 따라서 8은 천의 자리인 ㉡에 써야 합니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "multiplicand": {
+      "label": "피승수",
+      "value": 700
+    },
+    "multiplier": {
+      "label": "승수",
+      "value": 40
+    },
+    "product": {
+      "label": "곱",
+      "value": 28000
+    }
+  },
+  "relations": [
+    {
+      "type": "multiplication",
+      "expression": "700 * 40 = 28000",
+      "target_digit": 8,
+      "target_place": "천의 자리"
+    }
+  ]
+}

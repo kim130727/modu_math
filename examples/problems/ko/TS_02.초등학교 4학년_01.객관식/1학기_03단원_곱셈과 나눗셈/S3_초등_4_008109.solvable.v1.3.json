@@ -1,0 +1,63 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_008109",
+  "problem_type": "multiple_choice_multiplication_word_problem",
+  "given": [
+    {
+      "ref": "expression",
+      "value": "229 × 36"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "도착지",
+    "unit": ""
+  },
+  "method": "three_by_two_digit_multiplication",
+  "steps": [
+    {
+      "id": "compute_product",
+      "expr": "229 * 36 = 8244",
+      "explanation": "229 × 36 = 8244이므로 8244가 쓰여 있는 길을 따라 도토리를 먹게 됩니다.",
+      "value": "도토리"
+    }
+  ],
+  "answer": {
+    "value": "도토리",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "도토리"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "밤",
+        "value": "밤"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "도토리",
+        "value": "도토리"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "도토리",
+        "diagnostics": [
+          {
+            "id": "diag.forgot_place_shift",
+            "condition": "answer_equals_bam",
+            "concept": "세 자리 수 × 두 자리 수",
+            "reason": "229 × 30의 자리를 밀어 쓰지 않고 229 × 3으로 더해 2061을 얻음",
+            "feedback": "229 × 6 = 1374이고, 229 × 30 = 6870입니다. 두 값을 더하면 8244이므로 도토리를 먹게 됩니다."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,333 @@
+{
+  "problem_id": "S3_초등_4_007979",
+  "problem_type": "multiple_choice_angle_comparison",
+  "metadata": {
+    "title": "두 각 중에서 더 작은 각 선택하기",
+    "tags": [],
+    "question": "두 각 중에서 더 작은 각을 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.outer_box",
+      "slot.diagram.ga_h",
+      "slot.diagram.ga_s",
+      "slot.diagram.ga_arc",
+      "slot.diagram.na_l",
+      "slot.diagram.na_r",
+      "slot.diagram.na_arc"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "02단원_각도",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "두 각 중에서 더 작은 각을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "choice_marker",
+        "properties": {
+          "text": "가"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "choice_marker",
+        "properties": {
+          "text": "나"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ga_arc",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 308 224 A 22 22 0 0 0 278 203",
+          "stroke": "#ec4899",
+          "stroke_width": 1.6,
+          "stroke_dasharray": null,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ga_arc"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ga_h",
+        "type": "line_slot",
+        "properties": {
+          "x1": 286,
+          "y1": 224,
+          "x2": 416,
+          "y2": 224,
+          "stroke": "#111827",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ga_h"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ga_s",
+        "type": "line_slot",
+        "properties": {
+          "x1": 286,
+          "y1": 224,
+          "x2": 244,
+          "y2": 114,
+          "stroke": "#111827",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ga_s"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.na_arc",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 592 200 A 22 22 0 0 1 620 200",
+          "stroke": "#ec4899",
+          "stroke_width": 1.6,
+          "stroke_dasharray": null,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.na_arc"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.na_l",
+        "type": "line_slot",
+        "properties": {
+          "x1": 606,
+          "y1": 218,
+          "x2": 532,
+          "y2": 118,
+          "stroke": "#111827",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.na_l"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.na_r",
+        "type": "line_slot",
+        "properties": {
+          "x1": 606,
+          "y1": 218,
+          "x2": 682,
+          "y2": 118,
+          "stroke": "#111827",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.na_r"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.outer_box",
+        "type": "rect_slot",
+        "properties": {
+          "x": 156,
+          "y": 82,
+          "width": 574,
+          "height": 180,
+          "stroke": "#f59e0b",
+          "stroke_width": 2,
+          "rx": 4,
+          "ry": 4,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.outer_box"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "87. 두 각 중에서 더 작은 각을 선택하세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "나",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "나"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "가",
+        "value": "가"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "나",
+        "value": "나"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "나",
+        "diagnostics": [
+          {
+            "id": "diag.chose_larger_angle",
+            "condition": "answer_equals_ga",
+            "concept": "각의 크기 비교",
+            "reason": "더 많이 벌어진 각 가를 더 작은 각으로 선택함",
+            "feedback": "두 변이 더 적게 벌어진 각을 찾습니다. 나(약 72°)가 가(약 110°)보다 더 작습니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "angle_ga": {
+      "label": "가",
+      "approx_deg": 110
+    },
+    "angle_na": {
+      "label": "나",
+      "approx_deg": 72
+    }
+  },
+  "relations": [
+    {
+      "type": "less_than",
+      "smaller": "angle_na",
+      "larger": "angle_ga"
+    }
+  ]
+}

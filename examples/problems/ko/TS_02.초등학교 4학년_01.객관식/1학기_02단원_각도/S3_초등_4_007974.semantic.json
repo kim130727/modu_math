@@ -1,0 +1,579 @@
+{
+  "problem_id": "S3_초등_4_007974",
+  "problem_type": "multiple_choice_angle_comparison",
+  "metadata": {
+    "title": "두 각을 겹쳐서 각의 크기 비교하기",
+    "tags": [],
+    "question": "나무 막대로 각을 만든 후 가를 나에 겹쳐 보았습니다. 알맞은 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.ga_h",
+      "slot.diagram.ga_s",
+      "slot.diagram.ga_arc",
+      "slot.diagram.na_h",
+      "slot.diagram.na_s",
+      "slot.diagram.na_arc",
+      "slot.diagram.ov_h",
+      "slot.diagram.ov_ga_s",
+      "slot.diagram.ov_na_s",
+      "slot.diagram.ov_arc_1",
+      "slot.diagram.ov_arc_2"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "02단원_각도",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "나무 막대로 각을 만든 후 가를 나에 겹쳐 보았습니다. 알맞은 것을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.comma",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.comma"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_0",
+        "type": "choice_marker",
+        "properties": {
+          "text": "가"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "choice_marker",
+        "properties": {
+          "text": "나"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.paren_left",
+        "type": "text",
+        "properties": {
+          "text": "("
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.paren_left"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.paren_right",
+        "type": "text",
+        "properties": {
+          "text": ")의 각의 크기가 더 큽니다."
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.paren_right"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.arrow",
+        "type": "text",
+        "properties": {
+          "text": "➡"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.arrow"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ga_arc",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 164 200 A 28 28 0 0 0 159 185",
+          "stroke": "#ec4899",
+          "stroke_width": 1.8,
+          "stroke_dasharray": null,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ga_arc"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ga_h",
+        "type": "line_slot",
+        "properties": {
+          "x1": 136,
+          "y1": 200,
+          "x2": 256,
+          "y2": 200,
+          "stroke": "#d97706",
+          "stroke_width": 6,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ga_h"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ga_s",
+        "type": "line_slot",
+        "properties": {
+          "x1": 136,
+          "y1": 200,
+          "x2": 236,
+          "y2": 134,
+          "stroke": "#d97706",
+          "stroke_width": 6,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ga_s"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.label_ga",
+        "type": "symbol_label",
+        "properties": {
+          "text": "가"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.label_ga"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.label_na",
+        "type": "symbol_label",
+        "properties": {
+          "text": "나"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.label_na"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.na_arc",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 374 200 A 28 28 0 0 0 353 173",
+          "stroke": "#ec4899",
+          "stroke_width": 1.8,
+          "stroke_dasharray": null,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.na_arc"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.na_h",
+        "type": "line_slot",
+        "properties": {
+          "x1": 346,
+          "y1": 200,
+          "x2": 466,
+          "y2": 200,
+          "stroke": "#d97706",
+          "stroke_width": 6,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.na_h"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.na_s",
+        "type": "line_slot",
+        "properties": {
+          "x1": 346,
+          "y1": 200,
+          "x2": 370,
+          "y2": 100,
+          "stroke": "#d97706",
+          "stroke_width": 6,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.na_s"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ov_arc_1",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 672 200 A 32 32 0 0 0 667 182",
+          "stroke": "#ec4899",
+          "stroke_width": 1.6,
+          "stroke_dasharray": null,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ov_arc_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ov_arc_2",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 664 200 A 24 24 0 0 0 646 177",
+          "stroke": "#ec4899",
+          "stroke_width": 1.6,
+          "stroke_dasharray": null,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ov_arc_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ov_ga_label",
+        "type": "symbol_label",
+        "properties": {
+          "text": "가"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ov_ga_label"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ov_ga_s",
+        "type": "line_slot",
+        "properties": {
+          "x1": 640,
+          "y1": 200,
+          "x2": 740,
+          "y2": 134,
+          "stroke": "#d97706",
+          "stroke_width": 6,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ov_ga_s"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ov_h",
+        "type": "line_slot",
+        "properties": {
+          "x1": 640,
+          "y1": 200,
+          "x2": 760,
+          "y2": 200,
+          "stroke": "#d97706",
+          "stroke_width": 6,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ov_h"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ov_na_label",
+        "type": "symbol_label",
+        "properties": {
+          "text": "나"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ov_na_label"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ov_na_s",
+        "type": "line_slot",
+        "properties": {
+          "x1": 640,
+          "y1": 200,
+          "x2": 664,
+          "y2": 100,
+          "stroke": "#d97706",
+          "stroke_width": 6,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ov_na_s"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "82. 나무 막대로 각을 만든 후 가를 나에 겹쳐 보았습니다. 알맞은 것을 선택하세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "나",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "나"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "가",
+        "value": "가"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "나",
+        "value": "나"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "나",
+        "diagnostics": [
+          {
+            "id": "diag.chose_smaller_angle",
+            "condition": "answer_equals_ga",
+            "concept": "각의 크기 비교",
+            "reason": "더 적게 벌어진 각 가를 더 큰 각으로 선택함",
+            "feedback": "각의 크기는 변의 길이와 관계없이 두 변이 많이 벌어질수록 큰 각입니다. 나가 가보다 더 많이 벌어져 있으므로 나의 각의 크기가 더 큽니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "angle_ga": {
+      "label": "가",
+      "approx_deg": 34
+    },
+    "angle_na": {
+      "label": "나",
+      "approx_deg": 78
+    }
+  },
+  "relations": [
+    {
+      "type": "greater_than",
+      "larger": "angle_na",
+      "smaller": "angle_ga"
+    }
+  ]
+}

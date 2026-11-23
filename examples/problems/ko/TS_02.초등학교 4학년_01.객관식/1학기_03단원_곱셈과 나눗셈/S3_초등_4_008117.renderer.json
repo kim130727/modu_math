@@ -1,0 +1,223 @@
+{
+  "problem_id": "S3_초등_4_008117",
+  "view_box": {
+    "width": 886.0,
+    "height": 260.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 820.0,
+        "height": 44.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 820.0,
+        "data-box-height": 44.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "25. 186 × 40을 어림하려고 합니다. 알맞은 말을 선택하세요."
+    },
+    {
+      "id": "slot.diagram.boy_hair.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 336.0,
+        "cy": 128.0,
+        "r": 28.0,
+        "stroke": "#451a03",
+        "stroke-width": 1.0,
+        "fill": "#451a03"
+      },
+      "source_ref": "slot.diagram.boy_hair",
+      "refs": {
+        "layout_slot_id": "slot.diagram.boy_hair"
+      }
+    },
+    {
+      "id": "slot.diagram.boy_head.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 336.0,
+        "cy": 148.0,
+        "r": 32.0,
+        "stroke": "#78350f",
+        "stroke-width": 1.5,
+        "fill": "#fde68a"
+      },
+      "source_ref": "slot.diagram.boy_head",
+      "refs": {
+        "layout_slot_id": "slot.diagram.boy_head"
+      }
+    },
+    {
+      "id": "slot.diagram.bubble.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 402.0,
+        "y": 88.0,
+        "width": 360.0,
+        "height": 136.0,
+        "fill": "#ffffff",
+        "stroke": "#374151",
+        "stroke-width": 1.5,
+        "rx": 28.0,
+        "ry": 28.0
+      },
+      "source_ref": "slot.diagram.bubble",
+      "refs": {
+        "layout_slot_id": "slot.diagram.bubble"
+      }
+    },
+    {
+      "id": "slot.diagram.line1.text",
+      "type": "text",
+      "attributes": {
+        "x": 582.0,
+        "y": 106.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0
+      },
+      "source_ref": "slot.diagram.line1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.line1"
+      },
+      "text": "200 × 40 = 8000이므로"
+    },
+    {
+      "id": "slot.diagram.line2.text",
+      "type": "text",
+      "attributes": {
+        "x": 582.0,
+        "y": 140.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0
+      },
+      "source_ref": "slot.diagram.line2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.line2"
+      },
+      "text": "186 × 40은 8000보다"
+    },
+    {
+      "id": "slot.choice.paren_left.text",
+      "type": "text",
+      "attributes": {
+        "x": 446.0,
+        "y": 176.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.choice.paren_left",
+      "refs": {
+        "layout_slot_id": "slot.choice.paren_left"
+      },
+      "text": "("
+    },
+    {
+      "id": "slot.choice.option_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 502.0,
+        "y": 176.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "클 거야",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "클 거야"
+    },
+    {
+      "id": "slot.choice.comma.text",
+      "type": "text",
+      "attributes": {
+        "x": 556.0,
+        "y": 176.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0
+      },
+      "source_ref": "slot.choice.comma",
+      "refs": {
+        "layout_slot_id": "slot.choice.comma"
+      },
+      "text": ","
+    },
+    {
+      "id": "slot.choice.option_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 622.0,
+        "y": 176.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "작을 거야",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "작을 거야"
+    },
+    {
+      "id": "slot.choice.paren_right.text",
+      "type": "text",
+      "attributes": {
+        "x": 690.0,
+        "y": 176.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.choice.paren_right",
+      "refs": {
+        "layout_slot_id": "slot.choice.paren_right"
+      },
+      "text": ")."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

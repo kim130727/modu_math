@@ -1,0 +1,428 @@
+{
+  "problem_id": "S3_초등_4_007946",
+  "problem_type": "multiple_choice_large_number_unit_conversion",
+  "metadata": {
+    "title": "10000원이 되기 위해 필요한 10원짜리 동전의 수",
+    "tags": [],
+    "question": "3. 10000원이 되려면 돈이 얼마만큼 필요한지 알맞은 수를 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.ref_box",
+      "slot.diagram.bill_bg",
+      "slot.diagram.bill_line",
+      "slot.diagram.bill_count_bg",
+      "slot.diagram.coin_outer",
+      "slot.diagram.coin_inner"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "01단원_큰 수",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "3. 10000원이 되려면 돈이 얼마만큼 필요한지 알맞은 수를 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.comma",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.comma"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_0",
+        "type": "text",
+        "properties": {
+          "text": "100"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "text",
+        "properties": {
+          "text": "1000"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.paren_left",
+        "type": "text",
+        "properties": {
+          "text": "("
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.paren_left"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.paren_right",
+        "type": "text",
+        "properties": {
+          "text": ")개"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.paren_right"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.bill_bg",
+        "type": "rect_slot",
+        "properties": {
+          "x": 384,
+          "y": 98,
+          "width": 118,
+          "height": 54,
+          "stroke": "#60a5fa",
+          "stroke_width": 1.5,
+          "rx": 4,
+          "ry": 4,
+          "fill": "#dbeafe",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.bill_bg"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.bill_count_bg",
+        "type": "rect_slot",
+        "properties": {
+          "x": 405,
+          "y": 164,
+          "width": 76,
+          "height": 34,
+          "stroke": "#f9a8d4",
+          "stroke_width": 1,
+          "rx": 4,
+          "ry": 4,
+          "fill": "#fce7f3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.bill_count_bg"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.bill_count_text",
+        "type": "text",
+        "properties": {
+          "text": "10장"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.bill_count_text"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.bill_label",
+        "type": "text",
+        "properties": {
+          "text": "1000"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.bill_label"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.bill_line",
+        "type": "line_slot",
+        "properties": {
+          "x1": 443,
+          "y1": 102,
+          "x2": 443,
+          "y2": 148,
+          "stroke": "#3b82f6",
+          "stroke_width": 1.5,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.bill_line"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.coin_inner",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 443,
+          "cy": 272,
+          "r": 27,
+          "stroke": "#c9935b",
+          "stroke_width": 1,
+          "fill": "#f0d5ad",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.coin_inner"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.coin_outer",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 443,
+          "cy": 272,
+          "r": 34,
+          "stroke": "#b47b44",
+          "stroke_width": 2,
+          "fill": "#e7c697",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.coin_outer"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.coin_value",
+        "type": "text",
+        "properties": {
+          "text": "10"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.coin_value"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ref_box",
+        "type": "rect_slot",
+        "properties": {
+          "x": 358,
+          "y": 82,
+          "width": 170,
+          "height": 136,
+          "stroke": "#f59e0b",
+          "stroke_width": 2,
+          "rx": 12,
+          "ry": 12,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ref_box"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "3. 10000원이 되려면 돈이 얼마만큼 필요한지 알맞은 수를 선택하세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "1000",
+    "answer_index": 1,
+    "unit": "개",
+    "values": [
+      "1000"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "100",
+        "value": "100"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "1000",
+        "value": "1000"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "1000",
+        "diagnostics": [
+          {
+            "id": "diag.confused_with_100won",
+            "condition": "answer_equals_100",
+            "concept": "10000의 구성",
+            "reason": "10원이 100개일 때와 1000개일 때의 자릿수를 혼동함",
+            "feedback": "10원이 100개이면 1000원입니다. 10000원이 되려면 10원이 1000개 필요합니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "target_amount": {
+      "label": "목표 금액",
+      "value": 10000,
+      "unit": "원"
+    },
+    "reference_bill": {
+      "label": "1000원 지폐",
+      "unit_value": 1000,
+      "count": 10
+    },
+    "coin": {
+      "label": "10원 동전",
+      "unit_value": 10,
+      "needed_count": 1000
+    }
+  },
+  "relations": [
+    {
+      "type": "multiplication_equivalence",
+      "expression": "10 * 1000 = 10000",
+      "target": "target_amount",
+      "unit_entity": "coin"
+    }
+  ]
+}

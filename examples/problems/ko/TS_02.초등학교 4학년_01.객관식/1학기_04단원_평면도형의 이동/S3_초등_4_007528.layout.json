@@ -1,0 +1,217 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007528",
+  "title": "두 직선이 서로 수직인 것 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 290,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.l0_h",
+        "slot.diagram.l0_s",
+        "slot.diagram.l1_h",
+        "slot.diagram.l1_v",
+        "slot.diagram.badge_0",
+        "slot.diagram.badge_1"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "63. 두 직선이 서로 수직인 것을 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 156.0,
+        "y": 84.0,
+        "width": 240.0,
+        "height": 176.0,
+        "stroke": "#e5e7eb",
+        "stroke_width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "①",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.diagram.badge_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "①",
+        "style_role": "body",
+        "x": 182.0,
+        "y": 100.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#4b5563",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.l0_h",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 196.0,
+        "y1": 168.0,
+        "x2": 360.0,
+        "y2": 168.0,
+        "stroke": "#111827",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.diagram.l0_s",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 236.0,
+        "y1": 102.0,
+        "x2": 328.0,
+        "y2": 238.0,
+        "stroke": "#111827",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 490.0,
+        "y": 84.0,
+        "width": 240.0,
+        "height": 176.0,
+        "stroke": "#e5e7eb",
+        "stroke_width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "②",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.diagram.badge_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "②",
+        "style_role": "body",
+        "x": 516.0,
+        "y": 100.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#4b5563",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.l1_h",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 554.0,
+        "y1": 114.0,
+        "x2": 682.0,
+        "y2": 114.0,
+        "stroke": "#111827",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.diagram.l1_v",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 682.0,
+        "y1": 114.0,
+        "x2": 682.0,
+        "y2": 238.0,
+        "stroke": "#111827",
+        "stroke_width": 2.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1",
+    "region.diagram",
+    "slot.diagram.l0_h",
+    "slot.diagram.l0_s",
+    "slot.diagram.l1_h",
+    "slot.diagram.l1_v",
+    "slot.diagram.badge_0",
+    "slot.diagram.badge_1"
+  ]
+}

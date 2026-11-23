@@ -1,0 +1,84 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_008110",
+  "problem_type": "multiple_choice_expression_comparison",
+  "given": [
+    {
+      "ref": "expr_0",
+      "value": "200 × 90"
+    },
+    {
+      "ref": "expr_1",
+      "value": "30 × 800"
+    },
+    {
+      "ref": "expr_2",
+      "value": "400 × 60"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "계산 결과가 다른 식",
+    "unit": ""
+  },
+  "method": "compute_and_compare",
+  "steps": [
+    {
+      "id": "evaluate_all",
+      "expr": "200*90=18000, 30*800=24000, 400*60=24000",
+      "explanation": "30 × 800과 400 × 60은 모두 24000이지만, 200 × 90은 18000입니다.",
+      "value": "200 × 90"
+    }
+  ],
+  "answer": {
+    "value": "200 × 90",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "200 × 90"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "200 × 90",
+        "value": "200 × 90"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "30 × 800",
+        "value": "30 × 800"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "400 × 60",
+        "value": "400 × 60"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "200 × 90",
+        "diagnostics": [
+          {
+            "id": "diag.chose_24000_a",
+            "condition": "answer_equals_30_800",
+            "concept": "몇백 × 몇십의 계산",
+            "reason": "30 × 800 = 24000으로 400 × 60과 결과가 같음",
+            "feedback": "30 × 800 = 24000이고 400 × 60 = 24000입니다. 200 × 90 = 18000으로 결과가 다릅니다."
+          },
+          {
+            "id": "diag.chose_24000_b",
+            "condition": "answer_equals_400_60",
+            "concept": "몇백 × 몇십의 계산",
+            "reason": "400 × 60 = 24000으로 30 × 800과 결과가 같음",
+            "feedback": "400 × 60 = 24000이고 30 × 800 = 24000입니다. 200 × 90 = 18000으로 결과가 다릅니다."
+          }
+        ]
+      }
+    ]
+  }
+}

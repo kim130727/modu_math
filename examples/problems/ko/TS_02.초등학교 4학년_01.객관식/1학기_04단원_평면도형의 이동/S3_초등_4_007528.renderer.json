@@ -1,0 +1,194 @@
+{
+  "problem_id": "S3_초등_4_007528",
+  "view_box": {
+    "width": 886.0,
+    "height": 290.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 820.0,
+        "height": 44.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 820.0,
+        "data-box-height": 44.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "63. 두 직선이 서로 수직인 것을 선택하세요."
+    },
+    {
+      "id": "slot.choice.option_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 156.0,
+        "y": 84.0,
+        "width": 240.0,
+        "height": 176.0,
+        "fill": "#ffffff",
+        "stroke": "#e5e7eb",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "①",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 490.0,
+        "y": 84.0,
+        "width": 240.0,
+        "height": 176.0,
+        "fill": "#ffffff",
+        "stroke": "#e5e7eb",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "②",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.diagram.l0_h.line",
+      "type": "line",
+      "attributes": {
+        "x1": 196.0,
+        "y1": 168.0,
+        "x2": 360.0,
+        "y2": 168.0,
+        "stroke": "#111827",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.l0_h",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l0_h"
+      }
+    },
+    {
+      "id": "slot.diagram.l0_s.line",
+      "type": "line",
+      "attributes": {
+        "x1": 236.0,
+        "y1": 102.0,
+        "x2": 328.0,
+        "y2": 238.0,
+        "stroke": "#111827",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.l0_s",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l0_s"
+      }
+    },
+    {
+      "id": "slot.diagram.l1_h.line",
+      "type": "line",
+      "attributes": {
+        "x1": 554.0,
+        "y1": 114.0,
+        "x2": 682.0,
+        "y2": 114.0,
+        "stroke": "#111827",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.l1_h",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l1_h"
+      }
+    },
+    {
+      "id": "slot.diagram.l1_v.line",
+      "type": "line",
+      "attributes": {
+        "x1": 682.0,
+        "y1": 114.0,
+        "x2": 682.0,
+        "y2": 238.0,
+        "stroke": "#111827",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.l1_v",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l1_v"
+      }
+    },
+    {
+      "id": "slot.diagram.badge_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 182.0,
+        "y": 100.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.badge_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.badge_0"
+      },
+      "text": "①"
+    },
+    {
+      "id": "slot.diagram.badge_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 516.0,
+        "y": 100.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.badge_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.badge_1"
+      },
+      "text": "②"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

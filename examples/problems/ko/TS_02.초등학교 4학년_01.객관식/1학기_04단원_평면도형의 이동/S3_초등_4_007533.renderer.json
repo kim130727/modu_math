@@ -1,0 +1,638 @@
+{
+  "problem_id": "S3_초등_4_007533",
+  "view_box": {
+    "width": 886.0,
+    "height": 300.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 820.0,
+        "height": 44.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 820.0,
+        "data-box-height": 44.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "69. 각도기를 사용하여 주어진 직선에 대한 수선을 그은 것을 선택하세요."
+    },
+    {
+      "id": "slot.choice.option_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 136.0,
+        "y": 84.0,
+        "width": 288.0,
+        "height": 188.0,
+        "fill": "#ffffff",
+        "stroke": "#a78bfa",
+        "stroke-width": 1.5,
+        "rx": 12.0,
+        "ry": 12.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "①",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 462.0,
+        "y": 84.0,
+        "width": 288.0,
+        "height": 188.0,
+        "fill": "#ffffff",
+        "stroke": "#a78bfa",
+        "stroke-width": 1.5,
+        "rx": 12.0,
+        "ry": 12.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "②",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.diagram.parc_0.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 188.7 247.7 A 96 96 0 0 1 371.3 188.3 Z",
+        "stroke": "#0284c7",
+        "stroke-width": 1.4,
+        "fill": "#f0f9ff"
+      },
+      "source_ref": "slot.diagram.parc_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.parc_0"
+      }
+    },
+    {
+      "id": "slot.diagram.parc_1.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 514.7 247.7 A 96 96 0 0 1 697.3 188.3 Z",
+        "stroke": "#0284c7",
+        "stroke-width": 1.4,
+        "fill": "#f0f9ff"
+      },
+      "source_ref": "slot.diagram.parc_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.parc_1"
+      }
+    },
+    {
+      "id": "slot.diagram.base_0.line",
+      "type": "line",
+      "attributes": {
+        "x1": 171.6,
+        "y1": 253.2,
+        "x2": 388.4,
+        "y2": 182.8,
+        "stroke": "#111827",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.base_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.base_0"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_0.line",
+      "type": "line",
+      "attributes": {
+        "x1": 371.3,
+        "y1": 188.3,
+        "x2": 363.7,
+        "y2": 190.8,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p0_t_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p0_t_0"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_15.line",
+      "type": "line",
+      "attributes": {
+        "x1": 360.5,
+        "y1": 165.7,
+        "x2": 353.8,
+        "y2": 170.1,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p0_t_15",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p0_t_15"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_30.line",
+      "type": "line",
+      "attributes": {
+        "x1": 344.2,
+        "y1": 146.7,
+        "x2": 338.9,
+        "y2": 152.6,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p0_t_30",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p0_t_30"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_45.line",
+      "type": "line",
+      "attributes": {
+        "x1": 323.6,
+        "y1": 132.5,
+        "x2": 320.0,
+        "y2": 139.6,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p0_t_45",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p0_t_45"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_60.line",
+      "type": "line",
+      "attributes": {
+        "x1": 300.0,
+        "y1": 124.1,
+        "x2": 298.3,
+        "y2": 131.9,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p0_t_60",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p0_t_60"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_75.line",
+      "type": "line",
+      "attributes": {
+        "x1": 275.0,
+        "y1": 122.1,
+        "x2": 275.4,
+        "y2": 130.1,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p0_t_75",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p0_t_75"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_90.line",
+      "type": "line",
+      "attributes": {
+        "x1": 250.3,
+        "y1": 126.7,
+        "x2": 252.8,
+        "y2": 134.3,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p0_t_90",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p0_t_90"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_105.line",
+      "type": "line",
+      "attributes": {
+        "x1": 227.7,
+        "y1": 137.5,
+        "x2": 232.1,
+        "y2": 144.2,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p0_t_105",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p0_t_105"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_120.line",
+      "type": "line",
+      "attributes": {
+        "x1": 208.7,
+        "y1": 153.8,
+        "x2": 214.6,
+        "y2": 159.1,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p0_t_120",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p0_t_120"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_135.line",
+      "type": "line",
+      "attributes": {
+        "x1": 194.5,
+        "y1": 174.4,
+        "x2": 201.6,
+        "y2": 178.0,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p0_t_135",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p0_t_135"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_150.line",
+      "type": "line",
+      "attributes": {
+        "x1": 186.1,
+        "y1": 198.0,
+        "x2": 193.9,
+        "y2": 199.7,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p0_t_150",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p0_t_150"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_165.line",
+      "type": "line",
+      "attributes": {
+        "x1": 184.1,
+        "y1": 223.0,
+        "x2": 192.1,
+        "y2": 222.6,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p0_t_165",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p0_t_165"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_t_180.line",
+      "type": "line",
+      "attributes": {
+        "x1": 188.7,
+        "y1": 247.7,
+        "x2": 196.3,
+        "y2": 245.2,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p0_t_180",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p0_t_180"
+      }
+    },
+    {
+      "id": "slot.diagram.ray_0.line",
+      "type": "line",
+      "attributes": {
+        "x1": 280.0,
+        "y1": 218.0,
+        "x2": 245.4,
+        "y2": 111.5,
+        "stroke": "#111827",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.ray_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.ray_0"
+      }
+    },
+    {
+      "id": "slot.diagram.base_1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 497.6,
+        "y1": 253.2,
+        "x2": 714.4,
+        "y2": 182.8,
+        "stroke": "#111827",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.base_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.base_1"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_0.line",
+      "type": "line",
+      "attributes": {
+        "x1": 697.3,
+        "y1": 188.3,
+        "x2": 689.7,
+        "y2": 190.8,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p1_t_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p1_t_0"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_15.line",
+      "type": "line",
+      "attributes": {
+        "x1": 686.5,
+        "y1": 165.7,
+        "x2": 679.8,
+        "y2": 170.1,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p1_t_15",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p1_t_15"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_30.line",
+      "type": "line",
+      "attributes": {
+        "x1": 670.2,
+        "y1": 146.7,
+        "x2": 664.9,
+        "y2": 152.6,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p1_t_30",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p1_t_30"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_45.line",
+      "type": "line",
+      "attributes": {
+        "x1": 649.6,
+        "y1": 132.5,
+        "x2": 646.0,
+        "y2": 139.6,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p1_t_45",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p1_t_45"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_60.line",
+      "type": "line",
+      "attributes": {
+        "x1": 626.0,
+        "y1": 124.1,
+        "x2": 624.3,
+        "y2": 131.9,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p1_t_60",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p1_t_60"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_75.line",
+      "type": "line",
+      "attributes": {
+        "x1": 601.0,
+        "y1": 122.1,
+        "x2": 601.4,
+        "y2": 130.1,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p1_t_75",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p1_t_75"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_90.line",
+      "type": "line",
+      "attributes": {
+        "x1": 576.3,
+        "y1": 126.7,
+        "x2": 578.8,
+        "y2": 134.3,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p1_t_90",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p1_t_90"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_105.line",
+      "type": "line",
+      "attributes": {
+        "x1": 553.7,
+        "y1": 137.5,
+        "x2": 558.1,
+        "y2": 144.2,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p1_t_105",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p1_t_105"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_120.line",
+      "type": "line",
+      "attributes": {
+        "x1": 534.7,
+        "y1": 153.8,
+        "x2": 540.6,
+        "y2": 159.1,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p1_t_120",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p1_t_120"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_135.line",
+      "type": "line",
+      "attributes": {
+        "x1": 520.5,
+        "y1": 174.4,
+        "x2": 527.6,
+        "y2": 178.0,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p1_t_135",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p1_t_135"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_150.line",
+      "type": "line",
+      "attributes": {
+        "x1": 512.1,
+        "y1": 198.0,
+        "x2": 519.9,
+        "y2": 199.7,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p1_t_150",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p1_t_150"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_165.line",
+      "type": "line",
+      "attributes": {
+        "x1": 510.1,
+        "y1": 223.0,
+        "x2": 518.1,
+        "y2": 222.6,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p1_t_165",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p1_t_165"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_t_180.line",
+      "type": "line",
+      "attributes": {
+        "x1": 514.7,
+        "y1": 247.7,
+        "x2": 522.3,
+        "y2": 245.2,
+        "stroke": "#0284c7",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.diagram.p1_t_180",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p1_t_180"
+      }
+    },
+    {
+      "id": "slot.diagram.ray_1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 606.0,
+        "y1": 218.0,
+        "x2": 625.4,
+        "y2": 107.7,
+        "stroke": "#111827",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.ray_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.ray_1"
+      }
+    },
+    {
+      "id": "slot.diagram.badge_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 158.0,
+        "y": 98.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.badge_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.badge_0"
+      },
+      "text": "①"
+    },
+    {
+      "id": "slot.diagram.badge_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 484.0,
+        "y": 98.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.badge_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.badge_1"
+      },
+      "text": "②"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

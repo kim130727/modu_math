@@ -1,0 +1,59 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007978",
+  "problem_type": "multiple_choice_angle_comparison",
+  "given": [
+    {
+      "ref": "compass_0",
+      "value": 42,
+      "unit": "도"
+    },
+    {
+      "ref": "compass_1",
+      "value": 66,
+      "unit": "도"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "더 많이 벌어진 컴퍼스",
+    "unit": ""
+  },
+  "method": "visual_angle_comparison",
+  "steps": [
+    {
+      "id": "compare_compasses",
+      "expr": "② > ①",
+      "explanation": "오른쪽 컴퍼스(②)가 왼쪽 컴퍼스(①)보다 더 많이 벌어져 있습니다.",
+      "value": "②"
+    }
+  ],
+  "answer": {
+    "value": "②",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "②"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②",
+        "diagnostics": [
+          {
+            "id": "diag.chose_narrower_compass",
+            "condition": "answer_equals_1",
+            "concept": "각의 크기 비교",
+            "reason": "더 좁게 벌어진 왼쪽 컴퍼스를 선택함",
+            "feedback": "컴퍼스의 두 다리가 더 많이 벌어진 쪽이 각의 크기가 더 큽니다. 오른쪽 컴퍼스(②)가 더 많이 벌어져 있습니다."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,367 @@
+{
+  "problem_id": "S3_초등_4_008114",
+  "problem_type": "multiple_choice_division_verification",
+  "metadata": {
+    "title": "482 ÷ 18의 몫과 나머지를 바르게 말한 사람 선택하기",
+    "tags": [],
+    "question": "22. 482 ÷ 18의 몫과 나머지를 바르게 말한 사람을 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.diagram.ca_bubble",
+      "slot.diagram.ca_head",
+      "slot.diagram.ca_badge",
+      "slot.diagram.mg_head",
+      "slot.diagram.mg_badge",
+      "slot.diagram.mg_bubble"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "03단원_곱셈과 나눗셈",
+    "difficulty": "중",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "22. 482 ÷ 18의 몫과 나머지를 바르게 말한 사람을 선택해 보세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "text",
+        "properties": {
+          "text": "채아"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "text",
+        "properties": {
+          "text": "민기"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ca_badge",
+        "type": "rect_slot",
+        "properties": {
+          "x": 344,
+          "y": 172,
+          "width": 76,
+          "height": 34,
+          "stroke": "#f43f5e",
+          "stroke_width": 1.2,
+          "rx": 6,
+          "ry": 6,
+          "fill": "#fff1f2",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ca_badge"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ca_bubble",
+        "type": "rect_slot",
+        "properties": {
+          "x": 116,
+          "y": 88,
+          "width": 210,
+          "height": 96,
+          "stroke": "#374151",
+          "stroke_width": 1.5,
+          "rx": 18,
+          "ry": 18,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ca_bubble"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ca_head",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 382,
+          "cy": 132,
+          "r": 24,
+          "stroke": "#78350f",
+          "stroke_width": 1.5,
+          "fill": "#fde68a",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ca_head"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ca_text",
+        "type": "text",
+        "properties": {
+          "text": "몫은 25이고\n나머지는 12야.",
+          "width": 190,
+          "height": 68
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ca_text"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.mg_badge",
+        "type": "rect_slot",
+        "properties": {
+          "x": 466,
+          "y": 172,
+          "width": 76,
+          "height": 34,
+          "stroke": "#f43f5e",
+          "stroke_width": 1.2,
+          "rx": 6,
+          "ry": 6,
+          "fill": "#fff1f2",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.mg_badge"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.mg_bubble",
+        "type": "rect_slot",
+        "properties": {
+          "x": 560,
+          "y": 88,
+          "width": 220,
+          "height": 96,
+          "stroke": "#374151",
+          "stroke_width": 1.5,
+          "rx": 18,
+          "ry": 18,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.mg_bubble"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.mg_head",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 504,
+          "cy": 132,
+          "r": 24,
+          "stroke": "#78350f",
+          "stroke_width": 1.5,
+          "fill": "#fde68a",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.mg_head"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.mg_text",
+        "type": "text",
+        "properties": {
+          "text": "몫은 26이고\n나머지는 14야.",
+          "width": 200,
+          "height": 68
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.mg_text"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "22. 482 ÷ 18의 몫과 나머지를 바르게 말한 사람을 선택해 보세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "민기",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "민기"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "채아",
+        "value": "채아"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "민기",
+        "value": "민기"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "민기",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_quotient_chae",
+            "condition": "answer_equals_chaea",
+            "concept": "나눗셈의 몫과 나머지",
+            "reason": "18 × 25 + 12 = 462로 482가 되지 않음에도 채아를 선택함",
+            "feedback": "482 ÷ 18을 계산하면 몫은 26이고 나머지는 14입니다(18 × 26 + 14 = 482). 바르게 말한 사람은 민기입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "dividend": {
+      "label": "나누어지는 수",
+      "value": 482
+    },
+    "divisor": {
+      "label": "나누는 수",
+      "value": 18
+    },
+    "chaea": {
+      "label": "채아",
+      "quotient": 25,
+      "remainder": 12,
+      "is_correct": false
+    },
+    "mingi": {
+      "label": "민기",
+      "quotient": 26,
+      "remainder": 14,
+      "is_correct": true
+    }
+  },
+  "relations": [
+    {
+      "type": "division_with_remainder",
+      "expression": "482 / 18 = 26 ... 14",
+      "correct_entity": "mingi",
+      "distractor": "chaea"
+    }
+  ]
+}

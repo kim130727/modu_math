@@ -1,0 +1,59 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007983",
+  "problem_type": "multiple_choice_angle_classification",
+  "given": [
+    {
+      "ref": "angle_0",
+      "value": 60,
+      "unit": "도"
+    },
+    {
+      "ref": "angle_1",
+      "value": 108,
+      "unit": "도"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "예각",
+    "unit": ""
+  },
+  "method": "acute_angle_classification",
+  "steps": [
+    {
+      "id": "classify_acute",
+      "expr": "0° < ① < 90°",
+      "explanation": "각도가 0°보다 크고 90°보다 작은 각은 ①입니다.",
+      "value": "①"
+    }
+  ],
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.chose_obtuse_angle",
+            "condition": "answer_equals_2",
+            "concept": "예각과 둔각",
+            "reason": "직각(90°)보다 큰 둔각(②)을 예각으로 선택함",
+            "feedback": "예각은 각도가 0°보다 크고 90°(직각)보다 작은 각입니다. ②는 직각보다 큰 둔각이고, ①이 예각입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

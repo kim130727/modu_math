@@ -1,0 +1,207 @@
+{
+  "problem_id": "S3_초등_4_008113",
+  "problem_type": "multiple_choice_quotient_digit_count",
+  "metadata": {
+    "title": "몫이 두 자리 수인 나눗셈 선택하기",
+    "tags": [],
+    "question": "21. 몫이 두 자리 수인 나눗셈을 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.card_0",
+      "slot.diagram.card_1"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "03단원_곱셈과 나눗셈",
+    "difficulty": "중",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "21. 몫이 두 자리 수인 나눗셈을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "text",
+        "properties": {
+          "text": "275 ÷ 25"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "text",
+        "properties": {
+          "text": "495 ÷ 54"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.card_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 180,
+          "y": 96,
+          "width": 230,
+          "height": 72,
+          "stroke": "#f7cfc2",
+          "stroke_width": 1.2,
+          "rx": 4,
+          "ry": 4,
+          "fill": "#fde8e1",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.card_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.card_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 476,
+          "y": 96,
+          "width": 230,
+          "height": 72,
+          "stroke": "#f7cfc2",
+          "stroke_width": 1.2,
+          "rx": 4,
+          "ry": 4,
+          "fill": "#fde8e1",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.card_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "21. 몫이 두 자리 수인 나눗셈을 선택하세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "275 ÷ 25",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "275 ÷ 25"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "275 ÷ 25",
+        "value": "275 ÷ 25"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "495 ÷ 54",
+        "value": "495 ÷ 54"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "275 ÷ 25",
+        "diagnostics": [
+          {
+            "id": "diag.chose_one_digit_quotient",
+            "condition": "answer_equals_495_54",
+            "concept": "세 자리 수 ÷ 두 자리 수",
+            "reason": "나누어지는 수의 앞 두 자리(49)가 나누는 수(54)보다 작아 몫이 한 자리 수인 식을 선택함",
+            "feedback": "54 × 10 = 540이고 495 < 540이므로 495 ÷ 54의 몫은 한 자리 수입니다. 275 > 250이므로 275 ÷ 25의 몫이 두 자리 수입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "expr_0": {
+      "label": "275 ÷ 25",
+      "quotient": 11,
+      "digits": 2
+    },
+    "expr_1": {
+      "label": "495 ÷ 54",
+      "quotient": 9,
+      "digits": 1
+    }
+  },
+  "relations": [
+    {
+      "type": "quotient_digit_count_match",
+      "target_digits": 2,
+      "correct_entity": "expr_0",
+      "distractor": "expr_1"
+    }
+  ]
+}

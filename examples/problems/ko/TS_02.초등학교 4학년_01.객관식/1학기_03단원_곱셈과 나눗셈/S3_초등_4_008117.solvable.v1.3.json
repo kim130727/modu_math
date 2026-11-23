@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_008117",
+  "problem_type": "multiple_choice_multiplication_estimation",
+  "given": [
+    {
+      "ref": "exact_expr",
+      "value": "186 × 40"
+    },
+    {
+      "ref": "estimated_expr",
+      "value": "200 × 40 = 8000"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "어림셈 비교 결과",
+    "unit": ""
+  },
+  "method": "estimation_bound_comparison",
+  "steps": [
+    {
+      "id": "compare_with_estimate",
+      "expr": "186 < 200 => 186 * 40 < 200 * 40 = 8000",
+      "explanation": "186은 200보다 작으므로 186 × 40은 8000보다 작습니다.",
+      "value": "작을 거야"
+    }
+  ],
+  "answer": {
+    "value": "작을 거야",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "작을 거야"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "클 거야",
+        "value": "클 거야"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "작을 거야",
+        "value": "작을 거야"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "작을 거야",
+        "diagnostics": [
+          {
+            "id": "diag.confused_direction",
+            "condition": "answer_equals_larger",
+            "concept": "곱셈의 어림",
+            "reason": "186을 200으로 올려 어림했음에도 원래 곱이 더 클 것이라고 오인함",
+            "feedback": "186은 200보다 작은 수이므로 186 × 40은 200 × 40 = 8000보다 작을 것입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,322 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007945",
+  "title": "10000원이 되기 위해 필요한 100원짜리 동전의 수",
+  "canvas": {
+    "width": 886,
+    "height": 400,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.ref_box",
+        "slot.diagram.bill_bg",
+        "slot.diagram.bill_count_bg",
+        "slot.diagram.coin_outer",
+        "slot.diagram.coin_inner",
+        "slot.diagram.bill_line",
+        "slot.diagram.bill_label",
+        "slot.diagram.bill_count_text",
+        "slot.diagram.coin_value"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.paren_left",
+        "slot.choice.option_0",
+        "slot.choice.comma",
+        "slot.choice.option_1",
+        "slot.choice.paren_right"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "2. 10000원이 되려면 돈이 얼마만큼 필요한지 알맞은 수를 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.ref_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 358.0,
+        "y": 82.0,
+        "width": 170.0,
+        "height": 136.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 2.0,
+        "rx": 12.0,
+        "ry": 12.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.bill_bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 384.0,
+        "y": 98.0,
+        "width": 118.0,
+        "height": 54.0,
+        "stroke": "#60a5fa",
+        "stroke_width": 1.5,
+        "rx": 4.0,
+        "ry": 4.0,
+        "fill": "#dbeafe"
+      }
+    },
+    {
+      "id": "slot.diagram.bill_line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 443.0,
+        "y1": 102.0,
+        "x2": 443.0,
+        "y2": 148.0,
+        "stroke": "#3b82f6",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.bill_label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1000",
+        "style_role": "body",
+        "x": 413.0,
+        "y": 116.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#1e3a8a"
+      }
+    },
+    {
+      "id": "slot.diagram.bill_count_bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 405.0,
+        "y": 164.0,
+        "width": 76.0,
+        "height": 34.0,
+        "stroke": "#f9a8d4",
+        "stroke_width": 1.0,
+        "rx": 4.0,
+        "ry": 4.0,
+        "fill": "#fce7f3"
+      }
+    },
+    {
+      "id": "slot.diagram.bill_count_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10장",
+        "style_role": "body",
+        "x": 443.0,
+        "y": 170.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.coin_outer",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 443.0,
+        "cy": 272.0,
+        "r": 38.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 2.0,
+        "fill": "#e5e7eb"
+      }
+    },
+    {
+      "id": "slot.diagram.coin_inner",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 443.0,
+        "cy": 272.0,
+        "r": 31.0,
+        "stroke": "#d1d5db",
+        "stroke_width": 1.0,
+        "fill": "#f3f4f6"
+      }
+    },
+    {
+      "id": "slot.diagram.coin_value",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "100",
+        "style_role": "body",
+        "x": 443.0,
+        "y": 258.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#374151"
+      }
+    },
+    {
+      "id": "slot.choice.paren_left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(",
+        "style_role": "body",
+        "x": 362.0,
+        "y": 336.0,
+        "font_size": 26,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "100",
+        "style_role": "body",
+        "x": 402.0,
+        "y": 336.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "100",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.comma",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 438.0,
+        "y": 336.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1000",
+        "style_role": "body",
+        "x": 482.0,
+        "y": 336.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "1000",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.paren_right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ")개",
+        "style_role": "body",
+        "x": 538.0,
+        "y": 336.0,
+        "font_size": 26,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.ref_box",
+    "slot.diagram.bill_bg",
+    "slot.diagram.bill_count_bg",
+    "slot.diagram.coin_outer",
+    "slot.diagram.coin_inner",
+    "slot.diagram.bill_line",
+    "slot.diagram.bill_label",
+    "slot.diagram.bill_count_text",
+    "slot.diagram.coin_value",
+    "region.choices",
+    "slot.choice.paren_left",
+    "slot.choice.option_0",
+    "slot.choice.comma",
+    "slot.choice.option_1",
+    "slot.choice.paren_right"
+  ]
+}

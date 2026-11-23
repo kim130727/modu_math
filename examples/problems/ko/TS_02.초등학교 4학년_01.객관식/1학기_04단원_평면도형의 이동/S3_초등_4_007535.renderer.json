@@ -1,0 +1,210 @@
+{
+  "problem_id": "S3_초등_4_007535",
+  "view_box": {
+    "width": 886.0,
+    "height": 280.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 820.0,
+        "height": 44.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 820.0,
+        "data-box-height": 44.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "71. 서로 평행한 변이 있는 도형을 모두 선택해 보세요."
+    },
+    {
+      "id": "slot.diagram.outer_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 116.0,
+        "y": 82.0,
+        "width": 730.0,
+        "height": 174.0,
+        "fill": "#ffffff",
+        "stroke": "#8b5cf6",
+        "stroke-width": 1.6
+      },
+      "source_ref": "slot.diagram.outer_box",
+      "refs": {
+        "layout_slot_id": "slot.diagram.outer_box"
+      }
+    },
+    {
+      "id": "slot.diagram.poly_0.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            184.0,
+            226.0
+          ],
+          [
+            330.0,
+            226.0
+          ],
+          [
+            274.0,
+            108.0
+          ]
+        ],
+        "stroke": "#111827",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.poly_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.poly_0"
+      }
+    },
+    {
+      "id": "slot.diagram.poly_1.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            476.0,
+            118.0
+          ],
+          [
+            566.0,
+            118.0
+          ],
+          [
+            608.0,
+            222.0
+          ],
+          [
+            434.0,
+            222.0
+          ]
+        ],
+        "stroke": "#111827",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.poly_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.poly_1"
+      }
+    },
+    {
+      "id": "slot.diagram.poly_2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 706.0,
+        "y": 108.0,
+        "width": 106.0,
+        "height": 114.0,
+        "fill": "none",
+        "stroke": "#111827",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.poly_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.poly_2"
+      }
+    },
+    {
+      "id": "slot.choice.option_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 152.0,
+        "y": 102.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "㉠",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "㉠"
+    },
+    {
+      "id": "slot.choice.option_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 402.0,
+        "y": 102.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "㉡",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "㉡"
+    },
+    {
+      "id": "slot.choice.option_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 672.0,
+        "y": 102.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_2",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_2"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 2,
+        "value": "㉢",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "㉢"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

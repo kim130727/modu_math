@@ -1,0 +1,202 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_008110",
+  "title": "계산 결과가 다른 곱셈식 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 220,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.card_0",
+        "slot.diagram.card_1",
+        "slot.diagram.card_2"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1",
+        "slot.choice.option_2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "18. 계산 결과가 다른 것을 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.card_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 64.0,
+        "y": 96.0,
+        "width": 222.0,
+        "height": 74.0,
+        "stroke": "#9ab778",
+        "stroke_width": 1.5,
+        "rx": 4.0,
+        "ry": 4.0,
+        "fill": "#e2ebd6"
+      }
+    },
+    {
+      "id": "slot.diagram.card_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 332.0,
+        "y": 96.0,
+        "width": 222.0,
+        "height": 74.0,
+        "stroke": "#9ab778",
+        "stroke_width": 1.5,
+        "rx": 4.0,
+        "ry": 4.0,
+        "fill": "#e2ebd6"
+      }
+    },
+    {
+      "id": "slot.diagram.card_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 600.0,
+        "y": 96.0,
+        "width": 222.0,
+        "height": 74.0,
+        "stroke": "#9ab778",
+        "stroke_width": 1.5,
+        "rx": 4.0,
+        "ry": 4.0,
+        "fill": "#e2ebd6"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "200 × 90",
+        "style_role": "body",
+        "x": 175.0,
+        "y": 120.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "200 × 90",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "30 × 800",
+        "style_role": "body",
+        "x": 443.0,
+        "y": 120.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "30 × 800",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.option_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "400 × 60",
+        "style_role": "body",
+        "x": 711.0,
+        "y": 120.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 2,
+          "value": "400 × 60",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.card_0",
+    "slot.diagram.card_1",
+    "slot.diagram.card_2",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1",
+    "slot.choice.option_2"
+  ]
+}

@@ -45,6 +45,10 @@
     <symbol id="icon-base-ten-100" viewBox="0 0 24 24"><path d="M5 8h11v11H5z"/><path d="M5 8l3-3h11l-3 3"/><path d="M16 8l3-3v11l-3 3"/><path d="M8.7 8v11M12.3 8v11M5 11.7h11M5 15.3h11"/></symbol>
     <symbol id="icon-base-ten-10" viewBox="0 0 24 24"><path d="M8 6h6v14H8z"/><path d="M8 6l2-2h6l-2 2"/><path d="M14 6l2-2v14l-2 2"/><path d="M8 9h6M8 12h6M8 15h6"/></symbol>
     <symbol id="icon-base-ten-1" viewBox="0 0 24 24"><path d="M7 9h8v8H7z"/><path d="M7 9l3-3h8l-3 3"/><path d="M15 9l3-3v8l-3 3"/></symbol>
+    <symbol id="icon-protractor" viewBox="0 0 24 24"><path d="M3 17a9 9 0 0 1 18 0Z"/><path d="M8 17a4 4 0 0 1 8 0"/><path d="M12 8v2"/><path d="M7.5 9.2l1 1.7"/><path d="M16.5 9.2l-1 1.7"/></symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/><path d="M12 3v1.5"/><path d="M12 19.5V21"/><path d="M3 12h1.5"/><path d="M19.5 12H21"/></symbol>
+    <symbol id="icon-bar-chart" viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M4 4v16"/><path d="M7 20v-7h3v7"/><path d="M12 20v-12h3v12"/><path d="M17 20v-9h3v9"/></symbol>
+    <symbol id="icon-plane-figure" viewBox="0 0 24 24"><path d="M4 18l8-13 8 13Z"/><path d="M12 18v-3h3"/></symbol>
   </svg>
   <div class="wrap powerpoint">
     <section class="ppt-shell">
@@ -76,6 +80,10 @@
             <button id="insertBaseTenOneBtn" class="icon-btn" title="낱개 모형 삽입" aria-label="낱개 모형 삽입"><svg><use href="#icon-base-ten-1"></use></svg></button>
             <button id="insertFractionBtn" class="icon-btn" title="분수 삽입" aria-label="분수 삽입"><svg><use href="#icon-fraction"></use></svg></button>
             <button id="insertMixedFractionBtn" class="icon-btn" title="대분수 삽입" aria-label="대분수 삽입"><svg><use href="#icon-mixed-fraction"></use></svg></button>
+            <button id="insertProtractorBtn" class="icon-btn" title="각도기 삽입" aria-label="각도기 삽입"><svg><use href="#icon-protractor"></use></svg></button>
+            <button id="insertClockBtn" class="icon-btn" title="시계 삽입" aria-label="시계 삽입"><svg><use href="#icon-clock"></use></svg></button>
+            <button id="insertBarChartBtn" class="icon-btn" title="막대그래프 삽입" aria-label="막대그래프 삽입"><svg><use href="#icon-bar-chart"></use></svg></button>
+            <button id="insertPlaneFigureBtn" class="icon-btn" title="평면도형 생성" aria-label="평면도형 생성"><svg><use href="#icon-plane-figure"></use></svg></button>
             <input id="insertImageInput" type="file" accept="image/*" hidden>
             <div class="ribbon-dropdown">
               <button id="shapeGalleryBtn" class="icon-btn" title="도형 삽입" aria-label="도형 삽입"><svg><use href="#icon-shapes"></use></svg></button>
@@ -109,6 +117,27 @@
             <button id="groupBtn" class="icon-btn" title="Group (Ctrl+G)" aria-label="Group"><svg><use href="#icon-group"></use></svg></button>
             <button id="ungroupBtn" class="icon-btn" title="Ungroup (Ctrl+Shift+G)" aria-label="Ungroup"><svg><use href="#icon-ungroup"></use></svg></button>
             <button id="deleteBtn" class="icon-btn danger" title="Delete Selected" aria-label="Delete Selected"><svg><use href="#icon-trash"></use></svg></button>
+          </div>
+          <div class="ribbon-group" data-label="서식">
+            <input id="ribbonFillColorInput" type="color" value="#dbeafe" title="도형 채우기 색" style="width:28px;height:28px;padding:1px;border:1px solid #cbd5e1;border-radius:4px;cursor:pointer;">
+            <button id="ribbonFillApplyBtn" class="icon-btn" title="선택 도형 채우기 적용" style="width:auto;padding:0 6px;font-size:11px;">채우기</button>
+            <button id="ribbonFillNoneBtn" class="icon-btn" title="선택 도형 채우기 없음" style="width:auto;padding:0 6px;font-size:11px;">투명</button>
+            <input id="ribbonStrokeColorInput" type="color" value="#111827" title="선/윤곽선 색" style="width:28px;height:28px;padding:1px;border:1px solid #cbd5e1;border-radius:4px;cursor:pointer;">
+            <button id="ribbonStrokeApplyBtn" class="icon-btn" title="선택 도형/선 색 적용" style="width:auto;padding:0 6px;font-size:11px;">선색</button>
+            <button id="ribbonStrokeNoneBtn" class="icon-btn" title="선택 도형 테두리 없음" style="width:auto;padding:0 6px;font-size:11px;">선없음</button>
+            <select id="ribbonStrokeWidthSelect" title="선 두께" style="height:28px;font-size:11px;border:1px solid #cbd5e1;border-radius:4px;padding:0 4px;">
+              <option value="1">1px</option>
+              <option value="1.5">1.5px</option>
+              <option value="2" selected>2px</option>
+              <option value="3">3px</option>
+              <option value="4">4px</option>
+            </select>
+            <select id="ribbonStrokeDashSelect" title="선 종류" style="height:28px;font-size:11px;border:1px solid #cbd5e1;border-radius:4px;padding:0 4px;">
+              <option value="">실선</option>
+              <option value="4,3">짧은 점선</option>
+              <option value="8,5">긴 점선</option>
+              <option value="2,3">촘촘 점선</option>
+            </select>
           </div>
         </div>
       </div>
@@ -223,6 +252,101 @@
                 <div class="table-dialog-actions">
                   <button id="mathConfirmBtn" type="button" class="primary">확인</button>
                   <button id="mathCancelBtn" type="button">취소</button>
+                </div>
+              </div>
+            </div>
+            <div id="protractorInsertDialog" class="table-dialog" role="dialog" aria-modal="true" aria-labelledby="protractorInsertTitle" hidden>
+              <div class="table-dialog-panel">
+                <div class="table-dialog-title">
+                  <span id="protractorInsertTitle">각도기 삽입</span>
+                  <span>?</span>
+                  <button id="protractorCancelXBtn" type="button" aria-label="닫기">&times;</button>
+                </div>
+                <div class="table-dialog-fields">
+                  <label>반지름(px):<input id="protractorRadiusInput" type="number" min="60" max="260" value="120"></label>
+                  <label>회전 각도(°):<input id="protractorRotationInput" type="number" min="-180" max="180" value="0"></label>
+                  <label>눈금 간격:<select id="protractorStepInput"><option value="1">1° (정밀)</option><option value="5" selected>5°</option><option value="10">10°</option></select></label>
+                  <label>방사선 안내선:<input id="protractorRadialInput" type="checkbox" checked></label>
+                  <label>선 색:<input id="protractorColorInput" type="color" value="#0284c7"></label>
+                </div>
+                <div class="table-dialog-actions">
+                  <button id="protractorConfirmBtn" type="button" class="primary">확인</button>
+                  <button id="protractorCancelBtn" type="button">취소</button>
+                </div>
+              </div>
+            </div>
+            <div id="clockInsertDialog" class="table-dialog" role="dialog" aria-modal="true" aria-labelledby="clockInsertTitle" hidden>
+              <div class="table-dialog-panel">
+                <div class="table-dialog-title">
+                  <span id="clockInsertTitle">시계 삽입</span>
+                  <span>?</span>
+                  <button id="clockCancelXBtn" type="button" aria-label="닫기">&times;</button>
+                </div>
+                <div class="table-dialog-fields">
+                  <label>시(1~12):<input id="clockHourInput" type="number" min="1" max="12" value="2"></label>
+                  <label>분(0~59):<input id="clockMinuteInput" type="number" min="0" max="59" value="0"></label>
+                  <label>반지름(px):<input id="clockRadiusInput" type="number" min="48" max="180" value="84"></label>
+                  <label>테두리색:<input id="clockBezelColorInput" type="color" value="#16a34a"></label>
+                  <label>각도 호 표시:<input id="clockShowArcInput" type="checkbox" checked></label>
+                </div>
+                <div class="table-dialog-actions">
+                  <button id="clockConfirmBtn" type="button" class="primary">확인</button>
+                  <button id="clockCancelBtn" type="button">취소</button>
+                </div>
+              </div>
+            </div>
+            <div id="barChartInsertDialog" class="table-dialog" role="dialog" aria-modal="true" aria-labelledby="barChartInsertTitle" hidden>
+              <div class="table-dialog-panel">
+                <div class="table-dialog-title">
+                  <span id="barChartInsertTitle">막대그래프 삽입</span>
+                  <span>?</span>
+                  <button id="barChartCancelXBtn" type="button" aria-label="닫기">&times;</button>
+                </div>
+                <div class="table-dialog-fields">
+                  <label>제목:<input id="barChartTitleInput" type="text" value="좋아하는 과일"></label>
+                  <label>방향:<select id="barChartOrientInput"><option value="vertical" selected>세로 막대</option><option value="horizontal">가로 막대</option></select></label>
+                  <label>항목(쉼표):<input id="barChartLabelsInput" type="text" value="사과, 배, 포도, 귤"></label>
+                  <label>값(쉼표):<input id="barChartValuesInput" type="text" value="8, 5, 10, 6"></label>
+                  <label>눈금 간격:<input id="barChartStepInput" type="number" min="1" max="100" value="2"></label>
+                  <label>단위:<input id="barChartUnitInput" type="text" value="명"></label>
+                  <label>막대색:<input id="barChartFillInput" type="color" value="#60a5fa"></label>
+                </div>
+                <div class="table-dialog-actions">
+                  <button id="barChartConfirmBtn" type="button" class="primary">확인</button>
+                  <button id="barChartCancelBtn" type="button">취소</button>
+                </div>
+              </div>
+            </div>
+            <div id="planeFigureInsertDialog" class="table-dialog" role="dialog" aria-modal="true" aria-labelledby="planeFigureInsertTitle" hidden>
+              <div class="table-dialog-panel">
+                <div class="table-dialog-title">
+                  <span id="planeFigureInsertTitle">평면도형 생성</span>
+                  <span>?</span>
+                  <button id="planeFigureCancelXBtn" type="button" aria-label="닫기">&times;</button>
+                </div>
+                <div class="table-dialog-fields">
+                  <label>도형 종류:<select id="planeFigureTypeInput">
+                    <option value="equilateral_triangle">정삼각형</option>
+                    <option value="isosceles_triangle">이등변삼각형</option>
+                    <option value="right_triangle" selected>직각삼각형</option>
+                    <option value="square">정사각형</option>
+                    <option value="rectangle">직사각형</option>
+                    <option value="parallelogram">평행사변형</option>
+                    <option value="trapezoid">사다리꼴</option>
+                    <option value="rhombus">마름모</option>
+                    <option value="pentagon">정오각형</option>
+                    <option value="hexagon">정육각형</option>
+                  </select></label>
+                  <label>너비(px):<input id="planeFigureWidthInput" type="number" min="40" max="400" value="140"></label>
+                  <label>높이(px):<input id="planeFigureHeightInput" type="number" min="40" max="400" value="110"></label>
+                  <label>채우기색:<input id="planeFigureFillInput" type="color" value="#dbeafe"></label>
+                  <label>채우기 없음:<input id="planeFigureNoFillInput" type="checkbox"></label>
+                  <label>선 색:<input id="planeFigureStrokeInput" type="color" value="#111827"></label>
+                  <label>직각 표시:<input id="planeFigureRightAngleInput" type="checkbox" checked></label>
+                </div>
+                <div class="table-dialog-actions">
+                  <button id="planeFigureConfirmBtn" type="button" class="primary">확인</button>
+                  <button id="planeFigureCancelBtn" type="button">취소</button>
                 </div>
               </div>
             </div>

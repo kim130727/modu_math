@@ -1,0 +1,69 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007979",
+  "problem_type": "multiple_choice_angle_comparison",
+  "given": [
+    {
+      "ref": "angle_ga",
+      "value": 110,
+      "unit": "도"
+    },
+    {
+      "ref": "angle_na",
+      "value": 72,
+      "unit": "도"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "더 작은 각",
+    "unit": ""
+  },
+  "method": "visual_angle_comparison",
+  "steps": [
+    {
+      "id": "compare_angles",
+      "expr": "나 < 가",
+      "explanation": "두 변이 더 적게 벌어진 각은 나입니다.",
+      "value": "나"
+    }
+  ],
+  "answer": {
+    "value": "나",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "나"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "가",
+        "value": "가"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "나",
+        "value": "나"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "나",
+        "diagnostics": [
+          {
+            "id": "diag.chose_larger_angle",
+            "condition": "answer_equals_ga",
+            "concept": "각의 크기 비교",
+            "reason": "더 많이 벌어진 각 가를 더 작은 각으로 선택함",
+            "feedback": "두 변이 더 적게 벌어진 각을 찾습니다. 나(약 72°)가 가(약 110°)보다 더 작습니다."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,271 @@
+{
+  "problem_id": "S3_초등_4_007529",
+  "problem_type": "multiple_choice_perpendicular_sides",
+  "metadata": {
+    "title": "서로 수직인 변이 있는 도형 선택하기",
+    "tags": [],
+    "question": "64. 서로 수직인 변이 있는 도형을 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.diagram.poly_0",
+      "slot.choice.option_1",
+      "slot.diagram.poly_1"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "04단원_평면도형의 이동",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "64. 서로 수직인 변이 있는 도형을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 156,
+          "y": 84,
+          "width": 240,
+          "height": 176,
+          "stroke": "#e5e7eb",
+          "stroke_width": 1.5,
+          "rx": 10,
+          "ry": 10,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 490,
+          "y": 84,
+          "width": 240,
+          "height": 176,
+          "stroke": "#e5e7eb",
+          "stroke_width": 1.5,
+          "rx": 10,
+          "ry": 10,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.badge_0",
+        "type": "symbol_label",
+        "properties": {
+          "text": "①"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.badge_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.badge_1",
+        "type": "symbol_label",
+        "properties": {
+          "text": "②"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.badge_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.poly_0",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              210,
+              232
+            ],
+            [
+              316,
+              232
+            ],
+            [
+              350,
+              108
+            ]
+          ],
+          "stroke": "#111827",
+          "stroke_width": 2,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.poly_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.poly_1",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              552,
+              114
+            ],
+            [
+              656,
+              114
+            ],
+            [
+              710,
+              228
+            ],
+            [
+              552,
+              228
+            ]
+          ],
+          "stroke": "#111827",
+          "stroke_width": 2,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.poly_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "64. 서로 수직인 변이 있는 도형을 선택하세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "②",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "②"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②",
+        "diagnostics": [
+          {
+            "id": "diag.chose_triangle_without_right_angle",
+            "condition": "answer_equals_1",
+            "concept": "수직인 변",
+            "reason": "직각이 없는 삼각형(①)을 선택함",
+            "feedback": "①의 삼각형에는 직각으로 만나는 변이 없습니다. ②의 사각형에는 왼쪽 변과 위쪽·아래쪽 변이 서로 수직입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "shape_0": {
+      "label": "①",
+      "type": "triangle",
+      "has_perpendicular_sides": false
+    },
+    "shape_1": {
+      "label": "②",
+      "type": "right_trapezoid",
+      "has_perpendicular_sides": true
+    }
+  },
+  "relations": [
+    {
+      "type": "has_perpendicular_sides",
+      "correct_entity": "shape_1",
+      "distractor": "shape_0"
+    }
+  ]
+}

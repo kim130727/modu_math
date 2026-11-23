@@ -1,0 +1,92 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_008108",
+  "problem_type": "multiple_choice_multiplication_place_value",
+  "given": [
+    {
+      "ref": "multiplicand",
+      "value": 700
+    },
+    {
+      "ref": "multiplier",
+      "value": 40
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "숫자 8의 자리",
+    "unit": ""
+  },
+  "method": "vertical_multiplication_place_value",
+  "steps": [
+    {
+      "id": "compute_product",
+      "expr": "700 * 40 = 28000",
+      "explanation": "700 × 40 = 28000이므로 8은 천의 자리인 ㉡에 씁니다.",
+      "value": "㉡"
+    }
+  ],
+  "answer": {
+    "value": "㉡",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "㉡"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "㉠",
+        "value": "㉠"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "㉡",
+        "value": "㉡"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "㉢",
+        "value": "㉢"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "㉣",
+        "value": "㉣"
+      },
+      {
+        "id": "slot.choice.option_4",
+        "slot_id": "slot.choice.option_4",
+        "text": "㉤",
+        "value": "㉤"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "㉡",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_place_20000",
+            "condition": "answer_equals_giyeok",
+            "concept": "몇백 × 몇십의 계산",
+            "reason": "만의 자리(2)를 천의 자리(8)와 혼동함",
+            "feedback": "700 × 40 = 28000이므로 ㉠ 자리에는 2, ㉡ 자리에는 8이 들어갑니다."
+          },
+          {
+            "id": "diag.wrong_place_hundreds",
+            "condition": "answer_equals_digeut",
+            "concept": "몇백 × 몇십의 계산",
+            "reason": "7 × 40을 계산한 자리로 오인하여 0의 개수를 하나 적게 셈",
+            "feedback": "700 × 40은 7 × 4 = 28에 0이 3개 붙어 28000이 됩니다. 따라서 8은 천의 자리인 ㉡에 써야 합니다."
+          }
+        ]
+      }
+    ]
+  }
+}

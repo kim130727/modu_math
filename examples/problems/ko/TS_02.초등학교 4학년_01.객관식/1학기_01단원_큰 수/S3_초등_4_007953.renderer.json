@@ -1,0 +1,264 @@
+{
+  "problem_id": "S3_초등_4_007953",
+  "view_box": {
+    "width": 886.0,
+    "height": 290.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 820.0,
+        "height": 44.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 820.0,
+        "data-box-height": 44.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "14. 수로 나타냈을 때 0의 개수가 더 적은 것을 들고 있는 사람을 선택해 보세요."
+    },
+    {
+      "id": "slot.diagram.hj_hair.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 310.0,
+        "cy": 110.0,
+        "r": 20.0,
+        "stroke": "#374151",
+        "stroke-width": 1.0,
+        "fill": "#4b5563"
+      },
+      "source_ref": "slot.diagram.hj_hair",
+      "refs": {
+        "layout_slot_id": "slot.diagram.hj_hair"
+      }
+    },
+    {
+      "id": "slot.diagram.hj_head.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 310.0,
+        "cy": 124.0,
+        "r": 24.0,
+        "stroke": "#78350f",
+        "stroke-width": 1.5,
+        "fill": "#fde68a"
+      },
+      "source_ref": "slot.diagram.hj_head",
+      "refs": {
+        "layout_slot_id": "slot.diagram.hj_head"
+      }
+    },
+    {
+      "id": "slot.diagram.hj_board.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 230.0,
+        "y": 148.0,
+        "width": 160.0,
+        "height": 58.0,
+        "fill": "#e7cfa8",
+        "stroke": "#a16207",
+        "stroke-width": 1.5,
+        "rx": 4.0,
+        "ry": 4.0
+      },
+      "source_ref": "slot.diagram.hj_board",
+      "refs": {
+        "layout_slot_id": "slot.diagram.hj_board"
+      }
+    },
+    {
+      "id": "slot.diagram.hj_badge.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 272.0,
+        "y": 220.0,
+        "width": 76.0,
+        "height": 34.0,
+        "fill": "#fff1f2",
+        "stroke": "#f43f5e",
+        "stroke-width": 1.2,
+        "rx": 6.0,
+        "ry": 6.0
+      },
+      "source_ref": "slot.diagram.hj_badge",
+      "refs": {
+        "layout_slot_id": "slot.diagram.hj_badge"
+      }
+    },
+    {
+      "id": "slot.diagram.yj_hair.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 576.0,
+        "cy": 110.0,
+        "r": 21.0,
+        "stroke": "#78350f",
+        "stroke-width": 1.0,
+        "fill": "#92400e"
+      },
+      "source_ref": "slot.diagram.yj_hair",
+      "refs": {
+        "layout_slot_id": "slot.diagram.yj_hair"
+      }
+    },
+    {
+      "id": "slot.diagram.yj_head.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 576.0,
+        "cy": 124.0,
+        "r": 24.0,
+        "stroke": "#78350f",
+        "stroke-width": 1.5,
+        "fill": "#fde68a"
+      },
+      "source_ref": "slot.diagram.yj_head",
+      "refs": {
+        "layout_slot_id": "slot.diagram.yj_head"
+      }
+    },
+    {
+      "id": "slot.diagram.yj_board.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 496.0,
+        "y": 148.0,
+        "width": 160.0,
+        "height": 58.0,
+        "fill": "#e7cfa8",
+        "stroke": "#a16207",
+        "stroke-width": 1.5,
+        "rx": 4.0,
+        "ry": 4.0
+      },
+      "source_ref": "slot.diagram.yj_board",
+      "refs": {
+        "layout_slot_id": "slot.diagram.yj_board"
+      }
+    },
+    {
+      "id": "slot.diagram.yj_badge.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 538.0,
+        "y": 220.0,
+        "width": 76.0,
+        "height": 34.0,
+        "fill": "#fff1f2",
+        "stroke": "#f43f5e",
+        "stroke-width": 1.2,
+        "rx": 6.0,
+        "ry": 6.0
+      },
+      "source_ref": "slot.diagram.yj_badge",
+      "refs": {
+        "layout_slot_id": "slot.diagram.yj_badge"
+      }
+    },
+    {
+      "id": "slot.diagram.hj_board_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 310.0,
+        "y": 164.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.diagram.hj_board_text",
+      "refs": {
+        "layout_slot_id": "slot.diagram.hj_board_text"
+      },
+      "text": "사만 십구"
+    },
+    {
+      "id": "slot.diagram.yj_board_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 576.0,
+        "y": 164.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.diagram.yj_board_text",
+      "refs": {
+        "layout_slot_id": "slot.diagram.yj_board_text"
+      },
+      "text": "육만 구"
+    },
+    {
+      "id": "slot.choice.option_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 310.0,
+        "y": 225.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "현준",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "현준"
+    },
+    {
+      "id": "slot.choice.option_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 576.0,
+        "y": 225.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "유정",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "유정"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

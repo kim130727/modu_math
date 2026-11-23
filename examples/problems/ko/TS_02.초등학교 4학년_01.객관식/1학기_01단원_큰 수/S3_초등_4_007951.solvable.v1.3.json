@@ -1,0 +1,69 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007951",
+  "problem_type": "multiple_choice_number_comparison",
+  "given": [
+    {
+      "ref": "phone_ga",
+      "value": 865000,
+      "unit": "원"
+    },
+    {
+      "ref": "phone_na",
+      "value": 1020000,
+      "unit": "원"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "가격이 더 낮은 휴대 전화",
+    "unit": ""
+  },
+  "method": "digit_count_comparison",
+  "steps": [
+    {
+      "id": "compare_prices",
+      "expr": "865000 < 1020000",
+      "explanation": "865000은 6자리 수이고 1020000은 7자리 수이므로 가격이 더 낮은 휴대 전화는 가입니다.",
+      "value": "가"
+    }
+  ],
+  "answer": {
+    "value": "가",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "가"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "가",
+        "value": "가"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "나",
+        "value": "나"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "가",
+        "diagnostics": [
+          {
+            "id": "diag.chose_more_expensive",
+            "condition": "answer_equals_na",
+            "concept": "수의 크기 비교",
+            "reason": "자릿수가 더 많은 1020000원을 더 낮은 가격으로 선택함",
+            "feedback": "865000은 6자리 수이고 1020000은 7자리 수이므로, 865000 < 1020000입니다. 가격이 더 낮은 휴대 전화는 가입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

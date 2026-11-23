@@ -1,0 +1,72 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007980",
+  "problem_type": "multiple_choice_angle_comparison",
+  "given": [
+    {
+      "ref": "angle_0",
+      "value": 48,
+      "unit": "도"
+    },
+    {
+      "ref": "angle_1",
+      "value": 130,
+      "unit": "도"
+    },
+    {
+      "ref": "angle_2",
+      "value": 90,
+      "unit": "도"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "가장 작은 각",
+    "unit": ""
+  },
+  "method": "visual_angle_comparison",
+  "steps": [
+    {
+      "id": "find_smallest_angle",
+      "expr": "① < ③ < ②",
+      "explanation": "두 변이 가장 적게 벌어진 ①이 가장 작은 각입니다.",
+      "value": "①"
+    }
+  ],
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "①",
+      "②",
+      "③"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.chose_obtuse",
+            "condition": "answer_equals_2",
+            "concept": "각의 크기 비교",
+            "reason": "둔각(②)을 가장 작은 각으로 선택함",
+            "feedback": "두 변이 가장 적게 벌어진 각을 찾습니다. ②는 직각보다 큰 둔각이고, ①이 가장 작은 예각입니다."
+          },
+          {
+            "id": "diag.chose_right_angle",
+            "condition": "answer_equals_3",
+            "concept": "각의 크기 비교",
+            "reason": "직각(③)을 가장 작은 각으로 선택함",
+            "feedback": "③은 직각(90°)입니다. ①은 직각보다 작으므로 ①이 가장 작은 각입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

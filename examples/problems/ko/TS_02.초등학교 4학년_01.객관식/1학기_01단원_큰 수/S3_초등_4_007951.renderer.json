@@ -1,0 +1,248 @@
+{
+  "problem_id": "S3_초등_4_007951",
+  "view_box": {
+    "width": 886.0,
+    "height": 320.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 820.0,
+        "height": 44.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 820.0,
+        "data-box-height": 44.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "9. 가격이 더 낮은 휴대 전화를 선택하세요."
+    },
+    {
+      "id": "slot.diagram.phone_ga_body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 295.0,
+        "y": 88.0,
+        "width": 88.0,
+        "height": 156.0,
+        "fill": "#1f2937",
+        "stroke": "#111827",
+        "stroke-width": 2.0,
+        "rx": 12.0,
+        "ry": 12.0
+      },
+      "source_ref": "slot.diagram.phone_ga_body",
+      "refs": {
+        "layout_slot_id": "slot.diagram.phone_ga_body"
+      }
+    },
+    {
+      "id": "slot.diagram.phone_ga_screen.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 303.0,
+        "y": 108.0,
+        "width": 72.0,
+        "height": 112.0,
+        "fill": "#ecfccb",
+        "stroke": "#4b5563",
+        "stroke-width": 1.0,
+        "rx": 4.0,
+        "ry": 4.0
+      },
+      "source_ref": "slot.diagram.phone_ga_screen",
+      "refs": {
+        "layout_slot_id": "slot.diagram.phone_ga_screen"
+      }
+    },
+    {
+      "id": "slot.diagram.phone_na_body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 595.0,
+        "y": 88.0,
+        "width": 88.0,
+        "height": 156.0,
+        "fill": "#1f2937",
+        "stroke": "#111827",
+        "stroke-width": 2.0,
+        "rx": 12.0,
+        "ry": 12.0
+      },
+      "source_ref": "slot.diagram.phone_na_body",
+      "refs": {
+        "layout_slot_id": "slot.diagram.phone_na_body"
+      }
+    },
+    {
+      "id": "slot.diagram.phone_na_screen.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 603.0,
+        "y": 108.0,
+        "width": 72.0,
+        "height": 112.0,
+        "fill": "#e0f2fe",
+        "stroke": "#4b5563",
+        "stroke-width": 1.0,
+        "rx": 4.0,
+        "ry": 4.0
+      },
+      "source_ref": "slot.diagram.phone_na_screen",
+      "refs": {
+        "layout_slot_id": "slot.diagram.phone_na_screen"
+      }
+    },
+    {
+      "id": "slot.diagram.phone_ga_btn.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 339.0,
+        "cy": 232.0,
+        "r": 7.0,
+        "stroke": "#9ca3af",
+        "stroke-width": 1.0,
+        "fill": "#374151"
+      },
+      "source_ref": "slot.diagram.phone_ga_btn",
+      "refs": {
+        "layout_slot_id": "slot.diagram.phone_ga_btn"
+      }
+    },
+    {
+      "id": "slot.diagram.phone_na_btn.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 639.0,
+        "cy": 232.0,
+        "r": 7.0,
+        "stroke": "#9ca3af",
+        "stroke-width": 1.0,
+        "fill": "#374151"
+      },
+      "source_ref": "slot.diagram.phone_na_btn",
+      "refs": {
+        "layout_slot_id": "slot.diagram.phone_na_btn"
+      }
+    },
+    {
+      "id": "slot.diagram.phone_ga_time.text",
+      "type": "text",
+      "attributes": {
+        "x": 339.0,
+        "y": 120.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0
+      },
+      "source_ref": "slot.diagram.phone_ga_time",
+      "refs": {
+        "layout_slot_id": "slot.diagram.phone_ga_time"
+      },
+      "text": "2:45"
+    },
+    {
+      "id": "slot.diagram.price_ga.text",
+      "type": "text",
+      "attributes": {
+        "x": 339.0,
+        "y": 262.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.diagram.price_ga",
+      "refs": {
+        "layout_slot_id": "slot.diagram.price_ga"
+      },
+      "text": "865000원"
+    },
+    {
+      "id": "slot.diagram.price_na.text",
+      "type": "text",
+      "attributes": {
+        "x": 639.0,
+        "y": 262.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.diagram.price_na",
+      "refs": {
+        "layout_slot_id": "slot.diagram.price_na"
+      },
+      "text": "1020000원"
+    },
+    {
+      "id": "slot.choice.option_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 265.0,
+        "y": 96.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "가",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "가"
+    },
+    {
+      "id": "slot.choice.option_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 565.0,
+        "y": 96.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "나",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "나"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

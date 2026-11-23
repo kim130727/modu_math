@@ -25,7 +25,8 @@
         "slot.diagram.example_box",
         "slot.diagram.choice_frame",
         "slot.diagram.example_title",
-        "slot.diagram.example_expr"
+        "slot.diagram.example_expr",
+        "konva_1795397215423_paste_1345119_0"
       ]
     },
     {
@@ -44,18 +45,20 @@
       "kind": "text_box",
       "prompt": "",
       "content": {
-        "text": "93. <보기>와 나눗셈의 몫이 같은 식을 선택하세요.",
+        "text": "<보기>와 나눗셈의 몫이 같은 식을 선택하세요.",
         "style_role": "body",
         "x": 32.0,
         "y": 22.0,
-        "width": 820.0,
-        "height": 44.0,
+        "width": 466,
+        "height": 36,
         "align": "left",
         "valign": "top",
         "font_size": 24,
         "font_family": "\"Noto Sans KR\", sans-serif",
         "line_height": 1.5,
-        "fill": "#202124"
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "explicit"
       }
     },
     {
@@ -63,9 +66,9 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 110.0,
+        "x": 136.515,
         "y": 76.0,
-        "width": 210.0,
+        "width": 133.48,
         "height": 115.0,
         "stroke": "#6b7280",
         "stroke_width": 1.5,
@@ -79,7 +82,7 @@
       "content": {
         "text": "<보기>",
         "style_role": "body",
-        "x": 162.0,
+        "x": 171.09,
         "y": 108.0,
         "font_size": 22,
         "align": "center",
@@ -94,8 +97,8 @@
       "content": {
         "text": "45 ÷ 5",
         "style_role": "body",
-        "x": 215.0,
-        "y": 154.0,
+        "x": 166.52,
+        "y": 157.03,
         "font_size": 24,
         "align": "center",
         "font_family": "\"Noto Sans KR\", sans-serif",
@@ -107,10 +110,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 500.0,
-        "y": 92.0,
-        "width": 320.0,
-        "height": 76.0,
+        "x": 290.99,
+        "y": 104.21,
+        "width": 117.14,
+        "height": 58.15,
         "stroke": "#f59e0b",
         "stroke_width": 1.5,
         "fill": "#ffedd5"
@@ -123,8 +126,8 @@
       "content": {
         "text": "18 ÷ 2",
         "style_role": "body",
-        "x": 598.0,
-        "y": 130.0,
+        "x": 309.18,
+        "y": 143.1,
         "font_size": 24,
         "align": "center",
         "font_family": "\"Noto Sans KR\", sans-serif",
@@ -136,7 +139,9 @@
           "value": "18 ÷ 2",
           "group_id": "slot.choice.group",
           "include_in_submission": true
-        }
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
       }
     },
     {
@@ -146,8 +151,8 @@
       "content": {
         "text": "27 ÷ 9",
         "style_role": "body",
-        "x": 722.0,
-        "y": 130.0,
+        "x": 436.94,
+        "y": 142.53,
         "font_size": 24,
         "align": "center",
         "font_family": "\"Noto Sans KR\", sans-serif",
@@ -159,7 +164,23 @@
           "value": "27 ÷ 9",
           "group_id": "slot.choice.group",
           "include_in_submission": true
-        }
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "konva_1795397215423_paste_1345119_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 416.46,
+        "y": 103.78,
+        "width": 117.14,
+        "height": 58.15,
+        "fill": "#ffedd5",
+        "stroke": "#f59e0b",
+        "stroke_width": 1.5
       }
     }
   ],
@@ -176,6 +197,7 @@
     "slot.diagram.example_expr",
     "region.choices",
     "slot.choice.option_0",
-    "slot.choice.option_1"
+    "slot.choice.option_1",
+    "konva_1795397215423_paste_1345119_0"
   ]
 }

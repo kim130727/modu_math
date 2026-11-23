@@ -1,0 +1,84 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007949",
+  "problem_type": "multiple_choice_skip_counting_pattern",
+  "given": [
+    {
+      "ref": "seq_0",
+      "value": "6390조"
+    },
+    {
+      "ref": "seq_1",
+      "value": "6490조"
+    },
+    {
+      "ref": "seq_2",
+      "value": "6590조"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "뛰어 센 값",
+    "unit": ""
+  },
+  "method": "skip_counting_difference",
+  "steps": [
+    {
+      "id": "find_step_value",
+      "expr": "6490조 - 6390조 = 100조",
+      "explanation": "100조의 자리 숫자가 1씩 커지므로 100조씩 뛰어 세었습니다.",
+      "value": "100조"
+    }
+  ],
+  "answer": {
+    "value": "100조",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "100조"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "10조",
+        "value": "10조"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "100조",
+        "value": "100조"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "1000조",
+        "value": "1000조"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "100조",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_step_10jo",
+            "condition": "answer_equals_10jo",
+            "concept": "뛰어 세기",
+            "reason": "백조의 자리가 아닌 십조의 자리가 커진 것으로 오인함",
+            "feedback": "6390조 → 6490조 → 6590조에서 변하는 자리 숫자는 3, 4, 5(백조의 자리)입니다."
+          },
+          {
+            "id": "diag.wrong_step_1000jo",
+            "condition": "answer_equals_1000jo",
+            "concept": "뛰어 세기",
+            "reason": "백조의 자리가 아닌 천조의 자리가 커진 것으로 오인함",
+            "feedback": "천조의 자리(6)는 그대로이고 백조의 자리 숫자가 1씩 커지므로 100조씩 뛰어 세었습니다."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_008113",
+  "problem_type": "multiple_choice_quotient_digit_count",
+  "given": [
+    {
+      "ref": "expr_0",
+      "value": "275 ÷ 25"
+    },
+    {
+      "ref": "expr_1",
+      "value": "495 ÷ 54"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "몫이 두 자리 수인 나눗셈",
+    "unit": ""
+  },
+  "method": "leading_digits_comparison",
+  "steps": [
+    {
+      "id": "compare_tens",
+      "expr": "27 > 25 (몫: 두 자리 수), 49 < 54 (몫: 한 자리 수)",
+      "explanation": "275 ÷ 25는 25 × 10 = 250보다 크므로 몫이 두 자리 수입니다.",
+      "value": "275 ÷ 25"
+    }
+  ],
+  "answer": {
+    "value": "275 ÷ 25",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "275 ÷ 25"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "275 ÷ 25",
+        "value": "275 ÷ 25"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "495 ÷ 54",
+        "value": "495 ÷ 54"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "275 ÷ 25",
+        "diagnostics": [
+          {
+            "id": "diag.chose_one_digit_quotient",
+            "condition": "answer_equals_495_54",
+            "concept": "세 자리 수 ÷ 두 자리 수",
+            "reason": "나누어지는 수의 앞 두 자리(49)가 나누는 수(54)보다 작아 몫이 한 자리 수인 식을 선택함",
+            "feedback": "54 × 10 = 540이고 495 < 540이므로 495 ÷ 54의 몫은 한 자리 수입니다. 275 > 250이므로 275 ÷ 25의 몫이 두 자리 수입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,418 @@
+{
+  "problem_id": "S3_초등_4_008116",
+  "problem_type": "multiple_choice_division_quotient_remainder_diff",
+  "metadata": {
+    "title": "몫과 나머지의 차가 가장 큰 식 선택하기",
+    "tags": [],
+    "question": "24. 다음 계산에서 몫과 나머지의 차가 가장 큰 것은 어느 것일까요?",
+    "required_layout_ids": [
+      "slot.diagram.box_bg"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "03단원_곱셈과 나눗셈",
+    "difficulty": "중",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.option_0",
+        "slot.choice.option_1",
+        "slot.choice.option_2",
+        "slot.choice.option_3"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "24. 다음 계산에서 몫과 나머지의 차가 가장 큰 것은 어느 것일까요?"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.c_0",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.c_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.c_1",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.c_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.c_2",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.c_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_0",
+        "type": "choice_marker",
+        "properties": {
+          "text": "ㄱ"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "choice_marker",
+        "properties": {
+          "text": "ㄴ"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_2",
+        "type": "choice_marker",
+        "properties": {
+          "text": "ㄷ"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_3",
+        "type": "choice_marker",
+        "properties": {
+          "text": "ㄹ"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.paren_left",
+        "type": "text",
+        "properties": {
+          "text": "("
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.paren_left"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.paren_right",
+        "type": "text",
+        "properties": {
+          "text": ")"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.paren_right"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.box_bg",
+        "type": "rect_slot",
+        "properties": {
+          "x": 176,
+          "y": 88,
+          "width": 534,
+          "height": 116,
+          "stroke": "#6b7280",
+          "stroke_width": 1.5,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.box_bg"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.item_0",
+        "type": "text",
+        "properties": {
+          "text": "ㄱ. 806 ÷ 41"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.item_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.item_1",
+        "type": "text",
+        "properties": {
+          "text": "ㄴ. 319 ÷ 18"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.item_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.item_2",
+        "type": "text",
+        "properties": {
+          "text": "ㄷ. 169 ÷ 12"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.item_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.item_3",
+        "type": "text",
+        "properties": {
+          "text": "ㄹ. 594 ÷ 72"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.item_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "24. 다음 계산에서 몫과 나머지의 차가 가장 큰 것은 어느 것일까요?",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "ㄷ",
+    "answer_index": 2,
+    "unit": "",
+    "values": [
+      "ㄷ"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "ㄱ",
+        "value": "ㄱ"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "ㄴ",
+        "value": "ㄴ"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "ㄷ",
+        "value": "ㄷ"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "ㄹ",
+        "value": "ㄹ"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "ㄷ",
+        "diagnostics": [
+          {
+            "id": "diag.diff_giyeok",
+            "condition": "answer_equals_giyeok",
+            "concept": "나눗셈의 몫과 나머지",
+            "reason": "ㄱ의 차(27-19=8)가 ㄷ의 차(14-1=13)보다 작음",
+            "feedback": "ㄱ. 806 ÷ 41 = 19···27 (차: 8), ㄷ. 169 ÷ 12 = 14···1 (차: 13)입니다."
+          },
+          {
+            "id": "diag.diff_rieul",
+            "condition": "answer_equals_rieul",
+            "concept": "나눗셈의 몫과 나머지",
+            "reason": "ㄹ의 차(18-8=10)가 ㄷ의 차(14-1=13)보다 작음",
+            "feedback": "ㄹ. 594 ÷ 72 = 8···18 (차: 10), ㄷ. 169 ÷ 12 = 14···1 (차: 13)입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "opt_0": {
+      "label": "ㄱ",
+      "expr": "806 ÷ 41",
+      "quotient": 19,
+      "remainder": 27,
+      "diff": 8
+    },
+    "opt_1": {
+      "label": "ㄴ",
+      "expr": "319 ÷ 18",
+      "quotient": 17,
+      "remainder": 13,
+      "diff": 4
+    },
+    "opt_2": {
+      "label": "ㄷ",
+      "expr": "169 ÷ 12",
+      "quotient": 14,
+      "remainder": 1,
+      "diff": 13
+    },
+    "opt_3": {
+      "label": "ㄹ",
+      "expr": "594 ÷ 72",
+      "quotient": 8,
+      "remainder": 18,
+      "diff": 10
+    }
+  },
+  "relations": [
+    {
+      "type": "maximum_difference",
+      "correct_entity": "opt_2",
+      "distractors": [
+        "opt_0",
+        "opt_1",
+        "opt_3"
+      ]
+    }
+  ]
+}

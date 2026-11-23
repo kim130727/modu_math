@@ -1,0 +1,204 @@
+{
+  "problem_id": "S3_초등_4_008111",
+  "problem_type": "multiple_choice_quotient_comparison",
+  "metadata": {
+    "title": "두 나눗셈 중 몫이 더 큰 식 선택하기",
+    "tags": [],
+    "question": "19. 몫이 더 큰 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.card_0",
+      "slot.diagram.card_1"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "03단원_곱셈과 나눗셈",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "19. 몫이 더 큰 것을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "text",
+        "properties": {
+          "text": "360 ÷ 40"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "text",
+        "properties": {
+          "text": "420 ÷ 60"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.card_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 180,
+          "y": 96,
+          "width": 230,
+          "height": 72,
+          "stroke": "#b8bfe3",
+          "stroke_width": 1.2,
+          "rx": 4,
+          "ry": 4,
+          "fill": "#d8dcf0",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.card_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.card_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 476,
+          "y": 96,
+          "width": 230,
+          "height": 72,
+          "stroke": "#b8bfe3",
+          "stroke_width": 1.2,
+          "rx": 4,
+          "ry": 4,
+          "fill": "#d8dcf0",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.card_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "19. 몫이 더 큰 것을 선택하세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "360 ÷ 40",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "360 ÷ 40"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "360 ÷ 40",
+        "value": "360 ÷ 40"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "420 ÷ 60",
+        "value": "420 ÷ 60"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "360 ÷ 40",
+        "diagnostics": [
+          {
+            "id": "diag.chose_larger_dividend",
+            "condition": "answer_equals_420_60",
+            "concept": "몇백몇십 ÷ 몇십",
+            "reason": "나누어지는 수(420)가 더 큰 식의 몫이 더 클 것이라고 오인함",
+            "feedback": "360 ÷ 40 = 9이고, 420 ÷ 60 = 7입니다. 9 > 7이므로 360 ÷ 40의 몫이 더 큽니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "expr_0": {
+      "label": "360 ÷ 40",
+      "quotient": 9
+    },
+    "expr_1": {
+      "label": "420 ÷ 60",
+      "quotient": 7
+    }
+  },
+  "relations": [
+    {
+      "type": "greater_quotient",
+      "larger": "expr_0",
+      "smaller": "expr_1"
+    }
+  ]
+}

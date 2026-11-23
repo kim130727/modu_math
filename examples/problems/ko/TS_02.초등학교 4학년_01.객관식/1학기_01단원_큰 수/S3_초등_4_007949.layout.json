@@ -1,0 +1,895 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007949",
+  "title": "조 단위 뛰어 세기 규칙 찾기",
+  "canvas": {
+    "width": 886,
+    "height": 330,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.loco_chimney",
+        "slot.diagram.loco_body",
+        "slot.diagram.loco_window",
+        "slot.diagram.loco_base",
+        "slot.diagram.loco_w1",
+        "slot.diagram.loco_w2",
+        "slot.diagram.loco_w3",
+        "slot.diagram.car_body_0",
+        "slot.diagram.car_panel_0",
+        "slot.diagram.car_base_0",
+        "slot.diagram.car_w1_0",
+        "slot.diagram.car_w2_0",
+        "slot.diagram.car_body_1",
+        "slot.diagram.car_panel_1",
+        "slot.diagram.car_base_1",
+        "slot.diagram.car_w1_1",
+        "slot.diagram.car_w2_1",
+        "slot.diagram.car_body_2",
+        "slot.diagram.car_panel_2",
+        "slot.diagram.car_base_2",
+        "slot.diagram.car_w1_2",
+        "slot.diagram.car_w2_2",
+        "slot.diagram.car_body_3",
+        "slot.diagram.car_panel_3",
+        "slot.diagram.car_base_3",
+        "slot.diagram.car_w1_3",
+        "slot.diagram.car_w2_3",
+        "slot.diagram.car_body_4",
+        "slot.diagram.car_panel_4",
+        "slot.diagram.car_base_4",
+        "slot.diagram.car_w1_4",
+        "slot.diagram.car_w2_4",
+        "slot.diagram.link_0",
+        "slot.diagram.link_1",
+        "slot.diagram.link_2",
+        "slot.diagram.link_3",
+        "slot.diagram.link_4",
+        "slot.diagram.car_text_0",
+        "slot.diagram.car_text_1",
+        "slot.diagram.car_text_2"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.paren_left",
+        "slot.choice.option_0",
+        "slot.choice.comma_0",
+        "slot.choice.option_1",
+        "slot.choice.comma_1",
+        "slot.choice.option_2",
+        "slot.choice.paren_right"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "7. 뛰어 센 것을 보고 알맞은 것을 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.loco_chimney",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 165.0,
+        "y": 82.0,
+        "width": 22.0,
+        "height": 30.0,
+        "stroke": "#4d7c0f",
+        "stroke_width": 1.5,
+        "rx": 3.0,
+        "ry": 3.0,
+        "fill": "#d9f99d"
+      }
+    },
+    {
+      "id": "slot.diagram.loco_body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            85.0,
+            200.0
+          ],
+          [
+            105.0,
+            130.0
+          ],
+          [
+            155.0,
+            112.0
+          ],
+          [
+            200.0,
+            112.0
+          ],
+          [
+            200.0,
+            200.0
+          ]
+        ],
+        "stroke": "#4d7c0f",
+        "stroke_width": 1.5,
+        "fill": "#bef264"
+      }
+    },
+    {
+      "id": "slot.diagram.loco_window",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 162.0,
+        "y": 126.0,
+        "width": 28.0,
+        "height": 34.0,
+        "stroke": "#4d7c0f",
+        "stroke_width": 1.5,
+        "rx": 4.0,
+        "ry": 4.0,
+        "fill": "#e0f2fe"
+      }
+    },
+    {
+      "id": "slot.diagram.loco_base",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 74.0,
+        "y": 200.0,
+        "width": 130.0,
+        "height": 16.0,
+        "stroke": "#c2410c",
+        "stroke_width": 1.5,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "#fdba74"
+      }
+    },
+    {
+      "id": "slot.diagram.loco_w1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 100.0,
+        "cy": 224.0,
+        "r": 14.0,
+        "stroke": "#374151",
+        "stroke_width": 1.5,
+        "fill": "#9ca3af"
+      }
+    },
+    {
+      "id": "slot.diagram.loco_w2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 140.0,
+        "cy": 224.0,
+        "r": 14.0,
+        "stroke": "#374151",
+        "stroke_width": 1.5,
+        "fill": "#9ca3af"
+      }
+    },
+    {
+      "id": "slot.diagram.loco_w3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 182.0,
+        "cy": 224.0,
+        "r": 14.0,
+        "stroke": "#374151",
+        "stroke_width": 1.5,
+        "fill": "#9ca3af"
+      }
+    },
+    {
+      "id": "slot.diagram.link_0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 204.0,
+        "y1": 168.0,
+        "x2": 222.0,
+        "y2": 168.0,
+        "stroke": "#374151",
+        "stroke_width": 3.0
+      }
+    },
+    {
+      "id": "slot.diagram.car_body_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 222.0,
+        "y": 114.0,
+        "width": 108.0,
+        "height": 86.0,
+        "stroke": "#4d7c0f",
+        "stroke_width": 1.5,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "#bef264"
+      }
+    },
+    {
+      "id": "slot.diagram.car_panel_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 232.0,
+        "y": 130.0,
+        "width": 88.0,
+        "height": 52.0,
+        "stroke": "#4d7c0f",
+        "stroke_width": 1.2,
+        "rx": 4.0,
+        "ry": 4.0,
+        "fill": "#d9f99d"
+      }
+    },
+    {
+      "id": "slot.diagram.car_text_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6390조",
+        "style_role": "body",
+        "x": 276.0,
+        "y": 144.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.car_base_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 220.0,
+        "y": 200.0,
+        "width": 112.0,
+        "height": 16.0,
+        "stroke": "#c2410c",
+        "stroke_width": 1.5,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "#fdba74"
+      }
+    },
+    {
+      "id": "slot.diagram.car_w1_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 248.0,
+        "cy": 224.0,
+        "r": 13.0,
+        "stroke": "#374151",
+        "stroke_width": 1.5,
+        "fill": "#9ca3af"
+      }
+    },
+    {
+      "id": "slot.diagram.car_w2_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 304.0,
+        "cy": 224.0,
+        "r": 13.0,
+        "stroke": "#374151",
+        "stroke_width": 1.5,
+        "fill": "#9ca3af"
+      }
+    },
+    {
+      "id": "slot.diagram.link_1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 330.0,
+        "y1": 168.0,
+        "x2": 348.0,
+        "y2": 168.0,
+        "stroke": "#374151",
+        "stroke_width": 3.0
+      }
+    },
+    {
+      "id": "slot.diagram.car_body_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 348.0,
+        "y": 114.0,
+        "width": 108.0,
+        "height": 86.0,
+        "stroke": "#4d7c0f",
+        "stroke_width": 1.5,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "#bef264"
+      }
+    },
+    {
+      "id": "slot.diagram.car_panel_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 358.0,
+        "y": 130.0,
+        "width": 88.0,
+        "height": 52.0,
+        "stroke": "#4d7c0f",
+        "stroke_width": 1.2,
+        "rx": 4.0,
+        "ry": 4.0,
+        "fill": "#d9f99d"
+      }
+    },
+    {
+      "id": "slot.diagram.car_text_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6490조",
+        "style_role": "body",
+        "x": 402.0,
+        "y": 144.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.car_base_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 346.0,
+        "y": 200.0,
+        "width": 112.0,
+        "height": 16.0,
+        "stroke": "#c2410c",
+        "stroke_width": 1.5,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "#fdba74"
+      }
+    },
+    {
+      "id": "slot.diagram.car_w1_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 374.0,
+        "cy": 224.0,
+        "r": 13.0,
+        "stroke": "#374151",
+        "stroke_width": 1.5,
+        "fill": "#9ca3af"
+      }
+    },
+    {
+      "id": "slot.diagram.car_w2_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 430.0,
+        "cy": 224.0,
+        "r": 13.0,
+        "stroke": "#374151",
+        "stroke_width": 1.5,
+        "fill": "#9ca3af"
+      }
+    },
+    {
+      "id": "slot.diagram.link_2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 456.0,
+        "y1": 168.0,
+        "x2": 474.0,
+        "y2": 168.0,
+        "stroke": "#374151",
+        "stroke_width": 3.0
+      }
+    },
+    {
+      "id": "slot.diagram.car_body_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 474.0,
+        "y": 114.0,
+        "width": 108.0,
+        "height": 86.0,
+        "stroke": "#4d7c0f",
+        "stroke_width": 1.5,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "#bef264"
+      }
+    },
+    {
+      "id": "slot.diagram.car_panel_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 484.0,
+        "y": 130.0,
+        "width": 88.0,
+        "height": 52.0,
+        "stroke": "#4d7c0f",
+        "stroke_width": 1.2,
+        "rx": 4.0,
+        "ry": 4.0,
+        "fill": "#d9f99d"
+      }
+    },
+    {
+      "id": "slot.diagram.car_text_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6590조",
+        "style_role": "body",
+        "x": 528.0,
+        "y": 144.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.car_base_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 472.0,
+        "y": 200.0,
+        "width": 112.0,
+        "height": 16.0,
+        "stroke": "#c2410c",
+        "stroke_width": 1.5,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "#fdba74"
+      }
+    },
+    {
+      "id": "slot.diagram.car_w1_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 500.0,
+        "cy": 224.0,
+        "r": 13.0,
+        "stroke": "#374151",
+        "stroke_width": 1.5,
+        "fill": "#9ca3af"
+      }
+    },
+    {
+      "id": "slot.diagram.car_w2_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 556.0,
+        "cy": 224.0,
+        "r": 13.0,
+        "stroke": "#374151",
+        "stroke_width": 1.5,
+        "fill": "#9ca3af"
+      }
+    },
+    {
+      "id": "slot.diagram.link_3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 582.0,
+        "y1": 168.0,
+        "x2": 600.0,
+        "y2": 168.0,
+        "stroke": "#374151",
+        "stroke_width": 3.0
+      }
+    },
+    {
+      "id": "slot.diagram.car_body_3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 600.0,
+        "y": 114.0,
+        "width": 108.0,
+        "height": 86.0,
+        "stroke": "#4d7c0f",
+        "stroke_width": 1.5,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "#bef264"
+      }
+    },
+    {
+      "id": "slot.diagram.car_panel_3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 610.0,
+        "y": 130.0,
+        "width": 88.0,
+        "height": 52.0,
+        "stroke": "#4d7c0f",
+        "stroke_width": 1.2,
+        "rx": 4.0,
+        "ry": 4.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.car_base_3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 598.0,
+        "y": 200.0,
+        "width": 112.0,
+        "height": 16.0,
+        "stroke": "#c2410c",
+        "stroke_width": 1.5,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "#fdba74"
+      }
+    },
+    {
+      "id": "slot.diagram.car_w1_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 626.0,
+        "cy": 224.0,
+        "r": 13.0,
+        "stroke": "#374151",
+        "stroke_width": 1.5,
+        "fill": "#9ca3af"
+      }
+    },
+    {
+      "id": "slot.diagram.car_w2_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 682.0,
+        "cy": 224.0,
+        "r": 13.0,
+        "stroke": "#374151",
+        "stroke_width": 1.5,
+        "fill": "#9ca3af"
+      }
+    },
+    {
+      "id": "slot.diagram.link_4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 708.0,
+        "y1": 168.0,
+        "x2": 726.0,
+        "y2": 168.0,
+        "stroke": "#374151",
+        "stroke_width": 3.0
+      }
+    },
+    {
+      "id": "slot.diagram.car_body_4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 726.0,
+        "y": 114.0,
+        "width": 108.0,
+        "height": 86.0,
+        "stroke": "#4d7c0f",
+        "stroke_width": 1.5,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "#bef264"
+      }
+    },
+    {
+      "id": "slot.diagram.car_panel_4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 736.0,
+        "y": 130.0,
+        "width": 88.0,
+        "height": 52.0,
+        "stroke": "#4d7c0f",
+        "stroke_width": 1.2,
+        "rx": 4.0,
+        "ry": 4.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.car_base_4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 724.0,
+        "y": 200.0,
+        "width": 112.0,
+        "height": 16.0,
+        "stroke": "#c2410c",
+        "stroke_width": 1.5,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "#fdba74"
+      }
+    },
+    {
+      "id": "slot.diagram.car_w1_4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 752.0,
+        "cy": 224.0,
+        "r": 13.0,
+        "stroke": "#374151",
+        "stroke_width": 1.5,
+        "fill": "#9ca3af"
+      }
+    },
+    {
+      "id": "slot.diagram.car_w2_4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 808.0,
+        "cy": 224.0,
+        "r": 13.0,
+        "stroke": "#374151",
+        "stroke_width": 1.5,
+        "fill": "#9ca3af"
+      }
+    },
+    {
+      "id": "slot.choice.paren_left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(",
+        "style_role": "body",
+        "x": 200.0,
+        "y": 268.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10조",
+        "style_role": "body",
+        "x": 248.0,
+        "y": 268.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "10조",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.comma_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 290.0,
+        "y": 268.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "100조",
+        "style_role": "body",
+        "x": 340.0,
+        "y": 268.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "100조",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.comma_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 390.0,
+        "y": 268.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1000조",
+        "style_role": "body",
+        "x": 445.0,
+        "y": 268.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 2,
+          "value": "1000조",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.paren_right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ")씩 뛰어 세었습니다.",
+        "style_role": "body",
+        "x": 600.0,
+        "y": 268.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.loco_chimney",
+    "slot.diagram.loco_body",
+    "slot.diagram.loco_window",
+    "slot.diagram.loco_base",
+    "slot.diagram.loco_w1",
+    "slot.diagram.loco_w2",
+    "slot.diagram.loco_w3",
+    "slot.diagram.car_body_0",
+    "slot.diagram.car_panel_0",
+    "slot.diagram.car_base_0",
+    "slot.diagram.car_w1_0",
+    "slot.diagram.car_w2_0",
+    "slot.diagram.car_body_1",
+    "slot.diagram.car_panel_1",
+    "slot.diagram.car_base_1",
+    "slot.diagram.car_w1_1",
+    "slot.diagram.car_w2_1",
+    "slot.diagram.car_body_2",
+    "slot.diagram.car_panel_2",
+    "slot.diagram.car_base_2",
+    "slot.diagram.car_w1_2",
+    "slot.diagram.car_w2_2",
+    "slot.diagram.car_body_3",
+    "slot.diagram.car_panel_3",
+    "slot.diagram.car_base_3",
+    "slot.diagram.car_w1_3",
+    "slot.diagram.car_w2_3",
+    "slot.diagram.car_body_4",
+    "slot.diagram.car_panel_4",
+    "slot.diagram.car_base_4",
+    "slot.diagram.car_w1_4",
+    "slot.diagram.car_w2_4",
+    "slot.diagram.link_0",
+    "slot.diagram.link_1",
+    "slot.diagram.link_2",
+    "slot.diagram.link_3",
+    "slot.diagram.link_4",
+    "slot.diagram.car_text_0",
+    "slot.diagram.car_text_1",
+    "slot.diagram.car_text_2",
+    "region.choices",
+    "slot.choice.paren_left",
+    "slot.choice.option_0",
+    "slot.choice.comma_0",
+    "slot.choice.option_1",
+    "slot.choice.comma_1",
+    "slot.choice.option_2",
+    "slot.choice.paren_right"
+  ]
+}

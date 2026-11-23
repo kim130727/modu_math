@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007530",
+  "problem_type": "multiple_choice_perpendicular_construction",
+  "given": [
+    {
+      "ref": "option_0",
+      "value": "직각을 낀 변을 따라 그은 선"
+    },
+    {
+      "ref": "option_1",
+      "value": "빗변을 따라 그은 선"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "수선을 바르게 그은 것",
+    "unit": ""
+  },
+  "method": "set_square_perpendicular",
+  "steps": [
+    {
+      "id": "identify_perpendicular_line",
+      "expr": "①",
+      "explanation": "삼각자에서 직각을 낀 다른 한 변을 따라 선을 그은 ①이 수선입니다.",
+      "value": "①"
+    }
+  ],
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.drew_along_hypotenuse",
+            "condition": "answer_equals_2",
+            "concept": "수선 긋기",
+            "reason": "직각을 낀 변이 아니라 빗변을 따라 그은 그림(②)을 선택함",
+            "feedback": "삼각자에서 직각을 낀 다른 한 변을 따라 선을 그어야 주어진 직선과 수직이 됩니다. ①이 바릅니다."
+          }
+        ]
+      }
+    ]
+  }
+}

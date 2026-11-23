@@ -1,0 +1,254 @@
+{
+  "problem_id": "S3_초등_4_007978",
+  "view_box": {
+    "width": 886.0,
+    "height": 300.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 820.0,
+        "height": 44.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 820.0,
+        "data-box-height": 44.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "더 많이 벌어진 컴퍼스를 선택하세요."
+    },
+    {
+      "id": "slot.choice.option_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 156.0,
+        "y": 84.0,
+        "width": 240.0,
+        "height": 188.0,
+        "fill": "#ffffff",
+        "stroke": "#e5e7eb",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "①",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 431.5,
+        "y": 81.37,
+        "width": 240.0,
+        "height": 188.0,
+        "fill": "#ffffff",
+        "stroke": "#e5e7eb",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "②",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.diagram.c0_arc.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 294 126 A 28 28 0 0 0 304 139",
+        "stroke": "#ec4899",
+        "stroke-width": 1.8,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.c0_arc",
+      "refs": {
+        "layout_slot_id": "slot.diagram.c0_arc"
+      }
+    },
+    {
+      "id": "slot.diagram.c1_arc.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 536 142 A 28 28 0 0 0 561 127",
+        "stroke": "#ec4899",
+        "stroke-width": 1.8,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.c1_arc",
+      "refs": {
+        "layout_slot_id": "slot.diagram.c1_arc"
+      }
+    },
+    {
+      "id": "slot.diagram.c0_leg1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 320.0,
+        "y1": 114.0,
+        "x2": 212.0,
+        "y2": 166.0,
+        "stroke": "#57534e",
+        "stroke-width": 6.0
+      },
+      "source_ref": "slot.diagram.c0_leg1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.c0_leg1"
+      }
+    },
+    {
+      "id": "slot.diagram.c0_leg2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 320.0,
+        "y1": 114.0,
+        "x2": 262.0,
+        "y2": 238.0,
+        "stroke": "#57534e",
+        "stroke-width": 6.0
+      },
+      "source_ref": "slot.diagram.c0_leg2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.c0_leg2"
+      }
+    },
+    {
+      "id": "slot.diagram.c1_leg1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 536.0,
+        "y1": 114.0,
+        "x2": 536.0,
+        "y2": 250.0,
+        "stroke": "#57534e",
+        "stroke-width": 6.0
+      },
+      "source_ref": "slot.diagram.c1_leg1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.c1_leg1"
+      }
+    },
+    {
+      "id": "slot.diagram.c1_leg2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 536.0,
+        "y1": 114.0,
+        "x2": 658.0,
+        "y2": 176.0,
+        "stroke": "#57534e",
+        "stroke-width": 6.0
+      },
+      "source_ref": "slot.diagram.c1_leg2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.c1_leg2"
+      }
+    },
+    {
+      "id": "slot.diagram.c0_hinge.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 320.0,
+        "cy": 114.0,
+        "r": 8.0,
+        "stroke": "#57534e",
+        "stroke-width": 2.0,
+        "fill": "#e7e5e4"
+      },
+      "source_ref": "slot.diagram.c0_hinge",
+      "refs": {
+        "layout_slot_id": "slot.diagram.c0_hinge"
+      }
+    },
+    {
+      "id": "slot.diagram.c1_hinge.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 536.0,
+        "cy": 114.0,
+        "r": 8.0,
+        "stroke": "#57534e",
+        "stroke-width": 2.0,
+        "fill": "#e7e5e4"
+      },
+      "source_ref": "slot.diagram.c1_hinge",
+      "refs": {
+        "layout_slot_id": "slot.diagram.c1_hinge"
+      }
+    },
+    {
+      "id": "slot.diagram.badge_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 182.0,
+        "y": 100.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.badge_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.badge_0"
+      },
+      "text": "①"
+    },
+    {
+      "id": "slot.diagram.badge_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 475.0,
+        "y": 100.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.badge_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.badge_1"
+      },
+      "text": "②"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,425 @@
+{
+  "problem_id": "S3_초등_4_007531",
+  "problem_type": "multiple_choice_perpendicular_through_point",
+  "metadata": {
+    "title": "점 ㄱ을 지나고 직선 가에 수직인 직선 선택하기",
+    "tags": [],
+    "question": "66. 삼각자를 사용하여 점 ㄱ을 지나고 직선 가에 수직인 직선을 그은 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.diagram.l0_base",
+      "slot.diagram.l0_perp",
+      "slot.diagram.l0_pt",
+      "slot.choice.option_1",
+      "slot.diagram.l1_base",
+      "slot.diagram.l1_ob",
+      "slot.diagram.l1_pt"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "04단원_평면도형의 이동",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "66. 삼각자를 사용하여 점 ㄱ을 지나고 직선 가에 수직인 직선을 그은 것을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 116,
+          "y": 92,
+          "width": 290,
+          "height": 168,
+          "stroke": "#e5e7eb",
+          "stroke_width": 1.5,
+          "rx": 10,
+          "ry": 10,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 480,
+          "y": 92,
+          "width": 290,
+          "height": 168,
+          "stroke": "#e5e7eb",
+          "stroke_width": 1.5,
+          "rx": 10,
+          "ry": 10,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.badge_0",
+        "type": "symbol_label",
+        "properties": {
+          "text": "①"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.badge_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.badge_1",
+        "type": "symbol_label",
+        "properties": {
+          "text": "②"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.badge_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l0_base",
+        "type": "line_slot",
+        "properties": {
+          "x1": 160,
+          "y1": 226,
+          "x2": 384,
+          "y2": 226,
+          "stroke": "#111827",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l0_base"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l0_ga",
+        "type": "symbol_label",
+        "properties": {
+          "text": "가"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l0_ga"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l0_perp",
+        "type": "line_slot",
+        "properties": {
+          "x1": 272,
+          "y1": 108,
+          "x2": 272,
+          "y2": 226,
+          "stroke": "#111827",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l0_perp"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l0_pt",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 272,
+          "cy": 136,
+          "r": 3.5,
+          "stroke": "#111827",
+          "stroke_width": 1,
+          "fill": "#111827",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l0_pt"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l0_pt_lbl",
+        "type": "symbol_label",
+        "properties": {
+          "text": "ㄱ"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l0_pt_lbl"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l1_base",
+        "type": "line_slot",
+        "properties": {
+          "x1": 524,
+          "y1": 226,
+          "x2": 748,
+          "y2": 226,
+          "stroke": "#111827",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l1_base"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l1_ga",
+        "type": "symbol_label",
+        "properties": {
+          "text": "가"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l1_ga"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l1_ob",
+        "type": "line_slot",
+        "properties": {
+          "x1": 566,
+          "y1": 226,
+          "x2": 682,
+          "y2": 110,
+          "stroke": "#111827",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l1_ob"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l1_pt",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 656,
+          "cy": 136,
+          "r": 3.5,
+          "stroke": "#111827",
+          "stroke_width": 1,
+          "fill": "#111827",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l1_pt"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l1_pt_lbl",
+        "type": "symbol_label",
+        "properties": {
+          "text": "ㄱ"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l1_pt_lbl"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "66. 삼각자를 사용하여 점 ㄱ을 지나고 직선 가에 수직인 직선을 그은 것을 선택하세요.",
+          "width": 820,
+          "height": 56
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.chose_oblique_line",
+            "condition": "answer_equals_2",
+            "concept": "점과 수선",
+            "reason": "점 ㄱ을 지나지만 직선 가와 수직이 아닌 비스듬한 직선(②)을 선택함",
+            "feedback": "삼각자에서 직각을 낀 변 중 한 변을 직선 가에 맞춘 후 직각을 낀 다른 한 변을 따라 점 ㄱ을 지나게 그은 ①이 수직입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "option_0": {
+      "label": "①",
+      "passes_through_point": true,
+      "is_perpendicular": true
+    },
+    "option_1": {
+      "label": "②",
+      "passes_through_point": true,
+      "is_perpendicular": false
+    }
+  },
+  "relations": [
+    {
+      "type": "perpendicular_through_point",
+      "correct_entity": "option_0",
+      "distractor": "option_1"
+    }
+  ]
+}

@@ -1,0 +1,618 @@
+{
+  "problem_id": "S3_초등_4_007536",
+  "problem_type": "multiple_choice_parallel_construction_reason",
+  "metadata": {
+    "title": "삼각자 2개로 평행한 직선을 긋는 이유 알기",
+    "tags": [],
+    "question": "72. 삼각자를 사용하여 주어진 직선과 평행한 직선을 긋는 방법입니다. 주어진 직선과 그은 직선이 서로 평행한 이유에 맞게 알맞은 말을 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.s1_t1",
+      "slot.diagram.s1_t2",
+      "slot.diagram.s1_l1",
+      "slot.diagram.s1_box",
+      "slot.diagram.s2_t1",
+      "slot.diagram.s2_t2",
+      "slot.diagram.s2_l1",
+      "slot.diagram.s2_l2",
+      "slot.diagram.s2_box",
+      "slot.diagram.bubble",
+      "slot.diagram.boy_head"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "04단원_평면도형의 이동",
+    "difficulty": "중",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "72. 삼각자를 사용하여 주어진 직선과 평행한 직선을 긋는 방법입니다. 주어진 직선과 그은 직선이 서로 평행한 이유에 맞게 알맞은 말을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.comma",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.comma"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_0",
+        "type": "text",
+        "properties": {
+          "text": "수직"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "text",
+        "properties": {
+          "text": "평행"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.prefix",
+        "type": "text",
+        "properties": {
+          "text": "그은 직선이 각각 서로 ("
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.prefix"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.suffix",
+        "type": "text",
+        "properties": {
+          "text": ")이 되기 때문이야."
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.suffix"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.arrow",
+        "type": "text",
+        "properties": {
+          "text": "➡"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.arrow"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b_line1",
+        "type": "text",
+        "properties": {
+          "text": "움직이지 않은 삼각자의 한 변에 대해 주어진 직선과"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b_line1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.boy_head",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 726,
+          "cy": 330,
+          "r": 28,
+          "stroke": "#78350f",
+          "stroke_width": 1.5,
+          "fill": "#fde68a",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.boy_head"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.bubble",
+        "type": "rect_slot",
+        "properties": {
+          "x": 156,
+          "y": 288,
+          "width": 510,
+          "height": 84,
+          "stroke": "#374151",
+          "stroke_width": 1.4,
+          "rx": 24,
+          "ry": 24,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.bubble"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.s1_box",
+        "type": "rect_slot",
+        "properties": {
+          "x": 144,
+          "y": 194,
+          "width": 250,
+          "height": 74,
+          "stroke": "#f9a8d4",
+          "stroke_width": 1,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#fce7f3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.s1_box"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.s1_l1",
+        "type": "line_slot",
+        "properties": {
+          "x1": 242,
+          "y1": 94,
+          "x2": 386,
+          "y2": 94,
+          "stroke": "#111827",
+          "stroke_width": 1.8,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.s1_l1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.s1_t1",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              184,
+              176
+            ],
+            [
+              242,
+              176
+            ],
+            [
+              242,
+              94
+            ]
+          ],
+          "stroke": "#0284c7",
+          "stroke_width": 1.4,
+          "fill": "#e0f2fe",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.s1_t1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.s1_t2",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              242,
+              94
+            ],
+            [
+              360,
+              94
+            ],
+            [
+              242,
+              152
+            ]
+          ],
+          "stroke": "#0284c7",
+          "stroke_width": 1.4,
+          "fill": "#e0f2fe",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.s1_t2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.s1_txt",
+        "type": "text",
+        "properties": {
+          "text": "삼각자 2개를 직각을 낀\n변끼리 맞닿게 놓습니다.",
+          "width": 230,
+          "height": 58
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.s1_txt"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.s2_box",
+        "type": "rect_slot",
+        "properties": {
+          "x": 486,
+          "y": 194,
+          "width": 264,
+          "height": 74,
+          "stroke": "#f9a8d4",
+          "stroke_width": 1,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#fce7f3",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.s2_box"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.s2_l1",
+        "type": "line_slot",
+        "properties": {
+          "x1": 582,
+          "y1": 94,
+          "x2": 726,
+          "y2": 94,
+          "stroke": "#111827",
+          "stroke_width": 1.8,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.s2_l1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.s2_l2",
+        "type": "line_slot",
+        "properties": {
+          "x1": 582,
+          "y1": 122,
+          "x2": 726,
+          "y2": 122,
+          "stroke": "#111827",
+          "stroke_width": 1.8,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.s2_l2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.s2_t1",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              524,
+              176
+            ],
+            [
+              582,
+              176
+            ],
+            [
+              582,
+              94
+            ]
+          ],
+          "stroke": "#0284c7",
+          "stroke_width": 1.4,
+          "fill": "#e0f2fe",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.s2_t1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.s2_t2",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              582,
+              122
+            ],
+            [
+              700,
+              122
+            ],
+            [
+              582,
+              176
+            ]
+          ],
+          "stroke": "#0284c7",
+          "stroke_width": 1.4,
+          "fill": "#e0f2fe",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.s2_t2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.s2_txt",
+        "type": "text",
+        "properties": {
+          "text": "왼쪽 삼각자를 고정시키고\n오른쪽 삼각자를 움직여\n평행한 직선을 긋습니다.",
+          "width": 244,
+          "height": 66
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.s2_txt"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "72. 삼각자를 사용하여 주어진 직선과 평행한 직선을 긋는 방법입니다. 주어진 직선과 그은 직선이 서로 평행한 이유에 맞게 알맞은 말을 선택하세요.",
+          "width": 820,
+          "height": 56
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "수직",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "수직"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "수직",
+        "value": "수직"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "평행",
+        "value": "평행"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "수직",
+        "diagnostics": [
+          {
+            "id": "diag.confused_perpendicular_parallel",
+            "condition": "answer_equals_parallel",
+            "concept": "평행선 긋기",
+            "reason": "고정된 삼각자의 변에 대해 두 직선이 각각 수직이라는 점을 평행으로 혼동함",
+            "feedback": "움직이지 않은 삼각자의 한 변에 대해 주어진 직선과 그은 직선이 각각 서로 수직이므로 두 직선은 서로 평행합니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "fixed_edge": {
+      "label": "움직이지 않은 삼각자의 한 변"
+    },
+    "given_line": {
+      "label": "주어진 직선"
+    },
+    "drawn_line": {
+      "label": "그은 직선"
+    }
+  },
+  "relations": [
+    {
+      "type": "perpendicular_implies_parallel",
+      "reason": "수직"
+    }
+  ]
+}

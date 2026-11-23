@@ -1,0 +1,87 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007535",
+  "problem_type": "multiple_choice_parallel_sides",
+  "given": [
+    {
+      "ref": "shape_0",
+      "value": "삼각형"
+    },
+    {
+      "ref": "shape_1",
+      "value": "사다리꼴"
+    },
+    {
+      "ref": "shape_2",
+      "value": "직사각형"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "평행한 변이 있는 도형",
+    "unit": ""
+  },
+  "method": "parallel_sides_identification",
+  "steps": [
+    {
+      "id": "find_parallel_shapes",
+      "expr": "㉡, ㉢",
+      "explanation": "사다리꼴(㉡)은 위·아래 변이 평행하고, 직사각형(㉢)은 마주 보는 두 쌍의 변이 평행합니다.",
+      "value": [
+        "㉡",
+        "㉢"
+      ]
+    }
+  ],
+  "answer": {
+    "value": [
+      "㉡",
+      "㉢"
+    ],
+    "unit": "",
+    "values": [
+      "㉡",
+      "㉢"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "㉠",
+        "value": "㉠"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "㉡",
+        "value": "㉡"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "㉢",
+        "value": "㉢"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "㉡",
+        "diagnostics": [
+          {
+            "id": "diag.chose_triangle",
+            "condition": "answer_includes_giyeok",
+            "concept": "평행한 변",
+            "reason": "평행한 변이 없는 삼각형(㉠)을 선택함",
+            "feedback": "삼각형(㉠)에는 서로 평행한 변이 없습니다. 사다리꼴(㉡)과 직사각형(㉢)에 평행한 변이 있습니다."
+          }
+        ]
+      },
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "㉢"
+      }
+    ]
+  }
+}

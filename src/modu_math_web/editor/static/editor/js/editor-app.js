@@ -1758,6 +1758,656 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       return { base, patches };
     }
 
+    function protractorPatches({
+      radius = 120,
+      rotationDeg = 0,
+      tickStep = 5,
+      showRadial = true,
+      strokeColor = "#0284c7",
+    } = {}) {
+      const r = clampInt(radius, 60, 260, 120);
+      const rot = Math.max(-180, Math.min(180, Number.isFinite(Number(rotationDeg)) ? Number(rotationDeg) : 0));
+      const step = [1, 5, 10].includes(Number(tickStep)) ? Number(tickStep) : 5;
+      const color = String(strokeColor || "#0284c7").trim() || "#0284c7";
+      const lipHeight = Math.max(10, Math.round(r * 0.11));
+      const lipExtra = Math.max(6, Math.round(r * 0.06));
+      const width = (r + lipExtra) * 2;
+      const height = r + lipHeight;
+      const origin = selectedInsertOrigin(width, height) || defaultInsertOrigin(width, height);
+      const cx = snapValue(origin.x + width / 2);
+      const cy = snapValue(origin.y + r);
+      const base = uniqueFigureBase("protractor");
+      const regionId = selectedInsertRegionId() || firstUsableRegionId();
+      const withRegion = (value) => regionId ? { ...value, region_id: regionId } : value;
+      const patches = [];
+      const rnd = (v) => Math.round(v * 10) / 10;
+      const rotRad = (rot * Math.PI) / 180;
+      const pt = (dx, dy) => ({
+        x: rnd(cx + dx * Math.cos(rotRad) - dy * Math.sin(rotRad)),
+        y: rnd(cy + dx * Math.sin(rotRad) + dy * Math.cos(rotRad)),
+      });
+      const polar = (radDist, degFromLeft) => {
+        const a = ((180 - degFromLeft) * Math.PI) / 180;
+        return pt(radDist * Math.cos(a), -radDist * Math.sin(a));
+      };
+
+      // Bottom baseline lip
+      const b1 = pt(-(r + lipExtra), 0);
+      const b2 = pt(r + lipExtra, 0);
+      const b3 = pt(r + lipExtra, lipHeight);
+      const b4 = pt(-(r + lipExtra), lipHeight);
+      patches.push({
+        target: `${base}.base`,
+        op: "add",
+        value: withRegion({
+          kind: "path",
+          content: {
+            d: `M ${b1.x} ${b1.y} L ${b2.x} ${b2.y} L ${b3.x} ${b3.y} L ${b4.x} ${b4.y} Z`,
+            fill: "#e0f2fe",
+            stroke: color,
+            stroke_width: 1.2,
+          },
+        }),
+      });
+
+      // Outer & inner semicircle
+      const oL = polar(r, 0);
+      const oR = polar(r, 180);
+      patches.push({
+        target: `${base}.outer_arc`,
+        op: "add",
+        value: withRegion({
+          kind: "path",
+          content: {
+            d: `M ${oL.x} ${oL.y} A ${r} ${r} 0 0 1 ${oR.x} ${oR.y} Z`,
+            fill: "#f0f9ff",
+            stroke: color,
+            stroke_width: 1.5,
+          },
+        }),
+      });
+
+      const rInner = Math.round(r * 0.72);
+      const iL = polar(rInner, 0);
+      const iR = polar(rInner, 180);
+      patches.push({
+        target: `${base}.inner_arc`,
+        op: "add",
+        value: withRegion({
+          kind: "path",
+          content: {
+            d: `M ${iL.x} ${iL.y} A ${rInner} ${rInner} 0 0 1 ${iR.x} ${iR.y}`,
+            fill: "none",
+            stroke: color,
+            stroke_width: 1,
+          },
+        }),
+      });
+
+      const rCenter = Math.max(12, Math.round(r * 0.22));
+      const cL = polar(rCenter, 0);
+      const cR = polar(rCenter, 180);
+      patches.push({
+        target: `${base}.center_arc`,
+        op: "add",
+        value: withRegion({
+          kind: "path",
+          content: {
+            d: `M ${cL.x} ${cL.y} A ${rCenter} ${rCenter} 0 0 1 ${cR.x} ${cR.y}`,
+            fill: "none",
+            stroke: color,
+            stroke_width: 1,
+          },
+        }),
+      });
+
+      const cTop = polar(rCenter, 90);
+      patches.push({
+        target: `${base}.center_cross`,
+        op: "add",
+        value: withRegion({
+          kind: "line",
+          content: { x1: cx, y1: cy, x2: cTop.x, y2: cTop.y, stroke: color, stroke_width: 1 },
+        }),
+      });
+
+      // Ticks, radial lines, and labels
+      for (let deg = 0; deg <= 180; deg += step) {
+        const isMajor = deg % 10 === 0;
+        const isMid = deg % 5 === 0;
+        const tickLen = isMajor ? Math.max(8, r * 0.09) : isMid ? Math.max(6, r * 0.065) : Math.max(4, r * 0.04);
+        const p1 = polar(r, deg);
+        const p2 = polar(r - tickLen, deg);
+        patches.push({
+          target: `${base}.tick_${deg}`,
+          op: "add",
+          value: withRegion({
+            kind: "line",
+            content: {
+              x1: p1.x,
+              y1: p1.y,
+              x2: p2.x,
+              y2: p2.y,
+              stroke: color,
+              stroke_width: isMajor ? 1.2 : 0.7,
+            },
+          }),
+        });
+      }
+
+      const fontSizeOuter = Math.max(8, Math.round(r * 0.085));
+      const fontSizeInner = Math.max(7, Math.round(r * 0.075));
+      for (let deg = 0; deg <= 180; deg += 10) {
+        if (showRadial && deg > 0 && deg < 180) {
+          const rp1 = polar(rCenter, deg);
+          const rp2 = polar(rInner, deg);
+          patches.push({
+            target: `${base}.radial_${deg}`,
+            op: "add",
+            value: withRegion({
+              kind: "line",
+              content: { x1: rp1.x, y1: rp1.y, x2: rp2.x, y2: rp2.y, stroke: "#7dd3fc", stroke_width: 0.7 },
+            }),
+          });
+        }
+        if (deg % 20 === 0 || deg === 90 || r >= 110) {
+          const op = polar(r - Math.round(r * 0.17), deg);
+          patches.push({
+            target: `${base}.olabel_${deg}`,
+            op: "add",
+            value: withRegion({
+              kind: "text",
+              content: {
+                text: String(deg),
+                x: op.x,
+                y: rnd(op.y - fontSizeOuter * 0.45),
+                font_size: fontSizeOuter,
+                anchor: "middle",
+                style_role: "body",
+                fill: color,
+              },
+            }),
+          });
+          if (deg !== 90) {
+            const ip = polar(rInner - Math.round(r * 0.1), deg);
+            patches.push({
+              target: `${base}.ilabel_${deg}`,
+              op: "add",
+              value: withRegion({
+                kind: "text",
+                content: {
+                  text: String(180 - deg),
+                  x: ip.x,
+                  y: rnd(ip.y - fontSizeInner * 0.45),
+                  font_size: fontSizeInner,
+                  anchor: "middle",
+                  style_role: "body",
+                  fill: "#0c4a6e",
+                },
+              }),
+            });
+          }
+        }
+      }
+      return { base, patches };
+    }
+
+    function clockPatches({
+      hour = 2,
+      minute = 0,
+      radius = 84,
+      bezelColor = "#16a34a",
+      showArc = true,
+    } = {}) {
+      const cleanHour = clampInt(hour, 1, 12, 2);
+      const cleanMin = clampInt(minute, 0, 59, 0);
+      const r = clampInt(radius, 48, 180, 84);
+      const color = String(bezelColor || "#16a34a").trim() || "#16a34a";
+      const size = r * 2;
+      const origin = selectedInsertOrigin(size, size) || defaultInsertOrigin(size, size);
+      const cx = snapValue(origin.x + r);
+      const cy = snapValue(origin.y + r);
+      const base = uniqueFigureBase("clock");
+      const regionId = selectedInsertRegionId() || firstUsableRegionId();
+      const withRegion = (value) => regionId ? { ...value, region_id: regionId } : value;
+      const patches = [];
+      const rnd = (v) => Math.round(v * 10) / 10;
+
+      // Bezel & white face
+      patches.push({
+        target: `${base}.bezel`,
+        op: "add",
+        value: withRegion({
+          kind: "circle",
+          content: { cx, cy, r, fill: "#f8fafc", stroke: color, stroke_width: Math.max(4, Math.round(r * 0.08)) },
+        }),
+      });
+      const rFace = Math.round(r * 0.89);
+      patches.push({
+        target: `${base}.face`,
+        op: "add",
+        value: withRegion({
+          kind: "circle",
+          content: { cx, cy, r: rFace, fill: "#ffffff", stroke: "#cbd5e1", stroke_width: 1 },
+        }),
+      });
+
+      // 60 ticks
+      for (let m = 0; m < 60; m += 1) {
+        const a = ((m * 6 - 90) * Math.PI) / 180;
+        const isHour = m % 5 === 0;
+        const tLen = isHour ? Math.max(6, r * 0.1) : Math.max(3, r * 0.055);
+        patches.push({
+          target: `${base}.tick_${m}`,
+          op: "add",
+          value: withRegion({
+            kind: "line",
+            content: {
+              x1: rnd(cx + (rFace - 2) * Math.cos(a)),
+              y1: rnd(cy + (rFace - 2) * Math.sin(a)),
+              x2: rnd(cx + (rFace - 2 - tLen) * Math.cos(a)),
+              y2: rnd(cy + (rFace - 2 - tLen) * Math.sin(a)),
+              stroke: "#111827",
+              stroke_width: isHour ? 1.8 : 0.9,
+            },
+          }),
+        });
+      }
+
+      // 1..12 numbers
+      const fontSize = Math.max(10, Math.round(r * 0.17));
+      const rNum = rFace * 0.72;
+      for (let h = 1; h <= 12; h += 1) {
+        const a = ((h * 30 - 90) * Math.PI) / 180;
+        patches.push({
+          target: `${base}.num_${h}`,
+          op: "add",
+          value: withRegion({
+            kind: "text",
+            content: {
+              text: String(h),
+              x: rnd(cx + rNum * Math.cos(a)),
+              y: rnd(cy + rNum * Math.sin(a) - fontSize * 0.55),
+              font_size: fontSize,
+              anchor: "middle",
+              style_role: "body",
+              fill: "#111827",
+            },
+          }),
+        });
+      }
+
+      // Angles (0 deg = 12 o'clock, clockwise)
+      const minDeg = cleanMin * 6;
+      const hourDeg = ((cleanHour % 12) + cleanMin / 60) * 30;
+
+      // Optional smaller angle arc between hands
+      if (showArc) {
+        let diff = (minDeg - hourDeg + 360) % 360;
+        let startDeg = hourDeg;
+        let endDeg = minDeg;
+        if (diff > 180) {
+          startDeg = minDeg;
+          endDeg = hourDeg;
+          diff = 360 - diff;
+        }
+        if (diff > 1 && diff < 179.9) {
+          const rArc = Math.max(14, Math.round(r * 0.24));
+          const sa = ((startDeg - 90) * Math.PI) / 180;
+          const ea = ((endDeg - 90) * Math.PI) / 180;
+          patches.push({
+            target: `${base}.angle_arc`,
+            op: "add",
+            value: withRegion({
+              kind: "path",
+              content: {
+                d: `M ${rnd(cx + rArc * Math.cos(sa))} ${rnd(cy + rArc * Math.sin(sa))} A ${rArc} ${rArc} 0 0 1 ${rnd(cx + rArc * Math.cos(ea))} ${rnd(cy + rArc * Math.sin(ea))}`,
+                fill: "none",
+                stroke: "#ec4899",
+                stroke_width: 1.6,
+              },
+            }),
+          });
+        }
+      }
+
+      // Helper for hand + arrowhead
+      const addHand = (name, deg, length, handColor, strokeWidth) => {
+        const a = ((deg - 90) * Math.PI) / 180;
+        const tipX = rnd(cx + length * Math.cos(a));
+        const tipY = rnd(cy + length * Math.sin(a));
+        const shaftEnd = length - 8;
+        patches.push({
+          target: `${base}.${name}_line`,
+          op: "add",
+          value: withRegion({
+            kind: "line",
+            content: {
+              x1: cx,
+              y1: cy,
+              x2: rnd(cx + shaftEnd * Math.cos(a)),
+              y2: rnd(cy + shaftEnd * Math.sin(a)),
+              stroke: handColor,
+              stroke_width: strokeWidth,
+            },
+          }),
+        });
+        const headBase = length - 11;
+        const perp = a + Math.PI / 2;
+        const hw = strokeWidth * 1.45;
+        const b1 = [rnd(cx + headBase * Math.cos(a) + hw * Math.cos(perp)), rnd(cy + headBase * Math.sin(a) + hw * Math.sin(perp))];
+        const b2 = [rnd(cx + headBase * Math.cos(a) - hw * Math.cos(perp)), rnd(cy + headBase * Math.sin(a) - hw * Math.sin(perp))];
+        patches.push({
+          target: `${base}.${name}_head`,
+          op: "add",
+          value: withRegion({
+            kind: "polygon",
+            content: { points: [[tipX, tipY], b1, b2], fill: handColor, stroke: handColor, stroke_width: 1 },
+          }),
+        });
+      };
+
+      addHand("minute_hand", minDeg, Math.round(rFace * 0.78), "#dc2626", 3);
+      addHand("hour_hand", hourDeg, Math.round(rFace * 0.52), color, 3.6);
+
+      patches.push({
+        target: `${base}.pin`,
+        op: "add",
+        value: withRegion({
+          kind: "circle",
+          content: { cx, cy, r: Math.max(3.5, Math.round(r * 0.055)), fill: color, stroke: "#111827", stroke_width: 1 },
+        }),
+      });
+
+      return { base, patches };
+    }
+
+    function barChartPatches({
+      title = "좋아하는 과일",
+      orientation = "vertical",
+      labels = "사과, 배, 포도, 귤",
+      values = "8, 5, 10, 6",
+      step = 2,
+      unit = "명",
+      fillColor = "#60a5fa",
+    } = {}) {
+      const catList = configList(labels);
+      const valList = configList(values).map((v) => Math.max(0, Number(v) || 0));
+      const count = Math.max(1, Math.min(12, Math.max(catList.length, valList.length)));
+      const cleanCats = Array.from({ length: count }, (_, i) => catList[i] || `항목${i + 1}`);
+      const cleanVals = Array.from({ length: count }, (_, i) => (Number.isFinite(valList[i]) ? valList[i] : 0));
+      const cleanStep = Math.max(1, Number(step) || 2);
+      const maxVal = Math.max(cleanStep, ...cleanVals);
+      const maxTick = Math.ceil(maxVal / cleanStep) * cleanStep;
+      const tickCount = Math.max(1, Math.round(maxTick / cleanStep));
+      const isHoriz = orientation === "horizontal";
+      const color = String(fillColor || "#60a5fa").trim() || "#60a5fa";
+      const unitStr = String(unit || "").trim();
+      const titleStr = String(title || "").trim();
+
+      const totalW = 420;
+      const totalH = 260;
+      const origin = selectedInsertOrigin(totalW, totalH) || defaultInsertOrigin(totalW, totalH);
+      const ox = snapValue(origin.x);
+      const oy = snapValue(origin.y);
+      const base = uniqueFigureBase("bar_chart");
+      const regionId = selectedInsertRegionId() || firstUsableRegionId();
+      const withRegion = (value) => regionId ? { ...value, region_id: regionId } : value;
+      const patches = [];
+      const rnd = (v) => Math.round(v * 10) / 10;
+
+      // Chart plot area
+      const plotX = ox + 64;
+      const plotY = oy + (titleStr ? 38 : 18);
+      const plotW = totalW - 84;
+      const plotH = totalH - (titleStr ? 84 : 64);
+
+      if (titleStr) {
+        patches.push({
+          target: `${base}.title`,
+          op: "add",
+          value: withRegion({
+            kind: "text",
+            content: { text: titleStr, x: rnd(plotX + plotW / 2), y: oy + 6, font_size: 18, anchor: "middle", style_role: "body", fill: "#111827" },
+          }),
+        });
+      }
+
+      // Outer frame background
+      patches.push({
+        target: `${base}.frame`,
+        op: "add",
+        value: withRegion({
+          kind: "rect",
+          content: { x: plotX, y: plotY, width: plotW, height: plotH, fill: "#ffffff", stroke: "#cbd5e1", stroke_width: 1 },
+        }),
+      });
+
+      if (!isHoriz) {
+        // Vertical bar chart
+        for (let t = 0; t <= tickCount; t += 1) {
+          const val = t * cleanStep;
+          const gy = rnd(plotY + plotH - (t / tickCount) * plotH);
+          patches.push({
+            target: `${base}.grid_${t}`,
+            op: "add",
+            value: withRegion({
+              kind: "line",
+              content: { x1: plotX, y1: gy, x2: plotX + plotW, y2: gy, stroke: t === 0 ? "#111827" : "#e2e8f0", stroke_width: t === 0 ? 1.8 : 1 },
+            }),
+          });
+          patches.push({
+            target: `${base}.tick_lbl_${t}`,
+            op: "add",
+            value: withRegion({
+              kind: "text",
+              content: { text: String(val), x: plotX - 10, y: rnd(gy - 7), font_size: 13, anchor: "end", style_role: "body", fill: "#374151" },
+            }),
+          });
+        }
+        if (unitStr) {
+          patches.push({
+            target: `${base}.unit`,
+            op: "add",
+            value: withRegion({
+              kind: "text",
+              content: { text: `(${unitStr})`, x: plotX - 10, y: plotY - 22, font_size: 12, anchor: "end", style_role: "body", fill: "#4b5563" },
+            }),
+          });
+        }
+        patches.push({
+          target: `${base}.y_axis`,
+          op: "add",
+          value: withRegion({
+            kind: "line",
+            content: { x1: plotX, y1: plotY, x2: plotX, y2: plotY + plotH, stroke: "#111827", stroke_width: 1.8 },
+          }),
+        });
+
+        const slotW = plotW / count;
+        const barW = Math.max(14, Math.min(48, slotW * 0.54));
+        for (let i = 0; i < count; i += 1) {
+          const bh = rnd((cleanVals[i] / maxTick) * plotH);
+          const bx = rnd(plotX + i * slotW + (slotW - barW) / 2);
+          const by = rnd(plotY + plotH - bh);
+          if (bh > 0) {
+            patches.push({
+              target: `${base}.bar_${i}`,
+              op: "add",
+              value: withRegion({
+                kind: "rect",
+                content: { x: bx, y: by, width: rnd(barW), height: bh, fill: color, stroke: "#1e3a8a", stroke_width: 1 },
+              }),
+            });
+          }
+          patches.push({
+            target: `${base}.cat_${i}`,
+            op: "add",
+            value: withRegion({
+              kind: "text",
+              content: { text: cleanCats[i], x: rnd(plotX + (i + 0.5) * slotW), y: rnd(plotY + plotH + 8), font_size: 14, anchor: "middle", style_role: "body", fill: "#111827" },
+            }),
+          });
+        }
+      } else {
+        // Horizontal bar chart
+        for (let t = 0; t <= tickCount; t += 1) {
+          const val = t * cleanStep;
+          const gx = rnd(plotX + (t / tickCount) * plotW);
+          patches.push({
+            target: `${base}.grid_${t}`,
+            op: "add",
+            value: withRegion({
+              kind: "line",
+              content: { x1: gx, y1: plotY, x2: gx, y2: plotY + plotH, stroke: t === 0 ? "#111827" : "#e2e8f0", stroke_width: t === 0 ? 1.8 : 1 },
+            }),
+          });
+          patches.push({
+            target: `${base}.tick_lbl_${t}`,
+            op: "add",
+            value: withRegion({
+              kind: "text",
+              content: { text: String(val), x: gx, y: rnd(plotY + plotH + 8), font_size: 13, anchor: "middle", style_role: "body", fill: "#374151" },
+            }),
+          });
+        }
+        if (unitStr) {
+          patches.push({
+            target: `${base}.unit`,
+            op: "add",
+            value: withRegion({
+              kind: "text",
+              content: { text: `(${unitStr})`, x: rnd(plotX + plotW + 6), y: rnd(plotY + plotH + 8), font_size: 12, anchor: "start", style_role: "body", fill: "#4b5563" },
+            }),
+          });
+        }
+        patches.push({
+          target: `${base}.x_axis`,
+          op: "add",
+          value: withRegion({
+            kind: "line",
+            content: { x1: plotX, y1: plotY + plotH, x2: plotX + plotW, y2: plotY + plotH, stroke: "#111827", stroke_width: 1.8 },
+          }),
+        });
+
+        const slotH = plotH / count;
+        const barH = Math.max(12, Math.min(34, slotH * 0.56));
+        for (let i = 0; i < count; i += 1) {
+          const bw = rnd((cleanVals[i] / maxTick) * plotW);
+          const by = rnd(plotY + i * slotH + (slotH - barH) / 2);
+          if (bw > 0) {
+            patches.push({
+              target: `${base}.bar_${i}`,
+              op: "add",
+              value: withRegion({
+                kind: "rect",
+                content: { x: plotX, y: by, width: bw, height: rnd(barH), fill: color, stroke: "#1e3a8a", stroke_width: 1 },
+              }),
+            });
+          }
+          patches.push({
+            target: `${base}.cat_${i}`,
+            op: "add",
+            value: withRegion({
+              kind: "text",
+              content: { text: cleanCats[i], x: plotX - 10, y: rnd(plotY + (i + 0.5) * slotH - 7), font_size: 14, anchor: "end", style_role: "body", fill: "#111827" },
+            }),
+          });
+        }
+      }
+
+      return { base, patches };
+    }
+
+    function planeFigurePatches({
+      figureType = "right_triangle",
+      width = 140,
+      height = 110,
+      fillColor = "#dbeafe",
+      noFill = false,
+      strokeColor = "#111827",
+      showRightAngle = true,
+    } = {}) {
+      const w = clampInt(width, 40, 400, 140);
+      const h = figureType === "square" ? w : clampInt(height, 40, 400, 110);
+      const fill = noFill ? "none" : (String(fillColor || "#dbeafe").trim() || "#dbeafe");
+      const stroke = String(strokeColor || "#111827").trim() || "#111827";
+      const origin = selectedInsertOrigin(w, h) || defaultInsertOrigin(w, h);
+      const x = snapValue(origin.x);
+      const y = snapValue(origin.y);
+      const base = uniqueFigureBase("plane_figure");
+      const regionId = selectedInsertRegionId() || firstUsableRegionId();
+      const withRegion = (value) => regionId ? { ...value, region_id: regionId } : value;
+      const patches = [];
+      const rnd = (v) => Math.round(v * 10) / 10;
+
+      let points = [];
+      const rightAngles = [];
+      const regularPoly = (n) => {
+        const cx = x + w / 2;
+        const cy = y + h / 2;
+        const rx = w / 2;
+        const ry = h / 2;
+        const pts = [];
+        for (let i = 0; i < n; i += 1) {
+          const a = ((i * 360) / n - 90) * (Math.PI / 180);
+          pts.push([rnd(cx + rx * Math.cos(a)), rnd(cy + ry * Math.sin(a))]);
+        }
+        return pts;
+      };
+
+      if (figureType === "equilateral_triangle") {
+        const eh = rnd((Math.sqrt(3) / 2) * w);
+        points = [[x + w / 2, y], [x + w, y + eh], [x, y + eh]];
+      } else if (figureType === "isosceles_triangle") {
+        points = [[x + w / 2, y], [x + w, y + h], [x, y + h]];
+      } else if (figureType === "right_triangle") {
+        points = [[x, y], [x + w, y + h], [x, y + h]];
+        rightAngles.push(`M ${x} ${y + h - 16} L ${x + 16} ${y + h - 16} L ${x + 16} ${y + h}`);
+      } else if (figureType === "square" || figureType === "rectangle") {
+        points = [[x, y], [x + w, y], [x + w, y + h], [x, y + h]];
+        rightAngles.push(`M ${x} ${y + 16} L ${x + 16} ${y + 16} L ${x + 16} ${y}`);
+      } else if (figureType === "parallelogram") {
+        const skew = Math.round(w * 0.22);
+        points = [[x + skew, y], [x + w, y], [x + w - skew, y + h], [x, y + h]];
+      } else if (figureType === "trapezoid") {
+        const inset = Math.round(w * 0.2);
+        points = [[x + inset, y], [x + w - inset, y], [x + w, y + h], [x, y + h]];
+      } else if (figureType === "rhombus") {
+        points = [[x + w / 2, y], [x + w, y + h / 2], [x + w / 2, y + h], [x, y + h / 2]];
+      } else if (figureType === "pentagon") {
+        points = regularPoly(5);
+      } else if (figureType === "hexagon") {
+        points = regularPoly(6);
+      } else {
+        points = [[x, y], [x + w, y], [x + w, y + h], [x, y + h]];
+      }
+
+      patches.push({
+        target: `${base}.shape`,
+        op: "add",
+        value: withRegion({
+          kind: "polygon",
+          content: { points, fill, stroke, stroke_width: 2 },
+        }),
+      });
+
+      if (showRightAngle && rightAngles.length) {
+        rightAngles.forEach((d, idx) => {
+          patches.push({
+            target: `${base}.right_angle_${idx}`,
+            op: "add",
+            value: withRegion({
+              kind: "path",
+              content: { d, fill: "none", stroke: "#ec4899", stroke_width: 1.6 },
+            }),
+          });
+        });
+      }
+
+      return { base, patches };
+    }
+
     async function insertTable(rows, cols) {
       if (!currentProblemId) throw new Error("문제를 먼저 여세요.");
       const { base, patches } = tablePatches(rows, cols);
@@ -1799,6 +2449,34 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       const { base, patches } = fractionPatches(options);
       await commitPatches(patches, `${options?.mixed ? "대분수" : "분수"} 삽입 완료`);
       restoreSelection([`${base}.num`]);
+    }
+
+    async function insertProtractor(options) {
+      if (!currentProblemId) throw new Error("문제를 먼저 여세요.");
+      const { base, patches } = protractorPatches(options);
+      await commitPatches(patches, `각도기 삽입 완료 (${patches.length}개)`);
+      restoreSelection([`${base}.outer_arc`]);
+    }
+
+    async function insertClock(options) {
+      if (!currentProblemId) throw new Error("문제를 먼저 여세요.");
+      const { base, patches } = clockPatches(options);
+      await commitPatches(patches, `시계 삽입 완료 (${options?.hour ?? 2}시 ${options?.minute ?? 0}분)`);
+      restoreSelection([`${base}.bezel`]);
+    }
+
+    async function insertBarChart(options) {
+      if (!currentProblemId) throw new Error("문제를 먼저 여세요.");
+      const { base, patches } = barChartPatches(options);
+      await commitPatches(patches, `막대그래프 삽입 완료 (${patches.length}개)`);
+      restoreSelection([`${base}.frame`]);
+    }
+
+    async function insertPlaneFigure(options) {
+      if (!currentProblemId) throw new Error("문제를 먼저 여세요.");
+      const { base, patches } = planeFigurePatches(options);
+      await commitPatches(patches, `평면도형 삽입 완료`);
+      restoreSelection([`${base}.shape`]);
     }
 
 
@@ -4741,6 +5419,23 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       setInspectorField("propRotate", value?.transform ?? "");
       const patch = document.getElementById("patchJson");
       if (patch && value) patch.value = JSON.stringify(value, null, 2);
+      if (value) {
+        const hexColor = (c) => (typeof c === "string" && /^#[0-9a-fA-F]{6}$/.test(c.trim()) ? c.trim() : null);
+        const rFill = document.getElementById("ribbonFillColorInput");
+        const rStroke = document.getElementById("ribbonStrokeColorInput");
+        const rWidth = document.getElementById("ribbonStrokeWidthSelect");
+        const rDash = document.getElementById("ribbonStrokeDashSelect");
+        if (rFill && hexColor(value.fill)) rFill.value = hexColor(value.fill);
+        if (rStroke && hexColor(value.stroke)) rStroke.value = hexColor(value.stroke);
+        if (rWidth && value.stroke_width !== undefined) {
+          const sw = String(value.stroke_width);
+          if (Array.from(rWidth.options).some((o) => o.value === sw)) rWidth.value = sw;
+        }
+        if (rDash && typeof value.stroke_dasharray === "string") {
+          const sd = value.stroke_dasharray.replace(/\s+/g, "");
+          if (Array.from(rDash.options).some((o) => o.value === sd)) rDash.value = sd;
+        }
+      }
     }
 
     async function commitCanvasFields() {
@@ -6513,6 +7208,46 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       });
       closeMathDialog();
     }
+    function openProtractorDialog() {
+      const dialog = document.getElementById("protractorInsertDialog");
+      if (!dialog) return;
+      dialog.hidden = false;
+      setTimeout(() => document.getElementById("protractorRadiusInput")?.focus(), 0);
+    }
+    function closeProtractorDialog() {
+      const dialog = document.getElementById("protractorInsertDialog");
+      if (dialog) dialog.hidden = true;
+    }
+    async function confirmProtractorDialog() {
+      await insertProtractor({
+        radius: document.getElementById("protractorRadiusInput")?.value,
+        rotationDeg: document.getElementById("protractorRotationInput")?.value,
+        tickStep: document.getElementById("protractorStepInput")?.value,
+        showRadial: Boolean(document.getElementById("protractorRadialInput")?.checked),
+        strokeColor: document.getElementById("protractorColorInput")?.value,
+      });
+      closeProtractorDialog();
+    }
+    function openClockDialog() {
+      const dialog = document.getElementById("clockInsertDialog");
+      if (!dialog) return;
+      dialog.hidden = false;
+      setTimeout(() => document.getElementById("clockHourInput")?.focus(), 0);
+    }
+    function closeClockDialog() {
+      const dialog = document.getElementById("clockInsertDialog");
+      if (dialog) dialog.hidden = true;
+    }
+    async function confirmClockDialog() {
+      await insertClock({
+        hour: document.getElementById("clockHourInput")?.value,
+        minute: document.getElementById("clockMinuteInput")?.value,
+        radius: document.getElementById("clockRadiusInput")?.value,
+        bezelColor: document.getElementById("clockBezelColorInput")?.value,
+        showArc: Boolean(document.getElementById("clockShowArcInput")?.checked),
+      });
+      closeClockDialog();
+    }
     document.getElementById("insertTableBtn").onclick = openTableDialog;
     document.getElementById("insertGraphPaperBtn").onclick = openGraphPaperDialog;
     document.getElementById("insertBaseTenHundredBtn").onclick = async () => {
@@ -6531,6 +7266,82 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     document.getElementById("insertTickBarBtn").onclick = openTickBarDialog;
     document.getElementById("insertFractionBtn").onclick = () => openMathDialog(false);
     document.getElementById("insertMixedFractionBtn").onclick = () => openMathDialog(true);
+    document.getElementById("insertProtractorBtn").onclick = openProtractorDialog;
+    document.getElementById("insertClockBtn").onclick = openClockDialog;
+    function openBarChartDialog() {
+      const dialog = document.getElementById("barChartInsertDialog");
+      if (!dialog) return;
+      dialog.hidden = false;
+      setTimeout(() => document.getElementById("barChartTitleInput")?.focus(), 0);
+    }
+    function closeBarChartDialog() {
+      const dialog = document.getElementById("barChartInsertDialog");
+      if (dialog) dialog.hidden = true;
+    }
+    async function confirmBarChartDialog() {
+      await insertBarChart({
+        title: document.getElementById("barChartTitleInput")?.value,
+        orientation: document.getElementById("barChartOrientInput")?.value,
+        labels: document.getElementById("barChartLabelsInput")?.value,
+        values: document.getElementById("barChartValuesInput")?.value,
+        step: document.getElementById("barChartStepInput")?.value,
+        unit: document.getElementById("barChartUnitInput")?.value,
+        fillColor: document.getElementById("barChartFillInput")?.value,
+      });
+      closeBarChartDialog();
+    }
+    function openPlaneFigureDialog() {
+      const dialog = document.getElementById("planeFigureInsertDialog");
+      if (!dialog) return;
+      dialog.hidden = false;
+      setTimeout(() => document.getElementById("planeFigureTypeInput")?.focus(), 0);
+    }
+    function closePlaneFigureDialog() {
+      const dialog = document.getElementById("planeFigureInsertDialog");
+      if (dialog) dialog.hidden = true;
+    }
+    async function confirmPlaneFigureDialog() {
+      await insertPlaneFigure({
+        figureType: document.getElementById("planeFigureTypeInput")?.value,
+        width: document.getElementById("planeFigureWidthInput")?.value,
+        height: document.getElementById("planeFigureHeightInput")?.value,
+        fillColor: document.getElementById("planeFigureFillInput")?.value,
+        noFill: Boolean(document.getElementById("planeFigureNoFillInput")?.checked),
+        strokeColor: document.getElementById("planeFigureStrokeInput")?.value,
+        showRightAngle: Boolean(document.getElementById("planeFigureRightAngleInput")?.checked),
+      });
+      closePlaneFigureDialog();
+    }
+    document.getElementById("insertBarChartBtn").onclick = openBarChartDialog;
+    document.getElementById("insertPlaneFigureBtn").onclick = openPlaneFigureDialog;
+    document.getElementById("ribbonFillApplyBtn").onclick = async () => {
+      try { await applyShapeFill(document.getElementById("ribbonFillColorInput")?.value || "#dbeafe"); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("ribbonFillNoneBtn").onclick = async () => {
+      try { await applyShapeFill("none"); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("ribbonStrokeApplyBtn").onclick = async () => {
+      try { await applyShapeStroke(document.getElementById("ribbonStrokeColorInput")?.value || "#111827"); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("ribbonStrokeNoneBtn").onclick = async () => {
+      try { await applyShapeFormatPatch({ stroke: "none", stroke_width: 0, stroke_dasharray: "" }, "선 없음"); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("ribbonStrokeWidthSelect").onchange = async (ev) => {
+      try {
+        const w = Number(ev.currentTarget.value);
+        if (Number.isFinite(w) && w > 0) await applyShapeFormatPatch({ stroke_width: w }, `선 두께 ${w}px`);
+      } catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("ribbonStrokeDashSelect").onchange = async (ev) => {
+      try {
+        const dash = String(ev.currentTarget.value || "");
+        await applyShapeFormatPatch({ stroke_dasharray: dash }, dash ? `점선 (${dash})` : "실선");
+      } catch (e) { setStatus(String(e), false); }
+    };
     let imageInsertInFlight = false;
 
     document.getElementById("insertImageBtn").onclick = () => {
@@ -6605,6 +7416,42 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     document.getElementById("mathCancelXBtn").onclick = closeMathDialog;
     document.getElementById("mathInsertDialog").addEventListener("click", (ev) => {
       if (ev.target === ev.currentTarget) closeMathDialog();
+    });
+    document.getElementById("protractorConfirmBtn").onclick = async () => {
+      try { await confirmProtractorDialog(); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("protractorCancelBtn").onclick = closeProtractorDialog;
+    document.getElementById("protractorCancelXBtn").onclick = closeProtractorDialog;
+    document.getElementById("protractorInsertDialog").addEventListener("click", (ev) => {
+      if (ev.target === ev.currentTarget) closeProtractorDialog();
+    });
+    document.getElementById("clockConfirmBtn").onclick = async () => {
+      try { await confirmClockDialog(); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("clockCancelBtn").onclick = closeClockDialog;
+    document.getElementById("clockCancelXBtn").onclick = closeClockDialog;
+    document.getElementById("clockInsertDialog").addEventListener("click", (ev) => {
+      if (ev.target === ev.currentTarget) closeClockDialog();
+    });
+    document.getElementById("barChartConfirmBtn").onclick = async () => {
+      try { await confirmBarChartDialog(); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("barChartCancelBtn").onclick = closeBarChartDialog;
+    document.getElementById("barChartCancelXBtn").onclick = closeBarChartDialog;
+    document.getElementById("barChartInsertDialog").addEventListener("click", (ev) => {
+      if (ev.target === ev.currentTarget) closeBarChartDialog();
+    });
+    document.getElementById("planeFigureConfirmBtn").onclick = async () => {
+      try { await confirmPlaneFigureDialog(); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("planeFigureCancelBtn").onclick = closePlaneFigureDialog;
+    document.getElementById("planeFigureCancelXBtn").onclick = closePlaneFigureDialog;
+    document.getElementById("planeFigureInsertDialog").addEventListener("click", (ev) => {
+      if (ev.target === ev.currentTarget) closePlaneFigureDialog();
     });
     for (const id of ["tableColsInput", "tableRowsInput"]) {
       document.getElementById(id).addEventListener("keydown", async (ev) => {

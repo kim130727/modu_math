@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007953",
+  "problem_type": "multiple_choice_korean_number_reading_writing",
+  "given": [
+    {
+      "ref": "hyunjun",
+      "value": 40019
+    },
+    {
+      "ref": "yujeong",
+      "value": 60009
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "0의 개수가 더 적은 사람",
+    "unit": ""
+  },
+  "method": "zero_count_comparison",
+  "steps": [
+    {
+      "id": "count_zeros",
+      "expr": "40019 (0: 2개) < 60009 (0: 3개)",
+      "explanation": "현준이는 40019로 0이 2개, 유정이는 60009로 0이 3개이므로 현준이가 더 적습니다.",
+      "value": "현준"
+    }
+  ],
+  "answer": {
+    "value": "현준",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "현준"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "현준",
+        "value": "현준"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "유정",
+        "value": "유정"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "현준",
+        "diagnostics": [
+          {
+            "id": "diag.chose_more_zeros",
+            "condition": "answer_equals_yujeong",
+            "concept": "다섯 자리 수 쓰기",
+            "reason": "유정이의 수(60009)가 0이 더 많음에도 유정을 선택함",
+            "feedback": "현준이의 '사만 십구'는 40019로 0이 2개이고, 유정이의 '육만 구'는 60009로 0이 3개입니다. 따라서 0이 더 적은 사람은 현준입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

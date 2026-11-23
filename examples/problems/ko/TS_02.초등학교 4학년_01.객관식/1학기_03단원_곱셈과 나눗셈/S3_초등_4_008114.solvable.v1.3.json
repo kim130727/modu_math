@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_008114",
+  "problem_type": "multiple_choice_division_verification",
+  "given": [
+    {
+      "ref": "dividend",
+      "value": 482
+    },
+    {
+      "ref": "divisor",
+      "value": 18
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "바르게 말한 사람",
+    "unit": ""
+  },
+  "method": "long_division",
+  "steps": [
+    {
+      "id": "divide_482_by_18",
+      "expr": "482 / 18 = 26 ... 14",
+      "explanation": "482 ÷ 18의 몫은 26이고 나머지는 14이므로 민기가 바르게 말했습니다.",
+      "value": "민기"
+    }
+  ],
+  "answer": {
+    "value": "민기",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "민기"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "채아",
+        "value": "채아"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "민기",
+        "value": "민기"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "민기",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_quotient_chae",
+            "condition": "answer_equals_chaea",
+            "concept": "나눗셈의 몫과 나머지",
+            "reason": "18 × 25 + 12 = 462로 482가 되지 않음에도 채아를 선택함",
+            "feedback": "482 ÷ 18을 계산하면 몫은 26이고 나머지는 14입니다(18 × 26 + 14 = 482). 바르게 말한 사람은 민기입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

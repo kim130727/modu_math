@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../l10n/assignment_strings.dart';
 import '../models/assignment.dart';
+import '../theme/app_theme.dart';
 import 'math_keypad.dart';
 
 class AssignmentAnswerInput extends StatefulWidget {
@@ -89,17 +90,16 @@ class _AssignmentAnswerInputState extends State<AssignmentAnswerInput> {
                         spacing: 10,
                         runSpacing: 10,
                         children: field.choices
-                            .map((choice) => ChoiceChip(
-                                  label: Text('${choice['label']}',
-                                      style: const TextStyle(fontSize: 19)),
+                            .map((choice) => _AnswerChoiceButton(
+                                  label: '${choice['label']}',
                                   selected: field.type == 'multi_choice'
                                       ? widget.value is List &&
                                           (widget.value as List)
                                               .contains(choice['value'])
                                       : values.length > i &&
                                           values[i] == choice['value'],
-                                  onSelected: widget.enabled
-                                      ? (_) {
+                                  onPressed: widget.enabled
+                                      ? () {
                                           if (field.type == 'multi_choice') {
                                             final selected =
                                                 widget.value is List
@@ -117,7 +117,7 @@ class _AssignmentAnswerInputState extends State<AssignmentAnswerInput> {
                                         }
                                       : null,
                                 ))
-                            .toList())
+                            .toList()),
                   ]));
         }
         return Padding(
@@ -185,5 +185,52 @@ class _AssignmentAnswerInputState extends State<AssignmentAnswerInput> {
               change(active, '');
             }),
     ]);
+  }
+}
+
+class _AnswerChoiceButton extends StatelessWidget {
+  const _AnswerChoiceButton({
+    required this.label,
+    required this.selected,
+    required this.onPressed,
+  });
+
+  final String label;
+  final bool selected;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    // The minimum is a touch target. Multiline labels grow the button.
+    return Semantics(
+      checked: selected,
+      child: OutlinedButton(
+        onPressed: onPressed,
+        style: OutlinedButton.styleFrom(
+          minimumSize: const Size(56, 48),
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 9),
+          backgroundColor:
+              selected ? KidsPalette.primary : KidsPalette.primarySoft,
+          foregroundColor: selected ? Colors.white : KidsPalette.ink,
+          disabledBackgroundColor:
+              selected ? KidsPalette.primaryDark : KidsPalette.line,
+          disabledForegroundColor:
+              selected ? Colors.white : KidsPalette.inkSoft,
+          side: BorderSide(
+              color: selected ? KidsPalette.primary : KidsPalette.line),
+          shape: const StadiumBorder(),
+        ),
+        child: Text(
+          label,
+          textAlign: TextAlign.center,
+          overflow: TextOverflow.visible,
+          style: const TextStyle(
+            fontSize: 19,
+            height: 1.45,
+            leadingDistribution: TextLeadingDistribution.even,
+          ),
+        ),
+      ),
+    );
   }
 }

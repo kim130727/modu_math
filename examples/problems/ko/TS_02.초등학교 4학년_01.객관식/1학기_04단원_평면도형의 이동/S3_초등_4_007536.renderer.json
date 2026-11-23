@@ -1,0 +1,455 @@
+{
+  "problem_id": "S3_초등_4_007536",
+  "view_box": {
+    "width": 886.0,
+    "height": 390.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 820.0,
+        "height": 56.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 820.0,
+        "data-box-height": 56.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "72. 삼각자를 사용하여 주어진 직선과 평행한 직선을 긋는 방법입니다. 주어진 직선과 그은 직선이 서로 평행한 이유에 맞게 알맞은 말을 선택하세요."
+    },
+    {
+      "id": "slot.diagram.s1_t1.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            184.0,
+            176.0
+          ],
+          [
+            242.0,
+            176.0
+          ],
+          [
+            242.0,
+            94.0
+          ]
+        ],
+        "stroke": "#0284c7",
+        "stroke-width": 1.4,
+        "fill": "#e0f2fe"
+      },
+      "source_ref": "slot.diagram.s1_t1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.s1_t1"
+      }
+    },
+    {
+      "id": "slot.diagram.s1_t2.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            242.0,
+            94.0
+          ],
+          [
+            360.0,
+            94.0
+          ],
+          [
+            242.0,
+            152.0
+          ]
+        ],
+        "stroke": "#0284c7",
+        "stroke-width": 1.4,
+        "fill": "#e0f2fe"
+      },
+      "source_ref": "slot.diagram.s1_t2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.s1_t2"
+      }
+    },
+    {
+      "id": "slot.diagram.s1_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 144.0,
+        "y": 194.0,
+        "width": 250.0,
+        "height": 74.0,
+        "fill": "#fce7f3",
+        "stroke": "#f9a8d4",
+        "stroke-width": 1.0,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.diagram.s1_box",
+      "refs": {
+        "layout_slot_id": "slot.diagram.s1_box"
+      }
+    },
+    {
+      "id": "slot.diagram.s2_t1.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            524.0,
+            176.0
+          ],
+          [
+            582.0,
+            176.0
+          ],
+          [
+            582.0,
+            94.0
+          ]
+        ],
+        "stroke": "#0284c7",
+        "stroke-width": 1.4,
+        "fill": "#e0f2fe"
+      },
+      "source_ref": "slot.diagram.s2_t1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.s2_t1"
+      }
+    },
+    {
+      "id": "slot.diagram.s2_t2.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            582.0,
+            122.0
+          ],
+          [
+            700.0,
+            122.0
+          ],
+          [
+            582.0,
+            176.0
+          ]
+        ],
+        "stroke": "#0284c7",
+        "stroke-width": 1.4,
+        "fill": "#e0f2fe"
+      },
+      "source_ref": "slot.diagram.s2_t2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.s2_t2"
+      }
+    },
+    {
+      "id": "slot.diagram.s2_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 486.0,
+        "y": 194.0,
+        "width": 264.0,
+        "height": 74.0,
+        "fill": "#fce7f3",
+        "stroke": "#f9a8d4",
+        "stroke-width": 1.0,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.diagram.s2_box",
+      "refs": {
+        "layout_slot_id": "slot.diagram.s2_box"
+      }
+    },
+    {
+      "id": "slot.diagram.bubble.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 156.0,
+        "y": 288.0,
+        "width": 510.0,
+        "height": 84.0,
+        "fill": "#ffffff",
+        "stroke": "#374151",
+        "stroke-width": 1.4,
+        "rx": 24.0,
+        "ry": 24.0
+      },
+      "source_ref": "slot.diagram.bubble",
+      "refs": {
+        "layout_slot_id": "slot.diagram.bubble"
+      }
+    },
+    {
+      "id": "slot.diagram.boy_head.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 726.0,
+        "cy": 330.0,
+        "r": 28.0,
+        "stroke": "#78350f",
+        "stroke-width": 1.5,
+        "fill": "#fde68a"
+      },
+      "source_ref": "slot.diagram.boy_head",
+      "refs": {
+        "layout_slot_id": "slot.diagram.boy_head"
+      }
+    },
+    {
+      "id": "slot.diagram.s1_l1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 242.0,
+        "y1": 94.0,
+        "x2": 386.0,
+        "y2": 94.0,
+        "stroke": "#111827",
+        "stroke-width": 1.8
+      },
+      "source_ref": "slot.diagram.s1_l1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.s1_l1"
+      }
+    },
+    {
+      "id": "slot.diagram.s2_l1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 582.0,
+        "y1": 94.0,
+        "x2": 726.0,
+        "y2": 94.0,
+        "stroke": "#111827",
+        "stroke-width": 1.8
+      },
+      "source_ref": "slot.diagram.s2_l1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.s2_l1"
+      }
+    },
+    {
+      "id": "slot.diagram.s2_l2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 582.0,
+        "y1": 122.0,
+        "x2": 726.0,
+        "y2": 122.0,
+        "stroke": "#111827",
+        "stroke-width": 1.8
+      },
+      "source_ref": "slot.diagram.s2_l2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.s2_l2"
+      }
+    },
+    {
+      "id": "slot.diagram.s1_txt.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 154.0,
+        "y": 202.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 17.0,
+        "width": 230.0,
+        "height": 58.0,
+        "max_width": 230.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 154.0,
+        "data-box-y": 202.0,
+        "data-box-width": 230.0,
+        "data-box-height": 58.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.35
+      },
+      "source_ref": "slot.diagram.s1_txt",
+      "refs": {
+        "layout_slot_id": "slot.diagram.s1_txt"
+      },
+      "text": "삼각자 2개를 직각을 낀\n변끼리 맞닿게 놓습니다."
+    },
+    {
+      "id": "slot.diagram.arrow.text",
+      "type": "text",
+      "attributes": {
+        "x": 443.0,
+        "y": 126.0,
+        "fill": "#6b7280",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0
+      },
+      "source_ref": "slot.diagram.arrow",
+      "refs": {
+        "layout_slot_id": "slot.diagram.arrow"
+      },
+      "text": "➡"
+    },
+    {
+      "id": "slot.diagram.s2_txt.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 496.0,
+        "y": 198.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 16.0,
+        "width": 244.0,
+        "height": 66.0,
+        "max_width": 244.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 496.0,
+        "data-box-y": 198.0,
+        "data-box-width": 244.0,
+        "data-box-height": 66.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.3
+      },
+      "source_ref": "slot.diagram.s2_txt",
+      "refs": {
+        "layout_slot_id": "slot.diagram.s2_txt"
+      },
+      "text": "왼쪽 삼각자를 고정시키고\n오른쪽 삼각자를 움직여\n평행한 직선을 긋습니다."
+    },
+    {
+      "id": "slot.diagram.b_line1.text",
+      "type": "text",
+      "attributes": {
+        "x": 411.0,
+        "y": 304.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0
+      },
+      "source_ref": "slot.diagram.b_line1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.b_line1"
+      },
+      "text": "움직이지 않은 삼각자의 한 변에 대해 주어진 직선과"
+    },
+    {
+      "id": "slot.choice.prefix.text",
+      "type": "text",
+      "attributes": {
+        "x": 292.0,
+        "y": 336.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0
+      },
+      "source_ref": "slot.choice.prefix",
+      "refs": {
+        "layout_slot_id": "slot.choice.prefix"
+      },
+      "text": "그은 직선이 각각 서로 ("
+    },
+    {
+      "id": "slot.choice.option_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 414.0,
+        "y": 336.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "수직",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "수직"
+    },
+    {
+      "id": "slot.choice.comma.text",
+      "type": "text",
+      "attributes": {
+        "x": 444.0,
+        "y": 336.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0
+      },
+      "source_ref": "slot.choice.comma",
+      "refs": {
+        "layout_slot_id": "slot.choice.comma"
+      },
+      "text": ","
+    },
+    {
+      "id": "slot.choice.option_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 474.0,
+        "y": 336.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "평행",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "평행"
+    },
+    {
+      "id": "slot.choice.suffix.text",
+      "type": "text",
+      "attributes": {
+        "x": 568.0,
+        "y": 336.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0
+      },
+      "source_ref": "slot.choice.suffix",
+      "refs": {
+        "layout_slot_id": "slot.choice.suffix"
+      },
+      "text": ")이 되기 때문이야."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

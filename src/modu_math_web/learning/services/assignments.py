@@ -48,7 +48,11 @@ def student_problem(problem):
     )
     for raw in renderer.get("elements", []):
         attrs = raw.get("attributes", {})
-        is_input = (raw.get("interaction") or {}).get("role") == "answer"
+        interaction = raw.get("interaction") or {}
+        is_input = (
+            interaction.get("role") == "answer"
+            and interaction.get("type") not in {"choice", "select"}
+        )
         if attrs.get("data-semantic-role") in forbidden and not is_input:
             continue
         element = {k: raw[k] for k in ("id", "type", "text", "source_ref") if k in raw}

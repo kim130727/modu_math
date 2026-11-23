@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007531",
+  "problem_type": "multiple_choice_perpendicular_through_point",
+  "given": [
+    {
+      "ref": "option_0",
+      "value": "점 ㄱ을 지나고 직선 가에 수직인 직선"
+    },
+    {
+      "ref": "option_1",
+      "value": "점 ㄱ을 지나지만 수직이 아닌 직선"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "수직인 직선",
+    "unit": ""
+  },
+  "method": "set_square_perpendicular",
+  "steps": [
+    {
+      "id": "identify_perpendicular",
+      "expr": "①",
+      "explanation": "점 ㄱ을 지나고 직선 가와 직각으로 만나는 ①이 바릅니다.",
+      "value": "①"
+    }
+  ],
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.chose_oblique_line",
+            "condition": "answer_equals_2",
+            "concept": "점과 수선",
+            "reason": "점 ㄱ을 지나지만 직선 가와 수직이 아닌 비스듬한 직선(②)을 선택함",
+            "feedback": "삼각자에서 직각을 낀 변 중 한 변을 직선 가에 맞춘 후 직각을 낀 다른 한 변을 따라 점 ㄱ을 지나게 그은 ①이 수직입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

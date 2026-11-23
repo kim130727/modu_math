@@ -1,0 +1,416 @@
+{
+  "problem_id": "S3_초등_4_007534",
+  "problem_type": "multiple_choice_parallel_lines_property",
+  "metadata": {
+    "title": "한 직선에 수직인 두 직선의 평행 관계 알기",
+    "tags": [],
+    "question": "70. 삼각자를 사용하여 직선 가에 수직인 두 직선을 그었습니다. 알맞은 말을 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.line_ga",
+      "slot.diagram.line_na",
+      "slot.diagram.line_da",
+      "slot.diagram.ra_na",
+      "slot.diagram.ra_da"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "04단원_평면도형의 이동",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "70. 삼각자를 사용하여 직선 가에 수직인 두 직선을 그었습니다. 알맞은 말을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.comma",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.comma"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_0",
+        "type": "text",
+        "properties": {
+          "text": "평행합니다"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "text",
+        "properties": {
+          "text": "수직입니다"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.prefix",
+        "type": "text",
+        "properties": {
+          "text": "서로 ("
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.prefix"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.suffix",
+        "type": "text",
+        "properties": {
+          "text": ")."
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.suffix"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.desc_text",
+        "type": "text",
+        "properties": {
+          "text": "→ 직선 가에 수직인 직선 나와 직선 다는 만나지 않으므로",
+          "width": 726,
+          "height": 34
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.desc_text"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.label_da",
+        "type": "symbol_label",
+        "properties": {
+          "text": "다"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.label_da"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.label_ga",
+        "type": "symbol_label",
+        "properties": {
+          "text": "가"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.label_ga"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.label_na",
+        "type": "symbol_label",
+        "properties": {
+          "text": "나"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.label_na"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.line_da",
+        "type": "line_slot",
+        "properties": {
+          "x1": 346,
+          "y1": 198,
+          "x2": 546,
+          "y2": 198,
+          "stroke": "#111827",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.line_da"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.line_ga",
+        "type": "line_slot",
+        "properties": {
+          "x1": 346,
+          "y1": 114,
+          "x2": 346,
+          "y2": 228,
+          "stroke": "#111827",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.line_ga"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.line_na",
+        "type": "line_slot",
+        "properties": {
+          "x1": 346,
+          "y1": 142,
+          "x2": 546,
+          "y2": 142,
+          "stroke": "#111827",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.line_na"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ra_da",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 346 184 L 360 184 L 360 198",
+          "stroke": "#ec4899",
+          "stroke_width": 1.5,
+          "stroke_dasharray": null,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ra_da"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ra_na",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 346 128 L 360 128 L 360 142",
+          "stroke": "#ec4899",
+          "stroke_width": 1.5,
+          "stroke_dasharray": null,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ra_na"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "70. 삼각자를 사용하여 직선 가에 수직인 두 직선을 그었습니다. 알맞은 말을 선택하세요.",
+          "width": 820,
+          "height": 56
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "평행합니다",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "평행합니다"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "평행합니다",
+        "value": "평행합니다"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "수직입니다",
+        "value": "수직입니다"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "평행합니다",
+        "diagnostics": [
+          {
+            "id": "diag.confused_parallel_perpendicular",
+            "condition": "answer_equals_perpendicular",
+            "concept": "평행선",
+            "reason": "한 직선에 수직인 두 직선의 관계를 수직으로 혼동함",
+            "feedback": "직선 가에 수직인 직선 나와 직선 다는 서로 만나지 않으므로 평행합니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "line_ga": {
+      "label": "가"
+    },
+    "line_na": {
+      "label": "나"
+    },
+    "line_da": {
+      "label": "다"
+    }
+  },
+  "relations": [
+    {
+      "type": "perpendicular",
+      "line1": "line_ga",
+      "line2": "line_na"
+    },
+    {
+      "type": "perpendicular",
+      "line1": "line_ga",
+      "line2": "line_da"
+    },
+    {
+      "type": "parallel",
+      "line1": "line_na",
+      "line2": "line_da"
+    }
+  ]
+}

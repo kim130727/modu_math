@@ -98,6 +98,39 @@ def test_two_rays_use_the_same_visible_canvas_and_viewport(tmp_path):
     assert len(student["input_schema"]["fields"][0]["choices"]) == 2
 
 
+def test_division_choices_stay_inside_diagram_cards_after_build(tmp_path):
+    client = _setup_django(tmp_path)
+    from django.conf import settings
+
+    root = Path(__file__).resolve().parents[2] / "examples" / "problems"
+    source = next(root.rglob("*009137.dsl.py"))
+    relative = source.relative_to(root)
+    target = settings.PROBLEMS_ROOT / relative
+    target.parent.mkdir(parents=True)
+    for kind in ("dsl.py", "editor_overrides.json"):
+        name = source.name.removesuffix("dsl.py") + kind
+        shutil.copyfile(source.with_name(name), target.with_name(name))
+    url = "/api/editor/problems/" + quote(relative.as_posix())
+    result = client.post(url + "/build/")
+    assert result.status_code == 200, result.content
+    editor = result.json()["canvas_presentation"]
+    assert editor["hidden_slot_ids"] == ["slot.stem.question"]
+
+    preview = client.get(url + "/student-preview/").json()
+    elements = preview["renderer_data"]["elements"]
+    assert sum(e["type"] == "rect" for e in elements) == 2
+    labels = [e["text"] for e in elements if e["type"] == "text"]
+    assert labels == ["㉠ 42 ÷ 6 = 7", "㉡ 35 ÷ 7 = 5"]
+    assert preview["renderer_data"]["presentation_viewport"] == editor["viewport"]
+    choices = preview["input_schema"]["fields"][0]["choices"]
+    assert [choice["label"] for choice in choices] == labels
+    for choice, expected in zip(choices, (True, False)):
+        response = client.post(url + "/student-preview/", {
+            "revision": preview["revision"], "answer": choice["value"],
+        }, content_type="application/json")
+        assert response.json()["correct"] is expected
+
+
 def test_route_problem_saved_canvas_choice_reaches_student_grader(tmp_path):
     client = _setup_django(tmp_path)
     from django.conf import settings

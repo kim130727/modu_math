@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_008111",
+  "problem_type": "multiple_choice_quotient_comparison",
+  "given": [
+    {
+      "ref": "expr_0",
+      "value": "360 ÷ 40"
+    },
+    {
+      "ref": "expr_1",
+      "value": "420 ÷ 60"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "몫이 더 큰 나눗셈",
+    "unit": ""
+  },
+  "method": "division_and_comparison",
+  "steps": [
+    {
+      "id": "compare_quotients",
+      "expr": "360 / 40 = 9 > 420 / 60 = 7",
+      "explanation": "360 ÷ 40 = 9이고 420 ÷ 60 = 7이므로 360 ÷ 40의 몫이 더 큽니다.",
+      "value": "360 ÷ 40"
+    }
+  ],
+  "answer": {
+    "value": "360 ÷ 40",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "360 ÷ 40"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "360 ÷ 40",
+        "value": "360 ÷ 40"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "420 ÷ 60",
+        "value": "420 ÷ 60"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "360 ÷ 40",
+        "diagnostics": [
+          {
+            "id": "diag.chose_larger_dividend",
+            "condition": "answer_equals_420_60",
+            "concept": "몇백몇십 ÷ 몇십",
+            "reason": "나누어지는 수(420)가 더 큰 식의 몫이 더 클 것이라고 오인함",
+            "feedback": "360 ÷ 40 = 9이고, 420 ÷ 60 = 7입니다. 9 > 7이므로 360 ÷ 40의 몫이 더 큽니다."
+          }
+        ]
+      }
+    ]
+  }
+}

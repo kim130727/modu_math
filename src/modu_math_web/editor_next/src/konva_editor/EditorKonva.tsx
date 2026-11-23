@@ -112,6 +112,11 @@ export function EditorKonva() {
     },
     [document.shapes, answerBindingOptions, previewArtifacts.semantic, previewArtifacts.solvable],
   );
+  const diagramRegionIds = useMemo(() => new Set(
+    (previewArtifacts.layout?.regions ?? [])
+      .filter((region) => region.role === "diagram" || region.role === "canvas")
+      .map((region) => region.id),
+  ), [previewArtifacts.layout]);
   const effectiveTutorFlow = draftTutorFlow ?? previewArtifacts.renderer?.tutor_flow ?? [];
   const activeReview = useMemo(() => draftReview ?? reviewSettings(previewArtifacts.semantic, answerBindingOptions, answerChoiceReviews, answerPresentationMode), [draftReview, previewArtifacts.semantic, answerBindingOptions, answerChoiceReviews, answerPresentationMode]);
   const canvasChoiceCandidates = useMemo(
@@ -1228,6 +1233,7 @@ export function EditorKonva() {
             answerOptions={answerBindingOptions}
             answerChoices={activeReview.mode === "canvas_select" ? activeReview.choices : answerChoiceReviews}
             canvasPresentation={!draftReview && builtDocumentRef.current === document ? previewArtifacts.canvas_presentation : null}
+            diagramRegionIds={diagramRegionIds}
             answerPresentationMode={activeReview.mode === "canvas_select" ? "canvas_select" : answerPresentationMode}
             showAnswerCanvas={activeReview.show_canvas !== false}
             editorPanel={inspectorOpen ? editorPanel : undefined}

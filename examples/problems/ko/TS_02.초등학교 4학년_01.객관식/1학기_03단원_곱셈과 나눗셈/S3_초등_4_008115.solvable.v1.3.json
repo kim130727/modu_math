@@ -1,0 +1,94 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_008115",
+  "problem_type": "multiple_choice_division_quotient_remainder_sum",
+  "given": [
+    {
+      "ref": "opt_0",
+      "value": "846 ÷ 40"
+    },
+    {
+      "ref": "opt_1",
+      "value": "397 ÷ 60"
+    },
+    {
+      "ref": "opt_2",
+      "value": "524 ÷ 70"
+    },
+    {
+      "ref": "opt_3",
+      "value": "123 ÷ 10"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_3",
+    "label": "몫과 나머지의 합이 가장 작은 것",
+    "unit": ""
+  },
+  "method": "compute_quotient_remainder_sum",
+  "steps": [
+    {
+      "id": "compare_sums",
+      "expr": "ㄱ:27, ㄴ:43, ㄷ:41, ㄹ:15",
+      "explanation": "123 ÷ 10 = 12···3이므로 합이 12 + 3 = 15로 가장 작습니다.",
+      "value": "ㄹ"
+    }
+  ],
+  "answer": {
+    "value": "ㄹ",
+    "answer_index": 3,
+    "unit": "",
+    "values": [
+      "ㄹ"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "ㄱ",
+        "value": "ㄱ"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "ㄴ",
+        "value": "ㄴ"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "ㄷ",
+        "value": "ㄷ"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "ㄹ",
+        "value": "ㄹ"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_3",
+        "value": "ㄹ",
+        "diagnostics": [
+          {
+            "id": "diag.sum_giyeok",
+            "condition": "answer_equals_giyeok",
+            "concept": "나눗셈의 몫과 나머지",
+            "reason": "ㄱ의 몫과 나머지의 합(21+6=27)이 ㄹ(12+3=15)보다 큼",
+            "feedback": "ㄱ. 846 ÷ 40 = 21···6 → 21 + 6 = 27, ㄹ. 123 ÷ 10 = 12···3 → 12 + 3 = 15입니다."
+          },
+          {
+            "id": "diag.chose_smallest_quotient",
+            "condition": "answer_equals_nieun",
+            "concept": "나눗셈의 몫과 나머지",
+            "reason": "몫이 가장 작은 ㄴ(6)을 선택했으나 나머지가 37로 합이 43임",
+            "feedback": "ㄴ은 몫은 6으로 작지만 나머지가 37이어서 합이 43입니다. 몫과 나머지의 합이 가장 작은 것은 ㄹ(15)입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

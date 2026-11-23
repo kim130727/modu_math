@@ -1,0 +1,372 @@
+{
+  "problem_id": "S3_초등_4_007530",
+  "view_box": {
+    "width": 886.0,
+    "height": 290.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 820.0,
+        "height": 56.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 820.0,
+        "data-box-height": 56.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "65. 왼쪽 그림과 같이 삼각자를 사용하여 주어진 직선에 대한 수선을 그은 것을 선택하세요."
+    },
+    {
+      "id": "slot.choice.option_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 324.0,
+        "y": 92.0,
+        "width": 240.0,
+        "height": 168.0,
+        "fill": "#ffffff",
+        "stroke": "#f59e0b",
+        "stroke-width": 1.8,
+        "rx": 12.0,
+        "ry": 12.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "①",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 592.0,
+        "y": 92.0,
+        "width": 240.0,
+        "height": 168.0,
+        "fill": "#ffffff",
+        "stroke": "#f59e0b",
+        "stroke-width": 1.8,
+        "rx": 12.0,
+        "ry": 12.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "②",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.diagram.ref_tri.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            108.0,
+            224.0
+          ],
+          [
+            222.0,
+            224.0
+          ],
+          [
+            222.0,
+            108.0
+          ]
+        ],
+        "stroke": "#0284c7",
+        "stroke-width": 1.6,
+        "fill": "#e0f2fe"
+      },
+      "source_ref": "slot.diagram.ref_tri",
+      "refs": {
+        "layout_slot_id": "slot.diagram.ref_tri"
+      }
+    },
+    {
+      "id": "slot.diagram.ref_hole.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            162.0,
+            204.0
+          ],
+          [
+            204.0,
+            204.0
+          ],
+          [
+            204.0,
+            162.0
+          ]
+        ],
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.diagram.ref_hole",
+      "refs": {
+        "layout_slot_id": "slot.diagram.ref_hole"
+      }
+    },
+    {
+      "id": "slot.diagram.c0_tri.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            376.0,
+            226.0
+          ],
+          [
+            484.0,
+            226.0
+          ],
+          [
+            484.0,
+            118.0
+          ]
+        ],
+        "stroke": "#0284c7",
+        "stroke-width": 1.5,
+        "fill": "#e0f2fe"
+      },
+      "source_ref": "slot.diagram.c0_tri",
+      "refs": {
+        "layout_slot_id": "slot.diagram.c0_tri"
+      }
+    },
+    {
+      "id": "slot.diagram.c0_hole.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            426.0,
+            208.0
+          ],
+          [
+            466.0,
+            208.0
+          ],
+          [
+            466.0,
+            168.0
+          ]
+        ],
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.diagram.c0_hole",
+      "refs": {
+        "layout_slot_id": "slot.diagram.c0_hole"
+      }
+    },
+    {
+      "id": "slot.diagram.c1_tri.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            644.0,
+            226.0
+          ],
+          [
+            752.0,
+            226.0
+          ],
+          [
+            752.0,
+            118.0
+          ]
+        ],
+        "stroke": "#0284c7",
+        "stroke-width": 1.5,
+        "fill": "#e0f2fe"
+      },
+      "source_ref": "slot.diagram.c1_tri",
+      "refs": {
+        "layout_slot_id": "slot.diagram.c1_tri"
+      }
+    },
+    {
+      "id": "slot.diagram.c1_hole.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            694.0,
+            208.0
+          ],
+          [
+            734.0,
+            208.0
+          ],
+          [
+            734.0,
+            168.0
+          ]
+        ],
+        "stroke": "#0284c7",
+        "stroke-width": 1.2,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.diagram.c1_hole",
+      "refs": {
+        "layout_slot_id": "slot.diagram.c1_hole"
+      }
+    },
+    {
+      "id": "slot.diagram.ref_line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 108.0,
+        "y1": 224.0,
+        "x2": 254.0,
+        "y2": 224.0,
+        "stroke": "#111827",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.ref_line",
+      "refs": {
+        "layout_slot_id": "slot.diagram.ref_line"
+      }
+    },
+    {
+      "id": "slot.diagram.c0_base.line",
+      "type": "line",
+      "attributes": {
+        "x1": 346.0,
+        "y1": 226.0,
+        "x2": 532.0,
+        "y2": 226.0,
+        "stroke": "#111827",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.c0_base",
+      "refs": {
+        "layout_slot_id": "slot.diagram.c0_base"
+      }
+    },
+    {
+      "id": "slot.diagram.c0_drawn.line",
+      "type": "line",
+      "attributes": {
+        "x1": 484.0,
+        "y1": 226.0,
+        "x2": 484.0,
+        "y2": 106.0,
+        "stroke": "#111827",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.c0_drawn",
+      "refs": {
+        "layout_slot_id": "slot.diagram.c0_drawn"
+      }
+    },
+    {
+      "id": "slot.diagram.c1_base.line",
+      "type": "line",
+      "attributes": {
+        "x1": 614.0,
+        "y1": 226.0,
+        "x2": 800.0,
+        "y2": 226.0,
+        "stroke": "#111827",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.c1_base",
+      "refs": {
+        "layout_slot_id": "slot.diagram.c1_base"
+      }
+    },
+    {
+      "id": "slot.diagram.c1_drawn.line",
+      "type": "line",
+      "attributes": {
+        "x1": 644.0,
+        "y1": 226.0,
+        "x2": 764.0,
+        "y2": 106.0,
+        "stroke": "#111827",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.c1_drawn",
+      "refs": {
+        "layout_slot_id": "slot.diagram.c1_drawn"
+      }
+    },
+    {
+      "id": "slot.diagram.badge_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 348.0,
+        "y": 106.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.badge_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.badge_0"
+      },
+      "text": "①"
+    },
+    {
+      "id": "slot.diagram.badge_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 616.0,
+        "y": 106.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.badge_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.badge_1"
+      },
+      "text": "②"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

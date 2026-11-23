@@ -1,0 +1,388 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007530",
+  "title": "삼각자를 사용하여 주어진 직선에 대한 수선 고르기",
+  "canvas": {
+    "width": 886,
+    "height": 290,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.ref_tri",
+        "slot.diagram.ref_hole",
+        "slot.diagram.c0_tri",
+        "slot.diagram.c0_hole",
+        "slot.diagram.c1_tri",
+        "slot.diagram.c1_hole",
+        "slot.diagram.ref_line",
+        "slot.diagram.c0_base",
+        "slot.diagram.c0_drawn",
+        "slot.diagram.c1_base",
+        "slot.diagram.c1_drawn",
+        "slot.diagram.badge_0",
+        "slot.diagram.badge_1"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "65. 왼쪽 그림과 같이 삼각자를 사용하여 주어진 직선에 대한 수선을 그은 것을 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 56.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.ref_tri",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            108.0,
+            224.0
+          ],
+          [
+            222.0,
+            224.0
+          ],
+          [
+            222.0,
+            108.0
+          ]
+        ],
+        "stroke": "#0284c7",
+        "stroke_width": 1.6,
+        "fill": "#e0f2fe"
+      }
+    },
+    {
+      "id": "slot.diagram.ref_hole",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            162.0,
+            204.0
+          ],
+          [
+            204.0,
+            204.0
+          ],
+          [
+            204.0,
+            162.0
+          ]
+        ],
+        "stroke": "#0284c7",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ref_line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 108.0,
+        "y1": 224.0,
+        "x2": 254.0,
+        "y2": 224.0,
+        "stroke": "#111827",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 324.0,
+        "y": 92.0,
+        "width": 240.0,
+        "height": 168.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.8,
+        "rx": 12.0,
+        "ry": 12.0,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "①",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.diagram.badge_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "①",
+        "style_role": "body",
+        "x": 348.0,
+        "y": 106.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#4b5563",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.c0_tri",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            376.0,
+            226.0
+          ],
+          [
+            484.0,
+            226.0
+          ],
+          [
+            484.0,
+            118.0
+          ]
+        ],
+        "stroke": "#0284c7",
+        "stroke_width": 1.5,
+        "fill": "#e0f2fe"
+      }
+    },
+    {
+      "id": "slot.diagram.c0_hole",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            426.0,
+            208.0
+          ],
+          [
+            466.0,
+            208.0
+          ],
+          [
+            466.0,
+            168.0
+          ]
+        ],
+        "stroke": "#0284c7",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.c0_base",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 346.0,
+        "y1": 226.0,
+        "x2": 532.0,
+        "y2": 226.0,
+        "stroke": "#111827",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.diagram.c0_drawn",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 484.0,
+        "y1": 226.0,
+        "x2": 484.0,
+        "y2": 106.0,
+        "stroke": "#111827",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 592.0,
+        "y": 92.0,
+        "width": 240.0,
+        "height": 168.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.8,
+        "rx": 12.0,
+        "ry": 12.0,
+        "fill": "#ffffff",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "②",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        }
+      }
+    },
+    {
+      "id": "slot.diagram.badge_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "②",
+        "style_role": "body",
+        "x": 616.0,
+        "y": 106.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#4b5563",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.c1_tri",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            644.0,
+            226.0
+          ],
+          [
+            752.0,
+            226.0
+          ],
+          [
+            752.0,
+            118.0
+          ]
+        ],
+        "stroke": "#0284c7",
+        "stroke_width": 1.5,
+        "fill": "#e0f2fe"
+      }
+    },
+    {
+      "id": "slot.diagram.c1_hole",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            694.0,
+            208.0
+          ],
+          [
+            734.0,
+            208.0
+          ],
+          [
+            734.0,
+            168.0
+          ]
+        ],
+        "stroke": "#0284c7",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.c1_base",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 614.0,
+        "y1": 226.0,
+        "x2": 800.0,
+        "y2": 226.0,
+        "stroke": "#111827",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.diagram.c1_drawn",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 644.0,
+        "y1": 226.0,
+        "x2": 764.0,
+        "y2": 106.0,
+        "stroke": "#111827",
+        "stroke_width": 2.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1",
+    "region.diagram",
+    "slot.diagram.ref_tri",
+    "slot.diagram.ref_hole",
+    "slot.diagram.c0_tri",
+    "slot.diagram.c0_hole",
+    "slot.diagram.c1_tri",
+    "slot.diagram.c1_hole",
+    "slot.diagram.ref_line",
+    "slot.diagram.c0_base",
+    "slot.diagram.c0_drawn",
+    "slot.diagram.c1_base",
+    "slot.diagram.c1_drawn",
+    "slot.diagram.badge_0",
+    "slot.diagram.badge_1"
+  ]
+}

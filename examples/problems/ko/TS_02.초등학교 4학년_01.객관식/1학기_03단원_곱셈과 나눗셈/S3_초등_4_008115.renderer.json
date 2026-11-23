@@ -1,0 +1,305 @@
+{
+  "problem_id": "S3_초등_4_008115",
+  "view_box": {
+    "width": 886.0,
+    "height": 280.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 24.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "width": 820.0,
+        "height": 44.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 24.0,
+        "data-box-width": 820.0,
+        "data-box-height": 44.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "23. 다음 계산에서 몫과 나머지의 합이 가장 작은 것의 기호를 선택하세요."
+    },
+    {
+      "id": "slot.diagram.box_bg.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 176.0,
+        "y": 88.0,
+        "width": 534.0,
+        "height": 116.0,
+        "fill": "#ffffff",
+        "stroke": "#6b7280",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.box_bg",
+      "refs": {
+        "layout_slot_id": "slot.diagram.box_bg"
+      }
+    },
+    {
+      "id": "slot.diagram.item_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 290.0,
+        "y": 108.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.diagram.item_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.item_0"
+      },
+      "text": "ㄱ. 846 ÷ 40"
+    },
+    {
+      "id": "slot.diagram.item_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 560.0,
+        "y": 108.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.diagram.item_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.item_1"
+      },
+      "text": "ㄴ. 397 ÷ 60"
+    },
+    {
+      "id": "slot.diagram.item_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 290.0,
+        "y": 154.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.diagram.item_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.item_2"
+      },
+      "text": "ㄷ. 524 ÷ 70"
+    },
+    {
+      "id": "slot.diagram.item_3.text",
+      "type": "text",
+      "attributes": {
+        "x": 560.0,
+        "y": 154.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.diagram.item_3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.item_3"
+      },
+      "text": "ㄹ. 123 ÷ 10"
+    },
+    {
+      "id": "slot.choice.paren_left.text",
+      "type": "text",
+      "attributes": {
+        "x": 516.0,
+        "y": 224.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0
+      },
+      "source_ref": "slot.choice.paren_left",
+      "refs": {
+        "layout_slot_id": "slot.choice.paren_left"
+      },
+      "text": "("
+    },
+    {
+      "id": "slot.choice.option_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 546.0,
+        "y": 224.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "ㄱ",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "ㄱ"
+    },
+    {
+      "id": "slot.choice.option_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 592.0,
+        "y": 224.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "ㄴ",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "ㄴ"
+    },
+    {
+      "id": "slot.choice.option_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 638.0,
+        "y": 224.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_2",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_2"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 2,
+        "value": "ㄷ",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "ㄷ"
+    },
+    {
+      "id": "slot.choice.option_3.text",
+      "type": "text",
+      "attributes": {
+        "x": 684.0,
+        "y": 224.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_3",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_3"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 3,
+        "value": "ㄹ",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "ㄹ"
+    },
+    {
+      "id": "slot.choice.c_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 569.0,
+        "y": 224.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.choice.c_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.c_0"
+      },
+      "text": ","
+    },
+    {
+      "id": "slot.choice.c_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 615.0,
+        "y": 224.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.choice.c_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.c_1"
+      },
+      "text": ","
+    },
+    {
+      "id": "slot.choice.c_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 661.0,
+        "y": 224.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.choice.c_2",
+      "refs": {
+        "layout_slot_id": "slot.choice.c_2"
+      },
+      "text": ","
+    },
+    {
+      "id": "slot.choice.paren_right.text",
+      "type": "text",
+      "attributes": {
+        "x": 714.0,
+        "y": 224.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 24.0
+      },
+      "source_ref": "slot.choice.paren_right",
+      "refs": {
+        "layout_slot_id": "slot.choice.paren_right"
+      },
+      "text": ")"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

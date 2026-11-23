@@ -1,0 +1,86 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_008112",
+  "problem_type": "multiple_choice_division_estimation",
+  "given": [
+    {
+      "ref": "dividend",
+      "value": 91
+    },
+    {
+      "ref": "divisor",
+      "value": 28
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "어림한 몫",
+    "unit": ""
+  },
+  "method": "rounding_estimation",
+  "steps": [
+    {
+      "id": "estimate_quotient",
+      "expr": "90 / 30 = 3",
+      "explanation": "28을 30으로 생각하면 30 × 3 = 90이므로 91 ÷ 28의 몫은 3 정도입니다.",
+      "value": "3"
+    }
+  ],
+  "answer": {
+    "value": "3",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "3"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "2",
+        "value": "2"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "3",
+        "value": "3"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "20",
+        "value": "20"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "30",
+        "value": "30"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "3",
+        "diagnostics": [
+          {
+            "id": "diag.underestimate_2",
+            "condition": "answer_equals_2",
+            "concept": "나눗셈의 어림",
+            "reason": "28을 30으로 어림하지 않고 몫을 너무 작게 잡음",
+            "feedback": "28을 30으로 생각하면 30 × 3 = 90이므로 91 ÷ 28의 몫은 3 정도라고 어림할 수 있습니다."
+          },
+          {
+            "id": "diag.wrong_place_30",
+            "condition": "answer_equals_30",
+            "concept": "나눗셈의 어림",
+            "reason": "몫의 자릿수를 십의 자리로 잘못 어림함",
+            "feedback": "30 × 30 = 900이므로 91 ÷ 28의 몫은 30이 아니라 한 자리 수인 3입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

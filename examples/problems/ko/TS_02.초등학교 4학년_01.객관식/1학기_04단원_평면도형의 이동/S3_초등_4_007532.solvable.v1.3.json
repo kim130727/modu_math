@@ -1,0 +1,69 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007532",
+  "problem_type": "multiple_choice_perpendicular_construction",
+  "given": [
+    {
+      "ref": "option_0",
+      "value": "빗변을 맞춤"
+    },
+    {
+      "ref": "option_1",
+      "value": "꼭짓점만 맞춤"
+    },
+    {
+      "ref": "option_2",
+      "value": "직각을 낀 변을 맞춤"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_2",
+    "label": "바르게 그린 것",
+    "unit": ""
+  },
+  "method": "set_square_perpendicular",
+  "steps": [
+    {
+      "id": "verify_set_square",
+      "expr": "③",
+      "explanation": "삼각자의 직각을 낀 한 변을 직선 가에 맞추고 다른 한 변을 따라 그은 ③이 바릅니다.",
+      "value": "③"
+    }
+  ],
+  "answer": {
+    "value": "③",
+    "answer_index": 2,
+    "unit": "",
+    "values": [
+      "③"
+    ],
+    "choices": [
+      "①",
+      "②",
+      "③"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "③",
+        "diagnostics": [
+          {
+            "id": "diag.aligned_hypotenuse",
+            "condition": "answer_equals_1",
+            "concept": "수선 긋기",
+            "reason": "직각을 낀 변이 아니라 빗변을 직선 가에 맞춘 그림(①)을 선택함",
+            "feedback": "삼각자에서 직각을 낀 변 중 한 변을 직선 가에 맞추어야 합니다. ③이 바릅니다."
+          },
+          {
+            "id": "diag.not_aligned_to_line",
+            "condition": "answer_equals_2",
+            "concept": "수선 긋기",
+            "reason": "직각을 낀 변을 직선 가에 맞추지 않은 그림(②)을 선택함",
+            "feedback": "②는 삼각자의 변을 직선 가에 맞추지 않았습니다. 직각을 낀 두 변으로 직각을 만든 ③이 바릅니다."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,324 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007534",
+  "title": "한 직선에 수직인 두 직선의 평행 관계 알기",
+  "canvas": {
+    "width": 886,
+    "height": 340,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.ra_na",
+        "slot.diagram.ra_da",
+        "slot.diagram.line_ga",
+        "slot.diagram.line_na",
+        "slot.diagram.line_da",
+        "slot.diagram.label_ga",
+        "slot.diagram.label_na",
+        "slot.diagram.label_da",
+        "slot.diagram.desc_text"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.prefix",
+        "slot.choice.option_0",
+        "slot.choice.comma",
+        "slot.choice.option_1",
+        "slot.choice.suffix"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "70. 삼각자를 사용하여 직선 가에 수직인 두 직선을 그었습니다. 알맞은 말을 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 56.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.label_ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "body",
+        "x": 346.0,
+        "y": 88.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.line_ga",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 346.0,
+        "y1": 114.0,
+        "x2": 346.0,
+        "y2": 228.0,
+        "stroke": "#111827",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.diagram.line_na",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 346.0,
+        "y1": 142.0,
+        "x2": 546.0,
+        "y2": 142.0,
+        "stroke": "#111827",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.diagram.line_da",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 346.0,
+        "y1": 198.0,
+        "x2": 546.0,
+        "y2": 198.0,
+        "stroke": "#111827",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.diagram.label_na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "body",
+        "x": 562.0,
+        "y": 132.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.label_da",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "body",
+        "x": 562.0,
+        "y": 188.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "symbol_label",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.ra_na",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 346 128 L 360 128 L 360 142",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.ra_da",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 346 184 L 360 184 L 360 198",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.desc_text",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "→ 직선 가에 수직인 직선 나와 직선 다는 만나지 않으므로",
+        "style_role": "body",
+        "x": 80.0,
+        "y": 236.0,
+        "width": 726.0,
+        "height": 34.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 21,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.prefix",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "서로 (",
+        "style_role": "body",
+        "x": 286.0,
+        "y": 282.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "평행합니다",
+        "style_role": "body",
+        "x": 386.0,
+        "y": 282.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "평행합니다",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.comma",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 456.0,
+        "y": 282.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "수직입니다",
+        "style_role": "body",
+        "x": 526.0,
+        "y": 282.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "수직입니다",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.suffix",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ").",
+        "style_role": "body",
+        "x": 602.0,
+        "y": 282.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.ra_na",
+    "slot.diagram.ra_da",
+    "slot.diagram.line_ga",
+    "slot.diagram.line_na",
+    "slot.diagram.line_da",
+    "slot.diagram.label_ga",
+    "slot.diagram.label_na",
+    "slot.diagram.label_da",
+    "slot.diagram.desc_text",
+    "region.choices",
+    "slot.choice.prefix",
+    "slot.choice.option_0",
+    "slot.choice.comma",
+    "slot.choice.option_1",
+    "slot.choice.suffix"
+  ]
+}

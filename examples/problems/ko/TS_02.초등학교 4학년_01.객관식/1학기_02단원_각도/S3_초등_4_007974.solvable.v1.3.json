@@ -1,0 +1,69 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007974",
+  "problem_type": "multiple_choice_angle_comparison",
+  "given": [
+    {
+      "ref": "angle_ga",
+      "value": 34,
+      "unit": "도"
+    },
+    {
+      "ref": "angle_na",
+      "value": 78,
+      "unit": "도"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "더 큰 각",
+    "unit": ""
+  },
+  "method": "direct_overlap_comparison",
+  "steps": [
+    {
+      "id": "compare_angles",
+      "expr": "나 > 가",
+      "explanation": "두 변이 더 많이 벌어진 나가 가보다 큰 각입니다.",
+      "value": "나"
+    }
+  ],
+  "answer": {
+    "value": "나",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "나"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "가",
+        "value": "가"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "나",
+        "value": "나"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "나",
+        "diagnostics": [
+          {
+            "id": "diag.chose_smaller_angle",
+            "condition": "answer_equals_ga",
+            "concept": "각의 크기 비교",
+            "reason": "더 적게 벌어진 각 가를 더 큰 각으로 선택함",
+            "feedback": "각의 크기는 변의 길이와 관계없이 두 변이 많이 벌어질수록 큰 각입니다. 나가 가보다 더 많이 벌어져 있으므로 나의 각의 크기가 더 큽니다."
+          }
+        ]
+      }
+    ]
+  }
+}

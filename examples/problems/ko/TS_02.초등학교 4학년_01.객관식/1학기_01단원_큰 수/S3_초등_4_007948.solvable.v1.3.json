@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007948",
+  "problem_type": "multiple_choice_number_comparison_on_number_line",
+  "given": [
+    {
+      "ref": "num_left",
+      "value": 28300
+    },
+    {
+      "ref": "num_right",
+      "value": 28600
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "더 큰 수",
+    "unit": ""
+  },
+  "method": "number_line_comparison",
+  "steps": [
+    {
+      "id": "compare_on_number_line",
+      "expr": "28600 > 28300",
+      "explanation": "수직선에서 오른쪽에 위치한 28600이 더 큰 수입니다.",
+      "value": "28600"
+    }
+  ],
+  "answer": {
+    "value": "28600",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "28600"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "28300",
+        "value": "28300"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "28600",
+        "value": "28600"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "28600",
+        "diagnostics": [
+          {
+            "id": "diag.chose_smaller_number",
+            "condition": "answer_equals_28300",
+            "concept": "수의 크기 비교",
+            "reason": "더 큰 수 대신 더 작은 수인 28300을 선택함",
+            "feedback": "수직선에서 오른쪽에 위치한 수가 왼쪽에 위치한 수보다 더 큰 수입니다. 28600이 더 오른쪽에 있습니다."
+          }
+        ]
+      }
+    ]
+  }
+}

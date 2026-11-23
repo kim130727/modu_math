@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007533",
+  "problem_type": "multiple_choice_perpendicular_construction",
+  "given": [
+    {
+      "ref": "option_0",
+      "value": "90° 눈금에 맞춘 직선"
+    },
+    {
+      "ref": "option_1",
+      "value": "62° 눈금에 맞춘 직선"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "수선을 바르게 그은 것",
+    "unit": ""
+  },
+  "method": "protractor_90_degree_check",
+  "steps": [
+    {
+      "id": "verify_90_deg",
+      "expr": "①",
+      "explanation": "각도기의 중심과 밑금을 직선에 맞추고 90° 눈금에 맞춰 그린 ①이 수선입니다.",
+      "value": "①"
+    }
+  ],
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.not_90_degrees",
+            "condition": "answer_equals_2",
+            "concept": "각도기로 수선 긋기",
+            "reason": "90°가 아닌 눈금(60°/120°)에 맞춰 그은 그림(②)을 선택함",
+            "feedback": "주어진 직선에 각도기의 밑금을 맞추고 90°가 되는 눈금에 점을 찍어 이은 ①이 수선입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

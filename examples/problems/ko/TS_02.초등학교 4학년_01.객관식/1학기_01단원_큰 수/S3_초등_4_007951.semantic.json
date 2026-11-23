@@ -1,0 +1,373 @@
+{
+  "problem_id": "S3_초등_4_007951",
+  "problem_type": "multiple_choice_number_comparison",
+  "metadata": {
+    "title": "큰 수의 크기 비교를 통해 가격이 더 낮은 휴대 전화 찾기",
+    "tags": [],
+    "question": "9. 가격이 더 낮은 휴대 전화를 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.phone_ga_body",
+      "slot.diagram.phone_ga_screen",
+      "slot.diagram.phone_ga_btn",
+      "slot.diagram.phone_na_body",
+      "slot.diagram.phone_na_screen",
+      "slot.diagram.phone_na_btn"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "01단원_큰 수",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "9. 가격이 더 낮은 휴대 전화를 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "choice_marker",
+        "properties": {
+          "text": "가"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "choice_marker",
+        "properties": {
+          "text": "나"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.phone_ga_body",
+        "type": "rect_slot",
+        "properties": {
+          "x": 295,
+          "y": 88,
+          "width": 88,
+          "height": 156,
+          "stroke": "#111827",
+          "stroke_width": 2,
+          "rx": 12,
+          "ry": 12,
+          "fill": "#1f2937",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.phone_ga_body"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.phone_ga_btn",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 339,
+          "cy": 232,
+          "r": 7,
+          "stroke": "#9ca3af",
+          "stroke_width": 1,
+          "fill": "#374151",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.phone_ga_btn"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.phone_ga_screen",
+        "type": "rect_slot",
+        "properties": {
+          "x": 303,
+          "y": 108,
+          "width": 72,
+          "height": 112,
+          "stroke": "#4b5563",
+          "stroke_width": 1,
+          "rx": 4,
+          "ry": 4,
+          "fill": "#ecfccb",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.phone_ga_screen"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.phone_ga_time",
+        "type": "text",
+        "properties": {
+          "text": "2:45"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.phone_ga_time"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.phone_na_body",
+        "type": "rect_slot",
+        "properties": {
+          "x": 595,
+          "y": 88,
+          "width": 88,
+          "height": 156,
+          "stroke": "#111827",
+          "stroke_width": 2,
+          "rx": 12,
+          "ry": 12,
+          "fill": "#1f2937",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.phone_na_body"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.phone_na_btn",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 639,
+          "cy": 232,
+          "r": 7,
+          "stroke": "#9ca3af",
+          "stroke_width": 1,
+          "fill": "#374151",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.phone_na_btn"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.phone_na_screen",
+        "type": "rect_slot",
+        "properties": {
+          "x": 603,
+          "y": 108,
+          "width": 72,
+          "height": 112,
+          "stroke": "#4b5563",
+          "stroke_width": 1,
+          "rx": 4,
+          "ry": 4,
+          "fill": "#e0f2fe",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.phone_na_screen"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.price_ga",
+        "type": "text",
+        "properties": {
+          "text": "865000원"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.price_ga"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.price_na",
+        "type": "text",
+        "properties": {
+          "text": "1020000원"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.price_na"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "9. 가격이 더 낮은 휴대 전화를 선택하세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "가",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "가"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "가",
+        "value": "가"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "나",
+        "value": "나"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "가",
+        "diagnostics": [
+          {
+            "id": "diag.chose_more_expensive",
+            "condition": "answer_equals_na",
+            "concept": "수의 크기 비교",
+            "reason": "자릿수가 더 많은 1020000원을 더 낮은 가격으로 선택함",
+            "feedback": "865000은 6자리 수이고 1020000은 7자리 수이므로, 865000 < 1020000입니다. 가격이 더 낮은 휴대 전화는 가입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "phone_ga": {
+      "label": "가",
+      "price": 865000,
+      "unit": "원",
+      "digits": 6
+    },
+    "phone_na": {
+      "label": "나",
+      "price": 1020000,
+      "unit": "원",
+      "digits": 7
+    }
+  },
+  "relations": [
+    {
+      "type": "less_than",
+      "expression": "865000 < 1020000",
+      "smaller": "phone_ga",
+      "larger": "phone_na"
+    }
+  ]
+}

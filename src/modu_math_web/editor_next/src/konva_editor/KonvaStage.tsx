@@ -33,6 +33,7 @@ interface KonvaStageProps {
   answerChoices?: AnswerChoiceReview[];
   answerPresentationMode?: AnswerPresentationMode;
   canvasPresentation?: CanvasPresentation | null;
+  diagramRegionIds?: ReadonlySet<string>;
   showAnswerCanvas?: boolean;
   editorPanel?: ReactNode;
   reviewPanel?: ReactNode;
@@ -62,6 +63,7 @@ export function KonvaStage({
   answerChoices = [],
   answerPresentationMode = "panel_input",
   canvasPresentation,
+  diagramRegionIds,
   showAnswerCanvas = true,
   editorPanel,
   reviewPanel,
@@ -209,23 +211,29 @@ export function KonvaStage({
       const hidden = new Set(canvasPresentation.hidden_slot_ids);
       return shapes.filter((shape) => !hidden.has(shape.id)).sort(compareRenderOrder);
     }
+    // After a local edit the built viewport is stale. Resolve the current
+    // frames before hiding panel choices, just as the server does at build.
+    const diagramFrames = shapes
+      .filter((shape) => isDiagramFrame(shape, diagramRegionIds))
+      .map(shapeBounds);
     const hiddenChoices: EditorShape[] = [];
     const kept: EditorShape[] = [];
     for (const shape of shapes) {
       if (isTopPresentationShape(shape) || shape.semanticRole === "answer_prompt") {
         continue;
       }
-      if (!isCanvasSelect && answerChoices.length > 0 && (isChoiceShape(shape) || isChoiceDecoration(shape))) {
+      const visibleCardLabel = isChoiceShape(shape) && diagramFrames.some((frame) => shapeCenterInside(frame, shape));
+      if (!isCanvasSelect && answerChoices.length > 0 && !visibleCardLabel && (isChoiceShape(shape) || isChoiceDecoration(shape))) {
         hiddenChoices.push(shape);
         continue;
       }
       kept.push(shape);
     }
     const visible = hiddenChoices.length
-      ? kept.filter((shape) => !isEmptyChoiceFrame(shape, hiddenChoices, kept))
+      ? kept.filter((shape) => isDiagramFrame(shape, diagramRegionIds) || !isEmptyChoiceFrame(shape, hiddenChoices, kept))
       : kept;
     return visible.sort(compareRenderOrder);
-  }, [answerChoices.length, canvasPresentation, isCanvasSelect, shapes]);
+  }, [answerChoices.length, canvasPresentation, diagramRegionIds, isCanvasSelect, shapes]);
   const [fitContent, setFitContent] = useState(true);
   const [zoom, setZoom] = useState<number | null>(null);
   const crop = useMemo(
@@ -1247,6 +1255,21 @@ function isTopPresentationShape(shape: EditorShape): shape is Extract<EditorShap
 
 function isChoiceShape(shape: EditorShape): boolean {
   return shape.type === "text" && shape.semanticRole === "choice";
+}
+
+function isDiagramFrame(shape: EditorShape, diagramRegionIds?: ReadonlySet<string>): boolean {
+  if (shape.type !== "rect" || shape.visible === false || shape.interaction) return false;
+  const region = shape.sourceRegionId ?? "";
+  return Boolean(diagramRegionIds?.has(region))
+    || /(?:^|[._])(?:diagram|canvas)(?:[._]|$)/i.test(region)
+    || ["canvas", "diagram", "diagram_label", "symbol_label", "label"].includes(shape.semanticRole ?? "");
+}
+
+function shapeCenterInside(box: CanvasRect, shape: EditorShape): boolean {
+  const bounds = shapeBounds(shape);
+  const x = bounds.x + bounds.width / 2;
+  const y = bounds.y + bounds.height / 2;
+  return x >= box.x && x <= box.x + box.width && y >= box.y && y <= box.y + box.height;
 }
 
 function isChoiceDecoration(shape: EditorShape): boolean {

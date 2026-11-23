@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007529",
+  "problem_type": "multiple_choice_perpendicular_sides",
+  "given": [
+    {
+      "ref": "shape_0",
+      "value": "둔각삼각형"
+    },
+    {
+      "ref": "shape_1",
+      "value": "직각이 있는 사다리꼴"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "서로 수직인 변이 있는 도형",
+    "unit": ""
+  },
+  "method": "right_angle_identification",
+  "steps": [
+    {
+      "id": "identify_perpendicular_sides",
+      "expr": "②",
+      "explanation": "②의 도형에는 서로 수직으로 만나는 변이 있습니다.",
+      "value": "②"
+    }
+  ],
+  "answer": {
+    "value": "②",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "②"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②",
+        "diagnostics": [
+          {
+            "id": "diag.chose_triangle_without_right_angle",
+            "condition": "answer_equals_1",
+            "concept": "수직인 변",
+            "reason": "직각이 없는 삼각형(①)을 선택함",
+            "feedback": "①의 삼각형에는 직각으로 만나는 변이 없습니다. ②의 사각형에는 왼쪽 변과 위쪽·아래쪽 변이 서로 수직입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

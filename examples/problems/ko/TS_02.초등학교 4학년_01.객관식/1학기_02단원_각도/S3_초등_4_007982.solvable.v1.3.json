@@ -1,0 +1,69 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007982",
+  "problem_type": "multiple_choice_protractor_alignment",
+  "given": [
+    {
+      "ref": "option_0",
+      "value": "밑금 불일치"
+    },
+    {
+      "ref": "option_1",
+      "value": "중심 불일치"
+    },
+    {
+      "ref": "option_2",
+      "value": "중심과 밑금 일치"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_2",
+    "label": "바르게 잰 것",
+    "unit": ""
+  },
+  "method": "protractor_alignment_check",
+  "steps": [
+    {
+      "id": "verify_alignment",
+      "expr": "③",
+      "explanation": "각도기의 중심을 각의 꼭짓점에 맞추고, 각도기의 밑금을 각의 한 변에 맞춘 ③이 바릅니다.",
+      "value": "③"
+    }
+  ],
+  "answer": {
+    "value": "③",
+    "answer_index": 2,
+    "unit": "",
+    "values": [
+      "③"
+    ],
+    "choices": [
+      "①",
+      "②",
+      "③"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_2",
+        "value": "③",
+        "diagnostics": [
+          {
+            "id": "diag.misaligned_baseline",
+            "condition": "answer_equals_1",
+            "concept": "각도기 사용법",
+            "reason": "각도기의 밑금이 아닌 맨 아래 테두리에 각의 한 변을 맞춘 그림을 선택함",
+            "feedback": "각도기의 중심을 각의 꼭짓점에 맞추고, 각도기의 밑금(0° 눈금선)을 각의 한 변에 맞추어야 합니다."
+          },
+          {
+            "id": "diag.misaligned_center",
+            "condition": "answer_equals_2",
+            "concept": "각도기 사용법",
+            "reason": "각도기의 중심과 각의 꼭짓점이 어긋난 그림을 선택함",
+            "feedback": "각도기의 밑금은 맞추었지만, 각도기의 중심이 각의 꼭짓점과 어긋나 있습니다. 중심과 밑금을 모두 맞춘 ③이 바릅니다."
+          }
+        ]
+      }
+    ]
+  }
+}

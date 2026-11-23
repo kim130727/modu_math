@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007954",
+  "problem_type": "multiple_choice_concept_verification",
+  "given": [
+    {
+      "ref": "gyuri",
+      "value": "1000만이 10개인 수"
+    },
+    {
+      "ref": "dongjun",
+      "value": "9999만보다 10만 큰 수"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "1억을 바르게 설명한 사람",
+    "unit": ""
+  },
+  "method": "concept_verification",
+  "steps": [
+    {
+      "id": "verify_1eok",
+      "expr": "1000만 * 10 = 1억",
+      "explanation": "1000만이 10개인 수는 1억이므로 규리가 바르게 설명했습니다.",
+      "value": "규리"
+    }
+  ],
+  "answer": {
+    "value": "규리",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "규리"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "규리",
+        "value": "규리"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "동준",
+        "value": "동준"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "규리",
+        "diagnostics": [
+          {
+            "id": "diag.chose_9999man_plus_10man",
+            "condition": "answer_equals_dongjun",
+            "concept": "1억의 이해",
+            "reason": "9999만보다 10만 큰 수를 1억으로 착각함",
+            "feedback": "9999만보다 1만 큰 수가 1억이고, 10만 큰 수는 1억 9만입니다. 1000만이 10개인 수가 1억입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007977",
+  "problem_type": "multiple_choice_protractor_reading",
+  "given": [
+    {
+      "ref": "angle",
+      "value": "안쪽 눈금 0에서 120",
+      "unit": "°"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "각도",
+    "unit": "°"
+  },
+  "method": "protractor_inner_scale_reading",
+  "steps": [
+    {
+      "id": "read_inner_scale",
+      "expr": "120°",
+      "explanation": "각의 한 변이 안쪽 눈금 0에 맞춰져 있으므로 안쪽 눈금을 읽으면 120°입니다.",
+      "value": "120°"
+    }
+  ],
+  "answer": {
+    "value": "120°",
+    "answer_index": 1,
+    "unit": "°",
+    "values": [
+      "120°"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "60°",
+        "value": "60°"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "120°",
+        "value": "120°"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "120°",
+        "diagnostics": [
+          {
+            "id": "diag.read_outer_scale",
+            "condition": "answer_equals_60",
+            "concept": "각도기 눈금 읽기",
+            "reason": "안쪽 눈금 0에 맞추었으나 바깥쪽 눈금을 잘못 읽음",
+            "feedback": "각의 한 변이 안쪽 눈금 0에 맞춰져 있으므로 안쪽 눈금을 읽어야 합니다. 안쪽 눈금은 120°입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007534",
+  "problem_type": "multiple_choice_parallel_lines_property",
+  "given": [
+    {
+      "ref": "line_na",
+      "value": "직선 가에 수직"
+    },
+    {
+      "ref": "line_da",
+      "value": "직선 가에 수직"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "직선 나와 직선 다의 관계",
+    "unit": ""
+  },
+  "method": "parallel_lines_theorem",
+  "steps": [
+    {
+      "id": "deduce_parallel",
+      "expr": "나 // 다",
+      "explanation": "직선 가에 수직인 직선 나와 직선 다는 만나지 않으므로 서로 평행합니다.",
+      "value": "평행합니다"
+    }
+  ],
+  "answer": {
+    "value": "평행합니다",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "평행합니다"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "평행합니다",
+        "value": "평행합니다"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "수직입니다",
+        "value": "수직입니다"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "평행합니다",
+        "diagnostics": [
+          {
+            "id": "diag.confused_parallel_perpendicular",
+            "condition": "answer_equals_perpendicular",
+            "concept": "평행선",
+            "reason": "한 직선에 수직인 두 직선의 관계를 수직으로 혼동함",
+            "feedback": "직선 가에 수직인 직선 나와 직선 다는 서로 만나지 않으므로 평행합니다."
+          }
+        ]
+      }
+    ]
+  }
+}

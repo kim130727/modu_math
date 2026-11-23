@@ -116,12 +116,29 @@ def project_canvas(elements, layout, view_box, presentation, schema, prompt):
     def normalize(value):
         return " ".join(value.split())
 
-    labels = {
-        normalize(str(choice.get("label", "")))
-        for field in schema["fields"] for choice in field.get("choices", [])
-    } - {""}
+    options = [choice for field in schema["fields"] for choice in field.get("choices", [])]
+    labels = {normalize(str(choice.get("label", ""))) for choice in options} - {""}
+    option_ids = {choice["value"] for choice in options if isinstance(choice.get("value"), str)}
     panel_choices = not canvas_selection and bool(labels)
     prompt_lines = {normalize(line) for line in str(prompt or "").splitlines()} - {""}
+    # A frame in the diagram is artwork. Keep the option it contains together
+    # with the frame, even when students submit through the answer panel.
+    diagram_frames = []
+    if panel_choices:
+        for element in elements:
+            if element.get("type") != "rect" or element.get("interaction"):
+                continue
+            refs = _refs(element)
+            role = (element.get("attributes") or {}).get("data-semantic-role")
+            if role not in VISUAL_ROLES and not any(
+                slot_roles.get(ref) in VISUAL_ROLES
+                or region_slots.get(ref, set()) & VISUAL_ROLES
+                for ref in refs
+            ):
+                continue
+            bounds = _safe_bounds(element)
+            if bounds:
+                diagram_frames.append(bounds)
     kept = []
     hidden = []
     hidden_choices = []
@@ -146,6 +163,11 @@ def project_canvas(elements, layout, view_box, presentation, schema, prompt):
                 or choice_region and (normalize(text) in labels or re.fullmatch(r"[\s(),，]+", text))
             )
         )
+        is_option = bool(refs & option_ids) or normalize(text) in labels
+        if removed_choice and is_option and any(
+            _inside(frame, element) for frame in diagram_frames
+        ):
+            removed_choice = False
         hidden_text = (
             element.get("type") in {"text", "text_box"}
             and (

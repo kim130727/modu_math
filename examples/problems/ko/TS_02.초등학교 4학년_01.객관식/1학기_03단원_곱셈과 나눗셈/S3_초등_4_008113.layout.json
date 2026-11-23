@@ -1,0 +1,157 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_008113",
+  "title": "몫이 두 자리 수인 나눗셈 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 220,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.card_0",
+        "slot.diagram.card_1"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "21. 몫이 두 자리 수인 나눗셈을 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 24.0,
+        "width": 820.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.5,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.card_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 180.0,
+        "y": 96.0,
+        "width": 230.0,
+        "height": 72.0,
+        "stroke": "#f7cfc2",
+        "stroke_width": 1.2,
+        "rx": 4.0,
+        "ry": 4.0,
+        "fill": "#fde8e1"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "275 ÷ 25",
+        "style_role": "body",
+        "x": 295.0,
+        "y": 118.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "275 ÷ 25",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.card_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 476.0,
+        "y": 96.0,
+        "width": 230.0,
+        "height": 72.0,
+        "stroke": "#f7cfc2",
+        "stroke_width": 1.2,
+        "rx": 4.0,
+        "ry": 4.0,
+        "fill": "#fde8e1"
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "495 ÷ 54",
+        "style_role": "body",
+        "x": 591.0,
+        "y": 118.0,
+        "font_size": 24,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "495 ÷ 54",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.card_0",
+    "slot.diagram.card_1",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1"
+  ]
+}

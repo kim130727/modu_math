@@ -15,31 +15,33 @@
         "fill": "#202124",
         "font-family": "\"Noto Sans KR\", sans-serif",
         "font-size": 24.0,
-        "width": 820.0,
-        "height": 44.0,
-        "max_width": 820.0,
+        "width": 466.0,
+        "height": 36.0,
+        "max_width": 466.0,
         "data-slot-kind": "text_box",
         "data-box-x": 32.0,
         "data-box-y": 22.0,
-        "data-box-width": 820.0,
-        "data-box-height": 44.0,
+        "data-box-width": 466.0,
+        "data-box-height": 36.0,
         "data-text-align": "left",
         "data-vertical-align": "top",
-        "data-line-height": 1.5
+        "data-line-height": 1.5,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "explicit"
       },
       "source_ref": "slot.stem.question",
       "refs": {
         "layout_slot_id": "slot.stem.question"
       },
-      "text": "93. <보기>와 나눗셈의 몫이 같은 식을 선택하세요."
+      "text": "<보기>와 나눗셈의 몫이 같은 식을 선택하세요."
     },
     {
       "id": "slot.diagram.example_box.rect",
       "type": "rect",
       "attributes": {
-        "x": 110.0,
+        "x": 136.515,
         "y": 76.0,
-        "width": 210.0,
+        "width": 133.48,
         "height": 115.0,
         "fill": "#ffffff",
         "stroke": "#6b7280",
@@ -54,10 +56,10 @@
       "id": "slot.diagram.choice_frame.rect",
       "type": "rect",
       "attributes": {
-        "x": 500.0,
-        "y": 92.0,
-        "width": 320.0,
-        "height": 76.0,
+        "x": 290.99,
+        "y": 104.21,
+        "width": 117.14,
+        "height": 58.15,
         "fill": "#ffedd5",
         "stroke": "#f59e0b",
         "stroke-width": 1.5
@@ -71,7 +73,7 @@
       "id": "slot.diagram.example_title.text",
       "type": "text",
       "attributes": {
-        "x": 162.0,
+        "x": 171.09,
         "y": 108.0,
         "fill": "#111827",
         "font-family": "\"Noto Sans KR\", sans-serif",
@@ -87,8 +89,8 @@
       "id": "slot.diagram.example_expr.text",
       "type": "text",
       "attributes": {
-        "x": 215.0,
-        "y": 154.0,
+        "x": 166.52,
+        "y": 157.03,
         "fill": "#111827",
         "font-family": "\"Noto Sans KR\", sans-serif",
         "font-size": 24.0
@@ -100,14 +102,33 @@
       "text": "45 ÷ 5"
     },
     {
+      "id": "konva_1795397215423_paste_1345119_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 416.46,
+        "y": 103.78,
+        "width": 117.14,
+        "height": 58.15,
+        "fill": "#ffedd5",
+        "stroke": "#f59e0b",
+        "stroke-width": 1.5
+      },
+      "source_ref": "konva_1795397215423_paste_1345119_0",
+      "refs": {
+        "layout_slot_id": "konva_1795397215423_paste_1345119_0"
+      }
+    },
+    {
       "id": "slot.choice.option_0.text",
       "type": "text",
       "attributes": {
-        "x": 598.0,
-        "y": 130.0,
+        "x": 309.18,
+        "y": 143.1,
         "fill": "#111827",
         "font-family": "\"Noto Sans KR\", sans-serif",
-        "font-size": 24.0
+        "font-size": 24.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
       },
       "source_ref": "slot.choice.option_0",
       "refs": {
@@ -127,11 +148,13 @@
       "id": "slot.choice.option_1.text",
       "type": "text",
       "attributes": {
-        "x": 722.0,
-        "y": 130.0,
+        "x": 436.94,
+        "y": 142.53,
         "fill": "#111827",
         "font-family": "\"Noto Sans KR\", sans-serif",
-        "font-size": 24.0
+        "font-size": 24.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
       },
       "source_ref": "slot.choice.option_1",
       "refs": {

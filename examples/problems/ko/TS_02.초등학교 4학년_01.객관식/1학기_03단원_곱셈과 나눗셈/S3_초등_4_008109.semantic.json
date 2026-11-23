@@ -1,0 +1,517 @@
+{
+  "problem_id": "S3_초등_4_008109",
+  "problem_type": "multiple_choice_multiplication_word_problem",
+  "metadata": {
+    "title": "229 × 36의 계산 결과에 맞는 길 찾기",
+    "tags": [],
+    "question": "17. 다람쥐는 밤과 도토리 중에서 어느 것을 먹게 될까요?",
+    "required_layout_ids": [
+      "slot.diagram.bubble",
+      "slot.diagram.sq_head",
+      "slot.diagram.sign_board",
+      "slot.diagram.path_top",
+      "slot.diagram.path_bot",
+      "slot.diagram.path_top_in",
+      "slot.diagram.path_bot_in"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "03단원_곱셈과 나눗셈",
+    "difficulty": "중",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "17. 다람쥐는 밤과 도토리 중에서 어느 것을 먹게 될까요?"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.comma",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.comma"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_0",
+        "type": "text",
+        "properties": {
+          "text": "밤"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "text",
+        "properties": {
+          "text": "도토리"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.paren_left",
+        "type": "text",
+        "properties": {
+          "text": "("
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.paren_left"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.paren_right",
+        "type": "text",
+        "properties": {
+          "text": ")"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.paren_right"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.bubble",
+        "type": "rect_slot",
+        "properties": {
+          "x": 40,
+          "y": 88,
+          "width": 250,
+          "height": 106,
+          "stroke": "#374151",
+          "stroke_width": 1.5,
+          "rx": 24,
+          "ry": 24,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.bubble"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.bubble_text",
+        "type": "text",
+        "properties": {
+          "text": "곱셈식의 계산 결과가\n쓰여 있는 길을 따라 가면\n무엇을 먹게 될까?",
+          "width": 230,
+          "height": 86
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.bubble_text"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.goal_bot",
+        "type": "text",
+        "properties": {
+          "text": "도토리"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.goal_bot"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.goal_top",
+        "type": "text",
+        "properties": {
+          "text": "밤"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.goal_top"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.path_bot",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 462 169 L 550 169 Q 640 238 790 232",
+          "stroke": "#ca8a04",
+          "stroke_width": 24,
+          "stroke_dasharray": null,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.path_bot"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.path_bot_in",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 462 169 L 550 169 Q 640 238 790 232",
+          "stroke": "#fef3c7",
+          "stroke_width": 20,
+          "stroke_dasharray": null,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.path_bot_in"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.path_top",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 462 169 L 550 169 Q 640 100 790 106",
+          "stroke": "#ca8a04",
+          "stroke_width": 24,
+          "stroke_dasharray": null,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.path_top"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.path_top_in",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 462 169 L 550 169 Q 640 100 790 106",
+          "stroke": "#fef3c7",
+          "stroke_width": 20,
+          "stroke_dasharray": null,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.path_top_in"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.sign_board",
+        "type": "rect_slot",
+        "properties": {
+          "x": 306,
+          "y": 144,
+          "width": 156,
+          "height": 50,
+          "stroke": "#b45309",
+          "stroke_width": 1.5,
+          "rx": 4,
+          "ry": 4,
+          "fill": "#fde68a",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.sign_board"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.sign_text",
+        "type": "text",
+        "properties": {
+          "text": "229 × 36"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.sign_text"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.sq_head",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 365,
+          "cy": 114,
+          "r": 20,
+          "stroke": "#92400e",
+          "stroke_width": 1.5,
+          "fill": "#d97706",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.sq_head"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.start_label",
+        "type": "text",
+        "properties": {
+          "text": "출발 →"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.start_label"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.val_bot",
+        "type": "text",
+        "properties": {
+          "text": "8244"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.val_bot"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.val_top",
+        "type": "text",
+        "properties": {
+          "text": "2061"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.val_top"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "17. 다람쥐는 밤과 도토리 중에서 어느 것을 먹게 될까요?",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "도토리",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "도토리"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "밤",
+        "value": "밤"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "도토리",
+        "value": "도토리"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "도토리",
+        "diagnostics": [
+          {
+            "id": "diag.forgot_place_shift",
+            "condition": "answer_equals_bam",
+            "concept": "세 자리 수 × 두 자리 수",
+            "reason": "229 × 30의 자리를 밀어 쓰지 않고 229 × 3으로 더해 2061을 얻음",
+            "feedback": "229 × 6 = 1374이고, 229 × 30 = 6870입니다. 두 값을 더하면 8244이므로 도토리를 먹게 됩니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "expression": {
+      "label": "곱셈식",
+      "value": "229 × 36"
+    },
+    "path_bam": {
+      "label": "밤",
+      "value": 2061
+    },
+    "path_dotori": {
+      "label": "도토리",
+      "value": 8244
+    }
+  },
+  "relations": [
+    {
+      "type": "multiplication",
+      "expression": "229 * 36 = 8244",
+      "correct_entity": "path_dotori",
+      "distractor": "path_bam"
+    }
+  ]
+}

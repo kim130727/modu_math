@@ -1,0 +1,63 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007537",
+  "problem_type": "multiple_choice_parallel_construction_reason",
+  "given": [
+    {
+      "ref": "first_edge",
+      "value": "먼저 놓은 삼각자의 한 변"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "두 직선과 기준 변의 관계",
+    "unit": ""
+  },
+  "method": "parallel_lines_theorem",
+  "steps": [
+    {
+      "id": "explain_parallel",
+      "expr": "수직",
+      "explanation": "먼저 놓은 삼각자의 한 변에 대해 주어진 직선과 그은 직선이 각각 서로 수직이므로 두 직선은 서로 평행합니다.",
+      "value": "수직"
+    }
+  ],
+  "answer": {
+    "value": "수직",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "수직"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "수직",
+        "value": "수직"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "평행",
+        "value": "평행"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "수직",
+        "diagnostics": [
+          {
+            "id": "diag.confused_perpendicular_parallel",
+            "condition": "answer_equals_parallel",
+            "concept": "평행선 긋기",
+            "reason": "먼저 놓은 삼각자의 변에 대해 두 직선이 각각 수직이라는 점을 평행으로 혼동함",
+            "feedback": "먼저 놓은 삼각자의 한 변에 대해 주어진 직선과 그은 직선이 각각 서로 수직이므로 두 직선은 서로 평행합니다."
+          }
+        ]
+      }
+    ]
+  }
+}
