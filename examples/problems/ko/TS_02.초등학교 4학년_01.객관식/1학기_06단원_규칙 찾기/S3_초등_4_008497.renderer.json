@@ -1,0 +1,900 @@
+{
+  "problem_id": "S3_초등_4_008497",
+  "view_box": {
+    "width": 886.0,
+    "height": 384.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 20.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0,
+        "width": 820.0,
+        "height": 44.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 20.0,
+        "data-box-width": 820.0,
+        "data-box-height": 44.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.45,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "23. 도형의 배열에서 규칙을 찾아 여섯째에 올 도형을 선택하세요."
+    },
+    {
+      "id": "slot.choice.option_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 186.0,
+        "y": 198.0,
+        "width": 220.0,
+        "height": 166.0,
+        "fill": "#ffffff",
+        "stroke": "#e5e7eb",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "①",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 480.0,
+        "y": 198.0,
+        "width": 220.0,
+        "height": 166.0,
+        "fill": "#ffffff",
+        "stroke": "#e5e7eb",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "②",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.diagram.p0_b_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 115.0,
+        "y": 123.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.p0_b_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p0_b_0"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_b_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 93.0,
+        "y": 123.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.p0_b_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p0_b_1"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_b_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 255.0,
+        "y": 123.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.p1_b_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p1_b_0"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_b_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 233.0,
+        "y": 123.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.p1_b_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p1_b_1"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_b_2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 255.0,
+        "y": 145.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.p1_b_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p1_b_2"
+      }
+    },
+    {
+      "id": "slot.diagram.p2_b_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 415.0,
+        "y": 123.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.p2_b_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p2_b_0"
+      }
+    },
+    {
+      "id": "slot.diagram.p2_b_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 393.0,
+        "y": 123.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.p2_b_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p2_b_1"
+      }
+    },
+    {
+      "id": "slot.diagram.p2_b_2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 415.0,
+        "y": 145.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.p2_b_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p2_b_2"
+      }
+    },
+    {
+      "id": "slot.diagram.p2_b_3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 437.0,
+        "y": 123.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.p2_b_3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p2_b_3"
+      }
+    },
+    {
+      "id": "slot.diagram.p3_b_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 595.0,
+        "y": 123.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.p3_b_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p3_b_0"
+      }
+    },
+    {
+      "id": "slot.diagram.p3_b_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 573.0,
+        "y": 123.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.p3_b_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p3_b_1"
+      }
+    },
+    {
+      "id": "slot.diagram.p3_b_2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 595.0,
+        "y": 145.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.p3_b_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p3_b_2"
+      }
+    },
+    {
+      "id": "slot.diagram.p3_b_3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 617.0,
+        "y": 123.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.p3_b_3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p3_b_3"
+      }
+    },
+    {
+      "id": "slot.diagram.p3_b_4.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 595.0,
+        "y": 101.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.p3_b_4",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p3_b_4"
+      }
+    },
+    {
+      "id": "slot.diagram.p4_b_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 775.0,
+        "y": 123.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.p4_b_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p4_b_0"
+      }
+    },
+    {
+      "id": "slot.diagram.p4_b_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 753.0,
+        "y": 123.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.p4_b_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p4_b_1"
+      }
+    },
+    {
+      "id": "slot.diagram.p4_b_2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 775.0,
+        "y": 145.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.p4_b_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p4_b_2"
+      }
+    },
+    {
+      "id": "slot.diagram.p4_b_3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 797.0,
+        "y": 123.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.p4_b_3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p4_b_3"
+      }
+    },
+    {
+      "id": "slot.diagram.p4_b_4.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 775.0,
+        "y": 101.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.p4_b_4",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p4_b_4"
+      }
+    },
+    {
+      "id": "slot.diagram.p4_b_5.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 731.0,
+        "y": 123.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.p4_b_5",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p4_b_5"
+      }
+    },
+    {
+      "id": "slot.diagram.opt0_b_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 295.0,
+        "y": 283.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.opt0_b_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt0_b_0"
+      }
+    },
+    {
+      "id": "slot.diagram.opt0_b_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 273.0,
+        "y": 283.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.opt0_b_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt0_b_1"
+      }
+    },
+    {
+      "id": "slot.diagram.opt0_b_2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 251.0,
+        "y": 283.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.opt0_b_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt0_b_2"
+      }
+    },
+    {
+      "id": "slot.diagram.opt0_b_3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 295.0,
+        "y": 305.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.opt0_b_3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt0_b_3"
+      }
+    },
+    {
+      "id": "slot.diagram.opt0_b_4.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 317.0,
+        "y": 283.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.opt0_b_4",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt0_b_4"
+      }
+    },
+    {
+      "id": "slot.diagram.opt0_b_5.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 295.0,
+        "y": 261.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.opt0_b_5",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt0_b_5"
+      }
+    },
+    {
+      "id": "slot.diagram.opt0_b_6.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 295.0,
+        "y": 239.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.opt0_b_6",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt0_b_6"
+      }
+    },
+    {
+      "id": "slot.diagram.opt1_b_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 589.0,
+        "y": 263.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.opt1_b_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt1_b_0"
+      }
+    },
+    {
+      "id": "slot.diagram.opt1_b_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 567.0,
+        "y": 263.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.opt1_b_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt1_b_1"
+      }
+    },
+    {
+      "id": "slot.diagram.opt1_b_2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 545.0,
+        "y": 263.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.opt1_b_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt1_b_2"
+      }
+    },
+    {
+      "id": "slot.diagram.opt1_b_3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 589.0,
+        "y": 285.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.opt1_b_3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt1_b_3"
+      }
+    },
+    {
+      "id": "slot.diagram.opt1_b_4.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 589.0,
+        "y": 307.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.opt1_b_4",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt1_b_4"
+      }
+    },
+    {
+      "id": "slot.diagram.opt1_b_5.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 611.0,
+        "y": 263.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.opt1_b_5",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt1_b_5"
+      }
+    },
+    {
+      "id": "slot.diagram.opt1_b_6.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 589.0,
+        "y": 241.0,
+        "width": 22.0,
+        "height": 22.0,
+        "fill": "#93c5fd",
+        "stroke": "#2563eb",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.opt1_b_6",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt1_b_6"
+      }
+    },
+    {
+      "id": "slot.diagram.p0_ring.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 126.0,
+        "cy": 134.0,
+        "r": 7.5,
+        "stroke": "#ec4899",
+        "stroke-width": 1.6,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.p0_ring",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p0_ring"
+      }
+    },
+    {
+      "id": "slot.diagram.p1_ring.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 266.0,
+        "cy": 134.0,
+        "r": 7.5,
+        "stroke": "#ec4899",
+        "stroke-width": 1.6,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.p1_ring",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p1_ring"
+      }
+    },
+    {
+      "id": "slot.diagram.p2_ring.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 426.0,
+        "cy": 134.0,
+        "r": 7.5,
+        "stroke": "#ec4899",
+        "stroke-width": 1.6,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.p2_ring",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p2_ring"
+      }
+    },
+    {
+      "id": "slot.diagram.p3_ring.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 606.0,
+        "cy": 134.0,
+        "r": 7.5,
+        "stroke": "#ec4899",
+        "stroke-width": 1.6,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.p3_ring",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p3_ring"
+      }
+    },
+    {
+      "id": "slot.diagram.p4_ring.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 786.0,
+        "cy": 134.0,
+        "r": 7.5,
+        "stroke": "#ec4899",
+        "stroke-width": 1.6,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.p4_ring",
+      "refs": {
+        "layout_slot_id": "slot.diagram.p4_ring"
+      }
+    },
+    {
+      "id": "slot.diagram.opt0_ring.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 306.0,
+        "cy": 294.0,
+        "r": 7.5,
+        "stroke": "#ec4899",
+        "stroke-width": 1.6,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.opt0_ring",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt0_ring"
+      }
+    },
+    {
+      "id": "slot.diagram.opt1_ring.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 600.0,
+        "cy": 274.0,
+        "r": 7.5,
+        "stroke": "#ec4899",
+        "stroke-width": 1.6,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.opt1_ring",
+      "refs": {
+        "layout_slot_id": "slot.diagram.opt1_ring"
+      }
+    },
+    {
+      "id": "slot.diagram.t_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 126.0,
+        "y": 72.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 16.0
+      },
+      "source_ref": "slot.diagram.t_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.t_0"
+      },
+      "text": "첫째"
+    },
+    {
+      "id": "slot.diagram.t_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 266.0,
+        "y": 72.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 16.0
+      },
+      "source_ref": "slot.diagram.t_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.t_1"
+      },
+      "text": "둘째"
+    },
+    {
+      "id": "slot.diagram.t_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 426.0,
+        "y": 72.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 16.0
+      },
+      "source_ref": "slot.diagram.t_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.t_2"
+      },
+      "text": "셋째"
+    },
+    {
+      "id": "slot.diagram.t_3.text",
+      "type": "text",
+      "attributes": {
+        "x": 606.0,
+        "y": 72.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 16.0
+      },
+      "source_ref": "slot.diagram.t_3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.t_3"
+      },
+      "text": "넷째"
+    },
+    {
+      "id": "slot.diagram.t_4.text",
+      "type": "text",
+      "attributes": {
+        "x": 786.0,
+        "y": 72.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 16.0
+      },
+      "source_ref": "slot.diagram.t_4",
+      "refs": {
+        "layout_slot_id": "slot.diagram.t_4"
+      },
+      "text": "다섯째"
+    },
+    {
+      "id": "slot.diagram.b0.text",
+      "type": "text",
+      "attributes": {
+        "x": 208.0,
+        "y": 212.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.b0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.b0"
+      },
+      "text": "①"
+    },
+    {
+      "id": "slot.diagram.b1.text",
+      "type": "text",
+      "attributes": {
+        "x": 502.0,
+        "y": 212.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.b1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.b1"
+      },
+      "text": "②"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

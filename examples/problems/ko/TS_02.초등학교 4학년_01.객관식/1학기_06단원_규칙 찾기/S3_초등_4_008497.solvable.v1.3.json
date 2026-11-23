@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_008497",
+  "problem_type": "multiple_choice_shape_pattern",
+  "given": [
+    {
+      "ref": "step_1",
+      "value": 2
+    },
+    {
+      "ref": "step_5",
+      "value": 6
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "여섯째 도형",
+    "unit": ""
+  },
+  "method": "spatial_growth_pattern",
+  "steps": [
+    {
+      "id": "find_sixth_figure",
+      "expr": "②",
+      "explanation": "○ 표시된 사각형을 중심으로 시계 반대 방향으로 1개씩 늘어나므로 여섯째는 아래쪽으로 1개 더 늘어난 ②입니다.",
+      "value": "②"
+    }
+  ],
+  "answer": {
+    "value": "②",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "②"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_direction_increase",
+            "condition": "answer_equals_1",
+            "concept": "도형 배열의 규칙",
+            "reason": "다섯째 도형에서 아래쪽이 아닌 위쪽으로 1개 늘어난 도형(①)을 선택함",
+            "feedback": "○ 표시된 사각형을 중심으로 시계 반대 방향(왼쪽 → 아래 → 오른쪽 → 위 → 왼쪽 → 아래)으로 1개씩 늘어납니다. 여섯째에는 아래쪽으로 1개 더 늘어납니다."
+          }
+        ]
+      }
+    ]
+  }
+}

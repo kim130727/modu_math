@@ -1,0 +1,252 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_008498",
+  "title": "덧셈식 배열에서 자릿수 변화 규칙 찾기",
+  "canvas": {
+    "width": 886,
+    "height": 336,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.eq_box",
+        "slot.diagram.eq_0",
+        "slot.diagram.eq_1",
+        "slot.diagram.eq_2",
+        "slot.diagram.eq_3",
+        "slot.diagram.desc"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.option_0",
+        "slot.choice.option_1",
+        "slot.choice.option_2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "24. 덧셈식에서 규칙을 찾아 ㉠, ㉡에 알맞은 것을 차례로 쓴 것은 어느 것인지 고르세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 20.0,
+        "width": 820.0,
+        "height": 52.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 21,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.45,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.eq_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 293.0,
+        "y": 82.0,
+        "width": 300.0,
+        "height": 138.0,
+        "stroke": "#84cc16",
+        "stroke_width": 1.6,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.eq_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "200 + 108 = 308",
+        "style_role": "body",
+        "x": 443.0,
+        "y": 94.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.eq_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "210 + 118 = 328",
+        "style_role": "body",
+        "x": 443.0,
+        "y": 124.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.eq_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "220 + 128 = 348",
+        "style_role": "body",
+        "x": 443.0,
+        "y": 154.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.eq_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "230 + 138 = 368",
+        "style_role": "body",
+        "x": 443.0,
+        "y": 184.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.desc",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "㉠의 자리 수가 각각 1씩 커지면 두 수의 합은 ㉡씩 커집니다.",
+        "style_role": "body",
+        "x": 80.0,
+        "y": 234.0,
+        "width": 726.0,
+        "height": 34.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 20,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 일, 20",
+        "style_role": "body",
+        "x": 186.0,
+        "y": 282.0,
+        "font_size": 21,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "①",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 십, 20",
+        "style_role": "body",
+        "x": 443.0,
+        "y": 282.0,
+        "font_size": 21,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "②",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.option_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 백, 100",
+        "style_role": "body",
+        "x": 700.0,
+        "y": 282.0,
+        "font_size": 21,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 2,
+          "value": "③",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.eq_box",
+    "slot.diagram.eq_0",
+    "slot.diagram.eq_1",
+    "slot.diagram.eq_2",
+    "slot.diagram.eq_3",
+    "slot.diagram.desc",
+    "region.choices",
+    "slot.choice.option_0",
+    "slot.choice.option_1",
+    "slot.choice.option_2"
+  ]
+}

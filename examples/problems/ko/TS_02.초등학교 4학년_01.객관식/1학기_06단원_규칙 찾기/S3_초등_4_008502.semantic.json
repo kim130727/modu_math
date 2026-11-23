@@ -1,0 +1,1778 @@
+{
+  "problem_id": "S3_초등_4_008502",
+  "problem_type": "multiple_choice_pattern_table",
+  "metadata": {
+    "title": "수 배열표에서 덧셈과 일의 자리 규칙 찾기",
+    "tags": [],
+    "question": "28. 덧셈을 이용한 다음 수 배열표를 보고 알맞은 말을 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.h_0",
+      "slot.diagram.h_1",
+      "slot.diagram.h_2",
+      "slot.diagram.h_3",
+      "slot.diagram.h_4",
+      "slot.diagram.h_5",
+      "slot.diagram.r_0",
+      "slot.diagram.c_0_1",
+      "slot.diagram.c_0_2",
+      "slot.diagram.c_0_3",
+      "slot.diagram.c_0_4",
+      "slot.diagram.c_0_5",
+      "slot.diagram.r_1",
+      "slot.diagram.c_1_1",
+      "slot.diagram.c_1_2",
+      "slot.diagram.sq_mark",
+      "slot.diagram.c_1_3",
+      "slot.diagram.c_1_4",
+      "slot.diagram.c_1_5",
+      "slot.diagram.r_2",
+      "slot.diagram.c_2_1",
+      "slot.diagram.c_2_2",
+      "slot.diagram.c_2_3",
+      "slot.diagram.c_2_4",
+      "slot.diagram.c_2_5",
+      "slot.diagram.r_3",
+      "slot.diagram.c_3_1",
+      "slot.diagram.c_3_2",
+      "slot.diagram.c_3_3",
+      "slot.diagram.dot_mark",
+      "slot.diagram.c_3_4",
+      "slot.diagram.c_3_5",
+      "slot.diagram.rule_badge"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "06단원_규칙 찾기",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.g1_option_0",
+        "slot.choice.g1_option_1",
+        "slot.choice.g2_option_0",
+        "slot.choice.g2_option_1"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "28. 덧셈을 이용한 다음 수 배열표를 보고 알맞은 말을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.g1_c",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g1_c"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g1_option_0",
+        "type": "text",
+        "properties": {
+          "text": "덧셈"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g1_option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g1_option_1",
+        "type": "text",
+        "properties": {
+          "text": "뺄셈"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g1_option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g1_pre",
+        "type": "text",
+        "properties": {
+          "text": "가로줄에 있는 네 자리 수와 세로줄에 있는 두 자리 수의 ("
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g1_pre"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g1_suf",
+        "type": "text",
+        "properties": {
+          "text": ")의 결과에서"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g1_suf"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g2_c",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g2_c"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g2_option_0",
+        "type": "text",
+        "properties": {
+          "text": "십"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g2_option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g2_option_1",
+        "type": "text",
+        "properties": {
+          "text": "일"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g2_option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g2_pre",
+        "type": "text",
+        "properties": {
+          "text": "("
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g2_pre"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g2_suf",
+        "type": "text",
+        "properties": {
+          "text": ")의 자리 숫자만 쓴 것입니다."
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g2_suf"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c_0_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 263,
+          "y": 106,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c_0_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c_0_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 353,
+          "y": 106,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c_0_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c_0_3",
+        "type": "rect_slot",
+        "properties": {
+          "x": 443,
+          "y": 106,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c_0_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c_0_4",
+        "type": "rect_slot",
+        "properties": {
+          "x": 533,
+          "y": 106,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c_0_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c_0_5",
+        "type": "rect_slot",
+        "properties": {
+          "x": 623,
+          "y": 106,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c_0_5"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c_1_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 263,
+          "y": 136,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c_1_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c_1_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 353,
+          "y": 136,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c_1_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c_1_3",
+        "type": "rect_slot",
+        "properties": {
+          "x": 443,
+          "y": 136,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c_1_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c_1_4",
+        "type": "rect_slot",
+        "properties": {
+          "x": 533,
+          "y": 136,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c_1_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c_1_5",
+        "type": "rect_slot",
+        "properties": {
+          "x": 623,
+          "y": 136,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c_1_5"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c_2_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 263,
+          "y": 166,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c_2_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c_2_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 353,
+          "y": 166,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c_2_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c_2_3",
+        "type": "rect_slot",
+        "properties": {
+          "x": 443,
+          "y": 166,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c_2_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c_2_4",
+        "type": "rect_slot",
+        "properties": {
+          "x": 533,
+          "y": 166,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c_2_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c_2_5",
+        "type": "rect_slot",
+        "properties": {
+          "x": 623,
+          "y": 166,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c_2_5"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c_3_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 263,
+          "y": 196,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c_3_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c_3_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 353,
+          "y": 196,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c_3_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c_3_3",
+        "type": "rect_slot",
+        "properties": {
+          "x": 443,
+          "y": 196,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c_3_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c_3_4",
+        "type": "rect_slot",
+        "properties": {
+          "x": 533,
+          "y": 196,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c_3_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.c_3_5",
+        "type": "rect_slot",
+        "properties": {
+          "x": 623,
+          "y": 196,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.c_3_5"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ct_0_1",
+        "type": "text",
+        "properties": {
+          "text": "2"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ct_0_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ct_0_2",
+        "type": "text",
+        "properties": {
+          "text": "3"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ct_0_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ct_0_3",
+        "type": "text",
+        "properties": {
+          "text": "4"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ct_0_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ct_0_4",
+        "type": "text",
+        "properties": {
+          "text": "5"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ct_0_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ct_0_5",
+        "type": "text",
+        "properties": {
+          "text": "6"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ct_0_5"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ct_1_1",
+        "type": "text",
+        "properties": {
+          "text": "3"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ct_1_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ct_1_3",
+        "type": "text",
+        "properties": {
+          "text": "5"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ct_1_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ct_1_4",
+        "type": "text",
+        "properties": {
+          "text": "6"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ct_1_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ct_1_5",
+        "type": "text",
+        "properties": {
+          "text": "7"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ct_1_5"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ct_2_1",
+        "type": "text",
+        "properties": {
+          "text": "4"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ct_2_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ct_2_2",
+        "type": "text",
+        "properties": {
+          "text": "5"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ct_2_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ct_2_3",
+        "type": "text",
+        "properties": {
+          "text": "6"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ct_2_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ct_2_4",
+        "type": "text",
+        "properties": {
+          "text": "7"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ct_2_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ct_2_5",
+        "type": "text",
+        "properties": {
+          "text": "8"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ct_2_5"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ct_3_1",
+        "type": "text",
+        "properties": {
+          "text": "5"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ct_3_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ct_3_2",
+        "type": "text",
+        "properties": {
+          "text": "6"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ct_3_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ct_3_4",
+        "type": "text",
+        "properties": {
+          "text": "8"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ct_3_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ct_3_5",
+        "type": "text",
+        "properties": {
+          "text": "9"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ct_3_5"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.dot_mark",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 488,
+          "cy": 211,
+          "r": 8,
+          "stroke": "#6d28d9",
+          "stroke_width": 1,
+          "fill": "#6d28d9",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.dot_mark"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.h_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 173,
+          "y": 76,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#bae6fd",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.h_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.h_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 263,
+          "y": 76,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#bae6fd",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.h_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.h_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 353,
+          "y": 76,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#bae6fd",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.h_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.h_3",
+        "type": "rect_slot",
+        "properties": {
+          "x": 443,
+          "y": 76,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#bae6fd",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.h_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.h_4",
+        "type": "rect_slot",
+        "properties": {
+          "x": 533,
+          "y": 76,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#bae6fd",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.h_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.h_5",
+        "type": "rect_slot",
+        "properties": {
+          "x": 623,
+          "y": 76,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#bae6fd",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.h_5"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ht_1",
+        "type": "text",
+        "properties": {
+          "text": "1001"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ht_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ht_2",
+        "type": "text",
+        "properties": {
+          "text": "1002"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ht_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ht_3",
+        "type": "text",
+        "properties": {
+          "text": "1003"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ht_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ht_4",
+        "type": "text",
+        "properties": {
+          "text": "1004"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ht_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ht_5",
+        "type": "text",
+        "properties": {
+          "text": "1005"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ht_5"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 173,
+          "y": 106,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#bae6fd",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 173,
+          "y": 136,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#bae6fd",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 173,
+          "y": 166,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#bae6fd",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r_3",
+        "type": "rect_slot",
+        "properties": {
+          "x": 173,
+          "y": 196,
+          "width": 90,
+          "height": 30,
+          "stroke": "#0284c7",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#bae6fd",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.rt_0",
+        "type": "text",
+        "properties": {
+          "text": "11"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.rt_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.rt_1",
+        "type": "text",
+        "properties": {
+          "text": "12"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.rt_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.rt_2",
+        "type": "text",
+        "properties": {
+          "text": "13"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.rt_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.rt_3",
+        "type": "text",
+        "properties": {
+          "text": "14"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.rt_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.rule_badge",
+        "type": "rect_slot",
+        "properties": {
+          "x": 96,
+          "y": 242,
+          "width": 54,
+          "height": 28,
+          "stroke": "#c4b5fd",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ddd6fe",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.rule_badge"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.rule_lbl",
+        "type": "text",
+        "properties": {
+          "text": "규칙"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.rule_lbl"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.sq_mark",
+        "type": "rect_slot",
+        "properties": {
+          "x": 390,
+          "y": 143,
+          "width": 16,
+          "height": 16,
+          "stroke": "#16a34a",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#16a34a",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.sq_mark"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "28. 덧셈을 이용한 다음 수 배열표를 보고 알맞은 말을 선택하세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": [
+      "덧셈",
+      "일"
+    ],
+    "unit": "",
+    "values": [
+      "덧셈",
+      "일"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.g1_option_0",
+        "slot_id": "slot.choice.g1_option_0",
+        "text": "덧셈",
+        "value": "덧셈"
+      },
+      {
+        "id": "slot.choice.g1_option_1",
+        "slot_id": "slot.choice.g1_option_1",
+        "text": "뺄셈",
+        "value": "뺄셈"
+      },
+      {
+        "id": "slot.choice.g2_option_0",
+        "slot_id": "slot.choice.g2_option_0",
+        "text": "십",
+        "value": "십"
+      },
+      {
+        "id": "slot.choice.g2_option_1",
+        "slot_id": "slot.choice.g2_option_1",
+        "text": "일",
+        "value": "일"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.g1_option_0",
+        "value": "덧셈",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_operation",
+            "condition": "answer_equals_subtraction",
+            "concept": "수 배열의 규칙",
+            "reason": "덧셈을 뺄셈으로 오인함",
+            "feedback": "1001 + 11 = 1012, 1002 + 11 = 1013이므로 덧셈의 결과입니다."
+          }
+        ]
+      },
+      {
+        "slot_id": "slot.choice.g2_option_1",
+        "value": "일",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_digit",
+            "condition": "answer_equals_ten",
+            "concept": "수 배열의 규칙",
+            "reason": "일의 자리 숫자를 십의 자리 숫자로 혼동함",
+            "feedback": "1001 + 11 = 1012에서 표에 적힌 수 2는 일의 자리 숫자입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "operation": {
+      "label": "연산",
+      "value": "덧셈"
+    },
+    "place": {
+      "label": "자릿수",
+      "value": "일"
+    }
+  },
+  "relations": [
+    {
+      "type": "modular_addition_table",
+      "operation": "덧셈",
+      "place": "일"
+    }
+  ]
+}

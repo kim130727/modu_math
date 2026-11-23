@@ -1,0 +1,1138 @@
+{
+  "problem_id": "S3_초등_4_007715",
+  "problem_type": "multiple_choice_line_chart_maximum",
+  "metadata": {
+    "title": "교실의 온도가 가장 높은 시각 찾기",
+    "tags": [],
+    "question": "4. 교실의 온도를 조사하여 나타낸 꺾은선그래프입니다. 교실의 온도가 가장 높은 때는 몇 시인가요?",
+    "required_layout_ids": [
+      "slot.diagram.frame",
+      "slot.diagram.ybox",
+      "slot.diagram.xbox",
+      "slot.diagram.diag",
+      "slot.diagram.grid_0",
+      "slot.diagram.grid_5",
+      "slot.diagram.grid_10",
+      "slot.diagram.grid_15",
+      "slot.diagram.vgrid_0",
+      "slot.diagram.vgrid_1",
+      "slot.diagram.vgrid_2",
+      "slot.diagram.vgrid_3",
+      "slot.diagram.vgrid_4",
+      "slot.diagram.seg_0",
+      "slot.diagram.seg_1",
+      "slot.diagram.seg_2",
+      "slot.diagram.seg_3",
+      "slot.diagram.dot_0",
+      "slot.diagram.dot_1",
+      "slot.diagram.dot_2",
+      "slot.diagram.dot_3",
+      "slot.diagram.dot_4"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "05단원_막대그래프",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.option_0",
+        "slot.choice.option_1",
+        "slot.choice.option_2",
+        "slot.choice.option_3",
+        "slot.choice.option_4"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "4. 교실의 온도를 조사하여 나타낸 꺾은선그래프입니다. 교실의 온도가 가장 높은 때는 몇 시인가요?"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.c_0",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.c_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.c_1",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.c_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.c_2",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.c_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.c_3",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.c_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_0",
+        "type": "text",
+        "properties": {
+          "text": "오전 11시"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "text",
+        "properties": {
+          "text": "낮 12시"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_2",
+        "type": "text",
+        "properties": {
+          "text": "오후 1시"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_3",
+        "type": "text",
+        "properties": {
+          "text": "오후 2시"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_4",
+        "type": "text",
+        "properties": {
+          "text": "오후 3시"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.p_l",
+        "type": "text",
+        "properties": {
+          "text": "("
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.p_l"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.p_r",
+        "type": "text",
+        "properties": {
+          "text": ")"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.p_r"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.diag",
+        "type": "line_slot",
+        "properties": {
+          "x1": 243,
+          "y1": 244,
+          "x2": 339,
+          "y2": 212,
+          "stroke": "#6b7280",
+          "stroke_width": 1,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.diag"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.dot_0",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 382,
+          "cy": 164.0,
+          "r": 3,
+          "stroke": "#111827",
+          "stroke_width": 1,
+          "fill": "#111827",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.dot_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.dot_1",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 436,
+          "cy": 153.3,
+          "r": 3,
+          "stroke": "#111827",
+          "stroke_width": 1,
+          "fill": "#111827",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.dot_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.dot_2",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 490,
+          "cy": 132.0,
+          "r": 3,
+          "stroke": "#111827",
+          "stroke_width": 1,
+          "fill": "#111827",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.dot_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.dot_3",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 544,
+          "cy": 126.7,
+          "r": 3,
+          "stroke": "#111827",
+          "stroke_width": 1,
+          "fill": "#111827",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.dot_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.dot_4",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 598,
+          "cy": 137.3,
+          "r": 3,
+          "stroke": "#111827",
+          "stroke_width": 1,
+          "fill": "#111827",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.dot_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.frame",
+        "type": "rect_slot",
+        "properties": {
+          "x": 243,
+          "y": 108,
+          "width": 400,
+          "height": 136,
+          "stroke": "#6b7280",
+          "stroke_width": 1.2,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.frame"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_0",
+        "type": "line_slot",
+        "properties": {
+          "x1": 339,
+          "y1": 212.0,
+          "x2": 643,
+          "y2": 212.0,
+          "stroke": "#9ca3af",
+          "stroke_width": 0.9,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_10",
+        "type": "line_slot",
+        "properties": {
+          "x1": 339,
+          "y1": 158.7,
+          "x2": 643,
+          "y2": 158.7,
+          "stroke": "#9ca3af",
+          "stroke_width": 0.9,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_10"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_15",
+        "type": "line_slot",
+        "properties": {
+          "x1": 339,
+          "y1": 132.0,
+          "x2": 643,
+          "y2": 132.0,
+          "stroke": "#9ca3af",
+          "stroke_width": 0.9,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_15"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_5",
+        "type": "line_slot",
+        "properties": {
+          "x1": 339,
+          "y1": 185.3,
+          "x2": 643,
+          "y2": 185.3,
+          "stroke": "#9ca3af",
+          "stroke_width": 0.9,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_5"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.seg_0",
+        "type": "line_slot",
+        "properties": {
+          "x1": 382,
+          "y1": 164.0,
+          "x2": 436,
+          "y2": 153.3,
+          "stroke": "#ec4899",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.seg_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.seg_1",
+        "type": "line_slot",
+        "properties": {
+          "x1": 436,
+          "y1": 153.3,
+          "x2": 490,
+          "y2": 132.0,
+          "stroke": "#ec4899",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.seg_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.seg_2",
+        "type": "line_slot",
+        "properties": {
+          "x1": 490,
+          "y1": 132.0,
+          "x2": 544,
+          "y2": 126.7,
+          "stroke": "#ec4899",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.seg_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.seg_3",
+        "type": "line_slot",
+        "properties": {
+          "x1": 544,
+          "y1": 126.7,
+          "x2": 598,
+          "y2": 137.3,
+          "stroke": "#ec4899",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.seg_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.title",
+        "type": "text",
+        "properties": {
+          "text": "교실의 온도"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.title"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.unit",
+        "type": "text",
+        "properties": {
+          "text": "(℃)"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.unit"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.vgrid_0",
+        "type": "line_slot",
+        "properties": {
+          "x1": 382,
+          "y1": 108,
+          "x2": 382,
+          "y2": 212,
+          "stroke": "#9ca3af",
+          "stroke_width": 0.9,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.vgrid_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.vgrid_1",
+        "type": "line_slot",
+        "properties": {
+          "x1": 436,
+          "y1": 108,
+          "x2": 436,
+          "y2": 212,
+          "stroke": "#9ca3af",
+          "stroke_width": 0.9,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.vgrid_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.vgrid_2",
+        "type": "line_slot",
+        "properties": {
+          "x1": 490,
+          "y1": 108,
+          "x2": 490,
+          "y2": 212,
+          "stroke": "#9ca3af",
+          "stroke_width": 0.9,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.vgrid_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.vgrid_3",
+        "type": "line_slot",
+        "properties": {
+          "x1": 544,
+          "y1": 108,
+          "x2": 544,
+          "y2": 212,
+          "stroke": "#9ca3af",
+          "stroke_width": 0.9,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.vgrid_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.vgrid_4",
+        "type": "line_slot",
+        "properties": {
+          "x1": 598,
+          "y1": 108,
+          "x2": 598,
+          "y2": 212,
+          "stroke": "#9ca3af",
+          "stroke_width": 0.9,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.vgrid_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.xbox",
+        "type": "rect_slot",
+        "properties": {
+          "x": 339,
+          "y": 212,
+          "width": 304,
+          "height": 32,
+          "stroke": "#6b7280",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.xbox"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.xlbl_0",
+        "type": "text",
+        "properties": {
+          "text": "11"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.xlbl_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.xlbl_1",
+        "type": "text",
+        "properties": {
+          "text": "12"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.xlbl_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.xlbl_2",
+        "type": "text",
+        "properties": {
+          "text": "1"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.xlbl_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.xlbl_3",
+        "type": "text",
+        "properties": {
+          "text": "2"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.xlbl_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.xlbl_4",
+        "type": "text",
+        "properties": {
+          "text": "3"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.xlbl_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ybox",
+        "type": "rect_slot",
+        "properties": {
+          "x": 243,
+          "y": 108,
+          "width": 96,
+          "height": 104,
+          "stroke": "#6b7280",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ybox"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ylbl_0",
+        "type": "text",
+        "properties": {
+          "text": "0"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ylbl_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ylbl_10",
+        "type": "text",
+        "properties": {
+          "text": "10"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ylbl_10"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ylbl_15",
+        "type": "text",
+        "properties": {
+          "text": "15"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ylbl_15"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ylbl_5",
+        "type": "text",
+        "properties": {
+          "text": "5"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ylbl_5"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "4. 교실의 온도를 조사하여 나타낸 꺾은선그래프입니다. 교실의 온도가 가장 높은 때는 몇 시인가요?",
+          "width": 820,
+          "height": 52
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "오후 2시",
+    "answer_index": 3,
+    "unit": "",
+    "values": [
+      "오후 2시"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "오전 11시",
+        "value": "오전 11시"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "낮 12시",
+        "value": "낮 12시"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "오후 1시",
+        "value": "오후 1시"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "오후 2시",
+        "value": "오후 2시"
+      },
+      {
+        "id": "slot.choice.option_4",
+        "slot_id": "slot.choice.option_4",
+        "text": "오후 3시",
+        "value": "오후 3시"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_3",
+        "value": "오후 2시",
+        "diagnostics": [
+          {
+            "id": "diag.chose_1pm",
+            "condition": "answer_equals_1pm",
+            "concept": "꺾은선그래프 읽기",
+            "reason": "15℃ 눈금선 위의 오후 1시를 최댓값으로 오인함",
+            "feedback": "그래프에서 점이 가장 높게 찍힌 시각을 찾으면 오후 2시(16℃)입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "t_11": {
+      "label": "오전 11시",
+      "value": 9,
+      "unit": "℃"
+    },
+    "t_12": {
+      "label": "낮 12시",
+      "value": 11,
+      "unit": "℃"
+    },
+    "t_13": {
+      "label": "오후 1시",
+      "value": 15,
+      "unit": "℃"
+    },
+    "t_14": {
+      "label": "오후 2시",
+      "value": 16,
+      "unit": "℃"
+    },
+    "t_15": {
+      "label": "오후 3시",
+      "value": 14,
+      "unit": "℃"
+    }
+  },
+  "relations": [
+    {
+      "type": "maximum",
+      "target": "t_14"
+    }
+  ]
+}

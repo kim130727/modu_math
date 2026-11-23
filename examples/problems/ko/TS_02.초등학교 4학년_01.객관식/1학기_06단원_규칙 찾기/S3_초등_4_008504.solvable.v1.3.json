@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_008504",
+  "problem_type": "multiple_choice_shape_pattern",
+  "given": [
+    {
+      "ref": "juyeong",
+      "value": "2개씩 늘어남"
+    },
+    {
+      "ref": "minseo",
+      "value": "1개, 2개, 3개씩 늘어남"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "바르게 말한 사람",
+    "unit": ""
+  },
+  "method": "sequence_rule_verification",
+  "steps": [
+    {
+      "id": "verify_sequence",
+      "expr": "1 -> 3 -> 5 -> 7 (+2)",
+      "explanation": "상자의 개수가 1개에서 시작하여 2개씩 늘어나므로 주영이가 바르게 말했습니다.",
+      "value": "주영"
+    }
+  ],
+  "answer": {
+    "value": "주영",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "주영"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "주영",
+        "value": "주영"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "민서",
+        "value": "민서"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "주영",
+        "diagnostics": [
+          {
+            "id": "diag.chose_increasing_step",
+            "condition": "answer_equals_minseo",
+            "concept": "도형 배열의 규칙",
+            "reason": "2개씩 일정하게 늘어나는 규칙을 1개, 2개, 3개씩 늘어나는 규칙으로 오인함",
+            "feedback": "상자의 개수는 1개 → 3개 → 5개 → 7개로 매번 2개씩 늘어납니다. 따라서 바르게 말한 사람은 주영입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

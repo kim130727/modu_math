@@ -1,0 +1,258 @@
+{
+  "problem_id": "S3_초등_4_008501",
+  "view_box": {
+    "width": 886.0,
+    "height": 290.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 20.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0,
+        "width": 820.0,
+        "height": 52.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 20.0,
+        "data-box-width": 820.0,
+        "data-box-height": 52.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.45,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "27. 백의 자리 수가 각각 1씩 커지면 두 수의 계산 결과가 200씩 커지는 계산식을 선택하세요."
+    },
+    {
+      "id": "slot.choice.option_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 116.0,
+        "y": 92.0,
+        "width": 290.0,
+        "height": 166.0,
+        "fill": "#ffffff",
+        "stroke": "#8b5cf6",
+        "stroke-width": 1.6,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "①",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.choice.option_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 480.0,
+        "y": 92.0,
+        "width": 290.0,
+        "height": 166.0,
+        "fill": "#ffffff",
+        "stroke": "#8b5cf6",
+        "stroke-width": 1.6,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "②",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      }
+    },
+    {
+      "id": "slot.diagram.b0.text",
+      "type": "text",
+      "attributes": {
+        "x": 138.0,
+        "y": 104.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.b0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.b0"
+      },
+      "text": "①"
+    },
+    {
+      "id": "slot.diagram.l_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 266.0,
+        "y": 114.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0
+      },
+      "source_ref": "slot.diagram.l_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l_0"
+      },
+      "text": "160 + 210 = 370"
+    },
+    {
+      "id": "slot.diagram.l_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 266.0,
+        "y": 146.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0
+      },
+      "source_ref": "slot.diagram.l_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l_1"
+      },
+      "text": "260 + 310 = 570"
+    },
+    {
+      "id": "slot.diagram.l_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 266.0,
+        "y": 178.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0
+      },
+      "source_ref": "slot.diagram.l_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l_2"
+      },
+      "text": "360 + 410 = 770"
+    },
+    {
+      "id": "slot.diagram.l_3.text",
+      "type": "text",
+      "attributes": {
+        "x": 266.0,
+        "y": 210.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0
+      },
+      "source_ref": "slot.diagram.l_3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.l_3"
+      },
+      "text": "460 + 510 = 970"
+    },
+    {
+      "id": "slot.diagram.b1.text",
+      "type": "text",
+      "attributes": {
+        "x": 502.0,
+        "y": 104.0,
+        "fill": "#4b5563",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 18.0,
+        "data-semantic-role": "symbol_label",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.diagram.b1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.b1"
+      },
+      "text": "②"
+    },
+    {
+      "id": "slot.diagram.r_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 630.0,
+        "y": 114.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0
+      },
+      "source_ref": "slot.diagram.r_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.r_0"
+      },
+      "text": "650 - 310 = 340"
+    },
+    {
+      "id": "slot.diagram.r_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 630.0,
+        "y": 146.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0
+      },
+      "source_ref": "slot.diagram.r_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.r_1"
+      },
+      "text": "750 - 410 = 340"
+    },
+    {
+      "id": "slot.diagram.r_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 630.0,
+        "y": 178.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0
+      },
+      "source_ref": "slot.diagram.r_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.r_2"
+      },
+      "text": "850 - 510 = 340"
+    },
+    {
+      "id": "slot.diagram.r_3.text",
+      "type": "text",
+      "attributes": {
+        "x": 630.0,
+        "y": 210.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0
+      },
+      "source_ref": "slot.diagram.r_3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.r_3"
+      },
+      "text": "950 - 610 = 340"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

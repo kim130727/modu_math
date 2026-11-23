@@ -1,0 +1,75 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_008499",
+  "problem_type": "multiple_choice_equation_pattern",
+  "given": [
+    {
+      "ref": "eq_0",
+      "value": 4
+    },
+    {
+      "ref": "eq_1",
+      "value": 9
+    },
+    {
+      "ref": "eq_2",
+      "value": 16
+    },
+    {
+      "ref": "eq_3",
+      "value": 25
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "바른 설명",
+    "unit": ""
+  },
+  "method": "equation_pattern_analysis",
+  "steps": [
+    {
+      "id": "verify_square_pattern",
+      "expr": "4=2*2, 9=3*3, 16=4*4, 25=5*5",
+      "explanation": "계산 결과는 덧셈식의 가운데 수를 두 번 곱한 것과 같습니다.",
+      "value": "계산 결과는 덧셈식의 가운데 수를 두 번 곱한 것과 같아요."
+    }
+  ],
+  "answer": {
+    "value": "계산 결과는 덧셈식의 가운데 수를 두 번 곱한 것과 같아요.",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "계산 결과는 덧셈식의 가운데 수를 두 번 곱한 것과 같아요."
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "덧셈식의 가운데 수가 2씩 커져요.",
+        "value": "덧셈식의 가운데 수가 2씩 커져요."
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "계산 결과는 덧셈식의 가운데 수를 두 번 곱한 것과 같아요.",
+        "value": "계산 결과는 덧셈식의 가운데 수를 두 번 곱한 것과 같아요."
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "계산 결과는 덧셈식의 가운데 수를 두 번 곱한 것과 같아요.",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_center_step",
+            "condition": "answer_equals_0",
+            "concept": "계산식의 규칙",
+            "reason": "가운데 수가 1씩 커지는데 2씩 커진다는 잘못된 설명을 선택함",
+            "feedback": "가운데 수는 2, 3, 4, 5로 1씩 커집니다. 계산 결과(4, 9, 16, 25)는 가운데 수를 두 번 곱한 값(2×2, 3×3, 4×4, 5×5)과 같습니다."
+          }
+        ]
+      }
+    ]
+  }
+}

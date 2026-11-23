@@ -1,0 +1,1008 @@
+{
+  "problem_id": "S3_초등_4_008503",
+  "problem_type": "multiple_choice_shape_pattern",
+  "metadata": {
+    "title": "도형의 배열에서 다섯째에 알맞은 도형 선택하기",
+    "tags": [],
+    "question": "30. 도형의 배열을 보고 다섯째에 알맞은 도형을 아래에서 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1",
+      "slot.diagram.st0_s_0",
+      "slot.diagram.st0_s_1",
+      "slot.diagram.st1_s_0",
+      "slot.diagram.st1_s_1",
+      "slot.diagram.st1_s_2",
+      "slot.diagram.st2_s_0",
+      "slot.diagram.st2_s_1",
+      "slot.diagram.st2_s_2",
+      "slot.diagram.st2_s_3",
+      "slot.diagram.st3_s_0",
+      "slot.diagram.st3_s_1",
+      "slot.diagram.st3_s_2",
+      "slot.diagram.st3_s_3",
+      "slot.diagram.st3_s_4",
+      "slot.diagram.opt0_s_0",
+      "slot.diagram.opt0_s_1",
+      "slot.diagram.opt0_s_2",
+      "slot.diagram.opt0_s_3",
+      "slot.diagram.opt0_s_4",
+      "slot.diagram.opt0_s_5",
+      "slot.diagram.opt1_s_0",
+      "slot.diagram.opt1_s_1",
+      "slot.diagram.opt1_s_2",
+      "slot.diagram.opt1_s_3",
+      "slot.diagram.opt1_s_4"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "06단원_규칙 찾기",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "30. 도형의 배열을 보고 다섯째에 알맞은 도형을 아래에서 찾아 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 176,
+          "y": 236,
+          "width": 250,
+          "height": 58,
+          "stroke": "#a855f7",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 460,
+          "y": 236,
+          "width": 250,
+          "height": 58,
+          "stroke": "#a855f7",
+          "stroke_width": 1.5,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b0",
+        "type": "symbol_label",
+        "properties": {
+          "text": "①"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b1",
+        "type": "symbol_label",
+        "properties": {
+          "text": "②"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt0_s_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 232,
+          "y": 254,
+          "width": 22,
+          "height": 22,
+          "stroke": "#ec4899",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fbcfe8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt0_s_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt0_s_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 254,
+          "y": 254,
+          "width": 22,
+          "height": 22,
+          "stroke": "#ec4899",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fbcfe8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt0_s_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt0_s_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 276,
+          "y": 254,
+          "width": 22,
+          "height": 22,
+          "stroke": "#ec4899",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fbcfe8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt0_s_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt0_s_3",
+        "type": "rect_slot",
+        "properties": {
+          "x": 298,
+          "y": 254,
+          "width": 22,
+          "height": 22,
+          "stroke": "#ec4899",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fbcfe8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt0_s_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt0_s_4",
+        "type": "rect_slot",
+        "properties": {
+          "x": 320,
+          "y": 254,
+          "width": 22,
+          "height": 22,
+          "stroke": "#ec4899",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fbcfe8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt0_s_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt0_s_5",
+        "type": "rect_slot",
+        "properties": {
+          "x": 342,
+          "y": 254,
+          "width": 22,
+          "height": 22,
+          "stroke": "#16a34a",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#86efac",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt0_s_5"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt1_s_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 522,
+          "y": 254,
+          "width": 22,
+          "height": 22,
+          "stroke": "#16a34a",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#86efac",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt1_s_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt1_s_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 544,
+          "y": 254,
+          "width": 22,
+          "height": 22,
+          "stroke": "#ec4899",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fbcfe8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt1_s_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt1_s_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 566,
+          "y": 254,
+          "width": 22,
+          "height": 22,
+          "stroke": "#ec4899",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fbcfe8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt1_s_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt1_s_3",
+        "type": "rect_slot",
+        "properties": {
+          "x": 588,
+          "y": 254,
+          "width": 22,
+          "height": 22,
+          "stroke": "#ec4899",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fbcfe8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt1_s_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.opt1_s_4",
+        "type": "rect_slot",
+        "properties": {
+          "x": 610,
+          "y": 254,
+          "width": 22,
+          "height": 22,
+          "stroke": "#ec4899",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fbcfe8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.opt1_s_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.st0_s_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 126,
+          "y": 134,
+          "width": 22,
+          "height": 22,
+          "stroke": "#ec4899",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fbcfe8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.st0_s_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.st0_s_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 148,
+          "y": 134,
+          "width": 22,
+          "height": 22,
+          "stroke": "#16a34a",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#86efac",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.st0_s_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.st1_s_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 307,
+          "y": 118,
+          "width": 22,
+          "height": 22,
+          "stroke": "#ec4899",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fbcfe8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.st1_s_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.st1_s_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 307,
+          "y": 140,
+          "width": 22,
+          "height": 22,
+          "stroke": "#ec4899",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fbcfe8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.st1_s_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.st1_s_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 307,
+          "y": 162,
+          "width": 22,
+          "height": 22,
+          "stroke": "#16a34a",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#86efac",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.st1_s_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.st2_s_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 464,
+          "y": 134,
+          "width": 22,
+          "height": 22,
+          "stroke": "#16a34a",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#86efac",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.st2_s_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.st2_s_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 486,
+          "y": 134,
+          "width": 22,
+          "height": 22,
+          "stroke": "#ec4899",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fbcfe8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.st2_s_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.st2_s_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 508,
+          "y": 134,
+          "width": 22,
+          "height": 22,
+          "stroke": "#ec4899",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fbcfe8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.st2_s_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.st2_s_3",
+        "type": "rect_slot",
+        "properties": {
+          "x": 530,
+          "y": 134,
+          "width": 22,
+          "height": 22,
+          "stroke": "#ec4899",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fbcfe8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.st2_s_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.st3_s_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 713,
+          "y": 98,
+          "width": 22,
+          "height": 22,
+          "stroke": "#16a34a",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#86efac",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.st3_s_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.st3_s_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 713,
+          "y": 120,
+          "width": 22,
+          "height": 22,
+          "stroke": "#ec4899",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fbcfe8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.st3_s_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.st3_s_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 713,
+          "y": 142,
+          "width": 22,
+          "height": 22,
+          "stroke": "#ec4899",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fbcfe8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.st3_s_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.st3_s_3",
+        "type": "rect_slot",
+        "properties": {
+          "x": 713,
+          "y": 164,
+          "width": 22,
+          "height": 22,
+          "stroke": "#ec4899",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fbcfe8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.st3_s_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.st3_s_4",
+        "type": "rect_slot",
+        "properties": {
+          "x": 713,
+          "y": 186,
+          "width": 22,
+          "height": 22,
+          "stroke": "#ec4899",
+          "stroke_width": 1.4,
+          "rx": null,
+          "ry": null,
+          "fill": "#fbcfe8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.st3_s_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.t0",
+        "type": "text",
+        "properties": {
+          "text": "첫째"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.t0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.t1",
+        "type": "text",
+        "properties": {
+          "text": "둘째"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.t1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.t2",
+        "type": "text",
+        "properties": {
+          "text": "셋째"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.t2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.t3",
+        "type": "text",
+        "properties": {
+          "text": "넷째"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.t3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "30. 도형의 배열을 보고 다섯째에 알맞은 도형을 아래에서 찾아 선택하세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_count_5",
+            "condition": "answer_equals_2",
+            "concept": "도형 배열의 규칙",
+            "reason": "넷째와 같은 5개짜리 도형(②)을 다섯째 도형으로 선택함",
+            "feedback": "사각형의 개수가 2개에서 시작하여 1개씩 늘어나는 규칙이므로 다섯째에는 사각형이 6개(①)입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "step_1": {
+      "label": "첫째",
+      "count": 2
+    },
+    "step_2": {
+      "label": "둘째",
+      "count": 3
+    },
+    "step_3": {
+      "label": "셋째",
+      "count": 4
+    },
+    "step_4": {
+      "label": "넷째",
+      "count": 5
+    },
+    "option_0": {
+      "label": "①",
+      "count": 6,
+      "is_correct": true
+    },
+    "option_1": {
+      "label": "②",
+      "count": 5,
+      "is_correct": false
+    }
+  },
+  "relations": [
+    {
+      "type": "arithmetic_shape_growth",
+      "start": 2,
+      "step": 1,
+      "target_index": 5,
+      "target_count": 6
+    }
+  ]
+}

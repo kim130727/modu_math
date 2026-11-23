@@ -1,0 +1,890 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007717",
+  "title": "물결선을 사용한 꺾은선그래프의 장점 알기",
+  "canvas": {
+    "width": 886,
+    "height": 356,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.bg_l",
+        "slot.diagram.bg_r",
+        "slot.diagram.wavy",
+        "slot.diagram.summary_box",
+        "slot.diagram.lg_0",
+        "slot.diagram.lg_5",
+        "slot.diagram.lg_10",
+        "slot.diagram.lg_15",
+        "slot.diagram.ls_0",
+        "slot.diagram.ls_1",
+        "slot.diagram.ls_2",
+        "slot.diagram.rg_14",
+        "slot.diagram.rg_15",
+        "slot.diagram.rg_16",
+        "slot.diagram.rs_0",
+        "slot.diagram.rs_1",
+        "slot.diagram.rs_2",
+        "slot.diagram.ld_0",
+        "slot.diagram.ld_1",
+        "slot.diagram.ld_2",
+        "slot.diagram.ld_3",
+        "slot.diagram.rd_0",
+        "slot.diagram.rd_1",
+        "slot.diagram.rd_2",
+        "slot.diagram.rd_3",
+        "slot.diagram.t_l",
+        "slot.diagram.u_l",
+        "slot.diagram.t_r",
+        "slot.diagram.u_r",
+        "slot.diagram.lyl_0",
+        "slot.diagram.lyl_5",
+        "slot.diagram.lyl_10",
+        "slot.diagram.lyl_15",
+        "slot.diagram.lxl_0",
+        "slot.diagram.lxl_1",
+        "slot.diagram.lxl_2",
+        "slot.diagram.lxl_3",
+        "slot.diagram.ryl_14",
+        "slot.diagram.ryl_15",
+        "slot.diagram.ryl_16",
+        "slot.diagram.rxl_0",
+        "slot.diagram.rxl_1",
+        "slot.diagram.rxl_2",
+        "slot.diagram.rxl_3",
+        "slot.diagram.sum_1"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.pre",
+        "slot.choice.option_0",
+        "slot.choice.cm",
+        "slot.choice.option_1",
+        "slot.choice.suf"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "6. 어느 강의 수온을 매월 1일에 조사하여 두 꺾은선그래프로 나타냈습니다. 알맞은 말을 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 20.0,
+        "width": 820.0,
+        "height": 52.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 21,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.45,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.t_l",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(가) 강의 수온",
+        "style_role": "body",
+        "x": 246.0,
+        "y": 78.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.bg_l",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 96.0,
+        "y": 102.0,
+        "width": 300.0,
+        "height": 130.0,
+        "stroke": "#6b7280",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.u_l",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(℃)",
+        "style_role": "body",
+        "x": 122.0,
+        "y": 110.0,
+        "font_size": 13,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.t_r",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(나) 강의 수온",
+        "style_role": "body",
+        "x": 640.0,
+        "y": 78.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.bg_r",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 490.0,
+        "y": 102.0,
+        "width": 300.0,
+        "height": 130.0,
+        "stroke": "#6b7280",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.u_r",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(℃)",
+        "style_role": "body",
+        "x": 516.0,
+        "y": 110.0,
+        "font_size": 13,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.lg_0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 156.0,
+        "y1": 204.0,
+        "x2": 396.0,
+        "y2": 204.0,
+        "stroke": "#cbd5e1",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.lyl_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "body",
+        "x": 146.0,
+        "y": 198.0,
+        "font_size": 11,
+        "align": "end",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.lg_5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 156.0,
+        "y1": 178.4,
+        "x2": 396.0,
+        "y2": 178.4,
+        "stroke": "#cbd5e1",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.lyl_5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "body",
+        "x": 146.0,
+        "y": 172.4,
+        "font_size": 11,
+        "align": "end",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.lg_10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 156.0,
+        "y1": 152.9,
+        "x2": 396.0,
+        "y2": 152.9,
+        "stroke": "#cbd5e1",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.lyl_10",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10",
+        "style_role": "body",
+        "x": 146.0,
+        "y": 146.9,
+        "font_size": 11,
+        "align": "end",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.lg_15",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 156.0,
+        "y1": 127.3,
+        "x2": 396.0,
+        "y2": 127.3,
+        "stroke": "#cbd5e1",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.lyl_15",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "15",
+        "style_role": "body",
+        "x": 146.0,
+        "y": 121.3,
+        "font_size": 11,
+        "align": "end",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.lxl_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "body",
+        "x": 196.0,
+        "y": 210.0,
+        "font_size": 12,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.lxl_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "body",
+        "x": 250.0,
+        "y": 210.0,
+        "font_size": 12,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.lxl_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "body",
+        "x": 304.0,
+        "y": 210.0,
+        "font_size": 12,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.lxl_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "body",
+        "x": 358.0,
+        "y": 210.0,
+        "font_size": 12,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.ls_0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 196.0,
+        "y1": 130.4,
+        "x2": 250.0,
+        "y2": 128.4,
+        "stroke": "#ec4899",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.ls_1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 250.0,
+        "y1": 128.4,
+        "x2": 304.0,
+        "y2": 126.3,
+        "stroke": "#ec4899",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.ls_2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 304.0,
+        "y1": 126.3,
+        "x2": 358.0,
+        "y2": 120.2,
+        "stroke": "#ec4899",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.ld_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 196.0,
+        "cy": 130.4,
+        "r": 2.5,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.ld_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 250.0,
+        "cy": 128.4,
+        "r": 2.5,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.ld_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 304.0,
+        "cy": 126.3,
+        "r": 2.5,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.ld_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 358.0,
+        "cy": 120.2,
+        "r": 2.5,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.wavy",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 490 190 Q 565 182, 640 190 T 790 190",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#6b7280",
+        "stroke_width": 1.4,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.rg_14",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 550.0,
+        "y1": 178.0,
+        "x2": 790.0,
+        "y2": 178.0,
+        "stroke": "#cbd5e1",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.ryl_14",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "14",
+        "style_role": "body",
+        "x": 540.0,
+        "y": 172.0,
+        "font_size": 11,
+        "align": "end",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.rg_15",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 550.0,
+        "y1": 148.0,
+        "x2": 790.0,
+        "y2": 148.0,
+        "stroke": "#cbd5e1",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.ryl_15",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "15",
+        "style_role": "body",
+        "x": 540.0,
+        "y": 142.0,
+        "font_size": 11,
+        "align": "end",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.rg_16",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 550.0,
+        "y1": 118.0,
+        "x2": 790.0,
+        "y2": 118.0,
+        "stroke": "#cbd5e1",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.ryl_16",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "16",
+        "style_role": "body",
+        "x": 540.0,
+        "y": 112.0,
+        "font_size": 11,
+        "align": "end",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.rxl_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "body",
+        "x": 590.0,
+        "y": 210.0,
+        "font_size": 12,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.rxl_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "body",
+        "x": 644.0,
+        "y": 210.0,
+        "font_size": 12,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.rxl_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "body",
+        "x": 698.0,
+        "y": 210.0,
+        "font_size": 12,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.rxl_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "body",
+        "x": 752.0,
+        "y": 210.0,
+        "font_size": 12,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.rs_0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 590.0,
+        "y1": 166.0,
+        "x2": 644.0,
+        "y2": 154.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.rs_1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 644.0,
+        "y1": 154.0,
+        "x2": 698.0,
+        "y2": 142.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.rs_2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 698.0,
+        "y1": 142.0,
+        "x2": 752.0,
+        "y2": 106.0,
+        "stroke": "#ec4899",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.diagram.rd_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 590.0,
+        "cy": 166.0,
+        "r": 2.5,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.rd_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 644.0,
+        "cy": 154.0,
+        "r": 2.5,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.rd_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 698.0,
+        "cy": 142.0,
+        "r": 2.5,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.rd_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 752.0,
+        "cy": 106.0,
+        "r": 2.5,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.summary_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 76.0,
+        "y": 246.0,
+        "width": 734.0,
+        "height": 82.0,
+        "stroke": "#84cc16",
+        "stroke_width": 1.6,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.sum_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(나) 그래프와 같이 필요 없는 부분을 물결선으로 줄여서 나타내면",
+        "style_role": "body",
+        "x": 443.0,
+        "y": 260.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.pre",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "변화하는 모습이 (가) 그래프보다 잘 (",
+        "style_role": "body",
+        "x": 250.0,
+        "y": 296.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나타납니다",
+        "style_role": "body",
+        "x": 456.0,
+        "y": 296.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "나타납니다",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.cm",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 514.0,
+        "y": 296.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나타나지 않습니다",
+        "style_role": "body",
+        "x": 604.0,
+        "y": 296.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "나타나지 않습니다",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.suf",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ").",
+        "style_role": "body",
+        "x": 692.0,
+        "y": 296.0,
+        "font_size": 18,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.bg_l",
+    "slot.diagram.bg_r",
+    "slot.diagram.wavy",
+    "slot.diagram.summary_box",
+    "slot.diagram.lg_0",
+    "slot.diagram.lg_5",
+    "slot.diagram.lg_10",
+    "slot.diagram.lg_15",
+    "slot.diagram.ls_0",
+    "slot.diagram.ls_1",
+    "slot.diagram.ls_2",
+    "slot.diagram.rg_14",
+    "slot.diagram.rg_15",
+    "slot.diagram.rg_16",
+    "slot.diagram.rs_0",
+    "slot.diagram.rs_1",
+    "slot.diagram.rs_2",
+    "slot.diagram.ld_0",
+    "slot.diagram.ld_1",
+    "slot.diagram.ld_2",
+    "slot.diagram.ld_3",
+    "slot.diagram.rd_0",
+    "slot.diagram.rd_1",
+    "slot.diagram.rd_2",
+    "slot.diagram.rd_3",
+    "slot.diagram.t_l",
+    "slot.diagram.u_l",
+    "slot.diagram.t_r",
+    "slot.diagram.u_r",
+    "slot.diagram.lyl_0",
+    "slot.diagram.lyl_5",
+    "slot.diagram.lyl_10",
+    "slot.diagram.lyl_15",
+    "slot.diagram.lxl_0",
+    "slot.diagram.lxl_1",
+    "slot.diagram.lxl_2",
+    "slot.diagram.lxl_3",
+    "slot.diagram.ryl_14",
+    "slot.diagram.ryl_15",
+    "slot.diagram.ryl_16",
+    "slot.diagram.rxl_0",
+    "slot.diagram.rxl_1",
+    "slot.diagram.rxl_2",
+    "slot.diagram.rxl_3",
+    "slot.diagram.sum_1",
+    "region.choices",
+    "slot.choice.pre",
+    "slot.choice.option_0",
+    "slot.choice.cm",
+    "slot.choice.option_1",
+    "slot.choice.suf"
+  ]
+}

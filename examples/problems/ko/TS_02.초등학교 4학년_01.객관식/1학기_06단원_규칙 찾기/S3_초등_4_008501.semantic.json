@@ -1,0 +1,338 @@
+{
+  "problem_id": "S3_초등_4_008501",
+  "problem_type": "multiple_choice_equation_pattern",
+  "metadata": {
+    "title": "백의 자리 수가 1씩 커질 때 결과가 200씩 커지는 계산식 찾기",
+    "tags": [],
+    "question": "27. 백의 자리 수가 각각 1씩 커지면 두 수의 계산 결과가 200씩 커지는 계산식을 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice.option_0",
+      "slot.choice.option_1"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "06단원_규칙 찾기",
+    "difficulty": "중",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "27. 백의 자리 수가 각각 1씩 커지면 두 수의 계산 결과가 200씩 커지는 계산식을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 116,
+          "y": 92,
+          "width": 290,
+          "height": 166,
+          "stroke": "#8b5cf6",
+          "stroke_width": 1.6,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 480,
+          "y": 92,
+          "width": 290,
+          "height": 166,
+          "stroke": "#8b5cf6",
+          "stroke_width": 1.6,
+          "rx": 8,
+          "ry": 8,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b0",
+        "type": "symbol_label",
+        "properties": {
+          "text": "①"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b1",
+        "type": "symbol_label",
+        "properties": {
+          "text": "②"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l_0",
+        "type": "text",
+        "properties": {
+          "text": "160 + 210 = 370"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l_1",
+        "type": "text",
+        "properties": {
+          "text": "260 + 310 = 570"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l_2",
+        "type": "text",
+        "properties": {
+          "text": "360 + 410 = 770"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l_3",
+        "type": "text",
+        "properties": {
+          "text": "460 + 510 = 970"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r_0",
+        "type": "text",
+        "properties": {
+          "text": "650 - 310 = 340"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r_1",
+        "type": "text",
+        "properties": {
+          "text": "750 - 410 = 340"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r_2",
+        "type": "text",
+        "properties": {
+          "text": "850 - 510 = 340"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r_3",
+        "type": "text",
+        "properties": {
+          "text": "950 - 610 = 340"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "27. 백의 자리 수가 각각 1씩 커지면 두 수의 계산 결과가 200씩 커지는 계산식을 선택하세요.",
+          "width": 820,
+          "height": 52
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "①",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "①"
+    ],
+    "choices": [
+      "①",
+      "②"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "①",
+        "diagnostics": [
+          {
+            "id": "diag.chose_constant_difference",
+            "condition": "answer_equals_2",
+            "concept": "덧셈식과 뺄셈식의 규칙",
+            "reason": "결과가 일정한 뺄셈식(②)을 결과가 200씩 커지는 식으로 선택함",
+            "feedback": "오른쪽 뺄셈식(②)은 백의 자리 수가 각각 1씩 커지면 두 수의 차가 340으로 일정합니다. 왼쪽 덧셈식(①)이 200씩 커집니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "option_0": {
+      "label": "①",
+      "operation": "addition",
+      "result_step": 200
+    },
+    "option_1": {
+      "label": "②",
+      "operation": "subtraction",
+      "result_step": 0
+    }
+  },
+  "relations": [
+    {
+      "type": "pattern_match",
+      "target_step": 200,
+      "correct_entity": "option_0",
+      "distractor": "option_1"
+    }
+  ]
+}

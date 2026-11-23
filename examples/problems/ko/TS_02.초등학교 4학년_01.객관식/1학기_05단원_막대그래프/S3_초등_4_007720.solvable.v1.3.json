@@ -1,0 +1,82 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007720",
+  "problem_type": "multiple_choice_line_chart_interpolation",
+  "given": [
+    {
+      "ref": "sep_1",
+      "value": 33.0,
+      "unit": "kg"
+    },
+    {
+      "ref": "oct_1",
+      "value": 33.2,
+      "unit": "kg"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "9월 16일의 몸무게",
+    "unit": "kg"
+  },
+  "method": "linear_midpoint_interpolation",
+  "steps": [
+    {
+      "id": "interpolate_midpoint",
+      "expr": "(33.0 + 33.2) / 2 = 33.1",
+      "explanation": "9월 1일(33 kg)과 10월 1일(33.2 kg)의 중간인 33.1 kg입니다.",
+      "value": "33.1 kg"
+    }
+  ],
+  "answer": {
+    "value": "33.1 kg",
+    "answer_index": 1,
+    "unit": "kg",
+    "values": [
+      "33.1 kg"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "33 kg",
+        "value": "33 kg"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "33.1 kg",
+        "value": "33.1 kg"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "33.2 kg",
+        "value": "33.2 kg"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "33.1 kg",
+        "diagnostics": [
+          {
+            "id": "diag.chose_sep_1",
+            "condition": "answer_equals_33",
+            "concept": "꺾은선그래프의 중간값 예상",
+            "reason": "9월 1일의 몸무게(33 kg)를 그대로 선택함",
+            "feedback": "9월 16일은 9월 1일(33 kg)과 10월 1일(33.2 kg)의 중간이므로, 몸무게도 두 값의 중간인 33.1 kg이었을 것입니다."
+          },
+          {
+            "id": "diag.chose_oct_1",
+            "condition": "answer_equals_33_2",
+            "concept": "꺾은선그래프의 중간값 예상",
+            "reason": "10월 1일의 몸무게(33.2 kg)를 그대로 선택함",
+            "feedback": "9월 1일(33 kg)과 10월 1일(33.2 kg) 사이의 가운데 값을 읽으면 33.1 kg입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

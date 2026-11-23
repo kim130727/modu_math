@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007712",
+  "problem_type": "multiple_choice_chart_comparison",
+  "given": [
+    {
+      "ref": "bar_chart",
+      "value": "막대그래프"
+    },
+    {
+      "ref": "line_chart",
+      "value": "꺾은선그래프"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.g2_option_1",
+    "label": "두 그래프의 표현 방식",
+    "unit": ""
+  },
+  "method": "chart_representation_comparison",
+  "steps": [
+    {
+      "id": "compare_representations",
+      "expr": "막대로, 선으로",
+      "explanation": "막대그래프는 막대로 나타내고, 꺾은선그래프는 점들을 선으로 이어서 나타냅니다.",
+      "value": [
+        "막대로",
+        "선으로"
+      ]
+    }
+  ],
+  "answer": {
+    "value": [
+      "막대로",
+      "선으로"
+    ],
+    "unit": "",
+    "values": [
+      "막대로",
+      "선으로"
+    ],
+    "choices": [
+      "막대로",
+      "선으로"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.g1_option_0",
+        "value": "막대로",
+        "diagnostics": [
+          {
+            "id": "diag.swapped_chart_representation",
+            "condition": "answer_equals_line_first",
+            "concept": "막대그래프와 꺾은선그래프의 차이",
+            "reason": "막대그래프와 꺾은선그래프의 표현 방식을 반대로 선택함",
+            "feedback": "막대그래프는 수량을 막대로 나타내고, 꺾은선그래프는 점들을 선으로 이어서 나타냅니다."
+          }
+        ]
+      },
+      {
+        "slot_id": "slot.choice.g2_option_1",
+        "value": "선으로"
+      }
+    ]
+  }
+}

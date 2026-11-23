@@ -1,0 +1,1191 @@
+{
+  "problem_id": "S3_초등_4_007718",
+  "problem_type": "multiple_choice_chart_axes",
+  "metadata": {
+    "title": "월별 강수량 꺾은선그래프의 가로와 세로 찾기",
+    "tags": [],
+    "question": "7. 어느 지역의 월별 강수량을 조사하여 나타낸 꺾은선그래프입니다. 꺾은선그래프의 가로와 세로는 각각 무엇을 나타내나요?",
+    "required_layout_ids": [
+      "slot.diagram.frame",
+      "slot.diagram.ybox",
+      "slot.diagram.xbox",
+      "slot.diagram.diag",
+      "slot.diagram.grid_0",
+      "slot.diagram.grid_10",
+      "slot.diagram.grid_20",
+      "slot.diagram.grid_30",
+      "slot.diagram.grid_40",
+      "slot.diagram.grid_50",
+      "slot.diagram.vgrid_0",
+      "slot.diagram.vgrid_1",
+      "slot.diagram.vgrid_2",
+      "slot.diagram.vgrid_3",
+      "slot.diagram.vgrid_4",
+      "slot.diagram.seg_0",
+      "slot.diagram.seg_1",
+      "slot.diagram.seg_2",
+      "slot.diagram.seg_3",
+      "slot.diagram.dot_0",
+      "slot.diagram.dot_1",
+      "slot.diagram.dot_2",
+      "slot.diagram.dot_3",
+      "slot.diagram.dot_4"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "05단원_막대그래프",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.g1_option_0",
+        "slot.choice.g1_option_1",
+        "slot.choice.g2_option_0",
+        "slot.choice.g2_option_1"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "7. 어느 지역의 월별 강수량을 조사하여 나타낸 꺾은선그래프입니다. 꺾은선그래프의 가로와 세로는 각각 무엇을 나타내나요?"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.g1_c",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g1_c"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g1_option_0",
+        "type": "text",
+        "properties": {
+          "text": "월"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g1_option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g1_option_1",
+        "type": "text",
+        "properties": {
+          "text": "강수량"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g1_option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g1_pre",
+        "type": "text",
+        "properties": {
+          "text": "가로 ("
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g1_pre"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g2_c",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g2_c"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g2_option_0",
+        "type": "text",
+        "properties": {
+          "text": "월"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g2_option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g2_option_1",
+        "type": "text",
+        "properties": {
+          "text": "강수량"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g2_option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g2_pre",
+        "type": "text",
+        "properties": {
+          "text": "), 세로 ("
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g2_pre"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g2_suf",
+        "type": "text",
+        "properties": {
+          "text": ")"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g2_suf"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.diag",
+        "type": "line_slot",
+        "properties": {
+          "x1": 243,
+          "y1": 244,
+          "x2": 339,
+          "y2": 212,
+          "stroke": "#6b7280",
+          "stroke_width": 1,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.diag"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.dot_0",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 382,
+          "cy": 163.1,
+          "r": 3,
+          "stroke": "#111827",
+          "stroke_width": 1,
+          "fill": "#111827",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.dot_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.dot_1",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 436,
+          "cy": 177.1,
+          "r": 3,
+          "stroke": "#111827",
+          "stroke_width": 1,
+          "fill": "#111827",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.dot_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.dot_2",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 490,
+          "cy": 128.2,
+          "r": 3,
+          "stroke": "#111827",
+          "stroke_width": 1,
+          "fill": "#111827",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.dot_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.dot_3",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 544,
+          "cy": 180.6,
+          "r": 3,
+          "stroke": "#111827",
+          "stroke_width": 1,
+          "fill": "#111827",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.dot_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.dot_4",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 598,
+          "cy": 142.2,
+          "r": 3,
+          "stroke": "#111827",
+          "stroke_width": 1,
+          "fill": "#111827",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.dot_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.frame",
+        "type": "rect_slot",
+        "properties": {
+          "x": 243,
+          "y": 106,
+          "width": 400,
+          "height": 138,
+          "stroke": "#6b7280",
+          "stroke_width": 1.2,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.frame"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_0",
+        "type": "line_slot",
+        "properties": {
+          "x1": 339,
+          "y1": 212.0,
+          "x2": 643,
+          "y2": 212.0,
+          "stroke": "#9ca3af",
+          "stroke_width": 0.9,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_10",
+        "type": "line_slot",
+        "properties": {
+          "x1": 339,
+          "y1": 194.5,
+          "x2": 643,
+          "y2": 194.5,
+          "stroke": "#9ca3af",
+          "stroke_width": 0.9,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_10"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_20",
+        "type": "line_slot",
+        "properties": {
+          "x1": 339,
+          "y1": 177.1,
+          "x2": 643,
+          "y2": 177.1,
+          "stroke": "#9ca3af",
+          "stroke_width": 0.9,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_20"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_30",
+        "type": "line_slot",
+        "properties": {
+          "x1": 339,
+          "y1": 159.6,
+          "x2": 643,
+          "y2": 159.6,
+          "stroke": "#9ca3af",
+          "stroke_width": 0.9,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_30"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_40",
+        "type": "line_slot",
+        "properties": {
+          "x1": 339,
+          "y1": 142.2,
+          "x2": 643,
+          "y2": 142.2,
+          "stroke": "#9ca3af",
+          "stroke_width": 0.9,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_40"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.grid_50",
+        "type": "line_slot",
+        "properties": {
+          "x1": 339,
+          "y1": 124.7,
+          "x2": 643,
+          "y2": 124.7,
+          "stroke": "#9ca3af",
+          "stroke_width": 0.9,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.grid_50"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.seg_0",
+        "type": "line_slot",
+        "properties": {
+          "x1": 382,
+          "y1": 163.1,
+          "x2": 436,
+          "y2": 177.1,
+          "stroke": "#ec4899",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.seg_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.seg_1",
+        "type": "line_slot",
+        "properties": {
+          "x1": 436,
+          "y1": 177.1,
+          "x2": 490,
+          "y2": 128.2,
+          "stroke": "#ec4899",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.seg_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.seg_2",
+        "type": "line_slot",
+        "properties": {
+          "x1": 490,
+          "y1": 128.2,
+          "x2": 544,
+          "y2": 180.6,
+          "stroke": "#ec4899",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.seg_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.seg_3",
+        "type": "line_slot",
+        "properties": {
+          "x1": 544,
+          "y1": 180.6,
+          "x2": 598,
+          "y2": 142.2,
+          "stroke": "#ec4899",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.seg_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.title",
+        "type": "text",
+        "properties": {
+          "text": "월별 강수량"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.title"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.unit",
+        "type": "text",
+        "properties": {
+          "text": "(mm)"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.unit"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.vgrid_0",
+        "type": "line_slot",
+        "properties": {
+          "x1": 382,
+          "y1": 106,
+          "x2": 382,
+          "y2": 212,
+          "stroke": "#9ca3af",
+          "stroke_width": 0.9,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.vgrid_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.vgrid_1",
+        "type": "line_slot",
+        "properties": {
+          "x1": 436,
+          "y1": 106,
+          "x2": 436,
+          "y2": 212,
+          "stroke": "#9ca3af",
+          "stroke_width": 0.9,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.vgrid_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.vgrid_2",
+        "type": "line_slot",
+        "properties": {
+          "x1": 490,
+          "y1": 106,
+          "x2": 490,
+          "y2": 212,
+          "stroke": "#9ca3af",
+          "stroke_width": 0.9,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.vgrid_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.vgrid_3",
+        "type": "line_slot",
+        "properties": {
+          "x1": 544,
+          "y1": 106,
+          "x2": 544,
+          "y2": 212,
+          "stroke": "#9ca3af",
+          "stroke_width": 0.9,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.vgrid_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.vgrid_4",
+        "type": "line_slot",
+        "properties": {
+          "x1": 598,
+          "y1": 106,
+          "x2": 598,
+          "y2": 212,
+          "stroke": "#9ca3af",
+          "stroke_width": 0.9,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.vgrid_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.wx",
+        "type": "text",
+        "properties": {
+          "text": "월"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.wx"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.wy",
+        "type": "text",
+        "properties": {
+          "text": "강수량"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.wy"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.xbox",
+        "type": "rect_slot",
+        "properties": {
+          "x": 339,
+          "y": 212,
+          "width": 304,
+          "height": 32,
+          "stroke": "#6b7280",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.xbox"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.xlbl_0",
+        "type": "text",
+        "properties": {
+          "text": "2"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.xlbl_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.xlbl_1",
+        "type": "text",
+        "properties": {
+          "text": "3"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.xlbl_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.xlbl_2",
+        "type": "text",
+        "properties": {
+          "text": "4"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.xlbl_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.xlbl_3",
+        "type": "text",
+        "properties": {
+          "text": "5"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.xlbl_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.xlbl_4",
+        "type": "text",
+        "properties": {
+          "text": "6"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.xlbl_4"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ybox",
+        "type": "rect_slot",
+        "properties": {
+          "x": 243,
+          "y": 106,
+          "width": 96,
+          "height": 106,
+          "stroke": "#6b7280",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ybox"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ylbl_0",
+        "type": "text",
+        "properties": {
+          "text": "0"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ylbl_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ylbl_10",
+        "type": "text",
+        "properties": {
+          "text": "10"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ylbl_10"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ylbl_20",
+        "type": "text",
+        "properties": {
+          "text": "20"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ylbl_20"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ylbl_30",
+        "type": "text",
+        "properties": {
+          "text": "30"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ylbl_30"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ylbl_40",
+        "type": "text",
+        "properties": {
+          "text": "40"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ylbl_40"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.ylbl_50",
+        "type": "text",
+        "properties": {
+          "text": "50"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.ylbl_50"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "7. 어느 지역의 월별 강수량을 조사하여 나타낸 꺾은선그래프입니다. 꺾은선그래프의 가로와 세로는 각각 무엇을 나타내나요?",
+          "width": 820,
+          "height": 52
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": [
+      "월",
+      "강수량"
+    ],
+    "unit": "",
+    "values": [
+      "월",
+      "강수량"
+    ],
+    "choices": [
+      "월",
+      "강수량"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.g1_option_0",
+        "value": "월",
+        "diagnostics": [
+          {
+            "id": "diag.swapped_axes",
+            "condition": "answer_equals_rainfall_first",
+            "concept": "꺾은선그래프의 가로와 세로",
+            "reason": "가로축(월)과 세로축(강수량)을 반대로 선택함",
+            "feedback": "꺾은선그래프의 가로는 '월', 세로는 '강수량'(mm)을 나타냅니다."
+          }
+        ]
+      },
+      {
+        "slot_id": "slot.choice.g2_option_1",
+        "value": "강수량"
+      }
+    ]
+  },
+  "entities": {
+    "horizontal_axis": {
+      "label": "가로",
+      "value": "월"
+    },
+    "vertical_axis": {
+      "label": "세로",
+      "value": "강수량",
+      "unit": "mm"
+    }
+  },
+  "relations": [
+    {
+      "type": "chart_axis_mapping",
+      "horizontal": "월",
+      "vertical": "강수량"
+    }
+  ]
+}

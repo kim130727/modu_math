@@ -1,0 +1,1456 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_008496",
+  "title": "수의 배열에서 일의 자리 숫자 규칙 찾기",
+  "canvas": {
+    "width": 886,
+    "height": 364,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.h_0",
+        "slot.diagram.h_1",
+        "slot.diagram.h_2",
+        "slot.diagram.h_3",
+        "slot.diagram.h_4",
+        "slot.diagram.h_5",
+        "slot.diagram.r_0",
+        "slot.diagram.c_0_1",
+        "slot.diagram.c_0_2",
+        "slot.diagram.c_0_3",
+        "slot.diagram.c_0_4",
+        "slot.diagram.c_0_5",
+        "slot.diagram.r_1",
+        "slot.diagram.c_1_1",
+        "slot.diagram.c_1_2",
+        "slot.diagram.c_1_3",
+        "slot.diagram.c_1_4",
+        "slot.diagram.c_1_5",
+        "slot.diagram.r_2",
+        "slot.diagram.c_2_1",
+        "slot.diagram.c_2_2",
+        "slot.diagram.c_2_3",
+        "slot.diagram.c_2_4",
+        "slot.diagram.c_2_5",
+        "slot.diagram.r_3",
+        "slot.diagram.c_3_1",
+        "slot.diagram.c_3_2",
+        "slot.diagram.c_3_3",
+        "slot.diagram.c_3_4",
+        "slot.diagram.tri_mark",
+        "slot.diagram.c_3_5",
+        "slot.diagram.r_4",
+        "slot.diagram.c_4_1",
+        "slot.diagram.c_4_2",
+        "slot.diagram.c_4_3",
+        "slot.diagram.c_4_4",
+        "slot.diagram.c_4_5",
+        "slot.diagram.girl_head",
+        "slot.diagram.bubble",
+        "slot.diagram.rule_box",
+        "slot.diagram.ht_0",
+        "slot.diagram.ht_1",
+        "slot.diagram.ht_2",
+        "slot.diagram.ht_3",
+        "slot.diagram.ht_4",
+        "slot.diagram.ht_5",
+        "slot.diagram.rt_0",
+        "slot.diagram.ct_0_1",
+        "slot.diagram.ct_0_2",
+        "slot.diagram.ct_0_3",
+        "slot.diagram.ct_0_4",
+        "slot.diagram.ct_0_5",
+        "slot.diagram.rt_1",
+        "slot.diagram.ct_1_1",
+        "slot.diagram.ct_1_2",
+        "slot.diagram.ct_1_3",
+        "slot.diagram.ct_1_4",
+        "slot.diagram.ct_1_5",
+        "slot.diagram.rt_2",
+        "slot.diagram.ct_2_1",
+        "slot.diagram.ct_2_2",
+        "slot.diagram.ct_2_3",
+        "slot.diagram.ct_2_4",
+        "slot.diagram.ct_2_5",
+        "slot.diagram.rt_3",
+        "slot.diagram.ct_3_1",
+        "slot.diagram.ct_3_2",
+        "slot.diagram.ct_3_3",
+        "slot.diagram.ct_3_5",
+        "slot.diagram.rt_4",
+        "slot.diagram.ct_4_1",
+        "slot.diagram.ct_4_2",
+        "slot.diagram.ct_4_3",
+        "slot.diagram.ct_4_4",
+        "slot.diagram.ct_4_5",
+        "slot.diagram.bubble_txt",
+        "slot.diagram.rule_1"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.pre",
+        "slot.choice.option_0",
+        "slot.choice.cm",
+        "slot.choice.option_1",
+        "slot.choice.suf"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "22. 수의 배열에서 규칙을 찾아 알맞은 말을 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 20.0,
+        "width": 820.0,
+        "height": 44.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 21,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.45,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.h_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 76.0,
+        "y": 76.0,
+        "width": 72.0,
+        "height": 30.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffedd5"
+      }
+    },
+    {
+      "id": "slot.diagram.ht_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "+",
+        "style_role": "body",
+        "x": 112.0,
+        "y": 82.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.h_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 148.0,
+        "y": 76.0,
+        "width": 72.0,
+        "height": 30.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffedd5"
+      }
+    },
+    {
+      "id": "slot.diagram.ht_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "101",
+        "style_role": "body",
+        "x": 184.0,
+        "y": 82.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.h_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 220.0,
+        "y": 76.0,
+        "width": 72.0,
+        "height": 30.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffedd5"
+      }
+    },
+    {
+      "id": "slot.diagram.ht_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "102",
+        "style_role": "body",
+        "x": 256.0,
+        "y": 82.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.h_3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 292.0,
+        "y": 76.0,
+        "width": 72.0,
+        "height": 30.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffedd5"
+      }
+    },
+    {
+      "id": "slot.diagram.ht_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "103",
+        "style_role": "body",
+        "x": 328.0,
+        "y": 82.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.h_4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 364.0,
+        "y": 76.0,
+        "width": 72.0,
+        "height": 30.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffedd5"
+      }
+    },
+    {
+      "id": "slot.diagram.ht_4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "104",
+        "style_role": "body",
+        "x": 400.0,
+        "y": 82.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.h_5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 436.0,
+        "y": 76.0,
+        "width": 72.0,
+        "height": 30.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffedd5"
+      }
+    },
+    {
+      "id": "slot.diagram.ht_5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "105",
+        "style_role": "body",
+        "x": 472.0,
+        "y": 82.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 76.0,
+        "y": 106.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffedd5"
+      }
+    },
+    {
+      "id": "slot.diagram.rt_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "11",
+        "style_role": "body",
+        "x": 112.0,
+        "y": 111.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_0_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 148.0,
+        "y": 106.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_0_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "body",
+        "x": 184.0,
+        "y": 111.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_0_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 220.0,
+        "y": 106.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_0_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "body",
+        "x": 256.0,
+        "y": 111.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_0_3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 292.0,
+        "y": 106.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_0_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "body",
+        "x": 328.0,
+        "y": 111.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_0_4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 364.0,
+        "y": 106.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_0_4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "body",
+        "x": 400.0,
+        "y": 111.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_0_5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 436.0,
+        "y": 106.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_0_5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "body",
+        "x": 472.0,
+        "y": 111.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 76.0,
+        "y": 134.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffedd5"
+      }
+    },
+    {
+      "id": "slot.diagram.rt_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "12",
+        "style_role": "body",
+        "x": 112.0,
+        "y": 139.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_1_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 148.0,
+        "y": 134.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_1_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "body",
+        "x": 184.0,
+        "y": 139.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_1_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 220.0,
+        "y": 134.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_1_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "body",
+        "x": 256.0,
+        "y": 139.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_1_3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 292.0,
+        "y": 134.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_1_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "body",
+        "x": 328.0,
+        "y": 139.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_1_4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 364.0,
+        "y": 134.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_1_4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "body",
+        "x": 400.0,
+        "y": 139.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_1_5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 436.0,
+        "y": 134.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_1_5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "body",
+        "x": 472.0,
+        "y": 139.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 76.0,
+        "y": 162.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffedd5"
+      }
+    },
+    {
+      "id": "slot.diagram.rt_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "13",
+        "style_role": "body",
+        "x": 112.0,
+        "y": 167.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_2_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 148.0,
+        "y": 162.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_2_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "body",
+        "x": 184.0,
+        "y": 167.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_2_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 220.0,
+        "y": 162.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_2_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "body",
+        "x": 256.0,
+        "y": 167.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_2_3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 292.0,
+        "y": 162.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_2_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "body",
+        "x": 328.0,
+        "y": 167.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_2_4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 364.0,
+        "y": 162.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_2_4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "body",
+        "x": 400.0,
+        "y": 167.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_2_5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 436.0,
+        "y": 162.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_2_5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8",
+        "style_role": "body",
+        "x": 472.0,
+        "y": 167.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 76.0,
+        "y": 190.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffedd5"
+      }
+    },
+    {
+      "id": "slot.diagram.rt_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "14",
+        "style_role": "body",
+        "x": 112.0,
+        "y": 195.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_3_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 148.0,
+        "y": 190.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_3_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "body",
+        "x": 184.0,
+        "y": 195.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_3_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 220.0,
+        "y": 190.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_3_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "body",
+        "x": 256.0,
+        "y": 195.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_3_3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 292.0,
+        "y": 190.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_3_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "body",
+        "x": 328.0,
+        "y": 195.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_3_4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 364.0,
+        "y": 190.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.tri_mark",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            400.0,
+            196.0
+          ],
+          [
+            408.0,
+            212.0
+          ],
+          [
+            392.0,
+            212.0
+          ]
+        ],
+        "stroke": "#a855f7",
+        "stroke_width": 1.0,
+        "fill": "#a855f7"
+      }
+    },
+    {
+      "id": "slot.diagram.c_3_5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 436.0,
+        "y": 190.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_3_5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "9",
+        "style_role": "body",
+        "x": 472.0,
+        "y": 195.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 76.0,
+        "y": 218.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffedd5"
+      }
+    },
+    {
+      "id": "slot.diagram.rt_4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "15",
+        "style_role": "body",
+        "x": 112.0,
+        "y": 223.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_4_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 148.0,
+        "y": 218.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_4_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "body",
+        "x": 184.0,
+        "y": 223.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_4_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 220.0,
+        "y": 218.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_4_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "body",
+        "x": 256.0,
+        "y": 223.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_4_3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 292.0,
+        "y": 218.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_4_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8",
+        "style_role": "body",
+        "x": 328.0,
+        "y": 223.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_4_4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 364.0,
+        "y": 218.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_4_4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "9",
+        "style_role": "body",
+        "x": 400.0,
+        "y": 223.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.c_4_5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 436.0,
+        "y": 218.0,
+        "width": 72.0,
+        "height": 28.0,
+        "stroke": "#f59e0b",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ct_4_5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "body",
+        "x": 472.0,
+        "y": 223.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.girl_head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 586.0,
+        "cy": 148.0,
+        "r": 24.0,
+        "stroke": "#78350f",
+        "stroke_width": 1.5,
+        "fill": "#fde68a"
+      }
+    },
+    {
+      "id": "slot.diagram.bubble",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 636.0,
+        "y": 104.0,
+        "width": 200.0,
+        "height": 76.0,
+        "stroke": "#374151",
+        "stroke_width": 1.3,
+        "rx": 22.0,
+        "ry": 22.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.bubble_txt",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "101+11=112이면\n2를 쓰는 거야.",
+        "style_role": "body",
+        "x": 646.0,
+        "y": 114.0,
+        "width": 180.0,
+        "height": 56.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 16,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.35,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.rule_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 116.0,
+        "y": 260.0,
+        "width": 654.0,
+        "height": 78.0,
+        "stroke": "#65a30d",
+        "stroke_width": 1.6,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.rule_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가로줄에 있는 세 자리 수와 세로줄에 있는 두 자리 수의",
+        "style_role": "body",
+        "x": 443.0,
+        "y": 272.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.pre",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "덧셈의 결과에서 (",
+        "style_role": "body",
+        "x": 250.0,
+        "y": 306.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "십",
+        "style_role": "body",
+        "x": 352.0,
+        "y": 306.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "십",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.cm",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 376.0,
+        "y": 306.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "일",
+        "style_role": "body",
+        "x": 400.0,
+        "y": 306.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "일",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.suf",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ")의 자리 수만 쓰는 규칙입니다.",
+        "style_role": "body",
+        "x": 562.0,
+        "y": 306.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.h_0",
+    "slot.diagram.h_1",
+    "slot.diagram.h_2",
+    "slot.diagram.h_3",
+    "slot.diagram.h_4",
+    "slot.diagram.h_5",
+    "slot.diagram.r_0",
+    "slot.diagram.c_0_1",
+    "slot.diagram.c_0_2",
+    "slot.diagram.c_0_3",
+    "slot.diagram.c_0_4",
+    "slot.diagram.c_0_5",
+    "slot.diagram.r_1",
+    "slot.diagram.c_1_1",
+    "slot.diagram.c_1_2",
+    "slot.diagram.c_1_3",
+    "slot.diagram.c_1_4",
+    "slot.diagram.c_1_5",
+    "slot.diagram.r_2",
+    "slot.diagram.c_2_1",
+    "slot.diagram.c_2_2",
+    "slot.diagram.c_2_3",
+    "slot.diagram.c_2_4",
+    "slot.diagram.c_2_5",
+    "slot.diagram.r_3",
+    "slot.diagram.c_3_1",
+    "slot.diagram.c_3_2",
+    "slot.diagram.c_3_3",
+    "slot.diagram.c_3_4",
+    "slot.diagram.tri_mark",
+    "slot.diagram.c_3_5",
+    "slot.diagram.r_4",
+    "slot.diagram.c_4_1",
+    "slot.diagram.c_4_2",
+    "slot.diagram.c_4_3",
+    "slot.diagram.c_4_4",
+    "slot.diagram.c_4_5",
+    "slot.diagram.girl_head",
+    "slot.diagram.bubble",
+    "slot.diagram.rule_box",
+    "slot.diagram.ht_0",
+    "slot.diagram.ht_1",
+    "slot.diagram.ht_2",
+    "slot.diagram.ht_3",
+    "slot.diagram.ht_4",
+    "slot.diagram.ht_5",
+    "slot.diagram.rt_0",
+    "slot.diagram.ct_0_1",
+    "slot.diagram.ct_0_2",
+    "slot.diagram.ct_0_3",
+    "slot.diagram.ct_0_4",
+    "slot.diagram.ct_0_5",
+    "slot.diagram.rt_1",
+    "slot.diagram.ct_1_1",
+    "slot.diagram.ct_1_2",
+    "slot.diagram.ct_1_3",
+    "slot.diagram.ct_1_4",
+    "slot.diagram.ct_1_5",
+    "slot.diagram.rt_2",
+    "slot.diagram.ct_2_1",
+    "slot.diagram.ct_2_2",
+    "slot.diagram.ct_2_3",
+    "slot.diagram.ct_2_4",
+    "slot.diagram.ct_2_5",
+    "slot.diagram.rt_3",
+    "slot.diagram.ct_3_1",
+    "slot.diagram.ct_3_2",
+    "slot.diagram.ct_3_3",
+    "slot.diagram.ct_3_5",
+    "slot.diagram.rt_4",
+    "slot.diagram.ct_4_1",
+    "slot.diagram.ct_4_2",
+    "slot.diagram.ct_4_3",
+    "slot.diagram.ct_4_4",
+    "slot.diagram.ct_4_5",
+    "slot.diagram.bubble_txt",
+    "slot.diagram.rule_1",
+    "region.choices",
+    "slot.choice.pre",
+    "slot.choice.option_0",
+    "slot.choice.cm",
+    "slot.choice.option_1",
+    "slot.choice.suf"
+  ]
+}

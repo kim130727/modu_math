@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007718",
+  "problem_type": "multiple_choice_chart_axes",
+  "given": [
+    {
+      "ref": "horizontal_axis",
+      "value": "월"
+    },
+    {
+      "ref": "vertical_axis",
+      "value": "강수량"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.g2_option_1",
+    "label": "가로와 세로 축",
+    "unit": ""
+  },
+  "method": "chart_axis_reading",
+  "steps": [
+    {
+      "id": "read_axes",
+      "expr": "가로: 월, 세로: 강수량",
+      "explanation": "꺾은선그래프의 가로는 월, 세로는 강수량을 나타냅니다.",
+      "value": [
+        "월",
+        "강수량"
+      ]
+    }
+  ],
+  "answer": {
+    "value": [
+      "월",
+      "강수량"
+    ],
+    "unit": "",
+    "values": [
+      "월",
+      "강수량"
+    ],
+    "choices": [
+      "월",
+      "강수량"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.g1_option_0",
+        "value": "월",
+        "diagnostics": [
+          {
+            "id": "diag.swapped_axes",
+            "condition": "answer_equals_rainfall_first",
+            "concept": "꺾은선그래프의 가로와 세로",
+            "reason": "가로축(월)과 세로축(강수량)을 반대로 선택함",
+            "feedback": "꺾은선그래프의 가로는 '월', 세로는 '강수량'(mm)을 나타냅니다."
+          }
+        ]
+      },
+      {
+        "slot_id": "slot.choice.g2_option_1",
+        "value": "강수량"
+      }
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007714",
+  "problem_type": "multiple_choice_line_chart_trend",
+  "given": [
+    {
+      "ref": "t_11",
+      "value": 9,
+      "unit": "℃"
+    },
+    {
+      "ref": "t_14",
+      "value": 16,
+      "unit": "℃"
+    },
+    {
+      "ref": "t_15",
+      "value": 14,
+      "unit": "℃"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "온도 변화 추이",
+    "unit": ""
+  },
+  "method": "line_slope_interpretation",
+  "steps": [
+    {
+      "id": "read_trend",
+      "expr": "9 -> 16 -> 14",
+      "explanation": "선이 올라가다가 내려오므로 교실의 온도가 높아지다가 낮아지고 있습니다.",
+      "value": "높아지다가 낮아지고"
+    }
+  ],
+  "answer": {
+    "value": "높아지다가 낮아지고",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "높아지다가 낮아지고"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "높아지다가 낮아지고",
+        "value": "높아지다가 낮아지고"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "낮아지다가 높아지고",
+        "value": "낮아지다가 높아지고"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "높아지다가 낮아지고",
+        "diagnostics": [
+          {
+            "id": "diag.reversed_trend",
+            "condition": "answer_equals_down_then_up",
+            "concept": "꺾은선그래프의 변화 추이",
+            "reason": "오른쪽 위로 올라가는 선과 아래로 내려가는 선의 방향을 반대로 해석함",
+            "feedback": "오전 11시부터 오후 2시까지는 선이 오른쪽 위로 올라가고, 오후 2시부터 3시까지는 내려오므로 높아지다가 낮아지고 있습니다."
+          }
+        ]
+      }
+    ]
+  }
+}

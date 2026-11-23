@@ -1,0 +1,1322 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007711",
+  "title": "막대그래프와 꺾은선그래프의 가로, 세로, 눈금 한 칸 값 찾기",
+  "canvas": {
+    "width": 886,
+    "height": 376,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.bg_l_y",
+        "slot.diagram.bg_l_x",
+        "slot.diagram.bg_l_c",
+        "slot.diagram.l_bar_0",
+        "slot.diagram.l_bar_1",
+        "slot.diagram.l_bar_2",
+        "slot.diagram.l_bar_3",
+        "slot.diagram.bg_r_y",
+        "slot.diagram.bg_r_x",
+        "slot.diagram.bg_r_c",
+        "slot.diagram.diag_l",
+        "slot.diagram.l_grid_0",
+        "slot.diagram.l_grid_5",
+        "slot.diagram.l_grid_10",
+        "slot.diagram.l_grid_15",
+        "slot.diagram.l_grid_20",
+        "slot.diagram.diag_r",
+        "slot.diagram.r_grid_0",
+        "slot.diagram.r_grid_5",
+        "slot.diagram.r_grid_10",
+        "slot.diagram.r_grid_15",
+        "slot.diagram.r_grid_20",
+        "slot.diagram.r_vgrid_0",
+        "slot.diagram.r_vgrid_1",
+        "slot.diagram.r_vgrid_2",
+        "slot.diagram.r_vgrid_3",
+        "slot.diagram.r_seg_0",
+        "slot.diagram.r_seg_1",
+        "slot.diagram.r_seg_2",
+        "slot.diagram.r_dot_0",
+        "slot.diagram.r_dot_1",
+        "slot.diagram.r_dot_2",
+        "slot.diagram.r_dot_3",
+        "slot.diagram.t_left",
+        "slot.diagram.l_unit",
+        "slot.diagram.l_wy",
+        "slot.diagram.l_wx",
+        "slot.diagram.l_ylbl_0",
+        "slot.diagram.l_ylbl_5",
+        "slot.diagram.l_ylbl_10",
+        "slot.diagram.l_ylbl_15",
+        "slot.diagram.l_ylbl_20",
+        "slot.diagram.l_xlbl_0",
+        "slot.diagram.l_xlbl_1",
+        "slot.diagram.l_xlbl_2",
+        "slot.diagram.l_xlbl_3",
+        "slot.diagram.t_right",
+        "slot.diagram.r_unit",
+        "slot.diagram.r_wy",
+        "slot.diagram.r_wx",
+        "slot.diagram.r_ylbl_0",
+        "slot.diagram.r_ylbl_5",
+        "slot.diagram.r_ylbl_10",
+        "slot.diagram.r_ylbl_15",
+        "slot.diagram.r_ylbl_20",
+        "slot.diagram.r_xlbl_0",
+        "slot.diagram.r_xlbl_1",
+        "slot.diagram.r_xlbl_2",
+        "slot.diagram.r_xlbl_3"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.q1_pre",
+        "slot.choice.g1_option_0",
+        "slot.choice.g1_c",
+        "slot.choice.g1_option_1",
+        "slot.choice.q1_mid",
+        "slot.choice.g2_option_0",
+        "slot.choice.g2_c",
+        "slot.choice.g2_option_1",
+        "slot.choice.q1_suf",
+        "slot.choice.q2_pre",
+        "slot.choice.g3_option_0",
+        "slot.choice.g3_c",
+        "slot.choice.g3_option_1",
+        "slot.choice.q2_suf"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "100. 염소의 무게를 매월 1일에 조사하여 나타낸 막대그래프와 꺾은선그래프입니다. 두 그래프의 같은 점을 알아보고 알맞은 것을 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 20.0,
+        "width": 820.0,
+        "height": 52.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 21,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.45,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.t_left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "염소의 무게",
+        "style_role": "body",
+        "x": 236.0,
+        "y": 82.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.bg_l_y",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 76.0,
+        "y": 104.0,
+        "width": 82.0,
+        "height": 130.0,
+        "stroke": "#6b7280",
+        "stroke_width": 1.0,
+        "fill": "#d1fae5"
+      }
+    },
+    {
+      "id": "slot.diagram.bg_l_x",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 158.0,
+        "y": 234.0,
+        "width": 238.0,
+        "height": 34.0,
+        "stroke": "#6b7280",
+        "stroke_width": 1.0,
+        "fill": "#d1fae5"
+      }
+    },
+    {
+      "id": "slot.diagram.bg_l_c",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 76.0,
+        "y": 234.0,
+        "width": 82.0,
+        "height": 34.0,
+        "stroke": "#6b7280",
+        "stroke_width": 1.0,
+        "fill": "#d1fae5"
+      }
+    },
+    {
+      "id": "slot.diagram.diag_l",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 76.0,
+        "y1": 268.0,
+        "x2": 158.0,
+        "y2": 234.0,
+        "stroke": "#6b7280",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.l_unit",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(kg)",
+        "style_role": "body",
+        "x": 100.0,
+        "y": 112.0,
+        "font_size": 13,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.l_wy",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "무게",
+        "style_role": "body",
+        "x": 96.0,
+        "y": 240.0,
+        "font_size": 12,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.l_wx",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "월",
+        "style_role": "body",
+        "x": 138.0,
+        "y": 250.0,
+        "font_size": 12,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.l_grid_0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 158.0,
+        "y1": 234.0,
+        "x2": 396.0,
+        "y2": 234.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.l_ylbl_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "body",
+        "x": 146.0,
+        "y": 228.0,
+        "font_size": 12,
+        "align": "end",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.l_grid_5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 158.0,
+        "y1": 204.0,
+        "x2": 396.0,
+        "y2": 204.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.l_ylbl_5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "body",
+        "x": 146.0,
+        "y": 198.0,
+        "font_size": 12,
+        "align": "end",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.l_grid_10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 158.0,
+        "y1": 174.0,
+        "x2": 396.0,
+        "y2": 174.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.l_ylbl_10",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10",
+        "style_role": "body",
+        "x": 146.0,
+        "y": 168.0,
+        "font_size": 12,
+        "align": "end",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.l_grid_15",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 158.0,
+        "y1": 144.0,
+        "x2": 396.0,
+        "y2": 144.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.l_ylbl_15",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "15",
+        "style_role": "body",
+        "x": 146.0,
+        "y": 138.0,
+        "font_size": 12,
+        "align": "end",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.l_grid_20",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 158.0,
+        "y1": 114.0,
+        "x2": 396.0,
+        "y2": 114.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.l_ylbl_20",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "20",
+        "style_role": "body",
+        "x": 146.0,
+        "y": 108.0,
+        "font_size": 12,
+        "align": "end",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.l_bar_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 176.0,
+        "y": 186.0,
+        "width": 24.0,
+        "height": 48.0,
+        "stroke": "#f97316",
+        "stroke_width": 1.2,
+        "fill": "#fed7aa"
+      }
+    },
+    {
+      "id": "slot.diagram.l_xlbl_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8",
+        "style_role": "body",
+        "x": 188.0,
+        "y": 244.0,
+        "font_size": 13,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.l_bar_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 234.0,
+        "y": 174.0,
+        "width": 24.0,
+        "height": 60.0,
+        "stroke": "#f97316",
+        "stroke_width": 1.2,
+        "fill": "#fed7aa"
+      }
+    },
+    {
+      "id": "slot.diagram.l_xlbl_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "9",
+        "style_role": "body",
+        "x": 246.0,
+        "y": 244.0,
+        "font_size": 13,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.l_bar_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 292.0,
+        "y": 150.0,
+        "width": 24.0,
+        "height": 84.0,
+        "stroke": "#f97316",
+        "stroke_width": 1.2,
+        "fill": "#fed7aa"
+      }
+    },
+    {
+      "id": "slot.diagram.l_xlbl_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10",
+        "style_role": "body",
+        "x": 304.0,
+        "y": 244.0,
+        "font_size": 13,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.l_bar_3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 350.0,
+        "y": 114.0,
+        "width": 24.0,
+        "height": 120.0,
+        "stroke": "#f97316",
+        "stroke_width": 1.2,
+        "fill": "#fed7aa"
+      }
+    },
+    {
+      "id": "slot.diagram.l_xlbl_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "11",
+        "style_role": "body",
+        "x": 362.0,
+        "y": 244.0,
+        "font_size": 13,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.t_right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "염소의 무게",
+        "style_role": "body",
+        "x": 640.0,
+        "y": 82.0,
+        "font_size": 16,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.bg_r_y",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 470.0,
+        "y": 104.0,
+        "width": 82.0,
+        "height": 130.0,
+        "stroke": "#6b7280",
+        "stroke_width": 1.0,
+        "fill": "#d1fae5"
+      }
+    },
+    {
+      "id": "slot.diagram.bg_r_x",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 552.0,
+        "y": 234.0,
+        "width": 258.0,
+        "height": 34.0,
+        "stroke": "#6b7280",
+        "stroke_width": 1.0,
+        "fill": "#d1fae5"
+      }
+    },
+    {
+      "id": "slot.diagram.bg_r_c",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 470.0,
+        "y": 234.0,
+        "width": 82.0,
+        "height": 34.0,
+        "stroke": "#6b7280",
+        "stroke_width": 1.0,
+        "fill": "#d1fae5"
+      }
+    },
+    {
+      "id": "slot.diagram.diag_r",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 470.0,
+        "y1": 268.0,
+        "x2": 552.0,
+        "y2": 234.0,
+        "stroke": "#6b7280",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.r_unit",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(kg)",
+        "style_role": "body",
+        "x": 494.0,
+        "y": 112.0,
+        "font_size": 13,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_wy",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "무게",
+        "style_role": "body",
+        "x": 490.0,
+        "y": 240.0,
+        "font_size": 12,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_wx",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "월",
+        "style_role": "body",
+        "x": 532.0,
+        "y": 250.0,
+        "font_size": 12,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_grid_0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 552.0,
+        "y1": 234.0,
+        "x2": 810.0,
+        "y2": 234.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.r_ylbl_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "body",
+        "x": 540.0,
+        "y": 228.0,
+        "font_size": 12,
+        "align": "end",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_grid_5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 552.0,
+        "y1": 204.0,
+        "x2": 810.0,
+        "y2": 204.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.r_ylbl_5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "body",
+        "x": 540.0,
+        "y": 198.0,
+        "font_size": 12,
+        "align": "end",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_grid_10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 552.0,
+        "y1": 174.0,
+        "x2": 810.0,
+        "y2": 174.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.r_ylbl_10",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10",
+        "style_role": "body",
+        "x": 540.0,
+        "y": 168.0,
+        "font_size": 12,
+        "align": "end",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_grid_15",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 552.0,
+        "y1": 144.0,
+        "x2": 810.0,
+        "y2": 144.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.r_ylbl_15",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "15",
+        "style_role": "body",
+        "x": 540.0,
+        "y": 138.0,
+        "font_size": 12,
+        "align": "end",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_grid_20",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 552.0,
+        "y1": 114.0,
+        "x2": 810.0,
+        "y2": 114.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.r_ylbl_20",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "20",
+        "style_role": "body",
+        "x": 540.0,
+        "y": 108.0,
+        "font_size": 12,
+        "align": "end",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_vgrid_0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 596.0,
+        "y1": 104.0,
+        "x2": 596.0,
+        "y2": 234.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.r_xlbl_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8",
+        "style_role": "body",
+        "x": 596.0,
+        "y": 240.0,
+        "font_size": 13,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_vgrid_1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 648.0,
+        "y1": 104.0,
+        "x2": 648.0,
+        "y2": 234.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.r_xlbl_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "9",
+        "style_role": "body",
+        "x": 648.0,
+        "y": 240.0,
+        "font_size": 13,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_vgrid_2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 700.0,
+        "y1": 104.0,
+        "x2": 700.0,
+        "y2": 234.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.r_xlbl_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10",
+        "style_role": "body",
+        "x": 700.0,
+        "y": 240.0,
+        "font_size": 13,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_vgrid_3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 752.0,
+        "y1": 104.0,
+        "x2": 752.0,
+        "y2": 234.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.r_xlbl_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "11",
+        "style_role": "body",
+        "x": 752.0,
+        "y": 240.0,
+        "font_size": 13,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_seg_0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 596.0,
+        "y1": 186.0,
+        "x2": 648.0,
+        "y2": 174.0,
+        "stroke": "#ec4899",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.diagram.r_seg_1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 648.0,
+        "y1": 174.0,
+        "x2": 700.0,
+        "y2": 150.0,
+        "stroke": "#ec4899",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.diagram.r_seg_2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 700.0,
+        "y1": 150.0,
+        "x2": 752.0,
+        "y2": 114.0,
+        "stroke": "#ec4899",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.diagram.r_dot_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 596.0,
+        "cy": 186.0,
+        "r": 3.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_dot_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 648.0,
+        "cy": 174.0,
+        "r": 3.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_dot_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 700.0,
+        "cy": 150.0,
+        "r": 3.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_dot_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 752.0,
+        "cy": 114.0,
+        "r": 3.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.q1_pre",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(1) 가로는 (",
+        "style_role": "body",
+        "x": 116.0,
+        "y": 286.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.g1_option_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "월",
+        "style_role": "body",
+        "x": 196.0,
+        "y": 286.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "월",
+          "group_id": "slot.choice.group_1",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.g1_c",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 218.0,
+        "y": 286.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.g1_option_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "무게",
+        "style_role": "body",
+        "x": 250.0,
+        "y": 286.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "무게",
+          "group_id": "slot.choice.group_1",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.q1_mid",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ")을/를 나타내고, 세로는 (",
+        "style_role": "body",
+        "x": 390.0,
+        "y": 286.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.g2_option_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "월",
+        "style_role": "body",
+        "x": 516.0,
+        "y": 286.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "월",
+          "group_id": "slot.choice.group_2",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.g2_c",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 538.0,
+        "y": 286.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.g2_option_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "무게",
+        "style_role": "body",
+        "x": 570.0,
+        "y": 286.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "무게",
+          "group_id": "slot.choice.group_2",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.q1_suf",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ")을/를 나타냅니다.",
+        "style_role": "body",
+        "x": 686.0,
+        "y": 286.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.q2_pre",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(2) 세로 눈금 한 칸은 (",
+        "style_role": "body",
+        "x": 156.0,
+        "y": 326.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.g3_option_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "body",
+        "x": 278.0,
+        "y": 326.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "1",
+          "group_id": "slot.choice.group_3",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.g3_c",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 298.0,
+        "y": 326.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.g3_option_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10",
+        "style_role": "body",
+        "x": 324.0,
+        "y": 326.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "10",
+          "group_id": "slot.choice.group_3",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.q2_suf",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ") kg을 나타냅니다.",
+        "style_role": "body",
+        "x": 436.0,
+        "y": 326.0,
+        "font_size": 19,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.bg_l_y",
+    "slot.diagram.bg_l_x",
+    "slot.diagram.bg_l_c",
+    "slot.diagram.l_bar_0",
+    "slot.diagram.l_bar_1",
+    "slot.diagram.l_bar_2",
+    "slot.diagram.l_bar_3",
+    "slot.diagram.bg_r_y",
+    "slot.diagram.bg_r_x",
+    "slot.diagram.bg_r_c",
+    "slot.diagram.diag_l",
+    "slot.diagram.l_grid_0",
+    "slot.diagram.l_grid_5",
+    "slot.diagram.l_grid_10",
+    "slot.diagram.l_grid_15",
+    "slot.diagram.l_grid_20",
+    "slot.diagram.diag_r",
+    "slot.diagram.r_grid_0",
+    "slot.diagram.r_grid_5",
+    "slot.diagram.r_grid_10",
+    "slot.diagram.r_grid_15",
+    "slot.diagram.r_grid_20",
+    "slot.diagram.r_vgrid_0",
+    "slot.diagram.r_vgrid_1",
+    "slot.diagram.r_vgrid_2",
+    "slot.diagram.r_vgrid_3",
+    "slot.diagram.r_seg_0",
+    "slot.diagram.r_seg_1",
+    "slot.diagram.r_seg_2",
+    "slot.diagram.r_dot_0",
+    "slot.diagram.r_dot_1",
+    "slot.diagram.r_dot_2",
+    "slot.diagram.r_dot_3",
+    "slot.diagram.t_left",
+    "slot.diagram.l_unit",
+    "slot.diagram.l_wy",
+    "slot.diagram.l_wx",
+    "slot.diagram.l_ylbl_0",
+    "slot.diagram.l_ylbl_5",
+    "slot.diagram.l_ylbl_10",
+    "slot.diagram.l_ylbl_15",
+    "slot.diagram.l_ylbl_20",
+    "slot.diagram.l_xlbl_0",
+    "slot.diagram.l_xlbl_1",
+    "slot.diagram.l_xlbl_2",
+    "slot.diagram.l_xlbl_3",
+    "slot.diagram.t_right",
+    "slot.diagram.r_unit",
+    "slot.diagram.r_wy",
+    "slot.diagram.r_wx",
+    "slot.diagram.r_ylbl_0",
+    "slot.diagram.r_ylbl_5",
+    "slot.diagram.r_ylbl_10",
+    "slot.diagram.r_ylbl_15",
+    "slot.diagram.r_ylbl_20",
+    "slot.diagram.r_xlbl_0",
+    "slot.diagram.r_xlbl_1",
+    "slot.diagram.r_xlbl_2",
+    "slot.diagram.r_xlbl_3",
+    "region.choices",
+    "slot.choice.q1_pre",
+    "slot.choice.g1_option_0",
+    "slot.choice.g1_c",
+    "slot.choice.g1_option_1",
+    "slot.choice.q1_mid",
+    "slot.choice.g2_option_0",
+    "slot.choice.g2_c",
+    "slot.choice.g2_option_1",
+    "slot.choice.q1_suf",
+    "slot.choice.q2_pre",
+    "slot.choice.g3_option_0",
+    "slot.choice.g3_c",
+    "slot.choice.g3_option_1",
+    "slot.choice.q2_suf"
+  ]
+}

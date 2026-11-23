@@ -1,0 +1,563 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007713",
+  "title": "변화를 한눈에 알아보기 쉬운 그래프 선택하기",
+  "canvas": {
+    "width": 886,
+    "height": 350,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.bg_l",
+        "slot.diagram.bg_r",
+        "slot.diagram.l_bar_0",
+        "slot.diagram.l_bar_1",
+        "slot.diagram.l_bar_2",
+        "slot.diagram.l_bar_3",
+        "slot.diagram.r_seg_0",
+        "slot.diagram.r_seg_1",
+        "slot.diagram.r_seg_2",
+        "slot.diagram.r_dot_0",
+        "slot.diagram.r_dot_1",
+        "slot.diagram.r_dot_2",
+        "slot.diagram.r_dot_3",
+        "slot.diagram.t_left",
+        "slot.diagram.t_right",
+        "slot.diagram.l_m_0",
+        "slot.diagram.l_m_1",
+        "slot.diagram.l_m_2",
+        "slot.diagram.l_m_3",
+        "slot.diagram.r_m_0",
+        "slot.diagram.r_m_1",
+        "slot.diagram.r_m_2",
+        "slot.diagram.r_m_3",
+        "slot.diagram.desc"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.p_l",
+        "slot.choice.option_0",
+        "slot.choice.cm",
+        "slot.choice.option_1",
+        "slot.choice.p_r"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "2. 염소의 무게를 매월 1일에 조사하여 나타낸 막대그래프와 꺾은선그래프입니다. 알맞은 그래프를 선택하세요.",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 20.0,
+        "width": 820.0,
+        "height": 52.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 21,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.45,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.t_left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "염소의 무게",
+        "style_role": "body",
+        "x": 236.0,
+        "y": 80.0,
+        "font_size": 15,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.bg_l",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 96.0,
+        "y": 102.0,
+        "width": 280.0,
+        "height": 130.0,
+        "stroke": "#6b7280",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.t_right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "염소의 무게",
+        "style_role": "body",
+        "x": 650.0,
+        "y": 80.0,
+        "font_size": 15,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.bg_r",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 510.0,
+        "y": 102.0,
+        "width": 280.0,
+        "height": 130.0,
+        "stroke": "#6b7280",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.l_bar_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 126.0,
+        "y": 170.0,
+        "width": 20.0,
+        "height": 36.0,
+        "stroke": "#f97316",
+        "stroke_width": 1.2,
+        "fill": "#fed7aa"
+      }
+    },
+    {
+      "id": "slot.diagram.l_m_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8",
+        "style_role": "body",
+        "x": 136.0,
+        "y": 212.0,
+        "font_size": 12,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.l_bar_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 182.0,
+        "y": 161.0,
+        "width": 20.0,
+        "height": 45.0,
+        "stroke": "#f97316",
+        "stroke_width": 1.2,
+        "fill": "#fed7aa"
+      }
+    },
+    {
+      "id": "slot.diagram.l_m_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "9",
+        "style_role": "body",
+        "x": 192.0,
+        "y": 212.0,
+        "font_size": 12,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.l_bar_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 238.0,
+        "y": 143.0,
+        "width": 20.0,
+        "height": 63.0,
+        "stroke": "#f97316",
+        "stroke_width": 1.2,
+        "fill": "#fed7aa"
+      }
+    },
+    {
+      "id": "slot.diagram.l_m_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10",
+        "style_role": "body",
+        "x": 248.0,
+        "y": 212.0,
+        "font_size": 12,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.l_bar_3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 294.0,
+        "y": 116.0,
+        "width": 20.0,
+        "height": 90.0,
+        "stroke": "#f97316",
+        "stroke_width": 1.2,
+        "fill": "#fed7aa"
+      }
+    },
+    {
+      "id": "slot.diagram.l_m_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "11",
+        "style_role": "body",
+        "x": 304.0,
+        "y": 212.0,
+        "font_size": 12,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_m_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8",
+        "style_role": "body",
+        "x": 550.0,
+        "y": 212.0,
+        "font_size": 12,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_m_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "9",
+        "style_role": "body",
+        "x": 606.0,
+        "y": 212.0,
+        "font_size": 12,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_m_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10",
+        "style_role": "body",
+        "x": 662.0,
+        "y": 212.0,
+        "font_size": 12,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_m_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "11",
+        "style_role": "body",
+        "x": 718.0,
+        "y": 212.0,
+        "font_size": 12,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_seg_0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 550.0,
+        "y1": 170.0,
+        "x2": 606.0,
+        "y2": 161.0,
+        "stroke": "#ec4899",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.diagram.r_seg_1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 606.0,
+        "y1": 161.0,
+        "x2": 662.0,
+        "y2": 143.0,
+        "stroke": "#ec4899",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.diagram.r_seg_2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 662.0,
+        "y1": 143.0,
+        "x2": 718.0,
+        "y2": 116.0,
+        "stroke": "#ec4899",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.diagram.r_dot_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 550.0,
+        "cy": 170.0,
+        "r": 3.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_dot_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 606.0,
+        "cy": 161.0,
+        "r": 3.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_dot_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 662.0,
+        "cy": 143.0,
+        "r": 3.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.r_dot_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 718.0,
+        "cy": 116.0,
+        "r": 3.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.desc",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "염소의 무게의 변화를 한눈에 알아보기 쉬운 그래프는",
+        "style_role": "body",
+        "x": 120.0,
+        "y": 252.0,
+        "width": 646.0,
+        "height": 32.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 21,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.p_l",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(",
+        "style_role": "body",
+        "x": 246.0,
+        "y": 296.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "막대그래프",
+        "style_role": "body",
+        "x": 316.0,
+        "y": 296.0,
+        "font_size": 21,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "막대그래프",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.cm",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 382.0,
+        "y": 296.0,
+        "font_size": 21,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "꺾은선그래프",
+        "style_role": "body",
+        "x": 456.0,
+        "y": 296.0,
+        "font_size": 21,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "꺾은선그래프",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.p_r",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ")입니다.",
+        "style_role": "body",
+        "x": 562.0,
+        "y": 296.0,
+        "font_size": 21,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.bg_l",
+    "slot.diagram.bg_r",
+    "slot.diagram.l_bar_0",
+    "slot.diagram.l_bar_1",
+    "slot.diagram.l_bar_2",
+    "slot.diagram.l_bar_3",
+    "slot.diagram.r_seg_0",
+    "slot.diagram.r_seg_1",
+    "slot.diagram.r_seg_2",
+    "slot.diagram.r_dot_0",
+    "slot.diagram.r_dot_1",
+    "slot.diagram.r_dot_2",
+    "slot.diagram.r_dot_3",
+    "slot.diagram.t_left",
+    "slot.diagram.t_right",
+    "slot.diagram.l_m_0",
+    "slot.diagram.l_m_1",
+    "slot.diagram.l_m_2",
+    "slot.diagram.l_m_3",
+    "slot.diagram.r_m_0",
+    "slot.diagram.r_m_1",
+    "slot.diagram.r_m_2",
+    "slot.diagram.r_m_3",
+    "slot.diagram.desc",
+    "region.choices",
+    "slot.choice.p_l",
+    "slot.choice.option_0",
+    "slot.choice.cm",
+    "slot.choice.option_1",
+    "slot.choice.p_r"
+  ]
+}

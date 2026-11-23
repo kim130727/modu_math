@@ -1,0 +1,207 @@
+{
+  "problem_id": "S3_초등_4_008499",
+  "view_box": {
+    "width": 886.0,
+    "height": 352.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 20.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0,
+        "width": 820.0,
+        "height": 44.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 20.0,
+        "data-box-width": 820.0,
+        "data-box-height": 44.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.45,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "25. 덧셈식에서 규칙을 찾아 바르게 설명한 것을 선택하세요."
+    },
+    {
+      "id": "slot.diagram.eq_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 206.0,
+        "y": 76.0,
+        "width": 474.0,
+        "height": 138.0,
+        "fill": "#ffffff",
+        "stroke": "#f87171",
+        "stroke-width": 1.6
+      },
+      "source_ref": "slot.diagram.eq_box",
+      "refs": {
+        "layout_slot_id": "slot.diagram.eq_box"
+      }
+    },
+    {
+      "id": "slot.diagram.card_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 116.0,
+        "y": 228.0,
+        "width": 654.0,
+        "height": 44.0,
+        "fill": "#fce7f3",
+        "stroke": "#f472b6",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.card_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.card_0"
+      }
+    },
+    {
+      "id": "slot.diagram.card_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 116.0,
+        "y": 284.0,
+        "width": 654.0,
+        "height": 44.0,
+        "fill": "#fce7f3",
+        "stroke": "#f472b6",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.diagram.card_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.card_1"
+      }
+    },
+    {
+      "id": "slot.diagram.eq_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 443.0,
+        "y": 88.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0
+      },
+      "source_ref": "slot.diagram.eq_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.eq_0"
+      },
+      "text": "1 + 2 + 1 = 4"
+    },
+    {
+      "id": "slot.diagram.eq_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 443.0,
+        "y": 118.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0
+      },
+      "source_ref": "slot.diagram.eq_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.eq_1"
+      },
+      "text": "1 + 2 + 3 + 2 + 1 = 9"
+    },
+    {
+      "id": "slot.diagram.eq_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 443.0,
+        "y": 148.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0
+      },
+      "source_ref": "slot.diagram.eq_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.eq_2"
+      },
+      "text": "1 + 2 + 3 + 4 + 3 + 2 + 1 = 16"
+    },
+    {
+      "id": "slot.diagram.eq_3.text",
+      "type": "text",
+      "attributes": {
+        "x": 443.0,
+        "y": 178.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0
+      },
+      "source_ref": "slot.diagram.eq_3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.eq_3"
+      },
+      "text": "1 + 2 + 3 + 4 + 5 + 4 + 3 + 2 + 1 = 25"
+    },
+    {
+      "id": "slot.choice.option_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 443.0,
+        "y": 238.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 19.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "덧셈식의 가운데 수가 2씩 커져요.",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "덧셈식의 가운데 수가 2씩 커져요."
+    },
+    {
+      "id": "slot.choice.option_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 443.0,
+        "y": 294.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 19.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "계산 결과는 덧셈식의 가운데 수를 두 번 곱한 것과 같아요.",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "계산 결과는 덧셈식의 가운데 수를 두 번 곱한 것과 같아요."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

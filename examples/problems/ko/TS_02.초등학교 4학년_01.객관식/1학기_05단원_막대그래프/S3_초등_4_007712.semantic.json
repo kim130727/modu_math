@@ -1,0 +1,1010 @@
+{
+  "problem_id": "S3_초등_4_007712",
+  "problem_type": "multiple_choice_chart_comparison",
+  "metadata": {
+    "title": "막대그래프와 꺾은선그래프의 다른 점 알기",
+    "tags": [],
+    "question": "1. 염소의 무게를 매월 1일에 조사하여 나타낸 막대그래프와 꺾은선그래프입니다. 두 그래프의 다른 점을 알아보고 알맞은 말을 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.bg_l",
+      "slot.diagram.bg_r",
+      "slot.diagram.l_bar_0",
+      "slot.diagram.l_bar_1",
+      "slot.diagram.l_bar_2",
+      "slot.diagram.l_bar_3",
+      "slot.diagram.r_seg_0",
+      "slot.diagram.r_seg_1",
+      "slot.diagram.r_seg_2",
+      "slot.diagram.r_dot_0",
+      "slot.diagram.r_dot_1",
+      "slot.diagram.r_dot_2",
+      "slot.diagram.r_dot_3",
+      "slot.diagram.b1",
+      "slot.diagram.boy_head",
+      "slot.diagram.girl_head",
+      "slot.diagram.b2"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "05단원_막대그래프",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.g1_option_0",
+        "slot.choice.g1_option_1",
+        "slot.choice.g2_option_0",
+        "slot.choice.g2_option_1"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "1. 염소의 무게를 매월 1일에 조사하여 나타낸 막대그래프와 꺾은선그래프입니다. 두 그래프의 다른 점을 알아보고 알맞은 말을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.g1_c",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g1_c"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g1_l",
+        "type": "text",
+        "properties": {
+          "text": "("
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g1_l"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g1_option_0",
+        "type": "text",
+        "properties": {
+          "text": "막대로"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g1_option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g1_option_1",
+        "type": "text",
+        "properties": {
+          "text": "선으로"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g1_option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g1_r",
+        "type": "text",
+        "properties": {
+          "text": ")"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g1_r"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g2_c",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g2_c"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g2_l",
+        "type": "text",
+        "properties": {
+          "text": "("
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g2_l"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g2_option_0",
+        "type": "text",
+        "properties": {
+          "text": "막대로"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g2_option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g2_option_1",
+        "type": "text",
+        "properties": {
+          "text": "선으로"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g2_option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.g2_r",
+        "type": "text",
+        "properties": {
+          "text": ")"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.g2_r"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 86,
+          "y": 252,
+          "width": 250,
+          "height": 94,
+          "stroke": "#374151",
+          "stroke_width": 1.4,
+          "rx": 22,
+          "ry": 22,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b1_t1",
+        "type": "text",
+        "properties": {
+          "text": "막대그래프는"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b1_t1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b1_t3",
+        "type": "text",
+        "properties": {
+          "text": "나타냈어."
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b1_t3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 550,
+          "y": 252,
+          "width": 260,
+          "height": 94,
+          "stroke": "#374151",
+          "stroke_width": 1.4,
+          "rx": 22,
+          "ry": 22,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b2_t1",
+        "type": "text",
+        "properties": {
+          "text": "꺾은선그래프는 점들을"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b2_t1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.b2_t3",
+        "type": "text",
+        "properties": {
+          "text": "이어서 나타냈어."
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.b2_t3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.bg_l",
+        "type": "rect_slot",
+        "properties": {
+          "x": 96,
+          "y": 102,
+          "width": 280,
+          "height": 130,
+          "stroke": "#6b7280",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.bg_l"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.bg_r",
+        "type": "rect_slot",
+        "properties": {
+          "x": 510,
+          "y": 102,
+          "width": 280,
+          "height": 130,
+          "stroke": "#6b7280",
+          "stroke_width": 1,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.bg_r"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.boy_head",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 378,
+          "cy": 298,
+          "r": 24,
+          "stroke": "#78350f",
+          "stroke_width": 1.5,
+          "fill": "#fde68a",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.boy_head"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.girl_head",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 508,
+          "cy": 298,
+          "r": 24,
+          "stroke": "#78350f",
+          "stroke_width": 1.5,
+          "fill": "#fde68a",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.girl_head"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l_bar_0",
+        "type": "rect_slot",
+        "properties": {
+          "x": 126,
+          "y": 170.0,
+          "width": 20,
+          "height": 36.0,
+          "stroke": "#f97316",
+          "stroke_width": 1.2,
+          "rx": null,
+          "ry": null,
+          "fill": "#fed7aa",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l_bar_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l_bar_1",
+        "type": "rect_slot",
+        "properties": {
+          "x": 182,
+          "y": 161.0,
+          "width": 20,
+          "height": 45.0,
+          "stroke": "#f97316",
+          "stroke_width": 1.2,
+          "rx": null,
+          "ry": null,
+          "fill": "#fed7aa",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l_bar_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l_bar_2",
+        "type": "rect_slot",
+        "properties": {
+          "x": 238,
+          "y": 143.0,
+          "width": 20,
+          "height": 63.0,
+          "stroke": "#f97316",
+          "stroke_width": 1.2,
+          "rx": null,
+          "ry": null,
+          "fill": "#fed7aa",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l_bar_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l_bar_3",
+        "type": "rect_slot",
+        "properties": {
+          "x": 294,
+          "y": 116.0,
+          "width": 20,
+          "height": 90.0,
+          "stroke": "#f97316",
+          "stroke_width": 1.2,
+          "rx": null,
+          "ry": null,
+          "fill": "#fed7aa",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l_bar_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l_m_0",
+        "type": "text",
+        "properties": {
+          "text": "8"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l_m_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l_m_1",
+        "type": "text",
+        "properties": {
+          "text": "9"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l_m_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l_m_2",
+        "type": "text",
+        "properties": {
+          "text": "10"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l_m_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.l_m_3",
+        "type": "text",
+        "properties": {
+          "text": "11"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.l_m_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r_dot_0",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 550,
+          "cy": 170.0,
+          "r": 3,
+          "stroke": "#111827",
+          "stroke_width": 1,
+          "fill": "#111827",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r_dot_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r_dot_1",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 606,
+          "cy": 161.0,
+          "r": 3,
+          "stroke": "#111827",
+          "stroke_width": 1,
+          "fill": "#111827",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r_dot_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r_dot_2",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 662,
+          "cy": 143.0,
+          "r": 3,
+          "stroke": "#111827",
+          "stroke_width": 1,
+          "fill": "#111827",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r_dot_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r_dot_3",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 718,
+          "cy": 116.0,
+          "r": 3,
+          "stroke": "#111827",
+          "stroke_width": 1,
+          "fill": "#111827",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r_dot_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r_m_0",
+        "type": "text",
+        "properties": {
+          "text": "8"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r_m_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r_m_1",
+        "type": "text",
+        "properties": {
+          "text": "9"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r_m_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r_m_2",
+        "type": "text",
+        "properties": {
+          "text": "10"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r_m_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r_m_3",
+        "type": "text",
+        "properties": {
+          "text": "11"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r_m_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r_seg_0",
+        "type": "line_slot",
+        "properties": {
+          "x1": 550,
+          "y1": 170.0,
+          "x2": 606,
+          "y2": 161.0,
+          "stroke": "#ec4899",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r_seg_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r_seg_1",
+        "type": "line_slot",
+        "properties": {
+          "x1": 606,
+          "y1": 161.0,
+          "x2": 662,
+          "y2": 143.0,
+          "stroke": "#ec4899",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r_seg_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.r_seg_2",
+        "type": "line_slot",
+        "properties": {
+          "x1": 662,
+          "y1": 143.0,
+          "x2": 718,
+          "y2": 116.0,
+          "stroke": "#ec4899",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.r_seg_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.t_left",
+        "type": "text",
+        "properties": {
+          "text": "염소의 무게"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.t_left"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.t_right",
+        "type": "text",
+        "properties": {
+          "text": "염소의 무게"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.t_right"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "1. 염소의 무게를 매월 1일에 조사하여 나타낸 막대그래프와 꺾은선그래프입니다. 두 그래프의 다른 점을 알아보고 알맞은 말을 선택하세요.",
+          "width": 820,
+          "height": 52
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": [
+      "막대로",
+      "선으로"
+    ],
+    "unit": "",
+    "values": [
+      "막대로",
+      "선으로"
+    ],
+    "choices": [
+      "막대로",
+      "선으로"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.g1_option_0",
+        "value": "막대로",
+        "diagnostics": [
+          {
+            "id": "diag.swapped_chart_representation",
+            "condition": "answer_equals_line_first",
+            "concept": "막대그래프와 꺾은선그래프의 차이",
+            "reason": "막대그래프와 꺾은선그래프의 표현 방식을 반대로 선택함",
+            "feedback": "막대그래프는 수량을 막대로 나타내고, 꺾은선그래프는 점들을 선으로 이어서 나타냅니다."
+          }
+        ]
+      },
+      {
+        "slot_id": "slot.choice.g2_option_1",
+        "value": "선으로"
+      }
+    ]
+  },
+  "entities": {
+    "bar_chart": {
+      "label": "막대그래프",
+      "representation": "막대로"
+    },
+    "line_chart": {
+      "label": "꺾은선그래프",
+      "representation": "선으로"
+    }
+  },
+  "relations": [
+    {
+      "type": "chart_difference",
+      "bar_chart": "막대로",
+      "line_chart": "선으로"
+    }
+  ]
+}

@@ -1,0 +1,326 @@
+{
+  "problem_id": "S3_초등_4_008500",
+  "problem_type": "multiple_choice_equation_pattern",
+  "metadata": {
+    "title": "11을 곱하는 곱셈식의 자릿수 규칙 찾기",
+    "tags": [],
+    "question": "26. 곱셈식에서 규칙을 찾아 알맞은 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.eq_box"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "06단원_규칙 찾기",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.option_0",
+        "slot.choice.option_1"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "26. 곱셈식에서 규칙을 찾아 알맞은 것을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.cm",
+        "type": "text",
+        "properties": {
+          "text": ","
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.cm"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_0",
+        "type": "text",
+        "properties": {
+          "text": "같은"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "text",
+        "properties": {
+          "text": "다른"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.pre",
+        "type": "text",
+        "properties": {
+          "text": "백의 자리 수와 일의 자리 수가 ("
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.pre"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.suf",
+        "type": "text",
+        "properties": {
+          "text": ") 세 자리 수가 나옵니다."
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.suf"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.desc",
+        "type": "text",
+        "properties": {
+          "text": "11, 22, 33, 44에 각각 11을 곱하면"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.desc"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.eq_0",
+        "type": "text",
+        "properties": {
+          "text": "11 × 11 = 121"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.eq_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.eq_1",
+        "type": "text",
+        "properties": {
+          "text": "22 × 11 = 242"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.eq_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.eq_2",
+        "type": "text",
+        "properties": {
+          "text": "33 × 11 = 363"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.eq_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.eq_3",
+        "type": "text",
+        "properties": {
+          "text": "44 × 11 = 484"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.eq_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.eq_box",
+        "type": "rect_slot",
+        "properties": {
+          "x": 293,
+          "y": 76,
+          "width": 300,
+          "height": 138,
+          "stroke": "#8b5cf6",
+          "stroke_width": 1.6,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.eq_box"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "26. 곱셈식에서 규칙을 찾아 알맞은 것을 선택하세요.",
+          "width": 820,
+          "height": 44
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "같은",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "같은"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "같은",
+        "value": "같은"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "다른",
+        "value": "다른"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "같은",
+        "diagnostics": [
+          {
+            "id": "diag.misread_digits",
+            "condition": "answer_equals_different",
+            "concept": "곱셈식의 규칙",
+            "reason": "121, 242, 363, 484의 백의 자리와 일의 자리 숫자가 같음을 놓침",
+            "feedback": "121(1, 1), 242(2, 2), 363(3, 3), 484(4, 4)처럼 백의 자리 수와 일의 자리 수가 같은 세 자리 수가 나옵니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "eq_0": {
+      "label": "11 × 11",
+      "result": 121
+    },
+    "eq_1": {
+      "label": "22 × 11",
+      "result": 242
+    },
+    "eq_2": {
+      "label": "33 × 11",
+      "result": 363
+    },
+    "eq_3": {
+      "label": "44 × 11",
+      "result": 484
+    }
+  },
+  "relations": [
+    {
+      "type": "digit_symmetry",
+      "hundreds_equals_ones": true
+    }
+  ]
+}

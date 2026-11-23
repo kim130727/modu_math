@@ -1,0 +1,82 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007715",
+  "problem_type": "multiple_choice_line_chart_maximum",
+  "given": [
+    {
+      "ref": "t_14",
+      "value": 16,
+      "unit": "℃"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_3",
+    "label": "온도가 가장 높은 시각",
+    "unit": ""
+  },
+  "method": "maximum_point_reading",
+  "steps": [
+    {
+      "id": "find_peak",
+      "expr": "오후 2시 (16℃)",
+      "explanation": "그래프에서 점이 가장 높게 찍힌 때는 오후 2시입니다.",
+      "value": "오후 2시"
+    }
+  ],
+  "answer": {
+    "value": "오후 2시",
+    "answer_index": 3,
+    "unit": "",
+    "values": [
+      "오후 2시"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "오전 11시",
+        "value": "오전 11시"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "낮 12시",
+        "value": "낮 12시"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "오후 1시",
+        "value": "오후 1시"
+      },
+      {
+        "id": "slot.choice.option_3",
+        "slot_id": "slot.choice.option_3",
+        "text": "오후 2시",
+        "value": "오후 2시"
+      },
+      {
+        "id": "slot.choice.option_4",
+        "slot_id": "slot.choice.option_4",
+        "text": "오후 3시",
+        "value": "오후 3시"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_3",
+        "value": "오후 2시",
+        "diagnostics": [
+          {
+            "id": "diag.chose_1pm",
+            "condition": "answer_equals_1pm",
+            "concept": "꺾은선그래프 읽기",
+            "reason": "15℃ 눈금선 위의 오후 1시를 최댓값으로 오인함",
+            "feedback": "그래프에서 점이 가장 높게 찍힌 시각을 찾으면 오후 2시(16℃)입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

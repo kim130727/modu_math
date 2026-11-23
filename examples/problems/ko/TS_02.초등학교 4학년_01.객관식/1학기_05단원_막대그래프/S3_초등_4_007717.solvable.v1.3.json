@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007717",
+  "problem_type": "multiple_choice_wavy_break_chart",
+  "given": [
+    {
+      "ref": "chart_ga",
+      "value": "물결선 없음"
+    },
+    {
+      "ref": "chart_na",
+      "value": "물결선 사용"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "변화하는 모습의 가독성",
+    "unit": ""
+  },
+  "method": "wavy_break_interpretation",
+  "steps": [
+    {
+      "id": "compare_clarity",
+      "expr": "나타납니다",
+      "explanation": "물결선을 사용하면 세로 눈금 한 칸의 크기를 작게 하여 변화하는 모습을 뚜렷하게 볼 수 있습니다.",
+      "value": "나타납니다"
+    }
+  ],
+  "answer": {
+    "value": "나타납니다",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "나타납니다"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "나타납니다",
+        "value": "나타납니다"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "나타나지 않습니다",
+        "value": "나타나지 않습니다"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "나타납니다",
+        "diagnostics": [
+          {
+            "id": "diag.misunderstood_wavy_break",
+            "condition": "answer_equals_not_clear",
+            "concept": "물결선의 쓰임",
+            "reason": "물결선으로 줄여 그리면 변화가 더 잘 보인다는 점을 반대로 이해함",
+            "feedback": "물결선을 사용한 꺾은선그래프는 세로 눈금 한 칸의 크기를 작게 하여 자료의 변화하는 모습을 더 뚜렷하게 볼 수 있습니다."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_008502",
+  "problem_type": "multiple_choice_pattern_table",
+  "given": [
+    {
+      "ref": "operation",
+      "value": "덧셈"
+    },
+    {
+      "ref": "place",
+      "value": "일"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.g2_option_1",
+    "label": "연산과 자릿수 규칙",
+    "unit": ""
+  },
+  "method": "pattern_observation",
+  "steps": [
+    {
+      "id": "find_rule",
+      "expr": "1001 + 11 = 1012 -> 2",
+      "explanation": "두 수의 덧셈 결과에서 일의 자리 숫자만 쓴 것입니다.",
+      "value": [
+        "덧셈",
+        "일"
+      ]
+    }
+  ],
+  "answer": {
+    "value": [
+      "덧셈",
+      "일"
+    ],
+    "unit": "",
+    "values": [
+      "덧셈",
+      "일"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.g1_option_0",
+        "slot_id": "slot.choice.g1_option_0",
+        "text": "덧셈",
+        "value": "덧셈"
+      },
+      {
+        "id": "slot.choice.g1_option_1",
+        "slot_id": "slot.choice.g1_option_1",
+        "text": "뺄셈",
+        "value": "뺄셈"
+      },
+      {
+        "id": "slot.choice.g2_option_0",
+        "slot_id": "slot.choice.g2_option_0",
+        "text": "십",
+        "value": "십"
+      },
+      {
+        "id": "slot.choice.g2_option_1",
+        "slot_id": "slot.choice.g2_option_1",
+        "text": "일",
+        "value": "일"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.g1_option_0",
+        "value": "덧셈",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_operation",
+            "condition": "answer_equals_subtraction",
+            "concept": "수 배열의 규칙",
+            "reason": "덧셈을 뺄셈으로 오인함",
+            "feedback": "1001 + 11 = 1012, 1002 + 11 = 1013이므로 덧셈의 결과입니다."
+          }
+        ]
+      },
+      {
+        "slot_id": "slot.choice.g2_option_1",
+        "value": "일",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_digit",
+            "condition": "answer_equals_ten",
+            "concept": "수 배열의 규칙",
+            "reason": "일의 자리 숫자를 십의 자리 숫자로 혼동함",
+            "feedback": "1001 + 11 = 1012에서 표에 적힌 수 2는 일의 자리 숫자입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

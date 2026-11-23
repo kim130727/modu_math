@@ -1,0 +1,80 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_008498",
+  "problem_type": "multiple_choice_equation_pattern",
+  "given": [
+    {
+      "ref": "eq_0",
+      "value": "200 + 108 = 308"
+    },
+    {
+      "ref": "eq_1",
+      "value": "210 + 118 = 328"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "㉠, ㉡에 알맞은 것",
+    "unit": ""
+  },
+  "method": "equation_pattern_analysis",
+  "steps": [
+    {
+      "id": "find_pattern",
+      "expr": "십의 자리 +1 => 합 +20",
+      "explanation": "십의 자리 수가 각각 1씩 커지면 두 수의 합은 20씩 커집니다.",
+      "value": "②"
+    }
+  ],
+  "answer": {
+    "value": "②",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "②"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "① 일, 20",
+        "value": "① 일, 20"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "② 십, 20",
+        "value": "② 십, 20"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "③ 백, 100",
+        "value": "③ 백, 100"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_place_ones",
+            "condition": "answer_equals_1",
+            "concept": "계산식의 규칙",
+            "reason": "변하는 자리를 일의 자리로 오인함",
+            "feedback": "200 → 210 → 220 → 230, 108 → 118 → 128 → 138에서 변하는 자리는 십의 자리입니다."
+          },
+          {
+            "id": "diag.wrong_place_hundreds",
+            "condition": "answer_equals_3",
+            "concept": "계산식의 규칙",
+            "reason": "변하는 자리와 합의 증가량을 백, 100으로 오인함",
+            "feedback": "십의 자리 수가 각각 1씩 커지므로 두 수의 합은 20씩 커집니다. 따라서 ②입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

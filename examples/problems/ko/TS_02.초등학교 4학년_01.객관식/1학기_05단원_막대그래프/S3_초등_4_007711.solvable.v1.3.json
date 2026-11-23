@@ -1,0 +1,85 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007711",
+  "problem_type": "multiple_choice_chart_comparison",
+  "given": [
+    {
+      "ref": "horizontal_axis",
+      "value": "월"
+    },
+    {
+      "ref": "vertical_axis",
+      "value": "무게"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.g3_option_0",
+    "label": "가로, 세로, 눈금 한 칸",
+    "unit": ""
+  },
+  "method": "chart_structure_reading",
+  "steps": [
+    {
+      "id": "read_axes_and_scale",
+      "expr": "(1) 월, 무게 (2) 1",
+      "explanation": "가로는 월, 세로는 무게를 나타내며 세로 눈금 한 칸은 1 kg입니다.",
+      "value": [
+        "월",
+        "무게",
+        "1"
+      ]
+    }
+  ],
+  "answer": {
+    "value": [
+      "월",
+      "무게",
+      "1"
+    ],
+    "unit": "",
+    "values": [
+      "월",
+      "무게",
+      "1"
+    ],
+    "choices": [
+      "월",
+      "무게",
+      "1",
+      "10"
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.g1_option_0",
+        "value": "월",
+        "diagnostics": [
+          {
+            "id": "diag.swapped_horizontal_axis",
+            "condition": "answer_equals_weight",
+            "concept": "그래프의 가로와 세로",
+            "reason": "가로축(월)과 세로축(무게)을 반대로 선택함",
+            "feedback": "그래프의 가로에는 조사한 '월'(8, 9, 10, 11)이, 세로에는 '무게'(kg)가 나타나 있습니다."
+          }
+        ]
+      },
+      {
+        "slot_id": "slot.choice.g2_option_1",
+        "value": "무게"
+      },
+      {
+        "slot_id": "slot.choice.g3_option_0",
+        "value": "1",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_unit_scale",
+            "condition": "answer_equals_10",
+            "concept": "세로 눈금 한 칸의 크기",
+            "reason": "5칸이 5 kg임을 1칸이 10 kg인 것으로 오인함",
+            "feedback": "세로 눈금 5칸이 5 kg을 나타내므로, 세로 눈금 한 칸은 1 kg을 나타냅니다."
+          }
+        ]
+      }
+    ]
+  }
+}

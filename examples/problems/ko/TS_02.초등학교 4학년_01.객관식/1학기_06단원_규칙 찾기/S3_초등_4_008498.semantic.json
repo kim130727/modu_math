@@ -1,0 +1,307 @@
+{
+  "problem_id": "S3_초등_4_008498",
+  "problem_type": "multiple_choice_equation_pattern",
+  "metadata": {
+    "title": "덧셈식 배열에서 자릿수 변화 규칙 찾기",
+    "tags": [],
+    "question": "24. 덧셈식에서 규칙을 찾아 ㉠, ㉡에 알맞은 것을 차례로 쓴 것은 어느 것인지 고르세요.",
+    "required_layout_ids": [
+      "slot.diagram.eq_box"
+    ],
+    "extraction_confidence": 1.0,
+    "school": "초등학교",
+    "grade": 4,
+    "semester": "1학기",
+    "chapter": "06단원_규칙 찾기",
+    "difficulty": "하",
+    "presentation_sources": {
+      "question": [
+        "slot.stem.question"
+      ],
+      "instruction": [],
+      "choice": [
+        "slot.choice.option_0",
+        "slot.choice.option_1",
+        "slot.choice.option_2"
+      ],
+      "answer_prompt": []
+    },
+    "presentation_prompt": "24. 덧셈식에서 규칙을 찾아 ㉠, ㉡에 알맞은 것을 차례로 쓴 것은 어느 것인지 고르세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.choice.option_0",
+        "type": "text",
+        "properties": {
+          "text": "① 일, 20"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_1",
+        "type": "text",
+        "properties": {
+          "text": "② 십, 20"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice.option_2",
+        "type": "text",
+        "properties": {
+          "text": "③ 백, 100"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice.option_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.choices"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.desc",
+        "type": "text",
+        "properties": {
+          "text": "㉠의 자리 수가 각각 1씩 커지면 두 수의 합은 ㉡씩 커집니다.",
+          "width": 726,
+          "height": 34
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.desc"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.eq_0",
+        "type": "text",
+        "properties": {
+          "text": "200 + 108 = 308"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.eq_0"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.eq_1",
+        "type": "text",
+        "properties": {
+          "text": "210 + 118 = 328"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.eq_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.eq_2",
+        "type": "text",
+        "properties": {
+          "text": "220 + 128 = 348"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.eq_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.eq_3",
+        "type": "text",
+        "properties": {
+          "text": "230 + 138 = 368"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.eq_3"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.diagram.eq_box",
+        "type": "rect_slot",
+        "properties": {
+          "x": 293,
+          "y": 82,
+          "width": 300,
+          "height": 138,
+          "stroke": "#84cc16",
+          "stroke_width": 1.6,
+          "rx": null,
+          "ry": null,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.diagram.eq_box"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.stem.question",
+        "type": "question",
+        "properties": {
+          "text": "24. 덧셈식에서 규칙을 찾아 ㉠, ㉡에 알맞은 것을 차례로 쓴 것은 어느 것인지 고르세요.",
+          "width": 820,
+          "height": 52
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.stem.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": "②",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "②"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "① 일, 20",
+        "value": "① 일, 20"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "② 십, 20",
+        "value": "② 십, 20"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "③ 백, 100",
+        "value": "③ 백, 100"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "②",
+        "diagnostics": [
+          {
+            "id": "diag.wrong_place_ones",
+            "condition": "answer_equals_1",
+            "concept": "계산식의 규칙",
+            "reason": "변하는 자리를 일의 자리로 오인함",
+            "feedback": "200 → 210 → 220 → 230, 108 → 118 → 128 → 138에서 변하는 자리는 십의 자리입니다."
+          },
+          {
+            "id": "diag.wrong_place_hundreds",
+            "condition": "answer_equals_3",
+            "concept": "계산식의 규칙",
+            "reason": "변하는 자리와 합의 증가량을 백, 100으로 오인함",
+            "feedback": "십의 자리 수가 각각 1씩 커지므로 두 수의 합은 20씩 커집니다. 따라서 ②입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "entities": {
+    "eq_0": {
+      "label": "첫째 식",
+      "expr": "200 + 108 = 308"
+    },
+    "eq_1": {
+      "label": "둘째 식",
+      "expr": "210 + 118 = 328"
+    },
+    "eq_2": {
+      "label": "셋째 식",
+      "expr": "220 + 128 = 348"
+    },
+    "eq_3": {
+      "label": "넷째 식",
+      "expr": "230 + 138 = 368"
+    }
+  },
+  "relations": [
+    {
+      "type": "equation_pattern",
+      "changing_place": "십",
+      "sum_step": 20
+    }
+  ]
+}

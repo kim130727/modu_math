@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007713",
+  "problem_type": "multiple_choice_chart_purpose",
+  "given": [
+    {
+      "ref": "bar_chart",
+      "value": "막대그래프"
+    },
+    {
+      "ref": "line_chart",
+      "value": "꺾은선그래프"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "변화를 알아보기 쉬운 그래프",
+    "unit": ""
+  },
+  "method": "chart_purpose_selection",
+  "steps": [
+    {
+      "id": "select_line_chart",
+      "expr": "꺾은선그래프",
+      "explanation": "꺾은선그래프는 선의 기울어진 정도를 보고 무게의 변화를 한눈에 알아보기 쉽습니다.",
+      "value": "꺾은선그래프"
+    }
+  ],
+  "answer": {
+    "value": "꺾은선그래프",
+    "answer_index": 1,
+    "unit": "",
+    "values": [
+      "꺾은선그래프"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "막대그래프",
+        "value": "막대그래프"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "꺾은선그래프",
+        "value": "꺾은선그래프"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "꺾은선그래프",
+        "diagnostics": [
+          {
+            "id": "diag.chose_bar_chart",
+            "condition": "answer_equals_bar_chart",
+            "concept": "꺾은선그래프의 특징",
+            "reason": "변화를 알아보기 쉬운 그래프로 막대그래프를 선택함",
+            "feedback": "막대그래프는 수량의 크기를 비교하기 쉽고, 꺾은선그래프는 선의 기울어진 정도를 통해 시간에 따른 변화 모습을 한눈에 알아보기 쉽습니다."
+          }
+        ]
+      }
+    ]
+  }
+}

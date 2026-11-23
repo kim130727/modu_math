@@ -1,0 +1,82 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_007716",
+  "problem_type": "multiple_choice_line_chart_interpolation",
+  "given": [
+    {
+      "ref": "t_14",
+      "value": 16,
+      "unit": "℃"
+    },
+    {
+      "ref": "t_15",
+      "value": 14,
+      "unit": "℃"
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_1",
+    "label": "오후 2시 30분의 온도",
+    "unit": "℃"
+  },
+  "method": "linear_midpoint_interpolation",
+  "steps": [
+    {
+      "id": "interpolate_midpoint",
+      "expr": "(16 + 14) / 2 = 15",
+      "explanation": "오후 2시의 온도는 16 ℃, 오후 3시의 온도는 14 ℃이므로 중간인 15 ℃입니다.",
+      "value": "15 ℃"
+    }
+  ],
+  "answer": {
+    "value": "15 ℃",
+    "answer_index": 1,
+    "unit": "℃",
+    "values": [
+      "15 ℃"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "14 ℃",
+        "value": "14 ℃"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "15 ℃",
+        "value": "15 ℃"
+      },
+      {
+        "id": "slot.choice.option_2",
+        "slot_id": "slot.choice.option_2",
+        "text": "16 ℃",
+        "value": "16 ℃"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_1",
+        "value": "15 ℃",
+        "diagnostics": [
+          {
+            "id": "diag.chose_3pm_value",
+            "condition": "answer_equals_14",
+            "concept": "꺾은선그래프의 중간값 예상",
+            "reason": "오후 3시의 온도(14 ℃)를 그대로 선택함",
+            "feedback": "오후 2시의 온도는 16 ℃, 오후 3시의 온도는 14 ℃이므로 오후 2시 30분의 온도는 두 값의 중간인 15 ℃입니다."
+          },
+          {
+            "id": "diag.chose_2pm_value",
+            "condition": "answer_equals_16",
+            "concept": "꺾은선그래프의 중간값 예상",
+            "reason": "오후 2시의 온도(16 ℃)를 그대로 선택함",
+            "feedback": "오후 2시와 오후 3시 사이의 가운데 점의 값을 읽으면 15 ℃입니다."
+          }
+        ]
+      }
+    ]
+  }
+}

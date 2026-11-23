@@ -1,0 +1,225 @@
+{
+  "problem_id": "S3_초등_4_008498",
+  "view_box": {
+    "width": 886.0,
+    "height": 336.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.stem.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 32.0,
+        "y": 20.0,
+        "fill": "#202124",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0,
+        "width": 820.0,
+        "height": 52.0,
+        "max_width": 820.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 32.0,
+        "data-box-y": 20.0,
+        "data-box-width": 820.0,
+        "data-box-height": 52.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.45,
+        "data-semantic-role": "question",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.stem.question",
+      "refs": {
+        "layout_slot_id": "slot.stem.question"
+      },
+      "text": "24. 덧셈식에서 규칙을 찾아 ㉠, ㉡에 알맞은 것을 차례로 쓴 것은 어느 것인지 고르세요."
+    },
+    {
+      "id": "slot.diagram.eq_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 293.0,
+        "y": 82.0,
+        "width": 300.0,
+        "height": 138.0,
+        "fill": "#ffffff",
+        "stroke": "#84cc16",
+        "stroke-width": 1.6
+      },
+      "source_ref": "slot.diagram.eq_box",
+      "refs": {
+        "layout_slot_id": "slot.diagram.eq_box"
+      }
+    },
+    {
+      "id": "slot.diagram.eq_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 443.0,
+        "y": 94.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.diagram.eq_0",
+      "refs": {
+        "layout_slot_id": "slot.diagram.eq_0"
+      },
+      "text": "200 + 108 = 308"
+    },
+    {
+      "id": "slot.diagram.eq_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 443.0,
+        "y": 124.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.diagram.eq_1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.eq_1"
+      },
+      "text": "210 + 118 = 328"
+    },
+    {
+      "id": "slot.diagram.eq_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 443.0,
+        "y": 154.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.diagram.eq_2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.eq_2"
+      },
+      "text": "220 + 128 = 348"
+    },
+    {
+      "id": "slot.diagram.eq_3.text",
+      "type": "text",
+      "attributes": {
+        "x": 443.0,
+        "y": 184.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 22.0
+      },
+      "source_ref": "slot.diagram.eq_3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.eq_3"
+      },
+      "text": "230 + 138 = 368"
+    },
+    {
+      "id": "slot.diagram.desc.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 80.0,
+        "y": 234.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 20.0,
+        "width": 726.0,
+        "height": 34.0,
+        "max_width": 726.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 80.0,
+        "data-box-y": 234.0,
+        "data-box-width": 726.0,
+        "data-box-height": 34.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.diagram.desc",
+      "refs": {
+        "layout_slot_id": "slot.diagram.desc"
+      },
+      "text": "㉠의 자리 수가 각각 1씩 커지면 두 수의 합은 ㉡씩 커집니다."
+    },
+    {
+      "id": "slot.choice.option_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 186.0,
+        "y": 282.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_0",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_0"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 0,
+        "value": "①",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "① 일, 20"
+    },
+    {
+      "id": "slot.choice.option_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 443.0,
+        "y": 282.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_1",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_1"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 1,
+        "value": "②",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "② 십, 20"
+    },
+    {
+      "id": "slot.choice.option_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 700.0,
+        "y": 282.0,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", sans-serif",
+        "font-size": 21.0,
+        "data-semantic-role": "choice",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "slot.choice.option_2",
+      "refs": {
+        "layout_slot_id": "slot.choice.option_2"
+      },
+      "interaction": {
+        "type": "choice",
+        "role": "answer",
+        "choice_index": 2,
+        "value": "③",
+        "group_id": "slot.choice.group",
+        "include_in_submission": true
+      },
+      "text": "③ 백, 100"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

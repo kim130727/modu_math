@@ -1,0 +1,75 @@
+{
+  "schema": "modu.solvable.v1.3",
+  "problem_id": "S3_초등_4_008500",
+  "problem_type": "multiple_choice_equation_pattern",
+  "given": [
+    {
+      "ref": "eq_0",
+      "value": 121
+    },
+    {
+      "ref": "eq_1",
+      "value": 242
+    },
+    {
+      "ref": "eq_2",
+      "value": 363
+    },
+    {
+      "ref": "eq_3",
+      "value": 484
+    }
+  ],
+  "target": {
+    "ref": "slot.choice.option_0",
+    "label": "백의 자리와 일의 자리의 관계",
+    "unit": ""
+  },
+  "method": "digit_pattern_observation",
+  "steps": [
+    {
+      "id": "compare_digits",
+      "expr": "121, 242, 363, 484",
+      "explanation": "백의 자리 수와 일의 자리 수가 같은 세 자리 수가 나옵니다.",
+      "value": "같은"
+    }
+  ],
+  "answer": {
+    "value": "같은",
+    "answer_index": 0,
+    "unit": "",
+    "values": [
+      "같은"
+    ],
+    "choices": [
+      {
+        "id": "slot.choice.option_0",
+        "slot_id": "slot.choice.option_0",
+        "text": "같은",
+        "value": "같은"
+      },
+      {
+        "id": "slot.choice.option_1",
+        "slot_id": "slot.choice.option_1",
+        "text": "다른",
+        "value": "다른"
+      }
+    ],
+    "blanks": [],
+    "answer_key": [
+      {
+        "slot_id": "slot.choice.option_0",
+        "value": "같은",
+        "diagnostics": [
+          {
+            "id": "diag.misread_digits",
+            "condition": "answer_equals_different",
+            "concept": "곱셈식의 규칙",
+            "reason": "121, 242, 363, 484의 백의 자리와 일의 자리 숫자가 같음을 놓침",
+            "feedback": "121(1, 1), 242(2, 2), 363(3, 3), 484(4, 4)처럼 백의 자리 수와 일의 자리 수가 같은 세 자리 수가 나옵니다."
+          }
+        ]
+      }
+    ]
+  }
+}

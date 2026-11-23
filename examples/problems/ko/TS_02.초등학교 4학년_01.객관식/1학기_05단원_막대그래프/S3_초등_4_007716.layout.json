@@ -1,0 +1,790 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_4_007716",
+  "title": "오후 2시 30분의 교실 온도 예상하기",
+  "canvas": {
+    "width": 886,
+    "height": 384,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.frame",
+        "slot.diagram.ybox",
+        "slot.diagram.xbox",
+        "slot.diagram.girl_head",
+        "slot.diagram.bubble",
+        "slot.diagram.diag",
+        "slot.diagram.grid_0",
+        "slot.diagram.grid_5",
+        "slot.diagram.grid_10",
+        "slot.diagram.grid_15",
+        "slot.diagram.vgrid_0",
+        "slot.diagram.vgrid_1",
+        "slot.diagram.vgrid_2",
+        "slot.diagram.vgrid_3",
+        "slot.diagram.vgrid_4",
+        "slot.diagram.seg_0",
+        "slot.diagram.seg_1",
+        "slot.diagram.seg_2",
+        "slot.diagram.seg_3",
+        "slot.diagram.dot_0",
+        "slot.diagram.dot_1",
+        "slot.diagram.dot_2",
+        "slot.diagram.dot_3",
+        "slot.diagram.dot_4",
+        "slot.diagram.title",
+        "slot.diagram.unit",
+        "slot.diagram.ylbl_0",
+        "slot.diagram.ylbl_5",
+        "slot.diagram.ylbl_10",
+        "slot.diagram.ylbl_15",
+        "slot.diagram.xlbl_0",
+        "slot.diagram.xlbl_1",
+        "slot.diagram.xlbl_2",
+        "slot.diagram.xlbl_3",
+        "slot.diagram.xlbl_4",
+        "slot.diagram.bubble_txt"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.p_l",
+        "slot.choice.option_0",
+        "slot.choice.cm0",
+        "slot.choice.option_1",
+        "slot.choice.cm1",
+        "slot.choice.option_2",
+        "slot.choice.p_r"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "5. 교실의 온도를 조사하여 나타낸 꺾은선그래프입니다. 오후 2시 30분에는 교실의 온도가 몇 ℃였을까요?",
+        "style_role": "body",
+        "x": 32.0,
+        "y": 20.0,
+        "width": 820.0,
+        "height": 52.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 21,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.45,
+        "fill": "#202124",
+        "semantic_role": "question",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.diagram.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "교실의 온도",
+        "style_role": "body",
+        "x": 443.0,
+        "y": 78.0,
+        "font_size": 17,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.frame",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 243.0,
+        "y": 102.0,
+        "width": 400.0,
+        "height": 130.0,
+        "stroke": "#6b7280",
+        "stroke_width": 1.2,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.ybox",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 243.0,
+        "y": 102.0,
+        "width": 96.0,
+        "height": 98.0,
+        "stroke": "#6b7280",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.xbox",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 339.0,
+        "y": 200.0,
+        "width": 304.0,
+        "height": 32.0,
+        "stroke": "#6b7280",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.diag",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 243.0,
+        "y1": 232.0,
+        "x2": 339.0,
+        "y2": 200.0,
+        "stroke": "#6b7280",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.diagram.unit",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(℃)",
+        "style_role": "body",
+        "x": 268.0,
+        "y": 108.0,
+        "font_size": 13,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.grid_0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 339.0,
+        "y1": 200.0,
+        "x2": 643.0,
+        "y2": 200.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.ylbl_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "body",
+        "x": 328.0,
+        "y": 194.0,
+        "font_size": 12,
+        "align": "end",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.grid_5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 339.0,
+        "y1": 175.0,
+        "x2": 643.0,
+        "y2": 175.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.ylbl_5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "body",
+        "x": 328.0,
+        "y": 169.0,
+        "font_size": 12,
+        "align": "end",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.grid_10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 339.0,
+        "y1": 150.0,
+        "x2": 643.0,
+        "y2": 150.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.ylbl_10",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10",
+        "style_role": "body",
+        "x": 328.0,
+        "y": 144.0,
+        "font_size": 12,
+        "align": "end",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.grid_15",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 339.0,
+        "y1": 125.0,
+        "x2": 643.0,
+        "y2": 125.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.ylbl_15",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "15",
+        "style_role": "body",
+        "x": 328.0,
+        "y": 119.0,
+        "font_size": 12,
+        "align": "end",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.vgrid_0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 382.0,
+        "y1": 102.0,
+        "x2": 382.0,
+        "y2": 200.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.xlbl_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "11",
+        "style_role": "body",
+        "x": 382.0,
+        "y": 206.0,
+        "font_size": 13,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.vgrid_1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 436.0,
+        "y1": 102.0,
+        "x2": 436.0,
+        "y2": 200.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.xlbl_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "12",
+        "style_role": "body",
+        "x": 436.0,
+        "y": 206.0,
+        "font_size": 13,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.vgrid_2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 490.0,
+        "y1": 102.0,
+        "x2": 490.0,
+        "y2": 200.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.xlbl_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "body",
+        "x": 490.0,
+        "y": 206.0,
+        "font_size": 13,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.vgrid_3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 544.0,
+        "y1": 102.0,
+        "x2": 544.0,
+        "y2": 200.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.xlbl_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "body",
+        "x": 544.0,
+        "y": 206.0,
+        "font_size": 13,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.vgrid_4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 598.0,
+        "y1": 102.0,
+        "x2": 598.0,
+        "y2": 200.0,
+        "stroke": "#9ca3af",
+        "stroke_width": 0.9
+      }
+    },
+    {
+      "id": "slot.diagram.xlbl_4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "body",
+        "x": 598.0,
+        "y": 206.0,
+        "font_size": 13,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.seg_0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 382.0,
+        "y1": 155.0,
+        "x2": 436.0,
+        "y2": 145.0,
+        "stroke": "#ec4899",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.diagram.seg_1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 436.0,
+        "y1": 145.0,
+        "x2": 490.0,
+        "y2": 125.0,
+        "stroke": "#ec4899",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.diagram.seg_2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 490.0,
+        "y1": 125.0,
+        "x2": 544.0,
+        "y2": 120.0,
+        "stroke": "#ec4899",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.diagram.seg_3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 544.0,
+        "y1": 120.0,
+        "x2": 598.0,
+        "y2": 130.0,
+        "stroke": "#ec4899",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.diagram.dot_0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 382.0,
+        "cy": 155.0,
+        "r": 3.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.dot_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 436.0,
+        "cy": 145.0,
+        "r": 3.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.dot_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 490.0,
+        "cy": 125.0,
+        "r": 3.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.dot_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 544.0,
+        "cy": 120.0,
+        "r": 3.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.dot_4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 598.0,
+        "cy": 130.0,
+        "r": 3.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.diagram.girl_head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 200.0,
+        "cy": 284.0,
+        "r": 24.0,
+        "stroke": "#78350f",
+        "stroke_width": 1.5,
+        "fill": "#fde68a"
+      }
+    },
+    {
+      "id": "slot.diagram.bubble",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 250.0,
+        "y": 246.0,
+        "width": 480.0,
+        "height": 76.0,
+        "stroke": "#374151",
+        "stroke_width": 1.4,
+        "rx": 22.0,
+        "ry": 22.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.diagram.bubble_txt",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "오후 2시와 오후 3시의 온도의 값을 이은 선분의\n가운데에 점을 찍고 그 점의 값을 읽어서 예상해 봐.",
+        "style_role": "body",
+        "x": 264.0,
+        "y": 254.0,
+        "width": 452.0,
+        "height": 60.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 17,
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "line_height": 1.4,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.p_l",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(",
+        "style_role": "body",
+        "x": 546.0,
+        "y": 336.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "14 ℃",
+        "style_role": "body",
+        "x": 596.0,
+        "y": 336.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 0,
+          "value": "14 ℃",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.cm0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 636.0,
+        "y": 336.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "15 ℃",
+        "style_role": "body",
+        "x": 676.0,
+        "y": 336.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 1,
+          "value": "15 ℃",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.cm1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "body",
+        "x": 716.0,
+        "y": 336.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.choice.option_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "16 ℃",
+        "style_role": "body",
+        "x": 756.0,
+        "y": 336.0,
+        "font_size": 20,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827",
+        "interaction": {
+          "type": "choice",
+          "role": "answer",
+          "choice_index": 2,
+          "value": "16 ℃",
+          "group_id": "slot.choice.group",
+          "include_in_submission": true
+        },
+        "semantic_role": "choice",
+        "semantic_role_source": "inferred"
+      }
+    },
+    {
+      "id": "slot.choice.p_r",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ")",
+        "style_role": "body",
+        "x": 802.0,
+        "y": 336.0,
+        "font_size": 22,
+        "align": "center",
+        "font_family": "\"Noto Sans KR\", sans-serif",
+        "fill": "#111827"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.stem.question",
+    "region.diagram",
+    "slot.diagram.frame",
+    "slot.diagram.ybox",
+    "slot.diagram.xbox",
+    "slot.diagram.girl_head",
+    "slot.diagram.bubble",
+    "slot.diagram.diag",
+    "slot.diagram.grid_0",
+    "slot.diagram.grid_5",
+    "slot.diagram.grid_10",
+    "slot.diagram.grid_15",
+    "slot.diagram.vgrid_0",
+    "slot.diagram.vgrid_1",
+    "slot.diagram.vgrid_2",
+    "slot.diagram.vgrid_3",
+    "slot.diagram.vgrid_4",
+    "slot.diagram.seg_0",
+    "slot.diagram.seg_1",
+    "slot.diagram.seg_2",
+    "slot.diagram.seg_3",
+    "slot.diagram.dot_0",
+    "slot.diagram.dot_1",
+    "slot.diagram.dot_2",
+    "slot.diagram.dot_3",
+    "slot.diagram.dot_4",
+    "slot.diagram.title",
+    "slot.diagram.unit",
+    "slot.diagram.ylbl_0",
+    "slot.diagram.ylbl_5",
+    "slot.diagram.ylbl_10",
+    "slot.diagram.ylbl_15",
+    "slot.diagram.xlbl_0",
+    "slot.diagram.xlbl_1",
+    "slot.diagram.xlbl_2",
+    "slot.diagram.xlbl_3",
+    "slot.diagram.xlbl_4",
+    "slot.diagram.bubble_txt",
+    "region.choices",
+    "slot.choice.p_l",
+    "slot.choice.option_0",
+    "slot.choice.cm0",
+    "slot.choice.option_1",
+    "slot.choice.cm1",
+    "slot.choice.option_2",
+    "slot.choice.p_r"
+  ]
+}
