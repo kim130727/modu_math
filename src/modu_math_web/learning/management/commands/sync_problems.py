@@ -51,7 +51,6 @@ class Command(BaseCommand):
             help="State of new imports; existing review states are preserved.",
         )
 
-    @transaction.atomic
     def handle(self, *args, **options):
         root = options["root"].resolve()
         if not root.is_dir():
@@ -257,26 +256,28 @@ class Command(BaseCommand):
                 raise CommandError(
                     f"Problem id collision: {problem_id} ({source_path}). Existing source is {previous_publication.source_path}."
                 )
-            problem, was_created = Problem.objects.update_or_create(
-                problem_id=problem_id,
-                language=language,
-                defaults=defaults,
-            )
-            if was_created:
-                ProblemPublication.objects.create(
-                    problem=problem,
-                    status=options["new_status"],
-                    source_path=source_path,
-                    visibility=options["new_visibility"],
+            # Commit each problem before reading/rendering the next one. A
+            # catalog-wide transaction holds row locks for the entire import
+            # and blocks editor builds until their HTTP workers time out.
+            with transaction.atomic():
+                problem, was_created = Problem.objects.update_or_create(
+                    problem_id=problem_id,
+                    language=language,
+                    defaults=defaults,
                 )
+                if was_created:
+                    ProblemPublication.objects.create(
+                        problem=problem,
+                        status=options["new_status"],
+                        source_path=source_path,
+                        visibility=options["new_visibility"],
+                    )
             created += int(was_created)
             updated += int(not was_created)
 
         # Partial imports/renamed sources must not delete learning history.
         # Retire records explicitly through ProblemPublication instead.
 
-        if options["dry_run"]:
-            transaction.set_rollback(True)
         self.stdout.write(
             self.style.SUCCESS(
                 f"Problems synchronized: created={created}, updated={updated}, total={created + updated}"

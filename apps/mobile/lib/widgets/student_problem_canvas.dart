@@ -16,11 +16,17 @@ class StudentProblemCanvas extends StatelessWidget {
   final ValueChanged<dynamic> changed;
   @override
   Widget build(BuildContext context) {
+    final canvasChoices =
+        item.canvasSelect ? item.canvasChoices : const <Map<String, dynamic>>[];
     final renderer = problemVisualRenderer(
       item.problem,
-      keepCanvasChoices: item.canvasSelect,
+      canvasChoiceElementIds: {
+        for (final choice in canvasChoices)
+          for (final id in choice['element_ids'] as List? ?? const []) '$id',
+      },
     );
     final bindings = assignmentMap(item.presentation['canvas_bindings']);
+    final fields = item.fields;
     final bindingCounts = <dynamic, int>{};
     for (final field in bindings.values) {
       bindingCounts[field] = (bindingCounts[field] ?? 0) + 1;
@@ -28,11 +34,16 @@ class StudentProblemCanvas extends StatelessWidget {
     final elements = (renderer['elements'] as List? ?? []).map((raw) {
       final element = assignmentMap(raw);
       final interaction = assignmentMap(element['interaction']);
-      // Older assignment snapshots may still carry a three-character limit.
-      // A single bound box holds a whole answer; split digit cells keep theirs.
       final field = bindings['${element['id']}'];
+      final hasIntegerLimit = field is int &&
+          field >= 0 &&
+          field < fields.length &&
+          fields[field].maxLength != null;
+      // Older servers omit the per-field limit. Keep their whole-answer
+      // fallback without overriding a limit supplied by the current API.
       if (field != null &&
           bindingCounts[field] == 1 &&
+          !hasIntegerLimit &&
           interaction['role'] == 'answer' &&
           !const ['digit', 'digits', 'operator', 'comparison_operator']
               .contains(interaction['value_type']) &&
@@ -41,6 +52,7 @@ class StudentProblemCanvas extends StatelessWidget {
         interaction['auto_advance'] = false;
       }
       if (interaction['keyboard'] == 'number' &&
+          !hasIntegerLimit &&
           const ['number', 'integer', 'decimal', 'fraction']
               .contains(interaction['value_type'])) {
         interaction['keyboard'] = 'decimal';
@@ -83,7 +95,7 @@ class StudentProblemCanvas extends StatelessWidget {
             : renderer,
         fieldValues: item.canvasInputs ? values : null,
         inputsEnabled: enabled,
-        canvasChoices: item.canvasSelect ? item.canvasChoices : const [],
+        canvasChoices: canvasChoices,
         selectedChoices: selectedChoices,
         onChoiceTap: item.canvasSelect
             ? (choiceValue) {

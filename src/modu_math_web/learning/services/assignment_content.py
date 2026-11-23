@@ -11,6 +11,30 @@ from django.conf import settings
 from rest_framework.exceptions import ValidationError
 
 
+def answer_field_values(answer):
+    keys = answer.get("answer_key")
+    keys = keys if isinstance(keys, list) else []
+    values = [key.get("value") if isinstance(key, dict) else key for key in keys]
+    if not values or values == [None]:
+        return [answer.get("value")]
+    return values
+
+
+def with_integer_input_limits(schema, answer):
+    """Expose the input length for whole numbers, without including the value."""
+    values = answer_field_values(answer)
+    fields = schema["fields"]
+    if len(values) != len(fields):
+        return schema
+    return {**schema, "fields": [
+        {**field, "type": "number", "max_length": len(str(value).strip())}
+        if field["type"] in {"number", "text"}
+        and re.fullmatch(r"[0-9]+", str(value).strip())
+        else field
+        for field, value in zip(fields, values)
+    ]}
+
+
 def input_schema(problem):
     answer = problem.answer
     keys = answer.get("answer_key") or []
@@ -31,7 +55,11 @@ def input_schema(problem):
         elif isinstance(choice, str):
             safe_choices.append({"label": choice, "value": index + 1})
     fields = []
-    if answer.get("target", {}).get("type") == "multiple_choice_set" and safe_choices:
+    review = (answer.get("presentation") or {}).get("review") or {}
+    choice_set = answer.get("target", {}).get("type") == "multiple_choice_set"
+    if review.get("mode") == "canvas_select":
+        choice_set = len(keys) > 1
+    if choice_set and safe_choices:
         return {
             "fields": [
                 {"id": "field-1", "type": "multi_choice", "choices": safe_choices}
@@ -39,10 +67,7 @@ def input_schema(problem):
             "multiple": False,
             "unit": str(answer.get("unit") or ""),
         }
-    for index, key in enumerate(keys if len(keys) > 1 else [keys[0] if keys else {}]):
-        expected = key.get("value") if isinstance(key, dict) else key
-        if expected is None and len(keys) <= 1:
-            expected = answer.get("value")
+    for index, expected in enumerate(answer_field_values(answer)):
         options = safe_choices
         if isinstance(expected, bool):
             options = [{"label": "O", "value": True}, {"label": "X", "value": False}]
@@ -57,11 +82,11 @@ def input_schema(problem):
                 "choices": options,
             }
         )
-    return {
+    return with_integer_input_limits({
         "fields": fields,
         "multiple": len(fields) > 1,
         "unit": str(answer.get("unit") or ""),
-    }
+    }, answer)
 
 
 def validate_svg(data):

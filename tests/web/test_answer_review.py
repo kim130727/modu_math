@@ -1,7 +1,9 @@
 import ast
 import json
+import shutil
 from copy import deepcopy
 from pathlib import Path
+from urllib.parse import quote
 
 import pytest
 
@@ -12,6 +14,74 @@ from modu_math_web.editor.services.answer_review import (
 )
 from modu_math_web.editor.services.presentation import structure_presentation
 from test_editor_api import _setup_django
+
+pytestmark = pytest.mark.django_db
+
+
+def test_circle_problem_grades_the_choice_values_sent_by_student_preview(tmp_path):
+    client = _setup_django(tmp_path)
+    from django.conf import settings
+
+    root = Path(__file__).resolve().parents[2] / "examples" / "problems"
+    source = next(root.rglob("*008636.dsl.py"))
+    relative = source.relative_to(root)
+    target = settings.PROBLEMS_ROOT / relative
+    target.parent.mkdir(parents=True)
+    for kind in ("dsl.py", "semantic.json", "layout.json", "renderer.json"):
+        name = source.name.removesuffix("dsl.py") + kind
+        shutil.copyfile(source.with_name(name), target.with_name(name))
+    url = "/api/editor/problems/" + quote(relative.as_posix()) + "/student-preview/"
+    preview = client.get(url).json()
+    choices = preview["input_schema"]["fields"][0]["choices"]
+    assert len(choices) == 2 and choices[0]["value"] == "slot.choice.copy4"
+    for choice, expected in zip(choices, (True, False)):
+        response = client.post(url, {
+            "revision": preview["revision"], "answer": choice["value"],
+        }, content_type="application/json")
+        assert response.status_code == 200
+        assert response.json()["correct"] is expected
+
+
+def test_route_problem_saved_canvas_choice_reaches_student_grader(tmp_path):
+    client = _setup_django(tmp_path)
+    from django.conf import settings
+
+    root = Path(__file__).resolve().parents[2] / "examples" / "problems"
+    source = next(root.rglob("P3_1_01_00040_07646.dsl.py"))
+    relative = source.relative_to(root)
+    target = settings.PROBLEMS_ROOT / relative
+    target.parent.mkdir(parents=True)
+    shutil.copyfile(source, target)
+    suffix = ".editor_overrides.json"
+    shutil.copyfile(source.with_suffix("").with_suffix(suffix),
+                    target.with_suffix("").with_suffix(suffix))
+    url = "/api/editor/problems/" + quote(relative.as_posix())
+
+    def post(path, data):
+        response = client.post(url + path, data=data, content_type="application/json")
+        assert response.status_code == 200, response.content
+        return response.json()
+
+    saved = post("/build/", {})["artifacts"]["semantic"]["answer"]["presentation"]["review"]
+    correct_id, wrong_id = [choice["id"] for choice in saved["choices"]]
+
+    def check(expected):
+        preview = client.get(url + "/student-preview/").json()
+        assert preview["presentation"]["mode"] == "canvas_select"
+        assert [choice["value"] for choice in preview["presentation"]["canvas_choices"]] == [correct_id, wrong_id]
+        for choice_id in (correct_id, wrong_id):
+            result = post("/student-preview/", {"revision": preview["revision"], "answer": choice_id})
+            assert result["correct"] is (choice_id == expected)
+
+    check(correct_id)
+    # Two diagram choices may share a label. Changing the key must still
+    # change which physical choice the student grader accepts.
+    for choice in saved["choices"]:
+        choice["correct"] = choice["id"] == wrong_id
+        choice["text"] = "Same label"
+    post("/answer-review/", {"review": saved | {"status": "verified"}})
+    post("/build/", {})
+    check(wrong_id)
 
 
 def review(mode="choice"):

@@ -7,6 +7,34 @@ import 'package:modu_math_app/services/assignment_session.dart';
 import 'package:modu_math_app/widgets/assignment_answer_input.dart';
 
 void main() {
+  for (final limit in [1, 3]) {
+    testWidgets('integer panel input keeps up to $limit digits', (tester) async {
+      dynamic value;
+      final item = AssignmentItem.fromJson({
+        'id': 1,
+        'content': {
+          'input_schema': {
+            'fields': [
+              {'id': 'field-1', 'type': 'number', 'max_length': limit},
+            ],
+          },
+        },
+      });
+      await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+          body: AssignmentAnswerInput(
+            item: item,
+            value: null,
+            enabled: true,
+            changed: (next) => value = next,
+          ),
+        ),
+      ));
+      await tester.enterText(find.byType(TextField), 'a3067');
+      expect(value, '306'.substring(0, limit));
+    });
+  }
+
   testWidgets(
       'multiple selections preserve all choices and display labels in results',
       (tester) async {

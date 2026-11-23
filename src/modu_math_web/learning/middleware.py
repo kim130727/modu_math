@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import logging
+
 from django.conf import settings
+from django.db import DatabaseError
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
@@ -8,6 +11,7 @@ from rest_framework.exceptions import AuthenticationFailed
 
 from .platform_permissions import is_manager
 
+logger = logging.getLogger(__name__)
 
 class EditorAccessMiddleware:
     """Local authoring stays available; production authoring APIs and assets require teacher role.
@@ -167,9 +171,22 @@ class EditorAccessMiddleware:
                 and payload.get("artifacts")
                 and payload.get("problem_id")
             ):
-                sync_authored_artifacts(
-                    resolve_problem_paths(payload["problem_id"]), payload["artifacts"]
-                )
+                try:
+                    sync_authored_artifacts(
+                        resolve_problem_paths(payload["problem_id"]), payload["artifacts"]
+                    )
+                except DatabaseError:
+                    logger.exception("Editor database sync failed for %s", payload["problem_id"])
+                    response = JsonResponse({
+                        "ok": False,
+                        "problem_id": payload["problem_id"],
+                        "stage": "database_sync",
+                        "error": (
+                            "Build completed, but database synchronization failed. "
+                            "Your source changes are saved. Please retry the build."
+                        ),
+                        "artifacts": {},
+                    }, status=503)
         if request.path.startswith(
             ("/api/editor/", "/api/v1/problems/", "/api/v1/student/")
         ):

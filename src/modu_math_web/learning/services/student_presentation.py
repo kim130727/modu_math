@@ -3,27 +3,46 @@
 from collections import Counter
 import re
 
+from .assignment_content import answer_field_values
 
-def normalize_answer_capacity(elements, presentation):
+
+def normalize_answer_capacity(elements, presentation, answer, schema):
     """A whole-answer box must not inherit a digit-cell's length restriction.
 
-    Use a uniform public limit, independent of the secret answer's length.
-    Preserve explicit digit cells, and capacities of cells composing one field.
+    Use the field's integer limit for whole answers and preserve split cells.
     """
     bindings = presentation.get("canvas_bindings", {})
     counts = Counter(bindings.values())
+    values = answer_field_values(answer)
+    fields = schema["fields"]
     for element in elements:
         field = bindings.get(str(element.get("id")))
         interaction = element.get("interaction") or {}
         if (
-            field is None or counts[field] != 1
+            type(field) is not int or not 0 <= field < len(fields) or counts[field] != 1
             or interaction.get("role") != "answer"
-            or interaction.get("value_type") in {"digit", "digits", "operator", "comparison_operator"}
+            or interaction.get("value_type") in {"operator", "comparison_operator"}
             or interaction.get("keyboard") == "operator"
         ):
             continue
-        interaction["max_length"] = 64
-        interaction["auto_advance"] = False
+        limit = fields[field].get("max_length")
+        if limit is not None:
+            if limit == 1 and interaction.get("value_type") in {"digit", "digits"}:
+                element["interaction"] = {**interaction, "max_length": 1}
+            else:
+                element["interaction"] = {
+                    **interaction, "value_type": "integer", "keyboard": "number",
+                    "max_length": limit, "auto_advance": False,
+                }
+            continue
+        interaction = {**interaction, "max_length": 64, "auto_advance": False}
+        if interaction.get("value_type") in {"digit", "digits"}:
+            expected = values[field] if field < len(values) else None
+            if expected is None:
+                continue
+            kind = fields[field]["type"]
+            interaction["value_type"] = "number" if kind == "number" else "text"
+            interaction["keyboard"] = "decimal" if kind == "number" else "text"
         element["interaction"] = interaction
 
 
@@ -130,11 +149,11 @@ def presentation_contract(problem, schema):
             if matched_ids:
                 canvas_choices.append({
                     "choice_id": choice_id,
-                    "value": str(choice.get("text") or choice.get("label") or choice_id),
-                    "label": str(choice.get("label") or choice.get("text") or f"{index + 1}"),
+                    "value": choice_id if review.get("mode") == "canvas_select" else str(choice.get("text") or choice.get("label") or choice_id),
+                    "label": str(choice.get("text") or choice.get("label") or f"{index + 1}"),
                     "element_ids": matched_ids,
                 })
-        if not canvas_choices or review.get("show_canvas") is False:
+        if not canvas_choices or len(canvas_choices) != len(raw_choices) or review.get("show_canvas") is False:
             mode = "choice"
     if not mode:
         mode = "canvas_slots" if bindings else "panel_input"
@@ -152,7 +171,8 @@ def presentation_contract(problem, schema):
         **(
             {
                 "canvas_choices": canvas_choices,
-                "multi": len(keys) > 1 or answer.get("target", {}).get("type") == "multiple_choice_set",
+                "multi": len(keys) > 1
+                or (not review and answer.get("target", {}).get("type") == "multiple_choice_set"),
             }
             if mode == "canvas_select"
             else {}

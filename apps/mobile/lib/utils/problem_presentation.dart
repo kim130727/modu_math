@@ -3,18 +3,19 @@ import 'dart:math' as math;
 import '../models/content_models.dart';
 
 final _visualCache = Expando<Map<String, dynamic>>();
-final _visualCacheWithChoices = Expando<Map<String, dynamic>>();
 
 /// A display-only projection. Authored data remains available for grading,
 /// hints and editing. Unknown visual content is deliberately preserved.
-Map<String, dynamic> problemVisualRenderer(ProblemContent content, {bool keepCanvasChoices = false}) {
-  if (keepCanvasChoices) {
-    return _visualCacheWithChoices[content] ??= _projectVisual(content, keepCanvasChoices: true);
+Map<String, dynamic> problemVisualRenderer(ProblemContent content,
+    {Set<String> canvasChoiceElementIds = const {}}) {
+  if (canvasChoiceElementIds.isNotEmpty) {
+    return _projectVisual(content, canvasChoiceElementIds: canvasChoiceElementIds);
   }
   return _visualCache[content] ??= _projectVisual(content);
 }
 
-Map<String, dynamic> _projectVisual(ProblemContent content, {bool keepCanvasChoices = false}) {
+Map<String, dynamic> _projectVisual(ProblemContent content,
+    {Set<String> canvasChoiceElementIds = const {}}) {
   final renderer = content.renderer;
   final raw = renderer['elements'];
   if (raw is! List) return renderer;
@@ -101,7 +102,7 @@ Map<String, dynamic> _projectVisual(ProblemContent content, {bool keepCanvasChoi
   }
 
   for (final element in raw) {
-    if (element is! Map) {
+    if (element is! Map || canvasChoiceElementIds.contains('${element['id']}')) {
       kept.add(element);
       continue;
     }
@@ -174,7 +175,7 @@ Map<String, dynamic> _projectVisual(ProblemContent content, {bool keepCanvasChoi
                 .hasMatch(identity)) &&
         !hasLabelMarker;
 
-    final isChoice = !keepCanvasChoices && !isExplicitCanvas &&
+    final isChoice = !isExplicitCanvas &&
         text.isNotEmpty &&
         !isDiagramLabel &&
         isChoiceRole &&

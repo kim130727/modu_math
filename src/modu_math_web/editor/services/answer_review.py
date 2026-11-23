@@ -231,9 +231,11 @@ def apply_answer_review(semantic, solvable, value):
         elif review["mode"] in {"choice", "canvas_select"}:
             answer["choices"] = [{"id": c["id"], "label": c["label"], "text": c["text"], "source_refs": c["sourceRefs"]} for c in review["choices"]]
             keys = [{"id": c["id"], "value": c["text"]} for c in review["choices"] if c["correct"]]
+            target = answer.get("target")
             if len(keys) > 1:
-                target = answer.get("target")
                 answer["target"] = {**(target if isinstance(target, dict) else {}), "type": "multiple_choice_set"}
+            elif isinstance(target, dict) and target.get("type") == "multiple_choice_set":
+                answer["target"] = {**target, "type": "choice"}
         else:
             answer["choices"] = []
             keys = [{"value": a["value"], **({"unit": a["unit"].strip()} if a.get("unit", "").strip() else {}), **({"slot_id": a["ref"]} if a.get("ref", "").startswith("slot.") else {})} for a in review["answers"]]

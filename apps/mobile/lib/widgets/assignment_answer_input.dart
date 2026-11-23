@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../l10n/assignment_strings.dart';
 import '../models/assignment.dart';
 import 'math_keypad.dart';
@@ -128,10 +129,18 @@ class _AssignmentAnswerInputState extends State<AssignmentAnswerInput> {
               onTap: () => setState(() => active = i),
               onChanged: (value) => change(i, value),
               style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w600),
-              keyboardType: field.type == 'number'
-                  ? const TextInputType.numberWithOptions(
-                      decimal: true, signed: true)
-                  : TextInputType.text,
+              inputFormatters: [
+                if (field.maxLength case final limit?) ...[
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(limit),
+                ],
+              ],
+              keyboardType: field.maxLength != null
+                  ? TextInputType.number
+                  : field.type == 'number'
+                      ? const TextInputType.numberWithOptions(
+                          decimal: true, signed: true)
+                      : TextInputType.text,
               decoration: InputDecoration(
                   labelText: label,
                   hintText: strings.t('write'),
@@ -153,7 +162,14 @@ class _AssignmentAnswerInputState extends State<AssignmentAnswerInput> {
             showNextButton: false,
             onKeyPressed: (text) {
               final controller = controllers[active];
-              controller.text += text;
+              final next = controller.text + text;
+              final limit = widget.item.fields[active].maxLength;
+              if (limit != null &&
+                  (next.length > limit ||
+                      !RegExp(r'^[0-9]+$').hasMatch(next))) {
+                return;
+              }
+              controller.text = next;
               change(active, controller.text);
             },
             onBackspace: () {

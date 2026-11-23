@@ -93,8 +93,8 @@ def test_partial_canvas_bindings_fall_back_to_reachable_panel_fields(render_prob
     assert len(payload["input_schema"]["fields"]) == 2
 
 
-@pytest.mark.parametrize("answer", [5, 1124, -1234567, "7/8"])
-def test_whole_answer_capacity_is_not_limited_by_stale_metadata_or_secret_length(render_problem, answer):
+@pytest.mark.parametrize(("answer", "limit"), [(5, 1), (1124, 4), ("306", 3), (-1234567, None), ("7/8", None)])
+def test_whole_answer_capacity_follows_integer_length(render_problem, answer, limit):
     render_problem.answer = {"value": answer}
     render_problem.renderer_data["elements"] = [{
         "id": "whole", "type": "rect",
@@ -103,7 +103,8 @@ def test_whole_answer_capacity_is_not_limited_by_stale_metadata_or_secret_length
     }]
     payload = student_problem(render_problem)
     assert payload["presentation"]["canvas_bindings"] == {"whole": 0}
-    assert payload["renderer_data"]["elements"][0]["interaction"]["max_length"] == 64
+    assert payload["input_schema"]["fields"][0].get("max_length") == limit
+    assert payload["renderer_data"]["elements"][0]["interaction"]["max_length"] == (limit or 64)
     assert render_problem.renderer_data["elements"][0]["interaction"]["max_length"] == 3
 
 
@@ -124,6 +125,40 @@ def test_split_digit_cells_and_operator_constraints_remain_intact(render_problem
     }]
     payload = student_problem(render_problem)
     assert payload["renderer_data"]["elements"][0]["interaction"]["max_length"] == 1
+
+
+def test_misconfigured_digit_field_accepts_whole_answer_in_saved_assignments(render_problem):
+    from copy import deepcopy
+    from types import SimpleNamespace
+
+    from modu_math_web.learning.services.assignments import _student_item_content
+
+    render_problem.answer = {"value": [9, 490], "answer_key": [
+        {"value": 9}, {"value": 490},
+    ]}
+    for element in render_problem.renderer_data["elements"]:
+        element["interaction"].update(value_type="digit", max_length=1, auto_advance=True, keyboard="number")
+    original = deepcopy(render_problem.renderer_data)
+    payload = student_problem(render_problem)
+    # Simulate an assignment saved before the capacity fix.
+    snapshot = deepcopy(payload)
+    for field in snapshot["input_schema"]["fields"]:
+        field.pop("max_length")
+    for element in snapshot["renderer_data"]["elements"]:
+        element["interaction"].update(value_type="digit", max_length=1, auto_advance=True, keyboard="number")
+    frozen = deepcopy(snapshot)
+    resolved = _student_item_content(SimpleNamespace(public_content=snapshot, answer=render_problem.answer))
+    for content in (payload, resolved):
+        by_id = {e["id"]: e["interaction"] for e in content["renderer_data"]["elements"]}
+        assert by_id["first-box"]["max_length"] == 1
+        assert by_id["first-box"]["auto_advance"] is True
+        assert by_id["second-box"]["max_length"] == 3
+        assert by_id["second-box"]["auto_advance"] is False
+        assert by_id["second-box"]["value_type"] == "integer"
+        assert [field["max_length"] for field in content["input_schema"]["fields"]] == [1, 3]
+        assert "490" not in json.dumps(content)
+    assert snapshot == frozen
+    assert render_problem.renderer_data == original
 
 
 def test_individual_digit_fields_keep_capacity_and_bind_by_complete_authored_order(render_problem):

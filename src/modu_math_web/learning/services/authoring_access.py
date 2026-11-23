@@ -2,7 +2,7 @@
 
 from uuid import uuid4
 
-from django.db import transaction
+from django.db import connection, transaction
 
 from ..models import Problem, ProblemPublication
 from .problem_access import is_admin
@@ -88,7 +88,14 @@ def register_source(user, paths, title=""):
     )
 
 
+@transaction.atomic
 def sync_authored_artifacts(paths, artifacts):
+    # Fail before the HTTP worker deadline if an importer or another editor
+    # owns the row. LOCAL settings are restored when this transaction ends.
+    if connection.vendor == "postgresql":
+        with connection.cursor() as cursor:
+            cursor.execute("SET LOCAL lock_timeout = '3s'")
+            cursor.execute("SET LOCAL statement_timeout = '10s'")
     publication = source_publication(paths)
     if (
         not publication

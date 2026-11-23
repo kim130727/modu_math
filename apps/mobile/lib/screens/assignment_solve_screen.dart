@@ -178,7 +178,7 @@ class _AssignmentSolveScreenState extends State<AssignmentSolveScreen>
         const Padding(
             padding: EdgeInsets.only(bottom: 16),
             child: Center(child: CircularProgressIndicator())),
-      if (!item.canvasInputs)
+      if (!item.canvasInputs && !item.canvasSelect)
         AssignmentAnswerInput(
             key: ValueKey(item.id),
             item: item,

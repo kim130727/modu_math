@@ -239,7 +239,7 @@ def _attach_submit_slot_answers(
     return semantic, solvable
 
 
-def compile_problem_artifacts(problem_paths) -> dict:
+def compile_problem_artifacts(problem_paths, *, include_svg: bool = True) -> dict:
     module = _load_dsl_module(problem_paths.dsl_path)
     problem = _problem_template_from_module(module, problem_paths.dsl_path)
 
@@ -418,7 +418,10 @@ def compile_problem_artifacts(problem_paths) -> dict:
         )
     if hasattr(module, "TUTOR_RENDERER_FLOW"):
         renderer = attach_tutor_renderer_flow(renderer, module.TUTOR_RENDERER_FLOW)
-    svg = inline_local_image_hrefs(render_svg(renderer), problem_paths.base_dir)
+    svg = (
+        inline_local_image_hrefs(render_svg(renderer), problem_paths.base_dir)
+        if include_svg else None
+    )
 
     _schema_validator("schema/semantic/semantic.v1.json").validate(semantic)
     _schema_validator("schema/layout/layout.v1.json").validate(layout)
@@ -460,7 +463,9 @@ def _build_problem_artifacts(problem_id: str) -> str:
         from .artifact_cache import get_artifacts
         get_artifacts(problem_paths, force=True)
         return "build_ok (cached bundle)"
-    artifacts = compile_problem_artifacts(problem_paths)
+    # The editor consumes renderer JSON; do not subset fonts or render an SVG
+    # that this file-backed build would immediately discard.
+    artifacts = compile_problem_artifacts(problem_paths, include_svg=False)
     semantic, layout, renderer, solvable = (
         artifacts[key] for key in ("semantic", "layout", "renderer", "solvable"))
     problem_paths.artifact_path("semantic").write_text(
@@ -552,5 +557,5 @@ def _rebuild_linked_layouts(problem_id: str) -> list[str]:
 
 def build_with_artifacts(problem_id: str) -> tuple[BuildResult, dict[str, Any]]:
     result = run_problem_build(problem_id)
-    artifacts = read_artifacts(problem_id)
+    artifacts = read_artifacts(problem_id) if result.ok else {}
     return result, artifacts

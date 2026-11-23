@@ -13,7 +13,12 @@ from django.views.decorators.http import require_GET
 _ASSET_ROOT = (
     Path(__file__).resolve().parent / "static" / "editor_next" / "konva_assets"
 )
-_STUDENT_ASSET_ROOT = _ASSET_ROOT.with_name("student_app")
+
+
+def _student_asset_root() -> Path:
+    if settings.STUDENT_STATIC_ROOT:
+        return Path(settings.STUDENT_STATIC_ROOT) / "editor_next" / "student_app"
+    return _ASSET_ROOT.with_name("student_app")
 
 
 @lru_cache(maxsize=8)
@@ -35,7 +40,7 @@ def editor_asset_version() -> str:
 
 
 def student_app_asset_version() -> str:
-    bundle = _STUDENT_ASSET_ROOT / "main.dart.js"
+    bundle = _student_asset_root() / "main.dart.js"
     if not bundle.exists():
         return "missing"
     stat = bundle.stat()
@@ -44,7 +49,7 @@ def student_app_asset_version() -> str:
 
 @require_GET
 def student_workspace(request: HttpRequest):
-    index = _STUDENT_ASSET_ROOT / "index.html"
+    index = _student_asset_root() / "index.html"
     if not index.is_file():
         return HttpResponse("학생 학습 화면을 준비하고 있습니다.", status=503)
     response = FileResponse(index.open("rb"), content_type="text/html; charset=utf-8")

@@ -10,8 +10,8 @@
       "id": "konva_1785217709470_rect_5615662.rect",
       "type": "rect",
       "attributes": {
-        "x": 641.47,
-        "y": 155.192,
+        "x": 605.09,
+        "y": 146.0,
         "width": 121.03,
         "height": 51.89,
         "fill": "#ffffff",
@@ -25,12 +25,12 @@
       "interaction": {
         "type": "input",
         "role": "answer",
-        "value_type": "digit",
-        "max_length": 1,
+        "value_type": "integer",
+        "max_length": 64,
         "include_in_submission": true,
         "order": 0,
         "group_id": "final_answer",
-        "auto_advance": true,
+        "auto_advance": false,
         "keyboard": "number"
       },
       "input_style": {
@@ -75,6 +75,35 @@
         "layout_slot_id": "slot.question"
       },
       "text": "서로 다른 두 수가 있습니다. 두 수 중 큰 수는 작은 수의 2배입니다. 두 수의 합이 735라면 큰 수는 얼마입니까?"
+    },
+    {
+      "id": "konva_1795396069367_text_889478.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 561.99,
+        "y": 92.37,
+        "fill": "#111827",
+        "font-family": "\"Noto Sans KR\", \"Pretendard\", \"Segoe UI\", \"Malgun Gothic\", \"Apple SD Gothic Neo\", \"Segoe UI Symbol\", sans-serif",
+        "font-size": 30.0,
+        "width": 201.0,
+        "height": 38.0,
+        "max_width": 201.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 561.99,
+        "data-box-y": 92.37,
+        "data-box-width": 201.0,
+        "data-box-height": 38.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.25,
+        "data-semantic-role": "canvas",
+        "data-semantic-role-source": "inferred"
+      },
+      "source_ref": "konva_1795396069367_text_889478",
+      "refs": {
+        "layout_slot_id": "konva_1795396069367_text_889478"
+      },
+      "text": "답을 적어주세요"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

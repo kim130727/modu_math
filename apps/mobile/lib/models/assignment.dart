@@ -5,14 +5,19 @@ Map<String, dynamic> assignmentMap(dynamic value) =>
 
 class AssignmentField {
   const AssignmentField(
-      {required this.id, required this.type, this.choices = const []});
+      {required this.id,
+      required this.type,
+      this.choices = const [],
+      this.maxLength});
   final String id;
   final String type;
+  final int? maxLength;
   final List<Map<String, dynamic>> choices;
   factory AssignmentField.fromJson(Map<String, dynamic> json) =>
       AssignmentField(
         id: '${json['id'] ?? 'answer'}',
         type: '${json['type'] ?? 'text'}',
+        maxLength: json['max_length'] as int?,
         choices: (json['choices'] as List? ?? []).map(assignmentMap).toList(),
       );
 }

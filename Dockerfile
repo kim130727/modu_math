@@ -4,7 +4,11 @@ WORKDIR /build/editor_next
 COPY src/modu_math_web/editor_next/package.json src/modu_math_web/editor_next/package-lock.json ./
 RUN npm ci
 COPY src/modu_math_web/editor_next/ ./
-RUN npm run build
+RUN npm run build && mkdir -p /usr/share/nginx/html
+
+
+FROM scratch AS student_bundle
+COPY --from=editor-builder /usr/share/nginx/html/ /usr/share/nginx/html/
 
 
 FROM python:3.12-slim
@@ -16,6 +20,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 WORKDIR /app
 COPY . /app
 COPY --from=editor-builder /build/editor_next/static/editor_next/konva_assets/ /app/src/modu_math_web/editor_next/static/editor_next/konva_assets/
+COPY --from=student_bundle /usr/share/nginx/html/ /app/student-static/editor_next/student_app/
 RUN pip install --no-cache-dir .
 
 EXPOSE 8000

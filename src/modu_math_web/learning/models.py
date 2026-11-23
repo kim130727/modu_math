@@ -26,6 +26,43 @@ def _normalized(value: Any) -> Any:
     return str(value)
 
 
+def _submitted_choice_value(value):
+    if isinstance(value, dict):
+        return value.get("choice_id", value.get("id", value.get("value")))
+    return value
+
+
+def _choice_id(value, choices):
+    value = _submitted_choice_value(value)
+    if isinstance(value, str) and value in choices:
+        return value
+    # Older clients submitted a one-based position or the displayed text.
+    if type(value) is int and 0 < value <= len(choices):
+        return list(choices)[value - 1]
+    normalized = _normalized(value)
+    matches = [
+        choice_id for choice_id, choice in choices.items()
+        if any(key in choice and _normalized(choice[key]) == normalized
+               for key in ("text", "value", "label"))
+    ]
+    if matches:
+        return matches[0] if len(matches) == 1 else None
+    if isinstance(value, str):
+        match = re.fullmatch(r"(?:choice\.|slot\.(?:choice|opt|option)\.)?(\d+)", value.strip())
+        if match and 0 < (position := int(match.group(1))) <= len(choices):
+            return list(choices)[position - 1]
+    return None
+
+
+def _keyed_choice_matches(choices, submitted, expected_ids):
+    if len(expected_ids) > 1 and isinstance(submitted, str) and "," in submitted:
+        submitted = submitted.split(",")
+    values = submitted if isinstance(submitted, list) else [submitted]
+    if len(values) != len(expected_ids):
+        return False
+    return {_choice_id(value, choices) for value in values} == expected_ids
+
+
 def answer_matches(answer: dict[str, Any], submitted: Any) -> bool:
     """Compare a client answer with the existing answer contract without rewriting it."""
     candidates: list[Any] = []
@@ -34,6 +71,21 @@ def answer_matches(answer: dict[str, Any], submitted: Any) -> bool:
     answer_key = answer.get("answer_key", [])
     if not isinstance(answer_key, list):
         answer_key = []
+    review = (answer.get("presentation") or {}).get("review") or {}
+    raw_choices = answer.get("choices") or []
+    choices_by_id = {
+        choice["id"]: choice for choice in raw_choices
+        if isinstance(choice, dict) and isinstance(choice.get("id"), str)
+    }
+    choice_set = answer.get("target", {}).get("type") == "multiple_choice_set"
+    # The input schema sends the actual choice ID. Grade that identity before
+    # interpreting any legacy answer text or one-based choice number.
+    if answer_key and (len(answer_key) == 1 or choice_set or review.get("mode") == "canvas_select"):
+        expected_ids = [key.get("id") if isinstance(key, dict) else None for key in answer_key]
+        if all(isinstance(key, str) and key in choices_by_id for key in expected_ids):
+            return _keyed_choice_matches(choices_by_id, submitted, set(expected_ids))
+    if review.get("mode") == "canvas_select" and not answer_key:
+        return False
     if len(answer_key) > 1 or (
         answer_key and answer.get("target", {}).get("type") == "multiple_choice_set"
     ):
@@ -92,13 +144,14 @@ def answer_matches(answer: dict[str, Any], submitted: Any) -> bool:
             return True
 
     # Mobile clients commonly submit a one-based choice number or choice id.
-    submitted_choice = submitted
-    if isinstance(submitted, dict):
-        submitted_choice = submitted.get(
-            "choice_id", submitted.get("id", submitted.get("value"))
-        )
+    submitted_choice = _submitted_choice_value(submitted)
     choice_number: int | None = None
-    if isinstance(submitted_choice, int) and not isinstance(submitted_choice, bool):
+    if isinstance(submitted_choice, str) and submitted_choice in choices_by_id:
+        choice_number = next(
+            i for i, choice in enumerate(raw_choices, 1)
+            if isinstance(choice, dict) and choice.get("id") == submitted_choice
+        )
+    elif isinstance(submitted_choice, int) and not isinstance(submitted_choice, bool):
         choice_number = submitted_choice
     elif isinstance(submitted_choice, str):
         match = re.fullmatch(

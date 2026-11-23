@@ -16,7 +16,7 @@ from ..models import (
     Attempt,
     StudentProfile,
 )
-from .assignment_content import freeze_images, input_schema
+from .assignment_content import freeze_images, input_schema, with_integer_input_limits
 from .student_presentation import authored_prompt, presentation_contract, safe_layout, normalize_answer_capacity
 
 
@@ -115,7 +115,7 @@ def student_problem(problem):
         ):
             element["attributes"].pop("href", None)
         elements.append(element)
-    normalize_answer_capacity(elements, presentation)
+    normalize_answer_capacity(elements, presentation, problem.answer, schema)
     public_renderer["elements"] = elements
     choices = []
     source_choices = metadata.get("choices", semantic.get("choices", []))
@@ -216,6 +216,29 @@ def latest_attempts(recipient):
     return latest
 
 
+def _student_item_content(item):
+    content = item.public_content
+    schema = content.get("input_schema")
+    if schema:
+        schema = with_integer_input_limits(schema, item.answer)
+    else:
+        schema = input_schema(
+            SimpleNamespace(
+                answer=item.answer,
+                semantic_data={"metadata": {"choices": content.get("choices", [])}},
+            )
+        )
+    presentation = content.get("presentation") or {}
+    renderer = content.get("renderer_data") or {}
+    if presentation.get("mode") == "canvas_slots" and renderer.get("elements"):
+        # Apply the same input rules to previously assigned problems, using
+        # the frozen answer contract and leaving the stored snapshot intact.
+        elements = [dict(element) for element in renderer["elements"]]
+        normalize_answer_capacity(elements, presentation, item.answer, schema)
+        content = {**content, "renderer_data": {**renderer, "elements": elements}}
+    return {**content, "input_schema": schema}
+
+
 def recipient_result(recipient, *, teacher=False, detail=False):
     assignment = recipient.assignment
     latest = latest_attempts(recipient)
@@ -272,20 +295,7 @@ def recipient_result(recipient, *, teacher=False, detail=False):
             data = {
                 "id": item.pk,
                 "position": item.position,
-                "content": {
-                    **item.public_content,
-                    "input_schema": item.public_content.get("input_schema")
-                    or input_schema(
-                        SimpleNamespace(
-                            answer=item.answer,
-                            semantic_data={
-                                "metadata": {
-                                    "choices": item.public_content.get("choices", [])
-                                }
-                            },
-                        )
-                    ),
-                },
+                "content": _student_item_content(item),
                 "draft_answer": (
                     progress[item.pk].answer if item.pk in progress else None
                 ),

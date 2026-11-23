@@ -31,13 +31,16 @@ COPY apps/mobile/web ./web
 COPY apps/mobile/assets/i18n ./assets/i18n
 COPY apps/mobile/assets/characters ./assets/characters
 COPY apps/mobile/scripts/prepare_student_build.py ./scripts/prepare_student_build.py
+COPY apps/mobile/scripts/build_student_web.py ./scripts/build_student_web.py
 
 # Build student release app targeting lib/main.dart without authored problem answers
 RUN flutter build web --release \
+    --pwa-strategy=none \
     --base-href /static/editor_next/student_app/ \
     --target lib/main.dart \
     --dart-define=BACKEND_API_BASE_URL=${BACKEND_API_BASE_URL} && \
     python3 scripts/prepare_student_build.py --verify-dir build/web && \
+    python3 -c "from pathlib import Path; from scripts.build_student_web import stamp_web_cache_bust; stamp_web_cache_bust(Path('build/web'))" && \
     chmod -R a+rX build/web
 
 

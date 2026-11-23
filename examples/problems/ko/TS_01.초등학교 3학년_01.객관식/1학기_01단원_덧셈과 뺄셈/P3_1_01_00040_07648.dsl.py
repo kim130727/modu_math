@@ -50,7 +50,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="답",
                 answer_key="490",
                 placeholder="",
-            ),RectSlot(id = 'konva_1785217709470_rect_5615662', prompt = '', x = 641.47, y = 155.192, width = 167.081, height = 51.887, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'digit', 'max_length': 1, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': True, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
+            ),RectSlot(id = 'konva_1785217709470_rect_5615662', prompt = '', x = 641.47, y = 155.192, width = 167.081, height = 51.887, fill = '#ffffff', stroke = '#111827', stroke_width = 1.2, interaction = {'type': 'input', 'role': 'answer', 'value_type': 'integer', 'max_length': 64, 'include_in_submission': True, 'order': 0, 'group_id': 'final_answer', 'auto_advance': False, 'keyboard': 'number'}, input_style = {'font_size_mode': 'auto', 'font_size_adjust': 0, 'min_font_size': 14, 'max_font_size': 52, 'font_weight': 700, 'horizontal_align': 'center', 'vertical_align': 'middle', 'padding': 6, 'text_color': '#222222'})),
     )
 
 

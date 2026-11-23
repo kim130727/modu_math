@@ -37,6 +37,26 @@ class AnswerMatchingTests(TestCase):
             )
         )
 
+    def test_choice_identity_survives_duplicate_display_text(self):
+        choices = [
+            {"id": "slot.choice.copy4", "text": "Same", "label": "1"},
+            {"id": "choice.review.unique", "text": "Same", "label": "2"},
+            {"id": "choice.review.third", "text": "Different", "label": "3"},
+        ]
+        key = {"id": "slot.choice.copy4", "value": "Same"}
+        answer = {"choices": choices, "answer_key": [key], "value": "Same"}
+        self.assertTrue(answer_matches(answer, key["id"]))
+        self.assertTrue(answer_matches(answer, {"choice_id": key["id"]}))
+        self.assertTrue(answer_matches(answer, 1))
+        self.assertFalse(answer_matches(answer, choices[1]["id"]))
+        self.assertFalse(answer_matches(answer, "Same"))
+
+        answer["target"] = {"type": "multiple_choice_set"}
+        answer["answer_key"].append({"id": choices[2]["id"], "value": "Different"})
+        self.assertTrue(answer_matches(answer, [choices[2]["id"], key["id"]]))
+        self.assertFalse(answer_matches(answer, [choices[2]["id"], choices[1]["id"]]))
+        self.assertFalse(answer_matches(answer, [key["id"], key["id"]]))
+
 
 class LearningApiTests(TestCase):
     def setUp(self):
